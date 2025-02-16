@@ -527,11 +527,10 @@
 		<set name="material" val="LIQUID" />
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
-		<set name="etcitem_type" val="POTION" />
 		<set name="handler" val="ItemSkills" />
-		<set name="reuse_delay" val="300" />
+		<set name="reuse_delay" val="300000" />
 		<skills>
-			<skill id="39245" level="1" /> <!-- Shining Nevit's Gold Hourglass -->
+			<skill id="39571" level="1" /> <!-- Shining Nevit's Gold Hourglass -->
 		</skills>
 	</item>
 	<item id="48643" name="Angel's Gift Bundle Lv. 5" type="EtcItem">

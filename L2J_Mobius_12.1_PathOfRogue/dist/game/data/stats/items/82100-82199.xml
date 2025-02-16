@@ -996,6 +996,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_event_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
+		<set name="reuse_delay" val="300000" />
 		<skills>
 			<skill id="39756" level="1" /> <!-- Swift Growth Cookie -->
 		</skills>
@@ -1013,6 +1014,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_event_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
+		<set name="reuse_delay" val="300000" />
 		<skills>
 			<skill id="39757" level="1" /> <!-- Swift Attack Cookie -->
 		</skills>
@@ -1243,6 +1245,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_event_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
+		<set name="reuse_delay" val="300000" />
 		<skills>
 			<skill id="39774" level="1" /> <!-- Swift Defense Cookie -->
 		</skills>

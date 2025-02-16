@@ -571,6 +571,38 @@
 		<reuseDelay>5000</reuseDelay>
 		<specialLevel>-2</specialLevel>
 		<stayAfterDeath>true</stayAfterDeath>
+		<effects>
+			<effect name="DispelBySlotProbability">
+				<dispel>BUFF_SPECIAL_CLASS;DITTY;BUFF_SPECIAL_ATTACK;BUFF_SPECIAL_AURA;ARMOR_ELEMENT_ALL</dispel>
+				<rate>100</rate>
+			</effect>
+			<effect name="CallSkill">
+				<skillId>39514</skillId> <!-- Fantasia Harmony - Emperor's Special Cocktail -->
+				<skillLevel>1</skillLevel>
+			</effect>
+			<effect name="CallSkill">
+				<skillId>39517</skillId> <!-- Fantasia Melody - Emperor's Special Cocktail -->
+				<skillLevel>1</skillLevel>
+			</effect>
+			<effect name="CallSkill">
+				<skillId>39766</skillId> <!-- Musician's Melody - Emperor's Special Cocktail -->
+				<skillLevel>1</skillLevel>
+			</effect>
+			<effect name="CallSkill">
+				<skillId>39771</skillId> <!-- Drum Concert - Emperor's Special Cocktail -->
+				<skillLevel>1</skillLevel>
+			</effect>
+			<effect name="CallSkill">
+				<skillId>39772</skillId> <!-- United Resistance - Emperor's Special Cocktail -->
+				<skillLevel>1</skillLevel>
+			</effect>
+		</effects>
+		<endEffects>
+			<effect name="DispelBySlotProbability">
+				<dispel>BUFF_SPECIAL_CLASS;DITTY;BUFF_SPECIAL_ATTACK;BUFF_SPECIAL_AURA;ARMOR_ELEMENT_ALL</dispel>
+				<rate>100</rate>
+			</effect>
+		</endEffects>
 	</skill>
 	<skill id="39522" toLevel="1" name="Emperor's Special Cocktail">
 		<!-- For 60 min., applies the following effects: Musician's Melody Lv. 5, Fantasia Harmony Lv. 2, Drum Concert, Fantasia Melody, United Resistance. To remove the effect, press Alt + Left Mouse Button. -->

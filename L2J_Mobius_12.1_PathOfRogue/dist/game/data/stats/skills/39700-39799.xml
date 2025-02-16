@@ -734,7 +734,6 @@
 		<targetType>SELF</targetType>
 		<abnormalLevel>2</abnormalLevel>
 		<abnormalTime>1800</abnormalTime>
-		<abnormalType>BR_EVENT_BUF1</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<canBeDispelled>false</canBeDispelled>
@@ -771,7 +770,7 @@
 		<targetType>SELF</targetType>
 		<abnormalLevel>2</abnormalLevel>
 		<abnormalTime>1800</abnormalTime>
-		<abnormalType>BR_EVENT_BUF1</abnormalType>
+		<abnormalType>BR_EVENT_BUF2</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<canBeDispelled>false</canBeDispelled>
@@ -1315,7 +1314,7 @@
 		<targetType>SELF</targetType>
 		<abnormalLevel>2</abnormalLevel>
 		<abnormalTime>1800</abnormalTime>
-		<abnormalType>BR_EVENT_BUF1</abnormalType>
+		<abnormalType>BR_EVENT_BUF2</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<canBeDispelled>false</canBeDispelled>

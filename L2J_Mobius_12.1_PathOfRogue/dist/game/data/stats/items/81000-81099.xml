@@ -223,7 +223,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39569" level="1" /> <!-- Emperor's Special Cocktail -->
+			<skill id="39520" level="1" /> <!-- Emperor's Special Cocktail -->
 		</skills>
 	</item>
 	<item id="81013" name="Shining Nevit's Gold Hourglass" additionalName="Event" type="EtcItem">
@@ -237,10 +237,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="reuse_delay" val="300000" />
-		<set name="etcitem_type" val="SCROLL" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39571" level="1" /> <!-- Shining Nevit's Gold Hourglass -->
+			<skill id="39503" level="1" /> <!-- Shining Nevit's Gold Hourglass -->
 		</skills>
 	</item>
 	<item id="81014" name="PA Event Appearance Potion - Bear" type="EtcItem">
