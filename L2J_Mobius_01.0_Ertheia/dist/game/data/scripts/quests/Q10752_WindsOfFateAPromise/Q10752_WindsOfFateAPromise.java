@@ -115,6 +115,13 @@ public class Q10752_WindsOfFateAPromise extends Quest
 			case "31317-04.html":
 			case "31523-02.html":
 			case "31524-02.html":
+			case "31526-02.html":
+			case "33933-07.html":
+			case "33933-08.html":
+			case "33943-08.html":
+			case "33943-09.html":
+			case "33942-08.html":
+			case "33942-11.html":
 			{
 				htmltext = event;
 				break;
