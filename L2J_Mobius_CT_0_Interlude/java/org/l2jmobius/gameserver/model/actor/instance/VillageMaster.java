@@ -740,46 +740,48 @@ public class VillageMaster extends Folk
 	
 	private Set<ClassId> getAvailableSubclasses(Player player)
 	{
-		Set<ClassId> availSubs = getSubclasses(player, player.getBaseClass());
+		final Set<ClassId> availSubs = getSubclasses(player, player.getBaseClass());
 		final Race npcRace = getVillageMasterRace();
 		final ClassType npcTeachType = getVillageMasterTeachType();
 		boolean everywhereEnabled = Config.ALT_GAME_SUBCLASS_EVERYWHERE;
 		
 		if (availSubs != null)
 		{
-			// Create a copy of the set to avoid ConcurrentModificationException
-			Set<ClassId> copySubs = new HashSet<>(availSubs);
+			// Create a copy of the set to avoid ConcurrentModificationException.
+			final Set<ClassId> copySubs = new HashSet<>(availSubs);
 			for (ClassId availSub : copySubs)
 			{
-				// Check if subclass restrictions based on race should be applied everywhere
+				// Remove subclasses already chosen by the player.
+				for (SubClassHolder subClass : player.getSubClasses().values())
+				{
+					if (subClass.getClassId() == availSub.ordinal())
+					{
+						availSubs.remove(availSub);
+						break;
+					}
+				}
+				
+				// Remove subclasses unavailable due to previous choices or base class.
+				final Iterator<SubClassHolder> subListIterator = iterSubClasses(player);
+				while (subListIterator.hasNext())
+				{
+					final SubClassHolder prevSubClass = subListIterator.next();
+					int subClassId = prevSubClass.getClassId();
+					if (subClassId >= 88)
+					{
+						subClassId = ClassId.getClassId(subClassId).getParent().getId();
+					}
+					if ((availSub.ordinal() == subClassId) || (availSub.ordinal() == player.getBaseClass()))
+					{
+						availSubs.remove(availSub);
+						break;
+					}
+				}
+				
+				// Check if subclass restrictions based on race should be applied everywhere.
 				if (!everywhereEnabled)
 				{
-					// Remove subclasses already chosen by the player
-					for (SubClassHolder subClass : player.getSubClasses().values())
-					{
-						if (subClass.getClassId() == availSub.ordinal())
-						{
-							availSubs.remove(availSub);
-							break;
-						}
-					}
-					// Remove subclasses unavailable due to previous choices or base class
-					Iterator<SubClassHolder> subListIterator = iterSubClasses(player);
-					while (subListIterator.hasNext())
-					{
-						SubClassHolder prevSubClass = subListIterator.next();
-						int subClassId = prevSubClass.getClassId();
-						if (subClassId >= 88)
-						{
-							subClassId = ClassId.getClassId(subClassId).getParent().getId();
-						}
-						if ((availSub.ordinal() == subClassId) || (availSub.ordinal() == player.getBaseClass()))
-						{
-							availSubs.remove(availSub);
-							break;
-						}
-					}
-					// Apply race restrictions based on the village master's race
+					// Apply race restrictions based on the village master's race.
 					if (((npcRace == Race.HUMAN) || (npcRace == Race.ELF)))
 					{
 						// If the master is human or light elf, ensure that fighter-type masters only teach fighter classes, and priest-type masters only teach priest classes etc.
@@ -796,6 +798,7 @@ public class VillageMaster extends Folk
 				}
 			}
 		}
+		
 		return availSubs;
 	}
 	
