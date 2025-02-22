@@ -2640,7 +2640,10 @@ public class Player extends Playable
 		
 		for (SkillLearn skill : SkillTreeData.getInstance().getRaceSkillTree(getRace()))
 		{
-			addSkill(SkillData.getInstance().getSkill(skill.getSkillId(), skill.getSkillLevel()), true);
+			if (getLevel() >= skill.getGetLevel())
+			{
+				addSkill(SkillData.getInstance().getSkill(skill.getSkillId(), skill.getSkillLevel()), true);
+			}
 		}
 		
 		checkItemRestriction();
