@@ -15999,7 +15999,6 @@ public class Player extends Playable
 					if (holder != null)
 					{
 						_relics.add(new PlayerRelicData(relicId, relicLevel, relicCount, relicIndex, relicSummonTime));
-						giveRelicSkill(holder);
 					}
 				}
 			}

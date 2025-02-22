@@ -65,6 +65,7 @@ import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.holders.AttendanceInfoHolder;
 import org.l2jmobius.gameserver.model.holders.ClientHardwareInfoHolder;
+import org.l2jmobius.gameserver.model.holders.PlayerRelicData;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -148,6 +149,7 @@ import org.l2jmobius.gameserver.network.serverpackets.mablegame.ExMableGameUILau
 import org.l2jmobius.gameserver.network.serverpackets.olympiad.ExOlympiadInfo;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestDialog;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestNotificationAll;
+import org.l2jmobius.gameserver.network.serverpackets.relics.ExRelicsActiveInfo;
 import org.l2jmobius.gameserver.network.serverpackets.relics.ExRelicsCollectionInfo;
 import org.l2jmobius.gameserver.network.serverpackets.relics.ExRelicsExchangeList;
 import org.l2jmobius.gameserver.network.serverpackets.relics.ExRelicsList;
@@ -807,14 +809,6 @@ public class EnterWorld extends ClientPacket
 		}
 		player.sendPacket(new ExCollectionActiveEvent());
 		
-		// Relic Collections.
-		if (Config.RELIC_SYSTEM_ENABLED)
-		{
-			player.sendPacket(new ExRelicsList(player));
-			player.sendPacket(new ExRelicsCollectionInfo(player));
-			player.sendPacket(new ExRelicsExchangeList(player));
-		}
-		
 		// Virtual Items
 		// TODO: Add a config for this.
 		// player.sendPacket(new ExVirtualItemSystemBaseInfo(player));
@@ -979,6 +973,9 @@ public class EnterWorld extends ClientPacket
 		
 		// Remove variable used by hunting zone system.
 		player.getVariables().remove(PlayerVariables.LAST_HUNTING_ZONE_ID);
+		
+		// Relic
+		relicSystem(getPlayer());
 	}
 	
 	/**
@@ -1024,4 +1021,27 @@ public class EnterWorld extends ClientPacket
 			}
 		}
 	}
+	
+	private void relicSystem(Player player)
+	{
+		if (Config.RELIC_SYSTEM_ENABLED)
+		{
+			int activeRelicId = player.getVariables().getInt(AccountVariables.ACTIVE_RELIC, 0);
+			int activeRelicLevel = 0;
+			for (PlayerRelicData relic : player.getRelics())
+			{
+				if (relic.getRelicId() == activeRelicId)
+				{
+					activeRelicId = relic.getRelicId();
+					activeRelicLevel = relic.getRelicLevel();
+					break;
+				}
+			}
+			player.sendPacket(new ExRelicsActiveInfo(activeRelicId, activeRelicLevel)); // Stored active relic from acc var.
+			player.sendPacket(new ExRelicsCollectionInfo(player));
+			player.sendPacket(new ExRelicsList(player)); // Update confirmed relic list relics count.
+			player.sendPacket(new ExRelicsExchangeList(player)); // Update relic exchange/confirm list.
+		}
+	}
+	
 }

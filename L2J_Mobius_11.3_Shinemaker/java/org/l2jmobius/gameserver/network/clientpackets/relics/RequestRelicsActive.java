@@ -65,8 +65,7 @@ public class RequestRelicsActive extends ClientPacket
 		final int skillId = RelicData.getInstance().getRelicSkillId(_relicId);
 		final int skillLevel = relicLevel + 1;
 		player.sendPacket(new ExRelicsActiveInfo(_relicId, relicLevel));
-		player.getAccountVariables().set(AccountVariables.ACTIVE_RELIC, _relicId);
-		player.getAccountVariables().storeMe();
+		player.getVariables().set(AccountVariables.ACTIVE_RELIC, _relicId);
 		
 		final Skill relicSkill = SkillData.getInstance().getSkill(skillId, skillLevel);
 		if (relicSkill != null)
