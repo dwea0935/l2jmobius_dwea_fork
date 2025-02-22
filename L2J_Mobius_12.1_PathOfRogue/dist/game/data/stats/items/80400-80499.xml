@@ -4,6 +4,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t801_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -26,6 +27,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -3%, PvE damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -97,6 +99,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t802_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -119,6 +122,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t802_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -141,6 +145,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -3%, PvE damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -214,6 +219,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t803_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -236,6 +242,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t803_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />

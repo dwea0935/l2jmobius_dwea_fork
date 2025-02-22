@@ -937,6 +937,7 @@
 		<!-- A part of Exalted armor blessed by Lionel Hunter. Cannot be enchanted, crystallized, imbued with an attribute, augmented, and its appearance cannot be modified. <Enchanting>. Use Scroll: Enchant Blessed Exalted Armor. -->
 		<set name="icon" val="icon.honors_heavy_helmet_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -993,6 +994,7 @@
 		<!-- A part of Exalted armor blessed by Lionel Hunter. Cannot be enchanted, crystallized, imbued with an attribute, augmented, and its appearance cannot be modified. <Enchanting>. Use Scroll: Enchant Blessed Exalted Armor. -->
 		<set name="icon" val="icon.honors_heavy_gloves_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1011,6 +1013,7 @@
 		<!-- A part of Exalted armor blessed by Lionel Hunter. Cannot be enchanted, crystallized, imbued with an attribute, augmented, and its appearance cannot be modified. <Enchanting>. Use Scroll: Enchant Blessed Exalted Armor. -->
 		<set name="icon" val="icon.honors_heavy_shoes_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1048,6 +1051,7 @@
 		<!-- A part of Exalted armor blessed by Lionel Hunter. Cannot be enchanted, crystallized, imbued with an attribute, augmented, and its appearance cannot be modified. <Enchanting>. Use Scroll: Enchant Blessed Exalted Armor. -->
 		<set name="icon" val="icon.honors_light_helmet_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1104,6 +1108,7 @@
 		<!-- A part of Exalted armor blessed by Lionel Hunter. Cannot be enchanted, crystallized, imbued with an attribute, augmented, and its appearance cannot be modified. <Enchanting>. Use Scroll: Enchant Blessed Exalted Armor. -->
 		<set name="icon" val="icon.honors_light_gloves_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1122,6 +1127,7 @@
 		<!-- A part of Exalted armor blessed by Lionel Hunter. Cannot be enchanted, crystallized, imbued with an attribute, augmented, and its appearance cannot be modified. <Enchanting>. Use Scroll: Enchant Blessed Exalted Armor. -->
 		<set name="icon" val="icon.honors_light_shoes_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1140,6 +1146,7 @@
 		<!-- A part of Exalted armor blessed by Lionel Hunter. Cannot be enchanted, crystallized, imbued with an attribute, augmented, and its appearance cannot be modified. <Enchanting>. Use Scroll: Enchant Blessed Exalted Armor. -->
 		<set name="icon" val="icon.honors_robe_helmet_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1200,6 +1207,7 @@
 		<!-- A part of Exalted armor blessed by Lionel Hunter. Cannot be enchanted, crystallized, imbued with an attribute, augmented, and its appearance cannot be modified. <Enchanting>. Use Scroll: Enchant Blessed Exalted Armor. -->
 		<set name="icon" val="icon.honors_robe_gloves_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1218,6 +1226,7 @@
 		<!-- A part of Exalted armor blessed by Lionel Hunter. Cannot be enchanted, crystallized, imbued with an attribute, augmented, and its appearance cannot be modified. <Enchanting>. Use Scroll: Enchant Blessed Exalted Armor. -->
 		<set name="icon" val="icon.honors_robe_shoes_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />

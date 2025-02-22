@@ -405,8 +405,8 @@
 	</item>
 	<item id="46538" name="Tauti Breastplate - No Ertheia" additionalName="Heavy armor" type="Armor">
 		<set name="icon" val="icon.tauti_heavy_upbody" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="weight" val="7520" />
 		<set name="material" val="BRONZE" />
 		<set name="bodypart" val="chest" />
@@ -417,8 +417,8 @@
 	</item>
 	<item id="46539" name="Tauti Gaiters - No Ertheia" additionalName="Heavy armor" type="Armor">
 		<set name="icon" val="icon.tauti_heavy_downbody" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="weight" val="3170" />
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="bodypart" val="legs" />
@@ -430,6 +430,7 @@
 	<item id="46540" name="Tauti Gauntlets - No Ertheia" additionalName="Heavy armor" type="Armor">
 		<set name="icon" val="icon.tauti_heavy_gloves" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="weight" val="510" />
 		<set name="material" val="LEATHER" />
 		<set name="bodypart" val="gloves" />
@@ -441,6 +442,7 @@
 	<item id="46541" name="Tauti Boots - No Ertheia" additionalName="Heavy armor" type="Armor">
 		<set name="icon" val="icon.tauti_heavy_shoes" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="weight" val="1070" />
 		<set name="material" val="LEATHER" />
 		<set name="bodypart" val="feet" />
@@ -462,8 +464,8 @@
 	</item>
 	<item id="46543" name="Kelbim Leather Armor" additionalName="Light armor" type="Armor">
 		<set name="icon" val="icon.kelbim_light_upbody" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="weight" val="4140" />
 		<set name="material" val="BRONZE" />
 		<set name="bodypart" val="chest" />
@@ -476,8 +478,8 @@
 	</item>
 	<item id="46544" name="Kelbim Leather Leggings" additionalName="Light armor" type="Armor">
 		<set name="icon" val="icon.kelbim_light_downbody" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="weight" val="1320" />
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="bodypart" val="legs" />
@@ -491,6 +493,7 @@
 	<item id="46545" name="Kelbim Leather Gloves" additionalName="Light armor" type="Armor">
 		<set name="icon" val="icon.kelbim_light_gloves" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="weight" val="510" />
 		<set name="material" val="LEATHER" />
 		<set name="bodypart" val="gloves" />
@@ -502,6 +505,7 @@
 	<item id="46546" name="Kelbim Leather Boots" additionalName="Light armor" type="Armor">
 		<set name="icon" val="icon.kelbim_light_shoes" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="weight" val="1070" />
 		<set name="material" val="LEATHER" />
 		<set name="bodypart" val="feet" />
@@ -523,8 +527,8 @@
 	</item>
 	<item id="46548" name="Freya Tunic" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.freya_robe_upbody" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="weight" val="1750" />
 		<set name="material" val="BRONZE" />
 		<set name="bodypart" val="chest" />
@@ -536,8 +540,8 @@
 	</item>
 	<item id="46549" name="Freya Stockings" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.freya_robe_downbody" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="weight" val="850" />
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="bodypart" val="legs" />
@@ -550,6 +554,7 @@
 	<item id="46550" name="Freya Gloves" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.freya_robe_gloves" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="weight" val="510" />
 		<set name="material" val="LEATHER" />
 		<set name="bodypart" val="gloves" />
@@ -561,6 +566,7 @@
 	<item id="46551" name="Freya Shoes" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.freya_robe_shoes" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="weight" val="1070" />
 		<set name="material" val="LEATHER" />
 		<set name="bodypart" val="feet" />

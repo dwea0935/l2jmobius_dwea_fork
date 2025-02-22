@@ -527,6 +527,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Twilight Helmet imbued with the energy of Paulina. Cannot be enchanted or imbued with an attribute. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -589,6 +590,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Twilight Gauntlets imbued with the energy of Paulina. Cannot be enchanted or imbued with an attribute. -->
 		<set name="icon" val="icon.armor_t601_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -609,6 +611,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Twilight Boots imbued with the energy of Paulina. Cannot be enchanted or imbued with an attribute. -->
 		<set name="icon" val="icon.armor_t601_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -648,6 +651,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Twilight Leather Helmet imbued with the energy of Paulina. Cannot be enchanted or imbued with an attribute. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -712,6 +716,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Twilight Leather Gloves imbued with the energy of Paulina. Cannot be enchanted or imbued with an attribute. -->
 		<set name="icon" val="icon.armor_t602_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -732,6 +737,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Twilight Leather Boots imbued with the energy of Paulina. Cannot be enchanted or imbued with an attribute. -->
 		<set name="icon" val="icon.armor_t602_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -752,6 +758,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Twilight Circlet imbued with the energy of Paulina. Cannot be enchanted or imbued with an attribute. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -818,6 +825,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Twilight Gloves imbued with the energy of Paulina. Cannot be enchanted or imbued with an attribute. -->
 		<set name="icon" val="icon.armor_t603_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -838,6 +846,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Twilight Shoes imbued with the energy of Paulina. Cannot be enchanted or imbued with an attribute. -->
 		<set name="icon" val="icon.armor_t603_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />

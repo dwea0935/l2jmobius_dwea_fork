@@ -1137,6 +1137,7 @@
 	<item id="7852" name="Clan Oath Gauntlets" additionalName="Heavy Armor" type="Armor">
 		<set name="icon" val="icon.armor_t1001_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1161,6 +1162,7 @@
 	<item id="7853" name="Clan Oath Sabaton" additionalName="Heavy Armor" type="Armor">
 		<set name="icon" val="icon.armor_t1001_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1208,6 +1210,7 @@
 	<item id="7855" name="Clan Oath Leather Gloves" additionalName="Light Armor" type="Armor">
 		<set name="icon" val="icon.armor_t1002_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1229,6 +1232,7 @@
 	<item id="7856" name="Clan Oath Boots" additionalName="Light Armor" type="Armor">
 		<set name="icon" val="icon.armor_t1002_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1277,6 +1281,7 @@
 	<item id="7858" name="Clan Oath Padded Gloves" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t1003_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1301,6 +1306,7 @@
 	<item id="7859" name="Clan Oath Sandals" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t1003_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1369,6 +1375,7 @@
 		<!-- May be worn by Elder or above. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1004_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1392,6 +1399,7 @@
 		<!-- May be worn by Elder or above. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1004_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1436,6 +1444,7 @@
 		<!-- May be worn by Elder or above. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1005_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1456,6 +1465,7 @@
 		<!-- May be worn by Elder or above. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1005_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1501,6 +1511,7 @@
 		<!-- May be worn by Elder or above. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1006_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1524,6 +1535,7 @@
 		<!-- May be worn by Elder or above. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1006_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />

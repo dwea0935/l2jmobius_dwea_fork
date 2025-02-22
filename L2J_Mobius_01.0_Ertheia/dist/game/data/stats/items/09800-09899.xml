@@ -302,6 +302,7 @@
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Gauntlets. It cannot be crystallized or granted functions besides enchantment. -->
 		<set name="icon" val="icon.armor_t1001_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -326,6 +327,7 @@
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Sabaton. It cannot be crystallized or granted functions besides enchantment. -->
 		<set name="icon" val="icon.armor_t1001_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -369,6 +371,7 @@
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Leather Gloves. It cannot be crystallized or granted functions besides enchantment. -->
 		<set name="icon" val="icon.armor_t1002_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -387,6 +390,7 @@
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Booths. It cannot be crystallized or granted functions besides enchantment. -->
 		<set name="icon" val="icon.armor_t1002_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -431,6 +435,7 @@
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Padded Gloves. It cannot be crystallized or granted functions besides enchantment. -->
 		<set name="icon" val="icon.armor_t1003_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -455,6 +460,7 @@
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Sandals. It cannot be crystallized or granted functions besides enchantment. -->
 		<set name="icon" val="icon.armor_t1003_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -522,6 +528,7 @@
 		<!-- Can be worn by a Baron or a higher-level Aristocrat. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1004_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -545,6 +552,7 @@
 		<!-- Can be worn by a Baron or a higher-level Aristocrat. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1004_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -589,6 +597,7 @@
 		<!-- Can be worn by a Baron or a higher-level Aristocrat. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1005_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -609,6 +618,7 @@
 		<!-- Can be worn by a Baron or a higher-level Aristocrat. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1005_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -654,6 +664,7 @@
 		<!-- Can be worn by a Baron or higher-level Aristocrat. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1006_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -677,6 +688,7 @@
 		<!-- Can be worn by a Baron or higher-level Aristocrat. Note: Equipping requirements remain even after appearance modification. -->
 		<set name="icon" val="icon.armor_t1006_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />

@@ -4,6 +4,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. Increases P. Atk. by 1% and M. Atk. by 2%. -->
 		<set name="icon" val="icon.armor_t801_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -20,6 +21,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 3%. Increases P. Atk. by 1% and M. Atk. by 2%. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -72,6 +74,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. Increases P. Atk. by 1% and M. Atk. by 2%. -->
 		<set name="icon" val="icon.armor_t802_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -88,6 +91,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. Increases P. Atk. by 1% and M. Atk. by 2%. -->
 		<set name="icon" val="icon.armor_t802_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -104,6 +108,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 3%. Increases P. Atk. by 1% and M. Atk. by 2%. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -158,6 +163,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. Increases P. Atk. by 1% and M. Atk. by 2%. -->
 		<set name="icon" val="icon.armor_t803_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -174,6 +180,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. Increases P. Atk. by 1% and M. Atk. by 2%. -->
 		<set name="icon" val="icon.armor_t803_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />

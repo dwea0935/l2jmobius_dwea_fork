@@ -4,6 +4,7 @@
 		<!-- Sealed Masterwork Item. The blacksmith in a village can release the seal on this item. -->
 		<set name="icon" val="icon.armor_leather_helmet_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="108" />
@@ -21,6 +22,7 @@
 		<!-- Sealed Masterwork Item. The blacksmith in a village can release the seal on this item. -->
 		<set name="icon" val="icon.armor_leather_helmet_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="108" />

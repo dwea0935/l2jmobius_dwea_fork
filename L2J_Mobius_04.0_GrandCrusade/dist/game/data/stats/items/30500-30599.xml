@@ -1462,6 +1462,7 @@
 		<!-- Part of the heavy blue wolf set. -->
 		<set name="icon" val="icon.armor_t68_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
@@ -1481,6 +1482,7 @@
 		<!-- Part of the light blue wolf set. -->
 		<set name="icon" val="icon.armor_t69_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
@@ -1500,6 +1502,7 @@
 		<!-- Part of the blue wolf robe set. -->
 		<set name="icon" val="icon.armor_t70_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
@@ -1519,6 +1522,7 @@
 		<!-- Part of the heavy blue wolf set. -->
 		<set name="icon" val="icon.armor_t68_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
 		<set name="weight" val="1130" />
@@ -1538,6 +1542,7 @@
 		<!-- Part of the light blue wolf set. -->
 		<set name="icon" val="icon.armor_t69_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
@@ -1557,6 +1562,7 @@
 		<!-- Part of the blue wolf robe set. -->
 		<set name="icon" val="icon.armor_t70_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />

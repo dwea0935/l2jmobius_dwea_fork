@@ -840,7 +840,7 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39170" name="+5 Eternal Helmet Coupon" additionalName="Heavy armor" type="Armor">
+	<item id="39170" name="+5 Eternal Helmet Coupon" additionalName="Heavy armor" type="EtcItem">
 		<!-- Take it along with Memory Fragment to the Chaotic Chronicle to get +5 Eternal Helmet. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -849,27 +849,25 @@
 		<set name="bodypart" val="head" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39171" name="+5 Eternal Breastplate Coupon" additionalName="Heavy armor" type="Armor">
+	<item id="39171" name="+5 Eternal Breastplate Coupon" additionalName="Heavy armor" type="EtcItem">
 		<!-- Take it along with Memory Fragment to the Chaotic Chronicle to get +5 Eternal Breastplate. -->
 		<set name="icon" val="icon.armor_t701_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="7520" />
 		<set name="material" val="BRONZE" />
 		<set name="bodypart" val="chest" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39172" name="+5 Eternal Gaiters Coupon" additionalName="Heavy armor" type="Armor">
+	<item id="39172" name="+5 Eternal Gaiters Coupon" additionalName="Heavy armor" type="EtcItem">
 		<!-- Take it along with Memory Fragment to the Chaotic Chronicle to get +5 Eternal Gaiters. -->
 		<set name="icon" val="icon.armor_t701_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="3170" />
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="bodypart" val="legs" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39173" name="+5 Eternal Gauntlets Coupon" additionalName="Heavy armor" type="Armor">
+	<item id="39173" name="+5 Eternal Gauntlets Coupon" additionalName="Heavy armor" type="EtcItem">
 		<!-- Take it along with Memory Fragment to the Chaotic Chronicle to get +5 Eternal Gauntlets. -->
 		<set name="icon" val="icon.armor_t701_g_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -878,7 +876,7 @@
 		<set name="bodypart" val="gloves" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39174" name="+5 Eternal Boots Coupon" additionalName="Heavy armor" type="Armor">
+	<item id="39174" name="+5 Eternal Boots Coupon" additionalName="Heavy armor" type="EtcItem">
 		<!-- Take it along with Memory Fragment to the Chaotic Chronicle to get +5 Eternal Boots. -->
 		<set name="icon" val="icon.armor_t701_b_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -896,7 +894,7 @@
 		<set name="bodypart" val="lhand" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39176" name="+5 Eternal Leather Helmet Coupon" additionalName="Light armor" type="Armor">
+	<item id="39176" name="+5 Eternal Leather Helmet Coupon" additionalName="Light armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Leather Helmet +5. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -905,27 +903,25 @@
 		<set name="bodypart" val="head" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39177" name="+5 Eternal Leather Armor Coupon" additionalName="Light armor" type="Armor">
+	<item id="39177" name="+5 Eternal Leather Armor Coupon" additionalName="Light armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Leather Armor +5. -->
 		<set name="icon" val="icon.armor_t702_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="4140" />
 		<set name="material" val="BRONZE" />
 		<set name="bodypart" val="chest" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39178" name="+5 Eternal Leather Leggings Coupon" additionalName="Light armor" type="Armor">
+	<item id="39178" name="+5 Eternal Leather Leggings Coupon" additionalName="Light armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Leather Leggings +5. -->
 		<set name="icon" val="icon.armor_t702_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="1320" />
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="bodypart" val="legs" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39179" name="+5 Eternal Leather Gloves Coupon" additionalName="Light armor" type="Armor">
+	<item id="39179" name="+5 Eternal Leather Gloves Coupon" additionalName="Light armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Leather Gloves +5. -->
 		<set name="icon" val="icon.armor_t702_g_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -934,7 +930,7 @@
 		<set name="bodypart" val="gloves" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39180" name="+5 Eternal Leather Boots Coupon" additionalName="Light armor" type="Armor">
+	<item id="39180" name="+5 Eternal Leather Boots Coupon" additionalName="Light armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Leather Boots +5. -->
 		<set name="icon" val="icon.armor_t702_b_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -943,7 +939,7 @@
 		<set name="bodypart" val="feet" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39181" name="+5 Eternal Circlet Coupon" additionalName="Robe" type="Armor">
+	<item id="39181" name="+5 Eternal Circlet Coupon" additionalName="Robe" type="EtcItem">
 		<!-- Take it along with Memory Fragment to the Chaotic Chronicle to get +5 Eternal Circlet. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -952,27 +948,25 @@
 		<set name="bodypart" val="head" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39182" name="+5 Eternal Tunic Coupon" additionalName="Robe" type="Armor">
+	<item id="39182" name="+5 Eternal Tunic Coupon" additionalName="Robe" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Tunic +5. -->
 		<set name="icon" val="icon.armor_t703_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="1750" />
 		<set name="material" val="BRONZE" />
 		<set name="bodypart" val="chest" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39183" name="+5 Eternal Stockings Coupon" additionalName="Robe" type="Armor">
+	<item id="39183" name="+5 Eternal Stockings Coupon" additionalName="Robe" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Stockings +5. -->
 		<set name="icon" val="icon.armor_t703_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="850" />
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="bodypart" val="legs" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39184" name="+5 Eternal Gloves Coupon" additionalName="Robe" type="Armor">
+	<item id="39184" name="+5 Eternal Gloves Coupon" additionalName="Robe" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Gloves +5. -->
 		<set name="icon" val="icon.armor_t703_g_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -981,7 +975,7 @@
 		<set name="bodypart" val="gloves" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39185" name="+5 Eternal Shoes Coupon" additionalName="Robe" type="Armor">
+	<item id="39185" name="+5 Eternal Shoes Coupon" additionalName="Robe" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Shoes +5. -->
 		<set name="icon" val="icon.armor_t703_b_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -990,17 +984,16 @@
 		<set name="bodypart" val="feet" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39186" name="+5 Eternal Sigil Coupon" type="Armor">
+	<item id="39186" name="+5 Eternal Sigil Coupon" type="EtcItem">
 		<!-- Take it along with Memory Fragment to the Chaotic Chronicle to get +5 Eternal Sigil. -->
 		<set name="icon" val="icon.elos_i00" />
-		<set name="armor_type" val="SIGIL" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="920" />
 		<set name="material" val="STEEL" />
 		<set name="bodypart" val="lhand" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39187" name="+6 Eternal Helmet Coupon" additionalName="Heavy armor" type="Armor">
+	<item id="39187" name="+6 Eternal Helmet Coupon" additionalName="Heavy armor" type="EtcItem">
 		<!-- Take it along with Memory Fragment to the Chaotic Chronicle to get +6 Eternal Helmet. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -1009,27 +1002,25 @@
 		<set name="bodypart" val="head" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39188" name="+6 Eternal Breastplate Coupon" additionalName="Heavy armor" type="Armor">
+	<item id="39188" name="+6 Eternal Breastplate Coupon" additionalName="Heavy armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Breastplate +6. -->
 		<set name="icon" val="icon.armor_t701_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="7520" />
 		<set name="material" val="BRONZE" />
 		<set name="bodypart" val="chest" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39189" name="+6 Eternal Gaiters Coupon" additionalName="Heavy armor" type="Armor">
+	<item id="39189" name="+6 Eternal Gaiters Coupon" additionalName="Heavy armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Gaiters +6. -->
 		<set name="icon" val="icon.armor_t701_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="3170" />
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="bodypart" val="legs" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39190" name="+6 Eternal Gauntlets Coupon" additionalName="Heavy armor" type="Armor">
+	<item id="39190" name="+6 Eternal Gauntlets Coupon" additionalName="Heavy armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Gauntlets +6. -->
 		<set name="icon" val="icon.armor_t701_g_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -1038,7 +1029,7 @@
 		<set name="bodypart" val="gloves" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39191" name="+6 Eternal Boots Coupon" additionalName="Heavy armor" type="Armor">
+	<item id="39191" name="+6 Eternal Boots Coupon" additionalName="Heavy armor" type="EtcItem">
 		<!-- Take it along with Memory Fragment to the Chaotic Chronicle to get +6 Eternal Boots. -->
 		<set name="icon" val="icon.armor_t701_b_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -1056,7 +1047,7 @@
 		<set name="bodypart" val="lhand" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39193" name="+6 Eternal Leather Helmet Coupon" additionalName="Light armor" type="Armor">
+	<item id="39193" name="+6 Eternal Leather Helmet Coupon" additionalName="Light armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Leather Helmet +6. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -1065,27 +1056,25 @@
 		<set name="bodypart" val="head" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39194" name="+6 Eternal Leather Armor Coupon" additionalName="Light armor" type="Armor">
+	<item id="39194" name="+6 Eternal Leather Armor Coupon" additionalName="Light armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Leather Armor +6. -->
 		<set name="icon" val="icon.armor_t702_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="4140" />
 		<set name="material" val="BRONZE" />
 		<set name="bodypart" val="chest" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39195" name="+6 Eternal Leather Leggings Coupon" additionalName="Light armor" type="Armor">
+	<item id="39195" name="+6 Eternal Leather Leggings Coupon" additionalName="Light armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Leather Leggings +6. -->
 		<set name="icon" val="icon.armor_t702_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="1320" />
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="bodypart" val="legs" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39196" name="+6 Eternal Leather Gloves Coupon" additionalName="Light armor" type="Armor">
+	<item id="39196" name="+6 Eternal Leather Gloves Coupon" additionalName="Light armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Leather Gloves +6. -->
 		<set name="icon" val="icon.armor_t702_g_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -1094,7 +1083,7 @@
 		<set name="bodypart" val="gloves" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39197" name="+6 Eternal Leather Boots Coupon" additionalName="Light armor" type="Armor">
+	<item id="39197" name="+6 Eternal Leather Boots Coupon" additionalName="Light armor" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Leather Boots +6. -->
 		<set name="icon" val="icon.armor_t702_b_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -1103,7 +1092,7 @@
 		<set name="bodypart" val="feet" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39198" name="+6 Eternal Circlet Coupon" additionalName="Robe" type="Armor">
+	<item id="39198" name="+6 Eternal Circlet Coupon" additionalName="Robe" type="EtcItem">
 		<!-- Take it along with Memory Fragment to the Chaotic Chronicle to get +6 Eternal Circlet. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
@@ -1112,10 +1101,9 @@
 		<set name="bodypart" val="head" />
 		<set name="enchant_enabled" val="true" />
 	</item>
-	<item id="39199" name="+6 Eternal Tunic Coupon" additionalName="Robe" type="Armor">
+	<item id="39199" name="+6 Eternal Tunic Coupon" additionalName="Robe" type="EtcItem">
 		<!-- If you have the Memory Fragment take this coupon to the Chaotic Chronicle to exchange it for an Eternal Tunic +6. -->
 		<set name="icon" val="icon.armor_t703_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weight" val="1750" />
 		<set name="material" val="BRONZE" />

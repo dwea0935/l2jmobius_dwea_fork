@@ -1652,6 +1652,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -3%, PvP damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -1675,8 +1676,8 @@
 	<item id="35064" name="Dark Eternal Breastplate" additionalName="Heavy armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -8%, PvP damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. When enchanted to +4, decreases received Critical Damage from basic attacks and increases P. Def. Can be augmented. -->
 		<set name="icon" val="icon.armor_t811_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -1702,8 +1703,8 @@
 	<item id="35065" name="Dark Eternal Gaiters" additionalName="Heavy armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -5%, PvP damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t811_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -1729,6 +1730,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -2%, PvP damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t811_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -1754,6 +1756,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -2%, PvP damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t811_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
 		<set name="weight" val="1070" />
@@ -1779,6 +1782,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -3%, PvP damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -1802,8 +1806,8 @@
 	<item id="35070" name="Dark Eternal Leather Armor" additionalName="Light armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -8%, PvP damage +1%. Light armor, can be upgraded by the Blacksmith in any town. When enchanted to +4, increases P. Evasion, Speed and P. Debuff Resistance, also decreases received Critical Rate from basic attacks. Can be augmented. -->
 		<set name="icon" val="icon.armor_t812_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -1831,8 +1835,8 @@
 	<item id="35071" name="Dark Eternal Leather Leggings" additionalName="Light armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -5%, PvP damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t812_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -1860,6 +1864,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -2%, PvP damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t812_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -1885,6 +1890,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -2%, PvP damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t812_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -1910,6 +1916,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -3%, PvP damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -1933,8 +1940,8 @@
 	<item id="35075" name="Dark Eternal Tunic" additionalName="Robe" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -8%, PvP damage +1%. Robe, can be upgraded by the Blacksmith in any town. When enchanted to +4, increases M. Evasion and M. Debuff Resistance, also decreases received Critical Damage from basic attacks and received Critical Rate from basic attacks. Can be augmented. -->
 		<set name="icon" val="icon.armor_t813_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -1962,8 +1969,8 @@
 	<item id="35076" name="Dark Eternal Stockings" additionalName="Robe" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -5%, PvP damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t813_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -1991,6 +1998,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -2%, PvP damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t813_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2016,6 +2024,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvP damage -2%, PvP damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t813_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2041,6 +2050,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -3%, PvE damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -2065,8 +2075,8 @@
 	<item id="35080" name="Bloody Eternal Breastplate" additionalName="Heavy armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -8%, PvE damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. When enchanted to +4, decreases received Critical Damage from basic attacks and increases P. Def. Can be augmented. -->
 		<set name="icon" val="icon.armor_t801_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -2093,8 +2103,8 @@
 	<item id="35081" name="Bloody Eternal Gaiters" additionalName="Heavy armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -5%, PvE damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t801_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -2121,6 +2131,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t801_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2147,6 +2158,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t801_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
 		<set name="weight" val="1070" />
@@ -2173,6 +2185,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -3%, PvE damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -2197,8 +2210,8 @@
 	<item id="35086" name="Bloody Eternal Leather Armor" additionalName="Light armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -8%, PvE damage +1%. Light armor, can be upgraded by the Blacksmith in any town. When enchanted to +4, increases P. Evasion, Speed and P. Debuff Resistance, also decreases received Critical Rate from basic attacks. Can be augmented. -->
 		<set name="icon" val="icon.armor_t802_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -2227,8 +2240,8 @@
 	<item id="35087" name="Bloody Eternal Leather Leggings" additionalName="Light armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -5%, PvE damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t802_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -2257,6 +2270,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t802_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2283,6 +2297,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t802_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2309,6 +2324,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -3%, PvE damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -2333,8 +2349,8 @@
 	<item id="35091" name="Bloody Eternal Tunic" additionalName="Robe" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -8%, PvE damage +1%. Robe, can be upgraded by the Blacksmith in any town. When enchanted to +4, increases M. Evasion and M. Debuff Resistance, also decreases received Critical Damage from basic attacks and received Critical Rate from basic attacks. Can be augmented. -->
 		<set name="icon" val="icon.armor_t803_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -2363,8 +2379,8 @@
 	<item id="35092" name="Bloody Eternal Stockings" additionalName="Robe" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -5%, PvE damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t803_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -2393,6 +2409,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t803_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2419,6 +2436,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Received PvE damage -2%, PvE damage +1%. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t803_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />

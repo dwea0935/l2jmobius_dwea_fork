@@ -784,6 +784,7 @@
 		<!-- A piece of the heavy Doom set. -->
 		<set name="icon" val="icon.armor_t71_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
 		<set name="weight" val="1130" />
@@ -803,6 +804,7 @@
 		<!-- A piece of the light Doom set. -->
 		<set name="icon" val="icon.armor_t72_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
@@ -822,6 +824,7 @@
 		<!-- A piece of the Doom robe set. -->
 		<set name="icon" val="icon.armor_t73_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
@@ -841,6 +844,7 @@
 		<!-- A piece of the heavy Doom set. -->
 		<set name="icon" val="icon.armor_t71_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
@@ -860,6 +864,7 @@
 		<!-- A piece of the light Doom set. -->
 		<set name="icon" val="icon.armor_t72_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
@@ -879,6 +884,7 @@
 		<!-- A piece of the Doom robe set. -->
 		<set name="icon" val="icon.armor_t73_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="3" />
@@ -1884,6 +1890,7 @@
 	<item id="31465" name="Bound Dark Crystal Boots" additionalName="Heavy Armor" type="Armor">
 		<set name="icon" val="icon.armor_t74_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />
 		<set name="weight" val="1110" />
@@ -1902,6 +1909,7 @@
 	<item id="31466" name="Bound Dark Crystal Boots" additionalName="Light Armor" type="Armor">
 		<set name="icon" val="icon.armor_t75_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />
@@ -1920,6 +1928,7 @@
 	<item id="31467" name="Bound Dark Crystal Boots" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t76_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />
@@ -1977,6 +1986,7 @@
 		<!-- Part of the heavy Dark Crystal set. -->
 		<set name="icon" val="icon.armor_t74_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />
@@ -1996,6 +2006,7 @@
 		<!-- Part of the light Dark Crystal set. -->
 		<set name="icon" val="icon.armor_t75_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />
@@ -2015,6 +2026,7 @@
 		<!-- Part of the Dark Crystal robe set. -->
 		<set name="icon" val="icon.armor_t76_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />

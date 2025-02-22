@@ -1714,6 +1714,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Blessed Seraph Helmet from Paulina. Required level: 85+. Cannot be enchanted, crystallized or imbued with an attribute. -->
 		<set name="icon" val="icon.bm_armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1773,6 +1774,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Blessed Seraph Gauntlets from Paulina. Required level: 85+. Cannot be enchanted, crystallized or imbued with an attribute. -->
 		<set name="icon" val="icon.bm_armor_t401_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1792,6 +1794,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Blessed Seraph Boots from Paulina. Required level: 85+. Cannot be enchanted, crystallized or imbued with an attribute. -->
 		<set name="icon" val="icon.bm_armor_t401_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1831,6 +1834,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Blessed Seraph Leather Helmet from Paulina. Required level: 85+. Cannot be enchanted, crystallized or imbued with an attribute. -->
 		<set name="icon" val="icon.bm_armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1892,6 +1896,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Blessed Seraph Leather Gloves from Paulina. Required level: 85+. Cannot be enchanted, crystallized or imbued with an attribute. -->
 		<set name="icon" val="icon.bm_armor_t402_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1911,6 +1916,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Blessed Seraph Leather Boots from Paulina. Required level: 85+. Cannot be enchanted, crystallized or imbued with an attribute. -->
 		<set name="icon" val="icon.bm_armor_t402_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1930,6 +1936,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Blessed Seraph Circlet from Paulina. Required level: 85+. Cannot be enchanted, crystallized or imbued with an attribute. -->
 		<set name="icon" val="icon.bm_armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1993,6 +2000,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Blessed Seraph Gloves from Paulina. Required level: 85+. Cannot be enchanted, crystallized or imbued with an attribute. -->
 		<set name="icon" val="icon.bm_armor_t403_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -2012,6 +2020,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Blessed Seraph Shoes from Paulina. Required level: 85+. Cannot be enchanted, crystallized or imbued with an attribute. -->
 		<set name="icon" val="icon.bm_armor_t403_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -2483,6 +2492,7 @@
 		<!-- For PA. Cannot be enchanted, crystallized or assigned an attribute. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />

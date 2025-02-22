@@ -4,6 +4,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Heavy armor, can be upgraded by the Blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t401_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="817" />
 		<set name="weight" val="1070" />
@@ -47,6 +48,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Light armor, can be upgraded by the Blacksmith in any town. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1226" />
@@ -66,8 +68,8 @@
 	<item id="17403" name="Seraph Leather Armor" additionalName="Light armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Light armor, can be upgraded by the Blacksmith in any town. When enchanted to +4, increases P. Evasion, Speed and P. Debuff Resistance, and decreases received Critical Rate from basic attacks. -->
 		<set name="icon" val="icon.armor_t402_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="3270" />
@@ -93,8 +95,8 @@
 	<item id="17404" name="Seraph Leather Leggings" additionalName="Light armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal. Light armor, can be upgraded by the Blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t402_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="2044" />
@@ -118,6 +120,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Light armor, can be upgraded by the Blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t402_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="817" />
@@ -139,6 +142,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Light armor, can be upgraded by the Blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t402_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="817" />
@@ -160,6 +164,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Robe, can be upgraded by the Blacksmith in any town. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1226" />
@@ -179,8 +184,8 @@
 	<item id="17408" name="Seraph Tunic" additionalName="Robe" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Robe, can be upgraded by the Blacksmith in any town. When enchanted to +4, increases M. Evasion and M. Debuff Resistance, also decreases received Critical Damage from basic attacks and received Critical Rate from basic attacks. -->
 		<set name="icon" val="icon.armor_t403_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="3270" />
@@ -206,8 +211,8 @@
 	<item id="17409" name="Seraph Stockings" additionalName="Robe" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal. Robe, can be upgraded by the Blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t403_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="2044" />
@@ -231,6 +236,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Robe, can be upgraded by the Blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t403_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="817" />
@@ -252,6 +258,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Robe, can be upgraded by the Blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t403_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="817" />
@@ -828,6 +835,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2702" />
@@ -847,8 +855,8 @@
 	<item id="17431" name="Eternal Breastplate" additionalName="Heavy armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Heavy armor, can be upgraded by the Blacksmith in any town. When enchanted to +4, decreases received Critical Damage from basic attacks and increases P. Def. Can be augmented. -->
 		<set name="icon" val="icon.armor_t701_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="7207" />
@@ -872,8 +880,8 @@
 	<item id="17432" name="Eternal Gaiters" additionalName="Heavy armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t701_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="4504" />
@@ -895,6 +903,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t701_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="1801" />
@@ -916,6 +925,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Heavy armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t701_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="1801" />
 		<set name="weight" val="1070" />
@@ -959,6 +969,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2702" />
@@ -978,8 +989,8 @@
 	<item id="17437" name="Eternal Leather Armor" additionalName="Light armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Light armor, can be upgraded by the Blacksmith in any town. When enchanted to +4, increases P. Evasion, Speed and P. Debuff Resistance, also decreases received Critical Rate from basic attacks. Can be augmented. -->
 		<set name="icon" val="icon.armor_t702_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="7207" />
@@ -1005,8 +1016,8 @@
 	<item id="17438" name="Eternal Leather Leggings" additionalName="Light armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t702_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="4504" />
@@ -1030,6 +1041,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t702_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="1801" />
@@ -1051,6 +1063,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Light armor, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t702_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="1801" />
@@ -1072,6 +1085,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2702" />
@@ -1091,8 +1105,8 @@
 	<item id="17442" name="Eternal Tunic" additionalName="Robe" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. Robe, can be upgraded by the Blacksmith in any town. When enchanted to +4, increases M. Evasion and M. Debuff Resistance, also decreases received Critical Damage from basic attacks and received Critical Rate from basic attacks. Can be augmented. -->
 		<set name="icon" val="icon.armor_t703_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="7207" />
@@ -1118,8 +1132,8 @@
 	<item id="17443" name="Eternal Stockings" additionalName="Robe" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t703_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="4504" />
@@ -1143,6 +1157,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t703_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="1801" />
@@ -1164,6 +1179,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal. Robe, can be upgraded by the Blacksmith in any town. Can be augmented. -->
 		<set name="icon" val="icon.armor_t703_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="1801" />
@@ -1712,6 +1728,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (attack or defense) can be applied. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="530" />
@@ -1733,8 +1750,8 @@
 	<item id="17465" name="Blessed Durandia Breastplate" additionalName="Heavy armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (attack or defense) can be applied. When enchanted to +4, decreases received Critical Damage from basic attacks and increases P. Def. -->
 		<set name="icon" val="icon.armor_t97_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="7520" />
@@ -1759,8 +1776,8 @@
 	<item id="17466" name="Blessed Durandia Gaiters" additionalName="Heavy armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (attack or defense) can be applied. -->
 		<set name="icon" val="icon.armor_t97_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="3170" />
@@ -1784,6 +1801,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (attack or defense) can be applied. -->
 		<set name="icon" val="icon.armor_t97_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="510" />
@@ -1807,6 +1825,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (attack or defense) can be applied. -->
 		<set name="icon" val="icon.armor_t97_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="1070" />
 		<set name="bodypart" val="feet" />
@@ -1851,6 +1870,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (assassin or enhanced) can be applied. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="530" />
@@ -1872,8 +1892,8 @@
 	<item id="17471" name="Blessed Durandia Leather Armor" additionalName="Light armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (assassin or enhanced) can be applied. When enchanted to +4, increases P. Evasion, Speed and P. Debuff Resistance, and decreases received Critical Rate from basic attacks. -->
 		<set name="icon" val="icon.armor_t98_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="4140" />
@@ -1900,8 +1920,8 @@
 	<item id="17472" name="Blessed Durandia Leather Leggings" additionalName="Light armor" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (assassin or enhanced) can be applied. -->
 		<set name="icon" val="icon.armor_t98_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="1320" />
@@ -1927,6 +1947,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (assassin or enhanced) can be applied. -->
 		<set name="icon" val="icon.armor_t98_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="510" />
@@ -1950,6 +1971,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (assassin or enhanced) can be applied. -->
 		<set name="icon" val="icon.armor_t98_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="1070" />
@@ -1972,6 +1994,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (magic or recovery) can be applied. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="530" />
@@ -1993,8 +2016,8 @@
 	<item id="17476" name="Blessed Durandia Tunic" additionalName="Robe" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (magic or recovery) can be applied. When enchanted to +4, increases M. Evasion and M. Debuff Resistance, and decreases received Critical Damage from basic attacks and received Critical Rate from basic attacks. -->
 		<set name="icon" val="icon.armor_t99_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="1750" />
@@ -2021,8 +2044,8 @@
 	<item id="17477" name="Blessed Durandia Stockings" additionalName="Robe" type="Armor">
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (magic or recovery) can be applied. -->
 		<set name="icon" val="icon.armor_t99_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="850" />
@@ -2048,6 +2071,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (magic or recovery) can be applied. -->
 		<set name="icon" val="icon.armor_t99_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="510" />
@@ -2071,6 +2095,7 @@
 		<!-- 1 common soul crystal and 1 special soul crystal can be inserted. A set property (magic or recovery) can be applied. -->
 		<set name="icon" val="icon.armor_t99_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="weight" val="1070" />

@@ -4,6 +4,7 @@
 		<!-- For PA. Cannot be enchanted, crystallized or assigned an attribute. -->
 		<set name="icon" val="icon.armor_t401_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -20,6 +21,7 @@
 		<!-- For PA. Cannot be enchanted, crystallized or assigned an attribute. -->
 		<set name="icon" val="icon.armor_t401_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -54,6 +56,7 @@
 		<!-- For PA. Cannot be enchanted, crystallized or assigned an attribute. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -106,6 +109,7 @@
 		<!-- For PA. Cannot be enchanted, crystallized or assigned an attribute. -->
 		<set name="icon" val="icon.armor_t402_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -122,6 +126,7 @@
 		<!-- For PA. Cannot be enchanted, crystallized or assigned an attribute. -->
 		<set name="icon" val="icon.armor_t402_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -138,6 +143,7 @@
 		<!-- For PA. Cannot be enchanted, crystallized or assigned an attribute. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -192,6 +198,7 @@
 		<!-- For PA. Cannot be enchanted, crystallized or assigned an attribute. -->
 		<set name="icon" val="icon.armor_t403_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -208,6 +215,7 @@
 		<!-- For PA. Cannot be enchanted, crystallized or assigned an attribute. -->
 		<set name="icon" val="icon.armor_t403_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -502,6 +510,7 @@
 		<!-- Brigandine Helmet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -549,6 +558,7 @@
 		<!-- Brigandine Gauntlets imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t43_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -564,6 +574,7 @@
 		<!-- Brigandine Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t43_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -579,6 +590,7 @@
 		<!-- A Manticore Skin Helmet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -626,6 +638,7 @@
 		<!-- Manticore Skin Gloves imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t42_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -641,6 +654,7 @@
 		<!-- Manticore Skin Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t42_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -656,6 +670,7 @@
 		<!-- A Mithril Circlet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -705,6 +720,7 @@
 		<!-- Elven Mithril Gloves imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t51_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -720,6 +736,7 @@
 		<!-- Elven Mithril Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t51_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -780,6 +797,7 @@
 		<!-- A Chain Helmet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -827,6 +845,7 @@
 		<!-- Chain Gloves imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t48_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -842,6 +861,7 @@
 		<!-- A Chain Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t48_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -857,6 +877,7 @@
 		<!-- A Theca Leather Helmet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -904,6 +925,7 @@
 		<!-- Theca Leather Gloves imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t63_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -919,6 +941,7 @@
 		<!-- Theca Leather Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t63_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -934,6 +957,7 @@
 		<!-- A Demon Circlet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -983,6 +1007,7 @@
 		<!-- Demon's Gloves imbued with the energy of Paulina. Cannot be enchanted and imbued with an attribute. -->
 		<set name="icon" val="icon.armor_t54_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -998,6 +1023,7 @@
 		<!-- Demon Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t54_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1103,6 +1129,7 @@
 		<!-- A Dark Crystal Helmet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1150,6 +1177,7 @@
 		<!-- Dark Crystal Gloves imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t74_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1165,6 +1193,7 @@
 		<!-- Dark Crystal Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t74_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1180,6 +1209,7 @@
 		<!-- A Dark Crystal Leather Helmet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1227,6 +1257,7 @@
 		<!-- Dark Crystal Gloves imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t75_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1242,6 +1273,7 @@
 		<!-- Dark Crystal Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t75_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1257,6 +1289,7 @@
 		<!-- A Tallum Circlet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1306,6 +1339,7 @@
 		<!-- Tallum Gloves imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t79_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1321,6 +1355,7 @@
 		<!-- Tallum Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t79_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1431,6 +1466,7 @@
 		<!-- A Dark Crystal Helmet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1478,6 +1514,7 @@
 		<!-- Dynasty Gauntlets imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t91_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1493,6 +1530,7 @@
 		<!-- Dynasty Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t91_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1508,6 +1546,7 @@
 		<!-- A Dynasty Leather Helmet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1555,6 +1594,7 @@
 		<!-- Dynasty Leather Gloves containing Paulina's strength. Enchantment, Attribute Assignment are not possible. -->
 		<set name="icon" val="icon.armor_t92_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1570,6 +1610,7 @@
 		<!-- Dynasty Leather Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t92_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1585,6 +1626,7 @@
 		<!-- A Dynasty Circlet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1634,6 +1676,7 @@
 		<!-- Dynasty Gloves imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t93_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1649,6 +1692,7 @@
 		<!-- Dynasty Shoes imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t93_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />

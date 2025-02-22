@@ -1926,6 +1926,7 @@
 		<!-- A masterwork item that increases P. Def. and Max HP. -->
 		<set name="icon" val="icon.armor_t64_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -1947,6 +1948,7 @@
 		<!-- A masterwork item that increases P. Evasion. -->
 		<set name="icon" val="icon.armor_t65_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -1968,6 +1970,7 @@
 		<!-- A masterwork item that increases M. Atk. -->
 		<set name="icon" val="icon.armor_t56_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -1989,6 +1992,7 @@
 		<!-- A masterwork item that increases P. Def. and Max HP. -->
 		<set name="icon" val="icon.armor_t64_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -2010,6 +2014,7 @@
 		<!-- A masterwork item that increases P. Evasion. -->
 		<set name="icon" val="icon.armor_t65_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -2031,6 +2036,7 @@
 		<!-- A masterwork item that increases M. Atk. -->
 		<set name="icon" val="icon.armor_t56_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -2075,6 +2081,7 @@
 		<!-- A masterwork item that increases P. Def. and Max HP. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2117,6 +2124,7 @@
 		<!-- A masterwork item that increases Max HP. -->
 		<set name="icon" val="icon.armor_t66_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -2138,6 +2146,7 @@
 		<!-- Masterwork Item that increases M. Def. and decreases Weight Limit. -->
 		<set name="icon" val="icon.armor_t67_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -2159,6 +2168,7 @@
 		<!-- A masterwork item that increases P. Def. -->
 		<set name="icon" val="icon.armor_t59_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -2225,6 +2235,7 @@
 		<!-- A masterwork item that increases Max HP. -->
 		<set name="icon" val="icon.armor_t66_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -2246,6 +2257,7 @@
 		<!-- Masterwork Item that increases M. Def. and decreases Weight Limit. -->
 		<set name="icon" val="icon.armor_t67_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -2267,6 +2279,7 @@
 		<!-- A masterwork item that increases P. Def. -->
 		<set name="icon" val="icon.armor_t59_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -2288,6 +2301,7 @@
 		<!-- A masterwork item that increases Max HP. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2421,6 +2435,7 @@
 		<!-- A masterwork item that increases Max HP and breath gauge. -->
 		<set name="icon" val="icon.armor_t71_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2442,6 +2457,7 @@
 		<!-- A masterwork item that increases P. Atk., MP Recovery Rate, Infection Resistance and breath gauge. -->
 		<set name="icon" val="icon.armor_t72_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2463,6 +2479,7 @@
 		<!-- A masterwork item that increases Speed, breath gauge and MP Recovery Rate. -->
 		<set name="icon" val="icon.armor_t73_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2484,6 +2501,7 @@
 		<!-- A masterwork item that increases Max HP and breath gauge. -->
 		<set name="icon" val="icon.armor_t71_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2505,6 +2523,7 @@
 		<!-- A masterwork item that increases P. Atk., MP Recovery Rate, Infection Resistance and breath gauge. -->
 		<set name="icon" val="icon.armor_t72_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2526,6 +2545,7 @@
 		<!-- A masterwork item that increases Speed, breath gauge and MP Recovery Rate. -->
 		<set name="icon" val="icon.armor_t73_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2592,6 +2612,7 @@
 		<!-- A masterwork item that increases Max HP and breath gauge. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="17" />
@@ -2773,6 +2794,7 @@
 		<!-- Masterwork Item that increases Speed and MP Recovery Rate. -->
 		<set name="icon" val="icon.armor_t68_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2794,6 +2816,7 @@
 		<!-- A masterwork item that increases P. Def. -->
 		<set name="icon" val="icon.armor_t69_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2815,6 +2838,7 @@
 		<!-- A masterwork item that increases Max MP and MP Recovery Rate. -->
 		<set name="icon" val="icon.armor_t70_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2836,6 +2860,7 @@
 		<!-- Masterwork Item that increases Speed and MP Recovery Rate. -->
 		<set name="icon" val="icon.armor_t68_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />

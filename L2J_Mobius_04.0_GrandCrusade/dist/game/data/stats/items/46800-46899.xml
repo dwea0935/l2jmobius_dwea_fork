@@ -1702,6 +1702,7 @@
 		<!-- Dimensional Item. A Seraph Helmet that can be equipped from Lv. 85 onwards, thanks to Paulina's blessing. Enchantment, Crystallization, Attribute Assignment not possible. -->
 		<set name="icon" val="icon.bm_armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1755,6 +1756,7 @@
 		<!-- Dimensional Item. Seraph Gauntlets that can be equipped from Lv. 85 onwards, thanks to Paulina's blessing. Enchantment, Crystallization, Attribute Assignment not possible. -->
 		<set name="icon" val="icon.bm_armor_t401_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1772,6 +1774,7 @@
 		<!-- Dimensional Item. Seraph Boots that can be equipped from Lv. 85 onwards, thanks to Paulina's blessing. Enchantment, Crystallization, Attribute Assignment not possible. -->
 		<set name="icon" val="icon.bm_armor_t401_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1807,6 +1810,7 @@
 		<!-- Dimensional Item. A Seraph Leather Helmet that can be equipped from Lv. 85 onwards, thanks to Paulina's blessing. Enchantment, Crystallization, Attribute Assignment not possible. -->
 		<set name="icon" val="icon.bm_armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1862,6 +1866,7 @@
 		<!-- Dimensional Item. Seraph Leather Gloves that can be equipped from Lv. 85 onwards, thanks to Paulina's blessing. Enchantment, Crystallization, Attribute Assignment not possible. -->
 		<set name="icon" val="icon.bm_armor_t402_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1879,6 +1884,7 @@
 		<!-- Dimensional Item. Seraph Leather Boots that can be equipped from Lv. 85 onwards, thanks to Paulina's blessing. Enchantment, Crystallization, Attribute Assignment not possible. -->
 		<set name="icon" val="icon.bm_armor_t402_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1896,6 +1902,7 @@
 		<!-- Dimensional Item. A Seraph Circlet that can be equipped from Lv. 85 onwards, thanks to Paulina's blessing. Enchantment, Crystallization, Attribute Assignment not possible. -->
 		<set name="icon" val="icon.bm_armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1953,6 +1960,7 @@
 		<!-- Dimensional Item. Seraph Gloves that can be equipped from Lv. 85 onwards, thanks to Paulina's blessing. Enchantment, Crystallization, Attribute Assignment not possible. -->
 		<set name="icon" val="icon.bm_armor_t403_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1970,6 +1978,7 @@
 		<!-- Dimensional Item. Seraph Shoes that can be equipped from Lv. 85 onwards, thanks to Paulina's blessing. Enchantment, Crystallization, Attribute Assignment not possible. -->
 		<set name="icon" val="icon.bm_armor_t403_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -2415,6 +2424,7 @@
 		<!-- A Seraph Helmet that can be equipped from Lv. 85 onwards, thanks to Paulina's blessing. Enchantment, Crystallization, Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />

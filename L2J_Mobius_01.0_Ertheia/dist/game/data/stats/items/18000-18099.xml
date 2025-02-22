@@ -487,6 +487,7 @@
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="454" />
@@ -505,8 +506,8 @@
 	<item id="18016" name="Blessed Twilight Breastplate" additionalName="Heavy Armor" type="Armor">
 		<!-- Bestows an attack or defense type set option. Increases P. Def. and decreases P. Critical Damage when enchanted to + 4. -->
 		<set name="icon" val="icon.armor_t601_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="1212" />
@@ -530,8 +531,8 @@
 	<item id="18017" name="Blessed Twilight Gaiters" additionalName="Heavy Armor" type="Armor">
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_t601_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="757" />
@@ -552,6 +553,7 @@
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_t601_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="303" />
@@ -572,6 +574,7 @@
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_t601_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="303" />
 		<set name="weight" val="1070" />
@@ -613,6 +616,7 @@
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="454" />
@@ -631,8 +635,8 @@
 	<item id="18022" name="Blessed Twilight Leather Armor" additionalName="Light Armor" type="Armor">
 		<!-- Bestows an assassin or enchant type set option. When enchanted to + 4, increases Evasion, Speed and P. Atk. Resistance, and decreases the chance of receiving P. Critical Hit. -->
 		<set name="icon" val="icon.armor_t602_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="1212" />
@@ -658,8 +662,8 @@
 	<item id="18023" name="Blessed Twilight Leather Leggings" additionalName="Light Armor" type="Armor">
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_t602_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="757" />
@@ -682,6 +686,7 @@
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_t602_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="303" />
@@ -702,6 +707,7 @@
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_t602_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="303" />
@@ -722,6 +728,7 @@
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="454" />
@@ -740,8 +747,8 @@
 	<item id="18027" name="Blessed Twilight Tunic" additionalName="Robe" type="Armor">
 		<!-- Bestows a magic or recovery type set option. When enchanted to + 4, increases M. Evasion and Mental Attack Resistance, and decreases Damage and the chance of receiving P. Critical Hit. -->
 		<set name="icon" val="icon.armor_t603_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="1212" />
@@ -767,8 +774,8 @@
 	<item id="18028" name="Blessed Twilight Stockings" additionalName="Robe" type="Armor">
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_t603_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="757" />
@@ -791,6 +798,7 @@
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_t603_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="303" />
@@ -811,6 +819,7 @@
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_t603_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="303" />
@@ -1373,6 +1382,7 @@
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1533" />
@@ -1391,8 +1401,8 @@
 	<item id="18050" name="Blessed Seraph Breastplate" additionalName="Heavy Armor" type="Armor">
 		<!-- Bestows an attack or defense type set option. Increases P. Def. and decreases P. Critical Damage when enchanted to + 4. -->
 		<set name="icon" val="icon.armor_t401_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="4088" />
@@ -1416,8 +1426,8 @@
 	<item id="18051" name="Blessed Seraph Gaiters" additionalName="Heavy Armor" type="Armor">
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_t401_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="2555" />
@@ -1438,6 +1448,7 @@
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_t401_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1022" />
@@ -1458,6 +1469,7 @@
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_t401_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1022" />
 		<set name="weight" val="1070" />
@@ -1499,6 +1511,7 @@
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1533" />
@@ -1517,8 +1530,8 @@
 	<item id="18056" name="Blessed Seraph Leather Armor" additionalName="Light Armor" type="Armor">
 		<!-- Bestows an assassin or enchant type set option. When enchanted to + 4, increases Evasion, Speed and P. Atk. Resistance, and decreases the chance of receiving P. Critical Hit. -->
 		<set name="icon" val="icon.armor_t402_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="4088" />
@@ -1544,8 +1557,8 @@
 	<item id="18057" name="Blessed Seraph Leather Leggings" additionalName="Light Armor" type="Armor">
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_t402_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="2555" />
@@ -1568,6 +1581,7 @@
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_t402_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1022" />
@@ -1588,6 +1602,7 @@
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_t402_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1022" />
@@ -1608,6 +1623,7 @@
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1533" />
@@ -1626,8 +1642,8 @@
 	<item id="18061" name="Blessed Seraph Tunic" additionalName="Robe" type="Armor">
 		<!-- Bestows a magic or recovery type set option. When enchanted to + 4, increases M. Evasion and Mental Attack Resistance, and decreases Damage and the chance of receiving P. Critical Hit. -->
 		<set name="icon" val="icon.armor_t403_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="4088" />
@@ -1653,8 +1669,8 @@
 	<item id="18062" name="Blessed Seraph Stockings" additionalName="Robe" type="Armor">
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_t403_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="2555" />
@@ -1677,6 +1693,7 @@
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_t403_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1022" />
@@ -1697,6 +1714,7 @@
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_t403_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1022" />
@@ -2259,6 +2277,7 @@
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -2277,8 +2296,8 @@
 	<item id="18084" name="Blessed Eternal Breastplate" additionalName="Heavy Armor" type="Armor">
 		<!-- Bestows an attack or defense type set option. Increases P. Def. and decreases P. Critical Damage when enchanted to + 4. -->
 		<set name="icon" val="icon.armor_t701_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -2302,8 +2321,8 @@
 	<item id="18085" name="Blessed Eternal Gaiters" additionalName="Heavy Armor" type="Armor">
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_t701_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -2324,6 +2343,7 @@
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_t701_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2344,6 +2364,7 @@
 		<!-- Bestows an attack or defense type set option. -->
 		<set name="icon" val="icon.armor_t701_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
 		<set name="weight" val="1070" />
@@ -2385,6 +2406,7 @@
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -2403,8 +2425,8 @@
 	<item id="18090" name="Blessed Eternal Leather Armor" additionalName="Light Armor" type="Armor">
 		<!-- Bestows an assassin or enchant type set option. When enchanted to + 4, increases Evasion, Speed and P. Atk. Resistance, and decreases the chance of receiving P. Critical Hit. -->
 		<set name="icon" val="icon.armor_t702_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -2430,8 +2452,8 @@
 	<item id="18091" name="Blessed Eternal Leather Leggings" additionalName="Light Armor" type="Armor">
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_t702_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -2454,6 +2476,7 @@
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_t702_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2474,6 +2497,7 @@
 		<!-- Bestows an assassin or enchant type set option. -->
 		<set name="icon" val="icon.armor_t702_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2494,6 +2518,7 @@
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -2512,8 +2537,8 @@
 	<item id="18095" name="Blessed Eternal Tunic" additionalName="Robe" type="Armor">
 		<!-- Bestows a magic or recovery type set option. When enchanted to + 4, increases M. Evasion and Mental Attack Resistance, and decreases Damage and the chance of receiving P. Critical Hit. -->
 		<set name="icon" val="icon.armor_t703_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -2539,8 +2564,8 @@
 	<item id="18096" name="Blessed Eternal Stockings" additionalName="Robe" type="Armor">
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_t703_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -2563,6 +2588,7 @@
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_t703_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2583,6 +2609,7 @@
 		<!-- Bestows a magic or recovery type set option. -->
 		<set name="icon" val="icon.armor_t703_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />

@@ -1407,6 +1407,7 @@
 		<!-- Armor for those who have taken their path of honor not long ago. Cannot be enchanted, crystallized, appearance modified, or assigned with attributes. Can be exchanged for other Exalted armor through Lionel Hunter in Heine. -->
 		<set name="icon" val="icon.bm_armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1462,6 +1463,7 @@
 		<!-- Armor for those who have taken their path of honor not long ago. Cannot be enchanted, crystallized, appearance modified, or assigned with attributes. Can be exchanged for other Exalted armor through Lionel Hunter in Heine. -->
 		<set name="icon" val="icon.bm_polyne_R99_1_heavy_gloves" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1479,6 +1481,7 @@
 		<!-- Armor for those who have taken their path of honor not long ago. Cannot be enchanted, crystallized, appearance modified, or assigned with attributes. Can be exchanged for other Exalted armor through Lionel Hunter in Heine. -->
 		<set name="icon" val="icon.bm_polyne_R99_1_heavy_shoes" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1515,6 +1518,7 @@
 		<!-- Armor for those who have taken their path of honor not long ago. Cannot be enchanted, crystallized, appearance modified, or assigned with attributes. Can be exchanged for other Exalted armor through Lionel Hunter in Heine. -->
 		<set name="icon" val="icon.bm_armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1572,6 +1576,7 @@
 		<!-- Armor for those who have taken their path of honor not long ago. Cannot be enchanted, crystallized, appearance modified, or assigned with attributes. Can be exchanged for other Exalted armor through Lionel Hunter in Heine. -->
 		<set name="icon" val="icon.bm_polyne_R99_1_light_gloves" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1589,6 +1594,7 @@
 		<!-- Armor for those who have taken their path of honor not long ago. Cannot be enchanted, crystallized, appearance modified, or assigned with attributes. Can be exchanged for other Exalted armor through Lionel Hunter in Heine. -->
 		<set name="icon" val="icon.bm_polyne_R99_1_light_shoes" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1606,6 +1612,7 @@
 		<!-- Armor for those who have taken their path of honor not long ago. Cannot be enchanted, crystallized, appearance modified, or assigned with attributes. Can be exchanged for other Exalted armor through Lionel Hunter in Heine. -->
 		<set name="icon" val="icon.bm_armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1665,6 +1672,7 @@
 		<!-- Armor for those who have taken their path of honor not long ago. Cannot be enchanted, crystallized, appearance modified, or assigned with attributes. Can be exchanged for other Exalted armor through Lionel Hunter in Heine. -->
 		<set name="icon" val="icon.bm_polyne_R99_1_robe_gloves" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1682,6 +1690,7 @@
 		<!-- Armor for those who have taken their path of honor not long ago. Cannot be enchanted, crystallized, appearance modified, or assigned with attributes. Can be exchanged for other Exalted armor through Lionel Hunter in Heine. -->
 		<set name="icon" val="icon.bm_polyne_R99_1_robe_shoes" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />

@@ -302,6 +302,7 @@
 		<!-- Not in Use -->
 		<set name="icon" val="icon.armor_t1001_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -326,6 +327,7 @@
 		<!-- Not in Use -->
 		<set name="icon" val="icon.armor_t1001_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -369,6 +371,7 @@
 		<!-- Not in Use -->
 		<set name="icon" val="icon.armor_t1002_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -387,6 +390,7 @@
 		<!-- Not in Use -->
 		<set name="icon" val="icon.armor_t1002_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -431,6 +435,7 @@
 		<!-- Not in Use -->
 		<set name="icon" val="icon.armor_t1003_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -455,6 +460,7 @@
 		<!-- Not in Use -->
 		<set name="icon" val="icon.armor_t1003_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -520,6 +526,7 @@
 	<item id="9832" name="Enhanced Apella Gauntlets" additionalName="Heavy Armor" type="Armor">
 		<set name="icon" val="icon.armor_t1004_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -542,6 +549,7 @@
 	<item id="9833" name="Enhanced Apella Solleret" additionalName="Heavy Armor" type="Armor">
 		<set name="icon" val="icon.armor_t1004_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -585,6 +593,7 @@
 	<item id="9835" name="Enhanced Apella Leather Gloves" additionalName="Light Armor" type="Armor">
 		<set name="icon" val="icon.armor_t1005_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -604,6 +613,7 @@
 	<item id="9836" name="Enhanced Apella Boots" additionalName="Light Armor" type="Armor">
 		<set name="icon" val="icon.armor_t1005_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -648,6 +658,7 @@
 	<item id="9838" name="Enhanced Apella Silk Gloves" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t1006_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -670,6 +681,7 @@
 	<item id="9839" name="Enhanced Apella Sandals" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t1006_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />

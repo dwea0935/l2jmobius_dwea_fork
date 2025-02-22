@@ -66,6 +66,7 @@
 		<!-- Part of the Heavy Nightmare set. -->
 		<set name="icon" val="icon.armor_t80_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="3" />
@@ -85,6 +86,7 @@
 		<!-- Part of the Light Nightmare set. -->
 		<set name="icon" val="icon.armor_t81_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="3" />
@@ -104,6 +106,7 @@
 		<!-- Part of the Nightmare Robe set. -->
 		<set name="icon" val="icon.armor_t82_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="3" />
@@ -1273,6 +1276,7 @@
 		<!-- Part of the Heavy Avadon set. -->
 		<set name="icon" val="icon.armor_t66_b_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />
 		<set name="weight" val="1180" />
@@ -1292,6 +1296,7 @@
 		<!-- Part of the Light Avadon set. -->
 		<set name="icon" val="icon.armor_t66_b_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />
@@ -1311,6 +1316,7 @@
 		<!-- Part of the Avadon Robe set. -->
 		<set name="icon" val="icon.armor_t66_b_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />
@@ -1370,6 +1376,7 @@
 		<!-- Part of the Heavy Avadon set. -->
 		<set name="icon" val="icon.armor_t66_g_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />
@@ -1389,6 +1396,7 @@
 		<!-- Part of the Light Avadon set. -->
 		<set name="icon" val="icon.armor_t66_g_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />
@@ -1408,6 +1416,7 @@
 		<!-- Part of the Avadon Robe set. -->
 		<set name="icon" val="icon.armor_t66_g_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />

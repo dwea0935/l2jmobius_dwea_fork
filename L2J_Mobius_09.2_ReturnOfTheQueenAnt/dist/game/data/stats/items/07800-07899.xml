@@ -1131,6 +1131,7 @@
 	<item id="7852" name="Clan Oath Gauntlets" additionalName="Heavy armor" type="Armor">
 		<set name="icon" val="icon.armor_t1001_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1155,6 +1156,7 @@
 	<item id="7853" name="Clan Oath Sabaton" additionalName="Heavy armor" type="Armor">
 		<set name="icon" val="icon.armor_t1001_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1202,6 +1204,7 @@
 	<item id="7855" name="Clan Oath Leather Gloves" additionalName="Light armor" type="Armor">
 		<set name="icon" val="icon.armor_t1002_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1223,6 +1226,7 @@
 	<item id="7856" name="Clan Oath Boots" additionalName="Light armor" type="Armor">
 		<set name="icon" val="icon.armor_t1002_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1271,6 +1275,7 @@
 	<item id="7858" name="Clan Oath Padded Gloves" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t1003_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1295,6 +1300,7 @@
 	<item id="7859" name="Clan Oath Sandals" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t1003_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="10" />
@@ -1360,6 +1366,7 @@
 	<item id="7862" name="Apella Gauntlets" additionalName="Heavy armor" type="Armor">
 		<set name="icon" val="icon.armor_t1004_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1382,6 +1389,7 @@
 	<item id="7863" name="Apella Solleret" additionalName="Heavy armor" type="Armor">
 		<set name="icon" val="icon.armor_t1004_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1425,6 +1433,7 @@
 	<item id="7865" name="Apella Leather Gloves" additionalName="Light armor" type="Armor">
 		<set name="icon" val="icon.armor_t1005_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1444,6 +1453,7 @@
 	<item id="7866" name="Apella Boots" additionalName="Light armor" type="Armor">
 		<set name="icon" val="icon.armor_t1005_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1488,6 +1498,7 @@
 	<item id="7868" name="Apella Silk Gloves" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t1006_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1510,6 +1521,7 @@
 	<item id="7869" name="Apella Sandals" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t1006_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />

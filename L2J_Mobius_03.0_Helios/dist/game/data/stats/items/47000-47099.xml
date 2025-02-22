@@ -499,6 +499,7 @@
 		<!-- A Twilight Helmet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -561,6 +562,7 @@
 		<!-- Twilight Gauntlets imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t601_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -581,6 +583,7 @@
 		<!-- Twilight Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t601_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -619,6 +622,7 @@
 		<!-- A Twilight Leather Helmet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -683,6 +687,7 @@
 		<!-- Twilight Leather Gloves imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t602_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -703,6 +708,7 @@
 		<!-- Twilight Leather Boots imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t602_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -723,6 +729,7 @@
 		<!-- A Twilight Circlet imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -789,6 +796,7 @@
 		<!-- Twilight Gloves imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t603_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -809,6 +817,7 @@
 		<!-- Twilight Shoes imbued with the energy of Paulina. Enchantment and Attribute Assignment not possible. -->
 		<set name="icon" val="icon.armor_t603_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />

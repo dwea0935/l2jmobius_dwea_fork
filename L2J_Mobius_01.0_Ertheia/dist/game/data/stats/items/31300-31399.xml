@@ -393,6 +393,7 @@
 		<!-- Part of the Heavy Majestic set. -->
 		<set name="icon" val="icon.armor_t83_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="3" />
 		<set name="weight" val="1110" />
@@ -412,6 +413,7 @@
 		<!-- Part of the Light Majestic set. -->
 		<set name="icon" val="icon.armor_t84_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="3" />
@@ -431,6 +433,7 @@
 		<!-- Part of the Majestic Robe set. -->
 		<set name="icon" val="icon.armor_t85_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="3" />
@@ -526,6 +529,7 @@
 		<!-- Part of the Heavy Majestic set. -->
 		<set name="icon" val="icon.armor_t83_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="3" />
@@ -545,6 +549,7 @@
 		<!-- Part of the Light Majestic set. -->
 		<set name="icon" val="icon.armor_t84_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="3" />
@@ -564,6 +569,7 @@
 		<!-- Part of the Majestic Robe set. -->
 		<set name="icon" val="icon.armor_t85_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="3" />

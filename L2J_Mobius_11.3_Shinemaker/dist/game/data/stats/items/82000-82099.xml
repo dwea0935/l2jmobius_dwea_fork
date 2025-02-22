@@ -51,6 +51,7 @@
 		<!-- Changes your gloves' appearance to that of Lindvior light armor. Available to characters from the Conqueror server. -->
 		<set name="icon" val="icon.honors_light_gloves_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -69,6 +70,7 @@
 		<!-- Changes your boots' appearance to that of Lindvior light armor. Available to characters from the Conqueror server. -->
 		<set name="icon" val="icon.honors_light_shoes_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -87,7 +89,7 @@
 		<!-- Changes your upper armor's appearance to that of Lindvior robe. Available to characters from the Conqueror server. -->
 		<set name="icon" val="icon.honors_light_upbody_opt" />
 		<set name="default_action" val="EQUIP" />
-		<set name="armor_type" val="LIGHT" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -106,7 +108,7 @@
 		<!-- Changes your lower armor's appearance to that of Lindvior robe. Available to characters from the Conqueror server. -->
 		<set name="icon" val="icon.honors_light_downbody_opt" />
 		<set name="default_action" val="EQUIP" />
-		<set name="armor_type" val="LIGHT" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -125,6 +127,7 @@
 		<!-- Changes your gloves' appearance to that of Lindvior robe. Available to characters from the Conqueror server. -->
 		<set name="icon" val="icon.honors_light_gloves_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -143,6 +146,7 @@
 		<!-- Changes your boots' appearance to that of Lindvior robe. Available to characters from the Conqueror server. -->
 		<set name="icon" val="icon.honors_light_shoes_opt" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />

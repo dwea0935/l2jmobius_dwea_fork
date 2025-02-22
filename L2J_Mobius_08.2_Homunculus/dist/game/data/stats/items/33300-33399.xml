@@ -27,6 +27,7 @@
 		<!-- Majestic Gauntlets of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the heavy Majestic set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t83_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
@@ -49,6 +50,7 @@
 		<!-- Majestic Boots of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the heavy Majestic set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t83_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
 		<set name="is_tradable" val="false" />
@@ -139,6 +141,7 @@
 		<!-- Majestic Gauntlets of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the light Majestic set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t84_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
@@ -161,6 +164,7 @@
 		<!-- Majestic Boots of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the light Majestic set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t84_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
@@ -227,6 +231,7 @@
 		<!-- Majestic Gauntlets of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the Majestic robe set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t85_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
@@ -249,6 +254,7 @@
 		<!-- Majestic Boots of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the Majestic robe set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t85_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
@@ -315,6 +321,7 @@
 		<!-- Majestic Gauntlets of Destiny (Water, Earth, Holy) with limited ability enhancement. Part of the heavy Majestic set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t83_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
@@ -337,6 +344,7 @@
 		<!-- Majestic Boots of Destiny (Water, Earth, Holy) with limited ability enhancement. Part of the heavy Majestic set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t83_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
 		<set name="is_tradable" val="false" />
@@ -427,6 +435,7 @@
 		<!-- Majestic Gauntlets of Destiny (Water, Earth, Holy) with limited ability enhancement. Part of the light Majestic set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t84_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
@@ -449,6 +458,7 @@
 		<!-- Majestic Boots of Destiny (Water, Earth, Holy) with limited ability enhancement. Part of the light Majestic set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t84_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
@@ -515,6 +525,7 @@
 		<!-- Majestic Gauntlets of Destiny (Water, Earth, Holy) with limited ability enhancement. Part of the Majestic robe set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t85_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />
@@ -537,6 +548,7 @@
 		<!-- Majestic Boots of Destiny (Water, Earth, Holy) with limited ability enhancement. Part of the Majestic robe set. This item cannot be enhanced except with PA Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t85_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="A" />
 		<set name="is_depositable" val="false" />

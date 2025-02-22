@@ -1646,6 +1646,7 @@
 		<!-- Received PvE Damage -3%. PvE Damage +1%. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />
@@ -1693,6 +1694,7 @@
 		<!-- Received PvE Damage -2%. PvE Damage +1%. -->
 		<set name="icon" val="icon.armor_t801_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R" />

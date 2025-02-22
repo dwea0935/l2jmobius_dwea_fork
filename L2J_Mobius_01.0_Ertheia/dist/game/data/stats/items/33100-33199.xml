@@ -2571,6 +2571,7 @@
 		<!-- Blue Wolf Gloves of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the heavy blue wolf set. This item cannot be enhanced except with Destiny Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t68_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
@@ -2593,6 +2594,7 @@
 		<!-- Blue Wolf Boots of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the heavy blue wolf set. This item cannot be enhanced except with Destiny Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t68_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
 		<set name="is_tradable" val="false" />
@@ -2683,6 +2685,7 @@
 		<!-- Blue Wolf Gloves of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the light blue wolf set. This item cannot be enhanced except with Destiny Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t69_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
@@ -2705,6 +2708,7 @@
 		<!-- Blue Wolf Boots of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the light blue wolf set. This item cannot be enhanced except with Destiny Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t69_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
@@ -2794,6 +2798,7 @@
 		<!-- Blue Wolf Gloves of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the blue wolf robe set. This item cannot be enhanced except with Destiny Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t70_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
@@ -2816,6 +2821,7 @@
 		<!-- Blue Wolf Boots of Destiny (Fire, Wind, Dark) with limited ability enhancement. Part of the blue wolf robe set. This item cannot be enhanced except with Destiny Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t70_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
@@ -2905,6 +2911,7 @@
 		<!-- Blue Wolf Gloves of Destiny (Water, Earth, Holy) with limited ability enhancement. Part of the heavy blue wolf set. This item cannot be enhanced except with Destiny Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t68_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
@@ -2927,6 +2934,7 @@
 		<!-- Blue Wolf Boots of Destiny (Water, Earth, Holy) with limited ability enhancement. Part of the heavy blue wolf set. This item cannot be enhanced except with Destiny Enchant Scrolls. -->
 		<set name="icon" val="icon.armor_t68_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
 		<set name="is_tradable" val="false" />

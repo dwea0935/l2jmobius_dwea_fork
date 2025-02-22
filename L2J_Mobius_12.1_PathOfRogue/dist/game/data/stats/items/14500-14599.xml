@@ -2246,6 +2246,7 @@
 	<item id="14584" name="Apella Combat Gauntlets" additionalName="Heavy armor" type="Armor">
 		<set name="icon" val="icon.armor_t1004_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -2269,6 +2270,7 @@
 	<item id="14585" name="Apella Combat Boots" additionalName="Heavy armor" type="Armor">
 		<set name="icon" val="icon.armor_t1004_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -2314,6 +2316,7 @@
 	<item id="14587" name="Apella Combat Leather Gloves" additionalName="Light armor" type="Armor">
 		<set name="icon" val="icon.armor_t1005_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -2334,6 +2337,7 @@
 	<item id="14588" name="Apella Combat Shoes" additionalName="Light armor" type="Armor">
 		<set name="icon" val="icon.armor_t1005_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -2380,6 +2384,7 @@
 	<item id="14590" name="Apella Combat Silk Gloves" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t1006_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -2403,6 +2408,7 @@
 	<item id="14591" name="Apella Combat Sandals" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t1006_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />

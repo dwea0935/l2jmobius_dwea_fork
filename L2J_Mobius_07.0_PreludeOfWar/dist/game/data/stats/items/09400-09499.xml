@@ -438,6 +438,7 @@
 	<item id="9423" name="Dynasty Gauntlets" additionalName="Heavy Armor" type="Armor">
 		<set name="icon" val="icon.armor_t91_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
@@ -456,6 +457,7 @@
 	<item id="9424" name="Dynasty Boots" additionalName="Heavy Armor" type="Armor">
 		<set name="icon" val="icon.armor_t91_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
@@ -575,6 +577,7 @@
 	<item id="9430" name="Dynasty Leather Gloves" additionalName="Light Armor" type="Armor">
 		<set name="icon" val="icon.armor_t92_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
@@ -593,6 +596,7 @@
 	<item id="9431" name="Dynasty Leather Boots" additionalName="Light Armor" type="Armor">
 		<set name="icon" val="icon.armor_t92_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
@@ -776,6 +780,7 @@
 	<item id="9439" name="Dynasty Gloves" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t93_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
@@ -794,6 +799,7 @@
 	<item id="9440" name="Dynasty Shoes" additionalName="Robe" type="Armor">
 		<set name="icon" val="icon.armor_t93_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />

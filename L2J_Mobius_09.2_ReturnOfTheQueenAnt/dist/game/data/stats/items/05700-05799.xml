@@ -191,6 +191,7 @@
 		<!-- Part of the heavy Zubei's set. -->
 		<set name="icon" val="icon.armor_t64_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -209,6 +210,7 @@
 		<!-- Part of the light Zubei's set. -->
 		<set name="icon" val="icon.armor_t65_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -227,6 +229,7 @@
 		<!-- Part of the Zubei's robe set. -->
 		<set name="icon" val="icon.armor_t56_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -263,6 +266,7 @@
 		<!-- A part of the Avadon heavy armor set. -->
 		<set name="icon" val="icon.armor_t66_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -281,6 +285,7 @@
 		<!-- A part of the Avadon light armor set. -->
 		<set name="icon" val="icon.armor_t67_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -299,6 +304,7 @@
 		<!-- A part of the Avadon robe set. -->
 		<set name="icon" val="icon.armor_t59_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -335,6 +341,7 @@
 		<!-- Part of the heavy Blue Wolf set. -->
 		<set name="icon" val="icon.armor_t68_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -353,6 +360,7 @@
 		<!-- Part of the light Blue Wolf set. -->
 		<set name="icon" val="icon.armor_t69_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -371,6 +379,7 @@
 		<!-- Part of the Blue Wolf robe set. -->
 		<set name="icon" val="icon.armor_t70_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -407,6 +416,7 @@
 		<!-- A piece of the heavy Doom set. -->
 		<set name="icon" val="icon.armor_t71_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -425,6 +435,7 @@
 		<!-- A piece of the light Doom set. -->
 		<set name="icon" val="icon.armor_t72_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -443,6 +454,7 @@
 		<!-- A piece of the Doom robe set. -->
 		<set name="icon" val="icon.armor_t73_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -479,6 +491,7 @@
 		<!-- Part of the heavy Zubei's set. -->
 		<set name="icon" val="icon.armor_t64_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -497,6 +510,7 @@
 		<!-- Part of the light Zubei's set. -->
 		<set name="icon" val="icon.armor_t65_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -515,6 +529,7 @@
 		<!-- Part of the Zubei's robe set. -->
 		<set name="icon" val="icon.armor_t56_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -551,6 +566,7 @@
 		<!-- A part of the Avadon heavy armor set. -->
 		<set name="icon" val="icon.armor_t66_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -569,6 +585,7 @@
 		<!-- A part of the Avadon light armor set. -->
 		<set name="icon" val="icon.armor_t67_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -587,6 +604,7 @@
 		<!-- A part of the Avadon robe set. -->
 		<set name="icon" val="icon.armor_t59_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8" />
@@ -623,6 +641,7 @@
 		<!-- Part of the heavy Blue Wolf set. -->
 		<set name="icon" val="icon.armor_t68_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -641,6 +660,7 @@
 		<!-- Part of the light Blue Wolf set. -->
 		<set name="icon" val="icon.armor_t69_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -659,6 +679,7 @@
 		<!-- Part of the Blue Wolf robe set. -->
 		<set name="icon" val="icon.armor_t70_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -695,6 +716,7 @@
 		<!-- A piece of the heavy Doom set. -->
 		<set name="icon" val="icon.armor_t71_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -713,6 +735,7 @@
 		<!-- A piece of the light Doom set. -->
 		<set name="icon" val="icon.armor_t72_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -731,6 +754,7 @@
 		<!-- A piece of the Doom robe set. -->
 		<set name="icon" val="icon.armor_t73_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -1029,6 +1053,7 @@
 		<!-- Part of the heavy Dark Crystal set. -->
 		<set name="icon" val="icon.armor_t74_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1047,6 +1072,7 @@
 		<!-- A part of the Dark Crystal light armor set. -->
 		<set name="icon" val="icon.armor_t75_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1065,6 +1091,7 @@
 		<!-- Part of the Dark Crystal robe set. -->
 		<set name="icon" val="icon.armor_t76_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1083,6 +1110,7 @@
 		<!-- Part of the heavy Tallum set. -->
 		<set name="icon" val="icon.armor_t77_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1101,6 +1129,7 @@
 		<!-- Part of the light Tallum set. -->
 		<set name="icon" val="icon.armor_t78_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1119,6 +1148,7 @@
 		<!-- Part of the Tallum robe set. -->
 		<set name="icon" val="icon.armor_t79_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1137,6 +1167,7 @@
 		<!-- A part of the heavy armor set of Nightmare. -->
 		<set name="icon" val="icon.armor_t80_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1155,6 +1186,7 @@
 		<!-- Part of the light armor set of Nightmare. -->
 		<set name="icon" val="icon.armor_t81_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1173,6 +1205,7 @@
 		<!-- Part of the robe set of Nightmare. -->
 		<set name="icon" val="icon.armor_t82_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1191,6 +1224,7 @@
 		<!-- Part of the heavy Majestic set. -->
 		<set name="icon" val="icon.armor_t83_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1209,6 +1243,7 @@
 		<!-- Part of the light Majestic set. -->
 		<set name="icon" val="icon.armor_t84_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1227,6 +1262,7 @@
 		<!-- Part of the Majestic robe set. -->
 		<set name="icon" val="icon.armor_t85_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1245,6 +1281,7 @@
 		<!-- Part of the heavy Dark Crystal set. -->
 		<set name="icon" val="icon.armor_t74_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1263,6 +1300,7 @@
 		<!-- Part of the light Dark Crystal set. -->
 		<set name="icon" val="icon.armor_t75_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1281,6 +1319,7 @@
 		<!-- Part of the Dark Crystal robe set. -->
 		<set name="icon" val="icon.armor_t76_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1299,6 +1338,7 @@
 		<!-- Part of the heavy Tallum set. -->
 		<set name="icon" val="icon.armor_t77_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1317,6 +1357,7 @@
 		<!-- Part of the light Tallum set. -->
 		<set name="icon" val="icon.armor_t78_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1335,6 +1376,7 @@
 		<!-- Part of the Tallum robe set. -->
 		<set name="icon" val="icon.armor_t79_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="47" />
@@ -1353,6 +1395,7 @@
 		<!-- Part of the heavy armor set of Nightmare. -->
 		<set name="icon" val="icon.armor_t80_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1371,6 +1414,7 @@
 		<!-- Part of the light armor set of Nightmare. -->
 		<set name="icon" val="icon.armor_t81_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1389,6 +1433,7 @@
 		<!-- Part of the robe set of Nightmare. -->
 		<set name="icon" val="icon.armor_t82_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1407,6 +1452,7 @@
 		<!-- Part of the heavy Majestic set. -->
 		<set name="icon" val="icon.armor_t83_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1425,6 +1471,7 @@
 		<!-- Part of the light Majestic set. -->
 		<set name="icon" val="icon.armor_t84_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />
@@ -1443,6 +1490,7 @@
 		<!-- Part of the Majestic robe set. -->
 		<set name="icon" val="icon.armor_t85_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="72" />

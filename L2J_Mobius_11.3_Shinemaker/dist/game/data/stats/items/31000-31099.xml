@@ -1753,6 +1753,7 @@
 		<!-- A part of Zubei's heavy armor set. -->
 		<set name="icon" val="icon.armor_t64_b_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />
 		<set name="weight" val="1180" />
@@ -1772,6 +1773,7 @@
 		<!-- A part of the Zubei's light armor set. -->
 		<set name="icon" val="icon.armor_t64_b_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />
@@ -1791,6 +1793,7 @@
 		<!-- Part of the Zubei's robe set. -->
 		<set name="icon" val="icon.armor_t64_b_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />
@@ -1810,6 +1813,7 @@
 		<!-- A part of Zubei's heavy armor set. -->
 		<set name="icon" val="icon.armor_t64_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />
@@ -1829,6 +1833,7 @@
 		<!-- A part of the Zubei's light armor set. -->
 		<set name="icon" val="icon.armor_t64_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />
@@ -1848,6 +1853,7 @@
 		<!-- Part of the Zubei's robe set. -->
 		<set name="icon" val="icon.armor_t64_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="crystal_count" val="2" />

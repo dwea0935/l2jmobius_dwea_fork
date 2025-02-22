@@ -141,6 +141,7 @@
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="146" />
@@ -159,8 +160,8 @@
 	<item id="17305" name="Immortal Breastplate" additionalName="Heavy armor" type="Armor">
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. When enchanted to +4, decreases received Critical Damage from standard attacks and increases P. Def. -->
 		<set name="icon" val="icon.armor_t501_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="391" />
@@ -183,8 +184,8 @@
 	<item id="17306" name="Immortal Gaiters" additionalName="Heavy armor" type="Armor">
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t501_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="244" />
@@ -205,6 +206,7 @@
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t501_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="97" />
@@ -225,6 +227,7 @@
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t501_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="97" />
 		<set name="weight" val="1070" />
@@ -266,6 +269,7 @@
 		<!-- Light armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="146" />
@@ -284,8 +288,8 @@
 	<item id="17311" name="Immortal Leather Armor" additionalName="Light armor" type="Armor">
 		<!-- Light armor, can be enhanced by a blacksmith in any town. When enchanted to +4, increases P. Evasion, Speed and P. Debuff Resistance, and decreases received Critical Rate from standard attacks. -->
 		<set name="icon" val="icon.armor_t502_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="391" />
@@ -310,8 +314,8 @@
 	<item id="17312" name="Immortal Leather Leggings" additionalName="Light armor" type="Armor">
 		<!-- Light armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t502_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="244" />
@@ -334,6 +338,7 @@
 		<!-- Light armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t502_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="97" />
@@ -354,6 +359,7 @@
 		<!-- Light armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t502_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="97" />
@@ -374,6 +380,7 @@
 		<!-- Robe, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="146" />
@@ -392,8 +399,8 @@
 	<item id="17316" name="Immortal Tunic" additionalName="Robe" type="Armor">
 		<!-- Robe, can be enhanced by a blacksmith in any town. When enchanted to +4, increases M. Evasion and M. Debuff Resistance, and decreases received Critical Damage from basic attacks and received Critical Rate from basic attacks. -->
 		<set name="icon" val="icon.armor_t503_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="391" />
@@ -418,8 +425,8 @@
 	<item id="17317" name="Immortal Stockings" additionalName="Robe" type="Armor">
 		<!-- Robe, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t503_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="244" />
@@ -442,6 +449,7 @@
 		<!-- Robe, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t503_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="97" />
@@ -462,6 +470,7 @@
 		<!-- Robe, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t503_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="97" />
@@ -1035,6 +1044,7 @@
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="399" />
@@ -1053,8 +1063,8 @@
 	<item id="17339" name="Twilight Breastplate" additionalName="Heavy armor" type="Armor">
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. When enchanted to +4, decreases received Critical Damage from standard attacks and increases P. Def. -->
 		<set name="icon" val="icon.armor_t601_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="1065" />
@@ -1077,8 +1087,8 @@
 	<item id="17340" name="Twilight Gaiters" additionalName="Heavy armor" type="Armor">
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t601_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="666" />
@@ -1099,6 +1109,7 @@
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t601_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="266" />
@@ -1119,6 +1130,7 @@
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t601_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="266" />
 		<set name="weight" val="1070" />
@@ -1160,6 +1172,7 @@
 		<!-- Light armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="399" />
@@ -1178,8 +1191,8 @@
 	<item id="17345" name="Twilight Leather Armor" additionalName="Light armor" type="Armor">
 		<!-- Light armor, can be enhanced by a blacksmith in any town. When enchanted to +4, increases P. Evasion, Speed and P. Debuff Resistance, and decreases received Critical Rate from standard attacks. -->
 		<set name="icon" val="icon.armor_t602_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="1065" />
@@ -1204,8 +1217,8 @@
 	<item id="17346" name="Twilight Leather Leggings" additionalName="Light armor" type="Armor">
 		<!-- Light armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t602_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="666" />
@@ -1228,6 +1241,7 @@
 		<!-- Light armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t602_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="266" />
@@ -1248,6 +1262,7 @@
 		<!-- Light armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t602_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="266" />
@@ -1268,6 +1283,7 @@
 		<!-- Robe, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="399" />
@@ -1286,8 +1302,8 @@
 	<item id="17350" name="Twilight Tunic" additionalName="Robe" type="Armor">
 		<!-- Robe, can be enhanced by a blacksmith in any town. When enchanted to +4, increases M. Evasion and M. Debuff Resistance, and decreases received Critical Damage from basic attacks and received Critical Rate from basic attacks. -->
 		<set name="icon" val="icon.armor_t603_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="1065" />
@@ -1312,8 +1328,8 @@
 	<item id="17351" name="Twilight Stockings" additionalName="Robe" type="Armor">
 		<!-- Robe, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t603_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="666" />
@@ -1336,6 +1352,7 @@
 		<!-- Robe, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t603_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="266" />
@@ -1356,6 +1373,7 @@
 		<!-- Robe, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t603_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R" />
 		<set name="crystal_count" val="266" />
@@ -2347,6 +2365,7 @@
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="1226" />
@@ -2365,8 +2384,8 @@
 	<item id="17397" name="Seraph Breastplate" additionalName="Heavy armor" type="Armor">
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. When enchanted to +4, decreases received Critical Damage from standard attacks and increases P. Def. -->
 		<set name="icon" val="icon.armor_t401_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="3270" />
@@ -2389,8 +2408,8 @@
 	<item id="17398" name="Seraph Gaiters" additionalName="Heavy armor" type="Armor">
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t401_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="2044" />
@@ -2411,6 +2430,7 @@
 		<!-- Heavy armor, can be enhanced by a blacksmith in any town. -->
 		<set name="icon" val="icon.armor_t401_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R95" />
 		<set name="crystal_count" val="817" />

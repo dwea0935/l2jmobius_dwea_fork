@@ -2811,6 +2811,7 @@
 		<!-- Masterwork Item that increases Evasion. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2831,6 +2832,7 @@
 		<!-- Masterwork Item that increases M. Atk. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2851,6 +2853,7 @@
 		<!-- Masterwork Item that increases M. Def. and the Weight Limit -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2871,6 +2874,7 @@
 		<!-- Masterwork Item that increases P. Def. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="11" />
@@ -2891,6 +2895,7 @@
 		<!-- Masterwork Item that increases the breathing gauge, P. Atk., MP Recovery Rate, and Poison Resistance. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="17" />
@@ -2911,6 +2916,7 @@
 		<!-- Masterwork Item that increases the Breath Gauge, Speed, and MP Recovery Rate -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="17" />
@@ -2931,6 +2937,7 @@
 		<!-- Masterwork Item that increases P. Def. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="17" />
@@ -2951,6 +2958,7 @@
 		<!-- Masterwork Item that increases Max MP and MP Recovery Rate -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="17" />
@@ -2971,6 +2979,7 @@
 		<!-- Masterwork Item that increases Atk. Spd., P. Atk., Paralysis resistance. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="71" />
@@ -2991,6 +3000,7 @@
 		<!-- Masterwork Item that increases P. Def., Speed, and Paralysis Resistance, and decreases Magic Cancel Rate. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="71" />
@@ -3011,6 +3021,7 @@
 		<!-- Masterwork Item that increases MP Recovery Rate, Max MP, and Poison/Bleed Resistance. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="71" />
@@ -3031,6 +3042,7 @@
 		<!-- Masterwork Item that increases M. Def. and Poison/Bleed Resistance -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="71" />
@@ -3051,6 +3063,7 @@
 		<!-- Masterwork Item that increases P. Atk. for bows and crossbows, increases Max MP, Weight Limit, and Stun Resistance -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="108" />
@@ -3071,6 +3084,7 @@
 		<!-- Masterwork Item that increases Max MP, MP Recovery Rate, and Stun Resistance. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="108" />
@@ -3091,6 +3105,7 @@
 		<!-- Masterwork Item that increases M. Def. and Sleep/Hold Resistance. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="108" />
@@ -3111,6 +3126,7 @@
 		<!-- Masterwork Item that increases MP Recovery Rate, M. Atk., and Sleep/Hold Resistance. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="108" />
@@ -3131,6 +3147,7 @@
 		<!-- Sealed Masterwork Item. The blacksmith in a village can release the seal on this item. -->
 		<set name="icon" val="icon.armor_helmet_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="71" />
@@ -3148,6 +3165,7 @@
 		<!-- Sealed Masterwork Item. The blacksmith in a village can release the seal on this item. -->
 		<set name="icon" val="icon.armor_helmet_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="71" />
@@ -3165,6 +3183,7 @@
 		<!-- Sealed Masterwork Item. The blacksmith in a village can release the seal on this item. -->
 		<set name="icon" val="icon.armor_helmet_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="71" />
@@ -3182,6 +3201,7 @@
 		<!-- Sealed Masterwork Item. The blacksmith in a village can release the seal on this item. -->
 		<set name="icon" val="icon.armor_helmet_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="71" />
@@ -3199,6 +3219,7 @@
 		<!-- Sealed Masterwork Item. The blacksmith in a village can release the seal on this item. -->
 		<set name="icon" val="icon.armor_leather_helmet_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="108" />
@@ -3216,6 +3237,7 @@
 		<!-- Sealed Masterwork Item. The blacksmith in a village can release the seal on this item. -->
 		<set name="icon" val="icon.armor_leather_helmet_i02" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="108" />

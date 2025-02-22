@@ -48,6 +48,7 @@
 		<!-- Blue Wolf Gloves - Destiny (Water, Earth, Holy), upgrade options are limited. A part of the Blue Wolf Leather Armor set. Can only be enchanted. -->
 		<set name="icon" val="icon.armor_t69_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
@@ -70,6 +71,7 @@
 		<!-- Blue Wolf Boots - Destiny (Water, Earth, Holy), upgrade options are limited. A part of the Blue Wolf Leather Armor set. Can only be enchanted. -->
 		<set name="icon" val="icon.armor_t69_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
@@ -159,6 +161,7 @@
 		<!-- Blue Wolf Gloves - Destiny (Water, Earth, Holy), upgrade options are limited. A part of the Blue Wolf Tunic set. Can only be enchanted. -->
 		<set name="icon" val="icon.armor_t70_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />
@@ -181,6 +184,7 @@
 		<!-- Blue Wolf Boots - Destiny (Water, Earth, Holy), upgrade options are limited. A part of the Blue Wolf Tunic set. Can only be enchanted. -->
 		<set name="icon" val="icon.armor_t70_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="B" />
 		<set name="is_depositable" val="false" />

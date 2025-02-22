@@ -1546,6 +1546,7 @@
 		<!-- PvP enchant type item. Decreases damage from a PC by 3%. Bestows an attack or defense type set option. Tyrr Warriors, Sigel Knights and Iss Enchanters only. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -1567,8 +1568,8 @@
 	<item id="35064" name="Dark Eternal Breastplate" additionalName="Heavy Armor" type="Armor">
 		<!-- PvP enchant type item. Decreases damage from a PC by 8%. Bestows an attack or defense type set option. When enchanted to + 4, decreases P. Critical Damage and additionally increases P. Def. Tyrr Warriors, Sigel Knights and Iss Enchanters only. -->
 		<set name="icon" val="icon.armor_t811_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -1593,8 +1594,8 @@
 	<item id="35065" name="Dark Eternal Gaiters" additionalName="Heavy Armor" type="Armor">
 		<!-- PvP enchant type item. Decreases damage from a PC by 5%. Bestows an attack or defense type set option. Tyrr Warriors, Sigel Knights and Iss Enchanters only. -->
 		<set name="icon" val="icon.armor_t811_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -1618,6 +1619,7 @@
 		<!-- PvP enchant type item. Decreases damage from a PC by 2%. Bestows an attack or defense type set option. Tyrr Warriors, Sigel Knights and Iss Enchanters only. -->
 		<set name="icon" val="icon.armor_t811_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -1641,6 +1643,7 @@
 		<!-- PvP enchant type item. Decreases damage from a PC by 2%. Bestows an attack or defense type set option. Tyrr Warriors, Sigel Knights and Iss Enchanters only. -->
 		<set name="icon" val="icon.armor_t811_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
 		<set name="weight" val="1070" />
@@ -1664,6 +1667,7 @@
 		<!-- PvP enchant type item. Decreases damage from a PC by 3%. Bestows an assassin or enchant type set option. Othell Rogues, Yul Archers, Iss Enchanters, Aeore Healers, Wynn Summoners, Tyrr Warriors, and Eviscerators only. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -1685,8 +1689,8 @@
 	<item id="35070" name="Dark Eternal Leather Armor" additionalName="Light Armor" type="Armor">
 		<!-- PvP enchant type item. Decreases damage from a PC by 8%. Bestows an assassin or enchant type set option. When enchanted to + 4, increases Evasion, Speed and Physical Attack Resistance, and decreases the chance of receiving P. Critical Hit. Othell Rogues, Yul Archers, Iss Enchanters, Aeore Healers, Wynn Summoners, Tyrr Warriors, and Eviscerators only. -->
 		<set name="icon" val="icon.armor_t812_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -1713,8 +1717,8 @@
 	<item id="35071" name="Dark Eternal Leather Leggings" additionalName="Light Armor" type="Armor">
 		<!-- PvP enchant type item. Decreases damage from a PC by 5%. Bestows an assassin or enchant type set option. Othell Rogues, Yul Archers, Iss Enchanters, Aeore Healers, Wynn Summoners, Tyrr Warriors, and Eviscerators only. -->
 		<set name="icon" val="icon.armor_t812_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -1740,6 +1744,7 @@
 		<!-- PvP enchant type item. Decreases damage from a PC by 2%. Bestows an assassin or enchant type set option. Othell Rogues, Yul Archers, Iss Enchanters, Aeore Healers, Wynn Summoners, Tyrr Warriors, and Eviscerators only. -->
 		<set name="icon" val="icon.armor_t812_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -1763,6 +1768,7 @@
 		<!-- PvP enchant type item. Decreases damage from a PC by 2%. Bestows an assassin or enchant type set option. Othell Rogues, Yul Archers, Iss Enchanters, Aeore Healers, Wynn Summoners, Tyrr Warriors, and Eviscerators only. -->
 		<set name="icon" val="icon.armor_t812_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -1786,6 +1792,7 @@
 		<!-- PvP enchant type item. Decreases damage from a PC by 3%. Bestows a magic or recovery type set option. Aeore Healers, Feoh Wizards, Wynn Summoners, Iss Enchanters, and Sayha's Seers only. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -1807,8 +1814,8 @@
 	<item id="35075" name="Dark Eternal Tunic" additionalName="Robe" type="Armor">
 		<!-- PvP enchant type item. Decreases damage from a PC by 8%. Bestows a magic or recovery type set option. When enchanted to + 4, increases M. Evasion and Mentall Attack Resistance, and decreases P. Critical Damage and the chance of receiving P. Critical Hit. Aeore Healers, Feoh Wizards, Wynn Summoners, Iss Enchanters, and Sayha's Seers only. -->
 		<set name="icon" val="icon.armor_t813_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -1835,8 +1842,8 @@
 	<item id="35076" name="Dark Eternal Stockings" additionalName="Robe" type="Armor">
 		<!-- PvP enchant type item. Decreases damage from a PC by 5%. Bestows a magic or recovery type set option. Aeore Healers, Feoh Wizards, Wynn Summoners, Iss Enchanters, and Sayha's Seers only. -->
 		<set name="icon" val="icon.armor_t813_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -1862,6 +1869,7 @@
 		<!-- PvP enchant type item. Decreases damage from a PC by 2%. Bestows a magic or recovery type set option. Aeore Healers, Feoh Wizards, Wynn Summoners, Iss Enchanters, and Sayha's Seers only. -->
 		<set name="icon" val="icon.armor_t813_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -1885,6 +1893,7 @@
 		<!-- PvP enchant type item. Decreases damage from a PC by 2%. Bestows a magic or recovery type set option. Aeore Healers, Feoh Wizards, Wynn Summoners, Iss Enchanters, and Sayha's Seers only. -->
 		<set name="icon" val="icon.armor_t813_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -1908,6 +1917,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 3%. P. Atk. + 1% and M. Atk. by 2%. Tyrr Warriors, Sigel Knights and Iss Enchanters only. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -1930,8 +1940,8 @@
 	<item id="35080" name="Bloody Eternal Breastplate" additionalName="Heavy Armor" type="Armor">
 		<!-- PvE enchant type item. Decreases damage from an NPC by 8%. P. Atk. + 1% and M. Atk. by 2%. When enchanted to + 4, decreases P. Critical Damage and additionally increases P. Def. Tyrr Warriors, Sigel Knights and Iss Enchanters only. -->
 		<set name="icon" val="icon.armor_t801_u_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -1957,8 +1967,8 @@
 	<item id="35081" name="Bloody Eternal Gaiters" additionalName="Heavy Armor" type="Armor">
 		<!-- PvE enchant type item. Decreases damage from an NPC by 5%. P. Atk. + 1% and M. Atk. by 2%. Tyrr Warriors, Sigel Knights and Iss Enchanters only. -->
 		<set name="icon" val="icon.armor_t801_l_i00" />
-		<set name="armor_type" val="HEAVY" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -1983,6 +1993,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. P. Atk. + 1% and M. Atk. by 2%. Tyrr Warriors, Sigel Knights and Iss Enchanters only. -->
 		<set name="icon" val="icon.armor_t801_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2007,6 +2018,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. P. Atk. + 1% and M. Atk. by 2%. Tyrr Warriors, Sigel Knights and Iss Enchanters only. -->
 		<set name="icon" val="icon.armor_t801_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
 		<set name="weight" val="1070" />
@@ -2031,6 +2043,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 3%. P. Atk. + 1% and M. Atk. by 2%. Othell Rogues, Yul Archers, Iss Enchanters, Aeore Healers, Wynn Summoners, Tyrr Warriors, and Eviscerators only. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -2053,8 +2066,8 @@
 	<item id="35086" name="Bloody Eternal Leather Armor" additionalName="Light Armor" type="Armor">
 		<!-- PvE enchant type item. Decreases damage from an NPC by 8%. P. Atk. + 1% and M. Atk. by 2%. When enchanted to + 4, increases Evasion, Speed and Physical Attack Resistance, and decreases the chance of receiving P. Critical Hit. Othell Rogues, Yul Archers, Iss Enchanters, Aeore Healers, Wynn Summoners, Tyrr Warriors, and Eviscerators only. -->
 		<set name="icon" val="icon.armor_t802_u_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -2082,8 +2095,8 @@
 	<item id="35087" name="Bloody Eternal Leather Leggings" additionalName="Light Armor" type="Armor">
 		<!-- PvE enchant type item. Decreases damage from an NPC by 5%. P. Atk. + 1% and M. Atk. by 2%. Othell Rogues, Yul Archers, Iss Enchanters, Aeore Healers, Wynn Summoners, Tyrr Warriors, and Eviscerators only. -->
 		<set name="icon" val="icon.armor_t802_l_i00" />
-		<set name="armor_type" val="LIGHT" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -2110,6 +2123,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. P. Atk. + 1% and M. Atk. by 2%. Othell Rogues, Yul Archers, Iss Enchanters, Aeore Healers, Wynn Summoners, Tyrr Warriors, and Eviscerators only. -->
 		<set name="icon" val="icon.armor_t802_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2134,6 +2148,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. P. Atk. + 1% and M. Atk. by 2%. Othell Rogues, Yul Archers, Iss Enchanters, Aeore Healers, Wynn Summoners, Tyrr Warriors, and Eviscerators only. -->
 		<set name="icon" val="icon.armor_t802_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2158,6 +2173,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 3%. P. Atk. + 1% and M. Atk. by 2%. Aeore Healers, Feoh Wizards, Wynn Summoners, Iss Enchanters, and Sayha's Seers only. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="3378" />
@@ -2180,8 +2196,8 @@
 	<item id="35091" name="Bloody Eternal Tunic" additionalName="Robe" type="Armor">
 		<!-- PvE enchant type item. Decreases damage from an NPC by 8%. P. Atk. + 1% and M. Atk. by 2%. When enchanted to + 4, increases M. Evasion and Mentall Attack Resistance, and decreases P. Critical Damage and the chance of receiving P. Critical Hit. Aeore Healers, Feoh Wizards, Wynn Summoners, Iss Enchanters, and Sayha's Seers only. -->
 		<set name="icon" val="icon.armor_t803_u_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="9008" />
@@ -2209,8 +2225,8 @@
 	<item id="35092" name="Bloody Eternal Stockings" additionalName="Robe" type="Armor">
 		<!-- PvE enchant type item. Decreases damage from an NPC by 5%. P. Atk. + 1% and M. Atk. by 2%. Aeore Healers, Feoh Wizards, Wynn Summoners, Iss Enchanters, and Sayha's Seers only. -->
 		<set name="icon" val="icon.armor_t803_l_i00" />
-		<set name="armor_type" val="MAGIC" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="legs" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="5630" />
@@ -2237,6 +2253,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. P. Atk. + 1% and M. Atk. by 2%. Aeore Healers, Feoh Wizards, Wynn Summoners, Iss Enchanters, and Sayha's Seers only. -->
 		<set name="icon" val="icon.armor_t803_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />
@@ -2261,6 +2278,7 @@
 		<!-- PvE enchant type item. Decreases damage from an NPC by 2%. P. Atk. + 1% and M. Atk. by 2%. Aeore Healers, Feoh Wizards, Wynn Summoners, Iss Enchanters, and Sayha's Seers only. -->
 		<set name="icon" val="icon.armor_t803_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="R99" />
 		<set name="crystal_count" val="2252" />

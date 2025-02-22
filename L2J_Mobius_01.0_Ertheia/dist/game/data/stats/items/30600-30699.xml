@@ -427,6 +427,7 @@
 		<!-- Part of the heavy tallum set. -->
 		<set name="icon" val="icon.armor_t77_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />
 		<set name="weight" val="1130" />
@@ -446,6 +447,7 @@
 		<!-- Part of the light tallum set. -->
 		<set name="icon" val="icon.armor_t78_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />
@@ -465,6 +467,7 @@
 		<!-- Part of the robe tallum set. -->
 		<set name="icon" val="icon.armor_t79_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />
@@ -504,6 +507,7 @@
 		<!-- Part of the heavy tallum set. -->
 		<set name="icon" val="icon.armor_t77_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />
@@ -523,6 +527,7 @@
 		<!-- Part of the light tallum set. -->
 		<set name="icon" val="icon.armor_t78_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />
@@ -542,6 +547,7 @@
 		<!-- Part of the robe tallum set. -->
 		<set name="icon" val="icon.armor_t79_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="crystal_type" val="A" />
 		<set name="crystal_count" val="2" />

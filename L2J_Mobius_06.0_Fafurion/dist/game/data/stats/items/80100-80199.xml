@@ -141,6 +141,7 @@
 		<!-- Bestows a heavy armor enchantment option. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -203,6 +204,7 @@
 		<!-- Bestows a heavy armor enchantment option. -->
 		<set name="icon" val="icon.armor_t901_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -222,6 +224,7 @@
 		<!-- Bestows a heavy armor enchantment option. -->
 		<set name="icon" val="icon.armor_t901_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -265,6 +268,7 @@
 		<!-- Bestows a light armor enchantment option. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -331,6 +335,7 @@
 		<!-- Bestows a light armor enchantment option. -->
 		<set name="icon" val="icon.armor_t902_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -350,6 +355,7 @@
 		<!-- Bestows a light armor enchantment option. -->
 		<set name="icon" val="icon.armor_t902_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -369,6 +375,7 @@
 		<!-- Bestows a robe enchantment option. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -435,6 +442,7 @@
 		<!-- Bestows a robe enchantment option. -->
 		<set name="icon" val="icon.armor_t903_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -454,6 +462,7 @@
 		<!-- Bestows a robe enchantment option. -->
 		<set name="icon" val="icon.armor_t903_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -2788,6 +2797,7 @@
 	<item id="80189" name="Enchanted Leviathan Helmet" additionalName="Heavy Armor" type="Armor">
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -2851,6 +2861,7 @@
 	<item id="80192" name="Enchanted Leviathan Gauntlets" additionalName="Heavy Armor" type="Armor">
 		<set name="icon" val="icon.armor_t901_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -2870,6 +2881,7 @@
 	<item id="80193" name="Enchanted Leviathan Boots" additionalName="Heavy Armor" type="Armor">
 		<set name="icon" val="icon.armor_t901_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -2916,6 +2928,7 @@
 	<item id="80195" name="Enchanted Leviathan Leather Helmet" additionalName="Light Armor" type="Armor">
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -2983,6 +2996,7 @@
 	<item id="80198" name="Enchanted Leviathan Leather Gloves" additionalName="Light Armor" type="Armor">
 		<set name="icon" val="icon.armor_t902_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -3002,6 +3016,7 @@
 	<item id="80199" name="Enchanted Leviathan Leather Boots" additionalName="Light Armor" type="Armor">
 		<set name="icon" val="icon.armor_t902_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />

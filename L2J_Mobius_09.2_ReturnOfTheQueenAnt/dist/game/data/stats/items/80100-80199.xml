@@ -141,6 +141,7 @@
 		<!-- Heavy Armor that can be enhanced by Blacksmith in any town. <Enchanting>. Use Scroll: Enchant R-grade Armor. Can be augmented. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -203,6 +204,7 @@
 		<!-- Heavy Armor that can be enhanced by Blacksmith in any town. <Enchanting>. Use Scroll: Enchant R-grade Armor. Can be augmented. -->
 		<set name="icon" val="icon.armor_t901_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -222,6 +224,7 @@
 		<!-- Heavy Armor that can be enhanced by Blacksmith in any town. <Enchanting>. Use Scroll: Enchant R-grade Armor. Can be augmented. -->
 		<set name="icon" val="icon.armor_t901_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -265,6 +268,7 @@
 		<!-- Light Armor that can be enhanced by Blacksmith in any town. <Enchanting>. Use Scroll: Enchant R-grade Armor. Can be augmented. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -331,6 +335,7 @@
 		<!-- Light Armor that can be enhanced by Blacksmith in any town. <Enchanting>. Use Scroll: Enchant R-grade Armor. Can be augmented. -->
 		<set name="icon" val="icon.armor_t902_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -350,6 +355,7 @@
 		<!-- Light Armor that can be enhanced by Blacksmith in any town. <Enchanting>. Use Scroll: Enchant R-grade Armor. Can be augmented. -->
 		<set name="icon" val="icon.armor_t902_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -369,6 +375,7 @@
 		<!-- Robe that can be enhanced by Blacksmith in any town. <Enchanting>. Use Scroll: Enchant R-grade Armor. Can be augmented. -->
 		<set name="icon" val="icon.armor_circlet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -435,6 +442,7 @@
 		<!-- Robe that can be enhanced by Blacksmith in any town. <Enchanting>. Use Scroll: Enchant R-grade Armor. Can be augmented. -->
 		<set name="icon" val="icon.armor_t903_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -454,6 +462,7 @@
 		<!-- Robe that can be enhanced by Blacksmith in any town. <Enchanting>. Use Scroll: Enchant R-grade Armor. Can be augmented. -->
 		<set name="icon" val="icon.armor_t903_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -2789,6 +2798,7 @@
 		<!-- Can be augmented. -->
 		<set name="icon" val="icon.armor_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -2854,6 +2864,7 @@
 		<!-- Can be augmented. -->
 		<set name="icon" val="icon.armor_t901_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -2874,6 +2885,7 @@
 		<!-- Can be augmented. -->
 		<set name="icon" val="icon.armor_t901_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -2921,6 +2933,7 @@
 		<!-- Can be augmented. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="head" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -2990,6 +3003,7 @@
 		<!-- Can be augmented. -->
 		<set name="icon" val="icon.armor_t902_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
@@ -3010,6 +3024,7 @@
 		<!-- Can be augmented. -->
 		<set name="icon" val="icon.armor_t902_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="R110" />
