@@ -1890,6 +1890,7 @@
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., Confusion Resistance and Wind Resistance. -->
 		<set name="icon" val="icon.armor_t100_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="269" />
@@ -1912,6 +1913,7 @@
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Rate, Obstruction Resistance and Wind Resistance. -->
 		<set name="icon" val="icon.armor_t101_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="269" />

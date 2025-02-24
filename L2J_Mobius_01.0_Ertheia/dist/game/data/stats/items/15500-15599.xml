@@ -1573,6 +1573,7 @@
 	<item id="15581" name="Elegia Gauntlets" type="Armor">
 		<set name="icon" val="icon.armor_t97_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="535" />
@@ -1591,6 +1592,7 @@
 	<item id="15582" name="Elegia Leather Gloves" type="Armor">
 		<set name="icon" val="icon.armor_t98_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="535" />
@@ -1609,6 +1611,7 @@
 	<item id="15583" name="Elegia Gloves" type="Armor">
 		<set name="icon" val="icon.armor_t99_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="535" />
@@ -1627,6 +1630,7 @@
 	<item id="15584" name="Elegia Boots" type="Armor">
 		<set name="icon" val="icon.armor_t97_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="535" />
@@ -1645,6 +1649,7 @@
 	<item id="15585" name="Elegia Leather Boots" type="Armor">
 		<set name="icon" val="icon.armor_t98_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="535" />
@@ -1663,6 +1668,7 @@
 	<item id="15586" name="Elegia Shoes" type="Armor">
 		<set name="icon" val="icon.armor_t99_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="535" />
@@ -1888,6 +1894,7 @@
 	<item id="15598" name="Vorpal Gauntlets" type="Armor">
 		<set name="icon" val="icon.armor_t94_g_i03" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="446" />
@@ -1906,6 +1913,7 @@
 	<item id="15599" name="Vorpal Leather Gloves" type="Armor">
 		<set name="icon" val="icon.armor_t95_g_i03" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="446" />

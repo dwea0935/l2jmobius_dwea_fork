@@ -1735,6 +1735,7 @@
 		<!-- Masterwork Item that increases Atk. Spd., P. Atk. and Max MP, and decreases Weight Limit. -->
 		<set name="icon" val="icon.armor_t89_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="102" />
@@ -1757,6 +1758,7 @@
 		<!-- Masterwork Item that increases Atk. Spd., P. Atk. and Max MP, and decreases Weight Limit. -->
 		<set name="icon" val="icon.armor_t89_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="102" />
@@ -1823,6 +1825,7 @@
 		<!-- Masterwork Item that increases M. Atk., Speed, Confusion Resistance and Weight Limit. Decreases Casting Interruption Rate. -->
 		<set name="icon" val="icon.armor_t90_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="102" />
@@ -1869,6 +1872,7 @@
 		<!-- Masterwork Item that increases M. Atk., Speed, Confusion Resistance and Weight Limit. Decreases Casting Interruption Rate. -->
 		<set name="icon" val="icon.armor_t90_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="102" />

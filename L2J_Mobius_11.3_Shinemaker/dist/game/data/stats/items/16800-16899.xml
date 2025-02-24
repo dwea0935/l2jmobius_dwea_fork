@@ -207,6 +207,7 @@
 		<!-- A masterwork item that increases P. Atk., P. Def., Max HP and Stupor/ Obstruction Resistance. -->
 		<set name="icon" val="icon.armor_t94_g_i01" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="446" />
@@ -229,6 +230,7 @@
 		<!-- A masterwork item that increases P. Atk., Atk. Spd., MP Recovery Rate and Max MP. -->
 		<set name="icon" val="icon.armor_t95_g_i01" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="446" />
@@ -251,6 +253,7 @@
 		<!-- A masterwork item that increases M. Atk., MP Recovery Rate and Confusion Resistance, and decreases Casting Interruption Rate. -->
 		<set name="icon" val="icon.armor_t96_g_i01" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="446" />
@@ -273,6 +276,7 @@
 		<!-- A masterwork item that increases P. Atk., P. Def., Max HP and Stupor/ Obstruction Resistance. -->
 		<set name="icon" val="icon.armor_t94_b_i01" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="446" />
@@ -295,6 +299,7 @@
 		<!-- A masterwork item that increases P. Atk., Atk. Spd., MP Recovery Rate and Max MP. -->
 		<set name="icon" val="icon.armor_t95_b_i01" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="446" />
@@ -317,6 +322,7 @@
 		<!-- A masterwork item that increases M. Atk., MP Recovery Rate and Confusion Resistance, and decreases Casting Interruption Rate. -->
 		<set name="icon" val="icon.armor_t96_b_i01" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="446" />

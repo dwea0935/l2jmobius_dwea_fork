@@ -124,6 +124,7 @@
 		<!-- Masterwork Item that increases P. Def., Max HP and Stupor/ Obstruction Resistance. -->
 		<set name="icon" val="icon.armor_t88_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="102" />
@@ -146,6 +147,7 @@
 		<!-- Masterwork Item that increases P. Def., Max HP and Stupor/ Obstruction Resistance. -->
 		<set name="icon" val="icon.armor_t88_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="102" />
@@ -278,6 +280,7 @@
 		<!-- Masterwork Item that increases P. Def./ Max HP/ Dark Resistance -->
 		<set name="icon" val="icon.armor_t91_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
@@ -300,6 +303,7 @@
 		<!-- Masterwork Item that increases Max MP/ M. Atk./ Dark Resistance -->
 		<set name="icon" val="icon.armor_t93_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
@@ -322,6 +326,7 @@
 		<!-- Masterwork Item that increases Accuracy/ Evasion/ Max HP/ Atk. Spd./ Dark Resistance -->
 		<set name="icon" val="icon.armor_t92_g_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="gloves" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
@@ -534,6 +539,7 @@
 		<!-- Masterwork Item that increases P. Accuracy/ P. Evasion/ Max HP/ Dark Resistance/ Atk. Spd. -->
 		<set name="icon" val="icon.armor_t92_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
@@ -577,6 +583,7 @@
 		<!-- Masterwork Item that increases P. Def./ Max HP/ Dark Resistance -->
 		<set name="icon" val="icon.armor_t91_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
@@ -750,6 +757,7 @@
 		<!-- Masterwork Item that increases Max MP, Dark Resistance, and M. Atk. -->
 		<set name="icon" val="icon.armor_t93_b_i00" />
 		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="feet" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="195" />
