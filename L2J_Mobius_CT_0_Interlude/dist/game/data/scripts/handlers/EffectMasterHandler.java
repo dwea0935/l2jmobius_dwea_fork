@@ -141,6 +141,7 @@ public class EffectMasterHandler
 		RestorationRandom.class,
 		Resurrection.class,
 		ResurrectionSpecial.class,
+		Ride.class,
 		Root.class,
 		RunAway.class,
 		ServitorShare.class,
