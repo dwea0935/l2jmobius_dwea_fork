@@ -519,7 +519,7 @@
 		<abnormalTime>3600</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -631,7 +631,7 @@
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>0</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -730,8 +730,7 @@
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
-		<isMagic>4</isMagic>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -930,7 +929,7 @@
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>0</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>

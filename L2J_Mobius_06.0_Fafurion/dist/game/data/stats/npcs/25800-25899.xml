@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="25800" level="99" type="RaidBoss" name="Michaela" title="Grand Judge">
 		<!-- TODO: Must be confirmed -->
@@ -3439,7 +3439,6 @@
 			<skill id="4415" level="4" /> <!-- One-handed Sword -->
 			<skill id="4416" level="6" /> <!-- Humanoids -->
 			<skill id="4435" level="5" /> <!-- High Stun Attack Resistance -->
-			<skill id="4435" level="5" /> <!-- High Stun Attack Resistance -->
 			<skill id="4438" level="5" /> <!-- Greater Sleep Resistance -->
 			<skill id="4439" level="5" /> <!-- Greater Hold Resistance -->
 			<skill id="4440" level="5" /> <!-- Greater Paralysis Resistance -->
@@ -3495,7 +3494,6 @@
 			<skill id="4415" level="4" /> <!-- One-handed Sword -->
 			<skill id="4416" level="6" /> <!-- Humanoids -->
 			<skill id="4435" level="5" /> <!-- High Stun Attack Resistance -->
-			<skill id="4435" level="5" /> <!-- High Stun Attack Resistance -->
 			<skill id="4438" level="5" /> <!-- Greater Sleep Resistance -->
 			<skill id="4439" level="5" /> <!-- Greater Hold Resistance -->
 			<skill id="4440" level="5" /> <!-- Greater Paralysis Resistance -->
@@ -3547,7 +3545,6 @@
 		<skillList>
 			<skill id="4415" level="4" /> <!-- One-handed Sword -->
 			<skill id="4416" level="6" /> <!-- Humanoids -->
-			<skill id="4435" level="5" /> <!-- High Stun Attack Resistance -->
 			<skill id="4435" level="5" /> <!-- High Stun Attack Resistance -->
 			<skill id="4438" level="5" /> <!-- Greater Sleep Resistance -->
 			<skill id="4439" level="5" /> <!-- Greater Hold Resistance -->
@@ -4841,7 +4838,6 @@
 		<skillList>
 			<skill id="4415" level="3" /> <!-- One-handed Sword -->
 			<skill id="4416" level="1" /> <!-- Undead -->
-			<skill id="4416" level="1" /> <!-- Undead -->
 			<skill id="4435" level="5" /> <!-- High Stun Attack Resistance -->
 			<skill id="4438" level="5" /> <!-- Greater Sleep Resistance -->
 			<skill id="4439" level="5" /> <!-- Greater Hold Resistance -->
@@ -5262,7 +5258,6 @@
 		<skillList>
 			<skill id="4415" level="3" /> <!-- One-handed Sword -->
 			<skill id="4416" level="1" /> <!-- Undead -->
-			<skill id="4416" level="1" /> <!-- Undead -->
 			<skill id="4435" level="5" /> <!-- High Stun Attack Resistance -->
 			<skill id="4438" level="5" /> <!-- Greater Sleep Resistance -->
 			<skill id="4439" level="5" /> <!-- Greater Hold Resistance -->
@@ -5456,7 +5451,6 @@
 		<status attackable="false" undying="false" />
 		<skillList>
 			<skill id="4415" level="3" /> <!-- One-handed Sword -->
-			<skill id="4416" level="1" /> <!-- Undead -->
 			<skill id="4416" level="1" /> <!-- Undead -->
 			<skill id="4435" level="5" /> <!-- High Stun Attack Resistance -->
 			<skill id="4438" level="5" /> <!-- Greater Sleep Resistance -->

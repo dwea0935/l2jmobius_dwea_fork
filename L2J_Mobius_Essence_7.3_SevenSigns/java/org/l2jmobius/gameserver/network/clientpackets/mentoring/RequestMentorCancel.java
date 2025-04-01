@@ -18,13 +18,13 @@ package org.l2jmobius.gameserver.network.clientpackets.mentoring;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
-import org.l2jmobius.gameserver.instancemanager.MentorManager;
+import org.l2jmobius.gameserver.managers.MentorManager;
 import org.l2jmobius.gameserver.model.Mentee;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeLeft;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeRemove;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeLeft;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeRemove;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;

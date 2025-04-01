@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="29100" name="Leo Agathion Charm - Stage 1" additionalName="30-day" type="Armor">
 		<!-- A charm that activates the power of the Leo Agathion. Its special ability is Maiden's Prayer Lv. 1, and depending on the level of the charm, a unique ability will be added. When equipped on the main slot of the Agathion Bracelet, the Agathion will be summoned automatically, and both special and unique abilities will be activated. When equipped on the sub slot, only the unique ability will be activated. <Note>. The growth value of timed Agathion Charms cannot be increased, and the active skill of Agathion Charms cannot be used in the Olympiad and in the Ceremony of Chaos. -->
@@ -591,7 +591,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="1440" />
 		<skills>
-			<skill id="27787" level="6" /> <!-- Sayha's Talisman Stage 6 -->
+			<skill id="27787" level="6" /> <!-- Sayha's Talisman -->
 			<skill id="27789" level="1" /> <!-- Sayha's Protection -->
 			<skill id="27790" level="1" /> <!-- Sayha's Encouragement -->
 		</skills>
@@ -619,7 +619,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="28170" level="1" /> <!-- High-grade Zodiac Agathion -->
+			<skill id="28170" level="1" /> <!-- Mid-grade Zodiac Agathion -->
 		</skills>
 	</item>
 	<item id="29152" name="High-grade Zodiac Agathion Pack" type="EtcItem">
@@ -835,7 +835,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="28180" level="1" /> <!-- High-grade Spirit Stone Pack - Cloak -->
+			<skill id="28180" level="1" /> <!-- Stable Cloak Enchantment Scroll -->
 		</skills>
 	</item>
 	<item id="29172" name="Red Star Solvent" type="EtcItem">
@@ -1004,7 +1004,7 @@
 		<set name="etcitem_type" val="SOULSHOT" />
 		<set name="handler" val="FishShots" />
 		<skills>
-			<skill id="28186" level="1" /> <!-- Gold Fishing Shot -->
+			<skill id="28186" level="1" /> <!-- Golden Fishing Shot -->
 		</skills>
 	</item>
 	<item id="29187" name="Fishing XP Box" additionalName="Lv. 85 - 94" type="EtcItem">

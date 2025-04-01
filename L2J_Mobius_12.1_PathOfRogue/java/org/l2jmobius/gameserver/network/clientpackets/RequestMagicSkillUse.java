@@ -95,6 +95,13 @@ public class RequestMagicSkillUse extends ClientPacket
 					return;
 				}
 			}
+			
+			// Custom skill with displayId.
+			if (skill == null)
+			{
+				skill = player.getCustomSkill(_magicId);
+			}
+			
 			if (skill == null)
 			{
 				player.sendPacket(ActionFailed.STATIC_PACKET);

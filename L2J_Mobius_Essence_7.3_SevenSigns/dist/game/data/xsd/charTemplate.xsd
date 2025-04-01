@@ -38,6 +38,7 @@
 							<xs:element type="xs:positiveInteger" name="basePAtk" minOccurs="1" maxOccurs="1" />
 							<xs:element type="xs:positiveInteger" name="baseCritRate" minOccurs="1" maxOccurs="1" />
 							<xs:element type="xs:positiveInteger" name="baseMCritRate" minOccurs="1" maxOccurs="1" />
+							<xs:element type="xs:positiveInteger" name="basePSkillCritRate" minOccurs="0" maxOccurs="1" />
 							<xs:element name="baseAtkType" minOccurs="1" maxOccurs="1">
 								<xs:simpleType>
 									<xs:restriction base="xs:token">

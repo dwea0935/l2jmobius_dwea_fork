@@ -818,7 +818,7 @@
 		<acquire exp="262720918" sp="29116376" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="7500000" hpRegen="1100" mp="18000" mpRegen="99" />
-			<attack physical="4900" magical="2550" random="30" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<attack physical="4900" magical="2550" random="30" critical="4" accuracy="4.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
 			<defence physical="3840" magical="825" evasion="-18" />
 			<speed>
 				<walk ground="50" />
@@ -833,7 +833,7 @@
 		</skillList>
 		<corpseTime>14</corpseTime>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="BALANCED" aggroRange="4096" clanHelpRange="300" isAggressive="false" />
+		<ai type="BALANCED" aggroRange="1000" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
 				<group chance="100">
@@ -1006,17 +1006,18 @@
 		</collision>
 	</npc>
 	<npc id="29020" level="75" type="GrandBoss" name="Baium">
-		<race>UNDEAD</race>
+		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
 		<acquire exp="10253400" sp="1081544" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="1709400" hpRegen="750" mp="18000" mpRegen="99" />
-			<attack physical="3374.18" magical="2200" random="7" critical="4" accuracy="-3.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<attack physical="3374.18" magical="2200" random="30" critical="4" accuracy="4.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
 			<defence physical="3300" magical="2200" />
 			<speed>
 				<walk ground="80" />
 				<run ground="120" />
 			</speed>
+			<hitTime>600</hitTime>
 		</stats>
 		<status undying="false" />
 		<skillList>
@@ -1076,7 +1077,7 @@
 		<sex>MALE</sex>
 		<equipment rhand="93" /> <!-- rhand: Winged Spear -->
 		<acquire sp="343" />
-		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="186915" hpRegen="158" mp="1475" mpRegen="3" />
 			<attack physical="1395" magical="371" random="30" critical="4" accuracy="0" attackSpeed="253" type="POLE" range="80" distance="80" width="120" />
 			<defence physical="5108" magical="1686" evasion="-18" />
@@ -1108,7 +1109,7 @@
 		<acquire exp="4879745" sp="423589" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="360722" hpRegen="346.8" mp="180000" mpRegen="100" />
-			<attack physical="3616" magical="1520" random="30" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<attack physical="3616" magical="1520" random="30" critical="4" accuracy="4.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
 			<defence physical="1981" magical="966.39" evasion="-18" />
 			<speed>
 				<walk ground="42" />
@@ -1295,24 +1296,25 @@
 		</collision>
 	</npc>
 	<npc id="29025" level="75" type="Folk" name="Baium">
-		<race>UNDEAD</race>
+		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="1709400" hpRegen="718" mp="18000" mpRegen="99" />
-			<attack physical="1874.18" magical="1596.95" random="30" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<attack physical="1874.18" magical="1596.95" random="30" critical="4" accuracy="4.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
 			<defence physical="3300" magical="2200" evasion="-18" />
 			<speed>
 				<walk ground="50" />
 				<run ground="120" />
 			</speed>
+			<hitTime>600</hitTime>
 		</stats>
-		<status attackable="false" />
+		<status attackable="false" undying="true" />
 		<skillList>
 			<skill id="4045" level="1" /> <!-- Resist Full Magic Attack -->
 			<skill id="4416" level="1" /> <!-- Undead -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="BALANCED" aggroRange="4296" clanHelpRange="300" />
+		<ai type="BALANCED" aggroRange="0" clanHelpRange="300" />
 		<collision>
 			<radius normal="65" />
 			<height normal="82" />
@@ -1404,12 +1406,13 @@
 		<acquire exp="284286178" sp="27215401" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="7500000" hpRegen="1000" mp="1800000" mpRegen="1000" />
-			<attack physical="8932" magical="3700" random="50" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
-			<defence physical="3310" magical="898.7" evasion="3" />
+			<attack physical="16100.987186868" magical="6669.68793416566" random="50" critical="1" accuracy="9" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="4369.85701721731" magical="1186.4623698258" evasion="3" />
 			<speed>
 				<walk ground="120" />
 				<run ground="300" />
 			</speed>
+			<hitTime>600</hitTime>
 		</stats>
 		<status undying="false" noSleepMode="true" />
 		<skillList>
@@ -1419,7 +1422,7 @@
 		</skillList>
 		<corpseTime>21</corpseTime>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="BALANCED" aggroRange="4096" clanHelpRange="300" isAggressive="false">
+		<ai type="BALANCED" aggroRange="1000" clanHelpRange="300" isAggressive="false">
 			<clanList>
 				<clan>VALAKAS</clan>
 			</clanList>
@@ -2223,7 +2226,7 @@
 	<npc id="29045" level="90" type="GrandBoss" name="Frintezza">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
+		<stats str="60" int="76" dex="73" wit="43" con="57" men="80">
 			<vitals hp="428076.229929773" hpRegen="2484.3" mp="23423.9034583234" mpRegen="3.15" />
 			<attack physical="2641.63342970569" magical="971.856593649426" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
 			<defence physical="4218.55484265502" magical="3093.6078479881" />
@@ -2253,9 +2256,9 @@
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
 		<equipment rhand="8204" /> <!-- rhand: Monster Only (Follower of Frintezza Calibur) -->
-		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
+		<stats str="60" int="76" dex="73" wit="43" con="57" men="80">
 			<vitals hp="1554518.0975573" hpRegen="155.43" mp="11026.9882971101" mpRegen="109" />
-			<attack physical="3135.90530099925" magical="1442.51644402476" random="30" critical="4" accuracy="0" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<attack physical="3135.90530099925" magical="1442.51644402476" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="1342.97453242915" magical="2089.07149518896" />
 			<speed>
 				<walk ground="240" />
@@ -2269,7 +2272,7 @@
 		</skillList>
 		<corpseTime>7</corpseTime>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="BALANCED" aggroRange="3000" clanHelpRange="2000">
+		<ai type="BALANCED" aggroRange="2000" clanHelpRange="300">
 			<skill primaryId="5014" />
 			<clanList>
 				<clan>FRINTESSA</clan>
@@ -2285,9 +2288,9 @@
 		<sex>MALE</sex>
 		<equipment rhand="8222" /> <!-- rhand: Monster Only (Follower of Frintezza Tran Calibur) -->
 		<acquire exp="284286178" sp="27215401" />
-		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
+		<stats str="60" int="76" dex="73" wit="43" con="57" men="80">
 			<vitals hp="2042432.67633202" hpRegen="155.43" mp="23156.6754239312" mpRegen="109" />
-			<attack physical="8890.29152833288" magical="8989.0725799934" random="30" critical="4" accuracy="0" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<attack physical="8890.29152833288" magical="8989.0725799934" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="1566.80362116734" magical="2193.5250699484" />
 			<speed>
 				<walk ground="250" />
@@ -2301,7 +2304,7 @@
 			<skill id="4045" level="1" /> <!-- Full Magic Attack Resistance -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="BALANCED" aggroRange="3000" clanHelpRange="2000" isAggressive="false">
+		<ai type="BALANCED" aggroRange="2000" clanHelpRange="300" isAggressive="false">
 			<skill primaryId="5014" shortRangeId="5019" shortRangeChance="10" />
 			<clanList>
 				<clan>FRINTESSA</clan>
@@ -2457,23 +2460,24 @@
 	<npc id="29048" level="87" type="Monster" name="Evil Spirit">
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="50" wit="20" con="43" men="10">
-			<vitals hp="121519" hpRegen="13.43" mp="44" mpRegen="3.09" />
-			<attack physical="2000" magical="1620" random="7" critical="8" accuracy="0" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="2400" magical="1457" evasion="3" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="82844.5126642967" hpRegen="1.03" mp="2177.28986625269" mpRegen="1.03" />
+			<attack physical="1637.21079615435" magical="1151.5428303933" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="1637.38608949103" magical="1091.59072648368" evasion="3" />
 			<speed>
 				<walk ground="10" />
 				<run ground="1" />
 			</speed>
 			<hitTime>500</hitTime>
 		</stats>
-		<status undying="false" />
+		<status undying="false" canMove="false" noSleepMode="true" />
 		<skillList>
 			<skill id="4416" level="2" /> <!-- Magic Creatures -->
 			<skill id="4045" level="1" /> <!-- Full Magic Attack Resistance -->
 		</skillList>
+		<corpseTime>7</corpseTime>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="CORPSE" clanHelpRange="1000" isAggressive="false">
+		<ai type="CORPSE" clanHelpRange="300" isAggressive="true" aggroRange="1000">
 			<clanList>
 				<clan>FRINTESSA</clan>
 			</clanList>
@@ -2486,23 +2490,24 @@
 	<npc id="29049" level="87" type="Monster" name="Evil Spirit">
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="50" wit="20" con="43" men="10">
-			<vitals hp="121519" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="2000" magical="1620" random="7" critical="8" accuracy="0" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="2400" magical="1457" evasion="3" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="82844.5126642967" hpRegen="1.03" mp="2177.28986625269" mpRegen="1.03" />
+			<attack physical="1637.21079615435" magical="1151.5428303933" random="7" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="1637.38608949103" magical="1091.59072648368" evasion="3" />
 			<speed>
 				<walk ground="10" />
 				<run ground="1" />
 			</speed>
 			<hitTime>500</hitTime>
 		</stats>
-		<status undying="false" />
+		<status undying="false" canMove="false" noSleepMode="true" />
 		<skillList>
 			<skill id="4416" level="2" /> <!-- Magic Creatures -->
 			<skill id="4045" level="1" /> <!-- Full Magic Attack Resistance -->
 		</skillList>
+		<corpseTime>7</corpseTime>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="CORPSE" clanHelpRange="1000" isAggressive="false">
+		<ai type="CORPSE" clanHelpRange="300" isAggressive="true" aggroRange="1000">
 			<clanList>
 				<clan>FRINTESSA</clan>
 			</clanList>
@@ -2515,23 +2520,27 @@
 	<npc id="29050" level="85" type="Monster" name="Breath of Halisha">
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="40" wit="20" con="43" men="10">
-			<vitals hp="221519" hpRegen="13.43" mp="44" mpRegen="3.09" />
-			<attack physical="2000" magical="1620" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="900" magical="757" evasion="1" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="12996.4412419667" hpRegen="1.01" mp="20560.2695810843" mpRegen="3.03" />
+			<attack physical="1556.78628597682" magical="1073.71405840992" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="642.236873936287" magical="428.157916018841" evasion="1" />
 			<speed>
 				<walk ground="30" />
 				<run ground="200" />
 			</speed>
 			<hitTime>430</hitTime>
 		</stats>
-		<status undying="false" />
+		<status undying="false" noSleepMode="true" />
 		<skillList>
 			<skill id="4416" level="9" /> <!-- Demons -->
 			<skill id="4045" level="1" /> <!-- Full Magic Attack Resistance -->
+			<skill id="5009" level="1" /> <!-- Frintezza's Ghostly Fighter -->
+			<skill id="5011" level="1" /> <!-- Frintezza's Bomber Ghost -->
+			<skill id="5012" level="1" /> <!-- Breath of Scarlet -->
 		</skillList>
+		<corpseTime>7</corpseTime>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="BALANCED" aggroRange="1500" clanHelpRange="2000">
+		<ai type="BALANCED" aggroRange="1000" clanHelpRange="300">
 			<clanList>
 				<clan>FRINTESSA</clan>
 			</clanList>
@@ -2544,23 +2553,27 @@
 	<npc id="29051" level="85" type="Monster" name="Breath of Halisha">
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="221519" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="2" magical="2600" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="900" magical="730" evasion="1" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="12996.4412419667" hpRegen="1.01" mp="20560.2695810843" mpRegen="3.03" />
+			<attack physical="1556.78628597682" magical="1073.71405840992" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="642.236873936287" magical="428.157916018841" evasion="1" />
 			<speed>
 				<walk ground="30" />
 				<run ground="200" />
 			</speed>
 			<hitTime>430</hitTime>
 		</stats>
-		<status undying="false" />
+		<status undying="false" noSleepMode="true" />
 		<skillList>
 			<skill id="4416" level="9" /> <!-- Demons -->
 			<skill id="4045" level="1" /> <!-- Full Magic Attack Resistance -->
+			<skill id="5010" level="1" /> <!-- Frintezza's Ghostly Mage -->
+			<skill id="5011" level="1" /> <!-- Frintezza's Bomber Ghost -->
+			<skill id="5012" level="1" /> <!-- Breath of Scarlet -->
 		</skillList>
+		<corpseTime>7</corpseTime>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="BALANCED" aggroRange="1500" clanHelpRange="2000">
+		<ai type="BALANCED" aggroRange="1000" clanHelpRange="300">
 			<clanList>
 				<clan>FRINTESSA</clan>
 			</clanList>
@@ -2570,7 +2583,7 @@
 			<height normal="40" />
 		</collision>
 	</npc>
-	<npc id="29052" level="99" type="Monster">
+	<npc id="29052" level="99" type="Monster" name="Follower Dummy">
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
@@ -2599,7 +2612,7 @@
 			<height normal="35" />
 		</collision>
 	</npc>
-	<npc id="29053" level="99" type="Monster">
+	<npc id="29053" level="99" type="Monster" name="Follower Dummy">
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
@@ -3199,6 +3212,7 @@
 				<walk ground="50" />
 				<run ground="186" />
 			</speed>
+			<hitTime>600</hitTime>
 		</stats>
 		<status undying="false" noSleepMode="true" />
 		<skillList>
@@ -3208,7 +3222,7 @@
 		</skillList>
 		<corpseTime>14</corpseTime>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="BALANCED" aggroRange="4096" clanHelpRange="300" isAggressive="false">
+		<ai type="BALANCED" aggroRange="4096" clanHelpRange="2000" isAggressive="false">
 			<skill maxChance="25" />
 		</ai>
 		<dropLists>
@@ -3397,6 +3411,7 @@
 				<walk ground="50" />
 				<run ground="186" />
 			</speed>
+			<hitTime>600</hitTime>
 		</stats>
 		<status undying="false" noSleepMode="true" />
 		<skillList>
@@ -3406,7 +3421,7 @@
 		</skillList>
 		<corpseTime>14</corpseTime>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="BALANCED" aggroRange="4096" clanHelpRange="300" isAggressive="false">
+		<ai type="BALANCED" aggroRange="4096" clanHelpRange="2000" isAggressive="false">
 			<skill maxChance="25" />
 		</ai>
 		<dropLists>
@@ -3580,7 +3595,7 @@
 			<height normal="300" />
 		</collision>
 	</npc>
-	<npc id="29068" level="79" type="GrandBoss" name="Antharas">
+	<npc id="29068" level="85" type="GrandBoss" name="Antharas">
 		<parameters>
 			<param name="ultra_respawn_time" value="3" />
 		</parameters>
@@ -3588,13 +3603,14 @@
 		<sex>MALE</sex>
 		<acquire exp="317892324" sp="31824199" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
-			<vitals hp="7500000" hpRegen="1830" mp="1800000" mpRegen="1000" />
+			<vitals hp="7500000" hpRegen="1100" mp="1800000" mpRegen="1000" />
 			<attack physical="4900" magical="2550" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="3456" magical="862.5" />
 			<speed>
 				<walk ground="50" />
 				<run ground="186" />
 			</speed>
+			<hitTime>600</hitTime>
 		</stats>
 		<status undying="false" noSleepMode="true" />
 		<skillList>
@@ -3604,7 +3620,7 @@
 		</skillList>
 		<corpseTime>14</corpseTime>
 		<exCrtEffect>true</exCrtEffect>
-		<ai type="BALANCED" aggroRange="4096" clanHelpRange="300" isAggressive="false">
+		<ai type="BALANCED" aggroRange="4096" clanHelpRange="2000" isAggressive="false">
 			<skill maxChance="25" primaryId="4112" />
 		</ai>
 		<dropLists>

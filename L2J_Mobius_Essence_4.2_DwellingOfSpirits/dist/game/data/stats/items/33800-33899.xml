@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="33806" name="Improved Scroll: Enchant Weapon (D-grade)" type="EtcItem">
 		<!-- <font color=bbaa88><When enchanted from +1 to +3></font>. One-handed sword/ blunt weapon, dagger, spear: P. Atk. +4, M. Atk. +3. Two-handed blunt weapons, dual swords, fist weapon: P. Atk. +5, M. Atk. +3. Bow: P. Atk. +8, M. Atk. +3. <font color=bbaa88><When enchanted to +4 or higher></font>. One-handed sword/ blunt weapon, dagger, spear: P. Atk. +8, M. Atk. +6. Two-handed blunt weapons, dual swords, fist weapon: P. Atk. +10, M. Atk. +6. Bow: P. Atk. +16, M. Atk. +6. <font color=eeaa22>Safe enchanting to +4. The enchanting is random from +1 to +3.</font> -->
@@ -13,7 +13,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="9244" level="1" /> <!-- Improved Scroll -->
+			<skill id="9244" level="1" /> <!-- Improved Scroll: Enchant D-grade Weapon -->
 		</skills>
 	</item>
 	<item id="33807" name="Improved Scroll: Enchant Weapon (C-grade)" type="EtcItem">
@@ -29,7 +29,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="9246" level="1" /> <!-- Improved Scroll -->
+			<skill id="9246" level="1" /> <!-- Improved Scroll: Enchant C-grade Weapon -->
 		</skills>
 	</item>
 	<item id="33808" name="Improved Scroll: Enchant Weapon (B-grade)" type="EtcItem">
@@ -45,7 +45,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="9248" level="1" /> <!-- Improved Scroll -->
+			<skill id="9248" level="1" /> <!-- Improved Scroll: Enchant B-grade Weapon -->
 		</skills>
 	</item>
 	<item id="33809" name="Improved Scroll: Enchant Weapon (A-grade)" type="EtcItem">
@@ -61,7 +61,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="9250" level="1" /> <!-- Improved Scroll -->
+			<skill id="9250" level="1" /> <!-- Improved Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="33810" name="Improved Scroll: Enchant Weapon (S-grade)" type="EtcItem">
@@ -77,7 +77,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="51296" level="1" /> <!-- Improved Scroll -->
+			<skill id="51296" level="1" /> <!-- Improved Scroll: Enchant S-grade Armor -->
 		</skills>
 	</item>
 	<item id="33812" name="Improved Scroll: Enchant Armor (D-grade)" type="EtcItem">
@@ -93,7 +93,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="9245" level="1" /> <!-- Improved Scroll -->
+			<skill id="9245" level="1" /> <!-- Improved Scroll: Enchant D-grade Armor -->
 		</skills>
 	</item>
 	<item id="33813" name="Improved Scroll: Enchant Armor (C-grade)" type="EtcItem">
@@ -109,7 +109,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="9247" level="1" /> <!-- Improved Scroll -->
+			<skill id="9247" level="1" /> <!-- Improved Scroll: Enchant C-grade Armor -->
 		</skills>
 	</item>
 	<item id="33814" name="Improved Scroll: Enchant Armor (B-grade)" type="EtcItem">
@@ -125,7 +125,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="9249" level="1" /> <!-- Improved Scroll -->
+			<skill id="9249" level="1" /> <!-- Improved Scroll: Enchant B-grade Armor -->
 		</skills>
 	</item>
 	<item id="33815" name="Improved Scroll: Enchant Armor (A-grade)" type="EtcItem">
@@ -141,7 +141,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="9251" level="1" /> <!-- Improved Scroll -->
+			<skill id="9251" level="1" /> <!-- Improved Scroll: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="33816" name="Improved Scroll: Enchant Armor (S-grade)" type="EtcItem">

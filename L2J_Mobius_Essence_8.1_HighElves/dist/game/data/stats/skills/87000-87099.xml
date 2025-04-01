@@ -122,7 +122,6 @@
 		<hitCancelTime>0</hitCancelTime>
 		<isMagic>1</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<reuseDelay>15000</reuseDelay>
 		<staticReuse>true</staticReuse>
@@ -2352,7 +2351,6 @@
 		<abnormalTime>3</abnormalTime>
 		<abnormalType>MD_DOWN</abnormalType>
 		<activateRate>100</activateRate>
-		<activateRate>100</activateRate>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>MAGIC</basicProperty>
 		<castRange>900</castRange>
@@ -3487,7 +3485,6 @@
 		<affectRange>250</affectRange>
 		<affectScope>POINT_BLANK</affectScope>
 		<hitCancelTime>0</hitCancelTime>
-		<hitCancelTime>0</hitCancelTime>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<lvlBonusRate>2</lvlBonusRate>
@@ -4088,7 +4085,6 @@
 		<affectScope>SINGLE</affectScope>
 		<effectPoint>-1600</effectPoint>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
@@ -4106,7 +4102,6 @@
 		<activateRate>100</activateRate>
 		<affectScope>SINGLE</affectScope>
 		<effectPoint>-1600</effectPoint>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<effects>
@@ -4126,7 +4121,6 @@
 		<affectScope>SINGLE</affectScope>
 		<effectPoint>-300</effectPoint>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 	</skill>
 	<skill id="87091" toLevel="1" name="Winter Shackles">
@@ -4143,8 +4137,6 @@
 		<castRange>400</castRange>
 		<effectPoint>-900</effectPoint>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
-		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<lvlBonusRate>30</lvlBonusRate>
 		<trait>ANOMALY</trait>

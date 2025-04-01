@@ -604,7 +604,6 @@
 		<removedOnDamage>true</removedOnDamage>
 		<reuseDelay>14400000</reuseDelay>
 		<staticReuse>true</staticReuse>
-		<staticReuse>true</staticReuse>
 		<effects>
 			<effect name="Hide" />
 			<effect name="Speed">
@@ -1278,7 +1277,7 @@
 		<abnormalVisualEffect>VP_KEEP</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -1599,7 +1598,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -1627,7 +1626,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -1655,7 +1654,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -1683,7 +1682,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -1711,7 +1710,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -1739,7 +1738,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -1767,7 +1766,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -1795,7 +1794,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>

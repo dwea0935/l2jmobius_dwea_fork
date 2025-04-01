@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="90300" name="Hunter Tarantula's Venom" type="EtcItem">
 		<!-- Though lethal, Hunter Tarantula's Venom is used as glue thanks to its ability to harden instantly. -->
@@ -161,8 +161,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="55468" level="1" /> <!-- Activates 2 jewel slots. -->
-			<skill id="55470" level="1" /> <!-- Inventory Slot +5. -->
+			<skill id="55468" level="1" /> <!-- Lv. 1 Brooch -->
+			<skill id="55470" level="1" /> <!-- Lv. 2 Brooch - Additional Effect -->
 		</skills>
 	</item>
 	<item id="90312" name="Brooch" additionalName="Lv. 2" type="Armor">
@@ -176,8 +176,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="55469" level="1" /> <!-- Activates 3 jewel slots. -->
-			<skill id="55470" level="2" /> <!-- Inventory Slot +9. -->
+			<skill id="55469" level="1" /> <!-- Lv. 2 Brooch -->
+			<skill id="55470" level="2" /> <!-- Lv. 2 Brooch - Additional Effect -->
 		</skills>
 	</item>
 	<item id="90313" name="Topaz" additionalName="Lv. 1" type="Armor">
@@ -258,7 +258,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="55485" level="1" /> <!-- Greater Garnet -->
+			<skill id="55485" level="1" /> <!-- Garnet -->
 		</skills>
 	</item>
 	<item id="90319" name="Garnet" additionalName="Lv. 2" type="Armor">
@@ -274,7 +274,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="55485" level="2" /> <!-- Greater Garnet -->
+			<skill id="55485" level="2" /> <!-- Garnet -->
 		</skills>
 	</item>
 	<item id="90320" name="Garnet" additionalName="Lv. 3" type="Armor">
@@ -290,7 +290,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="55485" level="3" /> <!-- Greater Garnet -->
+			<skill id="55485" level="3" /> <!-- Garnet -->
 		</skills>
 	</item>
 	<item id="90321" name="Garnet" additionalName="Lv. 4" type="Armor">
@@ -306,7 +306,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="55485" level="4" /> <!-- Greater Garnet -->
+			<skill id="55485" level="4" /> <!-- Garnet -->
 		</skills>
 	</item>
 	<item id="90322" name="Garnet" additionalName="Lv. 5" type="Armor">
@@ -322,7 +322,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="55485" level="5" /> <!-- Greater Garnet -->
+			<skill id="55485" level="5" /> <!-- Garnet -->
 		</skills>
 	</item>
 	<item id="90323" name="Jade" additionalName="Lv. 1" type="Armor">

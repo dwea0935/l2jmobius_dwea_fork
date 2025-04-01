@@ -31,13 +31,14 @@ import org.l2jmobius.gameserver.network.GameClient;
 
 public class AccountingFormatter extends Formatter
 {
-	private final SimpleDateFormat dateFmt = new SimpleDateFormat("dd MMM H:mm:ss");
+	private final SimpleDateFormat _dateFormat = new SimpleDateFormat("dd MMM H:mm:ss");
 	
 	@Override
 	public String format(LogRecord record)
 	{
 		final Object[] params = record.getParameters();
-		final StringBuilder output = StringUtil.startAppend(30 + record.getMessage().length() + (params == null ? 0 : params.length * 10), "[", dateFmt.format(new Date(record.getMillis())), "] ", record.getMessage());
+		final StringBuilder output = new StringBuilder(30 + record.getMessage().length() + (params == null ? 0 : params.length * 10));
+		StringUtil.append(output, "[", _dateFormat.format(new Date(record.getMillis())), "] ", record.getMessage());
 		
 		if (params != null)
 		{
@@ -48,7 +49,7 @@ public class AccountingFormatter extends Formatter
 					continue;
 				}
 				
-				StringUtil.append(output, ", ");
+				output.append(", ");
 				
 				if (p instanceof GameClient)
 				{
@@ -73,8 +74,7 @@ public class AccountingFormatter extends Formatter
 						{
 							if (client.getPlayer() != null)
 							{
-								StringUtil.append(output, client.getPlayer().getName());
-								StringUtil.append(output, "(", String.valueOf(client.getPlayer().getObjectId()), ") ");
+								StringUtil.append(output, client.getPlayer().getName(), "(", String.valueOf(client.getPlayer().getObjectId()), ") ");
 							}
 							break;
 						}
@@ -90,7 +90,7 @@ public class AccountingFormatter extends Formatter
 						{
 							if (address != null)
 							{
-								StringUtil.append(output, address);
+								output.append(address);
 							}
 							break;
 						}
@@ -103,12 +103,11 @@ public class AccountingFormatter extends Formatter
 				else if (p instanceof Player)
 				{
 					final Player player = (Player) p;
-					StringUtil.append(output, player.getName());
-					StringUtil.append(output, "(", String.valueOf(player.getObjectId()), ")");
+					StringUtil.append(output, player.getName(), "(", String.valueOf(player.getObjectId()), ")");
 				}
 				else
 				{
-					StringUtil.append(output, p.toString());
+					output.append(p.toString());
 				}
 			}
 		}

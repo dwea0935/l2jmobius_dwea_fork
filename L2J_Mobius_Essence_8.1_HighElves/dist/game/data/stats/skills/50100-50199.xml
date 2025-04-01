@@ -243,7 +243,6 @@
 		<affectScope>SINGLE</affectScope>
 		<hitTime>500</hitTime>
 		<isMagic>4</isMagic>
-		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<stayAfterDeath>true</stayAfterDeath>

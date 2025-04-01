@@ -25,9 +25,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 
 public class PetInventory extends Inventory
@@ -125,7 +126,7 @@ public class PetInventory extends Inventory
 	{
 		for (Item item : _items)
 		{
-			getOwner().transferItem("return", item.getObjectId(), item.getCount(), getOwner().getOwner().getInventory(), getOwner().getOwner(), getOwner());
+			getOwner().transferItem(ItemProcessType.TRANSFER, item.getObjectId(), item.getCount(), getOwner().getOwner().getInventory(), getOwner().getOwner(), getOwner());
 		}
 	}
 }

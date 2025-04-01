@@ -44,7 +44,6 @@
 		<castRange>900</castRange>
 		<channelingStart>1</channelingStart>
 		<coolTime>500</coolTime>
-		<coolTime>500</coolTime>
 		<effectPoint>-711</effectPoint>
 		<effectRange>900</effectRange>
 		<hitCancelTime>0</hitCancelTime>

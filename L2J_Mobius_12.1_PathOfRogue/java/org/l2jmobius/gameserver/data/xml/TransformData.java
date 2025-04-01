@@ -27,15 +27,14 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.transform.AdditionalItemHolder;
+import org.l2jmobius.gameserver.model.actor.transform.AdditionalSkillHolder;
 import org.l2jmobius.gameserver.model.actor.transform.Transform;
 import org.l2jmobius.gameserver.model.actor.transform.TransformLevelData;
 import org.l2jmobius.gameserver.model.actor.transform.TransformTemplate;
-import org.l2jmobius.gameserver.model.holders.AdditionalItemHolder;
-import org.l2jmobius.gameserver.model.holders.AdditionalSkillHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
- * Transformation data.
  * @author UnAfraid
  */
 public class TransformData implements IXmlReader
@@ -58,9 +57,9 @@ public class TransformData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -218,6 +217,11 @@ public class TransformData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Retrieves the {@link Transform} instance associated with the specified ID.
+	 * @param id the unique identifier of the transform.
+	 * @return the {@link Transform} instance associated with the ID, or {@code null} if not found.
+	 */
 	public Transform getTransform(int id)
 	{
 		return _transformData.get(id);

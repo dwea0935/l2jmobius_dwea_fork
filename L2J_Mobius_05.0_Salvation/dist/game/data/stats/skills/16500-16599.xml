@@ -738,7 +738,6 @@
 		<magicCriticalRate>5</magicCriticalRate>
 		<mpConsume>19</mpConsume>
 		<reuseDelay>3000</reuseDelay>
-		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage">
 				<power>210</power>

@@ -74,7 +74,7 @@ public class GMHennaInfo extends ServerPacket
 		{
 			buffer.writeInt(_player.getHenna(4).getDyeId());
 			buffer.writeInt(_player.getHenna(4).getDuration()); // Premium Slot Dye Time Left
-			buffer.writeInt(_player.getHenna(4).isAllowedClass(_player.getClassId()));
+			buffer.writeInt(_player.getHenna(4).isAllowedClass(_player.getPlayerClass()));
 		}
 		else
 		{

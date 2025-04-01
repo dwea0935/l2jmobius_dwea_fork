@@ -17,10 +17,10 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.MatchingMemberType;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.matching.CommandChannelMatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.CommandChannelMatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingMemberType;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -49,7 +49,7 @@ public class ExMPCCRoomMember extends ServerPacket
 			buffer.writeInt(member.getObjectId());
 			buffer.writeString(member.getName());
 			buffer.writeInt(member.getLevel());
-			buffer.writeInt(member.getClassId().getId());
+			buffer.writeInt(member.getPlayerClass().getId());
 			buffer.writeInt(MapRegionManager.getInstance().getBBs(member.getLocation()));
 			buffer.writeInt(_room.getMemberType(member).ordinal());
 		}

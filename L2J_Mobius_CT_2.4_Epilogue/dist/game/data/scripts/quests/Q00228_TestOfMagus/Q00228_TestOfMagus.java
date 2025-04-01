@@ -17,17 +17,16 @@
 package quests.Q00228_TestOfMagus;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Test Of Magus (228)
@@ -92,7 +91,7 @@ public class Q00228_TestOfMagus extends Quest
 	
 	public Q00228_TestOfMagus()
 	{
-		super(228);
+		super(228, "Test of Magus");
 		addStartNpc(BARD_RUKAL);
 		addTalkId(BARD_RUKAL, PARINA, EARTH_SNAKE, FLAME_SALAMANDER, WIND_SYLPH, WATER_UNDINE, ELDER_CASIAN);
 		addKillId(HARPY, MARSH_STAKATO, WYRM, MARSH_STAKATO_WORKER, TOAD_LORD, MARSH_STAKATO_SOLDIER, MARSH_STAKATO_DRONE, WINDSUS, ENCHANTED_MONSTEREYE, ENCHANTED_STOLEN_GOLEM, ENCHANTED_IRON_GOLEM, SINGING_FLOWER_PHANTASM, SINGING_FLOWER_NIGTMATE, SINGING_FLOWER_DARKLING, GHOST_FIRE);
@@ -187,10 +186,10 @@ public class Q00228_TestOfMagus extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -315,7 +314,7 @@ public class Q00228_TestOfMagus extends Quest
 					if (hasQuestItems(killer, LILAC_CHARM) && !hasQuestItems(killer, GOLDEN_SEED_1ST))
 					{
 						giveItems(killer, GOLDEN_SEED_1ST, 1);
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.I_AM_A_TREE_OF_NOTHING_A_TREE_THAT_KNOWS_WHERE_TO_RETURN));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "I am a tree of nothing... a tree... that knows where to return..."));
 						playSound(killer, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 						if (hasQuestItems(killer, GOLDEN_SEED_2ND, GOLDEN_SEED_3RD))
 						{
@@ -329,7 +328,7 @@ public class Q00228_TestOfMagus extends Quest
 					if (hasQuestItems(killer, LILAC_CHARM) && !hasQuestItems(killer, GOLDEN_SEED_2ND))
 					{
 						giveItems(killer, GOLDEN_SEED_2ND, 1);
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.I_AM_A_CREATURE_THAT_SHOWS_THE_TRUTH_OF_THE_PLACE_DEEP_IN_MY_HEART));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "I am a creature that shows the truth of the place deep in my heart..."));
 						playSound(killer, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 						if (hasQuestItems(killer, GOLDEN_SEED_1ST, GOLDEN_SEED_3RD))
 						{
@@ -343,7 +342,7 @@ public class Q00228_TestOfMagus extends Quest
 					if (hasQuestItems(killer, LILAC_CHARM) && !hasQuestItems(killer, GOLDEN_SEED_3RD))
 					{
 						giveItems(killer, GOLDEN_SEED_3RD, 1);
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.I_AM_A_MIRROR_OF_DARKNESS_A_VIRTUAL_IMAGE_OF_DARKNESS));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "I am a mirror of darkness... a virtual image of darkness..."));
 						playSound(killer, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 						if (hasQuestItems(killer, GOLDEN_SEED_1ST, GOLDEN_SEED_2ND))
 						{
@@ -370,7 +369,6 @@ public class Q00228_TestOfMagus extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -382,7 +380,7 @@ public class Q00228_TestOfMagus extends Quest
 		{
 			if (npc.getId() == BARD_RUKAL)
 			{
-				if ((player.getClassId() == ClassId.WIZARD) || (player.getClassId() == ClassId.ELVEN_WIZARD) || (player.getClassId() == ClassId.DARK_WIZARD))
+				if ((player.getPlayerClass() == PlayerClass.WIZARD) || (player.getPlayerClass() == PlayerClass.ELVEN_WIZARD) || (player.getPlayerClass() == PlayerClass.DARK_WIZARD))
 				{
 					if (player.getLevel() < MIN_LEVEL)
 					{

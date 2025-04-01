@@ -42,20 +42,18 @@ public class ValakasHermit extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if ((world == null) || (world.getTemplateId() != ValakasTemple.VALAKAS_TEMPLE_INSTANCE_ID))
 		{
-			return super.onSpawn(npc);
+			return;
 		}
 		
 		final NpcSpawnTemplate spawn = npc.getSpawn().getNpcSpawnTemplate();
 		final String group = spawn.getGroup().getName();
 		final int groupId = Integer.parseInt(group.replaceAll("hermit_", ""));
 		npc.setScriptValue(groupId);
-		
-		return super.onSpawn(npc);
 	}
 	
 	@Override

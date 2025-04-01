@@ -1806,7 +1806,6 @@
 		<attributeType>FIRE</attributeType>
 		<attributeValue>20</attributeValue>
 		<castRange>40</castRange>
-		<castRange>40</castRange>
 		<coolTime>200</coolTime>
 		<coolTime>500</coolTime>
 		<effectPoint>-687</effectPoint>
@@ -1816,7 +1815,6 @@
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>76</magicLevel>
 		<mpConsume>12</mpConsume>
-		<reuseDelay>5000</reuseDelay>
 		<reuseDelay>5000</reuseDelay>
 		<trait>SHOCK</trait>
 		<conditions>
@@ -9554,7 +9552,6 @@
 		<effectPoint>-655</effectPoint>
 		<effectRange>200</effectRange>
 		<hitTime>1000</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>

@@ -29,21 +29,21 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.network.Buffer;
 import org.l2jmobius.commons.network.Client;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.LoginServerThread;
 import org.l2jmobius.gameserver.LoginServerThread.SessionKey;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SecondaryAuthData;
-import org.l2jmobius.gameserver.enums.CharacterDeleteFailType;
-import org.l2jmobius.gameserver.instancemanager.ItemCommissionManager;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
-import org.l2jmobius.gameserver.instancemanager.MentorManager;
+import org.l2jmobius.gameserver.managers.ItemCommissionManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.MentorManager;
 import org.l2jmobius.gameserver.model.CharSelectInfoPackage;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.ClientHardwareInfoHolder;
+import org.l2jmobius.gameserver.network.enums.CharacterDeleteFailType;
+import org.l2jmobius.gameserver.network.holders.ClientHardwareInfoHolder;
 import org.l2jmobius.gameserver.network.serverpackets.AbnormalStatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.ExAbnormalStatusUpdateFromTarget;
@@ -221,7 +221,7 @@ public class GameClient extends Client<org.l2jmobius.commons.network.Connection<
 		// Packet should never be null.
 		if (packet == null)
 		{
-			LOGGER.warning(CommonUtil.getStackTrace(new Exception()));
+			LOGGER.warning(TraceUtil.getStackTrace(new Exception()));
 			return;
 		}
 		

@@ -19,7 +19,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<stayAfterDeath>true</stayAfterDeath>

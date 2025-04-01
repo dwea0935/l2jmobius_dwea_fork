@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013 L2jMobius
+setPlayerClass * Copyright (c) 2013 L2jMobius
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,14 +21,15 @@
 package org.l2jmobius.gameserver.network.clientpackets.classchange;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.UserInfoType;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.classchange.ExClassChangeSetAlarm;
@@ -59,7 +60,7 @@ public class ExRequestClassChange extends ClientPacket
 		
 		// Check if class id is valid.
 		boolean canChange = false;
-		for (ClassId cId : player.getClassId().getNextClassIds())
+		for (PlayerClass cId : player.getPlayerClass().getNextClasses())
 		{
 			if (cId.getId() == _classId)
 			{
@@ -69,7 +70,7 @@ public class ExRequestClassChange extends ClientPacket
 		}
 		if (!canChange)
 		{
-			PacketLogger.warning(player + " tried to change class from " + player.getClassId() + " to " + ClassId.getClassId(_classId) + "!");
+			PacketLogger.warning(player + " tried to change class from " + player.getPlayerClass() + " to " + PlayerClass.getPlayerClass(_classId) + "!");
 			return;
 		}
 		
@@ -92,10 +93,10 @@ public class ExRequestClassChange extends ClientPacket
 		// Change class.
 		if (canChange)
 		{
-			player.setClassId(_classId);
+			player.setPlayerClass(_classId);
 			if (player.isSubClassActive())
 			{
-				player.getSubClasses().get(player.getClassIndex()).setClassId(player.getActiveClass());
+				player.getSubClasses().get(player.getClassIndex()).setPlayerClass(player.getActiveClass());
 			}
 			else
 			{
@@ -105,7 +106,7 @@ public class ExRequestClassChange extends ClientPacket
 			// Class change rewards.
 			if (!Config.DISABLE_TUTORIAL)
 			{
-				switch (player.getClassId())
+				switch (player.getPlayerClass())
 				{
 					case KNIGHT:
 					case ELVEN_KNIGHT:
@@ -115,28 +116,28 @@ public class ExRequestClassChange extends ClientPacket
 					case DEATH_BLADE_DARK_ELF:
 					case DIVINE_TEMPLAR_1:
 					{
-						player.addItem("ExRequestClassChange", 93028, 1, player, true); // Aden Sword.
-						player.addItem("ExRequestClassChange", 93493, 1, player, true); // Moon Armor Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93028, 1, player, true); // Aden Sword.
+						player.addItem(ItemProcessType.REWARD, 93493, 1, player, true); // Moon Armor Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case WARRIOR:
 					{
-						player.addItem("ExRequestClassChange", 93028, 1, player, true); // Aden Sword.
-						player.addItem("ExRequestClassChange", 93034, 1, player, true); // Aden Spear.
-						player.addItem("ExRequestClassChange", 93493, 1, player, true); // Moon Armor Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93028, 1, player, true); // Aden Sword.
+						player.addItem(ItemProcessType.REWARD, 93034, 1, player, true); // Aden Spear.
+						player.addItem(ItemProcessType.REWARD, 93493, 1, player, true); // Moon Armor Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case ROGUE:
 					case ELVEN_SCOUT:
 					case ASSASSIN:
 					{
-						player.addItem("ExRequestClassChange", 93029, 1, player, true); // Aden Dagger.
-						player.addItem("ExRequestClassChange", 93030, 1, player, true); // Aden Bow.
-						player.addItem("ExRequestClassChange", 1341, 2000, player, true); // Bone Arrow.
-						player.addItem("ExRequestClassChange", 93494, 1, player, true); // Moon Shell Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93029, 1, player, true); // Aden Dagger.
+						player.addItem(ItemProcessType.REWARD, 93030, 1, player, true); // Aden Bow.
+						player.addItem(ItemProcessType.REWARD, 1341, 2000, player, true); // Bone Arrow.
+						player.addItem(ItemProcessType.REWARD, 93494, 1, player, true); // Moon Shell Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case WIZARD:
@@ -148,77 +149,77 @@ public class ExRequestClassChange extends ClientPacket
 					case ORC_SHAMAN:
 					case ELEMENT_WEAVER_1:
 					{
-						player.addItem("ExRequestClassChange", 93033, 1, player, true); // Two-Handed Blunt Weapon of Aden.
-						player.addItem("ExRequestClassChange", 93495, 1, player, true); // Moon Cape Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93033, 1, player, true); // Two-Handed Blunt Weapon of Aden.
+						player.addItem(ItemProcessType.REWARD, 93495, 1, player, true); // Moon Cape Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case ORC_RAIDER:
 					{
-						player.addItem("ExRequestClassChange", 93032, 1, player, true); // Two-handed Sword of Aden.
-						player.addItem("ExRequestClassChange", 93493, 1, player, true); // Moon Armor Set.
-						player.addItem("ExRequestClassChange", 93497, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93032, 1, player, true); // Two-handed Sword of Aden.
+						player.addItem(ItemProcessType.REWARD, 93493, 1, player, true); // Moon Armor Set.
+						player.addItem(ItemProcessType.REWARD, 93497, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case ORC_MONK:
 					{
-						player.addItem("ExRequestClassChange", 93035, 1, player, true); // Aden Fist.
-						player.addItem("ExRequestClassChange", 93493, 1, player, true); // Moon Armor Set.
-						player.addItem("ExRequestClassChange", 93497, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93035, 1, player, true); // Aden Fist.
+						player.addItem(ItemProcessType.REWARD, 93493, 1, player, true); // Moon Armor Set.
+						player.addItem(ItemProcessType.REWARD, 93497, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case ARTISAN:
 					case SCAVENGER:
 					{
-						player.addItem("ExRequestClassChange", 93031, 1, player, true); // Aden Club.
-						player.addItem("ExRequestClassChange", 93034, 1, player, true); // Aden Spear.
-						player.addItem("ExRequestClassChange", 93493, 1, player, true); // Moon Armor Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93031, 1, player, true); // Aden Club.
+						player.addItem(ItemProcessType.REWARD, 93034, 1, player, true); // Aden Spear.
+						player.addItem(ItemProcessType.REWARD, 93493, 1, player, true); // Moon Armor Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case TROOPER:
 					{
-						player.addItem("ExRequestClassChange", 93037, 1, player, true); // Aden Ancient Sword.
-						player.addItem("ExRequestClassChange", 93494, 1, player, true); // Moon Shell Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93037, 1, player, true); // Aden Ancient Sword.
+						player.addItem(ItemProcessType.REWARD, 93494, 1, player, true); // Moon Shell Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case WARDER:
 					{
-						player.addItem("ExRequestClassChange", 93030, 1, player, true); // Aden Bow.
-						player.addItem("ExRequestClassChange", 1341, 2000, player, true); // Bone Arrow.
-						player.addItem("ExRequestClassChange", 93494, 1, player, true); // Moon Shell Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93030, 1, player, true); // Aden Bow.
+						player.addItem(ItemProcessType.REWARD, 1341, 2000, player, true); // Bone Arrow.
+						player.addItem(ItemProcessType.REWARD, 93494, 1, player, true); // Moon Shell Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case SOUL_FINDER:
 					{
-						player.addItem("ExRequestClassChange", 93036, 1, player, true); // Aden Rapier.
-						player.addItem("ExRequestClassChange", 93494, 1, player, true); // Moon Shell Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93036, 1, player, true); // Aden Rapier.
+						player.addItem(ItemProcessType.REWARD, 93494, 1, player, true); // Moon Shell Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case SHARPSHOOTER:
 					{
-						player.addItem("ExRequestClassChange", 94892, 1, player, true); // D-Grade Elemental Orb Sealed.
-						player.addItem("ExRequestClassChange", 94897, 1, player, true); // Aden Pistols
-						player.addItem("ExRequestClassChange", 93494, 1, player, true); // Moon Shell Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 94892, 1, player, true); // D-Grade Elemental Orb Sealed.
+						player.addItem(ItemProcessType.REWARD, 94897, 1, player, true); // Aden Pistols
+						player.addItem(ItemProcessType.REWARD, 93494, 1, player, true); // Moon Shell Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case RIDER:
 					{
-						player.addItem("ExRequestClassChange", 93034, 1, player, true); // Aden Spear.
-						player.addItem("ExRequestClassChange", 93493, 1, player, true); // Moon Armor Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 93034, 1, player, true); // Aden Spear.
+						player.addItem(ItemProcessType.REWARD, 93493, 1, player, true); // Moon Armor Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case ASSASSIN_MALE_1:
 					case ASSASSIN_FEMALE_1:
 					{
-						player.addItem("ExRequestClassChange", 94998, 1, player, true); // Maingauche.
-						player.addItem("ExRequestClassChange", 93494, 1, player, true); // Moon Shell Set.
-						player.addItem("ExRequestClassChange", 93496, 1, player, true); // 1st Class Transfer Gift Box.
+						player.addItem(ItemProcessType.REWARD, 94998, 1, player, true); // Maingauche.
+						player.addItem(ItemProcessType.REWARD, 93494, 1, player, true); // Moon Shell Set.
+						player.addItem(ItemProcessType.REWARD, 93496, 1, player, true); // 1st Class Transfer Gift Box.
 						break;
 					}
 					case ASSASSIN_FEMALE_3:

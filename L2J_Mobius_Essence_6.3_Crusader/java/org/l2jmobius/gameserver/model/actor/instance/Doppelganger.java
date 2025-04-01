@@ -21,12 +21,12 @@ import java.util.concurrent.ScheduledFuture;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.CreatureAI;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.ai.DoppelgangerAI;
-import org.l2jmobius.gameserver.enums.Team;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameManager;
@@ -87,15 +87,15 @@ public class Doppelganger extends Attackable
 	{
 		if (followSummoner)
 		{
-			if ((getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE) || (getAI().getIntention() == CtrlIntention.AI_INTENTION_ACTIVE))
+			if ((getAI().getIntention() == Intention.IDLE) || (getAI().getIntention() == Intention.ACTIVE))
 			{
 				setRunning();
-				getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, getSummoner());
+				getAI().setIntention(Intention.FOLLOW, getSummoner());
 			}
 		}
-		else if (getAI().getIntention() == CtrlIntention.AI_INTENTION_FOLLOW)
+		else if (getAI().getIntention() == Intention.FOLLOW)
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			getAI().setIntention(Intention.IDLE);
 		}
 	}
 	

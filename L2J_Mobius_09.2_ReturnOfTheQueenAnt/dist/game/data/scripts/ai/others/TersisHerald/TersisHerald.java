@@ -19,14 +19,14 @@ package ai.others.TersisHerald;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -106,7 +106,7 @@ public class TersisHerald extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final NpcStringId npcStringId;
 		switch (npc.getId())
@@ -128,7 +128,7 @@ public class TersisHerald extends AbstractNpcAI
 			}
 			default:
 			{
-				return super.onKill(npc, killer, isSummon);
+				return;
 			}
 		}
 		
@@ -148,7 +148,6 @@ public class TersisHerald extends AbstractNpcAI
 			getTimers().addTimer("DESPAWN_NPCS", DESPAWN_TIME, null, null);
 			getTimers().addTimer("TEXT_SPAM", 300000, null, null);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

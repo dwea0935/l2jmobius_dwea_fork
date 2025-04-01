@@ -16,10 +16,10 @@
  */
 package quests.Q00126_TheNameOfEvil2;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
@@ -48,7 +48,7 @@ public class Q00126_TheNameOfEvil2 extends Quest
 	
 	public Q00126_TheNameOfEvil2()
 	{
-		super(126);
+		super(126, "The Name of Evil - 2");
 		addStartNpc(ASAMAH);
 		addTalkId(ASAMAH, ULU_KAIMU, BALU_KAIMU, CHUTA_KAIMU, WARRIORS_GRAVE, SHILENS_STONE_STATUE, MUSHIKA);
 		registerQuestItems(GAZKH_FRAGMENT, BONE_POWDER);

@@ -17,7 +17,7 @@
 package org.l2jmobius.gameserver.model.itemauction;
 
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
+import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.item.instance.Item;

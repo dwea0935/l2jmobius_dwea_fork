@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="3800" type="EtcItem" name="Vanor Silenos Mane">
 		<!-- Mane of vanor silenos soldiers, scouts or warriors. Collect 30 and take them to Guild Member Tor. -->
@@ -446,7 +446,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="3839" type="EtcItem" name="Mist Drake's Egg">
+	<item id="3839" type="EtcItem" name="Mist Drake Egg">
 		<!-- Egg of mist drake. The clan leader must collect ten of each of four kinds of eggs and take them to Martien. -->
 		<set name="icon" val="icon.etc_dragon_egg_i02" />
 		<set name="immediate_effect" val="true" />
@@ -464,7 +464,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="3841" type="EtcItem" name="Drake's Egg">
+	<item id="3841" type="EtcItem" name="Drake Egg">
 		<!-- Egg of drake. The clan leader must collect ten of each of four kinds of eggs and take them to Martien. -->
 		<set name="icon" val="icon.etc_dragon_egg_i00" />
 		<set name="immediate_effect" val="true" />
@@ -636,7 +636,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3857" type="EtcItem" name="Remains of Sacrifice">
+	<item id="3857" type="EtcItem" name="Remains of Sacrified">
 		<!-- The remains of a sacrified soul. Take them to High Priest Orven, the Watchman of the Seal. -->
 		<set name="icon" val="icon.etc_skull_red_i00" />
 		<set name="immediate_effect" val="true" />

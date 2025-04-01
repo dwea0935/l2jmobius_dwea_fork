@@ -3158,7 +3158,7 @@
 		<effectPoint>0</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<reuseDelay>300000</reuseDelay>
 		<reuseDelayType>S</reuseDelayType>
@@ -3584,7 +3584,7 @@
 		<operateType>A2</operateType>
 		<abnormalTime>600</abnormalTime>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<stayAfterDeath>true</stayAfterDeath>
 	</skill>

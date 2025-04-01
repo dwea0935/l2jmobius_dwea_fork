@@ -20,20 +20,22 @@
  */
 package ai.others.AdditionalServicesAdvisor;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
+import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.serverpackets.ExSubjobInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExUserInfoInvenWeight;
+import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 
 import ai.AbstractNpcAI;
 
@@ -136,6 +138,7 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 					{
 						html = getHtm(player, "34153-choose_gender.htm");
 					}
+					
 					html = html.replace("%class_id%", String.valueOf(classId));
 					html = html.replace("%class_name%", ClassListData.getInstance().getClass(classId).getClassName());
 					return html;
@@ -180,6 +183,13 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 					
 					final String[] split = event.split(" ");
 					final int classId = Integer.parseInt(split[1]);
+					
+					if (player.getPlayerClass().getId() == classId)
+					{
+						player.sendMessage("You're in the same class now.");
+						break;
+					}
+					
 					final boolean female = split[2].equals("female");
 					if (female && (classId > 195))
 					{
@@ -190,8 +200,11 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 					{
 						takeItems(player, CLASS_CHANGE_COUPON, 1);
 						
+						player.stopAllEffects();
+						player.getEffectList().stopAllToggles();
+						player.getEffectList().stopAllEffectsWithoutExclusions(false, false); // ReplaceSkillBySkill should stop here.
 						player.removeAllSkills();
-						player.getEffectList().stopAllEffectsWithoutExclusions(false, false);
+						player.getEffectList().stopAllEffectsWithoutExclusions(false, false); // After removal of skills.
 						
 						player.setVitalityPoints(0, true);
 						player.setExpBeforeDeath(0);
@@ -205,7 +218,7 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 						{
 							appearance.setMale();
 						}
-						player.setClassId(classId);
+						player.setPlayerClass(classId);
 						player.setBaseClass(player.getActiveClass());
 						
 						giveItems(player, SP_SCROLL, 1000);
@@ -277,6 +290,7 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 						player.sendSkillList();
 						player.sendPacket(new ExSubjobInfo(player, SubclassInfoType.CLASS_CHANGED));
 						player.sendPacket(new ExUserInfoInvenWeight(player));
+						Disconnection.of(player).defaultSequence(LeaveWorld.STATIC_PACKET);
 					}
 					else
 					{

@@ -30,8 +30,8 @@ import org.w3c.dom.Node;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.SchedulingPattern;
+import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.commons.util.TimeUtil;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -97,14 +97,14 @@ public class Elpies extends Event
 			}
 			
 			@Override
-			public void parseDocument(Document doc, File f)
+			public void parseDocument(Document document, File file)
 			{
 				final AtomicInteger count = new AtomicInteger(0);
-				forEach(doc, "event", eventNode ->
+				forEach(document, "event", eventNode ->
 				{
 					final StatSet att = new StatSet(parseAttributes(eventNode));
 					final String name = att.getString("name");
-					for (Node node = doc.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
+					for (Node node = document.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
 					{
 						switch (node.getNodeName())
 						{
@@ -216,7 +216,7 @@ public class Elpies extends Event
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (EVENT_ACTIVE)
 		{
@@ -230,15 +230,13 @@ public class Elpies extends Event
 				eventStop();
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		((EventMonster) npc).eventSetDropOnGround(true);
 		((EventMonster) npc).eventSetBlockOffensiveSkills(true);
-		return super.onSpawn(npc);
 	}
 	
 	private enum EventLocation

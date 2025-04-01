@@ -1232,7 +1232,6 @@
 		<set name="weight" val="560" />
 		<set name="price" val="2032000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<stats>
 			<stat type="pDef">88</stat>
@@ -1254,7 +1253,6 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="7700" />
 		<set name="price" val="3562000" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
@@ -1279,7 +1277,6 @@
 		<set name="weight" val="3320" />
 		<set name="price" val="2226000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<stats>
@@ -1302,7 +1299,6 @@
 		<set name="weight" val="540" />
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<stats>
 			<stat type="pDef">65</stat>
@@ -1323,7 +1319,6 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="1355000" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<stats>

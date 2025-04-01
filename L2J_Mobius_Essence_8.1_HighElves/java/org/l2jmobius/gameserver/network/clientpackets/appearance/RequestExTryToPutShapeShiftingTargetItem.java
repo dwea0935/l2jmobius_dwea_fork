@@ -17,10 +17,10 @@
 package org.l2jmobius.gameserver.network.clientpackets.appearance;
 
 import org.l2jmobius.gameserver.data.xml.AppearanceItemData;
-import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.ShapeShiftingItemRequest;
 import org.l2jmobius.gameserver.model.item.appearance.AppearanceStone;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -50,7 +50,7 @@ public class RequestExTryToPutShapeShiftingTargetItem extends ClientPacket
 		}
 		
 		final ShapeShiftingItemRequest request = player.getRequest(ShapeShiftingItemRequest.class);
-		if (player.isInStoreMode() || player.isCrafting() || player.isProcessingRequest() || player.isProcessingTransaction() || (request == null))
+		if ((request == null) || player.isInStoreMode() || player.isCrafting() || player.isProcessingRequest() || player.isProcessingTransaction())
 		{
 			player.sendPacket(ExPutShapeShiftingTargetItemResult.FAILED);
 			player.sendPacket(SystemMessageId.YOU_CANNOT_USE_THIS_SYSTEM_DURING_TRADING_PRIVATE_STORE_AND_WORKSHOP_SETUP);

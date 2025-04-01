@@ -16,9 +16,9 @@
  */
 package quests.Q00009_IntoTheCityOfHumans;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -41,7 +41,7 @@ public class Q00009_IntoTheCityOfHumans extends Quest
 	
 	public Q00009_IntoTheCityOfHumans()
 	{
-		super(9);
+		super(9, "Into the City of Humans");
 		addStartNpc(PETUKAI);
 		addTalkId(PETUKAI, TANAPI, TAMIL);
 	}

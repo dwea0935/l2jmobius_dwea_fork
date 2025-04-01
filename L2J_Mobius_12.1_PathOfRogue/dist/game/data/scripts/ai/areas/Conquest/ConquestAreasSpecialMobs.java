@@ -250,7 +250,7 @@ public final class ConquestAreasSpecialMobs extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (getRandom(100) < MOB_SPAWN_CHANCE)
 		{
@@ -316,7 +316,6 @@ public final class ConquestAreasSpecialMobs extends AbstractNpcAI
 				addSpawn(getRandomBoolean() ? SOUL_FLOWER_IGNIS : SOUL_TREE_IGNIS, npc, true, 0, true);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -33,15 +33,15 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.CrystallizationType;
+import org.l2jmobius.gameserver.data.enums.CrystallizationType;
+import org.l2jmobius.gameserver.data.holders.CrystallizationDataHolder;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.CrystallizationDataHolder;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.item.Armor;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.item.enchant.RewardItemsOnFailure;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
 
@@ -101,9 +101,9 @@ public class ItemCrystallizationData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -176,11 +176,52 @@ public class ItemCrystallizationData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Creates a RewardItemsOnFailure holder from an XMLStreamReader positioned at an "armor" or "weapon" element.
+	 * @param node the Node positioned at the element containing item data.
+	 * @return a populated RewardItemsOnFailure instance.
+	 */
+	private RewardItemsOnFailure getFormedHolder(Node node)
+	{
+		final RewardItemsOnFailure holder = new RewardItemsOnFailure();
+		for (Node z = node.getFirstChild(); z != null; z = z.getNextSibling())
+		{
+			if ("item".equals(z.getNodeName()))
+			{
+				final StatSet failItems = new StatSet(parseAttributes(z));
+				final int itemId = failItems.getInt("id");
+				final int enchantLevel = failItems.getInt("enchant");
+				final double chance = failItems.getDouble("chance");
+				for (CrystalType grade : CrystalType.values())
+				{
+					final long count = failItems.getLong("amount" + grade.name(), Integer.MIN_VALUE);
+					if (count == Integer.MIN_VALUE)
+					{
+						continue;
+					}
+					
+					holder.addItemToHolder(itemId, grade, enchantLevel, count, chance);
+				}
+			}
+		}
+		return holder;
+	}
+	
+	/**
+	 * Retrieves the count of loaded crystallization templates.
+	 * @return the number of crystallization templates currently loaded.
+	 */
 	public int getLoadedCrystallizationTemplateCount()
 	{
 		return _crystallizationTemplates.size();
 	}
 	
+	/**
+	 * Calculates the rewards for crystallizing an item based on its template and a list of crystallization rewards. Adjusts the reward count and chance based on the item's crystal count.
+	 * @param item the {@link ItemTemplate} representing the item being crystallized.
+	 * @param crystallizeRewards a list of {@link ItemChanceHolder} defining the base rewards for crystallization.
+	 * @return a list of adjusted {@link ItemChanceHolder} rewards for the item, or {@code null} if no rewards are provided.
+	 */
 	private List<ItemChanceHolder> calculateCrystallizeRewards(ItemTemplate item, List<ItemChanceHolder> crystallizeRewards)
 	{
 		if (crystallizeRewards == null)
@@ -206,6 +247,9 @@ public class ItemCrystallizationData implements IXmlReader
 		return rewards;
 	}
 	
+	/**
+	 * Generates crystallization data for all items in the game, identifying crystallizable items and calculating their crystallization rewards if they have not been generated previously.
+	 */
 	private void generateCrystallizationData()
 	{
 		final int previousCount = _items.size();
@@ -229,15 +273,21 @@ public class ItemCrystallizationData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Retrieves the crystallization template for a specified crystal type and crystallization type.
+	 * @param crystalType the {@link CrystalType} of the template.
+	 * @param crystallizationType the {@link CrystallizationType} indicating if the template is for weapons or armor.
+	 * @return a list of {@link ItemChanceHolder} defining the crystallization rewards for the specified types, or {@code null} if none exist.
+	 */
 	public List<ItemChanceHolder> getCrystallizationTemplate(CrystalType crystalType, CrystallizationType crystallizationType)
 	{
 		return _crystallizationTemplates.get(crystalType).get(crystallizationType);
 	}
 	
 	/**
-	 * @param itemId
-	 * @return {@code CrystallizationData} for unenchanted items (enchanted items just have different crystal count, but same rewards),<br>
-	 *         or {@code null} if there is no such data registered.
+	 * Retrieves crystallization data for a specific item by ID. The crystallization data provides the rewards for crystallizing an unenchanted version of the item.
+	 * @param itemId the ID of the item to get crystallization data for.
+	 * @return the {@link CrystallizationDataHolder} containing the crystallization rewards, or {@code null} if not available.
 	 */
 	public CrystallizationDataHolder getCrystallizationData(int itemId)
 	{
@@ -245,8 +295,9 @@ public class ItemCrystallizationData implements IXmlReader
 	}
 	
 	/**
-	 * @param item to calculate its worth in crystals.
-	 * @return List of {@code ItemChanceHolder} for the rewards with altered crystal count.
+	 * Calculates the crystallization rewards for a specified item, considering its crystal count. If no crystallization data is available for the item, a basic crystal reward is provided.
+	 * @param item the {@link Item} to calculate crystallization rewards for.
+	 * @return a list of {@link ItemChanceHolder} representing the crystallization rewards.
 	 */
 	public List<ItemChanceHolder> getCrystallizationRewards(Item item)
 	{
@@ -282,32 +333,12 @@ public class ItemCrystallizationData implements IXmlReader
 		return result;
 	}
 	
-	private RewardItemsOnFailure getFormedHolder(Node node)
-	{
-		final RewardItemsOnFailure holder = new RewardItemsOnFailure();
-		for (Node z = node.getFirstChild(); z != null; z = z.getNextSibling())
-		{
-			if ("item".equals(z.getNodeName()))
-			{
-				final StatSet failItems = new StatSet(parseAttributes(z));
-				final int itemId = failItems.getInt("id");
-				final int enchantLevel = failItems.getInt("enchant");
-				final double chance = failItems.getDouble("chance");
-				for (CrystalType grade : CrystalType.values())
-				{
-					final long count = failItems.getLong("amount" + grade.name(), Integer.MIN_VALUE);
-					if (count == Integer.MIN_VALUE)
-					{
-						continue;
-					}
-					
-					holder.addItemToHolder(itemId, grade, enchantLevel, count, chance);
-				}
-			}
-		}
-		return holder;
-	}
-	
+	/**
+	 * Retrieves the item reward that the player will receive upon destroying an item, based on the item's type, crystal grade, and enchant level. This method checks if a reward is available for the specified item's properties.
+	 * @param player the {@link Player} attempting to destroy the item.
+	 * @param item the {@link Item} being destroyed.
+	 * @return an {@link ItemChanceHolder} representing the item reward on destruction, or {@code null} if no reward is available.
+	 */
 	public ItemChanceHolder getItemOnDestroy(Player player, Item item)
 	{
 		if ((player == null) || (item == null))
@@ -325,10 +356,6 @@ public class ItemCrystallizationData implements IXmlReader
 		return holder.getRewardItem(grade, item.getEnchantLevel());
 	}
 	
-	/**
-	 * Gets the single instance of ItemCrystalizationData.
-	 * @return single instance of ItemCrystalizationData
-	 */
 	public static ItemCrystallizationData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

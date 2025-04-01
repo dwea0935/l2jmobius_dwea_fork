@@ -30,9 +30,9 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.RankingHistoryDataHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.RankingHistoryDataHolder;
 
 /**
  * @author Serenitty

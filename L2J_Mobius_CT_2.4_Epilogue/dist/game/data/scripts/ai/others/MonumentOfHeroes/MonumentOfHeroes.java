@@ -17,10 +17,10 @@
 package ai.others.MonumentOfHeroes;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -119,7 +119,7 @@ public class MonumentOfHeroes extends AbstractNpcAI
 			default:
 			{
 				final int weaponId = Integer.parseInt(event);
-				if (CommonUtil.contains(WEAPONS, weaponId))
+				if (ArrayUtil.contains(WEAPONS, weaponId))
 				{
 					giveItems(player, weaponId, 1);
 				}

@@ -42,7 +42,7 @@ public class Q00362_BardsMandolin extends Quest
 	
 	public Q00362_BardsMandolin()
 	{
-		super(362);
+		super(362, "Bard's Mandolin");
 		addStartNpc(SWAN);
 		addTalkId(SWAN, GALION, WOODROW, NANARIN);
 		registerQuestItems(SWANS_FLUTE, SWANS_LETTER);

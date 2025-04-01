@@ -29,10 +29,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ClanRewardType;
 import org.l2jmobius.gameserver.model.clan.ClanRewardBonus;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.clan.enums.ClanRewardType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * @author UnAfraid
@@ -58,9 +58,9 @@ public class ClanRewardData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc.getFirstChild(), IXmlReader::isNode, listNode ->
+		forEach(document.getFirstChild(), IXmlReader::isNode, listNode ->
 		{
 			switch (listNode.getNodeName())
 			{
@@ -98,7 +98,7 @@ public class ClanRewardData implements IXmlReader
 						bonus.setSkillReward(new SkillHolder(skillId, skillLevel));
 					}
 				});
-				_clanRewards.computeIfAbsent(bonus.getType(), key -> new ArrayList<>()).add(bonus);
+				_clanRewards.computeIfAbsent(bonus.getType(), _ -> new ArrayList<>()).add(bonus);
 			}
 		});
 	}
@@ -123,7 +123,7 @@ public class ClanRewardData implements IXmlReader
 						bonus.setItemReward(new ItemHolder(id, count));
 					}
 				});
-				_clanRewards.computeIfAbsent(bonus.getType(), key -> new ArrayList<>()).add(bonus);
+				_clanRewards.computeIfAbsent(bonus.getType(), _ -> new ArrayList<>()).add(bonus);
 			}
 		});
 	}

@@ -29,13 +29,13 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -718,7 +718,7 @@ public class Kamaloka extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -756,7 +756,7 @@ public class Kamaloka extends AbstractInstance
 						}
 					}
 					
-					return super.onKill(npc, player, isSummon);
+					return;
 				}
 			}
 			
@@ -796,7 +796,7 @@ public class Kamaloka extends AbstractInstance
 						}
 					}
 					
-					return super.onKill(npc, player, isSummon);
+					return;
 				}
 			}
 			
@@ -818,7 +818,7 @@ public class Kamaloka extends AbstractInstance
 					}
 				}
 				
-				return super.onKill(npc, player, isSummon);
+				return;
 			}
 			
 			// boss was killed, finish instance
@@ -853,7 +853,6 @@ public class Kamaloka extends AbstractInstance
 				world.finishInstance();
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -39,6 +39,6 @@ public class PledgeReceivePowerInfo extends ServerPacket
 		ServerPackets.PLEDGE_RECEIVE_POWER_INFO.writeId(this, buffer);
 		buffer.writeInt(_member.getPowerGrade()); // power grade
 		buffer.writeString(_member.getName());
-		buffer.writeInt(_member.getClan().getRankPrivs(_member.getPowerGrade()).getBitmask()); // privileges
+		buffer.writeInt(_member.getClan().getRankPrivs(_member.getPowerGrade()).getMask()); // privileges
 	}
 }

@@ -37,7 +37,7 @@ import javax.swing.JWindow;
  */
 public class SplashScreen extends JWindow
 {
-	Image image;
+	private final Image _image;
 	
 	/**
 	 * @param path of image file
@@ -47,8 +47,8 @@ public class SplashScreen extends JWindow
 	public SplashScreen(String path, long time, JFrame parent)
 	{
 		setBackground(new Color(0, 255, 0, 0)); // Transparency.
-		image = Toolkit.getDefaultToolkit().getImage(path);
-		final ImageIcon imageIcon = new ImageIcon(image);
+		_image = Toolkit.getDefaultToolkit().getImage(path);
+		final ImageIcon imageIcon = new ImageIcon(_image);
 		setSize(imageIcon.getIconWidth(), imageIcon.getIconHeight());
 		setLocationRelativeTo(null);
 		setAlwaysOnTop(true);
@@ -77,6 +77,6 @@ public class SplashScreen extends JWindow
 	@Override
 	public void paint(Graphics g)
 	{
-		g.drawImage(image, 0, 0, null);
+		g.drawImage(_image, 0, 0, null);
 	}
 }

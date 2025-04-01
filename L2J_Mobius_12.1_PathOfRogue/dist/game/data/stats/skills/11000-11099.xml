@@ -7371,7 +7371,6 @@
 					<value level="11">553</value>
 					<value level="12">569</value>
 					<value level="13">585</value>
-					<value level="13">585</value>
 					<value level="14">112</value>
 					<value level="15">117</value>
 					<value level="14">644</value>
@@ -12582,7 +12581,7 @@
 			</effect>
 			<effect name="DefenceCriticalDamage" fromLevel="1" toLevel="3" fromSubLevel="2001" toSubLevel="2020">
 				<amount>
-					<value fromLevel="1" toLevel="3" fromSubLevel="2001" toSubLevel="2020">{-1 - (subIndex - 1 * 0.5)}</value>
+					<value fromLevel="1" toLevel="3" fromSubLevel="2001" toSubLevel="2020">{1 + ((subIndex - 1) * 0.5)}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>

@@ -16,13 +16,14 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.pledgebonus;
 
-import org.l2jmobius.gameserver.enums.ClanRewardType;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
 import org.l2jmobius.gameserver.model.clan.ClanRewardBonus;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.clan.enums.ClanRewardType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 
@@ -65,7 +66,7 @@ public class RequestPledgeBonusReward extends ClientPacket
 				final SkillHolder skillReward = bonus.getSkillReward();
 				if (itemReward != null)
 				{
-					player.addItem("ClanReward", itemReward.getId(), itemReward.getCount(), player, true);
+					player.addItem(ItemProcessType.REWARD, itemReward.getId(), itemReward.getCount(), player, true);
 				}
 				else if (skillReward != null)
 				{

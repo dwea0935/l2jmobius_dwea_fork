@@ -23,7 +23,7 @@ import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Rebalance HP effect implementation.
@@ -60,7 +60,7 @@ public class RebalanceHPSummon extends AbstractEffect
 		
 		for (Summon summon : effector.getServitors().values())
 		{
-			if (!summon.isDead() && Util.checkIfInRange(skill.getAffectRange(), effector, summon, true))
+			if (!summon.isDead() && LocationUtil.checkIfInRange(skill.getAffectRange(), effector, summon, true))
 			{
 				fullHP += summon.getMaxHp();
 				currentHPs += summon.getCurrentHp();
@@ -73,7 +73,7 @@ public class RebalanceHPSummon extends AbstractEffect
 		final double percentHP = currentHPs / fullHP;
 		for (Summon summon : effector.getServitors().values())
 		{
-			if (!summon.isDead() && Util.checkIfInRange(skill.getAffectRange(), effector, summon, true))
+			if (!summon.isDead() && LocationUtil.checkIfInRange(skill.getAffectRange(), effector, summon, true))
 			{
 				double newHP = summon.getMaxHp() * percentHP;
 				if (newHP > summon.getCurrentHp()) // The target gets healed

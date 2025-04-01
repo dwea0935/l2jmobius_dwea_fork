@@ -32,7 +32,7 @@ import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.newquestdata.NewQuest;
 
 /**
@@ -54,26 +54,29 @@ public class NewQuestData implements IXmlReader
 	{
 		_newQuestData.clear();
 		parseDatapackFile("data/NewQuestData.xml");
-		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _newQuestData.size() + " new quest data.");
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "quest", questNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "quest", questNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(questNode));
+			
+			// Parse locations.
 			forEach(questNode, "locations", locationsNode ->
 			{
 				forEach(locationsNode, "param", paramNode -> set.set(parseString(paramNode.getAttributes(), "name"), paramNode.getTextContent()));
 			});
 			
+			// Parse conditions.
 			forEach(questNode, "conditions", conditionsNode ->
 			{
 				forEach(conditionsNode, "param", paramNode -> set.set(parseString(paramNode.getAttributes(), "name"), paramNode.getTextContent()));
 			});
 			
+			// Parse rewards.
 			forEach(questNode, "rewards", rewardsNode ->
 			{
 				
@@ -90,6 +93,7 @@ public class NewQuestData implements IXmlReader
 				forEach(rewardsNode, "param", paramNode -> set.set(parseString(paramNode.getAttributes(), "name"), paramNode.getTextContent()));
 			});
 			
+			// Parse goals.
 			forEach(questNode, "goals", goalsNode ->
 			{
 				forEach(goalsNode, "param", paramNode -> set.set(parseString(paramNode.getAttributes(), "name"), paramNode.getTextContent()));
@@ -100,20 +104,25 @@ public class NewQuestData implements IXmlReader
 		}));
 	}
 	
+	/**
+	 * Retrieves a quest by its unique ID.
+	 * @param id the unique identifier of the quest.
+	 * @return the {@code NewQuest} instance corresponding to the specified ID, or {@code null} if no quest is found.
+	 */
 	public NewQuest getQuestById(int id)
 	{
 		return _newQuestData.get(id);
 	}
 	
+	/**
+	 * Retrieves a collection of all available quests.
+	 * @return a {@code Collection} containing all {@code NewQuest} instances stored in the system.
+	 */
 	public Collection<NewQuest> getQuests()
 	{
 		return _newQuestData.values();
 	}
 	
-	/**
-	 * Gets the single instance of NewQuestData.
-	 * @return single instance of NewQuestData
-	 */
 	public static NewQuestData getInstance()
 	{
 		return NewQuestData.SingletonHolder.INSTANCE;

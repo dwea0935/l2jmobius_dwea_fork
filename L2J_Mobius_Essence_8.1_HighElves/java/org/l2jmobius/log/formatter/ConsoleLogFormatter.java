@@ -25,24 +25,24 @@ import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 
 public class ConsoleLogFormatter extends Formatter
 {
-	private final SimpleDateFormat dateFmt = new SimpleDateFormat("dd/MM HH:mm:ss");
+	private final SimpleDateFormat _dateFormat = new SimpleDateFormat("dd/MM HH:mm:ss");
 	
 	@Override
 	public String format(LogRecord record)
 	{
-		final StringBuilder output = new StringBuilder(500);
-		StringUtil.append(output, "[", dateFmt.format(new Date(record.getMillis())), "] " + record.getMessage(), System.lineSeparator());
+		final StringBuilder output = new StringBuilder(128);
+		StringUtil.append(output, "[", _dateFormat.format(new Date(record.getMillis())), "] " + record.getMessage(), System.lineSeparator());
 		
 		if (record.getThrown() != null)
 		{
 			try
 			{
-				StringUtil.append(output, CommonUtil.getStackTrace(record.getThrown()), System.lineSeparator());
+				StringUtil.append(output, TraceUtil.getStackTrace(record.getThrown()), System.lineSeparator());
 			}
 			catch (Exception ex)
 			{

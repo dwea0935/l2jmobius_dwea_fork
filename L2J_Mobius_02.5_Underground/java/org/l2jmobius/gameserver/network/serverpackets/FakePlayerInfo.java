@@ -24,11 +24,10 @@ import java.util.Set;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.data.xml.FakePlayerData;
-import org.l2jmobius.gameserver.enums.Sex;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.actor.enums.player.Sex;
+import org.l2jmobius.gameserver.model.actor.holders.npc.FakePlayerHolder;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.FakePlayerHolder;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -77,7 +76,7 @@ public class FakePlayerInfo extends ServerPacket
 		_swimWalkSpd = (int) Math.round(npc.getSwimWalkSpeed() / _moveMultiplier);
 		_flyRunSpd = npc.isFlying() ? _runSpd : 0;
 		_flyWalkSpd = npc.isFlying() ? _walkSpd : 0;
-		_fpcHolder = FakePlayerData.getInstance().getInfo(npc.getId());
+		_fpcHolder = npc.getTemplate().getFakePlayerInfo();
 		_abnormalVisualEffects = _npc.getEffectList().getCurrentAbnormalVisualEffects();
 		_clan = ClanTable.getInstance().getClan(_fpcHolder.getClanId());
 	}
@@ -94,7 +93,7 @@ public class FakePlayerInfo extends ServerPacket
 		buffer.writeString(_npc.getName());
 		buffer.writeShort(_npc.getRace().ordinal());
 		buffer.writeByte(_npc.getTemplate().getSex() == Sex.FEMALE);
-		buffer.writeInt(_fpcHolder.getClassId());
+		buffer.writeInt(_fpcHolder.getPlayerClass().getRootClass().getId());
 		buffer.writeInt(0); // Inventory.PAPERDOLL_UNDER
 		buffer.writeInt(_fpcHolder.getEquipHead());
 		buffer.writeInt(_fpcHolder.getEquipRHand());
@@ -153,20 +152,20 @@ public class FakePlayerInfo extends ServerPacket
 			buffer.writeInt(0);
 			buffer.writeInt(0);
 		}
-		buffer.writeByte(1); // isSitting() ? 0 : 1 (at some initial tests it worked)
+		buffer.writeByte(!_fpcHolder.isSitting());
 		buffer.writeByte(_npc.isRunning());
 		buffer.writeByte(_npc.isInCombat());
 		buffer.writeByte(_npc.isAlikeDead());
 		buffer.writeByte(_npc.isInvisible());
 		buffer.writeByte(0); // 1-on Strider, 2-on Wyvern, 3-on Great Wolf, 0-no mount
-		buffer.writeByte(0); // getPrivateStoreType().getId()
+		buffer.writeByte(_fpcHolder.getPrivateStoreType());
 		buffer.writeShort(0); // getCubics().size()
 		// getCubics().keySet().forEach(packet::writeH);
 		buffer.writeByte(0);
 		buffer.writeByte(_npc.isInsideZone(ZoneId.WATER));
 		buffer.writeShort(_fpcHolder.getRecommends());
 		buffer.writeInt(0); // getMountNpcId() == 0 ? 0 : getMountNpcId() + 1000000
-		buffer.writeInt(_fpcHolder.getClassId());
+		buffer.writeInt(_fpcHolder.getPlayerClass().getId());
 		buffer.writeInt(0);
 		buffer.writeByte(_fpcHolder.getWeaponEnchantLevel()); // isMounted() ? 0 : _enchantLevel
 		buffer.writeByte(_npc.getTeam().getId());

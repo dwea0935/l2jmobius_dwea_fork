@@ -16,7 +16,6 @@
  */
 package quests.Q10363_RequestOfTheSeeker;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -24,6 +23,7 @@ import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q10362_CertificationOfTheSeeker.Q10362_CertificationOfTheSeeker;
 
@@ -137,13 +137,12 @@ public class Q10363_RequestOfTheSeeker extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if (CommonUtil.contains(MONSTERS, npc.getId()) && (qs != null) && qs.isCond(1) && giveItemRandomly(killer, npc, HUSK_DISTRIBUTION_REPORT, 1, 15, 0.8, true))
+		if (ArrayUtil.contains(MONSTERS, npc.getId()) && (qs != null) && qs.isCond(1) && giveItemRandomly(killer, npc, HUSK_DISTRIBUTION_REPORT, 1, 15, 0.8, true))
 		{
 			qs.setCond(2, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

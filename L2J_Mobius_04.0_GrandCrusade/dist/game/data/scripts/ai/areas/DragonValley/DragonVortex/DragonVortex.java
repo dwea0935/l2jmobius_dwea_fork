@@ -23,7 +23,7 @@ import ai.AbstractNpcAI;
 
 /**
  * Dragon Vortex AI.
- * @author UnAfraid, improved by Adry_85
+ * @author Adry_85
  */
 public class DragonVortex extends AbstractNpcAI
 {

@@ -69,7 +69,7 @@ public class Q00151_CureForFever extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isCond(1) && (getRandom(5) == CHANCE))
@@ -77,7 +77,6 @@ public class Q00151_CureForFever extends Quest
 			giveItems(killer, POISON_SAC, 1);
 			qs.setCond(2, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

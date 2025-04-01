@@ -21,9 +21,9 @@
 package quests.Q21006_HuntingTime4;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestDialogType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
@@ -131,7 +131,7 @@ public class Q21006_HuntingTime4 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Party party = killer.getParty();
 		if (party != null) // Multiple party members.
@@ -158,13 +158,13 @@ public class Q21006_HuntingTime4 extends Quest
 						else
 						{
 							final int currentCount = questState.getCount();
-							if (currentCount != data.getGoal().getCount())
+							if (currentCount < data.getGoal().getCount())
 							{
 								questState.setCount(currentCount + 1);
 							}
 						}
 						
-						if (questState.getCount() == data.getGoal().getCount())
+						if (questState.getCount() >= data.getGoal().getCount())
 						{
 							questState.setCond(QuestCondType.DONE);
 							member.sendPacket(new ExQuestNotification(questState));
@@ -193,13 +193,13 @@ public class Q21006_HuntingTime4 extends Quest
 				else
 				{
 					final int currentCount = questState.getCount();
-					if (currentCount != data.getGoal().getCount())
+					if (currentCount < data.getGoal().getCount())
 					{
 						questState.setCount(currentCount + 1);
 					}
 				}
 				
-				if (questState.getCount() == data.getGoal().getCount())
+				if (questState.getCount() >= data.getGoal().getCount())
 				{
 					questState.setCond(QuestCondType.DONE);
 					killer.sendPacket(new ExQuestNotification(questState));
@@ -207,7 +207,5 @@ public class Q21006_HuntingTime4 extends Quest
 			}
 			
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

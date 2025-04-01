@@ -18,13 +18,14 @@ package handlers.effecthandlers;
 
 import java.util.Collection;
 
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
@@ -76,7 +77,7 @@ public class Sweeper extends AbstractEffect
 				}
 				else
 				{
-					player.addItem("Sweeper", sweepedItem, effected, true);
+					player.addItem(ItemProcessType.SWEEP, sweepedItem, effected, true);
 				}
 			}
 		}

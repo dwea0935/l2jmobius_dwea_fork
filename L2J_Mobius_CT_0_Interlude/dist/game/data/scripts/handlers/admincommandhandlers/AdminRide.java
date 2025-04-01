@@ -18,7 +18,6 @@ package handlers.admincommandhandlers;
 
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * @author
@@ -47,7 +46,7 @@ public class AdminRide implements IAdminCommandHandler
 		{
 			if (player.isMounted() || player.hasSummon())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Target already have a summon.");
+				activeChar.sendSysMessage("Target already have a summon.");
 				return false;
 			}
 			
@@ -62,7 +61,7 @@ public class AdminRide implements IAdminCommandHandler
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Command '" + command + "' not recognized");
+				activeChar.sendSysMessage("Command '" + command + "' not recognized");
 				return false;
 			}
 			

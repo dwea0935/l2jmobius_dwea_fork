@@ -28,7 +28,6 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.options.Options;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * @author Mobius
@@ -46,7 +45,7 @@ public class AdminAugment implements IAdminCommandHandler
 		final String[] splitCommand = command.trim().split(" ");
 		if (splitCommand.length < 4)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //augment <item id> <augment slot> <option id>");
+			activeChar.sendSysMessage("Usage: //augment <item id> <augment slot> <option id>");
 			return false;
 		}
 		
@@ -64,7 +63,7 @@ public class AdminAugment implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "No item with id " + splitCommand[1]);
+			activeChar.sendSysMessage("No item with id " + splitCommand[1]);
 			return false;
 		}
 		
@@ -72,7 +71,7 @@ public class AdminAugment implements IAdminCommandHandler
 		final Item item = player.getInventory().getPaperdollItemByItemId(itemId);
 		if (item == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "No equipped item with id " + splitCommand[1]);
+			activeChar.sendSysMessage("No equipped item with id " + splitCommand[1]);
 			return false;
 		}
 		
@@ -83,7 +82,7 @@ public class AdminAugment implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "No option with id " + splitCommand[3]);
+			activeChar.sendSysMessage("No option with id " + splitCommand[3]);
 			return false;
 		}
 		

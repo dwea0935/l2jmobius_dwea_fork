@@ -976,7 +976,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="4270" name="Old Key" type="EtcItem">
-		<!-- Article left by a dead soldier. His descendent Sir Kristof Rodemai is living in Town of Giran. Take it to him. -->
+		<!-- An item left by a dead soldier. His descendent Sir Kristof Rodemai is living in Giran. Take it to him. -->
 		<set name="icon" val="icon.etc_old_key_i03" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

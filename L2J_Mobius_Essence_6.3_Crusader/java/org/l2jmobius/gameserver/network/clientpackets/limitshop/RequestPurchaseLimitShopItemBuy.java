@@ -28,20 +28,21 @@ import java.util.Map;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.holders.LimitShopProductHolder;
+import org.l2jmobius.gameserver.data.holders.LimitShopRandomCraftReward;
 import org.l2jmobius.gameserver.data.xml.LimitShopClanData;
 import org.l2jmobius.gameserver.data.xml.LimitShopCraftData;
 import org.l2jmobius.gameserver.data.xml.LimitShopData;
-import org.l2jmobius.gameserver.enums.ExBrProductReplyType;
-import org.l2jmobius.gameserver.enums.SpecialItemType;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.PrimeShopRequest;
-import org.l2jmobius.gameserver.model.holders.LimitShopProductHolder;
-import org.l2jmobius.gameserver.model.holders.LimitShopRandomCraftReward;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.SpecialItemType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.variables.AccountVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.ExBrProductReplyType;
 import org.l2jmobius.gameserver.network.serverpackets.ExItemAnnounce;
 import org.l2jmobius.gameserver.network.serverpackets.ExPCCafePointInfo;
 import org.l2jmobius.gameserver.network.serverpackets.limitshop.ExPurchaseLimitShopItemResult;
@@ -297,7 +298,7 @@ public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 			
 			if (_product.getIngredientIds()[i] == Inventory.ADENA_ID)
 			{
-				player.reduceAdena("LCoinShop", _product.getIngredientQuantities()[i] * _amount, player, true);
+				player.reduceAdena(ItemProcessType.FEE, _product.getIngredientQuantities()[i] * _amount, player, true);
 			}
 			else if (_product.getIngredientIds()[i] == SpecialItemType.HONOR_COINS.getClientId())
 			{
@@ -322,7 +323,7 @@ public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 							break;
 						}
 						count++;
-						player.destroyItem("LCoinShop", item, player, true);
+						player.destroyItem(ItemProcessType.FEE, item, player, true);
 					}
 				}
 				else
@@ -336,7 +337,7 @@ public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 						return;
 					}
 					
-					player.destroyItemByItemId("LCoinShop", _product.getIngredientIds()[i], amount, player, true);
+					player.destroyItemByItemId(ItemProcessType.FEE, _product.getIngredientIds()[i], amount, player, true);
 				}
 			}
 			if (Config.VIP_SYSTEM_L_SHOP_AFFECT)
@@ -353,8 +354,8 @@ public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 			{
 				if (Rnd.get(100) < _product.getChance())
 				{
-					rewards.computeIfAbsent(0, k -> new LimitShopRandomCraftReward(_product.getProductionId(), 0, 0)).getCount().addAndGet((int) _product.getCount());
-					final Item item = player.addItem("LCoinShop", _product.getProductionId(), _product.getCount(), _product.getEnchant(), player, true);
+					rewards.computeIfAbsent(0, _ -> new LimitShopRandomCraftReward(_product.getProductionId(), 0, 0)).getCount().addAndGet((int) _product.getCount());
+					final Item item = player.addItem(_shopIndex == 4 ? ItemProcessType.CRAFT : ItemProcessType.BUY, _product.getProductionId(), _product.getCount(), _product.getEnchant(), player, true);
 					if (_product.isAnnounce())
 					{
 						Broadcast.toAllOnlinePlayers(new ExItemAnnounce(player, item, ExItemAnnounce.SPECIAL_CREATION));
@@ -362,8 +363,8 @@ public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 				}
 				else if ((Rnd.get(100) < _product.getChance2()) || (_product.getProductionId3() == 0))
 				{
-					rewards.computeIfAbsent(1, k -> new LimitShopRandomCraftReward(_product.getProductionId2(), 0, 1)).getCount().addAndGet((int) _product.getCount2());
-					final Item item = player.addItem("LCoinShop", _product.getProductionId2(), _product.getCount2(), player, true);
+					rewards.computeIfAbsent(1, _ -> new LimitShopRandomCraftReward(_product.getProductionId2(), 0, 1)).getCount().addAndGet((int) _product.getCount2());
+					final Item item = player.addItem(_shopIndex == 4 ? ItemProcessType.CRAFT : ItemProcessType.BUY, _product.getProductionId2(), _product.getCount2(), player, true);
 					if (_product.isAnnounce2())
 					{
 						Broadcast.toAllOnlinePlayers(new ExItemAnnounce(player, item, ExItemAnnounce.SPECIAL_CREATION));
@@ -371,8 +372,8 @@ public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 				}
 				else if ((Rnd.get(100) < _product.getChance3()) || (_product.getProductionId4() == 0))
 				{
-					rewards.computeIfAbsent(2, k -> new LimitShopRandomCraftReward(_product.getProductionId3(), 0, 2)).getCount().addAndGet((int) _product.getCount3());
-					final Item item = player.addItem("LCoinShop", _product.getProductionId3(), _product.getCount3(), player, true);
+					rewards.computeIfAbsent(2, _ -> new LimitShopRandomCraftReward(_product.getProductionId3(), 0, 2)).getCount().addAndGet((int) _product.getCount3());
+					final Item item = player.addItem(_shopIndex == 4 ? ItemProcessType.CRAFT : ItemProcessType.BUY, _product.getProductionId3(), _product.getCount3(), player, true);
 					if (_product.isAnnounce3())
 					{
 						Broadcast.toAllOnlinePlayers(new ExItemAnnounce(player, item, ExItemAnnounce.SPECIAL_CREATION));
@@ -380,8 +381,8 @@ public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 				}
 				else if ((Rnd.get(100) < _product.getChance4()) || (_product.getProductionId5() == 0))
 				{
-					rewards.computeIfAbsent(3, k -> new LimitShopRandomCraftReward(_product.getProductionId4(), 0, 3)).getCount().addAndGet((int) _product.getCount4());
-					final Item item = player.addItem("LCoinShop", _product.getProductionId4(), _product.getCount4(), player, true);
+					rewards.computeIfAbsent(3, _ -> new LimitShopRandomCraftReward(_product.getProductionId4(), 0, 3)).getCount().addAndGet((int) _product.getCount4());
+					final Item item = player.addItem(_shopIndex == 4 ? ItemProcessType.CRAFT : ItemProcessType.BUY, _product.getProductionId4(), _product.getCount4(), player, true);
 					if (_product.isAnnounce4())
 					{
 						Broadcast.toAllOnlinePlayers(new ExItemAnnounce(player, item, ExItemAnnounce.SPECIAL_CREATION));
@@ -389,8 +390,8 @@ public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 				}
 				else if (_product.getProductionId5() > 0)
 				{
-					rewards.computeIfAbsent(4, k -> new LimitShopRandomCraftReward(_product.getProductionId5(), 0, 4)).getCount().addAndGet((int) _product.getCount5());
-					final Item item = player.addItem("LCoinShop", _product.getProductionId5(), _product.getCount5(), player, true);
+					rewards.computeIfAbsent(4, _ -> new LimitShopRandomCraftReward(_product.getProductionId5(), 0, 4)).getCount().addAndGet((int) _product.getCount5());
+					final Item item = player.addItem(_shopIndex == 4 ? ItemProcessType.CRAFT : ItemProcessType.BUY, _product.getProductionId5(), _product.getCount5(), player, true);
 					if (_product.isAnnounce5())
 					{
 						Broadcast.toAllOnlinePlayers(new ExItemAnnounce(player, item, ExItemAnnounce.SPECIAL_CREATION));
@@ -401,7 +402,7 @@ public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 		else if (Rnd.get(100) < _product.getChance())
 		{
 			rewards.put(0, new LimitShopRandomCraftReward(_product.getProductionId(), (int) (_product.getCount() * _amount), 0));
-			final Item item = player.addItem("LCoinShop", _product.getProductionId(), _product.getCount() * _amount, _product.getEnchant(), player, true);
+			final Item item = player.addItem(_shopIndex == 4 ? ItemProcessType.CRAFT : ItemProcessType.BUY, _product.getProductionId(), _product.getCount() * _amount, _product.getEnchant(), player, true);
 			if (_product.isAnnounce())
 			{
 				Broadcast.toAllOnlinePlayers(new ExItemAnnounce(player, item, ExItemAnnounce.SPECIAL_CREATION));

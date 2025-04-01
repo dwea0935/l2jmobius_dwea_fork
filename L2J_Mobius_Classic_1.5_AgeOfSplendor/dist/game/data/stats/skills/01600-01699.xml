@@ -922,7 +922,6 @@
 		<affectScope>SINGLE</affectScope>
 		<effectPoint>204</effectPoint>
 		<isMagic>1</isMagic>
-		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>
 			<value level="1">44</value>
 			<value level="2">56</value>

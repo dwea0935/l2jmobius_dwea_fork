@@ -17,20 +17,21 @@
 package quests.Q10331_StartOfFate;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPressTutorialMark;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPressTutorialMark;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -38,7 +39,6 @@ import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowQuestionMark;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Start of Fate (10331)
@@ -233,11 +233,11 @@ public class Q10331_StartOfFate extends Quest
 			{
 				if (event.startsWith("classChange;"))
 				{
-					final ClassId newClassId = ClassId.getClassId(Integer.parseInt(event.replace("classChange;", "")));
-					final ClassId currentClassId = player.getClassId();
+					final PlayerClass newClassId = PlayerClass.getPlayerClass(Integer.parseInt(event.replace("classChange;", "")));
+					final PlayerClass currentClassId = player.getPlayerClass();
 					if (!newClassId.childOf(currentClassId) || ((qs.getCond() < 6) && (qs.getCond() > 11)))
 					{
-						Util.handleIllegalPlayerAction(player, "Player " + player.getName() + " tried to cheat the 1st class transfer!", Config.DEFAULT_PUNISH);
+						PunishmentManager.handleIllegalPlayerAction(player, "Player " + player.getName() + " tried to cheat the 1st class transfer!", Config.DEFAULT_PUNISH);
 						return null;
 					}
 					switch (newClassId)
@@ -344,7 +344,7 @@ public class Q10331_StartOfFate extends Quest
 						}
 					}
 					player.setBaseClass(newClassId);
-					player.setClassId(newClassId.getId());
+					player.setPlayerClass(newClassId.getId());
 					player.store(false);
 					player.broadcastUserInfo();
 					player.sendSkillList();
@@ -489,7 +489,7 @@ public class Q10331_StartOfFate extends Quest
 						{
 							if (player.getRace() == Race.HUMAN)
 							{
-								switch (player.getClassId())
+								switch (player.getPlayerClass())
 								{
 									case FIGHTER:
 									{
@@ -520,7 +520,7 @@ public class Q10331_StartOfFate extends Quest
 						{
 							if (player.getRace() == Race.ELF)
 							{
-								switch (player.getClassId())
+								switch (player.getPlayerClass())
 								{
 									case ELVEN_FIGHTER:
 									{
@@ -551,7 +551,7 @@ public class Q10331_StartOfFate extends Quest
 						{
 							if (player.getRace() == Race.DARK_ELF)
 							{
-								switch (player.getClassId())
+								switch (player.getPlayerClass())
 								{
 									case DARK_FIGHTER:
 									{
@@ -582,7 +582,7 @@ public class Q10331_StartOfFate extends Quest
 						{
 							if (player.getRace() == Race.ORC)
 							{
-								switch (player.getClassId())
+								switch (player.getPlayerClass())
 								{
 									case ORC_FIGHTER:
 									{
@@ -632,7 +632,7 @@ public class Q10331_StartOfFate extends Quest
 						{
 							if (player.getRace() == Race.KAMAEL)
 							{
-								switch (player.getClassId())
+								switch (player.getPlayerClass())
 								{
 									case MALE_SOLDIER:
 									{

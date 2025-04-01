@@ -17,11 +17,10 @@
 package ai.areas.Hellbound.AI.NPC.Natives;
 
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
@@ -107,7 +106,7 @@ public class Natives extends AbstractNpcAI
 				if (getQuestItemsCount(player, MARK_OF_BETRAYAL) >= 10)
 				{
 					takeItems(player, MARK_OF_BETRAYAL, 10);
-					npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.ALRIGHT_NOW_LEODAS_IS_YOURS);
+					npc.broadcastSay(ChatType.NPC_GENERAL, "Alright, now Leodas is yours!");
 					HellboundEngine.getInstance().updateTrust(-50, true);
 					
 					for (int doorId : DOORS)
@@ -145,7 +144,7 @@ public class Natives extends AbstractNpcAI
 		}
 		else if ((npc.getId() == NATIVE) && event.equalsIgnoreCase("hungry_death"))
 		{
-			npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.HUN_HUNGRY);
+			npc.broadcastSay(ChatType.NPC_GENERAL, "Hun... hungry");
 			npc.doDie(null);
 		}
 		else if (npc.getId() == INCASTLE)
@@ -176,12 +175,11 @@ public class Natives extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if ((npc.getId() == NATIVE) && (HellboundEngine.getInstance().getLevel() < 6))
 		{
 			startQuestTimer("hungry_death", 600000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 }

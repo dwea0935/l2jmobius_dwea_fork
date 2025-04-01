@@ -227,9 +227,7 @@
 		<magicCriticalRate>5</magicCriticalRate>
 		<effects>
 			<effect name="BlockSkill">
-				<skillId>
-                    47941;47928;176;420;47811;45282;45281;45159;45244;45260;45312;45402;87105;47404;47406;47408;47402;47341;47001;87307;47440;1556;47441;47917;45288;1335;47242;47247;47253;87006;87009
-				</skillId>
+				<skillIds>47941;47928;176;420;47811;45282;45281;45159;45244;45260;45312;45402;87105;47404;47406;47408;47402;47341;47001;87307;47440;1556;47441;47917;45288;1335;47242;47247;47253;87006;87009</skillIds>
 			</effect>
 		</effects>
 	</skill>
@@ -666,7 +664,6 @@
 		<affectRange>300</affectRange>
 		<affectScope>RANGE</affectScope>
 		<castRange>400</castRange>
-		<castRange>400</castRange>
 		<coolTime>200</coolTime>
 		<effectPoint>
 			<value level="1">-410</value>
@@ -797,7 +794,6 @@
 		<affectRange>150</affectRange>
 		<affectRange>300</affectRange>
 		<affectScope>RANGE</affectScope>
-		<castRange>400</castRange>
 		<castRange>400</castRange>
 		<coolTime>200</coolTime>
 		<hitTime>0</hitTime>

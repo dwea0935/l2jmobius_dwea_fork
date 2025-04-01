@@ -20,10 +20,10 @@ import java.util.OptionalDouble;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.ClanHallData;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.SiegeClan;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -45,7 +45,7 @@ import org.l2jmobius.gameserver.model.zone.type.CastleZone;
 import org.l2jmobius.gameserver.model.zone.type.ClanHallZone;
 import org.l2jmobius.gameserver.model.zone.type.FortZone;
 import org.l2jmobius.gameserver.model.zone.type.MotherTreeZone;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author UnAfraid
@@ -192,7 +192,7 @@ public class RegenHPFinalizer implements IStatFunction
 		boolean inRange = false;
 		for (Npc flag : siegeClan.getFlag())
 		{
-			if (Util.checkIfInRange(200, player, flag, true))
+			if (LocationUtil.checkIfInRange(200, player, flag, true))
 			{
 				inRange = true;
 				break;

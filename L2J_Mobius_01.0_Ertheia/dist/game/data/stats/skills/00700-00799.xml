@@ -1732,7 +1732,6 @@
 		<attributeValue>20</attributeValue>
 		<effectPoint>-275</effectPoint>
 		<hitTime>1800</hitTime>
-		<hitTime>1800</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
@@ -3067,7 +3066,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>2500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>

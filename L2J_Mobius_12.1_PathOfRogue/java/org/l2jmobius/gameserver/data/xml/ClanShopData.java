@@ -28,8 +28,8 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.ClanShopProductHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ClanShopProductHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 
 /**
@@ -50,28 +50,32 @@ public class ClanShopData implements IXmlReader
 	public void load()
 	{
 		_clanShopProducts.clear();
-		
 		parseDatapackFile("config/ClanShop.xml");
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _clanShopProducts.size() + " clan shop products.");
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "clan", productNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "clan", productNode ->
 		{
+			// Parse attributes into StatSet.
 			final StatSet set = new StatSet(parseAttributes(productNode));
+			
+			// Extract clan shop product attributes.
 			final int clanLevel = set.getInt("level");
 			final int itemId = set.getInt("item");
 			final int count = set.getInt("count");
 			final long adena = set.getLong("adena");
 			final int fame = set.getInt("fame");
+			
+			// Retrieve the item template.
 			final ItemTemplate item = ItemData.getInstance().getTemplate(itemId);
 			if (item == null)
 			{
 				LOGGER.info(getClass().getSimpleName() + ": Could not create clan shop item " + itemId + ", it does not exist.");
 			}
-			else
+			else // Add the ClanShopProductHolder to the list.
 			{
 				_clanShopProducts.add(new ClanShopProductHolder(clanLevel, item, count, adena, fame));
 			}

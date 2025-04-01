@@ -950,7 +950,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="39004" level="1" /> <!-- Facelifting Potion A -->
+			<skill id="39004" level="1" /> <!-- Facelifting Potion -->
 		</skills>
 	</item>
 	<item id="93663" name="Facelifting Potion B" type="EtcItem">
@@ -974,7 +974,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="39005" level="1" /> <!-- Facelifting Potion B -->
+			<skill id="39005" level="1" /> <!-- Facelifting Potion -->
 		</skills>
 	</item>
 	<item id="93664" name="Facelifting Potion C" type="EtcItem">
@@ -998,7 +998,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="39006" level="1" /> <!-- Facelifting Potion C -->
+			<skill id="39006" level="1" /> <!-- Facelifting Potion -->
 		</skills>
 	</item>
 	<item id="93665" name="Dye Potion A" type="EtcItem">
@@ -1022,7 +1022,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="39007" level="1" /> <!-- Dye Potion A -->
+			<skill id="39007" level="1" /> <!-- Dye Potion -->
 		</skills>
 	</item>
 	<item id="93666" name="Dye Potion B" type="EtcItem">
@@ -1046,7 +1046,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="39008" level="1" /> <!-- Dye Potion B -->
+			<skill id="39008" level="1" /> <!-- Dye Potion -->
 		</skills>
 	</item>
 	<item id="93667" name="Dye Potion C" type="EtcItem">
@@ -1070,7 +1070,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="39009" level="1" /> <!-- Dye Potion C -->
+			<skill id="39009" level="1" /> <!-- Dye Potion -->
 		</skills>
 	</item>
 	<item id="93668" name="Dye Potion D" type="EtcItem">
@@ -1094,7 +1094,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="39010" level="1" /> <!-- Dye Potion D -->
+			<skill id="39010" level="1" /> <!-- Dye Potion -->
 		</skills>
 	</item>
 	<item id="93669" name="Hair Style Change Potion A" type="EtcItem">

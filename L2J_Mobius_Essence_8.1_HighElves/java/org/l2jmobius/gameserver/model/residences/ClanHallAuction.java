@@ -32,6 +32,7 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.ClanHallData;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 
 /**
@@ -153,7 +154,7 @@ public class ClanHallAuction
 	
 	public void returnAdenas(Bidder bidder)
 	{
-		bidder.getClan().getWarehouse().addItem("Clan Hall Auction Outbid", Inventory.ADENA_ID, bidder.getBid(), null, null);
+		bidder.getClan().getWarehouse().addItem(ItemProcessType.REFUND, Inventory.ADENA_ID, bidder.getBid(), null, null);
 	}
 	
 	public void finalizeAuctions()

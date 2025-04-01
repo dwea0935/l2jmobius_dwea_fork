@@ -27,8 +27,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
@@ -220,7 +220,7 @@ public class HarnakUndergroundRuinsZone extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		for (Entry<ZoneType, zoneInfo> currentZone : _roomInfo.entrySet())
 		{
@@ -232,8 +232,9 @@ public class HarnakUndergroundRuinsZone extends AbstractNpcAI
 				{
 					if (currentInfo.getZoneStage() < 1)
 					{
-						return super.onKill(npc, killer, isSummon);
+						return;
 					}
+					
 					final int currentDamage = currentInfo.getCurrentMonitorizedDamage();
 					int calcDamage = currentDamage + 1;
 					if (calcDamage >= 10)
@@ -248,7 +249,7 @@ public class HarnakUndergroundRuinsZone extends AbstractNpcAI
 							player.sendPacket(new ExSendUIEvent(player, ExSendUIEvent.TYPE_NORNIL, calcDamage, 10, NpcStringId.MONITOR_THE_DAMAGE));
 						}
 					}
-					return super.onKill(npc, killer, isSummon);
+					return;
 				}
 				
 				int calcPoints = currentPoints + 1;
@@ -273,19 +274,17 @@ public class HarnakUndergroundRuinsZone extends AbstractNpcAI
 			final Monster copy = addSpawn(npc.getId(), npc.getX(), npc.getY(), npc.getZ(), 0, true, 0, false).asMonster();
 			copy.setTarget(killer);
 			copy.addDamageHate(killer, 500, 99999);
-			copy.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, killer);
+			copy.getAI().setIntention(Intention.ATTACK, killer);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (getRandom(20) > 18)
 		{
 			npc.setDisplayEffect(1);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override

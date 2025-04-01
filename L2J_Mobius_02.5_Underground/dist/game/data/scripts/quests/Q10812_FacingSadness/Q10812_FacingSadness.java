@@ -17,14 +17,14 @@
 package quests.Q10812_FacingSadness;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q10811_ExaltedOneWhoFacesTheLimit.Q10811_ExaltedOneWhoFacesTheLimit;
 
@@ -179,10 +179,9 @@ public class Q10812_FacingSadness extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		executeForEachPlayer(player, npc, isSummon, true, false);
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
@@ -193,7 +192,7 @@ public class Q10812_FacingSadness extends Quest
 		{
 			if (getQuestItemsCount(player, PROOF_OF_DISPOSAL) < 8000)
 			{
-				giveItems(player, PROOF_OF_DISPOSAL, CommonUtil.contains(MONSTERS_1, npc.getId()) ? 1 : 2);
+				giveItems(player, PROOF_OF_DISPOSAL, ArrayUtil.contains(MONSTERS_1, npc.getId()) ? 1 : 2);
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 			if (getQuestItemsCount(player, PROOF_OF_DISPOSAL) >= 8000)

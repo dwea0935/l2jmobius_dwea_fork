@@ -21,15 +21,16 @@
 package org.l2jmobius.gameserver.network.clientpackets.pledgedonation;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.MailType;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
+import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.MailType;
 import org.l2jmobius.gameserver.network.serverpackets.pledgedonation.ExPledgeDonationInfo;
 import org.l2jmobius.gameserver.network.serverpackets.pledgedonation.ExPledgeDonationRequest;
 
@@ -65,7 +66,7 @@ public class RequestExPledgeDonationRequest extends ClientPacket
 		{
 			case 0:
 			{
-				if (player.reduceAdena("Pledge donation", 100000, null, true))
+				if (player.reduceAdena(ItemProcessType.FEE, 100000, null, true))
 				{
 					clan.addExp(player.getObjectId(), 50);
 				}
@@ -79,7 +80,7 @@ public class RequestExPledgeDonationRequest extends ClientPacket
 			{
 				if (player.getInventory().getInventoryItemCount(Inventory.LCOIN_ID, -1) >= 100)
 				{
-					player.destroyItemByItemId("Pledge donation", Inventory.LCOIN_ID, 100, player, true);
+					player.destroyItemByItemId(ItemProcessType.FEE, Inventory.LCOIN_ID, 100, player, true);
 					clan.addExp(player.getObjectId(), 100);
 					player.setHonorCoins(player.getHonorCoins() + 100);
 				}
@@ -93,7 +94,7 @@ public class RequestExPledgeDonationRequest extends ClientPacket
 			{
 				if (player.getInventory().getInventoryItemCount(Inventory.LCOIN_ID, -1) >= 500)
 				{
-					player.destroyItemByItemId("Pledge donation", Inventory.LCOIN_ID, 500, player, true);
+					player.destroyItemByItemId(ItemProcessType.FEE, Inventory.LCOIN_ID, 500, player, true);
 					clan.addExp(player.getObjectId(), 500);
 					player.setHonorCoins(player.getHonorCoins() + 500);
 				}
@@ -135,7 +136,7 @@ public class RequestExPledgeDonationRequest extends ClientPacket
 	{
 		final Message msg = new Message(charId, "Clan Rewards for " + donator + " Donation", "The entire clan receives rewards for " + donator + " donation.", MailType.PLEDGE_DONATION_CRITICAL_SUCCESS);
 		final Mail attachment = msg.createAttachments();
-		attachment.addItem("Pledge reward", 95672, amount, null, donator); // Honor Coin Pouch
+		attachment.addItem(ItemProcessType.REWARD, 95672, amount, null, donator); // Honor Coin Pouch
 		MailManager.getInstance().sendMessage(msg);
 	}
 }

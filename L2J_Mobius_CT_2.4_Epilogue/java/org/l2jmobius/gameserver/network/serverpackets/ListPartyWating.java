@@ -21,8 +21,8 @@ import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoom;
-import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoomList;
+import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoom;
+import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoomList;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -65,6 +65,7 @@ public class ListPartyWating extends ServerPacket
 			_rooms.add(room);
 		}
 		final int size = _rooms.size();
+		
 		ServerPackets.LIST_PARTY_WAITING.writeId(this, buffer);
 		if (size > 0)
 		{

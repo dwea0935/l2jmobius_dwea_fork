@@ -219,7 +219,7 @@ public class OlympiadGameTask implements Runnable
 				{
 					if (_countDown > 0)
 					{
-						if (_countDown == 50) // 55sec
+						if (_countDown == 10)
 						{
 							_game.healPlayers();
 						}

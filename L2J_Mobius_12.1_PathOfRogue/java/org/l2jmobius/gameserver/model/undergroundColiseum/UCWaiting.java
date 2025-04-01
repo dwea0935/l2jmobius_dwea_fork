@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.model.undergroundColiseum;
 
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.model.groups.Party;
 
 public class UCWaiting
 {

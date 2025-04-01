@@ -809,7 +809,6 @@
 			<skill id="4414" level="2" /> <!-- Standard Type -->
 			<skill id="4415" level="3" /> <!-- One-handed Sword -->
 			<skill id="4417" level="16" /> <!-- Angel -->
-			<skill id="4417" level="16" /> <!-- Angel -->
 			<skill id="4789" level="10" /> <!-- High Lv. -->
 			<skill id="4065" level="6" /> <!-- Heal -->
 		</skillList>
@@ -4699,7 +4698,6 @@
 			<skill id="4071" level="3" /> <!-- Bow/ Crossbow Resistance -->
 			<skill id="4440" level="5" /> <!-- Greater Paralysis Resistance -->
 			<skill id="4441" level="5" /> <!-- Greater Mental Resistance -->
-			<skill id="4445" level="1" /> <!-- Greater Spear Resistance -->
 			<skill id="4445" level="1" /> <!-- Greater Spear Resistance -->
 			<skill id="5601" level="9" /> <!-- Melee Attack Resistance -->
 			<skill id="4084" level="9" /> <!-- Physical Attack Resistance -->

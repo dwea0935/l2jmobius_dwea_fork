@@ -34,10 +34,8 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.SiegeClanType;
-import org.l2jmobius.gameserver.instancemanager.CHSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
+import org.l2jmobius.gameserver.managers.CHSiegeManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
@@ -48,8 +46,9 @@ import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.siege.Siegable;
 import org.l2jmobius.gameserver.model.siege.SiegeClan;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.siege.SiegeClanType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
@@ -81,7 +80,7 @@ public abstract class ClanHallSiegeEngine extends Quest implements Siegable
 	
 	public ClanHallSiegeEngine(int hallId)
 	{
-		super(-1);
+		super(-1, "");
 		LOGGER = Logger.getLogger(getClass().getName());
 		_hall = CHSiegeManager.getInstance().getSiegableHall(hallId);
 		_hall.setSiege(this);
@@ -447,9 +446,9 @@ public abstract class ClanHallSiegeEngine extends Quest implements Siegable
 		return Config.CHS_FAME_FREQUENCY;
 	}
 	
-	public void broadcastNpcSay(Npc npc, ChatType type, NpcStringId messageId)
+	public void broadcastNpcSay(Npc npc, ChatType type, String message)
 	{
-		final NpcSay npcSay = new NpcSay(npc.getObjectId(), type, npc.getId(), messageId);
+		final NpcSay npcSay = new NpcSay(npc.getObjectId(), type, npc.getId(), message);
 		final int sourceRegion = MapRegionManager.getInstance().getMapRegionLocId(npc);
 		for (Player pc : World.getInstance().getPlayers())
 		{

@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExPledgeEmblem;
 
 /**
- * @author -Wooden-, Sdw
+ * @author Sdw
  */
 public class RequestExPledgeCrestLarge extends ClientPacket
 {

@@ -20,16 +20,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.QuestType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.NpcLogListHolder;
+import org.l2jmobius.gameserver.model.quest.NpcLogListHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q10282_ToTheSeedOfAnnihilation.Q10282_ToTheSeedOfAnnihilation;
 
@@ -95,9 +95,9 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 		}
 		
 		int npcId = npc.getId();
-		if (Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
 		{
-			if (CommonUtil.contains(MONSTER1, npcId) && qs.isCond(2))
+			if (ArrayUtil.contains(MONSTER1, npcId) && qs.isCond(2))
 			{
 				if (npcId == MONSTER1[4])
 				{
@@ -124,7 +124,7 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 				}
 				checkProgress(qs, 15, MONSTER1[0], MONSTER1[1], MONSTER1[2], MONSTER1[3]);
 			}
-			else if (CommonUtil.contains(MONSTER2, npcId) && qs.isCond(3))
+			else if (ArrayUtil.contains(MONSTER2, npcId) && qs.isCond(3))
 			{
 				if (npcId == MONSTER2[3])
 				{
@@ -147,7 +147,7 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 				}
 				checkProgress(qs, 20, MONSTER2[0], MONSTER2[1], MONSTER2[2]);
 			}
-			else if (CommonUtil.contains(MONSTER3, npcId) && qs.isCond(4))
+			else if (ArrayUtil.contains(MONSTER3, npcId) && qs.isCond(4))
 			{
 				if (npcId == MONSTER3[3])
 				{
@@ -210,7 +210,7 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		if (player.getParty() != null)
 		{
@@ -223,7 +223,6 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 		{
 			increaseKill(player, npc);
 		}
-		return null;
 	}
 	
 	@Override

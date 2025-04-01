@@ -28,7 +28,7 @@ public class Q00087_SagaOfEvasSaint extends AbstractSagaQuest
 {
 	public Q00087_SagaOfEvasSaint()
 	{
-		super(87);
+		super(87, "Saga of Eva's Saint");
 		_npc = new int[]
 		{
 			30191,

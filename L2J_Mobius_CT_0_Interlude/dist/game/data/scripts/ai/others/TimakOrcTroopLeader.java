@@ -20,12 +20,11 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionHolder;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.MinionHolder;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -36,12 +35,12 @@ import ai.AbstractNpcAI;
 public class TimakOrcTroopLeader extends AbstractNpcAI
 {
 	private static final int TIMAK_ORC_TROOP_LEADER = 20767;
-	private static final NpcStringId[] ON_ATTACK_MSG =
+	private static final String[] ON_ATTACK_MSG =
 	{
-		NpcStringId.COME_OUT_YOU_CHILDREN_OF_DARKNESS,
-		NpcStringId.SHOW_YOURSELVES,
-		NpcStringId.DESTROY_THE_ENEMY_MY_BROTHERS,
-		NpcStringId.FORCES_OF_DARKNESS_FOLLOW_ME
+		"Come out, you children of darkness!",
+		"Show yourselves!",
+		"Destroy the enemy, my brothers!",
+		"Forces of darkness! Follow me!"
 	};
 	
 	private TimakOrcTroopLeader()
@@ -50,7 +49,7 @@ public class TimakOrcTroopLeader extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.isMonster())
 		{
@@ -77,7 +76,6 @@ public class TimakOrcTroopLeader extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	public static void main(String[] args)

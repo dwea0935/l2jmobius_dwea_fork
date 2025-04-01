@@ -18,8 +18,8 @@ package ai.areas.GardenOfGenesis;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -62,7 +62,7 @@ public class GenesisVines extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.disableCoreAI(true);
 		npc.setScriptValue(1);
@@ -70,7 +70,6 @@ public class GenesisVines extends AbstractNpcAI
 		cancelQuestTimer("DELETE", npc, null);
 		startQuestTimer("CAST_SKILL", 3000, npc, null);
 		startQuestTimer("DELETE", 150000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

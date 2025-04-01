@@ -26,15 +26,15 @@ import org.l2jmobius.gameserver.model.events.annotations.Priority;
 import org.l2jmobius.gameserver.model.events.annotations.Range;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableAttack;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerDlgAnswer;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemCreate;
-import org.l2jmobius.gameserver.model.events.impl.sieges.OnCastleSiegeStart;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableAttack;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerDlgAnswer;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemCreate;
+import org.l2jmobius.gameserver.model.events.holders.sieges.OnCastleSiegeStart;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.scripting.annotations.Disabled;
 
 import ai.AbstractNpcAI;
@@ -109,7 +109,7 @@ public class ListenerTest extends AbstractNpcAI
 	@Id(5575)
 	private void onItemCreate(OnItemCreate event)
 	{
-		LOGGER.info(getClass().getSimpleName() + ": Item [" + event.getItem() + "] has been created actor: " + event.getActiveChar() + " process: " + event.getProcess() + " reference: " + event.getReference());
+		LOGGER.info(getClass().getSimpleName() + ": Item [" + event.getItem() + "] has been created actor: " + event.getActiveChar() + " reference: " + event.getReference());
 	}
 	
 	/**

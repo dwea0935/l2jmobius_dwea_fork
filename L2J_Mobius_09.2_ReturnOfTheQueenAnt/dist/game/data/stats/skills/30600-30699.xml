@@ -1280,7 +1280,6 @@
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>2500</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>40</magicLevel>
 		<mpConsume>5</mpConsume>
@@ -1643,7 +1642,6 @@
 		<effectPoint>-687</effectPoint>
 		<effectRange>1800</effectRange>
 		<hitTime>3500</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicCriticalRate>5</magicCriticalRate>
@@ -2107,7 +2105,6 @@
 		<effectRange>1100</effectRange>
 		<hitTime>1200</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<lvlBonusRate>5</lvlBonusRate> <!-- Guessing -->
 		<magicCriticalRate>5</magicCriticalRate>
@@ -2235,7 +2232,6 @@
 		<abnormalVisualEffect>KNOCKBACK</abnormalVisualEffect>
 		<activateRate>60</activateRate>
 		<affectScope>SINGLE</affectScope>
-		<basicProperty>PHYSICAL</basicProperty>
 		<basicProperty>PHYSICAL</basicProperty>
 		<castRange>400</castRange>
 		<coolTime>500</coolTime>

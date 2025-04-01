@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="31900" level="65" type="Folk" name="Guardian of Border">
 		<parameters>
@@ -570,7 +570,7 @@
 			<height normal="15" />
 		</collision>
 	</npc>
-	<npc id="31919" level="70" type="SepulcherNpc" name="Ghost Chamberlain of Elmoreden">
+	<npc id="31919" level="70" type="Folk" name="Ghost Chamberlain of Elmoreden">
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
 			<param name="MoveAroundSocial1" value="120" />
@@ -603,7 +603,7 @@
 			<height normal="23" />
 		</collision>
 	</npc>
-	<npc id="31920" level="70" type="SepulcherNpc" name="Ghost Chamberlain of Elmoreden">
+	<npc id="31920" level="70" type="Folk" name="Ghost Chamberlain of Elmoreden">
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
 			<param name="MoveAroundSocial1" value="120" />
@@ -636,7 +636,7 @@
 			<height normal="23" />
 		</collision>
 	</npc>
-	<npc id="31921" level="70" type="SepulcherNpc" name="Conquerors' Sepulcher Manager">
+	<npc id="31921" level="70" type="Folk" name="Conquerors' Sepulcher Manager">
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
 			<param name="MoveAroundSocial1" value="0" />
@@ -708,7 +708,7 @@
 			<height normal="21" />
 		</collision>
 	</npc>
-	<npc id="31922" level="70" type="SepulcherNpc" name="Emperors' Sepulcher Manager">
+	<npc id="31922" level="70" type="Folk" name="Emperors' Sepulcher Manager">
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
 			<param name="MoveAroundSocial1" value="0" />
@@ -780,7 +780,7 @@
 			<height normal="21" />
 		</collision>
 	</npc>
-	<npc id="31923" level="70" type="SepulcherNpc" name="Great Sages' Sepulcher Manager">
+	<npc id="31923" level="70" type="Folk" name="Great Sages' Sepulcher Manager">
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
 			<param name="MoveAroundSocial1" value="0" />
@@ -852,7 +852,7 @@
 			<height normal="21" />
 		</collision>
 	</npc>
-	<npc id="31924" level="70" type="SepulcherNpc" name="Judges' Sepulcher Manager">
+	<npc id="31924" level="70" type="Folk" name="Judges' Sepulcher Manager">
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
 			<param name="MoveAroundSocial1" value="0" />
@@ -924,7 +924,7 @@
 			<height normal="21" />
 		</collision>
 	</npc>
-	<npc id="31925" level="70" type="SepulcherNpc" name="Baron's Hall Gatekeeper">
+	<npc id="31925" level="70" type="Folk" name="Baron's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="1" />
 			<param name="DoorName" value="royal_rush_door_1a" />
@@ -963,7 +963,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31926" level="70" type="SepulcherNpc" name="Viscount's Hall Gatekeeper">
+	<npc id="31926" level="70" type="Folk" name="Viscount's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="2" />
 			<param name="DoorName" value="royal_rush_door_1b" />
@@ -1002,7 +1002,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31927" level="70" type="SepulcherNpc" name="Count's Hall Gatekeeper">
+	<npc id="31927" level="70" type="Folk" name="Count's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="3" />
 			<param name="DoorName" value="royal_rush_door_1c" />
@@ -1041,7 +1041,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31928" level="70" type="SepulcherNpc" name="Marquis' Hall Gatekeeper">
+	<npc id="31928" level="70" type="Folk" name="Marquis' Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="4" />
 			<param name="DoorName" value="royal_rush_door_1d" />
@@ -1080,7 +1080,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31929" level="70" type="SepulcherNpc" name="Duke's Hall Gatekeeper">
+	<npc id="31929" level="70" type="Folk" name="Duke's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="5" />
 			<param name="DoorName" value="royal_rush_door_1e" />
@@ -1119,7 +1119,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31930" level="70" type="SepulcherNpc" name="Baron's Hall Gatekeeper">
+	<npc id="31930" level="70" type="Folk" name="Baron's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="1" />
 			<param name="DoorName" value="royal_rush_door_2a" />
@@ -1158,7 +1158,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31931" level="70" type="SepulcherNpc" name="Viscount's Hall Gatekeeper">
+	<npc id="31931" level="70" type="Folk" name="Viscount's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="2" />
 			<param name="DoorName" value="royal_rush_door_2b" />
@@ -1197,7 +1197,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31932" level="70" type="SepulcherNpc" name="Count's Hall Gatekeeper">
+	<npc id="31932" level="70" type="Folk" name="Count's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="3" />
 			<param name="DoorName" value="royal_rush_door_2c" />
@@ -1236,7 +1236,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31933" level="70" type="SepulcherNpc" name="Marquis' Hall Gatekeeper">
+	<npc id="31933" level="70" type="Folk" name="Marquis' Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="4" />
 			<param name="DoorName" value="royal_rush_door_2d" />
@@ -1275,7 +1275,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31934" level="70" type="SepulcherNpc" name="Duke's Hall Gatekeeper">
+	<npc id="31934" level="70" type="Folk" name="Duke's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="5" />
 			<param name="DoorName" value="royal_rush_door_2e" />
@@ -1314,7 +1314,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31935" level="70" type="SepulcherNpc" name="Baron's Hall Gatekeeper">
+	<npc id="31935" level="70" type="Folk" name="Baron's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="1" />
 			<param name="DoorName" value="royal_rush_door_3a" />
@@ -1353,7 +1353,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31936" level="70" type="SepulcherNpc" name="Viscount's Hall Gatekeeper">
+	<npc id="31936" level="70" type="Folk" name="Viscount's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="2" />
 			<param name="DoorName" value="royal_rush_door_3b" />
@@ -1392,7 +1392,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31937" level="70" type="SepulcherNpc" name="Count's Hall Gatekeeper">
+	<npc id="31937" level="70" type="Folk" name="Count's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="3" />
 			<param name="DoorName" value="royal_rush_door_3c" />
@@ -1431,7 +1431,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31938" level="70" type="SepulcherNpc" name="Marquis' Hall Gatekeeper">
+	<npc id="31938" level="70" type="Folk" name="Marquis' Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="4" />
 			<param name="DoorName" value="royal_rush_door_3d" />
@@ -1470,7 +1470,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31939" level="70" type="SepulcherNpc" name="Duke's Hall Gatekeeper">
+	<npc id="31939" level="70" type="Folk" name="Duke's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="5" />
 			<param name="DoorName" value="royal_rush_door_3e" />
@@ -1509,7 +1509,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31940" level="70" type="SepulcherNpc" name="Baron's Hall Gatekeeper">
+	<npc id="31940" level="70" type="Folk" name="Baron's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="1" />
 			<param name="DoorName" value="royal_rush_door_4a" />
@@ -1548,7 +1548,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31941" level="70" type="SepulcherNpc" name="Viscount's Hall Gatekeeper">
+	<npc id="31941" level="70" type="Folk" name="Viscount's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="2" />
 			<param name="DoorName" value="royal_rush_door_4b" />
@@ -1587,7 +1587,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31942" level="70" type="SepulcherNpc" name="Count's Hall Gatekeeper">
+	<npc id="31942" level="70" type="Folk" name="Count's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="3" />
 			<param name="DoorName" value="royal_rush_door_4c" />
@@ -1626,7 +1626,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31943" level="70" type="SepulcherNpc" name="Marquis' Hall Gatekeeper">
+	<npc id="31943" level="70" type="Folk" name="Marquis' Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="4" />
 			<param name="DoorName" value="royal_rush_door_4d" />
@@ -1665,7 +1665,7 @@
 			<height normal="29" />
 		</collision>
 	</npc>
-	<npc id="31944" level="70" type="SepulcherNpc" name="Duke's Hall Gatekeeper">
+	<npc id="31944" level="70" type="Folk" name="Duke's Hall Gatekeeper">
 		<parameters>
 			<param name="RoomIDX" value="5" />
 			<param name="DoorName" value="royal_rush_door_4e" />

@@ -640,7 +640,7 @@
 		</skills>
 	</item>
 	<item id="31849" name="Unidentified Art of Battle Axe" type="EtcItem">
-		<!-- Art of Battle Axe in an Unidentified state. Double-click the item to identify it. The acquired item can be Standard or Bound. (Type: one-handed weapon/ blunt) -->
+		<!-- Unidentified Battle Art Axe. Double-click to identify. The acquired item can be Common or Bound. (Type: one-handed blunt weapon) -->
 		<set name="icon" val="icon.weapon_art_of_battle_axe_i00" />
 		<set name="crystal_type" val="B" />
 		<set name="commissionItemType" val="BLUNT_WEAPON" />

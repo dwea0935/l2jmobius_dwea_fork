@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="91200" name="Scroll of Escape: Wall of Argos" type="EtcItem">
 		<!-- Move to the Wall of Argos Blood Samples with Magic Scroll.. Note: Can Move to the Wall of Argos through Gatekeeper Tatiana in the Goddard Castle. -->
@@ -171,7 +171,7 @@
 		<set name="material" val="LIQUID" />
 	</item>
 	<item id="91219" name="Transformation Scroll: Cat" type="EtcItem">
-		<!-- Transforms you into Cat for 15 minutes. Effect remains even after death.. Cat's Energy: Max HP/MP +20%. XP/SP gain +20% during Sayha's Grace. Effect remains even after death. <Warning>. If used during Teddy Bear/Blue Dynasty/Kat the Cat/Panda Buff, the existing buff will be replaced. Cooldown is 1 minute. -->
+		<!-- Transforms you into Cat for 15 minutes. Effect remains even after death. Cat's Energy: Max HP/MP +20%. XP/SP gain +20% during Sayha's Grace. Effect remains even after death. <Warning>. If used during Teddy Bear/Blue Dynasty/Kat the Cat/Panda Buff, the existing buff will be replaced. Cooldown is 1 minute. -->
 		<set name="icon" val="icon.sayha2017_cat" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="is_dropable" val="false" />
@@ -397,7 +397,7 @@
 		</capsuled_items>
 	</item>
 	<item id="91240" name="Christmas Amulet" additionalName="15-day" type="EtcItem">
-		<!-- 15-day item. With Inventory, Hunting XP/SP +20% Fishing XP/SP +20%.. -->
+		<!-- 15-day item. With Inventory, Hunting XP/SP +20% Fishing XP/SP +20%. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_present_luck_i00" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
@@ -453,7 +453,7 @@
 		</stats>
 	</item>
 	<item id="91244" name="Dragon Pendant Lv. 1" type="Armor">
-		<!-- Pendant imbued with Dragon's power, can be enhanced with Dragon Varnish max. +5. When enhanced each effect is supplemented, at +5 can upgrade to Lv2 through Head Blacksmith Ferris in the Town of Aden.. Upgrade Materials: Crystal (C-grade) 200, 2,000,000 Adena -->
+		<!-- Pendant imbued with Dragon's power, can be enhanced with Dragon Varnish max. +5. When enhanced each effect is supplemented, at +5 can upgrade to Lv2 through Head Blacksmith Ferris in the Town of Aden. Upgrade Materials: Crystal (C-grade) 200, 2,000,000 Adena -->
 		<set name="icon" val="icon.bm_pendant_dragon_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="underwear" />
@@ -466,7 +466,7 @@
 		</stats>
 	</item>
 	<item id="91245" name="Dragon Pendant Lv. 2" type="Armor">
-		<!-- Pendant imbued with Dragon's power, can be enhanced with Dragon Varnish max. +5. When enhanced each effect is supplemented, at +5 can upgrade to Lv3 through Head Blacksmith Ferris in the Town of Aden.. Upgrade Materials: Crystal (B-grade) 1,500, 10,000,000 Adena -->
+		<!-- Pendant imbued with Dragon's power, can be enhanced with Dragon Varnish max. +5. When enhanced each effect is supplemented, at +5 can upgrade to Lv3 through Head Blacksmith Ferris in the Town of Aden. Upgrade Materials: Crystal (B-grade) 1,500, 10,000,000 Adena -->
 		<set name="icon" val="icon.bm_pendant_dragon_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="underwear" />
@@ -479,7 +479,7 @@
 		</stats>
 	</item>
 	<item id="91246" name="Dragon Pendant Lv. 3" type="Armor">
-		<!-- Pendant imbued with Dragon's power, can be enhanced with Dragon Varnish max. +5. When enhanced each effect is supplemented, at +5 can upgrade to Lv4 through Head Blacksmith Ferris in the Town of Aden.. Upgrade Materials: Crystal (B-grade) x5,000, 50,000,000 Adena -->
+		<!-- Pendant imbued with Dragon's power, can be enhanced with Dragon Varnish max. +5. When enhanced each effect is supplemented, at +5 can upgrade to Lv4 through Head Blacksmith Ferris in the Town of Aden. Upgrade Materials: Crystal (B-grade) x5,000, 50,000,000 Adena -->
 		<set name="icon" val="icon.bm_pendant_dragon_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="underwear" />
@@ -559,7 +559,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="51162" level="1" /> <!-- Quality Quick MP Recovery Potion -->
+			<skill id="51162" level="1" /> <!-- High-grade Quick MP Recovery Potion -->
 		</skills>
 	</item>
 	<item id="91253" name="Lucky Herb Pouch" type="EtcItem">
@@ -645,7 +645,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="material" val="LIQUID" />
 		<skills>
-			<skill id="51184" level="1" /> <!-- Tranformation: Ninja Assassin -->
+			<skill id="51184" level="1" /> <!-- Ninja Assassin -->
 		</skills>
 	</item>
 	<item id="91263" name="Transformation Scroll: Blood Noblesse" type="EtcItem">

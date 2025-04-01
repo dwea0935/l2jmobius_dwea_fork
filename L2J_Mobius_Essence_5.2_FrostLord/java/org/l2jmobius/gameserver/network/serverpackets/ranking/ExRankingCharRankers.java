@@ -25,7 +25,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -64,7 +64,7 @@ public class ExRankingCharRankers extends ServerPacket
 		buffer.writeByte(_group);
 		buffer.writeByte(_scope);
 		buffer.writeInt(_race);
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		if (!_playerList.isEmpty())
 		{
 			switch (_group)

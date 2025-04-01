@@ -20,10 +20,11 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.pledgeV2;
 
+import org.l2jmobius.gameserver.data.holders.ClanShopProductHolder;
 import org.l2jmobius.gameserver.data.xml.ClanShopData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.ClanShopProductHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.pledgeV2.ExPledgeItemBuy;
 
@@ -93,7 +94,7 @@ public class RequestExPledgeItemBuy extends ClientPacket
 		
 		if (product.getAdena() > 0)
 		{
-			player.reduceAdena("ClanShop", product.getAdena() * _count, player, true);
+			player.reduceAdena(ItemProcessType.FEE, product.getAdena() * _count, player, true);
 		}
 		if (product.getFame() > 0)
 		{
@@ -101,7 +102,7 @@ public class RequestExPledgeItemBuy extends ClientPacket
 			player.broadcastUserInfo();
 		}
 		
-		player.addItem("ClanShop", _itemId, product.getCount() * _count, player, true);
+		player.addItem(ItemProcessType.BUY, _itemId, product.getCount() * _count, player, true);
 		player.sendPacket(new ExPledgeItemBuy(0));
 	}
 }

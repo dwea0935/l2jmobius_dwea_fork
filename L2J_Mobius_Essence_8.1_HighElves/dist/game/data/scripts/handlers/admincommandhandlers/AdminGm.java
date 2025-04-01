@@ -23,7 +23,6 @@ package handlers.admincommandhandlers;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles following admin commands: - GM = turns GM mode off
@@ -43,7 +42,7 @@ public class AdminGm implements IAdminCommandHandler
 		{
 			AdminData.getInstance().deleteGm(activeChar);
 			activeChar.setAccessLevel(0, true, false);
-			BuilderUtil.sendSysMessage(activeChar, "You deactivated your GM access for this session, if you login again you will be GM again, in order to remove your access completely please shift yourself and set your accesslevel to 0.");
+			activeChar.sendSysMessage("You deactivated your GM access for this session, if you login again you will be GM again, in order to remove your access completely please shift yourself and set your accesslevel to 0.");
 		}
 		return true;
 	}

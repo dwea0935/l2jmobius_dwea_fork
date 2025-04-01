@@ -34,6 +34,7 @@ public class UndeadRealEnemy implements IAffectObjectHandler
 		{
 			return false;
 		}
+		
 		return target.isUndead() && target.isAutoAttackable(creature);
 	}
 	

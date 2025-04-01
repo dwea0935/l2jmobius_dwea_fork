@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="91800" name="Queen Ant's Ring Lv. 4" additionalName="15-day" type="Armor">
 		<!-- <Properties>. P. Atk. +10%. M. Atk. +15%. P. Critical Damage +15%. M. Skill Critical Damage +10%. P. Accuracy +5. M. Accuracy +5. Max MP +30. Infection Atk. Rate and Resistance +30%. Available for 15 d. Effects of two identical rings do not stack. Cannot be enchanted. -->
@@ -450,7 +450,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<skills>
-			<skill id="54122" level="1" /> <!-- Improved Fire Attribute Attack Potion -->
+			<skill id="54122" level="1" /> <!-- Improved Fire Attack Potion -->
 		</skills>
 	</item>
 	<item id="91831" name="Improved Water Attack Potion" type="EtcItem">
@@ -466,7 +466,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<skills>
-			<skill id="54123" level="1" /> <!-- Improved Water Attribute Attack Potion -->
+			<skill id="54123" level="1" /> <!-- Improved Water Attack Potion -->
 		</skills>
 	</item>
 	<item id="91832" name="Improved Wind Attack Potion" type="EtcItem">
@@ -482,7 +482,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<skills>
-			<skill id="54124" level="1" /> <!-- Improved Wind Attribute Attack Potion -->
+			<skill id="54124" level="1" /> <!-- Improved Wind Attack Potion -->
 		</skills>
 	</item>
 	<item id="91833" name="Improved Earth Attack Potion" type="EtcItem">
@@ -498,7 +498,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<skills>
-			<skill id="54125" level="1" /> <!-- Improved Earth Attribute Attack Potion -->
+			<skill id="54125" level="1" /> <!-- Improved Earth Attack Potion -->
 		</skills>
 	</item>
 	<item id="91834" name="Sayha's Grace Box" type="EtcItem">
@@ -512,8 +512,8 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="54126" level="1" /> <!-- Saiha's Grace Box -->
-			<skill id="54126" level="2" /> <!-- Saiha's Grace Box Random -->
+			<skill id="54126" level="1" /> <!-- Sayha's Grace Box -->
+			<skill id="54126" level="2" /> <!-- Sayha's Blessing Chest -->
 		</skills>
 	</item>
 	<item id="91835" name="Sayha's Blessing Chest" type="EtcItem">
@@ -598,7 +598,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<skills>
-			<skill id="50133" level="1" /> <!-- Improved Scroll of Escape -->
+			<skill id="50133" level="1" /> <!-- Blessed Scroll of Escape -->
 		</skills>
 	</item>
 	<item id="91840" name="XP Growth Scroll (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -613,7 +613,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="50134" level="1" /> <!-- XP Growth Scroll (Event) -->
+			<skill id="50134" level="1" /> <!-- XP Growth Scroll (Time-limited) -->
 		</skills>
 	</item>
 	<item id="91841" name="Transformation Scroll: White Assassin" additionalName="Sealed" type="EtcItem">
@@ -628,7 +628,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="62001" level="1" /> <!-- White Assassin Transformation Scroll -->
+			<skill id="62001" level="1" /> <!-- White Assassin Transformation -->
 		</skills>
 	</item>
 	<item id="91842" name="Einhasad's Protection" additionalName="Sealed" type="EtcItem">
@@ -792,7 +792,7 @@
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="50127" level="1" /> <!-- Piggy's Star Candy -->
+			<skill id="50127" level="1" /> <!-- White Day's Candy of Favor -->
 		</skills>
 	</item>
 	<item id="91853" name="Old Home's Treasure Chest" type="EtcItem">
@@ -820,7 +820,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50129" level="1" /> <!-- Old Home's Golden Chest -->
+			<skill id="50129" level="1" /> <!-- Old Home's Golden Pack -->
 		</skills>
 	</item>
 	<item id="91855" name="Old Home's Silver Pack" type="EtcItem">
@@ -834,7 +834,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50130" level="1" /> <!-- Old Home's Silver Chest -->
+			<skill id="50130" level="1" /> <!-- Old Home's Silver Pack -->
 		</skills>
 	</item>
 	<item id="91856" name="Special Dragon's Miracle Potion Lv. 1" type="EtcItem">
@@ -847,7 +847,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50131" level="1" /> <!-- Special Dragon's Miracle Potion Lv. 1 - Event -->
+			<skill id="50131" level="1" /> <!-- Special Dragon's Miracle Potion -->
 		</skills>
 	</item>
 	<item id="91857" name="Mid-grade HP Recovery Potion" type="EtcItem">
@@ -919,7 +919,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="51402" level="1" /> <!-- Red Lantern - 4th Place -->
+			<skill id="51402" level="1" /> <!-- Green Lantern - 4th Place -->
 		</skills>
 	</item>
 	<item id="91862" name="Dragon Belt" additionalName="Sealed" type="Armor">
@@ -957,7 +957,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="51292" level="1" /> <!-- Blessed Scroll: Enchant Armor (S-grade) -->
+			<skill id="51292" level="1" /> <!-- Blessed Scroll: Enchant S-grade Armor -->
 		</skills>
 	</item>
 	<item id="91864" name="Dragon Belt Pack" additionalName="Sealed" type="EtcItem">
@@ -1025,7 +1025,7 @@
 		<set name="etcitem_type" val="ENCHT_WP" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="51046" level="1" /> <!-- Special Enchant Scroll (PA Event) -->
+			<skill id="51046" level="1" /> <!-- Zodiac Agathion Box -->
 		</skills>
 	</item>
 	<item id="91868" name="Special Enchant Scroll (PA Event)" additionalName="Sealed" type="EtcItem">

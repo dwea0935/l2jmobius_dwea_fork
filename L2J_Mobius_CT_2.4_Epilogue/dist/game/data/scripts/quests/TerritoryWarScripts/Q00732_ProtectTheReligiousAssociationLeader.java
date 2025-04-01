@@ -24,7 +24,7 @@ public class Q00732_ProtectTheReligiousAssociationLeader extends TerritoryWarSup
 {
 	public Q00732_ProtectTheReligiousAssociationLeader()
 	{
-		super(732);
+		super(732, "Protect the Religious Association Leader");
 		NPC_IDS = new int[]
 		{
 			36510,

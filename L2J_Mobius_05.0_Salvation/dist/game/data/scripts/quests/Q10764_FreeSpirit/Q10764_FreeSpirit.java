@@ -16,15 +16,15 @@
  */
 package quests.Q10764_FreeSpirit;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import quests.Q10763_TerrifyingChertuba.Q10763_TerrifyingChertuba;
 
@@ -149,7 +149,7 @@ public class Q10764_FreeSpirit extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == SYLPH)
 		{
@@ -159,6 +159,5 @@ public class Q10764_FreeSpirit extends Quest
 		{
 			npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.THANK_YOU_THANK_YOU_FOR_HELPING);
 		}
-		return super.onSpawn(npc);
 	}
 }

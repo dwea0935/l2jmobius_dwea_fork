@@ -31,8 +31,8 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.TimedHuntingZoneHolder;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.holders.TimedHuntingZoneHolder;
 
 /**
  * @author Mobius
@@ -65,9 +65,9 @@ public class TimedHuntingZoneData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node xmlNode = doc.getFirstChild(); xmlNode != null; xmlNode = xmlNode.getNextSibling())
+		for (Node xmlNode = document.getFirstChild(); xmlNode != null; xmlNode = xmlNode.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(xmlNode.getNodeName()))
 			{
@@ -218,16 +218,29 @@ public class TimedHuntingZoneData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Retrieves the hunting zone data for the specified zone ID.
+	 * @param zoneId the unique identifier of the hunting zone
+	 * @return the {@link TimedHuntingZoneHolder} associated with the given zone ID, or {@code null} if no data exists for the specified ID
+	 */
 	public TimedHuntingZoneHolder getHuntingZone(int zoneId)
 	{
 		return _timedHuntingZoneData.get(zoneId);
 	}
 	
+	/**
+	 * Retrieves a collection of all available hunting zones.
+	 * @return a {@link Collection} containing all {@link TimedHuntingZoneHolder} instances representing each hunting zone
+	 */
 	public Collection<TimedHuntingZoneHolder> getAllHuntingZones()
 	{
 		return _timedHuntingZoneData.values();
 	}
 	
+	/**
+	 * Gets the total number of configured hunting zones.
+	 * @return the count of hunting zones available in the data
+	 */
 	public int getSize()
 	{
 		return _timedHuntingZoneData.size();

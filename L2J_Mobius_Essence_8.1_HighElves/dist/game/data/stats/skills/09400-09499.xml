@@ -11,7 +11,7 @@
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-3</magicLevel>

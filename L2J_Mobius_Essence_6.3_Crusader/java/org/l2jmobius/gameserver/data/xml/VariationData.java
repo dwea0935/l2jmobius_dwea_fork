@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -68,9 +72,9 @@ public class VariationData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode ->
+		forEach(document, "list", listNode ->
 		{
 			forEach(listNode, "variations", variationsNode -> forEach(variationsNode, "variation", variationNode ->
 			{
@@ -221,27 +225,47 @@ public class VariationData implements IXmlReader
 		});
 	}
 	
+	/**
+	 * Retrieves the total count of variations available in the system.
+	 * @return the number of variations
+	 */
 	public int getVariationCount()
 	{
 		return _variations.size();
 	}
 	
+	/**
+	 * Retrieves the total count of variation fees available in the system.
+	 * @return the number of variation fees
+	 */
 	public int getFeeCount()
 	{
 		return _fees.size();
 	}
 	
 	/**
-	 * Generate a new random variation instance
-	 * @param variation The variation template to generate the variation instance from
-	 * @param targetItem The item on which the variation will be applied
-	 * @return VariationInstance
+	 * Generates a new random variation instance based on the specified variation template.
+	 * <p>
+	 * This method creates a {@link VariationInstance} by selecting random effects for the given variation and applying it to the specified target item.
+	 * </p>
+	 * @param variation the {@link Variation} template from which the instance will be generated
+	 * @param targetItem the {@link Item} on which the variation will be applied
+	 * @return a new {@link VariationInstance} with random effects
 	 */
 	public VariationInstance generateRandomVariation(Variation variation, Item targetItem)
 	{
 		return generateRandomVariation(variation, targetItem.getId());
 	}
 	
+	/**
+	 * Generates a new random variation instance based on the specified variation template and target item ID.
+	 * <p>
+	 * This private method is a helper that generates a {@link VariationInstance} by selecting random effects based on the target item ID.
+	 * </p>
+	 * @param variation the {@link Variation} template from which the instance will be generated
+	 * @param targetItemId the ID of the item on which the variation will be applied
+	 * @return a new {@link VariationInstance} with random effects
+	 */
 	private VariationInstance generateRandomVariation(Variation variation, int targetItemId)
 	{
 		final Options option1 = variation.getRandomEffect(0, targetItemId);
@@ -249,6 +273,15 @@ public class VariationData implements IXmlReader
 		return new VariationInstance(variation.getMineralId(), option1, option2);
 	}
 	
+	/**
+	 * Retrieves a variation based on the mineral ID and target item.
+	 * <p>
+	 * This method searches for a matching {@link Variation} that applies to the specified mineral ID and item, checking the item group compatibility. If no exact match is found, the first available variation is returned.
+	 * </p>
+	 * @param mineralId the mineral ID associated with the desired variation
+	 * @param item the {@link Item} for which the variation is being retrieved
+	 * @return the {@link Variation} for the specified mineral ID and item, or {@code null} if not found
+	 */
 	public Variation getVariation(int mineralId, Item item)
 	{
 		final List<Variation> variations = _variations.get(mineralId);
@@ -269,17 +302,37 @@ public class VariationData implements IXmlReader
 		return variations.get(0);
 	}
 	
+	/**
+	 * Checks if there are any variations available for the specified mineral ID.
+	 * @param mineralId the mineral ID to check for variations
+	 * @return {@code true} if variations exist for the mineral ID, otherwise {@code false}
+	 */
 	public boolean hasVariation(int mineralId)
 	{
 		final List<Variation> variations = _variations.get(mineralId);
 		return (variations != null) && !variations.isEmpty();
 	}
 	
+	/**
+	 * Retrieves the variation fee associated with the specified item and mineral IDs.
+	 * @param itemId the ID of the item
+	 * @param mineralId the ID of the mineral
+	 * @return the {@link VariationFee} for the specified item and mineral IDs, or {@code null} if not found
+	 */
 	public VariationFee getFee(int itemId, int mineralId)
 	{
 		return _fees.getOrDefault(itemId, Collections.emptyMap()).get(mineralId);
 	}
 	
+	/**
+	 * Retrieves the cancellation fee for the specified item and mineral IDs.
+	 * <p>
+	 * If no specific fee is found for the given item and mineral combination, the method attempts to retrieve a default fee. If no fee is available, {@code -1} is returned.
+	 * </p>
+	 * @param itemId the ID of the item
+	 * @param mineralId the ID of the mineral
+	 * @return the cancellation fee as a {@code long}, or {@code -1} if not found
+	 */
 	public long getCancelFee(int itemId, int mineralId)
 	{
 		final Map<Integer, VariationFee> fees = _fees.get(itemId);
@@ -291,7 +344,7 @@ public class VariationData implements IXmlReader
 		VariationFee fee = fees.get(mineralId);
 		if (fee == null)
 		{
-			// FIXME This will happen when the data is pre-rework or when augments were manually given, but still that's a cheap solution
+			// This will happen when the data is pre-rework or when augments were manually given, but still that's a cheap solution.
 			LOGGER.warning(getClass().getSimpleName() + ": Cancellation fee not found for item [" + itemId + "] and mineral [" + mineralId + "]");
 			fee = fees.values().iterator().next();
 			if (fee == null)
@@ -303,6 +356,11 @@ public class VariationData implements IXmlReader
 		return fee.getCancelFee();
 	}
 	
+	/**
+	 * Checks if there is fee data available for the specified item ID.
+	 * @param itemId the ID of the item to check for fee data
+	 * @return {@code true} if fee data exists for the item, otherwise {@code false}
+	 */
 	public boolean hasFeeData(int itemId)
 	{
 		final Map<Integer, VariationFee> itemFees = _fees.get(itemId);

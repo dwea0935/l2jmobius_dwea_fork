@@ -31,14 +31,14 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ClanHallGrade;
-import org.l2jmobius.gameserver.enums.ClanHallType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.ClanHallTeleportHolder;
+import org.l2jmobius.gameserver.model.clan.enums.ClanHallGrade;
+import org.l2jmobius.gameserver.model.clan.enums.ClanHallType;
 import org.l2jmobius.gameserver.model.residences.ClanHall;
+import org.l2jmobius.gameserver.model.residences.ClanHallTeleportHolder;
 
 /**
  * @author St3eT
@@ -46,7 +46,8 @@ import org.l2jmobius.gameserver.model.residences.ClanHall;
 public class ClanHallData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(ClanHallData.class.getName());
-	private static final Map<Integer, ClanHall> _clanHalls = new ConcurrentHashMap<>();
+	
+	private final Map<Integer, ClanHall> _clanHalls = new ConcurrentHashMap<>();
 	
 	protected ClanHallData()
 	{
@@ -61,13 +62,13 @@ public class ClanHallData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		final List<Door> doors = new ArrayList<>();
 		final List<Integer> npcs = new ArrayList<>();
 		final List<ClanHallTeleportHolder> teleports = new ArrayList<>();
 		final StatSet params = new StatSet();
-		for (Node listNode = doc.getFirstChild(); listNode != null; listNode = listNode.getNextSibling())
+		for (Node listNode = document.getFirstChild(); listNode != null; listNode = listNode.getNextSibling())
 		{
 			if ("list".equals(listNode.getNodeName()))
 			{
@@ -224,10 +225,6 @@ public class ClanHallData implements IXmlReader
 		return freeAuctionableHalls;
 	}
 	
-	/**
-	 * Gets the single instance of ClanHallData.
-	 * @return single instance of ClanHallData
-	 */
 	public static ClanHallData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

@@ -27,14 +27,15 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.ItemData;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Advi
@@ -481,7 +482,7 @@ public class TradeList
 			{
 				return false;
 			}
-			final Item newItem = _owner.getInventory().transferItem("Trade", titem.getObjectId(), titem.getCount(), partner.getInventory(), _owner, _partner);
+			final Item newItem = _owner.getInventory().transferItem(ItemProcessType.TRANSFER, titem.getObjectId(), titem.getCount(), partner.getInventory(), _owner, _partner);
 			if (newItem == null)
 			{
 				return false;
@@ -665,7 +666,7 @@ public class TradeList
 			{
 				if (_packaged)
 				{
-					Util.handleIllegalPlayerAction(player, "[TradeList.privateStoreBuy()] " + player + " tried to cheat the package sell and buy only a part of the package! Ban this player for bot usage!", Config.DEFAULT_PUNISH);
+					PunishmentManager.handleIllegalPlayerAction(player, "[TradeList.privateStoreBuy()] " + player + " tried to cheat the package sell and buy only a part of the package! Ban this player for bot usage!", Config.DEFAULT_PUNISH);
 					return 2;
 				}
 				
@@ -737,13 +738,13 @@ public class TradeList
 		final InventoryUpdate ownerIU = new InventoryUpdate();
 		final InventoryUpdate playerIU = new InventoryUpdate();
 		final Item adenaItem = playerInventory.getAdenaInstance();
-		if (!playerInventory.reduceAdena("PrivateStore", totalPrice, player, _owner))
+		if (!playerInventory.reduceAdena(ItemProcessType.BUY, totalPrice, player, _owner))
 		{
 			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
 			return 1;
 		}
 		playerIU.addItem(adenaItem);
-		ownerInventory.addAdena("PrivateStore", totalPrice, _owner, player);
+		ownerInventory.addAdena(ItemProcessType.SELL, totalPrice, _owner, player);
 		// ownerIU.addItem(ownerInventory.getAdenaInstance());
 		boolean ok = true;
 		
@@ -766,7 +767,7 @@ public class TradeList
 			}
 			
 			// Proceed with item transfer
-			final Item newItem = ownerInventory.transferItem("PrivateStore", item.getObjectId(), item.getCount(), playerInventory, _owner, player);
+			final Item newItem = ownerInventory.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), item.getCount(), playerInventory, _owner, player);
 			if (newItem == null)
 			{
 				ok = false;
@@ -934,7 +935,7 @@ public class TradeList
 			}
 			if (oldItem.getId() != item.getItemId())
 			{
-				Util.handleIllegalPlayerAction(player, player + " is cheating with sell items", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " is cheating with sell items", Config.DEFAULT_PUNISH);
 				return false;
 			}
 			
@@ -944,7 +945,7 @@ public class TradeList
 			}
 			
 			// Proceed with item transfer
-			final Item newItem = playerInventory.transferItem("PrivateStore", objectId, item.getCount(), ownerInventory, player, _owner);
+			final Item newItem = playerInventory.transferItem(ItemProcessType.TRANSFER, objectId, item.getCount(), ownerInventory, player, _owner);
 			if (newItem == null)
 			{
 				continue;
@@ -1010,9 +1011,9 @@ public class TradeList
 				return false;
 			}
 			final Item adenaItem = ownerInventory.getAdenaInstance();
-			ownerInventory.reduceAdena("PrivateStore", totalPrice, _owner, player);
+			ownerInventory.reduceAdena(ItemProcessType.BUY, totalPrice, _owner, player);
 			ownerIU.addItem(adenaItem);
-			playerInventory.addAdena("PrivateStore", totalPrice, player, _owner);
+			playerInventory.addAdena(ItemProcessType.SELL, totalPrice, player, _owner);
 			playerIU.addItem(playerInventory.getAdenaInstance());
 		}
 		

@@ -16,9 +16,8 @@
  */
 package quests.Q00708_PathToBecomingALordGludio;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -27,7 +26,7 @@ import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 /**
@@ -59,7 +58,7 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 	
 	public Q00708_PathToBecomingALordGludio()
 	{
-		super(708);
+		super(708, "Path to Becoming a Lord - Gludio");
 		addStartNpc(SAYRES);
 		addKillId(MOBS);
 		addTalkId(SAYRES, PINTER, BATHIS);
@@ -86,6 +85,7 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 			case "35100-03.html":
 			{
 				qs.startQuest();
+				qs.set("FlagJournal", String.valueOf(1));
 				break;
 			}
 			case "35100-05.html":
@@ -128,7 +128,7 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 			{
 				takeItems(player, HEADLESS_KNIGHT_ARMOR, 1);
 				qs.setCond(8);
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), NpcStringId.LISTEN_YOU_VILLAGERS_OUR_LIEGE_WHO_WILL_SOON_BECOME_A_LORD_HAS_DEFEATED_THE_HEADLESS_KNIGHT_YOU_CAN_NOW_REST_EASY));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), "Listen, you villagers. Our liege, who will soon become a lord, has defeated the Headless Knight. You can now rest easy!"));
 				break;
 			}
 			case "30298-05.html":
@@ -151,8 +151,7 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 			{
 				if (castleOwner != null)
 				{
-					final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), NpcStringId.S1_HAS_BECOME_LORD_OF_THE_TOWN_OF_GLUDIO_LONG_MAY_HE_REIGN);
-					packet.addStringParameter(player.getName());
+					final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), player.getName() + " has become lord of the Town of Gludio. Long may he reign!");
 					npc.broadcastPacket(packet);
 					qs.exitQuest(true, true);
 				}
@@ -163,7 +162,7 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = killer.getQuestState(getName());
 		if ((qs != null) && qs.isCond(6))
@@ -178,7 +177,6 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 				qs.setCond(7);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

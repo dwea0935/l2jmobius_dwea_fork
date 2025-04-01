@@ -23,16 +23,16 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
-import org.l2jmobius.gameserver.enums.UserInfoType;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 
 /**
  * @author Mobius
@@ -158,8 +158,8 @@ public class UserInfo extends AbstractMaskPacket<UserInfoType>
 			buffer.writeByte(_player.isGM());
 			buffer.writeByte(_player.getRace().ordinal());
 			buffer.writeByte(_appearance.isFemale());
-			buffer.writeInt(_player.getBaseTemplate().getClassId().getRootClassId().getId());
-			buffer.writeInt(_player.getClassId().getId());
+			buffer.writeInt(_player.getBaseTemplate().getPlayerClass().getRootClass().getId());
+			buffer.writeInt(_player.getPlayerClass().getId());
 			buffer.writeByte(_player.getLevel());
 		}
 		if (containsMask(UserInfoType.BASE_STATS))
@@ -287,7 +287,7 @@ public class UserInfo extends AbstractMaskPacket<UserInfoType>
 			buffer.writeInt(_player.getClanId());
 			buffer.writeInt(_player.getClanCrestLargeId());
 			buffer.writeInt(_player.getClanCrestId());
-			buffer.writeInt(_player.getClanPrivileges().getBitmask());
+			buffer.writeInt(_player.getClanPrivileges().getMask());
 			buffer.writeByte(_player.isClanLeader());
 			buffer.writeInt(_player.getAllyId());
 			buffer.writeInt(_player.getAllyCrestId());

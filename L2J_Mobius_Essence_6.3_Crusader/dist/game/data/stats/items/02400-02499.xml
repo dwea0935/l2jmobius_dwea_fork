@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="2400" name="Tallum Tunic" type="Armor">
 		<!-- <Properties>. WIT +1. Overweight limit +1500. M. Def. +15. Fear/ Silence Resistance +50% -->
@@ -22,7 +22,7 @@
 		</stats>
 		<skills>
 			<skill id="50223" level="1" /> <!-- A-grade: Tallum Tunic -->
-			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top Armor -->
+			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper Armor -->
 		</skills>
 	</item>
 	<item id="2401" name="Elven Mithril Stockings" type="Armor">
@@ -127,7 +127,7 @@
 		</stats>
 		<skills>
 			<skill id="50226" level="1" /> <!-- A-grade: Tallum Stockings -->
-			<skill id="50262" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Bottom Armor -->
+			<skill id="50262" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Lower Armor -->
 		</skills>
 	</item>
 	<item id="2406" name="Avadon Robe" type="Armor">
@@ -173,7 +173,7 @@
 		</stats>
 		<skills>
 			<skill id="50227" level="1" /> <!-- A-grade: Dark Crystal Robe -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="2408" name="Robe of Nightmare" type="Armor">
@@ -198,7 +198,7 @@
 		</stats>
 		<skills>
 			<skill id="50232" level="1" /> <!-- A-grade: Robe of Nightmare -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="2409" name="Majestic Robe" type="Armor">
@@ -223,7 +223,7 @@
 		</stats>
 		<skills>
 			<skill id="50229" level="1" /> <!-- A-grade: Majestic Robe -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="2411" name="Brigandine Helmet" type="Armor">

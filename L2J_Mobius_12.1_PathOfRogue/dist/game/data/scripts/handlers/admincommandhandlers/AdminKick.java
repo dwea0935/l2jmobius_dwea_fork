@@ -27,7 +27,6 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 public class AdminKick implements IAdminCommandHandler
 {
@@ -51,7 +50,7 @@ public class AdminKick implements IAdminCommandHandler
 				if (plyr != null)
 				{
 					Disconnection.of(plyr).defaultSequence(LeaveWorld.STATIC_PACKET);
-					BuilderUtil.sendSysMessage(activeChar, "You kicked " + plyr.getName() + " from the game.");
+					activeChar.sendSysMessage("You kicked " + plyr.getName() + " from the game.");
 				}
 			}
 		}
@@ -66,7 +65,7 @@ public class AdminKick implements IAdminCommandHandler
 					Disconnection.of(player).defaultSequence(LeaveWorld.STATIC_PACKET);
 				}
 			}
-			BuilderUtil.sendSysMessage(activeChar, "Kicked " + counter + " players.");
+			activeChar.sendSysMessage("Kicked " + counter + " players.");
 		}
 		return true;
 	}

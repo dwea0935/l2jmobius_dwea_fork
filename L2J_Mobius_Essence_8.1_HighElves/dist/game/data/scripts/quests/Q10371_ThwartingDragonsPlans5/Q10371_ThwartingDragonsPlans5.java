@@ -43,14 +43,24 @@ public class Q10371_ThwartingDragonsPlans5 extends Quest
 	private static final int QUEST_ID = 10371;
 	private static final int[] MONSTERS =
 	{
-		22311, // Drake Minion
-		22312, // Mutated Drake
-		22306, // Dragon Lancer
 		22305, // Dragon Soldier
+		22306, // Dragon Lancer
 		22307, // Dragon Berserker
-		22310, // Elite Dragon Mage
 		22308, // Dragon Minion
 		22309, // Dragon Mage
+		22310, // Elite Dragon Mage
+		22311, // Drake Minion
+		22312, // Mutated Drake
+		// Dragons (Changed Spawn)
+		20760,
+		22361,
+		22362,
+		22363,
+		22364,
+		22365,
+		22366,
+		22367,
+		22368,
 	};
 	
 	public Q10371_ThwartingDragonsPlans5()
@@ -176,7 +186,7 @@ public class Q10371_ThwartingDragonsPlans5 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -195,19 +205,17 @@ public class Q10371_ThwartingDragonsPlans5 extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

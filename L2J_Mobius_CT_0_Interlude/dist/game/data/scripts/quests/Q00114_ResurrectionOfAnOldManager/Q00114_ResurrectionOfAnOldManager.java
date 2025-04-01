@@ -20,14 +20,14 @@
  */
 package quests.Q00114_ResurrectionOfAnOldManager;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
 import quests.Q00121_PavelTheGiant.Q00121_PavelTheGiant;
@@ -51,7 +51,7 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 	
 	public Q00114_ResurrectionOfAnOldManager()
 	{
-		super(114);
+		super(114, "Resurrection of an Old Manager");
 		registerQuestItems(LETTER, DETECTOR, DETECTOR_2, STARSTONE, STARSTONE_2);
 		addStartNpc(YUMI);
 		addTalkId(YUMI, WENDY, BOX, STONE, NEWYEAR);
@@ -240,7 +240,7 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 					final Npc golem = addSpawn(GOLEM, 96977, -110625, -3322, 0, true, 0);
 					golem.broadcastSay(ChatType.GENERAL, "You, " + player.getName() + ", you attacked Wendy. Prepare to die!");
 					golem.asAttackable().addDamageHate(player, 0, 999);
-					golem.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+					golem.getAI().setIntention(Intention.ATTACK, player);
 					st.set("golemSpawned", "1");
 					startQuestTimer("golemDespawn", 900000, golem, player, false);
 				}
@@ -621,18 +621,16 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isCond(10))
 		{
-			return super.onKill(npc, player, isPet);
+			return;
 		}
 		
 		npc.broadcastSay(ChatType.GENERAL, "This enemy is far too powerful for me to fight. I must withdraw!");
 		st.setCond(11, true);
 		st.unset("golemSpawned");
-		
-		return super.onKill(npc, player, isPet);
 	}
 }

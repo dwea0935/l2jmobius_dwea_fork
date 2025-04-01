@@ -319,4 +319,29 @@
 		<npc id="24963" count="2" respawnTime="10sec" respawnRandom="0sec" chaseRange="1200" /> <!-- Sel Mahum Shaman -->
 		<npc id="24964" count="2" respawnTime="10sec" respawnRandom="0sec" chaseRange="1200" /> <!-- Sel Mahum Wizard -->
 	</spawn>
+	<spawn name="Q20241">
+		<group>
+			<npc id="34743" x="-43902" y="145460" z="-2806" heading="41760" respawnTime="600sec" /> <!-- Barrel -->
+			<npc id="34742" x="-43902" y="145460" z="-2806" heading="41760" respawnTime="60sec" /> <!-- Campfire -->
+			<npc id="27586" x="-43930" y="145558" z="-2816" heading="40506" respawnTime="60sec" /> <!-- Sel Mahum Chef - Quest Monster -->
+			<npc id="34743" x="-49077" y="144095" z="-2784" heading="5826" respawnTime="600sec" /> <!-- Barrel -->
+			<npc id="34742" x="-49077" y="144095" z="-2784" heading="5826" respawnTime="60sec" /> <!-- Campfire -->
+			<npc id="27586" x="-49017" y="144005" z="-2787" heading="9029" respawnTime="60sec" /> <!-- Sel Mahum Chef - Quest Monster -->
+			<npc id="34743" x="-50466" y="151960" z="-2773" heading="59140" respawnTime="600sec" /> <!-- Barrel -->
+			<npc id="34742" x="-50466" y="151960" z="-2773" heading="59140" respawnTime="60sec" /> <!-- Campfire -->
+			<npc id="27586" x="-50402" y="152062" z="-2770" heading="55230" respawnTime="60sec" /> <!-- Sel Mahum Chef - Quest Monster -->
+			<npc id="34743" x="-50956" y="135660" z="-2925" heading="22853" respawnTime="600sec" /> <!-- Barrel -->
+			<npc id="34742" x="-50956" y="135660" z="-2925" heading="22853" respawnTime="60sec" /> <!-- Campfire -->
+			<npc id="27586" x="-51057" y="135563" z="-2925" heading="24663" respawnTime="60sec" /> <!-- Sel Mahum Chef - Quest Monster -->
+			<npc id="34743" x="-57397" y="135564" z="-2394" heading="13028" respawnTime="600sec" /> <!-- Barrel -->
+			<npc id="34742" x="-57397" y="135564" z="-2394" heading="13028" respawnTime="60sec" /> <!-- Campfire -->
+			<npc id="27586" x="-57261" y="135569" z="-2394" heading="15031" respawnTime="60sec" /> <!-- Sel Mahum Chef - Quest Monster -->
+			<npc id="34743" x="-58107" y="141412" z="-2618" heading="62980" respawnTime="600sec" /> <!-- Barrel -->
+			<npc id="34742" x="-58107" y="141412" z="-2618" heading="62980" respawnTime="60sec" /> <!-- Campfire -->
+			<npc id="27586" x="-58142" y="141276" z="-2623" heading="1480" respawnTime="60sec" /> <!-- Sel Mahum Chef - Quest Monster -->
+			<npc id="34743" x="-52184" y="144068" z="-2855" heading="44928" respawnTime="600sec" /> <!-- Barrel -->
+			<npc id="34742" x="-52184" y="144068" z="-2855" heading="44928" respawnTime="60sec" /> <!-- Campfire -->
+			<npc id="27586" x="-52055" y="144063" z="-2854" heading="11811" respawnTime="60sec" /> <!-- Sel Mahum Chef - Quest Monster -->
+		</group>
+	</spawn>
 </list>

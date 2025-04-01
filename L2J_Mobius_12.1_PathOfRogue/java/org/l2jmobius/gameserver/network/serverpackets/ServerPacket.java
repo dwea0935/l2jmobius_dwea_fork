@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.commons.network.WritablePacket;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.ConnectionState;
@@ -161,7 +161,7 @@ public abstract class ServerPacket extends WritablePacket<GameClient>
 		catch (Exception e)
 		{
 			PacketLogger.warning("Error writing packet " + this + " to client (" + e.getMessage() + ") " + c + "]]");
-			PacketLogger.warning(CommonUtil.getStackTrace(e));
+			PacketLogger.warning(TraceUtil.getStackTrace(e));
 		}
 		return false;
 	}

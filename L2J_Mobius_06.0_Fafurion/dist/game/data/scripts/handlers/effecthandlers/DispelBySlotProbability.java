@@ -69,6 +69,6 @@ public class DispelBySlotProbability extends AbstractEffect
 		}
 		
 		// The effectlist should already check if it has buff with this abnormal type or not.
-		effected.getEffectList().stopEffects(info -> !info.getSkill().isIrreplacableBuff() && (Rnd.get(100) < _rate) && _dispelAbnormals.contains(info.getSkill().getAbnormalType()), true, true);
+		effected.getEffectList().stopEffects(info -> !info.getSkill().isIrreplaceableBuff() && (Rnd.get(100) < _rate) && _dispelAbnormals.contains(info.getSkill().getAbnormalType()), true, true);
 	}
 }

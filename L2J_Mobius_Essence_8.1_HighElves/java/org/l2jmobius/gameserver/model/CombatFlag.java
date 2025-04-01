@@ -20,8 +20,9 @@
  */
 package org.l2jmobius.gameserver.model;
 
-import org.l2jmobius.gameserver.data.xml.ItemData;
+import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -47,8 +48,8 @@ public class CombatFlag
 	
 	public synchronized void spawnMe()
 	{
-		// Init the dropped ItemInstance and add it in the world as a visible object at the position where mob was last
-		_itemInstance = ItemData.getInstance().createItem("Combat", _itemId, 1, null, null);
+		// Init the dropped ItemInstance and add it in the world as a visible object at the position where mob was last.
+		_itemInstance = ItemManager.createItem(ItemProcessType.QUEST, _itemId, 1, null, null);
 		_itemInstance.dropMe(null, _location.getX(), _location.getY(), _location.getZ());
 	}
 	
@@ -101,7 +102,7 @@ public class CombatFlag
 		_player.setCombatFlagEquipped(false);
 		final long slot = _player.getInventory().getSlotFromItem(_item);
 		_player.getInventory().unEquipItemInBodySlot(slot);
-		_player.destroyItem("CombatFlag", _item, null, true);
+		_player.destroyItem(ItemProcessType.DESTROY, _item, null, true);
 		_item = null;
 		_player.broadcastUserInfo();
 		_player = null;

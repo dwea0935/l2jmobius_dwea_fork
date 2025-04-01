@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="24600" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Debuff Reflect" type="Armor">
 		<!-- When equipped, armor is unequipped and cannot be used. Hair accessories, weapons, and magic armor remain equipped. Female only. When modified, Debuff Reflect +5%. -->
@@ -12,7 +12,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21417" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21417" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="24601" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Damage Reflection Resistance" type="Armor">
@@ -27,7 +27,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21420" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21420" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="24602" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Ranged Resistance" type="Armor">
@@ -42,7 +42,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21423" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21423" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="24603" name="Female Swimsuit No. 1" additionalName="Mid-grade/ P. Def. Increase" type="Armor">
@@ -57,7 +57,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21426" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21426" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="24604" name="Female Swimsuit No. 1" additionalName="Mid-grade/ M. Def. Increase" type="Armor">
@@ -72,7 +72,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21429" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21429" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="24605" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Attribute Resistance" type="Armor">
@@ -87,7 +87,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21432" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21432" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="24606" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Received Heal Amount Increase" type="Armor">
@@ -102,7 +102,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21435" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21435" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="24607" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Max. HP Increase" type="Armor">
@@ -117,7 +117,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21438" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21438" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="24608" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Max. MP Increase" type="Armor">
@@ -132,7 +132,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21441" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21441" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="24609" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Max CP Increase" type="Armor">
@@ -147,7 +147,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21444" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21444" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="24610" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Speed Increase" type="Armor">
@@ -162,7 +162,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21447" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21447" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="24611" name="Female Swimsuit No. 1" additionalName="Mid-grade/ HP Recovery Bonus Increase" type="Armor">
@@ -177,7 +177,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21450" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21450" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24612" name="Female Swimsuit No. 1" additionalName="Mid-grade/ MP Recovery Bonus Increase" type="Armor">
@@ -192,7 +192,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21453" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21453" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24613" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Evasion Increase" type="Armor">
@@ -207,7 +207,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21456" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21456" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="24614" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Option 15" type="Armor">
@@ -222,7 +222,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21459" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21459" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 15 -->
 		</skills>
 	</item>
 	<item id="24615" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Option 16" type="Armor">
@@ -237,7 +237,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21462" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21462" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 16 -->
 		</skills>
 	</item>
 	<item id="24616" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Option 17" type="Armor">
@@ -252,7 +252,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21465" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21465" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 17 -->
 		</skills>
 	</item>
 	<item id="24617" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Option 18" type="Armor">
@@ -267,7 +267,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21468" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21468" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 18 -->
 		</skills>
 	</item>
 	<item id="24618" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Option 19" type="Armor">
@@ -282,7 +282,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21471" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21471" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 19 -->
 		</skills>
 	</item>
 	<item id="24619" name="Female Swimsuit No. 1" additionalName="Mid-grade/ Option 20" type="Armor">
@@ -297,7 +297,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21474" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21474" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 20 -->
 		</skills>
 	</item>
 	<item id="24620" name="Female Swimsuit No. 1" additionalName="Top-grade/ Debuff Reflect" type="Armor">
@@ -312,7 +312,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21418" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21418" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="24621" name="Female Swimsuit No. 1" additionalName="Top-grade/ Damage Reflection Resistance" type="Armor">
@@ -327,7 +327,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21421" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21421" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="24622" name="Female Swimsuit No. 1" additionalName="Top-grade/ Ranged Resistance" type="Armor">
@@ -342,7 +342,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21424" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21424" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="24623" name="Female Swimsuit No. 1" additionalName="Top-grade/ P. Def. Increase" type="Armor">
@@ -357,7 +357,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21427" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21427" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="24624" name="Female Swimsuit No. 1" additionalName="Top-grade/ M. Def. Increase" type="Armor">
@@ -372,7 +372,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21430" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21430" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="24625" name="Female Swimsuit No. 1" additionalName="Top-grade/ Attribute Resistance" type="Armor">
@@ -387,7 +387,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21433" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21433" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="24626" name="Female Swimsuit No. 1" additionalName="Top-grade/ Received Heal Amount Increase" type="Armor">
@@ -402,7 +402,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21436" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21436" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="24627" name="Female Swimsuit No. 1" additionalName="Top-grade/ Max. HP Increase" type="Armor">
@@ -417,7 +417,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21439" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21439" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="24628" name="Female Swimsuit No. 1" additionalName="Top-grade/ Max. MP Increase" type="Armor">
@@ -432,7 +432,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21442" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21442" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="24629" name="Female Swimsuit No. 1" additionalName="Top-grade/ Max CP Increase" type="Armor">
@@ -447,7 +447,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21445" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21445" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="24630" name="Female Swimsuit No. 1" additionalName="Top-grade/ Speed Increase" type="Armor">
@@ -462,7 +462,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21448" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21448" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="24631" name="Female Swimsuit No. 1" additionalName="Top-grade/ HP Recovery Bonus Increase" type="Armor">
@@ -477,7 +477,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21451" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21451" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24632" name="Female Swimsuit No. 1" additionalName="Top-grade/ MP Recovery Bonus Increase" type="Armor">
@@ -492,7 +492,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21454" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21454" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24633" name="Female Swimsuit No. 1" additionalName="Top-grade/ Evasion Increase" type="Armor">
@@ -507,7 +507,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21457" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21457" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="24634" name="Female Swimsuit No. 1" additionalName="Top-grade/ Option 15" type="Armor">
@@ -522,7 +522,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21460" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21460" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 15 -->
 		</skills>
 	</item>
 	<item id="24635" name="Female Swimsuit No. 1" additionalName="Top-grade/ Option 16" type="Armor">
@@ -537,7 +537,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21463" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21463" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 16 -->
 		</skills>
 	</item>
 	<item id="24636" name="Female Swimsuit No. 1" additionalName="Top-grade/ Option 17" type="Armor">
@@ -552,7 +552,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21466" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21466" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 17 -->
 		</skills>
 	</item>
 	<item id="24637" name="Female Swimsuit No. 1" additionalName="Top-grade/ Option 18" type="Armor">
@@ -567,7 +567,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21469" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21469" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 18 -->
 		</skills>
 	</item>
 	<item id="24638" name="Female Swimsuit No. 1" additionalName="Top-grade/ Option 19" type="Armor">
@@ -582,7 +582,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21472" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21472" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 19 -->
 		</skills>
 	</item>
 	<item id="24639" name="Female Swimsuit No. 1" additionalName="Top-grade/ Option 20" type="Armor">
@@ -597,7 +597,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21475" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21475" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 20 -->
 		</skills>
 	</item>
 	<item id="24640" name="Female Swimsuit No. 2" additionalName="Low-grade/ Debuff Reflect" type="Armor">
@@ -612,7 +612,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21416" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21416" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="24641" name="Female Swimsuit No. 2" additionalName="Low-grade/ Damage Reflection Resistance" type="Armor">
@@ -627,7 +627,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21419" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21419" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="24642" name="Female Swimsuit No. 2" additionalName="Low-grade/ Ranged Resistance" type="Armor">
@@ -642,7 +642,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21422" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21422" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="24643" name="Female Swimsuit No. 2" additionalName="Low-grade/ P. Def. Increase" type="Armor">
@@ -657,7 +657,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21425" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21425" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="24644" name="Female Swimsuit No. 2" additionalName="Low-grade/ M. Def. Increase" type="Armor">
@@ -672,7 +672,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21428" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21428" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="24645" name="Female Swimsuit No. 2" additionalName="Low-grade/ Attribute Resistance" type="Armor">
@@ -687,7 +687,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21431" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21431" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="24646" name="Female Swimsuit No. 2" additionalName="Low-grade/ Received Heal Amount Increase" type="Armor">
@@ -702,7 +702,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21434" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21434" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="24647" name="Female Swimsuit No. 2" additionalName="Low-grade/ Max. HP Increase" type="Armor">
@@ -717,7 +717,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21437" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21437" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="24648" name="Female Swimsuit No. 2" additionalName="Low-grade/ Max. MP Increase" type="Armor">
@@ -732,7 +732,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21440" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21440" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="24649" name="Female Swimsuit No. 2" additionalName="Low-grade/ Max CP Increase" type="Armor">
@@ -747,7 +747,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21443" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21443" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="24650" name="Female Swimsuit No. 2" additionalName="Low-grade/ Speed Increase" type="Armor">
@@ -762,7 +762,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21446" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21446" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="24651" name="Female Swimsuit No. 2" additionalName="Low-grade/ HP Recovery Bonus Increase" type="Armor">
@@ -777,7 +777,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21449" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21449" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24652" name="Female Swimsuit No. 2" additionalName="Low-grade/ MP Recovery Bonus Increase" type="Armor">
@@ -792,7 +792,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21452" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21452" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24653" name="Female Swimsuit No. 2" additionalName="Low-grade/ Evasion Increase" type="Armor">
@@ -807,7 +807,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21455" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21455" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="24654" name="Female Swimsuit No. 2" additionalName="Low-grade/ Option 15" type="Armor">
@@ -822,7 +822,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21458" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21458" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 15 -->
 		</skills>
 	</item>
 	<item id="24655" name="Female Swimsuit No. 2" additionalName="Low-grade/ Option 16" type="Armor">
@@ -837,7 +837,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21461" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21461" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 16 -->
 		</skills>
 	</item>
 	<item id="24656" name="Female Swimsuit No. 2" additionalName="Low-grade/ Option 17" type="Armor">
@@ -852,7 +852,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21464" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21464" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 17 -->
 		</skills>
 	</item>
 	<item id="24657" name="Female Swimsuit No. 2" additionalName="Low-grade/ Option 18" type="Armor">
@@ -867,7 +867,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21467" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21467" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 18 -->
 		</skills>
 	</item>
 	<item id="24658" name="Female Swimsuit No. 2" additionalName="Low-grade/ Option 19" type="Armor">
@@ -882,7 +882,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21470" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21470" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 19 -->
 		</skills>
 	</item>
 	<item id="24659" name="Female Swimsuit No. 2" additionalName="Low-grade/ Option 20" type="Armor">
@@ -897,7 +897,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21473" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21473" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 20 -->
 		</skills>
 	</item>
 	<item id="24660" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Debuff Reflect" type="Armor">
@@ -912,7 +912,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21417" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21417" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="24661" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Damage Reflection Resistance" type="Armor">
@@ -927,7 +927,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21420" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21420" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="24662" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Ranged Resistance" type="Armor">
@@ -942,7 +942,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21423" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21423" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="24663" name="Female Swimsuit No. 2" additionalName="Mid-grade/ P. Def. Increase" type="Armor">
@@ -957,7 +957,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21426" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21426" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="24664" name="Female Swimsuit No. 2" additionalName="Mid-grade/ M. Def. Increase" type="Armor">
@@ -972,7 +972,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21429" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21429" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="24665" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Attribute Resistance" type="Armor">
@@ -987,7 +987,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21432" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21432" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="24666" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Received Heal Amount Increase" type="Armor">
@@ -1002,7 +1002,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21435" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21435" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="24667" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Max. HP Increase" type="Armor">
@@ -1017,7 +1017,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21438" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21438" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="24668" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Max. MP Increase" type="Armor">
@@ -1032,7 +1032,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21441" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21441" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="24669" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Max CP Increase" type="Armor">
@@ -1047,7 +1047,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21444" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21444" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="24670" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Speed Increase" type="Armor">
@@ -1062,7 +1062,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21447" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21447" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="24671" name="Female Swimsuit No. 2" additionalName="Mid-grade/ HP Recovery Bonus Increase" type="Armor">
@@ -1077,7 +1077,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21450" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21450" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24672" name="Female Swimsuit No. 2" additionalName="Mid-grade/ MP Recovery Bonus Increase" type="Armor">
@@ -1092,7 +1092,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21453" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21453" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24673" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Evasion Increase" type="Armor">
@@ -1107,7 +1107,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21456" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21456" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="24674" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Option 15" type="Armor">
@@ -1122,7 +1122,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21459" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21459" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 15 -->
 		</skills>
 	</item>
 	<item id="24675" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Option 16" type="Armor">
@@ -1137,7 +1137,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21462" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21462" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 16 -->
 		</skills>
 	</item>
 	<item id="24676" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Option 17" type="Armor">
@@ -1152,7 +1152,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21465" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21465" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 17 -->
 		</skills>
 	</item>
 	<item id="24677" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Option 18" type="Armor">
@@ -1167,7 +1167,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21468" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21468" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 18 -->
 		</skills>
 	</item>
 	<item id="24678" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Option 19" type="Armor">
@@ -1182,7 +1182,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21471" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21471" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 19 -->
 		</skills>
 	</item>
 	<item id="24679" name="Female Swimsuit No. 2" additionalName="Mid-grade/ Option 20" type="Armor">
@@ -1197,7 +1197,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21474" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21474" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 20 -->
 		</skills>
 	</item>
 	<item id="24680" name="Female Swimsuit No. 2" additionalName="Top-grade/ Debuff Reflect" type="Armor">
@@ -1212,7 +1212,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21418" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21418" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="24681" name="Female Swimsuit No. 2" additionalName="Top-grade/ Damage Reflection Resistance" type="Armor">
@@ -1227,7 +1227,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21421" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21421" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="24682" name="Female Swimsuit No. 2" additionalName="Top-grade/ Ranged Resistance" type="Armor">
@@ -1242,7 +1242,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21424" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21424" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="24683" name="Female Swimsuit No. 2" additionalName="Top-grade/ P. Def. Increase" type="Armor">
@@ -1257,7 +1257,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21427" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21427" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="24684" name="Female Swimsuit No. 2" additionalName="Top-grade/ M. Def. Increase" type="Armor">
@@ -1272,7 +1272,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21430" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21430" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="24685" name="Female Swimsuit No. 2" additionalName="Top-grade/ Attribute Resistance" type="Armor">
@@ -1287,7 +1287,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21433" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21433" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="24686" name="Female Swimsuit No. 2" additionalName="Top-grade/ Received Heal Amount Increase" type="Armor">
@@ -1302,7 +1302,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21436" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21436" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="24687" name="Female Swimsuit No. 2" additionalName="Top-grade/ Max. HP Increase" type="Armor">
@@ -1317,7 +1317,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21439" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21439" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="24688" name="Female Swimsuit No. 2" additionalName="Top-grade/ Max. MP Increase" type="Armor">
@@ -1332,7 +1332,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21442" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21442" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="24689" name="Female Swimsuit No. 2" additionalName="Top-grade/ Max CP Increase" type="Armor">
@@ -1347,7 +1347,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21445" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21445" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="24690" name="Female Swimsuit No. 2" additionalName="Top-grade/ Speed Increase" type="Armor">
@@ -1362,7 +1362,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21448" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21448" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="24691" name="Female Swimsuit No. 2" additionalName="Top-grade/ HP Recovery Bonus Increase" type="Armor">
@@ -1377,7 +1377,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21451" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21451" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24692" name="Female Swimsuit No. 2" additionalName="Top-grade/ MP Recovery Bonus Increase" type="Armor">
@@ -1392,7 +1392,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21454" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21454" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24693" name="Female Swimsuit No. 2" additionalName="Top-grade/ Evasion Increase" type="Armor">
@@ -1407,7 +1407,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21457" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21457" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="24694" name="Female Swimsuit No. 2" additionalName="Top-grade/ Option 15" type="Armor">
@@ -1422,7 +1422,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21460" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21460" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 15 -->
 		</skills>
 	</item>
 	<item id="24695" name="Female Swimsuit No. 2" additionalName="Top-grade/ Option 16" type="Armor">
@@ -1437,7 +1437,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21463" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21463" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 16 -->
 		</skills>
 	</item>
 	<item id="24696" name="Female Swimsuit No. 2" additionalName="Top-grade/ Option 17" type="Armor">
@@ -1452,7 +1452,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21466" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21466" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 17 -->
 		</skills>
 	</item>
 	<item id="24697" name="Female Swimsuit No. 2" additionalName="Top-grade/ Option 18" type="Armor">
@@ -1467,7 +1467,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21469" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21469" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 18 -->
 		</skills>
 	</item>
 	<item id="24698" name="Female Swimsuit No. 2" additionalName="Top-grade/ Option 19" type="Armor">
@@ -1482,7 +1482,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21472" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21472" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 19 -->
 		</skills>
 	</item>
 	<item id="24699" name="Female Swimsuit No. 2" additionalName="Top-grade/ Option 20" type="Armor">
@@ -1497,7 +1497,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21475" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21475" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 20 -->
 		</skills>
 	</item>
 </list>

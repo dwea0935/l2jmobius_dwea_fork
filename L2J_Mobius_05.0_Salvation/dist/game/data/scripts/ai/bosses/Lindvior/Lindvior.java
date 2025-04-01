@@ -26,12 +26,10 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -46,12 +44,14 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDamageReceived;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDamageReceived;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.NoSummonFriendZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -250,7 +250,7 @@ public class Lindvior extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		// Anti BUGGERS
 		if (!_zoneLair.isInsideZone(attacker))
@@ -357,7 +357,6 @@ public class Lindvior extends AbstractNpcAI
 				_lindvior.broadcastPacket(new SocialAction(_lindvior.getObjectId(), 1));
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	protected void clean()
@@ -438,7 +437,7 @@ public class Lindvior extends AbstractNpcAI
 	}
 	
 	@Override
-	public synchronized String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		if ((skill.getId() == 15606) && (npc.getId() == NPC_GENERATOR))
 		{
@@ -469,11 +468,10 @@ public class Lindvior extends AbstractNpcAI
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -517,16 +515,14 @@ public class Lindvior extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		setLindviorSpawnTask();
 		npc.getSpawn().stopRespawn();
 		npc.deleteMe();
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	private void nextStage(int taskId)
@@ -783,7 +779,7 @@ public class Lindvior extends AbstractNpcAI
 						generators.doCast(SKILL_RECHARGE_POSIBLE.getSkill());
 						World.getInstance().forEachVisibleObjectInRange(generators, Player.class, 900, p ->
 						{
-							p.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+							p.getAI().setIntention(Intention.IDLE);
 							p.setTarget(generators);
 							p.doCast(RECHARGE.getSkill());
 						});
@@ -822,7 +818,7 @@ public class Lindvior extends AbstractNpcAI
 						if (generator.getId() == NPC_GENERATOR)
 						{
 							npc.setTarget(generator);
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, generator.getLocation());
+							npc.getAI().setIntention(Intention.MOVE_TO, generator.getLocation());
 							if (npc.calculateDistance3D(generator) < 500)
 							{
 								npc.reduceCurrentHp(1, generator, null);
@@ -838,7 +834,7 @@ public class Lindvior extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == LINDVIOR_RAID)
 		{
@@ -870,7 +866,6 @@ public class Lindvior extends AbstractNpcAI
 			clean();
 			_collapseTask = ThreadPool.schedule(() -> Fail(false), 20000);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -884,24 +879,22 @@ public class Lindvior extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature character, ZoneType zone)
+	public void onEnterZone(Creature character, ZoneType zone)
 	{
 		if (_collapseTask != null)
 		{
 			_collapseTask.cancel(true);
 			_collapseTask = null;
 		}
-		return super.onEnterZone(character, zone);
 	}
 	
 	@Override
-	public String onExitZone(Creature character, ZoneType zone)
+	public void onExitZone(Creature character, ZoneType zone)
 	{
 		if (zone.getPlayersInside().isEmpty())
 		{
 			_collapseTask = ThreadPool.schedule(() -> Fail(true), 900000);
 		}
-		return super.onExitZone(character, zone);
 	}
 	
 	@Override

@@ -16,7 +16,6 @@
  */
 package quests.Q10363_RequestOfTheSeeker;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -24,12 +23,13 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSocialAction;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSocialAction;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q10362_CertificationOfTheSeeker.Q10362_CertificationOfTheSeeker;
 
@@ -192,7 +192,7 @@ public class Q10363_RequestOfTheSeeker extends Quest
 		final Player player = event.getPlayer();
 		final QuestState qs = getQuestState(player, false);
 		final WorldObject target = player.getTarget();
-		if ((target != null) && target.isNpc() && CommonUtil.contains(CORPSES, target.getId()))
+		if ((target != null) && target.isNpc() && ArrayUtil.contains(CORPSES, target.getId()))
 		{
 			final Npc npc = player.getTarget().asNpc();
 			if (!player.isInsideRadius3D(npc, 120))
@@ -264,9 +264,8 @@ public class Q10363_RequestOfTheSeeker extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomAnimation(false);
-		return super.onSpawn(npc);
 	}
 }

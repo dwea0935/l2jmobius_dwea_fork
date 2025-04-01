@@ -27,7 +27,7 @@ import java.util.Map.Entry;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -139,7 +139,7 @@ public class ExDethroneRankingInfo extends ServerPacket
 		RankInfo(int rank, StatSet set)
 		{
 			this.rank = rank;
-			this.name = set.getString("conquest_name", "");
+			this.name = set.getString("name", "");
 			this.points = set.getLong("conquestPersonalPoints", 0);
 		}
 	}

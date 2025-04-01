@@ -17,12 +17,12 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
@@ -139,11 +139,11 @@ public class EnergyDamage extends AbstractEffect
 			{
 				if (attacker.isChargedShot(ShotType.SOULSHOTS))
 				{
-					ssmod = 2 * attacker.getStat().getValue(Stat.SHOTS_BONUS); // 2.04 for dual weapon?
+					ssmod = Math.max(1, 2 + (effector.getStat().getValue(Stat.SHOTS_BONUS) / 100)); // 2.04 for dual weapon?
 				}
 				else if (attacker.isChargedShot(ShotType.BLESSED_SOULSHOTS))
 				{
-					ssmod = 4 * attacker.getStat().getValue(Stat.SHOTS_BONUS);
+					ssmod = Math.max(1, 4 + (effector.getStat().getValue(Stat.SHOTS_BONUS) / 100));
 				}
 			}
 			
@@ -157,11 +157,11 @@ public class EnergyDamage extends AbstractEffect
 		double balanceMod = 1;
 		if (attacker.isPlayable())
 		{
-			balanceMod = effected.isPlayable() ? Config.PVP_ENERGY_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getClassId().getId()] : Config.PVE_ENERGY_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getClassId().getId()];
+			balanceMod = effected.isPlayable() ? Config.PVP_ENERGY_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()] : Config.PVE_ENERGY_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
 		}
 		if (effected.isPlayable())
 		{
-			defence *= attacker.isPlayable() ? Config.PVP_ENERGY_SKILL_DEFENCE_MULTIPLIERS[effected.asPlayer().getClassId().getId()] : Config.PVE_ENERGY_SKILL_DEFENCE_MULTIPLIERS[effected.asPlayer().getClassId().getId()];
+			defence *= attacker.isPlayable() ? Config.PVP_ENERGY_SKILL_DEFENCE_MULTIPLIERS[effected.asPlayer().getPlayerClass().getId()] : Config.PVE_ENERGY_SKILL_DEFENCE_MULTIPLIERS[effected.asPlayer().getPlayerClass().getId()];
 		}
 		
 		damage = Math.max(0, damage * effector.getStat().getValue(Stat.PHYSICAL_SKILL_POWER, 1)) * balanceMod;

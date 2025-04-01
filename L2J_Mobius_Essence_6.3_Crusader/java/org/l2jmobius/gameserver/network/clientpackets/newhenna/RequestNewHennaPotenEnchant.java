@@ -27,7 +27,8 @@ import org.l2jmobius.gameserver.data.xml.HennaPatternPotentialData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerHennaEnchant;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerHennaEnchant;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.henna.DyePotentialFee;
 import org.l2jmobius.gameserver.model.item.henna.HennaPoten;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -88,7 +89,7 @@ public class RequestNewHennaPotenEnchant extends ClientPacket
 		{
 			costItemID = currentFee.getItem().getId();
 		}
-		if (!player.destroyItemByItemId(getClass().getSimpleName(), costItemID, currentFee.getItem().getCount(), player, true))
+		if (!player.destroyItemByItemId(ItemProcessType.FEE, costItemID, currentFee.getItem().getCount(), player, true))
 		{
 			return;
 		}

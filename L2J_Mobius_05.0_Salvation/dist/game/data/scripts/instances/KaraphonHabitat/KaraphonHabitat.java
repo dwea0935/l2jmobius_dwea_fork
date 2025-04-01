@@ -71,14 +71,13 @@ public class KaraphonHabitat extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = killer.getInstanceWorld();
 		if (world != null)
 		{
 			world.setReenterTime();
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -18,13 +18,13 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
-import org.l2jmobius.gameserver.model.Party;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -35,7 +35,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ExSubjobInfo;
 import org.l2jmobius.gameserver.network.serverpackets.PartySmallWindowAll;
 import org.l2jmobius.gameserver.network.serverpackets.PartySmallWindowDeleteAll;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.taskmanager.AutoUseTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AutoUseTaskManager;
 
 /**
  * @author Sdw
@@ -86,12 +86,12 @@ public class ClassChange extends AbstractEffect
 				OlympiadManager.getInstance().unRegisterNoble(player);
 			}
 			
-			final int activeClass = player.getClassId().getId();
+			final int activeClass = player.getPlayerClass().getId();
 			player.setActiveClass(_index);
 			
 			final SystemMessage msg = new SystemMessage(SystemMessageId.YOU_HAVE_SUCCESSFULLY_SWITCHED_S1_TO_S2);
 			msg.addClassId(activeClass);
-			msg.addClassId(player.getClassId().getId());
+			msg.addClassId(player.getPlayerClass().getId());
 			player.sendPacket(msg);
 			
 			player.broadcastUserInfo();
@@ -116,7 +116,7 @@ public class ClassChange extends AbstractEffect
 			}
 			
 			// Stop auto use.
-			for (Shortcut shortcut : player.getAllShortCuts())
+			for (Shortcut shortcut : player.getAllShortcuts())
 			{
 				if (!shortcut.isAutoUse())
 				{

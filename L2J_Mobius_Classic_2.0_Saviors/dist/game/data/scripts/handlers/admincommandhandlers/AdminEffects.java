@@ -23,22 +23,23 @@ package handlers.admincommandhandlers;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.Team;
+import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
+import org.l2jmobius.gameserver.model.actor.holders.player.MovieHolder;
 import org.l2jmobius.gameserver.model.actor.instance.Chest;
-import org.l2jmobius.gameserver.model.holders.MovieHolder;
 import org.l2jmobius.gameserver.model.html.PageBuilder;
 import org.l2jmobius.gameserver.model.html.PageResult;
 import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.ExRedSky;
 import org.l2jmobius.gameserver.network.serverpackets.ExUserInfoAbnormalVisualEffect;
@@ -51,8 +52,6 @@ import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SunRise;
 import org.l2jmobius.gameserver.network.serverpackets.SunSet;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * This class handles following admin commands:
@@ -133,10 +132,10 @@ public class AdminEffects implements IAdminCommandHandler
 						target.setTarget(null);
 						target.abortAttack();
 						target.abortCast();
-						target.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+						target.getAI().setIntention(Intention.IDLE);
 					}
 				});
-				BuilderUtil.sendSysMessage(activeChar, "Now, you cannot be seen.");
+				activeChar.sendSysMessage("Now, you cannot be seen.");
 			}
 			else
 			{
@@ -144,7 +143,7 @@ public class AdminEffects implements IAdminCommandHandler
 				activeChar.getEffectList().stopAbnormalVisualEffect(AbnormalVisualEffect.STEALTH);
 				activeChar.broadcastUserInfo();
 				activeChar.sendPacket(new ExUserInfoAbnormalVisualEffect(activeChar));
-				BuilderUtil.sendSysMessage(activeChar, "Now, you can be seen.");
+				activeChar.sendSysMessage("Now, you can be seen.");
 			}
 			
 			command = "";
@@ -162,10 +161,10 @@ public class AdminEffects implements IAdminCommandHandler
 					target.setTarget(null);
 					target.abortAttack();
 					target.abortCast();
-					target.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+					target.getAI().setIntention(Intention.IDLE);
 				}
 			});
-			BuilderUtil.sendSysMessage(activeChar, "Now, you cannot be seen.");
+			activeChar.sendSysMessage("Now, you cannot be seen.");
 		}
 		else if (command.startsWith("admin_vis"))
 		{
@@ -173,7 +172,7 @@ public class AdminEffects implements IAdminCommandHandler
 			activeChar.getEffectList().stopAbnormalVisualEffect(AbnormalVisualEffect.STEALTH);
 			activeChar.broadcastUserInfo();
 			activeChar.sendPacket(new ExUserInfoAbnormalVisualEffect(activeChar));
-			BuilderUtil.sendSysMessage(activeChar, "Now, you can be seen.");
+			activeChar.sendSysMessage("Now, you can be seen.");
 		}
 		else if (command.startsWith("admin_setinvis"))
 		{
@@ -184,7 +183,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			final Creature target = activeChar.getTarget().asCreature();
 			target.setInvisible(!target.isInvisible());
-			BuilderUtil.sendSysMessage(activeChar, "You've made " + target.getName() + " " + (target.isInvisible() ? "invisible" : "visible") + ".");
+			activeChar.sendSysMessage("You've made " + target.getName() + " " + (target.isInvisible() ? "invisible" : "visible") + ".");
 			if (target.isPlayer())
 			{
 				target.asPlayer().broadcastUserInfo();
@@ -202,7 +201,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //earthquake <intensity> <duration>");
+				activeChar.sendSysMessage("Usage: //earthquake <intensity> <duration>");
 			}
 		}
 		else if (command.startsWith("admin_atmosphere"))
@@ -216,7 +215,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			catch (Exception ex)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //atmosphere <signsky dawn|dusk>|<sky day|night|red> <duration>");
+				activeChar.sendSysMessage("Usage: //atmosphere <signsky dawn|dusk>|<sky day|night|red> <duration>");
 			}
 		}
 		else if (command.equals("admin_play_sounds"))
@@ -231,7 +230,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //play_sounds <pagenumber>");
+				activeChar.sendSysMessage("Usage: //play_sounds <pagenumber>");
 			}
 		}
 		else if (command.startsWith("admin_play_sound"))
@@ -242,7 +241,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //play_sound <soundname>");
+				activeChar.sendSysMessage("Usage: //play_sound <soundname>");
 			}
 		}
 		else if (command.equals("admin_para_all"))
@@ -390,7 +389,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //setteam_close <none|blue|red> [radius]");
+				activeChar.sendSysMessage("Usage: //setteam_close <none|blue|red> [radius]");
 			}
 		}
 		else if (command.startsWith("admin_setteam"))
@@ -411,7 +410,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //setteam <none|blue|red>");
+				activeChar.sendSysMessage("Usage: //setteam <none|blue|red>");
 			}
 		}
 		else if (command.startsWith("admin_social"))
@@ -444,7 +443,7 @@ public class AdminEffects implements IAdminCommandHandler
 							}
 							catch (NumberFormatException nbe)
 							{
-								BuilderUtil.sendSysMessage(activeChar, "Incorrect parameter");
+								activeChar.sendSysMessage("Incorrect parameter");
 							}
 						}
 					}
@@ -468,7 +467,7 @@ public class AdminEffects implements IAdminCommandHandler
 				}
 				else if (!command.contains("menu"))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //social <social_id> [player_name|radius]");
+					activeChar.sendSysMessage("Usage: //social <social_id> [player_name|radius]");
 				}
 			}
 			catch (Exception e)
@@ -483,7 +482,7 @@ public class AdminEffects implements IAdminCommandHandler
 				param1 = st.nextToken();
 			}
 			
-			if ((param1 != null) && !Util.isDigit(param1))
+			if ((param1 != null) && !StringUtil.isNumeric(param1))
 			{
 				AbnormalVisualEffect ave;
 				
@@ -501,7 +500,7 @@ public class AdminEffects implements IAdminCommandHandler
 				if (st.countTokens() == 1)
 				{
 					param2 = st.nextToken();
-					if (Util.isDigit(param2))
+					if (StringUtil.isNumeric(param2))
 					{
 						radius = Integer.parseInt(param2);
 					}
@@ -510,7 +509,7 @@ public class AdminEffects implements IAdminCommandHandler
 				if (radius > 0)
 				{
 					World.getInstance().forEachVisibleObjectInRange(activeChar, WorldObject.class, radius, object -> performAbnormalVisualEffect(ave, object));
-					BuilderUtil.sendSysMessage(activeChar, "Affected all characters in radius " + param2 + " by " + param1 + " abnormal visual effect.");
+					activeChar.sendSysMessage("Affected all characters in radius " + param2 + " by " + param1 + " abnormal visual effect.");
 				}
 				else
 				{
@@ -536,7 +535,7 @@ public class AdminEffects implements IAdminCommandHandler
 					}
 					catch (NumberFormatException nfe)
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Incorrect page.");
+						activeChar.sendSysMessage("Incorrect page.");
 					}
 				}
 				
@@ -558,7 +557,7 @@ public class AdminEffects implements IAdminCommandHandler
 				
 				html.replace("%abnormals%", result.getBodyTemplate().toString());
 				activeChar.sendPacket(html);
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //" + command.replace("admin_", "") + " <AbnormalVisualEffect> [radius]");
+				activeChar.sendSysMessage("Usage: //" + command.replace("admin_", "") + " <AbnormalVisualEffect> [radius]");
 				return true;
 			}
 		}
@@ -595,7 +594,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //effect skill [level | level hittime]");
+				activeChar.sendSysMessage("Usage: //effect skill [level | level hittime]");
 			}
 		}
 		else if (command.startsWith("admin_set_displayeffect"))
@@ -615,7 +614,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //set_displayeffect <id>");
+				activeChar.sendSysMessage("Usage: //set_displayeffect <id>");
 			}
 		}
 		else if (command.startsWith("admin_playmovie"))
@@ -626,7 +625,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //playmovie <id>");
+				activeChar.sendSysMessage("Usage: //playmovie <id>");
 			}
 		}
 		else if (command.startsWith("admin_event_trigger"))
@@ -640,7 +639,7 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //event_trigger id [true | false]");
+				activeChar.sendSysMessage("Usage: //event_trigger id [true | false]");
 			}
 		}
 		else if (command.startsWith("admin_settargetable"))
@@ -746,7 +745,7 @@ public class AdminEffects implements IAdminCommandHandler
 		}
 		else
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //atmosphere <signsky dawn|dusk>|<sky day|night|red> <duration>");
+			activeChar.sendSysMessage("Usage: //atmosphere <signsky dawn|dusk>|<sky day|night|red> <duration>");
 		}
 		if (packet != null)
 		{
@@ -759,7 +758,7 @@ public class AdminEffects implements IAdminCommandHandler
 		final PlaySound snd = new PlaySound(1, sound, 0, 0, 0, 0, 0);
 		activeChar.sendPacket(snd);
 		activeChar.broadcastPacket(snd);
-		BuilderUtil.sendSysMessage(activeChar, "Playing " + sound + ".");
+		activeChar.sendSysMessage("Playing " + sound + ".");
 	}
 	
 	@Override

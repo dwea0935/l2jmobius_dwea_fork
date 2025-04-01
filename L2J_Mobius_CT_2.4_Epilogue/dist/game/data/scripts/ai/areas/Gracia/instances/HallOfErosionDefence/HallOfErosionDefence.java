@@ -26,26 +26,26 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.model.CommandChannel;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
+import org.l2jmobius.gameserver.model.groups.CommandChannel;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q00697_DefendTheHallOfErosion.Q00697_DefendTheHallOfErosion;
@@ -281,7 +281,7 @@ public class HallOfErosionDefence extends AbstractNpcAI
 				return false;
 			}
 			
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(2096);
 				sm.addPcName(partyMember);
@@ -403,10 +403,10 @@ public class HallOfErosionDefence extends AbstractNpcAI
 						world.alivetumor.add(npc);
 					}
 				}
-				broadCastPacket(world, new ExShowScreenMessage(NpcStringId.THE_TUMOR_INSIDE_S1_HAS_COMPLETELY_REVIVED_NRECOVERED_NEARBY_UNDEAD_ARE_SWARMING_TOWARD_SEED_OF_LIFE, 2, 8000));
+				broadCastPacket(world, new ExShowScreenMessage("The tumor inside has completely revived. Recovered nearby Undead are swarming toward Seed of Life...", 2, 8000));
 			}
 		}, 180 * 1000);
-		broadCastPacket(world, new ExShowScreenMessage(NpcStringId.YOU_CAN_HEAR_THE_UNDEAD_OF_EKIMUS_RUSHING_TOWARD_YOU_S1_S2_IT_HAS_NOW_BEGUN, 2, 8000));
+		broadCastPacket(world, new ExShowScreenMessage("You can hear the undead of Ekimus rushing toward you. It has now begun!", 2, 8000));
 	}
 	
 	protected void stopDeadTumors(HEDWorld world)
@@ -440,11 +440,11 @@ public class HallOfErosionDefence extends AbstractNpcAI
 					world.deadTumors.add(victim);
 				}
 				
-				player.destroyItemByItemId("SOI", 13797, 1, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, 13797, 1, player, true);
 				final Location loc = world.deadTumors.get(getRandom(world.deadTumors.size())).getLocation();
 				if (loc != null)
 				{
-					broadCastPacket(world, new ExShowScreenMessage(NpcStringId.S1_S_PARTY_HAS_MOVED_TO_A_DIFFERENT_LOCATION_THROUGH_THE_CRACK_IN_THE_TUMOR, 2, 8000));
+					broadCastPacket(world, new ExShowScreenMessage(player.getParty().getLeader().getName() + "'s party has moved to a different location through the crack in the tumor!", 2, 8000));
 					for (Player partyMember : player.getParty().getMembers())
 					{
 						if (partyMember.isInsideRadius3D(player, 500))
@@ -470,7 +470,7 @@ public class HallOfErosionDefence extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HEDWorld)
@@ -485,13 +485,12 @@ public class HallOfErosionDefence extends AbstractNpcAI
 				npc.deleteMe();
 			}
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		if (CommonUtil.contains(NOTMOVE, npc.getId()))
+		if (ArrayUtil.contains(NOTMOVE, npc.getId()))
 		{
 			npc.setRandomWalking(false);
 			npc.setImmobilized(true);
@@ -512,11 +511,10 @@ public class HallOfErosionDefence extends AbstractNpcAI
 				world.setParameter("tag", tag + 1);
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HEDWorld)
@@ -529,13 +527,13 @@ public class HallOfErosionDefence extends AbstractNpcAI
 				notifyTumorDeath(npc, world);
 				world.deadTumor = addSpawn(TUMOR_DEAD, npc.getLocation(), world.getInstanceId());
 				world.deadTumors.add(world.deadTumor);
-				broadCastPacket(world, new ExShowScreenMessage(NpcStringId.THE_TUMOR_INSIDE_S1_HAS_BEEN_DESTROYED_NTHE_NEARBY_UNDEAD_THAT_WERE_ATTACKING_SEED_OF_LIFE_START_LOSING_THEIR_ENERGY_AND_RUN_AWAY, 2, 8000));
+				broadCastPacket(world, new ExShowScreenMessage("The tumor inside has been destroyed! The nearby Undead that were attacking Seed of Life start losing their energy and run away!", 2, 8000));
 				ThreadPool.schedule(() ->
 				{
 					world.deadTumor.deleteMe();
 					final Npc tumor = addSpawn(TUMOR_ALIVE, world.deadTumor.getLocation(), world.getInstanceId());
 					world.alivetumor.add(tumor);
-					broadCastPacket(world, new ExShowScreenMessage(NpcStringId.THE_TUMOR_INSIDE_S1_HAS_COMPLETELY_REVIVED_NRECOVERED_NEARBY_UNDEAD_ARE_SWARMING_TOWARD_SEED_OF_LIFE, 2, 8000));
+					broadCastPacket(world, new ExShowScreenMessage("The tumor inside has completely revived. Recovered nearby Undead are swarming toward Seed of Life...", 2, 8000));
 				}, tumorRespawnTime);
 			}
 			
@@ -544,10 +542,9 @@ public class HallOfErosionDefence extends AbstractNpcAI
 				tumorRespawnTime += 5 * 1000;
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
-	public String onKillByMob(Npc npc, Npc killer)
+	public void onKillByMob(Npc npc, Npc killer)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HEDWorld)
@@ -559,7 +556,6 @@ public class HallOfErosionDefence extends AbstractNpcAI
 				conquestConclusion(world);
 			}
 		}
-		return null;
 	}
 	
 	private void notifyTumorDeath(Npc npc, HEDWorld world)
@@ -569,7 +565,7 @@ public class HallOfErosionDefence extends AbstractNpcAI
 		{
 			soulwagonSpawned = true;
 			final Npc soul = addSpawn(25636, npc.getLocation(), world.getInstanceId());
-			soul.broadcastPacket(new NpcSay(soul.getObjectId(), ChatType.SHOUT, soul.getId(), NpcStringId.HA_HA_HA));
+			soul.broadcastPacket(new NpcSay(soul.getObjectId(), ChatType.SHOUT, soul.getId(), "Ha, ha, ha!..."));
 		}
 	}
 	
@@ -628,7 +624,7 @@ public class HallOfErosionDefence extends AbstractNpcAI
 							}
 						}
 					}
-					broadCastPacket(_world, new ExShowScreenMessage(NpcStringId.CONGRATULATIONS_YOU_HAVE_SUCCEEDED_AT_S1_S2_THE_INSTANCE_WILL_SHORTLY_EXPIRE, 2, 8000));
+					broadCastPacket(_world, new ExShowScreenMessage("Congratulations! You have succeeded! The instance will shortly expire.", 2, 8000));
 					inst.removeNpcs();
 					if (inst.getPlayers().isEmpty())
 					{
@@ -651,7 +647,7 @@ public class HallOfErosionDefence extends AbstractNpcAI
 			world.finishTask.cancel(false);
 			world.finishTask = null;
 		}
-		broadCastPacket(world, new ExShowScreenMessage(NpcStringId.YOU_HAVE_FAILED_AT_S1_S2_THE_INSTANCE_WILL_SHORTLY_EXPIRE, 2, 8000));
+		broadCastPacket(world, new ExShowScreenMessage("You have failed... The instance will shortly expire.", 2, 8000));
 		conquestEnded = true;
 		final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
 		if (inst != null)

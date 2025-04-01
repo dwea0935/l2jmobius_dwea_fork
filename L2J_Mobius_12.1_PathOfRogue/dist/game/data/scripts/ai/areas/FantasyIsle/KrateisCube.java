@@ -65,7 +65,7 @@ public class KrateisCube extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		if (player != null)
 		{
@@ -75,7 +75,6 @@ public class KrateisCube extends AbstractNpcAI
 				arena.addPoints(player, false);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

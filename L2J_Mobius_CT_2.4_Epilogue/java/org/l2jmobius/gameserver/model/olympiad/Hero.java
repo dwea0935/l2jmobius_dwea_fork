@@ -39,16 +39,17 @@ import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.data.xml.SendMessageLocalisationData;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
@@ -614,7 +615,7 @@ public class Hero
 			{
 				if ((item != null) && item.isHeroItem())
 				{
-					player.destroyItem("Hero", item, null, true);
+					player.destroyItem(ItemProcessType.DESTROY, item, null, true);
 					iu.addRemovedItem(item);
 				}
 			}
@@ -907,9 +908,12 @@ public class Hero
 		if ((clan != null) && (clan.getLevel() >= 5))
 		{
 			clan.addReputationScore(Config.HERO_POINTS);
-			final SystemMessage sm = new SystemMessage(SystemMessageId.CLAN_MEMBER_C1_WAS_NAMED_A_HERO_2S_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE);
-			sm.addString(CharInfoTable.getInstance().getNameById(player.getObjectId()));
-			sm.addInt(Config.HERO_POINTS);
+			
+			// Retail system message is bugged?
+			// final SystemMessage sm = new SystemMessage(SystemMessageId.CLAN_MEMBER_C1_WAS_NAMED_A_HERO_S2_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE);
+			// sm.addString(CharInfoTable.getInstance().getNameById(player.getObjectId()));
+			// sm.addInt(Config.HERO_POINTS);
+			final SystemMessage sm = new SystemMessage(SendMessageLocalisationData.getLocalisation(player, "Clan member " + CharInfoTable.getInstance().getNameById(player.getObjectId()) + " was named a hero. " + Config.HERO_POINTS + " points have been added to your clan's reputation score."));
 			clan.broadcastToOnlineMembers(sm);
 		}
 		

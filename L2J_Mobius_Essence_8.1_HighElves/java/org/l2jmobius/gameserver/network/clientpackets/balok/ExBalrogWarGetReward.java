@@ -20,8 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.balok;
 
-import org.l2jmobius.gameserver.instancemanager.BattleWithBalokManager;
+import org.l2jmobius.gameserver.managers.BattleWithBalokManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.balok.BalrogWarGetReward;
@@ -59,7 +60,7 @@ public class ExBalrogWarGetReward extends ClientPacket
 		}
 		
 		final int reward = BattleWithBalokManager.getInstance().getReward();
-		player.addItem("Battle with Balok", reward, count, player, true);
+		player.addItem(ItemProcessType.REWARD, reward, count, player, true);
 		player.getVariables().set(PlayerVariables.BALOK_AVAILABLE_REWARD, -1);
 		player.sendPacket(new BalrogWarGetReward(true));
 	}

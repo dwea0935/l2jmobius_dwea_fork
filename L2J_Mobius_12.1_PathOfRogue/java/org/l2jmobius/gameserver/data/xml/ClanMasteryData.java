@@ -29,8 +29,8 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.ClanMasteryHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ClanMasteryHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
@@ -51,15 +51,14 @@ public class ClanMasteryData implements IXmlReader
 	public void load()
 	{
 		_clanMasteryData.clear();
-		
 		parseDatapackFile("data/ClanMasteryData.xml");
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _clanMasteryData.size() + " clan masteries.");
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "clan", clanNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "clan", clanNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(clanNode));
 			final int id = set.getInt("mastery");

@@ -70,15 +70,13 @@ public class Kerr extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		ThreadPool.schedule(() ->
 		{
 			KERR_SPAWN_LOCATIONS.remove(npc);
 			spawnKerr();
 		}, RESPAWN_DELAY);
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void spawnKerr()

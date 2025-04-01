@@ -37,7 +37,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -68,7 +68,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -99,7 +99,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -130,7 +130,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -161,7 +161,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -192,7 +192,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -223,7 +223,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -254,7 +254,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -285,7 +285,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -316,7 +316,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -347,7 +347,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -378,7 +378,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -409,7 +409,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -440,7 +440,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -471,7 +471,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -502,7 +502,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -533,7 +533,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -564,7 +564,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -595,7 +595,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -626,7 +626,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -657,7 +657,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -688,7 +688,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -719,7 +719,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -750,7 +750,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -781,7 +781,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -812,7 +812,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -843,7 +843,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -874,7 +874,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -905,7 +905,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -936,7 +936,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -967,7 +967,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -998,7 +998,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -1029,7 +1029,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -1060,7 +1060,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -1091,7 +1091,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -1122,7 +1122,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -1153,7 +1153,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -1184,7 +1184,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -1215,7 +1215,7 @@
 		<affectScope>SINGLE</affectScope>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 	</skill>
@@ -1247,7 +1247,6 @@
 		<effectPoint>0</effectPoint>
 		<hitTime>1000</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<lvlBonusRate>30</lvlBonusRate>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1274,7 +1273,6 @@
 		<effectPoint>-655</effectPoint>
 		<effectRange>1000</effectRange>
 		<hitTime>1000</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>

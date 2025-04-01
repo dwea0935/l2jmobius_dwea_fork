@@ -721,7 +721,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1153" name="Jenna's Letter" type="EtcItem">
-		<!-- Letter from Sentry Jenna to Master Harant. -->
+		<!-- A letter from Sentinel Jenna to Master Harant. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -733,7 +733,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="1154" name="Sentry Blade" type="EtcItem">
-		<!-- Adamantite sword newly issued to sentries. -->
+		<!-- An adamantite sword recently issued to all Sentinels. -->
 		<set name="icon" val="icon.weapon_bastard_sword_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -745,7 +745,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="1155" name="Sentry Blade" type="EtcItem">
-		<!-- Adamantite sword newly issued to sentries. -->
+		<!-- An adamantite sword recently issued to all Sentinels. -->
 		<set name="icon" val="icon.weapon_bastard_sword_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -757,7 +757,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="1156" name="Sentry Blade" type="EtcItem">
-		<!-- Adamantite sword newly issued to sentries. -->
+		<!-- An adamantite sword recently issued to all Sentinels. -->
 		<set name="icon" val="icon.weapon_bastard_sword_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -769,7 +769,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="1157" name="Old Bronze Sword" type="EtcItem">
-		<!-- Bronze sword used in the past by sentries. Recover this and take it to Sentry Jenna. -->
+		<!-- A bronze sword used in the past by the Sentinels. Take it to Sentinel Jenna. -->
 		<set name="icon" val="icon.weapon_crimson_sword_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

@@ -20,8 +20,8 @@ import java.util.NoSuchElementException;
 import java.util.OptionalDouble;
 import java.util.function.DoubleBinaryOperator;
 
-import org.l2jmobius.gameserver.enums.AttributeType;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
 import org.l2jmobius.gameserver.model.stats.finalizers.AttributeFinalizer;
 import org.l2jmobius.gameserver.model.stats.finalizers.BaseStatFinalizer;
 import org.l2jmobius.gameserver.model.stats.finalizers.MAccuracyFinalizer;
@@ -41,6 +41,7 @@ import org.l2jmobius.gameserver.model.stats.finalizers.PCriticalRateFinalizer;
 import org.l2jmobius.gameserver.model.stats.finalizers.PDefenseFinalizer;
 import org.l2jmobius.gameserver.model.stats.finalizers.PEvasionRateFinalizer;
 import org.l2jmobius.gameserver.model.stats.finalizers.PRangeFinalizer;
+import org.l2jmobius.gameserver.model.stats.finalizers.PSkillCritRateFinalizer;
 import org.l2jmobius.gameserver.model.stats.finalizers.RandomDamageFinalizer;
 import org.l2jmobius.gameserver.model.stats.finalizers.RegenCPFinalizer;
 import org.l2jmobius.gameserver.model.stats.finalizers.RegenHPFinalizer;
@@ -127,7 +128,7 @@ public enum Stat
 	MAGIC_CRITICAL_DAMAGE_ADD("mCritPowerAdd"),
 	SHIELD_DEFENCE_RATE("rShld", new ShieldDefenceRateFinalizer()),
 	CRITICAL_RATE("rCrit", new PCriticalRateFinalizer(), MathUtil::add, MathUtil::add, 0, 1),
-	CRITICAL_RATE_SKILL("physicalSkillCriticalRate"),
+	CRITICAL_RATE_SKILL("physicalSkillCriticalRate", new PSkillCritRateFinalizer()),
 	ADD_MAX_MAGIC_CRITICAL_RATE("addMaxMagicCritRate"),
 	ADD_MAX_PHYSICAL_CRITICAL_RATE("addMaxPhysicalCritRate"),
 	MAGIC_CRITICAL_RATE("mCritRate", new MCritRateFinalizer()),

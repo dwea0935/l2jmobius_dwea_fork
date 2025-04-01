@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="5000" type="EtcItem" name="Recipe: Sword of Damascus (60%)">
 		<!-- For Dwarves only. The recipe for a Sword of Damascus. Requires Create Item - Skill Level 7. The success rate is 60%. -->
@@ -65,7 +65,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="5005" type="EtcItem" name="Recipe: Demon's Dagger (60%)">
+	<item id="5005" type="EtcItem" name="Recipe: Demon Dagger (60%)">
 		<!-- For Dwarves only. The recipe for the Demon Dagger. Requires Create Item - Skill Level 7. The success rate is 60%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -477,7 +477,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5040" type="EtcItem" name="Seed: Twin Codran">
+	<item id="5040" type="EtcItem" name="Seed: Twin Codra">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Twin Codran. For best results, a level 53-63 character must plant it on a level 53-63 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />

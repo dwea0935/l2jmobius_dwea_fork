@@ -20,12 +20,12 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.elementalspirits;
 
-import org.l2jmobius.gameserver.enums.ElementalType;
-import org.l2jmobius.gameserver.enums.UserInfoType;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.elementalspirits.ElementalSpiritSetTalent;
@@ -66,7 +66,7 @@ public class ExElementalSpiritSetTalent extends ClientPacket
 			return;
 		}
 		
-		final ElementalSpirit spirit = player.getElementalSpirit(ElementalType.of(_type));
+		final ElementalSpirit spirit = player.getElementalSpirit(ElementalSpiritType.of(_type));
 		boolean result = false;
 		if (spirit != null)
 		{

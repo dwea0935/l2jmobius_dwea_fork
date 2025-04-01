@@ -913,7 +913,7 @@
 		<abnormalTime>600</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>540000</reuseDelay>

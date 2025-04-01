@@ -28,7 +28,8 @@ import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.RelicData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PlayerRelicData;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerRelicData;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.variables.AccountVariables;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -162,7 +163,7 @@ public class ExRelicsExchange extends ServerPacket
 					break;
 				}
 			}
-			_player.destroyItemByItemId("RelicsReplace", replacementItemId, replacementFee, _player, true);
+			_player.destroyItemByItemId(ItemProcessType.FEE, replacementItemId, replacementFee, _player, true);
 			_player.getAccountVariables().storeMe();
 		}
 		

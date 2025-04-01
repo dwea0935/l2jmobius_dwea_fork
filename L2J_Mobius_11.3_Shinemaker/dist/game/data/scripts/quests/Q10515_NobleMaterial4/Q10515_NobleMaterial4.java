@@ -24,12 +24,12 @@ import org.l2jmobius.gameserver.data.xml.TeleportListData;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestDialogType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.newquestdata.NewQuestLocation;
 import org.l2jmobius.gameserver.model.quest.newquestdata.QuestCondType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestDialog;
 
 import quests.Q10518_ExaltedOneWhoFacesTheLimit.Q10518_ExaltedOneWhoFacesTheLimit;

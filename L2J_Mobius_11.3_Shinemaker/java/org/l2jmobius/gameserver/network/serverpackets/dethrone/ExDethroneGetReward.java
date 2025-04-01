@@ -25,10 +25,11 @@ import java.util.Map.Entry;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -130,7 +131,7 @@ public class ExDethroneGetReward extends ServerPacket
 				{
 					for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_1)
 					{
-						player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+						player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 					}
 					break;
 				}
@@ -138,7 +139,7 @@ public class ExDethroneGetReward extends ServerPacket
 				{
 					for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_2)
 					{
-						player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+						player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 					}
 					break;
 				}
@@ -146,7 +147,7 @@ public class ExDethroneGetReward extends ServerPacket
 				{
 					for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_3)
 					{
-						player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+						player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 					}
 					break;
 				}
@@ -154,7 +155,7 @@ public class ExDethroneGetReward extends ServerPacket
 				{
 					for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_4)
 					{
-						player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+						player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 					}
 					break;
 				}
@@ -162,7 +163,7 @@ public class ExDethroneGetReward extends ServerPacket
 				{
 					for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_5)
 					{
-						player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+						player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 					}
 					break;
 				}
@@ -170,7 +171,7 @@ public class ExDethroneGetReward extends ServerPacket
 				{
 					for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_6)
 					{
-						player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+						player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 					}
 					break;
 				}
@@ -178,7 +179,7 @@ public class ExDethroneGetReward extends ServerPacket
 				{
 					for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_7)
 					{
-						player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+						player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 					}
 					break;
 				}
@@ -186,7 +187,7 @@ public class ExDethroneGetReward extends ServerPacket
 				{
 					for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_8)
 					{
-						player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+						player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 					}
 					break;
 				}
@@ -194,7 +195,7 @@ public class ExDethroneGetReward extends ServerPacket
 				{
 					for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_9)
 					{
-						player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+						player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 					}
 					break;
 				}
@@ -202,7 +203,7 @@ public class ExDethroneGetReward extends ServerPacket
 				{
 					for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_10)
 					{
-						player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+						player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 					}
 					break;
 				}
@@ -213,7 +214,7 @@ public class ExDethroneGetReward extends ServerPacket
 			{
 				for (ItemHolder reward : Config.CONQUEST_REWARDS_RANK_PARTICIPANT)
 				{
-					player.addItem("CONQUEST_REWARDS", reward.getId(), reward.getCount(), player, true);
+					player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 				}
 			}
 			

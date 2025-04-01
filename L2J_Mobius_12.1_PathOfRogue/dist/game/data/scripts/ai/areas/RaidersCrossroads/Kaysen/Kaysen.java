@@ -20,14 +20,14 @@
  */
 package ai.areas.RaidersCrossroads.Kaysen;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
 import ai.AbstractNpcAI;
@@ -158,14 +158,13 @@ public class Kaysen extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("NPC_SHOUT", getRandom(10, 15) * 1000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player player = killer.asPlayer();
 		final int diff = player.getLevel() - npc.getLevel();
@@ -181,7 +180,6 @@ public class Kaysen extends AbstractNpcAI
 			}
 			player.broadcastPacket(new ExShowScreenMessage(NpcStringId.YOU_HAVE_ACQUIRED_EXTRA_XP, ExShowScreenMessage.TOP_CENTER, 10000));
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.commission;
 
-import org.l2jmobius.gameserver.instancemanager.ItemCommissionManager;
+import org.l2jmobius.gameserver.managers.ItemCommissionManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;

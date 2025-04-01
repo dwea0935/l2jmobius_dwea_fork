@@ -145,7 +145,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="1212" name="Moretti's Herb" type="EtcItem">
-		<!-- An herb that Guard Moretti asked to give to Prias. -->
+		<!-- An herb that Guardian Moretti has asked you to give to Prias. -->
 		<set name="icon" val="icon.etc_herb_green_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

@@ -21,7 +21,7 @@
 package ai.areas.Conquest.ConquestTeleportDevice;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;

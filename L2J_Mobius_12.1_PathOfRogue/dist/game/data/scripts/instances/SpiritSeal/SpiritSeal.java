@@ -23,14 +23,14 @@ package instances.SpiritSeal;
 import java.util.List;
 
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -436,12 +436,12 @@ public class SpiritSeal extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance instance = attacker.getInstanceWorld();
 		if (!isInInstance(instance))
 		{
-			return null;
+			return;
 		}
 		
 		switch (npc.getId())
@@ -610,11 +610,10 @@ public class SpiritSeal extends AbstractInstance
 				break;
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		switch (npc.getId())
@@ -655,12 +654,10 @@ public class SpiritSeal extends AbstractInstance
 				break;
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onEnterZone(Creature player, ZoneType zone)
+	public void onEnterZone(Creature player, ZoneType zone)
 	{
 		final Instance instance = player.getInstanceWorld();
 		if ((instance != null) && player.isPlayer())
@@ -684,7 +681,6 @@ public class SpiritSeal extends AbstractInstance
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
@@ -904,10 +900,9 @@ public class SpiritSeal extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomWalking(false);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

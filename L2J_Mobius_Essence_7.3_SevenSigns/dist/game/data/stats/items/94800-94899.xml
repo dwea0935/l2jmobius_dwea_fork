@@ -1358,6 +1358,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
+		<set name="handler" val="BlackCoupon" />
 	</item>
 	<item id="94853" name="Legendary Dye (STR +4)" additionalName="3rd Class" type="EtcItem">
 		<!-- Required for applying Legendary STR Tattoo. Take it to the Tattoo Master in town to get a tattoo that boosts your stats. Requirement: all 3rd classes. Note!. 1 dye is required for making a tattoo. -->

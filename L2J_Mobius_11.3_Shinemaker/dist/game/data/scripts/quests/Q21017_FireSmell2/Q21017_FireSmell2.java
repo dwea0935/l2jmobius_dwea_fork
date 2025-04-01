@@ -28,7 +28,7 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.conquest.OnConquestFlowerCollect;
+import org.l2jmobius.gameserver.model.events.holders.conquest.OnConquestFlowerCollect;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestDialogType;
@@ -149,7 +149,7 @@ public class Q21017_FireSmell2 extends Quest
 					questState.setCount(newItemCount);
 				}
 				
-				if (questState.getCount() == data.getGoal().getCount())
+				if (questState.getCount() >= data.getGoal().getCount())
 				{
 					questState.setCond(QuestCondType.DONE);
 					player.sendPacket(new ExQuestNotification(questState));

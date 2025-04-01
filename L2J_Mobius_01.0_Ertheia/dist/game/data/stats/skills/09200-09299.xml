@@ -278,7 +278,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -345,7 +345,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -854,7 +854,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -898,7 +898,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -984,7 +984,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1023,7 +1023,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1067,7 +1067,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1127,7 +1127,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1176,7 +1176,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1732,7 +1732,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -2028,7 +2028,7 @@
 		<effectPoint>687</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -2073,7 +2073,7 @@
 		<effectPoint>687</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -2163,7 +2163,7 @@
 		<effectPoint>687</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -2204,7 +2204,7 @@
 		<effectPoint>687</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -2249,7 +2249,7 @@
 		<effectPoint>687</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -2310,7 +2310,7 @@
 		<effectPoint>687</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -2357,7 +2357,7 @@
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -2376,7 +2376,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>
@@ -2431,7 +2431,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -2524,7 +2524,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -2571,7 +2571,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -2625,7 +2625,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -2689,7 +2689,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>

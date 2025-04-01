@@ -21,7 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.xml.PlayerTemplateData;
-import org.l2jmobius.gameserver.enums.ClassId;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.network.serverpackets.NewCharacterSuccess;
 
 /**
@@ -38,16 +38,16 @@ public class NewCharacter extends ClientPacket
 	protected void runImpl()
 	{
 		final NewCharacterSuccess ct = new NewCharacterSuccess();
-		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.FIGHTER)); // Human Figther
-		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.MAGE)); // Human Mystic
-		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.ELVEN_FIGHTER)); // Elven Fighter
-		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.ELVEN_MAGE)); // Elven Mystic
-		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.DARK_FIGHTER)); // Dark Fighter
-		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.DARK_MAGE)); // Dark Mystic
-		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.ORC_FIGHTER)); // Orc Fighter
-		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.ORC_MAGE)); // Orc Mystic
-		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.DWARVEN_FIGHTER)); // Dwarf Fighter
-		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.KAMAEL_SOLDIER)); // Kamael Soldier
+		ct.addChar(PlayerTemplateData.getInstance().getTemplate(PlayerClass.FIGHTER)); // Human Figther
+		ct.addChar(PlayerTemplateData.getInstance().getTemplate(PlayerClass.MAGE)); // Human Mystic
+		ct.addChar(PlayerTemplateData.getInstance().getTemplate(PlayerClass.ELVEN_FIGHTER)); // Elven Fighter
+		ct.addChar(PlayerTemplateData.getInstance().getTemplate(PlayerClass.ELVEN_MAGE)); // Elven Mystic
+		ct.addChar(PlayerTemplateData.getInstance().getTemplate(PlayerClass.DARK_FIGHTER)); // Dark Fighter
+		ct.addChar(PlayerTemplateData.getInstance().getTemplate(PlayerClass.DARK_MAGE)); // Dark Mystic
+		ct.addChar(PlayerTemplateData.getInstance().getTemplate(PlayerClass.ORC_FIGHTER)); // Orc Fighter
+		ct.addChar(PlayerTemplateData.getInstance().getTemplate(PlayerClass.ORC_MAGE)); // Orc Mystic
+		ct.addChar(PlayerTemplateData.getInstance().getTemplate(PlayerClass.DWARVEN_FIGHTER)); // Dwarf Fighter
+		ct.addChar(PlayerTemplateData.getInstance().getTemplate(PlayerClass.KAMAEL_SOLDIER)); // Kamael Soldier
 		getClient().sendPacket(ct);
 	}
 }

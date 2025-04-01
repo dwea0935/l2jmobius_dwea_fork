@@ -672,7 +672,6 @@
 		</magicLevel>
 		<mpConsume>
 			<value level="1">58</value>
-			<value level="1">58</value>
 		</mpConsume>
 		<reuseDelay>10000</reuseDelay>
 		<effects>

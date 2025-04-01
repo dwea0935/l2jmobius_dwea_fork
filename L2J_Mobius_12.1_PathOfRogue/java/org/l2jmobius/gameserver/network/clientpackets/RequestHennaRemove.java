@@ -75,7 +75,7 @@ public class RequestHennaRemove extends ClientPacket
 				break;
 			}
 		}
-		// TODO: Test.
+		
 		if (!found)
 		{
 			PacketLogger.warning(getClass().getSimpleName() + ": " + player + " requested Henna Draw remove without any henna.");

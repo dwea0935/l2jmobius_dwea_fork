@@ -1663,7 +1663,6 @@
 		<attributeValue>20</attributeValue>
 		<effectPoint>-275</effectPoint>
 		<hitTime>1800</hitTime>
-		<hitTime>1800</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>

@@ -22,9 +22,9 @@ package ai.areas.LandsOfShadow;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -176,7 +176,7 @@ public class LandsOfShadow extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (killer.isInCategory(CategoryType.HIGH_ELF_ALL_CLASS))
 		{
@@ -236,14 +236,11 @@ public class LandsOfShadow extends AbstractNpcAI
 				}
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onEnterZone(Creature character, ZoneType zone)
+	public void onEnterZone(Creature character, ZoneType zone)
 	{
-		return super.onEnterZone(character, zone);
 	}
 	
 	private void enableZones(ZoneType zone)

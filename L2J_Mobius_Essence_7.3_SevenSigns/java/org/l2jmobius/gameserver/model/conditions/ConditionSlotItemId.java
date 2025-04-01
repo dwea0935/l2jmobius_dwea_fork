@@ -56,6 +56,7 @@ public class ConditionSlotItemId extends ConditionInventory
 		{
 			return _itemId == 0;
 		}
+		
 		return (itemSlot.getId() == _itemId) && (itemSlot.getEnchantLevel() >= _enchantLevel);
 	}
 }

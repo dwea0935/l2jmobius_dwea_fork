@@ -745,7 +745,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3362" name="Crystal of Foul" type="EtcItem">
-		<!-- Indication that foul play was involved in a Summoner battle. Take this to Summoner Almors. -->
+		<!-- The evidence of foul play in the Summoner battle. Take it to Summoner Almors. -->
 		<set name="icon" val="icon.etc_gem_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -757,7 +757,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3363" name="Crystal of Defeat" type="EtcItem">
-		<!-- Indication that the Summoner Has been defeated in battle. Take this to Summoner Almors. -->
+		<!-- A proof that the Summoner has been defeated in battle. Take it to Summoner Almors. -->
 		<set name="icon" val="icon.etc_gem_red_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -769,7 +769,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3364" name="Crystal of Victory" type="EtcItem">
-		<!-- Indication that the Summoner Has been victorious in a battle. Take this to Summoner Almors. -->
+		<!-- A proof that the Summoner has been victorious in battle. Take it to Summoner Almors. -->
 		<set name="icon" val="icon.etc_gem_green_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -805,7 +805,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3367" name="Crystal of Foul" type="EtcItem">
-		<!-- Indication that foul play was involved in a Summoner battle. Take this to Summoner Camoniell. -->
+		<!-- The evidence of foul play in the Summoner battle. Take it to Summoner Camoniell. -->
 		<set name="icon" val="icon.etc_gem_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -817,7 +817,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3368" name="Crystal of Defeat" type="EtcItem">
-		<!-- Indication that the Summoner Has been defeated in a battle. Take this to Summoner Camoniell. -->
+		<!-- A proof that the Summoner has been defeated in battle. Take it to Summoner Camoniell. -->
 		<set name="icon" val="icon.etc_gem_red_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -829,7 +829,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3369" name="Crystal of Victory" type="EtcItem">
-		<!-- Indication that the Summoner Has been victorious in a battle. Take this to Summoner Camoniell. -->
+		<!-- A proof that the Summoner has been victorious in battle. Take it to Summoner Camoniell. -->
 		<set name="icon" val="icon.etc_gem_green_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -865,7 +865,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3372" name="Crystal of Foul" type="EtcItem">
-		<!-- Indication that foul play was involved in a summoner battle. Take this to Summoner Belthus. -->
+		<!-- The evidence of foul play in the Summoner battle. Take it to Summoner Belthus. -->
 		<set name="icon" val="icon.etc_gem_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -877,7 +877,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3373" name="Crystal of Defeat" type="EtcItem">
-		<!-- Indication that the Summoner Has been defeated in a battle. Take this to Summoner Belthus. -->
+		<!-- A proof that the Summoner has been defeated in battle. Take it to Summoner Belthus. -->
 		<set name="icon" val="icon.etc_gem_red_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -889,7 +889,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3374" name="Crystal of Victory" type="EtcItem">
-		<!-- Indication that the Summoner Has been victorious in a battle. Take this to Summoner Belthus. -->
+		<!-- A proof that the Summoner has been victorious in battle. Take it to Summoner Belthus. -->
 		<set name="icon" val="icon.etc_gem_green_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -925,7 +925,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3377" name="Crystal of Foul" type="EtcItem">
-		<!-- Indication that foul play was involved in a Summoner battle. Take this to Summoner Basillia. -->
+		<!-- The evidence of foul play in the Summoner battle. Take it to Summoner Basillia. -->
 		<set name="icon" val="icon.etc_gem_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -937,7 +937,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3378" name="Crystal of Defeat" type="EtcItem">
-		<!-- Indication that the Summoner Has been defeated in a battle. Take this to Summoner Basillia. -->
+		<!-- A proof that the Summoner has been defeated in battle. Take it to Summoner Basillia. -->
 		<set name="icon" val="icon.etc_gem_red_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -949,7 +949,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3379" name="Crystal of Victory" type="EtcItem">
-		<!-- Indication that the Summoner Has been victorious in a battle. Take this to Summoner Basillia. -->
+		<!-- A proof that the Summoner has been victorious in battle. Take it to Summoner Basillia. -->
 		<set name="icon" val="icon.etc_gem_green_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -985,7 +985,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3382" name="Crystal of Foul" type="EtcItem">
-		<!-- Indication that foul play was involved in a Summoner battle. Take this to Summoner Celestiel. -->
+		<!-- The evidence of foul play in the Summoner battle. Take it to Summoner Celestiel. -->
 		<set name="icon" val="icon.etc_gem_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -997,7 +997,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3383" name="Crystal of Defeat" type="EtcItem">
-		<!-- Indication that the Summoner Has been defeated in a battle. Take this to Summoner Celestiel. -->
+		<!-- A proof that the Summoner has been defeated in battle. Take it to Summoner Celestiel. -->
 		<set name="icon" val="icon.etc_gem_red_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1009,7 +1009,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3384" name="Crystal of Victory" type="EtcItem">
-		<!-- Indication that the Summoner Has been victorious in a battle. Take this to Summoner Celestiel. -->
+		<!-- A proof that the Summoner has been victorious in battle. Take it to Summoner Celestiel. -->
 		<set name="icon" val="icon.etc_gem_green_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1045,7 +1045,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3387" name="Crystal of Foul" type="EtcItem">
-		<!-- Indication that foul play was involved in a Summoner battle. Take this to Summoner Brynthea. -->
+		<!-- The evidence of foul play in the Summoner battle. Take it to Summoner Brynthea. -->
 		<set name="icon" val="icon.etc_gem_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1057,7 +1057,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3388" name="Crystal of Defeat" type="EtcItem">
-		<!-- Indication that the Summoner Has been defeated in a Summoner battle. Take this to Summoner Brynthea. -->
+		<!-- A proof that the Summoner has been defeated in battle. Take it to Summoner Brynthea. -->
 		<set name="icon" val="icon.etc_gem_red_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1069,7 +1069,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3389" name="Crystal of Victory" type="EtcItem">
-		<!-- Indication that the Summoner Has been victorious in a Summoner battle. Take this to Summoner Brynthea. -->
+		<!-- A proof that the Summoner has been victorious in battle. Take it to Summoner Brynthea. -->
 		<set name="icon" val="icon.etc_gem_green_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

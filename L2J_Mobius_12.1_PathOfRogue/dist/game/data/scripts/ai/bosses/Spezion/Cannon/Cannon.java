@@ -24,8 +24,8 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.OnEventTrigger;
 
@@ -143,7 +143,7 @@ public class Cannon extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getVariables().getBoolean("DROP_MEMORY_FRAGMENT", false))
 		{
@@ -154,18 +154,16 @@ public class Cannon extends AbstractNpcAI
 		{
 			npc.dropItem(killer, CANNONBALL, 1);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("CANNON_RECHARGE", 1000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if (skill.getId() == PRESENT_SKILL.getSkillId())
 		{
@@ -175,7 +173,6 @@ public class Cannon extends AbstractNpcAI
 			final Npc light = addSpawn(INVISIBLE_NPC, npcParams.getInt("LIGHT_ZONE_POS_X"), npcParams.getInt("LIGHT_ZONE_POS_Y"), npcParams.getInt("LIGHT_ZONE_POS_Z"), 0, false, 10000);
 			startQuestTimer("LIGHT_CHECK", 500, light, null);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override

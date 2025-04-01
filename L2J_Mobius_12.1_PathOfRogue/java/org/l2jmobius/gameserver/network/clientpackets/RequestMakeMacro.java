@@ -21,12 +21,13 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.MacroType;
-import org.l2jmobius.gameserver.model.Macro;
-import org.l2jmobius.gameserver.model.MacroCmd;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MacroType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Macro;
+import org.l2jmobius.gameserver.model.actor.holders.player.MacroCmd;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -75,30 +76,43 @@ public class RequestMakeMacro extends ClientPacket
 		{
 			return;
 		}
-		if (_commandsLength > 255)
-		{
-			// Invalid macro. Refer to the Help file for instructions.
-			player.sendPacket(SystemMessageId.INVALID_MACRO_REFER_TO_THE_HELP_FILE_FOR_INSTRUCTIONS);
-			return;
-		}
-		if (player.getMacros().getAllMacroses().size() > 48)
-		{
-			// You may create up to 48 macros.
-			player.sendPacket(SystemMessageId.YOU_MAY_CREATE_UP_TO_48_MACROS);
-			return;
-		}
+		
+		// Enter the name of the macro.
 		if (_macro.getName().isEmpty())
 		{
-			// Enter the name of the macro.
 			player.sendPacket(SystemMessageId.ENTER_THE_NAME_OF_THE_MACRO);
 			return;
 		}
+		
+		// Invalid macro. Refer to the Help file for instructions.
+		if (_commandsLength > 255)
+		{
+			player.sendPacket(SystemMessageId.INVALID_MACRO_REFER_TO_THE_HELP_FILE_FOR_INSTRUCTIONS);
+			return;
+		}
+		
+		// You may create up to 48 macros.
+		final Collection<Macro> macros = player.getMacros().getAllMacroses().values();
+		if (macros.size() > 48)
+		{
+			player.sendPacket(SystemMessageId.YOU_MAY_CREATE_UP_TO_48_MACROS);
+			return;
+		}
+		
+		// That name is already assigned to another macro.
+		if (macros.stream().anyMatch(m -> m.getName().equalsIgnoreCase(_macro.getName()) && (m.getId() != _macro.getId())))
+		{
+			player.sendPacket(SystemMessageId.ENTER_THE_NAME_OF_THE_MACRO);
+			return;
+		}
+		
+		// Macro descriptions may contain up to 32 characters.
 		if (_macro.getDescr().length() > 32)
 		{
-			// Macro descriptions may contain up to 32 characters.
 			player.sendPacket(SystemMessageId.MACRO_DESCRIPTIONS_MAY_CONTAIN_UP_TO_32_CHARACTERS);
 			return;
 		}
+		
 		player.registerMacro(_macro);
 	}
 }

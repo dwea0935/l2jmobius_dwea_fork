@@ -43,7 +43,7 @@ public class ExPkPenaltyList extends ServerPacket
 		_lastPkTime = World.getInstance().getLastPkTime();
 		for (Player player : World.getInstance().getPkPlayers())
 		{
-			_players.add(new PlayerHolder(player.getObjectId(), String.format("%1$-" + 23 + "s", player.getName()), player.getLevel(), player.getClassId().getId()));
+			_players.add(new PlayerHolder(player.getObjectId(), String.format("%1$-" + 23 + "s", player.getName()), player.getLevel(), player.getPlayerClass().getId()));
 		}
 	}
 	

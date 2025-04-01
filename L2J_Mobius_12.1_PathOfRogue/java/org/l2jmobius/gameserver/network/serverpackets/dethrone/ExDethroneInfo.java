@@ -25,7 +25,7 @@ import java.util.Set;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -62,7 +62,7 @@ public class ExDethroneInfo extends ServerPacket
 		final RankManager manager = RankManager.getInstance();
 		_rank = manager.getPlayerConquestGlobalRank(player);
 		_rankSize = manager.getCurrentConquestRankList().size();
-		_topRankerName = manager.getPlayerConquestGlobalRankName(1);
+		_topRankerName = manager.getConquestTopRankName();
 		
 		final Set<Entry<Integer, StatSet>> previousRankList = manager.getPreviousConquestRankList().entrySet();
 		for (Entry<Integer, StatSet> entry : previousRankList)

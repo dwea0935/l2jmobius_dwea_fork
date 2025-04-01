@@ -20,13 +20,13 @@
  */
 package quests.Q00231_TestOfTheMaestro;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
@@ -72,7 +72,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 	
 	public Q00231_TestOfTheMaestro()
 	{
-		super(231);
+		super(231, "Test of the Maestro");
 		registerQuestItems(RECOMMENDATION_OF_BALANKI, RECOMMENDATION_OF_FILAUR, RECOMMENDATION_OF_ARIN, LETTER_OF_SOLDER_DETACHMENT, PAINT_OF_KAMURU, NECKLACE_OF_KAMURU, PAINT_OF_TELEPORT_DEVICE, TELEPORT_DEVICE, ARCHITECTURE_OF_KRUMA, REPORT_OF_KRUMA, INGREDIENTS_OF_ANTIDOTE, STINGER_WASP_NEEDLE, MARSH_SPIDER_WEB, BLOOD_OF_LEECH, BROKEN_TELEPORT_DEVICE);
 		addStartNpc(LOCKIRIN);
 		addTalkId(LOCKIRIN, SPIRON, BALANKI, KEEF, FILAUR, ARIN, TOMA, CROTO, DUBABAH, LORAIN);
@@ -97,7 +97,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 				if (!player.getVariables().getBoolean("secondClassChange39", false))
 				{
 					htmltext = "30531-04a.htm";
-					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getClassId().getId()));
+					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getPlayerClass().getId()));
 					player.getVariables().set("secondClassChange39", true);
 				}
 				break;
@@ -137,13 +137,13 @@ public class Q00231_TestOfTheMaestro extends Quest
 			{
 				final Attackable bugbear1 = addSpawn(KING_BUGBEAR, 140333, -194153, -3138, 0, false, 200000).asAttackable();
 				bugbear1.addDamageHate(player, 0, 999);
-				bugbear1.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+				bugbear1.getAI().setIntention(Intention.ATTACK, player);
 				final Attackable bugbear2 = addSpawn(KING_BUGBEAR, 140395, -194147, -3146, 0, false, 200000).asAttackable();
 				bugbear2.addDamageHate(player, 0, 999);
-				bugbear2.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+				bugbear2.getAI().setIntention(Intention.ATTACK, player);
 				final Attackable bugbear3 = addSpawn(KING_BUGBEAR, 140304, -194082, -3157, 0, false, 200000).asAttackable();
 				bugbear3.addDamageHate(player, 0, 999);
-				bugbear3.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+				bugbear3.getAI().setIntention(Intention.ATTACK, player);
 				return null;
 			}
 		}
@@ -161,7 +161,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 		{
 			case State.CREATED:
 			{
-				if (player.getClassId() != ClassId.ARTISAN)
+				if (player.getPlayerClass() != PlayerClass.ARTISAN)
 				{
 					htmltext = "30531-01.htm";
 				}
@@ -415,12 +415,12 @@ public class Q00231_TestOfTheMaestro extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isCond(1))
 		{
-			return null;
+			return;
 		}
 		
 		switch (npc.getId())
@@ -462,7 +462,5 @@ public class Q00231_TestOfTheMaestro extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 }

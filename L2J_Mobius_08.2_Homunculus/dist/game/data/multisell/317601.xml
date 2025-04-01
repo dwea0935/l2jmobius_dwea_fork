@@ -182,18 +182,6 @@
 		<production count="1" id="10649" />
 	</item>
 	<item>
-		<!-- Adena -->
-		<ingredient count="10000000000" id="57" />
-		<!-- Damaged Spellbook -->
-		<ingredient count="15000" id="48979" />
-		<!-- Artifact Fragment -->
-		<ingredient count="5000" id="80000" />
-		<!-- Knight's Epaulette -->
-		<ingredient count="1000" id="9912" />
-		<!-- Bloody Pa'agrio -->
-		<production count="1" id="4358" />
-	</item>
-	<item>
 		<!-- Artifact Fragment -->
 		<ingredient count="1" id="80000" />
 		<!-- Damaged Spellbook -->

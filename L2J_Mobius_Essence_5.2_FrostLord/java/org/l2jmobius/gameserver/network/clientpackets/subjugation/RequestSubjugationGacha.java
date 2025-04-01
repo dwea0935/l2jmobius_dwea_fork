@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.clientpackets.subjugation;
 
@@ -23,7 +27,8 @@ import java.util.Map;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.SubjugationGacha;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PurgePlayerHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerPurgeHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.subjugation.ExSubjugationGacha;
 import org.l2jmobius.gameserver.network.serverpackets.subjugation.ExSubjugationGachaUI;
@@ -57,13 +62,13 @@ public class RequestSubjugationGacha extends ClientPacket
 			return;
 		}
 		
-		final PurgePlayerHolder playerKeys = player.getPurgePoints().get(_category);
+		final PlayerPurgeHolder playerKeys = player.getPurgePoints().get(_category);
 		final Map<Integer, Double> subjugationData = SubjugationGacha.getInstance().getSubjugation(_category);
 		if ((playerKeys != null) && (playerKeys.getKeys() >= _amount) && (player.getInventory().getAdena() > (20000L * _amount)))
 		{
-			player.getInventory().reduceAdena("Purge Gacha", 20000L * _amount, player, null);
+			player.getInventory().reduceAdena(ItemProcessType.FEE, 20000L * _amount, player, null);
 			final int curKeys = playerKeys.getKeys() - _amount;
-			player.getPurgePoints().put(_category, new PurgePlayerHolder(playerKeys.getPoints(), curKeys, 0));
+			player.getPurgePoints().put(_category, new PlayerPurgeHolder(playerKeys.getPoints(), curKeys, 0));
 			Map<Integer, Integer> rewards = new HashMap<>();
 			for (int i = 0; i < _amount; i++)
 			{
@@ -77,7 +82,7 @@ public class RequestSubjugationGacha extends ClientPacket
 					{
 						final int itemId = subjugationData.keySet().stream().mapToInt(it -> it).toArray()[index];
 						rewards.put(itemId, rewards.getOrDefault(itemId, 0) + 1);
-						player.addItem("Purge Gacha", itemId, 1, player, true);
+						player.addItem(ItemProcessType.REWARD, itemId, 1, player, true);
 						break;
 					}
 					rate += itemChance;

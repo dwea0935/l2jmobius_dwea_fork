@@ -1,34 +1,38 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.TalkingIsland.Hardin;
 
 import java.util.List;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -71,13 +75,13 @@ public class Hardin extends AbstractNpcAI
 		if (event.equals("list"))
 		{
 			final StringBuilder classes = new StringBuilder();
-			final ClassId playerBaseTemplate = player.getBaseTemplate().getClassId();
-			for (ClassId c : ClassId.values())
+			final PlayerClass playerBaseTemplate = player.getBaseTemplate().getPlayerClass();
+			for (PlayerClass c : PlayerClass.values())
 			{
 				if ((((c.level() != 4) && (c.getRace() != Race.ERTHEIA)) //
 					|| (Config.HARDIN_ENABLE_ERTHEIAS && (c.getRace() == Race.ERTHEIA) && (c.level() != 3))) //
 					|| (!Config.HARDIN_ENABLE_ERTHEIAS && (c.getRace() == Race.ERTHEIA)) //
-					|| (c == player.getClassId()) //
+					|| (c == player.getPlayerClass()) //
 					|| (c == playerBaseTemplate))
 				{
 					continue;
@@ -85,7 +89,7 @@ public class Hardin extends AbstractNpcAI
 				
 				if (!player.isDualClassActive() || (player.isDualClassActive() && Config.HARDIN_ENABLE_DUALCLASS_CHECKS))
 				{
-					if (!Config.HARDIN_ENABLE_ALL_RACES && (c.getRace() != player.getClassId().getRace()))
+					if (!Config.HARDIN_ENABLE_ALL_RACES && (c.getRace() != player.getPlayerClass().getRace()))
 					{
 						continue;
 					}
@@ -96,7 +100,7 @@ public class Hardin extends AbstractNpcAI
 					if (Config.HARDIN_SAME_AWAKEN_GROUP)
 					{
 						final String original = c.toString().contains("_") ? c.toString().substring(0, c.toString().indexOf('_') - 1) : c.toString();
-						final String search = player.getClassId().toString().contains("_") ? player.getClassId().toString().substring(0, player.getClassId().toString().indexOf('_') - 1) : player.getClassId().toString();
+						final String search = player.getPlayerClass().toString().contains("_") ? player.getPlayerClass().toString().substring(0, player.getPlayerClass().toString().indexOf('_') - 1) : player.getPlayerClass().toString();
 						if (!original.equals(search))
 						{
 							continue;
@@ -104,11 +108,11 @@ public class Hardin extends AbstractNpcAI
 					}
 					if (Config.HARDIN_RETAIL_LIMITATIONS)
 					{
-						if ((c == ClassId.TYRR_MAESTRO) && (player.getRace() != Race.DWARF))
+						if ((c == PlayerClass.TYRR_MAESTRO) && (player.getRace() != Race.DWARF))
 						{
 							continue;
 						}
-						if ((c == ClassId.ISS_DOMINATOR) && (player.getRace() != Race.ORC))
+						if ((c == PlayerClass.ISS_DOMINATOR) && (player.getRace() != Race.ORC))
 						{
 							continue;
 						}
@@ -135,19 +139,19 @@ public class Hardin extends AbstractNpcAI
 			// Save original ClassId
 			if (!player.isDualClassActive() && (player.getOriginalClass() == null))
 			{
-				player.setOriginalClass(player.getClassId());
+				player.setOriginalClass(player.getPlayerClass());
 			}
 			// Ertheias can only be female
-			final ClassId newClass = ClassId.getClassId(Integer.parseInt(event.replace("try_", "")));
-			if ((newClass.getRace() == Race.ERTHEIA) && (player.getClassId().getRace() != Race.ERTHEIA) && !player.getAppearance().isFemale())
+			final PlayerClass newClass = PlayerClass.getPlayerClass(Integer.parseInt(event.replace("try_", "")));
+			if ((newClass.getRace() == Race.ERTHEIA) && (player.getPlayerClass().getRace() != Race.ERTHEIA) && !player.getAppearance().isFemale())
 			{
 				player.getAppearance().setFemale();
 			}
 			// Change class
-			player.setClassId(newClass.getId());
+			player.setPlayerClass(newClass.getId());
 			if (player.isDualClassActive())
 			{
-				player.getSubClasses().get(player.getClassIndex()).setClassId(player.getActiveClass());
+				player.getSubClasses().get(player.getClassIndex()).setPlayerClass(player.getActiveClass());
 			}
 			else
 			{

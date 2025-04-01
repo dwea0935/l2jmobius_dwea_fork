@@ -20,6 +20,7 @@
 												<xs:complexType>
 													<xs:attribute name="id" type="xs:unsignedShort" use="required" />
 													<xs:attribute name="level" type="xs:unsignedByte" use="required" />
+													<xs:attribute name="subLevel" type="xs:unsignedShort" use="optional" />
 													<xs:attribute name="type" type="xs:string" use="optional" />
 													<xs:attribute name="type_value" type="xs:unsignedByte" use="optional" />
 													<xs:attribute name="type_chance" type="xs:unsignedByte" use="optional" />

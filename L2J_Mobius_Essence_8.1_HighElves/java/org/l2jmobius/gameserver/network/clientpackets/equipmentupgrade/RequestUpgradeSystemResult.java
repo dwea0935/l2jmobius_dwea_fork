@@ -21,14 +21,15 @@
 package org.l2jmobius.gameserver.network.clientpackets.equipmentupgrade;
 
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.data.holders.EquipmentUpgradeHolder;
 import org.l2jmobius.gameserver.data.xml.EquipmentUpgradeData;
-import org.l2jmobius.gameserver.enums.AttributeType;
 import org.l2jmobius.gameserver.model.ItemInfo;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
 import org.l2jmobius.gameserver.model.ensoul.EnsoulOption;
-import org.l2jmobius.gameserver.model.holders.EquipmentUpgradeHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.enchant.attribute.AttributeHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.variables.ItemVariables;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -100,18 +101,18 @@ public class RequestUpgradeSystemResult extends ClientPacket
 		final ItemInfo itemEnchantment = new ItemInfo(existingItem);
 		
 		// Get materials.
-		player.destroyItem("UpgradeEquipment", _objectId, 1, player, true);
+		player.destroyItem(ItemProcessType.FEE, _objectId, 1, player, true);
 		for (ItemHolder material : upgradeHolder.getMaterials())
 		{
-			player.destroyItemByItemId("UpgradeEquipment", material.getId(), material.getCount(), player, true);
+			player.destroyItemByItemId(ItemProcessType.FEE, material.getId(), material.getCount(), player, true);
 		}
 		if (adena > 0)
 		{
-			player.reduceAdena("UpgradeEquipment", adena, player, true);
+			player.reduceAdena(ItemProcessType.FEE, adena, player, true);
 		}
 		
 		// Give item.
-		final Item addedItem = player.addItem("UpgradeEquipment", upgradeHolder.getResultItemId(), 1, player, true);
+		final Item addedItem = player.addItem(ItemProcessType.REWARD, upgradeHolder.getResultItemId(), 1, player, true);
 		if (upgradeHolder.isAnnounce())
 		{
 			Broadcast.toAllOnlinePlayers(new ExItemAnnounce(player, addedItem, ExItemAnnounce.UPGRADE));

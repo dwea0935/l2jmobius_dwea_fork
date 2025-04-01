@@ -649,7 +649,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3354" name="Almors' Arcana" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Summoner Almors' Arcana. The proof of victory from a battle. Take this to Head Summoner Galatea at the Magic Shop of the Village of Gludin. -->
+		<!-- The item is not available. Summoner Almors' arcana. A proof of the victory in battle. Take it to Head Summoner Galatea at the Magic Shop of Gludin. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -661,7 +661,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3355" name="Camoniell's Arcana" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Summoner Camoniell's Arcana. The proof of victory from a battle. Take this to Head Summoner Galatea at the Magic Shop of the Village of Gludin. -->
+		<!-- The item is not available. Summoner Camoniell's arcana. A proof of the victory in battle. Take it to Head Summoner Galatea at the Magic Shop of Gludin. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -673,7 +673,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3356" name="Belthus' Arcana" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Summoner Belthus' Arcana. The proof of victory from a battle. Take this to Head Summoner Galatea at the Magic Shop of the Village of Gludin. -->
+		<!-- The item is not available. Summoner Belthus' arcana. A proof of the victory in battle. Take it to Head Summoner Galatea at the Magic Shop of Gludin. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -685,7 +685,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3357" name="Basillia's Arcana" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Summoner Basillia's Arcana. The proof of victory from a battle. Take this to Head Summoner Galatea at the Magic Shop of the Village of Gludin. -->
+		<!-- The item is not available. Summoner Basillia's arcana. A proof of the victory in battle. Take it to Head Summoner Galatea at the Magic Shop of Gludin. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -697,7 +697,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3358" name="Celestiel's Arcana" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Summoner Celestiel's Arcana. The proof of victory from a battle. Take this to Head Summoner Galatea at the Magic Shop of the Village of Gludin. -->
+		<!-- The item is not available. Summoner Celestiel's arcana. A proof of the victory in battle. Take it to Head Summoner Galatea at the Magic Shop of Gludin. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -709,7 +709,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3359" name="Brynthea's Arcana" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Summoner Brynthea's Arcana. The proof of victory from a battle. Take this to Head Summoner Galatea at the Magic Shop of the Village of Gludin. -->
+		<!-- The item is not available. Summoner Brynthea's arcana. A proof of the victory in battle. Take it to Head Summoner Galatea at the Magic Shop of Gludin. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -745,7 +745,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3362" name="Crystal of Foul" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that foul play was involved in a Summoner battle. Take this to Summoner Almors. -->
+		<!-- The item is not available. The evidence of foul play in the Summoner battle. Take it to Summoner Almors. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -757,7 +757,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3363" name="Crystal of Defeat" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been defeated in battle. Take this to Summoner Almors. -->
+		<!-- The item is not available. A proof that the Summoner has been defeated in battle. Take it to Summoner Almors. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -769,7 +769,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3364" name="Crystal of Victory" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been victorious in a battle. Take this to Summoner Almors. -->
+		<!-- The item is not available. A proof that the Summoner has been victorious in battle. Take it to Summoner Almors. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -805,7 +805,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3367" name="Crystal of Foul" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that foul play was involved in a Summoner battle. Take this to Summoner Basillia. -->
+		<!-- The item is not available. The evidence of foul play in the Summoner battle. Take it to Summoner Basillia. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -817,7 +817,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3368" name="Crystal of Defeat" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been defeated in a battle. Take this to Summoner Basillia. -->
+		<!-- The item is not available. A proof that the Summoner has been defeated in battle. Take it to Summoner Basillia. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -829,7 +829,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3369" name="Crystal of Victory" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been victorious in a battle. Take this to Summoner Basillia. -->
+		<!-- The item is not available. A proof that the Summoner has been victorious in battle. Take it to Summoner Basillia. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -865,7 +865,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3372" name="Crystal of Foul" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that foul play was involved in a Summoner battle. Take this to Summoner Camoniell. -->
+		<!-- The item is not available. The evidence of foul play in the Summoner battle. Take it to Summoner Camoniell. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -877,7 +877,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3373" name="Crystal of Defeat" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been defeated in a battle. Take this to Summoner Camoniell. -->
+		<!-- The item is not available. A proof that the Summoner has been defeated in battle. Take it to Summoner Camoniell. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -889,7 +889,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3374" name="Crystal of Victory" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been victorious in a battle. Take this to Summoner Camoniell. -->
+		<!-- The item is not available. A proof that the Summoner has been victorious in battle. Take it to Summoner Camoniell. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -925,7 +925,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3377" name="Crystal of Foul" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that foul play was involved in a Summoner battle. Take this to Summoner Celestiel. -->
+		<!-- The item is not available. The evidence of foul play in the Summoner battle. Take it to Summoner Celestiel. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -937,7 +937,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3378" name="Crystal of Defeat" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been defeated in a battle. Take this to Summoner Celestiel. -->
+		<!-- The item is not available. A proof that the Summoner has been defeated in battle. Take it to Summoner Celestiel. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -949,7 +949,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3379" name="Crystal of Victory" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been victorious in a battle. Take this to Summoner Celestiel. -->
+		<!-- The item is not available. A proof that the Summoner has been victorious in battle. Take it to Summoner Celestiel. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -985,7 +985,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3382" name="Crystal of Foul" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that foul play was involved in a summoner battle. Take this to Summoner Belthus. -->
+		<!-- The item is not available. The evidence of foul play in the Summoner battle. Take it to Summoner Belthus. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -997,7 +997,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3383" name="Crystal of Defeat" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been defeated in a battle. Take this to Summoner Belthus. -->
+		<!-- The item is not available. A proof that the Summoner has been defeated in battle. Take it to Summoner Belthus. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1009,7 +1009,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3384" name="Crystal of Victory" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been victorious in a battle. Take this to Summoner Belthus. -->
+		<!-- The item is not available. A proof that the Summoner has been victorious in battle. Take it to Summoner Belthus. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1045,7 +1045,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3387" name="Crystal of Foul" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that foul play was involved in a Summoner battle. Take this to Summoner Brynthea. -->
+		<!-- The item is not available. The evidence of foul play in the Summoner battle. Take it to Summoner Brynthea. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1057,7 +1057,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3388" name="Crystal of Defeat" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been defeated in a Summoner battle. Take this to Summoner Brynthea. -->
+		<!-- The item is not available. A proof that the Summoner has been defeated in battle. Take it to Summoner Brynthea. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1069,7 +1069,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3389" name="Crystal of Victory" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. Indication that the Summoner Has been victorious in a Summoner battle. Take this to Summoner Brynthea. -->
+		<!-- The item is not available. A proof that the Summoner has been victorious in battle. Take it to Summoner Brynthea. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

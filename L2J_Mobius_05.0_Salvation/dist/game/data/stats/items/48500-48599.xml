@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="48500" name="Dragon's Relic Chest" type="EtcItem">
 		<!-- Double-click to randomly obtain one of various items. Will be deleted on Wednesday, December 27, 2017, after regular maintenance. -->
@@ -68,7 +68,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39204" level="1" /> <!-- Scroll: Enchant Mysterious Weapon -->
+			<skill id="39204" level="1" /> <!-- Mysterious Weapon Enchant Scroll -->
 		</skills>
 	</item>
 	<item id="48503" name="Mysterious and Special Weapon Enchant Scroll" type="EtcItem">
@@ -83,7 +83,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39204" level="2" /> <!-- Scroll: Enchant Mysterious Weapon -->
+			<skill id="39204" level="2" /> <!-- Mysterious and Special Weapon Enchant Scroll -->
 		</skills>
 	</item>
 	<item id="48504" name="+10 Bloody Armor set Pack" type="EtcItem">
@@ -183,7 +183,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="35147" level="2" /> <!-- +5 Zodiac Agathion Charm Box -->
+			<skill id="35147" level="2" /> <!-- +5 Zodiac Agathion Cube -->
 		</skills>
 	</item>
 	<item id="48509" name="+6 Zodiac Agathion Box" type="EtcItem">
@@ -199,7 +199,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="35147" level="3" /> <!-- +6 Zodiac Agathion Charm Box -->
+			<skill id="35147" level="3" /> <!-- +6 Zodiac Agathion Cube -->
 		</skills>
 	</item>
 	<item id="48510" name="+7 Zodiac Agathion Box" type="EtcItem">
@@ -215,7 +215,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="35147" level="4" /> <!-- +7 Zodiac Agathion Charm Box -->
+			<skill id="35147" level="4" /> <!-- +7 Zodiac Agathion Cube -->
 		</skills>
 	</item>
 	<item id="48511" name="Royal Red Save Ticket Treasure Chest" type="EtcItem">

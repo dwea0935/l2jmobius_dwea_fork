@@ -16,7 +16,6 @@
  */
 package ai.others.Servitors;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
@@ -25,9 +24,9 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttacked;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import ai.AbstractNpcAI;
@@ -58,23 +57,23 @@ public class SinEater extends AbstractNpcAI
 				final Summon summon = player.getSummon();
 				if (random < 20)
 				{
-					broadcastSummonSay(summon, NpcStringId.YAWWWWN_IT_S_SO_BORING_HERE_WE_SHOULD_GO_AND_FIND_SOME_ACTION);
+					broadcastSummonSay(summon, "Yawwwwn! It's so boring here. We should go and find some action!");
 				}
 				else if (random < 40)
 				{
-					broadcastSummonSay(summon, NpcStringId.HEY_IF_YOU_CONTINUE_TO_WASTE_TIME_YOU_WILL_NEVER_FINISH_YOUR_PENANCE);
+					broadcastSummonSay(summon, "Hey, if you continue to waste time you will never finish your penance!");
 				}
 				else if (random < 60)
 				{
-					broadcastSummonSay(summon, NpcStringId.I_KNOW_YOU_DON_T_LIKE_ME_THE_FEELING_IS_MUTUAL);
+					broadcastSummonSay(summon, "I know you don't like me. The feeling is mutual!");
 				}
 				else if (random < 80)
 				{
-					broadcastSummonSay(summon, NpcStringId.I_NEED_A_DRINK);
+					broadcastSummonSay(summon, "I need a drink.");
 				}
 				else
 				{
-					broadcastSummonSay(summon, NpcStringId.OH_THIS_IS_DRAGGING_ON_TOO_LONG_AT_THIS_RATE_I_WON_T_MAKE_IT_HOME_BEFORE_THE_SEVEN_SEALS_ARE_BROKEN);
+					broadcastSummonSay(summon, "Oh, this is dragging on too long... At this rate I won't make it home before the seven seals are broken.");
 				}
 			}
 			startQuestTimer("TALK", 60000, null, player);
@@ -91,15 +90,15 @@ public class SinEater extends AbstractNpcAI
 		final Summon summon = event.getTarget().asSummon();
 		if (random < 30)
 		{
-			broadcastSummonSay(summon, NpcStringId.OH_THIS_IS_JUST_GREAT_WHAT_ARE_YOU_GOING_TO_DO_NOW);
+			broadcastSummonSay(summon, "Oh, this is just great! What are you going to do now?");
 		}
 		else if (random < 70)
 		{
-			broadcastSummonSay(summon, NpcStringId.YOU_INCONSIDERATE_MORON_CAN_T_YOU_EVEN_TAKE_CARE_OF_LITTLE_OLD_ME);
+			broadcastSummonSay(summon, "You inconsiderate moron! Can't you even take care of little old me?!");
 		}
 		else
 		{
-			broadcastSummonSay(summon, NpcStringId.OH_NO_THE_MAN_WHO_EATS_ONE_S_SINS_HAS_DIED_PENITENCE_IS_FURTHER_AWAY);
+			broadcastSummonSay(summon, "Oh no! The man who eats one's sins has died! Penitence is further away~!");
 		}
 	}
 	
@@ -114,15 +113,15 @@ public class SinEater extends AbstractNpcAI
 			final Summon summon = event.getTarget().asSummon();
 			if (random < 35)
 			{
-				broadcastSummonSay(summon, NpcStringId.OH_THAT_SMARTS);
+				broadcastSummonSay(summon, "Oh, that smarts!");
 			}
 			else if (random < 70)
 			{
-				broadcastSummonSay(summon, NpcStringId.HEY_MASTER_PAY_ATTENTION_I_M_DYING_OVER_HERE);
+				broadcastSummonSay(summon, "Hey, master! Pay attention! I'm dying over here!");
 			}
 			else
 			{
-				broadcastSummonSay(summon, NpcStringId.WHAT_HAVE_I_DONE_TO_DESERVE_THIS);
+				broadcastSummonSay(summon, "What have I done to deserve this?");
 			}
 		}
 	}
@@ -130,7 +129,7 @@ public class SinEater extends AbstractNpcAI
 	@Override
 	public void onSummonSpawn(Summon summon)
 	{
-		broadcastSummonSay(summon, getRandomBoolean() ? NpcStringId.HEY_IT_SEEMS_LIKE_YOU_NEED_MY_HELP_DOESN_T_IT : NpcStringId.ALMOST_GOT_IT_OUCH_STOP_DAMN_THESE_BLOODY_MANACLES);
+		broadcastSummonSay(summon, getRandomBoolean() ? "Hey, it seems like you need my help, doesn't it?" : "Almost got it... Ouch! Stop! Damn these bloody manacles!");
 		startQuestTimer("TALK", 60000, null, summon.getOwner());
 	}
 	
@@ -142,26 +141,26 @@ public class SinEater extends AbstractNpcAI
 			final int random = getRandom(100);
 			if (random < 25)
 			{
-				broadcastSummonSay(summon, NpcStringId.USING_A_SPECIAL_SKILL_HERE_COULD_TRIGGER_A_BLOODBATH);
+				broadcastSummonSay(summon, "Using a special skill here could trigger a bloodbath!");
 			}
 			else if (random < 50)
 			{
-				broadcastSummonSay(summon, NpcStringId.HEY_WHAT_DO_YOU_EXPECT_OF_ME);
+				broadcastSummonSay(summon, "Hey, what do you expect of me?");
 			}
 			else if (random < 75)
 			{
-				broadcastSummonSay(summon, NpcStringId.UGGGGGH_PUSH_IT_S_NOT_COMING_OUT);
+				broadcastSummonSay(summon, "Ugggggh! Push! It's not coming out!");
 			}
 			else
 			{
-				broadcastSummonSay(summon, NpcStringId.AH_I_MISSED_THE_MARK);
+				broadcastSummonSay(summon, "Ah, I missed the mark!");
 			}
 		}
 	}
 	
-	private void broadcastSummonSay(Summon summon, NpcStringId npcstringId)
+	private void broadcastSummonSay(Summon summon, String string)
 	{
-		summon.broadcastPacket(new NpcSay(summon.getObjectId(), ChatType.NPC_GENERAL, summon.getId(), npcstringId));
+		summon.broadcastPacket(new NpcSay(summon.getObjectId(), ChatType.NPC_GENERAL, summon.getId(), string));
 	}
 	
 	public static void main(String[] args)

@@ -41,7 +41,7 @@ public class Q00133_ThatsBloodyHot extends Quest
 	
 	public Q00133_ThatsBloodyHot()
 	{
-		super(133);
+		super(133, "That's Bloody Hot!");
 		addStartNpc(KANIS);
 		addTalkId(KANIS, GALATE);
 		registerQuestItems(REFINED_CRYSTAL_SAMPLE);

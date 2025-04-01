@@ -24,9 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.MentorManager;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.MentorManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -34,6 +33,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 /**
  * @author Mobius
@@ -163,7 +163,9 @@ public class CreatureSay extends ServerPacket
 			{
 				buffer.writeByte(0); // unknown clan byte
 			}
-			final int rank = RankManager.getInstance().getPlayerGlobalRank(_sender.asPlayer());
+			
+			final Player player = _sender.asPlayer();
+			final int rank = RankManager.getInstance().getPlayerGlobalRank(player);
 			if ((rank == 0) || (rank > 100))
 			{
 				buffer.writeByte(0);
@@ -188,6 +190,12 @@ public class CreatureSay extends ServerPacket
 			{
 				buffer.writeByte(0);
 			}
+			
+			// Share location?
+			buffer.writeInt(0);
+			
+			// Scholar hat in front of name.
+			buffer.writeByte(player.isMentee());
 		}
 		else
 		{

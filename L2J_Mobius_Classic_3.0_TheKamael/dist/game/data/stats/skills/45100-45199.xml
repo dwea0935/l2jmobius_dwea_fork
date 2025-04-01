@@ -1989,7 +1989,6 @@
 		<operateType>A1</operateType>
 		<targetType>ENEMY</targetType>
 		<affectHeight>-200;200</affectHeight>
-		<affectHeight>-200;200</affectHeight>
 		<affectLimit>9-9</affectLimit>
 		<affectObject>NOT_FRIEND</affectObject>
 		<affectScope>FAN</affectScope>

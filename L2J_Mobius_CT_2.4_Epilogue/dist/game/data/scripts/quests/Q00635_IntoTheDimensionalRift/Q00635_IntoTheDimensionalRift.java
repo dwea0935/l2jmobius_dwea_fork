@@ -27,6 +27,6 @@ public class Q00635_IntoTheDimensionalRift extends Quest
 {
 	public Q00635_IntoTheDimensionalRift()
 	{
-		super(635);
+		super(635, "In the Dimensional Rift");
 	}
 }

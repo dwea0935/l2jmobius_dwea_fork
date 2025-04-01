@@ -2593,7 +2593,6 @@
 			<value level="57">700</value>
 		</castRange>
 		<coolTime>200</coolTime>
-		<coolTime>200</coolTime>
 		<effectPoint>
 			<value level="1">-7180</value>
 			<value level="2">-7440</value>
@@ -2777,7 +2776,6 @@
 		</magicLevel>
 		<mpConsume>0</mpConsume>
 		<reuseDelay>6000</reuseDelay>
-		<reuseDelay>6000</reuseDelay>
 		<reuseDelayGroup>28</reuseDelayGroup>
 		<staticReuse>true</staticReuse>
 		<effects>
@@ -2844,7 +2842,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>0</effectPoint>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<isSharedWithSummon>false</isSharedWithSummon>
 		<itemConsumeCount>10</itemConsumeCount>

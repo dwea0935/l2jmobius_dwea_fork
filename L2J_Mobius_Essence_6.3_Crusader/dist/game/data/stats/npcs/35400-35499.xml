@@ -3035,7 +3035,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="80" /> <!-- Tallum Blade -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="53533.17" hpRegen="8.5" mp="6031.2" mpRegen="3" />
 			<attack physical="4768.25" magical="542.68324" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3124,7 +3123,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="6579" /> <!-- Arcana Mace -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="23457.67" hpRegen="7.5" mp="5129.6" mpRegen="2.7" />
 			<attack physical="1938.54" magical="441.25696" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -3688,7 +3686,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="6579" /> <!-- Arcana Mace -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="23457.67" hpRegen="7.5" mp="5129.6" mpRegen="2.7" />
 			<attack physical="1938.54" magical="441.25696" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -3733,7 +3730,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="325" /> <!-- Horn of Glory -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="23457.67" hpRegen="7.5" mp="5129.6" mpRegen="2.7" />
 			<attack physical="1938.54" magical="441.25696" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />

@@ -21,18 +21,19 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.holders.ElementalItemHolder;
 import org.l2jmobius.gameserver.data.xml.ElementalAttributeData;
-import org.l2jmobius.gameserver.enums.AttributeType;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
 import org.l2jmobius.gameserver.model.actor.request.EnchantItemAttributeRequest;
-import org.l2jmobius.gameserver.model.holders.ElementalItemHolder;
 import org.l2jmobius.gameserver.model.item.enchant.attribute.AttributeHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExAttributeEnchantResult;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Mobius
@@ -134,7 +135,7 @@ public class RequestExEnchantItemAttribute extends ClientPacket
 			default:
 			{
 				player.removeRequest(request.getClass());
-				Util.handleIllegalPlayerAction(player, player + " tried to use enchant Exploit!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to use enchant Exploit!", Config.DEFAULT_PUNISH);
 				return;
 			}
 		}
@@ -167,7 +168,7 @@ public class RequestExEnchantItemAttribute extends ClientPacket
 				if (attribute.getType() == opositeElement)
 				{
 					player.removeRequest(request.getClass());
-					Util.handleIllegalPlayerAction(player, player + " tried to add oposite attribute to item!", Config.DEFAULT_PUNISH);
+					PunishmentManager.handleIllegalPlayerAction(player, player + " tried to add oposite attribute to item!", Config.DEFAULT_PUNISH);
 					return;
 				}
 			}
@@ -209,7 +210,7 @@ public class RequestExEnchantItemAttribute extends ClientPacket
 		}
 		
 		item.updateItemElementals();
-		player.destroyItem("AttrEnchant", stone, usedStones, player, true);
+		player.destroyItem(ItemProcessType.FEE, stone, usedStones, player, true);
 		final AttributeHolder newElement = item.getAttribute(elementToAdd);
 		final int newValue = newElement != null ? newElement.getValue() : 0;
 		final AttributeType realElement = item.isArmor() ? opositeElement : elementToAdd;

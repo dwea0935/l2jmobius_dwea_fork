@@ -16,7 +16,7 @@
  */
 package quests.Q00176_StepsForHonor;
 
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -38,7 +38,7 @@ public class Q00176_StepsForHonor extends Quest
 	
 	public Q00176_StepsForHonor()
 	{
-		super(176);
+		super(176, "Steps for honor");
 		addStartNpc(RAPIDUS);
 		addTalkId(RAPIDUS);
 	}

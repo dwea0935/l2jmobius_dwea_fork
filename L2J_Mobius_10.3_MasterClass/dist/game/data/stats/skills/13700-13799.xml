@@ -1733,7 +1733,6 @@
 		<targetType>ENEMY_ONLY</targetType>
 		<abnormalLevel>0</abnormalLevel>
 		<abnormalTime>10</abnormalTime>
-		<abnormalTime>10</abnormalTime>
 		<abnormalType>SPEED_DOWN</abnormalType>
 		<activateRate>40</activateRate>
 		<affectScope>SINGLE</affectScope>

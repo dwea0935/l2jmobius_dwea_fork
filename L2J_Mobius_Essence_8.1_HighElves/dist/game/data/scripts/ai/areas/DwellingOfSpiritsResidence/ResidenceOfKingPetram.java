@@ -23,14 +23,14 @@ package ai.areas.DwellingOfSpiritsResidence;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -144,7 +144,7 @@ public class ResidenceOfKingPetram extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance world = npc.getInstanceWorld();
 		synchronized (this)
@@ -158,17 +158,15 @@ public class ResidenceOfKingPetram extends AbstractNpcAI
 				}
 			}
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world == null)
 		{
-			return null;
+			return;
 		}
 		
 		final int stage = getHigherStage(world);
@@ -214,8 +212,6 @@ public class ResidenceOfKingPetram extends AbstractNpcAI
 		{
 			startQuestTimer("REMOVE_INVUL", 500, world.getNpc(PETRAM), null);
 		}
-		
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	private static class StageData

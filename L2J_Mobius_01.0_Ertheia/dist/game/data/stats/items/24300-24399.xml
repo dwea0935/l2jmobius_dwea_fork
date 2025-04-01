@@ -955,7 +955,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21365" level="1" /> <!-- Talisman - Hunter -->
+			<skill id="21364" level="1" subLevel="5001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24352" name="Talisman - Slaughterer" additionalName="Abundance / 3-day" type="Armor">
@@ -971,7 +971,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21370" level="1" /> <!-- Talisman - Slaughterer -->
+			<skill id="21364" level="1" subLevel="6001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24353" name="Talisman - Conquerer" additionalName="Abundance / 3-day" type="Armor">
@@ -987,7 +987,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21371" level="1" /> <!-- Talisman - Conquerer -->
+			<skill id="21364" level="1" subLevel="7001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24354" name="Talisman - Outlaw" additionalName="Abundance / 3-day" type="Armor">
@@ -1003,7 +1003,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21372" level="1" /> <!-- Talisman - Outlaw -->
+			<skill id="21364" level="1" subLevel="8001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24355" name="Premium Account: Art of Seduction" type="EtcItem">
@@ -1022,7 +1022,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="LIQUID" />
 		<skills>
-			<skill id="17290" level="1" /> <!-- Art of Seduction -->
+			<skill id="17290" level="1" /> <!-- Player Commendation - Art of Seduction -->
 		</skills>
 	</item>
 	<item id="24356" name="Draco's Hat: Wizard" additionalName="7-day" type="Armor">
@@ -1039,7 +1039,7 @@
 		<set name="time" val="10080" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="9515" level="1" /> <!-- Draco's Hat: Warrior -->
+			<skill id="9515" level="1" /> <!-- Draco's Warrior Hat -->
 			<skill id="9526" level="1" /> <!-- Draco's Wizard Hat - Blessed Resurrection -->
 		</skills>
 	</item>

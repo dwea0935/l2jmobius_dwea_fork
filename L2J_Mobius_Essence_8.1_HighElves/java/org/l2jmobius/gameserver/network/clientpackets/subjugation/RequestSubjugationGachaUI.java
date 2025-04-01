@@ -21,7 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets.subjugation;
 
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PurgePlayerHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerPurgeHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.subjugation.ExSubjugationGachaUI;
 
@@ -47,7 +47,7 @@ public class RequestSubjugationGachaUI extends ClientPacket
 			return;
 		}
 		
-		final PurgePlayerHolder holder = player.getPurgePoints().get(_category);
+		final PlayerPurgeHolder holder = player.getPurgePoints().get(_category);
 		if (holder != null)
 		{
 			player.sendPacket(new ExSubjugationGachaUI(holder.getKeys()));

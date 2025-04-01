@@ -1,37 +1,41 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.SelMahumTrainingGrounds;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
 /**
  * Sel Mahum Training Ground AI for drill groups.
- * @author GKR
+ * @author GKR, Mobius
  */
 public class SelMahumDrill extends AbstractNpcAI
 {
@@ -134,9 +138,9 @@ public class SelMahumDrill extends AbstractNpcAI
 			{
 				if ((npc != null) && !npc.isDead())
 				{
-					if (CommonUtil.contains(MAHUM_CHIEFS, npc.getId()))
+					if (ArrayUtil.contains(MAHUM_CHIEFS, npc.getId()))
 					{
-						if ((npc.getVariables().getInt("BUSY_STATE") == 0) && (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ACTIVE) && npc.staysInSpawnLoc())
+						if ((npc.getVariables().getInt("BUSY_STATE") == 0) && (npc.getAI().getIntention() == Intention.ACTIVE) && npc.staysInSpawnLoc())
 						{
 							final int idx = getRandom(6);
 							if (idx <= (CHIEF_SOCIAL_ACTIONS.length - 1))
@@ -149,7 +153,7 @@ public class SelMahumDrill extends AbstractNpcAI
 						
 						startQuestTimer("do_social_action", 15000, npc, null);
 					}
-					else if (CommonUtil.contains(MAHUM_SOLDIERS, npc.getId()))
+					else if (ArrayUtil.contains(MAHUM_SOLDIERS, npc.getId()))
 					{
 						handleSocialAction(npc, SOLDIER_SOCIAL_ACTIONS[npc.getVariables().getInt("SOCIAL_ACTION_NEXT_INDEX")], false);
 					}
@@ -172,7 +176,7 @@ public class SelMahumDrill extends AbstractNpcAI
 					for (Spawn npcSpawn : SpawnTable.getInstance().getSpawns(npcId))
 					{
 						final Npc soldier = npcSpawn.getLastSpawn();
-						if ((soldier != null) && !soldier.isDead() && (npcSpawn.getName() != null) && npcSpawn.getName().startsWith("smtg_drill_group") && !soldier.staysInSpawnLoc() && ((soldier.getAI().getIntention() == CtrlIntention.AI_INTENTION_ACTIVE) || (soldier.getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE)))
+						if ((soldier != null) && !soldier.isDead() && (npcSpawn.getName() != null) && npcSpawn.getName().startsWith("smtg_drill_group") && !soldier.staysInSpawnLoc() && ((soldier.getAI().getIntention() == Intention.ACTIVE) || (soldier.getAI().getIntention() == Intention.IDLE)))
 						{
 							soldier.setHeading(npcSpawn.getHeading());
 							soldier.teleToLocation(npcSpawn.getLocation(), false);
@@ -186,13 +190,12 @@ public class SelMahumDrill extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
-		if ((getRandom(10) < 1) && (CommonUtil.contains(MAHUM_SOLDIERS, npc.getId())))
+		if ((getRandom(10) < 1) && (ArrayUtil.contains(MAHUM_SOLDIERS, npc.getId())))
 		{
 			npc.broadcastEvent("ATTACKED", 1000, null);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
@@ -204,7 +207,7 @@ public class SelMahumDrill extends AbstractNpcAI
 			{
 				case "do_social_action":
 				{
-					if (CommonUtil.contains(MAHUM_SOLDIERS, receiver.getId()))
+					if (ArrayUtil.contains(MAHUM_SOLDIERS, receiver.getId()))
 					{
 						final int actionIndex = sender.getVariables().getInt("SOCIAL_ACTION_NEXT_INDEX");
 						receiver.getVariables().set("SOCIAL_ACTION_NEXT_INDEX", actionIndex);
@@ -218,7 +221,7 @@ public class SelMahumDrill extends AbstractNpcAI
 					{
 						return null;
 					}
-					if (CommonUtil.contains(MAHUM_SOLDIERS, receiver.getId()))
+					if (ArrayUtil.contains(MAHUM_SOLDIERS, receiver.getId()))
 					{
 						if (getRandom(4) < 1)
 						{
@@ -231,14 +234,14 @@ public class SelMahumDrill extends AbstractNpcAI
 						receiver.disableCoreAI(true);
 						receiver.getVariables().set("BUSY_STATE", 1);
 						receiver.setRunning();
-						receiver.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location((receiver.getX() + getRandom(-800, 800)), (receiver.getY() + getRandom(-800, 800)), receiver.getZ(), receiver.getHeading()));
+						receiver.getAI().setIntention(Intention.MOVE_TO, new Location((receiver.getX() + getRandom(-800, 800)), (receiver.getY() + getRandom(-800, 800)), receiver.getZ(), receiver.getHeading()));
 						startQuestTimer("reset_busy_state", 5000, receiver, null);
 					}
 					break;
 				}
 				case "ATTACKED":
 				{
-					if (CommonUtil.contains(MAHUM_CHIEFS, receiver.getId()))
+					if (ArrayUtil.contains(MAHUM_CHIEFS, receiver.getId()))
 					{
 						receiver.broadcastSay(ChatType.NPC_GENERAL, CHIEF_FSTRINGS[getRandom(2)]);
 					}
@@ -250,34 +253,32 @@ public class SelMahumDrill extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		npc.broadcastEvent("CHIEF_DIED", TRAINING_RANGE, null);
-		return null;
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		if (CommonUtil.contains(MAHUM_CHIEFS, npc.getId()))
+		if (ArrayUtil.contains(MAHUM_CHIEFS, npc.getId()))
 		{
 			cancelQuestTimer("do_social_action", npc, null);
 			startQuestTimer("do_social_action", 15000, npc, null);
 		}
 		
-		else if ((getRandom(18) < 1) && CommonUtil.contains(MAHUM_SOLDIERS, npc.getId()))
+		else if ((getRandom(18) < 1) && ArrayUtil.contains(MAHUM_SOLDIERS, npc.getId()))
 		{
 			npc.getVariables().set("SOCIAL_ACTION_ALT_BEHAVIOR", 1);
 		}
 		
 		// Restore AI handling by core
 		npc.disableCoreAI(false);
-		return super.onSpawn(npc);
 	}
 	
 	private void handleSocialAction(Npc npc, Actions action, boolean firstCall)
 	{
-		if ((npc.getVariables().getInt("BUSY_STATE") != 0) || (npc.getAI().getIntention() != CtrlIntention.AI_INTENTION_ACTIVE) || !npc.staysInSpawnLoc())
+		if ((npc.getVariables().getInt("BUSY_STATE") != 0) || (npc.getAI().getIntention() != Intention.ACTIVE) || !npc.staysInSpawnLoc())
 		{
 			return;
 		}

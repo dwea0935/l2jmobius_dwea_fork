@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20700" name="Package: Bamboo Panda Hat" type="EtcItem">
 		<!-- Double-click to obtain Bamboo Panda Hat. -->
@@ -131,7 +131,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="22105" level="1" /> <!-- Summon Scroll: Uldie (Event) -->
+			<skill id="22105" level="1" /> <!-- Scroll: Summon Uldie - Event -->
 		</skills>
 	</item>
 	<item id="20708" name="Scroll: Summon Belldandy - Event" type="EtcItem">
@@ -147,7 +147,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="22106" level="1" /> <!-- Summon Scroll: Belldandy (Event) -->
+			<skill id="22106" level="1" /> <!-- Scroll: Summon Belldandy - Event -->
 		</skills>
 	</item>
 	<item id="20709" name="Scroll: Summon Skooldie - Event" type="EtcItem">
@@ -164,7 +164,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="22107" level="1" /> <!-- Summon Scroll: Skooldie (Event) -->
+			<skill id="22107" level="1" /> <!-- Scroll: Summon Skooldie - Event -->
 		</skills>
 	</item>
 	<item id="20710" name="Halloween Toy Box (Event)" type="EtcItem">
@@ -484,7 +484,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21133" level="1" /> <!-- Release Agathion's Seal - Zombie -->
+			<skill id="21133" level="1" /> <!-- Summon Agathion Zombie -->
 			<skill id="23117" level="1" /> <!-- Zombie Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -504,9 +504,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21133" level="1" /> <!-- Release Agathion's Seal - Zombie -->
+			<skill id="21133" level="1" /> <!-- Summon Agathion Zombie -->
 			<skill id="23117" level="1" /> <!-- Zombie Agathion Cute Trick -->
-			<skill id="23174" level="1" /> <!-- Soul Stealth -->
+			<skill id="23174" level="1" /> <!-- Life Hazard -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -597,7 +597,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21134" level="1" /> <!-- Release Agathion's Seal - Bluebird -->
+			<skill id="21134" level="1" /> <!-- Summon Agathion Bluebird -->
 			<skill id="23119" level="1" /> <!-- Bluebird Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -617,7 +617,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21135" level="1" /> <!-- Release Agathion's Seal - Hatbird -->
+			<skill id="21135" level="1" /> <!-- Summon Agathion Hatbird -->
 			<skill id="23120" level="1" /> <!-- Hatbird Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -775,7 +775,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="60" />
 		<skills>
-			<skill id="26046" level="3" /> <!-- XP Rune III (Lv. 1-100+) 30% -->
+			<skill id="26046" level="3" /> <!-- XP Rune 30% -->
 		</skills>
 	</item>
 	<item id="20743" name="Shiny Reanimated Corpse Mask" additionalName="Blessing of Halloween / 7-day" type="Armor">
@@ -1321,8 +1321,8 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21142" level="1" /> <!-- Release Agathion's Seal - Guangong -->
-			<skill id="23123" level="1" /> <!-- Guangong Agathion Cute Trick -->
+			<skill id="21142" level="1" /> <!-- Summon Agathion Guangong -->
+			<skill id="23123" level="1" /> <!-- God of War Agathion Cute Trick -->
 			<skill id="23124" level="1" /> <!-- Guangong Agathion Special Skill: Aura of Fury -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1342,8 +1342,8 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21143" level="1" /> <!-- Release Agathion's Seal - Gwanseum Nyang Nyang -->
-			<skill id="23125" level="1" /> <!-- Gwanseum Nyang Nyang Agathion Cute Trick -->
+			<skill id="21143" level="1" /> <!-- Summon Agathion Gwanseum Nyang Nyang -->
+			<skill id="23125" level="1" /> <!-- Goddess of Mercy Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -1362,7 +1362,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21144" level="1" /> <!-- Release Agathion's Seal - Blue Opera -->
+			<skill id="21144" level="1" /> <!-- Summon Agathion Blue Opera -->
 			<skill id="23127" level="1" /> <!-- Blue Opera Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1382,7 +1382,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21145" level="1" /> <!-- Release Agathion's Seal - Blue Opera -->
+			<skill id="21145" level="1" /> <!-- Summon Agathion Blue Opera -->
 			<skill id="23127" level="1" /> <!-- Blue Opera Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1402,7 +1402,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21146" level="1" /> <!-- Release Agathion's Seal - Red Opera -->
+			<skill id="21146" level="1" /> <!-- Summon Agathion Red Opera -->
 			<skill id="23130" level="1" /> <!-- Red Opera Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1422,7 +1422,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21147" level="1" /> <!-- Release Agathion's Seal - Opera -->
+			<skill id="21147" level="1" /> <!-- Summon Agathion Opera -->
 			<skill id="23132" level="1" /> <!-- Opera Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1442,7 +1442,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="21147" level="1" /> <!-- Release Agathion's Seal - Opera -->
+			<skill id="21147" level="1" /> <!-- Summon Agathion Opera -->
 			<skill id="23132" level="1" /> <!-- Opera Agathion Cute Trick -->
 			<skill id="23164" level="1" /> <!-- Opera Agathion Special Skill: Sword of Life -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
@@ -1463,7 +1463,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21148" level="1" /> <!-- Release Agathion's Seal - Miss Chipao -->
+			<skill id="21148" level="1" /> <!-- Summon Agathion Miss Chipao -->
 			<skill id="23133" level="1" /> <!-- Miss Chipao Agathion Cute Trick -->
 			<skill id="23134" level="1" /> <!-- Miss Chipao Agathion Special Skill: Decrease Weight -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
@@ -1484,7 +1484,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21149" level="1" /> <!-- Release Agathion's Seal - Nepal Snow -->
+			<skill id="21149" level="1" /> <!-- Summon Agathion Nepal Snow -->
 			<skill id="23135" level="1" /> <!-- Nepal Snow Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1504,7 +1504,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21150" level="1" /> <!-- Release Agathion's Seal - Round Ball Snow -->
+			<skill id="21150" level="1" /> <!-- Summon Agathion Round Ball Snow -->
 			<skill id="23137" level="1" /> <!-- Round Ball Snow Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1524,7 +1524,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21151" level="1" /> <!-- Release Agathion's Seal - Ladder Snow -->
+			<skill id="21151" level="1" /> <!-- Summon Agathion Ladder Snow -->
 			<skill id="23139" level="1" /> <!-- Ladder Snow Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1544,7 +1544,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21149" level="1" /> <!-- Release Agathion's Seal - Nepal Snow -->
+			<skill id="21149" level="1" /> <!-- Summon Agathion Nepal Snow -->
 			<skill id="23135" level="1" /> <!-- Nepal Snow Agathion Cute Trick -->
 			<skill id="23136" level="1" /> <!-- Nepal Snow Agathion Special Skill: Snow's Haste -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
@@ -1565,7 +1565,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21150" level="1" /> <!-- Release Agathion's Seal - Round Ball Snow -->
+			<skill id="21150" level="1" /> <!-- Summon Agathion Round Ball Snow -->
 			<skill id="23137" level="1" /> <!-- Round Ball Snow Agathion Cute Trick -->
 			<skill id="23138" level="1" /> <!-- Round Ball Snow Agathion Special Skill: Snow's Acumen -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
@@ -1586,7 +1586,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21151" level="1" /> <!-- Release Agathion's Seal - Ladder Snow -->
+			<skill id="21151" level="1" /> <!-- Summon Agathion Ladder Snow -->
 			<skill id="23139" level="1" /> <!-- Ladder Snow Agathion Cute Trick -->
 			<skill id="23140" level="1" /> <!-- Ladder Snow Agathion Special Skill: Snow's Wind Walk -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->

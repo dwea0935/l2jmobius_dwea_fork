@@ -25,7 +25,7 @@ import java.util.concurrent.Future;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.SchedulingPattern;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -110,7 +110,7 @@ public class Satina extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc != null)
 		{
@@ -127,8 +127,6 @@ public class Satina extends AbstractNpcAI
 		{
 			_deleteTask.cancel(true);
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public void deleteMe(Npc npc)

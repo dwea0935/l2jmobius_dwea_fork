@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="13600" name="Transformation Scroll: Giran Archer Mercenary" type="EtcItem">
 		<!-- Allows you to transform into an Archer mercenary. Can only be used by an elite mercenary in Giran Territory. -->
@@ -1869,7 +1869,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2921" level="1" /> <!-- Gludio Supply Box - magic pin -->
+			<skill id="2921" level="1" /> <!-- Gludio Supply Box - Magic Pin -->
 		</skills>
 	</item>
 	<item id="13696" name="Dion Supply Box - Magic Pin" additionalName="Grade B/C" type="EtcItem">
@@ -1885,7 +1885,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2922" level="1" /> <!-- Dion supply box - magic pin -->
+			<skill id="2922" level="1" /> <!-- Dion Supply Box - Magic Pin -->
 		</skills>
 	</item>
 	<item id="13697" name="Giran Supply Box - Magic Pin" additionalName="Grade B/C" type="EtcItem">
@@ -1901,7 +1901,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2923" level="1" /> <!-- Giran supply box - magic pin -->
+			<skill id="2923" level="1" /> <!-- Giran Supply Box - Magic Pin -->
 		</skills>
 	</item>
 	<item id="13698" name="Oren Supply Box - Magic Pin" additionalName="Grade B/C" type="EtcItem">
@@ -1917,7 +1917,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2924" level="1" /> <!-- Oren supply box - magic pin -->
+			<skill id="2924" level="1" /> <!-- Oren Supply Box - Magic Pin -->
 		</skills>
 	</item>
 	<item id="13699" name="Aden Supply Box - Magic Pin" additionalName="Grade B/C" type="EtcItem">
@@ -1933,7 +1933,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2925" level="1" /> <!-- Aden supply box - magic pin -->
+			<skill id="2925" level="1" /> <!-- Aden Supply Box - Magic Pin -->
 		</skills>
 	</item>
 </list>

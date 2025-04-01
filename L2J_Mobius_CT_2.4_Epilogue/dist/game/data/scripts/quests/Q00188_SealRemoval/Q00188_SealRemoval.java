@@ -45,7 +45,7 @@ public class Q00188_SealRemoval extends Quest
 	
 	public Q00188_SealRemoval()
 	{
-		super(188);
+		super(188, "Seal Removal");
 		addStartNpc(RESEARCHER_LORAIN);
 		addTalkId(RESEARCHER_LORAIN, MAESTRO_NIKOLA, DOROTHY_LOCKSMITH);
 		registerQuestItems(BROKEN_METAL_PIECES);

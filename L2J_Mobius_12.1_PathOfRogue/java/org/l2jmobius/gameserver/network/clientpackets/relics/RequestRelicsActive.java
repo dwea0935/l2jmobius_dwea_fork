@@ -21,13 +21,13 @@
 package org.l2jmobius.gameserver.network.clientpackets.relics;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.holders.RelicDataHolder;
 import org.l2jmobius.gameserver.data.xml.RelicData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PlayerRelicData;
-import org.l2jmobius.gameserver.model.holders.RelicDataHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerRelicData;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.variables.AccountVariables;
+import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.relics.ExRelicsActiveInfo;
 
@@ -65,7 +65,8 @@ public class RequestRelicsActive extends ClientPacket
 		final int skillId = RelicData.getInstance().getRelicSkillId(_relicId);
 		final int skillLevel = relicLevel + 1;
 		player.sendPacket(new ExRelicsActiveInfo(_relicId, relicLevel));
-		player.getVariables().set(AccountVariables.ACTIVE_RELIC, _relicId);
+		player.getVariables().set(PlayerVariables.ACTIVE_RELIC, _relicId);
+		player.getVariables().storeMe();
 		
 		final Skill relicSkill = SkillData.getInstance().getSkill(skillId, skillLevel);
 		if (relicSkill != null)

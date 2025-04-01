@@ -23,17 +23,18 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.SpecialItemType;
-import org.l2jmobius.gameserver.enums.TeleportType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcTeleportRequest;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcTeleportRequest;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.SpecialItemType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -252,7 +253,7 @@ public class TeleportHolder
 		}
 		
 		// Check rest of conditions
-		if (shouldPayFee(player, loc) && !player.destroyItemByItemId("Teleport", loc.getFeeId(), calculateFee(player, loc), npc, true))
+		if (shouldPayFee(player, loc) && !player.destroyItemByItemId(ItemProcessType.FEE, loc.getFeeId(), calculateFee(player, loc), npc, true))
 		{
 			if (loc.getFeeId() == Inventory.ADENA_ID)
 			{

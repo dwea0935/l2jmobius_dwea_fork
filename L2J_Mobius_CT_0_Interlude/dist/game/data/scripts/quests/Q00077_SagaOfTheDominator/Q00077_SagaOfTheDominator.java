@@ -16,16 +16,16 @@
  */
 package quests.Q00077_SagaOfTheDominator;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00077_SagaOfTheDominator extends SagasSuperClass
+public class Q00077_SagaOfTheDominator extends AbstractSagaQuest
 {
 	public Q00077_SagaOfTheDominator()
 	{
-		super(77);
+		super(77, "Saga of the Dominator");
 		_npc = new int[]
 		{
 			31336,

@@ -16,26 +16,26 @@
  */
 package handlers.skillconditionhandlers;
 
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.SkillConditionAffectType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.skill.ISkillCondition;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillConditionAffectType;
 
 /**
  * @author UnAfraid
  */
 public class OpCheckClassSkillCondition implements ISkillCondition
 {
-	private final ClassId _classId;
+	private final PlayerClass _classId;
 	private final SkillConditionAffectType _affectType;
 	private final boolean _isWithin;
 	
 	public OpCheckClassSkillCondition(StatSet params)
 	{
-		_classId = params.getEnum("classId", ClassId.class);
+		_classId = params.getEnum("classId", PlayerClass.class);
 		_affectType = params.getEnum("affectType", SkillConditionAffectType.class);
 		_isWithin = params.getBoolean("isWithin");
 	}
@@ -47,13 +47,13 @@ public class OpCheckClassSkillCondition implements ISkillCondition
 		{
 			case CASTER:
 			{
-				return caster.isPlayer() && (_isWithin == (_classId == caster.asPlayer().getClassId()));
+				return caster.isPlayer() && (_isWithin == (_classId == caster.asPlayer().getPlayerClass()));
 			}
 			case TARGET:
 			{
 				if ((target != null) && !target.isPlayer())
 				{
-					return _isWithin == (_classId == target.asPlayer().getClassId());
+					return _isWithin == (_classId == target.asPlayer().getPlayerClass());
 				}
 				break;
 			}

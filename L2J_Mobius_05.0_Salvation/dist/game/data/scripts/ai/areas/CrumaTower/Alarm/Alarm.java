@@ -16,12 +16,12 @@
  */
 package ai.areas.CrumaTower.Alarm;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 import quests.Q00184_ArtOfPersuasion.Q00184_ArtOfPersuasion;
@@ -225,7 +225,7 @@ public class Alarm extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		cancelQuestTimer("SELF_DESTRUCT_IN_60", npc, null);
 		startQuestTimer("SELF_DESTRUCT_IN_60", 60000, npc, null);
@@ -235,7 +235,6 @@ public class Alarm extends AbstractNpcAI
 		{
 			playSound(player, QuestSound.ITEMSOUND_SIREN);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	/**

@@ -38,7 +38,7 @@ public class Q00119_LastImperialPrince extends Quest
 	
 	public Q00119_LastImperialPrince()
 	{
-		super(119);
+		super(119, "Last Imperial Prince");
 		addStartNpc(NAMELESS_SPIRIT);
 		addTalkId(NAMELESS_SPIRIT, DEVORIN);
 	}

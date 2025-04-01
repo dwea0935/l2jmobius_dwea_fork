@@ -43,7 +43,7 @@
 		<set name="handler" val="Recipes" />
 	</item>
 	<item id="5003" name="Recipe: Art of Battle Axe (60%)" type="EtcItem">
-		<!-- For Dwarves only. A recipe for Art of Battle Axe. Requires Create Item Lv. 7. The success rate is 60%. -->
+		<!-- For Dwarves only. A recipe for Battle Art Axe. Requires Create Item Lv. 7. The success rate is 60%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
 		<set name="etcitem_type" val="RECIPE" />

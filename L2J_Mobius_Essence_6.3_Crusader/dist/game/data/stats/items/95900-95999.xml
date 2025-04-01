@@ -43,12 +43,12 @@
 			<item id="6662" min="1" max="1" chance="1.818182" /> <!-- Ring of Core -->
 			<item id="94385" min="1" max="1" chance="1.818182" /> <!-- Improved Scroll: Enchant Rare Accessories -->
 			<item id="94383" min="1" max="1" chance="1.818182" /> <!-- Scroll: Enchant Rare Accessories -->
-			<item id="94853" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <STR +4> - 3rd Class -->
-			<item id="94856" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <INT +4> - 3rd Class -->
-			<item id="94855" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <DEX +4> - 3rd Class -->
-			<item id="94858" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <WIT +4> - 3rd Class -->
-			<item id="94854" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <CON +4> - 3rd Class -->
-			<item id="94857" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <MEN +4> - 3rd Class -->
+			<item id="94853" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (STR +4) - 3rd Class -->
+			<item id="94856" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (INT +4) - 3rd Class -->
+			<item id="94855" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (DEX +4) - 3rd Class -->
+			<item id="94858" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (WIT +4) - 3rd Class -->
+			<item id="94854" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (CON +4) - 3rd Class -->
+			<item id="94857" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (MEN +4) - 3rd Class -->
 			<item id="93739" min="1" max="1" chance="1.818182" /> <!-- Package: Giran Seal (1000 pcs.) - Sealed -->
 			<item id="93448" min="1" max="1" chance="1.818182" /> <!-- A-grade Weapon Coupon - Sealed -->
 			<item id="93449" min="1" max="1" chance="1.818182" /> <!-- A-grade Armor Coupon - Sealed -->
@@ -617,12 +617,12 @@
 			<item id="94385" min="1" max="1" chance="1.612903" /> <!-- Improved Scroll: Enchant Rare Accessories -->
 			<item id="94383" min="1" max="1" chance="1.612903" /> <!-- Scroll: Enchant Rare Accessories -->
 			<item id="93739" min="1" max="1" chance="1.612903" /> <!-- Package: Giran Seal (1000 pcs.) - Sealed -->
-			<item id="94853" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <STR +4> - 3rd Class -->
-			<item id="94856" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <INT +4> - 3rd Class -->
-			<item id="94855" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <DEX +4> - 3rd Class -->
-			<item id="94858" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <WIT +4> - 3rd Class -->
-			<item id="94854" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <CON +4> - 3rd Class -->
-			<item id="94857" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <MEN +4> - 3rd Class -->
+			<item id="94853" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (STR +4) - 3rd Class -->
+			<item id="94856" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (INT +4) - 3rd Class -->
+			<item id="94855" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (DEX +4) - 3rd Class -->
+			<item id="94858" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (WIT +4) - 3rd Class -->
+			<item id="94854" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (CON +4) - 3rd Class -->
+			<item id="94857" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (MEN +4) - 3rd Class -->
 			<item id="94156" min="1" max="1" chance="1.612903" /> <!-- Package: Baium Doll Lv. 1 - Sealed -->
 			<item id="94513" min="1" max="1" chance="1.612903" /> <!-- Package: Frintezza Doll Lv. 1 - Sealed -->
 			<item id="94651" min="1" max="1" chance="1.612903" /> <!-- Package: Zaken Doll Lv. 1 - Sealed -->
@@ -668,7 +668,7 @@
 			<stat type="pDef">110</stat>
 		</stats>
 		<skills>
-			<skill id="50541" level="1" /> <!-- A-grade: Helmet of Protection -->
+			<skill id="50541" level="1" /> <!-- Helmet of Protection -->
 			<skill id="50542" level="1" /> <!-- Helmet of Protection -->
 			<skill id="50543" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Helmet of Protection -->
 			<skill id="50543" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Helmet of Protection -->
@@ -680,10 +680,10 @@
 			<skill id="50543" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Helmet of Protection -->
 			<skill id="50543" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Helmet of Protection -->
 			<skill id="50543" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Helmet of Protection -->
-			<skill id="83215" level="4" type="ON_BLESSING" /> <!-- Armor Blessing Effect -->
-			<skill id="83116" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83117" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83118" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83215" level="4" type="ON_BLESSING" /> <!-- Helmet Blessing Effect -->
+			<skill id="83116" level="1" type="ON_BLESSING" type_value="6" /> <!-- Helmet of Protection - 6 Item Effect -->
+			<skill id="83117" level="1" type="ON_BLESSING" type_value="7" /> <!-- Helmet of Protection - 7 Item Effect -->
+			<skill id="83118" level="1" type="ON_BLESSING" type_value="8" /> <!-- Helmet of Protection - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="95933" name="Gauntlets of Protection" type="Armor">
@@ -714,10 +714,10 @@
 			<skill id="50547" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Gauntlets of Protection -->
 			<skill id="50547" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Gauntlets of Protection -->
 			<skill id="50547" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Gauntlets of Protection -->
-			<skill id="83222" level="4" type="ON_BLESSING" /> <!-- Armor Blessing Effect -->
-			<skill id="83200" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83201" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83202" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="4" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83200" level="1" type="ON_BLESSING" type_value="6" /> <!-- Gloves of Protection - 6 Item Effect -->
+			<skill id="83201" level="1" type="ON_BLESSING" type_value="7" /> <!-- Gloves of Protection - 7 Item Effect -->
+			<skill id="83202" level="1" type="ON_BLESSING" type_value="8" /> <!-- Gloves of Protection - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="95934" name="Boots of Protection" type="Armor">
@@ -748,10 +748,10 @@
 			<skill id="50551" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Boots of Protection -->
 			<skill id="50551" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Boots of Protection -->
 			<skill id="50551" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Boots of Protection -->
-			<skill id="83223" level="4" type="ON_BLESSING" /> <!-- Armor Blessing Effect -->
-			<skill id="83212" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83213" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83214" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83223" level="4" type="ON_BLESSING" /> <!-- Boot Blessing Effect -->
+			<skill id="83212" level="1" type="ON_BLESSING" type_value="6" /> <!-- Boots of Protection - 6 Item Effect -->
+			<skill id="83213" level="1" type="ON_BLESSING" type_value="7" /> <!-- Boots of Protection - 7 Item Effect -->
+			<skill id="83214" level="1" type="ON_BLESSING" type_value="8" /> <!-- Boots of Protection - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="95935" name="Helmet of Protection" additionalName="Sealed" type="Armor">
@@ -774,7 +774,7 @@
 			<stat type="pDef">110</stat>
 		</stats>
 		<skills>
-			<skill id="50541" level="1" /> <!-- A-grade: Helmet of Protection -->
+			<skill id="50541" level="1" /> <!-- Helmet of Protection -->
 			<skill id="50542" level="1" /> <!-- Helmet of Protection -->
 			<skill id="50543" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Helmet of Protection -->
 			<skill id="50543" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Helmet of Protection -->
@@ -786,10 +786,10 @@
 			<skill id="50543" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Helmet of Protection -->
 			<skill id="50543" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Helmet of Protection -->
 			<skill id="50543" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Helmet of Protection -->
-			<skill id="83215" level="4" type="ON_BLESSING" /> <!-- Armor Blessing Effect -->
-			<skill id="83116" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83117" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83118" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83215" level="4" type="ON_BLESSING" /> <!-- Helmet Blessing Effect -->
+			<skill id="83116" level="1" type="ON_BLESSING" type_value="6" /> <!-- Helmet of Protection - 6 Item Effect -->
+			<skill id="83117" level="1" type="ON_BLESSING" type_value="7" /> <!-- Helmet of Protection - 7 Item Effect -->
+			<skill id="83118" level="1" type="ON_BLESSING" type_value="8" /> <!-- Helmet of Protection - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="95936" name="Gauntlets of Protection" additionalName="Sealed" type="Armor">
@@ -824,10 +824,10 @@
 			<skill id="50547" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Gauntlets of Protection -->
 			<skill id="50547" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Gauntlets of Protection -->
 			<skill id="50547" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Gauntlets of Protection -->
-			<skill id="83222" level="4" type="ON_BLESSING" /> <!-- Armor Blessing Effect -->
-			<skill id="83200" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83201" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83202" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="4" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83200" level="1" type="ON_BLESSING" type_value="6" /> <!-- Gloves of Protection - 6 Item Effect -->
+			<skill id="83201" level="1" type="ON_BLESSING" type_value="7" /> <!-- Gloves of Protection - 7 Item Effect -->
+			<skill id="83202" level="1" type="ON_BLESSING" type_value="8" /> <!-- Gloves of Protection - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="95937" name="Boots of Protection" additionalName="Sealed" type="Armor">
@@ -862,10 +862,10 @@
 			<skill id="50551" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Boots of Protection -->
 			<skill id="50551" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Boots of Protection -->
 			<skill id="50551" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Boots of Protection -->
-			<skill id="83223" level="4" type="ON_BLESSING" /> <!-- Armor Blessing Effect -->
-			<skill id="83212" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83213" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83214" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83223" level="4" type="ON_BLESSING" /> <!-- Boot Blessing Effect -->
+			<skill id="83212" level="1" type="ON_BLESSING" type_value="6" /> <!-- Boots of Protection - 6 Item Effect -->
+			<skill id="83213" level="1" type="ON_BLESSING" type_value="7" /> <!-- Boots of Protection - 7 Item Effect -->
+			<skill id="83214" level="1" type="ON_BLESSING" type_value="8" /> <!-- Boots of Protection - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="95938" name="Tower of Insolence's Shining Treasure Chest (Time-limited)" additionalName="Sealed" type="EtcItem">

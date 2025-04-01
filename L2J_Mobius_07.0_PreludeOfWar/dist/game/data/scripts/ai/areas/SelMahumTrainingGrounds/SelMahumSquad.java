@@ -1,38 +1,42 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.SelMahumTrainingGrounds;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
 /**
  * Sel Mahum Training Ground AI for squads and chefs.
- * @author GKR
+ * @author GKR, Mobius
  */
 public class SelMahumSquad extends AbstractNpcAI
 {
@@ -192,7 +196,7 @@ public class SelMahumSquad extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if ((npc.getId() == CHEF) && (npc.getVariables().getInt("BUSY_STATE") == 0))
 		{
@@ -206,18 +210,16 @@ public class SelMahumSquad extends AbstractNpcAI
 			startQuestTimer("chef_set_invul", 60000, npc, null);
 			npc.getVariables().set("BUSY_STATE", 1);
 		}
-		else if (CommonUtil.contains(SQUAD_LEADERS, npc.getId()))
+		else if (ArrayUtil.contains(SQUAD_LEADERS, npc.getId()))
 		{
 			handlePreAttackMotion(npc);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
+	public void onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
 	{
 		handlePreAttackMotion(npc);
-		return super.onFactionCall(npc, caller, attacker, isSummon);
 	}
 	
 	@Override
@@ -239,7 +241,7 @@ public class SelMahumSquad extends AbstractNpcAI
 			}
 			case "SCE_CAMPFIRE_START":
 			{
-				if (receiver.isRandomWalkingEnabled() && !receiver.isDead() && (receiver.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK) && CommonUtil.contains(SQUAD_LEADERS, receiver.getId()))
+				if (receiver.isRandomWalkingEnabled() && !receiver.isDead() && (receiver.getAI().getIntention() != Intention.ATTACK) && ArrayUtil.contains(SQUAD_LEADERS, receiver.getId()))
 				{
 					receiver.setRandomWalking(false); // Moving to fire - i_ai0 = 1
 					receiver.setRunning();
@@ -248,7 +250,7 @@ public class SelMahumSquad extends AbstractNpcAI
 					receiver.stopMove(null);
 					receiver.getVariables().set("DESTINATION_X", loc.getX());
 					receiver.getVariables().set("DESTINATION_Y", loc.getY());
-					receiver.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, loc);
+					receiver.getAI().setIntention(Intention.MOVE_TO, loc);
 				}
 				break;
 			}
@@ -258,7 +260,7 @@ public class SelMahumSquad extends AbstractNpcAI
 				{
 					receiver.deleteMe();
 				}
-				else if ((receiver.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK) && CommonUtil.contains(SQUAD_LEADERS, receiver.getId()))
+				else if ((receiver.getAI().getIntention() != Intention.ATTACK) && ArrayUtil.contains(SQUAD_LEADERS, receiver.getId()))
 				{
 					receiver.setRandomWalking(true);
 					receiver.getVariables().remove("BUSY_STATE");
@@ -269,7 +271,7 @@ public class SelMahumSquad extends AbstractNpcAI
 			}
 			case "SCE_DINNER_EAT":
 			{
-				if (!receiver.isDead() && (receiver.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK) && (receiver.getVariables().getInt("BUSY_STATE", 0) == 0) && CommonUtil.contains(SQUAD_LEADERS, receiver.getId()))
+				if (!receiver.isDead() && (receiver.getAI().getIntention() != Intention.ATTACK) && (receiver.getVariables().getInt("BUSY_STATE", 0) == 0) && ArrayUtil.contains(SQUAD_LEADERS, receiver.getId()))
 				{
 					if (!receiver.isRandomWalkingEnabled()) // i_ai0 == 1
 					{
@@ -284,13 +286,13 @@ public class SelMahumSquad extends AbstractNpcAI
 					receiver.stopMove(null);
 					receiver.getVariables().set("DESTINATION_X", loc.getX());
 					receiver.getVariables().set("DESTINATION_Y", loc.getY());
-					receiver.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, loc);
+					receiver.getAI().setIntention(Intention.MOVE_TO, loc);
 				}
 				break;
 			}
 			case "SCE_SOUP_FAILURE":
 			{
-				if (CommonUtil.contains(SQUAD_LEADERS, receiver.getId()))
+				if (ArrayUtil.contains(SQUAD_LEADERS, receiver.getId()))
 				{
 					receiver.getVariables().set("FULL_BARREL_REWARDING_PLAYER", reference.getObjectId()); // TODO: Use it in 289 quest
 					startQuestTimer("reset_full_bottle_prize", 180000, receiver, null);
@@ -302,7 +304,7 @@ public class SelMahumSquad extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.isMonster() && (npc.getVariables().getInt("REWARD_TIME_GONE") == 0))
 		{
@@ -312,7 +314,6 @@ public class SelMahumSquad extends AbstractNpcAI
 		cancelQuestTimer("chef_disable_reward", npc, null);
 		cancelQuestTimer("chef_heal_player", npc, null);
 		cancelQuestTimer("chef_set_invul", npc, null);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -333,18 +334,17 @@ public class SelMahumSquad extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
-		if ((npc.getId() == STOVE) && (skill.getId() == 9075) && CommonUtil.contains(targets, npc))
+		if ((npc.getId() == STOVE) && (skill.getId() == 9075) && ArrayUtil.contains(targets, npc))
 		{
 			npc.doCast(SkillData.getInstance().getSkill(6688, 1));
 			npc.broadcastEvent("SCE_SOUP_FAILURE", 600, caster);
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == CHEF)
 		{
@@ -355,27 +355,25 @@ public class SelMahumSquad extends AbstractNpcAI
 			cancelQuestTimer("fire", npc, null);
 			startQuestTimer("fire", 1000, npc, null);
 		}
-		else if (CommonUtil.contains(SQUAD_LEADERS, npc.getId()))
+		else if (ArrayUtil.contains(SQUAD_LEADERS, npc.getId()))
 		{
 			npc.setDisplayEffect(3);
 			npc.setRandomWalking(true);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if ((skill != null) && (skill.getId() == 6330))
 		{
 			healPlayer(npc, player);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	private void healPlayer(Npc npc, Player player)
 	{
-		if ((player != null) && !player.isDead() && (npc.getVariables().getInt("INVUL_REMOVE_TIMER_STARTED") != 1) && ((npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ATTACK) || (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_CAST)))
+		if ((player != null) && !player.isDead() && (npc.getVariables().getInt("INVUL_REMOVE_TIMER_STARTED") != 1) && ((npc.getAI().getIntention() == Intention.ATTACK) || (npc.getAI().getIntention() == Intention.CAST)))
 		{
 			npc.setTarget(player);
 			npc.doCast(SkillData.getInstance().getSkill(6330, 1));

@@ -33,8 +33,8 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.homunculus.HomunculusSlotTemplate;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author Index
@@ -57,12 +57,12 @@ public class HomunculusSlotData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		StatSet set;
 		Node att;
 		NamedNodeMap attrs;
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -110,6 +110,11 @@ public class HomunculusSlotData implements IXmlReader
 		return items;
 	}
 	
+	/**
+	 * Retrieves the {@link HomunculusSlotTemplate} associated with the specified slot ID.
+	 * @param id the unique identifier of the homunculus slot template
+	 * @return the {@link HomunculusSlotTemplate} corresponding to the given ID, or {@code null} if no template with the specified ID exists
+	 */
 	public HomunculusSlotTemplate getTemplate(int id)
 	{
 		return TEMPLATES.get(id);

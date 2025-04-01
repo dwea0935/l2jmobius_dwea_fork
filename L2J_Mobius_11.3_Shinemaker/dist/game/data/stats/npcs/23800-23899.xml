@@ -953,7 +953,6 @@
 	<npc id="23820" level="115" type="Monster" name="Nephilim Swordsman">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" />
 		<acquire exp="1198928" sp="1079" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="595748" hpRegen="6.5" mp="2983" mpRegen="2.4" />
@@ -1039,7 +1038,6 @@
 	<npc id="23822" level="120" type="Monster" name="Lilim's Magus">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" />
 		<acquire exp="3204174" sp="2884" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="1312389" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -1215,7 +1213,6 @@
 	<npc id="23826" level="125" type="Monster" name="Nephilim Bishop">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="279" />
 		<acquire exp="4179713" sp="3762" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="3004509" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -1260,7 +1257,6 @@
 	<npc id="23827" level="125" type="Monster" name="Nephilim Royal Guard">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" />
 		<acquire exp="4179713" sp="3762" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="3004509" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -1305,7 +1301,6 @@
 	<npc id="23828" level="125" type="Monster" name="Nephilim Commander">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="2503" />
 		<acquire exp="4179713" sp="3762" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="3004509" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -1395,7 +1390,6 @@
 	<npc id="23830" level="130" type="Monster" name="Lillim's Great Magus">
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="84" />
 		<acquire exp="5470337" sp="4923" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="7050334" hpRegen="7.5" mp="3190" mpRegen="2.7" />

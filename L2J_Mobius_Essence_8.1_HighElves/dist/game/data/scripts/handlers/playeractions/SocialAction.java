@@ -17,8 +17,8 @@
 package handlers.playeractions;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.NextAction;
 import org.l2jmobius.gameserver.data.xml.FakePlayerData;
 import org.l2jmobius.gameserver.handler.IPlayerActionHandler;
@@ -27,11 +27,11 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSocialAction;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSocialAction;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExAskCoupleAction;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 /**
  * Social Action player action handler.
@@ -339,16 +339,16 @@ public class SocialAction implements IPlayerActionHandler
 		sm.addPcName(partner);
 		player.sendPacket(sm);
 		
-		if ((player.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE) || (partner.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE))
+		if ((player.getAI().getIntention() != Intention.IDLE) || (partner.getAI().getIntention() != Intention.IDLE))
 		{
-			final NextAction nextAction = new NextAction(CtrlEvent.EVT_ARRIVED, CtrlIntention.AI_INTENTION_MOVE_TO, () -> partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id)));
+			final NextAction nextAction = new NextAction(Action.ARRIVED, Intention.MOVE_TO, () -> partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id)));
 			player.getAI().setNextAction(nextAction);
 			return;
 		}
 		
 		if (player.isCastingNow())
 		{
-			final NextAction nextAction = new NextAction(CtrlEvent.EVT_FINISH_CASTING, CtrlIntention.AI_INTENTION_CAST, () -> partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id)));
+			final NextAction nextAction = new NextAction(Action.FINISH_CASTING, Intention.CAST, () -> partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id)));
 			player.getAI().setNextAction(nextAction);
 			return;
 		}

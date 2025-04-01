@@ -18,12 +18,12 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -83,12 +83,12 @@ public class ClassChange extends AbstractEffect
 				OlympiadManager.getInstance().unRegisterNoble(player);
 			}
 			
-			final int activeClass = player.getClassId().getId();
+			final int activeClass = player.getPlayerClass().getId();
 			player.setActiveClass(_index);
 			
 			final SystemMessage msg = new SystemMessage(SystemMessageId.YOU_HAVE_SUCCESSFULLY_SWITCHED_S1_TO_S2);
 			msg.addClassId(activeClass);
-			msg.addClassId(player.getClassId().getId());
+			msg.addClassId(player.getPlayerClass().getId());
 			player.sendPacket(msg);
 			
 			player.broadcastUserInfo();

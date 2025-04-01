@@ -1393,7 +1393,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50578" level="1" /> <!-- Behemoth Doll Lv. 1 -->
+			<skill id="50578" level="1" /> <!-- Behemoth Doll's Sorcery -->
 		</skills>
 	</item>
 	<item id="97480" name="Behemoth Doll Lv. 2" type="EtcItem">
@@ -1407,7 +1407,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50578" level="2" /> <!-- Behemoth Doll Lv. 2 -->
+			<skill id="50578" level="2" /> <!-- Behemoth Doll's Sorcery -->
 		</skills>
 	</item>
 	<item id="97481" name="Behemoth Doll Lv. 3" type="EtcItem">
@@ -1421,7 +1421,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50578" level="3" /> <!-- Behemoth Doll Lv. 3 -->
+			<skill id="50578" level="3" /> <!-- Behemoth Doll's Sorcery -->
 		</skills>
 	</item>
 	<item id="97482" name="Behemoth Doll Lv. 4" type="EtcItem">
@@ -1435,7 +1435,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50578" level="4" /> <!-- Behemoth Doll Lv. 4 -->
+			<skill id="50578" level="4" /> <!-- Behemoth Doll's Sorcery -->
 		</skills>
 	</item>
 	<item id="97483" name="Behemoth Doll Lv. 5" type="EtcItem">
@@ -1449,7 +1449,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50578" level="5" /> <!-- Behemoth Doll Lv. 5 -->
+			<skill id="50578" level="5" /> <!-- Behemoth Doll's Sorcery -->
 		</skills>
 	</item>
 	<item id="97484" name="Glakias Doll Lv. 1" additionalName="Sealed" type="EtcItem">
@@ -1464,7 +1464,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50579" level="1" /> <!-- Glakias Doll Lv. 1 -->
+			<skill id="50579" level="1" /> <!-- Glakias Doll's Sorcery -->
 		</skills>
 	</item>
 	<item id="97485" name="Glakias Doll Lv. 2" type="EtcItem">
@@ -1478,7 +1478,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50579" level="2" /> <!-- Glakias Doll Lv. 2 -->
+			<skill id="50579" level="2" /> <!-- Glakias Doll's Sorcery -->
 		</skills>
 	</item>
 	<item id="97486" name="Glakias Doll Lv. 3" type="EtcItem">
@@ -1492,7 +1492,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50579" level="3" /> <!-- Glakias Doll Lv. 3 -->
+			<skill id="50579" level="3" /> <!-- Glakias Doll's Sorcery -->
 		</skills>
 	</item>
 	<item id="97487" name="Glakias Doll Lv. 4" type="EtcItem">
@@ -1506,7 +1506,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50579" level="4" /> <!-- Glakias Doll Lv. 4 -->
+			<skill id="50579" level="4" /> <!-- Glakias Doll's Sorcery -->
 		</skills>
 	</item>
 	<item id="97488" name="Glakias Doll Lv. 5" type="EtcItem">
@@ -1520,7 +1520,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50579" level="5" /> <!-- Glakias Doll Lv. 5 -->
+			<skill id="50579" level="5" /> <!-- Glakias Doll's Sorcery -->
 		</skills>
 	</item>
 	<item id="97489" name="Package: Behemoth Doll Lv. 1" additionalName="Sealed" type="EtcItem">

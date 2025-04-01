@@ -1948,23 +1948,26 @@
 	<item id="82876" name="Antharas Stormer" additionalName="Lv. 4" type="Weapon">
 		<!-- A weapon imbued with the dragon power. Cannot be enchanted or imbued with an attribute. The item's appearance cannot be modified. Can be augmented. 2 common soul crystals and 1 special soul crystal can be inserted. <font color=ff6666><Additional effect when equipped></font>. PvP damage +50%. Max HP/ MP/ CP +100%. Atk. Spd./ Casting Spd. +100%. Critical Rate for basic attacks +500. P. Skill Critical Rate +50%. M. Skill Critical Rate +30%. Critical Damage for basic attacks and P./ M. skills +50%. Damage to dragons +300%. Power of basic attacks and P./ M. skills +30%. Soulshot/ Spiritshot damage +30%. Max HP can be more than 200,000. <font color=ff6666><Available skills when equipped></font>. Dignity. Antharas' Lash. Antharas' Breath. Antharas' Howl -->
 		<set name="icon" val="Icon.weapon_i.antaras_weapon_bg0000" />
+		<set name="is_dragon_weapon" val="true" />
+		<set name="ensoulNormalSlots" val="2" />
+		<set name="ensoulSpecialSlots" val="1" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
-		<set name="bodypart" val="lrhand" />
-		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="L" />
+		<set name="bodypart" val="lrhand" />
+		<set name="damage_range" val="0;0;66;120" />
+		<set name="immediate_effect" val="true" />
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="2010" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="is_sellable" val="false" />
-		<set name="is_dragon_weapon" val="true" />
-		<set name="ensoulNormalSlots" val="2" />
-		<set name="ensoulSpecialSlots" val="1" />
 		<set name="equip_reuse_delay" val="300" />
 		<stats>
 			<stat type="pAtk">3876</stat>
 			<stat type="mAtk">1689</stat>
+			<stat type="rCrit">8</stat>
+			<stat type="accCombat">-3.75</stat>
 			<stat type="pAtkSpd">325</stat>
 			<stat type="randomDamage">10</stat>
 			<stat type="pAtkRange">80</stat>

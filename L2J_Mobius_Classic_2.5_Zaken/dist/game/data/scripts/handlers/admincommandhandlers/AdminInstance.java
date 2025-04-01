@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.admincommandhandlers;
 
@@ -21,11 +25,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.html.PageBuilder;
@@ -37,12 +43,11 @@ import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceTemplate;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.BypassParser;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Instance admin commands.
- * @author St3eT
+ * @author St3eT, Mobius
  */
 public class AdminInstance implements IAdminCommandHandler
 {
@@ -55,6 +60,7 @@ public class AdminInstance implements IAdminCommandHandler
 		"admin_instanceteleport",
 		"admin_instancedestroy",
 	};
+	
 	private static final int[] IGNORED_TEMPLATES =
 	{
 		127, // Chamber of Delusion
@@ -89,12 +95,13 @@ public class AdminInstance implements IAdminCommandHandler
 			}
 			case "admin_instancelist":
 			{
-				processBypass(activeChar, new BypassParser(command));
+				final int page = parseInt(command, "page", 0);
+				sendTemplateList(activeChar, page);
 				break;
 			}
 			case "admin_instancecreate":
 			{
-				final int templateId = CommonUtil.parseNextInt(st, 0);
+				final int templateId = StringUtil.parseNextInt(st, 0);
 				final InstanceTemplate template = InstanceManager.getInstance().getInstanceTemplate(templateId);
 				if (template != null)
 				{
@@ -138,7 +145,7 @@ public class AdminInstance implements IAdminCommandHandler
 						}
 						default:
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Wrong enter group usage! Please use those values: Alone, Party or CommandChannel.");
+							activeChar.sendSysMessage("Wrong enter group usage! Please use those values: Alone, Party or CommandChannel.");
 							return true;
 						}
 					}
@@ -147,24 +154,24 @@ public class AdminInstance implements IAdminCommandHandler
 					final Location loc = instance.getEnterLocation();
 					if (loc != null)
 					{
-						for (Player players : members)
+						for (Player player : members)
 						{
-							instance.addAllowed(players);
-							players.teleToLocation(loc, instance);
+							instance.addAllowed(player);
+							player.teleToLocation(loc, instance);
 						}
 					}
 					sendTemplateDetails(activeChar, instance.getTemplateId());
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Wrong parameters! Please try again.");
+					activeChar.sendSysMessage("Wrong parameters! Please try again.");
 					return true;
 				}
 				break;
 			}
 			case "admin_instanceteleport":
 			{
-				final Instance instance = InstanceManager.getInstance().getInstance(CommonUtil.parseNextInt(st, -1));
+				final Instance instance = InstanceManager.getInstance().getInstance(StringUtil.parseNextInt(st, -1));
 				if (instance != null)
 				{
 					final Location loc = instance.getEnterLocation();
@@ -183,11 +190,11 @@ public class AdminInstance implements IAdminCommandHandler
 			}
 			case "admin_instancedestroy":
 			{
-				final Instance instance = InstanceManager.getInstance().getInstance(CommonUtil.parseNextInt(st, -1));
+				final Instance instance = InstanceManager.getInstance().getInstance(StringUtil.parseNextInt(st, -1));
 				if (instance != null)
 				{
 					instance.getPlayers().forEach(player -> player.sendPacket(new ExShowScreenMessage("Your instance has been destroyed by Game Master!", 10000)));
-					BuilderUtil.sendSysMessage(activeChar, "You destroyed Instance " + instance.getId() + " with " + instance.getPlayersCount() + " players inside.");
+					activeChar.sendSysMessage("You destroyed Instance " + instance.getId() + " with " + instance.getPlayersCount() + " players inside.");
 					instance.destroy();
 					sendTemplateDetails(activeChar, instance.getTemplateId());
 				}
@@ -247,7 +254,7 @@ public class AdminInstance implements IAdminCommandHandler
 		html.setFile(player, "data/html/admin/instances_list.htm");
 		
 		final InstanceManager instManager = InstanceManager.getInstance();
-		final List<InstanceTemplate> templateList = instManager.getInstanceTemplates().stream().sorted(Comparator.comparingLong(InstanceTemplate::getWorldCount).reversed()).filter(template -> !CommonUtil.contains(IGNORED_TEMPLATES, template.getId())).collect(Collectors.toList());
+		final List<InstanceTemplate> templateList = instManager.getInstanceTemplates().stream().sorted(Comparator.comparingLong(InstanceTemplate::getWorldCount).reversed()).filter(template -> !ArrayUtil.contains(IGNORED_TEMPLATES, template.getId())).collect(Collectors.toList());
 		
 		//@formatter:off
 		final PageResult result = PageBuilder.newBuilder(templateList, 4, "bypass -h admin_instancelist")
@@ -285,18 +292,22 @@ public class AdminInstance implements IAdminCommandHandler
 		player.sendPacket(html);
 	}
 	
-	private void processBypass(Player player, BypassParser parser)
+	private int parseInt(String command, String paramName, int defaultValue)
 	{
-		final int page = parser.getInt("page", 0);
-		final int templateId = parser.getInt("id", 0);
-		if (templateId > 0)
+		final Pattern pattern = Pattern.compile(paramName + "=([^\\s]+)");
+		final Matcher matcher = pattern.matcher(command);
+		if (matcher.find())
 		{
-			sendTemplateDetails(player, templateId);
+			try
+			{
+				return Integer.parseInt(matcher.group(1).trim());
+			}
+			catch (NumberFormatException e)
+			{
+				// Ignore and return default.
+			}
 		}
-		else
-		{
-			sendTemplateList(player, page);
-		}
+		return defaultValue;
 	}
 	
 	@Override

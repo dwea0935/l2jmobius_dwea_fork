@@ -273,7 +273,7 @@
 		<set name="material" val="GOLD" />
 	</item>
 	<item id="45429" name="Orichalcum Bolt" additionalName="Event" type="EtcItem">
-		<!-- Bolt made of Orichalcum. Used as bolts for R-grade crossbows. -->
+		<!-- Bolt made of Orichalcum. Used as bolts for R-grade сrossbows. -->
 		<set name="icon" val="icon.etc_oricalcum_bolt_i00" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
@@ -465,7 +465,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="POTION" />
 		<skills>
-			<skill id="18214" level="1" /> <!-- L2B2 -->
+			<skill id="18214" level="1" /> <!-- Transformation Potion: L2B2 -->
 		</skills>
 	</item>
 	<item id="45444" name="Scroll of Escape - Blazing Swamp" type="EtcItem">
@@ -662,7 +662,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="reuse_delay" val="86400000" />
 		<skills>
-			<skill id="18222" level="1" /> <!-- Extra Pass: Near Kamaloka -->
+			<skill id="18222" level="1" /> <!-- Extra Pass - Nightmare Kamaloka -->
 		</skills>
 	</item>
 	<item id="45464" name="Zorro Hat" type="Armor">

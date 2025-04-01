@@ -21,7 +21,7 @@
 package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.instancemanager.games.KrateisCubeManager;
+import org.l2jmobius.gameserver.managers.games.KrateisCubeManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.krateisCube.KrateiArena;
@@ -73,7 +73,7 @@ public class KrateisMatchManager extends Folk
 				player.sendPacket(ExPVPMatchCCRetire.STATIC);
 				player.broadcastStatusUpdate();
 				player.broadcastUserInfo();
-				player.getSummonedNpcs().forEach(summon -> stopAllEffects());
+				player.getSummonedNpcs().forEach(_ -> stopAllEffects());
 			}
 			player.teleToLocation(-70381, -70937, -1428, 0, true);
 		}

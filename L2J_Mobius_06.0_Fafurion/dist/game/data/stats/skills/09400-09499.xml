@@ -88,7 +88,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>100</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>3600000</reuseDelay>
@@ -1297,7 +1297,7 @@
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>100</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-3</magicLevel>
@@ -1373,12 +1373,10 @@
 		<affectScope>SINGLE</affectScope>
 		<castRange>40</castRange>
 		<effectRange>400</effectRange>
-		<effectRange>400</effectRange>
 		<hitTime>1000</hitTime>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>99</magicLevel>
-		<reuseDelay>6000</reuseDelay>
 		<reuseDelay>6000</reuseDelay>
 		<conditions>
 			<condition name="OpTargetNpc">
@@ -1480,7 +1478,6 @@
 		<itemConsumeId>34978</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
-		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAlignment">
 				<affectType>CASTER</affectType>
@@ -1506,7 +1503,6 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>34979</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
-		<magicLevel>1</magicLevel>
 		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAlignment">
@@ -1534,7 +1530,6 @@
 		<itemConsumeId>34980</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
-		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAlignment">
 				<affectType>CASTER</affectType>
@@ -1561,7 +1556,6 @@
 		<itemConsumeId>34981</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
-		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAlignment">
 				<affectType>CASTER</affectType>
@@ -1587,7 +1581,6 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>34982</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
-		<magicLevel>1</magicLevel>
 		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAlignment">
@@ -4260,7 +4253,7 @@
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-3</magicLevel>
@@ -4281,7 +4274,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -4303,7 +4296,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -4325,7 +4318,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -4347,7 +4340,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -4369,7 +4362,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -4388,7 +4381,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -4407,7 +4400,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -4426,7 +4419,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -4445,7 +4438,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -4464,7 +4457,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>

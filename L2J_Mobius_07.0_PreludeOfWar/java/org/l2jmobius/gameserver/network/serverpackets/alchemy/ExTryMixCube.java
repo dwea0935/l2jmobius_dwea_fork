@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.TryMixCubeType;
-import org.l2jmobius.gameserver.model.holders.AlchemyResult;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.enums.TryMixCubeType;
+import org.l2jmobius.gameserver.network.holders.AlchemyResult;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 
 /**

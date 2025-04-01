@@ -1033,7 +1033,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="8089" name="Cursed Grave Goods" type="EtcItem">
-		<!-- A decoration created by evil spirits. -->
+		<!-- An ornament created by evil spirits. -->
 		<set name="icon" val="icon.etc_totem_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />

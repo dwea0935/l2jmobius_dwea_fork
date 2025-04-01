@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="72007" name="Dragon's Treasure Chest" type="EtcItem">
 		<!-- Double-click to obtain the following items. <Guaranteed>. Dragon Coin (3 pcs.). <Random>. Spellbook: Ultimate Death Knight Transformation. Talisman of Baium. Baium's Ring Lv. 1. Baium Doll Lv. 1. Baium's Thunder Breaker. Zaken's Blood Sword. Core's Plasmic Bow. Queen Ant's Stone Breaker. Orfen's Venom Sword. + other items. -->
@@ -12,7 +12,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39270" level="1" /> <!-- Dragon's Treasure Chest -->
+			<skill id="39270" level="1" /> <!-- Dragon??s Treasure Chest -->
 		</skills>
 	</item>
 	<item id="72015" name="Special Kit: Adena" type="EtcItem">

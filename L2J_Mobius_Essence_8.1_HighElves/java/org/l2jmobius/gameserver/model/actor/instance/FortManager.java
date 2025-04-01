@@ -24,13 +24,13 @@ import java.text.SimpleDateFormat;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.TeleporterData;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.siege.Fort.FortFunction;
@@ -100,7 +100,7 @@ public class FortManager extends Merchant
 			}
 			if (actualCommand.equalsIgnoreCase("expel"))
 			{
-				if (player.hasClanPrivilege(ClanPrivilege.CS_DISMISS))
+				if (player.hasAccess(ClanAccess.CASTLE_BANISH))
 				{
 					final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 					html.setFile(player, "data/html/fortress/foreman-expel.htm");
@@ -118,7 +118,7 @@ public class FortManager extends Merchant
 			}
 			else if (actualCommand.equalsIgnoreCase("banish_foreigner"))
 			{
-				if (player.hasClanPrivilege(ClanPrivilege.CS_DISMISS))
+				if (player.hasAccess(ClanAccess.CASTLE_BANISH))
 				{
 					getFort().banishForeigners(); // Move non-clan members off fortress area
 					final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -191,7 +191,7 @@ public class FortManager extends Merchant
 			else if (actualCommand.equalsIgnoreCase("operate_door")) // door
 			// control
 			{
-				if (player.hasClanPrivilege(ClanPrivilege.CS_OPEN_DOOR))
+				if (player.hasAccess(ClanAccess.CASTLE_OPEN_DOOR))
 				{
 					if (!val.isEmpty())
 					{
@@ -251,7 +251,7 @@ public class FortManager extends Merchant
 			else if (actualCommand.equalsIgnoreCase("manage_vault"))
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
-				if (player.hasClanPrivilege(ClanPrivilege.CL_VIEW_WAREHOUSE))
+				if (player.hasAccess(ClanAccess.ACCESS_WAREHOUSE))
 				{
 					if (val.equalsIgnoreCase("deposit"))
 					{
@@ -341,7 +341,7 @@ public class FortManager extends Merchant
 			}
 			else if (actualCommand.equalsIgnoreCase("manage"))
 			{
-				if (player.hasClanPrivilege(ClanPrivilege.CS_SET_FUNCTIONS))
+				if (player.hasAccess(ClanAccess.CASTLE_MANAGE_FUNCTIONS))
 				{
 					if (val.equalsIgnoreCase("recovery"))
 					{
@@ -950,13 +950,13 @@ public class FortManager extends Merchant
 					return;
 				}
 				
-				final int funcLvl = (val.length() >= 4) ? CommonUtil.parseInt(val.substring(3), -1) : -1;
+				final int funcLvl = (val.length() >= 4) ? StringUtil.parseInt(val.substring(3), -1) : -1;
 				if (func.getLevel() == funcLvl)
 				{
 					final TeleportHolder holder = TeleporterData.getInstance().getHolder(getId(), val);
 					if (holder != null)
 					{
-						holder.doTeleport(player, this, CommonUtil.parseNextInt(st, -1));
+						holder.doTeleport(player, this, StringUtil.parseNextInt(st, -1));
 					}
 				}
 				return;
@@ -1016,7 +1016,7 @@ public class FortManager extends Merchant
 	
 	private void showVaultWindowWithdraw(Player player)
 	{
-		if (player.isClanLeader() || player.hasClanPrivilege(ClanPrivilege.CL_VIEW_WAREHOUSE))
+		if (player.isClanLeader() || player.hasAccess(ClanAccess.ACCESS_WAREHOUSE))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			player.setActiveWarehouse(player.getClan().getWarehouse());

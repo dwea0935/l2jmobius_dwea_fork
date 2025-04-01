@@ -23,17 +23,17 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureZoneEnter;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureZoneExit;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureZoneEnter;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureZoneExit;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -271,7 +271,7 @@ public abstract class ZoneType extends ListenersContainer
 				boolean ok = false;
 				for (int _clas : _class)
 				{
-					if (creature.asPlayer().getClassId().getId() == _clas)
+					if (creature.asPlayer().getPlayerClass().getId() == _clas)
 					{
 						ok = true;
 						break;

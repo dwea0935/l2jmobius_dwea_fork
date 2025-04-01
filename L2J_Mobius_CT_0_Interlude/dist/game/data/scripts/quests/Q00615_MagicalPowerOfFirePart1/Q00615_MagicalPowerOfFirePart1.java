@@ -16,14 +16,13 @@
  */
 package quests.Q00615_MagicalPowerOfFirePart1;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 /**
@@ -83,7 +82,7 @@ public class Q00615_MagicalPowerOfFirePart1 extends Quest
 	
 	public Q00615_MagicalPowerOfFirePart1()
 	{
-		super(615);
+		super(615, "Magical Power of Fire - Part 1");
 		addStartNpc(NARAN);
 		addTalkId(UDAN, NARAN, ASEFA_BOX);
 		addAttackId(KETRA_MOBS);
@@ -132,7 +131,7 @@ public class Q00615_MagicalPowerOfFirePart1 extends Quest
 			}
 			case "eye_despawn":
 			{
-				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.ASEFA_HAS_ALREADY_SEEN_YOUR_FACE));
+				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Asefa has already seen your face!"));
 				npc.deleteMe();
 				break;
 			}
@@ -141,7 +140,7 @@ public class Q00615_MagicalPowerOfFirePart1 extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isCond(2) && !qs.isSet("spawned"))
@@ -150,10 +149,9 @@ public class Q00615_MagicalPowerOfFirePart1 extends Quest
 			npc.setTarget(attacker);
 			npc.doCast(GOW.getSkill());
 			final Npc eye = addSpawn(ASEFA_EYE, npc);
-			eye.broadcastPacket(new NpcSay(eye, ChatType.NPC_GENERAL, NpcStringId.YOU_CAN_T_AVOID_THE_EYES_OF_ASEFA));
+			eye.broadcastPacket(new NpcSay(eye, ChatType.NPC_GENERAL, "You can't avoid the eyes of Asefa!"));
 			startQuestTimer("eye_despawn", 10000, eye, attacker);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override

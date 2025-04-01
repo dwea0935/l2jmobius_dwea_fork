@@ -17,19 +17,20 @@
 package org.l2jmobius.gameserver.network.clientpackets.appearance;
 
 import org.l2jmobius.gameserver.data.xml.AppearanceItemData;
-import org.l2jmobius.gameserver.enums.InventorySlot;
-import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.ShapeShiftingItemRequest;
-import org.l2jmobius.gameserver.model.holders.AppearanceHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.appearance.AppearanceHolder;
 import org.l2jmobius.gameserver.model.item.appearance.AppearanceStone;
 import org.l2jmobius.gameserver.model.item.appearance.AppearanceType;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.model.variables.ItemVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.InventorySlot;
 import org.l2jmobius.gameserver.network.serverpackets.ExAdenaInvenCount;
 import org.l2jmobius.gameserver.network.serverpackets.ExUserInfoEquipSlot;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -58,7 +59,7 @@ public class RequestShapeShiftingItem extends ClientPacket
 		}
 		
 		final ShapeShiftingItemRequest request = player.getRequest(ShapeShiftingItemRequest.class);
-		if (player.isInStoreMode() || player.isCrafting() || player.isProcessingRequest() || player.isProcessingTransaction() || (request == null))
+		if ((request == null) || player.isInStoreMode() || player.isCrafting() || player.isProcessingRequest() || player.isProcessingTransaction())
 		{
 			player.sendPacket(ExShapeShiftingResult.CLOSE);
 			player.sendPacket(SystemMessageId.YOU_CANNOT_USE_THIS_SYSTEM_DURING_TRADING_PRIVATE_STORE_AND_WORKSHOP_SETUP);
@@ -197,15 +198,15 @@ public class RequestShapeShiftingItem extends ClientPacket
 			player.removeRequest(ShapeShiftingItemRequest.class);
 			return;
 		}
-		if ((appearanceStone.getType() == AppearanceType.NORMAL) && (inventory.destroyItem(getClass().getSimpleName(), extractItem, 1, player, this) == null))
+		if ((appearanceStone.getType() == AppearanceType.NORMAL) && (inventory.destroyItem(ItemProcessType.FEE, extractItem, 1, player, this) == null))
 		{
 			player.sendPacket(ExShapeShiftingResult.FAILED);
 			player.removeRequest(ShapeShiftingItemRequest.class);
 			return;
 		}
 		
-		inventory.destroyItem(getClass().getSimpleName(), stone, 1, player, this);
-		player.reduceAdena(getClass().getSimpleName(), cost, extractItem, false);
+		inventory.destroyItem(ItemProcessType.FEE, stone, 1, player, this);
+		player.reduceAdena(ItemProcessType.FEE, cost, extractItem, false);
 		
 		switch (appearanceStone.getType())
 		{

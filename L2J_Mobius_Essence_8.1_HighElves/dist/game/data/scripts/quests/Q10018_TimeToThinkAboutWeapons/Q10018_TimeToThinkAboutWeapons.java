@@ -43,6 +43,7 @@ public class Q10018_TimeToThinkAboutWeapons extends Quest
 	private static final int QUEST_ID = 10018;
 	private static final int[] MONSTERS =
 	{
+		20101, // Destroyer
 		20103, // Giant Spider
 		20106, // Giant Fang Spider
 		20108, // Giant Blade Spider
@@ -172,7 +173,7 @@ public class Q10018_TimeToThinkAboutWeapons extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -191,19 +192,17 @@ public class Q10018_TimeToThinkAboutWeapons extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

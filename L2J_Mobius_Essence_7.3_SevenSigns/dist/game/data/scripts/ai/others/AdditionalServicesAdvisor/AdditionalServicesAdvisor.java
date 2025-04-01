@@ -20,20 +20,22 @@
  */
 package ai.others.AdditionalServicesAdvisor;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
+import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.serverpackets.ExSubjobInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExUserInfoInvenWeight;
+import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 
 import ai.AbstractNpcAI;
 
@@ -137,6 +139,7 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 					{
 						html = getHtm(player, "34153-choose_gender.htm");
 					}
+					
 					html = html.replace("%class_id%", String.valueOf(classId));
 					html = html.replace("%class_name%", ClassListData.getInstance().getClass(classId).getClassName());
 					return html;
@@ -145,10 +148,17 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 				{
 					final String[] split = event.split(" ");
 					final int classId = Integer.parseInt(split[1]);
-					final boolean female = split[2].equals("female");
-					if (female && (classId > 195))
+					boolean female = split[2].equals("female");
+					if (female && (classId > 195) && (classId < 225)) // Death Knight / Human Assassins
 					{
-						return null;
+						player.sendMessage("You can't choose female for these classes. Changed to male.");
+						female = false;
+					}
+					
+					if (!female && (classId > 224) && (classId < 229))
+					{
+						player.sendMessage("You can't choose male for these classes. Changed to female.");
+						female = true;
 					}
 					
 					html = getHtm(player, "34153-choose_gender_confirm.htm");
@@ -161,9 +171,16 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 					final String[] split = event.split(" ");
 					final int classId = Integer.parseInt(split[1]);
 					final boolean female = split[2].equals("female");
-					if (female && (classId > 195))
+					if (female && (classId > 195) && (classId < 225)) // Death Knight / Human Assassins
 					{
-						break;
+						player.sendMessage("You can't choose female for these classes.");
+						return null;
+					}
+					
+					if (!female && (classId > 224) && (classId < 229))
+					{
+						player.sendMessage("You can't choose male for these classes.");
+						return null;
 					}
 					
 					html = getHtm(player, "34153-choose_gender_unavailable.htm");
@@ -173,6 +190,8 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 				}
 				else if (event.startsWith("confirm_class"))
 				{
+					final PlayerAppearance appearance = player.getAppearance();
+					
 					html = checkConditions(npc, player);
 					if (html != null)
 					{
@@ -181,23 +200,38 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 					
 					final String[] split = event.split(" ");
 					final int classId = Integer.parseInt(split[1]);
-					final boolean female = split[2].equals("female");
-					if (female && (classId > 195))
+					
+					if (player.getPlayerClass().getId() == classId)
 					{
+						player.sendMessage("You're in the same class now.");
 						break;
+					}
+					
+					final boolean female = split[2].equals("female");
+					
+					if ((classId > 195) && (classId < 225)) // Death Knight / Human Assassins
+					{
+						appearance.setMale();
+					}
+					
+					if ((classId > 224) && (classId < 229)) // D.Elf Assassins
+					{
+						appearance.setFemale();
 					}
 					
 					if (hasQuestItems(player, CLASS_CHANGE_COUPON))
 					{
 						takeItems(player, CLASS_CHANGE_COUPON, 1);
 						
+						player.stopAllEffects();
+						player.getEffectList().stopAllToggles();
+						player.getEffectList().stopAllEffectsWithoutExclusions(false, false); // ReplaceSkillBySkill should stop here.
 						player.removeAllSkills();
-						player.getEffectList().stopAllEffectsWithoutExclusions(false, false);
+						player.getEffectList().stopAllEffectsWithoutExclusions(false, false); // After removal of skills.
 						
 						player.setVitalityPoints(0, true);
 						player.setExpBeforeDeath(0);
 						
-						final PlayerAppearance appearance = player.getAppearance();
 						if (female)
 						{
 							appearance.setFemale();
@@ -206,7 +240,7 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 						{
 							appearance.setMale();
 						}
-						player.setClassId(classId);
+						player.setPlayerClass(classId);
 						player.setBaseClass(player.getActiveClass());
 						
 						giveItems(player, SP_SCROLL, 50);
@@ -286,6 +320,7 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 						player.sendSkillList();
 						player.sendPacket(new ExSubjobInfo(player, SubclassInfoType.CLASS_CHANGED));
 						player.sendPacket(new ExUserInfoInvenWeight(player));
+						Disconnection.of(player).defaultSequence(LeaveWorld.STATIC_PACKET);
 					}
 					else
 					{

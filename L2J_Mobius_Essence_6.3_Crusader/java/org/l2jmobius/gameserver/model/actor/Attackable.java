@@ -35,31 +35,28 @@ import java.util.logging.Level;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.ai.AttackableAI;
 import org.l2jmobius.gameserver.ai.CreatureAI;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.MagicLampData;
 import org.l2jmobius.gameserver.data.xml.RaidDropAnnounceData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.DropType;
-import org.l2jmobius.gameserver.enums.ElementalType;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.Team;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
-import org.l2jmobius.gameserver.instancemanager.PcCafePointsManager;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
-import org.l2jmobius.gameserver.instancemanager.events.EventDropManager;
-import org.l2jmobius.gameserver.model.AchievementBox;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.PcCafePointsManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
+import org.l2jmobius.gameserver.managers.events.EventDropManager;
 import org.l2jmobius.gameserver.model.AggroInfo;
-import org.l2jmobius.gameserver.model.CommandChannel;
 import org.l2jmobius.gameserver.model.DamageDoneInfo;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.HuntPass;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Seed;
 import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
+import org.l2jmobius.gameserver.model.actor.enums.npc.DropType;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
+import org.l2jmobius.gameserver.model.actor.holders.player.AchievementBoxHolder;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.status.AttackableStatus;
@@ -68,24 +65,27 @@ import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableAggroRangeEnter;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableAttack;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableKill;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableAggroRangeEnter;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableAttack;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableKill;
+import org.l2jmobius.gameserver.model.groups.CommandChannel;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.ExMagicAttackInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExRaidDropItemAnnounce;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
 import org.l2jmobius.gameserver.util.Broadcast;
 
 public class Attackable extends Npc
@@ -191,7 +191,7 @@ public class Attackable extends Npc
 		final WorldObject target = skill.getTarget(this, false, false, false);
 		if (target != null)
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, skill, target);
+			getAI().setIntention(Intention.CAST, skill, target);
 		}
 	}
 	
@@ -314,10 +314,11 @@ public class Attackable extends Npc
 		if (isMonster())
 		{
 			final Monster mob = asMonster();
-			if ((mob.getLeader() != null) && mob.getLeader().hasMinions())
+			final Monster leader = mob.getLeader();
+			if ((leader != null) && leader.hasMinions())
 			{
 				final int respawnTime = Config.MINIONS_RESPAWN_TIME.containsKey(getId()) ? Config.MINIONS_RESPAWN_TIME.get(getId()) * 1000 : -1;
-				mob.getLeader().getMinionList().onMinionDie(mob, respawnTime);
+				leader.getMinionList().onMinionDie(mob, respawnTime);
 			}
 			
 			if (mob.hasMinions())
@@ -599,8 +600,8 @@ public class Attackable extends Npc
 							// Distribute the Exp and SP between the Player and its Summon
 							if (!attacker.isDead())
 							{
-								exp = attacker.getStat().getValue(Stat.EXPSP_RATE, exp) * Config.EXP_AMOUNT_MULTIPLIERS[attacker.getClassId().getId()];
-								sp = attacker.getStat().getValue(Stat.EXPSP_RATE, sp) * Config.SP_AMOUNT_MULTIPLIERS[attacker.getClassId().getId()];
+								exp = attacker.getStat().getValue(Stat.EXPSP_RATE, exp) * Config.EXP_AMOUNT_MULTIPLIERS[attacker.getPlayerClass().getId()];
+								sp = attacker.getStat().getValue(Stat.EXPSP_RATE, sp) * Config.SP_AMOUNT_MULTIPLIERS[attacker.getPlayerClass().getId()];
 								
 								// Premium rates
 								if (attacker.hasPremiumStatus())
@@ -637,7 +638,7 @@ public class Attackable extends Npc
 											attacker.getHuntPass().addPassPoint();
 										}
 										
-										final AchievementBox box = attacker.getAchievementBox();
+										final AchievementBoxHolder box = attacker.getAchievementBox();
 										if (box != null)
 										{
 											attacker.getAchievementBox().addPoints(1);
@@ -763,7 +764,7 @@ public class Attackable extends Npc
 	
 	private void rewardAttributeExp(Player player, long damage, long totalDamage)
 	{
-		if ((getAttributeExp() > 0) && (getElementalSpiritType() != ElementalType.NONE) && (player.getActiveElementalSpiritType() > 0))
+		if ((getAttributeExp() > 0) && (getElementalSpiritType() != ElementalSpiritType.NONE) && (player.getActiveElementalSpiritType() > 0))
 		{
 			final ElementalSpirit spirit = player.getElementalSpirit(getElementalSpiritType().getSuperior());
 			if (spirit != null)
@@ -826,7 +827,7 @@ public class Attackable extends Npc
 			return;
 		}
 		
-		// Notify the Attackable AI with EVT_ATTACKED
+		// Notify the Attackable AI with ATTACKED
 		if (!isDead())
 		{
 			try
@@ -837,7 +838,7 @@ public class Attackable extends Npc
 					WalkingManager.getInstance().stopMoving(this, false, true);
 				}
 				
-				getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, attacker);
+				getAI().notifyAction(Action.ATTACKED, attacker);
 				
 				// Calculate the amount of hate this attackable receives from this attack.
 				double hateValue = (damage * 100) / (getLevel() + 7);
@@ -906,10 +907,10 @@ public class Attackable extends Npc
 		{
 			addDamageHate(attacker, 0, 1);
 			
-			// Set the intention to the Attackable to AI_INTENTION_ACTIVE
-			if (getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE)
+			// Set the intention to the Attackable to ACTIVE
+			if (getAI().getIntention() == Intention.IDLE)
 			{
-				getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+				getAI().setIntention(Intention.ACTIVE);
 			}
 			
 			// Notify to scripts
@@ -924,10 +925,10 @@ public class Attackable extends Npc
 			ai.addHate(1);
 		}
 		
-		// Set the intention to the Attackable to AI_INTENTION_ACTIVE
-		if ((aggro != 0) && (getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE))
+		// Set the intention to the Attackable to ACTIVE
+		if ((aggro != 0) && (getAI().getIntention() == Intention.IDLE))
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			getAI().setIntention(Intention.ACTIVE);
 		}
 	}
 	
@@ -951,7 +952,7 @@ public class Attackable extends Npc
 			{
 				((AttackableAI) getAI()).setGlobalAggro(-25);
 				clearAggroList();
-				getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+				getAI().setIntention(Intention.ACTIVE);
 				if (!isFakePlayer())
 				{
 					setWalking();
@@ -971,7 +972,7 @@ public class Attackable extends Npc
 		{
 			((AttackableAI) getAI()).setGlobalAggro(-25);
 			clearAggroList();
-			getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			getAI().setIntention(Intention.ACTIVE);
 			if (!isFakePlayer())
 			{
 				setWalking();
@@ -1553,8 +1554,8 @@ public class Attackable extends Npc
 		// Check the region where this mob is, do not activate the AI if region is inactive.
 		if (hasAI())
 		{
-			// Set the intention of the Attackable to AI_INTENTION_ACTIVE
-			getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			// Set the intention of the Attackable to ACTIVE
+			getAI().setIntention(Intention.ACTIVE);
 			
 			// Check the region where this mob is, do not activate the AI if region is inactive.
 			if (!isInActiveRegion())
@@ -1773,7 +1774,7 @@ public class Attackable extends Npc
 		
 		if (hasAI() && (getSpawn() != null))
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, getSpawn().getLocation());
+			getAI().setIntention(Intention.MOVE_TO, getSpawn().getLocation());
 		}
 	}
 	
@@ -1890,7 +1891,7 @@ public class Attackable extends Npc
 				}
 				clearAggroList();
 			}
-			getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			getAI().setIntention(Intention.ACTIVE);
 		}
 		super.setTarget(object);
 	}

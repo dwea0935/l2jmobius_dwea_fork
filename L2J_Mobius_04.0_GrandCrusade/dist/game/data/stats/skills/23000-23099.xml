@@ -74,7 +74,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -146,7 +146,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -263,7 +263,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -334,7 +334,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -365,7 +365,7 @@
 		<castRange>400</castRange>
 		<effectRange>900</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -435,7 +435,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<coolTime>500</coolTime>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -512,7 +512,7 @@
 		<deleteAbnormalOnLeave>true</deleteAbnormalOnLeave>
 		<effectRange>550</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>
@@ -599,7 +599,7 @@
 		<deleteAbnormalOnLeave>true</deleteAbnormalOnLeave>
 		<effectRange>550</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -633,7 +633,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-3</magicLevel>
@@ -787,7 +787,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -833,7 +833,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -864,7 +864,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -910,7 +910,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1009,7 +1009,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1043,7 +1043,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1073,7 +1073,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1282,7 +1282,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1310,7 +1310,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1340,7 +1340,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1429,7 +1429,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-3</magicLevel>
@@ -1460,7 +1460,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-3</magicLevel>
@@ -1489,7 +1489,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1567,7 +1567,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitTime>6000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<reuseDelay>3600000</reuseDelay>
@@ -1599,7 +1599,7 @@
 		<effectRange>600</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>7000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
@@ -1639,7 +1639,7 @@
 		<effectRange>600</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>7000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
@@ -1669,7 +1669,7 @@
 		<effectRange>600</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>7000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
@@ -1698,7 +1698,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1719,7 +1719,7 @@
 		<effectRange>600</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1747,7 +1747,7 @@
 		<effectRange>600</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1814,7 +1814,7 @@
 		<effectPoint>486</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>20597</itemConsumeId> <!-- Girl's Soul Ore -->
@@ -1889,7 +1889,7 @@
 		<effectPoint>486</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Item Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>20597</itemConsumeId> <!-- Girl's Soul Ore -->
@@ -1974,7 +1974,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -2033,7 +2033,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -2092,7 +2092,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -2151,7 +2151,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -2210,7 +2210,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -2269,7 +2269,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -2317,7 +2317,7 @@
 		<effectRange>600</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>

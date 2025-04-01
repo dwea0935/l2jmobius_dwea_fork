@@ -177,7 +177,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<canDoubleCast>false</canDoubleCast>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -434,7 +434,7 @@
 		<canDoubleCast>false</canDoubleCast>
 		<effectPoint>1</effectPoint>
 		<effectRange>-1</effectRange>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -514,7 +514,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<canDoubleCast>false</canDoubleCast>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -565,7 +565,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicLevel>-2</magicLevel>
 		<reuseDelay>5000</reuseDelay>

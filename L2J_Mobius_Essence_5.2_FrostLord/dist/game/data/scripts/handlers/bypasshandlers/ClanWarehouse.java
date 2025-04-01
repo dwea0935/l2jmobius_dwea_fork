@@ -29,7 +29,8 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Warehouse;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -87,7 +88,7 @@ public class ClanWarehouse implements IBypassHandler
 				{
 					player.sendPacket(ActionFailed.STATIC_PACKET);
 					
-					if (!player.hasClanPrivilege(ClanPrivilege.CL_VIEW_WAREHOUSE))
+					if (!player.hasAccess(ClanAccess.ACCESS_WAREHOUSE))
 					{
 						player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_THE_RIGHT_TO_USE_THE_CLAN_WAREHOUSE);
 						return true;
@@ -105,7 +106,7 @@ public class ClanWarehouse implements IBypassHandler
 					{
 						if (i.isTimeLimitedItem() && (i.getRemainingTime() <= 0))
 						{
-							player.getActiveWarehouse().destroyItem("ItemInstance", i, player, null);
+							player.getActiveWarehouse().destroyItem(ItemProcessType.DESTROY, i, player, null);
 						}
 					}
 					

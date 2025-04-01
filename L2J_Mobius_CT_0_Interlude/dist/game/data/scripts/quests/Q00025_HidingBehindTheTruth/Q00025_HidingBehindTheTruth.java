@@ -20,13 +20,13 @@
  */
 package quests.Q00025_HidingBehindTheTruth;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import quests.Q00024_InhabitantsOfTheForestOfTheDead.Q00024_InhabitantsOfTheForestOfTheDead;
 
@@ -56,7 +56,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 	
 	public Q00025_HidingBehindTheTruth()
 	{
-		super(25);
+		super(25, "Hiding Behind the Truth");
 		addStartNpc(BENEDICT);
 		addTalkId(AGRIPEL, BENEDICT, BOOKSHELF, BOOKSHELF2, BOOKSHELF3, WIZARD, LIDIA, TOMBSTONE, COFFIN);
 		addKillId(TRIOL);
@@ -122,7 +122,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 					triol.broadcastSay(ChatType.GENERAL, "That box was sealed by my master. Don't touch it!");
 					triol.setRunning();
 					triol.asAttackable().addDamageHate(player, 0, 999);
-					triol.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+					triol.getAI().setIntention(Intention.ATTACK, player);
 					qs.setCond(7, true);
 				}
 				else if (qs.getInt("step") == 2)
@@ -405,12 +405,12 @@ public class Q00025_HidingBehindTheTruth extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs == null) || !qs.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		if (qs.isCond(7))
@@ -420,7 +420,5 @@ public class Q00025_HidingBehindTheTruth extends Quest
 			giveItems(player, TOTEM_DOLL, 1);
 			qs.set("step", "2");
 		}
-		
-		return null;
 	}
 }

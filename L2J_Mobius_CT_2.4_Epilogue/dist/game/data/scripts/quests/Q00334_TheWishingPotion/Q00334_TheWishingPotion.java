@@ -20,15 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * The Wishing Potion (334)
@@ -107,7 +106,7 @@ public class Q00334_TheWishingPotion extends Quest
 	// Reward
 	public Q00334_TheWishingPotion()
 	{
-		super(334);
+		super(334, "The Wishing Potion");
 		addStartNpc(ALCHEMIST_MATILD);
 		addTalkId(ALCHEMIST_MATILD, TORAI, FAIRY_RUPINA, WISDOM_CHEST);
 		addKillId(WHISPERING_WIND, ANT_SOLDIER, ANT_WARRIOR_CAPTAIN, SILENOS, TYRANT, TYRANT_KINGPIN, AMBER_BASILISK, MIST_HORROR_RIPPER);
@@ -320,60 +319,59 @@ public class Q00334_TheWishingPotion extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
 			case GRIMA:
 			{
 				startQuestTimer("2336002", 1000 * 200, npc, null);
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.OH_OH_OH));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Oh, oh, oh!"));
 				break;
 			}
 			case SUCCUBUS_OF_SEDUCTION:
 			{
 				startQuestTimer("2336003", 1000 * 200, npc, null);
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.DO_YOU_WANT_US_TO_LOVE_YOU_OH));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Do you want us to love you? Oh."));
 				break;
 			}
 			case GREAT_DEMON_KING:
 			{
 				startQuestTimer("2336007", 1000 * 600, npc, null);
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.WHO_KILLED_MY_UNDERLING_DEVIL));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Who killed my underling devil?"));
 				break;
 			}
 			case DLORD_ALEXANDROSANCHES:
 			{
 				startQuestTimer("2336004", 1000 * 200, npc, null);
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.WHO_IS_CALLING_THE_LORD_OF_DARKNESS));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Who is calling the Lord of Darkness!"));
 				break;
 			}
 			case ABYSSKING_BONAPARTERIUS:
 			{
 				startQuestTimer("2336005", 1000 * 200, npc, null);
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.I_AM_A_GREAT_EMPIRE_BONAPARTERIUS));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "I am a great empire, Bonaparterius!"));
 				break;
 			}
 			case EVILOVERLORD_RAMSEBALIUS:
 			{
 				startQuestTimer("2336006", 1000 * 200, npc, null);
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.LET_YOUR_HEAD_DOWN_BEFORE_THE_LORD));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Let your head down before the Lord!"));
 				break;
 			}
 			case FAIRY_RUPINA:
 			{
 				startQuestTimer("2336001", 120 * 1000, npc, null);
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.I_WILL_MAKE_YOUR_LOVE_COME_TRUE_LOVE_LOVE_LOVE));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "I will make your love come true~ love, love, love~"));
 				break;
 			}
 			case WISDOM_CHEST:
 			{
 				startQuestTimer("2336007", 120 * 1000, npc, null);
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.I_HAVE_WISDOM_IN_ME_I_AM_THE_BOX_OF_WISDOM));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "I have wisdom in me. I am the box of wisdom!"));
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -391,26 +389,26 @@ public class Q00334_TheWishingPotion extends Quest
 			}
 			case DLORD_ALEXANDROSANCHES:
 			{
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.OH_IT_S_NOT_AN_OPPONENT_OF_MINE_HA_HA_HA));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Oh, it's not an opponent of mine. Ha, ha, ha!"));
 				npc.deleteMe();
 				break;
 			}
 			case ABYSSKING_BONAPARTERIUS:
 			{
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.OH_IT_S_NOT_AN_OPPONENT_OF_MINE_HA_HA_HA));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Oh, it's not an opponent of mine. Ha, ha, ha!"));
 				npc.deleteMe();
 				break;
 			}
 			case EVILOVERLORD_RAMSEBALIUS:
 			{
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.OH_IT_S_NOT_AN_OPPONENT_OF_MINE_HA_HA_HA));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Oh, it's not an opponent of mine. Ha, ha, ha!"));
 				npc.deleteMe();
 				break;
 			}
 			case WISDOM_CHEST:
 			{
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.DON_T_INTERRUPT_MY_REST_AGAIN));
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.YOU_RE_A_GREAT_DEVIL_NOW));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Don't interrupt my rest again"));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "You're a great devil now..."));
 				npc.deleteMe();
 				break;
 			}
@@ -568,19 +566,19 @@ public class Q00334_TheWishingPotion extends Quest
 					}
 					case 2336008:
 					{
-						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.OK_EVERYBODY_PRAY_FERVENTLY));
+						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "OK, everybody pray fervently!"));
 						startQuestTimer("2336009", 4 * 1000, npc, player);
 						break;
 					}
 					case 2336009:
 					{
-						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.BOTH_HANDS_TO_HEAVEN_EVERYBODY_YELL_TOGETHER));
+						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Both hands to heaven! Everybody yell together!"));
 						startQuestTimer("2336010", 4 * 1000, npc, player);
 						break;
 					}
 					case 2336010:
 					{
-						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.ONE_TWO_MAY_YOUR_DREAMS_COME_TRUE));
+						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "One! Two! May your dreams come true!"));
 						int i0 = 0;
 						switch (qs.getInt(I_QUEST0))
 						{
@@ -702,7 +700,7 @@ public class Q00334_TheWishingPotion extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPlayerFromParty(killer, npc);
 		if (qs != null)
@@ -908,7 +906,7 @@ public class Q00334_TheWishingPotion extends Quest
 				{
 					if (qs.isMemoState(2) && (qs.getInt(FLAG) == 3))
 					{
-						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.BONAPARTERIUS_ABYSS_KING_WILL_PUNISH_YOU));
+						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Bonaparterius, Abyss King, will punish you"));
 						if (getRandom(2) == 0)
 						{
 							addSpawn(ABYSSKING_BONAPARTERIUS, npc, true, 0, false);
@@ -945,7 +943,7 @@ public class Q00334_TheWishingPotion extends Quest
 				{
 					if (qs.isMemoState(2) && (qs.getInt(FLAG) == 3))
 					{
-						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.REVENGE_IS_OVERLORD_RAMSEBALIUS_OF_THE_EVIL_WORLD));
+						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Revenge is Overlord Ramsebalius of the evil world!"));
 						if (getRandom(2) == 0)
 						{
 							addSpawn(EVILOVERLORD_RAMSEBALIUS, npc, true, 0, false);
@@ -984,7 +982,7 @@ public class Q00334_TheWishingPotion extends Quest
 				{
 					if (qs.isMemoState(2) && (qs.getInt(FLAG) == 3))
 					{
-						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.OH_GREAT_DEMON_KING));
+						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), "Oh... Great Demon King..."));
 						if (getRandom(2) == 0)
 						{
 							addSpawn(GREAT_DEMON_KING, npc, true, 0, false);
@@ -1021,7 +1019,6 @@ public class Q00334_TheWishingPotion extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private QuestState getRandomPlayerFromParty(Player player, Npc npc)
@@ -1039,7 +1036,7 @@ public class Q00334_TheWishingPotion extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = pm.getQuestState(getName());
-				if ((qss != null) && qss.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
+				if ((qss != null) && qss.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
 				{
 					candidates.add(qss);
 				}

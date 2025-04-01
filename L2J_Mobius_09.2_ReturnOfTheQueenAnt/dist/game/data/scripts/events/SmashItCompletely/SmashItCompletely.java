@@ -34,10 +34,11 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemUse;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemUse;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -182,12 +183,12 @@ public class SmashItCompletely extends LongTimeEvent
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		if (killer.getSummonedNpc(npc.getObjectId()) == null)
 		{
 			killer.sendMessage("You must grow your own watermelon to get reward.");
-			return null;
+			return;
 		}
 		
 		switch (npc.getId())
@@ -233,15 +234,12 @@ public class SmashItCompletely extends LongTimeEvent
 				break;
 			}
 		}
-		
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		SkillCaster.triggerCast(npc, npc, BUFFS[2].getSkill()); // TODO: FIX death skill.
-		return super.onSpawn(npc);
 	}
 	
 	@RegisterEvent(EventType.ON_ITEM_USE)
@@ -257,7 +255,7 @@ public class SmashItCompletely extends LongTimeEvent
 				if (player.isAffectedBySkill(skill))
 				{
 					player.sendMessage("You must remove current Dizzy buff effect to be able to grow another watermelon.");
-					player.getInventory().addItem("Watermelon Seed refund", event.getItem().getId(), 1, player, player);
+					player.getInventory().addItem(ItemProcessType.REFUND, event.getItem().getId(), 1, player, player);
 					return;
 				}
 			}

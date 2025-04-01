@@ -424,6 +424,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
+		<set name="handler" val="BlackCoupon" />
 	</item>
 	<item id="98023" name="Package: +5 Zephyrus" additionalName="Sealed" type="EtcItem">
 		<!-- Double-click to get more information about the contents. -->
@@ -1123,7 +1124,6 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
 		<capsuled_items>
@@ -1440,7 +1440,6 @@
 	</item>
 	<item id="98087" name="Hairstyle Change Potion F" additionalName="Sealed" type="EtcItem">
 		<!-- A beauty potion that changes one's hairstyle to Type F. <font color=eeaa22>Male Human mystics only. The result may be viewed on the Character Creation Screen.</font> -->
-		<set name="icon" val="icon.etc_lesser_potion_green_i00" />
 		<set name="icon" val="icon.etc_lesser_potion_green_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="POTION" />

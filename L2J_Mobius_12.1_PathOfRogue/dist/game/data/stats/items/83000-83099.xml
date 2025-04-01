@@ -290,7 +290,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
+		<set name="etcitem_type" val="POTION" />
 		<set name="handler" val="ItemSkills" />
+		<set name="is_oly_restricted" val="true" />
 		<skills>
 			<skill id="39862" level="1" /> <!-- High Priest's Grace -->
 		</skills>
@@ -618,10 +620,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="83039" name="Jinia's Special Hammer" type="EtcItem">
+	<item id="83039" name="Jinia's Special Hammer" type="Weapon">
 		<!-- A weapon lent by Jinia. Can be used for breaking Ice Statues in the Frozen Labyrinth. -->
 		<set name="icon" val="icon.weapon_bbyong_hammer_a_i00" />
 		<set name="default_action" val="NONE" />
+		<set name="weapon_type" val="BLUNT" />
+		<set name="bodypart" val="rhand" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="is_tradable" val="false" />
@@ -630,7 +634,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
-		<set name="is_questitem" val="true" />
+		<set name="is_questusable" val="true" />
 	</item>
 	<item id="83040" name="Shining Red Pack" additionalName="Lv. 1" type="EtcItem">
 		<!-- Double-click to obtain 1 useful item. -->
@@ -913,7 +917,6 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="20" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
@@ -936,7 +939,6 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="20" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
@@ -958,7 +960,6 @@
 		<set name="crystal_type" val="EVENT" />
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="20" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
@@ -1194,7 +1195,7 @@
 	<item id="83065" name="Homunculus Evolution Points - 10" type="EtcItem">
 		<!-- Double-click to obtain 10 points required for evolving a homunculus. -->
 		<set name="icon" val="icon.homun_evolution_point_item" />
-		<set name="default_action" val="SKILL_REDUCE_ON_SKILL_SUCCESS" />
+		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LIQUID" />
 		<set name="is_tradable" val="false" />

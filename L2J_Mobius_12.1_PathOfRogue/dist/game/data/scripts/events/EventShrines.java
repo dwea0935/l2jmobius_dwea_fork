@@ -23,7 +23,7 @@ package events;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.instancemanager.events.EventShrineManager;
+import org.l2jmobius.gameserver.managers.events.EventShrineManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
@@ -61,7 +61,7 @@ public class EventShrines extends Quest
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -74,7 +74,6 @@ public class EventShrines extends Quest
 				creature.sendPacket(new OnEventTrigger(ZONE_TRIGGERS.get(zone.getId()) + 2, true));
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	public static void main(String[] args)

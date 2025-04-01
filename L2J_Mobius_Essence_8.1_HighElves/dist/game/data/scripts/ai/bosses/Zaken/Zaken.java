@@ -21,7 +21,7 @@
 package ai.bosses.Zaken;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -93,7 +93,7 @@ public class Zaken extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		npc.broadcastPacket(new PlaySound(1, "BS02_D", 1, npc.getObjectId(), npc.getX(), npc.getY(), npc.getZ()));
 		GrandBossManager.getInstance().setStatus(ZAKEN, DEAD);
@@ -106,7 +106,6 @@ public class Zaken extends AbstractNpcAI
 		final StatSet info = GrandBossManager.getInstance().getStatSet(ZAKEN);
 		info.set("respawn_time", System.currentTimeMillis() + respawnTime);
 		GrandBossManager.getInstance().setStatSet(ZAKEN, info);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

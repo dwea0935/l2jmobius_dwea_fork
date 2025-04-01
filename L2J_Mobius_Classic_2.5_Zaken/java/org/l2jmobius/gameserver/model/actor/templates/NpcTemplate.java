@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.actor.templates;
 
@@ -25,35 +29,35 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.enums.AISkillScope;
-import org.l2jmobius.gameserver.enums.AIType;
-import org.l2jmobius.gameserver.enums.DropType;
-import org.l2jmobius.gameserver.enums.MpRewardAffectType;
-import org.l2jmobius.gameserver.enums.MpRewardType;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.Sex;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.npc.AISkillScope;
+import org.l2jmobius.gameserver.model.actor.enums.npc.AIType;
+import org.l2jmobius.gameserver.model.actor.enums.npc.DropType;
+import org.l2jmobius.gameserver.model.actor.enums.npc.MpRewardAffectType;
+import org.l2jmobius.gameserver.model.actor.enums.npc.MpRewardType;
+import org.l2jmobius.gameserver.model.actor.enums.player.Sex;
+import org.l2jmobius.gameserver.model.actor.holders.npc.DropGroupHolder;
+import org.l2jmobius.gameserver.model.actor.holders.npc.DropHolder;
+import org.l2jmobius.gameserver.model.actor.holders.npc.FakePlayerHolder;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
-import org.l2jmobius.gameserver.model.holders.DropGroupHolder;
-import org.l2jmobius.gameserver.model.holders.DropHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.model.vip.VipManager;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 /**
- * NPC template.
- * @author NosBit
+ * @author NosBit, Nobius
  */
-public class NpcTemplate extends CreatureTemplate implements IIdentifiable
+public class NpcTemplate extends CreatureTemplate
 {
 	private static final Logger LOGGER = Logger.getLogger(NpcTemplate.class.getName());
 	
@@ -85,7 +89,7 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 	private boolean _randomAnimation;
 	private boolean _flying;
 	private boolean _fakePlayer;
-	private boolean _fakePlayerTalkable;
+	private FakePlayerHolder _fakePlayerInfo;
 	private boolean _canMove;
 	private boolean _noSleepMode;
 	private boolean _passableDoor;
@@ -176,7 +180,16 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 		_randomAnimation = set.getBoolean("randomAnimation", true);
 		_flying = set.getBoolean("flying", false);
 		_fakePlayer = set.getBoolean("fakePlayer", false);
-		_fakePlayerTalkable = set.getBoolean("fakePlayerTalkable", true);
+		if (_fakePlayer)
+		{
+			_fakePlayerInfo = new FakePlayerHolder(set);
+			
+			// Check if a character with the same name already exists.
+			if (CharInfoTable.getInstance().getIdByName(_name) > 0)
+			{
+				LOGGER.info(getClass().getSimpleName() + ": Fake player id [" + _id + "] conflict. A real player with name [" + _name + "] already exists.");
+			}
+		}
 		_canMove = (set.getDouble("baseWalkSpd", 1d) <= 0.1) || set.getBoolean("canMove", true);
 		_noSleepMode = set.getBoolean("noSleepMode", false);
 		_passableDoor = set.getBoolean("passableDoor", false);
@@ -262,7 +275,6 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 		}
 	}
 	
-	@Override
 	public int getId()
 	{
 		return _id;
@@ -413,9 +425,9 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 		return _fakePlayer;
 	}
 	
-	public boolean isFakePlayerTalkable()
+	public FakePlayerHolder getFakePlayerInfo()
 	{
-		return _fakePlayerTalkable;
+		return _fakePlayerInfo;
 	}
 	
 	public boolean canMove()
@@ -764,8 +776,8 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 	{
 		// level difference calculations
 		final int levelDifference = victim.getLevel() - killer.getLevel();
-		final double levelGapChanceToDropAdena = Util.map(levelDifference, -Config.DROP_ADENA_MAX_LEVEL_DIFFERENCE, -Config.DROP_ADENA_MIN_LEVEL_DIFFERENCE, Config.DROP_ADENA_MIN_LEVEL_GAP_CHANCE, 100d);
-		final double levelGapChanceToDrop = Util.map(levelDifference, -Config.DROP_ITEM_MAX_LEVEL_DIFFERENCE, -Config.DROP_ITEM_MIN_LEVEL_DIFFERENCE, Config.DROP_ITEM_MIN_LEVEL_GAP_CHANCE, 100d);
+		final double levelGapChanceToDropAdena = MathUtil.scaleToRange(levelDifference, -Config.DROP_ADENA_MAX_LEVEL_DIFFERENCE, -Config.DROP_ADENA_MIN_LEVEL_DIFFERENCE, Config.DROP_ADENA_MIN_LEVEL_GAP_CHANCE, 100d);
+		final double levelGapChanceToDrop = MathUtil.scaleToRange(levelDifference, -Config.DROP_ITEM_MAX_LEVEL_DIFFERENCE, -Config.DROP_ITEM_MIN_LEVEL_DIFFERENCE, Config.DROP_ITEM_MIN_LEVEL_GAP_CHANCE, 100d);
 		
 		List<ItemHolder> calculatedDrops = null;
 		int dropOccurrenceCounter = victim.isRaid() ? Config.DROP_MAX_OCCURRENCES_RAIDBOSS : Config.DROP_MAX_OCCURRENCES_NORMAL;
@@ -962,8 +974,8 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 		
 		// level difference calculations
 		final int levelDifference = victim.getLevel() - killer.getLevel();
-		final double levelGapChanceToDropAdena = Util.map(levelDifference, -Config.DROP_ADENA_MAX_LEVEL_DIFFERENCE, -Config.DROP_ADENA_MIN_LEVEL_DIFFERENCE, Config.DROP_ADENA_MIN_LEVEL_GAP_CHANCE, 100d);
-		final double levelGapChanceToDrop = Util.map(levelDifference, -Config.DROP_ITEM_MAX_LEVEL_DIFFERENCE, -Config.DROP_ITEM_MIN_LEVEL_DIFFERENCE, Config.DROP_ITEM_MIN_LEVEL_GAP_CHANCE, 100d);
+		final double levelGapChanceToDropAdena = MathUtil.scaleToRange(levelDifference, -Config.DROP_ADENA_MAX_LEVEL_DIFFERENCE, -Config.DROP_ADENA_MIN_LEVEL_DIFFERENCE, Config.DROP_ADENA_MIN_LEVEL_GAP_CHANCE, 100d);
+		final double levelGapChanceToDrop = MathUtil.scaleToRange(levelDifference, -Config.DROP_ITEM_MAX_LEVEL_DIFFERENCE, -Config.DROP_ITEM_MIN_LEVEL_DIFFERENCE, Config.DROP_ITEM_MIN_LEVEL_GAP_CHANCE, 100d);
 		
 		int dropOccurrenceCounter = victim.isRaid() ? Config.DROP_MAX_OCCURRENCES_RAIDBOSS : Config.DROP_MAX_OCCURRENCES_NORMAL;
 		List<ItemHolder> calculatedDrops = null;
@@ -1129,11 +1141,11 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 		final double levelGapChanceToDrop;
 		if (dropItem.getItemId() == Inventory.ADENA_ID)
 		{
-			levelGapChanceToDrop = Util.map(levelDifference, -Config.DROP_ADENA_MAX_LEVEL_DIFFERENCE, -Config.DROP_ADENA_MIN_LEVEL_DIFFERENCE, Config.DROP_ADENA_MIN_LEVEL_GAP_CHANCE, 100.0);
+			levelGapChanceToDrop = MathUtil.scaleToRange(levelDifference, -Config.DROP_ADENA_MAX_LEVEL_DIFFERENCE, -Config.DROP_ADENA_MIN_LEVEL_DIFFERENCE, Config.DROP_ADENA_MIN_LEVEL_GAP_CHANCE, 100.0);
 		}
 		else
 		{
-			levelGapChanceToDrop = Util.map(levelDifference, -Config.DROP_ITEM_MAX_LEVEL_DIFFERENCE, -Config.DROP_ITEM_MIN_LEVEL_DIFFERENCE, Config.DROP_ITEM_MIN_LEVEL_GAP_CHANCE, 100.0);
+			levelGapChanceToDrop = MathUtil.scaleToRange(levelDifference, -Config.DROP_ITEM_MAX_LEVEL_DIFFERENCE, -Config.DROP_ITEM_MIN_LEVEL_DIFFERENCE, Config.DROP_ITEM_MIN_LEVEL_GAP_CHANCE, 100.0);
 		}
 		return levelGapChanceToDrop;
 	}

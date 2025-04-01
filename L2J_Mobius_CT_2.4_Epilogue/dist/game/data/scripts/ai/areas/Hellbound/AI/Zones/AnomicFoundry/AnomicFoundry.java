@@ -19,16 +19,15 @@ package ai.areas.Hellbound.AI.Zones.AnomicFoundry;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
@@ -119,7 +118,7 @@ public class AnomicFoundry extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		if (getRandom(10000) < 2000)
 		{
@@ -127,16 +126,15 @@ public class AnomicFoundry extends AbstractNpcAI
 			requestHelp(npc, player, 500, LESSER_EVIL);
 			requestHelp(npc, player, 500, GREATER_EVIL);
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		int atkIndex = _atkIndex.containsKey(npc.getObjectId()) ? _atkIndex.get(npc.getObjectId()) : 0;
 		if (atkIndex == 0)
 		{
-			npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.ENEMY_INVASION_HURRY_UP);
+			npc.broadcastSay(ChatType.NPC_GENERAL, "Enemy invasion! Hurry up!");
 			cancelQuestTimer("return_laborer", npc, null);
 			startQuestTimer("return_laborer", 60000, npc, null);
 			if (respawnTime > respawnMin)
@@ -158,25 +156,24 @@ public class AnomicFoundry extends AbstractNpcAI
 			requestHelp(npc, attacker, 1000 * atkIndex, GREATER_EVIL);
 			if (getRandom(10) < 1)
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location((npc.getX() + getRandom(-800, 800)), (npc.getY() + getRandom(-800, 800)), npc.getZ(), npc.getHeading()));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location((npc.getX() + getRandom(-800, 800)), (npc.getY() + getRandom(-800, 800)), npc.getZ(), npc.getHeading()));
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (getSpawnGroup(npc) >= 0)
 		{
 			_spawned[getSpawnGroup(npc)]--;
-			SpawnTable.getInstance().deleteSpawn(npc.getSpawn(), false);
+			SpawnTable.getInstance().removeSpawn(npc.getSpawn());
 		}
 		else if (npc.getId() == LABORER)
 		{
 			if (getRandom(10000) < 8000)
 			{
-				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.PROCESS_SHOULDN_T_BE_DELAYED_BECAUSE_OF_ME);
+				npc.broadcastSay(ChatType.NPC_GENERAL, "Process... shouldn't... be delayed... because of me...");
 				if (respawnTime < respawnMax)
 				{
 					respawnTime += 10000;
@@ -188,13 +185,12 @@ public class AnomicFoundry extends AbstractNpcAI
 			}
 			_atkIndex.remove(npc.getObjectId());
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		SpawnTable.getInstance().addNewSpawn(npc.getSpawn(), false);
+		SpawnTable.getInstance().addSpawn(npc.getSpawn());
 		if (getSpawnGroup(npc) >= 0)
 		{
 			_spawned[getSpawnGroup(npc)]++;
@@ -204,7 +200,6 @@ public class AnomicFoundry extends AbstractNpcAI
 		{
 			npc.setRandomWalking(false);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -213,7 +208,7 @@ public class AnomicFoundry extends AbstractNpcAI
 		if ((getSpawnGroup(npc) >= 0) && (getSpawnGroup(npc) <= 2))
 		{
 			_spawned[getSpawnGroup(npc)]--;
-			SpawnTable.getInstance().deleteSpawn(npc.getSpawn(), false);
+			SpawnTable.getInstance().removeSpawn(npc.getSpawn());
 			npc.scheduleDespawn(100);
 			if (_spawned[3] < SPAWNS[3][5])
 			{
@@ -224,7 +219,7 @@ public class AnomicFoundry extends AbstractNpcAI
 		{
 			startQuestTimer("make_spawn_2", respawnTime * 2, null, null);
 			_spawned[3]--;
-			SpawnTable.getInstance().deleteSpawn(npc.getSpawn(), false);
+			SpawnTable.getInstance().removeSpawn(npc.getSpawn());
 			npc.scheduleDespawn(100);
 		}
 	}

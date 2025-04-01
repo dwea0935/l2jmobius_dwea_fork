@@ -21,21 +21,20 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Proof of Clan Alliance (501)
@@ -98,7 +97,7 @@ public class Q00501_ProofOfClanAlliance extends Quest
 	
 	public Q00501_ProofOfClanAlliance()
 	{
-		super(501);
+		super(501, "Proof of Clan Alliance");
 		addStartNpc(SIR_KRISTOF_RODEMAI, STATUE_OF_OFFERING);
 		addTalkId(SIR_KRISTOF_RODEMAI, STATUE_OF_OFFERING, ATHREA, KALIS);
 		addKillId(OEL_MAHUM_WITCH_DOCTOR, HARIT_LIZARDMAN_SHAMAN, VANOR_SILENOS_SHAMAN, BOX_OF_ATHREA_1, BOX_OF_ATHREA_2, BOX_OF_ATHREA_3, BOX_OF_ATHREA_4, BOX_OF_ATHREA_5);
@@ -237,12 +236,12 @@ public class Q00501_ProofOfClanAlliance extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, -1, 3, npc);
 		if (qs == null)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		final Player player = qs.getPlayer();
@@ -288,27 +287,27 @@ public class Q00501_ProofOfClanAlliance extends Quest
 						if ((lqs.getInt("flag") == 3) && arthea.isScriptValue(15))
 						{
 							lqs.set("flag", lqs.getInt("flag") + 1);
-							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.BINGO));
+							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "##########Bingo!##########"));
 						}
 						else if ((lqs.getInt("flag") == 2) && arthea.isScriptValue(14))
 						{
 							lqs.set("flag", lqs.getInt("flag") + 1);
-							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.BINGO));
+							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "##########Bingo!##########"));
 						}
 						else if ((lqs.getInt("flag") == 1) && arthea.isScriptValue(13))
 						{
 							lqs.set("flag", lqs.getInt("flag") + 1);
-							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.BINGO));
+							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "##########Bingo!##########"));
 						}
 						else if ((lqs.getInt("flag") == 0) && arthea.isScriptValue(12))
 						{
 							lqs.set("flag", lqs.getInt("flag") + 1);
-							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.BINGO));
+							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "##########Bingo!##########"));
 						}
 						else if ((lqs.getInt("flag") < 4) && (getRandom(4) == 0))
 						{
 							lqs.set("flag", lqs.getInt("flag") + 1);
-							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.BINGO));
+							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "##########Bingo!##########"));
 						}
 						arthea.setScriptValue(arthea.getScriptValue() + 1);
 					}
@@ -316,7 +315,6 @@ public class Q00501_ProofOfClanAlliance extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -537,7 +535,7 @@ public class Q00501_ProofOfClanAlliance extends Quest
 		QuestState qs = getQuestState(player, false);
 		if (!player.isInParty())
 		{
-			if (!Util.checkIfInRange(Config.ALT_PARTY_RANGE, player, target, true))
+			if (!LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, player, target, true))
 			{
 				return null;
 			}
@@ -573,7 +571,7 @@ public class Q00501_ProofOfClanAlliance extends Quest
 		}
 		
 		qs = candidates.get(getRandom(candidates.size()));
-		if (!Util.checkIfInRange(Config.ALT_PARTY_RANGE, qs.getPlayer(), target, true))
+		if (!LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, qs.getPlayer(), target, true))
 		{
 			return null;
 		}

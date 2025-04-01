@@ -16,16 +16,16 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Rebalance HP effect implementation.
@@ -64,14 +64,14 @@ public class RebalanceHP extends AbstractEffect
 		{
 			for (Player member : party.getMembers())
 			{
-				if (!member.isDead() && Util.checkIfInRange(skill.getAffectRange(), effector, member, true))
+				if (!member.isDead() && LocationUtil.checkIfInRange(skill.getAffectRange(), effector, member, true))
 				{
 					fullHP += member.getMaxHp();
 					currentHPs += member.getCurrentHp();
 				}
 				
 				final Summon summon = member.getPet();
-				if ((summon != null) && (!summon.isDead() && Util.checkIfInRange(skill.getAffectRange(), effector, summon, true)))
+				if ((summon != null) && (!summon.isDead() && LocationUtil.checkIfInRange(skill.getAffectRange(), effector, summon, true)))
 				{
 					fullHP += summon.getMaxHp();
 					currentHPs += summon.getCurrentHp();
@@ -79,7 +79,7 @@ public class RebalanceHP extends AbstractEffect
 				
 				for (Summon servitors : member.getServitors().values())
 				{
-					if (!servitors.isDead() && Util.checkIfInRange(skill.getAffectRange(), effector, servitors, true))
+					if (!servitors.isDead() && LocationUtil.checkIfInRange(skill.getAffectRange(), effector, servitors, true))
 					{
 						fullHP += servitors.getMaxHp();
 						currentHPs += servitors.getCurrentHp();
@@ -90,7 +90,7 @@ public class RebalanceHP extends AbstractEffect
 			final double percentHP = currentHPs / fullHP;
 			for (Player member : party.getMembers())
 			{
-				if (!member.isDead() && Util.checkIfInRange(skill.getAffectRange(), effector, member, true))
+				if (!member.isDead() && LocationUtil.checkIfInRange(skill.getAffectRange(), effector, member, true))
 				{
 					double newHP = member.getMaxHp() * percentHP;
 					if (newHP > member.getCurrentHp()) // The target gets healed
@@ -110,7 +110,7 @@ public class RebalanceHP extends AbstractEffect
 				}
 				
 				final Summon summon = member.getPet();
-				if ((summon != null) && (!summon.isDead() && Util.checkIfInRange(skill.getAffectRange(), effector, summon, true)))
+				if ((summon != null) && (!summon.isDead() && LocationUtil.checkIfInRange(skill.getAffectRange(), effector, summon, true)))
 				{
 					double newHP = summon.getMaxHp() * percentHP;
 					if (newHP > summon.getCurrentHp()) // The target gets healed
@@ -130,7 +130,7 @@ public class RebalanceHP extends AbstractEffect
 				
 				for (Summon servitors : member.getServitors().values())
 				{
-					if (!servitors.isDead() && Util.checkIfInRange(skill.getAffectRange(), effector, servitors, true))
+					if (!servitors.isDead() && LocationUtil.checkIfInRange(skill.getAffectRange(), effector, servitors, true))
 					{
 						double newHP = servitors.getMaxHp() * percentHP;
 						if (newHP > servitors.getCurrentHp()) // The target gets healed

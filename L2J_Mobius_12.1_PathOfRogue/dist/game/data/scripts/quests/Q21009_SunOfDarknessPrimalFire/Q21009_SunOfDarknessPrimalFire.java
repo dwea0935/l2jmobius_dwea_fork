@@ -70,7 +70,7 @@ public class Q21009_SunOfDarknessPrimalFire extends Quest
 			case "TELEPORT":
 			{
 				final NewQuestLocation questLocation = getQuestData().getLocation();
-				final Location location = TeleportListData.getInstance().getTeleport(questLocation.getQuestLocationId()).getLocation();
+				final Location location = TeleportListData.getInstance().getTeleport(questLocation.getStartLocationId()).getLocation();
 				teleportToQuestLocation(player, location);
 				ThreadPool.schedule(() -> player.sendPacket(new ExQuestDialog(QUEST_ID, QuestDialogType.ACCEPT)), 2500);
 				

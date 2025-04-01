@@ -211,7 +211,7 @@ public class MonumentOfHeroes extends AbstractNpcAI
 						if (player.getLevel() >= 85)
 						{
 							Hero.getInstance().claimHero(player);
-							showOnScreenMsg(player, (NpcStringId.getNpcStringId(13357 + player.getClassId().getId())), ExShowScreenMessage.TOP_CENTER, 5000);
+							showOnScreenMsg(player, (NpcStringId.getNpcStringId(13357 + player.getPlayerClass().getId())), ExShowScreenMessage.TOP_CENTER, 5000);
 							player.broadcastPacket(new PlaySound(1, "ns01_f", 0, 0, 0, 0, 0));
 							htmltext = "MonumentOfHeroes-heroCertificationsDone.html";
 						}
@@ -262,7 +262,7 @@ public class MonumentOfHeroes extends AbstractNpcAI
 	
 	private int getOlympiadRank(Player player)
 	{
-		final List<String> names = Olympiad.getInstance().getClassLeaderBoard(player.getClassId().getId());
+		final List<String> names = Olympiad.getInstance().getClassLeaderBoard(player.getPlayerClass().getId());
 		try
 		{
 			for (int i = 1; i <= 3; i++)

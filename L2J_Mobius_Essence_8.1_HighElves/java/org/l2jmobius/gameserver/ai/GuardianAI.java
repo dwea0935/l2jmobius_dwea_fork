@@ -20,10 +20,6 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_FOLLOW;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.Location;
@@ -33,7 +29,7 @@ import org.l2jmobius.gameserver.model.actor.instance.Guardian;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * @author Liamxroy
@@ -62,7 +58,7 @@ public class GuardianAI extends CreatureAI
 	{
 		if (_startFollow)
 		{
-			setIntention(AI_INTENTION_FOLLOW, getActor().getSummoner());
+			setIntention(Intention.FOLLOW, getActor().getSummoner());
 		}
 		else
 		{
@@ -80,13 +76,13 @@ public class GuardianAI extends CreatureAI
 		{
 			setTarget(null);
 			_startFollow = true;
-			setIntention(AI_INTENTION_FOLLOW, getActor().getSummoner());
+			setIntention(Intention.FOLLOW, getActor().getSummoner());
 			return;
 		}
 		if (maybeMoveToPawn(target, _actor.getPhysicalAttackRange()))
 		{
 			_startFollow = true;
-			setIntention(AI_INTENTION_FOLLOW, getActor().getSummoner());
+			setIntention(Intention.FOLLOW, getActor().getSummoner());
 			return;
 		}
 		clientStopMoving(null);
@@ -110,7 +106,7 @@ public class GuardianAI extends CreatureAI
 			setCastTarget(null);
 			setTarget(null);
 			_startFollow = true;
-			setIntention(AI_INTENTION_FOLLOW, getActor().getSummoner());
+			setIntention(Intention.FOLLOW, getActor().getSummoner());
 			return;
 		}
 		
@@ -119,12 +115,12 @@ public class GuardianAI extends CreatureAI
 		if (maybeMoveToPawn(target, _actor.getMagicalAttackRange(skill)))
 		{
 			_startFollow = true;
-			setIntention(AI_INTENTION_FOLLOW, getActor().getSummoner());
+			setIntention(Intention.FOLLOW, getActor().getSummoner());
 			return;
 		}
 		
 		getActor().followSummoner(false);
-		getActor().getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+		getActor().getAI().setIntention(Intention.ATTACK, target);
 		_startFollow = val;
 		_actor.doCast(skill, _item, _forceUse, _dontMove);
 		thinkAttack();
@@ -141,11 +137,11 @@ public class GuardianAI extends CreatureAI
 		{
 			return;
 		}
-		setIntention(AI_INTENTION_IDLE);
+		setIntention(Intention.IDLE);
 	}
 	
 	@Override
-	public void onEvtThink()
+	public void onActionThink()
 	{
 		if (_thinking || _actor.isCastingNow() || _actor.isAllSkillsDisabled())
 		{
@@ -156,22 +152,22 @@ public class GuardianAI extends CreatureAI
 		{
 			switch (getIntention())
 			{
-				case AI_INTENTION_FOLLOW:
+				case FOLLOW:
 				{
 					thinkAttack();
 					break;
 				}
-				case AI_INTENTION_ATTACK:
+				case ATTACK:
 				{
 					thinkAttack();
 					break;
 				}
-				case AI_INTENTION_CAST:
+				case CAST:
 				{
 					thinkCast();
 					break;
 				}
-				case AI_INTENTION_INTERACT:
+				case INTERACT:
 				{
 					thinkInteract();
 					break;
@@ -185,7 +181,7 @@ public class GuardianAI extends CreatureAI
 	}
 	
 	@Override
-	protected void onEvtFinishCasting()
+	protected void onActionFinishCasting()
 	{
 		if (_lastAttack == null)
 		{
@@ -193,7 +189,7 @@ public class GuardianAI extends CreatureAI
 		}
 		else
 		{
-			setIntention(AI_INTENTION_ATTACK, _lastAttack);
+			setIntention(Intention.ATTACK, _lastAttack);
 			_lastAttack = null;
 		}
 	}
@@ -203,11 +199,11 @@ public class GuardianAI extends CreatureAI
 		_startFollow = !_startFollow;
 		switch (getIntention())
 		{
-			case AI_INTENTION_ACTIVE:
-			case AI_INTENTION_FOLLOW:
-			case AI_INTENTION_IDLE:
-			case AI_INTENTION_MOVE_TO:
-			case AI_INTENTION_PICK_UP:
+			case ACTIVE:
+			case FOLLOW:
+			case IDLE:
+			case MOVE_TO:
+			case PICK_UP:
 			{
 				getActor().followSummoner(_startFollow);
 			}
@@ -222,7 +218,7 @@ public class GuardianAI extends CreatureAI
 	@Override
 	protected void onIntentionCast(Skill skill, WorldObject target, Item item, boolean forceUse, boolean dontMove)
 	{
-		if (getIntention() == AI_INTENTION_ATTACK)
+		if (getIntention() == Intention.ATTACK)
 		{
 			_lastAttack = (getTarget() != null) && getTarget().isCreature() ? getTarget().asCreature() : null;
 		}
@@ -248,7 +244,7 @@ public class GuardianAI extends CreatureAI
 			// prevent possible extra calls to this function (there is none?),
 			// also don't send movetopawn packets too often
 			boolean sendPacket = true;
-			if (_clientMoving && (getTarget() == pawn))
+			if (_actor.isMoving() && (getTarget() == pawn))
 			{
 				if (_clientMovingToPawnOffset == offset)
 				{
@@ -269,7 +265,6 @@ public class GuardianAI extends CreatureAI
 			}
 			
 			// Set AI movement data
-			_clientMoving = true;
 			_clientMovingToPawnOffset = offset;
 			setTarget(pawn);
 			_moveToPawnTimeout = GameTimeTaskManager.getInstance().getGameTicks();

@@ -308,7 +308,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="6" /> <!-- Scroll of Escape: Gludin Village -->
+			<skill id="2213" level="6" /> <!-- Scroll of Escape: Gludin -->
 		</skills>
 	</item>
 	<item id="7123" name="Scroll of Escape: Gludio" type="EtcItem">
@@ -326,7 +326,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="7" /> <!-- Scroll of Escape: Town of Gludio -->
+			<skill id="2213" level="7" /> <!-- Scroll of Escape: Gludio -->
 		</skills>
 	</item>
 	<item id="7124" name="Scroll of Escape: Dion" type="EtcItem">
@@ -344,7 +344,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="8" /> <!-- Scroll of Escape: Town of Dion -->
+			<skill id="2213" level="8" /> <!-- Scroll of Escape: Dion -->
 		</skills>
 	</item>
 	<item id="7125" name="Scroll of Escape: Floran" type="EtcItem">
@@ -380,7 +380,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="10" /> <!-- Scroll of Escape: Town of Giran -->
+			<skill id="2213" level="10" /> <!-- Scroll of Escape: Giran -->
 		</skills>
 	</item>
 	<item id="7127" name="Scroll of Escape: Hardin's Academy" type="EtcItem">
@@ -434,7 +434,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="13" /> <!-- Scroll of Escape: Town of Oren -->
+			<skill id="2213" level="13" /> <!-- Scroll of Escape: Oren -->
 		</skills>
 	</item>
 	<item id="7130" name="Scroll of Escape: Ivory Tower" type="EtcItem">
@@ -470,7 +470,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="15" /> <!-- Scroll of Escape: Hunter's Village -->
+			<skill id="2213" level="15" /> <!-- Scroll of Escape: Hunters' Village -->
 		</skills>
 	</item>
 	<item id="7132" name="Scroll of Escape: Aden" type="EtcItem">
@@ -488,7 +488,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="16" /> <!-- Scroll of Escape: Town of Aden -->
+			<skill id="2213" level="16" /> <!-- Scroll of Escape: Aden -->
 		</skills>
 	</item>
 	<item id="7133" name="Scroll of Escape: Goddard" type="EtcItem">
@@ -506,7 +506,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="17" /> <!-- Scroll of Escape: Town of Goddard -->
+			<skill id="2213" level="17" /> <!-- Scroll of Escape: Goddard -->
 		</skills>
 	</item>
 	<item id="7134" name="Scroll of Escape: Rune" type="EtcItem">
@@ -524,7 +524,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="18" /> <!-- Scroll of Escape: Town of Rune -->
+			<skill id="2213" level="18" /> <!-- Scroll of Escape: Rune -->
 		</skills>
 	</item>
 	<item id="7135" name="Scroll of Escape: Schuttgart" type="EtcItem">
@@ -542,7 +542,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="19" /> <!-- Scroll of Escape: Town of Schuttgart -->
+			<skill id="2213" level="19" /> <!-- Scroll of Escape: Schuttgart -->
 		</skills>
 	</item>
 	<item id="7136" name="Fruit Basket" type="EtcItem">

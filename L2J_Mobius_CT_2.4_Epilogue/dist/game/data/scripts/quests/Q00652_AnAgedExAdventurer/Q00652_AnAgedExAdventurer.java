@@ -37,7 +37,7 @@ public class Q00652_AnAgedExAdventurer extends Quest
 	
 	public Q00652_AnAgedExAdventurer()
 	{
-		super(652);
+		super(652, "An Aged Ex-Adventurer");
 		addStartNpc(TANTAN);
 		addTalkId(TANTAN, SARA);
 	}

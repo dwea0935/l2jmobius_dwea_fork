@@ -20,35 +20,35 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.HtmlActionScope;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerBypass;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPressTutorialMark;
-import org.l2jmobius.gameserver.model.holders.NpcLogListHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerBypass;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPressTutorialMark;
+import org.l2jmobius.gameserver.model.quest.NpcLogListHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.HtmlActionScope;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialCloseHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowQuestionMark;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 /**
  * Winds of Fate: Encounters (10751)
@@ -203,14 +203,14 @@ public class Q10751_WindsOfFateEncounters extends Quest
 			}
 			case "33942-11.html":
 			{
-				final ClassId newClass = ClassId.CLOUD_BREAKER;
-				if (qs.isCond(9) && newClass.childOf(player.getClassId()))
+				final PlayerClass newClass = PlayerClass.CLOUD_BREAKER;
+				if (qs.isCond(9) && newClass.childOf(player.getPlayerClass()))
 				{
 					if (!player.isSubClassActive())
 					{
 						player.setBaseClass(newClass);
 					}
-					player.setClassId(newClass.getId());
+					player.setPlayerClass(newClass.getId());
 					player.broadcastUserInfo();
 					player.sendSkillList();
 					player.sendPacket(new SocialAction(player.getObjectId(), 23));
@@ -223,14 +223,14 @@ public class Q10751_WindsOfFateEncounters extends Quest
 			}
 			case "33943-11.html":
 			{
-				final ClassId newClass = ClassId.MARAUDER;
-				if (qs.isCond(8) && newClass.childOf(player.getClassId()))
+				final PlayerClass newClass = PlayerClass.MARAUDER;
+				if (qs.isCond(8) && newClass.childOf(player.getPlayerClass()))
 				{
 					if (!player.isSubClassActive())
 					{
 						player.setBaseClass(newClass);
 					}
-					player.setClassId(newClass.getId());
+					player.setPlayerClass(newClass.getId());
 					player.broadcastUserInfo();
 					player.sendSkillList();
 					player.sendPacket(new SocialAction(player.getObjectId(), 23));
@@ -406,7 +406,7 @@ public class Q10751_WindsOfFateEncounters extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isCond(6))
@@ -426,7 +426,6 @@ public class Q10751_WindsOfFateEncounters extends Quest
 				showOnScreenMsg(killer, NpcStringId.CHECK_ON_TELESHA, ExShowScreenMessage.TOP_CENTER, 10000);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

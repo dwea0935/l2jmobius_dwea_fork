@@ -20,14 +20,13 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 import ai.AbstractNpcAI;
 
@@ -57,53 +56,53 @@ public class TalentShow extends AbstractNpcAI
 	};
 	// @formatter:on
 	private static boolean HAS_STARTED = false;
-	private static NpcStringId[] MESSAGES =
+	private static String[] MESSAGES =
 	{
-		NpcStringId.HOW_COME_PEOPLE_ARE_NOT_HERE_WE_ARE_ABOUT_TO_START_THE_SHOW_HMM,
-		NpcStringId.UGH_I_HAVE_BUTTERFLIES_IN_MY_STOMACH_THE_SHOW_STARTS_SOON,
-		NpcStringId.THANK_YOU_ALL_FOR_COMING_HERE_TONIGHT,
-		NpcStringId.IT_IS_AN_HONOR_TO_HAVE_THE_SPECIAL_SHOW_TODAY,
-		NpcStringId.FANTASY_ISLE_IS_FULLY_COMMITTED_TO_YOUR_HAPPINESS,
-		NpcStringId.NOW_I_D_LIKE_TO_INTRODUCE_THE_MOST_BEAUTIFUL_SINGER_IN_ADEN_PLEASE_WELCOME_LEYLA_MIRA,
-		NpcStringId.HERE_SHE_COMES,
-		NpcStringId.THANK_YOU_VERY_MUCH_LEYLA,
-		NpcStringId.NOW_WE_RE_IN_FOR_A_REAL_TREAT,
-		NpcStringId.JUST_BACK_FROM_THEIR_WORLD_TOUR_PUT_YOUR_HANDS_TOGETHER_FOR_THE_FANTASY_ISLE_CIRCUS,
-		NpcStringId.COME_ON_EVERYONE,
-		NpcStringId.DID_YOU_LIKE_IT_THAT_WAS_SO_AMAZING,
-		NpcStringId.NOW_WE_ALSO_INVITED_INDIVIDUALS_WITH_SPECIAL_TALENTS,
-		NpcStringId.LET_S_WELCOME_THE_FIRST_PERSON_HERE,
-		NpcStringId.OH,
-		NpcStringId.OKAY_NOW_HERE_COMES_THE_NEXT_PERSON_COME_ON_UP_PLEASE,
-		NpcStringId.OH_IT_LOOKS_LIKE_SOMETHING_GREAT_IS_GOING_TO_HAPPEN_RIGHT,
-		NpcStringId.OH_MY,
-		NpcStringId.THAT_S_G_GREAT_NOW_HERE_COMES_THE_LAST_PERSON,
-		NpcStringId.NOW_THIS_IS_THE_END_OF_TODAY_S_SHOW,
-		NpcStringId.HOW_WAS_IT_I_HOPE_YOU_ALL_ENJOYED_IT,
-		NpcStringId.PLEASE_REMEMBER_THAT_FANTASY_ISLE_IS_ALWAYS_PLANNING_A_LOT_OF_GREAT_SHOWS_FOR_YOU,
-		NpcStringId.WELL_I_WISH_I_COULD_CONTINUE_ALL_NIGHT_LONG_BUT_THIS_IS_IT_FOR_TODAY_THANK_YOU,
-		NpcStringId.WE_LOVE_YOU
+		"How come people are not here... We are about to start the show.. Hmm",
+		"Ugh, I have butterflies in my stomach.. The show starts soon...",
+		"Thank you all for coming here tonight.",
+		"It is an honor to have the special show today.",
+		"Fantasy Isle is fully committed to your happiness.",
+		"Now I'd like to introduce the most beautiful singer in Aden. Please welcome...Leyla Mira!",
+		"Here she comes!",
+		"Thank you very much, Leyla!",
+		"Now we're in for a real treat.",
+		"Just back from their world tour...put your hands together for the Fantasy Isle Circus!",
+		"Come on ~ everyone",
+		"Did you like it? That was so amazing.",
+		"Now we also invited individuals with special talents.",
+		"Let's welcome the first person here!",
+		";;;;;;Oh",
+		"Okay, now here comes the next person. Come on up please.",
+		"Oh, it looks like something great is going to happen, right?",
+		"Oh, my ;;;;",
+		"That's g- .. great. Now, here comes the last person.",
+		"Now this is the end of today's show.",
+		"How was it? I hope you all enjoyed it.",
+		"Please remember that Fantasy Isle is always planning a lot of great shows for you.",
+		"Well, I wish I could continue all night long, but this is it for today. Thank you.",
+		"We love you."
 	};
 	
 	private class ShoutInfo
 	{
-		private final NpcStringId _npcStringId;
+		private final String _String;
 		private final String _nextEvent;
 		private final int _time;
 		
-		public ShoutInfo(NpcStringId npcStringId, String nextEvent, int time)
+		public ShoutInfo(String String, String nextEvent, int time)
 		{
-			_npcStringId = npcStringId;
+			_String = String;
 			_nextEvent = nextEvent;
 			_time = time;
 		}
 		
 		/**
-		 * @return the _npcStringId
+		 * @return the _String
 		 */
-		public NpcStringId getNpcStringId()
+		public String getString()
 		{
-			return _npcStringId;
+			return _String;
 		}
 		
 		/**
@@ -308,7 +307,7 @@ public class TalentShow extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (HAS_STARTED)
 		{
@@ -322,7 +321,7 @@ public class TalentShow extends AbstractNpcAI
 				}
 				case 32431:
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56657, -56338, -2008, 33102));
+					npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56657, -56338, -2008, 33102));
 					startQuestTimer("social1", 6000, npc, null, true);
 					startQuestTimer("7", 215000, npc, null);
 					break;
@@ -355,7 +354,6 @@ public class TalentShow extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -379,7 +377,7 @@ public class TalentShow extends AbstractNpcAI
 			if (event.equalsIgnoreCase("6"))
 			{
 				npc.broadcastSay(ChatType.NPC_SHOUT, MESSAGES[6]);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56511, -56647, -2008, 36863));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56511, -56647, -2008, 36863));
 				npc.broadcastPacket(new PlaySound(1, "NS22_F", 0, 0, 0, 0, 0));
 				addSpawn(SINGERS[0], -56344, -56328, -2008, 32768, false, 224000);
 				addSpawn(SINGERS[1], -56552, -56245, -2008, 36863, false, 224000);
@@ -397,21 +395,21 @@ public class TalentShow extends AbstractNpcAI
 					case 32433:
 					{
 						npc.broadcastSay(ChatType.NPC_SHOUT, MESSAGES[7]);
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56698, -56430, -2008, 32768));
+						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56698, -56430, -2008, 32768));
 						startQuestTimer("8", 12000, npc, null);
 						break;
 					}
 					default:
 					{
 						cancelQuestTimer("social1", npc, null);
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56594, -56064, -2008, 32768));
+						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56594, -56064, -2008, 32768));
 						break;
 					}
 				}
 			}
 			else if (event.equalsIgnoreCase("10"))
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56483, -56665, -2034, 32768));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56483, -56665, -2034, 32768));
 				npc.broadcastPacket(new PlaySound(1, "TP05_F", 0, 0, 0, 0, 0));
 				startQuestTimer("npc1_1", 3000, addSpawn(CIRCUS[0], -56495, -56375, -2008, 32768, false, 101000), null);
 				startQuestTimer("npc2_1", 3000, addSpawn(CIRCUS[0], -56491, -56289, -2008, 32768, false, 101000), null);
@@ -431,13 +429,13 @@ public class TalentShow extends AbstractNpcAI
 					case 32433:
 					{
 						npc.broadcastSay(ChatType.NPC_SHOUT, MESSAGES[11]);
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56698, -56430, -2008, 32768));
+						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56698, -56430, -2008, 32768));
 						startQuestTimer("12", 5000, npc, null);
 						break;
 					}
 					default:
 					{
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56343, -56330, -2008, 32768));
+						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56343, -56330, -2008, 32768));
 						break;
 					}
 				}
@@ -460,7 +458,7 @@ public class TalentShow extends AbstractNpcAI
 			}
 			else if (event.equalsIgnoreCase("23"))
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56702, -56340, -2008, 32768));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56702, -56340, -2008, 32768));
 				startQuestTimer("24", 2800, npc, null);
 				addSpawn(SHOWSTUFF[0], -56672, -56406, -2000, 32768, false, 20900);
 				addSpawn(SHOWSTUFF[1], -56648, -56368, -2000, 32768, false, 20900);
@@ -475,7 +473,7 @@ public class TalentShow extends AbstractNpcAI
 			}
 			else if (event.equalsIgnoreCase("29"))
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56730, -56340, -2008, 32768));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56730, -56340, -2008, 32768));
 				startQuestTimer("clean_npc", 4100, npc, null);
 				startQuestTimer("timer_check", 60000, null, null, true);
 			}
@@ -493,7 +491,7 @@ public class TalentShow extends AbstractNpcAI
 				final ShoutInfo si = TALKS.get(event);
 				if (si != null)
 				{
-					npc.broadcastSay(ChatType.NPC_SHOUT, si.getNpcStringId());
+					npc.broadcastSay(ChatType.NPC_SHOUT, si.getString());
 					startQuestTimer(si.getNextEvent(), si.getTime(), npc, null);
 				}
 			}
@@ -502,7 +500,7 @@ public class TalentShow extends AbstractNpcAI
 				final WalkInfo wi = WALKS.get(event);
 				if (wi != null)
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, wi.getCharPos());
+					npc.getAI().setIntention(Intention.MOVE_TO, wi.getCharPos());
 					startQuestTimer(wi.getNextEvent(), wi.getTime(), npc, null);
 				}
 			}

@@ -20,6 +20,7 @@ import org.l2jmobius.gameserver.data.xml.BeautyShopData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.beautyshop.BeautyData;
 import org.l2jmobius.gameserver.model.beautyshop.BeautyItem;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.serverpackets.ExResponseBeautyRegistReset;
 
 /**
@@ -91,7 +92,7 @@ public class RequestShowResetShopList extends ClientPacket
 			return;
 		}
 		
-		if ((requiredAdena > 0) && !player.reduceAdena(getClass().getSimpleName(), requiredAdena, null, true))
+		if ((requiredAdena > 0) && !player.reduceAdena(ItemProcessType.FEE, requiredAdena, null, true))
 		{
 			player.sendPacket(new ExResponseBeautyRegistReset(player, ExResponseBeautyRegistReset.RESTORE, ExResponseBeautyRegistReset.FAILURE));
 			return;

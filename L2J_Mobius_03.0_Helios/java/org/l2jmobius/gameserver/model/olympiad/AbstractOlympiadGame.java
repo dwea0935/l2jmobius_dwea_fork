@@ -21,22 +21,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.PartyMessageType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.instancemanager.AntiFeedManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.AntiFeedManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.AbstractScript;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.groups.PartyMessageType;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
@@ -311,7 +312,7 @@ public abstract class AbstractOlympiadGame
 			player.setTarget(null);
 			player.abortAttack();
 			player.abortCast();
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			player.getAI().setIntention(Intention.IDLE);
 			
 			if (player.isDead())
 			{
@@ -332,7 +333,7 @@ public abstract class AbstractOlympiadGame
 				pet.setTarget(null);
 				pet.abortAttack();
 				pet.abortCast();
-				pet.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				pet.getAI().setIntention(Intention.IDLE);
 				pet.stopAllEffectsExceptThoseThatLastThroughDeath();
 				pet.getEffectList().stopEffects(info -> info.getSkill().isBlockedInOlympiad(), true, true);
 			}
@@ -344,7 +345,7 @@ public abstract class AbstractOlympiadGame
 					s.setTarget(null);
 					s.abortAttack();
 					s.abortCast();
-					s.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+					s.getAI().setIntention(Intention.IDLE);
 					s.stopAllEffectsExceptThoseThatLastThroughDeath();
 					s.getEffectList().stopEffects(info -> info.getSkill().isBlockedInOlympiad(), true, true);
 				}
@@ -469,7 +470,7 @@ public abstract class AbstractOlympiadGame
 			final InventoryUpdate iu = new InventoryUpdate();
 			list.forEach(holder ->
 			{
-				final Item item = player.getInventory().addItem("Olympiad", holder.getId(), holder.getCount(), player, null);
+				final Item item = player.getInventory().addItem(ItemProcessType.REWARD, holder.getId(), holder.getCount(), player, null);
 				if (item == null)
 				{
 					return;

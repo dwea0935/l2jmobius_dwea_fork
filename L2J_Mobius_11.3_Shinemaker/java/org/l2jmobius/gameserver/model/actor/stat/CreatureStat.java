@@ -33,12 +33,12 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.BiFunction;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.AttributeType;
-import org.l2jmobius.gameserver.enums.Position;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Position;
+import org.l2jmobius.gameserver.model.actor.holders.creature.DelayedPumpHolder;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.DelayedPumpHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
@@ -165,6 +165,14 @@ public class CreatureStat
 	public int getCriticalHit()
 	{
 		return (int) getValue(Stat.CRITICAL_RATE);
+	}
+	
+	/**
+	 * @return the Physical Skill Critical Hit rate (base+modifier) of the Creature.
+	 */
+	public int getPSkillCriticalRate()
+	{
+		return (int) getValue(Stat.CRITICAL_RATE_SKILL);
 	}
 	
 	/**
@@ -1164,7 +1172,7 @@ public class CreatureStat
 	
 	public void mergePositionTypeValue(Stat stat, Position position, double value, BiFunction<? super Double, ? super Double, ? extends Double> func)
 	{
-		_positionStats.computeIfAbsent(stat, key -> new ConcurrentHashMap<>()).merge(position, value, func);
+		_positionStats.computeIfAbsent(stat, _ -> new ConcurrentHashMap<>()).merge(position, value, func);
 	}
 	
 	public double getMoveTypeValue(Stat stat, MoveType type)
@@ -1183,7 +1191,7 @@ public class CreatureStat
 	
 	public void mergeMoveTypeValue(Stat stat, MoveType type, double value)
 	{
-		_moveTypeStats.computeIfAbsent(stat, key -> new ConcurrentHashMap<>()).merge(type, value, MathUtil::add);
+		_moveTypeStats.computeIfAbsent(stat, _ -> new ConcurrentHashMap<>()).merge(type, value, MathUtil::add);
 	}
 	
 	public double getReuseTypeValue(int magicType)
@@ -1220,12 +1228,12 @@ public class CreatureStat
 	
 	public void addSkillEvasionTypeValue(int magicType, double value)
 	{
-		_skillEvasionStat.computeIfAbsent(magicType, k -> new LinkedList<>()).add(value);
+		_skillEvasionStat.computeIfAbsent(magicType, _ -> new LinkedList<>()).add(value);
 	}
 	
 	public void removeSkillEvasionTypeValue(int magicType, double value)
 	{
-		_skillEvasionStat.computeIfPresent(magicType, (k, v) ->
+		_skillEvasionStat.computeIfPresent(magicType, (_, v) ->
 		{
 			v.remove(value);
 			return !v.isEmpty() ? v : null;

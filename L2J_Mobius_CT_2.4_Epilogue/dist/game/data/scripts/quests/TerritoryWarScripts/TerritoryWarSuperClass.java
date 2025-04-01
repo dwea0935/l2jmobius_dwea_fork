@@ -19,9 +19,8 @@ package quests.TerritoryWarScripts;
 import java.util.Calendar;
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager.TerritoryNPCSpawn;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager.TerritoryNPCSpawn;
 import org.l2jmobius.gameserver.model.TerritoryWard;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -32,9 +31,9 @@ import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q00147_PathtoBecominganEliteMercenary.Q00147_PathtoBecominganEliteMercenary;
 import quests.Q00148_PathtoBecominganExaltedMercenary.Q00148_PathtoBecominganExaltedMercenary;
@@ -51,7 +50,7 @@ public class TerritoryWarSuperClass extends Quest
 	public int TERRITORY_ID;
 	public int[] LEADER_IDS;
 	public int[] GUARD_IDS;
-	public NpcStringId[] npcString = {};
+	public String[] npcString = {};
 	// "Protect the ..." quests variables
 	public int[] NPC_IDS;
 	// "Kill The ..."
@@ -59,9 +58,9 @@ public class TerritoryWarSuperClass extends Quest
 	public int RANDOM_MIN;
 	public int RANDOM_MAX;
 	
-	public TerritoryWarSuperClass(int questId)
+	public TerritoryWarSuperClass(int questId, String description)
 	{
-		super(questId);
+		super(questId, description);
 		
 		if (questId < 0)
 		{
@@ -111,9 +110,7 @@ public class TerritoryWarSuperClass extends Quest
 			{
 				qs.set("kill", String.valueOf(kill));
 				
-				final ExShowScreenMessage message = new ExShowScreenMessage(npcString[0], 2, 10000);
-				message.addStringParameter(String.valueOf(max));
-				message.addStringParameter(String.valueOf(kill));
+				final ExShowScreenMessage message = new ExShowScreenMessage(kill + " and " + max, 2, 10000);
 				player.sendPacket(message);
 				
 			}
@@ -126,9 +123,7 @@ public class TerritoryWarSuperClass extends Quest
 			max = getRandom(RANDOM_MIN, RANDOM_MAX);
 			qs.set("max", String.valueOf(max));
 			
-			final ExShowScreenMessage message = new ExShowScreenMessage(npcString[0], 2, 10000);
-			message.addStringParameter(String.valueOf(max));
-			message.addStringParameter(String.valueOf(kill));
+			final ExShowScreenMessage message = new ExShowScreenMessage(kill + " and " + max, 2, 10000);
 			player.sendPacket(message);
 		}
 		else if (player.isGM())
@@ -141,17 +136,15 @@ public class TerritoryWarSuperClass extends Quest
 			max = getRandom(RANDOM_MIN, RANDOM_MAX);
 			qs.set("max", String.valueOf(max));
 			
-			final ExShowScreenMessage message = new ExShowScreenMessage(npcString[0], 2, 10000);
-			message.addStringParameter(String.valueOf(max));
-			message.addStringParameter(String.valueOf(kill));
+			final ExShowScreenMessage message = new ExShowScreenMessage(kill + " and " + max, 2, 10000);
 			player.sendPacket(message);
 		}
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
-		if ((npc.getCurrentHp() == npc.getMaxHp()) && CommonUtil.contains(NPC_IDS, npc.getId()))
+		if ((npc.getCurrentHp() == npc.getMaxHp()) && ArrayUtil.contains(NPC_IDS, npc.getId()))
 		{
 			final int territoryId = getTerritoryIdForThisNPCId(npc.getId());
 			if ((territoryId >= 81) && (territoryId <= 89))
@@ -174,16 +167,16 @@ public class TerritoryWarSuperClass extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
-	public String onDeath(Creature killer, Creature victim, QuestState qs)
+	public void onDeath(Creature killer, Creature victim, QuestState qs)
 	{
 		if ((killer == victim) || !victim.isPlayer() || (victim.getLevel() < 61))
 		{
-			return "";
+			return;
 		}
+		
 		final Player actingPlayer = killer.asPlayer();
 		if ((actingPlayer != null) && (qs.getPlayer() != null))
 		{
@@ -191,10 +184,11 @@ public class TerritoryWarSuperClass extends Quest
 			{
 				for (Player pl : actingPlayer.getParty().getMembers())
 				{
-					if ((pl.getSiegeSide() == qs.getPlayer().getSiegeSide()) || (pl.getSiegeSide() == 0) || !Util.checkIfInRange(2000, killer, pl, false))
+					if ((pl.getSiegeSide() == qs.getPlayer().getSiegeSide()) || (pl.getSiegeSide() == 0) || !LocationUtil.checkIfInRange(2000, killer, pl, false))
 					{
 						continue;
 					}
+					
 					if (pl == actingPlayer)
 					{
 						handleStepsForHonor(actingPlayer);
@@ -209,13 +203,13 @@ public class TerritoryWarSuperClass extends Quest
 				handleStepsForHonor(actingPlayer);
 				handleBecomeMercenaryQuest(actingPlayer, false);
 			}
+			
 			TerritoryWarManager.getInstance().giveTWPoint(actingPlayer, qs.getPlayer().getSiegeSide(), 1);
 		}
-		return "";
 	}
 	
 	@Override
-	public String onEnterWorld(Player player)
+	public void onEnterWorld(Player player)
 	{
 		final int territoryId = TerritoryWarManager.getInstance().getRegisteredTerritoryId(player);
 		if (territoryId > 0)
@@ -233,7 +227,7 @@ public class TerritoryWarSuperClass extends Quest
 			// register player on Death
 			if (player.getLevel() >= 61)
 			{
-				final TerritoryWarSuperClass killthe = TerritoryWarSuperClassLoader.getKillTheScripts().get(player.getClassId().getId());
+				final TerritoryWarSuperClass killthe = TerritoryWarSuperClassLoader.getKillTheScripts().get(player.getPlayerClass().getId());
 				if (killthe != null)
 				{
 					qs = player.getQuestState(killthe.getName());
@@ -245,15 +239,14 @@ public class TerritoryWarSuperClass extends Quest
 				}
 				else
 				{
-					LOGGER.warning("TerritoryWar: Missing Kill the quest for " + player + " whose class id: " + player.getClassId().getId());
+					LOGGER.warning("TerritoryWar: Missing Kill the quest for " + player + " whose class id: " + player.getPlayerClass().getId());
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final TerritoryWarManager manager = TerritoryWarManager.getInstance();
 		if (npc.getId() == CATAPULT_ID)
@@ -263,7 +256,7 @@ public class TerritoryWarSuperClass extends Quest
 			manager.announceToParticipants(new ExShowScreenMessage(npcString[0], 2, 10000), 135000, 13500);
 			handleBecomeMercenaryQuest(killer, true);
 		}
-		else if (CommonUtil.contains(LEADER_IDS, npc.getId()))
+		else if (ArrayUtil.contains(LEADER_IDS, npc.getId()))
 		{
 			manager.giveTWPoint(killer, TERRITORY_ID, 3);
 		}
@@ -272,11 +265,10 @@ public class TerritoryWarSuperClass extends Quest
 		{
 			manager.getTerritory(killer.getSiegeSide() - 80).getQuestDone()[0]++;
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (targets.contains(npc))
 		{
@@ -284,8 +276,9 @@ public class TerritoryWarSuperClass extends Quest
 			{
 				if (TerritoryWarManager.getInstance().getHQForClan(caster.getClan()) != npc)
 				{
-					return super.onSkillSee(npc, caster, skill, targets, isSummon);
+					return;
 				}
+				
 				npc.deleteMe();
 				TerritoryWarManager.getInstance().setHQForClan(caster.getClan(), null);
 			}
@@ -293,12 +286,13 @@ public class TerritoryWarSuperClass extends Quest
 			{
 				if (TerritoryWarManager.getInstance().getHQForTerritory(caster.getSiegeSide()) != npc)
 				{
-					return super.onSkillSee(npc, caster, skill, targets, isSummon);
+					return;
 				}
+				
 				final TerritoryWard ward = TerritoryWarManager.getInstance().getTerritoryWard(caster);
 				if (ward == null)
 				{
-					return super.onSkillSee(npc, caster, skill, targets, isSummon);
+					return;
 				}
 				if ((caster.getSiegeSide() - 80) == ward.getOwnerCastleId())
 				{
@@ -321,7 +315,6 @@ public class TerritoryWarSuperClass extends Quest
 				}
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	// Used to register NPCs "For the Sake of the Territory ..." quests
@@ -361,7 +354,7 @@ public class TerritoryWarSuperClass extends Quest
 					// register player on Death
 					if (player.getLevel() >= 61)
 					{
-						final TerritoryWarSuperClass killthe = TerritoryWarSuperClassLoader.getKillTheScripts().get(player.getClassId().getId());
+						final TerritoryWarSuperClass killthe = TerritoryWarSuperClassLoader.getKillTheScripts().get(player.getPlayerClass().getId());
 						if (killthe != null)
 						{
 							qs = player.getQuestState(killthe.getName());
@@ -373,7 +366,7 @@ public class TerritoryWarSuperClass extends Quest
 						}
 						else
 						{
-							LOGGER.warning("TerritoryWar: Missing Kill the quest for " + player + " whose class id: " + player.getClassId().getId());
+							LOGGER.warning("TerritoryWar: Missing Kill the quest for " + player + " whose class id: " + player.getPlayerClass().getId());
 						}
 					}
 				}

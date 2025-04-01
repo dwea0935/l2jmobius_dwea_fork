@@ -32,12 +32,12 @@ import org.l2jmobius.gameserver.model.fishing.FishingCatch;
 import org.l2jmobius.gameserver.model.fishing.FishingRod;
 
 /**
- * This class holds the Fishing information.
  * @author bit
  */
 public class FishingData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(FishingData.class.getName());
+	
 	private final Map<Integer, FishingBait> _baitData = new HashMap<>();
 	private final Map<Integer, FishingRod> _rodData = new HashMap<>();
 	private int _baitDistanceMin;
@@ -47,9 +47,6 @@ public class FishingData implements IXmlReader
 	private double _spRateMin;
 	private double _spRateMax;
 	
-	/**
-	 * Instantiates a new fishing data.
-	 */
 	protected FishingData()
 	{
 		load();
@@ -64,9 +61,9 @@ public class FishingData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -165,50 +162,80 @@ public class FishingData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Retrieves the fishing bait data associated with the specified bait item ID.
+	 * @param baitItemId the item ID of the fishing bait.
+	 * @return the {@link FishingBait} associated with the specified item ID, or {@code null} if not found.
+	 */
 	public FishingBait getBaitData(int baitItemId)
 	{
 		return _baitData.get(baitItemId);
 	}
 	
+	/**
+	 * Retrieves the fishing rod data associated with the specified rod item ID.
+	 * @param rodItemId the item ID of the fishing rod.
+	 * @return the {@link FishingRod} associated with the specified item ID, or {@code null} if not found.
+	 */
 	public FishingRod getRodData(int rodItemId)
 	{
 		return _rodData.get(rodItemId);
 	}
 	
+	/**
+	 * Gets the minimum distance for bait.
+	 * @return the minimum bait distance.
+	 */
 	public int getBaitDistanceMin()
 	{
 		return _baitDistanceMin;
 	}
 	
+	/**
+	 * Gets the maximum distance for bait.
+	 * @return the maximum bait distance.
+	 */
 	public int getBaitDistanceMax()
 	{
 		return _baitDistanceMax;
 	}
 	
+	/**
+	 * Gets the minimum experience rate.
+	 * @return the minimum experience rate.
+	 */
 	public double getExpRateMin()
 	{
 		return _expRateMin;
 	}
 	
+	/**
+	 * Gets the maximum experience rate.
+	 * @return the maximum experience rate.
+	 */
 	public double getExpRateMax()
 	{
 		return _expRateMax;
 	}
 	
+	/**
+	 * Gets the minimum skill point rate.
+	 * @return the minimum skill point rate.
+	 */
 	public double getSpRateMin()
 	{
 		return _spRateMin;
 	}
 	
+	/**
+	 * Gets the maximum skill point rate.
+	 * @return the maximum skill point rate.
+	 */
 	public double getSpRateMax()
 	{
 		return _spRateMax;
 	}
 	
-	/**
-	 * Gets the single instance of FishingData.
-	 * @return single instance of FishingData
-	 */
 	public static FishingData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

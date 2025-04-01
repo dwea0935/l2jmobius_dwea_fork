@@ -21,6 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets.dethrone;
 
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.dethrone.ExDethroneChangeName;
 
@@ -48,7 +49,7 @@ public class RequestExDethroneChangeName extends ClientPacket
 		
 		if (player.getConquestName() != null)
 		{
-			final boolean success = player.destroyItemByItemId("ConquestNameChange", 81979, 1, player, true);
+			final boolean success = player.destroyItemByItemId(ItemProcessType.FEE, 81979, 1, player, true);
 			player.sendPacket(new ExDethroneChangeName(_conquestName, success));
 			if (!success)
 			{

@@ -42,7 +42,7 @@ public class Q00191_VainConclusion extends Quest
 	
 	public Q00191_VainConclusion()
 	{
-		super(191);
+		super(191, "Vain Conclusion");
 		addStartNpc(DOROTHY_LOCKSMITH);
 		addTalkId(DOROTHY_LOCKSMITH, HEAD_BLACKSMITH_KUSTO, RESEARCHER_LORAIN, SHEGFIELD);
 		registerQuestItems(REPAIRED_METALLOGRAPH);

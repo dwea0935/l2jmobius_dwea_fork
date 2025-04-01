@@ -37,7 +37,7 @@ public class Q00109_InSearchOfTheNest extends Quest
 	
 	public Q00109_InSearchOfTheNest()
 	{
-		super(109);
+		super(109, "In Search of the Nest");
 		addStartNpc(PIERCE);
 		addTalkId(PIERCE, SCOUTS_CORPSE, KAHMAN);
 		registerQuestItems(SCOUTS_NOTE);

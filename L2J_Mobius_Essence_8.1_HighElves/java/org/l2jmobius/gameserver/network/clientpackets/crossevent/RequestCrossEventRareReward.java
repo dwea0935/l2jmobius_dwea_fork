@@ -24,10 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.instancemanager.events.CrossEventManager;
+import org.l2jmobius.gameserver.managers.events.CrossEventManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.CrossEventAdvancedRewardHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.CrossEventAdvancedRewardHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.crossevent.ExCrossEventInfo;
 import org.l2jmobius.gameserver.network.serverpackets.crossevent.ExCrossEventRareReward;
@@ -62,7 +63,7 @@ public class RequestCrossEventRareReward extends ClientPacket
 		player.sendPacket(new ExCrossEventRareReward(true, reward.getId()));
 		
 		player.setCrossAdvancedRewardCount(-1);
-		player.addItem("CrossEventAdvancedReward", reward, player, true);
+		player.addItem(ItemProcessType.REWARD, reward, player, true);
 		player.sendPacket(new ExCrossEventInfo(player));
 	}
 	

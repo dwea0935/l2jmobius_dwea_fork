@@ -428,7 +428,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39749" level="1" /> <!-- Abandoned Coal Mines' Time Stone -->
+			<skill id="39749" level="1" /> <!-- Abandoned Coal Mines' Time Stone - Event -->
 		</skills>
 	</item>
 	<item id="82135" name="Exalted Growth Support Box" additionalName="Event" type="EtcItem">
@@ -864,9 +864,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
 		<capsuled_items>
-			<item id="81848" min="1" max="1" chance="100" /> <!-- Orb of Abyss Lv. 1 -->
-			<item id="81850" min="1" max="1" chance="100" /> <!-- Orb of Abyss Lv. 3 -->
-			<item id="81854" min="1" max="1" chance="100" /> <!-- Orb of Abyss Lv. 7 -->
+			<item id="81848" min="1" max="1" chance="100" /> <!-- Orb of Abyss - Lv. 1 -->
+			<item id="81850" min="1" max="1" chance="100" /> <!-- Orb of Abyss - Lv. 3 -->
+			<item id="81854" min="1" max="1" chance="100" /> <!-- Orb of Abyss - Lv. 7 -->
 		</capsuled_items>
 	</item>
 	<item id="82165" name="Collection Item Box - Last Chance!" additionalName="Event" type="EtcItem">
@@ -879,10 +879,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
 		<capsuled_items>
-			<item id="81860" min="1" max="1" chance="100" /> <!-- Orb of Darkness Lv. 2 -->
-			<item id="81861" min="1" max="1" chance="100" /> <!-- Orb of Darkness Lv. 3 -->
-			<item id="81864" min="1" max="1" chance="100" /> <!-- Orb of Darkness Lv. 6 -->
-			<item id="81865" min="1" max="1" chance="100" /> <!-- Orb of Darkness Lv. 7 -->
+			<item id="81860" min="1" max="1" chance="100" /> <!-- Orb of Darkness - Lv. 2 -->
+			<item id="81861" min="1" max="1" chance="100" /> <!-- Orb of Darkness - Lv. 3 -->
+			<item id="81864" min="1" max="1" chance="100" /> <!-- Orb of Darkness - Lv. 6 -->
+			<item id="81865" min="1" max="1" chance="100" /> <!-- Orb of Darkness - Lv. 7 -->
 		</capsuled_items>
 	</item>
 	<item id="82166" name="Collection Item Box - Adventurer" additionalName="Event" type="EtcItem">
@@ -895,10 +895,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
 		<capsuled_items>
-			<item id="81839" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul Lv. 3 -->
-			<item id="81841" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul Lv. 5 -->
-			<item id="81844" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul Lv. 8 -->
-			<item id="81846" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul Lv. 10 -->
+			<item id="81839" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul - Lv. 3 -->
+			<item id="81841" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul - Lv. 5 -->
+			<item id="81844" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul - Lv. 8 -->
+			<item id="81846" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul - Lv. 10 -->
 		</capsuled_items>
 	</item>
 	<item id="82167" name="Collection Item Box - Empiric" additionalName="Event" type="EtcItem">
@@ -911,8 +911,8 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
 		<capsuled_items>
-			<item id="81844" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul Lv. 8 -->
-			<item id="81845" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul Lv. 9 -->
+			<item id="81844" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul - Lv. 8 -->
+			<item id="81845" min="1" max="1" chance="100" /> <!-- Orb of Bloody Soul - Lv. 9 -->
 		</capsuled_items>
 	</item>
 	<item id="82168" name="Sayha's Blessing Potion" type="EtcItem">

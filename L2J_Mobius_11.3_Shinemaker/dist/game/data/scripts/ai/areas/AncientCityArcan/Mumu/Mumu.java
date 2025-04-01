@@ -16,9 +16,9 @@
  */
 package ai.areas.AncientCityArcan.Mumu;
 
-import org.l2jmobius.gameserver.enums.Movie;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.enums.Movie;
 
 import ai.AbstractNpcAI;
 

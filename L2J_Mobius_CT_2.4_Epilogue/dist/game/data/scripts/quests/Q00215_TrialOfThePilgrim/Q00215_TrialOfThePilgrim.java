@@ -17,14 +17,14 @@
 package quests.Q00215_TrialOfThePilgrim;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Trial Of The Pilgrim (215)
@@ -70,7 +70,7 @@ public class Q00215_TrialOfThePilgrim extends Quest
 	
 	public Q00215_TrialOfThePilgrim()
 	{
-		super(215);
+		super(215, "Trial of the Pilgrim");
 		addStartNpc(HERMIT_SANTIAGO);
 		addTalkId(HERMIT_SANTIAGO, PRIEST_PETRON, PRIEST_PRIMOS, ANDELLIA, GAURI_TWINKLEROCK, SEER_TANAPI, ELDER_CASIAN, ANCESTOR_MARTANKUS, PRIEST_OF_THE_EARTH_GERALD, WANDERER_DORF, URUHA);
 		addKillId(LAVA_SALAMANDER, NAHIR, BLACK_WILLOW);
@@ -194,10 +194,10 @@ public class Q00215_TrialOfThePilgrim extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -233,7 +233,6 @@ public class Q00215_TrialOfThePilgrim extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

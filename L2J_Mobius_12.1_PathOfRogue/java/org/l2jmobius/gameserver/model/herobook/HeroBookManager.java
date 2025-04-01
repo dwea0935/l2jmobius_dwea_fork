@@ -28,13 +28,14 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.ItemLocation;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.serverpackets.herobook.ExHeroBookEnchant;
 import org.l2jmobius.gameserver.network.serverpackets.herobook.ExHeroBookInfo;
@@ -402,13 +403,13 @@ public class HeroBookManager
 		
 		for (Item item : inventoryItems)
 		{
-			if (!player.destroyItem("Increase exp for Hero Book", item.getObjectId(), requestedItems.get(item.getObjectId()), player, true))
+			if (!player.destroyItem(ItemProcessType.FEE, item.getObjectId(), requestedItems.get(item.getObjectId()), player, true))
 			{
 				return false;
 			}
 		}
 		
-		if (!player.reduceAdena("Increase exp for Hero Book", adenaCommission, player, true))
+		if (!player.reduceAdena(ItemProcessType.FEE, adenaCommission, player, true))
 		{
 			return false;
 		}
@@ -439,7 +440,7 @@ public class HeroBookManager
 				final HeroBookLevelHolder levelHolder = EXPERIENCE.getOrDefault(holder.getCurrentLevel(), null);
 				if ((levelHolder != null) && (levelHolder.getItems() != null))
 				{
-					levelHolder.getItems().forEach(itemHolder -> player.addItem("Item from level progress for Hero Book", itemHolder.getId(), itemHolder.getCount(), player, true));
+					levelHolder.getItems().forEach(itemHolder -> player.addItem(ItemProcessType.REWARD, itemHolder.getId(), itemHolder.getCount(), player, true));
 				}
 				applyLevelEffects(player);
 			}

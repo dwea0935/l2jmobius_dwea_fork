@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="70400" name="Refined Romantic Chapeau: Yellow" type="Armor">
 		<!-- Refined yellow romantic chapeau. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can store in private warehouse -->
@@ -27,8 +27,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55416" level="1" /> <!-- Release Agathion - One-eyed Bat Drove -->
-			<skill id="55440" level="1" /> <!-- One-eyed Bat Drove Cute Trick -->
+			<skill id="55416" level="1" /> <!-- Release Agathion's Seal - One-eyed Bat Drove -->
+			<skill id="55440" level="1" /> <!-- One-eyed Bat Drove Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -48,8 +48,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55417" level="1" /> <!-- Release Agathion - Zaken's Spirit Swords -->
-			<skill id="55441" level="1" /> <!-- Release Agathion - Zaken's Spirit Swords -->
+			<skill id="55417" level="1" /> <!-- Release Agathion's Seal - Zaken's Spirit Swords -->
+			<skill id="55441" level="1" /> <!-- Zaken's Spirit Swords Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -69,8 +69,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55418" level="1" /> <!-- Release Agathion - Pegasus -->
-			<skill id="55442" level="1" /> <!-- Release Agathion - Pegasus -->
+			<skill id="55418" level="1" /> <!-- Release Agathion's Seal - Pegasus -->
+			<skill id="55442" level="1" /> <!-- Pegasus Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -90,8 +90,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55419" level="1" /> <!-- Release Agathion - Guangong -->
-			<skill id="55443" level="1" /> <!-- Release Agathion - Guangong -->
+			<skill id="55419" level="1" /> <!-- Release Agathion's Seal - Guangong -->
+			<skill id="55443" level="1" /> <!-- Guangong Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -111,8 +111,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55420" level="1" /> <!-- Release Agathion - God of Fortune -->
-			<skill id="55444" level="1" /> <!-- Release Agathion - God of Fortune -->
+			<skill id="55420" level="1" /> <!-- Release Agathion's Seal - God of Fortune -->
+			<skill id="55444" level="1" /> <!-- God of Fortune Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -132,8 +132,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55421" level="1" /> <!-- Release Agathion - Phoenix -->
-			<skill id="55445" level="1" /> <!-- Release Agathion - Phoenix -->
+			<skill id="55421" level="1" /> <!-- Release Agathion's Seal - Phoenix -->
+			<skill id="55445" level="1" /> <!-- Phoenix Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -153,8 +153,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55422" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55446" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55422" level="1" /> <!-- Release Agathion's Seal - Saerom -->
+			<skill id="55446" level="1" /> <!-- Saerom Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -174,8 +174,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55423" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55447" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55423" level="1" /> <!-- Release Agathion's Seal - Gwanseum Nyang -->
+			<skill id="55447" level="1" /> <!-- Gwanseum Nyang Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -195,8 +195,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55424" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55448" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55424" level="1" /> <!-- Release Agathion's Seal - Blue Opera -->
+			<skill id="55448" level="1" /> <!-- Blue Opera Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -216,8 +216,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55425" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55449" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55425" level="1" /> <!-- Release Agathion's Seal - Red Opera -->
+			<skill id="55449" level="1" /> <!-- Red Opera Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -237,8 +237,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55426" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55450" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55426" level="1" /> <!-- Release Agathion's Seal - Miss Chipao -->
+			<skill id="55450" level="1" /> <!-- Miss Chipao Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -258,8 +258,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55427" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55451" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55427" level="1" /> <!-- Release Agathion's Seal - Flower Fairy Spirit -->
+			<skill id="55451" level="1" /> <!-- Flower Fairy Spirit Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -279,8 +279,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55428" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55452" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55428" level="1" /> <!-- Release Agathion's Seal - Iken -->
+			<skill id="55452" level="1" /> <!-- Iken Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -300,8 +300,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55429" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55453" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55429" level="1" /> <!-- Release Agathion's Seal - Lanya -->
+			<skill id="55453" level="1" /> <!-- Lanya Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -321,8 +321,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55430" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55454" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55430" level="1" /> <!-- Release Agathion's Seal - Gnosian -->
+			<skill id="55454" level="1" /> <!-- Gnosian Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -342,8 +342,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55431" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55455" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55431" level="1" /> <!-- Release Agathion's Seal - Cheerleader Orodriel -->
+			<skill id="55455" level="1" /> <!-- Cheerleader Orodriel Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -363,8 +363,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55432" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55456" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55432" level="1" /> <!-- Release Agathion's Seal - Lakinos -->
+			<skill id="55456" level="1" /> <!-- Lakinos Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -384,8 +384,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55433" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55457" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55433" level="1" /> <!-- Release Agathion's Seal - Mortia -->
+			<skill id="55457" level="1" /> <!-- Mortia Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -405,8 +405,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55434" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55458" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55434" level="1" /> <!-- Release Agathion's Seal - Heintz -->
+			<skill id="55458" level="1" /> <!-- Heintz Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -426,8 +426,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55435" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55459" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55435" level="1" /> <!-- Release Agathion's Seal - Meruril -->
+			<skill id="55459" level="1" /> <!-- Meruril Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -447,8 +447,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55436" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55460" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55436" level="1" /> <!-- Release Agathion's Seal - Taman Zu Rapatui -->
+			<skill id="55460" level="1" /> <!-- Taman Zu Rapatui Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -468,8 +468,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55437" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55461" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55437" level="1" /> <!-- Release Agathion's Seal - Kaurin -->
+			<skill id="55461" level="1" /> <!-- Kaurin Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -489,8 +489,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55438" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55462" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55438" level="1" /> <!-- Release Agathion's Seal - Ahertbein -->
+			<skill id="55462" level="1" /> <!-- Ahertbein Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -510,8 +510,8 @@
 		<set name="is_freightable" val="true" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="55439" level="1" /> <!-- Release Agathion - Saerom -->
-			<skill id="55463" level="1" /> <!-- Release Agathion - Saerom -->
+			<skill id="55439" level="1" /> <!-- Release Agathion's Seal - Naonin -->
+			<skill id="55463" level="1" /> <!-- Naonin Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>

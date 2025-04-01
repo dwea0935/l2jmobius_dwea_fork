@@ -21,8 +21,8 @@
 package org.l2jmobius.gameserver.network.serverpackets.autoplay;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.ShortCuts;
-import org.l2jmobius.gameserver.model.Shortcut;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcuts;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -37,7 +37,7 @@ public class ExActivateAutoShortcut extends ServerPacket
 	
 	public ExActivateAutoShortcut(Shortcut shortcut, boolean active)
 	{
-		_position = shortcut.getSlot() + (shortcut.getPage() * ShortCuts.MAX_SHORTCUTS_PER_BAR);
+		_position = shortcut.getSlot() + (shortcut.getPage() * Shortcuts.MAX_SHORTCUTS_PER_BAR);
 		_active = active;
 	}
 	

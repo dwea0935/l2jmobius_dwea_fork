@@ -36,20 +36,18 @@ public class Gordon extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer() && creature.asPlayer().isCursedWeaponEquipped())
 		{
 			addAttackPlayerDesire(npc, creature.asPlayer());
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.asAttackable().setCanReturnToSpawnPoint(false);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

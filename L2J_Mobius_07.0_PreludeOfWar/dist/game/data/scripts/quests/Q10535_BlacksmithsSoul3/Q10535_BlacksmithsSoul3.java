@@ -1,31 +1,35 @@
 /*
-* This file is part of the L2J Mobius project.
-* 
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-* General Public License for more details.
-* 
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (c) 2013 L2jMobius
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 package quests.Q10535_BlacksmithsSoul3;
 
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q10356_BlacksmithsSoul2.Q10356_BlacksmithsSoul2;
 
@@ -170,7 +174,7 @@ public class Q10535_BlacksmithsSoul3 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (killer.isInParty())
 		{
@@ -184,7 +188,7 @@ public class Q10535_BlacksmithsSoul3 extends Quest
 				{
 					if (qsPartyMember.isCond(1))
 					{
-						if (CommonUtil.contains(HELL_MONSTERS, npc.getId()) && (getQuestItemsCount(singleMember, CRYSTAL_WITH_MAGOCAL_POWER) < 500))
+						if (ArrayUtil.contains(HELL_MONSTERS, npc.getId()) && (getQuestItemsCount(singleMember, CRYSTAL_WITH_MAGOCAL_POWER) < 500))
 						{
 							giveItems(singleMember, CRYSTAL_WITH_MAGOCAL_POWER, 1);
 							playSound(singleMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -192,7 +196,7 @@ public class Q10535_BlacksmithsSoul3 extends Quest
 					}
 					if (qsPartyMember.isCond(1))
 					{
-						if (CommonUtil.contains(CAVE_MONSTERS, npc.getId()) && (getQuestItemsCount(singleMember, OREWITH_GIANTS_ENERGY) < 500))
+						if (ArrayUtil.contains(CAVE_MONSTERS, npc.getId()) && (getQuestItemsCount(singleMember, OREWITH_GIANTS_ENERGY) < 500))
 						{
 							giveItems(singleMember, OREWITH_GIANTS_ENERGY, 1);
 							playSound(singleMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -212,7 +216,7 @@ public class Q10535_BlacksmithsSoul3 extends Quest
 			{
 				if (qs.isCond(1))
 				{
-					if (CommonUtil.contains(HELL_MONSTERS, npc.getId()) && (getQuestItemsCount(killer, CRYSTAL_WITH_MAGOCAL_POWER) < 500))
+					if (ArrayUtil.contains(HELL_MONSTERS, npc.getId()) && (getQuestItemsCount(killer, CRYSTAL_WITH_MAGOCAL_POWER) < 500))
 					{
 						giveItems(killer, CRYSTAL_WITH_MAGOCAL_POWER, 1);
 						playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -221,7 +225,7 @@ public class Q10535_BlacksmithsSoul3 extends Quest
 				}
 				if (qs.isCond(1))
 				{
-					if (CommonUtil.contains(CAVE_MONSTERS, npc.getId()) && (getQuestItemsCount(killer, OREWITH_GIANTS_ENERGY) < 500))
+					if (ArrayUtil.contains(CAVE_MONSTERS, npc.getId()) && (getQuestItemsCount(killer, OREWITH_GIANTS_ENERGY) < 500))
 					{
 						giveItems(killer, OREWITH_GIANTS_ENERGY, 1);
 						playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -233,6 +237,5 @@ public class Q10535_BlacksmithsSoul3 extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

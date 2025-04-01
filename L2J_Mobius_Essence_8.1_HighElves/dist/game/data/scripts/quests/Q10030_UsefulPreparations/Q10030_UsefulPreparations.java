@@ -47,6 +47,10 @@ public class Q10030_UsefulPreparations extends Quest
 		20325, // Goblin Raider
 		20468, // Kaboo Orc
 		20470, // Kaboo Orc Soldier
+		20525, // Gray Wolf
+		20534, // Red Keltir
+		20537, // Elder Red Keltir
+		20530, // Young Red Keltir
 	};
 	
 	public Q10030_UsefulPreparations()
@@ -172,7 +176,7 @@ public class Q10030_UsefulPreparations extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -191,19 +195,17 @@ public class Q10030_UsefulPreparations extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

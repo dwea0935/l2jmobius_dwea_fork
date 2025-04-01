@@ -24,7 +24,7 @@ import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * @author Mobius
@@ -52,7 +52,7 @@ public class CharSelected extends ServerPacket
 		buffer.writeInt(0); // ??
 		buffer.writeInt(_player.getAppearance().isFemale());
 		buffer.writeInt(_player.getRace().ordinal());
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		buffer.writeInt(1); // active ??
 		buffer.writeInt(_player.getX());
 		buffer.writeInt(_player.getY());
@@ -66,7 +66,7 @@ public class CharSelected extends ServerPacket
 		buffer.writeInt(_player.getPkKills());
 		buffer.writeInt(GameTimeTaskManager.getInstance().getGameTime() % (24 * 60)); // "reset" on 24th hour
 		buffer.writeInt(0);
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		buffer.writeBytes(new byte[16]);
 		buffer.writeInt(0);
 		buffer.writeInt(0);

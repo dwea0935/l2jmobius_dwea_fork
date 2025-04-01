@@ -19,15 +19,14 @@ package quests.Q00416_PathOfTheOrcShaman;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 
@@ -82,7 +81,7 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 	
 	public Q00416_PathOfTheOrcShaman()
 	{
-		super(416);
+		super(416, "Path of the Orc Shaman");
 		addStartNpc(TATARU_ZU_HESTUI);
 		addTalkId(TATARU_ZU_HESTUI, UMOS, MOIRA, DEAD_LEOPARDS_CARCASS, DUDA_MARA_TOTEM_SPIRIT, HESTUI_TOTEM_SPIRIT, TOTEM_SPIRIT_OF_GANDI);
 		addKillId(MOBS.keySet());
@@ -104,9 +103,9 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 		{
 			case "START":
 			{
-				if (player.getClassId() != ClassId.ORC_MAGE)
+				if (player.getPlayerClass() != PlayerClass.ORC_MAGE)
 				{
-					if (player.getClassId() == ClassId.ORC_SHAMAN)
+					if (player.getPlayerClass() == PlayerClass.ORC_SHAMAN)
 					{
 						htmltext = "30585-02.htm";
 					}
@@ -274,12 +273,12 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs == null)
 		{
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
 		
 		if (npc.getId() == BLACK_LEOPARD)
@@ -297,7 +296,7 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 					qs.setCond(15, true);
 					if (getRandom(100) < 66)
 					{
-						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.MY_DEAR_FRIEND_OF_S1_WHO_HAS_GONE_ON_AHEAD_OF_ME).addStringParameter(qs.getPlayer().getName()));
+						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "My dear friend of " + qs.getPlayer().getName() + ", who has gone on ahead of me!"));
 					}
 					break;
 				}
@@ -307,7 +306,7 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 					qs.setCond(17, true);
 					if (getRandom(100) < 66)
 					{
-						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.LISTEN_TO_TEJAKAR_GANDI_YOUNG_OROKA_THE_SPIRIT_OF_THE_SLAIN_LEOPARD_IS_CALLING_YOU_S1).addStringParameter(qs.getPlayer().getName()));
+						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "Listen to Tejakar Gandi, young Oroka! The spirit of the slain leopard is calling you, " + qs.getPlayer().getName() + "!"));
 					}
 					break;
 				}
@@ -318,7 +317,7 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 					break;
 				}
 			}
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
 		
 		final ItemChanceHolder item = MOBS.get(npc.getId());
@@ -369,7 +368,6 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

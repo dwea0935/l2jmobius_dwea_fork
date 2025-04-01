@@ -22,7 +22,8 @@ package org.l2jmobius.gameserver.network.clientpackets.relics;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.request.RelicCouponRequest;
+import org.l2jmobius.gameserver.model.actor.request.RelicSummonRequest;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.variables.AccountVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -64,10 +65,10 @@ public class RequestRelicsSummon extends ClientPacket
 			return;
 		}
 		
-		player.addRequest(new RelicCouponRequest(player));
+		player.addRequest(new RelicSummonRequest(player));
 		
 		final int relicSummonCount = Config.ELEVEN_SUMMON_COUNT_COUPONS.contains(_couponId) ? 11 : 1;
 		player.sendPacket(new ExRelicsSummonResult(player, _couponId, relicSummonCount));
-		player.destroyItem("RelicSummon", couponItem, 1, player, true);
+		player.destroyItem(ItemProcessType.FEE, couponItem, 1, player, true);
 	}
 }

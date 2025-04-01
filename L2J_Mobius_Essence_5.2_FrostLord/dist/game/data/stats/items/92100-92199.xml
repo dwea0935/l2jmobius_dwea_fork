@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="92100" name="Moonstone Lv. 6" additionalName="Sealed" type="Armor">
 		<!-- <Properties>. While Sayha's Grace is active, Acquired XP/ SP +15%. Sayha's Grace Consumption -30%. Magic Lamp charging rate +2%. Effects of two identical jewels do not stack, the higher-level jewel takes precedence. -->
@@ -13,7 +13,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="50208" level="6" /> <!-- Gem: Moonstone -->
+			<skill id="50208" level="6" /> <!-- Moonstone -->
 		</skills>
 	</item>
 	<item id="92101" name="Moonstone Lv. 7" additionalName="Sealed" type="Armor">
@@ -29,7 +29,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="50208" level="7" /> <!-- Gem: Moonstone -->
+			<skill id="50208" level="7" /> <!-- Moonstone -->
 		</skills>
 	</item>
 	<item id="92102" name="Moonstone Lv. 8" additionalName="Sealed" type="Armor">
@@ -45,7 +45,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="50208" level="8" /> <!-- Gem: Moonstone -->
+			<skill id="50208" level="8" /> <!-- Moonstone -->
 		</skills>
 	</item>
 	<item id="92103" name="Moonstone Lv. 8" additionalName="Sealed" type="Armor">

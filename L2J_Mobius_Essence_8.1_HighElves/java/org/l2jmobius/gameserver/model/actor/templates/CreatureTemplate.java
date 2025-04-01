@@ -20,8 +20,8 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -93,6 +93,7 @@ public class CreatureTemplate extends ListenersContainer
 		_baseValues.put(Stat.SHIELD_DEFENCE_RATE, set.getDouble("baseShldRate", 0));
 		_baseValues.put(Stat.CRITICAL_RATE, set.getDouble("baseCritRate", 4));
 		_baseValues.put(Stat.MAGIC_CRITICAL_RATE, set.getDouble("baseMCritRate", 5));
+		_baseValues.put(Stat.CRITICAL_RATE_SKILL, set.getDouble("basePSkillCritRate", 5));
 		
 		// Breath under water
 		_baseValues.put(Stat.BREATH, set.getDouble("baseBreath", 100));
@@ -453,6 +454,15 @@ public class CreatureTemplate extends ListenersContainer
 	public int getBaseMCritRate()
 	{
 		final Double val = _baseValues.get(Stat.MAGIC_CRITICAL_RATE);
+		return val != null ? val.intValue() : 0;
+	}
+	
+	/**
+	 * @return the basePSkillCritRate
+	 */
+	public int getPSkillCriticalRate()
+	{
+		final Double val = _baseValues.get(Stat.CRITICAL_RATE_SKILL);
 		return val != null ? val.intValue() : 0;
 	}
 	

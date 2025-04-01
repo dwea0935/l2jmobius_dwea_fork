@@ -20,11 +20,9 @@
  */
 package ai.areas.TowerOfInsolence.HeavenlyRift;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -32,13 +30,16 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyNpc;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExChangeNpcState;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -171,8 +172,8 @@ public class HeavenlyRift extends AbstractNpcAI
 				{
 					player.getParty().getMembers().forEach(partyMember ->
 					{
-						partyMember.addItem("Heavenly Dung SP", SP_SCROLL_20000, 1, npc, true);
-						partyMember.addItem("Heavenly Dung Life C", LIFE_CONTROL_TOWER_SCROLL_OF_BLESSING, 1, npc, true);
+						partyMember.addItem(ItemProcessType.REWARD, SP_SCROLL_20000, 1, npc, true);
+						partyMember.addItem(ItemProcessType.REWARD, LIFE_CONTROL_TOWER_SCROLL_OF_BLESSING, 1, npc, true);
 					});
 					_varRewardTaken1 = 1;
 				}
@@ -193,8 +194,8 @@ public class HeavenlyRift extends AbstractNpcAI
 				
 				count -= count % 10;
 				long reward = count / 10;
-				player.destroyItemByItemId("Rift", BROKEN_CELESTIAL_SHARD, count, npc, true);
-				player.addItem("Rift", CELESTIAL_SHARD, reward, npc, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, BROKEN_CELESTIAL_SHARD, count, npc, true);
+				player.addItem(ItemProcessType.REWARD, CELESTIAL_SHARD, reward, npc, true);
 				break;
 			}
 			case "ENTER":
@@ -224,12 +225,12 @@ public class HeavenlyRift extends AbstractNpcAI
 						return "no-item.html";
 					}
 					
-					if (party.getMembers().stream().anyMatch(partyMember -> !Util.checkIfInRange(1000, player, partyMember, true)))
+					if (party.getMembers().stream().anyMatch(partyMember -> !LocationUtil.checkIfInRange(1000, player, partyMember, true)))
 					{
 						return "no-range.html";
 					}
 					
-					player.destroyItemByItemId("Rift", CELESTIAL_SHARD, 1, npc, true);
+					player.destroyItemByItemId(ItemProcessType.FEE, CELESTIAL_SHARD, 1, npc, true);
 					startQuestTimer("BEFORE_START", 60000 * TIME_FOR_PREPARE, null, player);
 					
 					party.getMembers().forEach(partyMember ->
@@ -303,7 +304,7 @@ public class HeavenlyRift extends AbstractNpcAI
 							Creature angel = addSpawn(DIVINE_ANGEL, 112696, 13960, 10986, 1, false, 60000 * BATTLE_TIME);
 							
 							angel.setRunning();
-							angel.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, tower);
+							angel.getAI().setIntention(Intention.ATTACK, tower);
 							angel.asAttackable().addDamageHate(tower, 0, 999999);
 							
 							_varAngelCount1++;
@@ -422,7 +423,7 @@ public class HeavenlyRift extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -435,16 +436,14 @@ public class HeavenlyRift extends AbstractNpcAI
 			{
 				if (_var3 == 1)
 				{
-					ZONE.getCharactersInside().forEach(player -> npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, CENTER));
+					ZONE.getCharactersInside().forEach(player -> npc.getAI().setIntention(Intention.MOVE_TO, CENTER));
 				}
 			}
 		}
-		
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -505,8 +504,6 @@ public class HeavenlyRift extends AbstractNpcAI
 				break;
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

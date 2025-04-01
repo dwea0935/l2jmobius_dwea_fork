@@ -23,19 +23,18 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.FishingData;
-import org.l2jmobius.gameserver.enums.FishingEndReason;
-import org.l2jmobius.gameserver.enums.FishingEndType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerFishing;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerFishing;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
@@ -51,7 +50,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.fishing.ExFishingEnd;
 import org.l2jmobius.gameserver.network.serverpackets.fishing.ExFishingStart;
 import org.l2jmobius.gameserver.network.serverpackets.fishing.ExUserInfoFishing;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author bit
@@ -319,7 +318,7 @@ public class Fishing
 					final long xp = (long) (Rnd.get(fishingData.getExpRateMin(), fishingData.getExpRateMax()) * lvlModifier * stat.getMul(Stat.FISHING_EXP_SP_BONUS, 1));
 					final long sp = (long) (Rnd.get(fishingData.getSpRateMin(), fishingData.getSpRateMax()) * lvlModifier * stat.getMul(Stat.FISHING_EXP_SP_BONUS, 1));
 					_player.addExpAndSp(xp, sp, true);
-					_player.getInventory().addItem("Fishing Reward", fishingCatchData.getItemId(), 1, _player, null);
+					_player.getInventory().addItem(ItemProcessType.PICKUP, fishingCatchData.getItemId(), 1, _player, null);
 					final SystemMessage msg = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
 					msg.addItemName(fishingCatchData.getItemId());
 					_player.sendPacket(msg);
@@ -386,7 +385,7 @@ public class Fishing
 		final int distMin = FishingData.getInstance().getBaitDistanceMin();
 		final int distMax = FishingData.getInstance().getBaitDistanceMax();
 		final int distance = Rnd.get(distMin, distMax);
-		final double angle = Util.convertHeadingToDegree(_player.getHeading());
+		final double angle = LocationUtil.convertHeadingToDegree(_player.getHeading());
 		final double radian = Math.toRadians(angle);
 		final double sin = Math.sin(radian);
 		final double cos = Math.cos(radian);

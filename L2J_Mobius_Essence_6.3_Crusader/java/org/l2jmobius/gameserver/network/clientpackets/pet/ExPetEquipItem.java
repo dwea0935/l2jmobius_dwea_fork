@@ -23,13 +23,13 @@ package org.l2jmobius.gameserver.network.clientpackets.pet;
 import java.util.concurrent.TimeUnit;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.NextAction;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ArmorType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
@@ -135,51 +135,12 @@ public class ExPetEquipItem extends ClientPacket
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_MEET_THE_REQUIRED_CONDITION_TO_EQUIP_THAT_ITEM);
 				return;
 			}
-			// Prevent players to equip weapon while wearing combat flag
-			// Don't allow weapon/shield equipment if a cursed weapon is equipped.
-			if ((item.getTemplate().getBodyPart() == ItemTemplate.SLOT_LR_HAND) || (item.getTemplate().getBodyPart() == ItemTemplate.SLOT_L_HAND) || (item.getTemplate().getBodyPart() == ItemTemplate.SLOT_R_HAND))
+			
+			// Pets cannot use item bodyparts after ItemTemplate.SLOT_HAIR.
+			if (item.getTemplate().getBodyPart() >= ItemTemplate.SLOT_HAIR)
 			{
-				if ((player.getActiveWeaponItem() != null) && (player.getActiveWeaponItem().getId() == FortManager.ORC_FORTRESS_FLAG))
-				{
-					player.sendPacket(SystemMessageId.YOU_DO_NOT_MEET_THE_REQUIRED_CONDITION_TO_EQUIP_THAT_ITEM);
-					return;
-				}
-			}
-			else if (item.getTemplate().getBodyPart() == ItemTemplate.SLOT_DECO)
-			{
-				if (!item.isEquipped() && (player.getInventory().getTalismanSlots() == 0))
-				{
-					player.sendPacket(SystemMessageId.YOU_DO_NOT_MEET_THE_REQUIRED_CONDITION_TO_EQUIP_THAT_ITEM);
-					return;
-				}
-			}
-			else if (item.getTemplate().getBodyPart() == ItemTemplate.SLOT_BROOCH_JEWEL)
-			{
-				if (!item.isEquipped() && (player.getInventory().getBroochJewelSlots() == 0))
-				{
-					final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_CANNOT_EQUIP_S1_WITHOUT_EQUIPPING_A_BROOCH);
-					sm.addItemName(item);
-					player.sendPacket(sm);
-					return;
-				}
-			}
-			else if (item.getTemplate().getBodyPart() == ItemTemplate.SLOT_AGATHION)
-			{
-				if (!item.isEquipped() && (player.getInventory().getAgathionSlots() == 0))
-				{
-					player.sendPacket(SystemMessageId.YOU_DO_NOT_MEET_THE_REQUIRED_CONDITION_TO_EQUIP_THAT_ITEM);
-					return;
-				}
-			}
-			else if (item.getTemplate().getBodyPart() == ItemTemplate.SLOT_ARTIFACT)
-			{
-				if (!item.isEquipped() && (player.getInventory().getArtifactSlots() == 0))
-				{
-					final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_DO_NOT_MEET_THE_REQUIRED_CONDITION_TO_EQUIP_THAT_ITEM);
-					sm.addItemName(item);
-					player.sendPacket(sm);
-					return;
-				}
+				player.sendPacket(SystemMessageId.YOU_DO_NOT_MEET_THE_REQUIRED_CONDITION_TO_EQUIP_THAT_ITEM);
+				return;
 			}
 			
 			// Pets cannot use enchanted weapons.
@@ -213,14 +174,14 @@ public class ExPetEquipItem extends ClientPacket
 			final Item oldItem = pet.getInventory().getPaperdollItemBySlotId((int) item.getTemplate().getBodyPart());
 			if (oldItem != null)
 			{
-				pet.transferItem("UnequipFromPet", oldItem.getObjectId(), 1, player.getInventory(), player, null);
+				pet.transferItem(ItemProcessType.TRANSFER, oldItem.getObjectId(), 1, player.getInventory(), player, null);
 			}
 			if (player.isCastingNow())
 			{
 				// Create and Bind the next action to the AI.
-				player.getAI().setNextAction(new NextAction(CtrlEvent.EVT_FINISH_CASTING, CtrlIntention.AI_INTENTION_CAST, () ->
+				player.getAI().setNextAction(new NextAction(Action.FINISH_CASTING, Intention.CAST, () ->
 				{
-					final Item transferedItem = player.transferItem("UnequipFromPet", item.getObjectId(), 1, pet.getInventory(), null);
+					final Item transferedItem = player.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), 1, pet.getInventory(), null);
 					pet.useEquippableItem(transferedItem, false);
 					sendInfos(pet, player);
 				}));
@@ -230,14 +191,14 @@ public class ExPetEquipItem extends ClientPacket
 				// Equip or unEquip.
 				ThreadPool.schedule(() ->
 				{
-					final Item transferedItem = player.transferItem("UnequipFromPet", item.getObjectId(), 1, pet.getInventory(), null);
+					final Item transferedItem = player.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), 1, pet.getInventory(), null);
 					pet.useEquippableItem(transferedItem, false);
 					sendInfos(pet, player);
 				}, player.getAttackEndTime() - TimeUnit.MILLISECONDS.toNanos(System.currentTimeMillis()));
 			}
 			else
 			{
-				final Item transferedItem = player.transferItem("UnequipFromPet", item.getObjectId(), 1, pet.getInventory(), null);
+				final Item transferedItem = player.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), 1, pet.getInventory(), null);
 				pet.useEquippableItem(transferedItem, false);
 				sendInfos(pet, player);
 			}

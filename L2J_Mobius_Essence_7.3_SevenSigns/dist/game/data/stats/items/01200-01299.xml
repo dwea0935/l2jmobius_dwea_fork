@@ -145,7 +145,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="1212" name="Moretti's Herb" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. An herb that Guard Moretti asked to give to Prias. -->
+		<!-- The item is not available. An herb that Guardian Moretti has asked you to give to Prias. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -157,7 +157,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="1213" name="Guard's Bow" additionalName="Sealed" type="Weapon">
-		<!-- Bow given to you by Guard Moretti. Perhaps it can be used for something important. <font color=ff6666><Unavailable to Sylphs/ Vanguard Riders/ Assassins.></font> -->
+		<!-- A bow given to you by Guard Moretti. Perhaps it can be used for something important. <font color=ff6666><Unavailable to Sylphs/ Vanguard Riders/ Assassins.></font> -->
 		<set name="icon" val="icon.weapon_bow_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
@@ -366,7 +366,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="1229" name="Fertility Peridot" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. A chrysolite, the symbol of Earth. Collect all 4 Elemental Stones and take them to Rosella to change your class. -->
+		<!-- The item is not available. A сhrysolite, the symbol of Earth. Collect all 4 Elemental Stones and take them to Rosella to change your class. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

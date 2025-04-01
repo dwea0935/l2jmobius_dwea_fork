@@ -521,7 +521,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17900" level="1" /> <!-- Giant's Lucky Enchant Stone: Armor (R-grade) -->
+			<skill id="17900" level="1" /> <!-- Giant's Stone: Enchant R-grade Armor -->
 		</skills>
 	</item>
 	<item id="39463" name="Giant's Stone: Enchant R-grade Weapon" type="EtcItem">
@@ -534,7 +534,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17901" level="1" /> <!-- Giant's Lucky Enchant Stone: Weapon (R-grade) -->
+			<skill id="17901" level="1" /> <!-- Giant's Stone: Enchant R-grade Weapon -->
 		</skills>
 	</item>
 	<item id="39464" name="Windy Stone: Enchant R-grade Armor" type="EtcItem">
@@ -547,7 +547,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17927" level="1" /> <!-- Windy Lucky Enchant Stone: Armor (R-grade) -->
+			<skill id="17927" level="1" /> <!-- Windy Stone: Enchant R-grade Armor -->
 		</skills>
 	</item>
 	<item id="39465" name="Windy Stone: Enchant R-grade Weapon" type="EtcItem">
@@ -560,7 +560,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17927" level="2" /> <!-- Windy Lucky Enchant Stone: Weapon (R-grade) -->
+			<skill id="17927" level="2" /> <!-- Windy Stone: Enchant R-grade Weapon -->
 		</skills>
 	</item>
 	<item id="39466" name="Wind HP Replenishing Potion" type="EtcItem">
@@ -579,7 +579,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="etcitem_type" val="POTION" />
 		<skills>
-			<skill id="17904" level="1" /> <!-- Windy Healing Potion -->
+			<skill id="17904" level="1" /> <!-- Wind HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="39467" name="Wind Greater HP Replenishing Potion" type="EtcItem">
@@ -598,7 +598,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="etcitem_type" val="POTION" />
 		<skills>
-			<skill id="17905" level="1" /> <!-- Greater Windy Healing Potion -->
+			<skill id="17905" level="1" /> <!-- Wind Greater HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="39468" name="Wind Major HP Replenishing Potion" type="EtcItem">
@@ -617,7 +617,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="etcitem_type" val="POTION" />
 		<skills>
-			<skill id="17906" level="1" /> <!-- Major Windy Healing Potion -->
+			<skill id="17906" level="1" /> <!-- Wind Major HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="39469" name="Wind Superior HP Replenishing Potion" type="EtcItem">
@@ -636,7 +636,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="etcitem_type" val="POTION" />
 		<skills>
-			<skill id="17907" level="1" /> <!-- Superior Windy Healing Potion -->
+			<skill id="17907" level="1" /> <!-- Wind Superior HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="39470" name="Wind Supreme Windy Healing Potion" type="EtcItem">
@@ -655,7 +655,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="etcitem_type" val="POTION" />
 		<skills>
-			<skill id="17908" level="1" /> <!-- Supreme Windy Healing Potion -->
+			<skill id="17908" level="1" /> <!-- Wind Supreme Windy Healing Potion -->
 		</skills>
 	</item>
 	<item id="39471" name="Windy Recovery Potion" type="EtcItem">
@@ -674,7 +674,7 @@
 		<set name="etcitem_type" val="POTION" />
 		<set name="commissionItemType" val="POTION" />
 		<skills>
-			<skill id="17909" level="1" /> <!-- Windy Quick Healing Potion -->
+			<skill id="17909" level="1" /> <!-- Quick Wind HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="39472" name="Greater Windy Recovery Potion" type="EtcItem">
@@ -693,7 +693,7 @@
 		<set name="etcitem_type" val="POTION" />
 		<set name="commissionItemType" val="POTION" />
 		<skills>
-			<skill id="17910" level="1" /> <!-- Greater Windy Quick Healing Potion -->
+			<skill id="17910" level="1" /> <!-- Major Quick Wind HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="39473" name="Major Windy Recovery Potion" type="EtcItem">
@@ -712,7 +712,7 @@
 		<set name="etcitem_type" val="POTION" />
 		<set name="commissionItemType" val="POTION" />
 		<skills>
-			<skill id="17911" level="1" /> <!-- Major Windy Quick Healing Potion -->
+			<skill id="17911" level="1" /> <!-- Greater Quick Wind HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="39474" name="Superior Windy Recovery Potion" type="EtcItem">
@@ -731,7 +731,7 @@
 		<set name="etcitem_type" val="POTION" />
 		<set name="commissionItemType" val="POTION" />
 		<skills>
-			<skill id="17912" level="1" /> <!-- Superior Windy Quick Healing Potion -->
+			<skill id="17912" level="1" /> <!-- Superior Quick Wind HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="39475" name="Supreme Windy Recovery Potion" type="EtcItem">
@@ -750,7 +750,7 @@
 		<set name="etcitem_type" val="POTION" />
 		<set name="commissionItemType" val="POTION" />
 		<skills>
-			<skill id="17913" level="1" /> <!-- Supreme Windy Quick Healing Potion -->
+			<skill id="17913" level="1" /> <!-- Supreme Quick Wind HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="39476" name="Low-grade Love Potion" type="EtcItem">
@@ -986,7 +986,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17981" level="1" /> <!-- Scroll of Escape: Gludin Village -->
+			<skill id="17981" level="1" /> <!-- Scroll of Escape: Gludin -->
 		</skills>
 	</item>
 	<item id="39492" name="Scroll of Escape: Windy Hill" type="EtcItem">

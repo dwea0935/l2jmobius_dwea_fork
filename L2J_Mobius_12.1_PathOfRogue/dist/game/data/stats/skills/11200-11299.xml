@@ -7603,7 +7603,7 @@
 			<value level="5">0</value>
 		</coolTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<isSharedWithSummon>true</isSharedWithSummon>
 		<magicCriticalRate>5</magicCriticalRate>

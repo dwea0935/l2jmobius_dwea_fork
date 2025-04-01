@@ -268,7 +268,7 @@
 			<item id="94383" min="1" max="1" chance="2" /> <!-- Scroll: Enchant Rare Accessories -->
 			<item id="97795" min="1" max="1" chance="2" /> <!-- Package: Hardin's Soul Crystal (100 pcs.) - Sealed -->
 			<item id="97650" min="1" max="1" chance="2" /> <!-- Package: Piercing Mask (100 pcs.) - Sealed -->
-			<item id="97778" min="1" max="1" chance="2" /> <!-- Agathion Spirit Exchange Coupon Pack (200 pcs.) - Sealed -->
+			<item id="97778" min="1" max="1" chance="2" /> <!-- Spirit Agathion Exchange Coupon Pack (200 pcs.) - Sealed -->
 			<item id="98094" min="1" max="1" chance="2" /> <!-- Package: Mysterious Crystal (2000 pcs.) (Time-limited) - Sealed -->
 			<item id="94184" min="1" max="1" chance="2" /> <!-- Scroll of Blessing: Weapon -->
 			<item id="97338" min="1" max="1" chance="2" /> <!-- Scroll of Blessing: Armor -->
@@ -288,9 +288,9 @@
 			<item id="94328" min="1" max="1" chance="2" /> <!-- Elixir Powder - Sealed -->
 			<item id="96623" min="1" max="1" chance="2" /> <!-- Dye Booster -->
 			<item id="96985" min="1" max="1" chance="2" /> <!-- Package: Brooch Lv. 3 - Sealed -->
-			<item id="96983" min="1" max="1" chance="2" /> <!-- Package: Agathion Bracelet Lv. 3 - Sealed -->
+			<item id="96983" min="1" max="1" chance="2" /> <!-- Package: Agathion Summon Bracelet Lv. 3 - Sealed -->
 			<item id="96984" min="1" max="1" chance="2" /> <!-- Package: Talisman Bracelet Lv. 3 - Sealed -->
-			<item id="94732" min="2" max="2" chance="2" /> <!-- Agathion Spirit Exchange Coupon - Sealed -->
+			<item id="94732" min="2" max="2" chance="2" /> <!-- Spirit Agathion Exchange Coupon - Sealed -->
 			<item id="97266" min="1" max="1" chance="2" /> <!-- Enchant Kit: Piercing Mask - Sealed -->
 			<item id="96728" min="5" max="5" chance="2" /> <!-- Einhasad's Protection -->
 			<item id="91690" min="30" max="30" chance="2" /> <!-- Special HP Recovery Potion - Sealed -->
@@ -1464,7 +1464,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="40467" level="1" /> <!-- Kelbim's Fortress Time Stone -->
+			<skill id="40467" level="1" /> <!-- Kelbim's Fortress' Time Stone -->
 		</skills>
 	</item>
 	<item id="98199" name="Kelbim's Fortress' Time Stone" additionalName="Sealed" type="EtcItem">
@@ -1480,7 +1480,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="40468" level="1" /> <!-- Kelbim's Fortress Time Stone -->
+			<skill id="40468" level="1" /> <!-- Kelbim's Fortress' Time Stone (Sealed) -->
 		</skills>
 	</item>
 </list>

@@ -22,7 +22,7 @@ package ai.areas.PrimevalIsle;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -58,13 +58,12 @@ public class SayhaBuff extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player attacker, boolean isSummon)
+	public void onKill(Npc npc, Player attacker, boolean isSummon)
 	{
 		if (!attacker.isAffectedBySkill(BENEFACTION_OF_BLUE_HAWK))
 		{
 			BENEFACTION_OF_BLUE_HAWK.getSkill().applyEffects(attacker, attacker);
 		}
-		return super.onKill(npc, attacker, isSummon);
 	}
 	
 	public static void main(String[] args)

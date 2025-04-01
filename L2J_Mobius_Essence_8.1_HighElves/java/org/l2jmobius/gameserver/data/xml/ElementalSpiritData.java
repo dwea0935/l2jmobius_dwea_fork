@@ -30,7 +30,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.holders.ElementalSpiritTemplateHolder;
+import org.l2jmobius.gameserver.model.item.holders.ElementalSpiritTemplateHolder;
 
 /**
  * @author JoeAlisson
@@ -65,9 +65,9 @@ public class ElementalSpiritData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", list -> forEach(list, "spirit", this::parseSpirit));
+		forEach(document, "list", list -> forEach(list, "spirit", this::parseSpirit));
 	}
 	
 	private void parseSpirit(Node spiritNode)

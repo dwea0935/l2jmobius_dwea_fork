@@ -122,7 +122,6 @@
 		<hitCancelTime>0</hitCancelTime>
 		<isMagic>1</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<reuseDelay>15000</reuseDelay>
 		<staticReuse>true</staticReuse>

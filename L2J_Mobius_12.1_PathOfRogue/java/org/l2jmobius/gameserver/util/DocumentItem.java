@@ -28,12 +28,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ItemSkillType;
 import org.l2jmobius.gameserver.model.ExtractableProduct;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.holders.ItemSkillHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemSkillType;
+import org.l2jmobius.gameserver.model.item.holders.ItemSkillHolder;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.model.stats.functions.FuncTemplate;
 
@@ -84,9 +84,9 @@ public class DocumentItem extends DocumentBase implements IXmlReader
 	}
 	
 	@Override
-	protected void parseDocument(Document doc)
+	protected void parseDocument(Document document)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -166,6 +166,7 @@ public class DocumentItem extends DocumentBase implements IXmlReader
 					{
 						final int id = parseInteger(b.getAttributes(), "id");
 						final int level = parseInteger(b.getAttributes(), "level");
+						final int subLevel = parseInteger(b.getAttributes(), "subLevel", 0);
 						final ItemSkillType type = parseEnum(b.getAttributes(), ItemSkillType.class, "type", ItemSkillType.NORMAL);
 						final int chance = parseInteger(b.getAttributes(), "type_chance", 100);
 						final int value = parseInteger(b.getAttributes(), "type_value", 0);
@@ -177,7 +178,7 @@ public class DocumentItem extends DocumentBase implements IXmlReader
 								LOGGER.warning(getClass().getSimpleName() + ": Item " + itemId + " has ON_ENCHANT value greater than it's enchant limit.");
 							}
 						}
-						_currentItem.item.addSkill(new ItemSkillHolder(id, level, type, chance, value));
+						_currentItem.item.addSkill(new ItemSkillHolder(id, level, subLevel, type, chance, value));
 					}
 				}
 			}
@@ -255,7 +256,7 @@ public class DocumentItem extends DocumentBase implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 	}
 }

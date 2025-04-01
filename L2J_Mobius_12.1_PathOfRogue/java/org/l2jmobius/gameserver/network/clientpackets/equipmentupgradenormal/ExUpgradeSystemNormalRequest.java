@@ -26,13 +26,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.holders.EquipmentUpgradeNormalHolder;
 import org.l2jmobius.gameserver.data.xml.EquipmentUpgradeNormalData;
-import org.l2jmobius.gameserver.enums.UpgradeDataType;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.EquipmentUpgradeNormalHolder;
-import org.l2jmobius.gameserver.model.holders.ItemEnchantHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.UniqueItemEnchantHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.UpgradeDataType;
+import org.l2jmobius.gameserver.model.item.holders.ItemEnchantHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.UniqueItemEnchantHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -122,24 +123,24 @@ public class ExUpgradeSystemNormalRequest extends ClientPacket
 		}
 		
 		// Get materials.
-		player.destroyItem("UpgradeNormalEquipment", _objectId, 1, player, true);
+		player.destroyItem(ItemProcessType.FEE, _objectId, 1, player, true);
 		if (upgradeHolder.isHasCategory(UpgradeDataType.MATERIAL))
 		{
 			for (ItemHolder material : upgradeHolder.getItems(UpgradeDataType.MATERIAL))
 			{
-				player.destroyItemByItemId("UpgradeNormalEquipment", material.getId(), material.getCount() - (_discount.isEmpty() ? 0 : _discount.get(material.getId())), player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, material.getId(), material.getCount() - (_discount.isEmpty() ? 0 : _discount.get(material.getId())), player, true);
 			}
 		}
 		if (adena > 0)
 		{
-			player.reduceAdena("UpgradeNormalEquipment", adena, player, true);
+			player.reduceAdena(ItemProcessType.FEE, adena, player, true);
 		}
 		
 		if (Rnd.get(100d) < upgradeHolder.getChance())
 		{
 			for (ItemEnchantHolder successItem : upgradeHolder.getItems(UpgradeDataType.ON_SUCCESS))
 			{
-				final Item addedSuccessItem = player.addItem("UpgradeNormalEquipment", successItem.getId(), successItem.getCount(), player, true);
+				final Item addedSuccessItem = player.addItem(ItemProcessType.REWARD, successItem.getId(), successItem.getCount(), player, true);
 				if (successItem.getEnchantLevel() != 0)
 				{
 					isNeedToSendUpdate = true;
@@ -152,7 +153,7 @@ public class ExUpgradeSystemNormalRequest extends ClientPacket
 			{
 				for (ItemEnchantHolder bonusItem : upgradeHolder.getItems(UpgradeDataType.BONUS_TYPE))
 				{
-					final Item addedBonusItem = player.addItem("UpgradeNormalEquipment", bonusItem.getId(), bonusItem.getCount(), player, true);
+					final Item addedBonusItem = player.addItem(ItemProcessType.REWARD, bonusItem.getId(), bonusItem.getCount(), player, true);
 					if (bonusItem.getEnchantLevel() != 0)
 					{
 						isNeedToSendUpdate = true;
@@ -169,7 +170,7 @@ public class ExUpgradeSystemNormalRequest extends ClientPacket
 			{
 				for (ItemEnchantHolder failureItem : upgradeHolder.getItems(UpgradeDataType.ON_FAILURE))
 				{
-					final Item addedFailureItem = player.addItem("UpgradeNormalEquipment", failureItem.getId(), failureItem.getCount(), player, true);
+					final Item addedFailureItem = player.addItem(ItemProcessType.COMPENSATE, failureItem.getId(), failureItem.getCount(), player, true);
 					if (failureItem.getEnchantLevel() != 0)
 					{
 						isNeedToSendUpdate = true;

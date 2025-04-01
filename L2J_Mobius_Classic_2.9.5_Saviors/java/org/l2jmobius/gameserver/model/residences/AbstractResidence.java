@@ -30,18 +30,17 @@ import java.util.logging.Logger;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.ClanHallGrade;
-import org.l2jmobius.gameserver.enums.SocialClass;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.SocialClass;
+import org.l2jmobius.gameserver.model.clan.enums.ClanHallGrade;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
-import org.l2jmobius.gameserver.model.interfaces.INamable;
 import org.l2jmobius.gameserver.model.zone.type.ResidenceZone;
 
 /**
  * @author xban1x
  */
-public abstract class AbstractResidence extends ListenersContainer implements INamable
+public abstract class AbstractResidence extends ListenersContainer
 {
 	private static final Logger LOGGER = Logger.getLogger(AbstractResidence.class.getName());
 	
@@ -84,7 +83,6 @@ public abstract class AbstractResidence extends ListenersContainer implements IN
 		return _residenceId;
 	}
 	
-	@Override
 	public String getName()
 	{
 		return _name;

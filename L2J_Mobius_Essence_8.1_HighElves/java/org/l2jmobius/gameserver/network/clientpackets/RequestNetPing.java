@@ -22,6 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NetPing;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * @author Mobius
@@ -42,6 +43,6 @@ public class RequestNetPing extends ClientPacket
 			return;
 		}
 		
-		player.sendPacket(new NetPing(player.getOnlineTimeMillis()));
+		player.sendPacket(new NetPing(GameTimeTaskManager.getInstance().getGameTime()));
 	}
 }

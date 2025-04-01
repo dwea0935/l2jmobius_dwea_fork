@@ -21,11 +21,11 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author Mobius
@@ -54,7 +54,7 @@ public class MoveToward extends ClientPacket
 			return;
 		}
 		
-		final double angle = Util.convertHeadingToDegree(_heading);
+		final double angle = LocationUtil.convertHeadingToDegree(_heading);
 		final double radian = Math.toRadians(angle);
 		final double course = Math.toRadians(180);
 		final double frontDistance = player.getMoveSpeed();
@@ -66,7 +66,7 @@ public class MoveToward extends ClientPacket
 		
 		player.setCursorKeyMovement(true);
 		player.setLastServerPosition(player.getX(), player.getY(), player.getZ());
-		player.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, destination);
+		player.getAI().setIntention(Intention.MOVE_TO, destination);
 		
 		// Remove queued skill upon move request.
 		if (player.getQueuedSkill() != null)

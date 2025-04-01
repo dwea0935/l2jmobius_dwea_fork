@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
-import org.l2jmobius.gameserver.enums.SubclassType;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SubClassHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassType;
+import org.l2jmobius.gameserver.model.actor.holders.player.SubClassHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -39,7 +39,7 @@ public class ExSubjobInfo extends ServerPacket
 	
 	public ExSubjobInfo(Player player, SubclassInfoType type)
 	{
-		_currClassId = player.getClassId().getId();
+		_currClassId = player.getPlayerClass().getId();
 		_currRace = player.getRace().ordinal();
 		_type = type.ordinal();
 		_subs = new ArrayList<>();
@@ -60,7 +60,7 @@ public class ExSubjobInfo extends ServerPacket
 		public SubInfo(SubClassHolder sub)
 		{
 			_index = sub.getClassIndex();
-			_classId = sub.getClassId();
+			_classId = sub.getId();
 			_level = sub.getLevel();
 			_type = sub.isDualClass() ? SubclassType.DUALCLASS.ordinal() : SubclassType.SUBCLASS.ordinal();
 		}

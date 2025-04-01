@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -46,7 +45,7 @@ public class Disarmor extends AbstractEffect
 		_unequippedItems = new ConcurrentHashMap<>();
 		
 		final String slot = params.getString("slot", "chest");
-		_slot = ItemData.SLOTS.getOrDefault(slot, ItemTemplate.SLOT_NONE);
+		_slot = ItemTemplate.SLOTS.getOrDefault(slot, ItemTemplate.SLOT_NONE);
 		if (_slot == ItemTemplate.SLOT_NONE)
 		{
 			LOGGER.severe("Unknown bodypart slot for effect: " + slot);

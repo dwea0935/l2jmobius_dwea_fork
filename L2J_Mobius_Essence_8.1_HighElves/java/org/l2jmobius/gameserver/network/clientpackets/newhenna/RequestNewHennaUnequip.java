@@ -21,6 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets.newhenna;
 
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.henna.Henna;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -86,7 +87,7 @@ public class RequestNewHennaUnequip extends ClientPacket
 			feeType = henna.getCancelL2CoinFee();
 		}
 		
-		if (player.destroyItemByItemId("FeeType", _itemId, feeType, player, false))
+		if (player.destroyItemByItemId(ItemProcessType.FEE, _itemId, feeType, player, false))
 		{
 			player.removeHenna(_slotId);
 			player.getStat().recalculateStats(true);

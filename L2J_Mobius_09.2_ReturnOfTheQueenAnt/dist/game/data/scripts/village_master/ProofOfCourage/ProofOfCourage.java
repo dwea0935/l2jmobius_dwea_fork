@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -35,16 +35,16 @@ import ai.AbstractNpcAI;
 public class ProofOfCourage extends AbstractNpcAI
 {
 	// Misc
-	private static final Map<Integer, List<ClassId>> CLASSLIST = new HashMap<>();
+	private static final Map<Integer, List<PlayerClass>> CLASSLIST = new HashMap<>();
 	
 	static
 	{
-		CLASSLIST.put(32146, Arrays.asList(ClassId.TROOPER, ClassId.WARDER));
-		CLASSLIST.put(32147, Arrays.asList(ClassId.ELVEN_KNIGHT, ClassId.ELVEN_SCOUT, ClassId.ELVEN_WIZARD, ClassId.ORACLE));
-		CLASSLIST.put(32150, Arrays.asList(ClassId.ORC_RAIDER, ClassId.ORC_MONK));
-		CLASSLIST.put(32153, Arrays.asList(ClassId.WARRIOR, ClassId.KNIGHT, ClassId.ROGUE, ClassId.WIZARD, ClassId.CLERIC));
-		CLASSLIST.put(32157, Arrays.asList(ClassId.SCAVENGER, ClassId.ARTISAN));
-		CLASSLIST.put(32160, Arrays.asList(ClassId.PALUS_KNIGHT, ClassId.ASSASSIN, ClassId.DARK_WIZARD, ClassId.SHILLIEN_ORACLE));
+		CLASSLIST.put(32146, Arrays.asList(PlayerClass.TROOPER, PlayerClass.WARDER));
+		CLASSLIST.put(32147, Arrays.asList(PlayerClass.ELVEN_KNIGHT, PlayerClass.ELVEN_SCOUT, PlayerClass.ELVEN_WIZARD, PlayerClass.ORACLE));
+		CLASSLIST.put(32150, Arrays.asList(PlayerClass.ORC_RAIDER, PlayerClass.ORC_MONK));
+		CLASSLIST.put(32153, Arrays.asList(PlayerClass.WARRIOR, PlayerClass.KNIGHT, PlayerClass.ROGUE, PlayerClass.WIZARD, PlayerClass.CLERIC));
+		CLASSLIST.put(32157, Arrays.asList(PlayerClass.SCAVENGER, PlayerClass.ARTISAN));
+		CLASSLIST.put(32160, Arrays.asList(PlayerClass.PALUS_KNIGHT, PlayerClass.ASSASSIN, PlayerClass.DARK_WIZARD, PlayerClass.SHILLIEN_ORACLE));
 	}
 	
 	private ProofOfCourage()
@@ -56,11 +56,11 @@ public class ProofOfCourage extends AbstractNpcAI
 	@Override
 	public String onTalk(Npc npc, Player talker)
 	{
-		if (talker.getClassId().level() == 0)
+		if (talker.getPlayerClass().level() == 0)
 		{
 			return npc.getId() + "-noclass.html";
 		}
-		else if (!CLASSLIST.get(npc.getId()).contains(talker.getClassId()))
+		else if (!CLASSLIST.get(npc.getId()).contains(talker.getPlayerClass()))
 		{
 			return npc.getId() + "-no.html";
 		}

@@ -1,25 +1,29 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.Rune.SwampOfScreams;
 
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -27,6 +31,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
 import org.l2jmobius.gameserver.model.spawns.SpawnTemplate;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -45,17 +50,6 @@ public class SwampOfScreamsSiege extends AbstractNpcAI
 	};
 	private static final int SWAMP_PETRA = 24574;
 	private static final AtomicReference<SpawnTemplate> SPAWN_SWAMP_MONSTERS = new AtomicReference<>();
-	// Misc
-	private static final int[] DAYS_OF_WEEK =
-	{
-		Calendar.MONDAY,
-		Calendar.TUESDAY,
-		Calendar.WEDNESDAY,
-		Calendar.THURSDAY,
-		Calendar.FRIDAY,
-		Calendar.SATURDAY,
-		Calendar.SUNDAY
-	};
 	// Schedule: 13-15 & 22-24
 	private static final int[] DAY_TIME =
 	{
@@ -106,10 +100,12 @@ public class SwampOfScreamsSiege extends AbstractNpcAI
 				if (_daytime)
 				{
 					World.getInstance().getPlayers().forEach(p -> showOnScreenMsg(p, NpcStringId.EVENT_ALARM_22_00_24_00_NMONSTERS_OF_THE_SWAMP_OF_SCREAMS_ARE_DEFEATED, 2, 10000, true));
+					scheduleDayTime();
 				}
 				else
 				{
 					World.getInstance().getPlayers().forEach(p -> showOnScreenMsg(p, NpcStringId.EVENT_ALARM_13_00_15_00_NMONSTERS_OF_THE_SWAMP_OF_SCREAMS_ARE_DEFEATED, 2, 10000, true));
+					scheduleNightTime();
 				}
 				SPAWN_SWAMP_MONSTERS.set(SpawnData.getInstance().getSpawnByName("SwampOfScreamsMonsters"));
 				SPAWN_SWAMP_MONSTERS.get().getGroups().forEach(SpawnGroup::despawnAll);
@@ -120,58 +116,24 @@ public class SwampOfScreamsSiege extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		if ((CommonUtil.contains(SWAMP_MONSTERS, npc.getId())) && (getRandom(100) < 3))
+		if ((ArrayUtil.contains(SWAMP_MONSTERS, npc.getId())) && (getRandom(100) < 3))
 		{
 			addSpawn(SWAMP_PETRA, npc.getLocation(), false, 600000, false);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void scheduleDayTime()
 	{
-		long time = Long.MAX_VALUE;
-		for (int day : DAYS_OF_WEEK)
-		{
-			final long nextDateMillis = getNextDateMilis(day, DAY_TIME[0], DAY_TIME[1]);
-			if (nextDateMillis < time)
-			{
-				time = nextDateMillis;
-			}
-		}
-		startQuestTimer("day_time_spawn", time - System.currentTimeMillis(), null, null);
+		final Calendar nextDayTime = TimeUtil.getNextTime(DAY_TIME[0], DAY_TIME[1]);
+		startQuestTimer("day_time_spawn", nextDayTime.getTimeInMillis() - System.currentTimeMillis(), null, null);
 	}
 	
 	private void scheduleNightTime()
 	{
-		long time = Long.MAX_VALUE;
-		for (int day : DAYS_OF_WEEK)
-		{
-			final long nextDateMillis = getNextDateMilis(day, NIGHT_TIME[0], NIGHT_TIME[1]);
-			if (nextDateMillis < time)
-			{
-				time = nextDateMillis;
-			}
-		}
-		startQuestTimer("night_time_spawn", time - System.currentTimeMillis(), null, null);
-	}
-	
-	private long getNextDateMilis(int dayOfWeek, int hour, int minute)
-	{
-		final Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, hour);
-		calendar.set(Calendar.MINUTE, minute);
-		calendar.set(Calendar.SECOND, 0);
-		for (int i = 0; i < 7; i++)
-		{
-			if ((calendar.get(Calendar.DAY_OF_WEEK) == dayOfWeek) && (calendar.getTimeInMillis() > System.currentTimeMillis()))
-			{
-				return calendar.getTimeInMillis();
-			}
-			calendar.add(Calendar.DAY_OF_WEEK, 1);
-		}
-		return calendar.getTimeInMillis();
+		final Calendar nextNightTime = TimeUtil.getNextTime(NIGHT_TIME[0], NIGHT_TIME[1]);
+		startQuestTimer("night_time_spawn", nextNightTime.getTimeInMillis() - System.currentTimeMillis(), null, null);
 	}
 	
 	public static void main(String[] args)

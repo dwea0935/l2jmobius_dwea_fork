@@ -22,7 +22,7 @@ package ai.areas.GainakUnderground;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -31,7 +31,7 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.PeaceZone;
 import org.l2jmobius.gameserver.model.zone.type.SiegeZone;
@@ -81,13 +81,12 @@ public class GainakSiege extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (_isInSiege && creature.isPlayer())
 		{
 			creature.broadcastPacket(new OnEventTrigger(SIEGE_EFFECT, true));
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
@@ -137,14 +136,13 @@ public class GainakSiege extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final SiegeZone zone = ZoneManager.getInstance().getZone(npc, SiegeZone.class);
 		if ((zone != null) && (zone.getId() == 60019) && zone.isActive())
 		{
 			ThreadPool.schedule(new RespawnNewAssassin(npc.getLocation()), 60000);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private class RespawnNewAssassin implements Runnable

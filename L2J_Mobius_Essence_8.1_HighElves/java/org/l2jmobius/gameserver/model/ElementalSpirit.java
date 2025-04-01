@@ -28,17 +28,17 @@ import java.util.List;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.data.xml.ElementalSpiritData;
-import org.l2jmobius.gameserver.enums.ElementalType;
-import org.l2jmobius.gameserver.enums.UserInfoType;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnElementalSpiritUpgrade;
-import org.l2jmobius.gameserver.model.holders.ElementalSpiritAbsorbItemHolder;
-import org.l2jmobius.gameserver.model.holders.ElementalSpiritDataHolder;
-import org.l2jmobius.gameserver.model.holders.ElementalSpiritTemplateHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnElementalSpiritUpgrade;
+import org.l2jmobius.gameserver.model.item.holders.ElementalSpiritAbsorbItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ElementalSpiritDataHolder;
+import org.l2jmobius.gameserver.model.item.holders.ElementalSpiritTemplateHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.elementalspirits.ElementalSpiritInfo;
@@ -56,7 +56,7 @@ public class ElementalSpirit
 	private ElementalSpiritTemplateHolder _template;
 	private final ElementalSpiritDataHolder _data;
 	
-	public ElementalSpirit(ElementalType type, Player owner)
+	public ElementalSpirit(ElementalSpiritType type, Player owner)
 	{
 		_data = new ElementalSpiritDataHolder(type.getId(), owner.getObjectId());
 		_template = ElementalSpiritData.getInstance().getSpirit(type.getId(), _data.getStage());

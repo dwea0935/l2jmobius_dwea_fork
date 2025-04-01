@@ -1807,7 +1807,6 @@
 		<effectPoint>0</effectPoint>
 		<hitTime>0</hitTime>
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>76</magicLevel>
 		<effects>
@@ -2469,7 +2468,6 @@
 		<effectRange>1200</effectRange>
 		<hitTime>1000</hitTime>
 		<isHidingMessages>true</isHidingMessages>
-		<isMagic>0</isMagic>
 		<isMagic>0</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicLevel>

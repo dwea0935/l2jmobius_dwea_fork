@@ -26,12 +26,12 @@ import java.sql.ResultSet;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.dethrone.ExDethroneCheckName;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Negrito8
@@ -62,7 +62,7 @@ public class RequestExDethroneCheckName extends ClientPacket
 		
 		int result;
 		// For some reason, name is starting with a char non-alphanumeric. (SizedString?)
-		if (!Util.isAlphaNumeric(_conquestName.substring(1)) || checkRestrictedNames(_conquestName.substring(1)))
+		if (!StringUtil.isAlphaNumeric(_conquestName.substring(1)) || checkRestrictedNames(_conquestName.substring(1)))
 		{
 			result = INVALID_NAME;
 		}

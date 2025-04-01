@@ -21,9 +21,9 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.VariationInstance;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -31,7 +31,7 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 /**
  * @author Mobius
  */
-public class ShortCutRegister extends ServerPacket
+public class ShortcutRegister extends ServerPacket
 {
 	private final Player _player;
 	private final Shortcut _shortcut;
@@ -41,7 +41,7 @@ public class ShortCutRegister extends ServerPacket
 	 * @param shortcut
 	 * @param player
 	 */
-	public ShortCutRegister(Shortcut shortcut, Player player)
+	public ShortcutRegister(Shortcut shortcut, Player player)
 	{
 		_player = player;
 		_shortcut = shortcut;

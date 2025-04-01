@@ -129,6 +129,7 @@ public class PlayerVariables extends AbstractVariables
 	public static final String CONQUEST_ABILITY_BATTLE_SOUL_UPGRADES = "CONQUEST_ABILITY_BATTLE_SOUL_UPGRADES";
 	public static final String ILLUSORY_POINTS_ACQUIRED = "ILLUSORY_POINTS_ACQUIRED";
 	public static final String ILLUSORY_POINTS_USED = "ILLUSORY_POINTS_USED";
+	public static final String ACTIVE_RELIC = "ACTIVE_RELIC";
 	
 	private final int _objectId;
 	
@@ -138,7 +139,6 @@ public class PlayerVariables extends AbstractVariables
 		restoreMe();
 	}
 	
-	@Override
 	public boolean restoreMe()
 	{
 		// Restore previous variables.
@@ -166,7 +166,6 @@ public class PlayerVariables extends AbstractVariables
 		return true;
 	}
 	
-	@Override
 	public boolean storeMe()
 	{
 		// No changes, nothing to store.
@@ -209,7 +208,6 @@ public class PlayerVariables extends AbstractVariables
 		return true;
 	}
 	
-	@Override
 	public boolean deleteMe()
 	{
 		try (Connection con = DatabaseFactory.getConnection())

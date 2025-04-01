@@ -272,7 +272,6 @@ import handlers.targethandlers.affectobject.NotFriendPc;
 import handlers.targethandlers.affectobject.ObjectDeadNpcBody;
 import handlers.targethandlers.affectobject.UndeadRealEnemy;
 import handlers.targethandlers.affectobject.WyvernObject;
-import handlers.targethandlers.affectscope.ValakasScope;
 import handlers.targethandlers.affectscope.DeadParty;
 import handlers.targethandlers.affectscope.DeadPartyPledge;
 import handlers.targethandlers.affectscope.DeadPledge;
@@ -291,6 +290,7 @@ import handlers.targethandlers.affectscope.Square;
 import handlers.targethandlers.affectscope.SquarePB;
 import handlers.targethandlers.affectscope.StaticObjectScope;
 import handlers.targethandlers.affectscope.SummonExceptMaster;
+import handlers.targethandlers.affectscope.ValakasScope;
 import handlers.usercommandhandlers.ChannelDelete;
 import handlers.usercommandhandlers.ChannelInfo;
 import handlers.usercommandhandlers.ChannelLeave;
@@ -566,9 +566,9 @@ public class MasterHandler
 			SiegeStatus.class,
 		},
 		{
-			// TODO: Add configuration options for this voiced commands:
-			// CastleVCmd.class,
-			// SetVCmd.class,
+			// TODO: Add configuration options for this voiced commands.
+			// CastleHandler.class,
+			// ClanHandler.class,
 			Config.ENABLE_AUTO_PLAY ? AutoPlay.class : null,
 			Config.BANKING_SYSTEM_ENABLED ? Banking.class : null,
 			Config.CHAT_ADMIN ? ChatAdmin.class : null,

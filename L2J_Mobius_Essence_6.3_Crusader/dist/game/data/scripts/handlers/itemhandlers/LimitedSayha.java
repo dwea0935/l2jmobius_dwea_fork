@@ -23,6 +23,7 @@ package handlers.itemhandlers;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -67,7 +68,7 @@ public class LimitedSayha implements IItemHandler
 		}
 		if ((time > 0) && player.setLimitedSayhaGraceEndTime(System.currentTimeMillis() + time))
 		{
-			player.destroyItem("LimitedSayha potion", item, 1, player, true);
+			player.destroyItem(ItemProcessType.DESTROY, item, 1, player, true);
 		}
 		else
 		{

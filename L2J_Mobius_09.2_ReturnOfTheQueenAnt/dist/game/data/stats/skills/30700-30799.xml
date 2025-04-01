@@ -8397,7 +8397,6 @@
 		<effectRange>200</effectRange>
 		<hitTime>1000</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
 			<value level="1">85</value>

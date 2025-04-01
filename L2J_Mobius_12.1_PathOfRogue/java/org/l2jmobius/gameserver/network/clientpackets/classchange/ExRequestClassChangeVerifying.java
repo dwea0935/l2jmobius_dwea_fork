@@ -21,8 +21,8 @@
 package org.l2jmobius.gameserver.network.clientpackets.classchange;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
@@ -51,7 +51,7 @@ public class ExRequestClassChangeVerifying extends ClientPacket
 			return;
 		}
 		
-		if (_classId != player.getClassId().getId())
+		if (_classId != player.getPlayerClass().getId())
 		{
 			return;
 		}

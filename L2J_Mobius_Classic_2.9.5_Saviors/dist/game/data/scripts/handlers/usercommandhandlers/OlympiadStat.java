@@ -51,7 +51,7 @@ public class OlympiadStat implements IUserCommandHandler
 		
 		final int nobleObjId = player.getObjectId();
 		final WorldObject target = player.getTarget();
-		if ((target == null) || !target.isPlayer() || (target.asPlayer().getClassId().level() < 2))
+		if ((target == null) || !target.isPlayer() || (target.asPlayer().getPlayerClass().level() < 2))
 		{
 			player.sendPacket(SystemMessageId.THIS_COMMAND_IS_AVAILABLE_ONLY_WHEN_THE_TARGET_HAS_COMPLETED_THE_2ND_CLASS_TRANSFER);
 			return false;

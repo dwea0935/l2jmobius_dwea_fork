@@ -44,17 +44,18 @@ import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
 import org.l2jmobius.gameserver.data.xml.StaticObjectData;
-import org.l2jmobius.gameserver.enums.MountType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.residences.AbstractResidence;
 import org.l2jmobius.gameserver.model.zone.type.FortZone;
@@ -200,7 +201,7 @@ public class Fort extends AbstractResidence
 						dbSave();
 						if (_cwh)
 						{
-							_fortOwner.getWarehouse().destroyItemByItemId("CS_function_fee", Inventory.ADENA_ID, fee, null, null);
+							_fortOwner.getWarehouse().destroyItemByItemId(ItemProcessType.FEE, Inventory.ADENA_ID, fee, null, null);
 						}
 						ThreadPool.schedule(new FunctionTask(true), _rate);
 					}
@@ -702,7 +703,7 @@ public class Fort extends AbstractResidence
 		{
 			return false;
 		}
-		if ((lease > 0) && !player.destroyItemByItemId("Consume", Inventory.ADENA_ID, lease, null, true))
+		if ((lease > 0) && !player.destroyItemByItemId(null, Inventory.ADENA_ID, lease, null, true))
 		{
 			return false;
 		}
@@ -1180,7 +1181,7 @@ public class Fort extends AbstractResidence
 					spawnDat.setXYZ(rs.getInt("x"), rs.getInt("y"), rs.getInt("z"));
 					spawnDat.setHeading(rs.getInt("heading"));
 					spawnDat.setRespawnDelay(60);
-					SpawnTable.getInstance().addNewSpawn(spawnDat, false);
+					SpawnTable.getInstance().addSpawn(spawnDat);
 					spawnDat.doSpawn(false);
 					spawnDat.startRespawn();
 				}

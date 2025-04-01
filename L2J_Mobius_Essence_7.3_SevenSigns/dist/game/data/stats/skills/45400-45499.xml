@@ -2221,7 +2221,6 @@
 		<effectPoint>418</effectPoint>
 		<hitTime>3000</hitTime>
 		<isMagic>1</isMagic>
-		<isMagic>1</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<itemConsumeCount>100</itemConsumeCount>
 		<itemConsumeId>3031</itemConsumeId>

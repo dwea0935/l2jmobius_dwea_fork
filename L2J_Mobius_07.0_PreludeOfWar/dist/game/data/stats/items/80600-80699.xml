@@ -22,7 +22,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="39466" level="1" /> <!-- Anniversary Talisman -->
+			<skill id="39466" level="1" /> <!-- 15th Anniversary Talisman -->
 		</skills>
 	</item>
 	<item id="80602" name="15th Anniversary Mini Cake" type="EtcItem">

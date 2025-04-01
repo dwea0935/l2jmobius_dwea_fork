@@ -22,10 +22,11 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 import org.l2jmobius.gameserver.network.serverpackets.ExHeroList;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -63,8 +64,21 @@ public class OlympiadManager extends Npc
 		}
 		else if (command.startsWith("OlympiadNoble"))
 		{
-			if (!player.isNoble() || (player.getClassId().level() < 3))
+			if (player.getClassIndex() != 0)
 			{
+				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
+				html.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "noble_desc5.htm");
+				html.replace("%objectId%", String.valueOf(getObjectId()));
+				player.sendPacket(html);
+				return;
+			}
+			
+			if (!player.isNoble() || (player.getPlayerClass().level() < 3))
+			{
+				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
+				html.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "noble_desc6.htm");
+				html.replace("%objectId%", String.valueOf(getObjectId()));
+				player.sendPacket(html);
 				return;
 			}
 			
@@ -165,7 +179,7 @@ public class OlympiadManager extends Npc
 					if (passes > 0)
 					{
 						player.getVariables().remove(Olympiad.UNCLAIMED_OLYMPIAD_PASSES_VAR);
-						player.addItem("Olympiad", GATE_PASS, passes * Config.OLYMPIAD_GP_PER_POINT, player, true);
+						player.addItem(ItemProcessType.REWARD, GATE_PASS, passes * Config.OLYMPIAD_GP_PER_POINT, player, true);
 					}
 					break;
 				}

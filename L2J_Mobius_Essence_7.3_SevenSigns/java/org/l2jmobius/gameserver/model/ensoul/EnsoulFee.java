@@ -19,7 +19,7 @@ package org.l2jmobius.gameserver.model.ensoul;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author UnAfraid

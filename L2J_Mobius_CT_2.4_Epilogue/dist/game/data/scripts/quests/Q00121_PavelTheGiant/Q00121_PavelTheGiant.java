@@ -35,7 +35,7 @@ public class Q00121_PavelTheGiant extends Quest
 	
 	public Q00121_PavelTheGiant()
 	{
-		super(121);
+		super(121, "Pavel the Giant");
 		addStartNpc(NEWYEAR);
 		addTalkId(NEWYEAR, YUMI);
 	}

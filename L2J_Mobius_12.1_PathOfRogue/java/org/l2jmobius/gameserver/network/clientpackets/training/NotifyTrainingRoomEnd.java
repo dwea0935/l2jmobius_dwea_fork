@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.training;
 
+import org.l2jmobius.gameserver.data.holders.TrainingHolder;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.TrainingHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.training.ExTrainingZone_Leaving;
 

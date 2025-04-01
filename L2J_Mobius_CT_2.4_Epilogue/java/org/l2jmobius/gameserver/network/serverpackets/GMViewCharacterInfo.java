@@ -62,7 +62,7 @@ public class GMViewCharacterInfo extends ServerPacket
 		buffer.writeInt(_player.getRace().ordinal());
 		final PlayerAppearance appearance = _player.getAppearance();
 		buffer.writeInt(appearance.isFemale());
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		buffer.writeInt(_player.getLevel());
 		buffer.writeLong(_player.getExp());
 		buffer.writeInt(_player.getSTR());
@@ -132,7 +132,7 @@ public class GMViewCharacterInfo extends ServerPacket
 		buffer.writeInt(_player.getPvpKills());
 		buffer.writeShort(_player.getRecomLeft());
 		buffer.writeShort(_player.getRecomHave()); // Blue value for name (0 = white, 255 = pure blue)
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		buffer.writeInt(0); // special effects? circles around player...
 		buffer.writeInt(_player.getMaxCp());
 		buffer.writeInt((int) _player.getCurrentCp());

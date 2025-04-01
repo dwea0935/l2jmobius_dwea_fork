@@ -11,7 +11,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21446" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21446" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="27301" name="Pirate Captain Outfit" additionalName="Low-grade / HP Recovery" type="Armor">
@@ -25,7 +25,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21449" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21449" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27302" name="Pirate Captain Outfit" additionalName="Low-grade / MP Recovery" type="Armor">
@@ -39,7 +39,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21452" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21452" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27303" name="Pirate Captain Outfit" additionalName="Low-grade / Evasion" type="Armor">
@@ -53,7 +53,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21455" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21455" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="27304" name="Pirate Captain Outfit" additionalName="Mid-grade / Debuff Reflection" type="Armor">
@@ -67,7 +67,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21417" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21417" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="27305" name="Pirate Captain Outfit" additionalName="Mid-grade / Damage Reflection Resistance" type="Armor">
@@ -81,7 +81,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21420" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21420" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="27306" name="Pirate Captain Outfit" additionalName="Mid-grade / Ranged Attack Resistance" type="Armor">
@@ -95,7 +95,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21423" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21423" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="27307" name="Pirate Captain Outfit" additionalName="Mid-grade / P. Def." type="Armor">
@@ -109,7 +109,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21426" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21426" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="27308" name="Pirate Captain Outfit" additionalName="Mid-grade / M. Def." type="Armor">
@@ -123,7 +123,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21429" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21429" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="27309" name="Pirate Captain Outfit" additionalName="Mid-grade / Attribute Resistance" type="Armor">
@@ -137,7 +137,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21432" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21432" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="27310" name="Pirate Captain Outfit" additionalName="Mid-grade / Received Healing" type="Armor">
@@ -151,7 +151,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21435" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21435" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="27311" name="Pirate Captain Outfit" additionalName="Mid-grade / Max HP" type="Armor">
@@ -165,7 +165,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21438" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21438" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="27312" name="Pirate Captain Outfit" additionalName="Mid-grade / Max MP" type="Armor">
@@ -179,7 +179,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21441" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21441" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="27313" name="Pirate Captain Outfit" additionalName="Mid-grade / Max CP" type="Armor">
@@ -193,7 +193,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21444" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21444" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="27314" name="Pirate Captain Outfit" additionalName="Mid-grade / Speed" type="Armor">
@@ -207,7 +207,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21447" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21447" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="27315" name="Pirate Captain Outfit" additionalName="Mid-grade / HP Recovery" type="Armor">
@@ -221,7 +221,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21450" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21450" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27316" name="Pirate Captain Outfit" additionalName="Mid-grade / MP Recovery" type="Armor">
@@ -235,7 +235,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21453" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21453" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27317" name="Pirate Captain Outfit" additionalName="Mid-grade / Evasion" type="Armor">
@@ -249,7 +249,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21456" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21456" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="27318" name="Pirate Captain Outfit" additionalName="High-grade / Debuff Reflection" type="Armor">
@@ -263,7 +263,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21418" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21418" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="27319" name="Pirate Captain Outfit" additionalName="High-grade / Damage Reflection Resistance" type="Armor">
@@ -277,7 +277,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21421" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21421" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="27320" name="Pirate Captain Outfit" additionalName="High-grade / Ranged Attack Resistance" type="Armor">
@@ -291,7 +291,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21424" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21424" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="27321" name="Pirate Captain Outfit" additionalName="High-grade / P. Def." type="Armor">
@@ -305,7 +305,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21427" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21427" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="27322" name="Pirate Captain Outfit" additionalName="High-grade / M. Def." type="Armor">
@@ -319,7 +319,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21430" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21430" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="27323" name="Pirate Captain Outfit" additionalName="High-grade / Attribute Resistance" type="Armor">
@@ -333,7 +333,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21433" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21433" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="27324" name="Pirate Captain Outfit" additionalName="High-grade / Received Healing" type="Armor">
@@ -347,7 +347,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21436" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21436" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="27325" name="Pirate Captain Outfit" additionalName="High-grade / Max HP" type="Armor">
@@ -361,7 +361,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21439" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21439" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="27326" name="Pirate Captain Outfit" additionalName="High-grade / Max MP" type="Armor">
@@ -375,7 +375,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21442" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21442" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="27327" name="Pirate Captain Outfit" additionalName="High-grade / Max CP" type="Armor">
@@ -389,7 +389,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21445" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21445" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="27328" name="Pirate Captain Outfit" additionalName="High-grade / Speed" type="Armor">
@@ -403,7 +403,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21448" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21448" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="27329" name="Pirate Captain Outfit" additionalName="High-grade / HP Recovery" type="Armor">
@@ -417,7 +417,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21451" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21451" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27330" name="Pirate Captain Outfit" additionalName="High-grade / MP Recovery" type="Armor">
@@ -431,7 +431,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21454" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21454" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27331" name="Pirate Captain Outfit" additionalName="High-grade / Evasion" type="Armor">
@@ -445,7 +445,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21457" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21457" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="27332" name="Pirate Outfit" additionalName="Low-grade / Debuff Reflection" type="Armor">
@@ -459,7 +459,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21416" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21416" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="27333" name="Pirate Outfit" additionalName="Low-grade / Damage Reflection Resistance" type="Armor">
@@ -473,7 +473,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21419" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21419" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="27334" name="Pirate Outfit" additionalName="Low-grade / Ranged Attack Resistance" type="Armor">
@@ -487,7 +487,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21422" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21422" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="27335" name="Pirate Outfit" additionalName="Low-grade / P. Def." type="Armor">
@@ -501,7 +501,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21425" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21425" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="27336" name="Pirate Outfit" additionalName="Low-grade / M. Def." type="Armor">
@@ -515,7 +515,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21428" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21428" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="27337" name="Pirate Outfit" additionalName="Low-grade / Attribute Resistance" type="Armor">
@@ -529,7 +529,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21431" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21431" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="27338" name="Pirate Outfit" additionalName="Low-grade / Received Healing" type="Armor">
@@ -543,7 +543,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21434" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21434" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="27339" name="Pirate Outfit" additionalName="Low-grade / Max HP" type="Armor">
@@ -557,7 +557,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21437" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21437" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="27340" name="Pirate Outfit" additionalName="Low-grade / Max MP" type="Armor">
@@ -571,7 +571,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21440" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21440" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="27341" name="Pirate Outfit" additionalName="Low-grade / Max CP" type="Armor">
@@ -585,7 +585,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21443" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21443" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="27342" name="Pirate Outfit" additionalName="Low-grade / Speed" type="Armor">
@@ -599,7 +599,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21446" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21446" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="27343" name="Pirate Outfit" additionalName="Low-grade / HP Recovery" type="Armor">
@@ -613,7 +613,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21449" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21449" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27344" name="Pirate Outfit" additionalName="Low-grade / MP Recovery" type="Armor">
@@ -627,7 +627,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21452" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21452" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27345" name="Pirate Outfit" additionalName="Low-grade / Evasion" type="Armor">
@@ -641,7 +641,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21455" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21455" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="27346" name="Pirate Outfit" additionalName="Mid-grade / Debuff Reflection" type="Armor">
@@ -655,7 +655,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21417" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21417" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="27347" name="Pirate Outfit" additionalName="Mid-grade / Damage Reflection Resistance" type="Armor">
@@ -669,7 +669,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21420" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21420" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="27348" name="Pirate Outfit" additionalName="Mid-grade / Ranged Attack Resistance" type="Armor">
@@ -683,7 +683,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21423" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21423" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="27349" name="Pirate Outfit" additionalName="Mid-grade / P. Def." type="Armor">
@@ -697,7 +697,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21426" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21426" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="27350" name="Pirate Outfit" additionalName="Mid-grade / M. Def." type="Armor">
@@ -711,7 +711,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21429" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21429" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="27351" name="Pirate Outfit" additionalName="Mid-grade / Attribute Resistance" type="Armor">
@@ -725,7 +725,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21432" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21432" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="27352" name="Pirate Outfit" additionalName="Mid-grade / Received Healing" type="Armor">
@@ -739,7 +739,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21435" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21435" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="27353" name="Pirate Outfit" additionalName="Mid-grade / Max HP" type="Armor">
@@ -753,7 +753,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21438" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21438" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="27354" name="Pirate Outfit" additionalName="Mid-grade / Max MP" type="Armor">
@@ -767,7 +767,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21441" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21441" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="27355" name="Pirate Outfit" additionalName="Mid-grade / Max CP" type="Armor">
@@ -781,7 +781,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21444" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21444" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="27356" name="Pirate Outfit" additionalName="Mid-grade / Speed" type="Armor">
@@ -795,7 +795,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21447" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21447" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="27357" name="Pirate Outfit" additionalName="Mid-grade / HP Recovery" type="Armor">
@@ -809,7 +809,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21450" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21450" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27358" name="Pirate Outfit" additionalName="Mid-grade / MP Recovery" type="Armor">
@@ -823,7 +823,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21453" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21453" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27359" name="Pirate Outfit" additionalName="Mid-grade / Evasion" type="Armor">
@@ -837,7 +837,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21456" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21456" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="27360" name="Pirate Outfit" additionalName="High-grade / Debuff Reflection" type="Armor">
@@ -851,7 +851,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21418" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21418" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="27361" name="Pirate Outfit" additionalName="High-grade / Damage Reflection Resistance" type="Armor">
@@ -865,7 +865,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21421" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21421" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="27362" name="Pirate Outfit" additionalName="High-grade / Ranged Attack Resistance" type="Armor">
@@ -879,7 +879,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21424" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21424" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="27363" name="Pirate Outfit" additionalName="High-grade / P. Def." type="Armor">
@@ -893,7 +893,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21427" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21427" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="27364" name="Pirate Outfit" additionalName="High-grade / M. Def." type="Armor">
@@ -907,7 +907,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21430" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21430" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="27365" name="Pirate Outfit" additionalName="High-grade / Attribute Resistance" type="Armor">
@@ -921,7 +921,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21433" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21433" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="27366" name="Pirate Outfit" additionalName="High-grade / Received Healing" type="Armor">
@@ -935,7 +935,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21436" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21436" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="27367" name="Pirate Outfit" additionalName="High-grade / Max HP" type="Armor">
@@ -949,7 +949,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21439" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21439" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="27368" name="Pirate Outfit" additionalName="High-grade / Max MP" type="Armor">
@@ -963,7 +963,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21442" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21442" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="27369" name="Pirate Outfit" additionalName="High-grade / Max CP" type="Armor">
@@ -977,7 +977,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21445" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21445" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="27370" name="Pirate Outfit" additionalName="High-grade / Speed" type="Armor">
@@ -991,7 +991,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21448" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21448" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="27371" name="Pirate Outfit" additionalName="High-grade / HP Recovery" type="Armor">
@@ -1005,7 +1005,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21451" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21451" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27372" name="Pirate Outfit" additionalName="High-grade / MP Recovery" type="Armor">
@@ -1019,7 +1019,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21454" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21454" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="27373" name="Pirate Outfit" additionalName="High-grade / Evasion" type="Armor">
@@ -1033,7 +1033,7 @@
 		<set name="weight" val="1000" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21457" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21457" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="27374" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / Debuff Reflection" type="EtcItem">
@@ -1048,7 +1048,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27452" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27452" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="27375" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / Damage Reflection Resistance" type="EtcItem">
@@ -1063,7 +1063,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27453" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27453" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="27376" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / Ranged Attack Resistance" type="EtcItem">
@@ -1078,7 +1078,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27454" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27454" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="27377" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / P. Def." type="EtcItem">
@@ -1093,7 +1093,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27455" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27455" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="27378" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / M. Def." type="EtcItem">
@@ -1108,7 +1108,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27456" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27456" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="27379" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / Attribute Resistance" type="EtcItem">
@@ -1123,7 +1123,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27457" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27457" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="27380" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / Received Healing" type="EtcItem">
@@ -1138,7 +1138,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27458" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27458" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="27381" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / Max HP" type="EtcItem">
@@ -1153,7 +1153,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27459" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27459" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="27382" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / Max MP" type="EtcItem">
@@ -1168,7 +1168,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27460" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27460" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="27383" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / Max CP" type="EtcItem">
@@ -1183,11 +1183,11 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27461" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27461" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="27384" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / Speed" type="EtcItem">
-		<!-- Changes the appearance of the entire armor into that of a Pirate Captain. Tops and one-pieces only. It changes everything, making the appearance of all armor into that of a Pirate Captain. Appearance is restored through the use of a Restoration Stone. When modified, Speed +3. -->
+		<!-- Changes the armor appearance to that of Pirate Captain Outfit. Applied on upper armor as well as on full-body armor. Use Scroll: Restore Equipment to restore the default appearance. Speed +3. -->
 		<set name="icon" val="BranchSys3.icon1.g_scrl_change_chest" />
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="Appearance" />
@@ -1198,7 +1198,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27462" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27462" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="27385" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / HP Recovery" type="EtcItem">
@@ -1213,7 +1213,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27463" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27463" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="27386" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / MP Recovery" type="EtcItem">
@@ -1228,7 +1228,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27464" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27464" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="27387" name="Pirate Captain Appeareance Stone" additionalName="Low-grade / Evasion" type="EtcItem">
@@ -1243,7 +1243,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27465" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27465" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Low-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="27388" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / Debuff Reflection" type="EtcItem">
@@ -1258,7 +1258,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27466" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27466" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="27389" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / Damage Reflection Resistance" type="EtcItem">
@@ -1273,7 +1273,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27467" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27467" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="27390" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / Ranged Attack Resistance" type="EtcItem">
@@ -1288,7 +1288,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27468" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27468" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="27391" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / P. Def." type="EtcItem">
@@ -1303,7 +1303,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27469" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27469" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="27392" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / M. Def." type="EtcItem">
@@ -1318,7 +1318,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27470" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27470" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="27393" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / Attribute Resistance" type="EtcItem">
@@ -1333,7 +1333,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27471" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27471" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="27394" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / Received Healing" type="EtcItem">
@@ -1348,7 +1348,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27472" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27472" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="27395" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / Max HP" type="EtcItem">
@@ -1363,7 +1363,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27473" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27473" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="27396" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / Max MP" type="EtcItem">
@@ -1378,7 +1378,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27474" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27474" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="27397" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / Max CP" type="EtcItem">
@@ -1393,7 +1393,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27475" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27475" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="27398" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / Speed" type="EtcItem">
@@ -1408,7 +1408,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27476" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27476" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="27399" name="Pirate Captain Appeareance Stone" additionalName="Mid-grade / HP Recovery" type="EtcItem">
@@ -1423,7 +1423,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="27477" level="1" /> <!-- Pirate Captain Appeareance Stone -->
+			<skill id="27477" level="1" /> <!-- Appearance Stone: Pirate Captain Outfit - Mid-grade / Effect 12 -->
 		</skills>
 	</item>
 </list>

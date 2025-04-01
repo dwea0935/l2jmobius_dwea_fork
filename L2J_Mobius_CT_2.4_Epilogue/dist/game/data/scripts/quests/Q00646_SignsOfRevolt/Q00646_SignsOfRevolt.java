@@ -35,7 +35,7 @@ public class Q00646_SignsOfRevolt extends Quest
 	
 	public Q00646_SignsOfRevolt()
 	{
-		super(646);
+		super(646, "Signs of Revolt");
 		addStartNpc(TORRANT);
 		addTalkId(TORRANT);
 	}

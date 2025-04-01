@@ -21,8 +21,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.Movie;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.AggroInfo;
 import org.l2jmobius.gameserver.model.DamageDoneInfo;
 import org.l2jmobius.gameserver.model.Location;
@@ -32,14 +31,15 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import instances.AbstractInstance;
 
@@ -225,7 +225,7 @@ public class IstinaCavern extends AbstractInstance
 						final Creature target = istina.getHateList().stream().sorted((o1, o2) -> (int) o1.calculateDistance3D(o2)).findFirst().orElse(null);
 						if (target != null)
 						{
-							final Npc eruption = addSpawn(INVISIBLE_NPC, Util.getRandomPosition(target, 50, 50), false, 0, false, instance.getId());
+							final Npc eruption = addSpawn(INVISIBLE_NPC, LocationUtil.getRandomLocation(target, 50, 50), false, 0, false, instance.getId());
 							eruption.getVariables().set("ERUPTION_TARGET", target);
 						}
 					}
@@ -361,7 +361,7 @@ public class IstinaCavern extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if ((skill != null) && isInInstance(instance))
@@ -400,7 +400,7 @@ public class IstinaCavern extends AbstractInstance
 				{
 					npc.asAttackable().getAggroList().values().stream().sorted(Comparator.comparingLong(AggroInfo::getHate)).map(AggroInfo::getAttacker).limit(5).forEach(character ->
 					{
-						final Npc eruption = addSpawn(INVISIBLE_NPC, Util.getRandomPosition(character, 150, 150), false, 0, false, instance.getId());
+						final Npc eruption = addSpawn(INVISIBLE_NPC, LocationUtil.getRandomLocation(character, 150, 150), false, 0, false, instance.getId());
 						eruption.getVariables().set("ERUPTION_TARGET", character);
 					});
 				}
@@ -424,11 +424,10 @@ public class IstinaCavern extends AbstractInstance
 				}
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -559,11 +558,10 @@ public class IstinaCavern extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -583,7 +581,6 @@ public class IstinaCavern extends AbstractInstance
 				getTimers().addTimer("BALLISTA_START_TIMER", 10000, npc, null);
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -664,7 +661,7 @@ public class IstinaCavern extends AbstractInstance
 				final long damage = info.getDamage();
 				if (damage > 1)
 				{
-					if (!Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, attacker, true))
+					if (!LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, attacker, true))
 					{
 						continue;
 					}

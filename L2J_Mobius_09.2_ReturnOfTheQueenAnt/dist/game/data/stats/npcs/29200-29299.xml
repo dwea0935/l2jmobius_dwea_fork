@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="29200" level="99" type="Monster" name="Earth Wyrm Tail">
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
@@ -9,7 +9,6 @@
 		</parameters>
 		<race>BUG</race>
 		<sex>MALE</sex>
-		<equipment rhand="15280" /> <!-- Transparent 1HS (NPC) -->
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="132739273.488859" hpRegen="8.5" mp="22800" mpRegen="30" />
@@ -158,6 +157,7 @@
 		<race>UNDEAD</race>
 		<sex>FEMALE</sex>
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
+		<equipment rhand="15302" /> <!-- Transparent Bow (NPC) -->
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="443936" hpRegen="8.5" mp="23550" mpRegen="30" />
 			<attack physical="75762.9315245988" magical="21379.1984705962" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />

@@ -17,10 +17,10 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.FakePlayerData;
 import org.l2jmobius.gameserver.network.serverpackets.ExIsCharNameCreatable;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author UnAfraid
@@ -46,7 +46,7 @@ public class RequestCharacterNameCreatable extends ClientPacket
 	{
 		final int charId = CharInfoTable.getInstance().getIdByName(_name);
 		int result;
-		if (!Util.isAlphaNumeric(_name) || !isValidName(_name))
+		if (!StringUtil.isAlphaNumeric(_name) || !isValidName(_name))
 		{
 			result = INVALID_NAME;
 		}

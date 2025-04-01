@@ -25,7 +25,6 @@ import java.util.List;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -34,6 +33,7 @@ import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * @author Atronic
@@ -90,7 +90,7 @@ public class ExAcquireAPSkillList extends ServerPacket
 		for (SkillLearn sk : SkillTreeData.getInstance().getAbilitySkillTree().values())
 		{
 			final Skill knownSkill = player.getKnownSkill(sk.getSkillId());
-			if ((knownSkill != null) && (knownSkill.getLevel() == sk.getSkillLevel()) && CommonUtil.contains(learnedSkills, sk.getSkillId() + "-" + sk.getSkillLevel()))
+			if ((knownSkill != null) && (knownSkill.getLevel() == sk.getSkillLevel()) && ArrayUtil.contains(learnedSkills, sk.getSkillId() + "-" + sk.getSkillLevel()))
 			{
 				_skills.add(knownSkill);
 			}

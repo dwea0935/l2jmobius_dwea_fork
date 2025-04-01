@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 
 public class VillageMasterDElf extends VillageMaster
@@ -36,7 +36,7 @@ public class VillageMasterDElf extends VillageMaster
 	}
 	
 	@Override
-	protected final boolean checkVillageMasterRace(ClassId pClass)
+	protected final boolean checkVillageMasterRace(PlayerClass pClass)
 	{
 		if (pClass == null)
 		{

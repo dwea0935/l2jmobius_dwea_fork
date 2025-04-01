@@ -23,7 +23,7 @@ package org.l2jmobius.gameserver.network.serverpackets.pet;
 import java.util.Set;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.EvolveLevel;
+import org.l2jmobius.gameserver.data.enums.EvolveLevel;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.instance.Servitor;
@@ -31,7 +31,7 @@ import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 /**
  * 12 - wolf, 13 - buffalo, 14 - tiger, 15-kukkabara, 17 - hawk, 16 - dragon

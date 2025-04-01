@@ -23,9 +23,9 @@ package instances.KelbimFortress.KelbimRaid;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 import instances.KelbimFortress.KelbimFortressManager;
@@ -65,7 +65,7 @@ public class KelbimFortressKelbimGuards extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance world = (attacker == null) || (npc == null) ? null : attacker.getInstanceWorld();
 		if ((npc == null) || (world == null) || (world.getTemplateId() != KelbimFortressManager.INSTANCE_TEMPLATE_ID))
@@ -74,7 +74,6 @@ public class KelbimFortressKelbimGuards extends AbstractNpcAI
 		}
 		
 		thinkAction(world, npc);
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	public void thinkAction(Instance world, Npc npc)

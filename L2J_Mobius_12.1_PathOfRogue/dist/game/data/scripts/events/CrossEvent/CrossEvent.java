@@ -27,15 +27,15 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.instancemanager.events.CrossEventManager;
+import org.l2jmobius.gameserver.managers.events.CrossEventManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.CrossEventAdvancedRewardHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.CrossEventRegularRewardHolder;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.holders.CrossEventAdvancedRewardHolder;
-import org.l2jmobius.gameserver.model.holders.CrossEventRegularRewardHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.network.serverpackets.crossevent.ExCrossEventData;
 import org.l2jmobius.gameserver.network.serverpackets.crossevent.ExCrossEventInfo;
@@ -69,9 +69,9 @@ public class CrossEvent extends LongTimeEvent implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode ->
+		forEach(document, "list", listNode ->
 		{
 			forEach(listNode, "displayId", displayId ->
 			{

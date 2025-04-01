@@ -51,9 +51,9 @@ public class HomunculusData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "homunculus", homunculusNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "homunculus", homunculusNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(homunculusNode));
 			final int id = set.getInt("id");
@@ -61,6 +61,11 @@ public class HomunculusData implements IXmlReader
 		}));
 	}
 	
+	/**
+	 * Retrieves the {@link HomunculusTemplate} associated with the specified ID.
+	 * @param id the unique identifier of the homunculus template
+	 * @return the {@link HomunculusTemplate} corresponding to the given ID, or {@code null} if no template with the specified ID exists
+	 */
 	public HomunculusTemplate getTemplate(int id)
 	{
 		return TEMPLATES.get(id);

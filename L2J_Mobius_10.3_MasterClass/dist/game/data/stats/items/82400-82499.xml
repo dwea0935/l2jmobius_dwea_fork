@@ -439,7 +439,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="39808" level="1" /> <!-- Gran Kain's Scroll: Enchant Cloak -->
+			<skill id="39808" level="1" /> <!-- Scroll: Enchant Cloak of Light Dragon -->
 		</skills>
 	</item>
 	<item id="82421" name="Protection of Light" type="EtcItem">

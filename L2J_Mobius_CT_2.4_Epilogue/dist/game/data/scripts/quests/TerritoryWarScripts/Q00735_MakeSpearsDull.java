@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * Make Spears Dull! (735)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00735_MakeSpearsDull extends TerritoryWarSuperClass
 {
 	public Q00735_MakeSpearsDull()
 	{
-		super(735);
+		super(735, "Make spears dull!");
 		CLASS_IDS = new int[]
 		{
 			23,
@@ -68,10 +66,10 @@ public class Q00735_MakeSpearsDull extends TerritoryWarSuperClass
 		};
 		RANDOM_MIN = 15;
 		RANDOM_MAX = 20;
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.YOU_HAVE_DEFEATED_S2_OF_S1_WARRIORS_AND_ROGUES,
-			NpcStringId.YOU_WEAKENED_THE_ENEMY_S_ATTACK
+			"You have defeated $s2 of $s1 warriors and rogues.",
+			"You weakened the enemy's attack!"
 		};
 	}
 }

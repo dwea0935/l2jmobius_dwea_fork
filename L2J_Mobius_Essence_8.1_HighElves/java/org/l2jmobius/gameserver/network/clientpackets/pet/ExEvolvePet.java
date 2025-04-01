@@ -24,16 +24,17 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.enums.EvolveLevel;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.PetTypeData;
-import org.l2jmobius.gameserver.enums.EvolveLevel;
 import org.l2jmobius.gameserver.model.PetData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 
 /**
@@ -66,11 +67,11 @@ public class ExEvolvePet extends ClientPacket
 			final boolean isAbleToEvolveLevel1 = (pet.getLevel() >= 40) && (pet.getEvolveLevel() == EvolveLevel.None.ordinal());
 			final boolean isAbleToEvolveLevel2 = (pet.getLevel() >= 76) && (pet.getEvolveLevel() == EvolveLevel.First.ordinal());
 			
-			if (isAbleToEvolveLevel1 && activeChar.destroyItemByItemId("PetEvolve", 94096, 1, null, true))
+			if (isAbleToEvolveLevel1 && activeChar.destroyItemByItemId(ItemProcessType.FEE, 94096, 1, null, true))
 			{
 				doEvolve(activeChar, pet, EvolveLevel.First);
 			}
-			else if (isAbleToEvolveLevel2 && activeChar.destroyItemByItemId("PetEvolve", 94117, 1, null, true))
+			else if (isAbleToEvolveLevel2 && activeChar.destroyItemByItemId(ItemProcessType.FEE, 94117, 1, null, true))
 			{
 				doEvolve(activeChar, pet, EvolveLevel.Second);
 			}

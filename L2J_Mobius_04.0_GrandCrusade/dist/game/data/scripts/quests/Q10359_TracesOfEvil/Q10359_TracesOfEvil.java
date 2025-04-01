@@ -16,11 +16,11 @@
  */
 package quests.Q10359_TracesOfEvil;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -576,7 +576,7 @@ public class Q10359_TracesOfEvil extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isStarted() && qs.isCond(2))
@@ -593,6 +593,5 @@ public class Q10359_TracesOfEvil extends Quest
 				qs.setCond(3);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

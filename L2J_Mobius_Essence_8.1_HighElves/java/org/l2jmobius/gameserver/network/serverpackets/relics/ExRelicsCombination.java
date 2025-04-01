@@ -20,17 +20,14 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets.relics;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.data.xml.RelicData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PlayerRelicData;
-import org.l2jmobius.gameserver.model.variables.AccountVariables;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerRelicData;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -59,24 +56,34 @@ public class ExRelicsCombination extends ServerPacket
 		int chance = 0;
 		switch (_relicsUsedGrade)
 		{
-			case 1: // No Grade Ingredients Compound.
+			case 1: // Common Dolls Compound.
 			{
-				chance = (Config.RELIC_COMPOUND_NO_GRADE_INGREDIENTS_CHANCE_D_GRADE + Config.RELIC_COMPOUND_NO_GRADE_INGREDIENTS_CHANCE_SHINING_D_GRADE);
+				chance = Config.RELIC_COMPOUND_COMMON_DOLLS_CHANCE_ENHANCED;
 				break;
 			}
-			case 2: // D Grade Ingredients Compound.
+			case 2: // Enhanced Dolls Compound.
 			{
-				chance = (Config.RELIC_COMPOUND_D_GRADE_INGREDIENTS_CHANCE_C_GRADE + Config.RELIC_COMPOUND_D_GRADE_INGREDIENTS_CHANCE_SHINING_C_GRADE);
+				chance = Config.RELIC_COMPOUND_ENHANCED_DOLLS_CHANCE_SUPERIOR;
 				break;
 			}
-			case 3: // C Grade Ingredients Compound.
+			case 3: // Superior Dolls Compound.
 			{
-				chance = (Config.RELIC_COMPOUND_C_GRADE_INGREDIENTS_CHANCE_B_GRADE + Config.RELIC_COMPOUND_C_GRADE_INGREDIENTS_CHANCE_SHINING_B_GRADE);
+				chance = Config.RELIC_COMPOUND_SUPERIOR_DOLLS_CHANCE_RARE;
 				break;
 			}
-			case 4: // B Grade Ingredients Compound.
+			case 4: // Rare Dolls Compound.
 			{
-				chance = Config.RELIC_COMPOUND_B_GRADE_INGREDIENTS_CHANCE_A_GRADE;
+				chance = Config.RELIC_COMPOUND_RARE_DOLLS_CHANCE_HEROIC;
+				break;
+			}
+			case 5: // Heroic Dolls Compound.
+			{
+				chance = Config.RELIC_COMPOUND_HEROIC_DOLLS_CHANCE_LEGENDARY;
+				break;
+			}
+			case 6: // Legendary Dolls Compound.
+			{
+				chance = Config.RELIC_COMPOUND_LEGENDARY_DOLLS_CHANCE_MYTHIC;
 				break;
 			}
 		}
@@ -99,117 +106,103 @@ public class ExRelicsCombination extends ServerPacket
 			// Set fees and obtained relic based on ingredients used grade.
 			switch (_relicsUsedGrade)
 			{
-				case 1: // No Grade Ingredients Compound.
+				case 1: // Common Dolls Compound.
 				{
 					feeItemId = Config.RELIC_COMPOUND_FEE_NO_GRADE.get(0).getId();
 					feeItemCount = Config.RELIC_COMPOUND_FEE_NO_GRADE.get(0).getCount();
 					if (Rnd.get(100) < chance)
 					{
-						if (Rnd.get(100) < Config.RELIC_COMPOUND_NO_GRADE_INGREDIENTS_CHANCE_SHINING_D_GRADE)
-						{
-							obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size())); // Random D Grade Shining relic id.
-						}
-						else
-						{
-							obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size())); // Random D Grade relic id.
-						}
+						obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size())); // Random Enhanced doll id.
 						relicsSuccededCount++;
 					}
 					else
 					{
-						obtainedRelicId = Config.NO_GRADE_COMMON_RELICS.get(Rnd.get(Config.NO_GRADE_COMMON_RELICS.size())); // Random No Grade relic id.
+						obtainedRelicId = Config.NO_GRADE_COMMON_RELICS.get(Rnd.get(Config.NO_GRADE_COMMON_RELICS.size())); // Random Common doll id.
 						relicsFailedCount++;
 					}
 					buffer.writeInt(obtainedRelicId);
 					break;
 				}
-				case 2: // D Grade Ingredients Compound.
+				case 2: // Enhanced Dolls Compound.
 				{
 					feeItemId = Config.RELIC_COMPOUND_FEE_D_GRADE.get(0).getId();
 					feeItemCount = Config.RELIC_COMPOUND_FEE_D_GRADE.get(0).getCount();
 					if (Rnd.get(100) < chance)
 					{
-						if (Rnd.get(100) < Config.RELIC_COMPOUND_D_GRADE_INGREDIENTS_CHANCE_SHINING_C_GRADE)
-						{
-							obtainedRelicId = Config.C_GRADE_SHINING_RELICS.get(Rnd.get(Config.C_GRADE_SHINING_RELICS.size())); // Random C Grade Shining relic id.
-						}
-						else
-						{
-							obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size())); // Random C Grade relic id.
-						}
+						obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size())); // Random Superior doll id.
 						relicsSuccededCount++;
 					}
 					else
 					{
-						if (Rnd.get(100) < Config.RELIC_COMPOUND_D_GRADE_INGREDIENTS_CHANCE_SHINING_D_GRADE)
-						{
-							obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size())); // Random D Grade Shining relic id.
-						}
-						else
-						{
-							obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size())); // Random D Grade relic id.
-						}
+						obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size())); // Random Enhanced doll id.
 						relicsFailedCount++;
 					}
 					buffer.writeInt(obtainedRelicId);
 					break;
 				}
-				case 3: // C Grade Ingredients Compound.
+				case 3: // Superior Dolls Compound.
+				{
+					feeItemId = Config.RELIC_COMPOUND_FEE_D_GRADE.get(0).getId();
+					feeItemCount = Config.RELIC_COMPOUND_FEE_D_GRADE.get(0).getCount();
+					if (Rnd.get(100) < chance)
+					{
+						obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size())); // Random Rare doll id.
+						relicsSuccededCount++;
+					}
+					else
+					{
+						obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size())); // Random Superior doll id.
+						relicsFailedCount++;
+					}
+					buffer.writeInt(obtainedRelicId);
+					break;
+				}
+				case 4: // Rare Dolls Compound.
 				{
 					feeItemId = Config.RELIC_COMPOUND_FEE_C_GRADE.get(0).getId();
 					feeItemCount = Config.RELIC_COMPOUND_FEE_C_GRADE.get(0).getCount();
-					itemsOnFailureCount = Config.RELIC_COMPOUND_FAILURE_ITEM_C_GRADE.size();
-					shardId = Config.RELIC_COMPOUND_FAILURE_ITEM_C_GRADE.isEmpty() ? 0 : Config.RELIC_COMPOUND_FAILURE_ITEM_C_GRADE.get(0).getId();
-					shardCount = Config.RELIC_COMPOUND_FAILURE_ITEM_C_GRADE.isEmpty() ? 0 : Config.RELIC_COMPOUND_FAILURE_ITEM_C_GRADE.get(0).getCount();
 					if (Rnd.get(100) < chance)
 					{
-						if (Rnd.get(100) < Config.RELIC_COMPOUND_C_GRADE_INGREDIENTS_CHANCE_SHINING_B_GRADE)
-						{
-							obtainedRelicId = Config.B_GRADE_SHINING_RELICS.get(Rnd.get(Config.B_GRADE_SHINING_RELICS.size())); // Random B Grade Shining relic id.
-						}
-						else
-						{
-							obtainedRelicId = Config.B_GRADE_COMMON_RELICS.get(Rnd.get(Config.B_GRADE_COMMON_RELICS.size())); // Random B Grade relic id.
-						}
+						obtainedRelicId = Config.C_GRADE_SHINING_RELICS.get(Rnd.get(Config.C_GRADE_SHINING_RELICS.size())); // Random Heroic doll id.
 						relicsSuccededCount++;
 					}
 					else
 					{
-						if (Rnd.get(100) < Config.RELIC_COMPOUND_C_GRADE_INGREDIENTS_CHANCE_SHINING_C_GRADE)
-						{
-							obtainedRelicId = Config.C_GRADE_SHINING_RELICS.get(Rnd.get(Config.C_GRADE_SHINING_RELICS.size())); // Random C Grade Shining relic id.
-						}
-						else
-						{
-							obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size())); // Random C Grade relic id.
-						}
+						obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size())); // Random Rare doll id.
 						relicsFailedCount++;
 					}
 					buffer.writeInt(obtainedRelicId);
 					break;
 				}
-				case 4: // B Grade Ingredients Compound.
+				case 5: // Heroic Dolls Compound.
 				{
-					feeItemId = Config.RELIC_COMPOUND_FEE_B_GRADE.get(0).getId();
-					feeItemCount = Config.RELIC_COMPOUND_FEE_B_GRADE.get(0).getCount();
-					itemsOnFailureCount = Config.RELIC_COMPOUND_FAILURE_ITEM_B_GRADE.size();
-					shardId = Config.RELIC_COMPOUND_FAILURE_ITEM_B_GRADE.isEmpty() ? 0 : Config.RELIC_COMPOUND_FAILURE_ITEM_B_GRADE.get(0).getId();
-					shardCount = Config.RELIC_COMPOUND_FAILURE_ITEM_B_GRADE.isEmpty() ? 0 : Config.RELIC_COMPOUND_FAILURE_ITEM_B_GRADE.get(0).getCount();
+					feeItemId = Config.RELIC_COMPOUND_FEE_C_GRADE.get(0).getId();
+					feeItemCount = Config.RELIC_COMPOUND_FEE_C_GRADE.get(0).getCount();
 					if (Rnd.get(100) < chance)
 					{
-						obtainedRelicId = Config.A_GRADE_COMMON_RELICS.get(Rnd.get(Config.A_GRADE_COMMON_RELICS.size())); // Random A Grade relic id.
+						obtainedRelicId = Config.B_GRADE_COMMON_RELICS.get(Rnd.get(Config.B_GRADE_COMMON_RELICS.size())); // Random Legendary doll id.
 						relicsSuccededCount++;
 					}
 					else
 					{
-						if (Rnd.get(100) < Config.RELIC_COMPOUND_B_GRADE_INGREDIENTS_CHANCE_SHINING_B_GRADE)
-						{
-							obtainedRelicId = Config.B_GRADE_SHINING_RELICS.get(Rnd.get(Config.B_GRADE_SHINING_RELICS.size())); // Random B Grade Shining relic id.
-						}
-						else
-						{
-							obtainedRelicId = Config.B_GRADE_COMMON_RELICS.get(Rnd.get(Config.B_GRADE_COMMON_RELICS.size())); // Random B Grade relic id.
-						}
+						obtainedRelicId = Config.C_GRADE_SHINING_RELICS.get(Rnd.get(Config.C_GRADE_SHINING_RELICS.size())); // Random Heroic doll id.
+						relicsFailedCount++;
+					}
+					buffer.writeInt(obtainedRelicId);
+					break;
+				}
+				case 6: // Legendary Dolls Compound.
+				{
+					feeItemId = Config.RELIC_COMPOUND_FEE_B_GRADE.get(0).getId();
+					feeItemCount = Config.RELIC_COMPOUND_FEE_B_GRADE.get(0).getCount();
+					if (Rnd.get(100) < chance)
+					{
+						obtainedRelicId = Config.B_GRADE_SHINING_RELICS.get(Rnd.get(Config.B_GRADE_SHINING_RELICS.size())); // Random Mythic doll id.
+						relicsSuccededCount++;
+					}
+					else
+					{
+						obtainedRelicId = Config.B_GRADE_COMMON_RELICS.get(Rnd.get(Config.B_GRADE_COMMON_RELICS.size())); // Random Legendary doll id.
 						relicsFailedCount++;
 					}
 					buffer.writeInt(obtainedRelicId);
@@ -231,89 +224,38 @@ public class ExRelicsCombination extends ServerPacket
 				}
 			}
 			
-			final int obtainedRelicGrade = RelicData.getInstance().getRelic(obtainedRelicId).getGrade();
 			final PlayerRelicData newRelic = new PlayerRelicData(obtainedRelicId, 0, 0, 0, 0);
 			// Increment the count of the existing relic.
 			if (existingRelic != null)
 			{
-				// A/B Grade relics need to be confirmed before add them to relics list.
-				if (obtainedRelicGrade > 3) // (obtainedRelicGrade == 4) || (obtainedRelicGrade == 5)
+				// Increment the count of the existing relic.
+				existingRelic.setRelicCount(existingRelic.getRelicCount() + 1);
+				_player.sendPacket(new ExRelicsUpdateList(1, existingRelic.getRelicId(), 0, existingRelic.getRelicCount() + 1)); // Update confirmed relic list with new relic.
+				if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
 				{
-					// Check indexes of relics with same id to avoid duplicate 300+ index.
-					final List<Integer> unconfirmedRelics = new ArrayList<>();
-					final Collection<PlayerRelicData> storedRelics2 = _player.getRelics();
-					for (PlayerRelicData relic2 : storedRelics2)
-					{
-						if ((relic2.getRelicIndex() >= 300) && (relic2.getRelicId() == existingRelic.getRelicId())) // Unconfirmed relics are set on summon to index 300.
-						{
-							unconfirmedRelics.add(relic2.getRelicIndex());
-						}
-					}
-					if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
-					{
-						_player.sendMessage("0.Duplicate relic indexes list: " + unconfirmedRelics);
-					}
-					newRelic.setRelicCount(1);
-					newRelic.setRelicIndex(300 + unconfirmedRelics.size()); // Need to update this to increase last 300+ index.
-					newRelic.setRelicSummonTime(System.currentTimeMillis());
-					storedRelics.add(newRelic);
-					_player.sendPacket(new ExRelicsExchangeList(_player)); // Update relic exchange/confirm list.
-					if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
-					{
-						_player.sendMessage("Existing relic id: " + obtainedRelicId + " was added to confirmation list.");
-					}
+					_player.sendMessage("Existing relic id: " + obtainedRelicId + " count increased.");
 				}
-				else
+				if (existingRelic.getRelicIndex() == 0)
 				{
-					// Increment the count of the existing relic if not A/B Grade relics.
-					existingRelic.setRelicCount(existingRelic.getRelicCount() + 1);
-					_player.sendPacket(new ExRelicsUpdateList(1, existingRelic.getRelicId(), 0, existingRelic.getRelicCount() + 1)); // Update confirmed relic list with new relic.
-					if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
+					if (!_player.isRelicRegistered(existingRelic.getRelicId(), existingRelic.getRelicLevel()))
 					{
-						_player.sendMessage("Existing relic id: " + obtainedRelicId + " count increased.");
-					}
-					if (existingRelic.getRelicIndex() == 0)
-					{
-						if (!_player.isRelicRegistered(existingRelic.getRelicId(), existingRelic.getRelicLevel()))
-						{
-							// Auto-Add to relic collections on summon.
-							_player.sendPacket(new ExRelicsCollectionUpdate(_player, existingRelic.getRelicId(), existingRelic.getRelicLevel())); // Update collection list.
-						}
+						// Auto-Add to relic collections on summon.
+						_player.sendPacket(new ExRelicsCollectionUpdate(_player, existingRelic.getRelicId(), existingRelic.getRelicLevel())); // Update collection list.
 					}
 				}
 			}
 			// Add the new relic if it doesn't exist.
 			else
 			{
-				// A/B Grade relics need to be confirmed before add them to relics list.
-				if (obtainedRelicGrade > 3) // (obtainedRelicGrade == 4) || (obtainedRelicGrade == 5)
+				newRelic.setRelicIndex(0);
+				storedRelics.add(newRelic);
+				_player.sendPacket(new ExRelicsUpdateList(1, newRelic.getRelicId(), 0, 0)); // Update confirmed relic list with new relic.
+				if (newRelic.getRelicIndex() == 0)
 				{
-					// Set Relic Index to 300 to be able to get the list of confirmation relics later.
-					newRelic.setRelicCount(1);
-					newRelic.setRelicIndex(300);
-					newRelic.setRelicSummonTime(System.currentTimeMillis());
-					storedRelics.add(newRelic);
-					_player.getAccountVariables().set(AccountVariables.UNCONFIRMED_RELICS_COUNT, _player.getAccountVariables().getInt(AccountVariables.UNCONFIRMED_RELICS_COUNT, 0) + 1);
-					_player.getAccountVariables().storeMe();
-					_player.sendPacket(new ExRelicsExchangeList(_player)); // Update relic exchange/confirm list.
-					if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
+					if (!_player.isRelicRegistered(newRelic.getRelicId(), newRelic.getRelicLevel()))
 					{
-						_player.sendMessage("New relic id: " + obtainedRelicId + " was added to confirmation list.");
-					}
-				}
-				// Add new relic if not A/B Grade relics.
-				else
-				{
-					newRelic.setRelicIndex(0);
-					storedRelics.add(newRelic);
-					_player.sendPacket(new ExRelicsUpdateList(1, newRelic.getRelicId(), 0, 0)); // Update confirmed relic list with new relic.
-					if (newRelic.getRelicIndex() == 0)
-					{
-						if (!_player.isRelicRegistered(newRelic.getRelicId(), newRelic.getRelicLevel()))
-						{
-							// Auto-Add to relic collections on summon.
-							_player.sendPacket(new ExRelicsCollectionUpdate(_player, newRelic.getRelicId(), newRelic.getRelicLevel())); // Update collection list.
-						}
+						// Auto-Add to relic collections on summon.
+						_player.sendPacket(new ExRelicsCollectionUpdate(_player, newRelic.getRelicId(), newRelic.getRelicLevel())); // Update collection list.
 					}
 				}
 			}
@@ -325,7 +267,7 @@ public class ExRelicsCombination extends ServerPacket
 		
 		_player.sendPacket(new ExRelicsList(_player)); // Update confirmed relic list relics count.
 		_player.sendMessage("You obtained through compounding: " + arraySize + " relics.");
-		_player.destroyItemByItemId("RelicsCompound", feeItemId, feeItemCount * arraySize, _player, true);
+		_player.destroyItemByItemId(ItemProcessType.FEE, feeItemId, feeItemCount * arraySize, _player, true);
 		// Send summary of compounds
 		_player.sendMessage("Relics compound summary: " + relicsSuccededCount + " succeded and " + relicsFailedCount + " failed.");
 		if (relicsFailedCount > relicsSuccededCount)
@@ -334,9 +276,8 @@ public class ExRelicsCombination extends ServerPacket
 			if (_relicsUsedGrade >= 3)
 			{
 				// Add failure items obtained here
-				_player.addItem("RelicsCompoundFail", shardId, shardCount * relicsFailedCount, _player, true);
+				_player.addItem(ItemProcessType.FEE, shardId, shardCount * relicsFailedCount, _player, true);
 			}
 		}
-		
 	}
 }

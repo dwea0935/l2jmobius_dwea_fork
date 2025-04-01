@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.enums.ServerMode;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.CrestTable;
 import org.l2jmobius.gameserver.data.sql.TeleportLocationTable;
@@ -31,8 +32,6 @@ import org.l2jmobius.gameserver.data.xml.BuyListData;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
-import org.l2jmobius.gameserver.data.xml.EnchantItemOptionsData;
-import org.l2jmobius.gameserver.data.xml.FakePlayerData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
@@ -40,19 +39,14 @@ import org.l2jmobius.gameserver.data.xml.NpcNameLocalisationData;
 import org.l2jmobius.gameserver.data.xml.SendMessageLocalisationData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
-import org.l2jmobius.gameserver.instancemanager.FakePlayerChatManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.FakePlayerChatManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.scripting.ScriptEngineManager;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author NosBit
@@ -108,7 +102,7 @@ public class AdminReload implements IAdminCommandHandler
 					if (st.hasMoreElements())
 					{
 						final String value = st.nextToken();
-						if (!Util.isDigit(value))
+						if (!StringUtil.isNumeric(value))
 						{
 							QuestManager.getInstance().reload(value);
 							AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quest Name:" + value + ".");
@@ -123,7 +117,7 @@ public class AdminReload implements IAdminCommandHandler
 					else
 					{
 						QuestManager.getInstance().reloadAllScripts();
-						BuilderUtil.sendSysMessage(activeChar, "All scripts have been reloaded.");
+						activeChar.sendSysMessage("All scripts have been reloaded.");
 						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quests.");
 					}
 					break;
@@ -131,7 +125,7 @@ public class AdminReload implements IAdminCommandHandler
 				case "walker":
 				{
 					WalkingManager.getInstance().load();
-					BuilderUtil.sendSysMessage(activeChar, "All walkers have been reloaded");
+					activeChar.sendSysMessage("All walkers have been reloaded");
 					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Walkers.");
 					break;
 				}
@@ -149,13 +143,13 @@ public class AdminReload implements IAdminCommandHandler
 						}
 						else
 						{
-							BuilderUtil.sendSysMessage(activeChar, "File or Directory does not exist.");
+							activeChar.sendSysMessage("File or Directory does not exist.");
 						}
 					}
 					else
 					{
 						HtmCache.getInstance().reload();
-						BuilderUtil.sendSysMessage(activeChar, "Cache[HTML]: " + HtmCache.getInstance().getMemoryUsage() + " megabytes on " + HtmCache.getInstance().getLoadedFiles() + " files loaded");
+						activeChar.sendSysMessage("Cache[HTML]: " + HtmCache.getInstance().getMemoryUsage() + " megabytes on " + HtmCache.getInstance().getLoadedFiles() + " files loaded");
 						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Htms.");
 					}
 					break;
@@ -224,7 +218,7 @@ public class AdminReload implements IAdminCommandHandler
 					catch (Exception e)
 					{
 						LOGGER.log(Level.WARNING, "Failed executing effect master handler!", e);
-						BuilderUtil.sendSysMessage(activeChar, "Error reloading effect master handler!");
+						activeChar.sendSysMessage("Error reloading effect master handler!");
 					}
 					break;
 				}
@@ -238,29 +232,15 @@ public class AdminReload implements IAdminCommandHandler
 					catch (Exception e)
 					{
 						LOGGER.log(Level.WARNING, "Failed executing master handler!", e);
-						BuilderUtil.sendSysMessage(activeChar, "Error reloading master handler!");
+						activeChar.sendSysMessage("Error reloading master handler!");
 					}
 					break;
 				}
 				case "enchant":
 				{
-					EnchantItemOptionsData.getInstance().load();
 					EnchantItemGroupsData.getInstance().load();
 					EnchantItemData.getInstance().load();
 					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded item enchanting data.");
-					break;
-				}
-				case "fakeplayers":
-				{
-					FakePlayerData.getInstance().load();
-					for (WorldObject obj : World.getInstance().getVisibleObjects())
-					{
-						if (obj.isFakePlayer())
-						{
-							obj.broadcastInfo();
-						}
-					}
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Fake Player data.");
 					break;
 				}
 				case "fakeplayerchat":
@@ -272,7 +252,6 @@ public class AdminReload implements IAdminCommandHandler
 				case "localisations":
 				{
 					SystemMessageId.loadLocalisations();
-					NpcStringId.loadLocalisations();
 					SendMessageLocalisationData.getInstance().load();
 					NpcNameLocalisationData.getInstance().load();
 					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Localisation data.");
@@ -284,7 +263,7 @@ public class AdminReload implements IAdminCommandHandler
 					return true;
 				}
 			}
-			BuilderUtil.sendSysMessage(activeChar, "WARNING: There are several known issues regarding this feature. Reloading server data during runtime is STRONGLY NOT RECOMMENDED for live servers, just for developing environments.");
+			activeChar.sendSysMessage("WARNING: There are several known issues regarding this feature. Reloading server data during runtime is STRONGLY NOT RECOMMENDED for live servers, just for developing environments.");
 		}
 		return true;
 	}

@@ -59,15 +59,11 @@ public class CubicData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "cubic", cubicNode -> parseTemplate(cubicNode, new CubicTemplate(new StatSet(parseAttributes(cubicNode))))));
+		forEach(document, "list", listNode -> forEach(listNode, "cubic", cubicNode -> parseTemplate(cubicNode, new CubicTemplate(new StatSet(parseAttributes(cubicNode))))));
 	}
 	
-	/**
-	 * @param cubicNode
-	 * @param template
-	 */
 	private void parseTemplate(Node cubicNode, CubicTemplate template)
 	{
 		forEach(cubicNode, IXmlReader::isNode, innerNode ->
@@ -86,14 +82,9 @@ public class CubicData implements IXmlReader
 				}
 			}
 		});
-		_cubics.computeIfAbsent(template.getId(), key -> new HashMap<>()).put(template.getLevel(), template);
+		_cubics.computeIfAbsent(template.getId(), _ -> new HashMap<>()).put(template.getLevel(), template);
 	}
 	
-	/**
-	 * @param cubicNode
-	 * @param template
-	 * @param holder
-	 */
 	private void parseConditions(Node cubicNode, CubicTemplate template, ICubicConditionHolder holder)
 	{
 		forEach(cubicNode, IXmlReader::isNode, conditionNode ->
@@ -129,34 +120,27 @@ public class CubicData implements IXmlReader
 		});
 	}
 	
-	/**
-	 * @param cubicNode
-	 * @param template
-	 */
 	private void parseSkills(Node cubicNode, CubicTemplate template)
 	{
 		forEach(cubicNode, "skill", skillNode ->
 		{
 			final CubicSkill skill = new CubicSkill(new StatSet(parseAttributes(skillNode)));
-			forEach(cubicNode, "conditions", conditionNode -> parseConditions(cubicNode, template, skill));
+			forEach(cubicNode, "conditions", _ -> parseConditions(cubicNode, template, skill));
 			template.getCubicSkills().add(skill);
 		});
 	}
 	
 	/**
-	 * @param id
-	 * @param level
-	 * @return the CubicTemplate for specified id and level
+	 * Retrieves the cubic template for a specified cubic ID and level.
+	 * @param id the ID of the cubic
+	 * @param level the level of the cubic
+	 * @return the {@link CubicTemplate} associated with the given ID and level, or {@code null} if no template is found
 	 */
 	public CubicTemplate getCubicTemplate(int id, int level)
 	{
 		return _cubics.getOrDefault(id, Collections.emptyMap()).get(level);
 	}
 	
-	/**
-	 * Gets the single instance of CubicData.
-	 * @return single instance of CubicData
-	 */
 	public static CubicData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

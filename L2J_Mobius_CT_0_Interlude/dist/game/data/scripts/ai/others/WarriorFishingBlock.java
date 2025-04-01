@@ -16,12 +16,11 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -44,23 +43,23 @@ public class WarriorFishingBlock extends AbstractNpcAI
 		18326, // Caught Gigantic Eye
 	};
 	// NPC Strings
-	private static final NpcStringId[] NPC_STRINGS_ON_SPAWN =
+	private static final String[] NPC_STRINGS_ON_SPAWN =
 	{
-		NpcStringId.CROAK_CROAK_FOOD_LIKE_S1_IN_THIS_PLACE,
-		NpcStringId.S1_HOW_LUCKY_I_AM,
-		NpcStringId.PRAY_THAT_YOU_CAUGHT_A_WRONG_FISH_S1
+		"Croak, Croak! Food like $s1 in this place?!",
+		"$s1, How lucky I am!",
+		"Pray that you caught a wrong fish $s1!"
 	};
-	private static final NpcStringId[] NPC_STRINGS_ON_ATTACK =
+	private static final String[] NPC_STRINGS_ON_ATTACK =
 	{
-		NpcStringId.DO_YOU_KNOW_WHAT_A_FROG_TASTES_LIKE,
-		NpcStringId.I_WILL_SHOW_YOU_THE_POWER_OF_A_FROG,
-		NpcStringId.I_WILL_SWALLOW_AT_A_MOUTHFUL
+		"Do you know what a frog tastes like?",
+		"I will show you the power of a frog!",
+		"I will swallow at a mouthful!"
 	};
-	private static final NpcStringId[] NPC_STRINGS_ON_KILL =
+	private static final String[] NPC_STRINGS_ON_KILL =
 	{
-		NpcStringId.UGH_NO_CHANCE_HOW_COULD_THIS_ELDER_PASS_AWAY_LIKE_THIS,
-		NpcStringId.CROAK_CROAK_A_FROG_IS_DYING,
-		NpcStringId.A_FROG_TASTES_BAD_YUCK
+		"Ugh, no chance. How could this elder pass away like this!",
+		"Croak! Croak! A frog is dying!",
+		"A frog tastes bad! Yuck!"
 	};
 	// Misc
 	private static final int CHANCE_TO_SHOUT_ON_ATTACK = 33;
@@ -88,9 +87,9 @@ public class WarriorFishingBlock extends AbstractNpcAI
 				else
 				{
 					final Player target = obj.asPlayer();
-					npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(NPC_STRINGS_ON_SPAWN), target.getName());
+					npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(NPC_STRINGS_ON_SPAWN).replace("$s1!", target.getName()));
 					npc.asAttackable().addDamageHate(target, 0, 2000);
-					npc.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, target);
+					npc.getAI().notifyAction(Action.ATTACKED, target);
 					npc.addAttackerToAttackByList(target);
 					
 					startQuestTimer("DESPAWN", DESPAWN_TIME * 1000, npc, target);
@@ -107,30 +106,27 @@ public class WarriorFishingBlock extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (getRandom(100) < CHANCE_TO_SHOUT_ON_ATTACK)
 		{
 			npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(NPC_STRINGS_ON_ATTACK));
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(NPC_STRINGS_ON_KILL));
 		cancelQuestTimer("DESPAWN", npc, killer);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		cancelQuestTimer("SPAWN", npc, null);
 		cancelQuestTimer("DESPAWN", npc, null);
 		startQuestTimer("SPAWN", 2000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

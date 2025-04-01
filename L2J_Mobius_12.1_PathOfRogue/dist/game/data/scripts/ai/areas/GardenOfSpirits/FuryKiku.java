@@ -20,11 +20,11 @@
  */
 package ai.areas.GardenOfSpirits;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 
 import ai.AbstractNpcAI;
 
@@ -74,7 +74,7 @@ public class FuryKiku extends AbstractNpcAI
 				{
 					if ((p != null) && p.isPlayable() && !p.isDead())
 					{
-						npc.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, p, 1000);
+						npc.getAI().notifyAction(Action.AGGRESSION, p, 1000);
 					}
 				});
 				break;
@@ -84,20 +84,18 @@ public class FuryKiku extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (getRandom(10) < 5)
 		{
 			startQuestTimer("SPAWN", 2000, npc, killer);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("ATTACK", 1000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

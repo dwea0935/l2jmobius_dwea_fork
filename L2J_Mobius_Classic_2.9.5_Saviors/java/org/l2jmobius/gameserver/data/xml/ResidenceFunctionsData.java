@@ -32,12 +32,12 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.residences.ResidenceFunctionTemplate;
 
 /**
- * The residence functions data
  * @author UnAfraid
  */
 public class ResidenceFunctionsData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(ResidenceFunctionsData.class.getName());
+	
 	private final Map<Integer, List<ResidenceFunctionTemplate>> _functions = new HashMap<>();
 	
 	protected ResidenceFunctionsData()
@@ -54,9 +54,9 @@ public class ResidenceFunctionsData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", list -> forEach(list, "function", func ->
+		forEach(document, "list", list -> forEach(list, "function", func ->
 		{
 			final NamedNodeMap attrs = func.getAttributes();
 			final StatSet set = new StatSet(HashMap::new);
@@ -76,7 +76,7 @@ public class ResidenceFunctionsData implements IXmlReader
 					levelSet.set(node.getNodeName(), node.getNodeValue());
 				}
 				final ResidenceFunctionTemplate template = new ResidenceFunctionTemplate(levelSet);
-				_functions.computeIfAbsent(template.getId(), key -> new ArrayList<>()).add(template);
+				_functions.computeIfAbsent(template.getId(), _ -> new ArrayList<>()).add(template);
 			});
 		}));
 	}

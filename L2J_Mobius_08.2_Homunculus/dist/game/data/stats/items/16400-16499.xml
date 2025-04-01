@@ -12,8 +12,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="8458" level="1" /> <!-- Bracelet Weight Gauge Add -->
-			<skill id="8260" level="1" /> <!-- Release Agathion's Seal - Teddy Girl -->
+			<skill id="8458" level="1" /> <!-- Bracelet Weight Limit Add -->
+			<skill id="8260" level="1" /> <!-- Agathion Summon - Teddy Girl -->
 			<skill id="5959" level="1" /> <!-- Agathion Cute Trick - Teddy Girl -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -30,8 +30,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="8458" level="1" /> <!-- Bracelet Weight Gauge Add -->
-			<skill id="8259" level="1" /> <!-- Release Agathion's Seal - Teddy Boy -->
+			<skill id="8458" level="1" /> <!-- Bracelet Weight Limit Add -->
+			<skill id="8259" level="1" /> <!-- Agathion Summon - Baby Bear -->
 			<skill id="5958" level="1" /> <!-- Agathion Cute Trick - Teddy Boy -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -48,8 +48,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="8458" level="1" /> <!-- Bracelet Weight Gauge Add -->
-			<skill id="8260" level="1" /> <!-- Release Agathion's Seal - Teddy Girl -->
+			<skill id="8458" level="1" /> <!-- Bracelet Weight Limit Add -->
+			<skill id="8260" level="1" /> <!-- Agathion Summon - Teddy Girl -->
 			<skill id="5959" level="1" /> <!-- Agathion Cute Trick - Teddy Girl -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -106,7 +106,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="reuse_delay" val="3600000" />
 		<skills>
-			<skill id="9083" level="1" /> <!-- Holiday Cake (Event) -->
+			<skill id="9083" level="1" /> <!-- Holiday Cake - Event -->
 		</skills>
 	</item>
 	<item id="16406" name="White Winter Wish Candle (Event)" type="EtcItem">

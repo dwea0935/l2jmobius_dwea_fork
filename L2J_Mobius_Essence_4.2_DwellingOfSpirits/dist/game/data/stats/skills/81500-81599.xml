@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="81500" toLevel="1" name="Bow Resistance">
 		<icon>icon.skill3080</icon>
@@ -128,7 +128,6 @@
 	</skill>
 	<skill id="81514" toLevel="1" name="Bow Resistance">
 		<icon>icon.skill3080</icon>
-
 		<operateType>P</operateType>
 		<effects>
 			<effect name="DefenceTrait">

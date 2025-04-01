@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * For the Sake of the Territory - Rune (724)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00724_ForTheSakeOfTheTerritoryRune extends TerritoryWarSuperClass
 {
 	public Q00724_ForTheSakeOfTheTerritoryRune()
 	{
-		super(724);
+		super(724, "For the Sake of the Territory - Rune");
 		CATAPULT_ID = 36506;
 		TERRITORY_ID = 88;
 		LEADER_IDS = new int[]
@@ -42,9 +40,9 @@ public class Q00724_ForTheSakeOfTheTerritoryRune extends TerritoryWarSuperClass
 			36553,
 			36554
 		};
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.THE_CATAPULT_OF_RUNE_HAS_BEEN_DESTROYED
+			"The catapult of Rune has been destroyed!"
 		};
 		registerKillIds();
 	}

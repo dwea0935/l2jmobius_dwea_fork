@@ -20,14 +20,14 @@
  */
 package handlers.actionhandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.handler.IActionHandler;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeGuardManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.SiegeGuardManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -37,17 +37,17 @@ public class ItemAction implements IActionHandler
 	public boolean action(Player player, WorldObject target, boolean interact)
 	{
 		final Castle castle = CastleManager.getInstance().getCastle(target);
-		if ((castle != null) && (SiegeGuardManager.getInstance().getSiegeGuardByItem(castle.getResidenceId(), target.getId()) != null) && ((player.getClan() == null) || (castle.getOwnerId() != player.getClanId()) || !player.hasClanPrivilege(ClanPrivilege.CS_MERCENARIES)))
+		if ((castle != null) && (SiegeGuardManager.getInstance().getSiegeGuardByItem(castle.getResidenceId(), target.getId()) != null) && ((player.getClan() == null) || (castle.getOwnerId() != player.getClanId()) || !player.hasAccess(ClanAccess.CASTLE_MERCENARIES)))
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_CHANGE_MERCENARY_POSITIONS);
 			player.setTarget(target);
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			player.getAI().setIntention(Intention.IDLE);
 			return false;
 		}
 		
 		if (!player.isFlying())
 		{
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_PICK_UP, target);
+			player.getAI().setIntention(Intention.PICK_UP, target);
 		}
 		return true;
 	}

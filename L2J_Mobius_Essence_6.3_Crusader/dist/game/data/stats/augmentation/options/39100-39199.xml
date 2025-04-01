@@ -171,7 +171,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -469,7 +469,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -563,11 +563,11 @@
 		<!-- Received Skill Critical Damage -2% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-2</amount>
+				<amount>2</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-2</amount>
+				<amount>2</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -658,7 +658,7 @@
 		<!-- Received M. Skill Critical Damage -1% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -667,11 +667,11 @@
 		<!-- Received Skill Critical Damage -1% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -820,7 +820,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -862,7 +862,7 @@
 		<!-- Received P. Skill Critical Damage -2% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-2</amount>
+				<amount>2</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -948,7 +948,7 @@
 		<!-- Received M. Skill Critical Rate -2% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-2</amount>
+				<amount>2</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -957,7 +957,7 @@
 		<!-- Received P. Skill Critical Rate -2% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-2</amount>
+				<amount>2</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>

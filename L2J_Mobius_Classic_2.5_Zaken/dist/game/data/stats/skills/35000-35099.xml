@@ -622,7 +622,7 @@
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<buffProtectLevel>31</buffProtectLevel>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>40</magicLevel>
@@ -660,7 +660,7 @@
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<buffProtectLevel>31</buffProtectLevel>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>40</magicLevel>
@@ -1124,7 +1124,7 @@
 		<!-- Damage dealt in PvE +3%, M. / P. Critical Damage +20, M. / P. Skill Power +2%, M. / P. Accuracy +1. -->
 		<icon>icon.r90_sp_talisman_dr_mp_active</icon>
 		<operateType>P</operateType>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1175,7 +1175,7 @@
 		<!-- P. Def in PvE +3%, Magic Attack Resistance +2%, magic / physical skill Evasion Rate +4%, Debuff Resistance +3%, Pull Resistance +10%. -->
 		<icon>icon.r99_talisman_pd_up_passive</icon>
 		<operateType>P</operateType>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1214,10 +1214,10 @@
 		</effects>
 	</skill>
 	<skill id="35038" toLevel="1" name="Hero's Talisman - Attack">
-		<!-- PvP Damage +3%, M. / P. Critical Damage +20, Skill Power +2%, M. / P. Accuracy +1. -->
+		<!-- PvP Damage +3%, M./ P. Critical Damage +20, Skill Power +2%, M./ P. Accuracy +1. -->
 		<icon>icon.r90_sp_talisman_dr_hp_active</icon>
 		<operateType>P</operateType>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1246,6 +1246,10 @@
 				<amount>2</amount>
 				<mode>PER</mode>
 			</effect>
+			<effect name="MagicalSkillPower">
+				<amount>2</amount>
+				<mode>PER</mode>
+			</effect>
 			<effect name="Accuracy">
 				<amount>1</amount>
 				<mode>DIFF</mode>
@@ -1257,37 +1261,29 @@
 		</effects>
 	</skill>
 	<skill id="35039" toLevel="1" name="Hero's Talisman - Defense">
-		<!-- Received PvP damage +3%, Magic Attack Resistance +2%, P. / M. Skill Evasion +4%, Debuff Resistance +3%. -->
+		<!-- PvP Damage +3%, Magic Attack Resistance +2%, P./ M. Skill Evasion +4%, Debuff Resistance +3%, Debuff Resistance +10%. -->
 		<icon>icon.r95_talisman_ca_down_active</icon>
 		<operateType>P</operateType>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
 		<effects>
-			<effect name="PvpPhysicalAttackDefenceBonus">
-				<amount>3</amount>
-				<mode>PER</mode>
-			</effect>
-			<effect name="PvpMagicalSkillDefenceBonus">
-				<amount>3</amount>
-				<mode>PER</mode>
-			</effect>
-			<effect name="PvpPhysicalSkillDefenceBonus">
-				<amount>3</amount>
-				<mode>PER</mode>
+			<effect name="DamageByAttack">
+				<amount>-3</amount>
+				<type>PK</type>
 			</effect>
 			<effect name="MagicalSuccessResistance">
 				<amount>2</amount>
 				<mode>PER</mode>
 			</effect>
-			<effect name="PhysicalEvasion">
+			<effect name="SkillEvasion">
 				<amount>4</amount>
-				<mode>PER</mode>
+				<magicType>0</magicType>
 			</effect>
-			<effect name="MagicalEvasion">
+			<effect name="SkillEvasion">
 				<amount>4</amount>
-				<mode>PER</mode>
+				<magicType>1</magicType>
 			</effect>
 			<effect name="ResistAbnormalByCategory">
 				<amount>-3</amount>

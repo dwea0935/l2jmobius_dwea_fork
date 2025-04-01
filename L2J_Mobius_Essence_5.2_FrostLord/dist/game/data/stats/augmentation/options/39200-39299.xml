@@ -211,7 +211,7 @@
 		<!-- Received P. Skill Critical Damage -1% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -233,7 +233,7 @@
 		<!-- Received M. Skill Critical Damage -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -260,7 +260,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -269,7 +269,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>

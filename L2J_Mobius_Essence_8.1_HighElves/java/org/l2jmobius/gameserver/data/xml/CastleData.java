@@ -28,11 +28,11 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.CastleSide;
-import org.l2jmobius.gameserver.enums.SiegeGuardType;
-import org.l2jmobius.gameserver.model.holders.CastleSpawnHolder;
-import org.l2jmobius.gameserver.model.holders.SiegeGuardHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.siege.CastleSide;
+import org.l2jmobius.gameserver.model.siege.CastleSpawnHolder;
+import org.l2jmobius.gameserver.model.siege.SiegeGuardHolder;
+import org.l2jmobius.gameserver.model.siege.SiegeGuardType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * @author St3eT
@@ -40,7 +40,7 @@ import org.l2jmobius.gameserver.model.holders.SkillHolder;
 public class CastleData implements IXmlReader
 {
 	private final Map<Integer, List<CastleSpawnHolder>> _spawns = new ConcurrentHashMap<>();
-	private static final Map<Integer, List<SiegeGuardHolder>> _siegeGuards = new ConcurrentHashMap<>();
+	private final Map<Integer, List<SiegeGuardHolder>> _siegeGuards = new ConcurrentHashMap<>();
 	
 	private static final Map<Integer, List<SkillHolder>> skills = new ConcurrentHashMap<>();
 	
@@ -58,9 +58,9 @@ public class CastleData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node listNode = doc.getFirstChild(); listNode != null; listNode = listNode.getNextSibling())
+		for (Node listNode = document.getFirstChild(); listNode != null; listNode = listNode.getNextSibling())
 		{
 			if ("list".equals(listNode.getNodeName()))
 			{
@@ -161,10 +161,6 @@ public class CastleData implements IXmlReader
 		return skills;
 	}
 	
-	/**
-	 * Gets the single instance of CastleData.
-	 * @return single instance of CastleData
-	 */
 	public static CastleData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

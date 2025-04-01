@@ -86,7 +86,7 @@ public class ToiSpecialMonsters extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -242,7 +242,6 @@ public class ToiSpecialMonsters extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void giveReward(Npc npc, Player killer)

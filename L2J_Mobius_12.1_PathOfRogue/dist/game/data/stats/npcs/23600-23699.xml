@@ -2743,7 +2743,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46328" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -2801,7 +2800,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46329" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -2859,7 +2857,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46330" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -2917,7 +2914,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46331" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -2974,7 +2970,6 @@
 			<skill name="Skill_TYPE4" id="23742" level="1" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46327" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3029,7 +3024,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46332" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3084,7 +3078,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46333" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3144,7 +3137,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46334" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3205,7 +3197,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46336" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3268,7 +3259,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="37016" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3327,7 +3317,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46335" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3390,7 +3379,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46334" />
 		<acquire exp="115015340" sp="103514" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="2512160" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3450,7 +3438,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="46328" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3506,7 +3493,6 @@
 			<skill name="Skill_TYPE4" id="23461" level="1" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46329" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3564,7 +3550,6 @@
 			<skill name="Skill_TYPE4" id="23461" level="1" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46330" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3622,7 +3607,6 @@
 			<skill name="Skill_TYPE4" id="23461" level="1" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46331" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3679,7 +3663,6 @@
 			<skill name="Skill_TYPE3" id="23469" level="1" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46327" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3735,7 +3718,6 @@
 			<skill name="Skill_TYPE4" id="23466" level="1" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46332" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3792,7 +3774,6 @@
 			<skill name="Skill_TYPE4" id="23466" level="1" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46333" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3850,7 +3831,6 @@
 			<param name="npc_class" value="4" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46334" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3908,7 +3888,6 @@
 			<param name="npc_class" value="3" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46336" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -3964,7 +3943,6 @@
 	</npc>
 	<npc id="23674" level="110" type="Monster" name="Unit 7 Commander" title="Ashen Shadow">
 		<race>HUMANOID</race>
-		<equipment rhand="46335" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -4018,7 +3996,6 @@
 			<param name="npc_class" value="2" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46335" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />
@@ -4082,7 +4059,6 @@
 			<param name="npc_class" value="2" />
 		</parameters>
 		<race>HUMANOID</race>
-		<equipment rhand="46334" />
 		<acquire exp="345046020" sp="310541" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="5024320" hpRegen="12.4" mp="49380" mpRegen="30" />

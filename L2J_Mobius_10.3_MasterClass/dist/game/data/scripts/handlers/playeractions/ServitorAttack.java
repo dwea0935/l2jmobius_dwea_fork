@@ -20,7 +20,7 @@
  */
 package handlers.playeractions;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IPlayerActionHandler;
 import org.l2jmobius.gameserver.model.ActionDataHolder;
@@ -55,7 +55,7 @@ public class ServitorAttack implements IPlayerActionHandler
 		{
 			if (targetOutOfRange)
 			{
-				summon.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+				summon.getAI().setIntention(Intention.FOLLOW, player);
 			}
 			else if (summon.canAttack(target, ctrlPressed))
 			{

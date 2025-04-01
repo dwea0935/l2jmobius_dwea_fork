@@ -129,7 +129,6 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad> <!-- Unconfirmed -->
 		<castRange>1100</castRange>
-		<castRange>1100</castRange>
 		<effectPoint>-707</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitTime>10000</hitTime>
@@ -1454,7 +1453,7 @@
 		<coolTime>3000</coolTime>
 		<effectPoint>0</effectPoint>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>300000</reuseDelay>
@@ -1478,7 +1477,7 @@
 		<coolTime>3000</coolTime>
 		<effectPoint>0</effectPoint>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>300000</reuseDelay>

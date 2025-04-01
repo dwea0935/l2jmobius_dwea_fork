@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="48900" name="Shillien's Soul Crystal Lv. 2" type="EtcItem">
 		<!-- A special crystal that contains Shillien's Soul. Adds a selected special effect to a weapon: increases P./ M. Atk./ Critical Damage for basic attacks/ P. Skill Critical Damage/ M. Skill Critical Damage/ Max HP/ decreases Skill Cooldown. The higher a crystal's level is, the more powerful its effect. <How to use>. Talk to the Blacksmith in any town to insert the crystal in your equipment. <Upgrading>. Compounding with Shillien's Soul. -->
@@ -123,7 +123,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="39369" level="1" /> <!-- Gran Kain's Scroll: Enchant Weapon (R-grade) -->
+			<skill id="39369" level="1" /> <!-- Gran Kain's Scroll: Enchant R-grade Weapon -->
 		</skills>
 	</item>
 	<item id="48913" name="Gale Scroll" type="EtcItem">
@@ -403,7 +403,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="9185" level="1" /> <!-- Scroll: Enchant Weapon (R-grade) -->
+			<skill id="9185" level="1" /> <!-- Scroll: Enchant R-grade Weapon -->
 		</skills>
 	</item>
 	<item id="48933" name="Lucien's Mark" type="EtcItem">
@@ -664,7 +664,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
 		<skills>
-			<skill id="39393" level="1" /> <!-- Artifact Book (Open 1 Slot) -->
+			<skill id="39393" level="1" /> <!-- Artifact Book Lv. 1 -->
 		</skills>
 	</item>
 	<item id="48955" name="Artifact Book" additionalName="Lv. 2" type="Armor">
@@ -677,7 +677,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
 		<skills>
-			<skill id="39394" level="1" /> <!-- Artifact Book (Open 2 Slot) -->
+			<skill id="39394" level="1" /> <!-- Artifact Book Lv. 2 -->
 		</skills>
 	</item>
 	<item id="48956" name="Artifact Book" additionalName="Lv. 3" type="Armor">
@@ -692,7 +692,7 @@
 		<set name="enchant_limit" val="5" />
 		<set name="weight" val="150" />
 		<skills>
-			<skill id="39395" level="1" /> <!-- Artifact Book (Open 3 Slot) -->
+			<skill id="39395" level="1" /> <!-- Artifact Book Lv. 3 -->
 		</skills>
 	</item>
 	<item id="48957" name="Artifact - P. Atk." additionalName="Attack" type="Armor">
@@ -948,7 +948,7 @@
 		<set name="artifactSlot" val="4" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="35252" level="1" /> <!-- Artifact - Attack Attribute -->
+			<skill id="35252" level="1" /> <!-- Artifact - Attribute Attack -->
 		</skills>
 	</item>
 	<item id="48981" name="Artifact - Attribute Resistance" additionalName="Balance" type="Armor">
@@ -959,7 +959,7 @@
 		<set name="artifactSlot" val="4" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="35253" level="1" /> <!-- Artifact - Defense Attribute -->
+			<skill id="35253" level="1" /> <!-- Artifact - Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="48982" name="Artifact - Received Damage When Immobilized (No upgrade)" additionalName="Balance" type="Armor">
@@ -971,7 +971,7 @@
 		<set name="artifactSlot" val="4" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="35254" level="1" /> <!-- Artifact - Received Damage When Imobilized -->
+			<skill id="35254" level="1" /> <!-- Artifact - Received Damage When Immobilized -->
 		</skills>
 	</item>
 	<item id="48983" name="Artifact - P. Skill Power" additionalName="Balance" type="Armor">
@@ -1151,7 +1151,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39397" level="5" /> <!-- +5 Radiant Warrior's Circlet Box -->
+			<skill id="39397" level="5" /> <!-- Legendary Dye Pack Lv. 5 (10 pcs.) -->
 		</skills>
 	</item>
 	<item id="48997" name="Lv. 4 Legendary Dye Pack (10-unit)" type="EtcItem">
@@ -1165,7 +1165,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39397" level="6" /> <!-- +5 Radiant Warrior's Circlet Box -->
+			<skill id="39397" level="6" /> <!-- Legendary Dye Pack Lv. 4 (10 pcs.) -->
 		</skills>
 	</item>
 	<item id="48998" name="Fairy's Good Luck Bag" additionalName="Event" type="EtcItem">

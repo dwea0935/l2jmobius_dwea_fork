@@ -28,7 +28,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 
@@ -98,7 +98,7 @@ public class ClanMember
 		_clan = clan;
 		_name = player.getName();
 		_level = player.getLevel();
-		_classId = player.getClassId().getId();
+		_classId = player.getPlayerClass().getId();
 		_objectId = player.getObjectId();
 		_pledgeType = player.getPledgeType();
 		_powerGrade = player.getPowerGrade();
@@ -120,7 +120,7 @@ public class ClanMember
 			// this is here to keep the data when the player logs off
 			_name = _player.getName();
 			_level = _player.getLevel();
-			_classId = _player.getClassId().getId();
+			_classId = _player.getPlayerClass().getId();
 			_objectId = _player.getObjectId();
 			_powerGrade = _player.getPowerGrade();
 			_pledgeType = _player.getPledgeType();
@@ -178,7 +178,7 @@ public class ClanMember
 	 */
 	public int getClassId()
 	{
-		return _player != null ? _player.getClassId().getId() : _classId;
+		return _player != null ? _player.getPlayerClass().getId() : _classId;
 	}
 	
 	/**

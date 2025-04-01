@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.instancemanager.AirShipManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.AirShipManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.World;
@@ -82,7 +82,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				}
 				if (_param1 < World.GRACIA_MAX_X)
 				{
-					ship.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(_param1, _param2, z));
+					ship.getAI().setIntention(Intention.MOVE_TO, new Location(_param1, _param2, z));
 				}
 				break;
 			}
@@ -92,7 +92,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				{
 					return;
 				}
-				ship.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+				ship.getAI().setIntention(Intention.ACTIVE);
 				break;
 			}
 			case 2:
@@ -104,7 +104,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				if (z < World.GRACIA_MAX_Z)
 				{
 					z = Math.min(z + STEP, World.GRACIA_MAX_Z);
-					ship.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(ship.getX(), ship.getY(), z));
+					ship.getAI().setIntention(Intention.MOVE_TO, new Location(ship.getX(), ship.getY(), z));
 				}
 				break;
 			}
@@ -117,7 +117,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				if (z > World.GRACIA_MIN_Z)
 				{
 					z = Math.max(z - STEP, World.GRACIA_MIN_Z);
-					ship.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(ship.getX(), ship.getY(), z));
+					ship.getAI().setIntention(Intention.MOVE_TO, new Location(ship.getX(), ship.getY(), z));
 				}
 				break;
 			}

@@ -28,8 +28,8 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.TeleportListHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.TeleportListHolder;
 
 /**
  * @author Norvox
@@ -54,9 +54,9 @@ public class RaidTeleportListData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "teleport", teleportNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "teleport", teleportNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(teleportNode));
 			final int tpId = set.getInt("id");

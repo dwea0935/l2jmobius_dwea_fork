@@ -27,12 +27,12 @@ import java.util.List;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.holders.RelicCouponHolder;
+import org.l2jmobius.gameserver.data.holders.RelicDataHolder;
 import org.l2jmobius.gameserver.data.xml.RelicCouponData;
 import org.l2jmobius.gameserver.data.xml.RelicData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PlayerRelicData;
-import org.l2jmobius.gameserver.model.holders.RelicCouponHolder;
-import org.l2jmobius.gameserver.model.holders.RelicDataHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerRelicData;
 import org.l2jmobius.gameserver.model.variables.AccountVariables;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -120,7 +120,7 @@ public class ExRelicsSummonResult extends ServerPacket
 				_player.storeRelics();
 				_player.sendPacket(new ExRelicsList(_player)); // Update confirmed relic list relics count.
 				_player.sendPacket(new ExRelicsExchangeList(_player)); // Update relic exchange/confirm list.
-				_player.giveRelicSkill(obtainedRelicTemplate);
+				// _player.giveRelicSkill(obtainedRelicTemplate);
 				return;
 			}
 		}
@@ -439,7 +439,7 @@ public class ExRelicsSummonResult extends ServerPacket
 					}
 				}
 				_player.storeRelics();
-				_player.giveRelicSkill(obtainedRelicTemplate);
+				// _player.giveRelicSkill(obtainedRelicTemplate);
 			}
 			else
 			{

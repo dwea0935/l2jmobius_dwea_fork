@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.admincommandhandlers;
 
@@ -22,9 +26,9 @@ import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -32,7 +36,6 @@ import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
 import org.l2jmobius.gameserver.model.zone.type.NoSummonFriendZone;
 import org.l2jmobius.gameserver.model.zone.type.ScriptZone;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 import ai.bosses.Antharas.Antharas;
 import ai.bosses.Baium.Baium;
@@ -40,7 +43,7 @@ import ai.bosses.Fafurion.Fafurion;
 import ai.bosses.Trasken.Trasken;
 
 /**
- * @author St3eT
+ * @author St3eT, Mobius
  */
 public class AdminGrandBoss implements IAdminCommandHandler
 {
@@ -138,13 +141,13 @@ public class AdminGrandBoss implements IAdminCommandHandler
 						}
 						default:
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Wrong ID!");
+							activeChar.sendSysMessage("Wrong ID!");
 						}
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //grandboss_skip Id");
+					activeChar.sendSysMessage("Usage: //grandboss_skip Id");
 				}
 				break;
 			}
@@ -181,13 +184,13 @@ public class AdminGrandBoss implements IAdminCommandHandler
 						}
 						default:
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Wrong ID!");
+							activeChar.sendSysMessage("Wrong ID!");
 						}
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //grandboss_respawn Id");
+					activeChar.sendSysMessage("Usage: //grandboss_respawn Id");
 				}
 				break;
 			}
@@ -210,13 +213,13 @@ public class AdminGrandBoss implements IAdminCommandHandler
 						}
 						default:
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Wrong ID!");
+							activeChar.sendSysMessage("Wrong ID!");
 						}
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //grandboss_minions Id");
+					activeChar.sendSysMessage("Usage: //grandboss_minions Id");
 				}
 				break;
 			}
@@ -253,13 +256,13 @@ public class AdminGrandBoss implements IAdminCommandHandler
 						}
 						default:
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Wrong ID!");
+							activeChar.sendSysMessage("Wrong ID!");
 						}
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //grandboss_abort Id");
+					activeChar.sendSysMessage("Usage: //grandboss_abort Id");
 				}
 			}
 				break;
@@ -498,7 +501,7 @@ public class AdminGrandBoss implements IAdminCommandHandler
 		}
 		else
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Wrong ID!");
+			activeChar.sendSysMessage("Wrong ID!");
 		}
 	}
 	

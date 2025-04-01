@@ -22,6 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets.mablegame;
 
 import org.l2jmobius.gameserver.data.xml.MableGameData;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 
@@ -76,7 +77,7 @@ public class ExRequestMableGamePopupOk extends ClientPacket
 				{
 					if (playerState.getPendingReward() != null)
 					{
-						player.addItem(getClass().getSimpleName(), playerState.getPendingReward(), player, true);
+						player.addItem(ItemProcessType.REWARD, playerState.getPendingReward(), player, true);
 						playerState.setPendingReward(null);
 					}
 					else if (playerState.isMoved())

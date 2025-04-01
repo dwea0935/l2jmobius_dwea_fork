@@ -250,7 +250,6 @@
 		<set name="equip_reuse_delay" val="30" />
 		<set name="immediate_effect" val="true" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="13569" level="1" /> <!-- Talisman of Lilith -->
@@ -264,7 +263,6 @@
 		<set name="useSkillDisTime" val="6" />
 		<set name="equip_reuse_delay" val="30" />
 		<set name="immediate_effect" val="true" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
@@ -285,7 +283,6 @@
 		<set name="useSkillDisTime" val="6" />
 		<set name="equip_reuse_delay" val="30" />
 		<set name="immediate_effect" val="true" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>

@@ -35,6 +35,7 @@ import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -71,7 +72,7 @@ public class ExtractableItems implements IItemHandler
 		}
 		
 		// destroy item
-		if (!player.destroyItem("Extract", item.getObjectId(), 1, player, true))
+		if (!player.destroyItem(ItemProcessType.FEE, item.getObjectId(), 1, player, true))
 		{
 			return false;
 		}
@@ -123,7 +124,7 @@ public class ExtractableItems implements IItemHandler
 						
 						if (template.isStackable() || (createItemAmount == 1))
 						{
-							final Item newItem = player.addItem("Extract", expi.getId(), createItemAmount, player, false);
+							final Item newItem = player.addItem(ItemProcessType.REWARD, expi.getId(), createItemAmount, player, false);
 							if (expi.getMaxEnchant() > 0)
 							{
 								newItem.setEnchantLevel(Rnd.get(expi.getMinEnchant(), expi.getMaxEnchant()));
@@ -135,7 +136,7 @@ public class ExtractableItems implements IItemHandler
 						{
 							while (createItemAmount > 0)
 							{
-								final Item newItem = player.addItem("Extract", expi.getId(), 1, player, false);
+								final Item newItem = player.addItem(ItemProcessType.REWARD, expi.getId(), 1, player, false);
 								if (expi.getMaxEnchant() > 0)
 								{
 									newItem.setEnchantLevel(Rnd.get(expi.getMinEnchant(), expi.getMaxEnchant()));
@@ -177,7 +178,7 @@ public class ExtractableItems implements IItemHandler
 					
 					if (template.isStackable() || (createItemAmount == 1))
 					{
-						final Item newItem = player.addItem("Extract", expi.getId(), createItemAmount, player, false);
+						final Item newItem = player.addItem(ItemProcessType.REWARD, expi.getId(), createItemAmount, player, false);
 						if (expi.getMaxEnchant() > 0)
 						{
 							newItem.setEnchantLevel(Rnd.get(expi.getMinEnchant(), expi.getMaxEnchant()));
@@ -189,7 +190,7 @@ public class ExtractableItems implements IItemHandler
 					{
 						while (createItemAmount > 0)
 						{
-							final Item newItem = player.addItem("Extract", expi.getId(), 1, player, false);
+							final Item newItem = player.addItem(ItemProcessType.REWARD, expi.getId(), 1, player, false);
 							if (expi.getMaxEnchant() > 0)
 							{
 								newItem.setEnchantLevel(Rnd.get(expi.getMinEnchant(), expi.getMaxEnchant()));

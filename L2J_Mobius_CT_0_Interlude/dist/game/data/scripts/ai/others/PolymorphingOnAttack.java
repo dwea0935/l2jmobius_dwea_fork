@@ -21,13 +21,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 
 import ai.AbstractNpcAI;
@@ -59,25 +58,25 @@ public class PolymorphingOnAttack extends AbstractNpcAI
 		MOBSPAWNS.put(21539, Arrays.asList(21540, 100, 30, -1)); // Wailing of Splendor
 	}
 	
-	protected static final NpcStringId[][] MOBTEXTS =
+	protected static final String[][] MOBTEXTS =
 	{
-		new NpcStringId[]
+		new String[]
 		{
-			NpcStringId.ENOUGH_FOOLING_AROUND_GET_READY_TO_DIE,
-			NpcStringId.YOU_IDIOT_I_VE_JUST_BEEN_TOYING_WITH_YOU,
-			NpcStringId.NOW_THE_FUN_STARTS
+			"Enough fooling around. Get ready to die!",
+			"You idiot! I've just been toying with you!",
+			"Now the fun starts!"
 		},
-		new NpcStringId[]
+		new String[]
 		{
-			NpcStringId.I_MUST_ADMIT_NO_ONE_MAKES_MY_BLOOD_BOIL_QUITE_LIKE_YOU_DO,
-			NpcStringId.NOW_THE_BATTLE_BEGINS,
-			NpcStringId.WITNESS_MY_TRUE_POWER
+			"I must admit, no one makes my blood boil quite like you do!",
+			"Now the battle begins!",
+			"Witness my true power!"
 		},
-		new NpcStringId[]
+		new String[]
 		{
-			NpcStringId.PREPARE_TO_DIE,
-			NpcStringId.I_LL_DOUBLE_MY_STRENGTH,
-			NpcStringId.YOU_HAVE_MORE_SKILL_THAN_I_THOUGHT
+			"Prepare to die!",
+			"I'll double my strength!",
+			"You have more skill than I thought!"
 		}
 	};
 	
@@ -87,7 +86,7 @@ public class PolymorphingOnAttack extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.isSpawned() && !npc.isDead())
 		{
@@ -96,7 +95,7 @@ public class PolymorphingOnAttack extends AbstractNpcAI
 			{
 				if (tmp.get(3) >= 0)
 				{
-					final NpcStringId npcString = MOBTEXTS[tmp.get(3)][getRandom(MOBTEXTS[tmp.get(3)].length)];
+					final String npcString = MOBTEXTS[tmp.get(3)][getRandom(MOBTEXTS[tmp.get(3)].length)];
 					npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npcString));
 				}
 				npc.deleteMe();
@@ -104,10 +103,9 @@ public class PolymorphingOnAttack extends AbstractNpcAI
 				final Creature originalAttacker = isSummon ? attacker.getSummon() : attacker;
 				newNpc.setRunning();
 				newNpc.addDamageHate(originalAttacker, 0, 500);
-				newNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, originalAttacker);
+				newNpc.getAI().setIntention(Intention.ATTACK, originalAttacker);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -20,7 +20,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.instancemanager.MagicLampManager;
+import org.l2jmobius.gameserver.managers.MagicLampManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -59,6 +59,7 @@ public class ModifyMagicLampPoints extends AbstractEffect
 		{
 			return;
 		}
-		MagicLampManager.getInstance().addLampExp(player, _amount, false);
+		
+		MagicLampManager.getInstance().addLampExp(player, _amount, player.getLevel(), false);
 	}
 }

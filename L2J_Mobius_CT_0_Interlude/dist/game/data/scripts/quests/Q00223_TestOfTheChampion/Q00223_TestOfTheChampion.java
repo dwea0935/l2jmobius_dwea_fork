@@ -20,14 +20,14 @@
  */
 package quests.Q00223_TestOfTheChampion;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
@@ -76,7 +76,7 @@ public class Q00223_TestOfTheChampion extends Quest
 	
 	public Q00223_TestOfTheChampion()
 	{
-		super(223);
+		super(223, "Test of the Champion");
 		registerQuestItems(MASON_LETTER, MEDUSA_VENOM, WINDSUS_BILE, WHITE_ROSE_INSIGNIA, HARPY_EGG, GROOT_LETTER, MOUEN_LETTER, ASCALON_LETTER_1, IRON_ROSE_RING, BLOODY_AXE_HEAD, ASCALON_LETTER_2, ASCALON_LETTER_3, MOUEN_ORDER_1, ROAD_RATMAN_HEAD, MOUEN_ORDER_2, LETO_LIZARDMAN_FANG);
 		addStartNpc(ASCALON);
 		addTalkId(ASCALON, GROOT, MOUEN, MASON);
@@ -103,7 +103,7 @@ public class Q00223_TestOfTheChampion extends Quest
 				if (!player.getVariables().getBoolean("secondClassChange39", false))
 				{
 					htmltext = "30624-06a.htm";
-					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getClassId().getId()));
+					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getPlayerClass().getId()));
 					player.getVariables().set("secondClassChange39", true);
 				}
 				break;
@@ -166,8 +166,8 @@ public class Q00223_TestOfTheChampion extends Quest
 		{
 			case State.CREATED:
 			{
-				final ClassId classId = player.getClassId();
-				if ((classId != ClassId.WARRIOR) && (classId != ClassId.ORC_RAIDER))
+				final PlayerClass classId = player.getPlayerClass();
+				if ((classId != PlayerClass.WARRIOR) && (classId != PlayerClass.ORC_RAIDER))
 				{
 					htmltext = "30624-01.htm";
 				}
@@ -177,7 +177,7 @@ public class Q00223_TestOfTheChampion extends Quest
 				}
 				else
 				{
-					htmltext = (classId == ClassId.WARRIOR) ? "30624-03.htm" : "30624-04.htm";
+					htmltext = (classId == PlayerClass.WARRIOR) ? "30624-03.htm" : "30624-04.htm";
 				}
 				break;
 			}
@@ -335,12 +335,12 @@ public class Q00223_TestOfTheChampion extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		final QuestState st = getQuestState(attacker, false);
 		if (st == null)
 		{
-			return null;
+			return;
 		}
 		
 		switch (npc.getId())
@@ -358,7 +358,7 @@ public class Q00223_TestOfTheChampion extends Quest
 						
 						collector.setRunning();
 						collector.addDamageHate(originalKiller, 0, 999);
-						collector.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, originalKiller);
+						collector.getAI().setIntention(Intention.ATTACK, originalKiller);
 					}
 					npc.setScriptValue(1);
 				}
@@ -376,24 +376,22 @@ public class Q00223_TestOfTheChampion extends Quest
 						final Attackable collector = addSpawn(ROAD_COLLECTOR, npc, true, 0).asAttackable();
 						collector.setRunning();
 						collector.addDamageHate(originalKiller, 0, 999);
-						collector.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, originalKiller);
+						collector.getAI().setIntention(Intention.ATTACK, originalKiller);
 					}
 					npc.setScriptValue(1);
 				}
 				break;
 			}
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		final int npcId = npc.getId();
@@ -503,7 +501,5 @@ public class Q00223_TestOfTheChampion extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 }

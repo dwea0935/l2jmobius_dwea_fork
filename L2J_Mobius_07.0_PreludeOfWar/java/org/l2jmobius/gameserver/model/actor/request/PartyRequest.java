@@ -18,8 +18,8 @@ package org.l2jmobius.gameserver.model.actor.request;
 
 import java.util.Objects;
 
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 
 /**
  * @author UnAfraid

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="10648" name="Inventory 2" additionalName="Not Available" type="EtcItem">
 		<!-- The item is not available. -->
@@ -35,7 +35,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2531" level="1" /> <!-- Adventurer's Scroll of Escape -->
+			<skill id="2531" level="1" /> <!-- Scroll of Escape (Novice) -->
 		</skills>
 	</item>
 </list>

@@ -24,14 +24,11 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
-import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.network.NpcStringId.NSLocalisation;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.SystemMessageId.SMLocalisation;
 
 /**
- * ExShowScreenMessage server packet implementation.
  * @author Kerberos
  */
 public class ExShowScreenMessage extends ServerPacket
@@ -57,7 +54,6 @@ public class ExShowScreenMessage extends ServerPacket
 	private final boolean _effect;
 	private final String _text;
 	private final int _time;
-	private final int _npcString;
 	private List<String> _parameters;
 	
 	/**
@@ -78,7 +74,6 @@ public class ExShowScreenMessage extends ServerPacket
 		_time = time;
 		_size = 0;
 		_effect = false;
-		_npcString = -1;
 	}
 	
 	/**
@@ -100,7 +95,6 @@ public class ExShowScreenMessage extends ServerPacket
 		_time = time;
 		_size = 0;
 		_effect = false;
-		_npcString = -1;
 	}
 	
 	/**
@@ -125,34 +119,6 @@ public class ExShowScreenMessage extends ServerPacket
 		_time = time;
 		_size = size;
 		_effect = showEffect;
-		_npcString = -1;
-	}
-	
-	/**
-	 * Display a NPC String on the screen for a given position and time.
-	 * @param npcString the NPC String Id
-	 * @param position the position on the screen
-	 * @param time the display time
-	 * @param params the String parameters
-	 */
-	public ExShowScreenMessage(NpcStringId npcString, int position, int time, String... params)
-	{
-		_type = 2;
-		_sysMessageId = -1;
-		_unk1 = 0x00;
-		_unk2 = 0x00;
-		_unk3 = 0x00;
-		_fade = false;
-		_position = position;
-		_text = null;
-		_time = time;
-		_size = 0x00;
-		_effect = false;
-		_npcString = npcString.getId();
-		if (params != null)
-		{
-			addStringParameter(params);
-		}
 	}
 	
 	/**
@@ -175,7 +141,6 @@ public class ExShowScreenMessage extends ServerPacket
 		_time = time;
 		_size = 0x00;
 		_effect = false;
-		_npcString = -1;
 		if (params != null)
 		{
 			addStringParameter(params);
@@ -195,10 +160,9 @@ public class ExShowScreenMessage extends ServerPacket
 	 * @param time the display time
 	 * @param fade the fade effect (0 - disabled, 1 enabled)
 	 * @param text the text to display
-	 * @param npcString
 	 * @param params the String parameters
 	 */
-	public ExShowScreenMessage(int type, int messageId, int position, int unk1, int size, int unk2, int unk3, boolean showEffect, int time, boolean fade, String text, NpcStringId npcString, String params)
+	public ExShowScreenMessage(int type, int messageId, int position, int unk1, int size, int unk2, int unk3, boolean showEffect, int time, boolean fade, String text, String params)
 	{
 		_type = type;
 		_sysMessageId = messageId;
@@ -211,7 +175,6 @@ public class ExShowScreenMessage extends ServerPacket
 		_time = time;
 		_size = size;
 		_effect = showEffect;
-		_npcString = npcString == null ? -1 : npcString.getId();
 	}
 	
 	/**
@@ -268,30 +231,6 @@ public class ExShowScreenMessage extends ServerPacket
 							}
 						}
 					}
-					else if (_npcString > -1)
-					{
-						final NpcStringId ns = NpcStringId.getNpcStringId(_npcString);
-						if (ns != null)
-						{
-							final NSLocalisation nsl = ns.getLocalisation(lang);
-							if (nsl != null)
-							{
-								buffer.writeInt(_type);
-								buffer.writeInt(-1);
-								buffer.writeInt(_position);
-								buffer.writeInt(_unk1);
-								buffer.writeInt(_size);
-								buffer.writeInt(_unk2);
-								buffer.writeInt(_unk3);
-								buffer.writeInt(_effect);
-								buffer.writeInt(_time);
-								buffer.writeInt(_fade);
-								buffer.writeInt(-1);
-								buffer.writeString(nsl.getLocalisation(_parameters != null ? _parameters : Collections.emptyList()));
-								return;
-							}
-						}
-					}
 				}
 			}
 		}
@@ -306,8 +245,8 @@ public class ExShowScreenMessage extends ServerPacket
 		buffer.writeInt(_effect);
 		buffer.writeInt(_time);
 		buffer.writeInt(_fade);
-		// buffer.writeInt(_npcString);
-		if (_npcString == -1)
+		buffer.writeString(_text);
+		if (_sysMessageId == -1)
 		{
 			buffer.writeString(_text);
 		}

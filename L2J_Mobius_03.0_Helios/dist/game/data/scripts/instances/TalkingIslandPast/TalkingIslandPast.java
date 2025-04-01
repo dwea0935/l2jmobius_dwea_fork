@@ -93,18 +93,17 @@ public class TalkingIslandPast extends AbstractInstance
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		final Instance instance = creature.getInstanceWorld();
 		if ((instance != null) && creature.isPlayer())
 		{
 			creature.teleToLocation(TOWN_TELEPORT);
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -122,7 +121,6 @@ public class TalkingIslandPast extends AbstractInstance
 				getTimers().addTimer("MSG", null, 5000, npc, player, n -> showOnScreenMsg(n.getPlayer(), NpcStringId.TALK_TO_THE_MYSTERIOUS_DARK_KNIGHT, ExShowScreenMessage.TOP_CENTER, 5000));
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public static void main(String[] args)

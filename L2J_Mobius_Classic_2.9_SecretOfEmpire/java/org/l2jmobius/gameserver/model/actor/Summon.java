@@ -24,36 +24,35 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.CreatureAI;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.SummonAI;
 import org.l2jmobius.gameserver.data.sql.CharSummonTable;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.NpcInfoType;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.Team;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.handler.ItemHandler;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.AggroInfo;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
 import org.l2jmobius.gameserver.model.actor.stat.SummonStat;
 import org.l2jmobius.gameserver.model.actor.status.SummonStatus;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSummonSpawn;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonSpawn;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
 import org.l2jmobius.gameserver.model.itemcontainer.PetInventory;
@@ -64,6 +63,7 @@ import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.model.zone.ZoneRegion;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.NpcInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.AbstractMaskPacket;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExPartyPetWindowAdd;
@@ -80,7 +80,8 @@ import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SummonInfo;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.TeleportToLocation;
-import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 public abstract class Summon extends Playable
 {
@@ -416,7 +417,7 @@ public abstract class Summon extends Playable
 		// Pet will be deleted along with all his items.
 		if (getInventory() != null)
 		{
-			getInventory().destroyAllItems("pet deleted", _owner, this);
+			getInventory().destroyAllItems(ItemProcessType.DESTROY, _owner, this);
 		}
 		
 		decayMe();
@@ -519,11 +520,11 @@ public abstract class Summon extends Playable
 		_follow = value;
 		if (_follow)
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, _owner);
+			getAI().setIntention(Intention.FOLLOW, _owner);
 		}
 		else
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			getAI().setIntention(Intention.IDLE);
 		}
 	}
 	
@@ -623,7 +624,7 @@ public abstract class Summon extends Playable
 	 * <li>Check if the summon owns enough HP and MP to cast the skill</li>
 	 * <li>Check if all skills are enabled and this skill is enabled</li>
 	 * <li>Check if the skill is active</li>
-	 * <li>Notify the AI with AI_INTENTION_CAST and target</li>
+	 * <li>Notify the AI with CAST and target</li>
 	 * </ul>
 	 * @param skill The Skill to use
 	 * @param forceUse used to force ATTACK on players
@@ -721,8 +722,8 @@ public abstract class Summon extends Playable
 			return false;
 		}
 		
-		// Notify the AI with AI_INTENTION_CAST and target
-		getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, skill, target);
+		// Notify the AI with CAST and target
+		getAI().setIntention(Intention.CAST, skill, target);
 		return true;
 	}
 	
@@ -951,7 +952,7 @@ public abstract class Summon extends Playable
 	{
 		if (!isMovementDisabled())
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			getAI().setIntention(Intention.ACTIVE);
 		}
 	}
 	
@@ -964,7 +965,7 @@ public abstract class Summon extends Playable
 		if ((_owner != null) && (target != null))
 		{
 			setTarget(target);
-			getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+			getAI().setIntention(Intention.ATTACK, target);
 			if (target.isFakePlayer() && !Config.FAKE_PLAYER_AUTO_ATTACKABLE)
 			{
 				_owner.updatePvPStatus();
@@ -992,7 +993,7 @@ public abstract class Summon extends Playable
 		
 		// Sin eater, Big Boom, Wyvern can't attack with attack button.
 		final int npcId = getId();
-		if (CommonUtil.contains(PASSIVE_SUMMONS, npcId))
+		if (ArrayUtil.contains(PASSIVE_SUMMONS, npcId))
 		{
 			_owner.sendPacket(ActionFailed.STATIC_PACKET);
 			return false;
@@ -1042,7 +1043,7 @@ public abstract class Summon extends Playable
 		if (!target.isAutoAttackable(_owner) && !ctrlPressed && !target.isNpc())
 		{
 			setFollowStatus(false);
-			getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, target);
+			getAI().setIntention(Intention.FOLLOW, target);
 			sendPacket(SystemMessageId.INVALID_TARGET);
 			return false;
 		}

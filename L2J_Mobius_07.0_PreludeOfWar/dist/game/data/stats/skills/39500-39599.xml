@@ -195,7 +195,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -326,7 +326,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<effectPoint>1</effectPoint>
 		<effectRange>-1</effectRange>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicLevel>-2</magicLevel>
 		<specialLevel>-2</specialLevel>

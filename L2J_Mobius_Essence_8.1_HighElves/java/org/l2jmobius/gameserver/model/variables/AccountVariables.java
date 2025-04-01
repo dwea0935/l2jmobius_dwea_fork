@@ -52,7 +52,6 @@ public class AccountVariables extends AbstractVariables
 	public static final String VIP_TIER = "VipTier";
 	public static final String VIP_EXPIRATION = "VipExpiration";
 	public static final String VIP_ITEM_BOUGHT = "Vip_Item_Bought";
-	public static final String ACTIVE_RELIC = "ACTIVE_RELIC";
 	public static final String A_GRADE_RELIC_ATEMPTS = "A_GRADE_RELIC_ATEMPTS";
 	public static final String B_GRADE_RELIC_ATEMPTS = "B_GRADE_RELIC_ATEMPTS";
 	public static final String UNCONFIRMED_RELICS_COUNT = "UNCONFIRMED_RELICS_COUNT";
@@ -65,7 +64,6 @@ public class AccountVariables extends AbstractVariables
 		restoreMe();
 	}
 	
-	@Override
 	public boolean restoreMe()
 	{
 		// Restore previous variables.
@@ -93,7 +91,6 @@ public class AccountVariables extends AbstractVariables
 		return true;
 	}
 	
-	@Override
 	public boolean storeMe()
 	{
 		// No changes, nothing to store.
@@ -136,7 +133,6 @@ public class AccountVariables extends AbstractVariables
 		return true;
 	}
 	
-	@Override
 	public boolean deleteMe()
 	{
 		try (Connection con = DatabaseFactory.getConnection())

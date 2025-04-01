@@ -16,10 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.enums.MatchingRoomType;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.matching.CommandChannelMatchingRoom;
-import org.l2jmobius.gameserver.model.matching.MatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.CommandChannelMatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingRoomType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExMPCCRoomInfo;
 

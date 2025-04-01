@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author Sdw

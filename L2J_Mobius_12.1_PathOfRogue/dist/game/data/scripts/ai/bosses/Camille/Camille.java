@@ -20,12 +20,12 @@
  */
 package ai.bosses.Camille;
 
-import org.l2jmobius.gameserver.enums.Movie;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.network.enums.Movie;
 
 import instances.AbstractInstance;
 
@@ -88,7 +88,7 @@ public class Camille extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -116,7 +116,6 @@ public class Camille extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

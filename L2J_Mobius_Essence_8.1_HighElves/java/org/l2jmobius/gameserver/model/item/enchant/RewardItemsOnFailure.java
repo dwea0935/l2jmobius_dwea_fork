@@ -24,7 +24,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
 
 /**
@@ -43,7 +43,7 @@ public class RewardItemsOnFailure
 	public void addItemToHolder(int itemId, CrystalType grade, int enchantLevel, long count, double chance)
 	{
 		final ItemChanceHolder item = new ItemChanceHolder(itemId, chance, count);
-		_rewards.computeIfAbsent(grade, v -> new HashMap<>()).put(enchantLevel, item);
+		_rewards.computeIfAbsent(grade, _ -> new HashMap<>()).put(enchantLevel, item);
 		_minEnchantLevel = Math.min(_minEnchantLevel, enchantLevel);
 		_maxEnchantLevel = Math.max(_maxEnchantLevel, enchantLevel);
 	}

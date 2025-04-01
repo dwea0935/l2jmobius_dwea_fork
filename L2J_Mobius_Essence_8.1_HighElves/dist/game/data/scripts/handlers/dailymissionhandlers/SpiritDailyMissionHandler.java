@@ -22,17 +22,17 @@ package handlers.dailymissionhandlers;
 
 import java.util.function.Consumer;
 
-import org.l2jmobius.gameserver.enums.DailyMissionStatus;
-import org.l2jmobius.gameserver.enums.ElementalType;
 import org.l2jmobius.gameserver.handler.AbstractDailyMissionHandler;
-import org.l2jmobius.gameserver.model.DailyMissionDataHolder;
-import org.l2jmobius.gameserver.model.DailyMissionPlayerEntry;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.DailyMissionStatus;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
+import org.l2jmobius.gameserver.model.actor.holders.player.DailyMissionDataHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.DailyMissionPlayerEntry;
 import org.l2jmobius.gameserver.model.events.Containers;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnElementalSpiritUpgrade;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnElementalSpiritLearn;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnElementalSpiritUpgrade;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnElementalSpiritLearn;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 
 /**
@@ -41,12 +41,12 @@ import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 public class SpiritDailyMissionHandler extends AbstractDailyMissionHandler
 {
 	private final int _amount;
-	private final ElementalType _type;
+	private final ElementalSpiritType _type;
 	
 	public SpiritDailyMissionHandler(DailyMissionDataHolder holder)
 	{
 		super(holder);
-		_type = getHolder().getParams().getEnum("element", ElementalType.class, ElementalType.NONE);
+		_type = getHolder().getParams().getEnum("element", ElementalSpiritType.class, ElementalSpiritType.NONE);
 		_amount = holder.getRequiredCompletions();
 	}
 	
@@ -82,7 +82,7 @@ public class SpiritDailyMissionHandler extends AbstractDailyMissionHandler
 	private void onElementalSpiritUpgrade(OnElementalSpiritUpgrade event)
 	{
 		final ElementalSpirit spirit = event.getSpirit();
-		if (ElementalType.of(spirit.getType()) != _type)
+		if (ElementalSpiritType.of(spirit.getType()) != _type)
 		{
 			return;
 		}

@@ -16,14 +16,13 @@
  */
 package quests.Q00164_BloodFiend;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 /**
@@ -43,7 +42,7 @@ public class Q00164_BloodFiend extends Quest
 	
 	public Q00164_BloodFiend()
 	{
-		super(164);
+		super(164, "Blood Fiend");
 		addStartNpc(CREAMEES);
 		addTalkId(CREAMEES);
 		addKillId(KIRUNAK);
@@ -63,16 +62,15 @@ public class Q00164_BloodFiend extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isCond(1))
 		{
-			npc.broadcastPacket(new NpcSay(npc, ChatType.GENERAL, NpcStringId.I_HAVE_FULFILLED_MY_CONTRACT_WITH_TRADER_CREAMEES));
+			npc.broadcastPacket(new NpcSay(npc, ChatType.GENERAL, "I have fulfilled my contract with Trader Creamees."));
 			giveItems(killer, KIRUNAK_SKULL, 1);
 			qs.setCond(2, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

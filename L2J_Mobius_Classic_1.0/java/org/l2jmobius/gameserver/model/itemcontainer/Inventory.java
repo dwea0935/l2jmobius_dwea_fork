@@ -37,35 +37,36 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.cache.PaperdollCache;
 import org.l2jmobius.gameserver.data.xml.AppearanceItemData;
 import org.l2jmobius.gameserver.data.xml.ArmorSetData;
-import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ItemLocation;
-import org.l2jmobius.gameserver.enums.ItemSkillType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
+import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.model.ArmorSet;
 import org.l2jmobius.gameserver.model.VariationInstance;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerItemUnequip;
-import org.l2jmobius.gameserver.model.holders.ArmorsetSkillHolder;
-import org.l2jmobius.gameserver.model.holders.ItemSkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemUnequip;
 import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.appearance.AppearanceStone;
 import org.l2jmobius.gameserver.model.item.appearance.AppearanceType;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ItemSkillType;
+import org.l2jmobius.gameserver.model.item.holders.ArmorsetSkillHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemSkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.EtcItemType;
 import org.l2jmobius.gameserver.model.item.type.ItemType;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillConditionScope;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.network.serverpackets.ExUserInfoEquipSlot;
 import org.l2jmobius.gameserver.network.serverpackets.SkillCoolTime;
 
@@ -1025,13 +1026,13 @@ public abstract class Inventory extends ItemContainer
 	
 	/**
 	 * Drop item from inventory and updates database
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be dropped
 	 * @param actor : Player Player requesting the item drop
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
-	public Item dropItem(String process, Item item, Player actor, Object reference)
+	public Item dropItem(ItemProcessType process, Item item, Player actor, Object reference)
 	{
 		if (item == null)
 		{
@@ -1058,14 +1059,14 @@ public abstract class Inventory extends ItemContainer
 	
 	/**
 	 * Drop item from inventory by using its <b>objectID</b> and updates database
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param objectId : int Item Instance identifier of the item to be dropped
 	 * @param count : int Quantity of items to be dropped
 	 * @param actor : Player Player requesting the item drop
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
-	public Item dropItem(String process, int objectId, long count, Player actor, Object reference)
+	public Item dropItem(ItemProcessType process, int objectId, long count, Player actor, Object reference)
 	{
 		Item item = getItemByObjectId(objectId);
 		if (item == null)
@@ -1088,7 +1089,7 @@ public abstract class Inventory extends ItemContainer
 				item.setLastChange(Item.MODIFIED);
 				item.updateDatabase();
 				
-				final Item newItem = ItemData.getInstance().createItem(process, item.getId(), count, actor, reference);
+				final Item newItem = ItemManager.createItem(process, item.getId(), count, actor, reference);
 				newItem.updateDatabase();
 				refreshWeight();
 				return newItem;
@@ -1829,7 +1830,7 @@ public abstract class Inventory extends ItemContainer
 			default:
 			{
 				LOGGER.info("Unhandled slot type: " + slot);
-				LOGGER.info(CommonUtil.getTraceString(Thread.currentThread().getStackTrace()));
+				LOGGER.info(TraceUtil.getTraceString(Thread.currentThread().getStackTrace()));
 			}
 		}
 		if (pdollSlot >= 0)
@@ -2224,7 +2225,7 @@ public abstract class Inventory extends ItemContainer
 						// If stackable item is found in inventory just add to current quantity
 						if (item.isStackable() && (getItemByItemId(item.getId()) != null))
 						{
-							addItem("Restore", item, getOwner().asPlayer(), null);
+							addItem(ItemProcessType.RESTORE, item, getOwner().asPlayer(), null);
 						}
 						else
 						{

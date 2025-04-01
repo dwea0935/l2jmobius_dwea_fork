@@ -17,7 +17,7 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.ClanEntryManager;
+import org.l2jmobius.gameserver.managers.ClanEntryManager;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.entry.PledgeApplicantInfo;
 import org.l2jmobius.gameserver.model.clan.entry.PledgeRecruitInfo;

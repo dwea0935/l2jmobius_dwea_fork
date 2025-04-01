@@ -219,7 +219,6 @@
 		<skill skillName="Superior M. Def." skillId="10004" skillLevel="3" getLevel="95" levelUpSp="1000000" />
 		<skill skillName="Superior Mental Attack Resistance" skillId="10005" skillLevel="3" getLevel="95" levelUpSp="1000000" />
 		<skill skillName="Shield Wave" skillId="10012" skillLevel="5" getLevel="95" levelUpSp="1000000" />
-		<skill skillName="Shield Wave" skillId="10012" skillLevel="5" getLevel="95" levelUpSp="1000000" />
 		<skill skillName="Spirit of Revenge" skillId="10066" skillLevel="3" getLevel="95" levelUpSp="1000000" />
 		<skill skillName="True Vanguard" skillId="10244" skillLevel="3" getLevel="95" levelUpSp="1000000" />
 		<skill skillName="Avenger's Frenzy" skillId="10099" skillLevel="3" getLevel="95" levelUpSp="1000000" />

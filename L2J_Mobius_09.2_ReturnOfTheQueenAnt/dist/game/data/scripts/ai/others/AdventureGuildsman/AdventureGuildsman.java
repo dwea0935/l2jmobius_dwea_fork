@@ -20,15 +20,15 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowQuestInfo;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 import ai.AbstractNpcAI;
 
@@ -420,7 +420,7 @@ public class AdventureGuildsman extends AbstractNpcAI
 		}
 		if (event.startsWith("melody"))
 		{
-			final int buffOffset = CommonUtil.constrain(Integer.parseInt(event.substring(event.indexOf(' ') + 1)), 0, GROUP_MELODY.length);
+			final int buffOffset = MathUtil.clamp(Integer.parseInt(event.substring(event.indexOf(' ') + 1)), 0, GROUP_MELODY.length);
 			if (player.getPcCafePoints() >= 20)
 			{
 				npc.setTarget(player);

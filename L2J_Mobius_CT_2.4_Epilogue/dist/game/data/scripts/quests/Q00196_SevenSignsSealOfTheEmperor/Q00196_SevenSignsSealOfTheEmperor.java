@@ -16,14 +16,13 @@
  */
 package quests.Q00196_SevenSignsSealOfTheEmperor;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00195_SevenSignsSecretRitualOfThePriests.Q00195_SevenSignsSecretRitualOfThePriests;
@@ -51,7 +50,7 @@ public class Q00196_SevenSignsSealOfTheEmperor extends Quest
 	
 	public Q00196_SevenSignsSealOfTheEmperor()
 	{
-		super(196);
+		super(196, "Seven Signs, Seal of the Emperor");
 		addFirstTalkId(MERCHANT_OF_MAMMON);
 		addStartNpc(IASON_HEINE);
 		addTalkId(IASON_HEINE, MERCHANT_OF_MAMMON, SHUNAIMAN, WOOD, COURT_MAGICIAN);
@@ -64,7 +63,7 @@ public class Q00196_SevenSignsSealOfTheEmperor extends Quest
 		if ((npc.getId() == MERCHANT_OF_MAMMON) && "DESPAWN".equals(event))
 		{
 			isBusy = false;
-			npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.THE_ANCIENT_PROMISE_TO_THE_EMPEROR_HAS_BEEN_FULFILLED));
+			npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "The ancient promise to the Emperor has been fulfilled."));
 			npc.deleteMe();
 			return super.onEvent(event, npc, player);
 		}
@@ -100,7 +99,7 @@ public class Q00196_SevenSignsSealOfTheEmperor extends Quest
 						isBusy = true;
 						npc.setScriptValue(1);
 						final Npc merchant = addSpawn(MERCHANT_OF_MAMMON, 109743, 219975, -3512, 0, false, 0, false);
-						merchant.broadcastPacket(new NpcSay(merchant.getObjectId(), ChatType.NPC_GENERAL, merchant.getId(), NpcStringId.WHO_DARES_SUMMON_THE_MERCHANT_OF_MAMMON));
+						merchant.broadcastPacket(new NpcSay(merchant.getObjectId(), ChatType.NPC_GENERAL, merchant.getId(), "Who dares summon the Merchant of Mammon?!"));
 						htmltext = "30969-06.html";
 						startQuestTimer("DESPAWN", 120000, merchant, null);
 					}

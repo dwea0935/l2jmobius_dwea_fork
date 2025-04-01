@@ -50,7 +50,7 @@ public class Q00284_MuertosFeather extends Quest
 	
 	public Q00284_MuertosFeather()
 	{
-		super(284);
+		super(284, "Muertos Feather");
 		addStartNpc(TREVOR);
 		addTalkId(TREVOR);
 		addKillId(MOB_DROP_CHANCE.keySet());
@@ -104,14 +104,13 @@ public class Q00284_MuertosFeather extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, 1, 3, npc);
 		if (qs != null)
 		{
 			giveItemRandomly(qs.getPlayer(), npc, MUERTOS_FEATHER, 1, 0, MOB_DROP_CHANCE.get(npc.getId()), true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

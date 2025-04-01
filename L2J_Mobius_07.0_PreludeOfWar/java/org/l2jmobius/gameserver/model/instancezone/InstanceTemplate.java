@@ -27,27 +27,22 @@ import java.util.function.BiConsumer;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.GroupType;
-import org.l2jmobius.gameserver.enums.InstanceReenterType;
-import org.l2jmobius.gameserver.enums.InstanceRemoveBuffType;
-import org.l2jmobius.gameserver.enums.InstanceTeleportType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.model.AbstractPlayerGroup;
+import org.l2jmobius.gameserver.data.holders.InstanceReenterTimeHolder;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.GroupType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.templates.DoorTemplate;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
-import org.l2jmobius.gameserver.model.holders.InstanceReenterTimeHolder;
+import org.l2jmobius.gameserver.model.groups.AbstractPlayerGroup;
 import org.l2jmobius.gameserver.model.instancezone.conditions.Condition;
 import org.l2jmobius.gameserver.model.instancezone.conditions.ConditionCommandChannel;
 import org.l2jmobius.gameserver.model.instancezone.conditions.ConditionGroupMax;
 import org.l2jmobius.gameserver.model.instancezone.conditions.ConditionGroupMin;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
-import org.l2jmobius.gameserver.model.interfaces.INamable;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.spawns.SpawnTemplate;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
@@ -56,7 +51,7 @@ import org.l2jmobius.gameserver.model.variables.PlayerVariables;
  * Template holder for instances.
  * @author malyelfik
  */
-public class InstanceTemplate extends ListenersContainer implements IIdentifiable, INamable
+public class InstanceTemplate extends ListenersContainer
 {
 	// Basic instance parameters
 	private int _templateId = -1;
@@ -305,13 +300,11 @@ public class InstanceTemplate extends ListenersContainer implements IIdentifiabl
 	// -------------------------------------------------------------
 	// Getters
 	// -------------------------------------------------------------
-	@Override
 	public int getId()
 	{
 		return _templateId;
 	}
 	
-	@Override
 	public String getName()
 	{
 		return _name;
@@ -514,7 +507,7 @@ public class InstanceTemplate extends ListenersContainer implements IIdentifiabl
 			for (Playable playable : affected)
 			{
 				// Stop all buffs.
-				playable.getEffectList().stopEffects(info -> !info.getSkill().isIrreplacableBuff() && info.getSkill().getBuffType().isBuff() && hasRemoveBuffException(info.getSkill()), true, true);
+				playable.getEffectList().stopEffects(info -> !info.getSkill().isIrreplaceableBuff() && info.getSkill().getBuffType().isBuff() && hasRemoveBuffException(info.getSkill()), true, true);
 			}
 		}
 	}

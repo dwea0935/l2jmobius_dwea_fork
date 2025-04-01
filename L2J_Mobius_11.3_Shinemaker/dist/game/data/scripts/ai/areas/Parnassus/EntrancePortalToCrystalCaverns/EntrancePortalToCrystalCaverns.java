@@ -18,7 +18,7 @@ package ai.areas.Parnassus.EntrancePortalToCrystalCaverns;
 
 import java.util.Calendar;
 
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -100,10 +100,10 @@ public class EntrancePortalToCrystalCaverns extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
+		npc.setDisplayEffect(1);
 		getTimers().addRepeatingTimer("LOOP_TIMER", 10000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -117,7 +117,7 @@ public class EntrancePortalToCrystalCaverns extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -126,7 +126,6 @@ public class EntrancePortalToCrystalCaverns extends AbstractNpcAI
 			player.sendPacket(new OnEventTrigger(PRISON_ENTRACE_TRIGGER_2, true));
 			updateTriggersForPlayer(player, getCurrentInstanceTemplateId());
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public void updateTriggersForPlayer(Player player, int currentTemplateId)

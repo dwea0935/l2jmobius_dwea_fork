@@ -31,7 +31,6 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.ControllableMob;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyNpc;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles following admin commands: - kill = kills target Creature - kill_monster = kills target non-player - kill <radius> = If radius is specified, then ALL players only in that radius will be killed. - kill_monster <radius> = If radius is specified, then ALL non-players only in that
@@ -74,12 +73,12 @@ public class AdminKill implements IAdminCommandHandler
 								kill(activeChar, knownChar);
 							});
 							
-							BuilderUtil.sendSysMessage(activeChar, "Killed all characters within a " + radius + " unit radius.");
+							activeChar.sendSysMessage("Killed all characters within a " + radius + " unit radius.");
 							return true;
 						}
 						catch (NumberFormatException e)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Invalid radius.");
+							activeChar.sendSysMessage("Invalid radius.");
 							return false;
 						}
 					}
@@ -99,12 +98,12 @@ public class AdminKill implements IAdminCommandHandler
 							kill(activeChar, wo);
 						});
 						
-						BuilderUtil.sendSysMessage(activeChar, "Killed all characters within a " + radius + " unit radius.");
+						activeChar.sendSysMessage("Killed all characters within a " + radius + " unit radius.");
 						return true;
 					}
 					catch (NumberFormatException e)
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Usage: //kill <player_name | radius>");
+						activeChar.sendSysMessage("Usage: //kill <player_name | radius>");
 						return false;
 					}
 				}

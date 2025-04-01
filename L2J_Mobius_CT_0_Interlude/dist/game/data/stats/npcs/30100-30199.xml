@@ -1563,7 +1563,7 @@
 		<ai aggroRange="1000" clanHelpRange="300" isAggressive="false" />
 		<collision>
 			<radius normal="8" />
-			<height normal="25" />
+			<height normal="23" />
 		</collision>
 	</npc>
 	<npc id="30163" level="70" type="Merchant" name="Rex" title="Trader">
@@ -1875,7 +1875,7 @@
 		<ai aggroRange="1000" clanHelpRange="300" isAggressive="false" />
 		<collision>
 			<radius normal="8" />
-			<height normal="25" />
+			<height normal="23" />
 		</collision>
 	</npc>
 	<npc id="30178" level="70" type="Merchant" name="Zenkin" title="Trader">

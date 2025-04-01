@@ -1403,7 +1403,7 @@
 		<abnormalVisualEffect>VP_UP</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>5000</reuseDelay>
 		<specialLevel>-1</specialLevel>

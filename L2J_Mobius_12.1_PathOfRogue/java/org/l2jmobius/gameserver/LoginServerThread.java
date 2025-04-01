@@ -49,7 +49,8 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.crypt.NewCrypt;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.network.base.BaseWritablePacket;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.HexUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.ConnectionState;
@@ -116,7 +117,7 @@ public class LoginServerThread extends Thread
 		if (_hexID == null)
 		{
 			_requestID = Config.REQUEST_ID;
-			_hexID = CommonUtil.generateHex(16);
+			_hexID = HexUtil.generateHexBytes(16);
 		}
 		else
 		{
@@ -147,7 +148,7 @@ public class LoginServerThread extends Thread
 				_out = new BufferedOutputStream(_socket.getOutputStream());
 				
 				// Initialize Blowfish.
-				final byte[] blowfishKey = CommonUtil.generateHex(40);
+				final byte[] blowfishKey = HexUtil.generateHexBytes(40);
 				_blowfish = new NewCrypt("_;v.]05-31!|+-%xT!^[$\00");
 				while (!isInterrupted())
 				{
@@ -610,7 +611,7 @@ public class LoginServerThread extends Thread
 		catch (Exception e)
 		{
 			LOGGER.severe("LoginServerThread: IOException while sending packet " + packet.getClass().getSimpleName());
-			LOGGER.severe(CommonUtil.getStackTrace(e));
+			LOGGER.severe(TraceUtil.getStackTrace(e));
 		}
 	}
 	

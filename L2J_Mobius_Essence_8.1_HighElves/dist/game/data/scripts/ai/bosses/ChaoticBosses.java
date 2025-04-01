@@ -23,14 +23,14 @@ package ai.bosses;
 import java.util.Calendar;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.instancemanager.DBSpawnManager;
+import org.l2jmobius.gameserver.managers.DBSpawnManager;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -105,9 +105,9 @@ public final class ChaoticBosses extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		if (CommonUtil.contains(RAID_BOSSES, npc.getId()))
+		if (ArrayUtil.contains(RAID_BOSSES, npc.getId()))
 		{
 			for (int npcId : RAID_BOSSES)
 			{
@@ -124,8 +124,6 @@ public final class ChaoticBosses extends AbstractNpcAI
 				}
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

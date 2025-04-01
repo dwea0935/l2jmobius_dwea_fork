@@ -32,11 +32,10 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
-import org.l2jmobius.gameserver.enums.MailType;
-import org.l2jmobius.gameserver.instancemanager.BattleWithBalokManager;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.BattleWithBalokManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.World;
@@ -46,7 +45,8 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
 import org.l2jmobius.gameserver.model.spawns.SpawnTemplate;
@@ -54,6 +54,7 @@ import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.MailType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.balok.BalrogWarBossInfo;
@@ -356,7 +357,7 @@ public class Balok extends AbstractNpcAI
 			reward = 730; // Scroll: Enchant A-grade Armor
 			BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_HAS_OBTAINED_SCROLL_ENCHANT_ARMOR, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
 		}
-		player.addItem("Balok Last Hit Reward", reward, 1, player, true);
+		player.addItem(ItemProcessType.REWARD, reward, 1, player, true);
 	}
 	
 	private void lastHitRewardBalok(Npc npc, Player player)
@@ -368,7 +369,7 @@ public class Balok extends AbstractNpcAI
 		}
 		if (reward > 0)
 		{
-			player.addItem("Balok Last Hit Reward", reward, 1, player, true);
+			player.addItem(ItemProcessType.REWARD, reward, 1, player, true);
 		}
 		BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_HAS_OBTAINED_SCROLL_ENCHANT_WEAPON, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
 	}
@@ -445,7 +446,7 @@ public class Balok extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		if (NORMAL_MOBS.contains(npc.getId()))
 		{
@@ -547,8 +548,6 @@ public class Balok extends AbstractNpcAI
 		{
 			bypassRandomStage();
 		}
-		
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	public void finishAndReward()
@@ -621,7 +620,7 @@ public class Balok extends AbstractNpcAI
 			final int charId = ranker.getKey();
 			final Message mail = new Message(charId, "Battle with Balok Ranker Special Reward", "A special Reward given to rankers who contributed greatly in the balok Battle.", MailType.BALOK_RANKING_REWARD);
 			final Mail attachement = mail.createAttachments();
-			attachement.addItem("Battle with Balok", 91690, 100, null, null); // Special HP Recovery Potion
+			attachement.addItem(ItemProcessType.REWARD, 91690, 100, null, null); // Special HP Recovery Potion
 			MailManager.getInstance().sendMessage(mail);
 		}
 	}

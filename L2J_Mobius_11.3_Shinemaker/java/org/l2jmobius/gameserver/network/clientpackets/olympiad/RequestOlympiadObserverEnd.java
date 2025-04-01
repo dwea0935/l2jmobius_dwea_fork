@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.olympiad;
 
-import org.l2jmobius.gameserver.enums.OlympiadMode;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.olympiad.OlympiadMode;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.olympiad.ExOlympiadMode;
 

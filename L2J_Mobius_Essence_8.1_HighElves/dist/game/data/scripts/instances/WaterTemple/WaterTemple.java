@@ -23,17 +23,18 @@ package instances.WaterTemple;
 import java.util.List;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -118,6 +119,7 @@ public class WaterTemple extends AbstractInstance
 						if (!member.isInsideRadius3D(npc, 1000))
 						{
 							player.sendMessage("Player " + member.getName() + " must go closer to Adella.");
+							break;
 						}
 						enterInstance(member, npc, TEMPLATE_ID);
 					}
@@ -132,6 +134,7 @@ public class WaterTemple extends AbstractInstance
 					if (!player.isInsideRadius3D(npc, 1000))
 					{
 						player.sendMessage("You must go closer to Jio.");
+						break;
 					}
 					enterInstance(player, npc, TEMPLATE_ID);
 				}
@@ -236,7 +239,7 @@ public class WaterTemple extends AbstractInstance
 		
 		final Npc aosNpc = addSpawn(AOS, 69000, 243368, -8734, 0, false, 0, false, world.getId());
 		aosNpc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.PLEASE_KILL_THE_MONSTERS_THAT_ARE_TRYING_TO_STEAL_THE_WATER_ENERGY_AND_HELP_ME_CLEAR_THIS_PLACE);
-		aosNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(70441, 243470, -9179));
+		aosNpc.getAI().setIntention(Intention.MOVE_TO, new Location(70441, 243470, -9179));
 		
 		startQuestTimer("START_SPAWN", 10000, aosNpc, null);
 	}
@@ -249,7 +252,7 @@ public class WaterTemple extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if ((attacker != null) && (world != null))
@@ -262,16 +265,15 @@ public class WaterTemple extends AbstractInstance
 				world.getParameters().set(playerKey, true);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world == null)
 		{
-			return null;
+			return;
 		}
 		
 		int currentStage = world.getParameters().getInt("stage", 0);
@@ -314,12 +316,10 @@ public class WaterTemple extends AbstractInstance
 				break;
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -329,7 +329,6 @@ public class WaterTemple extends AbstractInstance
 				addAttackPlayerDesire(npc, player);
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	private void handleStage(Instance world, int currentStage, int requiredStage, int floodStage, String despawnGroup, String spawnGroup, NpcStringId message)
@@ -374,7 +373,7 @@ public class WaterTemple extends AbstractInstance
 				final boolean didAttack = world.getParameters().getBoolean(playerKey, false);
 				if (didAttack)
 				{
-					player.addItem("reward", finalReward, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, finalReward, 1, player, true);
 					world.getParameters().set(playerKey, false);
 				}
 			}

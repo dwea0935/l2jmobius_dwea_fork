@@ -1798,7 +1798,6 @@
 		<magicLevel>56</magicLevel>
 		<reuseDelay>60000</reuseDelay>
 		<stayAfterDeath>true</stayAfterDeath>
-		<stayAfterDeath>true</stayAfterDeath>
 		<conditions>
 			<condition name="CheckLevel">
 				<minLevel>20</minLevel>

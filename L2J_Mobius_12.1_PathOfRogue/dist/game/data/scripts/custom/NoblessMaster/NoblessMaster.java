@@ -21,9 +21,9 @@
 package custom.NoblessMaster;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 
 import ai.AbstractNpcAI;
 

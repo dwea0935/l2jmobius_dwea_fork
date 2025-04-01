@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.MinionHolder;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 
 /**

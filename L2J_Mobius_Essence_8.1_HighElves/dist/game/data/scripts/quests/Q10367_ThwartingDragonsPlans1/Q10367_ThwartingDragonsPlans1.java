@@ -43,8 +43,18 @@ public class Q10367_ThwartingDragonsPlans1 extends Quest
 	private static final int QUEST_ID = 10367;
 	private static final int[] MONSTERS =
 	{
-		22306, // Dragon Lancer
 		22305, // Dragon Soldier
+		22306, // Dragon Lancer
+		// Dragons (Changed Spawn)
+		20760,
+		22361,
+		22362,
+		22363,
+		22364,
+		22365,
+		22366,
+		22367,
+		22368,
 	};
 	
 	public Q10367_ThwartingDragonsPlans1()
@@ -170,7 +180,7 @@ public class Q10367_ThwartingDragonsPlans1 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -189,19 +199,17 @@ public class Q10367_ThwartingDragonsPlans1 extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

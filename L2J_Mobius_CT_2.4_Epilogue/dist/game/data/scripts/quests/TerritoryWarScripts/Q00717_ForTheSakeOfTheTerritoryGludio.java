@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * For the Sake of the Territory - Gludio (717)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00717_ForTheSakeOfTheTerritoryGludio extends TerritoryWarSuperClas
 {
 	public Q00717_ForTheSakeOfTheTerritoryGludio()
 	{
-		super(717);
+		super(717, "For the Sake of the Territory - Gludio");
 		CATAPULT_ID = 36499;
 		TERRITORY_ID = 81;
 		LEADER_IDS = new int[]
@@ -42,9 +40,9 @@ public class Q00717_ForTheSakeOfTheTerritoryGludio extends TerritoryWarSuperClas
 			36511,
 			36512
 		};
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.THE_CATAPULT_OF_GLUDIO_HAS_BEEN_DESTROYED
+			"The catapult of Gludio has been destroyed!"
 		};
 		registerKillIds();
 	}

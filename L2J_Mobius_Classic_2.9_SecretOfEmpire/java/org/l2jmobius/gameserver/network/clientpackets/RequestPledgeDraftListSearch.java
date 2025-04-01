@@ -16,10 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.instancemanager.ClanEntryManager;
+import org.l2jmobius.gameserver.managers.ClanEntryManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExPledgeDraftListSearch;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 /**
  * @author Sdw
@@ -36,8 +36,8 @@ public class RequestPledgeDraftListSearch extends ClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_levelMin = CommonUtil.constrain(readInt(), 0, 107);
-		_levelMax = CommonUtil.constrain(readInt(), 0, 107);
+		_levelMin = MathUtil.clamp(readInt(), 0, 107);
+		_levelMax = MathUtil.clamp(readInt(), 0, 107);
 		_classId = readInt();
 		_query = readString();
 		_sortBy = readInt();

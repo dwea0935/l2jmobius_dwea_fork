@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * For the Sake of the Territory - Dion (718)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00718_ForTheSakeOfTheTerritoryDion extends TerritoryWarSuperClass
 {
 	public Q00718_ForTheSakeOfTheTerritoryDion()
 	{
-		super(718);
+		super(718, "For the Sake of the Territory - Dion");
 		CATAPULT_ID = 36500;
 		TERRITORY_ID = 82;
 		LEADER_IDS = new int[]
@@ -42,9 +40,9 @@ public class Q00718_ForTheSakeOfTheTerritoryDion extends TerritoryWarSuperClass
 			36517,
 			36518
 		};
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.THE_CATAPULT_OF_DION_HAS_BEEN_DESTROYED
+			"The catapult of Dion has been destroyed!"
 		};
 		registerKillIds();
 	}

@@ -20,13 +20,14 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.elementalspirits;
 
-import org.l2jmobius.gameserver.enums.ElementalType;
-import org.l2jmobius.gameserver.enums.UserInfoType;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ElementalSpiritAbsorbItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ElementalSpiritAbsorbItemHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.elementalspirits.ElementalSpiritAbsorb;
 
@@ -57,7 +58,7 @@ public class ExElementalSpiritAbsorb extends ClientPacket
 			return;
 		}
 		
-		final ElementalSpirit spirit = player.getElementalSpirit(ElementalType.of(_type));
+		final ElementalSpirit spirit = player.getElementalSpirit(ElementalSpiritType.of(_type));
 		if (spirit == null)
 		{
 			player.sendPacket(SystemMessageId.NO_SPIRITS_ARE_AVAILABLE);
@@ -100,7 +101,7 @@ public class ExElementalSpiritAbsorb extends ClientPacket
 			player.sendPacket(SystemMessageId.YOU_HAVE_REACHED_THE_MAXIMUM_LEVEL_AND_CANNOT_ABSORB_ANY_FURTHER);
 			return false;
 		}
-		if ((_amount < 1) || !player.destroyItemByItemId("Absorb", _itemId, _amount, player, true))
+		if ((_amount < 1) || !player.destroyItemByItemId(ItemProcessType.FEE, _itemId, _amount, player, true))
 		{
 			player.sendPacket(SystemMessageId.NOT_ENOUGH_INGREDIENTS_TO_ABSORB);
 			return false;

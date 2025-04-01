@@ -16,10 +16,10 @@
  */
 package ai.areas.TalkingIsland;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -52,12 +52,11 @@ public class Holly extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomAnimation(false);
 		startQuestTimer("SPAM_TEXT", 10000, npc, null, true);
 		startQuestTimer("SOCIAL_ACTION", 2000, npc, null, true);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

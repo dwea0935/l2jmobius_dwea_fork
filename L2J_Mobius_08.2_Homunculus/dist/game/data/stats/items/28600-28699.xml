@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="28600" name="Spirit Stone - Elmore" type="EtcItem">
 		<!-- Required for augmenting Legendary Elmore Cloak enchanted to +15 or higher. Double-click on the item or speak to a blacksmith to augment what you need. When used, applies a random additional effect. Once augmented, it cannot be canceled, but it can be augmented again. -->
@@ -114,7 +114,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="27859" level="1" /> <!-- Lucky Gift Coupon (2-hour) -->
+			<skill id="27859" level="1" /> <!-- Balthus Knights' Top-grade Mark -->
 		</skills>
 	</item>
 	<item id="28610" name="Veteran Duo Bracelet Pack" additionalName="Event" type="EtcItem">
@@ -160,13 +160,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28130" level="1" /> <!-- Summon Agathion - Virgo -->
+			<skill id="28130" level="1" /> <!-- Summon Virgo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27349" level="12" /> <!-- Healing Light Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28614" name="Evolved Agathion - Virgo" additionalName="Stage 2" type="Armor">
@@ -181,13 +181,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28130" level="1" /> <!-- Summon Agathion - Virgo -->
+			<skill id="28130" level="1" /> <!-- Summon Virgo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27349" level="12" /> <!-- Healing Light Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28615" name="Evolved Agathion - Virgo" additionalName="Stage 3" type="Armor">
@@ -202,13 +202,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28130" level="1" /> <!-- Summon Agathion - Virgo -->
+			<skill id="28130" level="1" /> <!-- Summon Virgo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27349" level="12" /> <!-- Healing Light Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28616" name="Evolved Agathion - Virgo" additionalName="Stage 4" type="Armor">
@@ -223,13 +223,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28130" level="1" /> <!-- Summon Agathion - Virgo -->
+			<skill id="28130" level="1" /> <!-- Summon Virgo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27349" level="12" /> <!-- Healing Light Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28617" name="Evolved Agathion - Virgo" additionalName="Stage 5" type="Armor">
@@ -244,13 +244,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28130" level="1" /> <!-- Summon Agathion - Virgo -->
+			<skill id="28130" level="1" /> <!-- Summon Virgo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27349" level="12" /> <!-- Healing Light Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28618" name="Evolved Agathion - Capricorn" additionalName="Stage 1" type="Armor">
@@ -265,13 +265,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28131" level="1" /> <!-- Summon Agathion - Capricorn -->
+			<skill id="28131" level="1" /> <!-- Summon Capricorn Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27350" level="12" /> <!-- Skipping Kid Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28619" name="Evolved Agathion - Capricorn" additionalName="Stage 2" type="Armor">
@@ -286,13 +286,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28131" level="1" /> <!-- Summon Agathion - Capricorn -->
+			<skill id="28131" level="1" /> <!-- Summon Capricorn Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27350" level="12" /> <!-- Skipping Kid Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28620" name="Evolved Agathion - Capricorn" additionalName="Stage 3" type="Armor">
@@ -307,13 +307,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28131" level="1" /> <!-- Summon Agathion - Capricorn -->
+			<skill id="28131" level="1" /> <!-- Summon Capricorn Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27350" level="12" /> <!-- Skipping Kid Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28621" name="Evolved Agathion - Capricorn" additionalName="Stage 4" type="Armor">
@@ -328,13 +328,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28131" level="1" /> <!-- Summon Agathion - Capricorn -->
+			<skill id="28131" level="1" /> <!-- Summon Capricorn Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27350" level="12" /> <!-- Skipping Kid Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28622" name="Evolved Agathion - Capricorn" additionalName="Stage 5" type="Armor">
@@ -349,13 +349,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28131" level="1" /> <!-- Summon Agathion - Capricorn -->
+			<skill id="28131" level="1" /> <!-- Summon Capricorn Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27350" level="12" /> <!-- Skipping Kid Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28623" name="Evolved Agathion - Libra" additionalName="Stage 1" type="Armor">
@@ -370,13 +370,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28132" level="1" /> <!-- Summon Agathion - Libra -->
+			<skill id="28132" level="1" /> <!-- Summon Libra Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27351" level="12" /> <!-- Scale of Life Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28624" name="Evolved Agathion - Libra" additionalName="Stage 2" type="Armor">
@@ -391,13 +391,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28132" level="1" /> <!-- Summon Agathion - Libra -->
+			<skill id="28132" level="1" /> <!-- Summon Libra Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27351" level="12" /> <!-- Scale of Life Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28625" name="Evolved Agathion - Libra" additionalName="Stage 3" type="Armor">
@@ -412,13 +412,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28132" level="1" /> <!-- Summon Agathion - Libra -->
+			<skill id="28132" level="1" /> <!-- Summon Libra Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27351" level="12" /> <!-- Scale of Life Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28626" name="Evolved Agathion - Libra" additionalName="Stage 4" type="Armor">
@@ -433,13 +433,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28132" level="1" /> <!-- Summon Agathion - Libra -->
+			<skill id="28132" level="1" /> <!-- Summon Libra Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27351" level="12" /> <!-- Scale of Life Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28627" name="Evolved Agathion - Libra" additionalName="Stage 5" type="Armor">
@@ -454,13 +454,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28132" level="1" /> <!-- Summon Agathion - Libra -->
+			<skill id="28132" level="1" /> <!-- Summon Libra Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27351" level="12" /> <!-- Scale of Life Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28628" name="Evolved Agathion - Aries" additionalName="Stage 1" type="Armor">
@@ -475,13 +475,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28133" level="1" /> <!-- Summon Agathion - Aries -->
+			<skill id="28133" level="1" /> <!-- Summon Aries Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27352" level="12" /> <!-- Rocky Camouflage Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28629" name="Evolved Agathion - Aries" additionalName="Stage 2" type="Armor">
@@ -496,13 +496,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28133" level="1" /> <!-- Summon Agathion - Aries -->
+			<skill id="28133" level="1" /> <!-- Summon Aries Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27352" level="12" /> <!-- Rocky Camouflage Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28630" name="Evolved Agathion - Aries" additionalName="Stage 3" type="Armor">
@@ -517,13 +517,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28133" level="1" /> <!-- Summon Agathion - Aries -->
+			<skill id="28133" level="1" /> <!-- Summon Aries Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27352" level="12" /> <!-- Rocky Camouflage Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28631" name="Evolved Agathion - Aries" additionalName="Stage 4" type="Armor">
@@ -538,13 +538,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28133" level="1" /> <!-- Summon Agathion - Aries -->
+			<skill id="28133" level="1" /> <!-- Summon Aries Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27352" level="12" /> <!-- Rocky Camouflage Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28632" name="Evolved Agathion - Aries" additionalName="Stage 5" type="Armor">
@@ -559,13 +559,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28133" level="1" /> <!-- Summon Agathion - Aries -->
+			<skill id="28133" level="1" /> <!-- Summon Aries Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27352" level="12" /> <!-- Rocky Camouflage Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28633" name="Evolved Agathion - Taurus" additionalName="Stage 1" type="Armor">
@@ -580,13 +580,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28134" level="1" /> <!-- Summon Agathion - Taurus -->
+			<skill id="28134" level="1" /> <!-- Summon Taurus Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="12" /> <!-- Battle Rapshody Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28634" name="Evolved Agathion - Taurus" additionalName="Stage 2" type="Armor">
@@ -601,13 +601,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28134" level="1" /> <!-- Summon Agathion - Taurus -->
+			<skill id="28134" level="1" /> <!-- Summon Taurus Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="12" /> <!-- Battle Rapshody Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28635" name="Evolved Agathion - Taurus" additionalName="Stage 3" type="Armor">
@@ -622,13 +622,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28134" level="1" /> <!-- Summon Agathion - Taurus -->
+			<skill id="28134" level="1" /> <!-- Summon Taurus Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="12" /> <!-- Battle Rapshody Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28636" name="Evolved Agathion - Taurus" additionalName="Stage 4" type="Armor">
@@ -643,13 +643,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28134" level="1" /> <!-- Summon Agathion - Taurus -->
+			<skill id="28134" level="1" /> <!-- Summon Taurus Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="12" /> <!-- Battle Rapshody Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28637" name="Evolved Agathion - Taurus" additionalName="Stage 5" type="Armor">
@@ -664,13 +664,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28134" level="1" /> <!-- Summon Agathion - Taurus -->
+			<skill id="28134" level="1" /> <!-- Summon Taurus Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="12" /> <!-- Battle Rapshody Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28638" name="Evolved Agathion - Leo" additionalName="Stage 1" type="Armor">
@@ -685,13 +685,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28135" level="1" /> <!-- Summon Agathion - Leo -->
+			<skill id="28135" level="1" /> <!-- Summon Leo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27354" level="12" /> <!-- Maiden's Prayer Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27354" level="12" /> <!-- Nemean Lion's Defense -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28639" name="Evolved Agathion - Leo" additionalName="Stage 2" type="Armor">
@@ -706,13 +706,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28135" level="1" /> <!-- Summon Agathion - Leo -->
+			<skill id="28135" level="1" /> <!-- Summon Leo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27354" level="12" /> <!-- Maiden's Prayer Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27354" level="12" /> <!-- Nemean Lion's Defense -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28640" name="Evolved Agathion - Leo" additionalName="Stage 3" type="Armor">
@@ -727,13 +727,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28135" level="1" /> <!-- Summon Agathion - Leo -->
+			<skill id="28135" level="1" /> <!-- Summon Leo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27354" level="12" /> <!-- Maiden's Prayer Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27354" level="12" /> <!-- Nemean Lion's Defense -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28641" name="Evolved Agathion - Leo" additionalName="Stage 4" type="Armor">
@@ -748,13 +748,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28135" level="1" /> <!-- Summon Agathion - Leo -->
+			<skill id="28135" level="1" /> <!-- Summon Leo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27354" level="12" /> <!-- Maiden's Prayer Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27354" level="12" /> <!-- Nemean Lion's Defense -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28642" name="Evolved Agathion - Leo" additionalName="Stage 5" type="Armor">
@@ -769,13 +769,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28135" level="1" /> <!-- Summon Agathion - Leo -->
+			<skill id="28135" level="1" /> <!-- Summon Leo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27354" level="12" /> <!-- Maiden's Prayer Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27354" level="12" /> <!-- Nemean Lion's Defense -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28643" name="Evolved Agathion - Gemini" additionalName="Stage 1" type="Armor">
@@ -790,13 +790,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28136" level="1" /> <!-- Summon Agathion - Gemini -->
+			<skill id="28136" level="1" /> <!-- Summon Gemini Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27355" level="12" /> <!-- Bountiful Resurrection Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27355" level="12" /> <!-- Bountiful Resurrection -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28644" name="Evolved Agathion - Gemini" additionalName="Stage 2" type="Armor">
@@ -811,13 +811,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28136" level="1" /> <!-- Summon Agathion - Gemini -->
+			<skill id="28136" level="1" /> <!-- Summon Gemini Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27355" level="12" /> <!-- Bountiful Resurrection Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27355" level="12" /> <!-- Bountiful Resurrection -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28645" name="Evolved Agathion - Gemini" additionalName="Stage 3" type="Armor">
@@ -832,13 +832,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28136" level="1" /> <!-- Summon Agathion - Gemini -->
+			<skill id="28136" level="1" /> <!-- Summon Gemini Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27355" level="12" /> <!-- Bountiful Resurrection Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27355" level="12" /> <!-- Bountiful Resurrection -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28646" name="Evolved Agathion - Gemini" additionalName="Stage 4" type="Armor">
@@ -853,13 +853,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28136" level="1" /> <!-- Summon Agathion - Gemini -->
+			<skill id="28136" level="1" /> <!-- Summon Gemini Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27355" level="12" /> <!-- Bountiful Resurrection Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27355" level="12" /> <!-- Bountiful Resurrection -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28647" name="Evolved Agathion - Gemini" additionalName="Stage 5" type="Armor">
@@ -874,13 +874,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28136" level="1" /> <!-- Summon Agathion - Gemini -->
+			<skill id="28136" level="1" /> <!-- Summon Gemini Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27355" level="12" /> <!-- Bountiful Resurrection Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27355" level="12" /> <!-- Bountiful Resurrection -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28648" name="Evolved Agathion - Scorpio" additionalName="Stage 1" type="Armor">
@@ -895,13 +895,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28137" level="1" /> <!-- Summon Agathion - Scorpio -->
+			<skill id="28137" level="1" /> <!-- Summon Scorpio Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28649" name="Evolved Agathion - Scorpio" additionalName="Stage 2" type="Armor">
@@ -916,13 +916,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28137" level="1" /> <!-- Summon Agathion - Scorpio -->
+			<skill id="28137" level="1" /> <!-- Summon Scorpio Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28650" name="Evolved Agathion - Scorpio" additionalName="Stage 3" type="Armor">
@@ -937,13 +937,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28137" level="1" /> <!-- Summon Agathion - Scorpio -->
+			<skill id="28137" level="1" /> <!-- Summon Scorpio Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28651" name="Evolved Agathion - Scorpio" additionalName="Stage 4" type="Armor">
@@ -958,13 +958,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28137" level="1" /> <!-- Summon Agathion - Scorpio -->
+			<skill id="28137" level="1" /> <!-- Summon Scorpio Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28652" name="Evolved Agathion - Scorpio" additionalName="Stage 5" type="Armor">
@@ -979,13 +979,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28137" level="1" /> <!-- Summon Agathion - Scorpio -->
+			<skill id="28137" level="1" /> <!-- Summon Scorpio Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28653" name="Evolved Agathion - Aquarius" additionalName="Stage 1" type="Armor">
@@ -1000,13 +1000,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28138" level="1" /> <!-- Summon Agathion - Aquarius -->
+			<skill id="28138" level="1" /> <!-- Summon Aquarius Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27357" level="12" /> <!-- Mass Binding Flood Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27357" level="12" /> <!-- Mass Binding Flood -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28654" name="Evolved Agathion - Aquarius" additionalName="Stage 2" type="Armor">
@@ -1021,13 +1021,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28138" level="1" /> <!-- Summon Agathion - Aquarius -->
+			<skill id="28138" level="1" /> <!-- Summon Aquarius Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27357" level="12" /> <!-- Mass Binding Flood Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27357" level="12" /> <!-- Mass Binding Flood -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28655" name="Evolved Agathion - Aquarius" additionalName="Stage 3" type="Armor">
@@ -1042,13 +1042,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28138" level="1" /> <!-- Summon Agathion - Aquarius -->
+			<skill id="28138" level="1" /> <!-- Summon Aquarius Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27357" level="12" /> <!-- Mass Binding Flood Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27357" level="12" /> <!-- Mass Binding Flood -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28656" name="Evolved Agathion - Aquarius" additionalName="Stage 4" type="Armor">
@@ -1063,13 +1063,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28138" level="1" /> <!-- Summon Agathion - Aquarius -->
+			<skill id="28138" level="1" /> <!-- Summon Aquarius Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27357" level="12" /> <!-- Mass Binding Flood Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27357" level="12" /> <!-- Mass Binding Flood -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28657" name="Evolved Agathion - Aquarius" additionalName="Stage 5" type="Armor">
@@ -1084,13 +1084,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28138" level="1" /> <!-- Summon Agathion - Aquarius -->
+			<skill id="28138" level="1" /> <!-- Summon Aquarius Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27357" level="12" /> <!-- Mass Binding Flood Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27357" level="12" /> <!-- Mass Binding Flood -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28658" name="Evolved Agathion - Pisces" additionalName="Stage 1" type="Armor">
@@ -1105,13 +1105,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28139" level="1" /> <!-- Summon Agathion - Pisces -->
+			<skill id="28139" level="1" /> <!-- Summon Pisces Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27358" level="12" /> <!-- Slippery Scale Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27358" level="12" /> <!-- Slippery Scale -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28659" name="Evolved Agathion - Pisces" additionalName="Stage 2" type="Armor">
@@ -1126,13 +1126,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28139" level="1" /> <!-- Summon Agathion - Pisces -->
+			<skill id="28139" level="1" /> <!-- Summon Pisces Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27358" level="12" /> <!-- Slippery Scale Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27358" level="12" /> <!-- Slippery Scale -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28660" name="Evolved Agathion - Pisces" additionalName="Stage 3" type="Armor">
@@ -1147,13 +1147,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28139" level="1" /> <!-- Summon Agathion - Pisces -->
+			<skill id="28139" level="1" /> <!-- Summon Pisces Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27358" level="12" /> <!-- Slippery Scale Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27358" level="12" /> <!-- Slippery Scale -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28661" name="Evolved Agathion - Pisces" additionalName="Stage 4" type="Armor">
@@ -1168,13 +1168,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28139" level="1" /> <!-- Summon Agathion - Pisces -->
+			<skill id="28139" level="1" /> <!-- Summon Pisces Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27358" level="12" /> <!-- Slippery Scale Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27358" level="12" /> <!-- Slippery Scale -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28662" name="Evolved Agathion - Pisces" additionalName="Stage 5" type="Armor">
@@ -1189,13 +1189,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28139" level="1" /> <!-- Summon Agathion - Pisces -->
+			<skill id="28139" level="1" /> <!-- Summon Pisces Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27358" level="12" /> <!-- Slippery Scale Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27358" level="12" /> <!-- Slippery Scale -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28663" name="Evolved Agathion - Sagittarius" additionalName="Stage 1" type="Armor">
@@ -1210,13 +1210,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28140" level="1" /> <!-- Summon Agathion - Sagittarius -->
+			<skill id="28140" level="1" /> <!-- Summon Sagittarius Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27359" level="12" /> <!-- Archer's Call Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27359" level="12" /> <!-- Archer's Call -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28664" name="Evolved Agathion - Sagittarius" additionalName="Stage 2" type="Armor">
@@ -1231,13 +1231,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28140" level="1" /> <!-- Summon Agathion - Sagittarius -->
+			<skill id="28140" level="1" /> <!-- Summon Sagittarius Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27359" level="12" /> <!-- Archer's Call Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27359" level="12" /> <!-- Archer's Call -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28665" name="Evolved Agathion - Sagittarius" additionalName="Stage 3" type="Armor">
@@ -1252,13 +1252,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28140" level="1" /> <!-- Summon Agathion - Sagittarius -->
+			<skill id="28140" level="1" /> <!-- Summon Sagittarius Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27359" level="12" /> <!-- Archer's Call Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27359" level="12" /> <!-- Archer's Call -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28666" name="Evolved Agathion - Sagittarius" additionalName="Stage 4" type="Armor">
@@ -1273,13 +1273,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28140" level="1" /> <!-- Summon Agathion - Sagittarius -->
+			<skill id="28140" level="1" /> <!-- Summon Sagittarius Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27359" level="12" /> <!-- Archer's Call Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27359" level="12" /> <!-- Archer's Call -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28667" name="Evolved Agathion - Sagittarius" additionalName="Stage 5" type="Armor">
@@ -1294,13 +1294,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28140" level="1" /> <!-- Summon Agathion - Sagittarius -->
+			<skill id="28140" level="1" /> <!-- Summon Sagittarius Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27359" level="12" /> <!-- Archer's Call Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27359" level="12" /> <!-- Archer's Call -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28668" name="Evolved Agathion - Cancer" additionalName="Stage 1" type="Armor">
@@ -1315,13 +1315,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28141" level="1" /> <!-- Summon Agathion - Cancer -->
+			<skill id="28141" level="1" /> <!-- Summon Cancer Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27360" level="12" /> <!-- Exoskeletal Shield Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27360" level="12" /> <!-- Exoskeletal Shield -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28669" name="Evolved Agathion - Cancer" additionalName="Stage 2" type="Armor">
@@ -1336,13 +1336,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28141" level="1" /> <!-- Summon Agathion - Cancer -->
+			<skill id="28141" level="1" /> <!-- Summon Cancer Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27360" level="12" /> <!-- Exoskeletal Shield Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27360" level="12" /> <!-- Exoskeletal Shield -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28670" name="Evolved Agathion - Cancer" additionalName="Stage 3" type="Armor">
@@ -1357,13 +1357,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28141" level="1" /> <!-- Summon Agathion - Cancer -->
+			<skill id="28141" level="1" /> <!-- Summon Cancer Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27360" level="12" /> <!-- Exoskeletal Shield Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27360" level="12" /> <!-- Exoskeletal Shield -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28671" name="Evolved Agathion - Cancer" additionalName="Stage 4" type="Armor">
@@ -1378,13 +1378,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28141" level="1" /> <!-- Summon Agathion - Cancer -->
+			<skill id="28141" level="1" /> <!-- Summon Cancer Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27360" level="12" /> <!-- Exoskeletal Shield Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27360" level="12" /> <!-- Exoskeletal Shield -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28672" name="Evolved Agathion - Cancer" additionalName="Stage 5" type="Armor">
@@ -1399,13 +1399,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="28141" level="1" /> <!-- Summon Agathion - Cancer -->
+			<skill id="28141" level="1" /> <!-- Summon Cancer Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="2" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27360" level="12" /> <!-- Exoskeletal Shield Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27360" level="12" /> <!-- Exoskeletal Shield -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28673" name="Evolved Agathion - Virgo" additionalName="Stage 1" type="Armor">
@@ -1421,13 +1421,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28130" level="1" /> <!-- Summon Agathion - Virgo -->
+			<skill id="28130" level="1" /> <!-- Summon Virgo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27349" level="12" /> <!-- Healing Light Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28674" name="Evolved Agathion - Virgo" additionalName="Stage 2" type="Armor">
@@ -1443,13 +1443,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28130" level="1" /> <!-- Summon Agathion - Virgo -->
+			<skill id="28130" level="1" /> <!-- Summon Virgo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27349" level="12" /> <!-- Healing Light Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28675" name="Evolved Agathion - Virgo" additionalName="Stage 3" type="Armor">
@@ -1465,13 +1465,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28130" level="1" /> <!-- Summon Agathion - Virgo -->
+			<skill id="28130" level="1" /> <!-- Summon Virgo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27349" level="12" /> <!-- Healing Light Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28676" name="Evolved Agathion - Virgo" additionalName="Stage 4" type="Armor">
@@ -1487,13 +1487,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28130" level="1" /> <!-- Summon Agathion - Virgo -->
+			<skill id="28130" level="1" /> <!-- Summon Virgo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27349" level="12" /> <!-- Healing Light Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28677" name="Evolved Agathion - Virgo" additionalName="Stage 5" type="Armor">
@@ -1509,13 +1509,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28130" level="1" /> <!-- Summon Agathion - Virgo -->
+			<skill id="28130" level="1" /> <!-- Summon Virgo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27349" level="12" /> <!-- Healing Light Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28678" name="Evolved Agathion - Capricorn" additionalName="Stage 1" type="Armor">
@@ -1531,13 +1531,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28131" level="1" /> <!-- Summon Agathion - Capricorn -->
+			<skill id="28131" level="1" /> <!-- Summon Capricorn Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27350" level="12" /> <!-- Skipping Kid Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28679" name="Evolved Agathion - Capricorn" additionalName="Stage 2" type="Armor">
@@ -1553,13 +1553,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28131" level="1" /> <!-- Summon Agathion - Capricorn -->
+			<skill id="28131" level="1" /> <!-- Summon Capricorn Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27350" level="12" /> <!-- Skipping Kid Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28680" name="Evolved Agathion - Capricorn" additionalName="Stage 3" type="Armor">
@@ -1575,13 +1575,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28131" level="1" /> <!-- Summon Agathion - Capricorn -->
+			<skill id="28131" level="1" /> <!-- Summon Capricorn Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27350" level="12" /> <!-- Skipping Kid Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28681" name="Evolved Agathion - Capricorn" additionalName="Stage 4" type="Armor">
@@ -1597,13 +1597,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28131" level="1" /> <!-- Summon Agathion - Capricorn -->
+			<skill id="28131" level="1" /> <!-- Summon Capricorn Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27350" level="12" /> <!-- Skipping Kid Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28682" name="Evolved Agathion - Capricorn" additionalName="Stage 5" type="Armor">
@@ -1619,13 +1619,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28131" level="1" /> <!-- Summon Agathion - Capricorn -->
+			<skill id="28131" level="1" /> <!-- Summon Capricorn Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27350" level="12" /> <!-- Skipping Kid Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28683" name="Evolved Agathion - Libra" additionalName="Stage 1" type="Armor">
@@ -1641,13 +1641,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28132" level="1" /> <!-- Summon Agathion - Libra -->
+			<skill id="28132" level="1" /> <!-- Summon Libra Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27351" level="12" /> <!-- Scale of Life Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28684" name="Evolved Agathion - Libra" additionalName="Stage 2" type="Armor">
@@ -1663,13 +1663,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28132" level="1" /> <!-- Summon Agathion - Libra -->
+			<skill id="28132" level="1" /> <!-- Summon Libra Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27351" level="12" /> <!-- Scale of Life Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28685" name="Evolved Agathion - Libra" additionalName="Stage 3" type="Armor">
@@ -1685,13 +1685,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28132" level="1" /> <!-- Summon Agathion - Libra -->
+			<skill id="28132" level="1" /> <!-- Summon Libra Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27351" level="12" /> <!-- Scale of Life Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28686" name="Evolved Agathion - Libra" additionalName="Stage 4" type="Armor">
@@ -1707,13 +1707,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28132" level="1" /> <!-- Summon Agathion - Libra -->
+			<skill id="28132" level="1" /> <!-- Summon Libra Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27351" level="12" /> <!-- Scale of Life Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28687" name="Evolved Agathion - Libra" additionalName="Stage 5" type="Armor">
@@ -1729,13 +1729,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28132" level="1" /> <!-- Summon Agathion - Libra -->
+			<skill id="28132" level="1" /> <!-- Summon Libra Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27351" level="12" /> <!-- Scale of Life Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28688" name="Evolved Agathion - Aries" additionalName="Stage 1" type="Armor">
@@ -1751,13 +1751,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28133" level="1" /> <!-- Summon Agathion - Aries -->
+			<skill id="28133" level="1" /> <!-- Summon Aries Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27352" level="12" /> <!-- Rocky Camouflage Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28689" name="Evolved Agathion - Aries" additionalName="Stage 2" type="Armor">
@@ -1773,13 +1773,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28133" level="1" /> <!-- Summon Agathion - Aries -->
+			<skill id="28133" level="1" /> <!-- Summon Aries Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27352" level="12" /> <!-- Rocky Camouflage Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28690" name="Evolved Agathion - Aries" additionalName="Stage 3" type="Armor">
@@ -1795,13 +1795,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28133" level="1" /> <!-- Summon Agathion - Aries -->
+			<skill id="28133" level="1" /> <!-- Summon Aries Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27352" level="12" /> <!-- Rocky Camouflage Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28691" name="Evolved Agathion - Aries" additionalName="Stage 4" type="Armor">
@@ -1817,13 +1817,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28133" level="1" /> <!-- Summon Agathion - Aries -->
+			<skill id="28133" level="1" /> <!-- Summon Aries Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27352" level="12" /> <!-- Rocky Camouflage Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28692" name="Evolved Agathion - Aries" additionalName="Stage 5" type="Armor">
@@ -1839,13 +1839,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28133" level="1" /> <!-- Summon Agathion - Aries -->
+			<skill id="28133" level="1" /> <!-- Summon Aries Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27352" level="12" /> <!-- Rocky Camouflage Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28693" name="Evolved Agathion - Taurus" additionalName="Stage 1" type="Armor">
@@ -1861,13 +1861,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28134" level="1" /> <!-- Summon Agathion - Taurus -->
+			<skill id="28134" level="1" /> <!-- Summon Taurus Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="12" /> <!-- Battle Rapshody Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28694" name="Evolved Agathion - Taurus" additionalName="Stage 2" type="Armor">
@@ -1883,13 +1883,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28134" level="1" /> <!-- Summon Agathion - Taurus -->
+			<skill id="28134" level="1" /> <!-- Summon Taurus Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="12" /> <!-- Battle Rapshody Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28695" name="Evolved Agathion - Taurus" additionalName="Stage 3" type="Armor">
@@ -1905,13 +1905,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28134" level="1" /> <!-- Summon Agathion - Taurus -->
+			<skill id="28134" level="1" /> <!-- Summon Taurus Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="9" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="12" /> <!-- Battle Rapshody Lv. 12 -->
+			<skill id="26117" level="9" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28696" name="Evolved Agathion - Taurus" additionalName="Stage 4" type="Armor">
@@ -1927,13 +1927,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28134" level="1" /> <!-- Summon Agathion - Taurus -->
+			<skill id="28134" level="1" /> <!-- Summon Taurus Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="10" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="12" /> <!-- Battle Rapshody Lv. 12 -->
+			<skill id="26117" level="10" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28697" name="Evolved Agathion - Taurus" additionalName="Stage 5" type="Armor">
@@ -1949,13 +1949,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28134" level="1" /> <!-- Summon Agathion - Taurus -->
+			<skill id="28134" level="1" /> <!-- Summon Taurus Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="11" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="12" /> <!-- Battle Rapshody Lv. 12 -->
+			<skill id="26117" level="11" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="35071" level="2" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28698" name="Evolved Agathion - Leo" additionalName="Stage 1" type="Armor">
@@ -1971,13 +1971,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28135" level="1" /> <!-- Summon Agathion - Leo -->
+			<skill id="28135" level="1" /> <!-- Summon Leo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="7" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27354" level="12" /> <!-- Maiden's Prayer Lv. 12 -->
+			<skill id="26117" level="7" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27354" level="12" /> <!-- Nemean Lion's Defense -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 	<item id="28699" name="Evolved Agathion - Leo" additionalName="Stage 2" type="Armor">
@@ -1993,13 +1993,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28135" level="1" /> <!-- Summon Agathion - Leo -->
+			<skill id="28135" level="1" /> <!-- Summon Leo Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="26117" level="8" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27354" level="12" /> <!-- Maiden's Prayer Lv. 12 -->
+			<skill id="26117" level="8" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27354" level="12" /> <!-- Nemean Lion's Defense -->
 			<skill id="35071" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
-			<skill id="28063" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="28063" level="1" /> <!-- Agathion's Cute Trick -->
 		</skills>
 	</item>
 </list>

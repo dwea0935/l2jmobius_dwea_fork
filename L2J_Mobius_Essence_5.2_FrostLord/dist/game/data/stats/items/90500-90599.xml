@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="90500" name="Dragon's Treasure Chest" type="EtcItem">
 		<!-- Double-click to obtain one of various items. -->
@@ -11,7 +11,7 @@
 		<set name="material" val="FISH" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39270" level="1" /> <!-- Dragon's Treasure Chest -->
+			<skill id="39270" level="1" /> <!-- Dragon??s Treasure Chest -->
 		</skills>
 	</item>
 	<item id="90501" name="Dragon's Shining Treasure Chest" type="EtcItem">
@@ -73,7 +73,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="39272" level="1" /> <!-- Officer of Balthus Knights -->
+			<skill id="39272" level="1" /> <!-- Balthus Knights' Top-grade Mark -->
 		</skills>
 	</item>
 	<item id="90507" name="Dragon Balthus Chest" type="EtcItem">
@@ -102,7 +102,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="39273" level="1" /> <!-- Special Dragons Fruit (Event) -->
+			<skill id="39273" level="1" /> <!-- Special Dragons Fruit -->
 		</skills>
 	</item>
 	<item id="90509" name="Dragon's Golden Key" additionalName="Sealed" type="EtcItem">
@@ -322,7 +322,7 @@
 		<set name="material" val="FISH" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="51008" level="1" /> <!-- Lucky Enchant Stone Chest - A-grade -->
+			<skill id="51008" level="1" /> <!-- Eva's Stable Scroll: Enchant Hair Accessory (Low-grade) -->
 		</skills>
 	</item>
 	<item id="90525" name="B-grade Armor Enchant Stone Pack" type="EtcItem">
@@ -368,9 +368,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="35020" level="1" type="ON_EQUIP" /> <!-- Equip Talisman - Baium -->
-			<skill id="35021" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Baium -->
-			<skill id="35017" level="7" /> <!-- Equip Talisman - Baium -->
+			<skill id="35020" level="1" type="ON_EQUIP" /> <!-- Talisman of Baium -->
+			<skill id="35021" level="1" type="ON_UNEQUIP" /> <!-- Talisman of Baium - Removal -->
+			<skill id="35017" level="7" /> <!-- Talisman of Baium -->
 			<skill id="50191" level="5" /> <!-- Enchant Effect: +5 Talisman of Baium -->
 		</skills>
 	</item>

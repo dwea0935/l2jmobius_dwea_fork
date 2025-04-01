@@ -16,13 +16,12 @@
  */
 package ai.areas.SilentValley;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -97,7 +96,7 @@ public class SilentValley extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -106,7 +105,7 @@ public class SilentValley extends AbstractNpcAI
 				if (!isSummon && npc.isScriptValue(0))
 				{
 					npc.setScriptValue(1);
-					npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.YOU_WILL_BE_CURSED_FOR_SEEKING_THE_TREASURE);
+					npc.broadcastSay(ChatType.NPC_GENERAL, "You will be cursed for seeking the treasure!");
 					npc.setTarget(player);
 					npc.doCast(BETRAYAL.getSkill());
 				}
@@ -135,11 +134,10 @@ public class SilentValley extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (getRandom(1000) < SPAWN_CHANCE)
 		{
@@ -149,11 +147,10 @@ public class SilentValley extends AbstractNpcAI
 			addSpawn(GUARD1, npc.getX(), npc.getY() + 100, newZ, 0, false, 0);
 			addSpawn(GUARD1, npc.getX(), npc.getY() - 100, newZ, 0, false, 0);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayable())
 		{
@@ -169,11 +166,10 @@ public class SilentValley extends AbstractNpcAI
 				addAttackDesire(npc, player);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == CHEST)
 		{
@@ -184,7 +180,6 @@ public class SilentValley extends AbstractNpcAI
 		{
 			startQuestTimer("SPAWN_CHEST", 10000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override

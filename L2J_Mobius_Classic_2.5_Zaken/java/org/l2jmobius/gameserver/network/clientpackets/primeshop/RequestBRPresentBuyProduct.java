@@ -22,20 +22,21 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.PrimeShopData;
-import org.l2jmobius.gameserver.enums.ExBrProductReplyType;
-import org.l2jmobius.gameserver.enums.MailType;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.PrimeShopRequest;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.model.primeshop.PrimeShopGroup;
 import org.l2jmobius.gameserver.model.primeshop.PrimeShopItem;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.ExBrProductReplyType;
+import org.l2jmobius.gameserver.network.enums.MailType;
 import org.l2jmobius.gameserver.network.serverpackets.primeshop.ExBRBuyProduct;
 import org.l2jmobius.gameserver.network.serverpackets.primeshop.ExBRGamePoint;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Gnacik, UnAfraid
@@ -111,7 +112,7 @@ public class RequestBRPresentBuyProduct extends ClientPacket
 			}
 			else if (paymentId > 0)
 			{
-				if (!player.destroyItemByItemId("PrimeShop-" + item.getBrId(), paymentId, price, player, true))
+				if (!player.destroyItemByItemId(ItemProcessType.FEE, paymentId, price, player, true))
 				{
 					player.sendPacket(new ExBRBuyProduct(ExBrProductReplyType.LACK_OF_POINT));
 					player.removeRequest(PrimeShopRequest.class);
@@ -140,7 +141,7 @@ public class RequestBRPresentBuyProduct extends ClientPacket
 			final Mail attachement = mail.createAttachments();
 			for (PrimeShopItem subItem : item.getItems())
 			{
-				attachement.addItem("Prime Shop Gift", subItem.getId(), subItem.getCount() * _count, player, this);
+				attachement.addItem(ItemProcessType.REWARD, subItem.getId(), subItem.getCount() * _count, player, this);
 			}
 			MailManager.getInstance().sendMessage(mail);
 		}
@@ -160,12 +161,12 @@ public class RequestBRPresentBuyProduct extends ClientPacket
 		if (item == null)
 		{
 			player.sendPacket(new ExBRBuyProduct(ExBrProductReplyType.INVALID_PRODUCT));
-			Util.handleIllegalPlayerAction(player, player + " tried to buy invalid brId from Prime", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to buy invalid brId from Prime", Config.DEFAULT_PUNISH);
 			return false;
 		}
 		else if ((count < 1) || (count > 99))
 		{
-			Util.handleIllegalPlayerAction(player, player + " tried to buy invalid itemcount [" + count + "] from Prime", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to buy invalid itemcount [" + count + "] from Prime", Config.DEFAULT_PUNISH);
 			player.sendPacket(new ExBRBuyProduct(ExBrProductReplyType.INVALID_USER_STATE));
 			return false;
 		}

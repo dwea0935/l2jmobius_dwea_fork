@@ -21,12 +21,13 @@
 package org.l2jmobius.gameserver.network.clientpackets.elementalspirits;
 
 import org.l2jmobius.gameserver.data.xml.ElementalSpiritData;
-import org.l2jmobius.gameserver.enums.ElementalType;
-import org.l2jmobius.gameserver.enums.UserInfoType;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.elementalspirits.ElementalSpiritExtract;
@@ -53,7 +54,7 @@ public class ExElementalSpiritExtract extends ClientPacket
 			return;
 		}
 		
-		final ElementalSpirit spirit = player.getElementalSpirit(ElementalType.of(_type));
+		final ElementalSpirit spirit = player.getElementalSpirit(ElementalSpiritType.of(_type));
 		if (spirit == null)
 		{
 			player.sendPacket(SystemMessageId.NO_SPIRITS_ARE_AVAILABLE);
@@ -66,7 +67,7 @@ public class ExElementalSpiritExtract extends ClientPacket
 			final int amount = spirit.getExtractAmount();
 			player.sendPacket(new SystemMessage(SystemMessageId.EXTRACTED_S1_S2_SUCCESSFULLY).addItemName(spirit.getExtractItem()).addInt(amount));
 			spirit.reduceLevel();
-			player.addItem("ElementalSpiritExtract", spirit.getExtractItem(), amount, player, true);
+			player.addItem(ItemProcessType.REWARD, spirit.getExtractItem(), amount, player, true);
 			
 			final UserInfo userInfo = new UserInfo(player);
 			userInfo.addComponentType(UserInfoType.ATT_SPIRITS);
@@ -98,7 +99,7 @@ public class ExElementalSpiritExtract extends ClientPacket
 			player.sendPacket(SystemMessageId.UNABLE_TO_EVOLVE_DURING_BATTLE);
 			return false;
 		}
-		if (!player.reduceAdena("ElementalSpiritExtract", ElementalSpiritData.EXTRACT_FEES[spirit.getStage() - 1], player, true))
+		if (!player.reduceAdena(ItemProcessType.FEE, ElementalSpiritData.EXTRACT_FEES[spirit.getStage() - 1], player, true))
 		{
 			player.sendPacket(SystemMessageId.NOT_ENOUGH_MATERIALS_FOR_EXTRACTION);
 			return false;

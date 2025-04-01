@@ -33,16 +33,16 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.type.ArenaZone;
 
 import ai.AbstractNpcAI;
@@ -508,7 +508,7 @@ public class Coatl extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (!_barrierActivated)
 		{
@@ -557,8 +557,6 @@ public class Coatl extends AbstractNpcAI
 		// }
 		
 		manageSkills(npc);
-		
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	private void checkBossHP()
@@ -858,7 +856,7 @@ public class Coatl extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		cancelQuestTimers("check_arena");
 		cancelQuestTimer("remove_barrier", npc, null);
@@ -879,8 +877,6 @@ public class Coatl extends AbstractNpcAI
 		_waterTotem = null;
 		
 		cancelQuestTimers("dispel_boss_buffs");
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public void onNpcDeath(Npc npc)

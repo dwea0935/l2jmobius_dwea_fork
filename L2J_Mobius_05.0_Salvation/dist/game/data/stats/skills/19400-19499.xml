@@ -2154,7 +2154,6 @@
 			<value level="5">5</value>
 		</abnormalLevel>
 		<abnormalTime>10</abnormalTime>
-		<abnormalTime>10</abnormalTime>
 		<abnormalType>SPEED_DOWN</abnormalType>
 		<abnormalType>ULTIMATE_DEBUFF</abnormalType>
 		<activateRate>100</activateRate>

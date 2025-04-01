@@ -61,7 +61,7 @@ public class ApherusLookout extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		final Npc aPackage = addSpawn(APHERUS_PACKAGE, npc.getX(), npc.getY(), npc.getZ(), 0, true, 120000, false);
 		aPackage.setImmobilized(true);
@@ -69,7 +69,6 @@ public class ApherusLookout extends AbstractNpcAI
 		bPackage.setImmobilized(true);
 		final Npc cPackage = addSpawn(APHERUS_PACKAGE2, npc.getX(), npc.getY(), npc.getZ(), 0, true, 120000, false);
 		cPackage.setImmobilized(true);
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	@Override

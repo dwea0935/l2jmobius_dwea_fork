@@ -1,23 +1,28 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -30,11 +35,9 @@ import org.l2jmobius.gameserver.model.olympiad.OlympiadGameTask;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.olympiad.Participant;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
- * @author UnAfraid
+ * @author UnAfraid, Mobius
  */
 public class AdminOlympiad implements IAdminCommandHandler
 {
@@ -57,7 +60,7 @@ public class AdminOlympiad implements IAdminCommandHandler
 			{
 				if (!st.hasMoreTokens())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Syntax: //olympiad_game <player name>");
+					activeChar.sendSysMessage("Syntax: //olympiad_game <player name>");
 					return false;
 				}
 				
@@ -108,7 +111,7 @@ public class AdminOlympiad implements IAdminCommandHandler
 					final int val = parseInt(st);
 					if (val == -1)
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Syntax: //addolypoints <points>");
+						activeChar.sendSysMessage("Syntax: //addolypoints <points>");
 						return false;
 					}
 					
@@ -119,24 +122,24 @@ public class AdminOlympiad implements IAdminCommandHandler
 						final int points = Math.max(oldpoints + val, 0);
 						if (points > 1000)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "You can't set more than 1000 or less than 0 Olympiad points!");
+							activeChar.sendSysMessage("You can't set more than 1000 or less than 0 Olympiad points!");
 							return false;
 						}
 						
 						statDat.set(Olympiad.POINTS, points);
-						BuilderUtil.sendSysMessage(activeChar, "Player " + player.getName() + " now has " + points + " Olympiad points.");
+						activeChar.sendSysMessage("Player " + player.getName() + " now has " + points + " Olympiad points.");
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "This player is not noblesse!");
+						activeChar.sendSysMessage("This player is not noblesse!");
 						return false;
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: target a player and write the amount of points you would like to add.");
-					BuilderUtil.sendSysMessage(activeChar, "Example: //addolypoints 10");
-					BuilderUtil.sendSysMessage(activeChar, "However, keep in mind that you can't have less than 0 or more than 1000 points.");
+					activeChar.sendSysMessage("Usage: target a player and write the amount of points you would like to add.");
+					activeChar.sendSysMessage("Example: //addolypoints 10");
+					activeChar.sendSysMessage("However, keep in mind that you can't have less than 0 or more than 1000 points.");
 				}
 				break;
 			}
@@ -149,7 +152,7 @@ public class AdminOlympiad implements IAdminCommandHandler
 					final int val = parseInt(st);
 					if (val == -1)
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Syntax: //removeolypoints <points>");
+						activeChar.sendSysMessage("Syntax: //removeolypoints <points>");
 						return false;
 					}
 					
@@ -158,26 +161,26 @@ public class AdminOlympiad implements IAdminCommandHandler
 						final StatSet playerStat = Olympiad.getNobleStats(player.getObjectId());
 						if (playerStat == null)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "This player hasn't played on Olympiad yet!");
+							activeChar.sendSysMessage("This player hasn't played on Olympiad yet!");
 							return false;
 						}
 						
 						final int oldpoints = Olympiad.getInstance().getNoblePoints(player);
 						final int points = Math.max(oldpoints - val, 0);
 						playerStat.set(Olympiad.POINTS, points);
-						BuilderUtil.sendSysMessage(activeChar, "Player " + player.getName() + " now has " + points + " Olympiad points.");
+						activeChar.sendSysMessage("Player " + player.getName() + " now has " + points + " Olympiad points.");
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "This player is not noblesse!");
+						activeChar.sendSysMessage("This player is not noblesse!");
 						return false;
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: target a player and write the amount of points you would like to remove.");
-					BuilderUtil.sendSysMessage(activeChar, "Example: //removeolypoints 10");
-					BuilderUtil.sendSysMessage(activeChar, "However, keep in mind that you can't have less than 0 or more than 1000 points.");
+					activeChar.sendSysMessage("Usage: target a player and write the amount of points you would like to remove.");
+					activeChar.sendSysMessage("Example: //removeolypoints 10");
+					activeChar.sendSysMessage("However, keep in mind that you can't have less than 0 or more than 1000 points.");
 				}
 				break;
 			}
@@ -190,7 +193,7 @@ public class AdminOlympiad implements IAdminCommandHandler
 					final int val = parseInt(st);
 					if (val == -1)
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Syntax: //setolypoints <points>");
+						activeChar.sendSysMessage("Syntax: //setolypoints <points>");
 						return false;
 					}
 					
@@ -201,24 +204,24 @@ public class AdminOlympiad implements IAdminCommandHandler
 						final int points = oldpoints - val;
 						if ((points < 1) && (points > 1000))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "You can't set more than 1000 or less than 0 Olympiad points! or lower then 0");
+							activeChar.sendSysMessage("You can't set more than 1000 or less than 0 Olympiad points! or lower then 0");
 							return false;
 						}
 						
 						statDat.set(Olympiad.POINTS, points);
-						BuilderUtil.sendSysMessage(activeChar, "Player " + player.getName() + " now has " + points + " Olympiad points.");
+						activeChar.sendSysMessage("Player " + player.getName() + " now has " + points + " Olympiad points.");
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "This player is not noblesse!");
+						activeChar.sendSysMessage("This player is not noblesse!");
 						return false;
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: target a player and write the amount of points you would like to set.");
-					BuilderUtil.sendSysMessage(activeChar, "Example: //setolypoints 10");
-					BuilderUtil.sendSysMessage(activeChar, "However, keep in mind that you can't have less than 0 or more than 1000 points.");
+					activeChar.sendSysMessage("Usage: target a player and write the amount of points you would like to set.");
+					activeChar.sendSysMessage("Example: //setolypoints 10");
+					activeChar.sendSysMessage("However, keep in mind that you can't have less than 0 or more than 1000 points.");
 				}
 				break;
 			}
@@ -229,7 +232,7 @@ public class AdminOlympiad implements IAdminCommandHandler
 	private int parseInt(StringTokenizer st)
 	{
 		final String token = st.nextToken();
-		if (!Util.isDigit(token))
+		if (!StringUtil.isNumeric(token))
 		{
 			return -1;
 		}
@@ -260,22 +263,22 @@ public class AdminOlympiad implements IAdminCommandHandler
 	{
 		if (player.isSubClassActive())
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Player " + player + " subclass active.");
+			activeChar.sendSysMessage("Player " + player + " subclass active.");
 			return false;
 		}
-		else if (player.getClassId().level() < 3)
+		else if (player.getPlayerClass().level() < 3)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Player " + player + " has not 3rd class.");
+			activeChar.sendSysMessage("Player " + player + " has not 3rd class.");
 			return false;
 		}
 		else if (Olympiad.getInstance().getNoblePoints(player) <= 0)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Player " + player + " has 0 oly points (add them with (//addolypoints).");
+			activeChar.sendSysMessage("Player " + player + " has 0 oly points (add them with (//addolypoints).");
 			return false;
 		}
 		else if (OlympiadManager.getInstance().isRegistered(player))
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Player " + player + " registered to oly.");
+			activeChar.sendSysMessage("Player " + player + " registered to oly.");
 			return false;
 		}
 		return true;

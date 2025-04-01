@@ -16,17 +16,17 @@
  */
 package quests.Q00095_SagaOfTheHellKnight;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * Saga of the Hell Knight (95)
  * @author Emperorc
  */
-public class Q00095_SagaOfTheHellKnight extends SagasSuperClass
+public class Q00095_SagaOfTheHellKnight extends AbstractSagaQuest
 {
 	public Q00095_SagaOfTheHellKnight()
 	{
-		super(95);
+		super(95, "Saga of the Hell Knight");
 		_npc = new int[]
 		{
 			31582,

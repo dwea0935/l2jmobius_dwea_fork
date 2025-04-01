@@ -24,10 +24,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.LuckyGameDataHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.ItemPointHolder;
-import org.l2jmobius.gameserver.model.holders.LuckyGameDataHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemPointHolder;
 
 /**
  * @author Sdw
@@ -51,23 +51,26 @@ public class LuckyGameData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "luckygame", rewardNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "luckygame", rewardNode ->
 		{
 			final LuckyGameDataHolder holder = new LuckyGameDataHolder(new StatSet(parseAttributes(rewardNode)));
 			
+			// Parse common_reward items.
 			forEach(rewardNode, "common_reward", commonRewardNode -> forEach(commonRewardNode, "item", itemNode ->
 			{
 				final StatSet stats = new StatSet(parseAttributes(itemNode));
 				holder.addCommonReward(new ItemChanceHolder(stats.getInt("id"), stats.getDouble("chance"), stats.getLong("count")));
 			}));
 			
+			// Parse unique_reward items.
 			forEach(rewardNode, "unique_reward", uniqueRewardNode -> forEach(uniqueRewardNode, "item", itemNode ->
 			{
 				holder.addUniqueReward(new ItemPointHolder(new StatSet(parseAttributes(itemNode))));
 			}));
 			
+			// Parse modify_reward items.
 			forEach(rewardNode, "modify_reward", uniqueRewardNode ->
 			{
 				holder.setMinModifyRewardGame(parseInteger(uniqueRewardNode.getAttributes(), "min_game"));
@@ -79,25 +82,43 @@ public class LuckyGameData implements IXmlReader
 				});
 			});
 			
+			// Store holder in _luckyGame map.
 			_luckyGame.put(parseInteger(rewardNode.getAttributes(), "index"), holder);
 		}));
 	}
 	
+	/**
+	 * Returns the count of lucky games available.
+	 * @return the number of lucky game entries in the collection.
+	 */
 	public int getLuckyGameCount()
 	{
 		return _luckyGame.size();
 	}
 	
+	/**
+	 * Retrieves the lucky game data associated with the specified index.
+	 * @param index the index of the lucky game to retrieve.
+	 * @return the {@code LuckyGameDataHolder} instance associated with the given index, or {@code null} if no entry exists for the specified index.
+	 */
 	public LuckyGameDataHolder getLuckyGameDataByIndex(int index)
 	{
 		return _luckyGame.get(index);
 	}
 	
+	/**
+	 * Increments the server play counter by one and returns the updated count.
+	 * @return the new value of the server play counter after incrementing.
+	 */
 	public int increaseGame()
 	{
 		return _serverPlay.incrementAndGet();
 	}
 	
+	/**
+	 * Returns the current count of server plays.
+	 * @return the current value of the server play counter.
+	 */
 	public int getServerPlay()
 	{
 		return _serverPlay.get();

@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -33,7 +33,8 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerBypass;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerBypass;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
 import org.l2jmobius.gameserver.model.spawns.SpawnTemplate;
@@ -210,7 +211,7 @@ public class FrostLordCastleZone extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -230,7 +231,6 @@ public class FrostLordCastleZone extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -253,7 +253,7 @@ public class FrostLordCastleZone extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -280,7 +280,6 @@ public class FrostLordCastleZone extends AbstractNpcAI
 			}
 		}
 		deleteGlakiasSpawns(npc);
-		return super.onKill(npc, killer, false);
 	}
 	
 	@RegisterEvent(EventType.ON_PLAYER_BYPASS)
@@ -387,7 +386,7 @@ public class FrostLordCastleZone extends AbstractNpcAI
 			}
 		}
 		
-		if (!player.destroyItemByItemId("Teleport", Inventory.ADENA_ID, requiredMoney, player, true))
+		if (!player.destroyItemByItemId(ItemProcessType.FEE, Inventory.ADENA_ID, requiredMoney, player, true))
 		{
 			player.sendPacket(SystemMessageId.NOT_ENOUGH_MONEY_TO_USE_THE_FUNCTION);
 			return;

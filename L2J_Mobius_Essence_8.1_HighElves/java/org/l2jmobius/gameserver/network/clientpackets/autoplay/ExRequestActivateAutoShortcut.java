@@ -21,15 +21,15 @@
 package org.l2jmobius.gameserver.network.clientpackets.autoplay;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ShortcutType;
-import org.l2jmobius.gameserver.model.ShortCuts;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.player.ShortcutType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcuts;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
-import org.l2jmobius.gameserver.taskmanager.AutoUseTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AutoUseTaskManager;
 
 /**
  * @author Mobius
@@ -44,8 +44,8 @@ public class ExRequestActivateAutoShortcut extends ClientPacket
 	protected void readImpl()
 	{
 		final int position = readShort();
-		_slot = position % ShortCuts.MAX_SHORTCUTS_PER_BAR;
-		_page = position / ShortCuts.MAX_SHORTCUTS_PER_BAR;
+		_slot = position % Shortcuts.MAX_SHORTCUTS_PER_BAR;
+		_page = position / Shortcuts.MAX_SHORTCUTS_PER_BAR;
 		_active = readByte() == 1;
 	}
 	
@@ -73,8 +73,8 @@ public class ExRequestActivateAutoShortcut extends ClientPacket
 		{
 			for (int i = 0; i < 12; i++)
 			{
-				final Shortcut autoUseAllSupply1 = player.getShortCut(i, 22);
-				final Shortcut autoUseAllSupply2 = player.getShortCut(i, 24);
+				final Shortcut autoUseAllSupply1 = player.getShortcut(i, 22);
+				final Shortcut autoUseAllSupply2 = player.getShortcut(i, 24);
 				
 				if (autoUseAllSupply1 != null)
 				{
@@ -102,8 +102,8 @@ public class ExRequestActivateAutoShortcut extends ClientPacket
 		{
 			for (int i = 0; i < 12; i++)
 			{
-				final Shortcut autoUseAllSupply1 = player.getShortCut(i, 22);
-				final Shortcut autoUseAllSupply2 = player.getShortCut(i, 24);
+				final Shortcut autoUseAllSupply1 = player.getShortcut(i, 22);
+				final Shortcut autoUseAllSupply2 = player.getShortcut(i, 24);
 				
 				if (autoUseAllSupply1 != null)
 				{
@@ -128,7 +128,7 @@ public class ExRequestActivateAutoShortcut extends ClientPacket
 			return;
 		}
 		
-		final Shortcut shortcut = player.getShortCut(_slot, _page);
+		final Shortcut shortcut = player.getShortcut(_slot, _page);
 		if ((shortcut == null))
 		{
 			return;

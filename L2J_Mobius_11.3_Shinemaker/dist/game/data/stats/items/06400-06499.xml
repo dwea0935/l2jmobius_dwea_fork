@@ -138,7 +138,7 @@
 		<set name="is_event_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="2038" level="1" /> <!-- Quick Healing Potion -->
+			<skill id="2038" level="1" /> <!-- Quick HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="6411" name="Small Green Nimble Fish" additionalName="Not used" type="EtcItem">
@@ -1450,7 +1450,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2199" level="1" /> <!-- Small Green Treasure Chest -->
+			<skill id="2199" level="1" /> <!-- Small Green Chest -->
 		</skills>
 	</item>
 	<item id="6493" name="Green Treasure Chest" additionalName="Not used" type="EtcItem">
@@ -1466,7 +1466,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2199" level="2" /> <!-- Green Treasure Chest -->
+			<skill id="2199" level="2" /> <!-- Green Chest -->
 		</skills>
 	</item>
 	<item id="6494" name="Large Green Treasure Chest" additionalName="Not used" type="EtcItem">
@@ -1482,7 +1482,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2199" level="3" /> <!-- Large Green Treasure Chest -->
+			<skill id="2199" level="3" /> <!-- Large Green Chest -->
 		</skills>
 	</item>
 	<item id="6495" name="Small Jade Treasure Chest" additionalName="Not used" type="EtcItem">

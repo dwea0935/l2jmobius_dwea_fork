@@ -32,8 +32,8 @@ import java.util.stream.Collectors;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.SubjugationHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.SubjugationHolder;
 
 /**
  * @author Berezkin Nikolay
@@ -58,9 +58,9 @@ public class SubjugationData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "purge", purgeNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "purge", purgeNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(purgeNode));
 			final int category = set.getInt("category");

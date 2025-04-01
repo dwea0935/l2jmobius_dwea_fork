@@ -21,7 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets.relics;
 
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.request.RelicCouponRequest;
+import org.l2jmobius.gameserver.model.actor.request.RelicSummonRequest;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 
 /**
@@ -43,6 +43,6 @@ public class RequestRelicsSummonCloseUI extends ClientPacket
 			return;
 		}
 		
-		player.removeRequest(RelicCouponRequest.class);
+		player.removeRequest(RelicSummonRequest.class);
 	}
 }

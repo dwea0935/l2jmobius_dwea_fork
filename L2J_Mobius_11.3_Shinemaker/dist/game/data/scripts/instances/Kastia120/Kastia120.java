@@ -22,16 +22,16 @@ package instances.Kastia120;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -224,18 +224,17 @@ public class Kastia120 extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
 		{
 			npc.doCast(BOSS_BERSERKER.getSkill());
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature player)
+	public void onCreatureSee(Npc npc, Creature player)
 	{
 		final Instance world = player.getInstanceWorld();
 		if ((world != null) && (player.isPlayer()))
@@ -245,15 +244,14 @@ public class Kastia120 extends AbstractInstance
 			{
 				WalkingManager.getInstance().cancelMoving(npc);
 				npc.asMonster().addDamageHate(player, 0, 1000);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+				npc.getAI().setIntention(Intention.ACTIVE);
 				addAttackDesire(npc, player);
 			}
 		}
-		return super.onCreatureSee(npc, player);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -264,7 +262,6 @@ public class Kastia120 extends AbstractInstance
 			giveItems(killer, KASTIAS_PACK);
 			world.finishInstance(3);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

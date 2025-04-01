@@ -20,11 +20,11 @@
  */
 package quests.Q00337_AudienceWithTheLandDragon;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -104,7 +104,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 	
 	public Q00337_AudienceWithTheLandDragon()
 	{
-		super(337);
+		super(337, "Audience with the Land Dragon");
 		
 		registerQuestItems(FEATHER_OF_GABRIELLE, MARK_OF_WATCHMAN, REMAINS_OF_SACRIFIED, TOTEM_OF_LAND_DRAGON, KRANROT_SKIN, HAMRUT_LEG, MARSH_DRAKE_TALONS, MARSH_STALKER_HORN, FIRST_FRAGMENT_OF_ABYSS_JEWEL, MARA_FANG, SECOND_FRAGMENT_OF_ABYSS_JEWEL, MUSFEL_FANG, HERALD_OF_SLAYER, THIRD_FRAGMENT_OF_ABYSS_JEWEL);
 		
@@ -477,12 +477,12 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		final QuestState st = getQuestState(attacker, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		final int npcId = npc.getId();
@@ -539,7 +539,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 							final Npc mob = addSpawn(npcInfo[5], npc.getX() + getRandom(-150, 150), npc.getY() + getRandom(-150, 150), npc.getZ(), npc.getHeading(), true, 60000);
 							mob.setRunning();
 							mob.asAttackable().addDamageHate(attacker, 0, 500);
-							mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, attacker);
+							mob.getAI().setIntention(Intention.ATTACK, attacker);
 						}
 						
 						if (npcId == ABYSSAL_JEWEL_3)
@@ -575,17 +575,15 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 			}
 			break;
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		final int cond = st.getCond();
@@ -656,7 +654,5 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 }

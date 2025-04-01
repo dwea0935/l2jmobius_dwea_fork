@@ -28,10 +28,10 @@ import java.util.stream.Collectors;
 
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author Magik
@@ -62,7 +62,7 @@ public class NewQuest
 		_location = new NewQuestLocation(set.getInt("startLocationId", 0), set.getInt("endLocationId", 0), set.getInt("questLocationId", 0));
 		
 		final String classIds = set.getString("classIds", "");
-		final List<ClassId> classRestriction = classIds.isEmpty() ? Collections.emptyList() : Arrays.stream(classIds.split(";")).map(it -> ClassId.getClassId(Integer.parseInt(it))).collect(Collectors.toList());
+		final List<PlayerClass> classRestriction = classIds.isEmpty() ? Collections.emptyList() : Arrays.stream(classIds.split(";")).map(it -> PlayerClass.getPlayerClass(Integer.parseInt(it))).collect(Collectors.toList());
 		final String preQuestId = set.getString("preQuestId", "");
 		final List<Integer> preQuestIds = preQuestId.isEmpty() ? Collections.emptyList() : Arrays.stream(preQuestId.split(";")).map(it -> Integer.parseInt(it)).collect(Collectors.toList());
 		_conditions = new NewQuestCondition(set.getInt("minLevel", -1), set.getInt("maxLevel", ExperienceData.getInstance().getMaxLevel()), preQuestIds, classRestriction, set.getBoolean("oneOfPreQuests", false), set.getBoolean("specificStart", false));

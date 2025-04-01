@@ -42,7 +42,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2261" level="1" /> <!-- Small Green Nimble Fish (High-grade) -->
+			<skill id="2261" level="1" /> <!-- High-grade Small Green Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8404" name="High-grade Small Green Ugly Fish" type="EtcItem">
@@ -57,7 +57,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2261" level="2" /> <!-- Small Green Ugly Fish (High-grade) -->
+			<skill id="2261" level="2" /> <!-- High-grade Small Green Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8405" name="High-grade Small Green Fat Fish" type="EtcItem">
@@ -72,7 +72,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2261" level="3" /> <!-- Small Green Fat Fish (High-grade) -->
+			<skill id="2261" level="3" /> <!-- High-grade Small Green Fat Fish -->
 		</skills>
 	</item>
 	<item id="8406" name="High-grade Green Nimble Fish" type="EtcItem">
@@ -87,7 +87,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2261" level="4" /> <!-- Green Nimble Fish (High-grade) -->
+			<skill id="2261" level="4" /> <!-- High-grade Green Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8407" name="High-grade Green Ugly Fish" type="EtcItem">
@@ -102,7 +102,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2261" level="5" /> <!-- Green Ugly Fish (High-grade) -->
+			<skill id="2261" level="5" /> <!-- High-grade Green Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8408" name="High-grade Green Fat Fish" type="EtcItem">
@@ -117,7 +117,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2261" level="6" /> <!-- Green Fat Fish (High-grade) -->
+			<skill id="2261" level="6" /> <!-- High-grade Green Fat Fish -->
 		</skills>
 	</item>
 	<item id="8409" name="High-grade Large Green Nimble Fish" type="EtcItem">
@@ -132,7 +132,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2261" level="7" /> <!-- Large Green Nimble Fish (High-grade) -->
+			<skill id="2261" level="7" /> <!-- High-grade Large Green Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8410" name="High-grade Large Green Ugly Fish" type="EtcItem">
@@ -147,7 +147,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2261" level="8" /> <!-- Large Green Ugly Fish (High-grade) -->
+			<skill id="2261" level="8" /> <!-- High-grade Large Green Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8411" name="High-grade Large Green Fat Fish" type="EtcItem">
@@ -162,7 +162,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2261" level="9" /> <!-- Large Green Fat Fish (High-grade) -->
+			<skill id="2261" level="9" /> <!-- High-grade Large Green Fat Fish -->
 		</skills>
 	</item>
 	<item id="8412" name="High-grade Small Jade Nimble Fish" type="EtcItem">
@@ -177,7 +177,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2262" level="1" /> <!-- Small Jade Nimble Fish (High-grade) -->
+			<skill id="2262" level="1" /> <!-- High-grade Small Jade Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8413" name="High-grade Small Jade Ugly Fish" type="EtcItem">
@@ -192,7 +192,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2262" level="2" /> <!-- Small Jade Ugly Fish (High-grade) -->
+			<skill id="2262" level="2" /> <!-- High-grade Small Jade Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8414" name="High-grade Small Jade Fat Fish" type="EtcItem">
@@ -207,7 +207,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2262" level="3" /> <!-- Small Jade Fat Fish (High-grade) -->
+			<skill id="2262" level="3" /> <!-- High-grade Small Jade Fat Fish -->
 		</skills>
 	</item>
 	<item id="8415" name="High-grade Jade Nimble Fish" type="EtcItem">
@@ -222,7 +222,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2262" level="4" /> <!-- Jade Nimble Fish (High-grade) -->
+			<skill id="2262" level="4" /> <!-- High-grade Jade Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8416" name="High-grade Jade Ugly Fish" type="EtcItem">
@@ -237,7 +237,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2262" level="5" /> <!-- Jade Ugly Fish (High-grade) -->
+			<skill id="2262" level="5" /> <!-- High-grade Jade Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8417" name="High-grade Jade Fat Fish" type="EtcItem">
@@ -252,7 +252,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2262" level="6" /> <!-- Jade Fat Fish (High-grade) -->
+			<skill id="2262" level="6" /> <!-- High-grade Jade Fat Fish -->
 		</skills>
 	</item>
 	<item id="8418" name="High-grade Large Jade Nimble Fish" type="EtcItem">
@@ -267,7 +267,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2262" level="7" /> <!-- Large Jade Nimble Fish (High-grade) -->
+			<skill id="2262" level="7" /> <!-- High-grade Large Jade Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8419" name="High-grade Large Jade Ugly Fish" type="EtcItem">
@@ -282,7 +282,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2262" level="8" /> <!-- Large Jade Ugly Fish (High-grade) -->
+			<skill id="2262" level="8" /> <!-- High-grade Large Jade Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8420" name="High-grade Large Jade Fat Fish" type="EtcItem">
@@ -297,7 +297,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2262" level="9" /> <!-- Large Jade Fat Fish (High-grade) -->
+			<skill id="2262" level="9" /> <!-- High-grade Large Jade Fat Fish -->
 		</skills>
 	</item>
 	<item id="8421" name="High-grade Small Blue Nimble Fish" type="EtcItem">
@@ -312,7 +312,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2263" level="1" /> <!-- Small Blue Nimble Fish (High-grade) -->
+			<skill id="2263" level="1" /> <!-- High-grade Small Blue Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8422" name="High-grade Small Blue Ugly Fish" type="EtcItem">
@@ -327,7 +327,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2263" level="2" /> <!-- Small Blue Ugly Fish (High-grade) -->
+			<skill id="2263" level="2" /> <!-- High-grade Small Blue Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8423" name="High-grade Small Blue Fat Fish" type="EtcItem">
@@ -342,7 +342,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2263" level="3" /> <!-- Small Blue Fat Fish (High-grade) -->
+			<skill id="2263" level="3" /> <!-- High-grade Small Blue Fat Fish -->
 		</skills>
 	</item>
 	<item id="8424" name="High-grade Blue Nimble Fish" type="EtcItem">
@@ -357,7 +357,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2263" level="4" /> <!-- Blue Nimble Fish (High-grade) -->
+			<skill id="2263" level="4" /> <!-- High-grade Blue Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8425" name="High-grade Blue Ugly Fish" type="EtcItem">
@@ -372,7 +372,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2263" level="5" /> <!-- Blue Ugly Fish (High-grade) -->
+			<skill id="2263" level="5" /> <!-- High-grade Blue Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8426" name="High-grade Blue Fat Fish" type="EtcItem">
@@ -387,7 +387,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2263" level="6" /> <!-- Blue Fat Fish (High-grade) -->
+			<skill id="2263" level="6" /> <!-- High-grade Blue Fat Fish -->
 		</skills>
 	</item>
 	<item id="8427" name="High-grade Large Blue Nimble Fish" type="EtcItem">
@@ -402,7 +402,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2263" level="7" /> <!-- Large Blue Nimble Fish (High-grade) -->
+			<skill id="2263" level="7" /> <!-- High-grade Large Blue Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8428" name="High-grade Large Blue Ugly Fish" type="EtcItem">
@@ -417,7 +417,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2263" level="8" /> <!-- Large Blue Ugly Fish (High-grade) -->
+			<skill id="2263" level="8" /> <!-- High-grade Large Blue Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8429" name="High-grade Large Blue Fat Fish" type="EtcItem">
@@ -432,7 +432,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2263" level="9" /> <!-- Large Blue Fat Fish (High-grade) -->
+			<skill id="2263" level="9" /> <!-- High-grade Large Blue Fat Fish -->
 		</skills>
 	</item>
 	<item id="8430" name="High-grade Small Yellow Nimble Fish" type="EtcItem">
@@ -447,7 +447,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2264" level="1" /> <!-- Small Yellow Nimble Fish (High-grade) -->
+			<skill id="2264" level="1" /> <!-- High-grade Small Yellow Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8431" name="High-grade Small Yellow Ugly Fish" type="EtcItem">
@@ -462,7 +462,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2264" level="2" /> <!-- Small Yellow Ugly Fish (High-grade) -->
+			<skill id="2264" level="2" /> <!-- High-grade Small Yellow Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8432" name="High-grade Small Yellow Fat Fish" type="EtcItem">
@@ -477,7 +477,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2264" level="3" /> <!-- Small Yellow Fat Fish (High-grade) -->
+			<skill id="2264" level="3" /> <!-- High-grade Small Yellow Fat Fish -->
 		</skills>
 	</item>
 	<item id="8433" name="High-grade Yellow Nimble Fish" type="EtcItem">
@@ -492,7 +492,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2264" level="4" /> <!-- Yellow Nimble Fish (High-grade) -->
+			<skill id="2264" level="4" /> <!-- High-grade Yellow Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8434" name="High-grade Yellow Ugly Fish" type="EtcItem">
@@ -507,7 +507,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2264" level="5" /> <!-- Yellow Ugly Fish (High-grade) -->
+			<skill id="2264" level="5" /> <!-- High-grade Yellow Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8435" name="High-grade Yellow Fat Fish" type="EtcItem">
@@ -522,7 +522,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2264" level="6" /> <!-- Yellow Fat Fish (High-grade) -->
+			<skill id="2264" level="6" /> <!-- High-grade Yellow Fat Fish -->
 		</skills>
 	</item>
 	<item id="8436" name="High-grade Large Yellow Nimble Fish" type="EtcItem">
@@ -537,7 +537,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2264" level="7" /> <!-- Large Yellow Nimble Fish (High-grade) -->
+			<skill id="2264" level="7" /> <!-- High-grade Large Yellow Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8437" name="High-grade Large Yellow Ugly Fish" type="EtcItem">
@@ -552,7 +552,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2264" level="8" /> <!-- Large Yellow Ugly Fish (High-grade) -->
+			<skill id="2264" level="8" /> <!-- High-grade Large Yellow Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8438" name="High-grade Large Yellow Fat Fish" type="EtcItem">
@@ -567,7 +567,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2264" level="9" /> <!-- Large Yellow Fat Fish (High-grade) -->
+			<skill id="2264" level="9" /> <!-- High-grade Large Yellow Fat Fish -->
 		</skills>
 	</item>
 	<item id="8439" name="High-grade Small Orange Nimble Fish" type="EtcItem">
@@ -582,7 +582,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2265" level="1" /> <!-- Small Orange Nimble Fish (High-grade) -->
+			<skill id="2265" level="1" /> <!-- High-grade Small Orange Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8440" name="High-grade Small Orange Ugly Fish" type="EtcItem">
@@ -597,7 +597,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2265" level="2" /> <!-- Small Orange Ugly Fish (High-grade) -->
+			<skill id="2265" level="2" /> <!-- High-grade Small Orange Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8441" name="High-grade Small Orange Fat Fish" type="EtcItem">
@@ -612,7 +612,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2265" level="3" /> <!-- Small Orange Fat Fish (High-grade) -->
+			<skill id="2265" level="3" /> <!-- High-grade Small Orange Fat Fish -->
 		</skills>
 	</item>
 	<item id="8442" name="High-grade Orange Nimble Fish" type="EtcItem">
@@ -627,7 +627,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2265" level="4" /> <!-- Orange Nimble Fish (High-grade) -->
+			<skill id="2265" level="4" /> <!-- High-grade Orange Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8443" name="High-grade Orange Ugly Fish" type="EtcItem">
@@ -642,7 +642,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2265" level="5" /> <!-- Orange Ugly Fish (High-grade) -->
+			<skill id="2265" level="5" /> <!-- High-grade Orange Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8444" name="High-grade Orange Fat Fish" type="EtcItem">
@@ -657,7 +657,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2265" level="6" /> <!-- Orange Fat Fish (High-grade) -->
+			<skill id="2265" level="6" /> <!-- High-grade Orange Fat Fish -->
 		</skills>
 	</item>
 	<item id="8445" name="High-grade Large Orange Nimble Fish" type="EtcItem">
@@ -672,7 +672,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2265" level="7" /> <!-- Large Orange Nimble Fish (High-grade) -->
+			<skill id="2265" level="7" /> <!-- High-grade Large Orange Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8446" name="High-grade Large Orange Ugly Fish" type="EtcItem">
@@ -687,7 +687,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2265" level="8" /> <!-- Large Orange Ugly Fish (High-grade) -->
+			<skill id="2265" level="8" /> <!-- High-grade Large Orange Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8447" name="High-grade Large Orange Fat Fish" type="EtcItem">
@@ -702,7 +702,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2265" level="9" /> <!-- Large Orange Fat Fish (High-grade) -->
+			<skill id="2265" level="9" /> <!-- High-grade Large Orange Fat Fish -->
 		</skills>
 	</item>
 	<item id="8448" name="High-grade Small Purple Nimble Fish" type="EtcItem">
@@ -717,7 +717,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2266" level="1" /> <!-- Small Purple Nimble Fish (High-grade) -->
+			<skill id="2266" level="1" /> <!-- High-grade Small Purple Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8449" name="High-grade Small Purple Ugly Fish" type="EtcItem">
@@ -732,7 +732,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2266" level="2" /> <!-- Small Purple Ugly Fish (High-grade) -->
+			<skill id="2266" level="2" /> <!-- High-grade Small Purple Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8450" name="High-grade Small Purple Fat Fish" type="EtcItem">
@@ -747,7 +747,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2266" level="3" /> <!-- Small Purple Fat Fish (High-grade) -->
+			<skill id="2266" level="3" /> <!-- High-grade Small Purple Fat Fish -->
 		</skills>
 	</item>
 	<item id="8451" name="High-grade Purple Nimble Fish" type="EtcItem">
@@ -762,7 +762,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2266" level="4" /> <!-- Purple Nimble Fish (High-grade) -->
+			<skill id="2266" level="4" /> <!-- High-grade Purple Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8452" name="High-grade Purple Ugly Fish" type="EtcItem">
@@ -777,7 +777,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2266" level="5" /> <!-- Purple Ugly Fish (High-grade) -->
+			<skill id="2266" level="5" /> <!-- High-grade Purple Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8453" name="High-grade Purple Fat Fish" type="EtcItem">
@@ -792,7 +792,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2266" level="6" /> <!-- Purple Fat Fish (High-grade) -->
+			<skill id="2266" level="6" /> <!-- High-grade Purple Fat Fish -->
 		</skills>
 	</item>
 	<item id="8454" name="High-grade Large Purple Nimble Fish" type="EtcItem">
@@ -807,7 +807,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2266" level="7" /> <!-- Large Purple Nimble Fish (High-grade) -->
+			<skill id="2266" level="7" /> <!-- High-grade Large Purple Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8455" name="High-grade Large Purple Ugly Fish" type="EtcItem">
@@ -822,7 +822,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2266" level="8" /> <!-- Large Purple Ugly Fish (High-grade) -->
+			<skill id="2266" level="8" /> <!-- High-grade Large Purple Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8456" name="High-grade Large Purple Fat Fish" type="EtcItem">
@@ -837,7 +837,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2266" level="9" /> <!-- Large Purple Fat Fish (High-grade) -->
+			<skill id="2266" level="9" /> <!-- High-grade Large Purple Fat Fish -->
 		</skills>
 	</item>
 	<item id="8457" name="High-grade Small Red Nimble Fish" type="EtcItem">
@@ -852,7 +852,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2267" level="1" /> <!-- Small Red Nimble Fish (High-grade) -->
+			<skill id="2267" level="1" /> <!-- High-grade Small Red Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8458" name="High-grade Small Red Ugly Fish" type="EtcItem">
@@ -867,7 +867,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2267" level="2" /> <!-- Small Red Ugly Fish (High-grade) -->
+			<skill id="2267" level="2" /> <!-- High-grade Small Red Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8459" name="High-grade Small Red Fat Fish" type="EtcItem">
@@ -882,7 +882,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2267" level="3" /> <!-- Small Red Fat Fish (High-grade) -->
+			<skill id="2267" level="3" /> <!-- High-grade Small Red Fat Fish -->
 		</skills>
 	</item>
 	<item id="8460" name="High-grade Red Nimble Fish" type="EtcItem">
@@ -897,7 +897,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2267" level="4" /> <!-- Red Nimble Fish (High-grade) -->
+			<skill id="2267" level="4" /> <!-- High-grade Red Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8461" name="High-grade Red Ugly Fish" type="EtcItem">
@@ -912,7 +912,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2267" level="5" /> <!-- Red Ugly Fish (High-grade) -->
+			<skill id="2267" level="5" /> <!-- High-grade Red Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8462" name="High-grade Red Fat Fish" type="EtcItem">
@@ -927,7 +927,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2267" level="6" /> <!-- Red Fat Fish (High-grade) -->
+			<skill id="2267" level="6" /> <!-- High-grade Red Fat Fish -->
 		</skills>
 	</item>
 	<item id="8463" name="High-grade Large Red Nimble Fish" type="EtcItem">
@@ -942,7 +942,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2267" level="7" /> <!-- Large Red Nimble Fish (High-grade) -->
+			<skill id="2267" level="7" /> <!-- High-grade Large Red Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8464" name="High-grade Large Red Ugly Fish" type="EtcItem">
@@ -957,7 +957,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2267" level="8" /> <!-- Large Red Ugly Fish (High-grade) -->
+			<skill id="2267" level="8" /> <!-- High-grade Large Red Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8465" name="High-grade Large Red Fat Fish" type="EtcItem">
@@ -972,7 +972,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2267" level="9" /> <!-- Large Red Fat Fish (High-grade) -->
+			<skill id="2267" level="9" /> <!-- High-grade Large Red Fat Fish -->
 		</skills>
 	</item>
 	<item id="8466" name="High-grade Small White Nimble Fish" type="EtcItem">
@@ -987,7 +987,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2268" level="1" /> <!-- Small White Nimble Fish (High-grade) -->
+			<skill id="2268" level="1" /> <!-- High-grade Small White Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8467" name="High-grade Small White Ugly Fish" type="EtcItem">
@@ -1002,7 +1002,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2268" level="2" /> <!-- Small White Ugly Fish (High-grade) -->
+			<skill id="2268" level="2" /> <!-- High-grade Small White Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8468" name="High-grade Small White Fat Fish" type="EtcItem">
@@ -1017,7 +1017,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2268" level="3" /> <!-- Small White Fat Fish (High-grade) -->
+			<skill id="2268" level="3" /> <!-- High-grade Small White Fat Fish -->
 		</skills>
 	</item>
 	<item id="8469" name="High-grade White Nimble Fish" type="EtcItem">
@@ -1032,7 +1032,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2268" level="4" /> <!-- White Nimble Fish (High-grade) -->
+			<skill id="2268" level="4" /> <!-- High-grade White Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8470" name="High-grade White Ugly Fish" type="EtcItem">
@@ -1047,7 +1047,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2268" level="5" /> <!-- White Ugly Fish (High-grade) -->
+			<skill id="2268" level="5" /> <!-- High-grade White Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8471" name="High-grade White Fat Fish" type="EtcItem">
@@ -1062,7 +1062,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2268" level="6" /> <!-- White Fat Fish (High-grade) -->
+			<skill id="2268" level="6" /> <!-- High-grade White Fat Fish -->
 		</skills>
 	</item>
 	<item id="8472" name="High-grade Large White Nimble Fish" type="EtcItem">
@@ -1077,7 +1077,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2268" level="7" /> <!-- Large White Nimble Fish (High-grade) -->
+			<skill id="2268" level="7" /> <!-- High-grade Large White Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8473" name="High-grade Large White Ugly Fish" type="EtcItem">
@@ -1092,7 +1092,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2268" level="8" /> <!-- Large White Ugly Fish (High-grade) -->
+			<skill id="2268" level="8" /> <!-- High-grade Large White Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8474" name="High-grade Large White Fat Fish" type="EtcItem">
@@ -1107,7 +1107,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2268" level="9" /> <!-- Large White Fat Fish (High-grade) -->
+			<skill id="2268" level="9" /> <!-- High-grade Large White Fat Fish -->
 		</skills>
 	</item>
 	<item id="8475" name="High-grade Small Black Nimble Fish" type="EtcItem">
@@ -1122,7 +1122,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2269" level="1" /> <!-- Small Black Nimble Fish (High-grade) -->
+			<skill id="2269" level="1" /> <!-- High-grade Small Black Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8476" name="High-grade Small Black Ugly Fish" type="EtcItem">
@@ -1137,7 +1137,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2269" level="2" /> <!-- Small Black Ugly Fish (High-grade) -->
+			<skill id="2269" level="2" /> <!-- High-grade Small Black Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8477" name="High-grade Small Black Fat Fish" type="EtcItem">
@@ -1152,7 +1152,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2269" level="3" /> <!-- Small Black Fat Fish (High-grade) -->
+			<skill id="2269" level="3" /> <!-- High-grade Small Black Fat Fish -->
 		</skills>
 	</item>
 	<item id="8478" name="High-grade Black Nimble Fish" type="EtcItem">
@@ -1167,7 +1167,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2269" level="4" /> <!-- Black Nimble Fish (High-grade) -->
+			<skill id="2269" level="4" /> <!-- High-grade Black Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8479" name="High-grade Black Ugly Fish" type="EtcItem">
@@ -1182,7 +1182,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2269" level="5" /> <!-- Black Ugly Fish (High-grade) -->
+			<skill id="2269" level="5" /> <!-- High-grade Black Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8480" name="High-grade Black Fat Fish" type="EtcItem">
@@ -1197,7 +1197,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2269" level="6" /> <!-- Black Fat Fish (High-grade) -->
+			<skill id="2269" level="6" /> <!-- High-grade Black Fat Fish -->
 		</skills>
 	</item>
 	<item id="8481" name="High-grade Large Black Nimble Fish" type="EtcItem">
@@ -1212,7 +1212,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2269" level="7" /> <!-- Large Black Nimble Fish (High-grade) -->
+			<skill id="2269" level="7" /> <!-- High-grade Large Black Nimble Fish -->
 		</skills>
 	</item>
 	<item id="8482" name="High-grade Large Black Ugly Fish" type="EtcItem">
@@ -1227,7 +1227,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2269" level="8" /> <!-- Large Black Ugly Fish (High-grade) -->
+			<skill id="2269" level="8" /> <!-- High-grade Large Black Ugly Fish -->
 		</skills>
 	</item>
 	<item id="8483" name="High-grade Large Black Fat Fish" type="EtcItem">
@@ -1242,11 +1242,11 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2269" level="9" /> <!-- Large Black Fat Fish (High-grade) -->
+			<skill id="2269" level="9" /> <!-- High-grade Large Black Fat Fish -->
 		</skills>
 	</item>
 	<item id="8484" name="Prize-winning Bait" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_gludio_fish_lure_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="etcitem_type" val="LURE" />
@@ -1258,7 +1258,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8485" name="Prize-winning Bait (Night Fishing)" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_gludio_fish_lure_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="etcitem_type" val="LURE" />
@@ -1270,7 +1270,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8486" name="Prize-winning Bait (Novice)" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_gludio_fish_lure_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="etcitem_type" val="LURE" />
@@ -1307,7 +1307,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="8489" name="Daimon's Eyes" type="EtcItem">
-		<!-- Eyes obtained by killing Daimon the White-eyed. -->
+		<!-- Eyes from Daimon the White-eyed. -->
 		<set name="icon" val="icon.etc_eyeball_i00" />
 		<set name="material" val="PAPER" />
 		<set name="is_tradable" val="false" />
@@ -1329,7 +1329,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="8491" name="Nucleus of Lesser Golem" type="EtcItem">
-		<!-- A nucleus obtained from defeating Lesser Golem. -->
+		<!-- A nucleus obtained from defeating Small Golem. -->
 		<set name="icon" val="icon.etc_bead_white_i00" />
 		<set name="material" val="PAPER" />
 		<set name="is_tradable" val="false" />
@@ -1384,7 +1384,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="8496" name="Corroded Gludio Luminous Bait" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_gludio_fish_lure_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="etcitem_type" val="LURE" />
@@ -1396,7 +1396,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8497" name="Corroded Dion Luminous Bait" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_gludio_fish_lure_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="etcitem_type" val="LURE" />
@@ -1408,7 +1408,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8498" name="Corroded Giran Luminous Bait" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_gludio_fish_lure_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="etcitem_type" val="LURE" />
@@ -1420,7 +1420,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8499" name="Corroded Oren Luminous Bait" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_gludio_fish_lure_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="etcitem_type" val="LURE" />

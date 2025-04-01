@@ -44,7 +44,7 @@ public class SilentValley extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (getRandom(100) < 10)
 		{
@@ -53,7 +53,6 @@ public class SilentValley extends AbstractNpcAI
 			addAttackPlayerDesire(spawnBanshee, attacker);
 			npc.deleteMe();
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

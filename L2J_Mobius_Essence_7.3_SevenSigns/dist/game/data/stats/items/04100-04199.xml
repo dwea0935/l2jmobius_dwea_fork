@@ -188,7 +188,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4117" name="Art of Battle Axe Blade" type="EtcItem">
-		<!-- The item is not available. Key material for Dwarves to make Art of Battle Axe. No longer used. -->
+		<!-- The item is not available. Key material for Dwarves to make Battle Art Axe. No longer used. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="immediate_effect" val="true" />
@@ -1265,7 +1265,7 @@
 		<set name="handler" val="Recipes" />
 	</item>
 	<item id="4195" name="Recipe: Art of Battle Axe" type="EtcItem">
-		<!-- For Dwarves only. A recipe for Art of Battle Axe. Requires Create Item Lv. 7. The success rate is 100%. -->
+		<!-- For Dwarves only. A recipe for Battle Art Axe. Requires Create Item Lv. 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
 		<set name="etcitem_type" val="RECIPE" />

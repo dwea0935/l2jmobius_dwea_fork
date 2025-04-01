@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="6800" type="EtcItem" name="Greater Mercenary Posting Ticket (Cleric/Mobile)">
 		<!-- Goddard/Cleric/Mobile. Posting impossible when Seal of Strife is owned by Dusk. -->
@@ -826,7 +826,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="6867" type="EtcItem" name="Recipe: Sealed Draconic Leather Gloves (60%)">
+	<item id="6867" type="EtcItem" name="Recipe: Sealed Draconic Leather Gloves (60%)">
 		<!-- For Dwarves only. The recipe for Sealed Draconic Leather Gloves. Requires Create Item - Skill Level 9. The success rate is 60%. -->
 		<set name="icon" val="icon.etc_recipe_black_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -839,7 +839,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="6868" type="EtcItem" name="Recipe: Sealed Draconic Leather Gloves (100%)">
+	<item id="6868" type="EtcItem" name="Recipe: Sealed Draconic Leather Gloves (100%)">
 		<!-- For Dwarves only. The recipe for Sealed Draconic Leather Gloves. Requires Create Item - Skill Level 9. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_black_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -852,7 +852,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="6869" type="EtcItem" name="Recipe: Sealed Draconic Leather Boots (60%)">
+	<item id="6869" type="EtcItem" name="Recipe: Sealed Draconic Leather Boots (60%)">
 		<!-- For Dwarves only. The recipe for Sealed Draconic Leather Boots. Requires Create Item - Skill Level 9. The success rate is 60%. -->
 		<set name="icon" val="icon.etc_recipe_black_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -865,7 +865,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="6870" type="EtcItem" name="Recipe: Sealed Draconic Leather Boots (100%)">
+	<item id="6870" type="EtcItem" name="Recipe: Sealed Draconic Leather Boots (100%)">
 		<!-- For Dwarves only. The recipe for Sealed Draconic Leather Boots. Requires Create Item - Skill Level 9. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_black_i00" />
 		<set name="default_action" val="RECIPE" />

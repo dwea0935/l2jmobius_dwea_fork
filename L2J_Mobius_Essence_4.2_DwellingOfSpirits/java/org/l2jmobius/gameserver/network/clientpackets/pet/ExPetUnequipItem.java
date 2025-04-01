@@ -1,12 +1,33 @@
+/*
+ * Copyright (c) 2013 L2jMobius
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 package org.l2jmobius.gameserver.network.clientpackets.pet;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.NextAction;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -157,21 +178,21 @@ public class ExPetUnequipItem extends ClientPacket
 			if (player.isCastingNow())
 			{
 				// Create and Bind the next action to the AI.
-				player.getAI().setNextAction(new NextAction(CtrlEvent.EVT_FINISH_CASTING, CtrlIntention.AI_INTENTION_CAST, () ->
+				player.getAI().setNextAction(new NextAction(Action.FINISH_CASTING, Intention.CAST, () ->
 				{
-					pet.transferItem("UnequipFromPet", item.getObjectId(), 1, player.getInventory(), player, null);
+					pet.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), 1, player.getInventory(), player, null);
 					sendInfos(pet, player);
 				}));
 			}
 			else if (player.isAttackingNow())
 			{
 				// Equip or unEquip.
-				pet.transferItem("UnequipFromPet", item.getObjectId(), 1, player.getInventory(), player, null);
+				pet.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), 1, player.getInventory(), player, null);
 				sendInfos(pet, player);
 			}
 			else
 			{
-				pet.transferItem("UnequipFromPet", item.getObjectId(), 1, player.getInventory(), player, null);
+				pet.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), 1, player.getInventory(), player, null);
 				sendInfos(pet, player);
 			}
 		}

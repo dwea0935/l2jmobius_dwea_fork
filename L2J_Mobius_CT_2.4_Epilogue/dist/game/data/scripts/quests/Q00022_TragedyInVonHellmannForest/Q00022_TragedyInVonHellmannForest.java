@@ -17,18 +17,17 @@
 package quests.Q00022_TragedyInVonHellmannForest;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.QuestTimer;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q00021_HiddenTruth.Q00021_HiddenTruth;
 
@@ -71,7 +70,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 	
 	public Q00022_TragedyInVonHellmannForest()
 	{
-		super(22);
+		super(22, "Tragedy in von Hellmann Forest");
 		addKillId(MOBS);
 		addKillId(SOUL_OF_WELL);
 		addAttackId(SOUL_OF_WELL);
@@ -178,7 +177,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 						final Npc ghost2 = addSpawn(GHOST_OF_PRIEST, PRIEST_LOC, true, 0);
 						ghost2.setScriptValue(player.getObjectId());
 						startQuestTimer("DESPAWN_GHOST2", 1000 * 120, ghost2, player);
-						ghost2.broadcastPacket(new NpcSay(ghost2.getObjectId(), ChatType.NPC_GENERAL, ghost2.getId(), NpcStringId.DID_YOU_CALL_ME_S1).addStringParameter(player.getName()));
+						ghost2.broadcastPacket(new NpcSay(ghost2.getObjectId(), ChatType.NPC_GENERAL, ghost2.getId(), "Did you call me, " + player.getName() + "?"));
 						if (((cond == 5) || (cond == 6)) && hasQuestItems(player, LOST_SKULL_OF_ELF))
 						{
 							takeItems(player, LOST_SKULL_OF_ELF, -1);
@@ -221,7 +220,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 				_tifarenOwner = 0;
 				if (npc.getScriptValue() != 0)
 				{
-					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.I_M_CONFUSED_MAYBE_IT_S_TIME_TO_GO_BACK));
+					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "I'm confused! Maybe it's time to go back."));
 				}
 				npc.deleteMe();
 				break;
@@ -271,7 +270,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 					_soulWellNpc = addSpawn(SOUL_OF_WELL, SOUL_WELL_LOC, true, 0);
 					startQuestTimer("activateSoulOfWell", 90000, _soulWellNpc, player);
 					startQuestTimer("despawnSoulOfWell", 120000, _soulWellNpc, player);
-					_soulWellNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+					_soulWellNpc.getAI().setIntention(Intention.ATTACK, player);
 					playSound(player, QuestSound.SKILLSOUND_ANTARAS_FEAR);
 					htmltext = event;
 				}
@@ -331,7 +330,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isCond(10) && hasQuestItems(attacker, JEWEL_OF_ADVENTURER_1))
@@ -347,13 +346,12 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 				qs.setCond(11, true);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		if (Util.checkIfInRange(Config.ALT_PARTY_RANGE, killer, npc, true))
+		if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, killer, npc, true))
 		{
 			if (npc.getId() == SOUL_OF_WELL)
 			{
@@ -369,7 +367,6 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

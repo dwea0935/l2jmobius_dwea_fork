@@ -482,7 +482,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2037" level="1" /> <!-- Major Healing Potion -->
+			<skill id="2037" level="1" /> <!-- Top-grade HP Recovery Potion -->
 		</skills>
 	</item>
 	<item id="1540" name="Quick Healing Potion" type="EtcItem">
@@ -506,7 +506,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2038" level="1" /> <!-- Quick Healing Potion -->
+			<skill id="2038" level="1" /> <!-- High-grade HP Recovery Potion -->
 		</skills>
 	</item>
 	<item id="1541" name="Honey Khandar" type="EtcItem">

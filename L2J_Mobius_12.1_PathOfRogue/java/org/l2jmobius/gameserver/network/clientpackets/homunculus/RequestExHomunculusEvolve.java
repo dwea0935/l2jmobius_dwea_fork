@@ -24,6 +24,7 @@ import org.l2jmobius.gameserver.data.xml.HomunculusData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.homunculus.Homunculus;
 import org.l2jmobius.gameserver.model.homunculus.HomunculusTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.homunculus.ExDeleteHomunculusDataResult;
@@ -142,8 +143,8 @@ public class RequestExHomunculusEvolve extends ClientPacket
 		final HomunculusTemplate template = HomunculusData.getInstance().getTemplate(homunculusHeroId);
 		final Homunculus homunculusNew = new Homunculus(template, player.getHomunculusList().size(), 1, 0, 0, 0, 0, 0, 0, false);
 		
-		player.destroyItemByItemId("HomunculusEvolve", 57, 10_000_000_000L, player, true);
-		player.destroyItemByItemId("HomunculusEvolve", 82903, 200, player, true);
+		player.destroyItemByItemId(ItemProcessType.FEE, 57, 10_000_000_000L, player, true);
+		player.destroyItemByItemId(ItemProcessType.FEE, 82903, 200, player, true);
 		player.getVariables().set(PlayerVariables.HOMUNCULUS_EVOLUTION_POINTS, player.getVariables().getInt(PlayerVariables.HOMUNCULUS_EVOLUTION_POINTS) - 5000);
 		
 		if (player.getHomunculusList().add(homunculusNew))

@@ -17,18 +17,17 @@
 package quests.Q00220_TestimonyOfGlory;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Testimony Of Glory (220)
@@ -113,7 +112,7 @@ public class Q00220_TestimonyOfGlory extends Quest
 	
 	public Q00220_TestimonyOfGlory()
 	{
-		super(220);
+		super(220, "Testimony of Glory");
 		addStartNpc(PREFECT_VOKIAN);
 		addTalkId(PREFECT_VOKIAN, PREFECT_KASMAN, SEER_MANAKIA, FLAME_LORD_KAKAI, SEER_TANAPI, BREKA_CHIEF_VOLTAR, ENKU_CHIEF_KEPRA, TUREK_CHIEF_BURAI, LEUNT_CHIEF_HARAK, VUKU_CHIEF_DRIKO, GANDI_CHIEF_CHIANTA);
 		addKillId(TYRANT, TYRANT_KINGPIN, MARSH_STAKATO_DRONE, GUARDIAN_BASILISK, MANASHEN_GARGOYLE, TIMAK_ORC, TIMAK_ORC_ARCHER, TIMAK_ORC_SOLDIER, TIMAK_ORC_WARRIOR, TIMAK_ORC_SHAMAN, TIMAK_ORC_OVERLORD, TAMLIN_ORC, TAMLIN_ORC_ARCHER, RAGNA_ORC_OVERLORD, RAGNA_ORC_SEER, PASHIKA_SON_OF_VOLTAR, VULTUS_SON_OF_VOLTAR, ENKU_ORC_OVERLORD, MAKUM_BUGBEAR_THUG, REVENANT_OF_TANTOS_CHIEF);
@@ -368,7 +367,7 @@ public class Q00220_TestimonyOfGlory extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isStarted())
@@ -385,7 +384,7 @@ public class Q00220_TestimonyOfGlory extends Quest
 							npc.getVariables().set("lastAttacker", attacker.getObjectId());
 							if (!hasQuestItems(attacker, SCEPTER_OF_TANTOS))
 							{
-								npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.IS_IT_A_LACKEY_OF_KAKAI));
+								npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Is it a lackey of Kakai?!"));
 								npc.setScriptValue(1);
 							}
 							break;
@@ -407,7 +406,7 @@ public class Q00220_TestimonyOfGlory extends Quest
 							npc.getVariables().set("lastAttacker", attacker.getObjectId());
 							if (!hasQuestItems(attacker, SCEPTER_OF_TANTOS))
 							{
-								npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.HOW_REGRETFUL_UNJUST_DISHONOR));
+								npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "How regretful! Unjust dishonor!"));
 								npc.setScriptValue(1);
 							}
 							break;
@@ -416,7 +415,7 @@ public class Q00220_TestimonyOfGlory extends Quest
 						{
 							if (!hasQuestItems(attacker, SCEPTER_OF_TANTOS) && (npc.getCurrentHp() < (npc.getMaxHp() / 3)))
 							{
-								npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.INDIGNANT_AND_UNFAIR_DEATH));
+								npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Indignant and unfair death!"));
 								npc.setScriptValue(2);
 							}
 							break;
@@ -426,14 +425,13 @@ public class Q00220_TestimonyOfGlory extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -572,7 +570,7 @@ public class Q00220_TestimonyOfGlory extends Quest
 					if (hasQuestItems(killer, TANAPIS_ORDER) && !hasQuestItems(killer, SCEPTER_OF_TANTOS))
 					{
 						addSpawn(REVENANT_OF_TANTOS_CHIEF, npc, true, 200000);
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.TOO_LATE));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Too late!"));
 					}
 					break;
 				}
@@ -653,14 +651,13 @@ public class Q00220_TestimonyOfGlory extends Quest
 					if (hasQuestItems(killer, TANAPIS_ORDER) && !hasQuestItems(killer, SCEPTER_OF_TANTOS))
 					{
 						giveItems(killer, SCEPTER_OF_TANTOS, 1);
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.I_LL_GET_REVENGE_SOMEDAY));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "I'll get revenge someday!!"));
 						qs.setCond(10, true);
 					}
 					break;
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

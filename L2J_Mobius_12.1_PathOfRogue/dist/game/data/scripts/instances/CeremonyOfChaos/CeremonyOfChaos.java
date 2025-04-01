@@ -20,8 +20,6 @@
  */
 package instances.CeremonyOfChaos;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
@@ -31,15 +29,11 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.CeremonyOfChaosResult;
-import org.l2jmobius.gameserver.enums.PartyMessageType;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -50,19 +44,23 @@ import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
-import org.l2jmobius.gameserver.model.events.impl.ceremonyofchaos.OnCeremonyOfChaosMatchResult;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.ceremonyofchaos.OnCeremonyOfChaosMatchResult;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.groups.PartyMessageType;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.CeremonyOfChaosResult;
 import org.l2jmobius.gameserver.network.serverpackets.DeleteObject;
 import org.l2jmobius.gameserver.network.serverpackets.ExUserInfoAbnormalVisualEffect;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -122,66 +120,6 @@ public class CeremonyOfChaos extends AbstractNpcAI
 	
 	private CeremonyOfChaos()
 	{
-		final long currentTime = System.currentTimeMillis();
-		
-		// Schedule event period end, 1st of next month 00:01.
-		final Calendar periodEnd = Calendar.getInstance();
-		periodEnd.add(Calendar.MONTH, 1);
-		periodEnd.set(Calendar.DAY_OF_MONTH, 1);
-		periodEnd.set(Calendar.HOUR_OF_DAY, 0);
-		periodEnd.set(Calendar.MINUTE, 1);
-		periodEnd.set(Calendar.SECOND, 0);
-		if (periodEnd.getTimeInMillis() < currentTime)
-		{
-			periodEnd.add(Calendar.DAY_OF_YEAR, 1);
-			while (periodEnd.get(Calendar.DAY_OF_MONTH) != 1)
-			{
-				periodEnd.add(Calendar.DAY_OF_YEAR, 1);
-			}
-		}
-		ThreadPool.scheduleAtFixedRate(this::endMonth, periodEnd.getTimeInMillis() - currentTime, 2629800000L); // 2629800000 = 1 month
-		
-		// Daily task to start event at 18:00.
-		final Calendar startTime = Calendar.getInstance();
-		startTime.set(Calendar.HOUR_OF_DAY, 18);
-		startTime.set(Calendar.MINUTE, 0);
-		startTime.set(Calendar.SECOND, 0);
-		if (startTime.getTimeInMillis() < currentTime)
-		{
-			startTime.add(Calendar.DAY_OF_YEAR, 1);
-		}
-		ThreadPool.scheduleAtFixedRate(this::startEvent, startTime.getTimeInMillis() - currentTime, 86400000); // 86400000 = 1 day
-	}
-	
-	private void endMonth()
-	{
-		// Set monthly true hero.
-		GlobalVariablesManager.getInstance().set(GlobalVariablesManager.COC_TRUE_HERO, GlobalVariablesManager.getInstance().getInt(GlobalVariablesManager.COC_TOP_MEMBER, 0));
-		GlobalVariablesManager.getInstance().set(GlobalVariablesManager.COC_TRUE_HERO_REWARDED, false);
-		// Reset monthly winner.
-		GlobalVariablesManager.getInstance().set(GlobalVariablesManager.COC_TOP_MARKS, 0);
-		GlobalVariablesManager.getInstance().set(GlobalVariablesManager.COC_TOP_MEMBER, 0);
-		
-		try (Connection con = DatabaseFactory.getConnection();
-			PreparedStatement ps = con.prepareStatement("DELETE FROM character_variables WHERE var=?"))
-		{
-			ps.setString(1, PlayerVariables.CEREMONY_OF_CHAOS_MARKS);
-			ps.execute();
-		}
-		catch (Exception e)
-		{
-			LOGGER.severe(getClass().getSimpleName() + ": Could not reset Ceremony Of Chaos victories: " + e);
-		}
-		
-		// Update data for online players.
-		for (Player player : World.getInstance().getPlayers())
-		{
-			player.getVariables().remove(PlayerVariables.CEREMONY_OF_CHAOS_MARKS);
-			player.getVariables().storeMe();
-		}
-		
-		LOGGER.info(getClass().getSimpleName() + ": Ceremony of Chaos variables have been reset.");
-		LOGGER.info(getClass().getSimpleName() + ": Ceremony of Chaos period has ended!");
 	}
 	
 	private void startEvent()
@@ -401,7 +339,7 @@ public class CeremonyOfChaos extends AbstractNpcAI
 			// Send support items to player
 			for (ItemHolder holder : INITIAL_ITEMS)
 			{
-				player.addItem("CoC", holder, null, true);
+				player.addItem(ItemProcessType.REWARD, holder, null, true);
 			}
 			
 			// Event flags.
@@ -735,8 +673,8 @@ public class CeremonyOfChaos extends AbstractNpcAI
 				// Rewards according to https://l2wiki.com/Ceremony_of_Chaos
 				final int marksRewarded = getRandom(2, 5); // Guessed
 				final int boxs = getRandom(1, 5);
-				winner.addItem("CoC-Winner", 45584, marksRewarded, winner, true); // Mark of battle
-				winner.addItem("CoC-Winner", 36333, boxs, winner, true); // Mysterious Box
+				winner.addItem(ItemProcessType.REWARD, 45584, marksRewarded, winner, true); // Mark of battle
+				winner.addItem(ItemProcessType.REWARD, 36333, boxs, winner, true); // Mysterious Box
 				// Possible additional rewards
 				
 				// Improved Life Stone
@@ -746,22 +684,22 @@ public class CeremonyOfChaos extends AbstractNpcAI
 					{
 						case 0:
 						{
-							winner.addItem("CoC-Winner", 18570, 1, winner, true); // Improved Life Stone (R95-grade)
+							winner.addItem(ItemProcessType.REWARD, 18570, 1, winner, true); // Improved Life Stone (R95-grade)
 							break;
 						}
 						case 1:
 						{
-							winner.addItem("CoC-Winner", 18571, 1, winner, true); // Improved Life Stone (R95-grade)
+							winner.addItem(ItemProcessType.REWARD, 18571, 1, winner, true); // Improved Life Stone (R95-grade)
 							break;
 						}
 						case 2:
 						{
-							winner.addItem("CoC-Winner", 18575, 1, winner, true); // Improved Life Stone (R99-grade)
+							winner.addItem(ItemProcessType.REWARD, 18575, 1, winner, true); // Improved Life Stone (R99-grade)
 							break;
 						}
 						case 3:
 						{
-							winner.addItem("CoC-Winner", 18576, 1, winner, true); // Improved Life Stone (R99-grade)
+							winner.addItem(ItemProcessType.REWARD, 18576, 1, winner, true); // Improved Life Stone (R99-grade)
 							break;
 						}
 					}
@@ -773,32 +711,32 @@ public class CeremonyOfChaos extends AbstractNpcAI
 					{
 						case 0:
 						{
-							winner.addItem("CoC-Winner", 19467, 1, winner, true); // Yellow Soul Crystal Fragment (R99-Grade)
+							winner.addItem(ItemProcessType.REWARD, 19467, 1, winner, true); // Yellow Soul Crystal Fragment (R99-Grade)
 							break;
 						}
 						case 1:
 						{
-							winner.addItem("CoC-Winner", 19468, 1, winner, true); // Teal Soul Crystal Fragment (R99-Grade)
+							winner.addItem(ItemProcessType.REWARD, 19468, 1, winner, true); // Teal Soul Crystal Fragment (R99-Grade)
 							break;
 						}
 						case 2:
 						{
-							winner.addItem("CoC-Winner", 19469, 1, winner, true); // Purple Soul Crystal Fragment (R99-Grade)
+							winner.addItem(ItemProcessType.REWARD, 19469, 1, winner, true); // Purple Soul Crystal Fragment (R99-Grade)
 							break;
 						}
 						case 3:
 						{
-							winner.addItem("CoC-Winner", 19511, 1, winner, true); // Yellow Soul Crystal Fragment (R95-Grade)
+							winner.addItem(ItemProcessType.REWARD, 19511, 1, winner, true); // Yellow Soul Crystal Fragment (R95-Grade)
 							break;
 						}
 						case 4:
 						{
-							winner.addItem("CoC-Winner", 19512, 1, winner, true); // Teal Soul Crystal Fragment (R95-Grade)
+							winner.addItem(ItemProcessType.REWARD, 19512, 1, winner, true); // Teal Soul Crystal Fragment (R95-Grade)
 							break;
 						}
 						case 5:
 						{
-							winner.addItem("CoC-Winner", 19513, 1, winner, true); // Purple Soul Crystal Fragment (R95-Grade)
+							winner.addItem(ItemProcessType.REWARD, 19513, 1, winner, true); // Purple Soul Crystal Fragment (R95-Grade)
 							break;
 						}
 					}
@@ -806,7 +744,7 @@ public class CeremonyOfChaos extends AbstractNpcAI
 				// Mysterious Belt
 				else if (getRandom(10) < 1) // Chance to get reward (10%)
 				{
-					winner.addItem("CoC-Winner", 35565, 1, winner, true); // Mysterious Belt
+					winner.addItem(ItemProcessType.REWARD, 35565, 1, winner, true); // Mysterious Belt
 				}
 				
 				// Save monthly progress.

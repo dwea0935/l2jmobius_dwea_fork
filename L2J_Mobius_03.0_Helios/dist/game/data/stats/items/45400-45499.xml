@@ -465,7 +465,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="POTION" />
 		<skills>
-			<skill id="18214" level="1" /> <!-- L2B2 -->
+			<skill id="18214" level="1" /> <!-- Transformation Potion: L2B2 -->
 		</skills>
 	</item>
 	<item id="45444" name="Scroll of Escape: Blazing Swamp" type="EtcItem">
@@ -660,7 +660,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="reuse_delay" val="86400000" />
 		<skills>
-			<skill id="18222" level="1" /> <!-- Extra Pass: Near Kamaloka -->
+			<skill id="18222" level="1" /> <!-- Extra Pass - Nightmare Kamaloka -->
 		</skills>
 	</item>
 	<item id="45464" name="Zorro Hat" type="Armor">

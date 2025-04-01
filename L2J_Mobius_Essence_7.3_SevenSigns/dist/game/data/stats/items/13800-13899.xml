@@ -31,7 +31,7 @@
 		</stats>
 	</item>
 	<item id="13896" name="Iron Belt" additionalName="Not Available" type="Armor">
-		<!-- The item is not available. Bestows one of the special properties, when A-grade Magic Pin, Pouch, Magic Rune Clip or Magic Ornament is used. -->
+		<!-- The item is not available. Bestows one of the special properties when A-grade Magic Pin, Pouch, Magic Rune Clip or Magic Ornament is used. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="default_action" val="EQUIP" />
 		<set name="armor_type" val="LIGHT" />
@@ -46,7 +46,7 @@
 		</stats>
 	</item>
 	<item id="13897" name="Mithril Belt" additionalName="Not Available" type="Armor">
-		<!-- The item is not available. Bestows one of the special properties, when S-grade Magic Pin, Pouch, Magic Rune Clip or Magic Ornament is used. -->
+		<!-- The item is not available. Bestows one of the special properties when S-grade Magic Pin, Pouch, Magic Rune Clip or Magic Ornament is used. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="default_action" val="EQUIP" />
 		<set name="armor_type" val="LIGHT" />

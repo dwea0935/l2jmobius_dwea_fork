@@ -26,29 +26,30 @@ import java.util.Map.Entry;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.ai.AttackableAI;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.data.holders.TimedHuntingZoneHolder;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.TimedHuntingZoneData;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.ShortcutType;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.model.Shortcut;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.holders.TimedHuntingZoneHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.ShortcutType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.huntingzones.TimedHuntingZoneExit;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -171,7 +172,7 @@ public class TimedHunting extends AbstractInstance
 		else if (event.startsWith("FINISH"))
 		{
 			final Instance world = player.getInstanceWorld();
-			if ((world != null) && CommonUtil.contains(TEMPLATES, world.getTemplateId()))
+			if ((world != null) && ArrayUtil.contains(TEMPLATES, world.getTemplateId()))
 			{
 				world.setReenterTime();
 				world.destroy();
@@ -210,7 +211,7 @@ public class TimedHunting extends AbstractInstance
 		}
 		
 		String content = HtmCache.getInstance().getHtm(player, "data/scripts/instances/TimedHunting/" + npc.getId() + ".html");
-		content = content.replace("%playerClass%", ClassListData.getInstance().getClass(player.getClassId()).getClassName());
+		content = content.replace("%playerClass%", ClassListData.getInstance().getClass(player.getPlayerClass()).getClassName());
 		content = content.replace("%replacedSkill%", getReplacedSkillNames(player));
 		final NpcHtmlMessage msg = new NpcHtmlMessage(npc.getObjectId());
 		msg.setHtml(content);
@@ -245,7 +246,7 @@ public class TimedHunting extends AbstractInstance
 			}
 			
 			player.addSkill(SkillData.getInstance().getSkill(transcendentSkillId, knownSkill.getLevel(), knownSkill.getSubLevel()), false);
-			for (Shortcut shortcut : player.getAllShortCuts())
+			for (Shortcut shortcut : player.getAllShortcuts())
 			{
 				if (shortcut.isAutoUse() && (shortcut.getType() == ShortcutType.SKILL) && (shortcut.getId() == normalSkillId))
 				{
@@ -277,7 +278,7 @@ public class TimedHunting extends AbstractInstance
 			instance.setParameter("TimedHuntingTaskFinished", false);
 		}
 		player.sendPacket(new ExSendUIEvent(player, true, false, 600, 0, NpcStringId.TIME_LEFT));
-		player.sendPacket(new TimedHuntingZoneExit(108)); // Training Zone id.
+		player.sendPacket(new TimedHuntingZoneExit(player.getVariables().getInt(PlayerVariables.LAST_HUNTING_ZONE_ID, 0)));
 		
 		player.getEffectList().stopSkillEffects(SkillFinishType.REMOVED, BUFF);
 		player.getEffectList().stopSkillEffects(SkillFinishType.REMOVED, BUFF_FOR_KAMAEL);
@@ -296,7 +297,7 @@ public class TimedHunting extends AbstractInstance
 			final Integer normalSkillId = entry.getKey();
 			player.removeReplacedSkill(normalSkillId);
 			player.addSkill(SkillData.getInstance().getSkill(normalSkillId, knownSkill.getLevel(), knownSkill.getSubLevel()), false);
-			for (Shortcut shortcut : player.getAllShortCuts())
+			for (Shortcut shortcut : player.getAllShortcuts())
 			{
 				if (shortcut.isAutoUse() && (shortcut.getType() == ShortcutType.SKILL) && (shortcut.getId() == transcendentSkillId))
 				{
@@ -377,7 +378,7 @@ public class TimedHunting extends AbstractInstance
 							{
 								((AttackableAI) npc.getAI()).setGlobalAggro(0);
 								npc.asAttackable().addDamageHate(player, 0, 9999);
-								npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK);
+								npc.getAI().setIntention(Intention.ATTACK);
 							}
 						}
 					}

@@ -1918,6 +1918,13 @@
 	</npc>
 	<npc id="27556" level="116" type="Monster" name="Daimon the White-eyed" title="Quest Monster">
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
+		<parameters>
+			<minions name="Privates">
+				<npc id="27557" count="1" respawnTime="360" weightPoint="1" /> <!-- Daimon's Offspring -->
+				<npc id="27558" count="1" respawnTime="360" weightPoint="1" /> <!-- Daimon's Offspring -->
+				<npc id="27559" count="1" respawnTime="360" weightPoint="1" /> <!-- Daimon's Offspring -->
+			</minions>
+		</parameters>
 		<race>ETC</race>
 		<sex>MALE</sex>
 		<acquire exp="422291" sp="380" />
@@ -3175,7 +3182,7 @@
 				<defence fire="2000" water="2050" wind="2050" earth="2050" holy="2050" dark="2050" />
 			</attribute>
 		</stats>
-		<status attackable="true" />
+		<status attackable="true" canMove="false" />
 		<collision>
 			<radius normal="13" />
 			<height normal="31" />
@@ -3248,7 +3255,12 @@
 				<defence fire="2200" water="2150" wind="2200" earth="2200" holy="2200" dark="2200" />
 			</attribute>
 		</stats>
-		<status attackable="true" />
+		<status attackable="true" randomWalk="false" />		
+		<ai type="FIGHTER" aggroRange="300" clanHelpRange="400" isAggressive="true">
+			<clanList>
+				<clan>SEL_MAHUM</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="35" />
 			<height normal="32.5" />
@@ -3275,6 +3287,12 @@
 	</npc>
 	<npc id="27587" level="126" type="Monster" name="Harp's Clone" title="Quest Monster">
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
+		<parameters>
+			<minions name="Privates">
+				<npc id="27590" count="2" respawnTime="360" weightPoint="1" /> <!-- Embryo Knight Captain -->
+				<npc id="27591" count="2" respawnTime="360" weightPoint="1" /> <!-- Embryo High Priestess -->
+			</minions>
+		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<acquire exp="980106" sp="882" />
@@ -3319,6 +3337,12 @@
 	</npc>
 	<npc id="27588" level="126" type="Monster" name="Isadora's Clone" title="Quest Monster">
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
+		<parameters>
+			<minions name="Privates">
+				<npc id="27590" count="2" respawnTime="360" weightPoint="1" /> <!-- Embryo Knight Captain -->
+				<npc id="27591" count="2" respawnTime="360" weightPoint="1" /> <!-- Embryo High Priestess -->
+			</minions>
+		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<acquire exp="980106" sp="882" />
@@ -3363,6 +3387,12 @@
 	</npc>
 	<npc id="27589" level="126" type="Monster" name="Maliss' Clone" title="Quest Monster">
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
+		<parameters>
+			<minions name="Privates">
+				<npc id="27590" count="2" respawnTime="360" weightPoint="1" /> <!-- Embryo Knight Captain -->
+				<npc id="27591" count="2" respawnTime="360" weightPoint="1" /> <!-- Embryo High Priestess -->
+			</minions>
+		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<acquire exp="980106" sp="882" />

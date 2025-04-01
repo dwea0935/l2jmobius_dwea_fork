@@ -81,18 +81,16 @@ public class DimensionMakkum extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world == null)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		startQuestTimer("spawn_piore", 4000, npc, killer);
 		world.finishInstance();
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

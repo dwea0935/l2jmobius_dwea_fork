@@ -199,7 +199,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="27359" level="1" /> <!-- Archer's Call -->
@@ -221,7 +221,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
@@ -244,7 +244,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
@@ -267,7 +267,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
@@ -290,7 +290,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
@@ -313,7 +313,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
@@ -336,7 +336,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
@@ -359,7 +359,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
@@ -382,7 +382,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
@@ -405,7 +405,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
@@ -428,7 +428,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
@@ -451,7 +451,7 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
@@ -987,9 +987,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="5" /> <!-- Talisman - Abundance -->
-			<skill id="21365" level="1" type="ON_EQUIP" /> <!-- Talisman - Hunter -->
-			<skill id="21373" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Hunter -->
+			<skill id="21364" level="1" subLevel="5001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24352" name="Talisman - Slaughterer" additionalName="Abundance/ 3-day" type="Armor">
@@ -1005,9 +1003,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="6" /> <!-- Talisman - Abundance -->
-			<skill id="21370" level="1" type="ON_EQUIP" /> <!-- Talisman - Slaughterer -->
-			<skill id="21374" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Slaughterer -->
+			<skill id="21364" level="1" subLevel="6001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24353" name="Talisman - Conquerer" additionalName="Abundance/ 3-day" type="Armor">
@@ -1023,9 +1019,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="7" /> <!-- Talisman - Abundance -->
-			<skill id="21371" level="1" type="ON_EQUIP" /> <!-- Talisman - Conquerer -->
-			<skill id="21375" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Conquerer -->
+			<skill id="21364" level="1" subLevel="7001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24354" name="Talisman - Outlaw" additionalName="Abundance/ 3-day" type="Armor">
@@ -1041,9 +1035,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="8" /> <!-- Talisman - Abundance -->
-			<skill id="21372" level="1" type="ON_EQUIP" /> <!-- Talisman - Outlaw -->
-			<skill id="21376" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Outlaw -->
+			<skill id="21364" level="1" subLevel="8001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24355" name="PA - Art of Seduction" type="EtcItem">
@@ -1062,7 +1054,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="LIQUID" />
 		<skills>
-			<skill id="17290" level="1" /> <!-- Art of Seduction -->
+			<skill id="17290" level="1" /> <!-- PA - Art of Seduction -->
 		</skills>
 	</item>
 	<item id="24356" name="Draco's Hat: Warrior" additionalName="7-day" type="Armor">
@@ -1079,7 +1071,7 @@
 		<set name="time" val="10080" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="9515" level="1" /> <!-- Draco's Hat: Warrior -->
+			<skill id="9515" level="1" /> <!-- Draco's Warrior Hat -->
 			<skill id="9526" level="1" /> <!-- Draco's Wizard Hat - Blessed Resurrection -->
 		</skills>
 	</item>
@@ -1116,7 +1108,7 @@
 		<set name="etcitem_type" val="POTION" />
 		<set name="material" val="LIQUID" />
 		<skills>
-			<skill id="17910" level="1" /> <!-- Major Quick Wind HP Replenishing Potion -->
+			<skill id="17910" level="1" /> <!-- Major Windy Quick Healing Potion -->
 		</skills>
 	</item>
 	<item id="24359" name="Antharas' Earring" additionalName="3-day" type="Armor">
@@ -1375,7 +1367,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="1" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26218" level="1" /> <!-- Sayha's Rune: Skill -->
 		</skills>
 	</item>
 	<item id="24377" name="Sayha's Rune: Luck" additionalName="Stage 2" type="EtcItem">
@@ -1390,7 +1382,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="2" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26218" level="2" /> <!-- Sayha's Rune: Skill -->
 		</skills>
 	</item>
 	<item id="24378" name="Sayha's Rune: Luck" additionalName="Stage 3" type="EtcItem">
@@ -1405,7 +1397,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="3" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26218" level="3" /> <!-- Sayha's Rune: Skill -->
 		</skills>
 	</item>
 	<item id="24379" name="Sayha's Rune: Luck" additionalName="Stage 4" type="EtcItem">
@@ -1420,7 +1412,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="4" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26218" level="4" /> <!-- Sayha's Rune: Skill -->
 		</skills>
 	</item>
 	<item id="24380" name="Sayha's Rune" additionalName="Stage 1" type="EtcItem">
@@ -1435,9 +1427,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26216" level="1" /> <!-- Sayha's Rune -->
-			<skill id="26217" level="1" /> <!-- Sayha's Rune: Skill -->
-			<skill id="26218" level="1" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26216" level="1" /> <!-- Luck Box 1 -->
+			<skill id="26217" level="1" /> <!-- Sayha's Rune: Growth -->
+			<skill id="26218" level="1" /> <!-- Sayha's Rune: Skill -->
 		</skills>
 	</item>
 	<item id="24381" name="Sayha's Rune" additionalName="Stage 2" type="EtcItem">
@@ -1453,8 +1445,8 @@
 		<set name="time" val="10" />
 		<skills>
 			<skill id="26216" level="2" /> <!-- Sayha's Rune -->
-			<skill id="26217" level="2" /> <!-- Sayha's Rune: Skill -->
-			<skill id="26218" level="2" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26217" level="2" /> <!-- Sayha's Rune: Growth -->
+			<skill id="26218" level="2" /> <!-- Sayha's Rune: Skill -->
 		</skills>
 	</item>
 	<item id="24382" name="Sayha's Rune" additionalName="Stage 3" type="EtcItem">
@@ -1470,8 +1462,8 @@
 		<set name="time" val="10" />
 		<skills>
 			<skill id="26216" level="3" /> <!-- Sayha's Rune -->
-			<skill id="26217" level="3" /> <!-- Sayha's Rune: Skill -->
-			<skill id="26218" level="3" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26217" level="3" /> <!-- Sayha's Rune: Growth -->
+			<skill id="26218" level="3" /> <!-- Sayha's Rune: Skill -->
 		</skills>
 	</item>
 	<item id="24383" name="Sayha's Rune" additionalName="Stage 4" type="EtcItem">
@@ -1487,8 +1479,8 @@
 		<set name="time" val="10" />
 		<skills>
 			<skill id="26216" level="4" /> <!-- Sayha's Rune -->
-			<skill id="26217" level="4" /> <!-- Sayha's Rune: Skill -->
-			<skill id="26218" level="4" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26217" level="4" /> <!-- Sayha's Rune: Growth -->
+			<skill id="26218" level="4" /> <!-- Sayha's Rune: Skill -->
 		</skills>
 	</item>
 	<item id="24384" name="Sayha's Rune: Growth Pack Stage 1" type="EtcItem">

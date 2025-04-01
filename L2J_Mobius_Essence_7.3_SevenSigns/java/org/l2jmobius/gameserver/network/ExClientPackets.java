@@ -50,6 +50,8 @@ import org.l2jmobius.gameserver.network.clientpackets.balok.ExBalrogWarShowRanki
 import org.l2jmobius.gameserver.network.clientpackets.balok.ExBalrogWarShowUI;
 import org.l2jmobius.gameserver.network.clientpackets.balok.ExBalrogWarTeleport;
 import org.l2jmobius.gameserver.network.clientpackets.balthusevent.RequestEventBalthusToken;
+import org.l2jmobius.gameserver.network.clientpackets.blackcoupon.RequestItemRestore;
+import org.l2jmobius.gameserver.network.clientpackets.blackcoupon.RequestItemRestoreList;
 import org.l2jmobius.gameserver.network.clientpackets.blessing.RequestBlessOptionCancel;
 import org.l2jmobius.gameserver.network.clientpackets.blessing.RequestBlessOptionEnchant;
 import org.l2jmobius.gameserver.network.clientpackets.blessing.RequestBlessOptionPutItem;
@@ -176,6 +178,10 @@ import org.l2jmobius.gameserver.network.clientpackets.olympiad.OlympiadUI;
 import org.l2jmobius.gameserver.network.clientpackets.olympiad.RequestExOlympiadMatchListRefresh;
 import org.l2jmobius.gameserver.network.clientpackets.olympiad.RequestOlympiadMatchList;
 import org.l2jmobius.gameserver.network.clientpackets.olympiad.RequestOlympiadObserverEnd;
+import org.l2jmobius.gameserver.network.clientpackets.payback.ExPaybackGiveReward;
+import org.l2jmobius.gameserver.network.clientpackets.payback.ExPaybackList;
+import org.l2jmobius.gameserver.network.clientpackets.penaltyitemdrop.ExRequestPenaltyItemList;
+import org.l2jmobius.gameserver.network.clientpackets.penaltyitemdrop.ExRequestPenaltyItemRestore;
 import org.l2jmobius.gameserver.network.clientpackets.pet.ExEvolvePet;
 import org.l2jmobius.gameserver.network.clientpackets.pet.ExPetEquipItem;
 import org.l2jmobius.gameserver.network.clientpackets.pet.ExPetUnequipItem;
@@ -238,6 +244,8 @@ import org.l2jmobius.gameserver.network.clientpackets.revenge.RequestExPvpBookSh
 import org.l2jmobius.gameserver.network.clientpackets.revenge.RequestExPvpBookShareRevengeTeleportToKiller;
 import org.l2jmobius.gameserver.network.clientpackets.sayune.RequestFlyMove;
 import org.l2jmobius.gameserver.network.clientpackets.sayune.RequestFlyMoveStart;
+import org.l2jmobius.gameserver.network.clientpackets.secretshop.ExRequestFestivalBmGame;
+import org.l2jmobius.gameserver.network.clientpackets.secretshop.ExRequestFestivalBmInfo;
 import org.l2jmobius.gameserver.network.clientpackets.settings.ExInteractModify;
 import org.l2jmobius.gameserver.network.clientpackets.settings.ExSaveItemAnnounceSetting;
 import org.l2jmobius.gameserver.network.clientpackets.settings.RequestKeyMapping;
@@ -664,13 +672,13 @@ public enum ExClientPackets
 	EX_PREMIUM_MANAGER_LINK_HTML(0x171, null, ConnectionState.IN_GAME),
 	EX_PREMIUM_MANAGER_PASS_CMD_TO_SERVER(0x172, null, ConnectionState.IN_GAME),
 	EX_ACTIVATED_CURSED_TREASURE_BOX_LOCATION(0x173, null, ConnectionState.IN_GAME),
-	EX_PAYBACK_LIST(0x174, null, ConnectionState.IN_GAME),
-	EX_PAYBACK_GIVE_REWARD(0x175, null, ConnectionState.IN_GAME),
+	EX_PAYBACK_LIST(0x174, ExPaybackList::new, ConnectionState.IN_GAME),
+	EX_PAYBACK_GIVE_REWARD(0x175, ExPaybackGiveReward::new, ConnectionState.IN_GAME),
 	EX_AUTOPLAY_SETTING(0x176, ExAutoPlaySetting::new, ConnectionState.IN_GAME),
 	EX_OLYMPIAD_MATCH_MAKING(0x177, OlympiadMatchMaking::new, ConnectionState.IN_GAME),
 	EX_OLYMPIAD_MATCH_MAKING_CANCEL(0x178, OlympiadMatchMakingCancel::new, ConnectionState.IN_GAME),
-	EX_FESTIVAL_BM_INFO(0x179, null, ConnectionState.IN_GAME),
-	EX_FESTIVAL_BM_GAME(0x17A, null, ConnectionState.IN_GAME),
+	EX_FESTIVAL_BM_INFO(0x179, ExRequestFestivalBmInfo::new, ConnectionState.IN_GAME),
+	EX_FESTIVAL_BM_GAME(0x17A, ExRequestFestivalBmGame::new, ConnectionState.IN_GAME),
 	EX_GACHA_SHOP_INFO(0x17B, null, ConnectionState.IN_GAME),
 	EX_GACHA_SHOP_GACHA_GROUP(0x17C, null, ConnectionState.IN_GAME),
 	EX_GACHA_SHOP_GACHA_ITEM(0x17D, null, ConnectionState.IN_GAME),
@@ -781,8 +789,8 @@ public enum ExClientPackets
 	EX_PVPBOOK_SHARE_REVENGE_KILLER_LOCATION(0x1E4, RequestExPvpBookShareRevengeKillerLocation::new, ConnectionState.IN_GAME),
 	EX_PVPBOOK_SHARE_REVENGE_TELEPORT_TO_KILLER(0x1E5, RequestExPvpBookShareRevengeTeleportToKiller::new, ConnectionState.IN_GAME),
 	EX_PVPBOOK_SHARE_REVENGE_SHARED_TELEPORT_TO_KILLER(0x1E6, RequestExPvpBookShareRevengeSharedTeleportToKiller::new, ConnectionState.IN_GAME),
-	EX_PENALTY_ITEM_LIST(0x1E7, null, ConnectionState.IN_GAME),
-	EX_PENALTY_ITEM_RESTORE(0x1E8, null, ConnectionState.IN_GAME),
+	EX_PENALTY_ITEM_LIST(0x1E7, ExRequestPenaltyItemList::new, ConnectionState.IN_GAME),
+	EX_PENALTY_ITEM_RESTORE(0x1E8, ExRequestPenaltyItemRestore::new, ConnectionState.IN_GAME),
 	EX_USER_WATCHER_TARGET_LIST(0x1E9, ExRequestUserWatcherTargetList::new, ConnectionState.IN_GAME),
 	EX_USER_WATCHER_ADD(0x1EA, ExRequestUserWatcherAdd::new, ConnectionState.IN_GAME),
 	EX_USER_WATCHER_DELETE(0x1EB, ExRequestUserWatcherDelete::new, ConnectionState.IN_GAME),
@@ -797,8 +805,8 @@ public enum ExClientPackets
 	EX_PLEDGE_CONTRIBUTION_LIST(0x1F4, RequestExPledgeContributionList::new, ConnectionState.IN_GAME),
 	EX_PLEDGE_RANKING_MY_INFO(0x1F5, RequestPledgeRankingMyInfo::new, ConnectionState.IN_GAME),
 	EX_PLEDGE_RANKING_LIST(0x1F6, RequestPledgeRankingList::new, ConnectionState.IN_GAME),
-	EX_ITEM_RESTORE_LIST(0x1F7, null, ConnectionState.IN_GAME),
-	EX_ITEM_RESTORE(0x1F8, null, ConnectionState.IN_GAME),
+	EX_ITEM_RESTORE_LIST(0x1F7, RequestItemRestoreList::new, ConnectionState.IN_GAME),
+	EX_ITEM_RESTORE(0x1F8, RequestItemRestore::new, ConnectionState.IN_GAME),
 	// 338
 	EX_DETHRONE_INFO(0x1F9, null, ConnectionState.IN_GAME),
 	EX_DETHRONE_RANKING_INFO(0x1FA, null, ConnectionState.IN_GAME),

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="48630" name="Master Fisherman's Blessing - 1-hr" type="EtcItem">
 		<!-- For 1 hour, increases EXP/ SP increases by 100% when fishing succeeds. Applied to all bait. -->
@@ -10,7 +10,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39231" level="1" /> <!-- Master Fisherman's Blessing -->
+			<skill id="39231" level="1" /> <!-- Master Fisherman's Blessing - 1-hr -->
 		</skills>
 	</item>
 	<item id="48631" name="Master Fisherman's Blessing - 2-hr" type="EtcItem">
@@ -23,7 +23,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39231" level="2" /> <!-- Master Fisherman's Blessing -->
+			<skill id="39231" level="2" /> <!-- Master Fisherman's Blessing - 2-hr -->
 		</skills>
 	</item>
 	<item id="48632" name="Master Fisherman's Blessing - 4-hr" type="EtcItem">
@@ -36,7 +36,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39231" level="3" /> <!-- Master Fisherman's Blessing -->
+			<skill id="39231" level="3" /> <!-- Master Fisherman's Blessing - 4-hr -->
 		</skills>
 	</item>
 	<item id="48633" name="Master Fisherman's Blessing - 8-hr" type="EtcItem">
@@ -49,7 +49,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39231" level="4" /> <!-- Master Fisherman's Blessing -->
+			<skill id="39231" level="4" /> <!-- Master Fisherman's Blessing - 8-hr -->
 		</skills>
 	</item>
 	<item id="48668" name="Scroll: Enchant Angel Accessory" type="EtcItem">

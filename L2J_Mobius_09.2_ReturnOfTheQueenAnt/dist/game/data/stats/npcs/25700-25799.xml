@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="25700" level="88" type="RaidBoss" name="Glakias" title="Ice Knight Captain">
 		<parameters>
@@ -781,7 +781,7 @@
 		<ai clanHelpRange="300" aggroRange="300" />
 		<collision>
 			<radius normal="20" />
-			<height normal="40.599" />
+			<height normal="40.5985" />
 		</collision>
 	</npc>
 	<npc id="25714" level="84" type="RaidBoss" name="Kechi" title="Flaming">
@@ -2243,7 +2243,6 @@
 		</parameters>
 		<race>FAIRY</race>
 		<sex>MALE</sex>
-		<equipment rhand="67" lhand="633" /> <!-- Orcish Sword / Zubei's Shield -->
 		<acquire exp="2690115" sp="83882" />
 		<mpReward value="77" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
@@ -2298,7 +2297,6 @@
 		</parameters>
 		<race>FAIRY</race>
 		<sex>MALE</sex>
-		<equipment rhand="7" /> <!-- Apprentice's Rod -->
 		<mpReward value="78" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="28001.6296662938" hpRegen="8.5" mp="2023.8" mpRegen="3" />
@@ -2352,7 +2350,6 @@
 		</parameters>
 		<race>FAIRY</race>
 		<sex>MALE</sex>
-		<equipment rhand="123" /> <!-- Saber -->
 		<mpReward value="77" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="28001.6296662938" hpRegen="8.5" mp="2023.8" mpRegen="3" />
@@ -2406,7 +2403,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="291" /> <!-- Trident -->
 		<acquire exp="2690115" sp="83882" />
 		<mpReward value="78" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
@@ -2463,7 +2459,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="2" /> <!-- Long Sword -->
 		<mpReward value="78" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="28001.6296662938" hpRegen="8.5" mp="3035.7" mpRegen="3" />
@@ -2518,7 +2513,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="2507" /> <!-- Lizardspear -->
 		<mpReward value="77" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="28001.6296662938" hpRegen="8.5" mp="2023.8" mpRegen="3" />
@@ -2573,7 +2567,6 @@
 		</parameters>
 		<race>PLANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="216" /> <!-- Dirk -->
 		<acquire exp="16200" sp="60367" />
 		<mpReward value="77" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
@@ -2681,7 +2674,6 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>MALE</sex>
-		<equipment rhand="179" /> <!-- Mace of Prayer -->
 		<mpReward value="77" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="28001.6296662938" hpRegen="8.5" mp="2023.8" mpRegen="3" />
@@ -2736,7 +2728,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="150" /> <!-- Elemental Sword -->
 		<acquire sp="147445" exp="1589295" />
 		<mpReward value="82" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
@@ -2906,7 +2897,6 @@
 		</parameters>
 		<race>FAIRY</race>
 		<sex>MALE</sex>
-		<equipment rhand="299" /> <!-- Orcish Poleaxe -->
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="20790.488210442" hpRegen="8.5" mp="1881.8" mpRegen="3" />
 			<attack physical="3033.98508337826" magical="606.709328604428" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3002,7 +2992,6 @@
 		</parameters>
 		<race>FAIRY</race>
 		<sex>MALE</sex>
-		<equipment rhand="14" /> <!-- Bow -->
 		<mpReward value="78" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="14467.5287374727" hpRegen="8.5" mp="2132.4" mpRegen="3" />
@@ -3055,7 +3044,6 @@
 		</parameters>
 		<race>FAIRY</race>
 		<sex>MALE</sex>
-		<equipment rhand="946" /> <!-- Skeleton Dagger -->
 		<mpReward value="78" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="14547.6729144727" hpRegen="8.5" mp="2169" mpRegen="3" />
@@ -3267,7 +3255,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="96" /> <!-- Scythe -->
 		<acquire exp="1520921" sp="1548" />
 		<mpReward value="78" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
@@ -3486,7 +3473,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="192" /> <!-- Crystal Staff -->
 		<acquire sp="172964" exp="1912394" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="335704.483096026" hpRegen="8.5" mp="2023.8" mpRegen="3" />
@@ -3701,7 +3687,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="1472" /> <!-- Dreadbane -->
 		<acquire exp="194577040" sp="46699" raidPoints="30" />
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -3770,7 +3755,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="946" lhand="945" /> <!-- Skeleton Dagger / Skeleton Buckler -->
 		<acquire exp="42359318" sp="10167" raidPoints="30" />
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -3836,7 +3820,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="150" lhand="103" /> <!-- Elemental Sword / Tower Shield -->
 		<acquire exp="84718636" sp="20333" raidPoints="30" />
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -4036,7 +4019,6 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>MALE</sex>
-		<equipment rhand="1472" /> <!-- Dreadbane -->
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="207096.675665225" hpRegen="8.5" mp="22428" mpRegen="30" />
@@ -4155,7 +4137,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="71" /> <!-- Flamberge -->
 		<acquire exp="42359318" sp="10167" raidPoints="30" />
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -4221,7 +4202,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="273" /> <!-- Compound Bow -->
 		<acquire exp="84718636" sp="20333" raidPoints="30" />
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -4288,7 +4268,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="69" /> <!-- Bastard Sword -->
 		<acquire exp="84718636" sp="20333" raidPoints="30" />
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -4361,7 +4340,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="84" /> <!-- Homunkulus' Sword -->
 		<acquire exp="84718636" sp="20333" raidPoints="30" />
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -4528,7 +4506,6 @@
 		</parameters>
 		<race>PLANT</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="183" /> <!-- Mystic Staff -->
 		<acquire exp="2351539" sp="2401" />
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
@@ -4577,7 +4554,6 @@
 		</parameters>
 		<race>PLANT</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="5130" /> <!-- Nos Sword -->
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="85381.9707695809" hpRegen="8.5" mp="20960" mpRegen="30" />
@@ -4626,7 +4602,6 @@
 		</parameters>
 		<race>PLANT</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="5127" /> <!-- Dailaon Knife -->
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="85381.9707695809" hpRegen="8.5" mp="20960" mpRegen="30" />
@@ -4900,7 +4875,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<equipment rhand="8532" /> <!-- Monster Only (Spinebone Sword) -->
 		<acquire sp="173127" />
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
@@ -4989,7 +4963,6 @@
 		</parameters>
 		<race>HUMAN</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="67" lhand="633" /> <!-- Orcish Sword / Zubei's Shield -->
 		<acquire sp="184431" exp="1932589" raidPoints="7" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="163.28607" hpRegen="2" mp="108.4" mpRegen="0.9" />
@@ -5038,7 +5011,6 @@
 		</parameters>
 		<race>BUG</race>
 		<sex>MALE</sex>
-		<equipment rhand="123" lhand="19" /> <!-- Saber / Small Shield -->
 		<acquire exp="886192384" sp="212687" raidPoints="7" />
 		<mpReward value="20" type="PER" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -5138,7 +5110,6 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>MALE</sex>
-		<equipment rhand="66" lhand="102" /> <!-- Gladius / Round Shield -->
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="79" int="74" dex="42" wit="65" con="75" men="72">
 			<vitals hp="607779.776624367" hpRegen="8.5" mp="22800" mpRegen="30" />
@@ -5190,7 +5161,6 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>MALE</sex>
-		<equipment rhand="6719" /> <!-- Monster Only (Ketra Orc Chieftain) -->
 		<acquire sp="557272" />
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="79" int="74" dex="42" wit="65" con="75" men="72">
@@ -5240,7 +5210,6 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>MALE</sex>
-		<equipment rhand="288" /> <!-- Carnage Bow -->
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="79" int="74" dex="42" wit="65" con="75" men="72">
 			<vitals hp="607779.776624367" hpRegen="8.5" mp="22800" mpRegen="30" />
@@ -5289,7 +5258,6 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>MALE</sex>
-		<equipment rhand="79" /> <!-- Damascus Sword -->
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="79" int="74" dex="42" wit="65" con="75" men="72">
 			<vitals hp="607779.776624367" hpRegen="8.5" mp="22800" mpRegen="30" />
@@ -5447,7 +5415,6 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="2504" /> <!-- Meteor Shower -->
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="1215559.55324873" hpRegen="8.5" mp="22800" mpRegen="30" />
@@ -5607,7 +5574,6 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="1472" /> <!-- Dreadbane -->
 		<mpReward value="53" type="DIFF" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="1215559.55324873" hpRegen="8.5" mp="22800" mpRegen="30" />

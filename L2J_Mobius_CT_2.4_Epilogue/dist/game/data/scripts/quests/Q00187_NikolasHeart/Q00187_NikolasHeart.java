@@ -42,7 +42,7 @@ public class Q00187_NikolasHeart extends Quest
 	
 	public Q00187_NikolasHeart()
 	{
-		super(187);
+		super(187, "Nikola's Heart");
 		addStartNpc(RESEARCHER_LORAIN);
 		addTalkId(HEAD_BLACKSMITH_KUSTO, RESEARCHER_LORAIN, MAESTRO_NIKOLA);
 		registerQuestItems(METALLOGRAPH);

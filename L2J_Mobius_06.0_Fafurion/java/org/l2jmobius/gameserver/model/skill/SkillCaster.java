@@ -16,8 +16,6 @@
  */
 package org.l2jmobius.gameserver.model.skill;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-
 import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Collections;
@@ -30,17 +28,12 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.ActionData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.FlyType;
-import org.l2jmobius.gameserver.enums.ItemSkillType;
-import org.l2jmobius.gameserver.enums.NextActionType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.StatusUpdateType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -48,26 +41,32 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSkillFinishCast;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSkillUse;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSkillSee;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSkillFinishCast;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSkillUse;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSkillSee;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
-import org.l2jmobius.gameserver.model.holders.ItemSkillHolder;
-import org.l2jmobius.gameserver.model.holders.SkillUseHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ItemSkillType;
+import org.l2jmobius.gameserver.model.item.holders.ItemSkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
 import org.l2jmobius.gameserver.model.options.OptionSkillHolder;
 import org.l2jmobius.gameserver.model.options.OptionSkillType;
+import org.l2jmobius.gameserver.model.skill.enums.FlyType;
+import org.l2jmobius.gameserver.model.skill.enums.NextActionType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillUseHolder;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.StatusUpdateType;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExRotation;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
@@ -78,7 +77,7 @@ import org.l2jmobius.gameserver.network.serverpackets.MoveToPawn;
 import org.l2jmobius.gameserver.network.serverpackets.SetupGauge;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author Nik
@@ -180,7 +179,7 @@ public class SkillCaster implements Runnable
 			return null;
 		}
 		
-		if ((skill.getCastRange() > 0) && !Util.checkIfInRange(skill.getCastRange(), caster, target, false))
+		if ((skill.getCastRange() > 0) && !LocationUtil.checkIfInRange(skill.getCastRange(), caster, target, false))
 		{
 			return null;
 		}
@@ -270,7 +269,7 @@ public class SkillCaster implements Runnable
 				caster.sendPacket(SystemMessageId.A_SKILL_IS_READY_TO_BE_USED_AGAIN);
 			}
 			
-			if (reuseDelay > 3000)
+			if (reuseDelay > 1000)
 			{
 				caster.addTimeStamp(_skill, reuseDelay);
 			}
@@ -285,10 +284,10 @@ public class SkillCaster implements Runnable
 		{
 			caster.getAI().clientStopMoving(null);
 			
-			// Also replace other intentions with idle. (Mainly done for AI_INTENTION_MOVE_TO).
+			// Also replace other intentions with idle. (Mainly done for MOVE_TO).
 			if (caster.isPlayer() && !_skill.isBad())
 			{
-				caster.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				caster.getAI().setIntention(Intention.IDLE);
 			}
 		}
 		
@@ -308,7 +307,7 @@ public class SkillCaster implements Runnable
 		if (target != caster)
 		{
 			// Face the target
-			caster.setHeading(Util.calculateHeadingFrom(caster, target));
+			caster.setHeading(LocationUtil.calculateHeadingFrom(caster, target));
 			caster.broadcastPacket(new ExRotation(caster.getObjectId(), caster.getHeading())); // TODO: Not sent in retail. Probably moveToPawn is enough
 			
 			// Send MoveToPawn packet to trigger Blue Bubbles on target become Red, but don't do it while (double) casting, because that will screw up animation... some fucked up stuff, right?
@@ -367,7 +366,7 @@ public class SkillCaster implements Runnable
 			final Item requiredItem = caster.getInventory().getItemByItemId(_skill.getItemConsumeId());
 			if (_skill.isBad() || (requiredItem.getTemplate().getDefaultAction() == ActionType.NONE)) // Non reagent items are removed at finishSkill or item handler.
 			{
-				caster.destroyItem(_skill.toString(), requiredItem.getObjectId(), _skill.getItemConsumeCount(), caster, false);
+				caster.destroyItem(ItemProcessType.NONE, requiredItem.getObjectId(), _skill.getItemConsumeCount(), caster, false);
 			}
 		}
 		
@@ -432,7 +431,7 @@ public class SkillCaster implements Runnable
 			return false;
 		}
 		
-		if ((_skill.getEffectRange() > 0) && !Util.checkIfInRange(_skill.getEffectRange(), caster, target, true))
+		if ((_skill.getEffectRange() > 0) && !LocationUtil.checkIfInRange(_skill.getEffectRange(), caster, target, true))
 		{
 			if (caster.isPlayer())
 			{
@@ -525,7 +524,7 @@ public class SkillCaster implements Runnable
 		}
 		
 		// Consume skill reduced item on success.
-		if ((_item != null) && (_item.getTemplate().getDefaultAction() == ActionType.SKILL_REDUCE_ON_SKILL_SUCCESS) && (_skill.getItemConsumeId() > 0) && (_skill.getItemConsumeCount() > 0) && !caster.destroyItem(_skill.toString(), _item.getObjectId(), _skill.getItemConsumeCount(), target, true))
+		if ((_item != null) && (_item.getTemplate().getDefaultAction() == ActionType.SKILL_REDUCE_ON_SKILL_SUCCESS) && (_skill.getItemConsumeId() > 0) && (_skill.getItemConsumeCount() > 0) && !caster.destroyItem(ItemProcessType.NONE, _item.getObjectId(), _skill.getItemConsumeCount(), target, true))
 		{
 			return false;
 		}
@@ -665,7 +664,7 @@ public class SkillCaster implements Runnable
 						// notify target AI about the attack
 						if (obj.asCreature().hasAI() && !skill.hasEffectType(EffectType.HATE))
 						{
-							obj.asCreature().getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, caster);
+							obj.asCreature().getAI().notifyAction(Action.ATTACKED, caster);
 						}
 					}
 					// Self casting should not increase PvP time.
@@ -699,7 +698,7 @@ public class SkillCaster implements Runnable
 					if (npcMob.isAttackable() && !npcMob.isFakePlayer())
 					{
 						final Attackable attackable = npcMob.asAttackable();
-						if ((skill.getEffectPoint() > 0) && attackable.hasAI() && (attackable.getAI().getIntention() == AI_INTENTION_ATTACK))
+						if ((skill.getEffectPoint() > 0) && attackable.hasAI() && (attackable.getAI().getIntention() == Intention.ATTACK))
 						{
 							final WorldObject npcTarget = attackable.getTarget();
 							for (WorldObject skillTarget : targets)
@@ -789,20 +788,27 @@ public class SkillCaster implements Runnable
 		{
 			if ((_skill.getNextAction() == NextActionType.ATTACK) && (target != null) && (target != caster) && target.isAutoAttackable(caster) && !_shiftPressed)
 			{
-				caster.getAI().setIntention(AI_INTENTION_ATTACK, target);
+				if (!caster.isPlayer() || !caster.asPlayer().isAutoPlaying())
+				{
+					caster.getAI().setIntention(Intention.ATTACK, target);
+				}
+				else // Auto play handles the attacking.
+				{
+					caster.getAI().notifyAction(Action.FINISH_CASTING);
+				}
 			}
 			else if ((_skill.getNextAction() == NextActionType.CAST) && (target != null) && (target != caster) && target.isAutoAttackable(caster))
 			{
-				caster.getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, _skill, target, _item, false, false);
+				caster.getAI().setIntention(Intention.CAST, _skill, target, _item, false, false);
 			}
 			else
 			{
-				caster.getAI().notifyEvent(CtrlEvent.EVT_FINISH_CASTING);
+				caster.getAI().notifyAction(Action.FINISH_CASTING);
 			}
 		}
 		else
 		{
-			caster.getAI().notifyEvent(CtrlEvent.EVT_FINISH_CASTING);
+			caster.getAI().notifyAction(Action.FINISH_CASTING);
 		}
 	}
 	
@@ -1224,7 +1230,7 @@ public class SkillCaster implements Runnable
 				if (creature == target)
 				{
 					final double course = Math.toRadians(180);
-					final double radian = Math.toRadians(Util.convertHeadingToDegree(creature.getHeading()));
+					final double radian = Math.toRadians(LocationUtil.convertHeadingToDegree(creature.getHeading()));
 					x = target.getX() + (int) (Math.cos(Math.PI + radian + course) * _skill.getCastRange());
 					y = target.getY() + (int) (Math.sin(Math.PI + radian + course) * _skill.getCastRange());
 					z = target.getZ();
@@ -1240,7 +1246,7 @@ public class SkillCaster implements Runnable
 			case DA3:
 			{
 				flyType = FlyType.WARP_BACK;
-				final double radian = Math.toRadians(Util.convertHeadingToDegree(creature.getHeading()));
+				final double radian = Math.toRadians(LocationUtil.convertHeadingToDegree(creature.getHeading()));
 				x = creature.getX() + (int) (Math.cos(Math.PI + radian) * _skill.getCastRange());
 				y = creature.getY() + (int) (Math.sin(Math.PI + radian) * _skill.getCastRange());
 				z = creature.getZ();
@@ -1250,7 +1256,7 @@ public class SkillCaster implements Runnable
 			case DA5:
 			{
 				final double course = _skill.getOperateType() == SkillOperateType.DA4 ? Math.toRadians(270) : Math.toRadians(90);
-				final double radian = Math.toRadians(Util.convertHeadingToDegree(target.getHeading()));
+				final double radian = Math.toRadians(LocationUtil.convertHeadingToDegree(target.getHeading()));
 				double nRadius = creature.getCollisionRadius();
 				if (target.isCreature())
 				{
@@ -1265,7 +1271,7 @@ public class SkillCaster implements Runnable
 		
 		final Location destination = creature.isFlying() ? new Location(x, y, z) : GeoEngine.getInstance().getValidLocation(creature.getX(), creature.getY(), creature.getZ(), x, y, z, creature.getInstanceWorld());
 		
-		creature.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		creature.getAI().setIntention(Intention.IDLE);
 		creature.broadcastPacket(new FlyToLocation(creature, destination, flyType, 0, 0, 333));
 		creature.setXYZ(destination);
 		creature.revalidateZone(true);

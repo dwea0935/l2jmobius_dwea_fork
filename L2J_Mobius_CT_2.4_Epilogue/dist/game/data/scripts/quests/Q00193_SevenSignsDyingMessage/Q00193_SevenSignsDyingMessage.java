@@ -17,18 +17,17 @@
 package quests.Q00193_SevenSignsDyingMessage;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00192_SevenSignsSeriesOfDoubt.Q00192_SevenSignsSeriesOfDoubt;
@@ -57,7 +56,7 @@ public class Q00193_SevenSignsDyingMessage extends Quest
 	
 	public Q00193_SevenSignsDyingMessage()
 	{
-		super(193);
+		super(193, "Seven Signs, Dying Message");
 		addStartNpc(HOLLINT);
 		addTalkId(HOLLINT, CAIN, ERIC, SIR_GUSTAV_ATHEBALDT);
 		addKillId(SHILENS_EVIL_THOUGHTS);
@@ -72,7 +71,7 @@ public class Q00193_SevenSignsDyingMessage extends Quest
 			if (!npc.isDead())
 			{
 				isBusy = false;
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.NEXT_TIME_YOU_WILL_NOT_ESCAPE));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "Next time, you will not escape!"));
 				npc.deleteMe();
 			}
 			return super.onEvent(event, npc, player);
@@ -160,15 +159,14 @@ public class Q00193_SevenSignsDyingMessage extends Quest
 				if (qs.isCond(4))
 				{
 					isBusy = true;
-					final NpcSay ns = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.S1_THAT_STRANGER_MUST_BE_DEFEATED_HERE_IS_THE_ULTIMATE_HELP);
-					ns.addStringParameter(player.getName());
+					final NpcSay ns = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), player.getName() + "! That stranger must be defeated. Here is the ultimate help!");
 					npc.broadcastPacket(ns);
 					startQuestTimer("heal", 30000 - getRandom(20000), npc, player);
 					final Monster monster = addSpawn(SHILENS_EVIL_THOUGHTS, 82425, 47232, -3216, 0, false, 0, false).asMonster();
-					monster.broadcastPacket(new NpcSay(monster.getObjectId(), ChatType.NPC_GENERAL, monster.getId(), NpcStringId.YOU_ARE_NOT_THE_OWNER_OF_THAT_ITEM));
+					monster.broadcastPacket(new NpcSay(monster.getObjectId(), ChatType.NPC_GENERAL, monster.getId(), "You are not the owner of that item."));
 					monster.setRunning();
 					monster.addDamageHate(player, 0, 999);
-					monster.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+					monster.getAI().setIntention(Intention.ATTACK, player);
 					startQuestTimer("despawn", 300000, monster, null);
 				}
 				break;
@@ -177,8 +175,7 @@ public class Q00193_SevenSignsDyingMessage extends Quest
 			{
 				if (!npc.isInsideRadius3D(player, 600))
 				{
-					final NpcSay ns = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.LOOK_HERE_S1_DON_T_FALL_TOO_FAR_BEHIND);
-					ns.addStringParameter(player.getName());
+					final NpcSay ns = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "Look here!! " + player.getName() + ". Don't fall too far behind.");
 					npc.broadcastPacket(ns);
 				}
 				else if (!player.isDead())
@@ -211,12 +208,12 @@ public class Q00193_SevenSignsDyingMessage extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 4);
 		if (partyMember == null)
 		{
-			return null;
+			return;
 		}
 		
 		final QuestState qs = getQuestState(partyMember, false);
@@ -230,8 +227,7 @@ public class Q00193_SevenSignsDyingMessage extends Quest
 		isBusy = false;
 		cancelQuestTimers("despawn");
 		cancelQuestTimers("heal");
-		npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.S1_YOU_MAY_HAVE_WON_THIS_TIME_BUT_NEXT_TIME_I_WILL_SURELY_CAPTURE_YOU).addStringParameter(partyMember.getName()));
-		return super.onKill(npc, player, isSummon);
+		npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), partyMember.getName() + "! You may have won this time... But next time, I will surely capture you!"));
 	}
 	
 	@Override

@@ -23,9 +23,8 @@ package handlers.effecthandlers;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.FlyType;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -35,10 +34,11 @@ import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.FlyType;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Check if this effect is not counted as being stunned.
@@ -117,7 +117,7 @@ public class KnockBack extends AbstractEffect
 		
 		if (!effected.isPlayer())
 		{
-			effected.getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			effected.getAI().notifyAction(Action.THINK);
 		}
 	}
 	
@@ -133,17 +133,17 @@ public class KnockBack extends AbstractEffect
 				return;
 			}
 			
-			final double radians = Math.toRadians(Util.calculateAngleFrom(effector, effected));
+			final double radians = Math.toRadians(LocationUtil.calculateAngleFrom(effector, effected));
 			final int x = (int) (effected.getX() + (_distance * Math.cos(radians)));
 			final int y = (int) (effected.getY() + (_distance * Math.sin(radians)));
 			final int z = effected.getZ();
 			final Location loc = GeoEngine.getInstance().getValidLocation(effected.getX(), effected.getY(), effected.getZ(), x, y, z, effected.getInstanceWorld());
 			
-			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			effected.getAI().setIntention(Intention.IDLE);
 			effected.broadcastPacket(new FlyToLocation(effected, loc, _type, _speed, _delay, _animationSpeed));
 			if (_knockDown)
 			{
-				effected.setHeading(Util.calculateHeadingFrom(effected, effector));
+				effected.setHeading(LocationUtil.calculateHeadingFrom(effected, effector));
 			}
 			effected.setXYZ(loc);
 			effected.broadcastPacket(new ValidateLocation(effected));

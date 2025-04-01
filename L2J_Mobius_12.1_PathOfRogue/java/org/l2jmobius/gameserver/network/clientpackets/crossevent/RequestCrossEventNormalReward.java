@@ -21,11 +21,12 @@
 package org.l2jmobius.gameserver.network.clientpackets.crossevent;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.instancemanager.events.CrossEventManager;
+import org.l2jmobius.gameserver.managers.events.CrossEventManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.CrossEventHolder;
-import org.l2jmobius.gameserver.model.holders.CrossEventRegularRewardHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.CrossEventHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.CrossEventRegularRewardHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.crossevent.ExCrossEventInfo;
 import org.l2jmobius.gameserver.network.serverpackets.crossevent.ExCrossEventNormalReward;
@@ -58,7 +59,7 @@ public class RequestCrossEventNormalReward extends ClientPacket
 			return;
 		}
 		
-		player.destroyItemByItemId("CrossEvent", CrossEventManager.getInstance().getTicketId(), 1, player, false);
+		player.destroyItemByItemId(ItemProcessType.FEE, CrossEventManager.getInstance().getTicketId(), 1, player, false);
 		
 		getRandomCell(player);
 		
@@ -67,7 +68,7 @@ public class RequestCrossEventNormalReward extends ClientPacket
 			final ItemHolder reward = new ItemHolder(_regularReward.cellReward(), _regularReward.cellAmount());
 			player.sendPacket(new ExCrossEventNormalReward(_vertical, _horizontal, _regularReward.cellAmount()));
 			player.sendPacket(new ExCrossEventInfo(player));
-			player.addItem("CrossEventNormalReward", reward, player, true);
+			player.addItem(ItemProcessType.REWARD, reward, player, true);
 		}
 		
 		CrossEventManager.getInstance().checkAdvancedRewardAvailable(player);

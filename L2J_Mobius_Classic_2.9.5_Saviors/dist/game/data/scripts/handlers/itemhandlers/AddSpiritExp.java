@@ -20,11 +20,12 @@
  */
 package handlers.itemhandlers;
 
-import org.l2jmobius.gameserver.enums.ElementalType;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -49,32 +50,32 @@ public class AddSpiritExp implements IItemHandler
 			case 91999:
 			case 91035:
 			{
-				spirit = player.getElementalSpirit(ElementalType.WATER);
+				spirit = player.getElementalSpirit(ElementalSpiritType.WATER);
 				break;
 			}
 			case 92000:
 			case 91036:
 			{
-				spirit = player.getElementalSpirit(ElementalType.FIRE);
+				spirit = player.getElementalSpirit(ElementalSpiritType.FIRE);
 				break;
 			}
 			case 92001:
 			case 91037:
 			{
-				spirit = player.getElementalSpirit(ElementalType.WIND);
+				spirit = player.getElementalSpirit(ElementalSpiritType.WIND);
 				break;
 			}
 			case 92002:
 			case 91038:
 			{
-				spirit = player.getElementalSpirit(ElementalType.EARTH);
+				spirit = player.getElementalSpirit(ElementalSpiritType.EARTH);
 				break;
 			}
 		}
 		
 		if ((spirit != null) && checkConditions(player, spirit))
 		{
-			player.destroyItem("AddSpiritExp item", item, 1, player, true);
+			player.destroyItem(ItemProcessType.DESTROY, item, 1, player, true);
 			spirit.addExperience(9300);
 			return true;
 		}

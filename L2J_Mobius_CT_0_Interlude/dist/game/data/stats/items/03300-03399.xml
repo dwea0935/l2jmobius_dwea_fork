@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="3300" type="EtcItem" name="Talisman of Kadesh">
 		<!-- A strange talisman obtained after slaying Kadesh. Take this to Sagittarius Hamil of the Village of Floran. -->
@@ -156,7 +156,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3313" type="EtcItem" name="Enchanted Stone Golem Heartstone">
+	<item id="3313" type="EtcItem" name="Enchanted Golem Heartstone">
 		<!-- A crystal found amongst the shattered fragments of an enchanted stone golem. Collect 20 of these and take them to Magister Iker. -->
 		<set name="icon" val="icon.etc_stone_black_i00" />
 		<set name="immediate_effect" val="true" />

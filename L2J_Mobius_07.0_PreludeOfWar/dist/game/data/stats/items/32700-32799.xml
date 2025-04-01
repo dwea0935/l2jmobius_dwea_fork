@@ -575,7 +575,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Hair Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="32751" name="Angel Circlet" additionalName="M. Def." type="Armor">
@@ -607,7 +607,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Hair Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="32753" name="Demon Circlet" additionalName="P. Atk." type="Armor">
@@ -655,7 +655,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Hair Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="32756" name="Rabbit Ears - STR Pendant" type="EtcItem">
@@ -670,7 +670,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9554" level="1" /> <!-- STR skill -->
+			<skill id="9554" level="1" /> <!-- Hair Accessory: STR -->
 		</skills>
 	</item>
 	<item id="32757" name="Rabbit Ears - DEX Pendant" type="EtcItem">
@@ -685,7 +685,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9555" level="1" /> <!-- DEX skill -->
+			<skill id="9555" level="1" /> <!-- Hair Accessory: DEX -->
 		</skills>
 	</item>
 	<item id="32758" name="Raccoon Ears: CON Pendant" type="EtcItem">
@@ -700,7 +700,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9556" level="1" /> <!-- CON skill -->
+			<skill id="9556" level="1" /> <!-- Hair Accessory: CON -->
 		</skills>
 	</item>
 	<item id="32759" name="Raccoon Ears: MEN Pendant" type="EtcItem">
@@ -715,7 +715,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9557" level="1" /> <!-- MEN skill -->
+			<skill id="9557" level="1" /> <!-- Hair Accessory: MEN -->
 		</skills>
 	</item>
 	<item id="32760" name="Cat Ears: INT Pendant" type="EtcItem">
@@ -730,7 +730,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9558" level="1" /> <!-- INT skill -->
+			<skill id="9558" level="1" /> <!-- Hair Accessory: INT -->
 		</skills>
 	</item>
 	<item id="32761" name="Cat Ears: WIT Pendant" type="EtcItem">
@@ -745,7 +745,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9559" level="1" /> <!-- WIT skill -->
+			<skill id="9559" level="1" /> <!-- Hair Accessory: WIT -->
 		</skills>
 	</item>
 	<item id="32762" name="Romantic Chapeau - P. Critical Rate Pendant" type="EtcItem">
@@ -760,7 +760,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9560" level="1" /> <!-- skill -->
+			<skill id="9560" level="1" /> <!-- Hair Accessory: Critical Rate -->
 		</skills>
 	</item>
 	<item id="32763" name="Romantic Chapeau - Critical Damage Pendant" type="EtcItem">
@@ -775,7 +775,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9561" level="1" /> <!-- skill -->
+			<skill id="9561" level="1" /> <!-- Hair Accessory: Critical Damage -->
 		</skills>
 	</item>
 	<item id="32764" name="Angel Circlet - P. Def. Pendant" type="EtcItem">
@@ -790,7 +790,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- skill -->
+			<skill id="9562" level="1" /> <!-- Hair Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="32765" name="Angel Circlet - M. Def. Pendant" type="EtcItem">
@@ -805,7 +805,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9563" level="1" /> <!-- skill -->
+			<skill id="9563" level="1" /> <!-- Hair Accessory: M. Def. -->
 		</skills>
 	</item>
 	<item id="32766" name="Angel Circlet - Evasion Pendant" type="EtcItem">
@@ -820,7 +820,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- skill -->
+			<skill id="9564" level="1" /> <!-- Hair Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="32767" name="Demon Circlet - P. Atk. Pendant" type="EtcItem">
@@ -835,7 +835,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9565" level="1" /> <!-- skill -->
+			<skill id="9565" level="1" /> <!-- Hair Accessory: P. Atk. -->
 		</skills>
 	</item>
 	<item id="32768" name="Demon Circlet - M. Atk. Pendant" type="EtcItem">
@@ -850,7 +850,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9566" level="1" /> <!-- skill -->
+			<skill id="9566" level="1" /> <!-- Hair Accessory: M. Atk. -->
 		</skills>
 	</item>
 	<item id="32769" name="Demon Circlet - Accuracy Pendant" type="EtcItem">
@@ -865,7 +865,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- skill -->
+			<skill id="9567" level="1" /> <!-- Hair Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="32770" name="Beaker" type="Weapon">

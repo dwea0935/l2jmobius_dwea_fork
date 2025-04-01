@@ -1823,6 +1823,11 @@
 			<value level="30">160</value>
 		</mpConsume>
 		<reuseDelay>2000</reuseDelay>
+		<targetConditions>
+			<condition name="OpNotAffectedBySkill">
+				<skillId>112</skillId> <!-- Hex -->
+			</condition>
+		</targetConditions>
 		<effects>
 			<effect name="PhysicalDefence">
 				<amount>-23</amount>

@@ -1085,7 +1085,7 @@
 		<coolTime>500</coolTime>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>700</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>10000</reuseDelay>

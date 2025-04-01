@@ -706,7 +706,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2031" level="1" /> <!-- Healing Potion -->
+			<skill id="2031" level="1" /> <!-- HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="1061" name="Greater HP Replenishing Potion" type="EtcItem">
@@ -729,7 +729,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2032" level="1" /> <!-- Greater Healing Potion -->
+			<skill id="2032" level="1" /> <!-- Greater HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="1062" name="Haste Potion" type="EtcItem">
@@ -884,7 +884,7 @@
 		<set name="is_event_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="2031" level="1" /> <!-- Healing Potion -->
+			<skill id="2031" level="1" /> <!-- HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="1074" name="Boat Ticket: Talking Island to Gludin" type="EtcItem">
@@ -1176,7 +1176,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1099" name="Spellbook: Wind Shackle" type="EtcItem">
-		<!-- A spellbook for learning the Wind Shackle skill. Used by Elven Mystics and Dark Mystics. Required level: 14. -->
+		<!-- A spellbook for learning the Wind Shackles skill. Used by Elven Mystics and Dark Mystics. Required level: 14. -->
 		<set name="icon" val="icon.etc_spell_books_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />

@@ -39,7 +39,7 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.serverpackets.mablegame.ExMableGameMinigame;
 import org.l2jmobius.gameserver.network.serverpackets.mablegame.ExMableGameMove;
@@ -138,25 +138,28 @@ public class MableGameData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode ->
+		forEach(document, "list", listNode ->
 		{
 			_isEnabled = true;
 			final NamedNodeMap at = listNode.getAttributes();
 			final Node attribute = at.getNamedItem("enabled");
 			if ((attribute != null) && Boolean.parseBoolean(attribute.getNodeValue()))
 			{
+				// Parse dailyAvailableRounds.
 				forEach(listNode, "dailyAvailableRounds", dailyAvailableRounds ->
 				{
 					_dailyAvailableRounds = Integer.parseInt(dailyAvailableRounds.getTextContent());
 				});
 				
+				// Parse commonDiceLimit.
 				forEach(listNode, "commonDiceLimit", commonDiceLimit ->
 				{
 					_commonDiceLimit = Integer.parseInt(commonDiceLimit.getTextContent());
 				});
 				
+				// Parse roundReward.
 				forEach(listNode, "roundReward", roundReward ->
 				{
 					final NamedNodeMap attrs = roundReward.getAttributes();
@@ -165,6 +168,7 @@ public class MableGameData implements IXmlReader
 					_roundReward = new ItemHolder(itemId, itemCount);
 				});
 				
+				// Parse resetItems.
 				forEach(listNode, "resetItems", resetItems ->
 				{
 					forEach(resetItems, "item", item ->
@@ -176,6 +180,7 @@ public class MableGameData implements IXmlReader
 					});
 				});
 				
+				// Parse cells.
 				forEach(listNode, "cells", cells ->
 				{
 					forEach(cells, "cell", cell ->
@@ -209,7 +214,7 @@ public class MableGameData implements IXmlReader
 						final MableGameCellColor cellColor = MableGameCellColor.getByClientId(color);
 						if (cellColor == null)
 						{
-							LOGGER.warning(getClass().getSimpleName() + ": Missing collor: " + color + " for cell id: " + id);
+							LOGGER.warning(getClass().getSimpleName() + ": Missing color: " + color + " for cell id: " + id);
 						}
 						else
 						{

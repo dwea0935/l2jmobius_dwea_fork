@@ -16,16 +16,16 @@
  */
 package quests.Q00081_SagaOfTheGhostHunter;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00081_SagaOfTheGhostHunter extends SagasSuperClass
+public class Q00081_SagaOfTheGhostHunter extends AbstractSagaQuest
 {
 	public Q00081_SagaOfTheGhostHunter()
 	{
-		super(81);
+		super(81, "Saga of the Ghost Hunter");
 		_npc = new int[]
 		{
 			31603,

@@ -20,7 +20,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
@@ -52,6 +52,6 @@ public class PhysicalMute extends AbstractEffect
 			return;
 		}
 		
-		effected.getAI().notifyEvent(CtrlEvent.EVT_MUTED);
+		effected.getAI().notifyAction(Action.MUTED);
 	}
 }

@@ -31,10 +31,10 @@ import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.holders.RandomCraftExtractDataHolder;
+import org.l2jmobius.gameserver.data.holders.RandomCraftRewardDataHolder;
+import org.l2jmobius.gameserver.data.holders.RandomCraftRewardItemHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.RandomCraftExtractDataHolder;
-import org.l2jmobius.gameserver.model.holders.RandomCraftRewardDataHolder;
-import org.l2jmobius.gameserver.model.holders.RandomCraftRewardItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 
 /**
@@ -81,9 +81,9 @@ public class RandomCraftData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "extract", extractNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "extract", extractNode ->
 		{
 			forEach(extractNode, "item", itemNode ->
 			{
@@ -95,7 +95,7 @@ public class RandomCraftData implements IXmlReader
 			});
 		}));
 		
-		forEach(doc, "list", listNode -> forEach(listNode, "rewards", rewardNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "rewards", rewardNode ->
 		{
 			forEach(rewardNode, "item", itemNode ->
 			{

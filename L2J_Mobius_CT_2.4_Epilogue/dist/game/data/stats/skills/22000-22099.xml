@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="22000" levels="1" name="Spicy Kimchee">
 		<!-- Temporarily increases regeneration. Effect 1. -->
@@ -164,7 +164,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20081" />
+		<set name="itemConsumeId" val="20081" /> <!-- Good Luck Lucky Bag -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -185,7 +185,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20082" />
+		<set name="itemConsumeId" val="20082" /> <!-- Lucky Four-leaf Clover -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -207,7 +207,7 @@
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20093" />
+		<set name="itemConsumeId" val="20093" /> <!-- Spirit of the Holiday -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -228,7 +228,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20097" />
+		<set name="itemConsumeId" val="20097" /> <!-- Mysterious Formal Dress - Event Pack -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -249,7 +249,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20075" />
+		<set name="itemConsumeId" val="20075" /> <!-- Santa Claus' Gift - Joy - 4 Hour Expiration Period -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -270,7 +270,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20076" />
+		<set name="itemConsumeId" val="20076" /> <!-- Santa Claus' Gift - Enjoyment - 4 Hour Expiration Period -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -414,7 +414,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20077" />
+		<set name="itemConsumeId" val="20077" /> <!-- Santa Claus' Gift - Luck - 4 Hour Expiration Period -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -435,7 +435,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20078" />
+		<set name="itemConsumeId" val="20078" /> <!-- Santa Claus' Gift - Luck - 4 Hour Expiration Period -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -501,7 +501,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20195" />
+		<set name="itemConsumeId" val="20195" /> <!-- Simple Valentine Cake -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -522,7 +522,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20196" />
+		<set name="itemConsumeId" val="20196" /> <!-- Velvety Valentine Cake -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -543,7 +543,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20197" />
+		<set name="itemConsumeId" val="20197" /> <!-- Delectable Valentine Cake -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -564,7 +564,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20198" />
+		<set name="itemConsumeId" val="20198" /> <!-- Decadent Valentine Cake -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -585,7 +585,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20199" />
+		<set name="itemConsumeId" val="20199" /> <!-- Heavenly Valentine Cake - 30 Day Expiration Period -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -693,7 +693,7 @@
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20271" />
+		<set name="itemConsumeId" val="20271" /> <!-- Baguette Legacy -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -715,7 +715,7 @@
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20277" />
+		<set name="itemConsumeId" val="20277" /> <!-- Baguette Legacy - Kamael -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -779,7 +779,8 @@
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="22039" levels="2" name="Rune of Experience Points 30%">
-		<!-- Acquired Experience Points increase by 30%. -->
+		<!-- Level 1: Acquired Experience Points increase by 30%. -->
+		<!-- Level 2: Acquired Experience Points increase by 50%. -->
 		<table name="#bonusExp">30 50</table>
 		<table name="#icons">br_cashtex.skill.br_cash_rune_of_exp_buff_3 br_cashtex.skill.br_cash_rune_of_exp_buff_5</table>
 		<set name="icon" val="#icons" />
@@ -793,7 +794,8 @@
 		</for>
 	</skill>
 	<skill id="22040" levels="2" name="Rune of SP 30%">
-		<!-- Acquired SP increase by 30%. -->
+		<!-- Level 1: Acquired SP increase by 30%. -->
+		<!-- Level 2: Acquired SP increase by 50%. -->
 		<table name="#bonusSp">30 50</table>
 		<table name="#icons">br_cashtex.skill.br_cash_rune_of_sp_buff_3 br_cashtex.skill.br_cash_rune_of_sp_buff_5</table>
 		<set name="icon" val="#icons" />
@@ -807,7 +809,8 @@
 		</for>
 	</skill>
 	<skill id="22041" levels="2" name="Rune of Crystal Form Level 3">
-		<!-- One's Grade Penalty decreases by 3 level. -->
+		<!-- Level 1: One's Grade Penalty decreases by 3 level. -->
+		<!-- Level 2: One's Grade Penalty decreases by 5 level. -->
 		<table name="#bonus">3 5</table>
 		<table name="#icons">br_cashtex.skill.br_cash_rune_of_rp_buff_3 br_cashtex.skill.br_cash_rune_of_rp_buff_5</table>
 		<set name="icon" val="#icons" />
@@ -1370,7 +1373,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20515" />
+		<set name="itemConsumeId" val="20515" /> <!-- Huge Fortuna Box -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -1391,7 +1394,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20516" />
+		<set name="itemConsumeId" val="20516" /> <!-- Huge Fortuna Cube -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -1682,7 +1685,7 @@
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20573" />
+		<set name="itemConsumeId" val="20573" /> <!-- Small Scroll Chest (Event) -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -1705,7 +1708,7 @@
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20574" />
+		<set name="itemConsumeId" val="20574" /> <!-- Large Scroll Chest (Event) -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />

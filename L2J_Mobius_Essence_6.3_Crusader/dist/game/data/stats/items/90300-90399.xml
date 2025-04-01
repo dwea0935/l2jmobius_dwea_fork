@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="90300" name="Hunter Tarantula's Venom" additionalName="Not Available" type="EtcItem">
 		<!-- The item is not available. Though lethal, Hunter Tarantula's Venom is used as glue thanks to its ability to harden instantly. -->
@@ -158,8 +158,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13656" level="1" /> <!-- Activates 4 jewel slots. -->
-			<skill id="13661" level="1" /> <!-- Inventory Slot +5. -->
+			<skill id="13656" level="1" /> <!-- Brooch Lv. 1 -->
+			<skill id="13661" level="1" /> <!-- Brooch: Additional Inventory Slots -->
 		</skills>
 	</item>
 	<item id="90312" name="Brooch Lv. 2" type="Armor">
@@ -173,10 +173,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13654" level="1" type="ON_EQUIP" /> <!-- Brooch Lv. 2 On. -->
-			<skill id="13655" level="1" type="ON_UNEQUIP" /> <!-- Brooch Lv. 2 Off. -->
-			<skill id="13657" level="1" /> <!-- Activates 4 jewel slots. -->
-			<skill id="13661" level="2" /> <!-- Inventory Slot +9. -->
+			<skill id="13654" level="1" type="ON_EQUIP" /> <!-- Equip Brooch Lv. 2 -->
+			<skill id="13655" level="1" type="ON_UNEQUIP" /> <!-- Unequip Brooch Lv. 2 -->
+			<skill id="13657" level="1" /> <!-- Brooch Lv. 2 -->
+			<skill id="13661" level="2" /> <!-- Brooch: Additional Inventory Slots -->
 		</skills>
 	</item>
 	<item id="90313" name="Topaz Lv. 1" additionalName="Sealed" type="Armor">

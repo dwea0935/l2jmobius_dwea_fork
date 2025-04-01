@@ -46,6 +46,9 @@ public class Q10016_BePrepared extends Quest
 		20120, // Wolf
 		20442, // Elder Wolf
 		20544, // Elder Keltir
+		20481, // Bearded Keltir
+		20131, // Orc Soldier
+		20130, // Orc
 	};
 	
 	public Q10016_BePrepared()
@@ -171,7 +174,7 @@ public class Q10016_BePrepared extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -190,19 +193,17 @@ public class Q10016_BePrepared extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

@@ -17,13 +17,14 @@
 package handlers.chathandlers;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
 import org.l2jmobius.gameserver.handler.IChatHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 
 /**
@@ -71,7 +72,7 @@ public class ChatClan implements IChatHandler
 				return;
 			}
 			
-			activeChar.destroyItemByItemId("Shared Location", Inventory.LCOIN_ID, Config.SHARING_LOCATION_COST, activeChar, true);
+			activeChar.destroyItemByItemId(ItemProcessType.FEE, Inventory.LCOIN_ID, Config.SHARING_LOCATION_COST, activeChar, true);
 		}
 		
 		activeChar.getClan().broadcastCSToOnlineMembers(new CreatureSay(activeChar, type, activeChar.getName(), text, shareLocation), activeChar);

@@ -465,7 +465,6 @@
 																</xs:complexType>
 															</xs:element>
 															<xs:element name="energy" type="xs:unsignedInt" />
-															<xs:element name="enegry" type="xs:unsignedShort" />
 															<xs:element name="minEnchant" type="xs:unsignedByte" />
 															<xs:element name="maxEnchant" type="xs:unsignedByte" />
 															<xs:element name="itemType">
@@ -1005,14 +1004,7 @@
 															<xs:element name="weaponType">
 																<xs:complexType>
 																	<xs:sequence>
-																		<xs:element minOccurs="0" name="weaponType">
-																			<xs:complexType>
-																				<xs:sequence>
-																					<xs:element name="item" type="xs:string" />
-																				</xs:sequence>
-																			</xs:complexType>
-																		</xs:element>
-																		<xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="xs:string" />
+																		<xs:element maxOccurs="unbounded" name="item" type="xs:string" />
 																	</xs:sequence>
 																</xs:complexType>
 															</xs:element>
@@ -3509,7 +3501,7 @@
 										</xs:sequence>
 									</xs:complexType>
 								</xs:element>
-								<xs:element name="irreplacableBuff" type="xs:boolean" />
+								<xs:element name="irreplaceableBuff" type="xs:boolean" />
 								<xs:element name="excludedFromCheck" type="xs:boolean" />
 								<xs:element name="stayAfterDeath" type="xs:string" />
 								<xs:element name="isOutpost" type="xs:boolean" />

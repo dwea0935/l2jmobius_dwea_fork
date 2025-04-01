@@ -74,7 +74,7 @@
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<set name="is_event_restricted" val="true" />
 		<skills>
-			<skill id="2024" level="1" /> <!-- Firecracker -->
+			<skill id="2024" level="1" /> <!-- Firecrackers -->
 		</skills>
 	</item>
 	<item id="6407" name="Large Firecracker" type="EtcItem">
@@ -88,7 +88,7 @@
 		<set name="is_event_restricted" val="true" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2025" level="1" /> <!-- Large Firecracker -->
+			<skill id="2025" level="1" /> <!-- Lightning Strike -->
 		</skills>
 	</item>
 	<item id="6408" name="Formal Wear" type="Armor">

@@ -30,7 +30,7 @@ import org.w3c.dom.Document;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author Serenitty
@@ -38,6 +38,7 @@ import org.l2jmobius.gameserver.model.holders.ItemHolder;
 public class HuntPassData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(HuntPassData.class.getName());
+	
 	private final List<ItemHolder> _rewards = new ArrayList<>();
 	private final List<ItemHolder> _premiumRewards = new ArrayList<>();
 	private int _rewardCount = 0;
@@ -66,15 +67,19 @@ public class HuntPassData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "item", rewardNode ->
+		// Traverse "list" elements and process each "item" node.
+		forEach(document, "list", listNode -> forEach(listNode, "item", rewardNode ->
 		{
+			// Parse attributes of the "item" element into a StatSet.
 			final StatSet set = new StatSet(parseAttributes(rewardNode));
 			final int itemId = set.getInt("id");
 			final int itemCount = set.getInt("count");
-			final int premiumitemId = set.getInt("premiumId");
-			final int premiumitemCount = set.getInt("premiumCount");
+			final int premiumItemId = set.getInt("premiumId");
+			final int premiumItemCount = set.getInt("premiumCount");
+			
+			// Check if item exists, log if not found, and add to rewards lists if found.
 			if (ItemData.getInstance().getTemplate(itemId) == null)
 			{
 				LOGGER.info(getClass().getSimpleName() + ": Item with id " + itemId + " does not exist.");
@@ -82,26 +87,42 @@ public class HuntPassData implements IXmlReader
 			else
 			{
 				_rewards.add(new ItemHolder(itemId, itemCount));
-				_premiumRewards.add(new ItemHolder(premiumitemId, premiumitemCount));
+				_premiumRewards.add(new ItemHolder(premiumItemId, premiumItemCount));
 			}
 		}));
 	}
 	
+	/**
+	 * Retrieves the list of standard rewards.
+	 * @return a {@link List} of {@link ItemHolder} objects representing the standard rewards
+	 */
 	public List<ItemHolder> getRewards()
 	{
 		return _rewards;
 	}
 	
+	/**
+	 * Retrieves the total count of standard rewards.
+	 * @return an {@code int} representing the number of standard rewards
+	 */
 	public int getRewardsCount()
 	{
 		return _rewardCount;
 	}
 	
+	/**
+	 * Retrieves the list of premium rewards.
+	 * @return a {@link List} of {@link ItemHolder} objects representing the premium rewards
+	 */
 	public List<ItemHolder> getPremiumRewards()
 	{
 		return _premiumRewards;
 	}
 	
+	/**
+	 * Retrieves the total count of premium rewards.
+	 * @return an {@code int} representing the number of premium rewards
+	 */
 	public int getPremiumRewardsCount()
 	{
 		return _premiumRewardCount;

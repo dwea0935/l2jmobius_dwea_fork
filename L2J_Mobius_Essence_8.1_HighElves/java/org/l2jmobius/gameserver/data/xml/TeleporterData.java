@@ -27,8 +27,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.TeleportType;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportType;
 import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
 
 /**
@@ -36,9 +36,8 @@ import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
  */
 public class TeleporterData implements IXmlReader
 {
-	// Logger instance
 	private static final Logger LOGGER = Logger.getLogger(TeleporterData.class.getName());
-	// Teleporter data
+	
 	private final Map<Integer, Map<String, TeleportHolder>> _teleporters = new ConcurrentHashMap<>();
 	
 	protected TeleporterData()
@@ -55,9 +54,9 @@ public class TeleporterData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", list -> forEach(list, "npc", npc ->
+		forEach(document, "list", list -> forEach(list, "npc", npc ->
 		{
 			final Map<String, TeleportHolder> teleList = new HashMap<>();
 			// Parse npc node child
@@ -97,15 +96,22 @@ public class TeleporterData implements IXmlReader
 		}));
 	}
 	
+	/**
+	 * Retrieves the total count of teleporters registered in the data.
+	 * @return the number of teleporters available
+	 */
 	public int getTeleporterCount()
 	{
 		return _teleporters.size();
 	}
 	
 	/**
-	 * Register teleport data to global teleport list holder. Also show warning when any duplicate occurs.
-	 * @param npcId template id of teleporter
-	 * @param teleList teleport data to register
+	 * Registers teleport data for a specific NPC to the global teleporter list.
+	 * <p>
+	 * If a teleporter with the given {@code npcId} already exists, it will be overwritten by the new {@code teleList} data. This method does not perform duplicate checks, so any existing data for the {@code npcId} will be replaced.
+	 * </p>
+	 * @param npcId the template ID of the teleporter NPC
+	 * @param teleList a map of teleport data associated with the NPC
 	 */
 	private void registerTeleportList(int npcId, Map<String, TeleportHolder> teleList)
 	{
@@ -113,20 +119,19 @@ public class TeleporterData implements IXmlReader
 	}
 	
 	/**
-	 * Gets teleport data for specified NPC and list name
-	 * @param npcId template id of teleporter
-	 * @param listName name of teleport list
-	 * @return {@link TeleportHolder} if found otherwise {@code null}
+	 * Retrieves the teleport data associated with a specified NPC and list name.
+	 * <p>
+	 * This method searches for the teleport list by {@code npcId} and {@code listName}. If found, the corresponding {@link TeleportHolder} is returned; otherwise, {@code null} is returned.
+	 * </p>
+	 * @param npcId the template ID of the teleporter NPC
+	 * @param listName the name of the teleport list
+	 * @return the {@link TeleportHolder} for the specified NPC and list name, or {@code null} if not found
 	 */
 	public TeleportHolder getHolder(int npcId, String listName)
 	{
 		return _teleporters.getOrDefault(npcId, Collections.emptyMap()).get(listName);
 	}
 	
-	/**
-	 * Gets the single instance of TeleportersData.
-	 * @return single instance of TeleportersData
-	 */
 	public static TeleporterData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

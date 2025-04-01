@@ -20,16 +20,16 @@
  */
 package quests.Q00227_TestOfTheReformer;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 
 public class Q00227_TestOfTheReformer extends Quest
@@ -91,7 +91,7 @@ public class Q00227_TestOfTheReformer extends Quest
 	
 	public Q00227_TestOfTheReformer()
 	{
-		super(227);
+		super(227, "Test of the Reformer");
 		registerQuestItems(BOOK_OF_REFORM, LETTER_OF_INTRODUCTION, SLA_LETTER, GREETINGS, OL_MAHUM_MONEY, KATARI_LETTER, NYAKURI_LETTER, UNDEAD_LIST, RAMUS_LETTER, RIPPED_DIARY, HUGE_NAIL, LETTER_OF_BETRAYER, BONE_FRAGMENT_4, BONE_FRAGMENT_5, BONE_FRAGMENT_6, BONE_FRAGMENT_7, BONE_FRAGMENT_8, BONE_FRAGMENT_9, KAKAN_LETTER);
 		addStartNpc(PUPINA);
 		addTalkId(PUPINA, SLA, RAMUS, KATARI, KAKAN, NYAKURI, OL_MAHUM_PILGRIM);
@@ -118,7 +118,7 @@ public class Q00227_TestOfTheReformer extends Quest
 				if (!player.getVariables().getBoolean("secondClassChange39", false))
 				{
 					htmltext = "30118-04b.htm";
-					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getClassId().getId()));
+					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getPlayerClass().getId()));
 					player.getVariables().set("secondClassChange39", true);
 				}
 				break;
@@ -231,7 +231,7 @@ public class Q00227_TestOfTheReformer extends Quest
 		{
 			case State.CREATED:
 			{
-				if ((player.getClassId() == ClassId.CLERIC) || (player.getClassId() == ClassId.SHILLIEN_ORACLE))
+				if ((player.getPlayerClass() == PlayerClass.CLERIC) || (player.getPlayerClass() == PlayerClass.SHILLIEN_ORACLE))
 				{
 					htmltext = (player.getLevel() < 39) ? "30118-01.htm" : "30118-03.htm";
 				}
@@ -318,11 +318,11 @@ public class Q00227_TestOfTheReformer extends Quest
 								startQuestTimer("ol_mahums_despawn", 5000, null, player, true);
 								
 								_olMahumInspector.asAttackable().addDamageHate(_olMahumPilgrim, 0, 99999);
-								_olMahumInspector.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, _olMahumPilgrim);
+								_olMahumInspector.getAI().setIntention(Intention.ATTACK, _olMahumPilgrim);
 								
 								// TODO : make Npc be able to attack Attackable.
 								// _olMahumPilgrim.asAttackable().addDamageHate(_olMahumInspector, 0, 99999);
-								// _olMahumPilgrim.getAI().setIntention(CtrlIntention.ATTACK, _olMahumInspector);
+								// _olMahumPilgrim.getAI().setIntention(Intention.ATTACK, _olMahumInspector);
 							}
 						}
 						else if (cond == 7)
@@ -345,7 +345,7 @@ public class Q00227_TestOfTheReformer extends Quest
 							{
 								_olMahumBetrayer = addSpawn(OL_MAHUM_BETRAYER, -4106, 40174, -3660, 0, false, 0);
 								_olMahumBetrayer.setRunning();
-								_olMahumBetrayer.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-7732, 36787, -3709));
+								_olMahumBetrayer.getAI().setIntention(Intention.MOVE_TO, new Location(-7732, 36787, -3709));
 								
 								// Resets Ol Mahum Betrayer's instance
 								startQuestTimer("betrayer_despawn", 40000, null, player, false);
@@ -457,12 +457,12 @@ public class Q00227_TestOfTheReformer extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		final QuestState st = getQuestState(attacker, false);
 		if (st == null)
 		{
-			return null;
+			return;
 		}
 		
 		final int cond = st.getCond();
@@ -489,17 +489,15 @@ public class Q00227_TestOfTheReformer extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		final int cond = st.getCond();
@@ -656,7 +654,5 @@ public class Q00227_TestOfTheReformer extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 }

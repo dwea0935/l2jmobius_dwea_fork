@@ -21,11 +21,11 @@ import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.MatchingMemberType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.matching.PartyMatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingMemberType;
+import org.l2jmobius.gameserver.model.groups.matching.PartyMatchingRoom;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 

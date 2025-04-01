@@ -23,12 +23,12 @@ package org.l2jmobius.gameserver.network.serverpackets.revenge;
 import java.util.Collection;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.RevengeHistoryManager;
+import org.l2jmobius.gameserver.managers.RevengeHistoryManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.RevengeHistoryHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.holders.RevengeHistoryHolder;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 
 /**

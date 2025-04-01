@@ -48,10 +48,9 @@ public class UndergroundLabyrinthMonsters extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		giveItems(killer.asPlayer(), MARK_OF_REPENTANCE, 1);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

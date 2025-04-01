@@ -82,9 +82,9 @@ public class SendMessageLocalisationData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "localisation", localisationNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "localisation", localisationNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(localisationNode));
 			SEND_MESSAGE_LOCALISATIONS.get(_lang).put(set.getString("message").split(SPLIT_STRING), set.getString("translation").split(SPLIT_STRING));

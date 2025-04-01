@@ -21,17 +21,18 @@
 package org.l2jmobius.gameserver.network.clientpackets.teleports;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.holders.TeleportListHolder;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.RaidTeleportListData;
-import org.l2jmobius.gameserver.enums.RaidBossStatus;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.DBSpawnManager;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.DBSpawnManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.npc.RaidBossStatus;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
-import org.l2jmobius.gameserver.model.holders.TeleportListHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -137,7 +138,7 @@ public class ExTeleportToRaidPosition extends ClientPacket
 				player.sendPacket(SystemMessageId.THERE_ARE_NOT_ENOUGH_L_COINS);
 				return;
 			}
-			player.destroyItemByItemId("TeleportToRaid", Inventory.LCOIN_ID, price, player, true);
+			player.destroyItemByItemId(ItemProcessType.FEE, Inventory.LCOIN_ID, price, player, true);
 		}
 		
 		player.abortCast();

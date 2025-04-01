@@ -1,27 +1,33 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import org.l2jmobius.gameserver.data.SpawnTable;
+import org.l2jmobius.gameserver.data.xml.SpawnData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.DBSpawnManager;
+import org.l2jmobius.gameserver.managers.DBSpawnManager;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -33,13 +39,10 @@ import org.l2jmobius.gameserver.model.html.formatters.BypassParserFormatter;
 import org.l2jmobius.gameserver.model.html.pagehandlers.NextPrevPageHandler;
 import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.BypassBuilder;
-import org.l2jmobius.gameserver.util.BypassParser;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.FormatUtil;
 
 /**
- * @author NosBit
+ * @author NosBit, Mobius
  */
 public class AdminScan implements IAdminCommandHandler
 {
@@ -57,76 +60,67 @@ public class AdminScan implements IAdminCommandHandler
 	{
 		final StringTokenizer st = new StringTokenizer(command, " ");
 		final String actualCommand = st.nextToken();
+		
 		switch (actualCommand.toLowerCase())
 		{
 			case "admin_scan":
 			{
-				processBypass(activeChar, new BypassParser(command));
+				processBypass(activeChar, command);
 				break;
 			}
 			case "admin_deletenpcbyobjectid":
 			{
 				if (!st.hasMoreElements())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //deletenpcbyobjectid objectId=<object_id>");
+					activeChar.sendSysMessage("Usage: //deletenpcbyobjectid objectId=<object_id>");
 					return false;
 				}
 				
-				final BypassParser parser = new BypassParser(command);
-				try
+				final int objectId = parseInt(command, "objectId", 0);
+				if (objectId == 0)
 				{
-					final int objectId = parser.getInt("objectId", 0);
-					if (objectId == 0)
-					{
-						BuilderUtil.sendSysMessage(activeChar, "objectId is not set!");
-					}
-					
-					final WorldObject target = World.getInstance().findObject(objectId);
-					final Npc npc = target instanceof Npc ? target.asNpc() : null;
-					if (npc == null)
-					{
-						BuilderUtil.sendSysMessage(activeChar, "NPC does not exist or object_id does not belong to an NPC");
-						return false;
-					}
-					
-					npc.deleteMe();
-					
-					final Spawn spawn = npc.getSpawn();
-					if (spawn != null)
-					{
-						spawn.stopRespawn();
-						
-						if (DBSpawnManager.getInstance().isDefined(spawn.getId()))
-						{
-							DBSpawnManager.getInstance().deleteSpawn(spawn, true);
-						}
-						else
-						{
-							SpawnTable.getInstance().deleteSpawn(spawn, true);
-						}
-					}
-					
-					activeChar.sendMessage(npc.getName() + " have been deleted.");
-				}
-				catch (NumberFormatException e)
-				{
-					BuilderUtil.sendSysMessage(activeChar, "object_id must be a number.");
+					activeChar.sendSysMessage("objectId is not set or invalid!");
 					return false;
 				}
 				
-				processBypass(activeChar, parser);
+				final WorldObject target = World.getInstance().findObject(objectId);
+				final Npc npc = target instanceof Npc ? target.asNpc() : null;
+				if (npc == null)
+				{
+					activeChar.sendSysMessage("NPC does not exist or object_id does not belong to an NPC");
+					return false;
+				}
+				
+				npc.deleteMe();
+				
+				final Spawn spawn = npc.getSpawn();
+				if (spawn != null)
+				{
+					spawn.stopRespawn();
+					if (DBSpawnManager.getInstance().isDefined(spawn.getId()))
+					{
+						DBSpawnManager.getInstance().deleteSpawn(spawn, true);
+					}
+					else
+					{
+						SpawnData.getInstance().deleteSpawn(spawn);
+					}
+				}
+				
+				activeChar.sendMessage(npc.getName() + " has been deleted.");
 				break;
 			}
 		}
 		return true;
 	}
 	
-	private void processBypass(Player activeChar, BypassParser parser)
+	private void processBypass(Player activeChar, String command)
 	{
-		final int id = parser.getInt("id", 0);
-		final String name = parser.getString("name", null);
-		final int radius = parser.getInt("radius", parser.getInt("range", DEFAULT_RADIUS));
-		final int page = parser.getInt("page", 0);
+		final int id = parseInt(command, "id", 0);
+		final String name = parseString(command, "name", null);
+		final int radius = parseInt(command, "radius", parseInt(command, "range", DEFAULT_RADIUS));
+		final int page = parseInt(command, "page", 0);
+		
 		final Predicate<Npc> condition;
 		if (id > 0)
 		{
@@ -141,54 +135,28 @@ public class AdminScan implements IAdminCommandHandler
 			condition = npc -> true;
 		}
 		
-		sendNpcList(activeChar, radius, page, condition, parser);
+		sendNpcList(activeChar, radius, page, condition);
 	}
 	
-	private BypassBuilder createBypassBuilder(BypassParser parser, String bypass)
+	private void sendNpcList(Player activeChar, int radius, int page, Predicate<Npc> condition)
 	{
-		final int id = parser.getInt("id", 0);
-		final String name = parser.getString("name", null);
-		final int radius = parser.getInt("radius", parser.getInt("range", DEFAULT_RADIUS));
-		final BypassBuilder builder = new BypassBuilder(bypass);
-		if (id > 0)
-		{
-			builder.addParam("id", id);
-		}
-		else if (name != null)
-		{
-			builder.addParam("name", name);
-		}
-		
-		if (radius > DEFAULT_RADIUS)
-		{
-			builder.addParam("radius", radius);
-		}
-		return builder;
-	}
-	
-	private void sendNpcList(Player activeChar, int radius, int page, Predicate<Npc> condition, BypassParser parser)
-	{
-		final BypassBuilder bypassParser = createBypassBuilder(parser, "bypass -h admin_scan");
 		final NpcHtmlMessage html = new NpcHtmlMessage(0, 1);
 		html.setFile(activeChar, "data/html/admin/scan.htm");
 		
 		//@formatter:off
-		final PageResult result = PageBuilder.newBuilder(World.getInstance().getVisibleObjectsInRange(activeChar, Npc.class, radius, condition), 15, bypassParser.toString())
+		final PageResult result = PageBuilder.newBuilder(World.getInstance().getVisibleObjectsInRange(activeChar, Npc.class, radius, condition), 15, "bypass -h admin_scan")
 			.currentPage(page)
 			.pageHandler(NextPrevPageHandler.INSTANCE)
 			.formatter(BypassParserFormatter.INSTANCE)
 			.style(ButtonsStyle.INSTANCE)
 			.bodyHandler((pages, character, sb) ->
 		{
-			final BypassBuilder builder = createBypassBuilder(parser, "bypass -h admin_deleteNpcByObjectId");
 			final String npcName = character.getName();
-			builder.addParam("page", page);
-			builder.addParam("objectId", character.getObjectId());
 			sb.append("<tr>");
 			sb.append("<td width=\"45\">").append(character.getId()).append("</td>");
 			sb.append("<td><a action=\"bypass -h admin_move_to ").append(character.getX()).append(SPACE).append(character.getY()).append(SPACE).append(character.getZ()).append("\">").append(npcName.isEmpty() ? "No name NPC" : npcName).append("</a></td>");
-			sb.append("<td width=\"60\">").append(Util.formatAdena(Math.round(activeChar.calculateDistance2D(character)))).append("</td>");
-			sb.append("<td width=\"54\"><a action=\"").append(builder.toStringBuilder()).append("\"><font color=\"LEVEL\">Delete</font></a></td>");
+			sb.append("<td width=\"60\">").append(FormatUtil.formatAdena(Math.round(activeChar.calculateDistance2D(character)))).append("</td>");
+			sb.append("<td width=\"54\"><a action=\"bypass -h admin_deleteNpcByObjectId objectId=").append(character.getObjectId()).append("\"><font color=\"LEVEL\">Delete</font></a></td>");
 			sb.append("</tr>");
 		}).build();
 		//@formatter:on
@@ -204,6 +172,35 @@ public class AdminScan implements IAdminCommandHandler
 		
 		html.replace("%data%", result.getBodyTemplate().toString());
 		activeChar.sendPacket(html);
+	}
+	
+	private int parseInt(String command, String paramName, int defaultValue)
+	{
+		final Pattern pattern = Pattern.compile(paramName + "=([^\\s]+)");
+		final Matcher matcher = pattern.matcher(command);
+		if (matcher.find())
+		{
+			try
+			{
+				return Integer.parseInt(matcher.group(1).trim());
+			}
+			catch (NumberFormatException e)
+			{
+				// Ignore and return default.
+			}
+		}
+		return defaultValue;
+	}
+	
+	private String parseString(String command, String paramName, String defaultValue)
+	{
+		final Pattern pattern = Pattern.compile(paramName + "=([^\\s]+)");
+		final Matcher matcher = pattern.matcher(command);
+		if (matcher.find())
+		{
+			return matcher.group(1).trim();
+		}
+		return defaultValue;
 	}
 	
 	@Override

@@ -21,7 +21,7 @@
 package quests.Q10037_NewLifesLessons;
 
 import org.l2jmobius.gameserver.data.xml.TeleportListData;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -187,7 +187,7 @@ public class Q10037_NewLifesLessons extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -196,7 +196,5 @@ public class Q10037_NewLifesLessons extends Quest
 			questState.setCond(QuestCondType.DONE);
 			killer.sendPacket(new ExQuestNotification(questState));
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

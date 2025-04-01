@@ -26,6 +26,6 @@ public class DefenceMagicCriticalDamage extends AbstractStatEffect
 {
 	public DefenceMagicCriticalDamage(StatSet params)
 	{
-		super(params, Stat.DEFENCE_MAGIC_CRITICAL_DAMAGE, Stat.DEFENCE_MAGIC_CRITICAL_DAMAGE_ADD, true);
+		super(params, Stat.DEFENCE_MAGIC_CRITICAL_DAMAGE, Stat.DEFENCE_MAGIC_CRITICAL_DAMAGE_ADD);
 	}
 }

@@ -34,10 +34,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.CollectionDataHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.CollectionDataHolder;
-import org.l2jmobius.gameserver.model.holders.ItemEnchantHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.holders.ItemEnchantHolder;
 
 /**
  * @author Berezkin Nikolay
@@ -46,8 +46,8 @@ public class CollectionData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(CollectionData.class.getName());
 	
-	private static final Map<Integer, CollectionDataHolder> _collections = new HashMap<>();
-	private static final Map<Integer, List<CollectionDataHolder>> _collectionsByTabId = new HashMap<>();
+	private final Map<Integer, CollectionDataHolder> _collections = new HashMap<>();
+	private final Map<Integer, List<CollectionDataHolder>> _collectionsByTabId = new HashMap<>();
 	
 	protected CollectionData()
 	{
@@ -71,9 +71,9 @@ public class CollectionData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -115,7 +115,7 @@ public class CollectionData implements IXmlReader
 						
 						final CollectionDataHolder template = new CollectionDataHolder(id, optionId, category, completeCount, items);
 						_collections.put(id, template);
-						_collectionsByTabId.computeIfAbsent(template.getCategory(), list -> new ArrayList<>()).add(template);
+						_collectionsByTabId.computeIfAbsent(template.getCategory(), _ -> new ArrayList<>()).add(template);
 					}
 				}
 			}

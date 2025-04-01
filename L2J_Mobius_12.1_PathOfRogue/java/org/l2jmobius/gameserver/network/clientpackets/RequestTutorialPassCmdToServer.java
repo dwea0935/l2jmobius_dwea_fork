@@ -26,7 +26,7 @@ import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerBypass;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerBypass;
 
 /**
  * @author Mobius

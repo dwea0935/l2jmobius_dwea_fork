@@ -21,8 +21,8 @@
 package ai.areas.HellboundIsland.BelethsMagicCircle;
 
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -109,7 +109,7 @@ public class EnchantedMegaliths extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -194,7 +194,6 @@ public class EnchantedMegaliths extends AbstractNpcAI
 				updateMegalithStage();
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	private void updateMegalithStage()
@@ -315,20 +314,18 @@ public class EnchantedMegaliths extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		kills++;
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if ((stage == 2) && (npc.getSpawn().getNpcSpawnTemplate().getSpawnTemplate().getName().equals("enchanted_megaliths_stage_1")))
 		{
 			npc.setTitleString(NpcStringId.ABNORMAL_MAGIC_CIRCLE);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

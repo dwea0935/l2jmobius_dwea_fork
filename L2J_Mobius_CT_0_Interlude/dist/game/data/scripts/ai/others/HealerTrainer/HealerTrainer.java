@@ -74,13 +74,13 @@ public class HealerTrainer extends AbstractNpcAI
 			}
 			case "SkillTransferLearn":
 			{
-				if (!npc.getTemplate().canTeach(player.getClassId()))
+				if (!npc.getTemplate().canTeach(player.getPlayerClass()))
 				{
 					htmltext = npc.getId() + "-noteach.html";
 					break;
 				}
 				
-				if ((player.getLevel() < MIN_LEVEL) || (player.getClassId().level() < MIN_CLASS_LEVEL))
+				if ((player.getLevel() < MIN_LEVEL) || (player.getPlayerClass().level() < MIN_CLASS_LEVEL))
 				{
 					htmltext = "learn-lowlevel.html";
 					break;
@@ -91,13 +91,13 @@ public class HealerTrainer extends AbstractNpcAI
 			}
 			case "SkillTransferCleanse":
 			{
-				if (!npc.getTemplate().canTeach(player.getClassId()))
+				if (!npc.getTemplate().canTeach(player.getPlayerClass()))
 				{
 					htmltext = "cleanse-no.html";
 					break;
 				}
 				
-				if ((player.getLevel() < MIN_LEVEL) || (player.getClassId().level() < MIN_CLASS_LEVEL))
+				if ((player.getLevel() < MIN_LEVEL) || (player.getPlayerClass().level() < MIN_CLASS_LEVEL))
 				{
 					htmltext = "cleanse-no.html";
 					break;

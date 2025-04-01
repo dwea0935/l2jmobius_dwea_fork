@@ -330,7 +330,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39428" level="5" /> <!-- Artifact Box -->
+			<skill id="39428" level="5" /> <!-- Balance Artifact Box -->
 		</skills>
 	</item>
 	<item id="80420" name="Attack Artifact Box" type="EtcItem">
@@ -356,7 +356,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39428" level="2" /> <!-- Artifact Box -->
+			<skill id="39428" level="2" /> <!-- Attack Artifact Box -->
 		</skills>
 	</item>
 	<item id="80422" name="Support Artifact Box" type="EtcItem">
@@ -369,7 +369,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39428" level="3" /> <!-- Artifact Box -->
+			<skill id="39428" level="3" /> <!-- Protection Artifact Box -->
 		</skills>
 	</item>
 	<item id="80423" name="Balance Artifact Box" type="EtcItem">
@@ -382,7 +382,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39428" level="4" /> <!-- Artifact Box -->
+			<skill id="39428" level="4" /> <!-- Support Artifact Box -->
 		</skills>
 	</item>
 	<item id="80424" name="Cool Summer Hunting Herb Chest" type="EtcItem">
@@ -401,7 +401,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39429" level="1" /> <!-- +1 Fight Artifact Box -->
+			<skill id="39429" level="1" /> <!-- +1 Attack Artifact Box -->
 		</skills>
 	</item>
 	<item id="80426" name="+3 Fighting Spirit Artifact Box" type="EtcItem">
@@ -414,7 +414,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39429" level="2" /> <!-- +1 Fight Artifact Box -->
+			<skill id="39429" level="2" /> <!-- +3 Attack Artifact Box -->
 		</skills>
 	</item>
 	<item id="80427" name="+1 Protection Artifact Box" type="EtcItem">
@@ -440,7 +440,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39430" level="2" /> <!-- +1 Protection Artifact Box -->
+			<skill id="39430" level="2" /> <!-- +3 Protection Artifact Box -->
 		</skills>
 	</item>
 	<item id="80429" name="+1 Support Artifact Box" type="EtcItem">
@@ -466,7 +466,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39431" level="2" /> <!-- +1 Support Artifact Box -->
+			<skill id="39431" level="2" /> <!-- +3 Support Artifact Box -->
 		</skills>
 	</item>
 	<item id="80431" name="+1 Balance Artifact Box" type="EtcItem">
@@ -492,7 +492,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39432" level="2" /> <!-- +1 Balance Artifact Box -->
+			<skill id="39432" level="2" /> <!-- +3 Balance Artifact Box -->
 		</skills>
 	</item>
 	<item id="80433" name="Infinite Orichalcum Quiver" type="EtcItem">
@@ -623,7 +623,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39433" level="1" /> <!-- Stage 4 Soul Crystal Box -->
+			<skill id="39433" level="1" /> <!-- Soul Crystal Box Lv. 4 -->
 		</skills>
 	</item>
 	<item id="80444" name="Stage 5 Soul Crystal Box" type="EtcItem">
@@ -685,7 +685,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<skills>
-			<skill id="39435" level="1" /> <!-- Royal Black Save Card -->
+			<skill id="39435" level="1" /> <!-- Royal Black Save Ticket -->
 		</skills>
 	</item>
 	<item id="80450" name="Penitent's Mark" type="EtcItem">
@@ -779,7 +779,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39436" level="1" /> <!-- Stage 3 Soul Crystal Box -->
+			<skill id="39436" level="1" /> <!-- Soul Crystal Box Lv. 3 -->
 		</skills>
 	</item>
 	<item id="80458" name="Stage 4 Soul Crystal Box" type="EtcItem">
@@ -793,7 +793,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39433" level="2" /> <!-- Stage 4 Soul Crystal Box -->
+			<skill id="39433" level="2" /> <!-- Soul Crystal Box Lv. 5 -->
 		</skills>
 	</item>
 	<item id="80459" name="+7 Agathion Charm Box" type="EtcItem">
@@ -1054,7 +1054,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39440" level="1" /> <!-- Stage 5-7 Soul Crystal Box -->
+			<skill id="39440" level="1" /> <!-- Soul Crystal Box Lv. 5-7 -->
 		</skills>
 	</item>
 	<item id="80471" name="Master's Lucky Jewelry Box Lv. 3" type="EtcItem">
@@ -1078,7 +1078,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="17701" level="6" /> <!-- Topaz - Spiritshot -->
+			<skill id="17701" level="6" /> <!-- Greater Topaz - Spiritshot -->
 		</skills>
 	</item>
 	<item id="80473" name="Greater Ruby Lv. 1" additionalName="Event" type="Armor">
@@ -1094,7 +1094,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="20160" />
 		<skills>
-			<skill id="18717" level="6" /> <!-- Ruby -->
+			<skill id="18717" level="6" /> <!-- Greater Ruby -->
 		</skills>
 	</item>
 	<item id="80474" name="Greater Sapphire Lv. 1" additionalName="Event" type="Armor">
@@ -1110,7 +1110,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="20160" />
 		<skills>
-			<skill id="18719" level="6" /> <!-- Sapphire -->
+			<skill id="18719" level="6" /> <!-- Greater Sapphire -->
 		</skills>
 	</item>
 	<item id="80475" name="Greater Obsidian Lv. 1" additionalName="30 days" type="Armor">
@@ -1126,7 +1126,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="17704" level="6" /> <!-- Obsidian -->
+			<skill id="17704" level="6" /> <!-- Greater Obsidian -->
 		</skills>
 	</item>
 	<item id="80476" name="Greater Opal Lv. 1" additionalName="30 days" type="Armor">
@@ -1142,7 +1142,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="17705" level="6" /> <!-- Opal -->
+			<skill id="17705" level="6" /> <!-- Greater Opal -->
 		</skills>
 	</item>
 	<item id="80477" name="Greater Emerald Lv. 1" additionalName="30 days" type="Armor">
@@ -1158,7 +1158,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="17825" level="6" /> <!-- Emerald -->
+			<skill id="17825" level="6" /> <!-- Greater Emerald -->
 		</skills>
 	</item>
 	<item id="80478" name="Greater Aquamarine Lv. 1" additionalName="30 days" type="Armor">
@@ -1174,7 +1174,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="17823" level="6" /> <!-- Aquamarine -->
+			<skill id="17823" level="6" /> <!-- Greater Aquamarine -->
 		</skills>
 	</item>
 	<item id="80479" name="Greater Diamond Lv. 1" additionalName="30 days" type="Armor">
@@ -1190,7 +1190,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="17708" level="6" /> <!-- Diamond -->
+			<skill id="17708" level="6" /> <!-- Greater Diamond -->
 		</skills>
 	</item>
 	<item id="80480" name="Greater Pearl Lv. 1" additionalName="30 days" type="Armor">
@@ -1206,7 +1206,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="17709" level="6" /> <!-- Pearl -->
+			<skill id="17709" level="6" /> <!-- Greater Pearl -->
 		</skills>
 	</item>
 	<item id="80481" name="Greater Vital Stone Lv. 1" additionalName="30 days" type="Armor">
@@ -1222,7 +1222,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="18568" level="6" /> <!-- Vital Stone -->
+			<skill id="18568" level="6" /> <!-- Greater Vital Stone -->
 		</skills>
 	</item>
 	<item id="80482" name="Greater Garnet Lv. 1" additionalName="30 days" type="Armor">
@@ -1238,8 +1238,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="18566" level="6" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="6" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Cancel Debuffs -->
 		</skills>
 	</item>
 	<item id="80483" name="Greater Tanzanite Lv. 1" additionalName="30 days" type="Armor">
@@ -1271,7 +1271,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="18713" level="6" /> <!-- Red Cat's Eye -->
+			<skill id="18713" level="6" /> <!-- Greater Red Cat's Eye -->
 		</skills>
 	</item>
 	<item id="80485" name="Greater Blue Cat's Eye Lv. 1" additionalName="30 days" type="Armor">
@@ -1287,7 +1287,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="18714" level="6" /> <!-- Blue Cat's Eye -->
+			<skill id="18714" level="6" /> <!-- Greater Blue Cat's Eye -->
 		</skills>
 	</item>
 	<item id="80486" name="Mysterious Talisman - STR" additionalName="Event" type="Armor">
@@ -1303,7 +1303,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="18380" level="2" /> <!-- Mysterious Talisman - STR -->
+			<skill id="18380" level="2" /> <!-- PA - Talisman - STR -->
 		</skills>
 	</item>
 	<item id="80487" name="Mysterious Talisman - INT" additionalName="Event" type="Armor">
@@ -1319,7 +1319,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="18381" level="2" /> <!-- Mysterious Talisman - INT -->
+			<skill id="18381" level="2" /> <!-- PA - Talisman - INT -->
 		</skills>
 	</item>
 	<item id="80488" name="Mysterious Talisman - DEX" additionalName="Event" type="Armor">
@@ -1335,7 +1335,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="18382" level="2" /> <!-- Mysterious Talisman - DEX -->
+			<skill id="18382" level="2" /> <!-- PA - Talisman - DEX -->
 		</skills>
 	</item>
 	<item id="80489" name="Mysterious Talisman - WIT" additionalName="Event" type="Armor">
@@ -1351,7 +1351,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="18383" level="2" /> <!-- Mysterious Talisman - WIT -->
+			<skill id="18383" level="2" /> <!-- PA - Talisman - WIT -->
 		</skills>
 	</item>
 	<item id="80490" name="Mysterious Talisman - CON" additionalName="Event" type="Armor">
@@ -1367,7 +1367,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="18384" level="2" /> <!-- Mysterious Talisman - CON -->
+			<skill id="18384" level="2" /> <!-- PA - Talisman - CON -->
 		</skills>
 	</item>
 	<item id="80491" name="Mysterious Talisman - MEN" additionalName="Event" type="Armor">
@@ -1383,7 +1383,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="18385" level="2" /> <!-- Mysterious Talisman - MEN -->
+			<skill id="18385" level="2" /> <!-- PA - Talisman - MEN -->
 		</skills>
 	</item>
 	<item id="80492" name="Mysterious Talisman - Attack Attribute" additionalName="Event" type="Armor">
@@ -1399,7 +1399,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="18386" level="2" /> <!-- PA Talisman Attribute Attack -->
+			<skill id="18386" level="2" /> <!-- Mysterious Talisman - Attack Attribute -->
 		</skills>
 	</item>
 	<item id="80493" name="Mysterious Talisman - Attribute Resistance" additionalName="Event" type="Armor">
@@ -1415,7 +1415,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="18650" level="2" /> <!-- PA Talisman Defense Attribute -->
+			<skill id="18650" level="2" /> <!-- Mysterious Talisman - Attribute Defense -->
 		</skills>
 	</item>
 	<item id="80494" name="Gem Exchange Ticket" additionalName="Event" type="EtcItem">

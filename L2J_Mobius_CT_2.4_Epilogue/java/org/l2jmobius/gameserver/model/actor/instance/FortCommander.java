@@ -23,16 +23,15 @@ package org.l2jmobius.gameserver.model.actor.instance;
 import java.util.List;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
 import org.l2jmobius.gameserver.model.FortSiegeSpawn;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 public class FortCommander extends Defender
@@ -110,7 +109,7 @@ public class FortCommander extends Defender
 			
 			if (hasAI())
 			{
-				getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, getSpawn().getLocation());
+				getAI().setIntention(Intention.MOVE_TO, getSpawn().getLocation());
 			}
 		}
 	}
@@ -127,12 +126,12 @@ public class FortCommander extends Defender
 			{
 				if (spawn2.getId() == spawn.getId())
 				{
-					NpcStringId npcString = null;
+					String npcString = null;
 					switch (spawn2.getMessageId())
 					{
 						case 1:
 						{
-							npcString = NpcStringId.ATTACKING_THE_ENEMY_S_REINFORCEMENTS_IS_NECESSARY_TIME_TO_DIE;
+							npcString = "Attacking the enemy's reinforcements is necessary. Time to die!";
 							break;
 						}
 						case 2:
@@ -141,23 +140,18 @@ public class FortCommander extends Defender
 							{
 								attacker = attacker.asSummon().getOwner();
 							}
-							npcString = NpcStringId.EVERYONE_CONCENTRATE_YOUR_ATTACKS_ON_S1_SHOW_THE_ENEMY_YOUR_RESOLVE;
+							npcString = "Everyone, concentrate your attacks on " + attacker.getName() + "! Show the enemy your resolve!";
 							break;
 						}
 						case 3:
 						{
-							npcString = NpcStringId.SPIRIT_OF_FIRE_UNLEASH_YOUR_POWER_BURN_THE_ENEMY;
+							npcString = "Spirit of Fire, unleash your power! Burn the enemy!!";
 							break;
 						}
 					}
 					if (npcString != null)
 					{
 						final NpcSay ns = new NpcSay(getObjectId(), ChatType.NPC_SHOUT, getId(), npcString);
-						if (npcString.getParamCount() == 1)
-						{
-							ns.addStringParameter(attacker.getName());
-						}
-						
 						broadcastPacket(ns);
 						setCanTalk(false);
 						ThreadPool.schedule(new ScheduleTalkTask(), 10000);

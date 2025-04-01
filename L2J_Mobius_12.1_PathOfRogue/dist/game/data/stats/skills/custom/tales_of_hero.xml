@@ -20,7 +20,7 @@
 		<magicLevel>99</magicLevel>
 		<abnormalLevel>7</abnormalLevel>
 		<abnormalTime>-1</abnormalTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<isMagic>3</isMagic> <!-- Dance Skill -->
 		<targetType>SELF</targetType>

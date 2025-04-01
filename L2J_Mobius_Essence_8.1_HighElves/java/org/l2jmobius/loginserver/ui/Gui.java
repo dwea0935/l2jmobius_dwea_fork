@@ -49,7 +49,7 @@ import javax.swing.WindowConstants;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.ui.DarkTheme;
-import org.l2jmobius.commons.ui.LimitLinesDocumentListener;
+import org.l2jmobius.commons.ui.LineLimitListener;
 import org.l2jmobius.commons.ui.SplashScreen;
 import org.l2jmobius.loginserver.GameServerTable;
 import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
@@ -62,22 +62,21 @@ import org.l2jmobius.loginserver.network.gameserverpackets.ServerStatus;
  */
 public class Gui
 {
-	JTextArea txtrConsole;
-	
-	JCheckBoxMenuItem chckbxmntmEnabled;
-	JCheckBoxMenuItem chckbxmntmDisabled;
-	JCheckBoxMenuItem chckbxmntmGmOnly;
-	
-	static final String[] shutdownOptions =
+	private static final String[] SHUTDOWN_OPTIONS =
 	{
 		"Shutdown",
 		"Cancel"
 	};
-	static final String[] restartOptions =
+	private static final String[] RESTART_OPTIONS =
 	{
 		"Restart",
 		"Cancel"
 	};
+	
+	private final JTextArea _txtrConsole;
+	private final JCheckBoxMenuItem _chckbxmntmEnabled;
+	private JCheckBoxMenuItem _chckbxmntmDisabled;
+	private JCheckBoxMenuItem _chckbxmntmGmOnly;
 	
 	public Gui()
 	{
@@ -87,13 +86,13 @@ public class Gui
 		}
 		
 		// Initialize console.
-		txtrConsole = new JTextArea();
-		txtrConsole.setEditable(false);
-		txtrConsole.setLineWrap(true);
-		txtrConsole.setWrapStyleWord(true);
-		txtrConsole.setDropMode(DropMode.INSERT);
-		txtrConsole.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtrConsole.getDocument().addDocumentListener(new LimitLinesDocumentListener(500));
+		_txtrConsole = new JTextArea();
+		_txtrConsole.setEditable(false);
+		_txtrConsole.setLineWrap(true);
+		_txtrConsole.setWrapStyleWord(true);
+		_txtrConsole.setDropMode(DropMode.INSERT);
+		_txtrConsole.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		_txtrConsole.getDocument().addDocumentListener(new LineLimitListener(500));
 		
 		// Initialize menu items.
 		final JMenuBar menuBar = new JMenuBar();
@@ -105,9 +104,9 @@ public class Gui
 		
 		final JMenuItem mntmShutdown = new JMenuItem("Shutdown");
 		mntmShutdown.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		mntmShutdown.addActionListener(arg0 ->
+		mntmShutdown.addActionListener(_ ->
 		{
-			if (JOptionPane.showOptionDialog(null, "Shutdown LoginServer?", "Select an option", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, shutdownOptions, shutdownOptions[1]) == 0)
+			if (JOptionPane.showOptionDialog(null, "Shutdown LoginServer?", "Select an option", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, SHUTDOWN_OPTIONS, SHUTDOWN_OPTIONS[1]) == 0)
 			{
 				LoginServer.getInstance().shutdown(false);
 			}
@@ -116,9 +115,9 @@ public class Gui
 		
 		final JMenuItem mntmRestart = new JMenuItem("Restart");
 		mntmRestart.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		mntmRestart.addActionListener(arg0 ->
+		mntmRestart.addActionListener(_ ->
 		{
-			if (JOptionPane.showOptionDialog(null, "Restart LoginServer?", "Select an option", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, restartOptions, restartOptions[1]) == 0)
+			if (JOptionPane.showOptionDialog(null, "Restart LoginServer?", "Select an option", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, RESTART_OPTIONS, RESTART_OPTIONS[1]) == 0)
 			{
 				LoginServer.getInstance().shutdown(true);
 			}
@@ -131,7 +130,7 @@ public class Gui
 		
 		final JMenuItem mntmBannedIps = new JMenuItem("Banned IPs");
 		mntmBannedIps.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		mntmBannedIps.addActionListener(arg0 ->
+		mntmBannedIps.addActionListener(_ ->
 		{
 			LoginController.getInstance().getBannedIps().clear();
 			LoginServer.getInstance().loadBanFile();
@@ -142,13 +141,13 @@ public class Gui
 		mnStatus.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		menuBar.add(mnStatus);
 		
-		chckbxmntmEnabled = new JCheckBoxMenuItem("Enabled");
-		chckbxmntmEnabled.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		chckbxmntmEnabled.addActionListener(arg0 ->
+		_chckbxmntmEnabled = new JCheckBoxMenuItem("Enabled");
+		_chckbxmntmEnabled.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		_chckbxmntmEnabled.addActionListener(_ ->
 		{
-			chckbxmntmEnabled.setSelected(true);
-			chckbxmntmDisabled.setSelected(false);
-			chckbxmntmGmOnly.setSelected(false);
+			_chckbxmntmEnabled.setSelected(true);
+			_chckbxmntmDisabled.setSelected(false);
+			_chckbxmntmGmOnly.setSelected(false);
 			LoginServer.getInstance().setStatus(ServerStatus.STATUS_NORMAL);
 			for (GameServerInfo gsi : GameServerTable.getInstance().getRegisteredGameServers().values())
 			{
@@ -156,16 +155,16 @@ public class Gui
 			}
 			LoginServer.LOGGER.info("Status changed to enabled.");
 		});
-		chckbxmntmEnabled.setSelected(true);
-		mnStatus.add(chckbxmntmEnabled);
+		_chckbxmntmEnabled.setSelected(true);
+		mnStatus.add(_chckbxmntmEnabled);
 		
-		chckbxmntmDisabled = new JCheckBoxMenuItem("Disabled");
-		chckbxmntmDisabled.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		chckbxmntmDisabled.addActionListener(arg0 ->
+		_chckbxmntmDisabled = new JCheckBoxMenuItem("Disabled");
+		_chckbxmntmDisabled.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		_chckbxmntmDisabled.addActionListener(_ ->
 		{
-			chckbxmntmEnabled.setSelected(false);
-			chckbxmntmDisabled.setSelected(true);
-			chckbxmntmGmOnly.setSelected(false);
+			_chckbxmntmEnabled.setSelected(false);
+			_chckbxmntmDisabled.setSelected(true);
+			_chckbxmntmGmOnly.setSelected(false);
 			LoginServer.getInstance().setStatus(ServerStatus.STATUS_DOWN);
 			for (GameServerInfo gsi : GameServerTable.getInstance().getRegisteredGameServers().values())
 			{
@@ -173,15 +172,15 @@ public class Gui
 			}
 			LoginServer.LOGGER.info("Status changed to disabled.");
 		});
-		mnStatus.add(chckbxmntmDisabled);
+		mnStatus.add(_chckbxmntmDisabled);
 		
-		chckbxmntmGmOnly = new JCheckBoxMenuItem("GM only");
-		chckbxmntmGmOnly.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		chckbxmntmGmOnly.addActionListener(arg0 ->
+		_chckbxmntmGmOnly = new JCheckBoxMenuItem("GM only");
+		_chckbxmntmGmOnly.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		_chckbxmntmGmOnly.addActionListener(_ ->
 		{
-			chckbxmntmEnabled.setSelected(false);
-			chckbxmntmDisabled.setSelected(false);
-			chckbxmntmGmOnly.setSelected(true);
+			_chckbxmntmEnabled.setSelected(false);
+			_chckbxmntmDisabled.setSelected(false);
+			_chckbxmntmGmOnly.setSelected(true);
 			LoginServer.getInstance().setStatus(ServerStatus.STATUS_GM_ONLY);
 			for (GameServerInfo gsi : GameServerTable.getInstance().getRegisteredGameServers().values())
 			{
@@ -189,7 +188,7 @@ public class Gui
 			}
 			LoginServer.LOGGER.info("Status changed to GM only.");
 		});
-		mnStatus.add(chckbxmntmGmOnly);
+		mnStatus.add(_chckbxmntmGmOnly);
 		
 		final JMenu mnFont = new JMenu("Font");
 		mnFont.setFont(new Font("Segoe UI", Font.PLAIN, 13));
@@ -206,7 +205,7 @@ public class Gui
 		{
 			final JMenuItem mntmFont = new JMenuItem(font);
 			mntmFont.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-			mntmFont.addActionListener(arg0 -> txtrConsole.setFont(new Font("Monospaced", Font.PLAIN, Integer.parseInt(font))));
+			mntmFont.addActionListener(_ -> _txtrConsole.setFont(new Font("Monospaced", Font.PLAIN, Integer.parseInt(font))));
 			mnFont.add(mntmFont);
 		}
 		
@@ -216,7 +215,7 @@ public class Gui
 		
 		final JMenuItem mntmAbout = new JMenuItem("About");
 		mntmAbout.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		mntmAbout.addActionListener(arg0 -> new frmAbout());
+		mntmAbout.addActionListener(_ -> new frmAbout());
 		mnHelp.add(mntmAbout);
 		
 		// Set icons.
@@ -226,7 +225,7 @@ public class Gui
 		icons.add(new ImageIcon(".." + File.separator + "images" + File.separator + "l2jmobius_64x64.png").getImage());
 		icons.add(new ImageIcon(".." + File.separator + "images" + File.separator + "l2jmobius_128x128.png").getImage());
 		
-		final JScrollPane scrollPanel = new JScrollPane(txtrConsole);
+		final JScrollPane scrollPanel = new JScrollPane(_txtrConsole);
 		scrollPanel.setBounds(0, 0, 800, 550);
 		
 		// Set frame.
@@ -237,7 +236,7 @@ public class Gui
 			@Override
 			public void windowClosing(WindowEvent ev)
 			{
-				if (JOptionPane.showOptionDialog(null, "Shutdown LoginServer?", "Select an option", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, shutdownOptions, shutdownOptions[1]) == 0)
+				if (JOptionPane.showOptionDialog(null, "Shutdown LoginServer?", "Select an option", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, SHUTDOWN_OPTIONS, SHUTDOWN_OPTIONS[1]) == 0)
 				{
 					LoginServer.getInstance().shutdown(false);
 				}
@@ -270,8 +269,8 @@ public class Gui
 	{
 		SwingUtilities.invokeLater(() ->
 		{
-			txtrConsole.append(text);
-			txtrConsole.setCaretPosition(txtrConsole.getText().length());
+			_txtrConsole.append(text);
+			_txtrConsole.setCaretPosition(_txtrConsole.getText().length());
 		});
 	}
 	

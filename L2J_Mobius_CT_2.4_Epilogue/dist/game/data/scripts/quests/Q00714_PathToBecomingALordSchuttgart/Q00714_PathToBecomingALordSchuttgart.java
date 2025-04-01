@@ -16,16 +16,15 @@
  */
 package quests.Q00714_PathToBecomingALordSchuttgart;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00114_ResurrectionOfAnOldManager.Q00114_ResurrectionOfAnOldManager;
@@ -65,7 +64,7 @@ public class Q00714_PathToBecomingALordSchuttgart extends Quest
 	
 	public Q00714_PathToBecomingALordSchuttgart()
 	{
-		super(714);
+		super(714, "Path to Becoming a Lord - Schuttgart");
 		addStartNpc(AUGUST);
 		addTalkId(AUGUST, NEWYEAR, YASHENI);
 		addKillId(MOBS);
@@ -111,8 +110,7 @@ public class Q00714_PathToBecomingALordSchuttgart extends Quest
 			{
 				if (castle.getOwner().getLeader().getPlayer() != null)
 				{
-					final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), NpcStringId.S1_HAS_BECOME_THE_LORD_OF_THE_TOWN_OF_SCHUTTGART_MAY_THERE_BE_GLORY_IN_THE_TERRITORY_OF_SCHUTTGART);
-					packet.addStringParameter(player.getName());
+					final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), player.getName() + " has become the lord of the Town of Schuttgart. May there be glory in the territory of Schuttgart!");
 					npc.broadcastPacket(packet);
 					qs.exitQuest(true, true);
 				}
@@ -123,7 +121,7 @@ public class Q00714_PathToBecomingALordSchuttgart extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = killer.getQuestState(getName());
 		if ((qs != null) && qs.isCond(5))
@@ -138,7 +136,6 @@ public class Q00714_PathToBecomingALordSchuttgart extends Quest
 				qs.setCond(6);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

@@ -28,7 +28,7 @@ public class Q00083_SagaOfTheMoonlightSentinel extends AbstractSagaQuest
 {
 	public Q00083_SagaOfTheMoonlightSentinel()
 	{
-		super(83);
+		super(83, "Saga of the Moonlight Sentinel");
 		_npc = new int[]
 		{
 			30702,

@@ -27,10 +27,8 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -38,11 +36,13 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.NoSummonFriendZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.OnEventTrigger;
@@ -405,7 +405,7 @@ public class Trasken extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -418,8 +418,9 @@ public class Trasken extends AbstractNpcAI
 			{
 				if (npc.isCastingNow())
 				{
-					return super.onAttack(npc, attacker, damage, isSummon);
+					return;
 				}
+				
 				World.getInstance().forEachVisibleObjectInRange(npc, Player.class, 250, cha ->
 				{
 					if (cha != null)
@@ -469,11 +470,10 @@ public class Trasken extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -537,15 +537,14 @@ public class Trasken extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (npc.isDead())
 		{
-			return super.onCreatureSee(npc, creature);
+			return;
 		}
 		
 		if ((npc.getId() == LAVRA_1) || (npc.getId() == LAVRA_2) || (npc.getId() == LAVRA_3) || (npc.getId() == TRADJAN))
@@ -567,8 +566,6 @@ public class Trasken extends AbstractNpcAI
 				addAttackPlayerDesire(npc, creature.asPlayable());
 			}
 		}
-		
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
@@ -704,7 +701,7 @@ public class Trasken extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -764,11 +761,10 @@ public class Trasken extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if ((zone.getId() == ZONE_ID) && creature.isPlayer())
 		{
@@ -798,11 +794,10 @@ public class Trasken extends AbstractNpcAI
 			zone.getPlayersInside().forEach(temp -> temp.sendPacket(new ExSendUIEvent(temp, false, false, 540, 0, NpcStringId.REMAINING_TIME)));
 			_collapseTask = ThreadPool.schedule(() -> fail(true), time);
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if ((zone.getId() == ZONE_ID_HEART) && zone.getPlayersInside().isEmpty())
 		{
@@ -815,7 +810,6 @@ public class Trasken extends AbstractNpcAI
 				}
 			}, 900000);
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	private void nextStage(int taskId)

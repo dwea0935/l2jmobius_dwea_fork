@@ -498,7 +498,6 @@
 		<abnormalTime>1</abnormalTime>
 		<activateRate>80</activateRate> <!-- Guessed -->
 		<affectLimit>5-12</affectLimit>
-		<affectLimit>5-12</affectLimit>
 		<affectObject>NOT_FRIEND</affectObject>
 		<affectRange>400</affectRange>
 		<affectScope>POINT_BLANK</affectScope>
@@ -507,7 +506,6 @@
 		<effectPoint>-687</effectPoint>
 		<effectRange>400</effectRange>
 		<hitTime>2000</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>107</magicLevel>

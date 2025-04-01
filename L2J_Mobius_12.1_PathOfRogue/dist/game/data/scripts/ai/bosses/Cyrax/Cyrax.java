@@ -20,15 +20,15 @@
  */
 package ai.bosses.Cyrax;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.variables.NpcVariables;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 import ai.AbstractNpcAI;
 
@@ -68,7 +68,7 @@ public class Cyrax extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (npc.getId() == CYRAX)
 		{
@@ -94,8 +94,6 @@ public class Cyrax extends AbstractNpcAI
 			}
 			manageSkills(npc);
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	private void refreshAiParams(Creature attacker, Npc npc, int damage)
@@ -119,16 +117,15 @@ public class Cyrax extends AbstractNpcAI
 				return;
 			}
 		}
-		final int index = CommonUtil.getIndexOfMinValue(vars.getInt("i_quest0"), vars.getInt("i_quest1"), vars.getInt("i_quest2"));
+		final int index = MathUtil.getIndexOfMinValue(vars.getInt("i_quest0"), vars.getInt("i_quest1"), vars.getInt("i_quest2"));
 		vars.set("i_quest" + index, newAggroVal);
 		vars.set("c_quest" + index, attacker);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		startQuestTimer("MANAGE_SKILLS", 1000, npc, null);
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	private void manageSkills(Npc npc)
@@ -147,7 +144,7 @@ public class Cyrax extends AbstractNpcAI
 				vars.set("i_quest" + i, 0);
 			}
 		}
-		final int index = CommonUtil.getIndexOfMaxValue(vars.getInt("i_quest0"), vars.getInt("i_quest1"), vars.getInt("i_quest2"));
+		final int index = MathUtil.getIndexOfMaxValue(vars.getInt("i_quest0"), vars.getInt("i_quest1"), vars.getInt("i_quest2"));
 		final Creature player = vars.getObject("c_quest" + index, Creature.class);
 		final int i2 = vars.getInt("i_quest" + index);
 		if ((i2 > 0) && (getRandom(100) < 70))
@@ -176,7 +173,7 @@ public class Cyrax extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (killer.isInParty())
 		{
@@ -194,7 +191,6 @@ public class Cyrax extends AbstractNpcAI
 		{
 			giveItems(killer, FONDUS_STONE, 1);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -21,26 +21,26 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPressTutorialMark;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPressTutorialMark;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowQuestionMark;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Abstract class for all Third Class Transfer quests.
@@ -202,13 +202,13 @@ public abstract class ThirdClassTransferQuest extends Quest
 			}
 			case "nextClassInfo":
 			{
-				if ((qs.getInt("STARTED_CLASS") != player.getClassId().getId()) && (player.getLevel() >= _minLevel))
+				if ((qs.getInt("STARTED_CLASS") != player.getPlayerClass().getId()) && (player.getLevel() >= _minLevel))
 				{
 					htmltext = npc.getId() + "-10.html";
 					break;
 				}
 				
-				final ClassId newClassId = player.getClassId().getNextClassIds().stream().findFirst().orElse(null);
+				final PlayerClass newClassId = player.getPlayerClass().getNextClasses().stream().findFirst().orElse(null);
 				if (newClassId != null)
 				{
 					htmltext = "class_preview_" + newClassId.toString().toLowerCase() + ".html";
@@ -217,16 +217,16 @@ public abstract class ThirdClassTransferQuest extends Quest
 			}
 			case "classTransfer":
 			{
-				if ((qs.getInt("STARTED_CLASS") != player.getClassId().getId()) && (player.getLevel() >= _minLevel))
+				if ((qs.getInt("STARTED_CLASS") != player.getPlayerClass().getId()) && (player.getLevel() >= _minLevel))
 				{
 					htmltext = npc.getId() + "-10.html";
 					break;
 				}
 				
-				final ClassId newClassId = player.getClassId().getNextClassIds().stream().findFirst().orElse(null);
+				final PlayerClass newClassId = player.getPlayerClass().getNextClasses().stream().findFirst().orElse(null);
 				if (newClassId != null)
 				{
-					final ClassId currentClassId = player.getClassId();
+					final PlayerClass currentClassId = player.getPlayerClass();
 					if (!newClassId.childOf(currentClassId))
 					{
 						break;
@@ -239,7 +239,7 @@ public abstract class ThirdClassTransferQuest extends Quest
 					{
 						player.setBaseClass(newClassId);
 					}
-					player.setClassId(newClassId.getId());
+					player.setPlayerClass(newClassId.getId());
 					player.store(false);
 					player.broadcastUserInfo();
 					player.sendSkillList();
@@ -323,7 +323,7 @@ public abstract class ThirdClassTransferQuest extends Quest
 				}
 				default:
 				{
-					if (qs.isCond(2) && CommonUtil.contains(VANGUARDS, npc.getId()))
+					if (qs.isCond(2) && ArrayUtil.contains(VANGUARDS, npc.getId()))
 					{
 						htmltext = "vanguard-01.html";
 					}

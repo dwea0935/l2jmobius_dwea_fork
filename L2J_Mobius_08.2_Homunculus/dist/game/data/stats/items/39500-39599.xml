@@ -713,7 +713,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17947" level="1" /> <!-- Scroll of Escape: Town of Rune -->
+			<skill id="17947" level="1" /> <!-- Scroll of Escape: Rune -->
 		</skills>
 	</item>
 	<item id="39557" name="Minstrel's Scroll of Escape - Town of Aden" type="EtcItem">
@@ -727,7 +727,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17948" level="1" /> <!-- Scroll of Escape: Town of Aden -->
+			<skill id="17948" level="1" /> <!-- Scroll of Escape: Aden -->
 		</skills>
 	</item>
 	<item id="39558" name="Low-grade Talisman Ingredient Box" type="EtcItem">
@@ -885,7 +885,7 @@
 		<set name="duration" val="10800" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="17973" level="1" /> <!-- Talisman - Wind: P. Critical Damage -->
+			<skill id="17973" level="1" /> <!-- Talisman of Wind - P. Skill Critical Damage -->
 		</skills>
 	</item>
 	<item id="39569" name="Talisman - Wind: M. Critical Damage" additionalName="Passive" type="Armor">
@@ -900,7 +900,7 @@
 		<set name="duration" val="10800" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="17974" level="1" /> <!-- Talisman - Wind: M. Critical Damage -->
+			<skill id="17974" level="1" /> <!-- Talisman of Wind - M. Skill Critical Damage -->
 		</skills>
 	</item>
 	<item id="39570" name="Talisman - Wind: Defense" additionalName="Active" type="Armor">
@@ -915,7 +915,7 @@
 		<set name="duration" val="10800" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="17975" level="1" /> <!-- Talisman - Wind: Defense -->
+			<skill id="17975" level="1" /> <!-- Talisman of Wind - Defense -->
 		</skills>
 	</item>
 	<item id="39571" name="Talisman - Wind: Debuff Resistance" additionalName="Active" type="Armor">
@@ -930,7 +930,7 @@
 		<set name="duration" val="10800" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="17976" level="1" /> <!-- Talisman - Wind: Debuff Resistance -->
+			<skill id="17976" level="1" /> <!-- Talisman of Wind - Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="39572" name="Talisman - Insanity" type="Armor">
@@ -945,9 +945,9 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8864" level="7" /> <!-- Talisman - Insanity -->
-			<skill id="17978" level="1" type="ON_EQUIP" /> <!-- Equip Talisman - Infinity -->
-			<skill id="17979" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Infinity -->
+			<skill id="8864" level="7" /> <!-- Talisman of Insanity -->
+			<skill id="17978" level="1" type="ON_EQUIP" /> <!-- Talisman of Insanity -->
+			<skill id="17979" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman of Insanity -->
 		</skills>
 	</item>
 	<item id="39573" name="Sealed Talisman - Insanity" type="EtcItem">
@@ -961,7 +961,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17980" level="1" /> <!-- Unseal Talisman - Insanity -->
+			<skill id="17980" level="1" /> <!-- Unseal Talisman of Insanity -->
 		</skills>
 	</item>
 	<item id="39574" name="Scroll of Escape - Town of Oren" type="EtcItem">
@@ -978,7 +978,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17949" level="1" /> <!-- Scroll of Escape: Town of Oren -->
+			<skill id="17949" level="1" /> <!-- Scroll of Escape: Oren -->
 		</skills>
 	</item>
 	<item id="39575" name="Scroll of Escape - Sea of Spores" type="EtcItem">
@@ -1012,7 +1012,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17951" level="1" /> <!-- Scroll of Escape: Town of Aden -->
+			<skill id="17951" level="1" /> <!-- Scroll of Escape: Aden -->
 		</skills>
 	</item>
 	<item id="39577" name="Scroll of Escape - Forsaken Plains" type="EtcItem">
@@ -1046,7 +1046,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17953" level="1" /> <!-- Scroll of Escape: Town of Aden -->
+			<skill id="17953" level="1" /> <!-- Scroll of Escape: Aden -->
 		</skills>
 	</item>
 	<item id="39579" name="Scroll of Escape - Fields of Massacre" type="EtcItem">
@@ -1080,7 +1080,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17955" level="1" /> <!-- Scroll of Escape: Town of Rune -->
+			<skill id="17955" level="1" /> <!-- Scroll of Escape: Rune -->
 		</skills>
 	</item>
 	<item id="39581" name="Scroll of Escape - Swamp of Screams" type="EtcItem">
@@ -1114,7 +1114,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17957" level="1" /> <!-- Scroll of Escape: Town of Rune -->
+			<skill id="17957" level="1" /> <!-- Scroll of Escape: Rune -->
 		</skills>
 	</item>
 	<item id="39583" name="Scroll of Escape - Forest of the Dead" type="EtcItem">
@@ -1148,7 +1148,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17959" level="1" /> <!-- Scroll of Escape: Town of Goddard -->
+			<skill id="17959" level="1" /> <!-- Scroll of Escape: Goddard -->
 		</skills>
 	</item>
 	<item id="39585" name="Scroll of Escape - Wall of Argos" type="EtcItem">
@@ -1182,7 +1182,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17961" level="1" /> <!-- Scroll of Escape: Town of Giran -->
+			<skill id="17961" level="1" /> <!-- Scroll of Escape: Giran -->
 		</skills>
 	</item>
 	<item id="39587" name="Scroll of Escape - Dragon Valley" type="EtcItem">
@@ -1283,7 +1283,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17985" level="1" /> <!-- Scroll of Escape: Town of Dion -->
+			<skill id="17985" level="1" /> <!-- Scroll of Escape: Dion -->
 		</skills>
 	</item>
 	<item id="39594" name="Scroll of Escape - Cruma Tower" type="EtcItem">
@@ -1317,7 +1317,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17987" level="1" /> <!-- Scroll of Escape: Town of Dion -->
+			<skill id="17987" level="1" /> <!-- Scroll of Escape: Dion -->
 		</skills>
 	</item>
 	<item id="39596" name="Scroll of Escape - Cruma Tower" type="EtcItem">

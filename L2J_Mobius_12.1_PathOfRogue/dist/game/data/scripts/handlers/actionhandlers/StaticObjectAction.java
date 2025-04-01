@@ -20,13 +20,13 @@
  */
 package handlers.actionhandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
@@ -52,8 +52,8 @@ public class StaticObjectAction implements IActionHandler
 			// Calculate the distance between the Player and the Npc
 			if (!player.isInsideRadius2D(staticObject, Npc.INTERACTION_DISTANCE))
 			{
-				// Notify the Player AI with AI_INTENTION_INTERACT
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, staticObject);
+				// Notify the Player AI with INTERACT
+				player.getAI().setIntention(Intention.INTERACT, staticObject);
 			}
 			else if (staticObject.getType() == 2)
 			{

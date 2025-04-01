@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="5300" type="Armor" name="Sealed Boots of Underworld">
 		<!-- Sealed Boots of The Underworld. Its seal can be broken with the help of the Blacksmith of Mammon. -->
@@ -744,7 +744,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5342" type="EtcItem" name="Echo Crystal - Sad Song">
+	<item id="5342" type="EtcItem" name="Recipe: Phoenix Earring(70%)">
 		<!-- The recipe used to make a Phoenix Earring. Requires Create Item - Skill Level 7. The success rate is 70%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -756,7 +756,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2584-1" /> <!-- Item - Special Sound Crystal -->
 	</item>
-	<item id="5343" type="EtcItem" name="Echo Crystal - Holy Song">
+	<item id="5343" type="EtcItem" name="Recipe: Phoenix Earring(100%)">
 		<!-- The recipe used to make a Phoenix Earring. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -852,7 +852,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5350" type="EtcItem" name="Recipe: Sealed Robe of Nightmare(60%)">
+	<item id="5350" type="EtcItem" name="Recipe: Sealed Nightmare Robe(60%)">
 		<!-- For Dwarves only. The recipe for the Sealed Nightmare Robe. Requires Create Item - Skill Level 8. The success rate is 60%. -->
 		<set name="icon" val="icon.etc_recipe_violet_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -868,7 +868,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5351" type="EtcItem" name="Recipe: Sealed Robe of Nightmare(100%)">
+	<item id="5351" type="EtcItem" name="Recipe: Sealed Nightmare Robe(100%)">
 		<!-- For Dwarves only. The recipe for the Sealed Nightmare Robe. Requires Create Item - Skill Level 8. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_violet_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -948,7 +948,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5356" type="EtcItem" name="(Not in Use) Recipe: Phoenix Necklace(70%)">
+	<item id="5356" type="EtcItem" name="Recipe: Phoenix Necklace(70%)">
 		<!-- The recipe used to make a Phoenix Necklace. Requires Create Item - Skill Level 7. The success rate is 70%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="material" val="PAPER" />
@@ -958,7 +958,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5357" type="EtcItem" name="(Not in Use) Recipe: Phoenix Necklace(100%)">
+	<item id="5357" type="EtcItem" name="Recipe: Phoenix Necklace(100%)">
 		<!-- The recipe used to make a Phoenix Necklace. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="material" val="PAPER" />
@@ -968,7 +968,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5358" type="EtcItem" name="(Not in Use) Recipe: Inferno Necklace(70%)">
+	<item id="5358" type="EtcItem" name="Recipe: Inferno Necklace(70%)">
 		<!-- The recipe used to make an Inferno Necklace. Requires Create Item - Skill Level 8. The success rate is 70%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="material" val="PAPER" />
@@ -978,7 +978,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5359" type="EtcItem" name="(Not in Use) Recipe: Inferno Necklace(100%)">
+	<item id="5359" type="EtcItem" name="Recipe: Inferno Necklace(100%)">
 		<!-- The recipe used to make an Inferno Necklace. Requires Create Item - Skill Level 8. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="material" val="PAPER" />
@@ -988,7 +988,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5360" type="EtcItem" name="(Not in Use) Recipe: Phoenix Ring(70%)">
+	<item id="5360" type="EtcItem" name="Recipe: Phoenix Ring(70%)">
 		<!-- The recipe used to make a Phoenix Ring. Requires Create Item - Skill Level 7. The success rate is 70%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="material" val="PAPER" />
@@ -998,7 +998,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5361" type="EtcItem" name="(Not in Use) Recipe: Phoenix Ring(100%)">
+	<item id="5361" type="EtcItem" name="Recipe: Phoenix Ring(100%)">
 		<!-- The recipe used to make a Phoenix Ring. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="material" val="PAPER" />
@@ -1008,7 +1008,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5362" type="EtcItem" name="(Not in Use) Recipe: Inferno Ring(70%)">
+	<item id="5362" type="EtcItem" name="Recipe: Inferno Ring(70%)">
 		<!-- The recipe used to make an Inferno Ring. Requires Create Item - Skill Level 8. The success rate is 70%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="material" val="PAPER" />
@@ -1018,7 +1018,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5363" type="EtcItem" name="(Not in Use) Recipe: Inferno Ring(100%)">
+	<item id="5363" type="EtcItem" name="Recipe: Inferno Ring(100%)">
 		<!-- The recipe used to make an Inferno Ring. Requires Create Item - Skill Level 8. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="material" val="PAPER" />
@@ -1156,7 +1156,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5372" type="EtcItem" name="Recipe: Sealed Boots of Underworld(60%)">
+	<item id="5372" type="EtcItem" name="Recipe: Sealed Boots of The Underworld(60%)">
 		<!-- For Dwarves only. The recipe for the Sealed Boots of the Underworld. Requires Create Item - Skill Level 7. The success rate is 60%. -->
 		<set name="icon" val="icon.etc_recipe_violet_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1170,7 +1170,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5373" type="EtcItem" name="Recipe: Sealed Boots of Underworld(100%)">
+	<item id="5373" type="EtcItem" name="Recipe: Sealed Boots of The Underworld(100%)">
 		<!-- For Dwarves only. The recipe for the Sealed Boots of the Underworld. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_violet_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1508,7 +1508,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5396" type="EtcItem" name="Recipe: Sealed Gloves of Underworld(60%)">
+	<item id="5396" type="EtcItem" name="Recipe: Sealed Gloves of The Underworld(60%)">
 		<!-- For Dwarves only. The recipe for the sealed Gloves of the Underworld. Requires Create Item - Skill Level 7. The success rate is 60%. -->
 		<set name="icon" val="icon.etc_recipe_violet_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1522,7 +1522,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5397" type="EtcItem" name="Recipe: Sealed Gloves of Underworld(100%)">
+	<item id="5397" type="EtcItem" name="Recipe: Sealed Gloves of The Underworld(100%)">
 		<!-- For Dwarves only. The recipe for the sealed Gloves of the Underworld. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_violet_i00" />
 		<set name="default_action" val="RECIPE" />

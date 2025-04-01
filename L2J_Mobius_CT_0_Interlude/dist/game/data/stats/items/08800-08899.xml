@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="8800" type="Weapon" name="Naga Storm - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases critical attack rate by 67. Increases damage inflicted during PvP. -->
@@ -1923,7 +1923,7 @@
 		<set name="price" val="200000000" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="8869" type="EtcItem" name="Shadow Item Exchange Coupon (D-Grade)">
+	<item id="8869" type="EtcItem" name="Shadow Item Exchange Coupon: D Grade">
 		<!-- This exchange coupon allows you to obtain a D-grade Shadow Item. -->
 		<set name="icon" val="icon.etc_lottery_card_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1933,7 +1933,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="8870" type="EtcItem" name="Shadow Item Exchange Coupon (C-Grade)">
+	<item id="8870" type="EtcItem" name="Shadow Item Exchange Coupon: C Grade">
 		<!-- This exchange coupon allows you to obtain a C-grade Shadow Item. -->
 		<set name="icon" val="icon.etc_lottery_card_i00" />
 		<set name="immediate_effect" val="true" />

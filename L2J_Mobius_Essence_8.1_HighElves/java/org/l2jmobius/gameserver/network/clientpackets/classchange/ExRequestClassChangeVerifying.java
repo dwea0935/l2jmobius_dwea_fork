@@ -20,10 +20,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.classchange;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -51,7 +51,7 @@ public class ExRequestClassChangeVerifying extends ClientPacket
 			return;
 		}
 		
-		if (_classId != player.getClassId().getId())
+		if (_classId != player.getPlayerClass().getId())
 		{
 			return;
 		}
@@ -105,7 +105,7 @@ public class ExRequestClassChangeVerifying extends ClientPacket
 			{
 				case HUMAN:
 				{
-					if (player.getClassId() == ClassId.FIGHTER)
+					if (player.getPlayerClass() == PlayerClass.FIGHTER)
 					{
 						final Quest quest = QuestManager.getInstance().getQuest(10009);
 						qs = player.getQuestState(quest.getName());

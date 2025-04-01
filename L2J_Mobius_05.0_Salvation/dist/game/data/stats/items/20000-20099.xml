@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20000" name="Spicy Kimchi" type="EtcItem">
 		<!-- Event Item. Temporarily increases Recovery Rate. Effect 1. -->
@@ -1643,7 +1643,7 @@
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="3425" level="1" /> <!-- Release Agathion's Seal - Rudolph -->
+			<skill id="3425" level="1" /> <!-- Agathion Summon- Rudolph -->
 			<skill id="5537" level="1" /> <!-- Rudolph Cuteness Trick -->
 			<skill id="23016" level="1" /> <!-- Rudolph Agathion Special Skill: Ability of Vitality -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->

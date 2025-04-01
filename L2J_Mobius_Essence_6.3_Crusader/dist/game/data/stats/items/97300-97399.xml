@@ -48,15 +48,15 @@
 			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
 			<skill id="50569" level="1" /> <!-- Gorde's Flame Spear -->
 			<skill id="50570" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Gorde's Flame Spear -->
+			<skill id="50570" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Gorde's Flame Spear -->
+			<skill id="50570" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Gorde's Flame Spear -->
+			<skill id="50570" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Gorde's Flame Spear -->
+			<skill id="50570" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Gorde's Flame Spear -->
+			<skill id="50570" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Gorde's Flame Spear -->
+			<skill id="50570" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Gorde's Flame Spear -->
+			<skill id="50570" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Gorde's Flame Spear -->
+			<skill id="50570" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Gorde's Flame Spear -->
+			<skill id="50570" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Gorde's Flame Spear -->
 			<skill id="50405" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -100,15 +100,15 @@
 			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
 			<skill id="50569" level="1" /> <!-- Gorde's Flame Spear -->
 			<skill id="50570" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Gorde's Flame Spear -->
-			<skill id="50570" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Gorde's Flame Spear -->
+			<skill id="50570" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Gorde's Flame Spear -->
+			<skill id="50570" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Gorde's Flame Spear -->
+			<skill id="50570" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Gorde's Flame Spear -->
+			<skill id="50570" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Gorde's Flame Spear -->
+			<skill id="50570" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Gorde's Flame Spear -->
+			<skill id="50570" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Gorde's Flame Spear -->
+			<skill id="50570" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Gorde's Flame Spear -->
+			<skill id="50570" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Gorde's Flame Spear -->
+			<skill id="50570" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Gorde's Flame Spear -->
 			<skill id="50405" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -665,7 +665,7 @@
 		<set name="etcitem_type" val="BLESS_ENCHT_AM" /> <!-- BLESS_ENCHT_AM -->
 		<set name="handler" val="BlessingScrolls" />
 		<skills>
-			<skill id="40428" level="1" /> <!-- Scroll of Blessing -->
+			<skill id="40428" level="1" /> <!-- Scroll of Blessing: Armor -->
 		</skills>
 	</item>
 	<item id="97339" name="Scroll of Blessing: Armor" additionalName="Sealed" type="EtcItem">
@@ -696,7 +696,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50573" level="1" /> <!-- Snowman Doll Lv. 1 -->
+			<skill id="50573" level="1" /> <!-- Snowman Doll -->
 		</skills>
 	</item>
 	<item id="97341" name="Snowman Doll Lv. 2 (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -710,7 +710,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50573" level="2" /> <!-- Snowman Doll Lv. 2 -->
+			<skill id="50573" level="2" /> <!-- Snowman Doll -->
 		</skills>
 	</item>
 	<item id="97342" name="Snowman Doll Lv. 3 (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -724,7 +724,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50573" level="3" /> <!-- Snowman Doll Lv. 3 -->
+			<skill id="50573" level="3" /> <!-- Snowman Doll -->
 		</skills>
 	</item>
 	<item id="97343" name="Snowman Doll Lv. 4 (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -738,7 +738,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50573" level="4" /> <!-- Snowman Doll Lv. 4 -->
+			<skill id="50573" level="4" /> <!-- Snowman Doll -->
 		</skills>
 	</item>
 	<item id="97344" name="Snowman Doll Lv. 5 (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -752,7 +752,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50573" level="5" /> <!-- Snowman Doll Lv. 5 -->
+			<skill id="50573" level="5" /> <!-- Snowman Doll -->
 		</skills>
 	</item>
 	<item id="97345" name="Snowman Doll Lv. 6 (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -766,7 +766,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50573" level="6" /> <!-- Snowman Doll Lv. 6 -->
+			<skill id="50573" level="6" /> <!-- Snowman Doll -->
 		</skills>
 	</item>
 	<item id="97346" name="Snowman Doll Lv. 7 (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -780,7 +780,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50573" level="7" /> <!-- Snowman Doll Lv. 7 -->
+			<skill id="50573" level="7" /> <!-- Snowman Doll -->
 		</skills>
 	</item>
 	<item id="97347" name="Snowman Doll Lv. 8 (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -794,7 +794,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50573" level="8" /> <!-- Snowman Doll Lv. 8 -->
+			<skill id="50573" level="8" /> <!-- Snowman Doll -->
 		</skills>
 	</item>
 	<item id="97348" name="Snowman Doll Lv. 9 (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -808,7 +808,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50573" level="9" /> <!-- Snowman Doll Lv. 9 -->
+			<skill id="50573" level="9" /> <!-- Snowman Doll -->
 		</skills>
 	</item>
 	<item id="97349" name="Snowman Doll Lv. 10 (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -822,7 +822,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50573" level="10" /> <!-- Snowman Doll Lv. 10 -->
+			<skill id="50573" level="10" /> <!-- Snowman Doll -->
 		</skills>
 	</item>
 	<item id="97350" name="Santa's Gift Box (Time-limited)" additionalName="Sealed" type="EtcItem">

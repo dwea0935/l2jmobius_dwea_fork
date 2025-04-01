@@ -16,14 +16,14 @@
  */
 package ai.others.LaVieEnRose;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExResponseBeautyList;
 import org.l2jmobius.gameserver.network.serverpackets.ExResponseResetList;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowBeautyMenu;
@@ -135,7 +135,7 @@ public class LaVieEnRose extends AbstractNpcAI
 			return false;
 		}
 		
-		if (CategoryData.getInstance().isInCategory(CategoryType.DEATH_KNIGHT_ALL_CLASS, player.getClassId().getId()) || CategoryData.getInstance().isInCategory(CategoryType.SHINE_MAKER_ALL_CLASS, player.getClassId().getId()))
+		if (CategoryData.getInstance().isInCategory(CategoryType.DEATH_KNIGHT_ALL_CLASS, player.getPlayerClass().getId()) || CategoryData.getInstance().isInCategory(CategoryType.SHINE_MAKER_ALL_CLASS, player.getPlayerClass().getId()))
 		{
 			player.sendPacket(SystemMessageId.NOT_AVAILABLE_TO_DEATH_KNIGHTS_AND_SHINE_MAKERS);
 			return false;
@@ -147,10 +147,9 @@ public class LaVieEnRose extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("SPAM_TEXT", (5 * 60 * 1000), npc, null, true);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

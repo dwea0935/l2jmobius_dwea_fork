@@ -16,10 +16,8 @@
  */
 package quests.Q00709_PathToBecomingALordDion;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -28,8 +26,9 @@ import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Path to Becoming a Lord - Dion (709)
@@ -65,7 +64,7 @@ public class Q00709_PathToBecomingALordDion extends Quest
 	
 	public Q00709_PathToBecomingALordDion()
 	{
-		super(709);
+		super(709, "Path to Becoming a Lord - Dion");
 		addStartNpc(CROSBY);
 		addKillId(OL_MAHUMS);
 		addKillId(MANDRAGORAS);
@@ -146,8 +145,7 @@ public class Q00709_PathToBecomingALordDion extends Quest
 			{
 				if (castleOwner != null)
 				{
-					final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), NpcStringId.S1_HAS_BECOME_LORD_OF_THE_TOWN_OF_DION_LONG_MAY_HE_REIGN);
-					packet.addStringParameter(player.getName());
+					final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), player.getName() + " has become lord of the Town of Dion. Long may he reign!");
 					npc.broadcastPacket(packet);
 					qs.exitQuest(true, true);
 				}
@@ -158,10 +156,10 @@ public class Q00709_PathToBecomingALordDion extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = killer.getQuestState(getName());
-		if ((qs != null) && qs.isCond(6) && CommonUtil.contains(OL_MAHUMS, npc.getId()))
+		if ((qs != null) && qs.isCond(6) && ArrayUtil.contains(OL_MAHUMS, npc.getId()))
 		{
 			if ((npc.getId() != BLOODY_AXE_AIDE) && (getRandom(9) == 0))
 			{
@@ -174,11 +172,10 @@ public class Q00709_PathToBecomingALordDion extends Quest
 			}
 		}
 		
-		if ((qs != null) && (qs.getState() == State.STARTED) && qs.isCond(0) && isLordAvailable(8, qs) && CommonUtil.contains(MANDRAGORAS, npc.getId()) && (getQuestItemsCount(killer, MANDRAGORA_ROOT) < 100))
+		if ((qs != null) && (qs.getState() == State.STARTED) && qs.isCond(0) && isLordAvailable(8, qs) && ArrayUtil.contains(MANDRAGORAS, npc.getId()) && (getQuestItemsCount(killer, MANDRAGORA_ROOT) < 100))
 		{
 			giveItems(killer, MANDRAGORA_ROOT, 1);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

@@ -85,6 +85,7 @@ INSERT INTO `teleport` VALUES
 ('Heine -> Field of Silence',66,91088,182384,-3192,2500,0,57), -- Retail Interlude.
 ('Heine -> Field of Whispers',67,74592,207656,-3032,2300,0,57), -- Retail Interlude.
 ('Heine -> Entrance to Alligator Islands',68,115583,192261,-3488,2100,0,57),
+('Giran -> Dragon Valley',69,73024,118485,-3688,1800,0,57),
 ('Giran -> Heine',70,111455,219400,-3544,7600,0,57),
 ('Aden -> Coliseum',76,146440,46723,-3432,2000,0,57),
 ('Aden -> Blazing Swamp',81,155310,-16339,-3320,6800,0,57),
@@ -289,6 +290,7 @@ INSERT INTO `teleport` VALUES
 ('Giran -> Rune',1057,43835,-47749,-792,59000,0,57),
 ('Giran -> Schuttgart',1058,87126,-143520,-1288,87000,0,57),
 ('Giran -> Aden',1059,146783,25808,-2008,13000,0,57),
+('Giran -> Antharas Lair',1060,131557,114509,-3712,7000,0,57),
 ('Giran -> Devil Isle',1061,43408,206881,-3752,5700,0,57),
 ('Giran -> Brekas Stronghold',1062,85546,131328,-3672,1000,0,57),
 ('Heine -> Oren',1063,82971,53207,-1488,50000,0,57),
@@ -304,6 +306,7 @@ INSERT INTO `teleport` VALUES
 ('Oren -> Dion',1073,15472,142880,-2688,33000,0,57),
 ('Oren -> Schuttgart',1074,87126,-143520,-1288,59000,0,57),
 ('Oren -> Gludio',1075,-12787,122779,-3112,35000,0,57),
+('Oren -> Skyshadow Meadow',1076,89914,46276,-3616,780,0,57),
 ('Aden -> Giran',1078,83314,148012,-3400,13000,0,57), -- Retail Interlude.
 ('Aden -> Heine',1079,111455,219400,-3546,59000,0,57), -- Retail Interlude.
 ('Aden -> Schuttgart',1080,87478,-142297,-1352,53000,0,57), -- Retail Interlude.
@@ -466,6 +469,11 @@ INSERT INTO `teleport` VALUES
 ('Hunters Valley - 1000 adena',9032,114306,86573,-3112,1000,1,57), -- retail
 ('The Giant\'s Cave Lower Layer - 1000 adena',9033,191754,56760,-7624,1000,1,57), -- retail
 ('Gorgon Flower Garden - 1000 adena',9040,113553,134813,-3668,1000,1,57), -- retail
+('Antharas Lair 1 - 1000 adena',9041,147071,120156,-4520,1000,1,57),
+('Antharas Lair 2 - 1000 adena',9042,151689,112615,-5520,1000,1,57),
+('Antharas Lair,Magic Force Field Bridge - 1000 adena',9043,146425,109898,-3424,1000,1,57),
+('Antharas Lair,Heart of Warding - 1000 adena',9044,154396,121235,-3808,1000,1,57),
+('The Center of Dragon Valley - 1000 adena',9045,122824,110836,-3727,1000,1,57),
 ('Hardin\'s Private Academy - 1000 adena',9046,105918,109759,-3170,1000,1,57), -- retail
 ('The Center of the Forest of the Dead - 1000 adena',9050,54425,-41692,-3072,1000,1,57), -- retail
 ('The Center of the Valley of Saints - 1000 adena',9051,84092,-80084,-3504,1000,1,57), -- retail
@@ -534,6 +542,11 @@ INSERT INTO `teleport` VALUES
 ('Hunters Valley - 1 Noble Gate Pass',9932,114306,86573,-3112,1,1,6651), -- retail
 ('The Giant\'s Cave Lower Layer - 1 Noble Gate Pass',9933,191754,56760,-7624,1,1,6651), -- retail
 ('Gorgon Flower Garden - 1 Noble Gate Pass',9940,113553,134813,-3540,1,1,6651), -- retail
+('Antharas Lair 1 - 1 Noble Gate Pass',9941,147071,120156,-4520,1,1,6651),
+('Antharas Lair 2 - 1 Noble Gate Pass',9942,151689,112615,-5520,1,1,6651),
+('Antharas Lair, Magic Force Field Bridge - 1 Noble Gate Pass',9943,146425,109898,-3424,1,1,6651),
+('Antharas Lair,Heart of Warding - 1 Noble Gate Pass',9944,154396,121235,-3808,1,1,6651),
+('The Center of Dragon Valley - 1 Noble Gate Pass',9945,122824,110836,-3727,1,1,6651),
 ('Hardin\'s Private Academy - 1 Noble Gate Pass',9946,105918,109759,-3170,1,1,6651), -- retail
 ('The Center of the Forest of the Dead - 1 Noble Gate Pass',9950,54425,-41692,-3072,1,1,6651), -- retail
 ('The Center of the Valley of Saints - 1 Noble Gate Pass',9951,84092,-80084,-3504,1,1,6651), -- retail

@@ -6316,7 +6316,7 @@
 			</effect>
 			<effect name="DefenceCriticalDamage" fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3020">
 				<amount>
-					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3020">{-1 - (subIndex - 1 * 0.5)}</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3020">{1 + ((subIndex - 1) * 0.5)}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
@@ -6585,7 +6585,7 @@
 			</effect>
 			<effect name="DefenceCriticalDamage" fromLevel="4" toLevel="6" fromSubLevel="3001" toSubLevel="3020">
 				<amount>
-					<value fromLevel="4" toLevel="6" fromSubLevel="3001" toSubLevel="3020">{-1 - (subIndex - 1 * 0.5)}</value>
+					<value fromLevel="4" toLevel="6" fromSubLevel="3001" toSubLevel="3020">{1 + ((subIndex - 1) * 0.5)}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
@@ -6804,7 +6804,6 @@
 		</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitTime>2000</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>

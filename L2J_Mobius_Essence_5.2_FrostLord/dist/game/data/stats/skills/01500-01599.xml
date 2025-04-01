@@ -3520,7 +3520,7 @@
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isSharedWithSummon>false</isSharedWithSummon>
 		<magicCriticalRate>5</magicCriticalRate>

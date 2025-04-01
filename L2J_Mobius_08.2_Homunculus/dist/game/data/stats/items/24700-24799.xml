@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="24700" name="Santa Outfit" additionalName="Low-grade/ Debuff Reflect" type="Armor">
 		<!-- When modified, Debuff Reflect +3%. -->
@@ -11,7 +11,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21416" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21416" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="24701" name="Santa Outfit" additionalName="Low-grade/ Damage Reflection Resistance" type="Armor">
@@ -25,7 +25,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21419" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21419" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="24702" name="Santa Outfit" additionalName="Low-grade/ Ranged Resistance" type="Armor">
@@ -39,7 +39,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21422" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21422" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="24703" name="Santa Outfit" additionalName="Low-grade/ P. Def. Increase" type="Armor">
@@ -53,7 +53,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21425" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21425" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="24704" name="Santa Outfit" additionalName="Low-grade/ M. Def. Increase" type="Armor">
@@ -67,7 +67,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21428" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21428" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="24705" name="Santa Outfit" additionalName="Low-grade/ Attribute Resistance" type="Armor">
@@ -81,7 +81,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21431" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21431" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="24706" name="Santa Outfit" additionalName="Low-grade/ Received Heal Amount Increase" type="Armor">
@@ -95,7 +95,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21434" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21434" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="24707" name="Santa Outfit" additionalName="Low-grade/ Max. HP Increase" type="Armor">
@@ -109,7 +109,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21437" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21437" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="24708" name="Santa Outfit" additionalName="Low-grade/ Max. MP Increase" type="Armor">
@@ -123,7 +123,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21440" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21440" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="24709" name="Santa Outfit" additionalName="Low-grade/ Max CP Increase" type="Armor">
@@ -137,7 +137,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21443" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21443" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="24710" name="Santa Outfit" additionalName="Low-grade/ Speed Increase" type="Armor">
@@ -151,7 +151,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21446" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21446" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="24711" name="Santa Outfit" additionalName="Low-grade/ HP Recovery Bonus Increase" type="Armor">
@@ -165,7 +165,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21449" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21449" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24712" name="Santa Outfit" additionalName="Low-grade/ MP Recovery Bonus Increase" type="Armor">
@@ -179,7 +179,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21452" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21452" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24713" name="Santa Outfit" additionalName="Low-grade/ Evasion Increase" type="Armor">
@@ -193,7 +193,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21455" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21455" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="24714" name="Santa Outfit" additionalName="Low-grade/ Option 15" type="Armor">
@@ -207,7 +207,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21458" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21458" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 15 -->
 		</skills>
 	</item>
 	<item id="24715" name="Santa Outfit" additionalName="Low-grade/ Option 16" type="Armor">
@@ -221,7 +221,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21461" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21461" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 16 -->
 		</skills>
 	</item>
 	<item id="24716" name="Santa Outfit" additionalName="Low-grade/ Option 17" type="Armor">
@@ -235,7 +235,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21464" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21464" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 17 -->
 		</skills>
 	</item>
 	<item id="24717" name="Santa Outfit" additionalName="Low-grade/ Option 18" type="Armor">
@@ -249,7 +249,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21467" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21467" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 18 -->
 		</skills>
 	</item>
 	<item id="24718" name="Santa Outfit" additionalName="Low-grade/ Option 19" type="Armor">
@@ -263,7 +263,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21470" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21470" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 19 -->
 		</skills>
 	</item>
 	<item id="24719" name="Santa Outfit" additionalName="Low-grade/ Option 20" type="Armor">
@@ -277,7 +277,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21473" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21473" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 20 -->
 		</skills>
 	</item>
 	<item id="24720" name="Santa Outfit" additionalName="Mid-grade/ Debuff Reflect" type="Armor">
@@ -291,7 +291,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21417" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21417" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="24721" name="Santa Outfit" additionalName="Mid-grade/ Damage Reflection Resistance" type="Armor">
@@ -305,7 +305,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21420" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21420" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="24722" name="Santa Outfit" additionalName="Mid-grade/ Ranged Resistance" type="Armor">
@@ -319,7 +319,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21423" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21423" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="24723" name="Santa Outfit" additionalName="Mid-grade/ P. Def. Increase" type="Armor">
@@ -333,7 +333,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21426" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21426" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="24724" name="Santa Outfit" additionalName="Mid-grade/ M. Def. Increase" type="Armor">
@@ -347,7 +347,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21429" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21429" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="24725" name="Santa Outfit" additionalName="Mid-grade/ Attribute Resistance" type="Armor">
@@ -361,7 +361,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21432" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21432" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="24726" name="Santa Outfit" additionalName="Mid-grade/ Received Heal Amount Increase" type="Armor">
@@ -375,7 +375,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21435" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21435" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="24727" name="Santa Outfit" additionalName="Mid-grade/ Max. HP Increase" type="Armor">
@@ -389,7 +389,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21438" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21438" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="24728" name="Santa Outfit" additionalName="Mid-grade/ Max. MP Increase" type="Armor">
@@ -403,7 +403,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21441" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21441" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="24729" name="Santa Outfit" additionalName="Mid-grade/ Max CP Increase" type="Armor">
@@ -417,7 +417,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21444" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21444" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="24730" name="Santa Outfit" additionalName="Mid-grade/ Speed Increase" type="Armor">
@@ -431,7 +431,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21447" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21447" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="24731" name="Santa Outfit" additionalName="Mid-grade/ HP Recovery Bonus Increase" type="Armor">
@@ -445,7 +445,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21450" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21450" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24732" name="Santa Outfit" additionalName="Mid-grade/ MP Recovery Bonus Increase" type="Armor">
@@ -459,7 +459,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21453" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21453" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24733" name="Santa Outfit" additionalName="Mid-grade/ Evasion Increase" type="Armor">
@@ -473,7 +473,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21456" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21456" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="24734" name="Santa Outfit" additionalName="Mid-grade/ Option 15" type="Armor">
@@ -487,7 +487,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21459" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21459" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 15 -->
 		</skills>
 	</item>
 	<item id="24735" name="Santa Outfit" additionalName="Mid-grade/ Option 16" type="Armor">
@@ -501,7 +501,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21462" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21462" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 16 -->
 		</skills>
 	</item>
 	<item id="24736" name="Santa Outfit" additionalName="Mid-grade/ Option 17" type="Armor">
@@ -515,7 +515,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21465" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21465" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 17 -->
 		</skills>
 	</item>
 	<item id="24737" name="Santa Outfit" additionalName="Mid-grade/ Option 18" type="Armor">
@@ -529,7 +529,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21468" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21468" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 18 -->
 		</skills>
 	</item>
 	<item id="24738" name="Santa Outfit" additionalName="Mid-grade/ Option 19" type="Armor">
@@ -543,7 +543,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21471" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21471" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 19 -->
 		</skills>
 	</item>
 	<item id="24739" name="Santa Outfit" additionalName="Mid-grade/ Option 20" type="Armor">
@@ -557,7 +557,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21474" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21474" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 20 -->
 		</skills>
 	</item>
 	<item id="24740" name="Santa Outfit" additionalName="Top-grade/ Debuff Reflect" type="Armor">
@@ -571,7 +571,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21418" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21418" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="24741" name="Santa Outfit" additionalName="Top-grade/ Damage Reflection Resistance" type="Armor">
@@ -585,7 +585,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21421" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21421" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="24742" name="Santa Outfit" additionalName="Top-grade/ Ranged Resistance" type="Armor">
@@ -599,7 +599,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21424" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21424" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="24743" name="Santa Outfit" additionalName="Top-grade/ P. Def. Increase" type="Armor">
@@ -613,7 +613,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21427" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21427" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="24744" name="Santa Outfit" additionalName="Top-grade/ M. Def. Increase" type="Armor">
@@ -627,7 +627,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21430" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21430" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="24745" name="Santa Outfit" additionalName="Top-grade/ Attribute Resistance" type="Armor">
@@ -641,7 +641,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21433" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21433" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="24746" name="Santa Outfit" additionalName="Top-grade/ Received Heal Amount Increase" type="Armor">
@@ -655,7 +655,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21436" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21436" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="24747" name="Santa Outfit" additionalName="Top-grade/ Max. HP Increase" type="Armor">
@@ -669,7 +669,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21439" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21439" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="24748" name="Santa Outfit" additionalName="Top-grade/ Max. MP Increase" type="Armor">
@@ -683,7 +683,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21442" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21442" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="24749" name="Santa Outfit" additionalName="Top-grade/ Max CP Increase" type="Armor">
@@ -697,7 +697,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21445" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21445" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="24750" name="Santa Outfit" additionalName="Top-grade/ Speed Increase" type="Armor">
@@ -711,7 +711,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21448" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21448" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="24751" name="Santa Outfit" additionalName="Top-grade/ HP Recovery Bonus Increase" type="Armor">
@@ -725,7 +725,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21451" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21451" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24752" name="Santa Outfit" additionalName="Top-grade/ MP Recovery Bonus Increase" type="Armor">
@@ -739,7 +739,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21454" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21454" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24753" name="Santa Outfit" additionalName="Top-grade/ Evasion Increase" type="Armor">
@@ -753,7 +753,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21457" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21457" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="24754" name="Santa Outfit" additionalName="Top-grade/ Option 15" type="Armor">
@@ -767,7 +767,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21460" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21460" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 15 -->
 		</skills>
 	</item>
 	<item id="24755" name="Santa Outfit" additionalName="Top-grade/ Option 16" type="Armor">
@@ -781,7 +781,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21463" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21463" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 16 -->
 		</skills>
 	</item>
 	<item id="24756" name="Santa Outfit" additionalName="Top-grade/ Option 17" type="Armor">
@@ -795,7 +795,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21466" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21466" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 17 -->
 		</skills>
 	</item>
 	<item id="24757" name="Santa Outfit" additionalName="Top-grade/ Option 18" type="Armor">
@@ -809,7 +809,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21469" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21469" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 18 -->
 		</skills>
 	</item>
 	<item id="24758" name="Santa Outfit" additionalName="Top-grade/ Option 19" type="Armor">
@@ -823,7 +823,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21472" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21472" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 19 -->
 		</skills>
 	</item>
 	<item id="24759" name="Santa Outfit" additionalName="Top-grade/ Option 20" type="Armor">
@@ -837,7 +837,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21475" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21475" level="1" /> <!-- Visual Enchant Stone: High-grade/ Option 20 -->
 		</skills>
 	</item>
 	<item id="24760" name="Beach Swimsuit" additionalName="Low-grade/ Debuff Reflect" type="Armor">
@@ -853,7 +853,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21416" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21416" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="24761" name="Beach Swimsuit" additionalName="Low-grade/ Damage Reflection Resistance" type="Armor">
@@ -869,7 +869,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21419" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21419" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="24762" name="Beach Swimsuit" additionalName="Low-grade/ Ranged Resistance" type="Armor">
@@ -885,7 +885,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21422" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21422" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="24763" name="Beach Swimsuit" additionalName="Low-grade/ P. Def. Increase" type="Armor">
@@ -901,7 +901,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21425" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21425" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="24764" name="Beach Swimsuit" additionalName="Low-grade/ M. Def. Increase" type="Armor">
@@ -917,7 +917,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21428" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21428" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="24765" name="Beach Swimsuit" additionalName="Low-grade/ Attribute Resistance" type="Armor">
@@ -933,7 +933,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21431" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21431" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="24766" name="Beach Swimsuit" additionalName="Low-grade/ Received Heal Amount Increase" type="Armor">
@@ -949,7 +949,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21434" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21434" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="24767" name="Beach Swimsuit" additionalName="Low-grade/ Max. HP Increase" type="Armor">
@@ -965,7 +965,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21437" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21437" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="24768" name="Beach Swimsuit" additionalName="Low-grade/ Max. MP Increase" type="Armor">
@@ -981,7 +981,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21440" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21440" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="24769" name="Beach Swimsuit" additionalName="Low-grade/ Max CP Increase" type="Armor">
@@ -997,7 +997,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21443" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21443" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="24770" name="Beach Swimsuit" additionalName="Low-grade/ Speed Increase" type="Armor">
@@ -1013,7 +1013,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21446" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21446" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="24771" name="Beach Swimsuit" additionalName="Low-grade/ HP Recovery Bonus Increase" type="Armor">
@@ -1029,7 +1029,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21449" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21449" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24772" name="Beach Swimsuit" additionalName="Low-grade/ MP Recovery Bonus Increase" type="Armor">
@@ -1045,7 +1045,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21452" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21452" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24773" name="Beach Swimsuit" additionalName="Low-grade/ Evasion Increase" type="Armor">
@@ -1061,7 +1061,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21455" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21455" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="24774" name="Beach Swimsuit" additionalName="Low-grade/ Option 15" type="Armor">
@@ -1077,7 +1077,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21458" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21458" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 15 -->
 		</skills>
 	</item>
 	<item id="24775" name="Beach Swimsuit" additionalName="Low-grade/ Option 16" type="Armor">
@@ -1093,7 +1093,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21461" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21461" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 16 -->
 		</skills>
 	</item>
 	<item id="24776" name="Beach Swimsuit" additionalName="Low-grade/ Option 17" type="Armor">
@@ -1109,7 +1109,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21464" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21464" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 17 -->
 		</skills>
 	</item>
 	<item id="24777" name="Beach Swimsuit" additionalName="Low-grade/ Option 18" type="Armor">
@@ -1125,7 +1125,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21467" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21467" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 18 -->
 		</skills>
 	</item>
 	<item id="24778" name="Beach Swimsuit" additionalName="Low-grade/ Option 19" type="Armor">
@@ -1141,7 +1141,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21470" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21470" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 19 -->
 		</skills>
 	</item>
 	<item id="24779" name="Beach Swimsuit" additionalName="Low-grade/ Option 20" type="Armor">
@@ -1157,7 +1157,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21473" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21473" level="1" /> <!-- Visual Enchant Stone: Low-grade/ Option 20 -->
 		</skills>
 	</item>
 	<item id="24780" name="Beach Swimsuit" additionalName="Mid-grade/ Debuff Reflect" type="Armor">
@@ -1173,7 +1173,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21417" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21417" level="1" /> <!-- Visual Enchant Stone: Debuff Resistance -->
 		</skills>
 	</item>
 	<item id="24781" name="Beach Swimsuit" additionalName="Mid-grade/ Damage Reflection Resistance" type="Armor">
@@ -1189,7 +1189,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21420" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21420" level="1" /> <!-- Visual Enchant Stone: Damage Reflection Resistance -->
 		</skills>
 	</item>
 	<item id="24782" name="Beach Swimsuit" additionalName="Mid-grade/ Ranged Resistance" type="Armor">
@@ -1205,7 +1205,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21423" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21423" level="1" /> <!-- Visual Enchant Stone: Ranged Attack Resistance -->
 		</skills>
 	</item>
 	<item id="24783" name="Beach Swimsuit" additionalName="Mid-grade/ P. Def. Increase" type="Armor">
@@ -1221,7 +1221,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21426" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21426" level="1" /> <!-- Visual Enchant Stone: P. Def. -->
 		</skills>
 	</item>
 	<item id="24784" name="Beach Swimsuit" additionalName="Mid-grade/ M. Def. Increase" type="Armor">
@@ -1237,7 +1237,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21429" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21429" level="1" /> <!-- Visual Enchant Stone: M. Def. -->
 		</skills>
 	</item>
 	<item id="24785" name="Beach Swimsuit" additionalName="Mid-grade/ Attribute Resistance" type="Armor">
@@ -1253,7 +1253,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21432" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21432" level="1" /> <!-- Visual Enchant Stone: Attribute Resistance -->
 		</skills>
 	</item>
 	<item id="24786" name="Beach Swimsuit" additionalName="Mid-grade/ Received Heal Amount Increase" type="Armor">
@@ -1269,7 +1269,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21435" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21435" level="1" /> <!-- Visual Enchant Stone: Received Healing -->
 		</skills>
 	</item>
 	<item id="24787" name="Beach Swimsuit" additionalName="Mid-grade/ Max. HP Increase" type="Armor">
@@ -1285,7 +1285,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21438" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21438" level="1" /> <!-- Visual Enchant Stone: Max HP -->
 		</skills>
 	</item>
 	<item id="24788" name="Beach Swimsuit" additionalName="Mid-grade/ Max. MP Increase" type="Armor">
@@ -1301,7 +1301,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21441" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21441" level="1" /> <!-- Visual Enchant Stone: Max MP -->
 		</skills>
 	</item>
 	<item id="24789" name="Beach Swimsuit" additionalName="Mid-grade/ Max CP Increase" type="Armor">
@@ -1317,7 +1317,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21444" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21444" level="1" /> <!-- Visual Enchant Stone: Max CP -->
 		</skills>
 	</item>
 	<item id="24790" name="Beach Swimsuit" additionalName="Mid-grade/ Speed Increase" type="Armor">
@@ -1333,7 +1333,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21447" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21447" level="1" /> <!-- Visual Enchant Stone: Speed -->
 		</skills>
 	</item>
 	<item id="24791" name="Beach Swimsuit" additionalName="Mid-grade/ HP Recovery Bonus Increase" type="Armor">
@@ -1349,7 +1349,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21450" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21450" level="1" /> <!-- Visual Enchant Stone: HP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24792" name="Beach Swimsuit" additionalName="Mid-grade/ MP Recovery Bonus Increase" type="Armor">
@@ -1365,7 +1365,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21453" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21453" level="1" /> <!-- Visual Enchant Stone: MP Recovery Rate -->
 		</skills>
 	</item>
 	<item id="24793" name="Beach Swimsuit" additionalName="Mid-grade/ Evasion Increase" type="Armor">
@@ -1381,7 +1381,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21456" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21456" level="1" /> <!-- Visual Enchant Stone: Evasion -->
 		</skills>
 	</item>
 	<item id="24794" name="Beach Swimsuit" additionalName="Mid-grade/ Option 15" type="Armor">
@@ -1397,7 +1397,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21459" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21459" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 15 -->
 		</skills>
 	</item>
 	<item id="24795" name="Beach Swimsuit" additionalName="Mid-grade/ Option 16" type="Armor">
@@ -1413,7 +1413,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21462" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21462" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 16 -->
 		</skills>
 	</item>
 	<item id="24796" name="Beach Swimsuit" additionalName="Mid-grade/ Option 17" type="Armor">
@@ -1429,7 +1429,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21465" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21465" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 17 -->
 		</skills>
 	</item>
 	<item id="24797" name="Beach Swimsuit" additionalName="Mid-grade/ Option 18" type="Armor">
@@ -1445,7 +1445,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21468" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21468" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 18 -->
 		</skills>
 	</item>
 	<item id="24798" name="Beach Swimsuit" additionalName="Mid-grade/ Option 19" type="Armor">
@@ -1461,7 +1461,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21471" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21471" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 19 -->
 		</skills>
 	</item>
 	<item id="24799" name="Beach Swimsuit" additionalName="Mid-grade/ Option 20" type="Armor">
@@ -1477,7 +1477,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="21474" level="1" /> <!-- Visual Enchant Stone -->
+			<skill id="21474" level="1" /> <!-- Visual Enchant Stone: Mid-grade/ Option 20 -->
 		</skills>
 	</item>
 </list>

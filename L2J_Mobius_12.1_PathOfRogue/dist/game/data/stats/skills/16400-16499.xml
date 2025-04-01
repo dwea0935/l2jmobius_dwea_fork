@@ -100,7 +100,6 @@
 		<operateType>A2</operateType>
 		<targetType>TARGET</targetType>
 		<abnormalLevel>1</abnormalLevel>
-		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>
 			<value level="1">6</value>
 			<value level="2">8</value>

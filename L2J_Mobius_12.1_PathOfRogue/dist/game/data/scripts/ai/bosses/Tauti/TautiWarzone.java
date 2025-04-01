@@ -22,12 +22,12 @@ package ai.bosses.Tauti;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.Movie;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.OnEventTrigger;
 
 import instances.AbstractInstance;
@@ -210,7 +210,7 @@ public class TautiWarzone extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world.isStatus(5) && (npc.getCurrentHp() < (npc.getMaxHp() * 0.15)))
@@ -227,11 +227,10 @@ public class TautiWarzone extends AbstractInstance
 			world.openCloseDoor(DOOR_1, false);
 			world.openCloseDoor(DOOR_2, false);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == ZAHAK)
 		{
@@ -244,7 +243,6 @@ public class TautiWarzone extends AbstractInstance
 			npc.deleteMe();
 			world.finishInstance();
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

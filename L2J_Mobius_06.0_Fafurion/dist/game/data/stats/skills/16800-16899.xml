@@ -453,7 +453,6 @@
 		<effectRange>400</effectRange>
 		<hitTime>2000</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>107</magicLevel>
 		<mpConsume>165</mpConsume>

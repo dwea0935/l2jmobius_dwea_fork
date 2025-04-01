@@ -43,12 +43,10 @@ public class Q10375_ExploringTheCrumaTowers2ndFloor4 extends Quest
 	private static final int QUEST_ID = 10375;
 	private static final int[] MONSTERS =
 	{
-		22206, // Premo
-		22210, // Torfe
-		22207, // Validus
-		22209, // Perum
-		22208, // Dicor
 		22211, // Death Lord
+		22729, // Dark Warrior
+		22731, // Susceptor Ayr
+		22734, // Susceptor Bayer
 	};
 	
 	public Q10375_ExploringTheCrumaTowers2ndFloor4()
@@ -174,7 +172,7 @@ public class Q10375_ExploringTheCrumaTowers2ndFloor4 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -193,19 +191,17 @@ public class Q10375_ExploringTheCrumaTowers2ndFloor4 extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

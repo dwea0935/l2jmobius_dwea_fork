@@ -358,7 +358,6 @@
 		<itemConsumeId>46564</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
-		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAlignment">
 				<affectType>CASTER</affectType>
@@ -1354,7 +1353,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1437,7 +1436,6 @@
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
-		<blockedInOlympiad>true</blockedInOlympiad> <!-- Unconfirmed -->
 		<castRange>900</castRange>
 		<coolTime>300</coolTime>
 		<effectPoint>687</effectPoint>

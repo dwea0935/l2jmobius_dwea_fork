@@ -47,7 +47,7 @@ public class Q00184_ArtOfPersuasion extends Quest
 	
 	public Q00184_ArtOfPersuasion()
 	{
-		super(184);
+		super(184, "Art of Persuasion");
 		addStartNpc(MAESTRO_NIKOLA);
 		addTalkId(MAESTRO_NIKOLA, RESEARCHER_LORAIN, DESTROYED_DEVICE, ALARM_OF_GIANT);
 		registerQuestItems(METALLOGRAPH, BROKEN_METAL_PIECES, NIKOLAS_MAP);

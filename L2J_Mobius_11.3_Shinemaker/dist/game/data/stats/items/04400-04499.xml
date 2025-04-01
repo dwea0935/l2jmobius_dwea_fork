@@ -351,7 +351,7 @@
 		<set name="is_oly_restricted" val="true" />
 	</item>
 	<item id="4427" name="Alligator Leather Belt" type="EtcItem">
-		<!-- Alligator Leather Belt designed and created by Verche, a master leather craftsman. -->
+		<!-- A belt from the Alligator leather crafted by Leathersmith Verce. -->
 		<set name="icon" val="icon.etc_prefect_belt_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LEATHER" />
@@ -360,7 +360,7 @@
 		<set name="price" val="100" />
 	</item>
 	<item id="4428" name="Blue Alligator Leather Belt" type="EtcItem">
-		<!-- Alligator Leather Belt designed and created by Verche, a master leather craftsman. It is made from a rare blue type of Leather. -->
+		<!-- A belt crafted by Leathersmith Verce from the rare Bluebacked Alligator leather. -->
 		<set name="icon" val="icon.etc_prefect_belt_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LEATHER" />
@@ -369,7 +369,7 @@
 		<set name="price" val="2000" />
 	</item>
 	<item id="4429" name="Bejeweled Leather Belt" type="EtcItem">
-		<!-- Alligator Leather Belt designed and created by Verche, a master leather craftsman. It is made from a Leather that is studded with rare jewels. -->
+		<!-- A belt crafted by Leathersmith Verce from the Bejeweled Alligator leather. -->
 		<set name="icon" val="icon.etc_prefect_belt_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LEATHER" />
@@ -545,7 +545,7 @@
 		<set name="is_depositable" val="false" />
 	</item>
 	<item id="4445" name="STR Dye (STR +1 CON -3)" type="EtcItem">
-		<!-- Dye of STR. Collect 10 units and take them to the Dye Merchant to get a symbol that boosts your abilities. Requirements: all classes after the 1st class change and before the 2nd class change. Cannot be used by Ertheia. -->
+		<!-- STR Dye. Take 10 units of this dye to the Dye Merchant to get a tattoo that boosts your stats. Requirements: all classes after the 1st class change and before the 2nd class change. Cannot be used by Ertheia. -->
 		<set name="icon" val="icon.etc_str_hena_i00" />
 		<set name="etcitem_type" val="DYE" />
 		<set name="immediate_effect" val="true" />
@@ -567,7 +567,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4447" name="CON Dye (CON +1 STR -3)" type="EtcItem">
-		<!-- Dye of CON. Collect 10 units and take them to the Dye Merchant to get a symbol that boosts your abilities. Requirements: all classes after the 1st class change and before the 2nd class change. Cannot be used by Ertheia. -->
+		<!-- CON Dye. Take 10 units of this dye to the Dye Merchant to get a tattoo that boosts your stats. Requirements: all classes after the 1st class change and before the 2nd class change. Cannot be used by Ertheias. -->
 		<set name="icon" val="icon.etc_con_hena_i00" />
 		<set name="etcitem_type" val="DYE" />
 		<set name="immediate_effect" val="true" />
@@ -589,7 +589,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4449" name="DEX Dye (DEX +1 STR -3)" type="EtcItem">
-		<!-- Dye of DEX. Collect 10 units and take them to the Dye Merchant to get a symbol that boosts your abilities. Requirements: all classes after the 1st class change and before the 2nd class change. Cannot be used by Ertheia. -->
+		<!-- DEX Dye. Take 10 units of this dye to the Dye Merchant to get a tattoo that boosts your stats. Requirements: all classes after the 1st class change and before the 2nd class change. Cannot be used by Ertheias. -->
 		<set name="icon" val="icon.etc_dex_hena_i00" />
 		<set name="etcitem_type" val="DYE" />
 		<set name="immediate_effect" val="true" />

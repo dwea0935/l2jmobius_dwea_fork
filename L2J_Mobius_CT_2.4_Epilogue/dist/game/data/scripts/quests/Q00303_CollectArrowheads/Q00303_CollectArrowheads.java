@@ -40,7 +40,7 @@ public class Q00303_CollectArrowheads extends Quest
 	
 	public Q00303_CollectArrowheads()
 	{
-		super(303);
+		super(303, "Collect Arrowheads");
 		addStartNpc(MINIA);
 		addTalkId(MINIA);
 		addKillId(TUNATH_ORC_MARKSMAN);
@@ -60,7 +60,7 @@ public class Q00303_CollectArrowheads extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 1);
 		if (partyMember != null)
@@ -71,7 +71,6 @@ public class Q00303_CollectArrowheads extends Quest
 				qs.setCond(2);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

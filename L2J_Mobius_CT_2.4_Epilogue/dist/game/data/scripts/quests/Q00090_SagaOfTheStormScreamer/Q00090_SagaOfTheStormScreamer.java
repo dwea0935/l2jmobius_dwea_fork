@@ -28,7 +28,7 @@ public class Q00090_SagaOfTheStormScreamer extends AbstractSagaQuest
 {
 	public Q00090_SagaOfTheStormScreamer()
 	{
-		super(90);
+		super(90, "Saga of the Storm Screamer");
 		_npc = new int[]
 		{
 			30175,

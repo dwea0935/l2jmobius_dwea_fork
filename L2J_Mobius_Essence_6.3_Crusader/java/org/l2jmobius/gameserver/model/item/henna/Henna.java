@@ -162,7 +162,7 @@ public class Henna
 	 */
 	public boolean isAllowedClass(Player player)
 	{
-		return _wearClass.isEmpty() || _wearClass.contains(player.getClassId().level());
+		return _wearClass.isEmpty() || _wearClass.contains(player.getPlayerClass().level());
 	}
 	
 	/**

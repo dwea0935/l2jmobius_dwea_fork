@@ -20,11 +20,11 @@
  */
 package handlers.bypasshandlers;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.equipmentupgrade.ExShowUpgradeSystem;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * @author Mobius
@@ -53,7 +53,7 @@ public class UpgradeEquipment implements IBypassHandler
 	@Override
 	public boolean useBypass(String command, Player player, Creature target)
 	{
-		if ((target == null) || !target.isNpc() || !CommonUtil.contains(HEAD_BLACKSMITH, target.asNpc().getId()))
+		if ((target == null) || !target.isNpc() || !ArrayUtil.contains(HEAD_BLACKSMITH, target.asNpc().getId()))
 		{
 			return false;
 		}

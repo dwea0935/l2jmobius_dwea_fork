@@ -484,7 +484,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="4340" name="Certificate of Approval to Create a Belt" type="EtcItem">
-		<!-- If you take a sufficient amount of Alligator Leather and show it to Gabana, a master leather craftsman, you can have an Alligator Leather Belt made. -->
+		<!-- If you gather sufficient amount of Alligator Leather and take it to Leathersmith Verce, he will make Alligator Leather Belt for you. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />

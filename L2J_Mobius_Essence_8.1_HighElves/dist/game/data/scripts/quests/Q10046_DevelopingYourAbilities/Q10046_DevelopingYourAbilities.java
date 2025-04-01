@@ -20,9 +20,9 @@
  */
 package quests.Q10046_DevelopingYourAbilities;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.TeleportListData;
-import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -51,6 +51,7 @@ public class Q10046_DevelopingYourAbilities extends Quest
 		20025, // Lesser Dark Horror
 		20105, // Dark Horror
 		20379, // Stone Giant Soldier
+		20433, // Festering Bat
 	};
 	
 	public Q10046_DevelopingYourAbilities()
@@ -142,7 +143,7 @@ public class Q10046_DevelopingYourAbilities extends Quest
 					questState.exitQuest(false, true);
 					rewardPlayer(player);
 					
-					if (CategoryData.getInstance().isInCategory(CategoryType.FIRST_CLASS_GROUP, player.getClassId().getId()))
+					if (CategoryData.getInstance().isInCategory(CategoryType.FIRST_CLASS_GROUP, player.getPlayerClass().getId()))
 					{
 						player.sendPacket(ExClassChangeSetAlarm.STATIC_PACKET);
 					}
@@ -181,7 +182,7 @@ public class Q10046_DevelopingYourAbilities extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -200,19 +201,17 @@ public class Q10046_DevelopingYourAbilities extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

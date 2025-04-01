@@ -22,7 +22,8 @@ package org.l2jmobius.gameserver.network.clientpackets.dailymission;
 
 import org.l2jmobius.gameserver.data.xml.MissionLevel;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.MissionLevelPlayerDataHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.MissionLevelPlayerDataHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -54,7 +55,7 @@ public class RequestMissionLevelJumpLevel extends ClientPacket
 			return;
 		}
 		
-		if (player.destroyItemByItemId("MissionLevelJump", Inventory.LCOIN_ID, 1000, player, false))
+		if (player.destroyItemByItemId(ItemProcessType.FEE, Inventory.LCOIN_ID, 1000, player, false))
 		{
 			final MissionLevelPlayerDataHolder info = player.getMissionLevelProgress();
 			info.setCurrentLevel(30);

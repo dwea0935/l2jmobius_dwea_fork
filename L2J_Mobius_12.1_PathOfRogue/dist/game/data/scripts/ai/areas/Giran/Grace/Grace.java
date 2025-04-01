@@ -27,9 +27,10 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerDlgAnswer;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerDlgAnswer;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -121,7 +122,7 @@ public class Grace extends AbstractNpcAI
 			return;
 		}
 		
-		if (player.reduceAdena("Grace", ADENA_COST, _graceNpc, true))
+		if (player.reduceAdena(ItemProcessType.FEE, ADENA_COST, _graceNpc, true))
 		{
 			SkillCaster.triggerCast(_graceNpc, player, getRandom(100) < BUFF_CHANCE ? GRACE_LUCK_LV2.getSkill() : GRACE_LUCK_LV1.getSkill());
 		}

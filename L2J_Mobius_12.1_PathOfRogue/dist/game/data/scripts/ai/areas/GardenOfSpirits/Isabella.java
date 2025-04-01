@@ -75,7 +75,7 @@ public class Isabella extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (!npc.isDead())
 		{
@@ -95,11 +95,10 @@ public class Isabella extends AbstractNpcAI
 				npc.setScriptValue(3);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == ISABELLA)
 		{
@@ -112,11 +111,10 @@ public class Isabella extends AbstractNpcAI
 			closeDoor(DOOR1, 0);
 			closeDoor(DOOR2, 0);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == ISABELLA)
 		{
@@ -133,7 +131,6 @@ public class Isabella extends AbstractNpcAI
 			openDoor(DOOR1, 0);
 			openDoor(DOOR2, 0);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

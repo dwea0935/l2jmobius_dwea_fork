@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="3500" levels="1" name="Wooden Set">
 		<!-- Increases P. Def. and Max HP. -->
@@ -701,7 +701,10 @@
 		</for>
 	</skill>
 	<skill id="3552" levels="4" name="Special Ability: PvP Damage">
-		<!-- Increases damage inflicted during PvP. -->
+		<!-- Level 1: Increases damage inflicted during PvP. -->
+		<!-- Level 2: Unleashes an attack that strikes multiple opponents, and inflicts additional damage during PvP. -->
+		<!-- Level 3: Increases damage inflicted during PvP. -->
+		<!-- Level 4: Can attack multiple enemies. Increases damage inflicted during PvP. -->
 		<table name="#atkCountMax">0 4 0 4</table>
 		<table name="#bonus">1.05 1.05 1.1 1.1</table>
 		<table name="#magicLevel">64 64 72 72</table>
@@ -941,7 +944,9 @@
 		</for>
 	</skill>
 	<skill id="3564" levels="3" name="Special Ability: Haste">
-		<!-- Increases Atk.Speed and enhances damage to target during PvP. -->
+		<!-- Level 1: Increases Atk.Speed and enhances damage to target during PvP. -->
+		<!-- Level 2: Increases ATK Spd. Increases damage inflicted during PvP. -->
+		<!-- Level 3: Increases Atk. Spd. and damage inflicted during PvP. -->
 		<table name="#magicLevel">75 80 84</table>
 		<table name="#pAtkSpd">1.07 1.1 1.11</table>
 		<set name="icon" val="icon.skill1086" />
@@ -958,7 +963,9 @@
 		</for>
 	</skill>
 	<skill id="3565" levels="3" name="Special Ability: Focus">
-		<!-- Increases critical attack success rate and damage inflicted during PvP. -->
+		<!-- Level 1: Increases critical attack success rate and damage inflicted during PvP. -->
+		<!-- Level 2: Increases critical attack success rate. Increases damage inflicted during PvP. -->
+		<!-- Level 3: Increases critical attack rate and damage inflicted during PvP. -->
 		<table name="#magicLevel">75 80 84</table>
 		<table name="#rCrit">80.6 107 96</table>
 		<set name="icon" val="icon.skill1077" />
@@ -975,7 +982,9 @@
 		</for>
 	</skill>
 	<skill id="3566" levels="3" name="Special Ability: Focus">
-		<!-- Increases critical attack success rate and damage inflicted during PvP. -->
+		<!-- Level 1: Increases critical attack success rate and damage inflicted during PvP. -->
+		<!-- Level 2: Increases critical attack success rate. Increases damage inflicted during PvP. -->
+		<!-- Level 3: Increases critical attack rate and damage inflicted during PvP. -->
 		<table name="#magicLevel">75 80 84</table>
 		<table name="#rCrit">84.3 111.5 100.1</table>
 		<set name="icon" val="icon.skill1077" />
@@ -992,7 +1001,9 @@
 		</for>
 	</skill>
 	<skill id="3567" levels="3" name="Special Ability: Focus">
-		<!-- Increases critical attack success rate and damage inflicted during PvP. -->
+		<!-- Level 1: Increases critical attack success rate and damage inflicted during PvP. -->
+		<!-- Level 2: Increases critical attack success rate. Increases damage inflicted during PvP. -->
+		<!-- Level 3: Increases critical attack rate and damage inflicted during PvP. -->
 		<table name="#magicLevel">75 80 84</table>
 		<table name="#rCrit">88.1 116 104.1</table>
 		<set name="icon" val="icon.skill1077" />
@@ -1009,7 +1020,8 @@
 		</for>
 	</skill>
 	<skill id="3568" levels="2" name="Special Ability: HP Drain">
-		<!-- Partially restores HP using damage inflicted upon the enemy. Excludes damage from skill or range attack. Enhances damage to target during PvP. -->
+		<!-- Level 1: Partially restores HP using damage inflicted upon the enemy. Excludes damage from skill or range attack. Enhances damage to target during PvP. -->
+		<!-- Level 2: A portion of the damage inflicted on an enemy is used to restore one's own HP. Excludes damage caused by skills and long-range attacks. Increases damage inflicted during PvP. -->
 		<table name="#absorbDam">3 4</table>
 		<table name="#magicLevel">75 84</table>
 		<set name="icon" val="icon.skill1268" />
@@ -1060,7 +1072,8 @@
 		</for>
 	</skill>
 	<skill id="3571" levels="2" name="Special Ability: Crt. Stun">
-		<!-- Temporarily stuns and paralyzes target. -->
+		<!-- Level 1: Temporarily stuns and paralyzes target. -->
+		<!-- Level 2: Temporarily renders an enemy unable to move or act. -->
 		<table name="#activateRates">27 43</table>
 		<table name="#magicLevel">75 84</table>
 		<set name="abnormalLevel" val="1" />
@@ -1082,7 +1095,8 @@
 		</for>
 	</skill>
 	<skill id="3572" levels="4" name="Special Ability: Crt. Damage">
-		<!-- Increases critical attack success rate and damage inflicted during PvP. -->
+		<!-- Level 1: Increases critical attack success rate and damage inflicted during PvP. -->
+		<!-- Level 2: Increases the power of critical attacks and damage inflicted during PvP. -->
 		<table name="#cAtkAdd">265 906 999 1059</table>
 		<table name="#magicLevel">75 84 85 86</table>
 		<set name="icon" val="icon.skill0193" />
@@ -1099,7 +1113,9 @@
 		</for>
 	</skill>
 	<skill id="3573" levels="3" name="Special Ability: Guidance">
-		<!-- Increases Accuracy and enhances damage to target during PvP. -->
+		<!-- Level 1: Increases Accuracy and enhances damage to target during PvP. -->
+		<!-- Level 2: Increases Accuracy. Increases damage inflicted during PvP. -->
+		<!-- Level 3: Increases accuracy and damage inflicted during PvP. -->
 		<table name="#accCombat">5.27 5.32 7.5</table>
 		<table name="#magicLevel">75 80 84</table>
 		<set name="icon" val="icon.skill1240" />
@@ -1116,7 +1132,9 @@
 		</for>
 	</skill>
 	<skill id="3574" levels="3" name="Special Ability: Crt. Slow">
-		<!-- Temporarily decreases Speed. Effect 3. -->
+		<!-- Level 1: Temporarily decreases Speed. Effect 3. -->
+		<!-- Level 2: Temporarily decreases movement speed. Effect 3. -->
+		<!-- Level 3: Temporarily decreases movement speed. Effect 3. -->
 		<table name="#activateRates">16 24 33</table>
 		<table name="#magicLevel">75 84 84</table>
 		<set name="abnormalLevel" val="3" />
@@ -1140,7 +1158,8 @@
 		</for>
 	</skill>
 	<skill id="3575" levels="4" name="Special Ability: Empower">
-		<!-- Increases M. Atk. Enhances damage to target during PvP. -->
+		<!-- Level 1: Increases M. Atk. Enhances damage to target during PvP. -->
+		<!-- Level 2: Increases M. Atk. and damage inflicted during PvP. -->
 		<table name="#magicLevel">75 84 85 86</table>
 		<table name="#mAtk">60.09 151.09 166.54 176.53</table>
 		<set name="icon" val="icon.skill1059" />
@@ -1174,7 +1193,8 @@
 		</for>
 	</skill>
 	<skill id="3577" levels="2" name="Special Ability: Magic Hold">
-		<!-- Magically immobilizes target. -->
+		<!-- Level 1: Magically immobilizes target. -->
+		<!-- Level 2: Temporarily immobilizes an enemy. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="30" />
 		<set name="abnormalType" val="ROOT_MAGICALLY" />

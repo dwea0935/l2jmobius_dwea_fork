@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.ceremonyofchaos;
 
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;

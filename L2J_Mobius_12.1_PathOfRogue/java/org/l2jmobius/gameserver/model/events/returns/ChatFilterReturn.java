@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.events.returns;
 
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 /**
  * @author UnAfraid

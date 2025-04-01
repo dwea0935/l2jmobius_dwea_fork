@@ -19,13 +19,13 @@ package quests.Q00336_CoinsOfMagic;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowQuestionMark;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Coin Of Magic (336)
@@ -1084,7 +1084,7 @@ public class Q00336_CoinsOfMagic extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -1098,9 +1098,10 @@ public class Q00336_CoinsOfMagic extends Quest
 					qs.setCond(3);
 					qs.getPlayer().sendPacket(new TutorialShowQuestionMark(336));
 				}
-				return super.onKill(npc, killer, isSummon);
+				return;
 			}
 		}
+		
 		final QuestState qs = getRandomPlayerFromParty(killer, npc, 3);
 		if (qs != null)
 		{
@@ -1324,7 +1325,6 @@ public class Q00336_CoinsOfMagic extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	/**
@@ -1786,7 +1786,7 @@ public class Q00336_CoinsOfMagic extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = getQuestState(pm, false);
-				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && Util.checkIfInRange(1500, npc, pm, true))
+				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && LocationUtil.checkIfInRange(1500, npc, pm, true))
 				{
 					candidates.add(qss);
 				}
@@ -1810,7 +1810,7 @@ public class Q00336_CoinsOfMagic extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = getQuestState(pm, false);
-				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && !hasQuestItems(player, Q_KALDIS_GOLD_DRAGON) && Util.checkIfInRange(1500, npc, pm, true))
+				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && !hasQuestItems(player, Q_KALDIS_GOLD_DRAGON) && LocationUtil.checkIfInRange(1500, npc, pm, true))
 				{
 					candidates.add(qss);
 				}

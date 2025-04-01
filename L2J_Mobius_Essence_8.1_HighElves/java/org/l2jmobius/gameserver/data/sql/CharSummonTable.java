@@ -28,17 +28,17 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.data.enums.EvolveLevel;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.EvolveLevel;
 import org.l2jmobius.gameserver.model.PetData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.holders.creature.PetEvolveHolder;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.instance.Servitor;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.PetEvolveHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
@@ -78,7 +78,7 @@ public class CharSummonTable
 			{
 				while (rs.next())
 				{
-					_servitors.computeIfAbsent(rs.getInt("ownerId"), k -> ConcurrentHashMap.newKeySet()).add(rs.getInt("summonId"));
+					_servitors.computeIfAbsent(rs.getInt("ownerId"), _ -> ConcurrentHashMap.newKeySet()).add(rs.getInt("summonId"));
 				}
 			}
 			catch (Exception e)
@@ -107,7 +107,7 @@ public class CharSummonTable
 	
 	public void removeServitor(Player player, int summonObjectId)
 	{
-		_servitors.computeIfPresent(player.getObjectId(), (k, v) ->
+		_servitors.computeIfPresent(player.getObjectId(), (_, v) ->
 		{
 			v.remove(summonObjectId);
 			return !v.isEmpty() ? v : null;
@@ -238,7 +238,7 @@ public class CharSummonTable
 			return;
 		}
 		
-		_servitors.computeIfAbsent(summon.getOwner().getObjectId(), k -> ConcurrentHashMap.newKeySet()).add(summon.getObjectId());
+		_servitors.computeIfAbsent(summon.getOwner().getObjectId(), _ -> ConcurrentHashMap.newKeySet()).add(summon.getObjectId());
 		
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement ps = con.prepareStatement(SAVE_SUMMON))

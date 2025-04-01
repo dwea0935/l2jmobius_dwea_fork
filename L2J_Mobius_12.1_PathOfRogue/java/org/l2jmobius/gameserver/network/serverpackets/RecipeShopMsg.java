@@ -27,18 +27,26 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class RecipeShopMsg extends ServerPacket
 {
-	private final Player _player;
+	private final int _objectId;
+	private final String _message;
 	
 	public RecipeShopMsg(Player player)
 	{
-		_player = player;
+		_objectId = player.getObjectId();
+		_message = player.getStoreName();
+	}
+	
+	public RecipeShopMsg(int objectId, String message)
+	{
+		_objectId = objectId;
+		_message = message;
 	}
 	
 	@Override
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.RECIPE_SHOP_MSG.writeId(this, buffer);
-		buffer.writeInt(_player.getObjectId());
-		buffer.writeString(_player.getStoreName());
+		buffer.writeInt(_objectId);
+		buffer.writeString(_message);
 	}
 }

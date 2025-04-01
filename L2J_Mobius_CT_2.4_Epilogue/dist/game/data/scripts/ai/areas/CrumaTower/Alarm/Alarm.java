@@ -16,12 +16,11 @@
  */
 package ai.areas.CrumaTower.Alarm;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 import quests.Q00184_ArtOfPersuasion.Q00184_ArtOfPersuasion;
@@ -58,19 +57,19 @@ public class Alarm extends AbstractNpcAI
 			case "SELF_DESTRUCT_IN_60":
 			{
 				startQuestTimer("SELF_DESTRUCT_IN_30", 30000, npc, null);
-				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.THE_ALARM_WILL_SELF_DESTRUCT_IN_60_SECONDS_ENTER_PASSCODE_TO_OVERRIDE);
+				npc.broadcastSay(ChatType.NPC_GENERAL, "The alarm will self-destruct in 60 seconds. Enter passcode to override.");
 				break;
 			}
 			case "SELF_DESTRUCT_IN_30":
 			{
 				startQuestTimer("SELF_DESTRUCT_IN_10", 20000, npc, null);
-				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.THE_ALARM_WILL_SELF_DESTRUCT_IN_30_SECONDS_ENTER_PASSCODE_TO_OVERRIDE);
+				npc.broadcastSay(ChatType.NPC_GENERAL, "The alarm will self-destruct in 30 seconds. Enter passcode to override.");
 				break;
 			}
 			case "SELF_DESTRUCT_IN_10":
 			{
 				startQuestTimer("RECORDER_CRUSHED", 10000, npc, null);
-				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.THE_ALARM_WILL_SELF_DESTRUCT_IN_10_SECONDS_ENTER_PASSCODE_TO_OVERRIDE);
+				npc.broadcastSay(ChatType.NPC_GENERAL, "The alarm will self-destruct in 10 seconds. Enter passcode to override.");
 				break;
 			}
 			case "RECORDER_CRUSHED":
@@ -80,7 +79,7 @@ public class Alarm extends AbstractNpcAI
 					npc0.getVariables().set("SPAWNED", false);
 					if (player0 != null)
 					{
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.RECORDER_CRUSHED);
+						npc.broadcastSay(ChatType.NPC_GENERAL, "Recorder crushed.");
 						if (verifyMemoState(player0, ART_OF_PERSUASION_ID, -1))
 						{
 							setMemoState(player0, ART_OF_PERSUASION_ID, 5);
@@ -221,17 +220,16 @@ public class Alarm extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		cancelQuestTimer("SELF_DESTRUCT_IN_60", npc, null);
 		startQuestTimer("SELF_DESTRUCT_IN_60", 60000, npc, null);
-		npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.INTRUDER_ALERT_THE_ALARM_WILL_SELF_DESTRUCT_IN_2_MINUTES);
+		npc.broadcastSay(ChatType.NPC_GENERAL, "Intruder Alert! The alarm will self-destruct in 2 minutes.");
 		final Player player = npc.getVariables().getObject("player0", Player.class);
 		if (player != null)
 		{
 			playSound(player, QuestSound.ITEMSOUND_SIREN);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	/**

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="39309" toLevel="1" name="Stabilized Eva's Scroll: Enchant Hair Accessory">
 		<!-- To Enchant Hair Accessory. -->
@@ -44,37 +44,51 @@
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="39318" toLevel="3" name="Item Skill: Mental Attack Resistance">
-		<!-- Mental Attack Resistance +5%. -->
+		<!-- Level 1: Mental Attack Resistance +5%. -->
+		<!-- Level 2: Mental Attack Resistance +10%. -->
+		<!-- Level 3: Mental Attack Resistance +20%. -->
 		<icon>icon.skill11825</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="39319" toLevel="3" name="Item Skill: Stun Resistance">
-		<!-- Stun Resistance +5%. -->
+		<!-- Level 1: Stun Resistance +5%. -->
+		<!-- Level 2: Stun Resistance +10%. -->
+		<!-- Level 3: Stun Resistance +20%. -->
 		<icon>icon.skill11825</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="39320" toLevel="3" name="Item Skill: Paralysis Resistance">
-		<!-- Paralysis Resistance +5%. -->
+		<!-- Level 1: Paralysis Resistance +5%. -->
+		<!-- Level 2: Paralysis Resistance +10%. -->
+		<!-- Level 3: Paralysis Resistance +20%. -->
 		<icon>icon.skill11825</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="39321" toLevel="3" name="Item Skill: Bleed Resistance">
-		<!-- Bleed Resistance +5%. -->
+		<!-- Level 1: Bleed Resistance +5%. -->
+		<!-- Level 2: Bleed Resistance +10%. -->
+		<!-- Level 3: Bleed Resistance +20%. -->
 		<icon>icon.skill11825</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="39322" toLevel="3" name="Item Skill: Poison Resistance">
-		<!-- Poison Resistance +5%. -->
+		<!-- Level 1: Poison Resistance +5%. -->
+		<!-- Level 2: Poison Resistance +10%. -->
+		<!-- Level 3: Poison Resistance +20%. -->
 		<icon>icon.skill11825</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="39323" toLevel="3" name="Item Skill: Hold Resistance">
-		<!-- Hold Resistance +5%. -->
+		<!-- Level 1: Hold Resistance +5%. -->
+		<!-- Level 2: Hold Resistance +10%. -->
+		<!-- Level 3: Hold Resistance +20%. -->
 		<icon>icon.skill11825</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="39324" toLevel="3" name="Item Skill: XP Gain">
-		<!-- XP +5%. -->
+		<!-- Level 1: XP +5%. -->
+		<!-- Level 2: XP +10%. -->
+		<!-- Level 3: XP +20%. -->
 		<icon>icon.skill11825</icon>
 		<operateType>A1</operateType>
 	</skill>

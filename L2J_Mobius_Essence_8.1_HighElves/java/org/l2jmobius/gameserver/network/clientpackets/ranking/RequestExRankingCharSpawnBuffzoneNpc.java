@@ -20,9 +20,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.ranking;
 
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.RankingPowerManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.RankingPowerManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -68,7 +69,7 @@ public class RequestExRankingCharSpawnBuffzoneNpc extends ClientPacket
 			return;
 		}
 		
-		player.destroyItemByItemId("Adena", 57, COST, player, true);
+		player.destroyItemByItemId(ItemProcessType.FEE, 57, COST, player, true);
 		RankingPowerManager.getInstance().activatePower(player);
 		player.sendPacket(new ExRankingBuffZoneNpcPosition());
 		player.sendPacket(new ExRankingBuffZoneNpcInfo());

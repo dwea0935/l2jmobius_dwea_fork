@@ -35,7 +35,7 @@ public class Q00122_OminousNews extends Quest
 	
 	public Q00122_OminousNews()
 	{
-		super(122);
+		super(122, "Ominous News");
 		addStartNpc(MOIRA);
 		addTalkId(MOIRA, KARUDA);
 	}

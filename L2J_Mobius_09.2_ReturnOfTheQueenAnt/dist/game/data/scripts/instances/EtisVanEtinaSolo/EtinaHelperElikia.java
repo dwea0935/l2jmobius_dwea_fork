@@ -20,8 +20,6 @@
  */
 package instances.EtisVanEtinaSolo;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -32,10 +30,12 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyNpc;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttacked;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -114,7 +114,7 @@ public class EtinaHelperElikia extends AbstractNpcAI
 					{
 						npc.setTarget(getRandomEntry(World.getInstance().getVisibleObjectsInRange(npc, Monster.class, 2500)));
 					}
-					if ((target != null) && !target.isInvul() && target.isTargetable() && GeoEngine.getInstance().canSeeTarget(npc, target) && !CommonUtil.contains(NOT_ATK_NPCS, target.getId()) && !CommonUtil.contains(ETINA_HELPERS, target.getId()))
+					if ((target != null) && !target.isInvul() && target.isTargetable() && GeoEngine.getInstance().canSeeTarget(npc, target) && !ArrayUtil.contains(NOT_ATK_NPCS, target.getId()) && !ArrayUtil.contains(ETINA_HELPERS, target.getId()))
 					{
 						npc.setInvul(true);
 						npc.setRunning();
@@ -133,7 +133,7 @@ public class EtinaHelperElikia extends AbstractNpcAI
 		if ((npc != null) && !npc.isInCombat())
 		{
 			final Instance instance = npc.getInstanceWorld();
-			if ((instance != null) && !event.getAttacker().isPlayable() && (getRandom(50) < 5) && !CommonUtil.contains(ETINA_HELPERS, event.getAttacker().getId()))
+			if ((instance != null) && !event.getAttacker().isPlayable() && (getRandom(50) < 5) && !ArrayUtil.contains(ETINA_HELPERS, event.getAttacker().getId()))
 			{
 				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.DON_T_GET_IN_MY_WAY);
 			}
@@ -151,13 +151,12 @@ public class EtinaHelperElikia extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
 			npc.getVariables().set("PLAYER_OBJECT", creature.asPlayer());
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public static void main(String[] args)

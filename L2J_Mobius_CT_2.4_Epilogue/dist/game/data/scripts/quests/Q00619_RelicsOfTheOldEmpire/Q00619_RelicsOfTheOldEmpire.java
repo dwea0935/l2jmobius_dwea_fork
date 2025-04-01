@@ -19,11 +19,11 @@ package quests.Q00619_RelicsOfTheOldEmpire;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Relics of the Old Empire (619)
@@ -213,7 +213,7 @@ public class Q00619_RelicsOfTheOldEmpire extends Quest
 	
 	public Q00619_RelicsOfTheOldEmpire()
 	{
-		super(619);
+		super(619, "Relics of the Old Empire");
 		addStartNpc(GHOST_OF_ADVENTURER);
 		addTalkId(GHOST_OF_ADVENTURER);
 		addKillId(MOBS.keySet());
@@ -265,13 +265,13 @@ public class Q00619_RelicsOfTheOldEmpire extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs != null)
 		{
 			final int npcId = npc.getId();
-			if (CommonUtil.contains(ARCHON_OF_HALISHA, npcId))
+			if (ArrayUtil.contains(ARCHON_OF_HALISHA, npcId))
 			{
 				final int itemCount = ((getRandom(100) < 79) ? 4 : 3);
 				giveItemRandomly(player, npc, BROKEN_RELIC_PART, itemCount, 0, 1, true);
@@ -296,7 +296,6 @@ public class Q00619_RelicsOfTheOldEmpire extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

@@ -22,8 +22,8 @@ package events.DreamMaker;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * Dream Maker event AI.

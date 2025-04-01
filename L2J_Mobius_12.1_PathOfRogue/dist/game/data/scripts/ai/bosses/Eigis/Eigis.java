@@ -34,17 +34,17 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.instancemanager.DBSpawnManager;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.DBSpawnManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.ArenaZone;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
@@ -169,16 +169,15 @@ public class Eigis extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		_bossInCombat = false;
 		startQuestTimer("checkCombatStatus", 1000, npc, null, true);
 		startQuestTimer("checkPosition", 5000, npc, null, true);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		_bossInCombat = true;
 		cancelQuestTimer("checkTargetLost", npc, null);
@@ -187,11 +186,10 @@ public class Eigis extends AbstractNpcAI
 		{
 			activateSpecialMechanics(npc);
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if ((creature instanceof Npc) && (creature.getId() == EIGIS))
 		{
@@ -200,11 +198,10 @@ public class Eigis extends AbstractNpcAI
 			npc.setTarget(null);
 			cancelSpecialSkills(npc);
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (!_barrierActivated)
 		{
@@ -249,8 +246,6 @@ public class Eigis extends AbstractNpcAI
 			_specialActivated = true;
 			activateSpecialMechanics(npc);
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	private void activateSpecialMechanics(Npc npc)
@@ -760,7 +755,7 @@ public class Eigis extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		_bossInCombat = false;
 		_specialActivated = false;
@@ -778,7 +773,6 @@ public class Eigis extends AbstractNpcAI
 		cancelQuestTimer("checkPosition", npc, null);
 		cancelQuestTimer("activate_barrier", npc, null);
 		cancelQuestTimer("remove_barrier", npc, null);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

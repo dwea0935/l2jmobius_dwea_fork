@@ -25,10 +25,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.StatusUpdateType;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.enums.StatusUpdateType;
 
 /**
  * @author Mobius

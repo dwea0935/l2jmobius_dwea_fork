@@ -180,7 +180,6 @@
 		<affectScope>RANGE</affectScope>
 		<attributeType>WATER</attributeType>
 		<attributeValue>180</attributeValue>
-		<attributeValue>180</attributeValue>
 		<castRange>600</castRange>
 		<effectPoint>-1063</effectPoint>
 		<effectRange>900</effectRange>

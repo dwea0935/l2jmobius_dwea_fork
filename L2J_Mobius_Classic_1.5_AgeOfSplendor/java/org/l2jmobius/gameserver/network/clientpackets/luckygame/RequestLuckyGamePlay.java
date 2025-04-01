@@ -21,23 +21,24 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.holders.LuckyGameDataHolder;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.LuckyGameData;
-import org.l2jmobius.gameserver.enums.LuckyGameItemType;
-import org.l2jmobius.gameserver.enums.LuckyGameResultType;
-import org.l2jmobius.gameserver.enums.LuckyGameType;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.LuckyGameDataHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.LuckyGameItemType;
+import org.l2jmobius.gameserver.network.enums.LuckyGameResultType;
+import org.l2jmobius.gameserver.network.enums.LuckyGameType;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.luckygame.ExBettingLuckyGameResult;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 /**
  * @author Sdw
@@ -52,9 +53,9 @@ public class RequestLuckyGamePlay extends ClientPacket
 	@Override
 	protected void readImpl()
 	{
-		final int type = CommonUtil.constrain(readInt(), 0, LuckyGameType.values().length);
+		final int type = MathUtil.clamp(readInt(), 0, LuckyGameType.values().length);
 		_type = LuckyGameType.values()[type];
-		_reading = CommonUtil.constrain(readInt(), 0, 50); // max play is 50
+		_reading = MathUtil.clamp(readInt(), 0, 50); // max play is 50
 	}
 	
 	@Override
@@ -95,7 +96,7 @@ public class RequestLuckyGamePlay extends ClientPacket
 				totalChance += item.getChance();
 				if (totalChance >= chance)
 				{
-					rewards.computeIfAbsent(LuckyGameItemType.COMMON, k -> new ArrayList<>()).add(item);
+					rewards.computeIfAbsent(LuckyGameItemType.COMMON, _ -> new ArrayList<>()).add(item);
 					break;
 				}
 			}
@@ -110,7 +111,7 @@ public class RequestLuckyGamePlay extends ClientPacket
 					totalChance += item.getChance();
 					if (totalChance >= chanceModify)
 					{
-						rewards.computeIfAbsent(LuckyGameItemType.RARE, k -> new ArrayList<>()).add(item);
+						rewards.computeIfAbsent(LuckyGameItemType.RARE, _ -> new ArrayList<>()).add(item);
 						blackCat = true;
 						break;
 					}
@@ -118,7 +119,7 @@ public class RequestLuckyGamePlay extends ClientPacket
 				
 				if (playCount == holder.getMaxModifyRewardGame())
 				{
-					rewards.computeIfAbsent(LuckyGameItemType.RARE, k -> new ArrayList<>()).add(modifyReward.get(Rnd.get(modifyReward.size())));
+					rewards.computeIfAbsent(LuckyGameItemType.RARE, _ -> new ArrayList<>()).add(modifyReward.get(Rnd.get(modifyReward.size())));
 					blackCat = true;
 				}
 			}
@@ -134,7 +135,7 @@ public class RequestLuckyGamePlay extends ClientPacket
 			return;
 		}
 		
-		if (!player.destroyItemByItemId("LuckyGame", _type == LuckyGameType.LUXURY ? LUXURY_FORTUNE_READING_TICKET : FORTUNE_READING_TICKET, _reading, player, true))
+		if (!player.destroyItemByItemId(ItemProcessType.FEE, _type == LuckyGameType.LUXURY ? LUXURY_FORTUNE_READING_TICKET : FORTUNE_READING_TICKET, _reading, player, true))
 		{
 			player.sendPacket(_type == LuckyGameType.LUXURY ? ExBettingLuckyGameResult.LUXURY_INVALID_ITEM_COUNT : ExBettingLuckyGameResult.NORMAL_INVALID_ITEM_COUNT);
 			return;
@@ -143,7 +144,7 @@ public class RequestLuckyGamePlay extends ClientPacket
 		for (int i = 0; i < _reading; i++)
 		{
 			final int serverGameNumber = LuckyGameData.getInstance().increaseGame();
-			holder.getUniqueReward().stream().filter(reward -> reward.getPoints() == serverGameNumber).forEach(item -> rewards.computeIfAbsent(LuckyGameItemType.UNIQUE, k -> new ArrayList<>()).add(item));
+			holder.getUniqueReward().stream().filter(reward -> reward.getPoints() == serverGameNumber).forEach(item -> rewards.computeIfAbsent(LuckyGameItemType.UNIQUE, _ -> new ArrayList<>()).add(item));
 		}
 		
 		player.sendPacket(new ExBettingLuckyGameResult(LuckyGameResultType.SUCCESS, _type, rewards, (int) (_type == LuckyGameType.LUXURY ? player.getInventory().getInventoryItemCount(LUXURY_FORTUNE_READING_TICKET, -1) : player.getInventory().getInventoryItemCount(FORTUNE_READING_TICKET, -1))));
@@ -152,7 +153,7 @@ public class RequestLuckyGamePlay extends ClientPacket
 		{
 			for (ItemHolder r : reward.getValue())
 			{
-				final Item item = player.addItem("LuckyGame", r.getId(), r.getCount(), player, true);
+				final Item item = player.addItem(ItemProcessType.REWARD, r.getId(), r.getCount(), player, true);
 				if (reward.getKey() == LuckyGameItemType.UNIQUE)
 				{
 					final SystemMessage sm = new SystemMessage(_type == LuckyGameType.LUXURY ? SystemMessageId.CONGRATULATIONS_C1_HAS_OBTAINED_S2_OF_S3_IN_THE_LUXURY_FORTUNE_READING : SystemMessageId.CONGRATULATIONS_C1_HAS_OBTAINED_S2_OF_S3_THROUGH_FORTUNE_READING);

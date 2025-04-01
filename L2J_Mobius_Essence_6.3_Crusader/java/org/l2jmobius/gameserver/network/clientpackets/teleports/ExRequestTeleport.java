@@ -21,11 +21,12 @@
 package org.l2jmobius.gameserver.network.clientpackets.teleports;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.holders.TeleportListHolder;
 import org.l2jmobius.gameserver.data.xml.TeleportListData;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.TeleportListHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
@@ -136,11 +137,11 @@ public class ExRequestTeleport extends ClientPacket
 				// Reduce items.
 				if (teleport.isSpecial())
 				{
-					player.destroyItemByItemId("Teleport", Inventory.LCOIN_ID, price, player, true);
+					player.destroyItemByItemId(ItemProcessType.FEE, Inventory.LCOIN_ID, price, player, true);
 				}
 				else
 				{
-					player.reduceAdena("Teleport", price, player, true);
+					player.reduceAdena(ItemProcessType.FEE, price, player, true);
 				}
 			}
 		}

@@ -18,14 +18,15 @@ package handlers.effecthandlers;
 
 import java.util.Collection;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
@@ -94,11 +95,11 @@ public class Plunder extends AbstractEffect
 				}
 				else
 				{
-					player.addItem("Plunder", rewardedItem, effected, true);
+					player.addItem(ItemProcessType.PICKUP, rewardedItem, effected, true);
 				}
 			}
 		}
 		
-		monster.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, effector);
+		monster.getAI().notifyAction(Action.ATTACKED, effector);
 	}
 }

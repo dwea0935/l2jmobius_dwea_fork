@@ -20,20 +20,20 @@
  */
 package quests.Q10010_TimeToChangeClass;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.TeleportListData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionChange;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerQuestAccept;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerQuestAccept;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestDialogType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
@@ -208,7 +208,7 @@ public class Q10010_TimeToChangeClass extends Quest
 		}
 		
 		final QuestState questState = getQuestState(player, false);
-		if ((questState != null) && !questState.isCompleted() && (player.getClassId().getId() > ClassId.FIGHTER.getId()))
+		if ((questState != null) && !questState.isCompleted() && (player.getPlayerClass().getId() > PlayerClass.FIGHTER.getId()))
 		{
 			final int stateCount = questState.getCount();
 			if (stateCount != getQuestData().getGoal().getCount())

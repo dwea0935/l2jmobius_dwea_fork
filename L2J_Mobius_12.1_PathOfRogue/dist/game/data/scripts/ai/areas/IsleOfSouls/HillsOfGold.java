@@ -82,7 +82,7 @@ public class HillsOfGold extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Npc mob1 = addSpawn(SPICULA_ELITE_GUARD, npc.getX(), npc.getY(), npc.getZ(), attacker.getHeading() + 32500, true, npc.getSpawn().getRespawnDelay());
 		addAttackDesire(mob1, attacker);
@@ -93,11 +93,10 @@ public class HillsOfGold extends AbstractNpcAI
 		final Npc mob4 = addSpawn(SPICULA_ELITE_GUARD, npc.getX(), npc.getY(), npc.getZ(), attacker.getHeading() + 32500, true, npc.getSpawn().getRespawnDelay());
 		addAttackDesire(mob4, attacker);
 		npc.deleteMe();
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if ((npc.getId() == SPICULA_1) || (npc.getId() == SPICULA_2))
 		{
@@ -107,7 +106,6 @@ public class HillsOfGold extends AbstractNpcAI
 		{
 			npc.setDisplayEffect(1);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

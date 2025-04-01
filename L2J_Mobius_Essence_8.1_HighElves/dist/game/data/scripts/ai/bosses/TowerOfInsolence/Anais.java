@@ -68,7 +68,7 @@ public class Anais extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final long nextRespawnTime = getNextRespawnTime();
 		if (nextRespawnTime > 0)
@@ -79,7 +79,6 @@ public class Anais extends AbstractNpcAI
 		{
 			addSpawn(ANAIS, ANAIS_LOC, false, getDespawnTime());
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private long getDespawnTime()

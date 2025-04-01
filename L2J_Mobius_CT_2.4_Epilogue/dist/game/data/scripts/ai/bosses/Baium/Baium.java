@@ -17,12 +17,11 @@
 package ai.bosses.Baium;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.MountType;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.commons.time.TimeUtil;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -31,17 +30,18 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.variables.NpcVariables;
 import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 import ai.AbstractNpcAI;
 
@@ -273,7 +273,7 @@ public class Baium extends AbstractNpcAI
 				if ((player != null) && player.isInsideRadius3D(npc, 16000))
 				{
 					zone.broadcastPacket(new SocialAction(npc.getObjectId(), 1));
-					npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.HOW_DARE_YOU_WAKE_ME_NOW_YOU_SHALL_DIE, player.getName());
+					npc.broadcastSay(ChatType.NPC_GENERAL, "How dare you wake me! Now you shall die!");
 					npc.setTarget(player);
 					npc.doCast(BAIUM_PRESENT.getSkill());
 				}
@@ -282,7 +282,7 @@ public class Baium extends AbstractNpcAI
 				{
 					if (insidePlayer.isHero())
 					{
-						zone.broadcastPacket(new ExShowScreenMessage(NpcStringId.NOT_EVEN_THE_GODS_THEMSELVES_COULD_TOUCH_ME_BUT_YOU_S1_YOU_DARE_CHALLENGE_ME_IGNORANT_MORTAL, 2, 4000, insidePlayer.getName()));
+						zone.broadcastPacket(new ExShowScreenMessage("Not even the gods themselves could touch me. But you, " + insidePlayer.getName() + ", you dare challenge me?! Ignorant mortal!", 2, 4000));
 						break;
 					}
 				}
@@ -363,7 +363,7 @@ public class Baium extends AbstractNpcAI
 							}
 							else
 							{
-								mob.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, _baium);
+								mob.getAI().setIntention(Intention.FOLLOW, _baium);
 							}
 						}
 					}
@@ -481,7 +481,7 @@ public class Baium extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		_lastAttack = System.currentTimeMillis();
 		if (npc.getId() == BAIUM)
@@ -538,11 +538,10 @@ public class Baium extends AbstractNpcAI
 				npc.doCast(ANGEL_HEAL.getSkill());
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (zone.isCharacterInZone(killer))
 		{
@@ -553,21 +552,25 @@ public class Baium extends AbstractNpcAI
 			final long baseIntervalMillis = Config.BAIUM_SPAWN_INTERVAL * 3600000;
 			final long randomRangeMillis = Config.BAIUM_SPAWN_RANDOM * 3600000;
 			final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
+			
+			// Next respawn time.
+			final long nextRespawnTime = System.currentTimeMillis() + respawnTime;
+			LOGGER.info("Baium will respawn at: " + TimeUtil.getDateTimeString(nextRespawnTime));
+			
 			setRespawn(respawnTime);
 			startQuestTimer("CLEAR_STATUS", respawnTime, null, null);
 			startQuestTimer("CLEAR_ZONE", 900000, null, null);
 			cancelQuestTimer("CHECK_ATTACK", npc, null);
 			cancelQuestTimers("SELECT_TARGET");
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (!zone.isInsideZone(creature) || (creature.isNpc() && (creature.getId() == BAIUM_STONE)))
 		{
-			return super.onCreatureSee(npc, creature);
+			return;
 		}
 		
 		if (creature.isInCategory(CategoryType.CLERIC_GROUP))
@@ -594,19 +597,16 @@ public class Baium extends AbstractNpcAI
 			refreshAiParams(creature, npc, 10000, 1000);
 		}
 		manageSkills(npc);
-		
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		startQuestTimer("MANAGE_SKILLS", 1000, npc, null);
 		if (!zone.isCharacterInZone(npc) && (_baium != null))
 		{
 			_baium.teleToLocation(BAIUM_LOC);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
@@ -640,7 +640,7 @@ public class Baium extends AbstractNpcAI
 				return;
 			}
 		}
-		final int index = Util.getIndexOfMinValue(vars.getInt("i_quest0"), vars.getInt("i_quest1"), vars.getInt("i_quest2"));
+		final int index = MathUtil.getIndexOfMinValue(vars.getInt("i_quest0"), vars.getInt("i_quest1"), vars.getInt("i_quest2"));
 		vars.set("i_quest" + index, newAggroVal);
 		vars.set("c_quest" + index, attacker);
 	}
@@ -681,7 +681,7 @@ public class Baium extends AbstractNpcAI
 				vars.set("i_quest" + i, 0);
 			}
 		}
-		final int index = Util.getIndexOfMaxValue(vars.getInt("i_quest0"), vars.getInt("i_quest1"), vars.getInt("i_quest2"));
+		final int index = MathUtil.getIndexOfMaxValue(vars.getInt("i_quest0"), vars.getInt("i_quest1"), vars.getInt("i_quest2"));
 		final Creature creature = vars.getObject("c_quest" + index, Creature.class);
 		final int i2 = vars.getInt("i_quest" + index);
 		if ((i2 > 0) && (getRandom(100) < 70))

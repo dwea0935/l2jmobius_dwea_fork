@@ -880,7 +880,7 @@
 		<set name="is_freightable" val="true" />
 	</item>
 	<item id="70783" name="Pirates Treasure Chest" type="EtcItem">
-		<!-- Double-click to get one of Pirates Treasures random pirate treasure. -->
+		<!-- Double-click to get one of Pirates Treasures случайное сокровище пиратов. -->
 		<set name="icon" val="icon.bm_pirate_treasure_box" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />

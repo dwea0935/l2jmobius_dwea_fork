@@ -22,18 +22,18 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.TeleporterData;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.TeleportType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportType;
+import org.l2jmobius.gameserver.model.actor.holders.npc.TeleporterQuestRecommendationHolder;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.TeleporterQuestRecommendationHolder;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author NightMarez
@@ -142,7 +142,7 @@ public class Teleporter extends Merchant
 		if (st.hasMoreTokens())
 		{
 			final String token = st.nextToken();
-			if (Util.isDigit(token))
+			if (StringUtil.isNumeric(token))
 			{
 				return Integer.parseInt(token);
 			}

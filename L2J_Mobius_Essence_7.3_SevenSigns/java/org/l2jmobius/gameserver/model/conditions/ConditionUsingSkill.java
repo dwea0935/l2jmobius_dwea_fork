@@ -44,6 +44,7 @@ public class ConditionUsingSkill extends Condition
 		{
 			return false;
 		}
+		
 		return skill.getId() == _skillId;
 	}
 }

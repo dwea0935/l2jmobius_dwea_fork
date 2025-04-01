@@ -12,7 +12,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9557" level="1" /> <!-- Hair Accessory: MEN -->
+			<skill id="9557" level="1" /> <!-- Head Accessory: MEN -->
 		</skills>
 	</item>
 	<item id="35801" name="Romantic Chapeau" additionalName="INT" type="Armor">
@@ -27,7 +27,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9558" level="1" /> <!-- Hair Accessory: INT -->
+			<skill id="9558" level="1" /> <!-- Head Accessory: INT -->
 		</skills>
 	</item>
 	<item id="35802" name="Romantic Chapeau" additionalName="WIT" type="Armor">
@@ -42,7 +42,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9559" level="1" /> <!-- Hair Accessory: WIT -->
+			<skill id="9559" level="1" /> <!-- Head Accessory: WIT -->
 		</skills>
 	</item>
 	<item id="35803" name="Romantic Chapeau" additionalName="P. Def." type="Armor">
@@ -57,7 +57,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Head Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35804" name="Romantic Chapeau" additionalName="M. Def." type="Armor">
@@ -72,7 +72,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9563" level="1" /> <!-- Hair Accessory: M. Def. -->
+			<skill id="9563" level="1" /> <!-- Head Accessory: M. Def. -->
 		</skills>
 	</item>
 	<item id="35805" name="Romantic Chapeau" additionalName="Evasion" type="Armor">
@@ -87,7 +87,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Head Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35806" name="Romantic Chapeau" additionalName="P. Atk." type="Armor">
@@ -102,7 +102,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9565" level="1" /> <!-- Hair Accessory: P. Atk. -->
+			<skill id="9565" level="1" /> <!-- Head Accessory: P. Atk. -->
 		</skills>
 	</item>
 	<item id="35807" name="Romantic Chapeau" additionalName="M. Atk." type="Armor">
@@ -117,7 +117,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9566" level="1" /> <!-- Hair Accessory: M. Atk. -->
+			<skill id="9566" level="1" /> <!-- Head Accessory: M. Atk. -->
 		</skills>
 	</item>
 	<item id="35808" name="Romantic Chapeau" additionalName="Accuracy" type="Armor">
@@ -132,7 +132,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Head Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35809" name="Angel Circlet" additionalName="STR" type="Armor">
@@ -147,7 +147,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9554" level="1" /> <!-- Hair Accessory: STR -->
+			<skill id="9554" level="1" /> <!-- Head Accessory: STR -->
 		</skills>
 	</item>
 	<item id="35810" name="Angel Circlet" additionalName="DEX" type="Armor">
@@ -162,7 +162,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9555" level="1" /> <!-- Hair Accessory: DEX -->
+			<skill id="9555" level="1" /> <!-- Head Accessory: DEX -->
 		</skills>
 	</item>
 	<item id="35811" name="Angel Circlet" additionalName="CON" type="Armor">
@@ -177,7 +177,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9556" level="1" /> <!-- Hair Accessory: CON -->
+			<skill id="9556" level="1" /> <!-- Head Accessory: CON -->
 		</skills>
 	</item>
 	<item id="35812" name="Angel Circlet" additionalName="MEN" type="Armor">
@@ -192,7 +192,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9557" level="1" /> <!-- Hair Accessory: MEN -->
+			<skill id="9557" level="1" /> <!-- Head Accessory: MEN -->
 		</skills>
 	</item>
 	<item id="35813" name="Angel Circlet" additionalName="INT" type="Armor">
@@ -207,7 +207,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9558" level="1" /> <!-- Hair Accessory: INT -->
+			<skill id="9558" level="1" /> <!-- Head Accessory: INT -->
 		</skills>
 	</item>
 	<item id="35814" name="Angel Circlet" additionalName="WIT" type="Armor">
@@ -222,7 +222,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9559" level="1" /> <!-- Hair Accessory: WIT -->
+			<skill id="9559" level="1" /> <!-- Head Accessory: WIT -->
 		</skills>
 	</item>
 	<item id="35815" name="Angel Circlet" additionalName="Critical Rate" type="Armor">
@@ -237,7 +237,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9560" level="1" /> <!-- Hair Accessory: Critical Rate -->
+			<skill id="9560" level="1" /> <!-- Head Accessory: P. Critical Rate -->
 		</skills>
 	</item>
 	<item id="35816" name="Angel Circlet" additionalName="Critical Damage" type="Armor">
@@ -252,7 +252,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9561" level="1" /> <!-- Hair Accessory: Critical Damage -->
+			<skill id="9561" level="1" /> <!-- Head Accessory: Critical Damage -->
 		</skills>
 	</item>
 	<item id="35817" name="Angel Circlet" additionalName="P. Atk." type="Armor">
@@ -267,7 +267,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9565" level="1" /> <!-- Hair Accessory: P. Atk. -->
+			<skill id="9565" level="1" /> <!-- Head Accessory: P. Atk. -->
 		</skills>
 	</item>
 	<item id="35818" name="Angel Circlet" additionalName="M. Atk." type="Armor">
@@ -282,7 +282,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9566" level="1" /> <!-- Hair Accessory: M. Atk. -->
+			<skill id="9566" level="1" /> <!-- Head Accessory: M. Atk. -->
 		</skills>
 	</item>
 	<item id="35819" name="Angel Circlet" additionalName="Accuracy" type="Armor">
@@ -297,7 +297,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Head Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35820" name="Demon Circlet" additionalName="STR" type="Armor">
@@ -312,7 +312,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9554" level="1" /> <!-- Hair Accessory: STR -->
+			<skill id="9554" level="1" /> <!-- Head Accessory: STR -->
 		</skills>
 	</item>
 	<item id="35821" name="Demon Circlet" additionalName="DEX" type="Armor">
@@ -327,7 +327,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9555" level="1" /> <!-- Hair Accessory: DEX -->
+			<skill id="9555" level="1" /> <!-- Head Accessory: DEX -->
 		</skills>
 	</item>
 	<item id="35822" name="Demon Circlet" additionalName="CON" type="Armor">
@@ -342,7 +342,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9556" level="1" /> <!-- Hair Accessory: CON -->
+			<skill id="9556" level="1" /> <!-- Head Accessory: CON -->
 		</skills>
 	</item>
 	<item id="35823" name="Demon Circlet" additionalName="MEN" type="Armor">
@@ -357,7 +357,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9557" level="1" /> <!-- Hair Accessory: MEN -->
+			<skill id="9557" level="1" /> <!-- Head Accessory: MEN -->
 		</skills>
 	</item>
 	<item id="35824" name="Demon Circlet" additionalName="INT" type="Armor">
@@ -372,7 +372,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9558" level="1" /> <!-- Hair Accessory: INT -->
+			<skill id="9558" level="1" /> <!-- Head Accessory: INT -->
 		</skills>
 	</item>
 	<item id="35825" name="Demon Circlet" additionalName="WIT" type="Armor">
@@ -387,7 +387,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9559" level="1" /> <!-- Hair Accessory: WIT -->
+			<skill id="9559" level="1" /> <!-- Head Accessory: WIT -->
 		</skills>
 	</item>
 	<item id="35826" name="Demon Circlet" additionalName="Critical Rate" type="Armor">
@@ -402,7 +402,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9560" level="1" /> <!-- Hair Accessory: Critical Rate -->
+			<skill id="9560" level="1" /> <!-- Head Accessory: P. Critical Rate -->
 		</skills>
 	</item>
 	<item id="35827" name="Demon Circlet" additionalName="Critical Damage" type="Armor">
@@ -417,7 +417,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9561" level="1" /> <!-- Hair Accessory: Critical Damage -->
+			<skill id="9561" level="1" /> <!-- Head Accessory: Critical Damage -->
 		</skills>
 	</item>
 	<item id="35828" name="Demon Circlet" additionalName="P. Def." type="Armor">
@@ -432,7 +432,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Head Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35829" name="Demon Circlet" additionalName="M. Def." type="Armor">
@@ -447,7 +447,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9563" level="1" /> <!-- Hair Accessory: M. Def. -->
+			<skill id="9563" level="1" /> <!-- Head Accessory: M. Def. -->
 		</skills>
 	</item>
 	<item id="35830" name="Demon Circlet" additionalName="Evasion" type="Armor">
@@ -462,7 +462,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Head Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35831" name="Pirate's Eyepatch" additionalName="CON" type="Armor">
@@ -477,7 +477,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9556" level="1" /> <!-- Hair Accessory: CON -->
+			<skill id="9556" level="1" /> <!-- Head Accessory: CON -->
 		</skills>
 	</item>
 	<item id="35832" name="Pirate's Eyepatch" additionalName="MEN" type="Armor">
@@ -492,7 +492,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9557" level="1" /> <!-- Hair Accessory: MEN -->
+			<skill id="9557" level="1" /> <!-- Head Accessory: MEN -->
 		</skills>
 	</item>
 	<item id="35833" name="Pirate's Eyepatch" additionalName="INT" type="Armor">
@@ -507,7 +507,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9558" level="1" /> <!-- Hair Accessory: INT -->
+			<skill id="9558" level="1" /> <!-- Head Accessory: INT -->
 		</skills>
 	</item>
 	<item id="35834" name="Pirate's Eyepatch" additionalName="WIT" type="Armor">
@@ -522,7 +522,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9559" level="1" /> <!-- Hair Accessory: WIT -->
+			<skill id="9559" level="1" /> <!-- Head Accessory: WIT -->
 		</skills>
 	</item>
 	<item id="35835" name="Pirate's Eyepatch" additionalName="Critical Rate" type="Armor">
@@ -537,7 +537,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9560" level="1" /> <!-- Hair Accessory: Critical Rate -->
+			<skill id="9560" level="1" /> <!-- Head Accessory: P. Critical Rate -->
 		</skills>
 	</item>
 	<item id="35836" name="Pirate's Eyepatch" additionalName="Critical Damage" type="Armor">
@@ -552,7 +552,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9561" level="1" /> <!-- Hair Accessory: Critical Damage -->
+			<skill id="9561" level="1" /> <!-- Head Accessory: Critical Damage -->
 		</skills>
 	</item>
 	<item id="35837" name="Pirate's Eyepatch" additionalName="P. Def." type="Armor">
@@ -567,7 +567,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Head Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35838" name="Pirate's Eyepatch" additionalName="M. Def." type="Armor">
@@ -582,7 +582,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9563" level="1" /> <!-- Hair Accessory: M. Def. -->
+			<skill id="9563" level="1" /> <!-- Head Accessory: M. Def. -->
 		</skills>
 	</item>
 	<item id="35839" name="Pirate's Eyepatch" additionalName="Evasion" type="Armor">
@@ -597,7 +597,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Head Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35840" name="Pirate's Eyepatch" additionalName="P. Atk." type="Armor">
@@ -612,7 +612,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9565" level="1" /> <!-- Hair Accessory: P. Atk. -->
+			<skill id="9565" level="1" /> <!-- Head Accessory: P. Atk. -->
 		</skills>
 	</item>
 	<item id="35841" name="Pirate's Eyepatch" additionalName="M. Atk." type="Armor">
@@ -627,7 +627,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9566" level="1" /> <!-- Hair Accessory: M. Atk. -->
+			<skill id="9566" level="1" /> <!-- Head Accessory: M. Atk. -->
 		</skills>
 	</item>
 	<item id="35842" name="Pirate's Eyepatch" additionalName="Accuracy" type="Armor">
@@ -642,7 +642,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Head Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35843" name="Outlaw's Eyepatch" additionalName="STR" type="Armor">
@@ -657,7 +657,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9554" level="1" /> <!-- Hair Accessory: STR -->
+			<skill id="9554" level="1" /> <!-- Head Accessory: STR -->
 		</skills>
 	</item>
 	<item id="35844" name="Outlaw's Eyepatch" additionalName="DEX" type="Armor">
@@ -672,7 +672,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9555" level="1" /> <!-- Hair Accessory: DEX -->
+			<skill id="9555" level="1" /> <!-- Head Accessory: DEX -->
 		</skills>
 	</item>
 	<item id="35845" name="Outlaw's Eyepatch" additionalName="INT" type="Armor">
@@ -687,7 +687,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9558" level="1" /> <!-- Hair Accessory: INT -->
+			<skill id="9558" level="1" /> <!-- Head Accessory: INT -->
 		</skills>
 	</item>
 	<item id="35846" name="Outlaw's Eyepatch" additionalName="WIT" type="Armor">
@@ -702,7 +702,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9559" level="1" /> <!-- Hair Accessory: WIT -->
+			<skill id="9559" level="1" /> <!-- Head Accessory: WIT -->
 		</skills>
 	</item>
 	<item id="35847" name="Outlaw's Eyepatch" additionalName="Critical Rate" type="Armor">
@@ -717,7 +717,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9560" level="1" /> <!-- Hair Accessory: Critical Rate -->
+			<skill id="9560" level="1" /> <!-- Head Accessory: P. Critical Rate -->
 		</skills>
 	</item>
 	<item id="35848" name="Outlaw's Eyepatch" additionalName="Critical Damage" type="Armor">
@@ -732,7 +732,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9561" level="1" /> <!-- Hair Accessory: Critical Damage -->
+			<skill id="9561" level="1" /> <!-- Head Accessory: Critical Damage -->
 		</skills>
 	</item>
 	<item id="35849" name="Outlaw's Eyepatch" additionalName="P. Def." type="Armor">
@@ -747,7 +747,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Head Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35850" name="Outlaw's Eyepatch" additionalName="M. Def." type="Armor">
@@ -762,7 +762,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9563" level="1" /> <!-- Hair Accessory: M. Def. -->
+			<skill id="9563" level="1" /> <!-- Head Accessory: M. Def. -->
 		</skills>
 	</item>
 	<item id="35851" name="Outlaw's Eyepatch" additionalName="Evasion" type="Armor">
@@ -777,7 +777,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Head Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35852" name="Outlaw's Eyepatch" additionalName="P. Atk." type="Armor">
@@ -792,7 +792,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9565" level="1" /> <!-- Hair Accessory: P. Atk. -->
+			<skill id="9565" level="1" /> <!-- Head Accessory: P. Atk. -->
 		</skills>
 	</item>
 	<item id="35853" name="Outlaw's Eyepatch" additionalName="M. Atk." type="Armor">
@@ -807,7 +807,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9566" level="1" /> <!-- Hair Accessory: M. Atk. -->
+			<skill id="9566" level="1" /> <!-- Head Accessory: M. Atk. -->
 		</skills>
 	</item>
 	<item id="35854" name="Outlaw's Eyepatch" additionalName="Accuracy" type="Armor">
@@ -822,7 +822,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Head Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35855" name="Eyepatch" additionalName="STR" type="Armor">
@@ -837,7 +837,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9554" level="1" /> <!-- Hair Accessory: STR -->
+			<skill id="9554" level="1" /> <!-- Head Accessory: STR -->
 		</skills>
 	</item>
 	<item id="35856" name="Eyepatch" additionalName="DEX" type="Armor">
@@ -852,7 +852,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9555" level="1" /> <!-- Hair Accessory: DEX -->
+			<skill id="9555" level="1" /> <!-- Head Accessory: DEX -->
 		</skills>
 	</item>
 	<item id="35857" name="Eyepatch" additionalName="CON" type="Armor">
@@ -867,7 +867,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9556" level="1" /> <!-- Hair Accessory: CON -->
+			<skill id="9556" level="1" /> <!-- Head Accessory: CON -->
 		</skills>
 	</item>
 	<item id="35858" name="Eyepatch" additionalName="MEN" type="Armor">
@@ -882,7 +882,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9557" level="1" /> <!-- Hair Accessory: MEN -->
+			<skill id="9557" level="1" /> <!-- Head Accessory: MEN -->
 		</skills>
 	</item>
 	<item id="35859" name="Eyepatch" additionalName="Critical Rate" type="Armor">
@@ -897,7 +897,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9560" level="1" /> <!-- Hair Accessory: Critical Rate -->
+			<skill id="9560" level="1" /> <!-- Head Accessory: P. Critical Rate -->
 		</skills>
 	</item>
 	<item id="35860" name="Eyepatch" additionalName="Critical Damage" type="Armor">
@@ -912,7 +912,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9561" level="1" /> <!-- Hair Accessory: Critical Damage -->
+			<skill id="9561" level="1" /> <!-- Head Accessory: Critical Damage -->
 		</skills>
 	</item>
 	<item id="35861" name="Eyepatch" additionalName="P. Def." type="Armor">
@@ -927,7 +927,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Head Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35862" name="Eyepatch" additionalName="M. Def." type="Armor">
@@ -942,7 +942,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9563" level="1" /> <!-- Hair Accessory: M. Def. -->
+			<skill id="9563" level="1" /> <!-- Head Accessory: M. Def. -->
 		</skills>
 	</item>
 	<item id="35863" name="Eyepatch" additionalName="Evasion" type="Armor">
@@ -957,7 +957,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Head Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35864" name="Eyepatch" additionalName="P. Atk." type="Armor">
@@ -972,7 +972,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9565" level="1" /> <!-- Hair Accessory: P. Atk. -->
+			<skill id="9565" level="1" /> <!-- Head Accessory: P. Atk. -->
 		</skills>
 	</item>
 	<item id="35865" name="Eyepatch" additionalName="M. Atk." type="Armor">
@@ -987,7 +987,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9566" level="1" /> <!-- Hair Accessory: M. Atk. -->
+			<skill id="9566" level="1" /> <!-- Head Accessory: M. Atk. -->
 		</skills>
 	</item>
 	<item id="35866" name="Eyepatch" additionalName="Accuracy" type="Armor">
@@ -1002,7 +1002,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Head Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35867" name="Party Hat" additionalName="STR" type="Armor">
@@ -1017,7 +1017,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9554" level="1" /> <!-- Hair Accessory: STR -->
+			<skill id="9554" level="1" /> <!-- Head Accessory: STR -->
 		</skills>
 	</item>
 	<item id="35868" name="Party Hat" additionalName="DEX" type="Armor">
@@ -1032,7 +1032,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9555" level="1" /> <!-- Hair Accessory: DEX -->
+			<skill id="9555" level="1" /> <!-- Head Accessory: DEX -->
 		</skills>
 	</item>
 	<item id="35869" name="Party Hat" additionalName="CON" type="Armor">
@@ -1047,7 +1047,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9556" level="1" /> <!-- Hair Accessory: CON -->
+			<skill id="9556" level="1" /> <!-- Head Accessory: CON -->
 		</skills>
 	</item>
 	<item id="35870" name="Party Hat" additionalName="MEN" type="Armor">
@@ -1062,7 +1062,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9557" level="1" /> <!-- Hair Accessory: MEN -->
+			<skill id="9557" level="1" /> <!-- Head Accessory: MEN -->
 		</skills>
 	</item>
 	<item id="35871" name="Party Hat" additionalName="INT" type="Armor">
@@ -1077,7 +1077,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9558" level="1" /> <!-- Hair Accessory: INT -->
+			<skill id="9558" level="1" /> <!-- Head Accessory: INT -->
 		</skills>
 	</item>
 	<item id="35872" name="Party Hat" additionalName="WIT" type="Armor">
@@ -1092,7 +1092,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9559" level="1" /> <!-- Hair Accessory: WIT -->
+			<skill id="9559" level="1" /> <!-- Head Accessory: WIT -->
 		</skills>
 	</item>
 	<item id="35873" name="Party Hat" additionalName="P. Def." type="Armor">
@@ -1107,7 +1107,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Head Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35874" name="Party Hat" additionalName="M. Def." type="Armor">
@@ -1122,7 +1122,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9563" level="1" /> <!-- Hair Accessory: M. Def. -->
+			<skill id="9563" level="1" /> <!-- Head Accessory: M. Def. -->
 		</skills>
 	</item>
 	<item id="35875" name="Party Hat" additionalName="Evasion" type="Armor">
@@ -1137,7 +1137,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Head Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35876" name="Party Hat" additionalName="P. Atk." type="Armor">
@@ -1152,7 +1152,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9565" level="1" /> <!-- Hair Accessory: P. Atk. -->
+			<skill id="9565" level="1" /> <!-- Head Accessory: P. Atk. -->
 		</skills>
 	</item>
 	<item id="35877" name="Party Hat" additionalName="M. Atk." type="Armor">
@@ -1167,7 +1167,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9566" level="1" /> <!-- Hair Accessory: M. Atk. -->
+			<skill id="9566" level="1" /> <!-- Head Accessory: M. Atk. -->
 		</skills>
 	</item>
 	<item id="35878" name="Party Hat" additionalName="Accuracy" type="Armor">
@@ -1182,7 +1182,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Head Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35879" name="Refined Angel Ring" additionalName="STR" type="Armor">
@@ -1197,7 +1197,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9554" level="1" /> <!-- Hair Accessory: STR -->
+			<skill id="9554" level="1" /> <!-- Head Accessory: STR -->
 		</skills>
 	</item>
 	<item id="35880" name="Refined Angel Ring" additionalName="DEX" type="Armor">
@@ -1212,7 +1212,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9555" level="1" /> <!-- Hair Accessory: DEX -->
+			<skill id="9555" level="1" /> <!-- Head Accessory: DEX -->
 		</skills>
 	</item>
 	<item id="35881" name="Refined Angel Ring" additionalName="CON" type="Armor">
@@ -1227,7 +1227,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9556" level="1" /> <!-- Hair Accessory: CON -->
+			<skill id="9556" level="1" /> <!-- Head Accessory: CON -->
 		</skills>
 	</item>
 	<item id="35882" name="Refined Angel Ring" additionalName="MEN" type="Armor">
@@ -1242,7 +1242,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9557" level="1" /> <!-- Hair Accessory: MEN -->
+			<skill id="9557" level="1" /> <!-- Head Accessory: MEN -->
 		</skills>
 	</item>
 	<item id="35883" name="Refined Angel Ring" additionalName="INT" type="Armor">
@@ -1257,7 +1257,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9558" level="1" /> <!-- Hair Accessory: INT -->
+			<skill id="9558" level="1" /> <!-- Head Accessory: INT -->
 		</skills>
 	</item>
 	<item id="35884" name="Refined Angel Ring" additionalName="WIT" type="Armor">
@@ -1272,7 +1272,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9559" level="1" /> <!-- Hair Accessory: WIT -->
+			<skill id="9559" level="1" /> <!-- Head Accessory: WIT -->
 		</skills>
 	</item>
 	<item id="35885" name="Refined Angel Ring" additionalName="Critical Rate" type="Armor">
@@ -1287,7 +1287,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9560" level="1" /> <!-- Hair Accessory: Critical Rate -->
+			<skill id="9560" level="1" /> <!-- Head Accessory: P. Critical Rate -->
 		</skills>
 	</item>
 	<item id="35886" name="Refined Angel Ring" additionalName="Critical Damage" type="Armor">
@@ -1302,7 +1302,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9561" level="1" /> <!-- Hair Accessory: Critical Damage -->
+			<skill id="9561" level="1" /> <!-- Head Accessory: Critical Damage -->
 		</skills>
 	</item>
 	<item id="35887" name="Refined Angel Ring" additionalName="P. Atk." type="Armor">
@@ -1317,7 +1317,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9565" level="1" /> <!-- Hair Accessory: P. Atk. -->
+			<skill id="9565" level="1" /> <!-- Head Accessory: P. Atk. -->
 		</skills>
 	</item>
 	<item id="35888" name="Refined Angel Ring" additionalName="M. Atk." type="Armor">
@@ -1332,7 +1332,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9566" level="1" /> <!-- Hair Accessory: M. Atk. -->
+			<skill id="9566" level="1" /> <!-- Head Accessory: M. Atk. -->
 		</skills>
 	</item>
 	<item id="35889" name="Refined Angel Ring" additionalName="Accuracy" type="Armor">
@@ -1347,7 +1347,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Head Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35890" name="Refined Devil Horn" additionalName="STR" type="Armor">
@@ -1362,7 +1362,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9554" level="1" /> <!-- Hair Accessory: STR -->
+			<skill id="9554" level="1" /> <!-- Head Accessory: STR -->
 		</skills>
 	</item>
 	<item id="35891" name="Refined Devil Horn" additionalName="DEX" type="Armor">
@@ -1377,7 +1377,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9555" level="1" /> <!-- Hair Accessory: DEX -->
+			<skill id="9555" level="1" /> <!-- Head Accessory: DEX -->
 		</skills>
 	</item>
 	<item id="35892" name="Refined Devil Horn" additionalName="CON" type="Armor">
@@ -1392,7 +1392,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9556" level="1" /> <!-- Hair Accessory: CON -->
+			<skill id="9556" level="1" /> <!-- Head Accessory: CON -->
 		</skills>
 	</item>
 	<item id="35893" name="Refined Devil Horn" additionalName="MEN" type="Armor">
@@ -1407,7 +1407,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9557" level="1" /> <!-- Hair Accessory: MEN -->
+			<skill id="9557" level="1" /> <!-- Head Accessory: MEN -->
 		</skills>
 	</item>
 	<item id="35894" name="Refined Devil Horn" additionalName="INT" type="Armor">
@@ -1422,7 +1422,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9558" level="1" /> <!-- Hair Accessory: INT -->
+			<skill id="9558" level="1" /> <!-- Head Accessory: INT -->
 		</skills>
 	</item>
 	<item id="35895" name="Refined Devil Horn" additionalName="WIT" type="Armor">
@@ -1437,7 +1437,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9559" level="1" /> <!-- Hair Accessory: WIT -->
+			<skill id="9559" level="1" /> <!-- Head Accessory: WIT -->
 		</skills>
 	</item>
 	<item id="35896" name="Refined Devil Horn" additionalName="Critical Rate" type="Armor">
@@ -1452,7 +1452,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9560" level="1" /> <!-- Hair Accessory: Critical Rate -->
+			<skill id="9560" level="1" /> <!-- Head Accessory: P. Critical Rate -->
 		</skills>
 	</item>
 	<item id="35897" name="Refined Devil Horn" additionalName="Critical Damage" type="Armor">
@@ -1467,7 +1467,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9561" level="1" /> <!-- Hair Accessory: Critical Damage -->
+			<skill id="9561" level="1" /> <!-- Head Accessory: Critical Damage -->
 		</skills>
 	</item>
 	<item id="35898" name="Refined Devil Horn" additionalName="P. Def." type="Armor">
@@ -1482,7 +1482,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Head Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35899" name="Refined Devil Horn" additionalName="M. Def." type="Armor">
@@ -1497,7 +1497,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9563" level="1" /> <!-- Hair Accessory: M. Def. -->
+			<skill id="9563" level="1" /> <!-- Head Accessory: M. Def. -->
 		</skills>
 	</item>
 </list>

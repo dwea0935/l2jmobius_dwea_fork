@@ -20,11 +20,11 @@
  */
 package quests.Q00337_AudienceWithTheLandDragon;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -479,13 +479,14 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs == null) || (qs.getCond() < 2))
 		{
-			return null;
+			return;
 		}
+		
 		final int npcId = npc.getId();
 		for (int[] npcInfo : DROP_ON_ATTACK)
 		{
@@ -525,7 +526,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 							final Npc mob = addSpawn(npcInfo[5], npc.getX() + getRandom(-150, 150), npc.getY() + getRandom(-150, 150), npc.getZ(), npc.getHeading(), true, 60000, false);
 							mob.setRunning();
 							mob.asAttackable().addDamageHate(attacker, 0, 500);
-							mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, attacker);
+							mob.getAI().setIntention(Intention.ATTACK, attacker);
 						}
 						
 						if (npcId == ABYSSAL_JEWEL_3)
@@ -560,16 +561,15 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = player.getQuestState(getName());
 		if ((qs == null) || (qs.getState() != State.STARTED))
 		{
-			return null;
+			return;
 		}
 		
 		switch (npc.getId())
@@ -634,6 +634,5 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 				break;
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 }

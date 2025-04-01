@@ -275,7 +275,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>

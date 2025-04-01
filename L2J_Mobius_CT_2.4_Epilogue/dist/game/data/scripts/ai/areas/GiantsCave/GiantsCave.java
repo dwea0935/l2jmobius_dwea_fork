@@ -16,12 +16,11 @@
  */
 package ai.areas.GiantsCave;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -51,11 +50,11 @@ public class GiantsCave extends AbstractNpcAI
 		{
 			if (npc.getId() == SCOUTS[0]) // Gamlin
 			{
-				npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.INTRUDER_DETECTED);
+				npc.broadcastSay(ChatType.NPC_SHOUT, "Intruder detected");
 			}
 			else
 			{
-				npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.OH_GIANTS_AN_INTRUDER_HAS_BEEN_DISCOVERED);
+				npc.broadcastSay(ChatType.NPC_SHOUT, "Oh giants, an intruder has been discovered.");
 			}
 			
 			World.getInstance().forEachVisibleObjectInRange(npc, Attackable.class, 450, characters ->
@@ -74,7 +73,7 @@ public class GiantsCave extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.isScriptValue(0))
 		{
@@ -82,27 +81,25 @@ public class GiantsCave extends AbstractNpcAI
 			startQuestTimer("ATTACK", 6000, npc, attacker);
 			startQuestTimer("CLEAR", 120000, npc, null);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		if (npc.isScriptValue(0))
 		{
 			npc.setScriptValue(1);
 			if (getRandomBoolean())
 			{
-				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.YOU_GUYS_ARE_DETECTED);
+				npc.broadcastSay(ChatType.NPC_GENERAL, "You guys are detected!");
 			}
 			else
 			{
-				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.WHAT_KIND_OF_CREATURES_ARE_YOU);
+				npc.broadcastSay(ChatType.NPC_GENERAL, "What kind of creatures are you!");
 			}
 			startQuestTimer("ATTACK", 6000, npc, player);
 			startQuestTimer("CLEAR", 120000, npc, null);
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

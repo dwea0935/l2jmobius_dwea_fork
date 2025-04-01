@@ -39,7 +39,7 @@ public class Q00146_TheZeroHour extends Quest
 	
 	public Q00146_TheZeroHour()
 	{
-		super(146);
+		super(146, "The Zero Hour");
 		addStartNpc(KAHMAN);
 		addTalkId(KAHMAN);
 		addKillId(QUEEN_SHYEED);
@@ -69,7 +69,7 @@ public class Q00146_TheZeroHour extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(killer, 1);
 		if ((partyMember != null) && !hasQuestItems(partyMember, FANG))
@@ -77,7 +77,6 @@ public class Q00146_TheZeroHour extends Quest
 			giveItems(partyMember, FANG, 1);
 			getQuestState(partyMember, false).setCond(2, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

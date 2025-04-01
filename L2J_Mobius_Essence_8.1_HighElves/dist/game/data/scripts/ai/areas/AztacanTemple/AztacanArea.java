@@ -29,15 +29,16 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.BuyListData;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
-import org.l2jmobius.gameserver.enums.TaxType;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.buylist.ProductList;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.model.siege.TaxType;
 import org.l2jmobius.gameserver.model.spawns.NpcSpawnTemplate;
 import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
 import org.l2jmobius.gameserver.model.spawns.SpawnTemplate;
@@ -224,28 +225,26 @@ public class AztacanArea extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer() && (_inProgress))
 		{
 			slowShowUI();
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
 			final Player player = creature.asPlayer();
 			player.sendPacket(new ExSendUIEvent(player, true, false, 0, 0, NpcStringId.TIME_TILL_THE_RITUAL_END));
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		broadcastScreenMessageToPlayers(NpcStringId.AZTACAN_BEGINS_HIS_RITUAL, 0);
 		spawnAndConfigureTotem(DEFENSIVE_TOTEM, 15906, 216533, -15153, 56337, NpcStringId.TRAZENTA);
@@ -253,11 +252,10 @@ public class AztacanArea extends AbstractNpcAI
 		spawnAndConfigureTotem(DEFENSIVE_TOTEM, 17717, 214547, -15149, 23561, NpcStringId.KAZTAR);
 		spawnAndConfigureTotem(DEFENSIVE_TOTEM, 15835, 214668, -15153, 8696, NpcStringId.ARCHEON);
 		ThreadPool.schedule(this::slowShowUI, 6000);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -293,8 +291,6 @@ public class AztacanArea extends AbstractNpcAI
 				break;
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void broadcastScreenMessageToPlayers(NpcStringId message, int type)
@@ -501,7 +497,7 @@ public class AztacanArea extends AbstractNpcAI
 			}
 		}
 		
-		if (!player.destroyItemByItemId("Teleport", Inventory.ADENA_ID, requiredMoney, player, true))
+		if (!player.destroyItemByItemId(ItemProcessType.FEE, Inventory.ADENA_ID, requiredMoney, player, true))
 		{
 			player.sendPacket(SystemMessageId.NOT_ENOUGH_MONEY_TO_USE_THE_FUNCTION);
 			return;

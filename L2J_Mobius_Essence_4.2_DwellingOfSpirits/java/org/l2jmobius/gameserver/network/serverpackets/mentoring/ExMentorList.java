@@ -21,7 +21,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.MentorManager;
+import org.l2jmobius.gameserver.managers.MentorManager;
 import org.l2jmobius.gameserver.model.Mentee;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;

@@ -18,25 +18,25 @@ package handlers.effecthandlers;
 
 import java.util.logging.Level;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.handler.TargetHandler;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSkillFinishCast;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSkillFinishCast;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Trigger skill by isMagic type.
@@ -92,7 +92,7 @@ public class TriggerSkillByMagicType extends AbstractEffect
 		}
 		
 		final Skill eventSkill = event.getSkill();
-		if (!CommonUtil.contains(_magicTypes, eventSkill.getMagicType()))
+		if (!ArrayUtil.contains(_magicTypes, eventSkill.getMagicType()))
 		{
 			return;
 		}

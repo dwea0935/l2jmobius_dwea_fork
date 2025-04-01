@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.model.actor.appearance;
 
-import org.l2jmobius.gameserver.enums.Sex;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.Sex;
 
 public class PlayerAppearance
 {

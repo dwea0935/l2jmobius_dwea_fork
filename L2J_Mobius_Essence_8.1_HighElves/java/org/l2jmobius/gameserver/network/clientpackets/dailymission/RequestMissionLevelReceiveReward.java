@@ -24,9 +24,10 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.MissionLevel;
 import org.l2jmobius.gameserver.model.MissionLevelHolder;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.MissionLevelPlayerDataHolder;
 import org.l2jmobius.gameserver.model.actor.request.RewardRequest;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.MissionLevelPlayerDataHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.dailymission.ExMissionLevelRewardList;
 
@@ -73,7 +74,7 @@ public class RequestMissionLevelReceiveReward extends ClientPacket
 				}
 				
 				final ItemHolder reward = _holder.getNormalRewards().get(_level);
-				player.addItem("Mission Level", reward.getId(), reward.getCount(), null, true);
+				player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), null, true);
 				info.addToCollectedNormalRewards(_level);
 				info.storeInfoInVariable(player);
 				break;
@@ -87,7 +88,7 @@ public class RequestMissionLevelReceiveReward extends ClientPacket
 				}
 				
 				final ItemHolder reward = _holder.getKeyRewards().get(_level);
-				player.addItem("Mission Level", reward.getId(), reward.getCount(), null, true);
+				player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), null, true);
 				info.addToCollectedKeyReward(_level);
 				info.storeInfoInVariable(player);
 				break;
@@ -101,7 +102,7 @@ public class RequestMissionLevelReceiveReward extends ClientPacket
 				}
 				
 				final ItemHolder reward = _holder.getSpecialReward();
-				player.addItem("Mission Level", reward.getId(), reward.getCount(), null, true);
+				player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), null, true);
 				info.setCollectedSpecialReward(true);
 				info.storeInfoInVariable(player);
 				break;
@@ -142,7 +143,7 @@ public class RequestMissionLevelReceiveReward extends ClientPacket
 				}
 				
 				final ItemHolder reward = _holder.getBonusReward();
-				player.addItem("Mission Level", reward.getId(), reward.getCount(), null, true);
+				player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), null, true);
 				info.storeInfoInVariable(player);
 				break;
 			}

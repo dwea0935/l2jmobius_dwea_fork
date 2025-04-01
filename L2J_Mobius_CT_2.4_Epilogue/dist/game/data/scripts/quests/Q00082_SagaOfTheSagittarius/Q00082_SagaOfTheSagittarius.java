@@ -28,7 +28,7 @@ public class Q00082_SagaOfTheSagittarius extends AbstractSagaQuest
 {
 	public Q00082_SagaOfTheSagittarius()
 	{
-		super(82);
+		super(82, "Saga of the Sagittarius");
 		_npc = new int[]
 		{
 			30702,

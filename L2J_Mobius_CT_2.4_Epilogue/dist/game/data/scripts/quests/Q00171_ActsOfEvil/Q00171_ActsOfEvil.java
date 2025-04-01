@@ -17,15 +17,14 @@
 package quests.Q00171_ActsOfEvil;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Acts Of Evil (171)
@@ -68,7 +67,7 @@ public class Q00171_ActsOfEvil extends Quest
 	
 	public Q00171_ActsOfEvil()
 	{
-		super(171);
+		super(171, "Acts of Evil");
 		addStartNpc(GUARD_ALVAH);
 		addTalkId(GUARD_ALVAH, TRADER_ARODIN, TYRA, NETI, TRADER_ROLENTO, TUREK_CHIEF_BURAI);
 		addKillId(TUMRAN_BUGBEAR, TUMRAN_BUGBEAR_WARRIOR, OL_MAHUM_CAPTAIN, OL_MAHUM_GENERAL, TUREK_ORC_ARCHER, TUREK_ORC_SKIRMISHER, TUREK_ORC_SUPPLIER, TUREK_ORC_FOOTMAN, OL_MAHUM_SUPPORT_TROOP);
@@ -83,7 +82,7 @@ public class Q00171_ActsOfEvil extends Quest
 		{
 			if (npc != null)
 			{
-				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.YOU_SHOULD_CONSIDER_GOING_BACK));
+				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "You should consider going back..."));
 				npc.deleteMe();
 			}
 			return super.onEvent(event, npc, player);
@@ -156,10 +155,10 @@ public class Q00171_ActsOfEvil extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -343,7 +342,6 @@ public class Q00171_ActsOfEvil extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -588,9 +586,8 @@ public class Q00171_ActsOfEvil extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("DESPAWN", 200000, npc, null);
-		return super.onSpawn(npc);
 	}
 }

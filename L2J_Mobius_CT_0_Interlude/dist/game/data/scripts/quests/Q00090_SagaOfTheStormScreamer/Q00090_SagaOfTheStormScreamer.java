@@ -16,16 +16,16 @@
  */
 package quests.Q00090_SagaOfTheStormScreamer;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00090_SagaOfTheStormScreamer extends SagasSuperClass
+public class Q00090_SagaOfTheStormScreamer extends AbstractSagaQuest
 {
 	public Q00090_SagaOfTheStormScreamer()
 	{
-		super(90);
+		super(90, "Saga of the Storm Screamer");
 		_npc = new int[]
 		{
 			30175,

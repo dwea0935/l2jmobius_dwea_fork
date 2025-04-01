@@ -16,16 +16,16 @@
  */
 package quests.Q00083_SagaOfTheMoonlightSentinel;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00083_SagaOfTheMoonlightSentinel extends SagasSuperClass
+public class Q00083_SagaOfTheMoonlightSentinel extends AbstractSagaQuest
 {
 	public Q00083_SagaOfTheMoonlightSentinel()
 	{
-		super(83);
+		super(83, "Saga of the Moonlight Sentinel");
 		_npc = new int[]
 		{
 			30702,

@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.commons.network.PacketHandler;
 import org.l2jmobius.commons.network.ReadableBuffer;
 import org.l2jmobius.commons.network.ReadablePacket;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.loginserver.enums.LoginFailReason;
 
 /**
@@ -47,7 +47,7 @@ public class LoginPacketHandler implements PacketHandler<LoginClient>
 		catch (Exception e)
 		{
 			LOGGER.warning("LoginPacketHandler: Problem receiving packet id from " + client);
-			LOGGER.warning(CommonUtil.getStackTrace(e));
+			LOGGER.warning(TraceUtil.getStackTrace(e));
 			client.close(LoginFailReason.REASON_ACCESS_FAILED);
 			return null;
 		}

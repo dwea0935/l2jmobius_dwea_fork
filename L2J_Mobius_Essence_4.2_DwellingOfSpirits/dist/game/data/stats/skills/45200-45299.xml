@@ -279,7 +279,6 @@
 		<affectScope>RANGE</affectScope>
 		<castRange>40</castRange>
 		<coolTime>500</coolTime>
-		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-35</value>
 			<value level="2">-40</value>
@@ -429,7 +428,6 @@
 		<targetType>ENEMY</targetType>
 		<affectScope>RANGE</affectScope>
 		<castRange>40</castRange>
-		<coolTime>500</coolTime>
 		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-225</value>
@@ -651,7 +649,6 @@
 		<targetType>ENEMY</targetType>
 		<affectScope>RANGE</affectScope>
 		<castRange>40</castRange>
-		<coolTime>500</coolTime>
 		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-245</value>
@@ -6508,7 +6505,6 @@
 		<icon>icon.skill0982</icon>
 		<operateType>A2</operateType>
 		<targetType>SELF</targetType>
-		<abnormalTime>1200</abnormalTime>
 		<abnormalTime>1200</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<hitTime>0</hitTime>

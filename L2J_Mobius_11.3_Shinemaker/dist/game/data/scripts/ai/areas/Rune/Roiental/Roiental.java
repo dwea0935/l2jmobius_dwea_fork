@@ -20,11 +20,11 @@
  */
 package ai.areas.Rune.Roiental;
 
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -77,7 +77,7 @@ public class Roiental extends AbstractNpcAI
 			{
 				htmltext = "Roiental-AlreadyDone.html";
 			}
-			else if (!player.hasClanPrivilege(ClanPrivilege.CL_THRONE_OF_HEROES))
+			else if (!player.hasAccess(ClanAccess.THRONE_OF_HEROES))
 			{
 				player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
 			}
@@ -104,7 +104,7 @@ public class Roiental extends AbstractNpcAI
 			{
 				htmltext = "Roiental-AlreadyDone.html";
 			}
-			else if (!player.hasClanPrivilege(ClanPrivilege.CL_THRONE_OF_HEROES))
+			else if (!player.hasAccess(ClanAccess.THRONE_OF_HEROES))
 			{
 				player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
 			}
@@ -131,7 +131,7 @@ public class Roiental extends AbstractNpcAI
 			{
 				htmltext = "Roiental-AlreadyDone.html";
 			}
-			else if (!player.hasClanPrivilege(ClanPrivilege.CL_THRONE_OF_HEROES))
+			else if (!player.hasAccess(ClanAccess.THRONE_OF_HEROES))
 			{
 				player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
 			}

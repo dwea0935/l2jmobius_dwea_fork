@@ -16,14 +16,13 @@
  */
 package quests.Q00023_LidiasHeart;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00022_TragedyInVonHellmannForest.Q00022_TragedyInVonHellmannForest;
@@ -56,7 +55,7 @@ public class Q00023_LidiasHeart extends Quest
 	
 	public Q00023_LidiasHeart()
 	{
-		super(23);
+		super(23, "Lidia's Heart");
 		addStartNpc(HIGH_PRIEST_INNOCENTIN);
 		addTalkId(HIGH_PRIEST_INNOCENTIN, TRADER_VIOLET, TOMBSTONE, GHOST_OF_VON_HELLMANN, BROKEN_BOOKSHELF, BOX);
 		addSpawnId(GHOST_OF_VON_HELLMANN);
@@ -499,10 +498,9 @@ public class Q00023_LidiasHeart extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("DESPAWN", 300000, npc, null);
-		npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.WHO_AWOKE_ME));
-		return super.onSpawn(npc);
+		npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Who awoke me?"));
 	}
 }

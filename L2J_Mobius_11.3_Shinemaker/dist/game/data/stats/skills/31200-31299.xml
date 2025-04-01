@@ -2953,7 +2953,6 @@
 		<operateType>A2</operateType>
 		<targetType>ENEMY</targetType>
 		<abnormalTime>20</abnormalTime>
-		<abnormalTime>20</abnormalTime>
 		<abnormalType>FANTASIA_RING</abnormalType>
 		<abnormalVisualEffect>H_SHINEM_DEBUFFA_AVE</abnormalVisualEffect>
 		<affectLimit>5-12</affectLimit>
@@ -5340,7 +5339,6 @@
 		<operateType>A2</operateType>
 		<targetType>ENEMY</targetType>
 		<affectLimit>5-12</affectLimit>
-		<affectLimit>5-12</affectLimit>
 		<affectObject>NOT_FRIEND</affectObject>
 		<affectScope>SQUARE</affectScope>
 		<attachToggleGroupId>1</attachToggleGroupId>
@@ -6495,7 +6493,6 @@
 			<value level="6">6</value>
 		</abnormalLevel>
 		<abnormalTime>20</abnormalTime>
-		<abnormalTime>20</abnormalTime>
 		<abnormalType>FANTASIA_TIME</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<coolTime>500</coolTime>
@@ -6975,7 +6972,6 @@
 				<weaponType>
 					<item>SWORD</item>
 					<item>BOW</item>
-					<item>ANCIENTSWORD</item>
 					<item>ANCIENTSWORD</item>
 				</weaponType>
 			</effect>

@@ -29,12 +29,12 @@ import java.util.stream.Collectors;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.RankingOlympiadCategory;
-import org.l2jmobius.gameserver.enums.RankingOlympiadScope;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.RankingOlympiadCategory;
+import org.l2jmobius.gameserver.model.actor.enums.player.RankingOlympiadScope;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -78,11 +78,11 @@ public class ExOlympiadRankingInfo extends ServerPacket
 		if (!_playerList.isEmpty())
 		{
 			final RankingOlympiadCategory category = RankingOlympiadCategory.values()[_tabId];
-			writeFilteredRankingData(category, category.getScopeByGroup(_rankingType), ClassId.getClassId(_classId), buffer);
+			writeFilteredRankingData(category, category.getScopeByGroup(_rankingType), PlayerClass.getPlayerClass(_classId), buffer);
 		}
 	}
 	
-	private void writeFilteredRankingData(RankingOlympiadCategory category, RankingOlympiadScope scope, ClassId classId, WritableBuffer buffer)
+	private void writeFilteredRankingData(RankingOlympiadCategory category, RankingOlympiadScope scope, PlayerClass classId, WritableBuffer buffer)
 	{
 		switch (category)
 		{

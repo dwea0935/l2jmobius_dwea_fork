@@ -26,7 +26,7 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -59,7 +59,7 @@ public class RandomWalkingGuards extends AbstractNpcAI
 		{
 			if (!npc.isInCombat())
 			{
-				final Location randomLoc = Util.getRandomPosition(npc.getSpawn().getLocation(), 0, Config.MAX_DRIFT_RANGE);
+				final Location randomLoc = LocationUtil.getRandomLocation(npc.getSpawn().getLocation(), 0, Config.MAX_DRIFT_RANGE);
 				addMoveToDesire(npc, GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), randomLoc.getX(), randomLoc.getY(), randomLoc.getZ(), npc.getInstanceWorld()), 23);
 			}
 			getTimers().addTimer("RANDOM_WALK_" + npc.getObjectId(), null, getRandom(MIN_WALK_DELAY, MAX_WALK_DELAY), npc, null);
@@ -67,10 +67,9 @@ public class RandomWalkingGuards extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		getTimers().addTimer("RANDOM_WALK_" + npc.getObjectId(), null, getRandom(MIN_WALK_DELAY, MAX_WALK_DELAY), npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

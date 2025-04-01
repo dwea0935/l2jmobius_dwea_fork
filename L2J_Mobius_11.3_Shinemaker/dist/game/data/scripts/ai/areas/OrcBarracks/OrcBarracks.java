@@ -16,9 +16,9 @@
  */
 package ai.areas.OrcBarracks;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
@@ -58,7 +58,7 @@ public class OrcBarracks extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final boolean hasMinions = npc.getParameters().getBoolean("hasMinions", false);
 		if (hasMinions)
@@ -68,11 +68,10 @@ public class OrcBarracks extends AbstractNpcAI
 				addMinion(npc.asMonster(), TUREK_WAR_HOUND);
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if ((killer.getRace() == Race.ERTHEIA) && (SPAWN_RATE > getRandom(100)))
 		{
@@ -80,7 +79,6 @@ public class OrcBarracks extends AbstractNpcAI
 			showOnScreenMsg(killer, NpcStringId.A_POWERFUL_MONSTER_HAS_COME_TO_FACE_YOU, ExShowScreenMessage.TOP_CENTER, 5000);
 			addSpawn(npcId, npc, false, 180000);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

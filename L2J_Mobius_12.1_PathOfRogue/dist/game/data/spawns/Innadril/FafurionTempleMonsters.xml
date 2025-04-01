@@ -3216,4 +3216,24 @@
 		<npc id="24325" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Temple Wizard -->
 		<npc id="24318" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Temple Elite Guardian -->
 	</spawn>
+	<spawn name="Q20242">
+		<group>
+			<npc id="27617" x="168523" y="238183" z="-2933" heading="58804" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="171330" y="241080" z="-3308" heading="4533" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="169543" y="244573" z="-3256" heading="51835" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="169004" y="246836" z="-3218" heading="59576" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="170566" y="249668" z="-2750" heading="45066" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="173681" y="249630" z="-3296" heading="62359" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="175877" y="247391" z="-3305" heading="31935" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="179695" y="252660" z="-3330" heading="1654" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="183017" y="248465" z="-3426" heading="62137" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="183594" y="241018" z="-3354" heading="4728" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="187190" y="238857" z="-3302" heading="21744" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="188389" y="235183" z="-3244" heading="14716" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="189949" y="237377" z="-2946" heading="22653" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="176999" y="238735" z="-3278" heading="30437" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="179582" y="233625" z="-3148" heading="1625" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+			<npc id="27617" x="177141" y="234806" z="-3229" heading="57225" respawnTime="60sec" /> <!-- Fierce Water Dragon - Quest Monster -->
+		</group>
+	</spawn>
 </list>

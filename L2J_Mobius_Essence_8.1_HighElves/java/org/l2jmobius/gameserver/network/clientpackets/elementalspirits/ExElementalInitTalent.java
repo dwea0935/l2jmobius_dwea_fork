@@ -21,9 +21,10 @@
 package org.l2jmobius.gameserver.network.clientpackets.elementalspirits;
 
 import org.l2jmobius.gameserver.data.xml.ElementalSpiritData;
-import org.l2jmobius.gameserver.enums.ElementalType;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -51,7 +52,7 @@ public class ExElementalInitTalent extends ClientPacket
 			return;
 		}
 		
-		final ElementalSpirit spirit = player.getElementalSpirit(ElementalType.of(_type));
+		final ElementalSpirit spirit = player.getElementalSpirit(ElementalSpiritType.of(_type));
 		if (spirit == null)
 		{
 			player.sendPacket(SystemMessageId.NO_SPIRITS_ARE_AVAILABLE);
@@ -65,7 +66,7 @@ public class ExElementalInitTalent extends ClientPacket
 			return;
 		}
 		
-		if (player.reduceAdena("Talent", ElementalSpiritData.TALENT_INIT_FEE, player, true))
+		if (player.reduceAdena(ItemProcessType.FEE, ElementalSpiritData.TALENT_INIT_FEE, player, true))
 		{
 			spirit.resetCharacteristics();
 			player.sendPacket(new SystemMessage(SystemMessageId.RESET_THE_SELECTED_SPIRIT_S_CHARACTERISTICS_SUCCESSFULLY));

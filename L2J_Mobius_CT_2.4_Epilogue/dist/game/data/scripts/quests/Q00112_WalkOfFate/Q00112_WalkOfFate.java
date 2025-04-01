@@ -38,7 +38,7 @@ public class Q00112_WalkOfFate extends Quest
 	
 	public Q00112_WalkOfFate()
 	{
-		super(112);
+		super(112, "Walk of Fate");
 		addStartNpc(LIVINA);
 		addTalkId(LIVINA, KARUDA);
 	}

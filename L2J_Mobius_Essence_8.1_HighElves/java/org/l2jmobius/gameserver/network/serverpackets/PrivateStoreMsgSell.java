@@ -27,23 +27,29 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PrivateStoreMsgSell extends ServerPacket
 {
-	private final int _objId;
-	private String _storeMsg;
+	private final int _objectId;
+	private String _message;
 	
 	public PrivateStoreMsgSell(Player player)
 	{
-		_objId = player.getObjectId();
+		_objectId = player.getObjectId();
 		if ((player.getSellList() != null) || player.isSellingBuffs())
 		{
-			_storeMsg = player.getSellList().getTitle();
+			_message = player.getSellList().getTitle();
 		}
+	}
+	
+	public PrivateStoreMsgSell(int objectId, String message)
+	{
+		_objectId = objectId;
+		_message = message;
 	}
 	
 	@Override
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.PRIVATE_STORE_MSG.writeId(this, buffer);
-		buffer.writeInt(_objId);
-		buffer.writeString(_storeMsg);
+		buffer.writeInt(_objectId);
+		buffer.writeString(_message);
 	}
 }

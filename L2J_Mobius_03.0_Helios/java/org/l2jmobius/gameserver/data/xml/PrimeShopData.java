@@ -66,9 +66,9 @@ public class PrimeShopData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -117,9 +117,14 @@ public class PrimeShopData implements IXmlReader
 		}
 	}
 	
-	public void showProductInfo(Player player, int brId)
+	/**
+	 * Displays product information for a specified item to a player.
+	 * @param player the {@link Player} to whom the product information will be shown.
+	 * @param productId the unique identifier of the item in the Prime Shop.
+	 */
+	public void showProductInfo(Player player, int productId)
 	{
-		final PrimeShopGroup item = _primeItems.get(brId);
+		final PrimeShopGroup item = _primeItems.get(productId);
 		if ((player == null) || (item == null))
 		{
 			return;
@@ -128,11 +133,20 @@ public class PrimeShopData implements IXmlReader
 		player.sendPacket(new ExBRProductInfo(item, player));
 	}
 	
-	public PrimeShopGroup getItem(int brId)
+	/**
+	 * Retrieves a {@link PrimeShopGroup} item from the Prime Shop based on its unique ID.
+	 * @param productId the unique identifier of the item in the Prime Shop.
+	 * @return the {@link PrimeShopGroup} item associated with the specified ID, or {@code null} if not found.
+	 */
+	public PrimeShopGroup getItem(int productId)
 	{
-		return _primeItems.get(brId);
+		return _primeItems.get(productId);
 	}
 	
+	/**
+	 * Retrieves all items available in the Prime Shop.
+	 * @return a {@link Map} containing all Prime Shop items, where the key is the item ID and the value is the {@link PrimeShopGroup} item.
+	 */
 	public Map<Integer, PrimeShopGroup> getPrimeItems()
 	{
 		return _primeItems;

@@ -33,7 +33,7 @@ import org.w3c.dom.Document;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.MissionLevelHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author Index
@@ -66,9 +66,9 @@ public class MissionLevel implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode ->
+		forEach(document, "list", listNode ->
 		{
 			forEach(listNode, "current", current -> _currentSeason = parseInteger(current.getAttributes(), "season"));
 			forEach(listNode, "missionLevel", missionNode ->

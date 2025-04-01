@@ -111,6 +111,11 @@ public class PlayerVariables extends AbstractVariables
 	public static final String CROSS_EVENT_CELLS = "CROSS_EVENT_CELLS";
 	public static final String CROSS_EVENT_REWARDS = "CROSS_EVENT_REWARDS";
 	public static final String CROSS_EVENT_ADVANCED_COUNT = "CROSS_EVENT_ADVANCED_COUNT";
+	public static final String CHAT_BACKGROUND_BLUE = "CHAT_BACKGROUND_BLUE";
+	public static final String CHAT_BACKGROUND_YELLOW = "CHAT_BACKGROUND_YELLOW";
+	public static final String ENABLE_CHAT_BACKGROUND = "ENABLE_CHAT_BACKGROUND";
+	public static final String ACTIVE_CHAT_BACKGROUND = "ACTIVE_CHAT_BACKGROUND";
+	public static final String ACTIVE_RELIC = "ACTIVE_RELIC";
 	
 	private final int _objectId;
 	
@@ -120,7 +125,6 @@ public class PlayerVariables extends AbstractVariables
 		restoreMe();
 	}
 	
-	@Override
 	public boolean restoreMe()
 	{
 		// Restore previous variables.
@@ -148,7 +152,6 @@ public class PlayerVariables extends AbstractVariables
 		return true;
 	}
 	
-	@Override
 	public boolean storeMe()
 	{
 		// No changes, nothing to store.
@@ -191,7 +194,6 @@ public class PlayerVariables extends AbstractVariables
 		return true;
 	}
 	
-	@Override
 	public boolean deleteMe()
 	{
 		try (Connection con = DatabaseFactory.getConnection())

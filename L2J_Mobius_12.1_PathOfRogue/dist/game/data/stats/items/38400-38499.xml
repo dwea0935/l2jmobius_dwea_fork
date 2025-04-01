@@ -921,7 +921,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -943,7 +942,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_dec_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -967,7 +965,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -990,7 +987,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1012,7 +1008,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1032,7 +1027,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_sep_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1056,7 +1050,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1078,7 +1071,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_sep_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1102,7 +1094,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1124,7 +1115,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1144,7 +1134,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_march_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1168,7 +1157,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1190,7 +1178,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_march_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1214,7 +1201,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1236,7 +1222,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1256,7 +1241,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_april_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1280,7 +1264,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1302,7 +1285,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_april_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1326,7 +1308,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1348,7 +1329,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1368,7 +1348,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_july_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1392,7 +1371,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1414,7 +1392,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_july_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1438,7 +1415,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1458,9 +1434,7 @@
 		<!-- A bracelet for summoning Agathion Leo. <Active skill>. 1. Agathion Teleport: Teleports to Aden/ Rune/ Giran/ Heine (cooldown: 30 min.). -->
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_july_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1481,7 +1455,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_may_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1505,7 +1478,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1527,7 +1499,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_may_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1551,7 +1522,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1573,7 +1543,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1593,7 +1562,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_oct_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1617,7 +1585,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1639,7 +1606,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_oct_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1663,7 +1629,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1685,7 +1650,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1705,7 +1669,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_jan_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1729,7 +1692,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1751,7 +1713,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_jan_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1775,7 +1736,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1797,7 +1757,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1817,7 +1776,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_feb_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1841,7 +1799,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1863,7 +1820,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_feb_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1887,7 +1843,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1909,7 +1864,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1929,7 +1883,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_nov_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1953,7 +1906,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1976,7 +1928,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -1997,9 +1948,7 @@
 		<!-- A bracelet for summoning Agathion Sagittarius. <Active skill>. 1. Agathion Teleport: Teleports to Aden/ Rune/ Giran/ Heine (cooldown: 30 min.). <Item skill>. 1. Balanced Power: STR/ INT/ CON/ DEX/ WIT/ MEN +1. -->
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_nov_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -2022,7 +1971,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="150" />
-		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
@@ -2042,7 +1990,6 @@
 		<set name="icon" val="BranchIcon.accessary_lbracelet_sign_agathion_june_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="150" />
 		<set name="weight" val="150" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />

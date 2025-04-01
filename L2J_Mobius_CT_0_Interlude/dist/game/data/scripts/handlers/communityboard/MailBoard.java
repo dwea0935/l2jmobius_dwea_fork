@@ -40,7 +40,6 @@ import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.communitybbs.BB.Mail;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
-import org.l2jmobius.gameserver.enums.MailType;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
 import org.l2jmobius.gameserver.handler.IWriteBoardHandler;
 import org.l2jmobius.gameserver.model.BlockList;
@@ -48,13 +47,14 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.Containers;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.MailType;
 import org.l2jmobius.gameserver.network.serverpackets.ExMailArrived;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
  * Mail board.
@@ -472,7 +472,7 @@ public class MailBoard implements IWriteBoardHandler
 		sb.append(fullSearch);
 		sb.append("\" back=\"l2ui_ch3.next1_down\" fore=\"l2ui_ch3.next1\" width=16 height=16></td></tr></table></td>");
 		content = content.replace("%maillistlength%", sb.toString());
-		Util.sendCBHtml(player, content);
+		HtmlUtil.sendCBHtml(player, content);
 	}
 	
 	private static String abbreviate(String s, int maxWidth)
@@ -501,13 +501,13 @@ public class MailBoard implements IWriteBoardHandler
 		content = content.replace("%mes%", mail.getMessage().replaceAll("\r\n", "<br>").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\"", "&quot;"));
 		content = content.replace("%mailId%", mail.getId() + "");
 		
-		Util.sendCBHtml(player, content);
+		HtmlUtil.sendCBHtml(player, content);
 	}
 	
 	private static void showWriteView(Player player)
 	{
 		String content = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/mail/mail-write.html");
-		Util.sendCBHtml(player, content);
+		HtmlUtil.sendCBHtml(player, content);
 	}
 	
 	private static void showWriteView(Player player, Mail mail)
@@ -519,7 +519,7 @@ public class MailBoard implements IWriteBoardHandler
 		
 		content = content.replace("%recipients%", mail.getSenderId() == player.getObjectId() ? mail.getRecipients() : getPlayerName(mail.getSenderId()));
 		content = content.replace("%mailId%", mail.getId() + "");
-		Util.sendCBHtml(player, content);
+		HtmlUtil.sendCBHtml(player, content);
 	}
 	
 	public void sendMail(String recipients, String subject, String message, Player player)

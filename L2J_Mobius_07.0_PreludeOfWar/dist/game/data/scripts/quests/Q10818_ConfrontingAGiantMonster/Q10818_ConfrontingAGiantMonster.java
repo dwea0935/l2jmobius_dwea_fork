@@ -1,29 +1,33 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests.Q10818_ConfrontingAGiantMonster;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q10817_ExaltedOneWhoOvercomesTheLimit.Q10817_ExaltedOneWhoOvercomesTheLimit;
 
@@ -247,10 +251,9 @@ public class Q10818_ConfrontingAGiantMonster extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		executeForEachPlayer(player, npc, isSummon, true, true); // Since enter requirement is cc, every cc member should be rewarded.
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
@@ -279,7 +282,7 @@ public class Q10818_ConfrontingAGiantMonster extends Quest
 				giveItems(player, MICHAELA_SOUL_STONE, 1);
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
-			else if (CommonUtil.contains(MONSTERS, npc.getId()))
+			else if (ArrayUtil.contains(MONSTERS, npc.getId()))
 			{
 				giveItems(player, PROOF_OF_RESISTANCE, 1);
 				if (getQuestItemsCount(player, PROOF_OF_RESISTANCE) >= PROOF_OF_RESISTANCE_NEEDED)
@@ -290,12 +293,14 @@ public class Q10818_ConfrontingAGiantMonster extends Quest
 			else if ((npc.getId() == ISTINA) || (npc.getId() == OCTAVIS) || (npc.getId() == TAUTI) || (npc.getId() == EKIMUS))
 			{
 				qs.set(Integer.toString(npc.getId()), "true");
-				notifyKill(npc, player, isSummon);
-				playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 				if ((qs.get(Integer.toString(ISTINA)).equals("true") && qs.get(Integer.toString(OCTAVIS)).equals("true") && qs.get(Integer.toString(TAUTI)).equals("true") && qs.get(Integer.toString(EKIMUS)).equals("true")))
 				{
 					qs.setCond(2);
 				}
+				
+				playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
+				// notifyKill(npc, player, isSummon);
+				sendNpcLogList(player);
 			}
 		}
 	}

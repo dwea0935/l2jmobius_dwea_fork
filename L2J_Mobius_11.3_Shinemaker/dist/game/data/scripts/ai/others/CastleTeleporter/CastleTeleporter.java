@@ -18,18 +18,18 @@ package ai.others.CastleTeleporter;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.siege.Siege;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -175,7 +175,7 @@ public class CastleTeleporter extends AbstractNpcAI
 	public String onFirstTalk(Npc npc, Player player)
 	{
 		String htmltext = null;
-		if (CommonUtil.contains(MASS_TELEPORTERS, npc.getId()))
+		if (ArrayUtil.contains(MASS_TELEPORTERS, npc.getId()))
 		{
 			final Siege siege = npc.getCastle().getSiege();
 			htmltext = npc.isScriptValue(0) ? (siege.isInProgress() && (siege.getControlTowerCount() == 0)) ? "CastleTeleporter-05.html" : "CastleTeleporter-04.html" : "CastleTeleporter-06.html";

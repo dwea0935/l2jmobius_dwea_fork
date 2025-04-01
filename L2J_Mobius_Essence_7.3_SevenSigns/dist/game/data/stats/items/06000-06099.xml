@@ -76,7 +76,7 @@
 		<set name="commissionItemType" val="POTION" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="2169" level="1" /> <!-- Magic Haste Potion -->
+			<skill id="2169" level="1" /> <!-- Cast Quickening Potion -->
 		</skills>
 	</item>
 	<item id="6036" name="Greater Magic Haste Potion" type="EtcItem">
@@ -98,7 +98,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2169" level="2" /> <!-- Greater Magic Haste Potion -->
+			<skill id="2169" level="2" /> <!-- Greater Cast Quickening Potion -->
 		</skills>
 	</item>
 	<item id="6037" name="Scroll: Cancel Sleep" type="EtcItem">

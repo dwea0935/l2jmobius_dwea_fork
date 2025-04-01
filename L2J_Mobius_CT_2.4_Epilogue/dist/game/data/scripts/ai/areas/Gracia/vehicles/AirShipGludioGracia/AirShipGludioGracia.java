@@ -17,16 +17,15 @@
 package ai.areas.Gracia.vehicles.AirShipGludioGracia;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.AirShipManager;
+import org.l2jmobius.gameserver.managers.AirShipManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.AirShip;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import ai.AbstractNpcAI;
@@ -119,7 +118,7 @@ public class AirShipGludioGracia extends AbstractNpcAI implements Runnable
 		_ship.runEngine(60000);
 	}
 	
-	private void broadcastInGludio(NpcStringId npcString)
+	private void broadcastInGludio(String npcString)
 	{
 		if (!_foundAtcGludio)
 		{
@@ -132,7 +131,7 @@ public class AirShipGludioGracia extends AbstractNpcAI implements Runnable
 		}
 	}
 	
-	private void broadcastInGracia(NpcStringId npcStringId)
+	private void broadcastInGracia(String String)
 	{
 		if (!_foundAtcGracia)
 		{
@@ -141,7 +140,7 @@ public class AirShipGludioGracia extends AbstractNpcAI implements Runnable
 		}
 		if (_atcGracia != null)
 		{
-			_atcGracia.broadcastPacket(new NpcSay(_atcGracia.getObjectId(), ChatType.NPC_SHOUT, _atcGracia.getId(), npcStringId));
+			_atcGracia.broadcastPacket(new NpcSay(_atcGracia.getObjectId(), ChatType.NPC_SHOUT, _atcGracia.getId(), String));
 		}
 	}
 	
@@ -241,7 +240,7 @@ public class AirShipGludioGracia extends AbstractNpcAI implements Runnable
 			{
 				case 0:
 				{
-					broadcastInGludio(NpcStringId.THE_REGULARLY_SCHEDULED_AIRSHIP_THAT_FLIES_TO_THE_GRACIA_CONTINENT_HAS_DEPARTED);
+					broadcastInGludio("The regularly scheduled airship that flies to the Gracia continent has departed.");
 					_ship.setInDock(0);
 					_ship.executePath(GLUDIO_TO_WARPGATE);
 					break;
@@ -260,7 +259,7 @@ public class AirShipGludioGracia extends AbstractNpcAI implements Runnable
 				}
 				case 3:
 				{
-					broadcastInGracia(NpcStringId.THE_REGULARLY_SCHEDULED_AIRSHIP_HAS_ARRIVED_IT_WILL_DEPART_FOR_THE_ADEN_CONTINENT_IN_1_MINUTE);
+					broadcastInGracia("The regularly scheduled airship has arrived. It will depart for the Aden continent in 1 minute.");
 					_ship.setInDock(GRACIA_DOCK_ID);
 					_ship.oustPlayers();
 					ThreadPool.schedule(this, 60000);
@@ -268,7 +267,7 @@ public class AirShipGludioGracia extends AbstractNpcAI implements Runnable
 				}
 				case 4:
 				{
-					broadcastInGracia(NpcStringId.THE_REGULARLY_SCHEDULED_AIRSHIP_THAT_FLIES_TO_THE_ADEN_CONTINENT_HAS_DEPARTED);
+					broadcastInGracia("The regularly scheduled airship that flies to the Aden continent has departed.");
 					_ship.setInDock(0);
 					_ship.executePath(GRACIA_TO_WARPGATE);
 					break;
@@ -287,7 +286,7 @@ public class AirShipGludioGracia extends AbstractNpcAI implements Runnable
 				}
 				case 7:
 				{
-					broadcastInGludio(NpcStringId.THE_REGULARLY_SCHEDULED_AIRSHIP_HAS_ARRIVED_IT_WILL_DEPART_FOR_THE_GRACIA_CONTINENT_IN_1_MINUTE);
+					broadcastInGludio("The regularly scheduled airship has arrived. It will depart for the Gracia continent in 1 minute.");
 					_ship.setInDock(GLUDIO_DOCK_ID);
 					_ship.oustPlayers();
 					ThreadPool.schedule(this, 60000);

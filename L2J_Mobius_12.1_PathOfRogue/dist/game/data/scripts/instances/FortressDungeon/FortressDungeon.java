@@ -24,14 +24,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceTemplate;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.siege.Fort;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -124,12 +124,12 @@ public class FortressDungeon extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
 		{
-			if (CommonUtil.contains(RAIDS3, npc.getId()))
+			if (ArrayUtil.contains(RAIDS3, npc.getId()))
 			{
 				// Get players with active quest
 				final List<Player> members = new ArrayList<>();
@@ -160,7 +160,6 @@ public class FortressDungeon extends AbstractInstance
 				spawnRaid(world);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

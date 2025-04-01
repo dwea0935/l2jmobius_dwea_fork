@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="49800" name="Sibis Coin Box" type="EtcItem">
 		<!-- Double-click to obtain 200 Sibi's Coins. -->
@@ -570,7 +570,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39187" level="1" /> <!-- Ornament Supply Box (A-grade) -->
+			<skill id="39187" level="1" /> <!-- Accessory Pack (A-grade) -->
 		</skills>
 	</item>
 	<item id="49851" name="Sayha's Gust" type="EtcItem">
@@ -615,7 +615,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39198" level="1" /> <!-- Melissa's MP Recovery Potion -->
+			<skill id="39198" level="1" /> <!-- Maliss' MP Recovery Potion -->
 		</skills>
 	</item>
 	<item id="49855" name="Sayha's Golden Gift" type="EtcItem">
@@ -669,7 +669,7 @@
 		<set name="is_freightable" val="true" />
 	</item>
 	<item id="49860" name="Hero's Wondrous Cubic" additionalName="7-day" type="EtcItem">
-		<!-- Available for 7 days. Required level: 20. Double-click to obtain Soulshot Tickets, Scroll of Mood Melody, Hero's Top-grade HP Replenishing Potion, Hero's HP Recovery Potion, Angel Cat's Blessing, Improved Scroll of Resurrection, Chest of Enchant Scroll's Parts, Fishing Kit, Box of Scroll of Escape to Base, Blade Spirit, Weapon Exchange Coupon. Can be used only once a day. -->
+		<!-- Available for 7 days. Required level: 20. Double-click to obtain Soulshot Ticket, Scroll of Mood Melody, Hero's Top-grade HP Replenishing Potion, Hero's HP Recovery Potion, Angel Cat's Blessing, Improved Scroll of Resurrection, Chest of Enchant Scroll's Parts, Fishing Kit, Box of Scroll of Escape to Base, Blade Spirit, Weapon Exchange Coupon. Can be used only once a day. -->
 		<set name="icon" val="icon.etc_pink_crystal_cube_pc_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
@@ -680,7 +680,7 @@
 		<set name="time" val="10080" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39199" level="1" /> <!-- Hero's Wondrous Cubic -->
+			<skill id="39199" level="1" /> <!-- Hero's Wondrous Cubic - 7-day -->
 		</skills>
 	</item>
 	<item id="49861" name="Life Stone - Tester" additionalName="Tester" type="EtcItem">

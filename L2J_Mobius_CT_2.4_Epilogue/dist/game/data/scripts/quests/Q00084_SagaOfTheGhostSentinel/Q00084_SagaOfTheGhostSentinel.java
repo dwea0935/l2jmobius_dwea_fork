@@ -28,7 +28,7 @@ public class Q00084_SagaOfTheGhostSentinel extends AbstractSagaQuest
 {
 	public Q00084_SagaOfTheGhostSentinel()
 	{
-		super(84);
+		super(84, "Saga of the Ghost Sentinel");
 		_npc = new int[]
 		{
 			30702,

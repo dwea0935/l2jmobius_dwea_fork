@@ -233,7 +233,7 @@
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22809" level="1" /> <!-- Claw of Destruction Appearance Stone -->
+			<skill id="22809" level="1" /> <!-- Tiat's Tiatenon Appearance Stone -->
 		</skills>
 	</item>
 	<item id="23537" name="Doll's Butcher Blades Appearance Stone" additionalName="Event" type="EtcItem">
@@ -248,7 +248,7 @@
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22823" level="1" /> <!-- Butcher Blades Appearance Stone -->
+			<skill id="22823" level="1" /> <!-- Doll's Butcher Blades Appearance Stone -->
 		</skills>
 	</item>
 	<item id="23538" name="Aenkinel's Astaroth Appearance Stone" additionalName="Event" type="EtcItem">
@@ -263,7 +263,7 @@
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22824" level="1" /> <!-- Blades of Delusion Appearance Stone -->
+			<skill id="22824" level="1" /> <!-- Aenkinel's Astaroth Appearance Stone -->
 		</skills>
 	</item>
 	<item id="23539" name="Yehan Klanikus' Tirbing Appearance Stone" additionalName="Event" type="EtcItem">
@@ -278,7 +278,7 @@
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22825" level="1" /> <!-- Blood Brother Appearance Stone -->
+			<skill id="22825" level="1" /> <!-- Yehan Klanikus' Tirbing Appearance Stone -->
 		</skills>
 	</item>
 	<item id="23540" name="Mardil's Wind Appearance Stone" additionalName="Event" type="EtcItem">
@@ -293,7 +293,7 @@
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22826" level="1" /> <!-- Mardil's Fan Appearance Stone -->
+			<skill id="22826" level="1" /> <!-- Mardil's Wind Appearance Stone -->
 		</skills>
 	</item>
 	<item id="23541" name="Vesper Noble Light Armor Appearance Stone Set" additionalName="Event" type="EtcItem">
@@ -1087,7 +1087,7 @@
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22837" level="1" /> <!-- Claw of Destruction Appearance Stone -->
+			<skill id="22837" level="1" /> <!-- Tiat's Tiatenon Appearance Stone -->
 		</skills>
 	</item>
 	<item id="23592" name="Doll's Butcher Blades Appearance Stone" additionalName="7-day (Event)" type="EtcItem">
@@ -1102,7 +1102,7 @@
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22838" level="1" /> <!-- Butcher Blades Appearance Stone -->
+			<skill id="22838" level="1" /> <!-- Doll's Butcher Blades Appearance Stone -->
 		</skills>
 	</item>
 	<item id="23593" name="Aenkinel's Astaroth Appearance Stone" additionalName="7-day (Event)" type="EtcItem">
@@ -1117,7 +1117,7 @@
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22839" level="1" /> <!-- Blades of Delusion Appearance Stone -->
+			<skill id="22839" level="1" /> <!-- Aenkinel's Astaroth Appearance Stone -->
 		</skills>
 	</item>
 	<item id="23594" name="Yehan Klanikus' Tirbing Appearance Stone" additionalName="7-day (Event)" type="EtcItem">
@@ -1132,7 +1132,7 @@
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22840" level="1" /> <!-- Blood Brother Appearance Stone -->
+			<skill id="22840" level="1" /> <!-- Yehan Klanikus' Tirbing Appearance Stone -->
 		</skills>
 	</item>
 	<item id="23595" name="Mardil's Wind Appearance Stone" additionalName="7-day (Event)" type="EtcItem">
@@ -1147,7 +1147,7 @@
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22841" level="1" /> <!-- Mardil's Fan Appearance Stone -->
+			<skill id="22841" level="1" /> <!-- Mardil's Wind Appearance Stone -->
 		</skills>
 	</item>
 	<item id="23596" name="Blessed Scroll: Enchant Weapon (R-grade)" additionalName="Event" type="EtcItem">

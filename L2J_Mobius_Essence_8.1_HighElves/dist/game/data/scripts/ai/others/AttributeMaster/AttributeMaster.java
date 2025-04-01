@@ -22,13 +22,13 @@ package ai.others.AttributeMaster;
 
 import java.util.Arrays;
 
-import org.l2jmobius.gameserver.enums.UserInfoType;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnElementalSpiritLearn;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnElementalSpiritLearn;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.elementalspirits.ElementalSpiritInfo;
 import org.l2jmobius.gameserver.network.serverpackets.elementalspirits.ExElementalSpiritAttackType;
@@ -53,7 +53,7 @@ public class AttributeMaster extends AbstractNpcAI
 	{
 		if ("learn".equalsIgnoreCase(event))
 		{
-			if ((player.getLevel() < 76) || (player.getClassId().level() < 3))
+			if ((player.getLevel() < 76) || (player.getPlayerClass().level() < 3))
 			{
 				return "no-3rdClass.htm";
 			}

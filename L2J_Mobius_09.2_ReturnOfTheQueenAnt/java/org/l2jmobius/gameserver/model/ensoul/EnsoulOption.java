@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.ensoul;
 
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * @author UnAfraid

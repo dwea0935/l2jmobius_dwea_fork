@@ -17,14 +17,14 @@
 package quests.Q00066_CertifiedArbalester;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Certified Arbalester (66)
@@ -80,7 +80,7 @@ public class Q00066_CertifiedArbalester extends Quest
 	
 	public Q00066_CertifiedArbalester()
 	{
-		super(66);
+		super(66, "Certified Arbalester");
 		addStartNpc(MASTER_RINDY);
 		addTalkId(MASTER_RINDY, WAREHOUSE_KEEPER_HOLVAS, MAGISTER_GAIUS, BLACKSMITH_POITAN, MAGISTER_CLAYTON, MAGISTER_GAUEN, MAGISTER_KAIENA, GRAND_MASTER_MELDINA, MASTER_SELSIA);
 		addKillId(GRANITIC_GOLEM, HANGMAN_TREE, AMBER_BASILISK, STRAIN, GHOUL, DEAD_SEEKER, GRANDIS, MANASHEN_GARGOYLE, TIMAK_ORC, TIMAK_ORC_ARCHER, DELU_LIZARDMAN_SHAMAN, WATCHMAN_OF_THE_PLAINS, ROUGHLY_HEWN_ROCK_GOLEM, DELU_LIZARDMAN_SUPPLIER, DELU_LIZARDMAN_AGENT, CURSED_SEER, DELU_LIZARDMAN_COMMANDER, CRIMSON_LADY);
@@ -101,7 +101,7 @@ public class Q00066_CertifiedArbalester extends Quest
 		{
 			case "ACCEPT":
 			{
-				if ((player.getLevel() >= MIN_LEVEL) && (player.getClassId() == ClassId.WARDER) && !hasQuestItems(player, KAMAEL_INQUISITOR_MARK))
+				if ((player.getLevel() >= MIN_LEVEL) && (player.getPlayerClass() == PlayerClass.WARDER) && !hasQuestItems(player, KAMAEL_INQUISITOR_MARK))
 				{
 					qs.startQuest();
 					qs.setMemoState(1);
@@ -420,10 +420,10 @@ public class Q00066_CertifiedArbalester extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -703,7 +703,6 @@ public class Q00066_CertifiedArbalester extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -716,7 +715,7 @@ public class Q00066_CertifiedArbalester extends Quest
 		{
 			if (npc.getId() == MASTER_RINDY)
 			{
-				if ((player.getClassId() == ClassId.WARDER) && !hasQuestItems(player, KAMAEL_INQUISITOR_MARK))
+				if ((player.getPlayerClass() == PlayerClass.WARDER) && !hasQuestItems(player, KAMAEL_INQUISITOR_MARK))
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
@@ -1028,7 +1027,7 @@ public class Q00066_CertifiedArbalester extends Quest
 		{
 			if (npc.getId() == MASTER_RINDY)
 			{
-				if (player.getClassId() == ClassId.ARBALESTER)
+				if (player.getPlayerClass() == PlayerClass.ARBALESTER)
 				{
 					htmltext = "32201-05.html";
 				}

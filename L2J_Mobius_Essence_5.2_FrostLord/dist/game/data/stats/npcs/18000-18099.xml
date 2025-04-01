@@ -248,7 +248,6 @@
 		</parameters>
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<equipment rhand="1472" /> <!-- Dreadbane -->
 		<acquire exp="9086" sp="2" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2823.47946968528" hpRegen="8.5" mp="1507.8" mpRegen="3" />
@@ -400,7 +399,6 @@
 		</parameters>
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<equipment rhand="127" /> <!-- Crimson Sword -->
 		<acquire exp="2630" sp="102" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2823.47946968528" hpRegen="8.5" mp="1507.8" mpRegen="3" />
@@ -448,7 +446,6 @@
 		</parameters>
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<equipment rhand="218" /> <!-- Throwing Knife -->
 		<acquire exp="2285" sp="86" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2823.47946968528" hpRegen="8.5" mp="1507.8" mpRegen="3" />
@@ -490,7 +487,6 @@
 		</parameters>
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<equipment rhand="14" /> <!-- Bow -->
 		<acquire exp="1500" sp="53" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2823.47946968528" hpRegen="8.5" mp="1507.8" mpRegen="3" />
@@ -533,7 +529,6 @@
 		</parameters>
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<equipment rhand="125" /> <!-- Spinebone Sword -->
 		<acquire exp="1538" sp="55" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2823.47946968528" hpRegen="8.5" mp="1507.8" mpRegen="3" />
@@ -580,7 +575,6 @@
 		</parameters>
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<equipment rhand="316" /> <!-- Sage's Blood -->
 		<acquire exp="1840" sp="66" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2823.47946968528" hpRegen="8.5" mp="1507.8" mpRegen="3" />
@@ -627,7 +621,6 @@
 		</parameters>
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<equipment rhand="292" /> <!-- Pike -->
 		<acquire exp="3414" sp="140" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2823.47946968528" hpRegen="8.5" mp="1507.8" mpRegen="3" />
@@ -718,7 +711,6 @@
 		</parameters>
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<equipment rhand="273" /> <!-- Compound Bow -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="7312.677642225" hpRegen="7.5" mp="2932.2" mpRegen="2.7" />
 			<attack physical="1094.20848" magical="393.44274" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />

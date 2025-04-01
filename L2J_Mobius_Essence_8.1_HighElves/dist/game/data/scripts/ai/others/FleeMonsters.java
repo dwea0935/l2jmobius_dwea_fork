@@ -20,14 +20,14 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -52,20 +52,19 @@ public class FleeMonsters extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		npc.disableCoreAI(true);
 		npc.setRunning();
 		
 		final Summon summon = isSummon ? attacker.getServitors().values().stream().findFirst().orElse(attacker.getPet()) : null;
 		final ILocational attackerLoc = summon == null ? attacker : summon;
-		final double radians = Math.toRadians(Util.calculateAngleFrom(attackerLoc, npc));
+		final double radians = Math.toRadians(LocationUtil.calculateAngleFrom(attackerLoc, npc));
 		final int posX = (int) (npc.getX() + (FLEE_DISTANCE * Math.cos(radians)));
 		final int posY = (int) (npc.getY() + (FLEE_DISTANCE * Math.sin(radians)));
 		final int posZ = npc.getZ();
 		final Location destination = GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), posX, posY, posZ, npc.getInstanceWorld());
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, destination);
-		return super.onAttack(npc, attacker, damage, isSummon);
+		npc.getAI().setIntention(Intention.MOVE_TO, destination);
 	}
 	
 	public static void main(String[] args)

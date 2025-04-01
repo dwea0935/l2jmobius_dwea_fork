@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="5000" levels="1" name="Alfred - Super Strike">
-		<set name="castRange" val="1000" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="2000" />
-		<set name="hitTime" val="2000" />
-		<set name="magicLevel" val="76" />
-		<set name="mpConsume" val="108" />
 		<set name="operateType" val="A1" />
-		<set name="power" val="10000000" />
+		<set name="magicLevel" val="70" />
+		<set name="power" val="4878" />
+		<set name="mpConsume" val="108" />
+		<set name="castRange" val="1000" />
+		<set name="effectRange" val="1500" />
+		<set name="hitTime" val="2000" />
+		<set name="reuseDelay" val="10000" />
+		<set name="effectPoint" val="-100" />
 		<set name="targetType" val="ONE" />
 		<for>
 			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5001" levels="1" name="Alfred - Life Drain">
-		<set name="castRange" val="750" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1250" />
-		<set name="hitTime" val="2500" />
-		<set name="magicLevel" val="76" />
-		<set name="mpConsume" val="181" />
 		<set name="operateType" val="A1" />
-		<set name="power" val="111" />
+		<set name="magicLevel" val="70" />
+		<set name="power" val="200" />
+		<set name="mpConsume" val="181" />
+		<set name="castRange" val="750" />
+		<set name="effectRange" val="1125" />
+		<set name="hitTime" val="2500" />
+		<set name="reuseDelay" val="10000" />
+		<set name="effectPoint" val="-100" />
 		<set name="targetType" val="ONE" />
 		<for>
 			<effect name="HpDrain">
@@ -31,16 +33,17 @@
 		</for>
 	</skill>
 	<skill id="5002" levels="1" name="Giselle - Vampiric Rage">
-		<set name="abnormalLevel" val="4" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="VAMPIRIC_ATTACK" />
-		<set name="effectPoint" val="100" />
-		<set name="hitTime" val="2000" />
-		<set name="magicLevel" val="76" />
-		<set name="mpConsume" val="49" />
 		<set name="operateType" val="A2" />
-		<set name="reuseDelay" val="8000" />
+		<set name="magicLevel" val="70" />
+		<set name="mpConsume" val="49" />
+		<set name="hitTime" val="2000" />
+		<set name="reuseDelay" val="15000" />
+		<set name="abnormalTime" val="1200" />
+		<set name="abnormalLevel" val="2" />
+		<set name="abnormalType" val="VAMPIRIC_ATTACK" />
+		<set name="effectPoint" val="200" />
 		<set name="targetType" val="SELF" />
+		<set name="affectRange" val="300" />
 		<for>
 			<effect name="Buff">
 				<add stat="absorbDam" val="9" /> <!-- absorb HP from damage inflicted on enemies -->
@@ -48,42 +51,41 @@
 		</for>
 	</skill>
 	<skill id="5003" levels="1" name="Giselle - Tempest">
-		<set name="affectRange" val="200" />
-		<set name="castRange" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1000" />
-		<set name="element" val="2" /> <!-- Wind -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="5000" />
-		<set name="magicLevel" val="76" />
-		<set name="mpConsume" val="103" />
 		<set name="operateType" val="A1" />
-		<set name="power" val="111" />
-		<set name="reuseDelay" val="15000" />
+		<set name="magicLevel" val="70" />
+		<set name="power" val="100" />
+		<set name="mpConsume" val="103" />
+		<set name="castRange" val="500" />
+		<set name="effectRange" val="750" />
+		<set name="hitTime" val="5000" />
+		<set name="reuseDelay" val="5000" />
+		<set name="element" val="2" /> <!-- Wind -->
+		<set name="effectPoint" val="-100" />
 		<set name="targetType" val="AREA" />
+		<set name="affectRange" val="300" />
+		<set name="affectLimit" val="5-12" />
 		<for>
 			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5004" levels="1" name="Dimensional Shock">
 		<!-- Shocks and instantly immobilizes. -->
+		<set name="operateType" val="A2" />
+		<set name="magicLevel" val="84" />
+		<set name="power" val="5964" />
+		<set name="hitTime" val="5800" />
+		<set name="reuseDelay" val="80000" />
+		<set name="activateRate" val="80" />
 		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="2" />
+		<set name="abnormalTime" val="15" />
 		<set name="abnormalType" val="FLY_AWAY" />
 		<set name="affectRange" val="300" />
-		<set name="effectPoint" val="-100" />
 		<set name="element" val="5" /> <!-- Dark -->
-		<set name="elementPower" val="180" />
 		<set name="flyRadius" val="300" />
 		<set name="flyType" val="THROW_UP" />
-		<set name="hitTime" val="5800" />
 		<set name="icon" val="icon.skill0100" />
 		<set name="isDebuff" val="true" />
-		<set name="magicLevel" val="85" />
-		<set name="operateType" val="A2" />
-		<set name="power" val="5964" />
 		<set name="targetType" val="AURA" />
-		<set name="trait" val="SHOCK" />
 		<for>
 			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
@@ -91,15 +93,15 @@
 	</skill>
 	<skill id="5005" levels="1" name="Frintezza's Ghost Summoning">
 		<!-- Frintezza is in temporary state of paralysis. -->
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="1" />
-		<set name="abnormalType" val="PARALYZE" />
-		<set name="castRange" val="900" />
-		<set name="effectPoint" val="100" />
-		<set name="effectRange" val="1400" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
 		<set name="operateType" val="A2" />
+		<set name="magicLevel" val="85" />
+		<set name="isMagic" val="1" /> <!-- Magic Skill -->
+		<set name="castRange" val="900" />
+		<set name="effectRange" val="1350" />
+		<set name="reuseDelay" val="80000" />
+		<set name="activateRate" val="80" />
+		<set name="abnormalTime" val="15" />
+		<set name="abnormalType" val="PARALYZE" />
 		<set name="targetType" val="ONE" />
 		<for>
 			<effect name="Paralyze" />
@@ -107,11 +109,10 @@
 	</skill>
 	<skill id="5006" levels="1" name="Frintezza's Melody">
 		<!-- A general performance. -->
-		<set name="effectPoint" val="100" />
-		<set name="hitTime" val="34000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="85" />
 		<set name="operateType" val="A1" />
+		<set name="magicLevel" val="85" />
+		<set name="isMagic" val="2" /> <!-- Static Skill -->
+		<set name="hitTime" val="34000" />
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="5007" levels="5" name="Frintezza's Healing Rhapsody">
@@ -121,11 +122,10 @@
 		<!-- Level 4: A triumphant ballad of Heal Suppressing. -->
 		<!-- Level 5: Two Can Dance + Cancel Performance. -->
 		<table name="#hitTime">32000 32000 32000 31000 35000</table>
-		<set name="effectPoint" val="100" />
-		<set name="hitTime" val="#hitTime" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="85" />
 		<set name="operateType" val="A1" />
+		<set name="magicLevel" val="85" />
+		<set name="isMagic" val="2" /> <!-- Static Skill -->
+		<set name="hitTime" val="#hitTime" />
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="5008" levels="5" name="Frintezza's Concert Hall Melody">
@@ -135,33 +135,34 @@
 		<!-- Level 4: Instantly decreases the effect of HP regeneration magic. -->
 		<!-- Level 5: Instantly immobilizes the target by making it dance involuntarily. -->
 		<table name="#abnormalTypes">NONE NONE ULTIMATE_BUFF HEAL_EFFECT_DOWN STUN</table>
-		<table name="#activateRate">0 0 0 10 10</table>
+		<table name="#activateRate">0 0 0 90 70</table>
 		<table name="#attackAndSpeed">1 1 1.2 1 1</table>
-		<table name="#basicProperties">NONE NONE NONE MEN MEN</table>
+		<table name="#basicProperties">NONE NONE NONE MEN CON</table>
 		<table name="#effectname1">Buff Buff Buff Buff Stun</table>
-		<table name="#effectPoints">100 100 100 -100 -100</table>
+		<table name="#effectPoints">0 110 110 -200 -200</table>
 		<table name="#healEffect">1 1 1 0.5 1</table>
-		<table name="#healPercent">3 0 0 0 0</table>
+		<table name="#healPercent">5 0 0 0 0</table>
 		<table name="#icons">icon.skill0000 icon.skill0000 icon.skill0000 icon.skill5008_plague icon.skill5008_psycho</table>
 		<table name="#isDebuff">false false false true true</table>
-		<table name="#isMagic">1 0 0 1 1</table>
 		<table name="#lvlDepend">0 0 0 1 1</table>
 		<table name="#maxNegated">0 0 0 0 10</table>
 		<table name="#power">0 0 0 10 10</table>
-		<table name="#time">0 0 5 5 5</table>
-		<table name="#traits">NONE NONE NONE DERANGEMENT DERANGEMENT</table>
+		<table name="#hitTime">1000 1000 1000 1000 1000</table>
+		<table name="#castRange">6000 6000 6000 0 0</table>
+		<table name="#effectRange">6000 6000 6000 0 0</table>
+		<set name="operateType" val="A1" />
+		<set name="magicLevel" val="85" />
+		<set name="castRange" val="#castRange" />
+		<set name="effectRange" val="#effectRange" />
 		<set name="abnormalType" val="#abnormalTypes" />
 		<set name="basicProperty" val="#basicProperties" />
 		<set name="effectPoint" val="#effectPoints" />
+		<set name="hitTime" val="#hitTime" />
 		<set name="icon" val="#icons" />
-		<set name="isDebuff" val="#isDebuff" />
-		<set name="isMagic" val="#isMagic" />
 		<set name="lvlBonusRate" val="#lvlDepend" />
-		<set name="magicLevel" val="85" />
-		<set name="operateType" val="A1" />
 		<set name="power" val="#power" />
-		<set name="targetType" val="SELF" />
-		<set name="trait" val="#traits" />
+		<set name="targetType" val="ONE" />
+		<set name="isDebuff" val="#isDebuff" />
 		<for>
 			<effect name="#effectname1">
 				<mul stat="pAtk" val="#attackAndSpeed" />
@@ -181,72 +182,72 @@
 	</skill>
 	<skill id="5009" levels="1" name="Frintezza's Ghostly Fighter">
 		<!-- A portrait ghost that can make physical attacks. -->
-		<set name="affectRange" val="150" />
-		<set name="castRange" val="150" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="650" />
-		<set name="element" val="5" /> <!-- Dark -->
-		<set name="elementPower" val="180" />
-		<set name="hitTime" val="2500" />
-		<set name="magicLevel" val="85" />
 		<set name="operateType" val="A1" />
-		<set name="power" val="6400" />
+		<set name="magicLevel" val="85" />
+		<set name="power" val="2000" />
+		<set name="castRange" val="150" />
+		<set name="effectRange" val="225" />
+		<set name="hitTime" val="2500" />
+		<set name="reuseDelay" val="10000" />
+		<set name="effectPoint" val="-666" />
 		<set name="targetType" val="AREA" />
+		<set name="element" val="5" /> <!-- Dark -->
 		<for>
 			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5010" levels="1" name="Frintezza's Ghostly Mage">
 		<!-- A portrait ghost that can make magical attacks. -->
-		<set name="affectRange" val="150" />
-		<set name="castRange" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1000" />
-		<set name="element" val="5" /> <!-- Dark -->
-		<set name="elementPower" val="180" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
 		<set name="operateType" val="A1" />
-		<set name="power" val="106" />
+		<set name="magicLevel" val="85" />
+		<set name="power" val="300" />
+		<set name="isMagic" val="1" /> <!-- Magic Skill -->
+		<set name="castRange" val="500" />
+		<set name="effectRange" val="750" />
+		<set name="hitTime" val="2500" />
+		<set name="reuseDelay" val="10000" />
+		<set name="effectPoint" val="-666" />
 		<set name="targetType" val="AREA" />
+		<set name="element" val="5" /> <!-- Dark -->
 		<for>
 			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5011" levels="1" name="Frintezza's Bomber Ghost">
 		<!-- A portrait ghost who can create a suicide explosion. -->
-		<set name="affectRange" val="150" />
-		<set name="effectPoint" val="-100" />
-		<set name="element" val="5" /> <!-- Dark -->
-		<set name="elementPower" val="180" />
-		<set name="hitTime" val="1000" />
-		<set name="isSuicideAttack" val="true" />
-		<set name="magicLevel" val="85" />
 		<set name="operateType" val="A1" />
-		<set name="power" val="364" />
+		<set name="magicLevel" val="85" />
+		<set name="power" val="3000" />
+		<set name="hitTime" val="1000" />
+		<set name="reuseDelay" val="10000" />
+		<set name="effectPoint" val="-666" />
 		<set name="targetType" val="AURA" />
+		<set name="affectRange" val="300" />
+		<set name="affectLimit" val="5-12" />
+		<set name="element" val="5" /> <!-- Dark -->
+		<set name="isSuicideAttack" val="true" />
 		<for>
 			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5012" levels="1" name="Breath of Scarlet">
 		<!-- Instantly immobilizes. -->
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="9" />
+		<set name="operateType" val="A2" />
+		<set name="magicLevel" val="85" />
+		<set name="castRange" val="40" />
+		<set name="effectRange" val="60" />
+		<set name="hitTime" val="1500" />
+		<set name="reuseDelay" val="15000" />
+		<set name="activateRate" val="80" />
+		<set name="lvlBonusRate" val="1" />
+		<set name="basicProperty" val="CON" />
+		<set name="abnormalTime" val="5" />
+		<set name="abnormalLevel" val="10" />
 		<set name="abnormalType" val="STUN" />
 		<set name="abnormalVisualEffect" val="GHOST_STUN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="40" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
+		<set name="effectPoint" val="-200" />
 		<set name="icon" val="icon.skill5012" />
 		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="85" />
-		<set name="operateType" val="A2" />
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
@@ -255,15 +256,15 @@
 	</skill>
 	<skill id="5013" levels="1" name="Frintezza Ghost Drain">
 		<!-- Portrait ghost drains HP. -->
-		<set name="castRange" val="40" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="400" />
-		<set name="element" val="5" /> <!-- Dark -->
-		<set name="elementPower" val="180" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
 		<set name="operateType" val="A1" />
-		<set name="power" val="61" />
+		<set name="magicLevel" val="85" />
+		<set name="power" val="129" />
+		<set name="isMagic" val="1" /> <!-- Magic Skill -->
+		<set name="castRange" val="40" />
+		<set name="effectRange" val="60" />
+		<set name="reuseDelay" val="10000" />
+		<set name="effectPoint" val="-100" />
+		<set name="element" val="5" /> <!-- Dark -->
 		<set name="targetType" val="ONE" />
 		<for>
 			<effect name="HpDrain">
@@ -275,23 +276,17 @@
 		<!-- Level 1: Demon 1 general attack. -->
 		<!-- Level 2: Demon 2 general attack. -->
 		<!-- Level 3: Demon 3 general attack. -->
-		<table name="#baseCritRate">6 8 10</table>
-		<table name="#magicLevel">85 85 85</table>
-		<table name="#power">15835 19096 16176</table>
-		<set name="affectRange" val="150" />
-		<set name="baseCritRate" val="#baseCritRate" />
-		<set name="castRange" val="150" />
-		<set name="coolTime" val="1200" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="650" />
-		<set name="element" val="5" /> <!-- Dark -->
-		<set name="elementPower" val="180" />
-		<set name="fanRange" val="0,0,150,150" />
-		<set name="hitTime" val="1300" />
-		<set name="magicLevel" val="#magicLevel" />
+		<table name="#power">1000 1500 2000</table>
 		<set name="operateType" val="A1" />
+		<set name="magicLevel" val="85" />
 		<set name="power" val="#power" />
-		<set name="targetType" val="FRONT_AREA" />
+		<set name="castRange" val="150" />
+		<set name="effectRange" val="225" />
+		<set name="hitTime" val="1300" />
+		<set name="reuseDelay" val="10000" />
+		<set name="effectPoint" val="-100" />
+		<set name="element" val="5" /> <!-- Dark -->
+		<set name="targetType" val="ONE" />
 		<for>
 			<effect name="PhysicalDamage" />
 		</for>
@@ -303,25 +298,24 @@
 		<!-- Level 4: Demon 1 slow charge. -->
 		<!-- Level 5: Demon 2 slow charge. -->
 		<!-- Level 6: Demon 3 slow charge. -->
-		<table name="#coolTime">0 0 0 1500 1500 1500</table>
-		<table name="#fanRange">0,0,400,150 0,0,500,170 0,0,700,200 0,0,400,150 0,0,500,170 0,0,700,200</table>
-		<table name="#power">48761 52970 68074 48761 52970 68074</table>
-		<table name="#radius">400 500 700 400 500 700</table>
-		<set name="affectRange" val="#radius" />
-		<set name="castRange" val="150" />
-		<set name="coolTime" val="#coolTime" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="650" />
-		<set name="element" val="5" /> <!-- Dark -->
-		<set name="elementPower" val="180" />
-		<set name="fanRange" val="#fanRange" />
-		<set name="flyRadius" val="#radius" />
-		<set name="flyType" val="CHARGE" />
-		<set name="hitTime" val="1500" />
-		<set name="magicLevel" val="85" />
-		<set name="operateType" val="A1" />
+		<table name="#power">1000 1500 1750 2000 2500 3000</table>
+		<table name="#radius">300 300 300 400 400 400</table>
+		<table name="#fanRange">0,0,400,380 0,0,400,380 0,0,400,380 0,0,400,380 0,0,400,380 0,0,400,380</table>
 		<set name="power" val="#power" />
-		<set name="targetType" val="FRONT_AREA" />
+		<set name="flyRadius" val="#radius" />
+		<set name="fanRange" val="#fanRange" />
+		<set name="operateType" val="A1" />
+		<set name="magicLevel" val="85" />
+		<set name="castRange" val="550" />
+		<set name="effectRange" val="925" />
+		<set name="hitTime" val="1500" />
+		<set name="reuseDelay" val="1500" />
+		<set name="effectPoint" val="-100" />
+		<set name="targetType" val="ONE" />
+		<set name="affectRange" val="#radius" />
+		<set name="element" val="5" /> <!-- Dark -->
+		<set name="affectLimit" val="5-12" />
+		<set name="flyType" val="CHARGE" />
 		<cond msgId="113" addName="1">
 			<player insideZoneId="5015" />
 		</cond>
@@ -331,49 +325,43 @@
 	</skill>
 	<skill id="5016" levels="1" name="Yoke of Scarlet">
 		<!-- Instantly immobilizes. -->
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="20" />
-		<set name="abnormalType" val="PARALYZE" />
-		<set name="abnormalVisualEffect" val="FLOATING_ROOT" />
-		<set name="activateRate" val="80" />
-		<set name="affectRange" val="200" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="500" />
-		<set name="coolTime" val="1000" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1000" />
-		<set name="hitTime" val="3000" />
-		<set name="icon" val="icon.skill5016" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="85" />
 		<set name="operateType" val="A2" />
+		<set name="magicLevel" val="85" />
+		<set name="castRange" val="500" />
+		<set name="effectRange" val="750" />
+		<set name="hitTime" val="3000" />
+		<set name="reuseDelay" val="80000" />
+		<set name="activateRate" val="80" />
+		<set name="abnormalTime" val="15" />
+		<set name="abnormalLevel" val="1" />
+		<set name="abnormalType" val="STUN" />
+		<set name="abnormalVisualEffect" val="FLOATING_ROOT" />
+		<set name="effectPoint" val="-100" />
 		<set name="targetType" val="AREA" />
-		<set name="trait" val="DERANGEMENT" />
+		<set name="isDebuff" val="true" />
+		<set name="icon" val="icon.skill5016" />
 		<for>
 			<effect name="Paralyze" />
 		</for>
 	</skill>
 	<skill id="5017" levels="1" name="Frintezza's Daemon Morph">
 		<!-- Demon 1 metamorphosis. -->
+		<set name="operateType" val="A2" />
+		<set name="magicLevel" val="85" />
+		<set name="hitTime" val="1000" />
+		<set name="reuseDelay" val="80000" />
+		<set name="activateRate" val="80" />
 		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="7200" />
+		<set name="abnormalTime" val="15" />
 		<set name="abnormalType" val="BIG_BODY" />
 		<set name="abnormalVisualEffect" val="BIG_BODY" />
-		<set name="activateRate" val="0" />
-		<set name="coolTime" val="1000" />
-		<set name="effectPoint" val="100" />
-		<set name="hitTime" val="1000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="operateType" val="A2" />
 		<set name="targetType" val="SELF" />
 		<for>
 			<effect name="Grow">
 				<mul stat="runSpd" val="1.22" />
 			</effect>
 			<effect name="HealPercent">
-				<param power="20" />
+				<param power="1" />
 			</effect>
 		</for>
 	</skill>
@@ -382,15 +370,14 @@
 		<!-- Level 2: Demon 3 magic field. -->
 		<table name="#power">607 754</table>
 		<table name="#skillRadius">700 1000</table>
-		<set name="affectRange" val="#skillRadius" />
-		<set name="coolTime" val="1000" />
-		<set name="effectPoint" val="-100" />
-		<set name="element" val="5" /> <!-- Dark -->
-		<set name="elementPower" val="180" />
-		<set name="hitTime" val="7000" />
-		<set name="magicLevel" val="85" />
 		<set name="operateType" val="A1" />
+		<set name="magicLevel" val="85" />
 		<set name="power" val="#power" />
+		<set name="hitTime" val="7000" />
+		<set name="reuseDelay" val="10000" />
+		<set name="effectPoint" val="-666" />
+		<set name="affectRange" val="#skillRadius" />
+		<set name="element" val="5" /> <!-- Dark -->
 		<set name="targetType" val="AURA" />
 		<for>
 			<effect name="MagicalDamage" />
@@ -398,15 +385,14 @@
 	</skill>
 	<skill id="5019" levels="1" name="Frintezza's Daemon Drain">
 		<!-- Demon 3 HP drain range. -->
-		<set name="affectRange" val="1000" />
-		<set name="coolTime" val="4000" />
-		<set name="effectPoint" val="-100" />
-		<set name="element" val="5" /> <!-- Dark -->
-		<set name="elementPower" val="180" />
-		<set name="hitTime" val="6000" />
-		<set name="magicLevel" val="85" />
 		<set name="operateType" val="A1" />
-		<set name="power" val="314" />
+		<set name="magicLevel" val="80" />
+		<set name="power" val="229" />
+		<set name="hitTime" val="6000" />
+		<set name="reuseDelay" val="10000" />
+		<set name="effectPoint" val="-666" />
+		<set name="affectRange" val="1000" />
+		<set name="element" val="5" /> <!-- Dark -->
 		<set name="targetType" val="AURA" />
 		<for>
 			<effect name="HpDrain">

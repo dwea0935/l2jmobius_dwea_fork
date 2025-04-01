@@ -1732,7 +1732,7 @@
 		<effectRange>1100</effectRange>
 		<hitCancelTime>2.5</hitCancelTime>
 		<hitTime>2500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1784,7 +1784,7 @@
 		<effectRange>1100</effectRange>
 		<hitCancelTime>2.5</hitCancelTime>
 		<hitTime>2500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1836,7 +1836,7 @@
 		<effectRange>1100</effectRange>
 		<hitCancelTime>2.5</hitCancelTime>
 		<hitTime>2500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>

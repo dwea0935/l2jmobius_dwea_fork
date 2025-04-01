@@ -16,17 +16,17 @@
  */
 package quests.Q00092_SagaOfTheElementalMaster;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * Saga of the Elemental Master (92)
  * @author Emperorc
  */
-public class Q00092_SagaOfTheElementalMaster extends SagasSuperClass
+public class Q00092_SagaOfTheElementalMaster extends AbstractSagaQuest
 {
 	public Q00092_SagaOfTheElementalMaster()
 	{
-		super(92);
+		super(92, "Saga of the Elemental Master");
 		_npc = new int[]
 		{
 			30174,

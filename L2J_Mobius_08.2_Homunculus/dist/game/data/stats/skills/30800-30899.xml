@@ -877,12 +877,7 @@
 		<effectPoint>687</effectPoint>
 		<hitTime>700</hitTime>
 		<isMagic>22</isMagic>
-		<itemConsumeCount>
-			<value level="1">0</value>
-			<value level="2">10</value>
-		</itemConsumeCount>
 		<itemConsumeCount>50</itemConsumeCount>
-		<itemConsumeId>3031</itemConsumeId> <!-- Spirit Ore -->
 		<itemConsumeId>3031</itemConsumeId> <!-- Spirit Ore -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>

@@ -3072,7 +3072,7 @@
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -3106,7 +3106,7 @@
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>

@@ -2215,13 +2215,6 @@
 		<castRange>900</castRange>
 		<isMagic>4</isMagic>
 	</skill>
-	<skill id="34780" toLevel="1" name="Thick Silken Hair">
-		<!-- Having washed your hair with Clear Acorus Water, you feel refreshed. Now your life will be filled with luck and happiness!. For 24 h., damage +10%, acquired XP/ SP +10%, received damage -10%. Note!. The effect remains after death, after switching to a dual class or entering instance zones. The effect is removed upon entering the Olympiad or the Ceremony of Chaos. -->
-		<icon>icon.s_ev_2023_dano_hairbuff</icon>
-		<operateType>A1</operateType>
-		<castRange>900</castRange>
-		<isMagic>4</isMagic>
-	</skill>
 	<skill id="34781" toLevel="1" name="Langk Lizardmen's Land">
 		<icon>icon.skill1343</icon>
 		<operateType>A2</operateType>
@@ -2496,7 +2489,6 @@
 		<effectRange>700</effectRange>
 		<fanRange>0;0;900;500</fanRange>
 		<hitTime>3800</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic>
 		<lvlBonusRate>100</lvlBonusRate>

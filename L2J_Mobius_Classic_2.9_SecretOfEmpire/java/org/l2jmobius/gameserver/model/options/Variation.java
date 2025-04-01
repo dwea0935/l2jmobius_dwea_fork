@@ -42,7 +42,7 @@ public class Variation
 	
 	public void setEffectGroup(VariationWeaponType type, int order, OptionDataGroup group)
 	{
-		final OptionDataGroup[] effects = _effects.computeIfAbsent(type, k -> new OptionDataGroup[2]);
+		final OptionDataGroup[] effects = _effects.computeIfAbsent(type, _ -> new OptionDataGroup[2]);
 		effects[order] = group;
 	}
 	

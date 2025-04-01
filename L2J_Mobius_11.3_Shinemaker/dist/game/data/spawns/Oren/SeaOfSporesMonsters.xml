@@ -15,8 +15,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -33,8 +31,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -51,8 +47,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -69,8 +63,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -87,8 +79,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -105,8 +95,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -123,8 +111,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -141,8 +127,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -159,8 +143,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -177,8 +159,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -195,8 +175,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -213,8 +191,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -231,8 +207,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -249,8 +223,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -267,8 +239,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -285,8 +255,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -303,8 +271,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -321,8 +287,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -339,8 +303,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -357,8 +319,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -375,8 +335,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -393,8 +351,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -411,8 +367,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -429,8 +383,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -447,8 +399,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -465,8 +415,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -483,8 +431,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -501,8 +447,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -519,8 +463,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -537,8 +479,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -555,8 +495,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -573,8 +511,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -591,8 +527,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -609,8 +543,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -627,8 +559,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -645,8 +575,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -663,8 +591,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -681,8 +607,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -699,8 +623,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -717,8 +639,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -735,8 +655,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -753,8 +671,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -771,8 +687,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -789,8 +703,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -807,8 +719,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -825,8 +735,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -843,8 +751,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -861,8 +767,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -879,8 +783,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -897,8 +799,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -915,8 +815,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -933,8 +831,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -951,8 +847,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -969,8 +863,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -987,8 +879,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1005,8 +895,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1023,8 +911,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1041,8 +927,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1059,8 +943,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1077,8 +959,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1095,8 +975,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1113,8 +991,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1131,8 +1007,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1149,8 +1023,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1167,8 +1039,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1185,8 +1055,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1203,8 +1071,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1221,8 +1087,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1239,8 +1103,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1257,8 +1119,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1275,8 +1135,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1293,8 +1151,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1311,8 +1167,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1329,8 +1183,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1347,8 +1199,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1365,8 +1215,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1383,8 +1231,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1401,8 +1247,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1419,8 +1263,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1437,8 +1279,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1455,8 +1295,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1473,8 +1311,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1491,8 +1327,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1509,8 +1343,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1527,8 +1359,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1545,8 +1375,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1563,8 +1391,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1581,8 +1407,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1599,8 +1423,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1617,8 +1439,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1635,8 +1455,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1653,8 +1471,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1671,8 +1487,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1689,8 +1503,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1707,8 +1519,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1725,8 +1535,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1743,8 +1551,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1761,8 +1567,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1779,8 +1583,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1797,8 +1599,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1815,8 +1615,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1833,8 +1631,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1851,8 +1647,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1869,8 +1663,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1887,8 +1679,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1905,8 +1695,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1923,8 +1711,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1941,8 +1727,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1959,8 +1743,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1977,8 +1759,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -1995,8 +1775,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2013,8 +1791,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2031,8 +1807,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2049,8 +1823,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2067,8 +1839,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2085,8 +1855,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2103,8 +1871,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2121,8 +1887,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2139,8 +1903,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2157,8 +1919,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2175,8 +1935,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2193,8 +1951,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2211,8 +1967,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2229,8 +1983,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2247,8 +1999,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2265,8 +2015,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2283,8 +2031,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2301,8 +2047,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2319,8 +2063,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2337,8 +2079,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2355,8 +2095,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2373,8 +2111,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2391,8 +2127,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2409,8 +2143,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2427,8 +2159,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2445,8 +2175,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2463,8 +2191,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2481,8 +2207,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2499,8 +2223,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2517,8 +2239,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2535,8 +2255,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2553,8 +2271,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2571,8 +2287,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2589,8 +2303,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2607,8 +2319,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2625,8 +2335,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2643,8 +2351,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2661,8 +2367,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2679,8 +2383,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2697,8 +2399,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2715,8 +2415,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2733,8 +2431,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2751,8 +2447,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2769,8 +2463,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2787,8 +2479,6 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 	<spawn>
 		<territories>
@@ -2805,7 +2495,5 @@
 		<npc id="24622" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Harane -->
 		<npc id="24623" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Lesatanas -->
 		<npc id="24624" count="1" respawnTime="18sec" chaseRange="900" /> <!-- Arbor -->
-
-
 	</spawn>
 </list>

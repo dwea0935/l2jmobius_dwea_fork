@@ -20,10 +20,10 @@
  */
 package quests.Q00351_BlackSwan;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -41,7 +41,7 @@ public class Q00351_BlackSwan extends Quest
 	
 	public Q00351_BlackSwan()
 	{
-		super(351);
+		super(351, "Black Swan");
 		registerQuestItems(ORDER_OF_GOSTA, BARREL_OF_LEAGUE, LIZARD_FANG);
 		addStartNpc(GOSTA);
 		addTalkId(GOSTA, IASON_HEINE, ROMAN);
@@ -152,12 +152,12 @@ public class Q00351_BlackSwan extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		final int random = getRandom(4);
@@ -175,7 +175,5 @@ public class Q00351_BlackSwan extends Quest
 			giveItems(player, BARREL_OF_LEAGUE, 1);
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
-		
-		return null;
 	}
 }

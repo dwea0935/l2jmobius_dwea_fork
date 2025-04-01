@@ -20,12 +20,13 @@
  */
 package handlers.effecthandlers;
 
+import org.l2jmobius.gameserver.data.holders.TimedHuntingZoneHolder;
 import org.l2jmobius.gameserver.data.xml.TimedHuntingZoneData;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.TimedHuntingZoneHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
@@ -71,7 +72,7 @@ public class AddHuntingTime extends AbstractEffect
 		final long endTime = currentTime + player.getTimedHuntingZoneRemainingTime(_zoneId);
 		if ((endTime > currentTime) && (((endTime - currentTime) + _time) > holder.getMaximumAddedTime()))
 		{
-			player.getInventory().addItem("AddHuntingTime effect refund", item.getId(), 1, player, player);
+			player.getInventory().addItem(ItemProcessType.REFUND, item.getId(), 1, player, player);
 			player.sendMessage("You cannot exceed the time zone limit.");
 			return;
 		}
@@ -79,7 +80,7 @@ public class AddHuntingTime extends AbstractEffect
 		final long remainRefill = player.getVariables().getInt(PlayerVariables.HUNTING_ZONE_REMAIN_REFILL + _zoneId, holder.getRemainRefillTime());
 		if ((_time < remainRefill) || (remainRefill == 0))
 		{
-			player.getInventory().addItem("AddHuntingTime effect refund", item.getId(), 1, player, player);
+			player.getInventory().addItem(ItemProcessType.REFUND, item.getId(), 1, player, player);
 			player.sendMessage("You cannot exceed the time zone limit.");
 			return;
 		}

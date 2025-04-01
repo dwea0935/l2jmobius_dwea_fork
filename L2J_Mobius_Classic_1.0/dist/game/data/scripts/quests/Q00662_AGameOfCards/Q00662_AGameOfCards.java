@@ -27,7 +27,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * A Game of Cards (662)
@@ -685,7 +685,7 @@ public class Q00662_AGameOfCards extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final List<Player> players = new ArrayList<>();
 		players.add(killer);
@@ -703,7 +703,7 @@ public class Q00662_AGameOfCards extends Quest
 		}
 		
 		final Player player = players.get(getRandom(players.size()));
-		if ((player != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if ((player != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
 		{
 			if (MONSTERS.get(npc.getId()) < getRandom(1000))
 			{
@@ -714,7 +714,6 @@ public class Q00662_AGameOfCards extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private static String setHtml(String htmltext, int var, String regex)

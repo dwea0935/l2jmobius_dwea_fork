@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -24,30 +28,24 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.Position;
 import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Position;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
- * This class load, holds and calculates the hit condition bonuses.
- * @author Nik
+ * @author Nik, Mobius
  */
 public class HitConditionBonusData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(HitConditionBonusData.class.getName());
 	
-	private int frontBonus = 0;
-	private int sideBonus = 0;
-	private int backBonus = 0;
-	private int highBonus = 0;
-	private int lowBonus = 0;
-	private int darkBonus = 0;
-	@SuppressWarnings("unused")
-	private int rainBonus = 0;
+	private int _frontBonus = 0;
+	private int _sideBonus = 0;
+	private int _backBonus = 0;
+	private int _highBonus = 0;
+	private int _lowBonus = 0;
+	private int _darkBonus = 0;
 	
-	/**
-	 * Instantiates a new hit condition bonus.
-	 */
 	protected HitConditionBonusData()
 	{
 		load();
@@ -61,46 +59,45 @@ public class HitConditionBonusData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node d = doc.getFirstChild().getFirstChild(); d != null; d = d.getNextSibling())
+		// Iterate through child elements of the root node.
+		for (Node d = document.getFirstChild().getFirstChild(); d != null; d = d.getNextSibling())
 		{
+			// Get the value of the "val" attribute for each node.
 			final NamedNodeMap attrs = d.getAttributes();
+			
+			// Set the corresponding bonus based on the node name.
 			switch (d.getNodeName())
 			{
 				case "front":
 				{
-					frontBonus = parseInteger(attrs, "val");
+					_frontBonus = parseInteger(attrs, "val");
 					break;
 				}
 				case "side":
 				{
-					sideBonus = parseInteger(attrs, "val");
+					_sideBonus = parseInteger(attrs, "val");
 					break;
 				}
 				case "back":
 				{
-					backBonus = parseInteger(attrs, "val");
+					_backBonus = parseInteger(attrs, "val");
 					break;
 				}
 				case "high":
 				{
-					highBonus = parseInteger(attrs, "val");
+					_highBonus = parseInteger(attrs, "val");
 					break;
 				}
 				case "low":
 				{
-					lowBonus = parseInteger(attrs, "val");
+					_lowBonus = parseInteger(attrs, "val");
 					break;
 				}
 				case "dark":
 				{
-					darkBonus = parseInteger(attrs, "val");
-					break;
-				}
-				case "rain":
-				{
-					rainBonus = parseInteger(attrs, "val");
+					_darkBonus = parseInteger(attrs, "val");
 					break;
 				}
 			}
@@ -108,60 +105,56 @@ public class HitConditionBonusData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the condition bonus.
+	 * Calculates the condition bonus for the attacker against the target.
 	 * @param attacker the attacking character.
 	 * @param target the attacked character.
-	 * @return the bonus of the attacker against the target.
+	 * @return the bonus multiplier of the attacker against the target.
 	 */
 	public double getConditionBonus(Creature attacker, Creature target)
 	{
-		double mod = 100;
-		// Get high or low bonus
-		if ((attacker.getZ() - target.getZ()) > 50)
+		double mod = 100d;
+		
+		// Apply height difference bonus.
+		final int heightDifference = attacker.getZ() - target.getZ();
+		if (heightDifference > 50)
 		{
-			mod += highBonus;
+			mod += _highBonus;
 		}
-		else if ((attacker.getZ() - target.getZ()) < -50)
+		else if (heightDifference < -50)
 		{
-			mod += lowBonus;
+			mod += _lowBonus;
 		}
 		
-		// Get weather bonus
+		// Apply night-time bonus.
 		if (GameTimeTaskManager.getInstance().isNight())
 		{
-			mod += darkBonus;
-			// else if () No rain support yet.
-			// chance += hitConditionBonus.rainBonus;
+			mod += _darkBonus;
 		}
 		
-		// Get side bonus
+		// Apply positional bonus.
 		switch (Position.getPosition(attacker, target))
 		{
 			case SIDE:
 			{
-				mod += sideBonus;
+				mod += _sideBonus;
 				break;
 			}
 			case BACK:
 			{
-				mod += backBonus;
+				mod += _backBonus;
 				break;
 			}
 			default:
 			{
-				mod += frontBonus;
+				mod += _frontBonus;
 				break;
 			}
 		}
 		
-		// If (mod / 100) is less than 0, return 0, because we can't lower more than 100%.
-		return Math.max(mod / 100, 0);
+		// Return the final condition bonus multiplier, ensuring it is not less than zero.
+		return Math.max(mod / 100d, 0);
 	}
 	
-	/**
-	 * Gets the single instance of HitConditionBonus.
-	 * @return single instance of HitConditionBonus
-	 */
 	public static HitConditionBonusData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

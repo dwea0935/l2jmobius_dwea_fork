@@ -16,14 +16,14 @@
  */
 package instances.FaeronTrainingGrounds1;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -186,13 +186,13 @@ public class FaeronTrainingGrounds1 extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		// Check if monster is inside instance
 		final Instance world = npc.getInstanceWorld();
 		if (world == null)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		// Remove monster from instance spawn holder
@@ -228,18 +228,16 @@ public class FaeronTrainingGrounds1 extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player player, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player player, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		if (!npc.isDead() && (player.getTarget() == npc))
 		{
 			final double dmg = npc.getMaxHp() * DAMAGE_BY_SKILL;
 			npc.reduceCurrentHp(dmg, player, null);
 		}
-		return super.onSkillSee(npc, player, skill, targets, isSummon);
 	}
 	
 	/**

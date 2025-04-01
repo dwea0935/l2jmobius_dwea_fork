@@ -11,7 +11,7 @@
 		<abnormalVisualEffect>ATTACK_BUFF_AVE</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -23,17 +23,9 @@
 		<operateType>A1</operateType>
 		<targetType>SELF</targetType>
 		<affectScope>SINGLE</affectScope>
-		<conditions>
-			<condition name="OpAffectedBySkill">
-				<skillId>45101</skillId> <!-- Final Frenzy -->
-				<skillLevel>1</skillLevel>
-			</condition>
-		</conditions>
 		<effects>
 			<effect name="DispelBySlot">
-				<dispel>
-					<value level="1">FINAL_ATTACK_DEFENCE,1</value>
-				</dispel>
+				<dispel>FINAL_ATTACK_DEFENCE,1</dispel>
 			</effect>
 		</effects>
 	</skill>

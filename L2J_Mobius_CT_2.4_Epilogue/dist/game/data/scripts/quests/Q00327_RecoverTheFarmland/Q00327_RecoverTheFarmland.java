@@ -19,11 +19,11 @@ package quests.Q00327_RecoverTheFarmland;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 
 /**
@@ -96,7 +96,7 @@ public class Q00327_RecoverTheFarmland extends Quest
 	
 	public Q00327_RecoverTheFarmland()
 	{
-		super(327);
+		super(327, "Recover the Farmland");
 		addStartNpc(LEIKAN, PIOTUR);
 		addTalkId(LEIKAN, PIOTUR, IRIS, ASHA, NESTLE);
 		addKillId(TUREK_ORK_WARLORD, TUREK_ORK_ARCHER, TUREK_ORK_SKIRMISHER, TUREK_ORK_SUPPLIER, TUREK_ORK_FOOTMAN, TUREK_ORK_SENTINEL, TUREK_ORK_SHAMAN);
@@ -342,7 +342,7 @@ public class Q00327_RecoverTheFarmland extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if (qs != null)
@@ -361,7 +361,6 @@ public class Q00327_RecoverTheFarmland extends Quest
 				giveItems(killer, getRandom(CLAY_URN_FRAGMENT, JADE_NECKLACE_BEAD), 1);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

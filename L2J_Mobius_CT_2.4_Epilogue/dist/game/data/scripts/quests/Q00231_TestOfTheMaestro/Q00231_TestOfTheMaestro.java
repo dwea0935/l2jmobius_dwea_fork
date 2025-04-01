@@ -17,14 +17,14 @@
 package quests.Q00231_TestOfTheMaestro;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Test Of The Maestro (231)
@@ -74,7 +74,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 	
 	public Q00231_TestOfTheMaestro()
 	{
-		super(231);
+		super(231, "Test of the Maestro");
 		addStartNpc(IRON_GATES_LOCKIRIN);
 		addTalkId(IRON_GATES_LOCKIRIN, GOLDEN_WHEELS_SPIRON, SILVER_SCALES_BALANKI, BRONZE_KEYS_KEEF, GRAY_PILLAR_MEMBER_FILAUR, BLACK_ANVILS_ARIN, MASTER_TOMA, CHIEF_CROTO, JAILER_DUBABAH, RESEARCHER_LORAIN);
 		addKillId(KING_BUGBEAR, GIANT_MIST_LEECH, STINGER_WASP, MARSH_SPIDER, EVIL_EYE_LORD);
@@ -169,10 +169,10 @@ public class Q00231_TestOfTheMaestro extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -235,7 +235,6 @@ public class Q00231_TestOfTheMaestro extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -248,7 +247,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 		{
 			if (npc.getId() == IRON_GATES_LOCKIRIN)
 			{
-				if (player.getClassId() == ClassId.ARTISAN)
+				if (player.getPlayerClass() == PlayerClass.ARTISAN)
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{

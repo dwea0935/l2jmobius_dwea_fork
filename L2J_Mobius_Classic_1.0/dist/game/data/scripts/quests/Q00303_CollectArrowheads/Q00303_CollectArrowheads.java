@@ -61,7 +61,7 @@ public class Q00303_CollectArrowheads extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 1);
 		if (partyMember != null)
@@ -72,7 +72,6 @@ public class Q00303_CollectArrowheads extends Quest
 				qs.setCond(2);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

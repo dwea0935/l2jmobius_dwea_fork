@@ -23,11 +23,11 @@ package ai.areas.SeaOfSpores;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -50,7 +50,7 @@ public class SeaOfSporesDefender extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == FUNGUS_DEFENDER)
 		{
@@ -74,11 +74,10 @@ public class SeaOfSporesDefender extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if ((npc.getId() == FUNGUS_DEFENDER) || (npc.getId() == FUNGUS))
 		{
@@ -94,7 +93,6 @@ public class SeaOfSporesDefender extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -27,10 +27,10 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -218,17 +218,18 @@ public class DraconidFortress extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (killer == null)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		Instance instance = killer.getInstanceWorld();
 		if ((instance == null) || (instance.getTemplateId() != INSTANCE_ID))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
+		
 		switch (instance.getStatus())
 		{
 			case KILL_FOUR_DREAM_WATCHERS_INSIDE_FIRST_TIME:
@@ -243,7 +244,7 @@ public class DraconidFortress extends AbstractInstance
 				
 				if ((npc.getTitleString() == null) || !npc.getTitleString().equals(DREAM_WATCHER))
 				{
-					return super.onKill(npc, killer, isSummon);
+					return;
 				}
 				
 				final int dreamWatcherCount = instance.getParameters().increaseInt(DREAM_WATCHER_COUNTER, 0, 1);
@@ -292,8 +293,6 @@ public class DraconidFortress extends AbstractInstance
 				break;
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

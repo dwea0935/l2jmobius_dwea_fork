@@ -313,7 +313,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="7" /> <!-- Scroll of Escape: Town of Gludio -->
+			<skill id="2213" level="7" /> <!-- Scroll of Escape: Gludio -->
 		</skills>
 	</item>
 	<item id="7124" name="Scroll of Escape: Dion" additionalName="Sealed" type="EtcItem">
@@ -334,7 +334,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="8" /> <!-- Scroll of Escape: Town of Dion -->
+			<skill id="2213" level="8" /> <!-- Scroll of Escape: Dion -->
 		</skills>
 	</item>
 	<item id="7125" name="Scroll of Escape: Floran Village" additionalName="Sealed" type="EtcItem">
@@ -376,7 +376,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="10" /> <!-- Scroll of Escape: Town of Giran -->
+			<skill id="2213" level="10" /> <!-- Scroll of Escape: Giran -->
 		</skills>
 	</item>
 	<item id="7127" name="Scroll of Escape: Hardin's Academy" additionalName="Sealed" type="EtcItem">
@@ -418,7 +418,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="13" /> <!-- Scroll of Escape: Town of Oren -->
+			<skill id="2213" level="13" /> <!-- Scroll of Escape: Oren -->
 		</skills>
 	</item>
 	<item id="7130" name="Scroll of Escape: Ivory Tower" additionalName="Sealed" type="EtcItem">
@@ -460,7 +460,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2213" level="15" /> <!-- Scroll of Escape: Hunter's Village -->
+			<skill id="2213" level="15" /> <!-- Scroll of Escape: Hunters' Village -->
 		</skills>
 	</item>
 	<item id="7139" name="Lizardman Bracelet" type="EtcItem">

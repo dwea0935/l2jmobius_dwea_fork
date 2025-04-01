@@ -22,6 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets.skillenchantguarantee;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -122,13 +123,13 @@ public class RequestSkillEnchantConfirm extends ClientPacket
 		}
 		
 		final Skill enchantSkill = SkillData.getInstance().getSkill(_skillId, playerSkill.getLevel(), _echantSkillSubLevel);
-		player.reduceAdena(getClass().getSimpleName(), feeAdena, null, true);
-		if (player.destroyItem(getClass().getSimpleName(), lCoin, _LCoinFee, null, true) && player.destroyItem(getClass().getSimpleName(), guaranteeEnchantCoupon, 1, null, true))
+		player.reduceAdena(ItemProcessType.FEE, feeAdena, null, true);
+		if (player.destroyItem(ItemProcessType.FEE, lCoin, _LCoinFee, null, true) && player.destroyItem(ItemProcessType.FEE, guaranteeEnchantCoupon, 1, null, true))
 		{
 			player.removeSkill(playerSkill.getId());
 			player.addSkill(enchantSkill, true);
 			player.sendSkillList();
-			player.updateShortCuts(_skillId, playerSkill.getLevel(), 0);
+			player.updateShortcuts(_skillId, playerSkill.getLevel(), 0);
 			player.storeMe();
 			
 			_result = 0; // Success

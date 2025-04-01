@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.itemcontainer;
 
@@ -27,10 +31,11 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.holders.RandomCraftRewardItemHolder;
 import org.l2jmobius.gameserver.data.xml.RandomCraftData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.RandomCraftRequest;
-import org.l2jmobius.gameserver.model.holders.RandomCraftRewardItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExItemAnnounce;
@@ -172,14 +177,14 @@ public class PlayerRandomCraft
 		}
 		_player.addRequest(new RandomCraftRequest(_player));
 		
-		if ((_fullCraftPoints > 0) && _player.reduceAdena("RandomCraft Refresh", Config.RANDOM_CRAFT_REFRESH_FEE, _player, true))
+		if ((_fullCraftPoints > 0) && _player.reduceAdena(ItemProcessType.FEE, Config.RANDOM_CRAFT_REFRESH_FEE, _player, true))
 		{
 			_player.sendPacket(new ExCraftInfo(_player));
 			_player.sendPacket(new ExCraftRandomRefresh());
 			_fullCraftPoints--;
 			if (_isSayhaRoll)
 			{
-				_player.addItem("RandomCraft Roll", 91641, 2, _player, true);
+				_player.addItem(ItemProcessType.REWARD, 91641, 2, _player, true);
 				_isSayhaRoll = false;
 			}
 			_player.sendPacket(new ExCraftInfo(_player));
@@ -246,7 +251,7 @@ public class PlayerRandomCraft
 		}
 		_player.addRequest(new RandomCraftRequest(_player));
 		
-		if (_player.reduceAdena("RandomCraft Make", Config.RANDOM_CRAFT_CREATE_FEE, _player, true))
+		if (_player.reduceAdena(ItemProcessType.FEE, Config.RANDOM_CRAFT_CREATE_FEE, _player, true))
 		{
 			final int madeId = Rnd.get(0, 4);
 			final RandomCraftRewardItemHolder holder = _rewardList.get(madeId);
@@ -254,7 +259,7 @@ public class PlayerRandomCraft
 			
 			final int itemId = holder.getItemId();
 			final long itemCount = holder.getItemCount();
-			final Item item = _player.addItem("RandomCraft Make", itemId, itemCount, _player, true);
+			final Item item = _player.addItem(ItemProcessType.CRAFT, itemId, itemCount, _player, true);
 			if (RandomCraftData.getInstance().isAnnounce(itemId))
 			{
 				Broadcast.toAllOnlinePlayers(new ExItemAnnounce(_player, item, ExItemAnnounce.RANDOM_CRAFT));

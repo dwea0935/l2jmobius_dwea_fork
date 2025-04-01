@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="70000" name="Sealed Rune - Lv. 1" type="EtcItem">
 		<!-- Double-click to receive one Rune - Lv. 1, which you can insert into your weapon. Cannot be sold in the grocery store. -->
@@ -9,7 +9,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55193" level="1" /> <!-- Sealed Rune - Lv. 1 -->
+			<skill id="55193" level="1" /> <!-- Sealed Rune Lvl 1 -->
 		</skills>
 	</item>
 	<item id="70001" name="Sealed Rune - Lv. 2" type="EtcItem">
@@ -21,7 +21,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55194" level="1" /> <!-- Sealed Rune - Lv. 2 -->
+			<skill id="55194" level="1" /> <!-- Sealed Rune Lvl 2 -->
 		</skills>
 	</item>
 	<item id="70002" name="Sealed Rune - Lv. 3" type="EtcItem">
@@ -33,7 +33,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55195" level="1" /> <!-- Sealed Rune - Lv. 3 -->
+			<skill id="55195" level="1" /> <!-- Sealed Rune Lvl 3 -->
 		</skills>
 	</item>
 	<item id="70003" name="Sealed Rune - Lv. 4" type="EtcItem">
@@ -45,7 +45,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55196" level="1" /> <!-- Sealed Rune - Lv. 4 -->
+			<skill id="55196" level="1" /> <!-- Sealed Rune Lvl 4 -->
 		</skills>
 	</item>
 	<item id="70004" name="Sealed Rune - Lv. 5" type="EtcItem">
@@ -57,7 +57,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55197" level="1" /> <!-- Sealed Rune - Lv. 5 -->
+			<skill id="55197" level="1" /> <!-- Sealed Rune Lvl 5 -->
 		</skills>
 	</item>
 	<item id="70005" name="Sealed Rune - Lv. 6" type="EtcItem">
@@ -69,7 +69,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55198" level="1" /> <!-- Sealed Rune - Lv. 5 -->
+			<skill id="55198" level="1" /> <!-- Sealed Rune Lvl 6 -->
 		</skills>
 	</item>
 	<item id="70006" name="Sealed Rune - Lv. 7" type="EtcItem">
@@ -81,7 +81,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55199" level="1" /> <!-- Sealed Rune - Lv. 7 -->
+			<skill id="55199" level="1" /> <!-- Sealed Rune Lvl 7 -->
 		</skills>
 	</item>
 	<item id="70007" name="Sealed Rune - Lv. 8" type="EtcItem">
@@ -93,7 +93,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55200" level="1" /> <!-- Sealed Rune - Lv. 8 -->
+			<skill id="55200" level="1" /> <!-- Sealed Rune Lvl 8 -->
 		</skills>
 	</item>
 	<item id="70008" name="Sealed Rune - Lv. 9" type="EtcItem">
@@ -105,7 +105,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55201" level="1" /> <!-- Sealed Rune - Lv. 9 -->
+			<skill id="55201" level="1" /> <!-- Sealed Rune Lvl 9 -->
 		</skills>
 	</item>
 	<item id="70009" name="Sealed Rune - Lv. 10" type="EtcItem">
@@ -117,7 +117,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55202" level="1" /> <!-- Sealed Rune - Lv. 10 -->
+			<skill id="55202" level="1" /> <!-- Sealed Rune Lv. 10 -->
 		</skills>
 	</item>
 	<item id="70010" name="Sealed Rune - Lv. 11" type="EtcItem">
@@ -129,7 +129,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55203" level="1" /> <!-- Sealed Rune - Lv. 11 -->
+			<skill id="55203" level="1" /> <!-- Sealed Rune Lv. 11 -->
 		</skills>
 	</item>
 	<item id="70011" name="Sealed Rune - Lv. 12" type="EtcItem">
@@ -141,7 +141,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55204" level="1" /> <!-- Sealed Rune - Lv. 12 -->
+			<skill id="55204" level="1" /> <!-- Sealed Rune Lv. 12 -->
 		</skills>
 	</item>
 	<item id="70012" name="Sealed Rune - Lv. 13" type="EtcItem">
@@ -153,7 +153,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="55205" level="1" /> <!-- Sealed Rune - Lv. 13 -->
+			<skill id="55205" level="1" /> <!-- Sealed Rune Lv. 13 -->
 		</skills>
 	</item>
 	<item id="70013" name="Sealed Rune - Lv. 14" additionalName="Not in Use" type="EtcItem">
@@ -915,7 +915,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14826" level="1" /> <!-- Intense Slasher - Lv. 1 -->
+			<skill id="14826" level="1" /> <!-- Intense Slash -->
 		</skills>
 	</item>
 	<item id="70070" name="Scroll: Intense Slasher - Lv. 2" type="EtcItem">
@@ -934,7 +934,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14826" level="2" /> <!-- Intense Slasher - Lv. 2 -->
+			<skill id="14826" level="2" /> <!-- Intense Slash -->
 		</skills>
 	</item>
 	<item id="70071" name="Scroll: Intense Slasher - Lv. 3" type="EtcItem">
@@ -953,7 +953,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14826" level="3" /> <!-- Intense Slasher - Lv. 3 -->
+			<skill id="14826" level="3" /> <!-- Intense Slash -->
 		</skills>
 	</item>
 	<item id="70072" name="Scroll: Intense Slasher - Lv. 4" type="EtcItem">
@@ -972,7 +972,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14826" level="4" /> <!-- Intense Slasher - Lv. 4 -->
+			<skill id="14826" level="4" /> <!-- Intense Slash -->
 		</skills>
 	</item>
 	<item id="70073" name="Scroll: Intense Slasher - Lv. 5" type="EtcItem">
@@ -991,7 +991,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14826" level="5" /> <!-- Intense Slasher - Lv. 5 -->
+			<skill id="14826" level="5" /> <!-- Intense Slash -->
 		</skills>
 	</item>
 	<item id="70074" name="Scroll: Intense Slasher - Lv. 6" type="EtcItem">
@@ -1010,7 +1010,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14826" level="6" /> <!-- Intense Slasher - Lv. 6 -->
+			<skill id="14826" level="6" /> <!-- Intense Slash -->
 		</skills>
 	</item>
 	<item id="70075" name="Purity Blast Scroll - Lv. 1" type="EtcItem">
@@ -1029,7 +1029,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14828" level="1" /> <!-- Purity Blast - Lv. 1 -->
+			<skill id="14828" level="1" /> <!-- Purity Blast -->
 		</skills>
 	</item>
 	<item id="70076" name="Purity Blast Scroll - Lv. 2" type="EtcItem">
@@ -1048,7 +1048,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14828" level="2" /> <!-- Purity Blast - Lv. 2 -->
+			<skill id="14828" level="2" /> <!-- Purity Blast -->
 		</skills>
 	</item>
 	<item id="70077" name="Purity Blast Scroll - Lv. 3" type="EtcItem">
@@ -1067,7 +1067,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14828" level="3" /> <!-- Purity Blast - Lv. 3 -->
+			<skill id="14828" level="3" /> <!-- Purity Blast -->
 		</skills>
 	</item>
 	<item id="70078" name="Purity Blast Scroll - Lv. 4" type="EtcItem">
@@ -1086,7 +1086,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14828" level="4" /> <!-- Purity Blast - Lv. 4 -->
+			<skill id="14828" level="4" /> <!-- Purity Blast -->
 		</skills>
 	</item>
 	<item id="70079" name="Purity Blast Scroll - Lv. 5" type="EtcItem">
@@ -1105,7 +1105,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14828" level="5" /> <!-- Purity Blast - Lv. 5 -->
+			<skill id="14828" level="5" /> <!-- Purity Blast -->
 		</skills>
 	</item>
 	<item id="70080" name="Purity Blast Scroll - Lv. 6" type="EtcItem">
@@ -1124,7 +1124,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14828" level="6" /> <!-- Purity Blast - Lv. 6 -->
+			<skill id="14828" level="6" /> <!-- Purity Blast -->
 		</skills>
 	</item>
 	<item id="70081" name="Grey Explosion Scroll - Lv. 1" type="EtcItem">
@@ -1143,7 +1143,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14830" level="1" /> <!-- Grey Explosion - Lv. 1 -->
+			<skill id="14830" level="1" /> <!-- Grey Explosion -->
 		</skills>
 	</item>
 	<item id="70082" name="Grey Explosion Scroll - Lv. 2" type="EtcItem">
@@ -1162,7 +1162,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14830" level="2" /> <!-- Grey Explosion - Lv. 2 -->
+			<skill id="14830" level="2" /> <!-- Grey Explosion -->
 		</skills>
 	</item>
 	<item id="70083" name="Grey Explosion Scroll - Lv. 3" type="EtcItem">
@@ -1181,7 +1181,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14830" level="3" /> <!-- Grey Explosion - Lv. 3 -->
+			<skill id="14830" level="3" /> <!-- Grey Explosion -->
 		</skills>
 	</item>
 	<item id="70084" name="Grey Explosion Scroll - Lv. 4" type="EtcItem">
@@ -1200,7 +1200,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14830" level="4" /> <!-- Grey Explosion - Lv. 4 -->
+			<skill id="14830" level="4" /> <!-- Grey Explosion -->
 		</skills>
 	</item>
 	<item id="70085" name="Grey Explosion Scroll - Lv. 5" type="EtcItem">
@@ -1219,7 +1219,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14830" level="5" /> <!-- Grey Explosion - Lv. 5 -->
+			<skill id="14830" level="5" /> <!-- Grey Explosion -->
 		</skills>
 	</item>
 	<item id="70086" name="Grey Explosion Scroll - Lv. 6" type="EtcItem">
@@ -1238,7 +1238,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14830" level="6" /> <!-- Grey Explosion - Lv. 6 -->
+			<skill id="14830" level="6" /> <!-- Grey Explosion -->
 		</skills>
 	</item>
 	<item id="70087" name="Platonic Tempest Scroll - Lv. 1" type="EtcItem">
@@ -1257,7 +1257,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14832" level="1" /> <!-- Platonic Blizzard - Lv. 1 -->
+			<skill id="14832" level="1" /> <!-- Platonic Blizzard -->
 		</skills>
 	</item>
 	<item id="70088" name="Platonic Tempest Scroll - Lv. 2" type="EtcItem">
@@ -1276,7 +1276,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14832" level="2" /> <!-- Platonic Blizzard - Lv. 2 -->
+			<skill id="14832" level="2" /> <!-- Platonic Blizzard -->
 		</skills>
 	</item>
 	<item id="70089" name="Platonic Tempest Scroll - Lv. 3" type="EtcItem">
@@ -1295,7 +1295,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14832" level="3" /> <!-- Platonic Blizzard - Lv. 3 -->
+			<skill id="14832" level="3" /> <!-- Platonic Blizzard -->
 		</skills>
 	</item>
 	<item id="70090" name="Platonic Tempest Scroll - Lv. 4" type="EtcItem">
@@ -1314,7 +1314,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14832" level="4" /> <!-- Platonic Blizzard - Lv. 4 -->
+			<skill id="14832" level="4" /> <!-- Platonic Blizzard -->
 		</skills>
 	</item>
 	<item id="70091" name="Platonic Tempest Scroll - Lv. 5" type="EtcItem">
@@ -1333,7 +1333,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14832" level="5" /> <!-- Platonic Blizzard - Lv. 5 -->
+			<skill id="14832" level="5" /> <!-- Platonic Blizzard -->
 		</skills>
 	</item>
 	<item id="70092" name="Platonic Tempest Scroll - Lv. 6" type="EtcItem">
@@ -1352,7 +1352,7 @@
 			<player level="20" />
 		</cond>
 		<skills>
-			<skill id="14832" level="6" /> <!-- Platonic Blizzard - Lv. 6 -->
+			<skill id="14832" level="6" /> <!-- Platonic Blizzard -->
 		</skills>
 	</item>
 	<item id="70093" name="Highest Quality Bait" type="EtcItem">
@@ -1385,7 +1385,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="120" />
 		<skills>
-			<skill id="55234" level="1" /> <!-- XP Rune I (Lv. 1-85) -->
+			<skill id="55234" level="1" /> <!-- XP Rune 100% -->
 		</skills>
 	</item>
 	<item id="70095" name="Wooden Helmet" additionalName="7-day" type="Armor">

@@ -33,7 +33,7 @@ import org.w3c.dom.Document;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * @author Mobius
@@ -59,9 +59,9 @@ public class PetTypeData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "pet", petNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "pet", petNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(petNode));
 			final int id = set.getInt("id");

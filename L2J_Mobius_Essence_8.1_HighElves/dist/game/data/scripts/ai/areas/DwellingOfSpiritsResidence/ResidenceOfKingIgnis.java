@@ -22,9 +22,9 @@ package ai.areas.DwellingOfSpiritsResidence;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -142,7 +142,7 @@ public class ResidenceOfKingIgnis extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if ((npc.getCurrentHp() < (npc.getMaxHp() * 0.99)) && (npc.getCurrentHp() > (npc.getMaxHp() * 0.70)))
 		{
@@ -184,7 +184,6 @@ public class ResidenceOfKingIgnis extends AbstractNpcAI
 		{
 			startQuestTimer("CAST_FIRE_RAGE_10", 1000, npc, null);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	public static void main(String[] args)

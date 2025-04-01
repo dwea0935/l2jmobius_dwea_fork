@@ -32,8 +32,8 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.homunculus.HomunculusCreationTemplate;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author Index
@@ -59,12 +59,12 @@ public class HomunculusCreationData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		StatSet set;
 		Node att;
 		NamedNodeMap attrs;
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -164,6 +164,20 @@ public class HomunculusCreationData implements IXmlReader
 		return chanceList;
 	}
 	
+	/**
+	 * Retrieves the default {@link HomunculusCreationTemplate}.
+	 * @return the default {@link HomunculusCreationTemplate}, or {@code null} if no default template is set
+	 */
+	public HomunculusCreationTemplate getDefaultTemplate()
+	{
+		return _defaultTemplate;
+	}
+	
+	/**
+	 * Retrieves the {@link HomunculusCreationTemplate} that matches the specified item ID.
+	 * @param itemId the ID of the item used to find the associated template
+	 * @return the {@link HomunculusCreationTemplate} that includes the specified item ID, or {@code null} if no matching template is found
+	 */
 	public HomunculusCreationTemplate getTemplateByItemId(int itemId)
 	{
 		for (HomunculusCreationTemplate template : TEMPLATES)
@@ -176,11 +190,10 @@ public class HomunculusCreationData implements IXmlReader
 		return null;
 	}
 	
-	public HomunculusCreationTemplate getDefaultTemplate()
-	{
-		return _defaultTemplate;
-	}
-	
+	/**
+	 * Returns a collection of all available {@link HomunculusCreationTemplate} instances.
+	 * @return a {@link Collection} containing all homunculus creation templates
+	 */
 	public Collection<HomunculusCreationTemplate> getTemplates()
 	{
 		return TEMPLATES;
@@ -195,5 +208,4 @@ public class HomunculusCreationData implements IXmlReader
 	{
 		protected static final HomunculusCreationData INSTANCE = new HomunculusCreationData();
 	}
-	
 }

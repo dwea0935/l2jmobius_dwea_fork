@@ -78,7 +78,6 @@
 		</reuseDelay>
 		<reuseDelayGroup>27356</reuseDelayGroup>
 		<trait>DEPORT</trait>
-		<trait>DEPORT</trait>
 		<effects>
 			<effect name="BlockActions">
 				<allowedSkills>10279;10517;10025;10776;11770;1904;11264;11093;13314;1912</allowedSkills>
@@ -113,7 +112,6 @@
 		<affectScope>RANGE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad> <!-- Unconfirmed -->
-		<castRange>1100</castRange>
 		<castRange>1100</castRange>
 		<effectPoint>-707</effectPoint>
 		<effectRange>1100</effectRange>

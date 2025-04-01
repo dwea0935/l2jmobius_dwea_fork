@@ -995,7 +995,7 @@
 		<abnormalType>STAT_SKILL</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1012,7 +1012,7 @@
 		<abnormalType>STAT_SKILL</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1051,7 +1051,7 @@
 		<abnormalType>STAT_SKILL</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1089,7 +1089,7 @@
 		<abnormalType>STAT_SKILL</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -2205,16 +2205,11 @@
 		<operateType>A1</operateType>
 		<targetType>ENEMY</targetType>
 		<affectLimit>5-12</affectLimit>
-		<affectLimit>5-12</affectLimit>
 		<affectObject>NOT_FRIEND</affectObject>
-		<affectRange>300</affectRange>
 		<affectRange>300</affectRange>
 		<affectScope>RANGE</affectScope>
 		<attributeType>WATER</attributeType>
-		<attributeType>WATER</attributeType>
 		<attributeValue>20</attributeValue>
-		<attributeValue>20</attributeValue>
-		<castRange>700</castRange>
 		<castRange>700</castRange>
 		<effectPoint>
 			<value level="1">-400</value>
@@ -4159,7 +4154,6 @@
 			<value level="24">-490</value>
 			<value level="25">-495</value>
 		</effectPoint>
-		<effectRange>400</effectRange>
 		<effectRange>400</effectRange>
 		<hitTime>1500</hitTime>
 		<isMagic>0</isMagic>

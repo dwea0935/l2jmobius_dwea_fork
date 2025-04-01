@@ -28,7 +28,7 @@ public class Q00069_SagaOfTheTrickster extends AbstractSagaQuest
 {
 	public Q00069_SagaOfTheTrickster()
 	{
-		super(69);
+		super(69, "Saga of the Trickster");
 		_npc = new int[]
 		{
 			32138,

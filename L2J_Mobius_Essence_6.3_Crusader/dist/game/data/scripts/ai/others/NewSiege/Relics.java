@@ -20,7 +20,7 @@
  */
 package ai.others.NewSiege;
 
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -48,16 +48,15 @@ public class Relics extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setDecayed(false);
 		npc.disableCoreAI(true);
 		npc.setImmobilized(true);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == RELIC_GIRAN)
 		{
@@ -70,7 +69,6 @@ public class Relics extends AbstractNpcAI
 			addSpawn(ARTIFACT_GODDART_2, new Location(149652, -45371, -1727), false, 60 * 60 * 1000); // 1 hour
 			GIRAN_SIEGE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.GIRAN_HOLY_ARTIFACT_HAS_APPEARED, ExShowScreenMessage.TOP_CENTER, 10000, true));
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

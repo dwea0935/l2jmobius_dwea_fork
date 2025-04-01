@@ -43,7 +43,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -76,7 +76,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -96,7 +96,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -114,7 +114,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -132,7 +132,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -150,7 +150,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -168,7 +168,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -186,7 +186,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -204,7 +204,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -222,7 +222,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -240,7 +240,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -258,7 +258,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -301,7 +301,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1000</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -1304,7 +1304,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>100</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>83</magicLevel>
 		<specialLevel>-1</specialLevel>
@@ -1344,7 +1344,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>100</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>83</magicLevel>
 		<specialLevel>-1</specialLevel>

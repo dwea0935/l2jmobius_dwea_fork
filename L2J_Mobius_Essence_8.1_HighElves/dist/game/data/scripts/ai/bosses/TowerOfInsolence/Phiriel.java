@@ -68,7 +68,7 @@ public class Phiriel extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final long nextRespawnTime = getNextRespawnTime();
 		if (nextRespawnTime > 0)
@@ -79,7 +79,6 @@ public class Phiriel extends AbstractNpcAI
 		{
 			addSpawn(PHIRIEL, PHIRIEL_LOC, false, getDespawnTime());
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private long getDespawnTime()

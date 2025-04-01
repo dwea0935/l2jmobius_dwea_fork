@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="9500" name="Recipe: Sealed Dynasty Helmet" type="EtcItem">
 		<!-- For Dwarves only. A recipe for Sealed Dynasty Helmet. Requires Create Item Lv. 9. The success rate is 100%. -->
@@ -1040,7 +1040,7 @@
 		<set name="commissionItemType" val="SOUL_CRYSTAL" />
 		<set name="is_depositable" val="false" />
 		<skills>
-			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+			<skill id="2096" level="1" /> <!-- Soul Quartz -->
 		</skills>
 	</item>
 	<item id="9571" name="Blue Soul Crystal Lv. 14" type="EtcItem">
@@ -1056,7 +1056,7 @@
 		<set name="commissionItemType" val="SOUL_CRYSTAL" />
 		<set name="is_depositable" val="false" />
 		<skills>
-			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+			<skill id="2096" level="1" /> <!-- Soul Quartz -->
 		</skills>
 	</item>
 	<item id="9572" name="Green Soul Crystal Lv. 14" type="EtcItem">
@@ -1072,7 +1072,7 @@
 		<set name="commissionItemType" val="SOUL_CRYSTAL" />
 		<set name="is_depositable" val="false" />
 		<skills>
-			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+			<skill id="2096" level="1" /> <!-- Soul Quartz -->
 		</skills>
 	</item>
 	<item id="9573" name="Life Stone Lv. 80" type="EtcItem">

@@ -18,10 +18,10 @@ package quests.Q00195_SevenSignsSecretRitualOfThePriests;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import quests.Q00194_SevenSignsMammonsContract.Q00194_SevenSignsMammonsContract;
 
@@ -52,7 +52,7 @@ public class Q00195_SevenSignsSecretRitualOfThePriests extends Quest
 	
 	public Q00195_SevenSignsSecretRitualOfThePriests()
 	{
-		super(195);
+		super(195, "Seven Signs, Secret Ritual of the Priests");
 		addFirstTalkId(IDENTITY_CONFIRM_DEVICE, PASSWORD_ENTRY_DEVICE, DARKNESS_OF_DAWN, SHELF);
 		addStartNpc(CLAUDIA_ATHEBALDT);
 		addTalkId(CLAUDIA_ATHEBALDT, JOHN, RAYMOND, IASON_HEINE, LIGHT_OF_DAWN, DARKNESS_OF_DAWN, IDENTITY_CONFIRM_DEVICE, PASSWORD_ENTRY_DEVICE, SHELF);

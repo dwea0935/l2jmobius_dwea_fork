@@ -408,7 +408,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2078-1" /> <!-- Compressed Package of Soulshots: No Grade -->
 	</item>
-	<item id="5135" type="EtcItem" name="Compressed Package of Soulshots (D-Grade)">
+	<item id="5135" type="EtcItem" name="Compressed Package of Soulshots: D-grade">
 		<!-- 300 compressed soulshots. D-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -419,7 +419,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2079-1" /> <!-- Compressed Package of Soulshots: D-grade -->
 	</item>
-	<item id="5136" type="EtcItem" name="Compressed Package of Soulshots (C-Grade)">
+	<item id="5136" type="EtcItem" name="Compressed Package of Soulshots: C-grade">
 		<!-- 300 compressed soulshots. C-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -430,7 +430,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2080-1" /> <!-- Compressed Package of Soulshots: C-grade -->
 	</item>
-	<item id="5137" type="EtcItem" name="Compressed Package of Soulshots (B-Grade)">
+	<item id="5137" type="EtcItem" name="Compressed Package of Soulshots: B-grade">
 		<!-- 300 compressed soulshots. B-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -441,7 +441,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2081-1" /> <!-- Compressed Package of Soulshots: B-grade -->
 	</item>
-	<item id="5138" type="EtcItem" name="Compressed Package of Soulshots (A-Grade)">
+	<item id="5138" type="EtcItem" name="Compressed Package of Soulshots: A-grade">
 		<!-- 300 compressed soulshots. A-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -452,7 +452,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2082-1" /> <!-- Compressed Package of Soulshots: A-grade -->
 	</item>
-	<item id="5139" type="EtcItem" name="Compressed Package of Soulshots (S-Grade)">
+	<item id="5139" type="EtcItem" name="Compressed Package of Soulshots: S-grade">
 		<!-- 300 compressed soulshots. S-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -474,7 +474,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2084-1" /> <!-- Compressed Package of Spiritshots: No Grade -->
 	</item>
-	<item id="5141" type="EtcItem" name="Compressed Package of Spiritshots (D-Grade)">
+	<item id="5141" type="EtcItem" name="Compressed Package of Spiritshots: D-grade">
 		<!-- 300 compressed spiritshots. D-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -485,7 +485,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2085-1" /> <!-- Compressed Package of Spiritshots: D-grade -->
 	</item>
-	<item id="5142" type="EtcItem" name="Compressed Package of Spiritshots (C-Grade)">
+	<item id="5142" type="EtcItem" name="Compressed Package of Spiritshots: C-grade">
 		<!-- 300 compressed spiritshots. C-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -496,7 +496,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2086-1" /> <!-- Compressed Package of Spiritshots: C-grade -->
 	</item>
-	<item id="5143" type="EtcItem" name="Compressed Package of Spiritshots (B-Grade)">
+	<item id="5143" type="EtcItem" name="Compressed Package of Spiritshots: B-grade">
 		<!-- 300 compressed spiritshots. B-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -507,7 +507,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2087-1" /> <!-- Compressed Package of Spiritshots: B-grade -->
 	</item>
-	<item id="5144" type="EtcItem" name="Compressed Package of Spiritshots (A-Grade)">
+	<item id="5144" type="EtcItem" name="Compressed Package of Spiritshots: A-grade">
 		<!-- 300 compressed spiritshots. A-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -518,7 +518,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2088-1" /> <!-- Compressed Package of Spiritshots: A-grade -->
 	</item>
-	<item id="5145" type="EtcItem" name="Compressed Package of Spiritshots (S-Grade)">
+	<item id="5145" type="EtcItem" name="Compressed Package of Spiritshots: S-grade">
 		<!-- 300 compressed spiritshots. S-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -540,7 +540,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2090-1" /> <!-- Compressed Package of Blessed Spiritshots: No Grade -->
 	</item>
-	<item id="5147" type="EtcItem" name="Compressed Package of Blessed Spiritshots (D-Grade)">
+	<item id="5147" type="EtcItem" name="Compressed Package of Blessed Spiritshots: D-grade">
 		<!-- 300 compressed blessed spiritshots. D-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -551,7 +551,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2091-1" /> <!-- Compressed Package of Blessed Spiritshots: D-grade -->
 	</item>
-	<item id="5148" type="EtcItem" name="Compressed Package of Blessed Spiritshots (C-Grade)">
+	<item id="5148" type="EtcItem" name="Compressed Package of Blessed Spiritshots: C-grade">
 		<!-- 300 compressed blessed spiritshots. C-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -562,7 +562,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2092-1" /> <!-- Compressed Package of Blessed Spiritshots: C-grade -->
 	</item>
-	<item id="5149" type="EtcItem" name="Compressed Package of Blessed Spiritshots (B-Grade)">
+	<item id="5149" type="EtcItem" name="Compressed Package of Blessed Spiritshots: B-grade">
 		<!-- 300 compressed blessed spiritshots. B-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -573,7 +573,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2093-1" /> <!-- Compressed Package of Blessed Spiritshots: B-grade -->
 	</item>
-	<item id="5150" type="EtcItem" name="Compressed Package of Blessed Spiritshots (A-Grade)">
+	<item id="5150" type="EtcItem" name="Compressed Package of Blessed Spiritshots: A-grade">
 		<!-- 300 compressed blessed spiritshots. A-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -584,7 +584,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2094-1" /> <!-- Compressed Package of Blessed Spiritshots: A-grade -->
 	</item>
-	<item id="5151" type="EtcItem" name="Compressed Package of Blessed Spiritshots (S-Grade)">
+	<item id="5151" type="EtcItem" name="Compressed Package of Blessed Spiritshots: S-grade">
 		<!-- 300 compressed blessed spiritshots. S-grade. -->
 		<set name="icon" val="icon.etc_pouch_yellow_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -1305,7 +1305,7 @@
 			<set stat="pAtkSpd" val="277" />
 		</for>
 	</item>
-	<item id="5192" type="EtcItem" name="Rope of Magic (D-Grade)">
+	<item id="5192" type="EtcItem" name="Rope of Magic: D-Grade">
 		<!-- A rope that has magical power. It is made by weaving strips of lizard leather together. Using this rope to tie an item will reduce its weight so that it will be easier to carry. -->
 		<set name="icon" val="icon.etc_braided_hemp_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1314,7 +1314,7 @@
 		<set name="price" val="100" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="5193" type="EtcItem" name="Rope of Magic (C-Grade)">
+	<item id="5193" type="EtcItem" name="Rope of Magic: C-Grade">
 		<!-- A rope that has magical power. It is made by weaving strips of lizard leather together. Using this rope to tie an item will reduce its weight so that it will be easier to carry. -->
 		<set name="icon" val="icon.etc_braided_hemp_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1323,7 +1323,7 @@
 		<set name="price" val="150" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="5194" type="EtcItem" name="Rope of Magic (B-Grade)">
+	<item id="5194" type="EtcItem" name="Rope of Magic: B-Grade">
 		<!-- A rope that has magical power. It is made by weaving strips of lizard leather together. Using this rope to tie an item will reduce its weight so that it will be easier to carry. -->
 		<set name="icon" val="icon.etc_braided_hemp_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1332,7 +1332,7 @@
 		<set name="price" val="250" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="5195" type="EtcItem" name="Rope of Magic (A-Grade)">
+	<item id="5195" type="EtcItem" name="Rope of Magic: A-Grade">
 		<!-- A rope that has magical power. It is made by weaving strips of lizard leather together. Using this rope to tie an item will reduce its weight so that it will be easier to carry. -->
 		<set name="icon" val="icon.etc_braided_hemp_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1341,7 +1341,7 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="5196" type="EtcItem" name="Rope of Magic (S-Grade)">
+	<item id="5196" type="EtcItem" name="Rope of Magic: S Grade">
 		<!-- A rope that has magical power. It is made by weaving strips of lizard leather together. Using this rope to tie an item will reduce its weight so that it will be easier to carry. -->
 		<set name="icon" val="icon.etc_braided_hemp_i00" />
 		<set name="immediate_effect" val="true" />

@@ -22,9 +22,9 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.MinionHolder;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Abstract NPC AI class for datapack based AIs.
@@ -102,7 +102,7 @@ public abstract class AbstractNpcAI extends Quest
 			}
 			
 			final double course = Math.toRadians(followingAngle);
-			final double radian = Math.toRadians(Util.convertHeadingToDegree(npcAround.getHeading()));
+			final double radian = Math.toRadians(LocationUtil.convertHeadingToDegree(npcAround.getHeading()));
 			final double nRadius = npc.getCollisionRadius() + npcAround.getCollisionRadius() + minDistance;
 			final int x = npcAround.getLocation().getX() + (int) (Math.cos(Math.PI + radian + course) * nRadius);
 			final int y = npcAround.getLocation().getY() + (int) (Math.sin(Math.PI + radian + course) * nRadius);

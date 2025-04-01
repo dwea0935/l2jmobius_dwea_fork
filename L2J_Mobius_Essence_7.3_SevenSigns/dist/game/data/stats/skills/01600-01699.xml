@@ -1923,7 +1923,6 @@
 		<activateRate>80</activateRate>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>PHYSICAL</basicProperty>
-		<basicProperty>PHYSICAL</basicProperty>
 		<castRange>40</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>
@@ -1947,7 +1946,6 @@
 		<hitTime>1200</hitTime>
 		<isDebuff>true</isDebuff>
 		<isMagic>0</isMagic>
-		<isMagic>0</isMagic>			   
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
 			<value level="1">76</value>

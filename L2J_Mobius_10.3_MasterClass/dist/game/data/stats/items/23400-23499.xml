@@ -196,7 +196,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9185" level="1" /> <!-- Scroll: Enchant Weapon (R-grade) -->
+			<skill id="9185" level="1" /> <!-- Scroll: Enchant R-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23411" name="Scroll: Enchant S-grade Weapon" type="EtcItem">
@@ -215,7 +215,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2021" level="1" /> <!-- Scroll: Enchant Weapon (S-grade) -->
+			<skill id="2021" level="1" /> <!-- Scroll: Enchant S-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23412" name="Scroll: Enchant A-grade Weapon" type="EtcItem">
@@ -234,7 +234,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2006" level="1" /> <!-- Scroll: Enchant Weapon (A-grade) -->
+			<skill id="2006" level="1" /> <!-- Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23413" name="Scroll: Enchant B-grade Weapon" type="EtcItem">
@@ -253,7 +253,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2015" level="1" /> <!-- Scroll: Enchant Weapon (B-grade) -->
+			<skill id="2015" level="1" /> <!-- Scroll: Enchant B-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23414" name="Scroll: Enchant C-grade Weapon" type="EtcItem">
@@ -272,7 +272,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2017" level="1" /> <!-- Scroll: Enchant Weapon (C-grade) -->
+			<skill id="2017" level="1" /> <!-- Scroll: Enchant C-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23415" name="Scroll: Enchant D-grade Weapon" type="EtcItem">
@@ -291,7 +291,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2019" level="1" /> <!-- Scroll: Enchant Weapon (D-grade) -->
+			<skill id="2019" level="1" /> <!-- Scroll: Enchant D-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23416" name="Scroll: Enchant R-grade Armor" type="EtcItem">
@@ -310,7 +310,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9186" level="1" /> <!-- Scroll: Enchant Armor (R-grade) -->
+			<skill id="9186" level="1" /> <!-- Scroll: Enchant R-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23417" name="Scroll: Enchant S-grade Armor" type="EtcItem">
@@ -329,7 +329,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2022" level="1" /> <!-- Scroll: Enchant Armor (S-grade) -->
+			<skill id="2022" level="1" /> <!-- Scroll: Enchant S-grade Armor -->
 		</skills>
 	</item>
 	<item id="23418" name="Scroll: Enchant A-grade Armor" type="EtcItem">
@@ -348,7 +348,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2007" level="1" /> <!-- Scroll: Enchant Armor (A-grade) -->
+			<skill id="2007" level="1" /> <!-- Scroll: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="23419" name="Scroll: Enchant B-grade Armor" type="EtcItem">
@@ -367,7 +367,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2016" level="1" /> <!-- Scroll: Enchant Armor (B-grade) -->
+			<skill id="2016" level="1" /> <!-- Scroll: Enchant B-grade Armor -->
 		</skills>
 	</item>
 	<item id="23420" name="Scroll: Enchant C-grade Armor" type="EtcItem">
@@ -386,7 +386,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2018" level="1" /> <!-- Scroll: Enchant Armor (C-grade) -->
+			<skill id="2018" level="1" /> <!-- Scroll: Enchant C-grade Armor -->
 		</skills>
 	</item>
 	<item id="23421" name="Scroll: Enchant D-grade Armor" type="EtcItem">
@@ -405,7 +405,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2020" level="1" /> <!-- Scroll: Enchant Armor (D-grade) -->
+			<skill id="2020" level="1" /> <!-- Scroll: Enchant D-grade Armor -->
 		</skills>
 	</item>
 	<item id="23422" name="Blessed Scroll: Enchant R-grade Weapon" type="EtcItem">
@@ -423,7 +423,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9187" level="1" /> <!-- Blessed Scroll: Enchant Weapon (R-grade) -->
+			<skill id="9187" level="1" /> <!-- Blessed Scroll: Enchant R-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23423" name="Blessed Scroll: Enchant S-grade Weapon" type="EtcItem">
@@ -441,7 +441,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2026" level="1" /> <!-- Blessed Scroll: Enchant Weapon (S-grade) -->
+			<skill id="2026" level="1" /> <!-- Blessed Scroll: Enchant S-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23424" name="Blessed Scroll: Enchant A-grade Weapon" type="EtcItem">
@@ -459,7 +459,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2027" level="1" /> <!-- Blessed Scroll: Enchant Weapon (A-grade) -->
+			<skill id="2027" level="1" /> <!-- Blessed Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23425" name="Blessed Scroll: Enchant B-grade Weapon" type="EtcItem">
@@ -477,7 +477,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2028" level="1" /> <!-- Blessed Scroll: Enchant Weapon (B-grade) -->
+			<skill id="2028" level="1" /> <!-- Blessed Scroll: Enchant B-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23426" name="Blessed Scroll: Enchant C-grade Weapon" type="EtcItem">
@@ -495,7 +495,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2029" level="1" /> <!-- Blessed Scroll: Enchant Weapon (C-grade) -->
+			<skill id="2029" level="1" /> <!-- Blessed Scroll: Enchant C-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23427" name="Blessed Scroll: Enchant D-grade Weapon" type="EtcItem">
@@ -513,7 +513,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2030" level="1" /> <!-- Blessed Scroll: Enchant Weapon (D-grade) -->
+			<skill id="2030" level="1" /> <!-- Blessed Scroll: Enchant D-grade Weapon -->
 		</skills>
 	</item>
 	<item id="23428" name="Blessed Scroll: Enchant R-grade Armor" type="EtcItem">
@@ -531,7 +531,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9196" level="1" /> <!-- Blessed Scroll: Enchant Armor (R-grade) -->
+			<skill id="9196" level="1" /> <!-- Blessed Scroll: Enchant R-grade Armor -->
 		</skills>
 	</item>
 	<item id="23429" name="Blessed Scroll: Enchant S-grade Armor" type="EtcItem">
@@ -549,7 +549,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2208" level="1" /> <!-- Blessed Scroll: Enchant Armor (S-grade) -->
+			<skill id="2208" level="1" /> <!-- Blessed Scroll: Enchant S-grade Armor -->
 		</skills>
 	</item>
 	<item id="23430" name="Blessed Scroll: Enchant A-grade Armor" type="EtcItem">
@@ -567,7 +567,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2209" level="1" /> <!-- Blessed Scroll: Enchant Armor (A-grade) -->
+			<skill id="2209" level="1" /> <!-- Blessed Scroll: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="23431" name="Blessed Scroll: Enchant B-grade Armor" type="EtcItem">
@@ -585,7 +585,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2210" level="1" /> <!-- Blessed Scroll: Enchant Armor (B-grade) -->
+			<skill id="2210" level="1" /> <!-- Blessed Scroll: Enchant B-grade Armor -->
 		</skills>
 	</item>
 	<item id="23432" name="Blessed Scroll: Enchant C-grade Armor" type="EtcItem">
@@ -603,7 +603,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2211" level="1" /> <!-- Blessed Scroll: Enchant Armor (C-grade) -->
+			<skill id="2211" level="1" /> <!-- Blessed Scroll: Enchant C-grade Armor -->
 		</skills>
 	</item>
 	<item id="23433" name="Blessed Scroll: Enchant D-grade Armor" type="EtcItem">
@@ -621,7 +621,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="2212" level="1" /> <!-- Blessed Scroll: Enchant Armor (D-grade) -->
+			<skill id="2212" level="1" /> <!-- Blessed Scroll: Enchant D-grade Armor -->
 		</skills>
 	</item>
 	<item id="23434" name="Package: Agathion Phoenix (7-day)" additionalName="Nirvana Rebirth" type="EtcItem">
@@ -1194,7 +1194,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22747" level="1" /> <!-- Fantasy Isle Medal of Glory -->
+			<skill id="22747" level="1" /> <!-- Fantasy Isle Medal of Honor -->
 		</skills>
 	</item>
 	<item id="23474" name="Low-grade Scroll: PK" type="EtcItem">
@@ -1336,7 +1336,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22754" level="1" /> <!-- Scroll: Reputation (High-grade) -->
+			<skill id="22754" level="1" /> <!-- High-grade Scroll: Reputation -->
 		</skills>
 	</item>
 	<item id="23481" name="Top-grade Scroll: Reputation" type="EtcItem">
@@ -1429,7 +1429,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="22763" level="1" /> <!-- Santa Outfit Appearance Stone (14-day) -->
+			<skill id="22763" level="1" /> <!-- Appearance Stone: Santa Outfit (14-day) -->
 		</skills>
 	</item>
 	<item id="23487" name="Appearance Stone: Santa Outfit" type="EtcItem">
@@ -1447,7 +1447,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="22764" level="1" /> <!-- Santa Outfit Appearance Stone -->
+			<skill id="22764" level="1" /> <!-- Appearance Stone: Santa Outfit -->
 		</skills>
 	</item>
 	<item id="23488" name="Package: Appearance Stone: Santa Outfit (14-day)" type="EtcItem">
@@ -1500,7 +1500,7 @@
 		<set name="material" val="FISH" />
 		<set name="reuse_delay" val="3600000" />
 		<skills>
-			<skill id="22765" level="1" /> <!-- PC Vitality -->
+			<skill id="22765" level="1" /> <!-- PA Vitality -->
 		</skills>
 	</item>
 	<item id="23491" name="Vitality Maintaining Potion (10-min.) - Event" type="EtcItem">
@@ -1551,7 +1551,7 @@
 		<set name="etcitem_type" val="SCROLL" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="22768" level="1" /> <!-- Metal Suit Top Appearance Stone -->
+			<skill id="22768" level="1" /> <!-- Appearance: Metal Suit Top -->
 		</skills>
 	</item>
 	<item id="23494" name="Appearance Stone: Metal Suit Pants" type="EtcItem">
@@ -1568,7 +1568,7 @@
 		<set name="etcitem_type" val="SCROLL" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="22769" level="1" /> <!-- Metal Suit Pants Appearance Stone -->
+			<skill id="22769" level="1" /> <!-- Appearance: Metal Suit Pants -->
 		</skills>
 	</item>
 	<item id="23495" name="Appearance Stone: Metal Suit Gloves" type="EtcItem">
@@ -1585,7 +1585,7 @@
 		<set name="etcitem_type" val="SCROLL" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="22770" level="1" /> <!-- Metal Suit Gloves Appearance Stone -->
+			<skill id="22770" level="1" /> <!-- Appearance: Metal Suit Gloves -->
 		</skills>
 	</item>
 	<item id="23496" name="Appearance Stone: Metal Suit Shoes" type="EtcItem">
@@ -1602,7 +1602,7 @@
 		<set name="etcitem_type" val="SCROLL" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="22771" level="1" /> <!-- Metal Suit Shoes Appearance Stone -->
+			<skill id="22771" level="1" /> <!-- Appearance: Metal Suit Boots -->
 		</skills>
 	</item>
 	<item id="23497" name="Appearance Stone: Metal Suit Hair Accessory" type="EtcItem">
@@ -1619,7 +1619,7 @@
 		<set name="etcitem_type" val="SCROLL" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="22772" level="1" /> <!-- Metal Suit Hair Accessory Appearance Stone -->
+			<skill id="22772" level="1" /> <!-- Appearance Stone: Metal Suit Head Accessory -->
 		</skills>
 	</item>
 </list>

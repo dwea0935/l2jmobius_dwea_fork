@@ -22,22 +22,22 @@ package instances.KartiasLabyrinth;
 
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -363,7 +363,7 @@ public class KartiasLabyrinth extends AbstractInstance
 		if (instance != null)
 		{
 			final StatSet param = instance.getParameters();
-			if (param.getBoolean("BOSS_KILL_OPEN_DOOR", false) && CommonUtil.contains(MINI_BOSSES, npc.getId()))
+			if (param.getBoolean("BOSS_KILL_OPEN_DOOR", false) && ArrayUtil.contains(MINI_BOSSES, npc.getId()))
 			{
 				instance.setParameter("BOSS_KILL_OPEN_DOOR", true);
 				instance.openCloseDoor(instance.getTemplateParameters().getInt("thirdDoorId"), true);
@@ -427,12 +427,12 @@ public class KartiasLabyrinth extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (instance != null)
 		{
-			if (CommonUtil.contains(MINI_BOSSES, npc.getId()))
+			if (ArrayUtil.contains(MINI_BOSSES, npc.getId()))
 			{
 				if (npc.isScriptValue(0) && (npc.getCurrentHpPercent() < 50) && instance.getParameters().getBoolean("BOSS_CAN_ESCAPE", false))
 				{
@@ -456,11 +456,10 @@ public class KartiasLabyrinth extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		final Instance instance = creature.getInstanceWorld();
 		if ((instance != null) && creature.isPlayer() && (instance.getTemplateId() >= TEMPLATE_ID_SOLO_85) && (instance.getTemplateId() <= TEMPLATE_ID_GROUP_95))
@@ -495,14 +494,13 @@ public class KartiasLabyrinth extends AbstractInstance
 				}
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
 	public void onMoveFinished(Npc npc)
 	{
 		final Instance instance = npc.getInstanceWorld();
-		if ((instance != null) && CommonUtil.contains(PRISONERS, npc.getId()))
+		if ((instance != null) && ArrayUtil.contains(PRISONERS, npc.getId()))
 		{
 			if (npc.isScriptValue(0))
 			{
@@ -531,7 +529,7 @@ public class KartiasLabyrinth extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (instance != null)
@@ -540,7 +538,7 @@ public class KartiasLabyrinth extends AbstractInstance
 			{
 				npc.setDisplayEffect(2);
 			}
-			else if (CommonUtil.contains(BOSSES, npc.getId()))
+			else if (ArrayUtil.contains(BOSSES, npc.getId()))
 			{
 				npc.setTarget(npc);
 				npc.doCast(BOSS_STONE.getSkill());
@@ -549,13 +547,12 @@ public class KartiasLabyrinth extends AbstractInstance
 				npc.setTargetable(false);
 				npc.setInvul(true);
 			}
-			else if (CommonUtil.contains(MONSTERS, npc.getId()) || CommonUtil.contains(MINI_BOSSES, npc.getId()))
+			else if (ArrayUtil.contains(MONSTERS, npc.getId()) || ArrayUtil.contains(MINI_BOSSES, npc.getId()))
 			{
 				npc.setTargetable(false);
 				npc.setInvul(true);
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	private void manageProgressInInstance(Instance instance)
@@ -875,24 +872,23 @@ public class KartiasLabyrinth extends AbstractInstance
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if ((world != null) && (creature.isPlayer() || creature.getInstanceType().isType(InstanceType.FriendlyNpc)) && npc.isScriptValue(1))
 		{
 			final double distance = npc.calculateDistance2D(creature);
-			if ((distance < 450) && !CommonUtil.contains(PRISONERS, creature.getId()))
+			if ((distance < 450) && !ArrayUtil.contains(PRISONERS, creature.getId()))
 			{
 				npc.setTargetable(true);
 				npc.setInvul(false);
 				npc.setScriptValue(1);
 				WalkingManager.getInstance().cancelMoving(npc);
 				npc.asMonster().addDamageHate(creature, 0, 1000);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+				npc.getAI().setIntention(Intention.ACTIVE);
 				addAttackDesire(npc, creature);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
@@ -902,23 +898,23 @@ public class KartiasLabyrinth extends AbstractInstance
 		{
 			return "33647.htm";
 		}
-		if (CommonUtil.contains(ADOLPH, npc.getId()))
+		if (ArrayUtil.contains(ADOLPH, npc.getId()))
 		{
 			return "adolph.html";
 		}
-		if (CommonUtil.contains(BARTON, npc.getId()))
+		if (ArrayUtil.contains(BARTON, npc.getId()))
 		{
 			return "barton.html";
 		}
-		if (CommonUtil.contains(ELISE, npc.getId()))
+		if (ArrayUtil.contains(ELISE, npc.getId()))
 		{
 			return "elise.html";
 		}
-		if (CommonUtil.contains(ELIYAH, npc.getId()))
+		if (ArrayUtil.contains(ELIYAH, npc.getId()))
 		{
 			return "eliyah.html";
 		}
-		if (CommonUtil.contains(HAYUK, npc.getId()))
+		if (ArrayUtil.contains(HAYUK, npc.getId()))
 		{
 			return "hayuk.html";
 		}

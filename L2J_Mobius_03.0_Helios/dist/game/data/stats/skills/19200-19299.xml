@@ -1427,7 +1427,6 @@
 		<targetType>SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>30</abnormalTime>
-		<abnormalTime>30</abnormalTime>
 		<abnormalType>SONG_OF_THIEF</abnormalType>
 		<affectObject>FRIEND</affectObject>
 		<affectRange>1000</affectRange>
@@ -1494,7 +1493,6 @@
 		<icon>icon.skill1047</icon>
 		<operateType>A2</operateType>
 		<abnormalLevel>5</abnormalLevel>
-		<abnormalTime>15</abnormalTime>
 		<abnormalTime>15</abnormalTime>
 		<abnormalType>MP_REGEN_UP</abnormalType>
 		<effectPoint>635</effectPoint>

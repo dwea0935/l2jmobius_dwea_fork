@@ -1862,7 +1862,6 @@
 		<operateType>A2</operateType>
 		<abnormalLevel>5</abnormalLevel>
 		<abnormalTime>15</abnormalTime>
-		<abnormalTime>15</abnormalTime>
 		<abnormalType>MP_REGEN_UP</abnormalType>
 		<effectPoint>635</effectPoint>
 		<isMagic>1</isMagic>

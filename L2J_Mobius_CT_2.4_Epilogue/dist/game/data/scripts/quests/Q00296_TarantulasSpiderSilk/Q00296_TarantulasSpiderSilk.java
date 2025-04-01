@@ -17,13 +17,14 @@
 package quests.Q00296_TarantulasSpiderSilk;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
-import quests.Q00281_HeadForTheHills.Q00281_HeadForTheHills;
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Tarantula's Spider Silk (296)
@@ -34,9 +35,6 @@ public class Q00296_TarantulasSpiderSilk extends Quest
 	// NPCs
 	private static final int TRADER_MION = 30519;
 	private static final int DEFENDER_NATHAN = 30548;
-	// Items
-	private static final int TARANTULA_SPIDER_SILK = 1493;
-	private static final int TARANTULA_SPINNERETTE = 1494;
 	// Monsters
 	private static final int[] MONSTERS = new int[]
 	{
@@ -44,12 +42,16 @@ public class Q00296_TarantulasSpiderSilk extends Quest
 		20403,
 		20508,
 	};
+	// Items
+	private static final int TARANTULA_SPIDER_SILK = 1493;
+	private static final int TARANTULA_SPINNERETTE = 1494;
 	// Misc
 	private static final int MIN_LEVEL = 15;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00296_TarantulasSpiderSilk()
 	{
-		super(296);
+		super(296, "Tarantula's Spider Silk");
 		addStartNpc(TRADER_MION);
 		addTalkId(TRADER_MION, DEFENDER_NATHAN);
 		addKillId(MONSTERS);
@@ -116,10 +118,10 @@ public class Q00296_TarantulasSpiderSilk extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			final int chance = getRandom(100);
 			if (chance > 95)
@@ -131,7 +133,6 @@ public class Q00296_TarantulasSpiderSilk extends Quest
 				giveItemRandomly(killer, npc, TARANTULA_SPIDER_SILK, 1, 0, 1, true);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -152,7 +153,26 @@ public class Q00296_TarantulasSpiderSilk extends Quest
 				{
 					giveAdena(talker, (silk * 30) + (silk >= 10 ? 2000 : 0), true);
 					takeItems(talker, TARANTULA_SPIDER_SILK, -1);
-					Q00281_HeadForTheHills.giveNewbieReward(talker); // TODO: It's using wrong bitmask, need to create a general bitmask for this using EnumIntBitmask class inside Quest class for handling Quest rewards.
+					
+					// Newbie Guide.
+					final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+					if (newbieGuide != null)
+					{
+						final QuestState newbieGuideQs = newbieGuide.getQuestState(talker, true);
+						if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, 100000);
+							showOnScreenMsg(talker, "Last duty complete. \\n Go find the Newbie Guide.", 2, 5000);
+						}
+						else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 100000000) / 10000000) != 1)
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 10000000);
+							showOnScreenMsg(talker, "Last duty complete. \\n Go find the Newbie Guide.", 2, 5000);
+						}
+					}
+					
 					html = "30519-05.html";
 				}
 				else

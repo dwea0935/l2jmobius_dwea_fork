@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="80600" name="Anniversary Cube" type="EtcItem">
 		<!-- A cube prepared by Bright Snow for the 15th Anniversary. Can be used by Lv. 85 or higher. -->
@@ -838,7 +838,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="39213" level="1" /> <!-- Royal Fish Soup -->
+			<skill id="39213" level="1" /> <!-- Royal Santiago's Soup -->
 		</skills>
 	</item>
 	<item id="80671" name="Secret Material" type="EtcItem">

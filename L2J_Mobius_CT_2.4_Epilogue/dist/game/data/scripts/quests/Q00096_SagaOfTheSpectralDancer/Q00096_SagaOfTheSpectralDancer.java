@@ -28,7 +28,7 @@ public class Q00096_SagaOfTheSpectralDancer extends AbstractSagaQuest
 {
 	public Q00096_SagaOfTheSpectralDancer()
 	{
-		super(96);
+		super(96, "Saga of the Spectral Dancer");
 		_npc = new int[]
 		{
 			31582,

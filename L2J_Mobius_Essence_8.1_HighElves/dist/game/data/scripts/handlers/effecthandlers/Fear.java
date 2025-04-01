@@ -16,13 +16,13 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.instance.Defender;
 import org.l2jmobius.gameserver.model.actor.instance.FortCommander;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
@@ -30,7 +30,7 @@ import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Fear effect implementation.
@@ -79,7 +79,7 @@ public class Fear extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill, Item item)
 	{
-		effected.getAI().notifyEvent(CtrlEvent.EVT_AFRAID);
+		effected.getAI().notifyAction(Action.AFRAID);
 		fearAction(effector, effected);
 	}
 	
@@ -88,19 +88,19 @@ public class Fear extends AbstractEffect
 	{
 		if (!effected.isPlayer())
 		{
-			effected.getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			effected.getAI().notifyAction(Action.THINK);
 		}
 	}
 	
 	private void fearAction(Creature effector, Creature effected)
 	{
-		final double radians = Math.toRadians((effector != null) ? Util.calculateAngleFrom(effector, effected) : Util.convertHeadingToDegree(effected.getHeading()));
+		final double radians = Math.toRadians((effector != null) ? LocationUtil.calculateAngleFrom(effector, effected) : LocationUtil.convertHeadingToDegree(effected.getHeading()));
 		
 		final int posX = (int) (effected.getX() + (FEAR_RANGE * Math.cos(radians)));
 		final int posY = (int) (effected.getY() + (FEAR_RANGE * Math.sin(radians)));
 		final int posZ = effected.getZ();
 		
 		final Location destination = GeoEngine.getInstance().getValidLocation(effected.getX(), effected.getY(), effected.getZ(), posX, posY, posZ, effected.getInstanceWorld());
-		effected.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, destination);
+		effected.getAI().setIntention(Intention.MOVE_TO, destination);
 	}
 }

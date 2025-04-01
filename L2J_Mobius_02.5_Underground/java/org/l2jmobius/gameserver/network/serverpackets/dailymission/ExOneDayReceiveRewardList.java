@@ -21,8 +21,8 @@ import java.util.Collection;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.DailyMissionData;
-import org.l2jmobius.gameserver.model.DailyMissionDataHolder;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.DailyMissionDataHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -50,7 +50,7 @@ public class ExOneDayReceiveRewardList extends ServerPacket
 		}
 		
 		ServerPackets.EX_ONE_DAY_RECEIVE_REWARD_LIST.writeId(this, buffer);
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		buffer.writeInt(LocalDate.now().getDayOfWeek().ordinal()); // Day of week
 		buffer.writeInt(_rewards.size());
 		for (DailyMissionDataHolder reward : _rewards)

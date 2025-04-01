@@ -10,6 +10,8 @@ AccessoryMagicalDefence: Accessory magical defence stat. (l2jmobius)
 Accuracy: P. Accuracy stat.
 AddFireSourcePoints: Conquest effect to add Fire Source points. (l2jmobius)
 AddHate: Instant effect that increases target's hate towards you.
+AddHomunculusEvolutionPoints: Increase Homunculus evolution points permanently.
+AddHomunculusPoints: Increase Homunculus upgrade points permanently
 AddHuntingTime: Add time for time limited hunting zones. (l2jmobius)
 AdditionalPotionCp: Increases the amount of CP heal gained from potions or elixirs. (l2jmobius)
 AdditionalPotionHp: Increases the amount of HP heal gained from potions or elixirs. (l2jmobius)

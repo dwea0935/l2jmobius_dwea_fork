@@ -23,6 +23,7 @@ package org.l2jmobius.gameserver.network.clientpackets.variation;
 import org.l2jmobius.gameserver.data.xml.VariationData;
 import org.l2jmobius.gameserver.model.VariationInstance;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.options.Variation;
 import org.l2jmobius.gameserver.model.options.VariationFee;
@@ -151,18 +152,18 @@ public class RequestRefine extends AbstractRefinePacket
 		player.sendPacket(new ExVariationResult(augment.getOption1Id(), augment.getOption2Id(), true));
 		
 		// Consume the life stone.
-		player.destroyItem("RequestRefine", mineralItem, 1, null, false);
+		player.destroyItem(ItemProcessType.FEE, mineralItem, 1, null, false);
 		
 		// Consume the gemstones.
 		if (feeItem != null)
 		{
-			player.destroyItem("RequestRefine", feeItem, fee.getItemCount(), null, false);
+			player.destroyItem(ItemProcessType.FEE, feeItem, fee.getItemCount(), null, false);
 		}
 		
 		// Consume Adena.
 		if (adenaFee > 0)
 		{
-			player.reduceAdena("RequestRefine", adenaFee, player, false);
+			player.reduceAdena(ItemProcessType.FEE, adenaFee, player, false);
 		}
 	}
 }

@@ -20,9 +20,9 @@
  */
 package instances.GolbergRoom;
 
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
@@ -231,7 +231,7 @@ public class GolbergRoom extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -250,7 +250,6 @@ public class GolbergRoom extends AbstractInstance
 				break;
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

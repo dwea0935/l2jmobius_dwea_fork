@@ -18,19 +18,19 @@ package ai.bosses.Baylor;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -315,7 +315,7 @@ public class BaylorWarzone extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -324,7 +324,6 @@ public class BaylorWarzone extends AbstractInstance
 			world.getAliveNpcs(PRISON_GUARD).forEach(guard -> guard.doDie(null));
 			npc.deleteMe();
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
@@ -355,7 +354,7 @@ public class BaylorWarzone extends AbstractInstance
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world) && creature.isPlayer() && npc.isScriptValue(0))
@@ -363,7 +362,6 @@ public class BaylorWarzone extends AbstractInstance
 			npc.setScriptValue(1);
 			getTimers().addTimer("START_SCENE_01", 5000, npc, null);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	/**

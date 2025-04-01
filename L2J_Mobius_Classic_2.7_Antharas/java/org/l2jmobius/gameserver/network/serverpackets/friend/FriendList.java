@@ -22,8 +22,8 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -91,7 +91,7 @@ public class FriendList extends ServerPacket
 			{
 				online = true;
 			}
-			classid = player1.getClassId().getId();
+			classid = player1.getPlayerClass().getId();
 			level = player1.getLevel();
 			_info.add(new FriendInfo(objId, name, online, classid, level));
 		}

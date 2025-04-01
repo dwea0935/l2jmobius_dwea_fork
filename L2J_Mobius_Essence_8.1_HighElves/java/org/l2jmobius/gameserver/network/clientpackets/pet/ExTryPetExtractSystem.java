@@ -20,6 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.pet;
 
+import org.l2jmobius.gameserver.data.holders.PetExtractionHolder;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.PetExtractData;
@@ -27,7 +28,7 @@ import org.l2jmobius.gameserver.model.PetData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.PetExtractionHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PetInventory;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
@@ -98,9 +99,9 @@ public class ExTryPetExtractSystem extends ClientPacket
 			final long defaultCostCount = holder.getDefaultCost().getCount();
 			if ((player.getInventory().getInventoryItemCount(extractCostId, -1) >= extractCostCount) && (player.getInventory().getInventoryItemCount(defaultCostId, -1) >= defaultCostCount))
 			{
-				if (player.destroyItemByItemId("Pet Extraction", extractCostId, extractCostCount, player, true) && player.destroyItemByItemId("Pet Extraction", defaultCostId, defaultCostCount, player, true) && player.destroyItem("Pet Extraction", petItem, player, true))
+				if (player.destroyItemByItemId(ItemProcessType.FEE, extractCostId, extractCostCount, player, true) && player.destroyItemByItemId(ItemProcessType.FEE, defaultCostId, defaultCostCount, player, true) && player.destroyItem(ItemProcessType.FEE, petItem, player, true))
 				{
-					player.addItem("Pet Extraction", extractItemId, extractItemCount, player, true);
+					player.addItem(ItemProcessType.REWARD, extractItemId, extractItemCount, player, true);
 					player.sendPacket(new ResultPetExtractSystem(true));
 				}
 			}

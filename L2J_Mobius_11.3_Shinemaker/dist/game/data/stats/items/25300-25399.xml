@@ -13,7 +13,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26480" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26480" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25301" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Damage Reflection Resistance" type="EtcItem">
@@ -29,7 +29,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26481" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26481" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25302" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Ranged Attack Resistance" type="EtcItem">
@@ -45,7 +45,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26482" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26482" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25303" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / P. Def." type="EtcItem">
@@ -61,7 +61,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26483" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26483" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25304" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / M. Def." type="EtcItem">
@@ -77,7 +77,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26484" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26484" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25305" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Attribute Resistance" type="EtcItem">
@@ -93,7 +93,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26485" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26485" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25306" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Received Healing" type="EtcItem">
@@ -109,7 +109,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26486" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26486" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25307" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Max HP" type="EtcItem">
@@ -125,7 +125,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26487" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26487" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25308" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Max MP" type="EtcItem">
@@ -141,7 +141,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26488" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26488" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25309" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Max CP" type="EtcItem">
@@ -157,7 +157,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26489" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26489" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25310" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Speed" type="EtcItem">
@@ -173,7 +173,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26490" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26490" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25311" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / HP Recovery" type="EtcItem">
@@ -189,7 +189,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26491" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26491" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25312" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / MP Recovery" type="EtcItem">
@@ -205,7 +205,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26492" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26492" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25313" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Evasion" type="EtcItem">
@@ -221,7 +221,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26493" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26493" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25314" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Option 15" type="EtcItem">
@@ -237,7 +237,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26494" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26494" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25315" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Option 16" type="EtcItem">
@@ -253,7 +253,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26495" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26495" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25316" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Option 17" type="EtcItem">
@@ -269,7 +269,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26496" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26496" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25317" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Option 18" type="EtcItem">
@@ -285,7 +285,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26497" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26497" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25318" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Option 19" type="EtcItem">
@@ -301,7 +301,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26498" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26498" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25319" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Option 20" type="EtcItem">
@@ -317,7 +317,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26499" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26499" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Low-grade / Effect 20 -->
 		</skills>
 	</item>
 	<item id="25320" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Debuff Reflection" type="EtcItem">
@@ -333,7 +333,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26500" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26500" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25321" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Damage Reflection Resistance" type="EtcItem">
@@ -349,7 +349,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26501" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26501" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25322" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Ranged Attack Resistance" type="EtcItem">
@@ -365,7 +365,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26502" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26502" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25323" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / P. Def." type="EtcItem">
@@ -381,7 +381,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26503" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26503" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25324" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / M. Def." type="EtcItem">
@@ -397,7 +397,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26504" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26504" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25325" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Attribute Resistance" type="EtcItem">
@@ -413,7 +413,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26505" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26505" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25326" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Received Healing" type="EtcItem">
@@ -429,7 +429,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26506" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26506" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25327" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Max HP" type="EtcItem">
@@ -445,7 +445,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26507" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26507" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25328" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Max MP" type="EtcItem">
@@ -461,7 +461,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26508" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26508" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25329" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Max CP" type="EtcItem">
@@ -477,7 +477,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26509" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26509" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25330" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Speed" type="EtcItem">
@@ -493,7 +493,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26510" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26510" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25331" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / HP Recovery" type="EtcItem">
@@ -509,7 +509,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26511" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26511" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25332" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / MP Recovery" type="EtcItem">
@@ -525,7 +525,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26512" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26512" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25333" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Evasion" type="EtcItem">
@@ -541,7 +541,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26513" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26513" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25334" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Option 15" type="EtcItem">
@@ -557,7 +557,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26514" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26514" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25335" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Option 16" type="EtcItem">
@@ -573,7 +573,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26515" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26515" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25336" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Option 17" type="EtcItem">
@@ -589,7 +589,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26516" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26516" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25337" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Option 18" type="EtcItem">
@@ -605,7 +605,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26517" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26517" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25338" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Option 19" type="EtcItem">
@@ -621,7 +621,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26518" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26518" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25339" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Mid-grade / Option 20" type="EtcItem">
@@ -637,7 +637,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26519" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26519" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - Mid-grade / Effect 20 -->
 		</skills>
 	</item>
 	<item id="25340" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Debuff Reflection" type="EtcItem">
@@ -653,7 +653,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26520" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26520" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25341" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Damage Reflection Resistance" type="EtcItem">
@@ -669,7 +669,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26521" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26521" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25342" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Ranged Attack Resistance" type="EtcItem">
@@ -685,7 +685,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26522" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26522" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25343" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / P. Def." type="EtcItem">
@@ -701,7 +701,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26523" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26523" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25344" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / M. Def." type="EtcItem">
@@ -717,7 +717,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26524" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26524" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25345" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Attribute Resistance" type="EtcItem">
@@ -733,7 +733,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26525" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26525" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25346" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Received Healing" type="EtcItem">
@@ -749,7 +749,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26526" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26526" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25347" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Max HP" type="EtcItem">
@@ -765,7 +765,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26527" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26527" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25348" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Max MP" type="EtcItem">
@@ -781,7 +781,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26528" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26528" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25349" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Max CP" type="EtcItem">
@@ -797,7 +797,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26529" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26529" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25350" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Speed" type="EtcItem">
@@ -813,7 +813,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26530" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26530" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25351" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / HP Recovery" type="EtcItem">
@@ -829,7 +829,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26531" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26531" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25352" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / MP Recovery" type="EtcItem">
@@ -845,7 +845,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26532" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26532" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25353" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Evasion" type="EtcItem">
@@ -861,7 +861,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26533" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26533" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25354" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Option 15" type="EtcItem">
@@ -877,7 +877,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26534" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26534" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25355" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Option 16" type="EtcItem">
@@ -893,7 +893,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26535" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26535" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25356" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Option 17" type="EtcItem">
@@ -909,7 +909,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26536" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26536" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25357" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Option 18" type="EtcItem">
@@ -925,7 +925,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26537" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26537" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25358" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Option 19" type="EtcItem">
@@ -941,7 +941,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26538" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26538" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25359" name="Appearance Stone: Female Swimsuit No. 2" additionalName="High-grade / Option 20" type="EtcItem">
@@ -957,7 +957,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26539" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 -->
+			<skill id="26539" level="1" /> <!-- Appearance Stone: Female Swimsuit No. 2 - High-grade / Effect 20 -->
 		</skills>
 	</item>
 	<item id="25360" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Debuff Reflection" type="EtcItem">
@@ -972,7 +972,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26540" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26540" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25361" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Damage Reflection Resistance" type="EtcItem">
@@ -987,7 +987,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26541" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26541" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25362" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Ranged Attack Resistance" type="EtcItem">
@@ -1002,7 +1002,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26542" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26542" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25363" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / P. Def." type="EtcItem">
@@ -1017,7 +1017,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26543" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26543" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25364" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / M. Def." type="EtcItem">
@@ -1032,7 +1032,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26544" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26544" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25365" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Attribute Resistance" type="EtcItem">
@@ -1047,7 +1047,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26545" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26545" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25366" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Received Healing" type="EtcItem">
@@ -1062,7 +1062,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26546" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26546" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25367" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Max HP" type="EtcItem">
@@ -1077,7 +1077,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26547" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26547" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25368" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Max MP" type="EtcItem">
@@ -1092,7 +1092,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26548" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26548" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25369" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Max CP" type="EtcItem">
@@ -1107,7 +1107,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26549" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26549" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25370" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Speed" type="EtcItem">
@@ -1122,7 +1122,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26550" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26550" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25371" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / HP Recovery" type="EtcItem">
@@ -1137,7 +1137,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26551" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26551" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25372" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / MP Recovery" type="EtcItem">
@@ -1152,7 +1152,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26552" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26552" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25373" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Evasion" type="EtcItem">
@@ -1167,7 +1167,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26553" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26553" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25374" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 15" type="EtcItem">
@@ -1182,7 +1182,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26554" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26554" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25375" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 16" type="EtcItem">
@@ -1197,7 +1197,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26555" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26555" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25376" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 17" type="EtcItem">
@@ -1212,7 +1212,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26556" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26556" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25377" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 18" type="EtcItem">
@@ -1227,7 +1227,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26557" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26557" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25378" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 19" type="EtcItem">
@@ -1242,7 +1242,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26558" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26558" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25379" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 20" type="EtcItem">
@@ -1257,7 +1257,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26559" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26559" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 20 -->
 		</skills>
 	</item>
 	<item id="25380" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Debuff Reflection" type="EtcItem">
@@ -1272,7 +1272,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26560" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26560" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25381" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Damage Reflection Resistance" type="EtcItem">
@@ -1287,7 +1287,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26561" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26561" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25382" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Ranged Attack Resistance" type="EtcItem">
@@ -1302,7 +1302,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26562" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26562" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25383" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / P. Def." type="EtcItem">
@@ -1317,7 +1317,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26563" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26563" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25384" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / M. Def." type="EtcItem">
@@ -1332,7 +1332,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26564" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26564" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25385" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Attribute Resistance" type="EtcItem">
@@ -1347,7 +1347,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26565" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26565" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25386" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Received Healing" type="EtcItem">
@@ -1362,7 +1362,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26566" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26566" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25387" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Max HP" type="EtcItem">
@@ -1377,7 +1377,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26567" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26567" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25388" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Max MP" type="EtcItem">
@@ -1392,7 +1392,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26568" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26568" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25389" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Max CP" type="EtcItem">
@@ -1407,7 +1407,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26569" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26569" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25390" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Speed" type="EtcItem">
@@ -1422,7 +1422,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26570" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26570" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25391" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / HP Recovery" type="EtcItem">
@@ -1437,7 +1437,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26571" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26571" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25392" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / MP Recovery" type="EtcItem">
@@ -1452,7 +1452,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26572" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26572" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25393" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Evasion" type="EtcItem">
@@ -1467,7 +1467,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26573" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26573" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25394" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 15" type="EtcItem">
@@ -1482,7 +1482,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26574" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26574" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25395" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 16" type="EtcItem">
@@ -1497,7 +1497,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26575" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26575" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25396" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 17" type="EtcItem">
@@ -1512,7 +1512,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26576" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26576" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25397" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 18" type="EtcItem">
@@ -1527,7 +1527,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26577" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26577" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25398" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 19" type="EtcItem">
@@ -1542,7 +1542,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26578" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26578" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25399" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 20" type="EtcItem">
@@ -1557,7 +1557,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26579" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26579" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 20 -->
 		</skills>
 	</item>
 </list>

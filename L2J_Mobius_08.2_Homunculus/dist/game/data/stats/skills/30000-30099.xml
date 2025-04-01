@@ -5785,7 +5785,7 @@
 		<mpConsume>
 			<value level="1">67</value>
 			<value level="2">70</value>
-			<value level="2">70</value>
+			<value level="3">70</value>
 		</mpConsume>
 		<reuseDelay>300000</reuseDelay>
 		<conditions>

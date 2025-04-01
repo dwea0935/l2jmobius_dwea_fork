@@ -516,7 +516,7 @@
 		<coolTime>3000</coolTime>
 		<effectPoint>1</effectPoint>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>300000</reuseDelay>
@@ -977,7 +977,7 @@
 		<abnormalTime>600</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>540000</reuseDelay>

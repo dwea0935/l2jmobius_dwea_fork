@@ -35,11 +35,11 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameManager;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameTask;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
@@ -48,6 +48,7 @@ import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.EffectScope;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillBuffType;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.network.serverpackets.AbnormalStatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.ExAbnormalStatusUpdateFromTarget;
 import org.l2jmobius.gameserver.network.serverpackets.ExOlympiadSpelledInfo;
@@ -417,7 +418,7 @@ public class EffectList
 	 */
 	public void stopAllEffects(boolean broadcast)
 	{
-		stopEffects(b -> !b.getSkill().isIrreplacableBuff(), true, broadcast);
+		stopEffects(b -> !b.getSkill().isIrreplaceableBuff(), true, broadcast);
 	}
 	
 	/**
@@ -430,7 +431,7 @@ public class EffectList
 	
 	/**
 	 * Exits all active, passive and option effects in this effect list without excluding anything,<br>
-	 * like necessary toggles, irreplacable buffs or effects that last through death.<br>
+	 * like necessary toggles, irreplaceable buffs or effects that last through death.<br>
 	 * Stops all the effects, clear the effect lists and updates the effect flags and icons.
 	 * @param update set to true to update the effect flags and icons.
 	 * @param broadcast {@code true} to broadcast update packets, {@code false} otherwise.
@@ -464,7 +465,7 @@ public class EffectList
 	{
 		if (_toggleCount.get() > 0)
 		{
-			stopEffects(b -> b.getSkill().isToggle() && !b.getSkill().isIrreplacableBuff(), true, true);
+			stopEffects(b -> b.getSkill().isToggle() && !b.getSkill().isIrreplaceableBuff(), true, true);
 		}
 	}
 	
@@ -973,7 +974,7 @@ public class EffectList
 					if (skill.getAbnormalLevel() >= existingSkill.getAbnormalLevel())
 					{
 						// If it is an herb, set as not in use the lesser buff, unless it is the same skill.
-						if ((skill.isAbnormalInstant() || existingSkill.isIrreplacableBuff()) && (skill.getId() != existingSkill.getId()))
+						if ((skill.isAbnormalInstant() || existingSkill.isIrreplaceableBuff()) && (skill.getId() != existingSkill.getId()))
 						{
 							existingInfo.setInUse(false);
 							_hiddenBuffs.incrementAndGet();
@@ -984,7 +985,7 @@ public class EffectList
 							remove(existingInfo);
 						}
 					}
-					else if (skill.isIrreplacableBuff()) // The effect we try to add should be hidden.
+					else if (skill.isIrreplaceableBuff()) // The effect we try to add should be hidden.
 					{
 						info.setInUse(false);
 					}
@@ -1108,7 +1109,7 @@ public class EffectList
 								else if (info.isDisplayedForEffected())
 								{
 									asu.ifPresent(a -> a.addSkill(info));
-									ps.filter(p -> !info.getSkill().isToggle()).ifPresent(p -> p.addSkill(info));
+									ps.filter(_ -> !info.getSkill().isToggle()).ifPresent(p -> p.addSkill(info));
 									os.ifPresent(o -> o.addSkill(info));
 								}
 							}
@@ -1206,8 +1207,20 @@ public class EffectList
 	}
 	
 	/**
-	 * Wrapper to update abnormal icons and effect flags.
-	 * @param broadcast {@code true} sends update packets to observing players, {@code false} doesn't send any packets.
+	 * Updates the effect list by recalculating effect flags, abnormal types, and visual effects.<br>
+	 * This method internally calls {@link #updateEffectList(boolean)} with {@code true}<br>
+	 * to ensure that updates are broadcasted to observing players.
+	 */
+	public void updateEffectList()
+	{
+		updateEffectList(true);
+	}
+	
+	/**
+	 * Updates the effect list by recalculating effect flags, abnormal types, and visual effects.<br>
+	 * This method allows control over whether the updates are broadcasted to observing players.
+	 * @param broadcast If {@code true}, update packets are sent to observing players;<br>
+	 *            if {@code false}, no packets are sent.
 	 */
 	private void updateEffectList(boolean broadcast)
 	{

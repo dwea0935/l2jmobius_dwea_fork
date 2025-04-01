@@ -1205,7 +1205,7 @@
 		<coolTime>200</coolTime>
 		<effectPoint>1</effectPoint>
 		<hitTime>2500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
 		<reuseDelay>10000</reuseDelay>
@@ -1632,7 +1632,6 @@
 		<!-- Level 4: Max HP + 24%. -->
 		<icon>icon.skill0211</icon>
 		<operateType>P</operateType>
-		<excludedFromCheck>true</excludedFromCheck>
 		<excludedFromCheck>true</excludedFromCheck>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
@@ -2419,7 +2418,6 @@
 		<operateType>A2</operateType>
 		<targetType>TARGET</targetType>
 		<abnormalLevel>1</abnormalLevel>
-		<abnormalTime>30</abnormalTime>
 		<abnormalTime>30</abnormalTime>
 		<abnormalType>BLOCK_RESURRECTION</abnormalType>
 		<affectScope>SINGLE</affectScope>

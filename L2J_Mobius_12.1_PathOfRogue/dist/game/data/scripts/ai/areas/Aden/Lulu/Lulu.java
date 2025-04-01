@@ -27,9 +27,10 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerDlgAnswer;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerDlgAnswer;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -128,7 +129,7 @@ public class Lulu extends AbstractNpcAI
 			return;
 		}
 		
-		if (player.reduceAdena("Lulu", ADENA_COST, _luluNpc, true))
+		if (player.reduceAdena(ItemProcessType.FEE, ADENA_COST, _luluNpc, true))
 		{
 			SkillCaster.triggerCast(_luluNpc, player, getRandom(100) < BUFF_CHANCE ? LULU_LUCK_LV2.getSkill() : LULU_LUCK_LV1.getSkill());
 		}

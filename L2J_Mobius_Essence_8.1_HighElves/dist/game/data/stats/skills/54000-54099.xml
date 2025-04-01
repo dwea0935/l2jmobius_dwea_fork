@@ -1456,7 +1456,6 @@
 		<operateType>A2</operateType>
 		<targetType>SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
-		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>1200</abnormalTime>
 		<abnormalType>ELEMENTAL_SPIRIT_XP</abnormalType>
 		<affectScope>SINGLE</affectScope>
@@ -3278,7 +3277,6 @@
 		<operateType>A2</operateType>
 		<targetType>SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
-		<abnormalTime>1200</abnormalTime>
 		<abnormalTime>1200</abnormalTime>
 		<abnormalType>MULTI_BUFF</abnormalType>
 		<affectScope>SINGLE</affectScope>

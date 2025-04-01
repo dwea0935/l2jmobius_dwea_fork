@@ -24,7 +24,7 @@ import java.util.Collection;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.PartyMatchingHistoryTable;
-import org.l2jmobius.gameserver.model.matching.MatchingRoomHistory;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingRoomHistory;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 

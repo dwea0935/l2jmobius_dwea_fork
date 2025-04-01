@@ -26,21 +26,21 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.SayuneZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -329,7 +329,7 @@ public class MessiahOuter extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (instance != null)
@@ -536,11 +536,10 @@ public class MessiahOuter extends AbstractInstance
 			}
 			npc.setRandomWalking(false);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		final Creature mostHated = npc.asAttackable().getMostHated();
@@ -1122,11 +1121,10 @@ public class MessiahOuter extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -1150,7 +1148,7 @@ public class MessiahOuter extends AbstractInstance
 					break;
 				}
 			}
-			if (CommonUtil.contains(BOSSES, npc.getId()))
+			if (ArrayUtil.contains(BOSSES, npc.getId()))
 			{
 				final int zoneId = killer.getVariables().getInt("CURRENT_ZONE", 0);
 				switch (zoneId)
@@ -1243,7 +1241,6 @@ public class MessiahOuter extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -1259,14 +1256,13 @@ public class MessiahOuter extends AbstractInstance
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		final Instance instance = creature.getInstanceWorld();
 		if ((instance != null) && creature.isPlayer())
 		{
 			creature.asPlayer().getVariables().set("CURRENT_ZONE", zone.getId());
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	public static void main(String[] args)

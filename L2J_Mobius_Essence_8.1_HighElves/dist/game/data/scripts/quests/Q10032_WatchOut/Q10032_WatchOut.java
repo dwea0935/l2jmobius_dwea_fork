@@ -46,6 +46,11 @@ public class Q10032_WatchOut extends Quest
 		20308, // Hook Spider
 		20460, // Crimson Spider
 		20466, // Pincer Spider
+		20013, // Dryad
+		20019, // Dryad Elder
+		20472, // Kaboo Orc Warrior Captain
+		20036, // Lirein
+		20044, // Lirein Elder
 	};
 	
 	public Q10032_WatchOut()
@@ -171,7 +176,7 @@ public class Q10032_WatchOut extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -190,19 +195,17 @@ public class Q10032_WatchOut extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

@@ -21,6 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -92,7 +93,7 @@ public class RequestChangeNicknameEmote extends ClientPacket
 		// return;
 		// }
 		
-		if (((_itemId == ESPECIAL_COLOR_TITLE_EMOTE) || (_itemId == ESPECIAL_COLOR_TITLE_SEALED) || (_itemId == ESPECIAL_STYLISH_COLOR_TITLE)) && player.destroyItem("Consume", item, 1, null, true))
+		if (((_itemId == ESPECIAL_COLOR_TITLE_EMOTE) || (_itemId == ESPECIAL_COLOR_TITLE_SEALED) || (_itemId == ESPECIAL_STYLISH_COLOR_TITLE)) && player.destroyItem(ItemProcessType.NONE, item, 1, null, true))
 		{
 			player.setTitle(_title);
 			player.getAppearance().setTitleColor(COLORS[_colorNum - 1]);
@@ -101,7 +102,7 @@ public class RequestChangeNicknameEmote extends ClientPacket
 			return;
 		}
 		
-		if (player.destroyItem("Consume", item, 1, null, true))
+		if (player.destroyItem(ItemProcessType.NONE, item, 1, null, true))
 		{
 			int skyblue = _colorNum - 2;
 			if ((skyblue > 11) && (player.getLevel() >= 90))

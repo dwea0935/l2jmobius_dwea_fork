@@ -20,10 +20,6 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_FOLLOW;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-
 import java.util.concurrent.Future;
 
 import org.l2jmobius.commons.threads.ThreadPool;
@@ -52,7 +48,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	// Fix: Infinite Atk. Spd. exploit
 	private IntentionCommand _nextIntention = null;
 	
-	private void saveNextIntention(CtrlIntention intention, Object arg0, Object arg1)
+	private void saveNextIntention(Intention intention, Object arg0, Object arg1)
 	{
 		_nextIntention = new IntentionCommand(intention, arg0, arg1);
 	}
@@ -82,7 +78,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		final Summon summon = _actor.asSummon();
 		if (_startFollow)
 		{
-			setIntention(AI_INTENTION_FOLLOW, summon.getOwner());
+			setIntention(Intention.FOLLOW, summon.getOwner());
 		}
 		else
 		{
@@ -91,12 +87,12 @@ public class SummonAI extends PlayableAI implements Runnable
 	}
 	
 	@Override
-	synchronized void changeIntention(CtrlIntention intention, Object... args)
+	synchronized void changeIntention(Intention intention, Object... args)
 	{
 		switch (intention)
 		{
-			case AI_INTENTION_ACTIVE:
-			case AI_INTENTION_FOLLOW:
+			case ACTIVE:
+			case FOLLOW:
 			{
 				startAvoidTask();
 				break;
@@ -134,7 +130,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		// Fix: Infinite Atk. Spd. exploit
 		if (_actor.isAttackingNow())
 		{
-			saveNextIntention(AI_INTENTION_ATTACK, attackTarget, null);
+			saveNextIntention(Intention.ATTACK, attackTarget, null);
 			return;
 		}
 		
@@ -165,7 +161,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		}
 		
 		summon.setFollowStatus(false);
-		setIntention(AI_INTENTION_IDLE);
+		setIntention(Intention.IDLE);
 		_startFollow = val;
 		_actor.doCast(_skill, _item, _skill.isBad(), _dontMove);
 	}
@@ -183,7 +179,7 @@ public class SummonAI extends PlayableAI implements Runnable
 			return;
 		}
 		
-		setIntention(AI_INTENTION_IDLE);
+		setIntention(Intention.IDLE);
 		getActor().doPickupItem(target);
 	}
 	
@@ -200,11 +196,11 @@ public class SummonAI extends PlayableAI implements Runnable
 			return;
 		}
 		
-		setIntention(AI_INTENTION_IDLE);
+		setIntention(Intention.IDLE);
 	}
 	
 	@Override
-	public void onEvtThink()
+	public void onActionThink()
 	{
 		if (_thinking || _actor.isCastingNow() || _actor.isAllSkillsDisabled())
 		{
@@ -216,22 +212,22 @@ public class SummonAI extends PlayableAI implements Runnable
 		{
 			switch (getIntention())
 			{
-				case AI_INTENTION_ATTACK:
+				case ATTACK:
 				{
 					thinkAttack();
 					break;
 				}
-				case AI_INTENTION_CAST:
+				case CAST:
 				{
 					thinkCast();
 					break;
 				}
-				case AI_INTENTION_PICK_UP:
+				case PICK_UP:
 				{
 					thinkPickUp();
 					break;
 				}
-				case AI_INTENTION_INTERACT:
+				case INTERACT:
 				{
 					thinkInteract();
 					break;
@@ -245,7 +241,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	}
 	
 	@Override
-	protected void onEvtFinishCasting()
+	protected void onActionFinishCasting()
 	{
 		if (_lastAttack == null)
 		{
@@ -253,15 +249,15 @@ public class SummonAI extends PlayableAI implements Runnable
 		}
 		else
 		{
-			setIntention(AI_INTENTION_ATTACK, _lastAttack);
+			setIntention(Intention.ATTACK, _lastAttack);
 			_lastAttack = null;
 		}
 	}
 	
 	@Override
-	protected void onEvtAttacked(Creature attacker)
+	protected void onActionAttacked(Creature attacker)
 	{
-		super.onEvtAttacked(attacker);
+		super.onActionAttacked(attacker);
 		
 		if (_isDefending)
 		{
@@ -274,9 +270,9 @@ public class SummonAI extends PlayableAI implements Runnable
 	}
 	
 	@Override
-	protected void onEvtEvaded(Creature attacker)
+	protected void onActionEvaded(Creature attacker)
 	{
-		super.onEvtEvaded(attacker);
+		super.onActionEvaded(attacker);
 		
 		if (_isDefending)
 		{
@@ -338,7 +334,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		{
 			if (summon.calculateDistance3D(owner) > 3000)
 			{
-				summon.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, owner);
+				summon.getAI().setIntention(Intention.FOLLOW, owner);
 			}
 			else if ((owner != attacker) && !summon.isMoving() && summon.canAttack(attacker, false))
 			{
@@ -353,7 +349,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		if (_startAvoid)
 		{
 			_startAvoid = false;
-			if (!_clientMoving && !_actor.isDead() && !_actor.isMovementDisabled() && (_actor.getMoveSpeed() > 0))
+			if (!_actor.isMoving() && !_actor.isDead() && !_actor.isMovementDisabled() && (_actor.getMoveSpeed() > 0))
 			{
 				final int ownerX = _actor.asSummon().getOwner().getX();
 				final int ownerY = _actor.asSummon().getOwner().getY();
@@ -373,11 +369,11 @@ public class SummonAI extends PlayableAI implements Runnable
 		_startFollow = !_startFollow;
 		switch (getIntention())
 		{
-			case AI_INTENTION_ACTIVE:
-			case AI_INTENTION_FOLLOW:
-			case AI_INTENTION_IDLE:
-			case AI_INTENTION_MOVE_TO:
-			case AI_INTENTION_PICK_UP:
+			case ACTIVE:
+			case FOLLOW:
+			case IDLE:
+			case MOVE_TO:
+			case PICK_UP:
 			{
 				_actor.asSummon().setFollowStatus(_startFollow);
 			}
@@ -392,7 +388,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	@Override
 	protected void onIntentionCast(Skill skill, WorldObject target, Item item, boolean forceUse, boolean dontMove)
 	{
-		if (getIntention() == AI_INTENTION_ATTACK)
+		if (getIntention() == Intention.ATTACK)
 		{
 			_lastAttack = (getTarget() != null) && getTarget().isCreature() ? getTarget().asCreature() : null;
 		}

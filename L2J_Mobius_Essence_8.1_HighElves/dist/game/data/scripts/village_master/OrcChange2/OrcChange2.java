@@ -16,10 +16,10 @@
  */
 package village_master.OrcChange2;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -103,7 +103,7 @@ public class OrcChange2 extends AbstractNpcAI
 		{
 			htmltext = "30513-19.htm"; // fnYouAreThirdClass
 		}
-		else if ((classId == DESTROYER) && (player.getClassId() == ClassId.ORC_RAIDER))
+		else if ((classId == DESTROYER) && (player.getPlayerClass() == PlayerClass.ORC_RAIDER))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -119,7 +119,7 @@ public class OrcChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_CHALLENGER, MARK_OF_GLORY, MARK_OF_CHAMPION))
 			{
 				takeItems(player, -1, MARK_OF_CHALLENGER, MARK_OF_GLORY, MARK_OF_CHAMPION);
-				player.setClassId(DESTROYER);
+				player.setPlayerClass(DESTROYER);
 				player.setBaseClass(DESTROYER);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -131,7 +131,7 @@ public class OrcChange2 extends AbstractNpcAI
 				htmltext = "30513-23.htm"; // fnNoProof11
 			}
 		}
-		else if ((classId == TYRANT) && (player.getClassId() == ClassId.ORC_MONK))
+		else if ((classId == TYRANT) && (player.getPlayerClass() == PlayerClass.ORC_MONK))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -147,7 +147,7 @@ public class OrcChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_CHALLENGER, MARK_OF_GLORY, MARK_OF_DUELIST))
 			{
 				takeItems(player, -1, MARK_OF_CHALLENGER, MARK_OF_GLORY, MARK_OF_DUELIST);
-				player.setClassId(TYRANT);
+				player.setPlayerClass(TYRANT);
 				player.setBaseClass(TYRANT);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -159,7 +159,7 @@ public class OrcChange2 extends AbstractNpcAI
 				htmltext = "30513-27.htm"; // fnNoProof21
 			}
 		}
-		else if ((classId == OVERLORD) && (player.getClassId() == ClassId.ORC_SHAMAN))
+		else if ((classId == OVERLORD) && (player.getPlayerClass() == PlayerClass.ORC_SHAMAN))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -175,7 +175,7 @@ public class OrcChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_PILGRIM, MARK_OF_GLORY, MARK_OF_LORD))
 			{
 				takeItems(player, -1, MARK_OF_PILGRIM, MARK_OF_GLORY, MARK_OF_LORD);
-				player.setClassId(OVERLORD);
+				player.setPlayerClass(OVERLORD);
 				player.setBaseClass(OVERLORD);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -187,7 +187,7 @@ public class OrcChange2 extends AbstractNpcAI
 				htmltext = "30513-31.htm"; // fnNoProof31
 			}
 		}
-		else if ((classId == WARCRYER) && (player.getClassId() == ClassId.ORC_SHAMAN))
+		else if ((classId == WARCRYER) && (player.getPlayerClass() == PlayerClass.ORC_SHAMAN))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -203,7 +203,7 @@ public class OrcChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_PILGRIM, MARK_OF_GLORY, MARK_OF_WARSPIRIT))
 			{
 				takeItems(player, -1, MARK_OF_PILGRIM, MARK_OF_GLORY, MARK_OF_WARSPIRIT);
-				player.setClassId(WARCRYER);
+				player.setPlayerClass(WARCRYER);
 				player.setBaseClass(WARCRYER);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -228,16 +228,16 @@ public class OrcChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.ORC_MALL_CLASS) || player.isInCategory(CategoryType.ORC_FALL_CLASS))
 		{
-			final ClassId classId = player.getClassId();
-			if ((classId == ClassId.ORC_RAIDER) || (classId == ClassId.DESTROYER))
+			final PlayerClass classId = player.getPlayerClass();
+			if ((classId == PlayerClass.ORC_RAIDER) || (classId == PlayerClass.DESTROYER))
 			{
 				htmltext = "30513-02.htm"; // fnClassList1
 			}
-			else if ((classId == ClassId.ORC_MONK) || (classId == ClassId.TYRANT))
+			else if ((classId == PlayerClass.ORC_MONK) || (classId == PlayerClass.TYRANT))
 			{
 				htmltext = "30513-06.htm"; // fnClassList2
 			}
-			else if ((classId == ClassId.ORC_SHAMAN) || (classId == ClassId.OVERLORD) || (classId == ClassId.WARCRYER))
+			else if ((classId == PlayerClass.ORC_SHAMAN) || (classId == PlayerClass.OVERLORD) || (classId == PlayerClass.WARCRYER))
 			{
 				htmltext = "30513-10.htm"; // fnClassList3
 			}

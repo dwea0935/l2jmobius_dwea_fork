@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Transfer Hate effect implementation.
@@ -48,7 +48,7 @@ public class TransferHate extends AbstractEffect
 	@Override
 	public boolean canStart(Creature effector, Creature effected, Skill skill)
 	{
-		return Util.checkIfInRange(skill.getEffectRange(), effector, effected, true);
+		return LocationUtil.checkIfInRange(skill.getEffectRange(), effector, effected, true);
 	}
 	
 	@Override

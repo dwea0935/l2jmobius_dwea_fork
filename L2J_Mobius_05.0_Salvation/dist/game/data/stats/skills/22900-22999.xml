@@ -365,7 +365,7 @@
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -416,7 +416,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -459,12 +459,11 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
 		<specialLevel>-2</specialLevel>
-		<stayAfterDeath>true</stayAfterDeath>
 		<stayAfterDeath>true</stayAfterDeath>
 		<effects>
 			<effect name="TriggerSkillByDamageReceived">
@@ -520,7 +519,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -572,12 +571,11 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
 		<specialLevel>-2</specialLevel>
-		<stayAfterDeath>true</stayAfterDeath>
 		<stayAfterDeath>true</stayAfterDeath>
 		<effects>
 			<effect name="PhysicalAttackSpeed">
@@ -620,7 +618,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -659,12 +657,11 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
 		<specialLevel>-2</specialLevel>
-		<stayAfterDeath>true</stayAfterDeath>
 		<stayAfterDeath>true</stayAfterDeath>
 		<effects>
 			<effect name="MaxHp">
@@ -718,7 +715,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -765,12 +762,11 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
 		<specialLevel>-2</specialLevel>
-		<stayAfterDeath>true</stayAfterDeath>
 		<stayAfterDeath>true</stayAfterDeath>
 		<effects>
 			<effect name="PhysicalAttackSpeed">
@@ -836,7 +832,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -895,7 +891,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -956,7 +952,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>1100</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -1006,7 +1002,7 @@
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>14400000</reuseDelay>

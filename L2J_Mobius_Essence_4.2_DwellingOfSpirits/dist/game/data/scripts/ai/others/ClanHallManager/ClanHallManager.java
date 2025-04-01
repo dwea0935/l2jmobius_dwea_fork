@@ -20,24 +20,25 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.StringTokenizer;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.ResidenceFunctionsData;
 import org.l2jmobius.gameserver.data.xml.TeleporterData;
-import org.l2jmobius.gameserver.enums.ClanHallGrade;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.model.clan.enums.ClanHallGrade;
 import org.l2jmobius.gameserver.model.residences.ClanHall;
 import org.l2jmobius.gameserver.model.residences.ResidenceFunction;
 import org.l2jmobius.gameserver.model.residences.ResidenceFunctionTemplate;
 import org.l2jmobius.gameserver.model.residences.ResidenceFunctionType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.AgitDecoInfo;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -129,7 +130,7 @@ public class ClanHallManager extends AbstractNpcAI
 				}
 				case "manageDoors":
 				{
-					if (player.hasClanPrivilege(ClanPrivilege.CH_OPEN_DOOR))
+					if (player.hasAccess(ClanAccess.HALL_OPEN_DOOR))
 					{
 						if (st.hasMoreTokens())
 						{
@@ -150,7 +151,7 @@ public class ClanHallManager extends AbstractNpcAI
 				}
 				case "expel":
 				{
-					if (player.hasClanPrivilege(ClanPrivilege.CH_DISMISS))
+					if (player.hasAccess(ClanAccess.HALL_BANISH))
 					{
 						if (st.hasMoreTokens())
 						{
@@ -170,7 +171,7 @@ public class ClanHallManager extends AbstractNpcAI
 				}
 				case "useFunctions":
 				{
-					if (player.hasClanPrivilege(ClanPrivilege.CH_OTHER_RIGHTS))
+					if (player.hasAccess(ClanAccess.HALL_FUNCTIONS))
 					{
 						if (!st.hasMoreTokens())
 						{
@@ -178,9 +179,9 @@ public class ClanHallManager extends AbstractNpcAI
 							final ResidenceFunction mpFunc = clanHall.getFunction(ResidenceFunctionType.MP_REGEN);
 							final ResidenceFunction xpFunc = clanHall.getFunction(ResidenceFunctionType.EXP_RESTORE);
 							htmltext = getHtm(player, "ClanHallManager-09.html");
-							htmltext = htmltext.replace("%hpFunction%", hpFunc != null ? String.valueOf((int) hpFunc.getValue()) : "0");
-							htmltext = htmltext.replace("%mpFunction%", mpFunc != null ? String.valueOf((int) mpFunc.getValue()) : "0");
-							htmltext = htmltext.replace("%resFunction%", xpFunc != null ? String.valueOf((int) xpFunc.getValue()) : "0");
+							htmltext = htmltext.replace("%hpFunction%", hpFunc != null ? String.format("%d%%", Math.round((hpFunc.getValue() - 1) * 100)) : "0");
+							htmltext = htmltext.replace("%mpFunction%", mpFunc != null ? String.format("%d%%", Math.round((mpFunc.getValue() - 1) * 100)) : "0");
+							htmltext = htmltext.replace("%resFunction%", xpFunc != null ? String.format("%d%%", (int) xpFunc.getValue()) : "0");
 						}
 						else
 						{
@@ -201,10 +202,10 @@ public class ClanHallManager extends AbstractNpcAI
 											else if (st.countTokens() >= 2)
 											{
 												final String listName = st.nextToken();
-												final int funcLvl = (listName.length() >= 4) ? CommonUtil.parseInt(listName.substring(3), -1) : -1;
+												final int funcLvl = (listName.length() >= 4) ? StringUtil.parseInt(listName.substring(3), -1) : -1;
 												if (teleportLevel == funcLvl)
 												{
-													holder.doTeleport(player, npc, CommonUtil.parseNextInt(st, -1));
+													holder.doTeleport(player, npc, StringUtil.parseNextInt(st, -1));
 												}
 											}
 										}
@@ -229,7 +230,7 @@ public class ClanHallManager extends AbstractNpcAI
 										{
 											final String[] skillData = st.nextToken().split("_");
 											final SkillHolder skill = new SkillHolder(Integer.parseInt(skillData[0]), Integer.parseInt(skillData[1]));
-											if (CommonUtil.contains(ALLOWED_BUFFS, skill.getSkillId()))
+											if (ArrayUtil.contains(ALLOWED_BUFFS, skill.getSkillId()))
 											{
 												if (npc.getCurrentMp() < (npc.getStat().getMpConsume(skill.getSkill()) + npc.getStat().getMpInitialConsume(skill.getSkill())))
 												{
@@ -298,7 +299,7 @@ public class ClanHallManager extends AbstractNpcAI
 				}
 				case "manageFunctions":
 				{
-					if (player.hasClanPrivilege(ClanPrivilege.CH_SET_FUNCTIONS))
+					if (player.hasAccess(ClanAccess.HALL_MANAGE_FUNCTIONS))
 					{
 						if (!st.hasMoreTokens())
 						{
@@ -477,7 +478,7 @@ public class ClanHallManager extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -487,7 +488,6 @@ public class ClanHallManager extends AbstractNpcAI
 				creature.asPlayer().sendPacket(new AgitDecoInfo(clanHall));
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	private void updateVisualEffects(ClanHall clanHall, Npc npc)

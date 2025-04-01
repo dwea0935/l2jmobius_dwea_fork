@@ -22,13 +22,13 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 
 /**
  * @author Mobius
@@ -75,7 +75,7 @@ public class TriggerSkillByCombatPower extends AbstractEffect
 		}
 		
 		final Player player = effected.asPlayer();
-		final int currentValue = player.getCombatPower();
+		final int currentValue = player.getItemScore();
 		if ((currentValue < _min) || (currentValue > _max))
 		{
 			return;

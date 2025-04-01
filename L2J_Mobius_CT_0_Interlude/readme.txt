@@ -1,114 +1,25 @@
-L2J-Mobius Interlude
+Lineage 2 - Interlude
+http://legacy.lineage2.com/news/interlude_01.html
 
-JDK: https://www.mediafire.com/file/lb0by9xcvbzapi7/bellsoft-jdk21.0.2%252B14-windows-amd64.msi
-XAMPP: https://www.mediafire.com/file/0m05e3p7wdal224/xampp-windows-x64-8.0.30-0-VS16-installer.exe
-Eclipse: https://www.mediafire.com/file/ef5eub52bx4iixc/eclipse-java-2024-06-R-win32-x86_64.zip
+Weapon Augmentation system.
+Primeval Isle.
+Primeval Isle's Tyrannosaurus Trapping System.
+Shadow Weapons.
+Blood Sword Akamanah.
+Command Channel system.
+Dueling system.
+Herb item drops. https://lineage.pmfun.com/list/c5c6
 
 
-What is done
--Removed Gludio Airship Field, Gracia, Hellbound, Isle of Souls and Kamael Guild spawns.
--Removed Gracia tab from map.
--Removed Gludio Airship Field, Hellbound and Isle of Souls teleports.
--Removed other non Interlude teleports.
--Removed Gracia and Hellbound scripts.
--Removed Gracia and Hellbound configurations.
--Removed Kamael character creation configuration.
--Removed Beleth AI and configuration.
--Removed Steel Citadel teleport AI.
--Removed non existing quests.
--Removed Pailaka instances.
--Removed Seven Sign instances.
--Removed Castle instances.
--Removed territory war scripts.
--Removed Kamael Village master AIs.
--Removed Cruma Tower Alarm AI.
--Removed Stakato Nest teleport AI.
--Removed Crystal Caverns instance.
--Removed Dark Cloud Mansion instance.
--Removed Nornils Garden instance.
--Removed Chambers of Delusion instance.
--Removed Kamaloka.
--Removed Airship manager.
--Removed Fantasy Isle AIs.
--Removed movie support.
--Removed Handy's block checker event.
--Removed birthday event.
--Removed teleport bookmark system.
--Removed store char UI settings.
--Removed talisman and bracelets support.
--Removed non existing augment options.
--Removed accessory augmentation.
--Removed non existent htmls.
--Removed kamael_town and fantasy_island mapregion.
--Removed Kamael hero items 9388, 9389 and 9390.
--Removed ANCIENTSWORD, RAPIER, CROSSBOW and BOLT support.
--Removed code that checks KAMAEL race.
--Removed player souls and soul attack effects.
--Removed kamael Race, ClassId and CategoryType enums.
--Removed category data from non existent NPC ids.
--Removed Prime Shop.
--Removed fort and territory war.
--Removed landing, territory war, kamael, fantasy isle and hellbound zones.
--Removed no needed walker routes.
--Removed transformation system.
--Removed bot report action system.
--Removed non existing player actions.
--Removed Tar beetle AI.
--Removed non existing SkillLearn data.
--Removed item elemental attribute system.
--Removed attribute values from NPCs.
--Removed non existent NPCs.
--Removed non existing npcId from random_spawn table.
--Removed non existent spawns.
--Removed non existent items.
--Removed non existent skills.
--Removed non existing recipes.
--Removed non existing doors.
--Removed non existing static objects.
--Removed non existent armor set items and skills.
--Removed Expertise S80 and Expertise S84 skills.
--Removed level 14+ crystal level-up data.
--Added quest Kamael a Window to the Future (127).
--Max adena configuration set to two billion.
--Modified tutorial quest to match T0.
--Modified World map dimensions.
--Fixed damage system messages.
--Fixed NpcSay packet.
--Fixed inventory display.
--Fixed Buy Sell packets.
--Fixed henna packets.
--Fixed augment packets.
--Fixed skill learn and display.
--Fixed shortcut registration.
--Fixed preview item wear.
--Fixed geogrid command.
--Adjusted relation packet.
--Adjusted arena manager AI.
--Adjusted admin menu.
--Adjustments for raidboss spawnlist.
--Replaced quests 109, 113, 234, 376, 377, 617, 640 and 645.
--Replaced Zaken AI.
--Set max level to 80.
--Updated drops with groups.
--Added quests 353, 374, 375 and 505. 
--Removed Kamael class ids from hennas.
--Changed item count to integer.
--Added support for merchant sell bypass.
--Adjusted all shop merchants.
--Removed all non existing skill enchants.
--Fixed skill enchanting.
--Adjusted MagicSkillUse packet.
--Fixed item enchanting.
--Updated supportmagic bypass handler. 
--Added Miss Queen (31760) AI.
--Replaced quests 501, 503, 508, 509 and 510.
--Adjusted door packets.
--Hot Springs one hour diseases.
--Updated pledge skilltree data.
--Adjusted custom community board htmls.
--Replaced quest 639.
--Updated buylists.
--Made Olympiad adjustments.
--Replaced quests 257, 260, 265, 273 and 293.
--Removed subclass certification AI.
--Removed masterwork craft.
+Lineage 2 - Chronicle 5: Oath of Blood
+http://legacy.lineage2.com/news/chronicle5_01.html
+
+Territories: The Pagan Temple, The Stakato Nest, The Monastery of Silence, The Frozen Labyrinth, The Den of Evil, The Plunderous Plains, The Ice Queen's Castle, The Crypts of Disgrace, The Pavel Ruins
+Rune Castle's Benom.
+Gatekeeper Ordinary, Noblesse, Clan Hall and Seven Signs Priest teleports.
+Frintezza raid.
+The Demonic Sword Zariche.
+Fishing King Championship Tournament Event.
+Wild Beast Reserve.
+Fortress of the Dead.
+Rainbow Springs Chateau.

@@ -53,14 +53,13 @@ public class SelMahumThief extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (getRandom(100) < 20)
 		{
 			final Npc spawn = addSpawn(THIEF, npc.getLocation(), false, DESPAWN_TIME);
 			addAttackPlayerDesire(spawn, killer);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

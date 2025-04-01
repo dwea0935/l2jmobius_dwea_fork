@@ -17,16 +17,15 @@
 package quests.Q00616_MagicalPowerOfFirePart2;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Magical Power of Fire - Part 2 (616)
@@ -47,7 +46,7 @@ public class Q00616_MagicalPowerOfFirePart2 extends Quest
 	
 	public Q00616_MagicalPowerOfFirePart2()
 	{
-		super(616);
+		super(616, "Magical Power of Fire - Part 2");
 		addStartNpc(UDAN);
 		addTalkId(UDAN, KETRA_TOTEM);
 		addKillId(NASTRON);
@@ -69,7 +68,7 @@ public class Q00616_MagicalPowerOfFirePart2 extends Quest
 	public void actionForEachPlayer(Player player, Npc npc, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
-		if ((qs != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if ((qs != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
 		{
 			if (npc.getId() == NASTRON)
 			{
@@ -139,7 +138,7 @@ public class Q00616_MagicalPowerOfFirePart2 extends Quest
 		{
 			if (event.equals("despawn_nastron"))
 			{
-				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.THE_POWER_OF_CONSTRAINT_IS_GETTING_WEAKER_YOUR_RITUAL_HAS_FAILED));
+				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "The power of constraint is getting weaker. Your ritual has failed!"));
 				npc.deleteMe();
 				addSpawn(KETRA_TOTEM, 142368, -82512, -6487, 58000, false, 0, true);
 			}
@@ -152,7 +151,7 @@ public class Q00616_MagicalPowerOfFirePart2 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int respawnMinDelay = (int) (43200000 * Config.RAID_MIN_RESPAWN_MULTIPLIER);
 		final int respawnMaxDelay = (int) (129600000 * Config.RAID_MAX_RESPAWN_MULTIPLIER);
@@ -161,7 +160,6 @@ public class Q00616_MagicalPowerOfFirePart2 extends Quest
 		GlobalVariablesManager.getInstance().set("Q00616_respawn", String.valueOf(System.currentTimeMillis() + respawnDelay));
 		startQuestTimer("spawn_npc", respawnDelay, null, null);
 		executeForEachPlayer(killer, npc, isSummon, true, false);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -230,7 +228,7 @@ public class Q00616_MagicalPowerOfFirePart2 extends Quest
 		}
 		npc.deleteMe();
 		final Npc nastron = addSpawn(NASTRON, 142528, -82528, -6496, 0, false, 0);
-		nastron.broadcastPacket(new NpcSay(nastron, ChatType.NPC_GENERAL, NpcStringId.THE_MAGICAL_POWER_OF_FIRE_IS_ALSO_THE_POWER_OF_FLAMES_AND_LAVA_IF_YOU_DARE_TO_CONFRONT_IT_ONLY_DEATH_WILL_AWAIT_YOU));
+		nastron.broadcastPacket(new NpcSay(nastron, ChatType.NPC_GENERAL, "The magical power of fire is also the power of flames and lava! If you dare to confront it, only death will await you!"));
 		startQuestTimer("despawn_nastron", 1200000, nastron, null);
 		return "31558-02.html";
 	}

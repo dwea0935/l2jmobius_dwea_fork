@@ -16,16 +16,16 @@
  */
 package quests.Q00089_SagaOfTheMysticMuse;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00089_SagaOfTheMysticMuse extends SagasSuperClass
+public class Q00089_SagaOfTheMysticMuse extends AbstractSagaQuest
 {
 	public Q00089_SagaOfTheMysticMuse()
 	{
-		super(89);
+		super(89, "Saga of the Mystic Muse");
 		_npc = new int[]
 		{
 			30174,

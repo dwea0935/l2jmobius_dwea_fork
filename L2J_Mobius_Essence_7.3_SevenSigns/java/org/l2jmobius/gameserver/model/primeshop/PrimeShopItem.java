@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.primeshop;
 
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author UnAfraid

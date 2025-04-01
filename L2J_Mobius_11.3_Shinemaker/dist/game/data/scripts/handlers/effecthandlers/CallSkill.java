@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.effecthandlers;
 
@@ -26,16 +30,17 @@ import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 
 /**
  * Call Skill effect implementation.
- * @author NosBit
+ * @author NosBit, Liamxroy
  */
 public class CallSkill extends AbstractEffect
 {
@@ -45,12 +50,16 @@ public class CallSkill extends AbstractEffect
 	
 	private final Set<Integer> _targetCheckSkillIds = new HashSet<>();
 	private final int _targetCheckSkillLevel;
+	private final Set<Integer> _isAffectedBySkillId = new HashSet<>();
+	private final Set<Integer> _isNotAffectedBySkillId = new HashSet<>();
+	private final AbnormalType _checkAbnormalType;
 	
 	public CallSkill(StatSet params)
 	{
 		_skill = new SkillHolder(params.getInt("skillId"), params.getInt("skillLevel", 1), params.getInt("skillSubLevel", 0));
 		_skillLevelScaleTo = params.getInt("skillLevelScaleTo", 0);
 		_chance = params.getInt("chance", 100);
+		
 		for (String skill : params.getString("targetCheckSkillId", "").split(","))
 		{
 			if (!skill.isEmpty())
@@ -59,6 +68,23 @@ public class CallSkill extends AbstractEffect
 			}
 		}
 		_targetCheckSkillLevel = params.getInt("targetCheckSkillLevel", 1);
+		for (String afftectedSkill : params.getString("isAffectedBySkillId", "").split(","))
+		{
+			if (!afftectedSkill.isEmpty())
+			{
+				_isAffectedBySkillId.add(Integer.parseInt(afftectedSkill));
+			}
+		}
+		for (String notAfftectedSkill : params.getString("isNotAffectedBySkillId", "").split(","))
+		{
+			if (!notAfftectedSkill.isEmpty())
+			{
+				_isNotAffectedBySkillId.add(Integer.parseInt(notAfftectedSkill));
+			}
+		}
+		
+		final String checkAbnormalType = params.getString("checkAbnormalType", null);
+		_checkAbnormalType = checkAbnormalType != null ? AbnormalType.getAbnormalType(checkAbnormalType) : null;
 	}
 	
 	@Override
@@ -70,6 +96,16 @@ public class CallSkill extends AbstractEffect
 	@Override
 	public void instant(Creature effector, Creature effected, Skill skill, Item item)
 	{
+		if ((_checkAbnormalType != null) && !effected.hasAbnormalType(_checkAbnormalType))
+		{
+			return;
+		}
+		
+		if ((_chance < 100) && (Rnd.get(100) > _chance))
+		{
+			return;
+		}
+		
 		if (!_targetCheckSkillIds.isEmpty())
 		{
 			for (Integer skillId : _targetCheckSkillIds)
@@ -82,9 +118,28 @@ public class CallSkill extends AbstractEffect
 			}
 		}
 		
-		if ((_chance < 100) && (Rnd.get(100) > _chance))
+		if (!_isAffectedBySkillId.isEmpty())
 		{
-			return;
+			for (Integer affectedSkillId : _isAffectedBySkillId)
+			{
+				final Boolean isAffectedBySkillId = effected.getEffectList().isAffectedBySkill(affectedSkillId);
+				if (!isAffectedBySkillId)
+				{
+					return;
+				}
+			}
+		}
+		
+		if (!_isNotAffectedBySkillId.isEmpty())
+		{
+			for (Integer notAfftectedSkill : _isAffectedBySkillId)
+			{
+				final Boolean notAffectedBySkillId = effected.getEffectList().isAffectedBySkill(notAfftectedSkill);
+				if (notAffectedBySkillId)
+				{
+					return;
+				}
+			}
 		}
 		
 		final Skill triggerSkill;
@@ -100,7 +155,6 @@ public class CallSkill extends AbstractEffect
 				}
 				else
 				{
-					LOGGER.warning("Player " + effector + " called unknown skill " + _skill + " triggered by " + skill + " CallSkill.");
 					return;
 				}
 			}
@@ -157,10 +211,6 @@ public class CallSkill extends AbstractEffect
 			{
 				SkillCaster.triggerCast(effector, effected, triggerSkill);
 			}
-		}
-		else
-		{
-			LOGGER.warning("Skill not found effect called from " + skill);
 		}
 	}
 }

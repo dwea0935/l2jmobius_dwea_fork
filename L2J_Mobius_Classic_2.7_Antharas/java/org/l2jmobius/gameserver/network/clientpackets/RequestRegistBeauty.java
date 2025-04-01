@@ -20,6 +20,7 @@ import org.l2jmobius.gameserver.data.xml.BeautyShopData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.beautyshop.BeautyData;
 import org.l2jmobius.gameserver.model.beautyshop.BeautyItem;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.serverpackets.ExResponseBeautyList;
 import org.l2jmobius.gameserver.network.serverpackets.ExResponseBeautyRegistReset;
 
@@ -104,14 +105,14 @@ public class RequestRegistBeauty extends ClientPacket
 			return;
 		}
 		
-		if ((requiredAdena > 0) && !player.reduceAdena(getClass().getSimpleName(), requiredAdena, null, true))
+		if ((requiredAdena > 0) && !player.reduceAdena(ItemProcessType.FEE, requiredAdena, null, true))
 		{
 			player.sendPacket(new ExResponseBeautyRegistReset(player, ExResponseBeautyRegistReset.CHANGE, ExResponseBeautyRegistReset.FAILURE));
 			player.sendPacket(new ExResponseBeautyList(player, ExResponseBeautyList.SHOW_FACESHAPE));
 			return;
 		}
 		
-		if ((requiredBeautyShopTicket > 0) && !player.reduceBeautyTickets(getClass().getSimpleName(), requiredBeautyShopTicket, null, true))
+		if ((requiredBeautyShopTicket > 0) && !player.reduceBeautyTickets(ItemProcessType.FEE, requiredBeautyShopTicket, null, true))
 		{
 			player.sendPacket(new ExResponseBeautyRegistReset(player, ExResponseBeautyRegistReset.CHANGE, ExResponseBeautyRegistReset.FAILURE));
 			player.sendPacket(new ExResponseBeautyList(player, ExResponseBeautyList.SHOW_FACESHAPE));

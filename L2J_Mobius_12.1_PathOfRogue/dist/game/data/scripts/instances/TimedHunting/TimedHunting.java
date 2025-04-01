@@ -20,15 +20,15 @@
  */
 package instances.TimedHunting;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.gameserver.data.holders.TimedHuntingZoneHolder;
 import org.l2jmobius.gameserver.data.xml.TimedHuntingZoneData;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.holders.TimedHuntingZoneHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -221,14 +221,13 @@ public class TimedHunting extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		final Instance world = npc.getInstanceWorld();
-		if (isInInstance(world) && CommonUtil.contains(PANTHEON_MONSTERS, npc.getId()) && (getRandom(100) < 5) && (!killer.isAffectedBySkill(MORE_ADENA.getSkillId())))
+		if (isInInstance(world) && ArrayUtil.contains(PANTHEON_MONSTERS, npc.getId()) && (getRandom(100) < 5) && (!killer.isAffectedBySkill(MORE_ADENA.getSkillId())))
 		{
 			MORE_ADENA.getSkill().applyEffects(killer, killer);
 		}
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	public static void main(String[] args)

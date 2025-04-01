@@ -1866,7 +1866,7 @@
 		<effectRange>400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>800</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
@@ -2374,7 +2374,6 @@
 		<abnormalType>MULTI_DEBUFF_B</abnormalType>
 		<abnormalVisualEffect>DOT_POISON</abnormalVisualEffect>
 		<activateRate>99</activateRate>
-		<affectScope>SINGLE</affectScope>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<castRange>600</castRange>

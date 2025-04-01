@@ -23,15 +23,16 @@ package org.l2jmobius.gameserver.network.clientpackets.newskillenchant;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.gameserver.data.holders.EnchantItemExpHolder;
+import org.l2jmobius.gameserver.data.holders.EnchantStarHolder;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillEnchantData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.EnchantItemExpHolder;
-import org.l2jmobius.gameserver.model.holders.EnchantStarHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillEnchantHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillEnchantHolder;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -114,7 +115,7 @@ public class RequestExSkillEnchantCharge extends ClientPacket
 					else if (itemExpHolder.getStarLevel() <= starHolder.getLevel())
 					{
 						curExp += itemExpHolder.getExp() * itemCharge.getCount();
-						player.destroyItem("Charge", item, itemCharge.getCount(), null, true);
+						player.destroyItem(ItemProcessType.FEE, item, itemCharge.getCount(), null, true);
 					}
 					else
 					{
@@ -127,7 +128,7 @@ public class RequestExSkillEnchantCharge extends ClientPacket
 				}
 			}
 			player.setSkillEnchantExp(starHolder.getLevel(), Math.min(starHolder.getExpMax(), curExp));
-			player.reduceAdena("ChargeFee", feeAdena, null, true);
+			player.reduceAdena(ItemProcessType.FEE, feeAdena, null, true);
 			player.sendPacket(new ExSkillEnchantCharge(skill.getId(), 0));
 			player.sendPacket(new ExSkillEnchantInfo(skill, player));
 		}

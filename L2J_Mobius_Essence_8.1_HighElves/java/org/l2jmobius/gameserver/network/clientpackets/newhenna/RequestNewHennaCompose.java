@@ -24,11 +24,12 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.HennaCombinationData;
 import org.l2jmobius.gameserver.data.xml.HennaData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.combination.CombinationItemType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.henna.CombinationHenna;
 import org.l2jmobius.gameserver.model.item.henna.CombinationHennaReward;
 import org.l2jmobius.gameserver.model.item.henna.Henna;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -109,9 +110,9 @@ public class RequestNewHennaCompose extends ClientPacket
 		}
 		iu.addModifiedItem(inventory.getItemByItemId(Inventory.ADENA_ID));
 		
-		if (((_slotOneItemId != -1) && (inventory.destroyItemByItemId("Henna Improving", one.getId(), one.getCount(), player, null) == null)) //
-			|| ((_slotTwoItemId != -1) && (inventory.destroyItemByItemId("Henna Improving", two.getId(), two.getCount(), player, null) == null)) //
-			|| (inventory.destroyItemByItemId("Henna Improving", Inventory.ADENA_ID, commission, player, null) == null))
+		if (((_slotOneItemId != -1) && (inventory.destroyItemByItemId(ItemProcessType.FEE, one.getId(), one.getCount(), player, null) == null)) //
+			|| ((_slotTwoItemId != -1) && (inventory.destroyItemByItemId(ItemProcessType.FEE, two.getId(), two.getCount(), player, null) == null)) //
+			|| (inventory.destroyItemByItemId(ItemProcessType.FEE, Inventory.ADENA_ID, commission, player, null) == null))
 		{
 			player.sendPacket(new NewHennaPotenCompose(henna.getDyeId(), -1, false));
 			return;
@@ -122,7 +123,7 @@ public class RequestNewHennaCompose extends ClientPacket
 			final CombinationHennaReward reward = combinationHennas.getReward(CombinationItemType.ON_SUCCESS);
 			player.removeHenna(_slotOneIndex, false);
 			player.addHenna(_slotOneIndex, HennaData.getInstance().getHenna(reward.getHennaId()));
-			player.addItem("Henna Improving", reward.getId(), reward.getCount(), null, false);
+			player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), null, false);
 			player.sendPacket(new NewHennaPotenCompose(reward.getHennaId(), reward.getId() == 0 ? -1 : reward.getId(), true));
 		}
 		else
@@ -133,7 +134,7 @@ public class RequestNewHennaCompose extends ClientPacket
 				player.removeHenna(_slotOneIndex, false);
 				player.addHenna(_slotOneIndex, HennaData.getInstance().getHenna(reward.getHennaId()));
 			}
-			player.addItem("Henna Improving", reward.getId(), reward.getCount(), null, false);
+			player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), null, false);
 			player.sendPacket(new NewHennaPotenCompose(reward.getHennaId(), reward.getId() == 0 ? -1 : reward.getId(), false));
 		}
 		player.sendPacket(iu);

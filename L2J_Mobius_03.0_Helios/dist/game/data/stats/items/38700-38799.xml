@@ -1667,6 +1667,7 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
+			<skill id="17718" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17742" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1693,6 +1694,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17719" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17743" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1720,6 +1722,7 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
+			<skill id="17720" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17744" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1747,6 +1750,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17721" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17745" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1773,6 +1777,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17722" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17746" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1800,6 +1805,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17723" level="1" /> <!-- Dandy's Breath -->
 			<skill id="13115" level="1" /> <!-- Polearm Multi-attack -->
 			<skill id="17747" level="1" /> <!-- Dandy's Strength -->
 		</skills>
@@ -1828,6 +1834,7 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
+			<skill id="17724" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17748" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1855,6 +1862,7 @@
 			<stat type="randomDamage">20</stat>
 		</stats>
 		<skills>
+			<skill id="17725" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17749" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1882,6 +1890,7 @@
 			<stat type="randomDamage">20</stat>
 		</stats>
 		<skills>
+			<skill id="17726" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17750" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1908,6 +1917,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17727" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17751" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1935,6 +1945,7 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
+			<skill id="17728" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17752" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1961,6 +1972,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17729" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17753" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -1987,6 +1999,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17730" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17754" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2014,6 +2027,7 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
+			<skill id="17731" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17755" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2041,6 +2055,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17732" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17756" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2069,6 +2084,7 @@
 			<stat type="randomDamage">20</stat>
 		</stats>
 		<skills>
+			<skill id="17733" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17757" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2098,6 +2114,7 @@
 			<stat type="randomDamage">20</stat>
 		</stats>
 		<skills>
+			<skill id="17734" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17758" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2125,6 +2142,7 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
+			<skill id="17735" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17759" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2152,6 +2170,7 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
+			<skill id="17736" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17760" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2178,6 +2197,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17737" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17761" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2205,6 +2225,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17738" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17762" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2231,6 +2252,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17739" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17763" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2258,6 +2280,7 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
+			<skill id="17740" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17764" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
@@ -2285,6 +2308,7 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17741" level="1" /> <!-- Dandy's Breath -->
 			<skill id="17765" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.admincommandhandlers;
 
@@ -21,6 +25,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.l2jmobius.gameserver.data.xml.ClanHallData;
@@ -37,11 +43,10 @@ import org.l2jmobius.gameserver.model.residences.ClanHall;
 import org.l2jmobius.gameserver.model.residences.ResidenceFunction;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BypassParser;
 
 /**
  * Clan Hall admin commands.
- * @author St3eT
+ * @author St3eT, Mobius
  */
 public class AdminClanHall implements IAdminCommandHandler
 {
@@ -57,7 +62,7 @@ public class AdminClanHall implements IAdminCommandHandler
 		final String actualCommand = st.nextToken();
 		if (actualCommand.equalsIgnoreCase("admin_clanhall"))
 		{
-			processBypass(activeChar, new BypassParser(command));
+			processBypass(activeChar, command);
 		}
 		return true;
 	}
@@ -252,12 +257,13 @@ public class AdminClanHall implements IAdminCommandHandler
 		}
 	}
 	
-	private void processBypass(Player player, BypassParser parser)
+	private void processBypass(Player player, String command)
 	{
-		final int page = parser.getInt("page", 0);
-		final int clanHallId = parser.getInt("id", 0);
-		final String action = parser.getString("action", null);
-		final String actionVal = parser.getString("actionVal", null);
+		final int page = parseInt(command, "page", 0);
+		final int clanHallId = parseInt(command, "id", 0);
+		final String action = parseString(command, "action", null);
+		final String actionVal = parseString(command, "actionVal", null);
+		
 		if ((clanHallId > 0) && (action != null))
 		{
 			doAction(player, clanHallId, action, actionVal);
@@ -270,6 +276,35 @@ public class AdminClanHall implements IAdminCommandHandler
 		{
 			sendClanHallList(player, page);
 		}
+	}
+	
+	private int parseInt(String command, String paramName, int defaultValue)
+	{
+		final Pattern pattern = Pattern.compile(paramName + "=([^\\s]+)");
+		final Matcher matcher = pattern.matcher(command);
+		if (matcher.find())
+		{
+			try
+			{
+				return Integer.parseInt(matcher.group(1).trim());
+			}
+			catch (NumberFormatException e)
+			{
+				// Ignore and return default.
+			}
+		}
+		return defaultValue;
+	}
+	
+	private String parseString(String command, String paramName, String defaultValue)
+	{
+		final Pattern pattern = Pattern.compile(paramName + "=([^\\s]+)");
+		final Matcher matcher = pattern.matcher(command);
+		if (matcher.find())
+		{
+			return matcher.group(1).trim();
+		}
+		return defaultValue;
 	}
 	
 	@Override

@@ -20,7 +20,7 @@
  */
 package quests.Q10439_KekropusLetterTheOriginsOfARumor;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -171,7 +171,7 @@ public class Q10439_KekropusLetterTheOriginsOfARumor extends LetterQuest
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -189,7 +189,6 @@ public class Q10439_KekropusLetterTheOriginsOfARumor extends LetterQuest
 				}
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override

@@ -26,9 +26,10 @@ import org.l2jmobius.gameserver.data.xml.PetAcquireList;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
-import org.l2jmobius.gameserver.model.holders.PetSkillAcquireHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.holders.PetSkillAcquireHolder;
 import org.l2jmobius.gameserver.network.serverpackets.pet.ExPetSkillList;
 
 /**
@@ -68,7 +69,7 @@ public class RequestExAcquirePetSkill extends ClientPacket
 		{
 			if (reqItem.get().getItem() != null)
 			{
-				if (player.destroyItemByItemId("PetAcquireSkill", reqItem.get().getItem().getId(), reqItem.get().getItem().getCount(), null, true))
+				if (player.destroyItemByItemId(ItemProcessType.FEE, reqItem.get().getItem().getId(), reqItem.get().getItem().getCount(), null, true))
 				{
 					pet.addSkill(skill);
 					pet.storePetSkills(skillId, skillLevel);

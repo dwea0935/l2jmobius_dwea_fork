@@ -432,7 +432,6 @@
 		<fanRange>0;0;900;120</fanRange>
 		<hitTime>2000</hitTime>
 		<isMagic>1</isMagic> <!-- Static Skill -->
-		<isMagic>1</isMagic> <!-- Static Skill -->
 		<mpConsume>10</mpConsume>
 		<reuseDelay>5000</reuseDelay>
 		<effects>

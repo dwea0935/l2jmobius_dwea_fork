@@ -25,8 +25,9 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.data.xml.HomunculusSlotData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.homunculus.HomunculusSlotTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -83,7 +84,7 @@ public class RequestExHomunculusActivateSlot extends ClientPacket
 		}
 		for (ItemHolder feeHolder : fee)
 		{
-			if (!player.destroyItemByItemId("Homunclus slot unlock", feeHolder.getId(), feeHolder.getCount(), player, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, feeHolder.getId(), feeHolder.getCount(), player, true))
 			{
 				Logger.getLogger(getClass().getSimpleName() + " player " + player.getName() + " " + player.getObjectId() + " trying unlock slot without items!");
 				player.sendPacket(new ExActivateHomunculusResult(false));

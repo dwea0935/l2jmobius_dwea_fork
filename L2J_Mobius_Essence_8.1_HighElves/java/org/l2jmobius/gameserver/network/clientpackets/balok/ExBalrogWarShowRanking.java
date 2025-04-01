@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.balok;
 
-import org.l2jmobius.gameserver.instancemanager.BattleWithBalokManager;
+import org.l2jmobius.gameserver.managers.BattleWithBalokManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.balok.BalrogWarShowRanking;

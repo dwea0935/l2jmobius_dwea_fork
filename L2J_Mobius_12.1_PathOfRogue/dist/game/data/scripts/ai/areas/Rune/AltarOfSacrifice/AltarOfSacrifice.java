@@ -21,11 +21,11 @@
 package ai.areas.Rune.AltarOfSacrifice;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import ai.AbstractNpcAI;
@@ -76,18 +76,17 @@ public class AltarOfSacrifice extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if ((creature != null) && creature.isPlayer() && _jenas_guard.isScriptValue(0))
 		{
 			startQuestTimer("msg_text", 3000, npc, null);
 			_jenas_guard.setScriptValue(1);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -107,7 +106,6 @@ public class AltarOfSacrifice extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	private void sendMessage(Npc npc, NpcStringId npcString, int delay)

@@ -23,16 +23,16 @@ package quests.Q00933_TombRaiders;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.QuestType;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Creature; // Imports belov needed for onEnterZone
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.NpcLogListHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.quest.NpcLogListHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.ScriptZone;
@@ -154,7 +154,7 @@ public class Q00933_TombRaiders extends Quest
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -172,11 +172,10 @@ public class Q00933_TombRaiders extends Quest
 				}
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Party party = killer.getParty();
 		if (party != null)
@@ -194,7 +193,6 @@ public class Q00933_TombRaiders extends Quest
 		{
 			processKill(npc, killer);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void processKill(Npc npc, Player killer)

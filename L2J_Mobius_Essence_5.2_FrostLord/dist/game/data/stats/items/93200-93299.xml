@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="93200" name="Random Enhanced Tallum Leather Armor Crafting" additionalName="Sealed" type="EtcItem">
 		<!-- Double-click to obtain a Sealed Tallum Leather Armor enchanted from +0 to +5 at random. -->
@@ -1247,7 +1247,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="is_sellable" val="true" />
 		<skills>
-			<skill id="9250" level="1" /> <!-- Improved Scroll -->
+			<skill id="9250" level="1" /> <!-- Improved Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="93256" name="Improved Scroll: Enchant A-grade Armor" type="EtcItem">
@@ -1263,7 +1263,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<set name="is_sellable" val="true" />
 		<skills>
-			<skill id="9251" level="1" /> <!-- Improved Scroll -->
+			<skill id="9251" level="1" /> <!-- Improved Scroll: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="93257" name="Cursed Scroll: Enchant A-grade Weapon" type="EtcItem">
@@ -2142,7 +2142,7 @@
 			<stat type="pDef">39</stat>
 		</stats>
 		<skills>
-			<skill id="50341" level="1" /> <!-- Pendant: Einhasad's Pendant -->
+			<skill id="50341" level="1" /> <!-- Einhasad's Pendant -->
 		</skills>
 	</item>
 	<item id="93297" name="Einhasad's Pendant Lv. 2" additionalName="Sealed" type="Armor">
@@ -2159,7 +2159,7 @@
 			<stat type="pDef">48</stat>
 		</stats>
 		<skills>
-			<skill id="50341" level="2" /> <!-- Pendant: Einhasad's Pendant -->
+			<skill id="50341" level="2" /> <!-- Einhasad's Pendant -->
 		</skills>
 	</item>
 	<item id="93298" name="Einhasad's Pendant Lv. 3" additionalName="Sealed" type="Armor">
@@ -2176,7 +2176,7 @@
 			<stat type="pDef">57</stat>
 		</stats>
 		<skills>
-			<skill id="50341" level="3" /> <!-- Pendant: Einhasad's Pendant -->
+			<skill id="50341" level="3" /> <!-- Einhasad's Pendant -->
 		</skills>
 	</item>
 	<item id="93299" name="Einhasad's Pendant Lv. 4" additionalName="Sealed" type="Armor">
@@ -2194,7 +2194,7 @@
 			<stat type="pDef">66</stat>
 		</stats>
 		<skills>
-			<skill id="50341" level="4" /> <!-- Pendant: Einhasad's Pendant Lv1 -->
+			<skill id="50341" level="4" /> <!-- Einhasad's Pendant -->
 			<skill id="45045" level="1" /> <!-- Dragon Meditation -->
 		</skills>
 	</item>

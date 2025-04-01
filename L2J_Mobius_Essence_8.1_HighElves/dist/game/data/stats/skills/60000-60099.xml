@@ -22,7 +22,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<stayAfterDeath>true</stayAfterDeath>
@@ -36,9 +36,8 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
-		<isTriggeredSkill>true</isTriggeredSkill>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>40</magicLevel>
@@ -90,7 +89,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -128,7 +127,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -158,7 +157,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -188,7 +187,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -218,11 +217,10 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
-		<magicLevel>40</magicLevel>
 		<magicLevel>40</magicLevel>
 		<stayAfterDeath>true</stayAfterDeath>
 		<effects>
@@ -249,7 +247,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -279,7 +277,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -308,7 +306,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>

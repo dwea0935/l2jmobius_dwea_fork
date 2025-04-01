@@ -27,10 +27,10 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.MailType;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
-import org.l2jmobius.gameserver.instancemanager.MentorManager;
+import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.MentorManager;
 import org.l2jmobius.gameserver.model.Mentee;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -39,21 +39,22 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeAdd;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeLeft;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeRemove;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeStatus;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMentorStatus;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionChange;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeAdd;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeLeft;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeRemove;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeStatus;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMentorStatus;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionChange;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.MailType;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.mentoring.ExMentorList;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 
@@ -117,9 +118,9 @@ public class MentorGuide extends AbstractNpcAI implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -161,7 +162,7 @@ public class MentorGuide extends AbstractNpcAI implements IXmlReader
 		else if (event.startsWith("REMOVE_BUFFS"))
 		{
 			final String[] params = event.split(" ");
-			if (Util.isDigit(params[1]))
+			if (StringUtil.isNumeric(params[1]))
 			{
 				final int objectId = Integer.parseInt(params[1]);
 				MentorManager.getInstance().getMentees(objectId).stream().filter(Objects::nonNull).filter(Mentee::isOnline).forEach(mentee ->
@@ -529,7 +530,7 @@ public class MentorGuide extends AbstractNpcAI implements IXmlReader
 	{
 		final Message msg = new Message(objectId, title, body, MailType.MENTOR_NPC);
 		final Mail attachments = msg.createAttachments();
-		attachments.addItem(getName(), itemId, amount, null, null);
+		attachments.addItem(ItemProcessType.REWARD, itemId, amount, null, null);
 		MailManager.getInstance().sendMessage(msg);
 	}
 	

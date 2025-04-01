@@ -826,7 +826,7 @@
 		<set name="material" val="WOOD" />
 		<skills>
 			<skill id="9525" level="1" /> <!-- Draco's Warrior Hat - Blessed Resurrection -->
-			<skill id="9515" level="1" /> <!-- Draco's Warrior Hat -->
+			<skill id="9515" level="1" /> <!-- Draco's Hat: Warrior -->
 		</skills>
 	</item>
 	<item id="35747" name="Draco's Hat:Wizard (7-day)" additionalName="Event" type="Armor">

@@ -407,33 +407,33 @@
 		<npc id="24679" count="1" respawnTime="10sec" respawnRandom="0sec" chaseRange="1200" /> <!-- Henker Anatomist -->
 	</spawn>
 	<spawn name="ExecutionGroundsDefender">
-			<npc id="24681" x="45433" y="144984" z="-3640" heading="35974" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="44089" y="148253" z="-3696" heading="28883" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="50231" y="148391" z="-3536" heading="7995" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="46980" y="149138" z="-3696" heading="27731" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="49707" y="143397" z="-3600" heading="54876" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="41184" y="137712" z="-3032" heading="42770" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="46598" y="142967" z="-3104" heading="29182" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="42397" y="145281" z="-3120" heading="53237" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="40255" y="141209" z="-3032" heading="42775" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="53337" y="143712" z="-2984" heading="3384" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="54585" y="142171" z="-2840" heading="25021" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="54636" y="139497" z="-2600" heading="50070" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="54368" y="145396" z="-3080" heading="18421" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="56103" y="146179" z="-2976" heading="5880" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="53305" y="149555" z="-2472" heading="24575" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="53384" y="151336" z="-2488" heading="16962" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="55932" y="153105" z="-2448" heading="7334" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="48252" y="152932" z="-2720" heading="37038" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="44732" y="151669" z="-2768" heading="39230" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="40747" y="147998" z="-3697" heading="31233" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="37445" y="150442" z="-3648" heading="13665" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="42747" y="149311" z="-3699" heading="22251" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="48802" y="145915" z="-3585" heading="60043" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="41615" y="150182" z="-3735" heading="34305" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24681" x="38524" y="147991" z="-3704" heading="32873" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="41686" y="145672" z="-3670" heading="37919" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
-			<npc id="24680" x="47099" y="146081" z="-3587" heading="34677" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="45433" y="144984" z="-3640" heading="35974" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="44089" y="148253" z="-3696" heading="28883" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="50231" y="148391" z="-3536" heading="7995" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="46980" y="149138" z="-3696" heading="27731" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="49707" y="143397" z="-3600" heading="54876" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="41184" y="137712" z="-3032" heading="42770" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="46598" y="142967" z="-3104" heading="29182" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="42397" y="145281" z="-3120" heading="53237" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="40255" y="141209" z="-3032" heading="42775" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="53337" y="143712" z="-2984" heading="3384" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="54585" y="142171" z="-2840" heading="25021" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="54636" y="139497" z="-2600" heading="50070" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="54368" y="145396" z="-3080" heading="18421" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="56103" y="146179" z="-2976" heading="5880" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="53305" y="149555" z="-2472" heading="24575" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="53384" y="151336" z="-2488" heading="16962" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="55932" y="153105" z="-2448" heading="7334" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="48252" y="152932" z="-2720" heading="37038" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="44732" y="151669" z="-2768" heading="39230" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="40747" y="147998" z="-3697" heading="31233" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="37445" y="150442" z="-3648" heading="13665" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="42747" y="149311" z="-3699" heading="22251" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="48802" y="145915" z="-3585" heading="60043" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="41615" y="150182" z="-3735" heading="34305" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24681" x="38524" y="147991" z="-3704" heading="32873" respawnTime="60sec" /> <!-- Henker Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="41686" y="145672" z="-3670" heading="37919" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
+		<npc id="24680" x="47099" y="146081" z="-3587" heading="34677" respawnTime="60sec" /> <!-- Schnabel Inspector - Execution Grounds Defender -->
 	</spawn>
 	<spawn>
 		<territories>

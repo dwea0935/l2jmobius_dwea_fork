@@ -1669,7 +1669,6 @@
 		<abnormalTime>1</abnormalTime>
 		<abnormalType>KNOCKDOWN</abnormalType>
 		<abnormalVisualEffect>KNOCKDOWN</abnormalVisualEffect>
-		<abnormalVisualEffect>KNOCKDOWN</abnormalVisualEffect>
 		<activateRate>100</activateRate>
 		<affectLimit>10-10</affectLimit>
 		<affectObject>NOT_FRIEND</affectObject>

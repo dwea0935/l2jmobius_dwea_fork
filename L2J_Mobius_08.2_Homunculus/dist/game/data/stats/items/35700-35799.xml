@@ -744,7 +744,7 @@
 			<player insideZoneId="60025, 60026, 60027" />
 		</cond>
 		<skills>
-			<skill id="9504" level="1" /> <!-- Scroll: PK (Low-grade) -->
+			<skill id="9504" level="1" /> <!-- Low-grade Scroll: PK -->
 		</skills>
 	</item>
 	<item id="35742" name="Scroll: Reputation (Low-grade)" type="EtcItem">
@@ -760,7 +760,7 @@
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9508" level="1" /> <!-- Scroll: Reputation (Low-grade) -->
+			<skill id="9508" level="1" /> <!-- Low-grade Scroll: Reputation -->
 		</skills>
 	</item>
 	<item id="35743" name="Draco's Health Potion" additionalName="Event" type="EtcItem">
@@ -886,7 +886,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9518" level="1" /> <!-- Draco's Blessing (30-minute) -->
+			<skill id="9518" level="1" /> <!-- Draco's Blessing (30 min.) -->
 		</skills>
 	</item>
 	<item id="35751" name="Draco's Shiny Accessory Pack" additionalName="Event" type="EtcItem">
@@ -920,7 +920,7 @@
 			<player insideZoneId="60025, 60026, 60027" />
 		</cond>
 		<skills>
-			<skill id="9505" level="1" /> <!-- Scroll: PK (Mid-grade) -->
+			<skill id="9505" level="1" /> <!-- Mid-grade Scroll: PK -->
 		</skills>
 	</item>
 	<item id="35753" name="Scroll: PK (High-grade)" type="EtcItem">
@@ -940,7 +940,7 @@
 			<player insideZoneId="60025, 60026, 60027" />
 		</cond>
 		<skills>
-			<skill id="9506" level="1" /> <!-- Scroll: PK (High-grade) -->
+			<skill id="9506" level="1" /> <!-- High-grade Scroll: PK -->
 		</skills>
 	</item>
 	<item id="35754" name="Scroll: PK (Top-grade)" type="EtcItem">
@@ -960,7 +960,7 @@
 			<player insideZoneId="60025, 60026, 60027" />
 		</cond>
 		<skills>
-			<skill id="9507" level="1" /> <!-- Scroll: PK (Top-grade) -->
+			<skill id="9507" level="1" /> <!-- Top-grade Scroll: PK -->
 		</skills>
 	</item>
 	<item id="35755" name="Scroll: Reputation (Mid-grade)" type="EtcItem">
@@ -976,7 +976,7 @@
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9509" level="1" /> <!-- Scroll: Reputation (Mid-grade) -->
+			<skill id="9509" level="1" /> <!-- Mid-grade Scroll: Reputation -->
 		</skills>
 	</item>
 	<item id="35756" name="Scroll: Reputation (High-grade)" type="EtcItem">
@@ -992,7 +992,7 @@
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9510" level="1" /> <!-- Scroll: Reputation (High-grade) -->
+			<skill id="9510" level="1" /> <!-- High-grade Scroll: Reputation -->
 		</skills>
 	</item>
 	<item id="35757" name="Scroll: Reputation (Top-grade)" type="EtcItem">
@@ -1008,7 +1008,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9511" level="1" /> <!-- Scroll: Reputation (Top-grade) -->
+			<skill id="9511" level="1" /> <!-- Top-grade Scroll: Reputation -->
 		</skills>
 	</item>
 	<item id="35758" name="Draco's Blessing (1-hour)" additionalName="Event" type="EtcItem">
@@ -1023,7 +1023,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9519" level="1" /> <!-- Draco's Blessing (1-hour) -->
+			<skill id="9519" level="1" /> <!-- Draco's Blessing (1-h.) -->
 		</skills>
 	</item>
 	<item id="35759" name="Draco's Blessing (1-hour)" additionalName="Event" type="EtcItem">
@@ -1038,7 +1038,7 @@
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9520" level="1" /> <!-- Draco's Blessing (1-hour) -->
+			<skill id="9520" level="1" /> <!-- Draco's Blessing (1-h.) -->
 		</skills>
 	</item>
 	<item id="35760" name="Draco's Blessing (3-hour)" additionalName="Event" type="EtcItem">
@@ -1053,7 +1053,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9521" level="1" /> <!-- Draco's Blessing (3-hour) -->
+			<skill id="9521" level="1" /> <!-- Draco's Blessing (3-h.) -->
 		</skills>
 	</item>
 	<item id="35761" name="Rabbit Ears" additionalName="CON" type="Armor">
@@ -1158,7 +1158,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Hair Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35768" name="Rabbit Ears" additionalName="M. Def." type="Armor">
@@ -1188,7 +1188,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Hair Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35770" name="Rabbit Ears" additionalName="P. Atk." type="Armor">
@@ -1233,7 +1233,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Hair Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35773" name="Raccoon Ears" additionalName="STR" type="Armor">
@@ -1338,7 +1338,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Hair Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35780" name="Raccoon Ears" additionalName="M. Def." type="Armor">
@@ -1368,7 +1368,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Hair Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35782" name="Raccoon Ears" additionalName="P. Atk." type="Armor">
@@ -1413,7 +1413,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Hair Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35785" name="Cat Ears" additionalName="STR" type="Armor">
@@ -1518,7 +1518,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Hair Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35792" name="Cat Ears" additionalName="M. Def." type="Armor">
@@ -1548,7 +1548,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Hair Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35794" name="Cat Ears" additionalName="P. Atk." type="Armor">
@@ -1593,7 +1593,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Hair Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35797" name="Romantic Chapeau" additionalName="STR" type="Armor">

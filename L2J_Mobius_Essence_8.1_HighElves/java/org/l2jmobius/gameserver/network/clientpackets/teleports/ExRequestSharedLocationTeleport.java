@@ -21,9 +21,10 @@
 package org.l2jmobius.gameserver.network.clientpackets.teleports;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.SharedTeleportManager;
+import org.l2jmobius.gameserver.data.holders.SharedTeleportHolder;
+import org.l2jmobius.gameserver.managers.SharedTeleportManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SharedTeleportHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -76,7 +77,7 @@ public class ExRequestSharedLocationTeleport extends ClientPacket
 			return;
 		}
 		
-		if (player.destroyItemByItemId("Shared Location", Inventory.LCOIN_ID, Config.TELEPORT_SHARE_LOCATION_COST, player, true))
+		if (player.destroyItemByItemId(ItemProcessType.FEE, Inventory.LCOIN_ID, Config.TELEPORT_SHARE_LOCATION_COST, player, true))
 		{
 			teleport.decrementCount();
 			player.abortCast();

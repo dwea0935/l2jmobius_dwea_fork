@@ -34,6 +34,7 @@
 																<xs:attribute name="categoryType" type="xs:string" use="optional" />
 																<xs:attribute name="subclass" type="xs:boolean" use="optional" />
 																<xs:attribute name="level" type="xs:unsignedByte" use="optional" />
+																<xs:attribute name="subLevel" type="xs:unsignedShort" use="optional" />
 																<xs:attribute name="cloakStatus" type="xs:boolean" use="optional" />
 																<xs:attribute name="instanceId" type="xs:string" use="optional" />
 																<xs:attribute name="isOnSide" type="xs:string" use="optional" />
@@ -52,6 +53,7 @@
 													<xs:attribute name="pkCount" type="xs:unsignedByte" use="optional" />
 													<xs:attribute name="pledgeClass" type="xs:unsignedByte" use="optional" />
 													<xs:attribute name="level" type="xs:unsignedByte" use="optional" />
+													<xs:attribute name="subLevel" type="xs:unsignedShort" use="optional" />
 													<xs:attribute name="races" type="xs:string" use="optional" />
 													<xs:attribute name="clanHall" type="xs:string" use="optional" />
 													<xs:attribute name="castle" type="xs:unsignedByte" use="optional" />
@@ -97,6 +99,7 @@
 												<xs:complexType>
 													<xs:attribute name="id" type="xs:unsignedInt" use="required" />
 													<xs:attribute name="level" type="xs:unsignedByte" use="required" />
+													<xs:attribute name="subLevel" type="xs:unsignedShort" use="optional" />
 													<xs:attribute name="type" type="xs:string" use="optional" />
 													<xs:attribute name="type_value" type="xs:unsignedByte" use="optional" />
 													<xs:attribute name="type_chance" type="xs:unsignedByte" use="optional" />

@@ -764,7 +764,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="1078" name="Wind Crystal" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. A wind crystal from the Wind Spirit Lirein. Collect some and take them to Rizraell. -->
+		<!-- The item is not available. A wind shard from the Wind Spirit Lirein. Collect some and take them to Rizraell. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1005,7 +1005,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1099" name="Spellbook: Wind Shackle" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. A spellbook for learning the Wind Shackle skill. Used by Human Mystics, Elven Mystics and Dark Mystics. Required level: 14. -->
+		<!-- The item is not available. A spellbook for learning the Wind Shackles skill. Used by Human Mystics, Elven Mystics and Dark Mystics. Required level: 14. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />

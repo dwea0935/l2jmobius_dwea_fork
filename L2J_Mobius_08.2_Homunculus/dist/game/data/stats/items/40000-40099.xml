@@ -841,7 +841,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17898" level="1" /> <!-- Mysterious Wind Scroll -->
+			<skill id="17898" level="1" /> <!-- Wondrous Wind Scroll -->
 		</skills>
 	</item>
 	<item id="40057" name="Magic Broom" type="Weapon">

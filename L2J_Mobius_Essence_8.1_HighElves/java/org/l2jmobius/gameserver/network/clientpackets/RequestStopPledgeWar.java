@@ -23,13 +23,13 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeReceiveWarList;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 public class RequestStopPledgeWar extends ClientPacket
 {
@@ -71,7 +71,7 @@ public class RequestStopPledgeWar extends ClientPacket
 		}
 		
 		// Check if player who does the request has the correct rights to do it
-		if (!player.hasClanPrivilege(ClanPrivilege.CL_PLEDGE_WAR))
+		if (!player.hasAccess(ClanAccess.WAR_DECLARATION))
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
 			return;

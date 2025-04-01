@@ -16,7 +16,7 @@
  */
 package quests.Q00998_FallenAngelSelect;
 
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -41,7 +41,7 @@ public class Q00998_FallenAngelSelect extends Quest
 	
 	public Q00998_FallenAngelSelect()
 	{
-		super(998);
+		super(998, "29, message = \"Protect the territory catapult!");
 		setCustom(true);
 		addStartNpc(NATOOLS);
 		addTalkId(NATOOLS);

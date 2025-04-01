@@ -19,11 +19,11 @@ package ai.others.NewbieTravelToken;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 
@@ -57,7 +57,7 @@ public class NewbieTravelToken extends AbstractNpcAI
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
-		if (Util.isDigit(event))
+		if (StringUtil.isNumeric(event))
 		{
 			final int npcId = Integer.parseInt(event);
 			if (DATA.containsKey(npcId))

@@ -63,9 +63,9 @@ public class VariationData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode ->
+		forEach(document, "list", listNode ->
 		{
 			forEach(listNode, "variations", variationsNode -> forEach(variationsNode, "variation", variationNode ->
 			{
@@ -173,7 +173,7 @@ public class VariationData implements IXmlReader
 				
 				for (int item : itemGroup)
 				{
-					final Map<Integer, VariationFee> fees = _fees.computeIfAbsent(item, k -> new HashMap<>());
+					final Map<Integer, VariationFee> fees = _fees.computeIfAbsent(item, _ -> new HashMap<>());
 					fees.putAll(feeByMinerals);
 				}
 			}));

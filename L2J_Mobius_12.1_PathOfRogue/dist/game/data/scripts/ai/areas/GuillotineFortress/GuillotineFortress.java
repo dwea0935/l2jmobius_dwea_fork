@@ -20,12 +20,12 @@
  */
 package ai.areas.GuillotineFortress;
 
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
@@ -67,7 +67,7 @@ public class GuillotineFortress extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isPet, Skill skill)
+	public void onAttack(Npc npc, Player player, int damage, boolean isPet, Skill skill)
 	{
 		if ((npc.getCurrentHpPercent() <= 85) && npc.isScriptValue(1))
 		{
@@ -96,17 +96,15 @@ public class GuillotineFortress extends AbstractNpcAI
 			addSpawn(SCALDISECT_THE_FURIOUS, player.getX(), player.getY(), player.getZ(), 0, true, 120000);
 			takeItems(player, PROOF_OF_SURVIVAL, 1);
 		}
-		return super.onAttack(npc, player, damage, isPet, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if ((killer != null) && killer.isPlayer() && (getRandom(100) < 5))
 		{
 			giveItems(killer, PROOF_OF_SURVIVAL, 1);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

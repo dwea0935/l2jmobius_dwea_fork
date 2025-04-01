@@ -26,6 +26,6 @@ public class DefenceCriticalDamage extends AbstractStatEffect
 {
 	public DefenceCriticalDamage(StatSet params)
 	{
-		super(params, Stat.DEFENCE_CRITICAL_DAMAGE, Stat.DEFENCE_CRITICAL_DAMAGE_ADD, true);
+		super(params, Stat.DEFENCE_CRITICAL_DAMAGE, Stat.DEFENCE_CRITICAL_DAMAGE_ADD);
 	}
 }

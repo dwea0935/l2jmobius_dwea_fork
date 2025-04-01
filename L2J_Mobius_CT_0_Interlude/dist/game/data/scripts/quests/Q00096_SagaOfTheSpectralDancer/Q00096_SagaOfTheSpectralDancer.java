@@ -16,17 +16,17 @@
  */
 package quests.Q00096_SagaOfTheSpectralDancer;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * Saga of the Spectral Dancer (96)
  * @author Emperorc
  */
-public class Q00096_SagaOfTheSpectralDancer extends SagasSuperClass
+public class Q00096_SagaOfTheSpectralDancer extends AbstractSagaQuest
 {
 	public Q00096_SagaOfTheSpectralDancer()
 	{
-		super(96);
+		super(96, "Saga of the Spectral Dancer");
 		_npc = new int[]
 		{
 			31582,

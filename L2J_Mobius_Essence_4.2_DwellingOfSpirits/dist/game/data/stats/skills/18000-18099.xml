@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="18024" toLevel="26" name="+1 Venir's Talisman">
-		<!-- The talisman's mysterious power boosts your abilities. <Effect>. CON +1 -->
+		<!-- Level 1: The talisman's mysterious power boosts your abilities. <Effect>. CON +1 -->
+		<!-- Level 2: The talisman's mysterious power boosts your abilities. <Effect>. CON +1. MEN +1 -->
+		<!-- Level 3: The talisman's mysterious power boosts your abilities. <Effect>. CON +1. MEN +1. DEX +1 -->
+		<!-- Level 4: The talisman's mysterious power boosts your abilities. <Effect>. CON +1. MEN +1. DEX +1. WIT +1 -->
+		<!-- Level 5: The talisman's mysterious power boosts your abilities. <Effect>. CON +1. MEN +1. DEX +1. WIT +1. STR +1 -->
+		<!-- Level 6: The talisman's mysterious power boosts your abilities. <Effect>. CON +1. MEN +1. DEX +1. WIT +1. STR +1. INT +1 -->
+		<!-- Level 7: The talisman's mysterious power boosts your abilities. <Effect>. CON +2. MEN +1. DEX +1. WIT +1. STR +1. INT +1 -->
+		<!-- Level 8: The talisman's mysterious power boosts your abilities. <Effect>. CON +2. MEN +2. DEX +1. WIT +1. STR +1. INT +1 -->
+		<!-- Level 9: The talisman's mysterious power boosts your abilities. <Effect>. CON +2. MEN +2. DEX +2. WIT +1. STR +1. INT +1 -->
+		<!-- Level 10: The talisman's mysterious power boosts your abilities. <Effect>. CON +2. MEN +2. DEX +2. WIT +2. STR +1. INT +1 -->
+		<!-- Level 11: The talisman's mysterious power boosts your abilities. <Effect>. CON +2. MEN +2. DEX +2. WIT +2. STR +2. INT +1 -->
+		<!-- Level 12: The talisman's mysterious power boosts your abilities. <Effect>. CON +2. MEN +2. DEX +2. WIT +2. STR +2. INT +2. All received Critical Rate -2%. P./ M. Skill Cooldown -1% -->
+		<!-- Level 13: The talisman's mysterious power boosts your abilities. <Effect>. CON +3. MEN +2. DEX +2. WIT +2. STR +2. INT +2. All received Critical Rate -4%. P./ M. Skill Cooldown -3% -->
+		<!-- Level 14: The talisman's mysterious power boosts your abilities. <Effect>. CON +3. MEN +3. DEX +2. WIT +2. STR +2. INT +2. All received Critical Rate -6%. P./ M. Skill Cooldown -5% -->
+		<!-- Level 15: The talisman's mysterious power boosts your abilities. <Effect>. CON +3. MEN +3. DEX +3. WIT +2. STR +2. INT +2. All received Critical Rate -8%. P./ M. Skill Cooldown -7% -->
+		<!-- Level 16: The talisman's mysterious power boosts your abilities. <Effect>. CON +3. MEN +3. DEX +3. WIT +3. STR +2. INT +2. Max HP +100. All received Critical Rate -10%. P./ M. Skill Cooldown -7% -->
+		<!-- Level 17: The talisman's mysterious power boosts your abilities. <Effect>. CON +3. MEN +3. DEX +3. WIT +3. STR +3. INT +2. Max HP +200. All received Critical Rate -10%. P./ M. Skill Cooldown -9% -->
+		<!-- Level 18: The talisman's mysterious power boosts your abilities. <Effect>. CON +3. MEN +3. DEX +3. WIT +3. STR +3. INT +3. Max HP +300. All received Critical Rate -12%. P./ M. Skill Cooldown -9% -->
+		<!-- Level 19: The talisman's mysterious power boosts your abilities. <Effect>. CON +4. MEN +4. DEX +3. WIT +3. STR +3. INT +3. Max HP +400. All received Critical Rate -12%. P./ M. Skill Cooldown -11% -->
+		<!-- Level 20: The talisman's mysterious power boosts your abilities. <Effect>. CON +4. MEN +4. DEX +4. WIT +4. STR +3. INT +3. Max HP +500. All received Critical Rate -14%. P./ M. Skill Cooldown -11% -->
+		<!-- Level 21: The talisman's mysterious power boosts your abilities. <Effect>. CON +4. MEN +4. DEX +4. WIT +4. STR +4. INT +4. Max HP +600. All received Critical Rate -14%. P./ M. Skill Cooldown -13% -->
+		<!-- Level 22: The talisman's mysterious power boosts your abilities. <Effect>. CON +5. MEN +5. DEX +4. WIT +4. STR +4. INT +4. Max HP +700. All received Critical Rate -16%. P./ M. Skill Cooldown -13% -->
+		<!-- Level 23: The talisman's mysterious power boosts your abilities. <Effect>. CON +5. MEN +5. DEX +5. WIT +5. STR +4. INT +4. Max HP +800. All received Critical Rate -16%. P./ M. Skill Cooldown -15% -->
+		<!-- Level 24: The talisman's mysterious power boosts your abilities. <Effect>. CON +5. MEN +5. DEX +5. WIT +5. STR +5. INT +5. Max HP +900. All received Critical Rate -18%. P./ M. Skill Cooldown -15% -->
+		<!-- Level 25: The talisman's mysterious power boosts your abilities. <Effect>. CON +6. MEN +6. DEX +6. WIT +6. STR +6. INT +6. Max HP +1000. All received Critical Rate -18%. P./ M. Skill Cooldown -17% -->
+		<!-- Level 26: CON, MEN, DEX, WIT, STR, INT +8, P./ M. Skill Cooldown -7%. With a certain chance, absorbs 16% of the inflicted damage as HP and 8% as MP. Effects of two identical talismans do not stack. Cannot be dropped. -->
 		<icon>
 			<value level="1">icon.benir_talisman_i00</value>
 			<value level="2">icon.benir_talisman_i00</value>

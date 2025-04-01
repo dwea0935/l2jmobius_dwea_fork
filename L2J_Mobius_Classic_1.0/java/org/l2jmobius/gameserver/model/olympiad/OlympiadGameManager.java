@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.zone.type.OlympiadStadiumZone;

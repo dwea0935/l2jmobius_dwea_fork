@@ -730,7 +730,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40449" level="1" /> <!-- summon genie -->
+			<skill id="40449" level="1" /> <!-- Summon Genie -->
 		</skills>
 	</item>
 	<item id="97944" name="Facelifting Potion D" additionalName="Sealed" type="EtcItem">
@@ -778,7 +778,7 @@
 			<player class_id_restriction="10, 11, 12, 13, 14, 15, 16, 17, 94, 95, 96, 97, 98" />
 		</cond>
 		<skills>
-			<skill id="40450" level="1" /> <!-- Facelifting Potion E -->
+			<skill id="40450" level="1" /> <!-- Facelifting Potion D -->
 		</skills>
 	</item>
 	<item id="97946" name="Hairstyle Change Potion H" additionalName="Sealed" type="EtcItem">
@@ -802,7 +802,7 @@
 			<player class_id_restriction="10, 11, 12, 13, 14, 15, 16, 17, 94, 95, 96, 97, 98" />
 		</cond>
 		<skills>
-			<skill id="40452" level="1" /> <!-- Hair Style Change Potion H -->
+			<skill id="40452" level="1" /> <!-- Hairstyle Change Potion H -->
 		</skills>
 	</item>
 	<item id="97947" name="Hairstyle Change Potion I" additionalName="Sealed" type="EtcItem">
@@ -826,7 +826,7 @@
 			<player class_id_restriction="10, 11, 12, 13, 14, 15, 16, 17, 94, 95, 96, 97, 98" />
 		</cond>
 		<skills>
-			<skill id="40453" level="1" /> <!-- Hair Style Change Potion I -->
+			<skill id="40453" level="1" /> <!-- Hairstyle Change Potion I -->
 		</skills>
 	</item>
 	<item id="97948" name="Hairstyle Change Potion J" additionalName="Sealed" type="EtcItem">
@@ -853,7 +853,7 @@
 			</and>
 		</cond>
 		<skills>
-			<skill id="40454" level="1" /> <!-- Hair Style Change Potion J -->
+			<skill id="40454" level="1" /> <!-- Hairstyle Change Potion J -->
 		</skills>
 	</item>
 	<item id="97949" name="Hairstyle Change Potion K" additionalName="Sealed" type="EtcItem">
@@ -880,7 +880,7 @@
 			</and>
 		</cond>
 		<skills>
-			<skill id="40455" level="1" /> <!-- Hair Style Change Potion K -->
+			<skill id="40455" level="1" /> <!-- Hairstyle Change Potion K -->
 		</skills>
 	</item>
 	<item id="97950" name="Hairstyle Change Potion L" additionalName="Sealed" type="EtcItem">
@@ -907,7 +907,7 @@
 			</and>
 		</cond>
 		<skills>
-			<skill id="40456" level="1" /> <!-- Hair Style Change Potion L -->
+			<skill id="40456" level="1" /> <!-- Hairstyle Change Potion L -->
 		</skills>
 	</item>
 	<item id="97951" name="+1 Talisman of Authority Pack" additionalName="Sealed" type="EtcItem">
@@ -1017,15 +1017,15 @@
 		<skills>
 			<skill id="50604" level="1" /> <!-- Galaxia's Ancient Sword -->
 			<skill id="50605" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Galaxia's Ancient Sword -->
+			<skill id="50605" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Galaxia's Ancient Sword -->
+			<skill id="50605" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Galaxia's Ancient Sword -->
+			<skill id="50605" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Galaxia's Ancient Sword -->
+			<skill id="50605" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Galaxia's Ancient Sword -->
+			<skill id="50605" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Galaxia's Ancient Sword -->
+			<skill id="50605" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Galaxia's Ancient Sword -->
+			<skill id="50605" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Galaxia's Ancient Sword -->
+			<skill id="50605" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Galaxia's Ancient Sword -->
+			<skill id="50605" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Galaxia's Ancient Sword -->
 			<skill id="50395" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -1069,15 +1069,15 @@
 		<skills>
 			<skill id="50604" level="1" /> <!-- Galaxia's Ancient Sword -->
 			<skill id="50605" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Galaxia's Ancient Sword -->
-			<skill id="50605" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Galaxia's Ancient Sword -->
+			<skill id="50605" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Galaxia's Ancient Sword -->
+			<skill id="50605" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Galaxia's Ancient Sword -->
+			<skill id="50605" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Galaxia's Ancient Sword -->
+			<skill id="50605" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Galaxia's Ancient Sword -->
+			<skill id="50605" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Galaxia's Ancient Sword -->
+			<skill id="50605" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Galaxia's Ancient Sword -->
+			<skill id="50605" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Galaxia's Ancient Sword -->
+			<skill id="50605" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Galaxia's Ancient Sword -->
+			<skill id="50605" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Galaxia's Ancient Sword -->
 			<skill id="50395" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -1119,15 +1119,15 @@
 		<skills>
 			<skill id="50608" level="1" /> <!-- Phiriel's Rapier -->
 			<skill id="50609" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Phiriel's Rapier -->
+			<skill id="50609" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Phiriel's Rapier -->
+			<skill id="50609" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Phiriel's Rapier -->
+			<skill id="50609" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Phiriel's Rapier -->
+			<skill id="50609" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Phiriel's Rapier -->
+			<skill id="50609" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Phiriel's Rapier -->
+			<skill id="50609" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Phiriel's Rapier -->
+			<skill id="50609" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Phiriel's Rapier -->
+			<skill id="50609" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Phiriel's Rapier -->
+			<skill id="50609" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Phiriel's Rapier -->
 			<skill id="50392" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -1170,15 +1170,15 @@
 		<skills>
 			<skill id="50608" level="1" /> <!-- Phiriel's Rapier -->
 			<skill id="50609" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Phiriel's Rapier -->
-			<skill id="50609" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Phiriel's Rapier -->
+			<skill id="50609" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Phiriel's Rapier -->
+			<skill id="50609" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Phiriel's Rapier -->
+			<skill id="50609" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Phiriel's Rapier -->
+			<skill id="50609" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Phiriel's Rapier -->
+			<skill id="50609" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Phiriel's Rapier -->
+			<skill id="50609" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Phiriel's Rapier -->
+			<skill id="50609" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Phiriel's Rapier -->
+			<skill id="50609" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Phiriel's Rapier -->
+			<skill id="50609" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Phiriel's Rapier -->
 			<skill id="50392" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -1221,15 +1221,15 @@
 		<skills>
 			<skill id="50612" level="1" /> <!-- Anais' Fists -->
 			<skill id="50613" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Anais' Fists -->
+			<skill id="50613" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Anais' Fists -->
+			<skill id="50613" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Anais' Fists -->
+			<skill id="50613" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Anais' Fists -->
+			<skill id="50613" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Anais' Fists -->
+			<skill id="50613" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Anais' Fists -->
+			<skill id="50613" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Anais' Fists -->
+			<skill id="50613" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Anais' Fists -->
+			<skill id="50613" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Anais' Fists -->
+			<skill id="50613" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Anais' Fists -->
 			<skill id="50403" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -1272,15 +1272,15 @@
 		<skills>
 			<skill id="50612" level="1" /> <!-- Anais' Fists -->
 			<skill id="50613" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Anais' Fists -->
-			<skill id="50613" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Anais' Fists -->
+			<skill id="50613" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Anais' Fists -->
+			<skill id="50613" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Anais' Fists -->
+			<skill id="50613" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Anais' Fists -->
+			<skill id="50613" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Anais' Fists -->
+			<skill id="50613" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Anais' Fists -->
+			<skill id="50613" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Anais' Fists -->
+			<skill id="50613" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Anais' Fists -->
+			<skill id="50613" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Anais' Fists -->
+			<skill id="50613" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Anais' Fists -->
 			<skill id="50403" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -1321,15 +1321,15 @@
 		<skills>
 			<skill id="50616" level="1" /> <!-- Juriel's Dual Swords -->
 			<skill id="50617" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Juriel's Dual Swords -->
+			<skill id="50617" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Juriel's Dual Swords -->
+			<skill id="50617" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Juriel's Dual Swords -->
+			<skill id="50617" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Juriel's Dual Swords -->
+			<skill id="50617" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Juriel's Dual Swords -->
+			<skill id="50617" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Juriel's Dual Swords -->
+			<skill id="50617" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Juriel's Dual Swords -->
+			<skill id="50617" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Juriel's Dual Swords -->
+			<skill id="50617" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Juriel's Dual Swords -->
+			<skill id="50617" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Juriel's Dual Swords -->
 			<skill id="50403" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -1371,15 +1371,15 @@
 		<skills>
 			<skill id="50616" level="1" /> <!-- Juriel's Dual Swords -->
 			<skill id="50617" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Juriel's Dual Swords -->
-			<skill id="50617" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Juriel's Dual Swords -->
+			<skill id="50617" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Juriel's Dual Swords -->
+			<skill id="50617" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Juriel's Dual Swords -->
+			<skill id="50617" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Juriel's Dual Swords -->
+			<skill id="50617" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Juriel's Dual Swords -->
+			<skill id="50617" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Juriel's Dual Swords -->
+			<skill id="50617" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Juriel's Dual Swords -->
+			<skill id="50617" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Juriel's Dual Swords -->
+			<skill id="50617" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Juriel's Dual Swords -->
+			<skill id="50617" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Juriel's Dual Swords -->
 			<skill id="50403" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -1689,7 +1689,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="40459" level="1" /> <!-- Crystal of Insolence Lv. 1 -->
+			<skill id="40459" level="1" /> <!-- Crystal of Insolence -->
 		</skills>
 	</item>
 	<item id="97982" name="Adventurer's Dye Powder" additionalName="Sealed" type="EtcItem">

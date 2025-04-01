@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="80500" name="Draco's Treasure Chest" type="EtcItem">
 		<!-- Use it to obtain one of the special items. -->
@@ -382,7 +382,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="360" />
 		<skills>
-			<skill id="35363" level="1" /> <!-- Freya's Bloody Rune -->
+			<skill id="35363" level="1" /> <!-- Anakim's Protection Rune -->
 		</skills>
 	</item>
 	<item id="80544" name="Snow's Plea for Help - Altar of Evil" type="EtcItem">

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="2600" type="Weapon" name="Raid Sword*Caliburs">
 		<!-- When enchanted, the P.Atk of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted by 4 or more, Accuracy will increase by 4. -->
@@ -852,7 +852,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2635" type="EtcItem" name="Knight's Tear">
+	<item id="2635" type="EtcItem" name="Knights Tear">
 		<!-- Obtained from the spirit of Sir Herod. Take this to Sir Aaron Tanford. -->
 		<set name="icon" val="icon.etc_crystal_ball_red_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1068,7 +1068,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2653" type="EtcItem" name="Mysterious Spirit Ore">
+	<item id="2653" type="EtcItem" name="Mysterious Runestone">
 		<!-- A mysterious runestone obtained after slaying neer ghoul berserkers. Take this to Master Terry. -->
 		<set name="icon" val="icon.etc_crystal_blue_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1080,7 +1080,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2654" type="EtcItem" name="Ol Mahum Spirit Ore">
+	<item id="2654" type="EtcItem" name="Ol Mahum Runestone">
 		<!-- A mysterious runestone obtained after slaying the ol mahum captain. Take this to Master Terry. -->
 		<set name="icon" val="icon.etc_crystal_red_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1092,7 +1092,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2655" type="EtcItem" name="Turek Spirit Ore">
+	<item id="2655" type="EtcItem" name="Turek Runestone">
 		<!-- A mysterious runestone obtained after slaying the Turek orc overlord. Take this to Master Terry. -->
 		<set name="icon" val="icon.etc_crystal_silver_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1104,7 +1104,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2656" type="EtcItem" name="Ant Spirit Ore">
+	<item id="2656" type="EtcItem" name="Ant Runestone">
 		<!-- A mysterious runestone obtained after slaying the ant captain. Take this to Master Terry. -->
 		<set name="icon" val="icon.etc_crystal_white_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1116,7 +1116,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2657" type="EtcItem" name="Turak Bugbear Spirit Ore">
+	<item id="2657" type="EtcItem" name="Turak Bugbear Runestone">
 		<!-- A mysterious runestone obtained after slaying the Turak bugbear warrior. Take this to Master Terry. -->
 		<set name="icon" val="icon.etc_crystal_gold_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1164,7 +1164,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2661" type="EtcItem" name="Shilen's Spirit Ore">
+	<item id="2661" type="EtcItem" name="Shilen's Runestone">
 		<!-- Strange runestones obtained from the bodies of mutant species. They seem to be related to Shilen, the goddess of death. -->
 		<set name="icon" val="icon.etc_crystal_green_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1248,7 +1248,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2668" type="EtcItem" name="Abyss Spirit Ore">
+	<item id="2668" type="EtcItem" name="Abyss Runestone">
 		<!-- The dark bezoar retrieved from the body of a marsh stakato drone. Take this to Master Terry. -->
 		<set name="icon" val="icon.etc_crystal_blue_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1260,7 +1260,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2669" type="EtcItem" name="Abyss Spirit Ore">
+	<item id="2669" type="EtcItem" name="Abyss Runestone">
 		<!-- The runestone retrieved from the body of the Breka orc overlord. Take this to Master Terry. -->
 		<set name="icon" val="icon.etc_crystal_silver_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1272,7 +1272,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2670" type="EtcItem" name="Abyss Spirit Ore">
+	<item id="2670" type="EtcItem" name="Abyss Runestone">
 		<!-- The runestone retrieved from the body of the ant captain. Take this to Master Terry. -->
 		<set name="icon" val="icon.etc_crystal_white_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1284,7 +1284,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2671" type="EtcItem" name="Abyss Spirit Ore">
+	<item id="2671" type="EtcItem" name="Abyss Runestone">
 		<!-- The runestone retrieved from the body of the Leto lizardman warrior. Take this to Master Terry. -->
 		<set name="icon" val="icon.etc_crystal_green_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1572,7 +1572,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2695" type="EtcItem" name="Monster Eye Destroyer's Skin">
+	<item id="2695" type="EtcItem" name="Monster Eye Destroyer Skin">
 		<!-- A beamer's skin. Gather 5 of these and take them to Grand Magister Jurek of Giran Castle Town. -->
 		<set name="icon" val="icon.etc_leather_yellow_i00" />
 		<set name="immediate_effect" val="true" />

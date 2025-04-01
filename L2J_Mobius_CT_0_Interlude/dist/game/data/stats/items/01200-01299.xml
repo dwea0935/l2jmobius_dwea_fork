@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="1200" type="EtcItem" name="Lionel's Covenant">
 		<!-- Lionel's pledge not to use the forbidden book again. Give it to Priest Zigaunt and receive the mark of faith. -->
@@ -508,7 +508,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="1241" type="EtcItem" name="Venomous Spider's Carapace">
+	<item id="1241" type="EtcItem" name="Predator's Carapace">
 		<!-- The hard carapace of a poison spider. Take this and five arachnid tracker silk threads to Abyssal Celebrant Kalinta. -->
 		<set name="icon" val="icon.etc_bark_blue_i00" />
 		<set name="immediate_effect" val="true" />
@@ -748,7 +748,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="1261" type="EtcItem" name="Dark Jewel">
+	<item id="1261" type="EtcItem" name="Jewel of Darkness">
 		<!-- Take this token to the Grand Master of the Dark Elf guild to change your occupation to a Dark Wizard. -->
 		<set name="icon" val="icon.accessary_necklace_of_phantom_i00" />
 		<set name="immediate_effect" val="true" />
@@ -796,7 +796,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="1265" type="EtcItem" name="Garmiel's Book">
+	<item id="1265" type="EtcItem" name="Garmiel Book">
 		<!-- The sacred book of Gran Kain, god of darkness, written in elven language. One of two books Sidra told you to find. -->
 		<set name="icon" val="icon.etc_spell_books_blue_i00" />
 		<set name="immediate_effect" val="true" />
@@ -868,7 +868,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="1271" type="EtcItem" name="Squire's Mark">
+	<item id="1271" type="EtcItem" name="Mark of Esquire">
 		<!-- A mark that indicates an esquire. Wander around the villages in Gludio and meet with guard captains and high priests. -->
 		<set name="icon" val="icon.accessary_earing_of_wisdom_i00" />
 		<set name="immediate_effect" val="true" />
@@ -880,7 +880,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="1272" type="EtcItem" name="Greenis's Charm">
+	<item id="1272" type="EtcItem" name="Charm of Grain">
 		<!-- Greenis's good luck charm. Kill pincer spiders and give 5 red down to Greenis. -->
 		<set name="icon" val="icon.accessary_aquastone_necklace_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1084,7 +1084,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="1289" type="EtcItem" name="Rusty Coin">
+	<item id="1289" type="EtcItem" name="Rust Gold Coin">
 		<!-- The coin given by earth snake. Kill red bear and give red soil to earth snake for Token of Earth. -->
 		<set name="icon" val="icon.etc_coins_gold_i00" />
 		<set name="immediate_effect" val="true" />

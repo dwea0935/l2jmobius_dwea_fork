@@ -22,12 +22,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.LuckyGameItemType;
-import org.l2jmobius.gameserver.enums.LuckyGameResultType;
-import org.l2jmobius.gameserver.enums.LuckyGameType;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.enums.LuckyGameItemType;
+import org.l2jmobius.gameserver.network.enums.LuckyGameResultType;
+import org.l2jmobius.gameserver.network.enums.LuckyGameType;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 
 /**

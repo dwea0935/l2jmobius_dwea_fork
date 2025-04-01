@@ -22,7 +22,7 @@ package ai.areas.DragonValley;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 import ai.AbstractNpcAI;
 
@@ -50,13 +50,12 @@ public final class DragonValleyDayNightMonsters extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (getRandom(100) < MOB_SPAWN_CHANCE)
 		{
 			addSpawn(GameTimeTaskManager.getInstance().isNight() ? SOUL_HUNTER : BEHEMOTH_DRAGON, npc, true, 0, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

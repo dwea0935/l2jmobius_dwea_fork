@@ -16,11 +16,11 @@
  */
 package ai.others.Servitors;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -57,7 +57,7 @@ public class TreeOfLife extends AbstractNpcAI
 		if (player != null)
 		{
 			final Summon summon = player.getFirstServitor();
-			if (event.equals("HEAL") && (summon != null) && CommonUtil.contains(TREE_OF_LIFE, summon.getId()))
+			if (event.equals("HEAL") && (summon != null) && ArrayUtil.contains(TREE_OF_LIFE, summon.getId()))
 			{
 				summon.doCast(summon.getTemplate().getParameters().getSkillHolder("s_tree_heal").getSkill(), null, false, false);
 				getTimers().addTimer("HEAL", 8000, null, player);

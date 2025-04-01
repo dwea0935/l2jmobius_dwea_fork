@@ -19,8 +19,8 @@ package ai.others.MonumentOfHeroes;
 import java.util.List;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
-import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
@@ -186,7 +186,7 @@ public class MonumentOfHeroes extends AbstractNpcAI
 						if (player.getLevel() >= 55)
 						{
 							Hero.getInstance().claimHero(player);
-							showOnScreenMsg(player, "Congratulations, " + player.getName() + "! You have become the Hero of " + ClassListData.getInstance().getClass(player.getClassId()).getClassName(), 10000);
+							showOnScreenMsg(player, "Congratulations, " + player.getName() + "! You have become the Hero of " + ClassListData.getInstance().getClass(player.getPlayerClass()).getClassName(), 10000);
 							player.broadcastPacket(new PlaySound(1, "ns01_f", 0, 0, 0, 0, 0));
 							htmltext = "MonumentOfHeroes-heroCertificationsDone.html";
 						}
@@ -237,7 +237,7 @@ public class MonumentOfHeroes extends AbstractNpcAI
 	
 	private int getOlympiadRank(Player player)
 	{
-		final List<String> names = Olympiad.getInstance().getClassLeaderBoard(player.getClassId().getId());
+		final List<String> names = Olympiad.getInstance().getClassLeaderBoard(player.getPlayerClass().getId());
 		try
 		{
 			for (int i = 1; i <= 3; i++)

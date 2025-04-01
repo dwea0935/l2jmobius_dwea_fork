@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="3401" level="23" type="RaidBoss" name="Greyclaw Kutus" title="Lord of Destruction">
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
@@ -3847,7 +3847,6 @@
 		</parameters>
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<equipment rhand="47164" /> <!-- -->
 		<acquire exp="159805184" sp="38354" raidPoints="30" />
 		<mpReward value="20" type="PER" ticks="10" affects="PARTY" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">

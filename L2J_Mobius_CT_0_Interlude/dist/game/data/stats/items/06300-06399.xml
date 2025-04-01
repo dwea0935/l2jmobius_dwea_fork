@@ -1628,7 +1628,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2004-1" /> <!-- Large Squash Seed -->
 	</item>
-	<item id="6391" type="EtcItem" name="Nectar">
+	<item id="6391" type="EtcItem" name="Pollen">
 		<!-- Fall Harvest Event - Buzz the Cat will give you a squash seed for it, or it may be used to grow a squash. -->
 		<set name="icon" val="icon.etc_nectar_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />

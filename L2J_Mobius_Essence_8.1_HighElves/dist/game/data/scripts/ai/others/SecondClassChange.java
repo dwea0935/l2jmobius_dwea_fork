@@ -20,15 +20,15 @@
  */
 package ai.others;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
-import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
 import org.l2jmobius.gameserver.network.serverpackets.classchange.ExClassChangeSetAlarm;
 
 import ai.AbstractNpcAI;
@@ -51,7 +51,7 @@ public class SecondClassChange extends AbstractNpcAI
 			return;
 		}
 		
-		if ((player.getLevel() < LEVEL_REQUIREMENT) || !CategoryData.getInstance().isInCategory(CategoryType.SECOND_CLASS_GROUP, player.getClassId().getId()))
+		if ((player.getLevel() < LEVEL_REQUIREMENT) || !CategoryData.getInstance().isInCategory(CategoryType.SECOND_CLASS_GROUP, player.getPlayerClass().getId()))
 		{
 			return;
 		}
@@ -69,7 +69,7 @@ public class SecondClassChange extends AbstractNpcAI
 			return;
 		}
 		
-		if ((player.getLevel() < LEVEL_REQUIREMENT) || !CategoryData.getInstance().isInCategory(CategoryType.SECOND_CLASS_GROUP, player.getClassId().getId()))
+		if ((player.getLevel() < LEVEL_REQUIREMENT) || !CategoryData.getInstance().isInCategory(CategoryType.SECOND_CLASS_GROUP, player.getPlayerClass().getId()))
 		{
 			return;
 		}

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="9100" type="Armor" name="Shadow Item: Majestic Boots">
 		<!-- This Shadow Item contains the mirrored power of Majestic Boots. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -79,7 +79,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="9104" type="EtcItem" name="Composite Bow and Wooden Arrow">
+	<item id="9104" type="EtcItem" name="Composition Bow and Wooden Arrow">
 		<!-- If you double-click on it, you can obtain a Composition Bow and a Wooden Arrow. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -163,7 +163,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-6" /> <!-- Event Item -->
 	</item>
-	<item id="9110" type="EtcItem" name="No Grade Shadow Armor Set Box (Heavy Armor)">
+	<item id="9110" type="EtcItem" name="No Grade Shadow Armor Set Box (Heavy Armor Use)">
 		<!-- If you double-click on it, you can obtain a No Grade Shadow Armor "Heavy Armor Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -177,7 +177,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-7" /> <!-- Event Item -->
 	</item>
-	<item id="9111" type="EtcItem" name="D-Grade Shadow Armor Set Box (Heavy Armor)">
+	<item id="9111" type="EtcItem" name="D-Grade Shadow Armor Set Box (Heavy Armor Use)">
 		<!-- If you double-click on it, you can obtain a D-Grade Shadow Armor "Heavy Armor Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -191,7 +191,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-8" /> <!-- Event Item -->
 	</item>
-	<item id="9112" type="EtcItem" name="C-Grade Shadow Armor Set Box (Heavy Armor)">
+	<item id="9112" type="EtcItem" name="C-Grade Shadow Armor Set Box (Heavy Armor Use)">
 		<!-- If you double-click on it, you can obtain a C-Grade Shadow Armor "Heavy Armor Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -205,7 +205,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-9" /> <!-- Event Item -->
 	</item>
-	<item id="9113" type="EtcItem" name="B-Grade Shadow Armor Set Box (Heavy Armor)">
+	<item id="9113" type="EtcItem" name="B-Grade Shadow Armor Set Box (Heavy Armor Use)">
 		<!-- If you double-click on it, you can obtain a B-Grade Shadow Armor "Heavy Armor Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -219,7 +219,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-10" /> <!-- Event Item -->
 	</item>
-	<item id="9114" type="EtcItem" name="Low A-Grade Shadow Armor Set Box (Heavy Armor)">
+	<item id="9114" type="EtcItem" name="Low A-Grade Shadow Armor Set Box (Heavy Armor Use)">
 		<!-- If you double-click on it, you can obtain a low A-Grade Shadow Armor "Heavy Armor Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -233,7 +233,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-11" /> <!-- Event Item -->
 	</item>
-	<item id="9115" type="EtcItem" name="High A-Grade Shadow Armor Set Box (Heavy Armor)">
+	<item id="9115" type="EtcItem" name="High A-Grade Shadow Armor Set Box (Heavy Armor Use)">
 		<!-- If you double-click on it, you can obtain a high A-Grade Shadow Armor "Heavy Armor Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -331,7 +331,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-18" /> <!-- Event Item -->
 	</item>
-	<item id="9122" type="EtcItem" name="No Grade Shadow Armor Set Box (Robe)">
+	<item id="9122" type="EtcItem" name="No Grade Shadow Armor Set Box (Robe Use)">
 		<!-- If you double-click on it, you can obtain a No Grade Shadow Armor "Robe Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -345,7 +345,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-19" /> <!-- Event Item -->
 	</item>
-	<item id="9123" type="EtcItem" name="D-Grade Shadow Armor Set Box (Robe)">
+	<item id="9123" type="EtcItem" name="D-Grade Shadow Armor Set Box (Robe Use)">
 		<!-- If you double-click on it, you can obtain a D-Grade Shadow Armor "Robe Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -359,7 +359,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-20" /> <!-- Event Item -->
 	</item>
-	<item id="9124" type="EtcItem" name="C-Grade Shadow Armor Set Box (Robe)">
+	<item id="9124" type="EtcItem" name="C-Grade Shadow Armor Set Box (Robe Use)">
 		<!-- If you double-click on it, you can obtain a C-Grade Shadow Armor "Robe Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -373,7 +373,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-21" /> <!-- Event Item -->
 	</item>
-	<item id="9125" type="EtcItem" name="B-Grade Shadow Armor Set Box (Robe)">
+	<item id="9125" type="EtcItem" name="B-Grade Shadow Armor Set Box (Robe Use)">
 		<!-- If you double-click on it, you can obtain a B-Grade Shadow Armor "Robe Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -387,7 +387,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-22" /> <!-- Event Item -->
 	</item>
-	<item id="9126" type="EtcItem" name="Low A-Grade Shadow Armor Set Box (Robe)">
+	<item id="9126" type="EtcItem" name="Low A-Grade Shadow Armor Set Box (Robe Use)">
 		<!-- If you double-click on it, you can obtain a low A-Grade Shadow Armor "Robe Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -401,7 +401,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-23" /> <!-- Event Item -->
 	</item>
-	<item id="9127" type="EtcItem" name="High A-Grade Shadow Armor Set Box (Robe)">
+	<item id="9127" type="EtcItem" name="High A-Grade Shadow Armor Set Box (Robe Use)">
 		<!-- If you double-click on it, you can obtain a high A-Grade Shadow Armor "Robe Use" Set. (This item can be used when the weight gauge is below 60% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -468,7 +468,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-31" /> <!-- Event Item -->
 	</item>
-	<item id="9131" type="EtcItem" name="D-Grade Item Set Box (Magic Use)">
+	<item id="9131" type="EtcItem" name="D Grade Item Set Box (Magic Use)">
 		<!-- If you double-click on it, you can obtain a Magic-Use D-Grade Item. (This item can be used when the weight gauge is below 80% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -482,7 +482,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-32" /> <!-- Event Item -->
 	</item>
-	<item id="9132" type="EtcItem" name="C-Grade Item Set Box (Magic Use)">
+	<item id="9132" type="EtcItem" name="C Grade Item Set Box (Magic Use)">
 		<!-- If you double-click on it, you can obtain a Magic-Use C-Grade Item. (This item can be used when the weight gauge is below 80% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -496,7 +496,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-33" /> <!-- Event Item -->
 	</item>
-	<item id="9133" type="EtcItem" name="B-Grade Item Set Box (Magic Use)">
+	<item id="9133" type="EtcItem" name="B Grade Item Set Box (Magic Use)">
 		<!-- If you double-click on it, you can obtain a Magic-Use B-Grade Item. (This item can be used when the weight gauge is below 80% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -510,7 +510,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-34" /> <!-- Event Item -->
 	</item>
-	<item id="9134" type="EtcItem" name="A-Grade Item Set Box (Magic Use)">
+	<item id="9134" type="EtcItem" name="A Grade Item Set Box (Magic Use)">
 		<!-- If you double-click on it, you can obtain a Magic-Use A-Grade Item. (This item can be used when the weight gauge is below 80% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -524,7 +524,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2308-35" /> <!-- Event Item -->
 	</item>
-	<item id="9135" type="EtcItem" name="A-/ S- Grade Item Set Box (Magic Use)">
+	<item id="9135" type="EtcItem" name="A, S Grade Item Set Box (Magic Use)">
 		<!-- If you double-click on it, you can obtain a Magic-Use A- or S-Grade Item. (This item can be used when the weight gauge is below 80% and 10 or more empty slots are available in your inventory.) -->
 		<set name="icon" val="icon.etc_box_of_adventure_1_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -826,7 +826,7 @@
 		<set name="item_skill" val="2319-1" /> <!-- Scroll of Shield - Event Use -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="9156" type="EtcItem" name="Blessed Scroll of Escape - Event">
+	<item id="9156" type="EtcItem" name="Blessed Scroll of Escape (Event)">
 		<!-- A magical scroll that relocates user to the nearest village. An event reward. -->
 		<set name="icon" val="icon.etc_scroll_of_return_i01" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -838,7 +838,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2320-1" /> <!-- Blessed Scroll of Escape - Event Use -->
 	</item>
-	<item id="9157" type="EtcItem" name="Blessed Scroll of Resurrection - Event">
+	<item id="9157" type="EtcItem" name="Blessed Scroll of Resurrection (Event)">
 		<!-- A magic scroll that resurrects a dead character and restores his or her Exp. completely. An event reward. -->
 		<set name="icon" val="icon.etc_scroll_of_resurrection_i01" />
 		<set name="default_action" val="SKILL_REDUCE" />

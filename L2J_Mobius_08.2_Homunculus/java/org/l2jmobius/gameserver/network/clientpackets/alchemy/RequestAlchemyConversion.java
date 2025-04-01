@@ -19,18 +19,19 @@ package org.l2jmobius.gameserver.network.clientpackets.alchemy;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.AlchemyData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.alchemy.AlchemyCraftData;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.alchemy.ExAlchemyConversion;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 /**
  * @author Sdw
@@ -194,17 +195,17 @@ public class RequestAlchemyConversion extends ClientPacket
 		for (ItemHolder ingredient : data.getIngredients())
 		{
 			final Item item = player.getInventory().getItemByItemId(ingredient.getId());
-			player.getInventory().destroyItem("Alchemy", item, ingredient.getCount() * _craftTimes, player, null);
+			player.getInventory().destroyItem(ItemProcessType.FEE, item, ingredient.getCount() * _craftTimes, player, null);
 		}
 		// Add success items.
 		if (successCount > 0)
 		{
-			player.getInventory().addItem("Alchemy", data.getProductionSuccess().getId(), data.getProductionSuccess().getCount() * successCount, player, null);
+			player.getInventory().addItem(ItemProcessType.REWARD, data.getProductionSuccess().getId(), data.getProductionSuccess().getCount() * successCount, player, null);
 		}
 		// Add failed items.
 		if (failureCount > 0)
 		{
-			player.getInventory().addItem("Alchemy", data.getProductionFailure().getId(), data.getProductionFailure().getCount() * failureCount, player, null);
+			player.getInventory().addItem(ItemProcessType.REWARD, data.getProductionFailure().getId(), data.getProductionFailure().getCount() * failureCount, player, null);
 		}
 		
 		player.sendPacket(new ExAlchemyConversion(successCount, failureCount));

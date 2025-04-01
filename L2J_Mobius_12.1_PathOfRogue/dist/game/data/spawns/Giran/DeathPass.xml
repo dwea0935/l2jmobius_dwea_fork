@@ -267,4 +267,22 @@
 		</territories>
 		<npc id="20176" count="4" respawnTime="27sec" /> <!-- Wyrm -->
 	</spawn>
+	<spawn>
+		<territories>
+			<territory name="Q20223" minZ="-2768" maxZ="-4368">
+				<node x="78723" y="99848" />
+				<node x="80754" y="99429" />
+				<node x="82009" y="98764" />
+				<node x="82725" y="99914" />
+				<node x="82452" y="100132" />
+				<node x="81359" y="101126" />
+				<node x="80287" y="102794" />
+				<node x="78546" y="105073" />
+				<node x="76641" y="105091" />
+				<node x="75796" y="103098" />
+				<node x="75934" y="100649" />
+			</territory>
+		</territories>
+		<npc id="27613" count="50" respawnTime="27sec" chaseRange="550" /> <!-- Death Worm Pazrek -->
+	</spawn>
 </list>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="94300" name="Sigil of Inevitability" additionalName="Sealed" type="Armor">
 		<set name="icon" val="icon.weapon_karyen_i00" />
@@ -22,15 +22,15 @@
 		<skills>
 			<skill id="50432" level="1" /> <!-- A-grade: Sigil of Inevitability -->
 			<skill id="50433" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Sigil of Inevitability -->
-			<skill id="50433" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Sigil of Inevitability -->
-			<skill id="50433" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Sigil of Inevitability -->
-			<skill id="50433" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Sigil of Inevitability -->
-			<skill id="50433" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Sigil of Inevitability -->
-			<skill id="50433" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Sigil of Inevitability -->
-			<skill id="50433" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Sigil of Inevitability -->
-			<skill id="50433" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Sigil of Inevitability -->
-			<skill id="50433" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Sigil of Inevitability -->
-			<skill id="50433" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Sigil of Inevitability -->
+			<skill id="50433" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Sigil of Inevitability -->
+			<skill id="50433" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Sigil of Inevitability -->
+			<skill id="50433" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Sigil of Inevitability -->
+			<skill id="50433" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Sigil of Inevitability -->
+			<skill id="50433" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Sigil of Inevitability -->
+			<skill id="50433" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Sigil of Inevitability -->
+			<skill id="50433" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Sigil of Inevitability -->
+			<skill id="50433" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Sigil of Inevitability -->
+			<skill id="50433" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Sigil of Inevitability -->
 		</skills>
 	</item>
 	<item id="94301" name="Shield of Vengeance" type="Armor">
@@ -54,15 +54,15 @@
 		<skills>
 			<skill id="50436" level="1" /> <!-- A-grade: Shield of Vengeance -->
 			<skill id="50437" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Shield of Vengeance -->
+			<skill id="50437" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Shield of Vengeance -->
+			<skill id="50437" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Shield of Vengeance -->
+			<skill id="50437" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Shield of Vengeance -->
+			<skill id="50437" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Shield of Vengeance -->
+			<skill id="50437" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Shield of Vengeance -->
+			<skill id="50437" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Shield of Vengeance -->
+			<skill id="50437" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Shield of Vengeance -->
+			<skill id="50437" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Shield of Vengeance -->
+			<skill id="50437" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Shield of Vengeance -->
 		</skills>
 	</item>
 	<item id="94302" name="Shield of Vengeance" additionalName="Sealed" type="Armor">
@@ -88,15 +88,15 @@
 		<skills>
 			<skill id="50436" level="1" /> <!-- A-grade: Shield of Vengeance -->
 			<skill id="50437" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Shield of Vengeance -->
-			<skill id="50437" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Shield of Vengeance -->
+			<skill id="50437" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Shield of Vengeance -->
+			<skill id="50437" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Shield of Vengeance -->
+			<skill id="50437" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Shield of Vengeance -->
+			<skill id="50437" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Shield of Vengeance -->
+			<skill id="50437" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Shield of Vengeance -->
+			<skill id="50437" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Shield of Vengeance -->
+			<skill id="50437" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Shield of Vengeance -->
+			<skill id="50437" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Shield of Vengeance -->
+			<skill id="50437" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Shield of Vengeance -->
 		</skills>
 	</item>
 	<item id="94303" name="Life Stone - Circlet" type="EtcItem">
@@ -1108,7 +1108,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="40229" level="1" /> <!-- Scroll: Enchant Attack (Event) -->
+			<skill id="40229" level="1" /> <!-- Scroll: Boost Attack -->
 		</skills>
 	</item>
 	<item id="94381" name="Scroll: Boost Defense (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -1127,7 +1127,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="40230" level="1" /> <!-- Scroll: Boost Defence (Event) -->
+			<skill id="40230" level="1" /> <!-- Scroll: Boost Defense -->
 		</skills>
 	</item>
 	<item id="94382" name="Special HP Recovery Potion (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -1198,7 +1198,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="40235" level="1" /> <!-- Blessed Scroll: Enchant Rare Accessories (Exchangeable) -->
+			<skill id="40235" level="1" /> <!-- Improved Scroll: Enchant Rare Accessories (Exchangeable) -->
 		</skills>
 	</item>
 	<item id="94386" name="Improved Scroll: Enchant Rare Accessories" additionalName="Sealed" type="EtcItem">
@@ -1216,7 +1216,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="40236" level="1" /> <!-- Blessed Scroll: Enchant Rare Accessories -->
+			<skill id="40236" level="1" /> <!-- Improved Scroll: Enchant Rare Accessories -->
 		</skills>
 	</item>
 	<item id="94387" name="Package: +1 Queen Ant's Ring" additionalName="Sealed" type="EtcItem">

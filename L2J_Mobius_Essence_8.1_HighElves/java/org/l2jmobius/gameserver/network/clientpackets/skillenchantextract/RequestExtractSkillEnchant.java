@@ -24,6 +24,7 @@ import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -153,16 +154,16 @@ public class RequestExtractSkillEnchant extends ClientPacket
 			return;
 		}
 		
-		player.reduceAdena(getClass().getSimpleName(), feeAdena, null, true);
-		if (player.destroyItem(getClass().getSimpleName(), lCoin, _LCoinFee, null, true))
+		player.reduceAdena(ItemProcessType.FEE, feeAdena, null, true);
+		if (player.destroyItem(ItemProcessType.FEE, lCoin, _LCoinFee, null, true))
 		{
 			player.removeSkill(enchantedSkill);
 			player.addSkill(normalSkill, true);
 			player.sendSkillList();
-			player.updateShortCuts(_skillId, _skillLevel, 0);
+			player.updateShortcuts(_skillId, _skillLevel, 0);
 			player.storeMe();
 			
-			player.addItem(getClass().getSimpleName(), _rewardId, 1, 0, player, true);
+			player.addItem(ItemProcessType.REWARD, _rewardId, 1, 0, player, true);
 			
 			final SystemMessage smi = new SystemMessage(SystemMessageId.EXTRACTED_S1_S2_SUCCESSFULLY);
 			smi.addItemName(reward.getId());

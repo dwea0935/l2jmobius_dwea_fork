@@ -135,7 +135,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="88" /> <!-- rhand: Morning Star -->
 		<acquire exp="3483" sp="102" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="4592.24016948565" hpRegen="3.5" mp="245.52" mpRegen="1.5" />
@@ -233,7 +232,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="1" /> <!-- Short Sword -->
 		<acquire exp="5247" sp="226" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2980.73870812572" hpRegen="2.5" mp="166.08" mpRegen="1.2" />
@@ -284,7 +282,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="7" /> <!-- Apprentice's Rod -->
 		<acquire exp="11787" sp="351" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="7773.85831121245" hpRegen="4.5" mp="387.72" mpRegen="1.8" />

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20300" name="Agathion Blue Sumo Wrestler" additionalName="Wild Magic / 7-day" type="Armor">
 		<!-- A bracelet for summoning Agathion Blue Sumo Wrestler. Special skill's cooldown: 1 h. -->
@@ -15,7 +15,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21044" level="1" /> <!-- Release Agathion's Seal - Blue Sumo Wrestler Agathion -->
+			<skill id="21044" level="1" /> <!-- Summon Agathion Blue Sumo Wrestler -->
 			<skill id="23058" level="1" /> <!-- Blue Sumo Wrestler Agathion Special Skill: Wild Magic Ability -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -35,8 +35,8 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21045" level="1" /> <!-- Release Agathion's Seal - Great Sumo Match -->
-			<skill id="23051" level="1" /> <!-- Great Sumo Match Agathion Cute Trick -->
+			<skill id="21045" level="1" /> <!-- Summon Agathion Great Sumo Wrestler -->
+			<skill id="23051" level="1" /> <!-- Agathion's Cute Trick - Great Sumo Wrestler -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -55,7 +55,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21045" level="1" /> <!-- Release Agathion's Seal - Great Sumo Match -->
+			<skill id="21045" level="1" /> <!-- Summon Agathion Great Sumo Wrestler -->
 			<skill id="23059" level="1" /> <!-- Great Sumo Match Agathion Special Skill: Mysterious Power -->
 			<skill id="23060" level="1" /> <!-- Great Sumo Match Agathion Special Skill: Firecracker's Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
@@ -76,7 +76,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21046" level="1" /> <!-- Release Agathion's Seal - Button-eyed Bear Doll -->
+			<skill id="21046" level="1" /> <!-- Summon Agathion Button-eyed Bear Doll -->
 			<skill id="23052" level="1" /> <!-- Button-eyed Bear Doll Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -96,7 +96,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21046" level="1" /> <!-- Release Agathion's Seal - Button-eyed Bear Doll -->
+			<skill id="21046" level="1" /> <!-- Summon Agathion Button-eyed Bear Doll -->
 			<skill id="23061" level="1" /> <!-- Button-eyed Bear Doll Agathion Special Skill: Ability of Blessed Escape -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -116,8 +116,8 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21046" level="1" /> <!-- Release Agathion's Seal - Button-eyed Bear Doll -->
-			<skill id="23062" level="1" /> <!-- Button-eyed Bear Doll Agathion Special Skill: Ability of Blessed Resurrection -->
+			<skill id="21046" level="1" /> <!-- Summon Agathion Button-eyed Bear Doll -->
+			<skill id="23062" level="1" /> <!-- Agathion Button-eyed Bear Doll's Special Skill: Blessed Resurrection Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -136,7 +136,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21046" level="1" /> <!-- Release Agathion's Seal - Button-eyed Bear Doll -->
+			<skill id="21046" level="1" /> <!-- Summon Agathion Button-eyed Bear Doll -->
 			<skill id="23063" level="1" /> <!-- Button-eyed Bear Doll Agathion Special Skill: Ability of Vitality Recovery -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -156,7 +156,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21047" level="1" /> <!-- Release Agathion's Seal - God of Fortune -->
+			<skill id="21047" level="1" /> <!-- Summon Agathion God of Fortune -->
 			<skill id="23053" level="1" /> <!-- God of Fortune Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -176,7 +176,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21047" level="1" /> <!-- Release Agathion's Seal - God of Fortune -->
+			<skill id="21047" level="1" /> <!-- Summon Agathion God of Fortune -->
 			<skill id="23064" level="1" /> <!-- God of Fortune Agathion Special Skill: Vitality Recovery Ability -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -196,7 +196,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21048" level="1" /> <!-- Release Agathion's Seal - Dryad -->
+			<skill id="21048" level="1" /> <!-- Summon Agathion Dryad -->
 			<skill id="23054" level="1" /> <!-- Agathion Cute Trick - Dryad -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -216,7 +216,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21049" level="1" /> <!-- Release Agathion's Seal - Wonboso -->
+			<skill id="21049" level="1" /> <!-- Summon Agathion Wonboso -->
 			<skill id="23055" level="1" /> <!-- Wonboso Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -236,7 +236,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21049" level="1" /> <!-- Release Agathion's Seal - Wonboso -->
+			<skill id="21049" level="1" /> <!-- Summon Agathion Wonboso -->
 			<skill id="23065" level="1" /> <!-- Wonboso Agathion Special Skill: Wind Walk Ability -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -256,7 +256,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21050" level="1" /> <!-- Release Agathion's Seal - Daewoonso -->
+			<skill id="21050" level="1" /> <!-- Summon Agathion Daewoonso -->
 			<skill id="23056" level="1" /> <!-- Daewoonso Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -276,7 +276,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21050" level="1" /> <!-- Release Agathion's Seal - Daewoonso -->
+			<skill id="21050" level="1" /> <!-- Summon Agathion Daewoonso -->
 			<skill id="23066" level="1" /> <!-- Daewoonso Agathion Special Skill: New Year's Gift Ability -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -662,7 +662,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="300" />
 		<skills>
-			<skill id="26046" level="3" /> <!-- XP Rune III (Lv. 1-100+) 30% -->
+			<skill id="26046" level="3" /> <!-- XP Rune 30% -->
 		</skills>
 	</item>
 	<item id="20336" name="XP Rune 50%" additionalName="5-hour" type="EtcItem">
@@ -680,7 +680,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="300" />
 		<skills>
-			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-100+) 50% -->
+			<skill id="26046" level="5" /> <!-- XP Rune 50% -->
 		</skills>
 	</item>
 	<item id="20337" name="XP Rune 30%" additionalName="10-hour" type="EtcItem">
@@ -698,7 +698,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="600" />
 		<skills>
-			<skill id="26046" level="3" /> <!-- XP Rune III (Lv. 1-100+) 30% -->
+			<skill id="26046" level="3" /> <!-- XP Rune 30% -->
 		</skills>
 	</item>
 	<item id="20338" name="XP Rune 50%" additionalName="10-hour" type="EtcItem">
@@ -716,7 +716,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="600" />
 		<skills>
-			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-100+) 50% -->
+			<skill id="26046" level="5" /> <!-- XP Rune 50% -->
 		</skills>
 	</item>
 	<item id="20339" name="XP Rune 30%" additionalName="7-day" type="EtcItem">
@@ -734,7 +734,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="26046" level="3" /> <!-- XP Rune III (Lv. 1-100+) 30% -->
+			<skill id="26046" level="3" /> <!-- XP Rune 30% -->
 		</skills>
 	</item>
 	<item id="20340" name="XP Rune 50%" additionalName="7-day" type="EtcItem">
@@ -752,7 +752,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-100+) 50% -->
+			<skill id="26046" level="5" /> <!-- XP Rune 50% -->
 		</skills>
 	</item>
 	<item id="20341" name="SP Rune 30%" additionalName="5-hour" type="EtcItem">
@@ -878,7 +878,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="300" />
 		<skills>
-			<skill id="26048" level="3" /> <!-- Rune of Crystal (Lv. 3) -->
+			<skill id="26048" level="3" /> <!-- Rune of Crystal Lv. 3 -->
 		</skills>
 	</item>
 	<item id="20348" name="Rune of Crystal Lv. 5" additionalName="5-hour" type="EtcItem">
@@ -896,7 +896,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="300" />
 		<skills>
-			<skill id="26048" level="5" /> <!-- Rune of Crystal (Lv. 5) -->
+			<skill id="26048" level="5" /> <!-- Rune of Crystal Lv. 5 -->
 		</skills>
 	</item>
 	<item id="20349" name="Rune of Crystal Lv. 3" additionalName="10-hour" type="EtcItem">
@@ -914,7 +914,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="600" />
 		<skills>
-			<skill id="26048" level="3" /> <!-- Rune of Crystal (Lv. 3) -->
+			<skill id="26048" level="3" /> <!-- Rune of Crystal Lv. 3 -->
 		</skills>
 	</item>
 	<item id="20350" name="Rune of Crystal Lv. 5" additionalName="10-hour" type="EtcItem">
@@ -932,7 +932,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="600" />
 		<skills>
-			<skill id="26048" level="5" /> <!-- Rune of Crystal (Lv. 5) -->
+			<skill id="26048" level="5" /> <!-- Rune of Crystal Lv. 5 -->
 		</skills>
 	</item>
 	<item id="20351" name="Rune of Crystal Lv. 3" additionalName="7-day" type="EtcItem">
@@ -950,7 +950,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="26048" level="3" /> <!-- Rune of Crystal (Lv. 3) -->
+			<skill id="26048" level="3" /> <!-- Rune of Crystal Lv. 3 -->
 		</skills>
 	</item>
 	<item id="20352" name="Rune of Crystal Lv. 5" additionalName="7-day" type="EtcItem">
@@ -968,7 +968,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="26048" level="5" /> <!-- Rune of Crystal (Lv. 5) -->
+			<skill id="26048" level="5" /> <!-- Rune of Crystal Lv. 5 -->
 		</skills>
 	</item>
 	<item id="20353" name="Greater CP Potion" type="EtcItem">
@@ -1013,7 +1013,7 @@
 		<set name="handler" val="Elixir" />
 		<set name="crystal_type" val="D" />
 		<skills>
-			<skill id="22043" level="2" /> <!-- Elixir of CP (D-grade) -->
+			<skill id="22043" level="2" /> <!-- D-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="20355" name="Elixir of CP" type="EtcItem">
@@ -1036,7 +1036,7 @@
 		<set name="handler" val="Elixir" />
 		<set name="crystal_type" val="C" />
 		<skills>
-			<skill id="22043" level="3" /> <!-- Elixir of CP (C-grade) -->
+			<skill id="22043" level="3" /> <!-- C-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="20356" name="Elixir of CP" type="EtcItem">
@@ -1059,7 +1059,7 @@
 		<set name="handler" val="Elixir" />
 		<set name="crystal_type" val="B" />
 		<skills>
-			<skill id="22043" level="4" /> <!-- Elixir of CP (B-grade) -->
+			<skill id="22043" level="4" /> <!-- B-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="20357" name="Elixir of CP" type="EtcItem">
@@ -1082,7 +1082,7 @@
 		<set name="handler" val="Elixir" />
 		<set name="crystal_type" val="A" />
 		<skills>
-			<skill id="22043" level="5" /> <!-- Elixir of CP (A-grade) -->
+			<skill id="22043" level="5" /> <!-- A-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="20358" name="Elixir of CP" type="EtcItem">
@@ -1106,7 +1106,7 @@
 		<set name="crystal_type" val="S" />
 		<set name="is_event_restricted" val="true" />
 		<skills>
-			<skill id="22043" level="6" /> <!-- Elixir of CP (S-grade) -->
+			<skill id="22043" level="6" /> <!-- S-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="20359" name="Elixir of Life" type="EtcItem">
@@ -1129,7 +1129,7 @@
 		<set name="handler" val="Elixir" />
 		<set name="crystal_type" val="D" />
 		<skills>
-			<skill id="22044" level="2" /> <!-- Elixir of Life (D-grade) -->
+			<skill id="22044" level="2" /> <!-- D-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="20360" name="Elixir of Life" type="EtcItem">
@@ -1152,7 +1152,7 @@
 		<set name="handler" val="Elixir" />
 		<set name="crystal_type" val="C" />
 		<skills>
-			<skill id="22044" level="3" /> <!-- Elixir of Life (C-grade) -->
+			<skill id="22044" level="3" /> <!-- C-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="20361" name="Elixir of Life" type="EtcItem">
@@ -1175,7 +1175,7 @@
 		<set name="handler" val="Elixir" />
 		<set name="crystal_type" val="B" />
 		<skills>
-			<skill id="22044" level="4" /> <!-- Elixir of Life (B-grade) -->
+			<skill id="22044" level="4" /> <!-- B-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="20362" name="Elixir of Life" type="EtcItem">
@@ -1198,7 +1198,7 @@
 		<set name="handler" val="Elixir" />
 		<set name="crystal_type" val="A" />
 		<skills>
-			<skill id="22044" level="5" /> <!-- Elixir of Life (A-grade) -->
+			<skill id="22044" level="5" /> <!-- A-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="20363" name="Elixir of Life" type="EtcItem">
@@ -1222,7 +1222,7 @@
 		<set name="crystal_type" val="S" />
 		<set name="is_event_restricted" val="true" />
 		<skills>
-			<skill id="22044" level="6" /> <!-- Elixir of Life (S-grade) -->
+			<skill id="22044" level="6" /> <!-- S-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="20364" name="Transformation Scroll: Onyx Beast" type="EtcItem">
@@ -1500,7 +1500,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="6" /> <!-- Scroll of Escape: Gludin Village -->
+			<skill id="22053" level="6" /> <!-- Scroll of Escape: Gludin -->
 		</skills>
 	</item>
 	<item id="20378" name="Scroll of Escape: Gludio" type="EtcItem">
@@ -1521,7 +1521,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="7" /> <!-- Scroll of Escape: Town of Gludio -->
+			<skill id="22053" level="7" /> <!-- Scroll of Escape: Gludio -->
 		</skills>
 	</item>
 	<item id="20379" name="Scroll of Escape: Dion" type="EtcItem">
@@ -1542,7 +1542,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="8" /> <!-- Scroll of Escape: Town of Dion -->
+			<skill id="22053" level="8" /> <!-- Scroll of Escape: Dion -->
 		</skills>
 	</item>
 	<item id="20380" name="Scroll of Escape: Floran Village" type="EtcItem">
@@ -1563,7 +1563,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="9" /> <!-- Scroll of Escape: Floran Village -->
+			<skill id="22053" level="9" /> <!-- Scroll of Escape: Floran -->
 		</skills>
 	</item>
 	<item id="20381" name="Scroll of Escape: Giran" type="EtcItem">
@@ -1584,7 +1584,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="10" /> <!-- Scroll of Escape: Town of Giran -->
+			<skill id="22053" level="10" /> <!-- Scroll of Escape: Giran -->
 		</skills>
 	</item>
 	<item id="20382" name="Scroll of Escape: Hardin's Academy" type="EtcItem">
@@ -1647,7 +1647,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="13" /> <!-- Scroll of Escape: Town of Oren -->
+			<skill id="22053" level="13" /> <!-- Scroll of Escape: Oren -->
 		</skills>
 	</item>
 	<item id="20385" name="Scroll of Escape: Ivory Tower" type="EtcItem">
@@ -1689,7 +1689,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="15" /> <!-- Scroll of Escape: Hunter's Village -->
+			<skill id="22053" level="15" /> <!-- Scroll of Escape: Hunters' Village -->
 		</skills>
 	</item>
 	<item id="20387" name="Scroll of Escape: Aden" type="EtcItem">
@@ -1710,7 +1710,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="16" /> <!-- Scroll of Escape: Town of Aden -->
+			<skill id="22053" level="16" /> <!-- Scroll of Escape: Aden -->
 		</skills>
 	</item>
 	<item id="20388" name="Scroll of Escape: Goddard" type="EtcItem">
@@ -1731,7 +1731,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="17" /> <!-- Scroll of Escape: Town of Goddard -->
+			<skill id="22053" level="17" /> <!-- Scroll of Escape: Goddard -->
 		</skills>
 	</item>
 	<item id="20389" name="Scroll of Escape: Rune" type="EtcItem">
@@ -1752,7 +1752,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="18" /> <!-- Scroll of Escape: Town of Rune -->
+			<skill id="22053" level="18" /> <!-- Scroll of Escape: Rune -->
 		</skills>
 	</item>
 	<item id="20390" name="Scroll of Escape: Schuttgart" type="EtcItem">
@@ -1773,7 +1773,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="22053" level="19" /> <!-- Scroll of Escape: Town of Schuttgart -->
+			<skill id="22053" level="19" /> <!-- Scroll of Escape: Schuttgart -->
 		</skills>
 	</item>
 	<item id="20391" name="Vitality Maintaining Potion" type="EtcItem">
@@ -1905,7 +1905,7 @@
 		<set name="is_freightable" val="true" />
 		<skills>
 			<skill id="839" level="1" type="ON_UNEQUIP" /> <!-- Dismount -->
-			<skill id="8261" level="1" /> <!-- Ride Steam Beetle -->
+			<skill id="8261" level="1" /> <!-- Mount Steam Beetle -->
 		</skills>
 	</item>
 	<item id="20397" name="Newbie Level-Up Package" type="EtcItem">

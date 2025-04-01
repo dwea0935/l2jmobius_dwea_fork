@@ -24,7 +24,8 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.request.RelicCouponRequest;
+import org.l2jmobius.gameserver.model.actor.request.RelicSummonRequest;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.variables.AccountVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -57,15 +58,15 @@ public class RelicSummonCoupon implements IItemHandler
 			return false;
 		}
 		
-		if (player.hasRequest(RelicCouponRequest.class))
+		if (player.hasRequest(RelicSummonRequest.class))
 		{
 			return false;
 		}
-		player.addRequest(new RelicCouponRequest(player));
+		player.addRequest(new RelicSummonRequest(player));
 		
 		final int relicSummonCount = Config.ELEVEN_SUMMON_COUNT_COUPONS.contains(item.getId()) ? 11 : 1;
 		player.sendPacket(new ExRelicsSummonResult(player, item.getId(), relicSummonCount));
-		player.destroyItem("RelicSummon", item, 1, player, true);
+		player.destroyItem(ItemProcessType.DESTROY, item, 1, player, true);
 		return true;
 	}
 }

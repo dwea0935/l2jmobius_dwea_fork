@@ -25,7 +25,8 @@ import java.util.Collection;
 import org.l2jmobius.gameserver.data.xml.EnsoulData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.ensoul.EnsoulOption;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -107,7 +108,7 @@ public class RequestTryEnSoulExtraction extends ClientPacket
 		// Take required items.
 		for (ItemHolder itemHolder : removalFee)
 		{
-			player.destroyItemByItemId("Rune Extract", itemHolder.getId(), itemHolder.getCount(), player, true);
+			player.destroyItemByItemId(ItemProcessType.FEE, itemHolder.getId(), itemHolder.getCount(), player, true);
 		}
 		
 		// Remove equipped rune.
@@ -118,7 +119,7 @@ public class RequestTryEnSoulExtraction extends ClientPacket
 		// Add rune in player inventory.
 		if (runeId > 0)
 		{
-			iu.addItem(player.addItem("Rune Extract", runeId, 1, player, true));
+			iu.addItem(player.addItem(ItemProcessType.REWARD, runeId, 1, player, true));
 		}
 		player.sendInventoryUpdate(iu);
 		player.sendItemList();

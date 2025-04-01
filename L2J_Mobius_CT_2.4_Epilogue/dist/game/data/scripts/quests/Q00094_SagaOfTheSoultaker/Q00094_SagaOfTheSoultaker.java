@@ -28,7 +28,7 @@ public class Q00094_SagaOfTheSoultaker extends AbstractSagaQuest
 {
 	public Q00094_SagaOfTheSoultaker()
 	{
-		super(94);
+		super(94, "Saga of the Soultaker");
 		_npc = new int[]
 		{
 			30832,

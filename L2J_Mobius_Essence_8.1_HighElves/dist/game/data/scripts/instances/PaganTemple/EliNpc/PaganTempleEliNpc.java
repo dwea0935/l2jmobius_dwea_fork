@@ -29,6 +29,7 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 
 import ai.AbstractNpcAI;
 import instances.PaganTemple.PaganTempleManager;
@@ -149,7 +150,7 @@ public class PaganTempleEliNpc extends AbstractNpcAI
 	private static boolean teleportById(Instance world, Player player, Npc npc, int index)
 	{
 		final Entry<Long, Location> loc = TELEPORT_LOCATIONS.get(index);
-		if ((loc.getKey() <= 0L) || ((player.getAdena() >= loc.getKey()) && player.getInventory().reduceAdena("teleport", loc.getKey(), player, npc)))
+		if ((loc.getKey() <= 0L) || ((player.getAdena() >= loc.getKey()) && player.getInventory().reduceAdena(ItemProcessType.FEE, loc.getKey(), player, npc)))
 		{
 			player.teleToLocation(loc.getValue(), false, world);
 			return true;

@@ -72,7 +72,7 @@ public class RequestJoinPledge extends ClientPacket
 		
 		if ((player.getTarget() != null) && (FakePlayerData.getInstance().isTalkable(player.getTarget().getName())))
 		{
-			if (FakePlayerData.getInstance().getInfo(player.getTarget().getId()).getClanId() > 0)
+			if (player.getTarget().asNpc().getTemplate().getFakePlayerInfo().getClanId() > 0)
 			{
 				player.sendPacket(SystemMessageId.THAT_PLAYER_ALREADY_BELONGS_TO_ANOTHER_CLAN);
 			}

@@ -16,8 +16,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.FlyType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -26,9 +25,10 @@ import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.FlyType;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Teleport To Target effect implementation.
@@ -63,7 +63,7 @@ public class TeleportToTarget extends AbstractEffect
 	{
 		final int px = effected.getX();
 		final int py = effected.getY();
-		double ph = Util.convertHeadingToDegree(effected.getHeading());
+		double ph = LocationUtil.convertHeadingToDegree(effected.getHeading());
 		
 		ph += 180;
 		if (ph > 360)
@@ -78,7 +78,7 @@ public class TeleportToTarget extends AbstractEffect
 		
 		final Location loc = GeoEngine.getInstance().getValidLocation(effector.getX(), effector.getY(), effector.getZ(), x, y, z, effector.getInstanceWorld());
 		
-		effector.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		effector.getAI().setIntention(Intention.IDLE);
 		effector.broadcastPacket(new FlyToLocation(effector, loc.getX(), loc.getY(), loc.getZ(), FlyType.DUMMY));
 		effector.abortAttack();
 		effector.abortCast();

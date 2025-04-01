@@ -237,7 +237,7 @@
 		<effectPoint>1</effectPoint>
 		<excludedFromCheck>true</excludedFromCheck>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -289,7 +289,7 @@
 		<effectPoint>1</effectPoint>
 		<excludedFromCheck>true</excludedFromCheck>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -341,7 +341,7 @@
 		<effectPoint>1</effectPoint>
 		<excludedFromCheck>true</excludedFromCheck>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -1138,7 +1138,6 @@
 		</abnormalTime>
 		<abnormalType>HEIR_PVP_PVE</abnormalType>
 		<affectScope>SINGLE</affectScope>
-		<canBeDispelled>false</canBeDispelled>
 		<canBeDispelled>false</canBeDispelled>
 		<isMagic>2</isMagic>
 		<itemConsumeCount>1000</itemConsumeCount>

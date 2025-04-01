@@ -17,12 +17,12 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.enums.ClanEntryStatus;
-import org.l2jmobius.gameserver.instancemanager.ClanEntryManager;
+import org.l2jmobius.gameserver.managers.ClanEntryManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.entry.PledgeApplicantInfo;
+import org.l2jmobius.gameserver.model.clan.enums.ClanEntryStatus;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPledgeRecruitApplyInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExPledgeWaitingListAlarm;

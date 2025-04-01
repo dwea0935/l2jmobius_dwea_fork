@@ -947,8 +947,8 @@
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="8864" level="7" /> <!-- Talisman - Insanity -->
-			<skill id="17978" level="1" type="ON_EQUIP" /> <!-- Equip Talisman - Infinity -->
-			<skill id="17979" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Infinity -->
+			<skill id="17978" level="1" type="ON_EQUIP" /> <!-- Equip Talisman - Insanity -->
+			<skill id="17979" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Insanity -->
 		</skills>
 	</item>
 	<item id="39573" name="Sealed Talisman - Insanity" type="EtcItem">

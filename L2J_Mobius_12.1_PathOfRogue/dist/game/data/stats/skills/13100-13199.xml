@@ -456,7 +456,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>669</effectPoint>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<mpConsume>28</mpConsume>

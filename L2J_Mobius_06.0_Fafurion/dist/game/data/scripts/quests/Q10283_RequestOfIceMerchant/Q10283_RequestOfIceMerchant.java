@@ -16,7 +16,7 @@
  */
 package quests.Q10283_RequestOfIceMerchant;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -96,7 +96,7 @@ public class Q10283_RequestOfIceMerchant extends Quest
 			addExpAndSp(player, 627000, 50300);
 			qs.exitQuest(false, true);
 			npc.setRunning();
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MOVE_TO_END);
+			npc.getAI().setIntention(Intention.MOVE_TO, MOVE_TO_END);
 			npc.decayMe();
 		}
 		return htmltext;

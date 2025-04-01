@@ -328,8 +328,8 @@
 			<item id="91550" min="1" max="1" chance="3.030303" /> <!-- Frintezza's Necklace -->
 			<item id="90763" min="1" max="1" chance="3.030303" /> <!-- Zaken's Earring -->
 			<item id="6662" min="1" max="1" chance="3.030303" /> <!-- Ring of Core -->
-			<item id="94853" min="1" max="1" chance="3.030303" /> <!-- Legendary Dye <STR +4> - 3rd Class -->
-			<item id="94856" min="1" max="1" chance="3.030303" /> <!-- Legendary Dye <INT +4> - 3rd Class -->
+			<item id="94853" min="1" max="1" chance="3.030303" /> <!-- Legendary Dye (STR +4) - 3rd Class -->
+			<item id="94856" min="1" max="1" chance="3.030303" /> <!-- Legendary Dye (INT +4) - 3rd Class -->
 			<item id="94156" min="1" max="1" chance="3.030303" /> <!-- Package: Baium Doll Lv. 1 - Sealed -->
 			<item id="94654" min="1" max="1" chance="3.030303" /> <!-- Package: Core Doll Lv. 1 - Sealed -->
 			<item id="94159" min="1" max="1" chance="3.030303" /> <!-- Package: Queen Ant Doll Lv. 1 - Sealed -->

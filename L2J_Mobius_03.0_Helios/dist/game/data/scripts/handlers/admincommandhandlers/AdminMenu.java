@@ -36,7 +36,6 @@ import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles following admin commands: - handles every admin menu command
@@ -108,7 +107,7 @@ public class AdminMenu implements IAdminCommandHandler
 				}
 				if (!player.isInParty())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Player is not in party.");
+					activeChar.sendSysMessage("Player is not in party.");
 					teleportCharacter(player, activeChar.getLocation(), activeChar, "Admin is teleporting you.");
 					return true;
 				}
@@ -136,7 +135,7 @@ public class AdminMenu implements IAdminCommandHandler
 				final Clan clan = player.getClan();
 				if (clan == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Player is not in a clan.");
+					activeChar.sendSysMessage("Player is not in a clan.");
 					teleportCharacter(player, activeChar.getLocation(), activeChar, "Admin is teleporting you.");
 					return true;
 				}
@@ -212,12 +211,6 @@ public class AdminMenu implements IAdminCommandHandler
 		return true;
 	}
 	
-	@Override
-	public String[] getAdminCommandList()
-	{
-		return ADMIN_COMMANDS;
-	}
-	
 	private void handleKill(Player activeChar)
 	{
 		handleKill(activeChar, null);
@@ -234,7 +227,7 @@ public class AdminMenu implements IAdminCommandHandler
 			if (plyr != null)
 			{
 				target = plyr;
-				BuilderUtil.sendSysMessage(activeChar, "You killed " + plyr.getName());
+				activeChar.sendSysMessage("You killed " + plyr.getName());
 			}
 		}
 		if (target != null)
@@ -272,6 +265,12 @@ public class AdminMenu implements IAdminCommandHandler
 	
 	private void teleportToCharacter(Player activeChar, WorldObject target)
 	{
+		if (target == null)
+		{
+			activeChar.sendPacket(SystemMessageId.THAT_PLAYER_IS_NOT_CURRENTLY_ONLINE);
+			return;
+		}
+		
 		if (!target.isPlayer())
 		{
 			activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
@@ -286,16 +285,19 @@ public class AdminMenu implements IAdminCommandHandler
 		else
 		{
 			activeChar.teleToLocation(player.getLocation(), true, player.getInstanceWorld());
-			BuilderUtil.sendSysMessage(activeChar, "You're teleporting yourself to character " + player.getName());
+			activeChar.sendSysMessage("You're teleporting yourself to character " + player.getName());
 		}
 		showMainPage(activeChar);
 	}
 	
-	/**
-	 * @param activeChar
-	 */
 	private void showMainPage(Player activeChar)
 	{
 		AdminHtml.showAdminHtml(activeChar, "charmanage.htm");
+	}
+	
+	@Override
+	public String[] getAdminCommandList()
+	{
+		return ADMIN_COMMANDS;
 	}
 }

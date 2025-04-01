@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="49600" name="Blue Talisman - P. Def." additionalName="1-hour" type="Armor">
 		<!-- Available for 1 h. P. Def. +3%. Effects of two identical talismans do not stack. -->
@@ -900,7 +900,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39125" level="1" /> <!-- Weapon Supply Box (B-grade) -->
+			<skill id="39125" level="1" /> <!-- B-grade Weapon Pack -->
 		</skills>
 	</item>
 	<item id="49665" name="B-grade Armor Pack" type="EtcItem">
@@ -911,7 +911,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39127" level="1" /> <!-- Armor Supply Box (B-grade) -->
+			<skill id="39127" level="1" /> <!-- B-grade Armor Pack -->
 		</skills>
 	</item>
 	<item id="49666" name="B-grade Accessory Pack" type="EtcItem">
@@ -922,7 +922,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39129" level="1" /> <!-- Ornament Supply Box (B-grade) -->
+			<skill id="39129" level="1" /> <!-- B-grade Accessory Pack -->
 		</skills>
 	</item>
 	<item id="49667" name="C-grade Weapon Pack" type="EtcItem">
@@ -933,7 +933,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39124" level="1" /> <!-- Weapon Supply Box (B-grade) -->
+			<skill id="39124" level="1" /> <!-- C-grade Weapon Supply Box -->
 		</skills>
 	</item>
 	<item id="49668" name="C-grade Armor Pack" type="EtcItem">
@@ -944,7 +944,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39126" level="1" /> <!-- Armor Supply Box (B-grade) -->
+			<skill id="39126" level="1" /> <!-- C-grade Armor Pack -->
 		</skills>
 	</item>
 	<item id="49669" name="C-grade Accessory Pack" type="EtcItem">
@@ -955,7 +955,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39128" level="1" /> <!-- Ornament Supply Box (B-grade) -->
+			<skill id="39128" level="1" /> <!-- C-grade Accessory Pack -->
 		</skills>
 	</item>
 	<item id="49670" name="B-grade Weapon Ingredient Pack" type="EtcItem">
@@ -1146,7 +1146,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="35017" level="1" /> <!-- Talisman - Insolence I -->
+			<skill id="35017" level="1" /> <!-- Talisman of Insolence I -->
 		</skills>
 	</item>
 	<item id="49677" name="Talisman of Insolence Lv. 2" additionalName="Sealed" type="Armor">
@@ -1161,7 +1161,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="35017" level="2" /> <!-- Talisman - Insolence II -->
+			<skill id="35017" level="2" /> <!-- Talisman of Insolence II -->
 		</skills>
 	</item>
 	<item id="49678" name="Talisman of Insolence Lv. 3" additionalName="Sealed" type="Armor">
@@ -1176,7 +1176,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="35017" level="3" /> <!-- Talisman - Insolence III -->
+			<skill id="35017" level="3" /> <!-- Talisman of Insolence III -->
 		</skills>
 	</item>
 	<item id="49679" name="Talisman of Insolence Lv. 4" additionalName="Sealed" type="Armor">
@@ -1191,7 +1191,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="35017" level="4" /> <!-- Talisman - Insolence IV -->
+			<skill id="35017" level="4" /> <!-- Talisman of Insolence IV -->
 		</skills>
 	</item>
 	<item id="49680" name="Talisman of Insolence Lv. 5" additionalName="Sealed" type="Armor">
@@ -1206,7 +1206,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="35017" level="5" /> <!-- Equip Talisman - Insolence V -->
+			<skill id="35017" level="5" /> <!-- Talisman of Insolence V -->
 		</skills>
 	</item>
 	<item id="49681" name="Talisman of Insolence Lv. 6" type="Armor">
@@ -1222,9 +1222,9 @@
 			<player level="60" />
 		</cond>
 		<skills>
-			<skill id="35019" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Insolence VI -->
-			<skill id="35018" level="1" type="ON_EQUIP" /> <!-- Equip Talisman - Insolence VI -->
-			<skill id="35017" level="6" /> <!-- Equip Talisman - Insolence VI -->
+			<skill id="35019" level="1" type="ON_UNEQUIP" /> <!-- Remove Talisman of Insolence -->
+			<skill id="35018" level="1" type="ON_EQUIP" /> <!-- Talisman of Insolence -->
+			<skill id="35017" level="6" /> <!-- Talisman of Insolence VI -->
 		</skills>
 	</item>
 	<item id="49682" name="Baium's Soul" type="EtcItem">
@@ -1248,9 +1248,9 @@
 			<player level="60" />
 		</cond>
 		<skills>
-			<skill id="35020" level="1" type="ON_EQUIP" /> <!-- Equip Talisman - Baium -->
-			<skill id="35021" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Baium -->
-			<skill id="35017" level="7" /> <!-- Equip Talisman - Baium -->
+			<skill id="35020" level="1" type="ON_EQUIP" /> <!-- Talisman of Baium -->
+			<skill id="35021" level="1" type="ON_UNEQUIP" /> <!-- Talisman of Baium - Removal -->
+			<skill id="35017" level="7" /> <!-- Talisman of Baium -->
 			<skill id="50191" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: +1 Talisman of Baium -->
 			<skill id="50191" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: +2 Talisman of Baium -->
 			<skill id="50191" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: +3 Talisman of Baium -->
@@ -1304,7 +1304,7 @@
 		<set name="time" val="43200" />
 		<set name="handler" val="ExtractableItems" />
 		<capsuled_items>
-			<item id="49686" min="1" max="1" chance="100" /> <!-- Chic Silver Chapeau <Str+1 Int+1> - 30-day -->
+			<item id="49686" min="1" max="1" chance="100" /> <!-- Chic Silver Chapeau (Str+1 Int+1) - 30-day -->
 		</capsuled_items>
 	</item>
 	<item id="49689" name="Chapeau Box" type="EtcItem">

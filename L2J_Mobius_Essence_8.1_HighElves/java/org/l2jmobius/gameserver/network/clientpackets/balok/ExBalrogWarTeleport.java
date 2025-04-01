@@ -23,6 +23,7 @@ package org.l2jmobius.gameserver.network.clientpackets.balok;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 
@@ -77,7 +78,7 @@ public class ExBalrogWarTeleport extends ClientPacket
 		}
 		
 		// Take teleport fee.
-		if (!player.destroyItemByItemId("Battle with Balok Teleport", 57, TELEPORT_COST, player, true))
+		if (!player.destroyItemByItemId(ItemProcessType.FEE, 57, TELEPORT_COST, player, true))
 		{
 			player.sendPacket(SystemMessageId.NOT_ENOUGH_MONEY_TO_USE_THE_FUNCTION);
 			return;

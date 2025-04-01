@@ -157,7 +157,6 @@
 		<castRange>1000</castRange>
 		<effectPoint>-100</effectPoint>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<reuseDelay>300000</reuseDelay>
 		<trait>DERANGEMENT</trait>
 		<effects>
@@ -176,7 +175,6 @@
 		<abnormalVisualEffect>SHILLIEN_PROTECTION</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
-		<coolTime>300</coolTime>
 		<coolTime>300</coolTime>
 		<effectPoint>867</effectPoint>
 		<hitTime>1500</hitTime>
@@ -226,12 +224,10 @@
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<coolTime>500</coolTime>
-		<coolTime>500</coolTime>
 		<effectPoint>867</effectPoint>
 		<hitTime>1000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>99</magicLevel>
-		<reuseDelay>60000</reuseDelay>
 		<reuseDelay>60000</reuseDelay>
 		<staticReuse>true</staticReuse>
 		<effects>
@@ -1760,7 +1756,6 @@
 		<effectPoint>100</effectPoint>
 		<hitTime>1500</hitTime>
 		<isMagic>1</isMagic>
-		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>
 			<value level="1">225000</value>
@@ -1968,7 +1963,6 @@
 		</reuseDelay>
 		<reuseDelayGroup>27356</reuseDelayGroup>
 		<trait>DEPORT</trait>
-		<trait>DEPORT</trait>
 		<effects>
 			<effect name="BlockActions">
 				<allowedSkills>10279;10517;10025;10776;11770;1904;11264;11093;13314;1912</allowedSkills>
@@ -2003,7 +1997,6 @@
 		<affectScope>RANGE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad> <!-- Unconfirmed -->
-		<castRange>1100</castRange>
 		<castRange>1100</castRange>
 		<effectPoint>-707</effectPoint>
 		<effectRange>1100</effectRange>
@@ -2299,7 +2292,6 @@
 		<coolTime>500</coolTime>
 		<effectPoint>100</effectPoint>
 		<hitTime>1500</hitTime>
-		<isMagic>1</isMagic>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>

@@ -588,7 +588,6 @@
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="80949" /> <!-- Only for monsters (Lord Ishka) -->
 		<acquire exp="27965221655" sp="25168699" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="35931961400" hpRegen="13.4" mp="68822" mpRegen="30" />

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="4404" name="Green Dimensional Stone - Shard" type="EtcItem">
 		<!-- Broken shard of the green Dimensional Stone. Collect these and take them to Researcher Kaplan. -->
@@ -147,7 +147,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2073" level="1" /> <!-- Item - Theme Sound Crystal -->
+			<skill id="2073" level="1" /> <!-- Item - Fight Song Crystal -->
 		</skills>
 	</item>
 	<item id="4417" name="Echo Crystal - Theme of Comedy" type="EtcItem">
@@ -162,7 +162,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2067" level="1" /> <!-- Item - Theme Sound Crystal -->
+			<skill id="2067" level="1" /> <!-- Item - Fight Song Crystal -->
 		</skills>
 	</item>
 	<item id="4418" name="Musical Score - Theme of Celebration" type="EtcItem">

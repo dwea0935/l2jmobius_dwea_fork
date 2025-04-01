@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * Deny Blessings (737)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00737_DenyBlessings extends TerritoryWarSuperClass
 {
 	public Q00737_DenyBlessings()
 	{
-		super(737);
+		super(737, "Deny Blessings");
 		CLASS_IDS = new int[]
 		{
 			43,
@@ -42,10 +40,10 @@ public class Q00737_DenyBlessings extends TerritoryWarSuperClass
 		};
 		RANDOM_MIN = 3;
 		RANDOM_MAX = 8;
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.YOU_HAVE_DEFEATED_S2_OF_S1_HEALERS_AND_BUFFERS,
-			NpcStringId.YOU_WEAKENED_THE_ENEMY_S_ATTACK
+			"You have defeated $s2 of $s1 healers and buffers.",
+			"You weakened the enemy's attack!"
 		};
 	}
 }

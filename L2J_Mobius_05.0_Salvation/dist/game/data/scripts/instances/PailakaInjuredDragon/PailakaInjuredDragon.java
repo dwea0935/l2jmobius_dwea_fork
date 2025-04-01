@@ -16,9 +16,7 @@
  */
 package instances.PailakaInjuredDragon;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -29,15 +27,17 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableFactionCall;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableFactionCall;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.TeleportZone;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 import quests.Q00144_PailakaInjuredDragon.Q00144_PailakaInjuredDragon;
@@ -426,7 +426,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -463,7 +463,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 				}
 				default:
 				{
-					if (CommonUtil.contains(WIZARDS, npc.getId()))
+					if (ArrayUtil.contains(WIZARDS, npc.getId()))
 					{
 						npc.setInvisible(true);
 						getTimers().addTimer("LOOK_NEIGHBOR", 1000, npc, null);
@@ -471,16 +471,15 @@ public class PailakaInjuredDragon extends AbstractInstance
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
 		{
-			if (CommonUtil.contains(WIZARDS, npc.getId()))
+			if (ArrayUtil.contains(WIZARDS, npc.getId()))
 			{
 				if (creature.isPlayer() && npc.isScriptValue(0))
 				{
@@ -509,19 +508,18 @@ public class PailakaInjuredDragon extends AbstractInstance
 				}
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
 		{
-			if (CommonUtil.contains(WARRIORS, npc.getId()) || CommonUtil.contains(WIZARDS, npc.getId()))
+			if (ArrayUtil.contains(WARRIORS, npc.getId()) || ArrayUtil.contains(WIZARDS, npc.getId()))
 			{
 				final int longRangeGuardRate = npc.getParameters().getInt("LongRangeGuardRate", -1);
-				if ((longRangeGuardRate != -1) && ((skill != null) && !CommonUtil.contains(REJECTED_SKILLS, skill.getId())))
+				if ((longRangeGuardRate != -1) && ((skill != null) && !ArrayUtil.contains(REJECTED_SKILLS, skill.getId())))
 				{
 					if (npc.calculateDistance2D(attacker) > 150)
 					{
@@ -535,7 +533,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 						npc.getEffectList().stopEffects(AbnormalType.PD_UP_SPECIAL);
 					}
 				}
-				if (CommonUtil.contains(WARRIORS, npc.getId()))
+				if (ArrayUtil.contains(WARRIORS, npc.getId()))
 				{
 					if (npc.calculateDistance2D(attacker) < 40)
 					{
@@ -581,7 +579,6 @@ public class PailakaInjuredDragon extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	// @formatter:off
@@ -608,12 +605,12 @@ public class PailakaInjuredDragon extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
 		{
-			if (CommonUtil.contains(ANIMALS, npc.getId()))
+			if (ArrayUtil.contains(ANIMALS, npc.getId()))
 			{
 				npc.dropItem(killer, getRandomBoolean() ? PAILAKA_INSTANT_SHIELD : QUICK_HEALING_POTION, getRandom(10) + 1);
 			}
@@ -623,7 +620,6 @@ public class PailakaInjuredDragon extends AbstractInstance
 				addSpawn(npc, DRAGON_CAMERA_2, npc.getLocation(), false, world.getId());
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

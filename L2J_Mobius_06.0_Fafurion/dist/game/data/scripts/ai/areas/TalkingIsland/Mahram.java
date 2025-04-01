@@ -16,10 +16,10 @@
  */
 package ai.areas.TalkingIsland;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -48,10 +48,9 @@ public class Mahram extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("SPAM_TEXT", 10000, npc, null, true);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

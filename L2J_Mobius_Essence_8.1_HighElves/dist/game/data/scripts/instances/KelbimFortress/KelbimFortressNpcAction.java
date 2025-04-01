@@ -35,6 +35,7 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
 
@@ -153,7 +154,7 @@ public class KelbimFortressNpcAction extends AbstractNpcAI
 			id.set(id.get() - 3);
 			isKelbimTeleport.set(true);
 		}
-		else if ((player.getAdena() > TELEPORT_LOCATIONS_18828.get(id.get()).getKey()) && player.reduceAdena("teleport", TELEPORT_LOCATIONS_18828.get(id.get()).getKey(), npc, true))
+		else if ((player.getAdena() > TELEPORT_LOCATIONS_18828.get(id.get()).getKey()) && player.reduceAdena(ItemProcessType.FEE, TELEPORT_LOCATIONS_18828.get(id.get()).getKey(), npc, true))
 		{
 			player.teleToLocation(TELEPORT_LOCATIONS_18828.get(id.get()).getValue(), false, world);
 		}
@@ -171,7 +172,7 @@ public class KelbimFortressNpcAction extends AbstractNpcAI
 		
 		final BuffInfo overloadBuffEffect = player.getEffectList().getBuffInfoBySkillId(OVERLOAD_SKILL_ID);
 		int overloadSkillLevel = overloadBuffEffect == null ? 0 : overloadBuffEffect.getSkill().getLevel();
-		if ((player.getAdena() > OVERLOAD_FEE_ON_TELEPORT.get(overloadSkillLevel)) && player.reduceAdena("teleport", OVERLOAD_FEE_ON_TELEPORT.get(overloadSkillLevel), npc, true))
+		if ((player.getAdena() > OVERLOAD_FEE_ON_TELEPORT.get(overloadSkillLevel)) && player.reduceAdena(ItemProcessType.FEE, OVERLOAD_FEE_ON_TELEPORT.get(overloadSkillLevel), npc, true))
 		{
 			SkillCaster.triggerCast(npc, player, SkillData.getInstance().getSkill(OVERLOAD_SKILL_ID, Math.min(overloadSkillLevel + 1, 50)), null, true);
 			player.teleToLocation(TELEPORT_LOCATIONS_18829[id.get()], false, world);

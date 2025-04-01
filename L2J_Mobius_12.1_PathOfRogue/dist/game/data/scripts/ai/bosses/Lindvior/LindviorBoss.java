@@ -22,7 +22,7 @@ package ai.bosses.Lindvior;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -66,7 +66,7 @@ public class LindviorBoss extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (!npc.isCastingNow())
 		{
@@ -152,15 +152,13 @@ public class LindviorBoss extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomWalking(true);
 		npc.doCast(MASS_HELL_BINDING.getSkill());
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

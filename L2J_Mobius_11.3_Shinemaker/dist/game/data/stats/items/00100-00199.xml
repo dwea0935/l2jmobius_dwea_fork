@@ -784,7 +784,7 @@
 		</stats>
 	</item>
 	<item id="136" name="(Not used)" type="EtcItem">
-		<!-- Double-click to obtain Agathion Bracelet - Angry Devil. -->
+		<!-- Double-click to obtain Agathion Summon Bracelet - Angry Devil. -->
 		<set name="icon" val="icon.etc_pi_gift_box_i00" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -802,7 +802,7 @@
 		</capsuled_items>
 	</item>
 	<item id="137" name="(Not used)" type="EtcItem">
-		<!-- Double-click to obtain Agathion Bracelet - Joy. -->
+		<!-- Double-click to obtain Agathion Summon Bracelet - Joy. -->
 		<set name="icon" val="icon.etc_pi_gift_box_i00" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -820,7 +820,7 @@
 		</capsuled_items>
 	</item>
 	<item id="138" name="(Not used)" type="EtcItem">
-		<!-- Double-click to obtain Agathion Bracelet - Sobbing. -->
+		<!-- Double-click to obtain Agathion Summon Bracelet - Sobbing. -->
 		<set name="icon" val="icon.etc_pi_gift_box_i00" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -838,7 +838,7 @@
 		</capsuled_items>
 	</item>
 	<item id="139" name="Package: Agathion Angry Devil (7-day)" type="EtcItem">
-		<!-- Double-click to obtain Agathion Bracelet - Angry Devil (7-day). -->
+		<!-- Double-click to obtain Agathion Summon Bracelet - Angry Devil (7-day). -->
 		<set name="icon" val="icon.etc_pi_gift_box_i02" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -855,7 +855,7 @@
 		</capsuled_items>
 	</item>
 	<item id="140" name="Package: Agathion Joy (7-day)" type="EtcItem">
-		<!-- Double-click to obtain Agathion Bracelet - Joy (7-day). -->
+		<!-- Double-click to obtain Agathion Summon Bracelet - Joy (7-day). -->
 		<set name="icon" val="icon.etc_pi_gift_box_i02" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -872,7 +872,7 @@
 		</capsuled_items>
 	</item>
 	<item id="141" name="Package: Agathion Sobbing (7-day)" type="EtcItem">
-		<!-- Double-click to obtain Agathion Bracelet - Sobbing (7-day). -->
+		<!-- Double-click to obtain Agathion Summon Bracelet - Sobbing (7-day). -->
 		<set name="icon" val="icon.etc_pi_gift_box_i02" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -1468,7 +1468,7 @@
 		</stats>
 	</item>
 	<item id="163" name="(Not used)" type="EtcItem">
-		<!-- Double-click to obtain Agathion Bracelet - Sobbing. -->
+		<!-- Double-click to obtain Agathion Summon Bracelet - Sobbing. -->
 		<set name="icon" val="icon.etc_pi_gift_box_i00" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -1651,7 +1651,7 @@
 		</stats>
 	</item>
 	<item id="170" name="Package: Agathion Angry Devil (7-day) - Event" type="EtcItem">
-		<!-- Double-click to obtain Agathion Bracelet - Angry Devil (7-day). -->
+		<!-- Double-click to obtain Agathion Summon Bracelet - Angry Devil (7-day). -->
 		<set name="icon" val="icon.etc_pi_gift_box_i02" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />

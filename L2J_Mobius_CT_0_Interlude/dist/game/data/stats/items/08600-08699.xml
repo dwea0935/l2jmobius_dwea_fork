@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="8600" type="EtcItem" name="Herb of Life">
 		<set name="immediate_effect" val="true" />
@@ -72,7 +72,7 @@
 		<set name="item_skill" val="2281-1" /> <!-- Herb of Magic -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="8608" type="EtcItem" name="Herb of Alacrity">
+	<item id="8608" type="EtcItem" name="Herb of Atk. Spd.">
 		<set name="icon" val="icon.etc_attack_sp_herb_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="ex_immediate_effect" val="true" />
@@ -92,7 +92,7 @@
 		<set name="item_skill" val="2283-1" /> <!-- Herb of Casting Spd. -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="8610" type="EtcItem" name="Herb of Critical Attack - Probability">
+	<item id="8610" type="EtcItem" name="Herb of Critical Attack.">
 		<set name="icon" val="icon.etc_critical_herb_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="ex_immediate_effect" val="true" />
@@ -170,7 +170,7 @@
 		<set name="price" val="5000" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="8618" type="EtcItem" name="Ancient Book: Divine Inspiration (Modern Language Version)">
+	<item id="8618" type="EtcItem" name="Ancient Book - Divine Inspiration (Modern Language Version)">
 		<!-- Restores forgotten abilities. The book was re-published after being translated into the modern language. (Can only be used by characters level 52 or higher.) -->
 		<set name="icon" val="icon.etc_add_buffslot_i00" />
 		<set name="immediate_effect" val="true" />
@@ -178,7 +178,7 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="8619" type="EtcItem" name="Ancient Book: Divine Inspiration (Original Language Version)">
+	<item id="8619" type="EtcItem" name="Ancient Book - Divine Inspiration (Original Language Version)">
 		<!-- Restores forgotten abilities. This book was published by ancient scholars for research purposes. It contains more information than the modern language version. (Can only be used by characters level 61 or higher.) -->
 		<set name="icon" val="icon.etc_add_buffslot_i01" />
 		<set name="immediate_effect" val="true" />
@@ -187,7 +187,7 @@
 		<set name="price" val="500000" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="8620" type="EtcItem" name="Ancient Book: Divine Inspiration (Manuscript)">
+	<item id="8620" type="EtcItem" name="Ancient Book - Divine Inspiration (Manuscript)">
 		<!-- Restores forgotten abilities. This book is a hand-written copy of the original. It is almost the same as the original version. (Can only be used by characters level 76 or higher.) -->
 		<set name="icon" val="icon.etc_add_buffslot_i02" />
 		<set name="immediate_effect" val="true" />
@@ -196,7 +196,7 @@
 		<set name="price" val="1000000" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="8621" type="EtcItem" name="Ancient Book: Divine Inspiration (Original Version)">
+	<item id="8621" type="EtcItem" name="Ancient Book - Divine Inspiration (Original Version)">
 		<!-- Restores forgotten abilities. Those who lack the requisite knowledge cannot understand its contents. (Can only be used by characters level 76 or higher.) This item cannot be exchanged or dropped. -->
 		<set name="icon" val="icon.etc_add_buffslot_i03" />
 		<set name="immediate_effect" val="true" />
@@ -792,7 +792,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 	</item>
-	<item id="8663" type="EtcItem" name="Mystery Potion (Event)">
+	<item id="8663" type="EtcItem" name="Enlightenment Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. Results are temporary at best." -->
 		<set name="icon" val="icon.etc_lesser_potion_clear_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -805,7 +805,7 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2103-1" /> <!-- Mystery Potion -->
 	</item>
-	<item id="8664" type="EtcItem" name="Facelifting Potion - A (Event)">
+	<item id="8664" type="EtcItem" name="Masking Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_purple_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -817,7 +817,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2291-1" /> <!-- Facelifting Potion -->
 	</item>
-	<item id="8665" type="EtcItem" name="Facelifting Potion - B (Event)">
+	<item id="8665" type="EtcItem" name="Masking Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_purple_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -829,7 +829,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2292-1" /> <!-- Facelifting Potion -->
 	</item>
-	<item id="8666" type="EtcItem" name="Facelifting Potion - C (Event)">
+	<item id="8666" type="EtcItem" name="Masking Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_purple_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -841,7 +841,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2293-1" /> <!-- Facelifting Potion -->
 	</item>
-	<item id="8667" type="EtcItem" name="Dye Potion - A (Event)">
+	<item id="8667" type="EtcItem" name="Chameleon Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_scarlet_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -853,7 +853,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2294-1" /> <!-- Dye Potion -->
 	</item>
-	<item id="8668" type="EtcItem" name="Dye Potion - B (Event)">
+	<item id="8668" type="EtcItem" name="Chameleon Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_scarlet_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -865,7 +865,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2295-1" /> <!-- Dye Potion -->
 	</item>
-	<item id="8669" type="EtcItem" name="Dye Potion - C (Event)">
+	<item id="8669" type="EtcItem" name="Chameleon Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_scarlet_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -877,7 +877,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2296-1" /> <!-- Dye Potion -->
 	</item>
-	<item id="8670" type="EtcItem" name="Dye Potion - D (Event)">
+	<item id="8670" type="EtcItem" name="Chameleon Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_scarlet_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -892,7 +892,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</cond>
 	</item>
-	<item id="8671" type="EtcItem" name="Hair Style Change Potion - A (Event)">
+	<item id="8671" type="EtcItem" name="Luxury Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_green_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -904,7 +904,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2298-1" /> <!-- Hair Style Change Potion -->
 	</item>
-	<item id="8672" type="EtcItem" name="Hair Style Change Potion - B (Event)">
+	<item id="8672" type="EtcItem" name="Luxury Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_green_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -916,7 +916,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2299-1" /> <!-- Hair Style Change Potion -->
 	</item>
-	<item id="8673" type="EtcItem" name="Hair Style Change Potion - C (Event)">
+	<item id="8673" type="EtcItem" name="Luxury Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_green_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -928,7 +928,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2300-1" /> <!-- Hair Style Change Potion -->
 	</item>
-	<item id="8674" type="EtcItem" name="Hair Style Change Potion - D (Event)">
+	<item id="8674" type="EtcItem" name="Luxury Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_green_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -940,7 +940,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2301-1" /> <!-- Hair Style Change Potion -->
 	</item>
-	<item id="8675" type="EtcItem" name="Hair Style Change Potion - E (Event)">
+	<item id="8675" type="EtcItem" name="Luxury Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_green_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -952,7 +952,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2302-1" /> <!-- Hair Style Change Potion -->
 	</item>
-	<item id="8676" type="EtcItem" name="Hair Style Change Potion - F (Event)">
+	<item id="8676" type="EtcItem" name="Luxury Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_green_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -964,7 +964,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2303-1" /> <!-- Hair Style Change Potion -->
 	</item>
-	<item id="8677" type="EtcItem" name="Hair Style Change Potion - G (Event)">
+	<item id="8677" type="EtcItem" name="Luxury Oil">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
 		<set name="icon" val="icon.etc_lesser_potion_green_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -1289,9 +1289,8 @@
 	</item>
 	<item id="8689" type="Weapon" name="Blood Sword Akamanah">
 		<!-- A demonic twin blade forged in blood by Gran Kain, the god of chaos. The blade anguishes at the touch of air, and it craves blood to renew its energies. It becomes stronger every time it is supplied with blood. -->
-		<set name="icon" val="icon.weapon_dual_sword_i00" />
+		<set name="icon" val="icon.weapon_aka_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="weapon_type" val="FIST" />
 		<set name="bodypart" val="lrhand" />
 		<set name="random_damage" val="10" />
 		<set name="attack_range" val="60" />
@@ -1299,7 +1298,6 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="BONE" />
 		<set name="weight" val="1840" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />

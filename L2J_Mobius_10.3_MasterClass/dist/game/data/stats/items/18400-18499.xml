@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="18400" name="Special R95-grade Talisman - MP Recovery (Passive)" type="Armor">
 		<!-- MP Recovery +0.70. -->
@@ -14,7 +14,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8739" level="1" /> <!-- Special Talisman (R95-grade) - MP Recovery -->
+			<skill id="8739" level="1" /> <!-- Special R95-grade Talisman - MP Recovery -->
 		</skills>
 	</item>
 	<item id="18401" name="Special R99-grade Talisman - MP Recovery (Passive)" type="Armor">
@@ -31,7 +31,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8740" level="1" /> <!-- Special Talisman (R99-grade) - MP Recovery -->
+			<skill id="8740" level="1" /> <!-- Special R99-grade Talisman - MP Recovery -->
 		</skills>
 	</item>
 	<item id="18402" name="Special R-grade Talisman - Decrease MP Consumption (Passive)" type="Armor">
@@ -49,7 +49,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8741" level="1" /> <!-- Special Talisman (R-grade) - Decrease MP Consumption -->
+			<skill id="8741" level="1" /> <!-- Special R-grade Talisman - Decrease MP Consumption -->
 		</skills>
 	</item>
 	<item id="18403" name="Special R85-grade Talisman - Enhance Heal (Passive)" type="Armor">
@@ -66,7 +66,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8742" level="1" /> <!-- Special Talisman (R-grade) - Enhance Heal -->
+			<skill id="8742" level="1" /> <!-- Special R-grade Talisman - Enhance Heal -->
 		</skills>
 	</item>
 	<item id="18404" name="Special R90-grade Talisman - Enhance Heal (Passive)" type="Armor">
@@ -83,7 +83,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8743" level="1" /> <!-- Special Talisman (R90-grade) - Enhance Heal -->
+			<skill id="8743" level="1" /> <!-- Special R90-grade Talisman - Enhance Heal -->
 		</skills>
 	</item>
 	<item id="18405" name="Special R95-grade Talisman - Enhance Heal (Passive)" type="Armor">
@@ -100,7 +100,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8744" level="1" /> <!-- Special Talisman (R95-grade) - Enhance Heal -->
+			<skill id="8744" level="1" /> <!-- Special R95-grade Talisman - Enhance Heal -->
 		</skills>
 	</item>
 	<item id="18406" name="Special R99-grade Talisman - Enhance Heal (Passive)" type="Armor">
@@ -117,7 +117,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8745" level="1" /> <!-- Special Talisman (R99-grade) - Enhance Heal -->
+			<skill id="8745" level="1" /> <!-- Special R99-grade Talisman - Enhance Heal -->
 		</skills>
 	</item>
 	<item id="18407" name="Special R85-grade Talisman - Enhance Heal (Active)" type="Armor">
@@ -135,7 +135,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8746" level="1" /> <!-- Special Talisman (R-grade) - Increase Heal Enhancement (Active) -->
+			<skill id="8746" level="1" /> <!-- Special R-grade Talisman - Increase Heal Enhancement (Active) -->
 		</skills>
 	</item>
 	<item id="18408" name="Special R90-grade Talisman - Enhance Heal (Active)" type="Armor">
@@ -153,7 +153,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8747" level="1" /> <!-- Special Talisman (R90-grade) - Increase Heal Enhancement (Active) -->
+			<skill id="8747" level="1" /> <!-- Special R90-grade Talisman - Increase Heal Enhancement (Active) -->
 		</skills>
 	</item>
 	<item id="18409" name="Special R95-grade Talisman - Enhance Heal (Active)" type="Armor">
@@ -171,7 +171,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8748" level="1" /> <!-- Special Talisman (R95-grade) - Increase Heal Enhancement (Active) -->
+			<skill id="8748" level="1" /> <!-- Special R95-grade Talisman - Increase Heal Enhancement (Active) -->
 		</skills>
 	</item>
 	<item id="18410" name="Special R99-grade Talisman - Enhance Heal (Active)" type="Armor">
@@ -189,7 +189,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8749" level="1" /> <!-- Special Talisman (R99-grade) - Increase Heal Enhancement (Active) -->
+			<skill id="8749" level="1" /> <!-- Special R99-grade Talisman - Increase Heal Enhancement (Active) -->
 		</skills>
 	</item>
 	<item id="18411" name="R85-grade Talisman - P. Atk. (Passive)" type="Armor">
@@ -206,7 +206,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8608" level="1" /> <!-- Talisman (R-grade) - P. Atk. -->
+			<skill id="8608" level="1" /> <!-- R-grade Talisman - P. Atk. -->
 		</skills>
 	</item>
 	<item id="18412" name="R90-grade Talisman - P. Atk. (Passive)" type="Armor">
@@ -223,7 +223,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8609" level="1" /> <!-- Talisman (R90-grade) - P. Atk. -->
+			<skill id="8609" level="1" /> <!-- R90-grade Talisman - P. Atk. -->
 		</skills>
 	</item>
 	<item id="18413" name="R95-grade Talisman - P. Atk. (Passive)" type="Armor">
@@ -240,7 +240,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8610" level="1" /> <!-- Talisman (R95-grade) - P. Atk. -->
+			<skill id="8610" level="1" /> <!-- R95-grade Talisman - P. Atk. -->
 		</skills>
 	</item>
 	<item id="18414" name="R99-grade Talisman - P. Atk. (Passive)" type="Armor">
@@ -257,7 +257,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8611" level="1" /> <!-- Talisman (R99-grade) - P. Atk. -->
+			<skill id="8611" level="1" /> <!-- R99-grade Talisman - P. Atk. -->
 		</skills>
 	</item>
 	<item id="18415" name="R85-grade Talisman - P. Def. (Passive)" type="Armor">
@@ -274,7 +274,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8612" level="1" /> <!-- Talisman (R-grade) - P. Def. -->
+			<skill id="8612" level="1" /> <!-- R-grade Talisman - P. Def. -->
 		</skills>
 	</item>
 	<item id="18416" name="R90-grade Talisman - P. Def. (Passive)" type="Armor">
@@ -291,7 +291,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8613" level="1" /> <!-- Talisman (R90-grade) - P. Def. -->
+			<skill id="8613" level="1" /> <!-- R90-grade Talisman - P. Def. -->
 		</skills>
 	</item>
 	<item id="18417" name="R95-grade Talisman - P. Def. (Passive)" type="Armor">
@@ -308,7 +308,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8614" level="1" /> <!-- Talisman (R95-grade) - P. Def. -->
+			<skill id="8614" level="1" /> <!-- R95-grade Talisman - P. Def. -->
 		</skills>
 	</item>
 	<item id="18418" name="R99-grade Talisman - P. Def. (Passive)" type="Armor">
@@ -325,7 +325,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8615" level="1" /> <!-- Talisman (R99-grade) - P. Def. -->
+			<skill id="8615" level="1" /> <!-- R99-grade Talisman - P. Def. -->
 		</skills>
 	</item>
 	<item id="18419" name="R85-grade Talisman - M. Atk. (Passive)" type="Armor">
@@ -342,7 +342,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8616" level="1" /> <!-- Talisman (R-grade) - M. Atk. -->
+			<skill id="8616" level="1" /> <!-- R-grade Talisman - M. Atk. -->
 		</skills>
 	</item>
 	<item id="18420" name="R90-grade Talisman - M. Atk. (Passive)" type="Armor">
@@ -359,7 +359,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8617" level="1" /> <!-- Talisman (R90-grade) - M. Atk. -->
+			<skill id="8617" level="1" /> <!-- R90-grade Talisman - M. Atk. -->
 		</skills>
 	</item>
 	<item id="18421" name="R95-grade Talisman - M. Atk. (Passive)" type="Armor">
@@ -376,7 +376,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8618" level="1" /> <!-- Talisman (R95-grade) - M. Atk. -->
+			<skill id="8618" level="1" /> <!-- R95-grade Talisman - M. Atk. -->
 		</skills>
 	</item>
 	<item id="18422" name="R99-grade Talisman - M. Atk. (Passive)" type="Armor">
@@ -393,7 +393,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8619" level="1" /> <!-- Talisman (R99-grade) - M. Atk. -->
+			<skill id="8619" level="1" /> <!-- R99-grade Talisman - M. Atk. -->
 		</skills>
 	</item>
 	<item id="18423" name="R85-grade Talisman - M. Def. (Passive)" type="Armor">
@@ -410,7 +410,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8620" level="1" /> <!-- Talisman (R-grade) - M. Def. -->
+			<skill id="8620" level="1" /> <!-- R-grade Talisman - M. Def. -->
 		</skills>
 	</item>
 	<item id="18424" name="R90-grade Talisman - M. Def. (Passive)" type="Armor">
@@ -427,7 +427,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8621" level="1" /> <!-- Talisman (R90-grade) - M. Def. -->
+			<skill id="8621" level="1" /> <!-- R90-grade Talisman - M. Def. -->
 		</skills>
 	</item>
 	<item id="18425" name="R95-grade Talisman - M. Def. (Passive)" type="Armor">
@@ -444,7 +444,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8622" level="1" /> <!-- Talisman (R95-grade) - M. Def. -->
+			<skill id="8622" level="1" /> <!-- R95-grade Talisman - M. Def. -->
 		</skills>
 	</item>
 	<item id="18426" name="R99-grade Talisman - M. Def. (Passive)" type="Armor">
@@ -461,7 +461,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8623" level="1" /> <!-- Talisman (R99-grade) - M. Def. -->
+			<skill id="8623" level="1" /> <!-- R99-grade Talisman - M. Def. -->
 		</skills>
 	</item>
 	<item id="18427" name="R85-grade Talisman - HP (Passive)" type="Armor">
@@ -478,7 +478,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8624" level="1" /> <!-- Talisman (R-grade) - Max HP -->
+			<skill id="8624" level="1" /> <!-- R-grade Talisman - Max HP -->
 		</skills>
 	</item>
 	<item id="18428" name="R90-grade Talisman - HP (Passive)" type="Armor">
@@ -495,7 +495,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8625" level="1" /> <!-- Talisman (R90-grade) - Max HP -->
+			<skill id="8625" level="1" /> <!-- R90-grade Talisman - Max HP -->
 		</skills>
 	</item>
 	<item id="18429" name="R95-grade Talisman - HP (Passive)" type="Armor">
@@ -512,7 +512,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8626" level="1" /> <!-- Talisman (R95-grade) - Max HP -->
+			<skill id="8626" level="1" /> <!-- R95-grade Talisman - Max HP -->
 		</skills>
 	</item>
 	<item id="18430" name="R99-grade Talisman - HP (Passive)" type="Armor">
@@ -529,7 +529,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8627" level="1" /> <!-- Talisman (R99-grade) - Max HP -->
+			<skill id="8627" level="1" /> <!-- R99-grade Talisman - Max HP -->
 		</skills>
 	</item>
 	<item id="18431" name="R85-grade Talisman - MP (Passive)" type="Armor">
@@ -546,7 +546,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8628" level="1" /> <!-- Talisman (R-grade) - Max MP -->
+			<skill id="8628" level="1" /> <!-- R-grade Talisman - Max MP -->
 		</skills>
 	</item>
 	<item id="18432" name="R90-grade Talisman - MP (Passive)" type="Armor">
@@ -563,7 +563,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8629" level="1" /> <!-- Talisman (R90-grade) - Max MP -->
+			<skill id="8629" level="1" /> <!-- R90-grade Talisman - Max MP -->
 		</skills>
 	</item>
 	<item id="18433" name="R95-grade Talisman - MP (Passive)" type="Armor">
@@ -580,7 +580,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8630" level="1" /> <!-- Talisman (R95-grade) - Max MP -->
+			<skill id="8630" level="1" /> <!-- R95-grade Talisman - Max MP -->
 		</skills>
 	</item>
 	<item id="18434" name="R99-grade Talisman - MP (Passive)" type="Armor">
@@ -597,7 +597,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8631" level="1" /> <!-- Talisman (R99-grade) - Max MP -->
+			<skill id="8631" level="1" /> <!-- R99-grade Talisman - Max MP -->
 		</skills>
 	</item>
 	<item id="18435" name="R85-grade Talisman - CP (Passive)" type="Armor">
@@ -614,7 +614,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8632" level="1" /> <!-- Talisman (R-grade) - Max CP -->
+			<skill id="8632" level="1" /> <!-- R-grade Talisman - Max CP -->
 		</skills>
 	</item>
 	<item id="18436" name="R90-grade Talisman - CP (Passive)" type="Armor">
@@ -631,7 +631,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8633" level="1" /> <!-- Talisman (R90-grade) - Max CP -->
+			<skill id="8633" level="1" /> <!-- R90-grade Talisman - Max CP -->
 		</skills>
 	</item>
 	<item id="18437" name="R95-grade Talisman - CP (Passive)" type="Armor">
@@ -648,7 +648,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8634" level="1" /> <!-- Talisman (R95-grade) - Max CP -->
+			<skill id="8634" level="1" /> <!-- R95-grade Talisman - Max CP -->
 		</skills>
 	</item>
 	<item id="18438" name="R99-grade Talisman - CP (Passive)" type="Armor">
@@ -665,7 +665,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8635" level="1" /> <!-- Talisman (R99-grade) - Max CP -->
+			<skill id="8635" level="1" /> <!-- R99-grade Talisman - Max CP -->
 		</skills>
 	</item>
 	<item id="18439" name="R85-grade Talisman - Critical Damage (Passive)" type="Armor">
@@ -682,7 +682,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8636" level="1" /> <!-- Talisman (R-grade) - Critical Damage -->
+			<skill id="8636" level="1" /> <!-- R-grade Talisman - Critical Damage -->
 		</skills>
 	</item>
 	<item id="18440" name="R90-grade Talisman - Critical Damage (Passive)" type="Armor">
@@ -699,7 +699,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8637" level="1" /> <!-- Talisman (R90-grade) - Critical Damage -->
+			<skill id="8637" level="1" /> <!-- R90-grade Talisman - Critical Damage -->
 		</skills>
 	</item>
 	<item id="18441" name="R95-grade Talisman - Critical Damage (Passive)" type="Armor">
@@ -716,7 +716,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8638" level="1" /> <!-- Talisman (R95-grade) - Critical Damage -->
+			<skill id="8638" level="1" /> <!-- R95-grade Talisman - Critical Damage -->
 		</skills>
 	</item>
 	<item id="18442" name="R99-grade Talisman - Critical Damage (Passive)" type="Armor">
@@ -733,7 +733,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8639" level="1" /> <!-- Talisman (R99-grade) - Critical Damage -->
+			<skill id="8639" level="1" /> <!-- R99-grade Talisman - Critical Damage -->
 		</skills>
 	</item>
 	<item id="18443" name="R85-grade Talisman - Decrease Critical (Passive)" type="Armor">
@@ -750,7 +750,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8640" level="1" /> <!-- Talisman (R-grade) - Critical P. Def. -->
+			<skill id="8640" level="1" /> <!-- R-grade Talisman - Critical Def. -->
 		</skills>
 	</item>
 	<item id="18444" name="R90-grade Talisman - Decrease Critical (Passive)" type="Armor">
@@ -767,7 +767,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8641" level="1" /> <!-- Talisman (R90-grade) - Critical P. Def. -->
+			<skill id="8641" level="1" /> <!-- R90-grade Talisman - Critical Def. -->
 		</skills>
 	</item>
 	<item id="18445" name="R95-grade Talisman - Decrease Critical (Passive)" type="Armor">
@@ -784,7 +784,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8642" level="1" /> <!-- Talisman (R95-grade) - Critical P. Def. -->
+			<skill id="8642" level="1" /> <!-- R95-grade Talisman - Critical Def. -->
 		</skills>
 	</item>
 	<item id="18446" name="R99-grade Talisman - Decrease Critical (Passive)" type="Armor">
@@ -801,7 +801,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8643" level="1" /> <!-- Talisman (R99-grade) - Critical P. Def. -->
+			<skill id="8643" level="1" /> <!-- R99-grade Talisman - Critical Def. -->
 		</skills>
 	</item>
 	<item id="18447" name="R-grade Talisman - M. Critical (Passive)" type="Armor">
@@ -818,7 +818,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8644" level="1" /> <!-- Talisman (R-grade) - M. Critical Rate -->
+			<skill id="8644" level="1" /> <!-- R-grade Talisman - M. Critical Rate -->
 		</skills>
 	</item>
 	<item id="18448" name="R-grade Talisman - P. Accuracy (Passive)" type="Armor">
@@ -835,7 +835,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8645" level="1" /> <!-- Talisman (R-grade) - P. Accuracy -->
+			<skill id="8645" level="1" /> <!-- R-grade Talisman - P. Accuracy -->
 		</skills>
 	</item>
 	<item id="18449" name="R-grade Talisman - M. Accuracy (Passive)" type="Armor">
@@ -852,7 +852,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8646" level="1" /> <!-- Talisman (R-grade) - M. Accuracy -->
+			<skill id="8646" level="1" /> <!-- R-grade Talisman - M. Accuracy -->
 		</skills>
 	</item>
 	<item id="18450" name="R-grade Talisman - Evasion (Passive)" type="Armor">
@@ -869,7 +869,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8647" level="1" /> <!-- Talisman (R-grade) - P. Evasion -->
+			<skill id="8647" level="1" /> <!-- R-grade Talisman - P. Evasion -->
 		</skills>
 	</item>
 	<item id="18451" name="R-grade Talisman - M. Evasion (Passive)" type="Armor">
@@ -886,7 +886,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8648" level="1" /> <!-- Talisman (R-grade) - M. Evasion -->
+			<skill id="8648" level="1" /> <!-- R-grade Talisman - M. Evasion -->
 		</skills>
 	</item>
 	<item id="18452" name="R-grade Talisman - Critical Rate (Passive)" type="Armor">
@@ -903,7 +903,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8649" level="1" /> <!-- Talisman (R-grade) - P. Critical Rate -->
+			<skill id="8649" level="1" /> <!-- R-grade Talisman - P. Critical Rate -->
 		</skills>
 	</item>
 	<item id="18453" name="R-grade Talisman - Critical Evasion (Passive)" type="Armor">
@@ -920,7 +920,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8650" level="1" /> <!-- Talisman (R-grade) - P. Critical Evasion -->
+			<skill id="8650" level="1" /> <!-- R-grade Talisman - P. Critical Evasion -->
 		</skills>
 	</item>
 	<item id="18454" name="R85-grade Talisman - P. Atk. (Active)" type="Armor">
@@ -938,7 +938,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8651" level="1" /> <!-- Talisman (R-grade) - P. Atk. (Active) -->
+			<skill id="8651" level="1" /> <!-- R-grade Talisman - P. Atk. (Active) -->
 		</skills>
 	</item>
 	<item id="18455" name="R90-grade Talisman - P. Atk. (Active)" type="Armor">
@@ -956,7 +956,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8652" level="1" /> <!-- Talisman (R90-grade) - P. Atk. (Active) -->
+			<skill id="8652" level="1" /> <!-- R90-grade Talisman - P. Atk. (Active) -->
 		</skills>
 	</item>
 	<item id="18456" name="R95-grade Talisman - P. Atk. (Active)" type="Armor">
@@ -974,7 +974,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8653" level="1" /> <!-- Talisman (R95-grade) - P. Atk. (Active) -->
+			<skill id="8653" level="1" /> <!-- R95-grade Talisman - P. Atk. (Active) -->
 		</skills>
 	</item>
 	<item id="18457" name="R99-grade Talisman - P. Atk. (Active)" type="Armor">
@@ -992,7 +992,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8654" level="1" /> <!-- Talisman (R99-grade) - P. Atk. (Active) -->
+			<skill id="8654" level="1" /> <!-- R99-grade Talisman - P. Atk. (Active) -->
 		</skills>
 	</item>
 	<item id="18458" name="R85-grade Talisman - P. Def. (Active)" type="Armor">
@@ -1010,7 +1010,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8655" level="1" /> <!-- Talisman (R-grade) - P. Def. (Active) -->
+			<skill id="8655" level="1" /> <!-- R-grade Talisman - P. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18459" name="R90-grade Talisman - P. Def. (Active)" type="Armor">
@@ -1028,7 +1028,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8656" level="1" /> <!-- Talisman (R90-grade) - P. Def. (Active) -->
+			<skill id="8656" level="1" /> <!-- R90-grade Talisman - P. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18460" name="R95-grade Talisman - P. Def. (Active)" type="Armor">
@@ -1046,7 +1046,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8657" level="1" /> <!-- Talisman (R95-grade) - P. Def. (Active) -->
+			<skill id="8657" level="1" /> <!-- R95-grade Talisman - P. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18461" name="R99-grade Talisman - P. Def. (Active)" type="Armor">
@@ -1064,7 +1064,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8658" level="1" /> <!-- Talisman (R99-grade) - P. Def. (Active) -->
+			<skill id="8658" level="1" /> <!-- R99-grade Talisman - P. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18462" name="R85-grade Talisman - M. Atk. (Active)" type="Armor">
@@ -1082,7 +1082,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8659" level="1" /> <!-- Talisman (R-grade) - M. Atk. (Active) -->
+			<skill id="8659" level="1" /> <!-- R-grade Talisman - M. Atk. (Active) -->
 		</skills>
 	</item>
 	<item id="18463" name="R90-grade Talisman - M. Atk. (Active)" type="Armor">
@@ -1100,7 +1100,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8660" level="1" /> <!-- Talisman (R90-grade) - M. Atk. (Active) -->
+			<skill id="8660" level="1" /> <!-- R90-grade Talisman - M. Atk. (Active) -->
 		</skills>
 	</item>
 	<item id="18464" name="R95-grade Talisman - M. Atk. (Active)" type="Armor">
@@ -1118,7 +1118,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8661" level="1" /> <!-- Talisman (R95-grade) - M. Atk. (Active) -->
+			<skill id="8661" level="1" /> <!-- R95-grade Talisman - M. Atk. (Active) -->
 		</skills>
 	</item>
 	<item id="18465" name="R99-grade Talisman - M. Atk. (Active)" type="Armor">
@@ -1136,7 +1136,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8662" level="1" /> <!-- Talisman (R99-grade) - M. Atk. (Active) -->
+			<skill id="8662" level="1" /> <!-- R99-grade Talisman - M. Atk. (Active) -->
 		</skills>
 	</item>
 	<item id="18466" name="R85-grade Talisman - M. Def. (Active)" type="Armor">
@@ -1154,7 +1154,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8663" level="1" /> <!-- Talisman (R-grade) - M. Def. (Active) -->
+			<skill id="8663" level="1" /> <!-- R-grade Talisman - M. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18467" name="R90-grade Talisman - M. Def. (Active)" type="Armor">
@@ -1172,7 +1172,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8664" level="1" /> <!-- Talisman (R90-grade) - M. Def. (Active) -->
+			<skill id="8664" level="1" /> <!-- R90-grade Talisman - M. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18468" name="R95-grade Talisman - M. Def. (Active)" type="Armor">
@@ -1190,7 +1190,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8665" level="1" /> <!-- Talisman (R95-grade) - M. Def. (Active) -->
+			<skill id="8665" level="1" /> <!-- R95-grade Talisman - M. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18469" name="R99-grade Talisman - M. Def. (Active)" type="Armor">
@@ -1208,7 +1208,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8666" level="1" /> <!-- Talisman (R99-grade) - M. Def. (Active) -->
+			<skill id="8666" level="1" /> <!-- R99-grade Talisman - M. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18470" name="R85-grade Talisman - HP (Active)" type="Armor">
@@ -1226,7 +1226,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8667" level="1" /> <!-- Talisman (R-grade) - Max HP (Active) -->
+			<skill id="8667" level="1" /> <!-- R-grade Talisman - Max HP (Active) -->
 		</skills>
 	</item>
 	<item id="18471" name="R90-grade Talisman - HP (Active)" type="Armor">
@@ -1244,7 +1244,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8668" level="1" /> <!-- Talisman (R90-grade) - Max HP (Active) -->
+			<skill id="8668" level="1" /> <!-- R90-grade Talisman - Max HP (Active) -->
 		</skills>
 	</item>
 	<item id="18472" name="R95-grade Talisman - HP (Active)" type="Armor">
@@ -1262,7 +1262,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8669" level="1" /> <!-- Talisman (R95-grade) - Max HP (Active) -->
+			<skill id="8669" level="1" /> <!-- R95-grade Talisman - Max HP (Active) -->
 		</skills>
 	</item>
 	<item id="18473" name="R99-grade Talisman - HP (Active)" type="Armor">
@@ -1280,7 +1280,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8670" level="1" /> <!-- Talisman (R99-grade) - Max HP (Active) -->
+			<skill id="8670" level="1" /> <!-- R99-grade Talisman - Max HP (Active) -->
 		</skills>
 	</item>
 	<item id="18474" name="R85-grade Talisman - MP (Active)" type="Armor">
@@ -1298,7 +1298,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8671" level="1" /> <!-- Talisman (R-grade) - Max MP (Active) -->
+			<skill id="8671" level="1" /> <!-- R-grade Talisman - Max MP (Active) -->
 		</skills>
 	</item>
 	<item id="18475" name="R90-grade Talisman - MP (Active)" type="Armor">
@@ -1316,7 +1316,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8672" level="1" /> <!-- Talisman (R90-grade) - Max MP (Active) -->
+			<skill id="8672" level="1" /> <!-- R90-grade Talisman - Max MP (Active) -->
 		</skills>
 	</item>
 	<item id="18476" name="R95-grade Talisman - MP (Active)" type="Armor">
@@ -1334,7 +1334,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8673" level="1" /> <!-- Talisman (R95-grade) - Max MP (Active) -->
+			<skill id="8673" level="1" /> <!-- R95-grade Talisman - Max MP (Active) -->
 		</skills>
 	</item>
 	<item id="18477" name="R99-grade Talisman - MP (Active)" type="Armor">
@@ -1352,7 +1352,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8674" level="1" /> <!-- Talisman (R99-grade) - Max MP (Active) -->
+			<skill id="8674" level="1" /> <!-- R99-grade Talisman - Max MP (Active) -->
 		</skills>
 	</item>
 	<item id="18478" name="R85-grade Talisman - CP (Active)" type="Armor">
@@ -1370,7 +1370,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8675" level="1" /> <!-- Talisman (R-grade) - Max CP (Active) -->
+			<skill id="8675" level="1" /> <!-- R-grade Talisman - Max CP (Active) -->
 		</skills>
 	</item>
 	<item id="18479" name="R90-grade Talisman - CP (Active)" type="Armor">
@@ -1388,7 +1388,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8676" level="1" /> <!-- Talisman (R90-grade) - Max CP (Active) -->
+			<skill id="8676" level="1" /> <!-- R90-grade Talisman - Max CP (Active) -->
 		</skills>
 	</item>
 	<item id="18480" name="R95-grade Talisman - CP (Active)" type="Armor">
@@ -1406,7 +1406,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8677" level="1" /> <!-- Talisman (R95-grade) - Max CP (Active) -->
+			<skill id="8677" level="1" /> <!-- R95-grade Talisman - Max CP (Active) -->
 		</skills>
 	</item>
 	<item id="18481" name="R99-grade Talisman - CP (Active)" type="Armor">
@@ -1424,7 +1424,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8678" level="1" /> <!-- Talisman (R99-grade) - Max CP (Active) -->
+			<skill id="8678" level="1" /> <!-- R99-grade Talisman - Max CP (Active) -->
 		</skills>
 	</item>
 	<item id="18482" name="R85-grade Talisman - Critical Damage (Active)" type="Armor">
@@ -1442,7 +1442,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8679" level="1" /> <!-- Talisman (R-grade) - Critical Damage (Active) -->
+			<skill id="8679" level="1" /> <!-- R-grade Talisman - Critical Damage (Active) -->
 		</skills>
 	</item>
 	<item id="18483" name="R90-grade Talisman - Critical Damage (Active)" type="Armor">
@@ -1460,7 +1460,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8680" level="1" /> <!-- Talisman (R90-grade) - Critical Damage (Active) -->
+			<skill id="8680" level="1" /> <!-- R90-grade Talisman - Critical Damage (Active) -->
 		</skills>
 	</item>
 	<item id="18484" name="R95-grade Talisman - Critical Damage (Active)" type="Armor">
@@ -1478,7 +1478,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8681" level="1" /> <!-- Talisman (R95-grade) - Critical Damage (Active) -->
+			<skill id="8681" level="1" /> <!-- R95-grade Talisman - Critical Damage (Active) -->
 		</skills>
 	</item>
 	<item id="18485" name="R99-grade Talisman - Critical Damage (Active)" type="Armor">
@@ -1496,7 +1496,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8682" level="1" /> <!-- Talisman (R99-grade) - Critical Damage (Active) -->
+			<skill id="8682" level="1" /> <!-- R99-grade Talisman - Critical Damage (Active) -->
 		</skills>
 	</item>
 	<item id="18486" name="R85-grade Talisman - Critical P. Def. (Active)" type="Armor">
@@ -1514,7 +1514,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8683" level="1" /> <!-- Talisman (R-grade) - Critical P. Def. (Active) -->
+			<skill id="8683" level="1" /> <!-- R-grade Talisman - Critical P. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18487" name="R90-grade Talisman - Critical Def. (Active)" type="Armor">
@@ -1532,7 +1532,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8684" level="1" /> <!-- Talisman (R90-grade) - Critical P. Def. (Active) -->
+			<skill id="8684" level="1" /> <!-- R90-grade Talisman - Critical P. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18488" name="R95-grade Talisman - Critical Def. (Active)" type="Armor">
@@ -1550,7 +1550,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8685" level="1" /> <!-- Talisman (R95-grade) - Critical P. Def. (Active) -->
+			<skill id="8685" level="1" /> <!-- R95-grade Talisman - Critical P. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18489" name="R99-grade Talisman - Critical Def. (Active)" type="Armor">
@@ -1568,7 +1568,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8686" level="1" /> <!-- Talisman (R99-grade) - Critical P. Def. (Active) -->
+			<skill id="8686" level="1" /> <!-- R99-grade Talisman - Critical P. Def. (Active) -->
 		</skills>
 	</item>
 	<item id="18490" name="R-grade Talisman - M. Critical (Active)" type="Armor">
@@ -1586,7 +1586,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8687" level="1" /> <!-- Talisman (R-grade) - M. Critical Rate (Active) -->
+			<skill id="8687" level="1" /> <!-- R-grade Talisman - M. Critical Rate (Active) -->
 		</skills>
 	</item>
 	<item id="18491" name="R-grade Talisman - P. Accuracy (Active)" type="Armor">
@@ -1604,7 +1604,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8688" level="1" /> <!-- Talisman (R-grade) - P. Accuracy (Active) -->
+			<skill id="8688" level="1" /> <!-- R-grade Talisman - P. Accuracy (Active) -->
 		</skills>
 	</item>
 	<item id="18492" name="R-grade Talisman - M. Accuracy (Active)" type="Armor">
@@ -1622,7 +1622,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8689" level="1" /> <!-- Talisman (R-grade) - M. Accuracy (Active) -->
+			<skill id="8689" level="1" /> <!-- R-grade Talisman - M. Accuracy (Active) -->
 		</skills>
 	</item>
 	<item id="18493" name="R-grade Talisman - Evasion (Active)" type="Armor">
@@ -1640,7 +1640,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8690" level="1" /> <!-- Talisman (R-grade) - P. Evasion (Active) -->
+			<skill id="8690" level="1" /> <!-- R-grade Talisman - P. Evasion (Active) -->
 		</skills>
 	</item>
 	<item id="18494" name="R-grade Talisman - M. Evasion (Active)" type="Armor">
@@ -1658,7 +1658,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8691" level="1" /> <!-- Talisman (R-grade) - M. Evasion (Active) -->
+			<skill id="8691" level="1" /> <!-- R-grade Talisman - M. Evasion (Active) -->
 		</skills>
 	</item>
 	<item id="18495" name="R-grade Talisman - Critical Rate (Active)" type="Armor">
@@ -1676,7 +1676,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8692" level="1" /> <!-- Talisman (R-grade) - P. Critical Rate (Active) -->
+			<skill id="8692" level="1" /> <!-- R-grade Talisman - P. Critical Rate (Active) -->
 		</skills>
 	</item>
 	<item id="18496" name="R-grade Talisman - Critical Evasion (Active)" type="Armor">
@@ -1694,7 +1694,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8693" level="1" /> <!-- Talisman (R-grade) - P. Critical Evasion (Active) -->
+			<skill id="8693" level="1" /> <!-- R-grade Talisman - P. Critical Evasion (Active) -->
 		</skills>
 	</item>
 	<item id="18497" name="Special R85-grade Talisman - Shield Defense (Passive)" type="Armor">
@@ -1712,7 +1712,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8694" level="1" /> <!-- Special Talisman (R-grade) - Shield Defense -->
+			<skill id="8694" level="1" /> <!-- Special R-grade Talisman - Shield Defense -->
 		</skills>
 	</item>
 	<item id="18498" name="Special R90-grade Talisman - Shield Defense (Passive)" type="Armor">
@@ -1730,7 +1730,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8695" level="1" /> <!-- Special Talisman (R90-grade) - Shield Defense -->
+			<skill id="8695" level="1" /> <!-- Special R90-grade Talisman - Shield Defense -->
 		</skills>
 	</item>
 	<item id="18499" name="Special R95-grade Talisman - Shield Defense (Passive)" type="Armor">
@@ -1748,7 +1748,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="8696" level="1" /> <!-- Special Talisman (R95-grade) - Shield Defense -->
+			<skill id="8696" level="1" /> <!-- Special R95-grade Talisman - Shield Defense -->
 		</skills>
 	</item>
 </list>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="93200" name="Random Enhanced Tallum Leather Armor Crafting" additionalName="Sealed" type="EtcItem">
 		<!-- Double-click to get more information about the contents. -->
@@ -1247,7 +1247,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="is_sellable" val="true" />
 		<skills>
-			<skill id="9250" level="1" /> <!-- Improved Scroll -->
+			<skill id="9250" level="1" /> <!-- Improved Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="93256" name="Improved Scroll: Enchant A-grade Armor" type="EtcItem">
@@ -1263,7 +1263,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<set name="is_sellable" val="true" />
 		<skills>
-			<skill id="9251" level="1" /> <!-- Improved Scroll -->
+			<skill id="9251" level="1" /> <!-- Improved Scroll: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="93257" name="Cursed Scroll: Enchant A-grade Weapon" type="EtcItem">
@@ -2021,15 +2021,15 @@
 		<skills>
 			<skill id="50297" level="1" /> <!-- Zaken's Blood Sword -->
 			<skill id="50280" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Zaken's Blood Sword -->
-			<skill id="50280" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Zaken's Blood Sword -->
-			<skill id="50280" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Zaken's Blood Sword -->
-			<skill id="50280" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Zaken's Blood Sword -->
-			<skill id="50280" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Zaken's Blood Sword -->
-			<skill id="50280" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Zaken's Blood Sword -->
-			<skill id="50280" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Zaken's Blood Sword -->
-			<skill id="50280" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Zaken's Blood Sword -->
-			<skill id="50280" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Zaken's Blood Sword -->
-			<skill id="50280" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Zaken's Blood Sword -->
+			<skill id="50280" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Zaken's Blood Sword -->
+			<skill id="50280" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Zaken's Blood Sword -->
+			<skill id="50280" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Zaken's Blood Sword -->
+			<skill id="50280" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Zaken's Blood Sword -->
+			<skill id="50280" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Zaken's Blood Sword -->
+			<skill id="50280" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Zaken's Blood Sword -->
+			<skill id="50280" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Zaken's Blood Sword -->
+			<skill id="50280" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Zaken's Blood Sword -->
+			<skill id="50280" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Zaken's Blood Sword -->
 			<skill id="50392" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -2073,15 +2073,15 @@
 		<skills>
 			<skill id="50299" level="1" /> <!-- Core's Plasmic Bow -->
 			<skill id="50290" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Core's Plasmic Bow -->
-			<skill id="50290" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Core's Plasmic Bow -->
-			<skill id="50290" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Core's Plasmic Bow -->
-			<skill id="50290" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Core's Plasmic Bow -->
-			<skill id="50290" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Core's Plasmic Bow -->
-			<skill id="50290" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Core's Plasmic Bow -->
-			<skill id="50290" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Core's Plasmic Bow -->
-			<skill id="50290" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Core's Plasmic Bow -->
-			<skill id="50290" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Core's Plasmic Bow -->
-			<skill id="50290" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Core's Plasmic Bow -->
+			<skill id="50290" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Core's Plasmic Bow -->
+			<skill id="50290" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Core's Plasmic Bow -->
+			<skill id="50290" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Core's Plasmic Bow -->
+			<skill id="50290" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Core's Plasmic Bow -->
+			<skill id="50290" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Core's Plasmic Bow -->
+			<skill id="50290" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Core's Plasmic Bow -->
+			<skill id="50290" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Core's Plasmic Bow -->
+			<skill id="50290" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Core's Plasmic Bow -->
+			<skill id="50290" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Core's Plasmic Bow -->
 			<skill id="50401" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -2123,15 +2123,15 @@
 		<skills>
 			<skill id="50298" level="1" /> <!-- Orfen's Venom Sword -->
 			<skill id="50285" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Orfen's Venom Sword -->
-			<skill id="50285" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Orfen's Venom Sword -->
-			<skill id="50285" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Orfen's Venom Sword -->
-			<skill id="50285" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Orfen's Venom Sword -->
-			<skill id="50285" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Orfen's Venom Sword -->
-			<skill id="50285" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Orfen's Venom Sword -->
-			<skill id="50285" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Orfen's Venom Sword -->
-			<skill id="50285" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Orfen's Venom Sword -->
-			<skill id="50285" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Orfen's Venom Sword -->
-			<skill id="50285" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Orfen's Venom Sword -->
+			<skill id="50285" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Orfen's Venom Sword -->
+			<skill id="50285" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Orfen's Venom Sword -->
+			<skill id="50285" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Orfen's Venom Sword -->
+			<skill id="50285" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Orfen's Venom Sword -->
+			<skill id="50285" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Orfen's Venom Sword -->
+			<skill id="50285" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Orfen's Venom Sword -->
+			<skill id="50285" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Orfen's Venom Sword -->
+			<skill id="50285" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Orfen's Venom Sword -->
+			<skill id="50285" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Orfen's Venom Sword -->
 			<skill id="50395" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -2174,15 +2174,15 @@
 		<skills>
 			<skill id="50295" level="1" /> <!-- Baium's Thunder Breaker -->
 			<skill id="50270" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Baium's Thunder Breaker -->
-			<skill id="50270" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Baium's Thunder Breaker -->
-			<skill id="50270" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Baium's Thunder Breaker -->
-			<skill id="50270" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Baium's Thunder Breaker -->
-			<skill id="50270" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Baium's Thunder Breaker -->
-			<skill id="50270" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Baium's Thunder Breaker -->
-			<skill id="50270" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Baium's Thunder Breaker -->
-			<skill id="50270" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Baium's Thunder Breaker -->
-			<skill id="50270" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Baium's Thunder Breaker -->
-			<skill id="50270" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Baium's Thunder Breaker -->
+			<skill id="50270" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Baium's Thunder Breaker -->
+			<skill id="50270" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Baium's Thunder Breaker -->
+			<skill id="50270" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Baium's Thunder Breaker -->
+			<skill id="50270" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Baium's Thunder Breaker -->
+			<skill id="50270" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Baium's Thunder Breaker -->
+			<skill id="50270" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Baium's Thunder Breaker -->
+			<skill id="50270" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Baium's Thunder Breaker -->
+			<skill id="50270" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Baium's Thunder Breaker -->
+			<skill id="50270" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Baium's Thunder Breaker -->
 			<skill id="50402" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -2224,15 +2224,15 @@
 		<skills>
 			<skill id="50300" level="1" /> <!-- Queen Ant's Stone Breaker -->
 			<skill id="50275" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Queen Ant's Stone Breaker -->
-			<skill id="50275" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Queen Ant's Stone Breaker -->
-			<skill id="50275" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Queen Ant's Stone Breaker -->
-			<skill id="50275" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Queen Ant's Stone Breaker -->
-			<skill id="50275" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Queen Ant's Stone Breaker -->
-			<skill id="50275" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Queen Ant's Stone Breaker -->
-			<skill id="50275" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Queen Ant's Stone Breaker -->
-			<skill id="50275" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Queen Ant's Stone Breaker -->
-			<skill id="50275" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Queen Ant's Stone Breaker -->
-			<skill id="50275" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Queen Ant's Stone Breaker -->
+			<skill id="50275" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Queen Ant's Stone Breaker -->
+			<skill id="50275" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Queen Ant's Stone Breaker -->
+			<skill id="50275" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Queen Ant's Stone Breaker -->
+			<skill id="50275" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Queen Ant's Stone Breaker -->
+			<skill id="50275" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Queen Ant's Stone Breaker -->
+			<skill id="50275" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Queen Ant's Stone Breaker -->
+			<skill id="50275" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Queen Ant's Stone Breaker -->
+			<skill id="50275" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Queen Ant's Stone Breaker -->
+			<skill id="50275" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Queen Ant's Stone Breaker -->
 			<skill id="50397" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->
@@ -2256,7 +2256,7 @@
 			<stat type="pDef">39</stat>
 		</stats>
 		<skills>
-			<skill id="50341" level="1" /> <!-- Pendant: Einhasad's Pendant -->
+			<skill id="50341" level="1" /> <!-- Einhasad's Pendant -->
 		</skills>
 	</item>
 	<item id="93297" name="Einhasad's Pendant Lv. 2" additionalName="Sealed" type="Armor">
@@ -2273,7 +2273,7 @@
 			<stat type="pDef">48</stat>
 		</stats>
 		<skills>
-			<skill id="50341" level="2" /> <!-- Pendant: Einhasad's Pendant -->
+			<skill id="50341" level="2" /> <!-- Einhasad's Pendant -->
 		</skills>
 	</item>
 	<item id="93298" name="Einhasad's Pendant Lv. 3" additionalName="Sealed" type="Armor">
@@ -2290,7 +2290,7 @@
 			<stat type="pDef">57</stat>
 		</stats>
 		<skills>
-			<skill id="50341" level="3" /> <!-- Pendant: Einhasad's Pendant -->
+			<skill id="50341" level="3" /> <!-- Einhasad's Pendant -->
 		</skills>
 	</item>
 	<item id="93299" name="Einhasad's Pendant Lv. 4" additionalName="Sealed" type="Armor">
@@ -2308,7 +2308,7 @@
 			<stat type="pDef">66</stat>
 		</stats>
 		<skills>
-			<skill id="50341" level="4" /> <!-- Pendant: Einhasad's Pendant Lv1 -->
+			<skill id="50341" level="4" /> <!-- Einhasad's Pendant -->
 			<skill id="45045" level="1" /> <!-- Dragon Meditation -->
 		</skills>
 	</item>

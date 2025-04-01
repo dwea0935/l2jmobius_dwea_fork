@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.quest;
 
@@ -36,41 +40,34 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.NewQuestData;
-import org.l2jmobius.gameserver.enums.AcquireSkillType;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Faction;
-import org.l2jmobius.gameserver.enums.QuestType;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.TrapAction;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.KeyValuePair;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.creature.TrapAction;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.instance.Trap;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.events.AbstractScript;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.NpcLogListHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.CompetitionType;
 import org.l2jmobius.gameserver.model.olympiad.Participant;
@@ -79,6 +76,8 @@ import org.l2jmobius.gameserver.model.quest.newquestdata.NewQuestCondition;
 import org.l2jmobius.gameserver.model.quest.newquestdata.NewQuestReward;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -87,13 +86,14 @@ import org.l2jmobius.gameserver.network.serverpackets.ExQuestNpcLogList;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcQuestHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestDialog;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Quest main class.
- * @author Luis Arias
+ * @author Luis Arias, Mobius
  */
-public class Quest extends AbstractScript implements IIdentifiable
+public class Quest extends AbstractScript
 {
 	public static final Logger LOGGER = Logger.getLogger(Quest.class.getName());
 	
@@ -216,7 +216,6 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * Gets the quest ID.
 	 * @return the quest ID
 	 */
-	@Override
 	public int getId()
 	{
 		return _questId;
@@ -456,133 +455,6 @@ public class Quest extends AbstractScript implements IIdentifiable
 	// These are methods to call within the core to call the quest events.
 	
 	/**
-	 * @param npc the NPC that was attacked
-	 * @param attacker the attacking player
-	 * @param damage the damage dealt to the NPC by the player
-	 * @param isSummon if {@code true}, the attack was actually made by the player's summon
-	 * @param skill the skill used to attack the NPC (can be null)
-	 */
-	public void notifyAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
-	{
-		String res = null;
-		try
-		{
-			res = onAttack(npc, attacker, damage, isSummon, skill);
-		}
-		catch (Exception e)
-		{
-			showError(attacker, e);
-			return;
-		}
-		showResult(attacker, res);
-	}
-	
-	/**
-	 * @param killer the character that killed the {@code victim}
-	 * @param victim the character that was killed by the {@code killer}
-	 * @param qs the quest state object of the player to be notified of this event
-	 */
-	public void notifyDeath(Creature killer, Creature victim, QuestState qs)
-	{
-		String res = null;
-		try
-		{
-			res = onDeath(killer, victim, qs);
-		}
-		catch (Exception e)
-		{
-			showError(qs.getPlayer(), e);
-			return;
-		}
-		showResult(qs.getPlayer(), res);
-	}
-	
-	/**
-	 * @param item
-	 * @param player
-	 */
-	public void notifyItemUse(ItemTemplate item, Player player)
-	{
-		String res = null;
-		try
-		{
-			res = onItemUse(item, player);
-		}
-		catch (Exception e)
-		{
-			showError(player, e);
-			return;
-		}
-		showResult(player, res);
-	}
-	
-	/**
-	 * @param instance
-	 * @param player
-	 * @param skill
-	 */
-	public void notifySpellFinished(Npc instance, Player player, Skill skill)
-	{
-		String res = null;
-		try
-		{
-			res = onSpellFinished(instance, player, skill);
-		}
-		catch (Exception e)
-		{
-			showError(player, e);
-			return;
-		}
-		showResult(player, res);
-	}
-	
-	/**
-	 * Notify quest script when something happens with a trap.
-	 * @param trap the trap instance which triggers the notification
-	 * @param trigger the character which makes effect on the trap
-	 * @param action 0: trap casting its skill. 1: trigger detects the trap. 2: trigger removes the trap
-	 */
-	public void notifyTrapAction(Trap trap, Creature trigger, TrapAction action)
-	{
-		final Player player = trigger.asPlayer();
-		String res = null;
-		
-		try
-		{
-			res = onTrapAction(trap, trigger, action);
-		}
-		catch (Exception e)
-		{
-			if (player != null)
-			{
-				showError(player, e);
-			}
-			LOGGER.log(Level.WARNING, "Exception on onTrapAction() in notifyTrapAction(): " + e.getMessage(), e);
-			return;
-		}
-		
-		if (player != null)
-		{
-			showResult(player, res);
-		}
-	}
-	
-	/**
-	 * @param npc the spawned NPC
-	 */
-	public void notifySpawn(Npc npc)
-	{
-		try
-		{
-			onSpawn(npc);
-		}
-		catch (Exception e)
-		{
-			LOGGER.log(Level.WARNING, "Exception on onSpawn() in notifySpawn(): " + e.getMessage(), e);
-		}
-	}
-	
-	/**
 	 * @param npc the teleport NPC
 	 */
 	public void notifyTeleport(Npc npc)
@@ -620,56 +492,6 @@ public class Quest extends AbstractScript implements IIdentifiable
 			return;
 		}
 		showResult(player, res, npc);
-	}
-	
-	/**
-	 * @param player the player entering the world
-	 */
-	public void notifyEnterWorld(Player player)
-	{
-		String res = null;
-		try
-		{
-			res = onEnterWorld(player);
-		}
-		catch (Exception e)
-		{
-			showError(player, e);
-			return;
-		}
-		showResult(player, res);
-	}
-	
-	/**
-	 * @param npc
-	 * @param killer
-	 * @param isSummon
-	 */
-	public void notifyKill(Npc npc, Player killer, boolean isSummon)
-	{
-		String res = null;
-		try
-		{
-			// Simulated talk should not exist when killing.
-			if (killer != null)
-			{
-				killer.setSimulatedTalking(false);
-				
-				final QuestState qs = getQuestState(killer, false);
-				if (qs != null)
-				{
-					qs.setSimulated(false);
-				}
-			}
-			
-			res = onKill(npc, killer, isSummon);
-		}
-		catch (Exception e)
-		{
-			showError(killer, e);
-			return;
-		}
-		showResult(killer, res);
 	}
 	
 	/**
@@ -732,28 +554,6 @@ public class Quest extends AbstractScript implements IIdentifiable
 	}
 	
 	/**
-	 * Notify the quest engine that an skill has been acquired.
-	 * @param npc the NPC
-	 * @param player the player
-	 * @param skill the skill
-	 * @param type the skill learn type
-	 */
-	public void notifyAcquireSkill(Npc npc, Player player, Skill skill, AcquireSkillType type)
-	{
-		String res = null;
-		try
-		{
-			res = onAcquireSkill(npc, player, skill, type);
-		}
-		catch (Exception e)
-		{
-			showError(player, e);
-			return;
-		}
-		showResult(player, res);
-	}
-	
-	/**
 	 * @param item
 	 * @param player
 	 */
@@ -783,123 +583,6 @@ public class Quest extends AbstractScript implements IIdentifiable
 	}
 	
 	/**
-	 * @param item
-	 * @param player
-	 * @param event
-	 */
-	public void notifyItemEvent(Item item, Player player, String event)
-	{
-		String res = null;
-		try
-		{
-			res = onItemEvent(item, player, event);
-			if ((res != null) && (res.equalsIgnoreCase("true") || res.equalsIgnoreCase("false")))
-			{
-				return;
-			}
-		}
-		catch (Exception e)
-		{
-			showError(player, e);
-			return;
-		}
-		showResult(player, res);
-	}
-	
-	/**
-	 * @param npc
-	 * @param caster
-	 * @param skill
-	 * @param targets
-	 * @param isSummon
-	 */
-	public void notifySkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
-	{
-		String res = null;
-		try
-		{
-			res = onSkillSee(npc, caster, skill, targets, isSummon);
-		}
-		catch (Exception e)
-		{
-			showError(caster, e);
-			return;
-		}
-		showResult(caster, res);
-	}
-	
-	/**
-	 * @param npc
-	 * @param caller
-	 * @param attacker
-	 * @param isSummon
-	 */
-	public void notifyFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
-	{
-		String res = null;
-		try
-		{
-			res = onFactionCall(npc, caller, attacker, isSummon);
-		}
-		catch (Exception e)
-		{
-			showError(attacker, e);
-			return;
-		}
-		showResult(attacker, res);
-	}
-	
-	/**
-	 * @param npc
-	 * @param player
-	 * @param isSummon
-	 */
-	public void notifyAggroRangeEnter(Npc npc, Player player, boolean isSummon)
-	{
-		String res = null;
-		try
-		{
-			res = onAggroRangeEnter(npc, player, isSummon);
-		}
-		catch (Exception e)
-		{
-			showError(player, e);
-			return;
-		}
-		showResult(player, res);
-	}
-	
-	/**
-	 * @param npc the NPC that sees the creature
-	 * @param creature the creature seen by the NPC
-	 */
-	public void notifyCreatureSee(Npc npc, Creature creature)
-	{
-		Player player = null;
-		if (creature.isPlayer())
-		{
-			player = creature.asPlayer();
-		}
-		String res = null;
-		try
-		{
-			res = onCreatureSee(npc, creature);
-		}
-		catch (Exception e)
-		{
-			if (player != null)
-			{
-				showError(player, e);
-			}
-			return;
-		}
-		if (player != null)
-		{
-			showResult(player, res);
-		}
-	}
-	
-	/**
 	 * @param eventName - name of event
 	 * @param sender - NPC, who sent event
 	 * @param receiver - NPC, who received event
@@ -914,58 +597,6 @@ public class Quest extends AbstractScript implements IIdentifiable
 		catch (Exception e)
 		{
 			LOGGER.log(Level.WARNING, "Exception on onEventReceived() in notifyEventReceived(): " + e.getMessage(), e);
-		}
-	}
-	
-	/**
-	 * @param creature
-	 * @param zone
-	 */
-	public void notifyEnterZone(Creature creature, ZoneType zone)
-	{
-		final Player player = creature.asPlayer();
-		String res = null;
-		try
-		{
-			res = onEnterZone(creature, zone);
-		}
-		catch (Exception e)
-		{
-			if (player != null)
-			{
-				showError(player, e);
-			}
-			return;
-		}
-		if (player != null)
-		{
-			showResult(player, res);
-		}
-	}
-	
-	/**
-	 * @param creature
-	 * @param zone
-	 */
-	public void notifyExitZone(Creature creature, ZoneType zone)
-	{
-		final Player player = creature.asPlayer();
-		String res = null;
-		try
-		{
-			res = onExitZone(creature, zone);
-		}
-		catch (Exception e)
-		{
-			if (player != null)
-			{
-				showError(player, e);
-			}
-			return;
-		}
-		if (player != null)
-		{
-			showResult(player, res);
 		}
 	}
 	
@@ -1058,11 +689,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param attacker this parameter contains a reference to the exact instance of the player who attacked.
 	 * @param damage this parameter represents the total damage that this attack has inflicted to the NPC.
 	 * @param isSummon this parameter if it's {@code false} it denotes that the attacker was indeed the player, else it specifies that the damage was actually dealt by the player's pet.
-	 * @return
 	 */
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
-		return null;
 	}
 	
 	/**
@@ -1073,11 +702,10 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param damage this parameter represents the total damage that this attack has inflicted to the NPC.
 	 * @param isSummon this parameter if it's {@code false} it denotes that the attacker was indeed the player, else it specifies that the damage was actually dealt by the player's summon
 	 * @param skill parameter is the skill that player used to attack NPC.
-	 * @return
 	 */
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
-		return onAttack(npc, attacker, damage, isSummon);
+		onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	/**
@@ -1086,11 +714,10 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param killer this parameter contains a reference to the exact instance of the NPC that <b>killed</b> the character.
 	 * @param victim this parameter contains a reference to the exact instance of the character that got killed.
 	 * @param qs this parameter contains a reference to the QuestState of whomever was interested (waiting) for this kill.
-	 * @return
 	 */
-	public String onDeath(Creature killer, Creature victim, QuestState qs)
+	public void onDeath(Creature killer, Creature victim, QuestState qs)
 	{
-		return onEvent("", (killer instanceof Npc) ? killer.asNpc() : null, qs.getPlayer());
+		onEvent("", (killer instanceof Npc) ? killer.asNpc() : null, qs.getPlayer());
 	}
 	
 	/**
@@ -1123,15 +750,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param npc this parameter contains a reference to the exact instance of the NPC that got killed.
 	 * @param killer this parameter contains a reference to the exact instance of the player who killed the NPC.
 	 * @param isSummon this parameter if it's {@code false} it denotes that the attacker was indeed the player, else it specifies that the killer was the player's pet.
-	 * @return the text returned by the event (may be {@code null}, a filename or just text)
 	 */
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		if (!getNpcLogList(killer).isEmpty())
-		{
-			sendNpcLogList(killer);
-		}
-		return null;
 	}
 	
 	/**
@@ -1189,23 +810,18 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param item
 	 * @param player
 	 * @param event
-	 * @return
 	 */
-	public String onItemEvent(Item item, Player player, String event)
+	public void onItemEvent(Item item, Player player, String event)
 	{
-		return null;
 	}
 	
 	/**
 	 * This function is called whenever a player request a skill list.<br>
-	 * TODO: Re-implement, since Skill Trees rework it's support was removed.
 	 * @param npc this parameter contains a reference to the exact instance of the NPC that the player requested the skill list.
 	 * @param player this parameter contains a reference to the exact instance of the player who requested the skill list.
-	 * @return
 	 */
-	public String onAcquireSkillList(Npc npc, Player player)
+	public void onAcquireSkillList(Npc npc, Player player)
 	{
-		return null;
 	}
 	
 	/**
@@ -1213,37 +829,20 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param npc this parameter contains a reference to the exact instance of the NPC that the player requested the skill info.
 	 * @param player this parameter contains a reference to the exact instance of the player who requested the skill info.
 	 * @param skill this parameter contains a reference to the skill that the player requested its info.
-	 * @return
 	 */
-	public String onAcquireSkillInfo(Npc npc, Player player, Skill skill)
+	public void onAcquireSkillInfo(Npc npc, Player player, Skill skill)
 	{
-		return null;
 	}
 	
 	/**
 	 * This function is called whenever a player acquire a skill.<br>
-	 * TODO: Re-implement, since Skill Trees rework it's support was removed.
 	 * @param npc this parameter contains a reference to the exact instance of the NPC that the player requested the skill.
 	 * @param player this parameter contains a reference to the exact instance of the player who requested the skill.
 	 * @param skill this parameter contains a reference to the skill that the player requested.
 	 * @param type the skill learn type
-	 * @return
 	 */
-	public String onAcquireSkill(Npc npc, Player player, Skill skill, AcquireSkillType type)
+	public void onAcquireSkill(Npc npc, Player player, Skill skill, AcquireSkillType type)
 	{
-		return null;
-	}
-	
-	/**
-	 * This function is called whenever a player uses a quest item that has a quest events list.<br>
-	 * TODO: complete this documentation and unhardcode it to work with all item uses not with those listed.
-	 * @param item the quest item that the player used
-	 * @param player the player who used the item
-	 * @return
-	 */
-	public String onItemUse(ItemTemplate item, Player player)
-	{
-		return null;
 	}
 	
 	/**
@@ -1252,17 +851,14 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * If a skill does damage, both onSkillSee(..) and onAttack(..) will be triggered for the damaged NPC!<br>
 	 * However, only onSkillSee(..) will be triggered if the skill does no damage,<br>
 	 * or if it damages an NPC who has no onAttack(..) registration while near another NPC who has an onSkillSee registration.<br>
-	 * TODO: confirm if the distance is 1000 and unhardcode.
 	 * @param npc the NPC that saw the skill
 	 * @param caster the player who cast the skill
 	 * @param skill the actual skill that was used
 	 * @param targets an array of all objects (can be any type of object, including mobs and players) that were affected by the skill
 	 * @param isSummon if {@code true}, the skill was actually cast by the player's summon, not the player himself
-	 * @return
 	 */
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
-		return null;
 	}
 	
 	/**
@@ -1270,11 +866,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param npc the NPC that casted the skill.
 	 * @param player the player who is the target of the skill. Can be {@code null}.
 	 * @param skill the actual skill that was used by the NPC.
-	 * @return
 	 */
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
-		return null;
 	}
 	
 	/**
@@ -1282,11 +876,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param trap this parameter contains a reference to the exact instance of the trap that was activated.
 	 * @param trigger this parameter contains a reference to the exact instance of the character that triggered the action.
 	 * @param action this parameter contains a reference to the action that was triggered.
-	 * @return
 	 */
-	public String onTrapAction(Trap trap, Creature trigger, TrapAction action)
+	public void onTrapAction(Trap trap, Creature trigger, TrapAction action)
 	{
-		return null;
 	}
 	
 	/**
@@ -1294,11 +886,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * Currently the only function that has no reference to a player.<br>
 	 * It is useful for initializations, starting quest timers, displaying chat (NpcSay), and more.
 	 * @param npc this parameter contains a reference to the exact instance of the NPC who just (re)spawned.
-	 * @return
 	 */
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		return null;
 	}
 	
 	/**
@@ -1315,11 +905,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param caller this parameter contains a reference to the exact instance of the NPC who is asking for help.
 	 * @param attacker this parameter contains a reference to the exact instance of the player who attacked.
 	 * @param isSummon this parameter if it's {@code false} it denotes that the attacker was indeed the player, else it specifies that the attacker was the player's summon.
-	 * @return
 	 */
-	public String onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
+	public void onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
 	{
-		return null;
 	}
 	
 	/**
@@ -1327,54 +915,44 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param npc this parameter contains a reference to the exact instance of the NPC whose aggression range is being transgressed.
 	 * @param player this parameter contains a reference to the exact instance of the player who is entering the NPC's aggression range.
 	 * @param isSummon this parameter if it's {@code false} it denotes that the character that entered the aggression range was indeed the player, else it specifies that the character was the player's summon.
-	 * @return
 	 */
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
-		return null;
 	}
 	
 	/**
 	 * This function is called whenever an NPC "sees" a creature.
 	 * @param npc the NPC who sees the creature
 	 * @param creature the creature seen by the NPC
-	 * @return
 	 */
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
-		return null;
 	}
 	
 	/**
 	 * This function is called whenever a player enters the game.
 	 * @param player this parameter contains a reference to the exact instance of the player who is entering to the world.
-	 * @return
 	 */
-	public String onEnterWorld(Player player)
+	public void onEnterWorld(Player player)
 	{
-		return null;
 	}
 	
 	/**
 	 * This function is called whenever a character enters a registered zone.
 	 * @param creature this parameter contains a reference to the exact instance of the character who is entering the zone.
 	 * @param zone this parameter contains a reference to the zone.
-	 * @return
 	 */
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
-		return null;
 	}
 	
 	/**
 	 * This function is called whenever a character exits a registered zone.
 	 * @param creature this parameter contains a reference to the exact instance of the character who is exiting the zone.
 	 * @param zone this parameter contains a reference to the zone.
-	 * @return
 	 */
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
-		return null;
 	}
 	
 	/**
@@ -1525,7 +1103,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 		}
 		if ((player != null) && player.getAccessLevel().isGm())
 		{
-			final String res = "<html><body><title>Script error</title>" + CommonUtil.getStackTrace(t) + "</body></html>";
+			final String res = "<html><body><title>Script error</title>" + TraceUtil.getStackTrace(t) + "</body></html>";
 			return showResult(player, res);
 		}
 		return false;
@@ -1834,12 +1412,21 @@ public class Quest extends AbstractScript implements IIdentifiable
 	
 	public void addKillId(int npcId)
 	{
-		setAttackableKillId(kill -> notifyKill(kill.getTarget(), kill.getAttacker(), kill.isSummon()), npcId);
+		setAttackableKillId(kill ->
+		{
+			final Player player = kill.getAttacker();
+			onKill(kill.getTarget(), player, kill.isSummon());
+			
+			if (!getNpcLogList(player).isEmpty())
+			{
+				sendNpcLogList(player);
+			}
+		}, npcId);
 	}
 	
 	public void addAttackId(int npcId)
 	{
-		setAttackableAttackId(attack -> notifyAttack(attack.getTarget(), attack.getAttacker(), attack.getDamage(), attack.isSummon(), attack.getSkill()), npcId);
+		setAttackableAttackId(attack -> onAttack(attack.getTarget(), attack.getAttacker(), attack.getDamage(), attack.isSummon(), attack.getSkill()), npcId);
 	}
 	
 	/**
@@ -1884,7 +1471,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addAcquireSkillId(int... npcIds)
 	{
-		setPlayerSkillLearnId(event -> notifyAcquireSkill(event.getTrainer(), event.getPlayer(), event.getSkill(), event.getAcquireType()), npcIds);
+		setPlayerSkillLearnId(event -> onAcquireSkill(event.getTrainer(), event.getPlayer(), event.getSkill(), event.getAcquireType()), npcIds);
 	}
 	
 	/**
@@ -1893,7 +1480,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addAcquireSkillId(Collection<Integer> npcIds)
 	{
-		setPlayerSkillLearnId(event -> notifyAcquireSkill(event.getTrainer(), event.getPlayer(), event.getSkill(), event.getAcquireType()), npcIds);
+		setPlayerSkillLearnId(event -> onAcquireSkill(event.getTrainer(), event.getPlayer(), event.getSkill(), event.getAcquireType()), npcIds);
 	}
 	
 	/**
@@ -1902,7 +1489,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addItemBypassEventId(int... itemIds)
 	{
-		setItemBypassEvenId(event -> notifyItemEvent(event.getItem(), event.getPlayer(), event.getEvent()), itemIds);
+		setItemBypassEvenId(event -> onItemEvent(event.getItem(), event.getPlayer(), event.getEvent()), itemIds);
 	}
 	
 	/**
@@ -1911,7 +1498,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addItemBypassEventId(Collection<Integer> itemIds)
 	{
-		setItemBypassEvenId(event -> notifyItemEvent(event.getItem(), event.getPlayer(), event.getEvent()), itemIds);
+		setItemBypassEvenId(event -> onItemEvent(event.getItem(), event.getPlayer(), event.getEvent()), itemIds);
 	}
 	
 	/**
@@ -1938,7 +1525,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addAttackId(int... npcIds)
 	{
-		setAttackableAttackId(attack -> notifyAttack(attack.getTarget(), attack.getAttacker(), attack.getDamage(), attack.isSummon(), attack.getSkill()), npcIds);
+		setAttackableAttackId(attack -> onAttack(attack.getTarget(), attack.getAttacker(), attack.getDamage(), attack.isSummon(), attack.getSkill()), npcIds);
 	}
 	
 	/**
@@ -1947,7 +1534,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addAttackId(Collection<Integer> npcIds)
 	{
-		setAttackableAttackId(attack -> notifyAttack(attack.getTarget(), attack.getAttacker(), attack.getDamage(), attack.isSummon(), attack.getSkill()), npcIds);
+		setAttackableAttackId(attack -> onAttack(attack.getTarget(), attack.getAttacker(), attack.getDamage(), attack.isSummon(), attack.getSkill()), npcIds);
 	}
 	
 	/**
@@ -1956,7 +1543,16 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addKillId(int... npcIds)
 	{
-		setAttackableKillId(kill -> notifyKill(kill.getTarget(), kill.getAttacker(), kill.isSummon()), npcIds);
+		setAttackableKillId(kill ->
+		{
+			final Player player = kill.getAttacker();
+			onKill(kill.getTarget(), player, kill.isSummon());
+			
+			if (!getNpcLogList(player).isEmpty())
+			{
+				sendNpcLogList(player);
+			}
+		}, npcIds);
 	}
 	
 	/**
@@ -1965,7 +1561,16 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addKillId(Collection<Integer> npcIds)
 	{
-		setAttackableKillId(kill -> notifyKill(kill.getTarget(), kill.getAttacker(), kill.isSummon()), npcIds);
+		setAttackableKillId(kill ->
+		{
+			final Player player = kill.getAttacker();
+			onKill(kill.getTarget(), player, kill.isSummon());
+			
+			if (!getNpcLogList(player).isEmpty())
+			{
+				sendNpcLogList(player);
+			}
+		}, npcIds);
 	}
 	
 	/**
@@ -2006,7 +1611,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addSpawnId(int... npcIds)
 	{
-		setNpcSpawnId(event -> notifySpawn(event.getNpc()), npcIds);
+		setNpcSpawnId(event -> onSpawn(event.getNpc()), npcIds);
 	}
 	
 	/**
@@ -2015,7 +1620,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addSpawnId(Collection<Integer> npcIds)
 	{
-		setNpcSpawnId(event -> notifySpawn(event.getNpc()), npcIds);
+		setNpcSpawnId(event -> onSpawn(event.getNpc()), npcIds);
 	}
 	
 	/**
@@ -2042,7 +1647,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addSkillSeeId(int... npcIds)
 	{
-		setNpcSkillSeeId(event -> notifySkillSee(event.getTarget(), event.getCaster(), event.getSkill(), event.getTargets(), event.isSummon()), npcIds);
+		setNpcSkillSeeId(event -> onSkillSee(event.getTarget(), event.getCaster(), event.getSkill(), event.getTargets(), event.isSummon()), npcIds);
 	}
 	
 	/**
@@ -2051,7 +1656,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addSkillSeeId(Collection<Integer> npcIds)
 	{
-		setNpcSkillSeeId(event -> notifySkillSee(event.getTarget(), event.getCaster(), event.getSkill(), event.getTargets(), event.isSummon()), npcIds);
+		setNpcSkillSeeId(event -> onSkillSee(event.getTarget(), event.getCaster(), event.getSkill(), event.getTargets(), event.isSummon()), npcIds);
 	}
 	
 	/**
@@ -2059,7 +1664,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addSpellFinishedId(int... npcIds)
 	{
-		setNpcSkillFinishedId(event -> notifySpellFinished(event.getCaster(), event.getTarget(), event.getSkill()), npcIds);
+		setNpcSkillFinishedId(event -> onSpellFinished(event.getCaster(), event.getTarget(), event.getSkill()), npcIds);
 	}
 	
 	/**
@@ -2067,7 +1672,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addSpellFinishedId(Collection<Integer> npcIds)
 	{
-		setNpcSkillFinishedId(event -> notifySpellFinished(event.getCaster(), event.getTarget(), event.getSkill()), npcIds);
+		setNpcSkillFinishedId(event -> onSpellFinished(event.getCaster(), event.getTarget(), event.getSkill()), npcIds);
 	}
 	
 	/**
@@ -2075,7 +1680,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addTrapActionId(int... npcIds)
 	{
-		setTrapActionId(event -> notifyTrapAction(event.getTrap(), event.getTrigger(), event.getAction()), npcIds);
+		setTrapActionId(event -> onTrapAction(event.getTrap(), event.getTrigger(), event.getAction()), npcIds);
 	}
 	
 	/**
@@ -2083,7 +1688,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addTrapActionId(Collection<Integer> npcIds)
 	{
-		setTrapActionId(event -> notifyTrapAction(event.getTrap(), event.getTrigger(), event.getAction()), npcIds);
+		setTrapActionId(event -> onTrapAction(event.getTrap(), event.getTrigger(), event.getAction()), npcIds);
 	}
 	
 	/**
@@ -2092,7 +1697,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addFactionCallId(int... npcIds)
 	{
-		setAttackableFactionIdId(event -> notifyFactionCall(event.getNpc(), event.getCaller(), event.getAttacker(), event.isSummon()), npcIds);
+		setAttackableFactionIdId(event -> onFactionCall(event.getNpc(), event.getCaller(), event.getAttacker(), event.isSummon()), npcIds);
 	}
 	
 	/**
@@ -2101,7 +1706,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addFactionCallId(Collection<Integer> npcIds)
 	{
-		setAttackableFactionIdId(event -> notifyFactionCall(event.getNpc(), event.getCaller(), event.getAttacker(), event.isSummon()), npcIds);
+		setAttackableFactionIdId(event -> onFactionCall(event.getNpc(), event.getCaller(), event.getAttacker(), event.isSummon()), npcIds);
 	}
 	
 	/**
@@ -2110,7 +1715,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addAggroRangeEnterId(int... npcIds)
 	{
-		setAttackableAggroRangeEnterId(event -> notifyAggroRangeEnter(event.getNpc(), event.getPlayer(), event.isSummon()), npcIds);
+		setAttackableAggroRangeEnterId(event -> onAggroRangeEnter(event.getNpc(), event.getPlayer(), event.isSummon()), npcIds);
 	}
 	
 	/**
@@ -2119,7 +1724,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addAggroRangeEnterId(Collection<Integer> npcIds)
 	{
-		setAttackableAggroRangeEnterId(event -> notifyAggroRangeEnter(event.getNpc(), event.getPlayer(), event.isSummon()), npcIds);
+		setAttackableAggroRangeEnterId(event -> onAggroRangeEnter(event.getNpc(), event.getPlayer(), event.isSummon()), npcIds);
 	}
 	
 	/**
@@ -2127,7 +1732,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addCreatureSeeId(int... npcIds)
 	{
-		setCreatureSeeId(event -> notifyCreatureSee(event.getCreature().asNpc(), event.getSeen()), npcIds);
+		setCreatureSeeId(event -> onCreatureSee(event.getCreature().asNpc(), event.getSeen()), npcIds);
 	}
 	
 	/**
@@ -2135,7 +1740,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addCreatureSeeId(Collection<Integer> npcIds)
 	{
-		setCreatureSeeId(event -> notifyCreatureSee(event.getCreature().asNpc(), event.getSeen()), npcIds);
+		setCreatureSeeId(event -> onCreatureSee(event.getCreature().asNpc(), event.getSeen()), npcIds);
 	}
 	
 	/**
@@ -2144,7 +1749,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addEnterZoneId(int zoneId)
 	{
-		setCreatureZoneEnterId(event -> notifyEnterZone(event.getCreature(), event.getZone()), zoneId);
+		setCreatureZoneEnterId(event -> onEnterZone(event.getCreature(), event.getZone()), zoneId);
 	}
 	
 	/**
@@ -2153,7 +1758,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addEnterZoneId(int... zoneIds)
 	{
-		setCreatureZoneEnterId(event -> notifyEnterZone(event.getCreature(), event.getZone()), zoneIds);
+		setCreatureZoneEnterId(event -> onEnterZone(event.getCreature(), event.getZone()), zoneIds);
 	}
 	
 	/**
@@ -2162,7 +1767,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addEnterZoneId(Collection<Integer> zoneIds)
 	{
-		setCreatureZoneEnterId(event -> notifyEnterZone(event.getCreature(), event.getZone()), zoneIds);
+		setCreatureZoneEnterId(event -> onEnterZone(event.getCreature(), event.getZone()), zoneIds);
 	}
 	
 	/**
@@ -2171,7 +1776,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addExitZoneId(int zoneId)
 	{
-		setCreatureZoneExitId(event -> notifyExitZone(event.getCreature(), event.getZone()), zoneId);
+		setCreatureZoneExitId(event -> onExitZone(event.getCreature(), event.getZone()), zoneId);
 	}
 	
 	/**
@@ -2180,7 +1785,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addExitZoneId(int... zoneIds)
 	{
-		setCreatureZoneExitId(event -> notifyExitZone(event.getCreature(), event.getZone()), zoneIds);
+		setCreatureZoneExitId(event -> onExitZone(event.getCreature(), event.getZone()), zoneIds);
 	}
 	
 	/**
@@ -2189,7 +1794,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addExitZoneId(Collection<Integer> zoneIds)
 	{
-		setCreatureZoneExitId(event -> notifyExitZone(event.getCreature(), event.getZone()), zoneIds);
+		setCreatureZoneExitId(event -> onExitZone(event.getCreature(), event.getZone()), zoneIds);
 	}
 	
 	/**
@@ -2691,7 +2296,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	
 	private static boolean checkDistanceToTarget(Player player, Npc target)
 	{
-		return (target == null) || Util.checkIfInRange(Config.ALT_PARTY_RANGE, player, target, true);
+		return (target == null) || LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, player, target, true);
 	}
 	
 	/**
@@ -2871,7 +2476,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	{
 		if (value)
 		{
-			setPlayerLoginId(event -> notifyEnterWorld(event.getPlayer()));
+			setPlayerLoginId(event -> onEnterWorld(event.getPlayer()));
 		}
 		else
 		{
@@ -2913,7 +2518,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	{
 		if ((target != null) && clazz.isInstance(target))
 		{
-			return CommonUtil.contains(ids, target.getId());
+			return ArrayUtil.contains(ids, target.getId());
 		}
 		return false;
 	}
@@ -3154,9 +2759,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param classId the class ID
 	 * @param html the HTML to display if the condition is not met
 	 */
-	public void addCondClassId(ClassId classId, String html)
+	public void addCondClassId(PlayerClass classId, String html)
 	{
-		addCondStart(p -> p.getClassId() == classId, html);
+		addCondStart(p -> p.getPlayerClass() == classId, html);
 	}
 	
 	/**
@@ -3165,9 +2770,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param pairs the HTML to display if the condition is not met per each npc
 	 */
 	@SafeVarargs
-	public final void addCondClassId(ClassId classId, KeyValuePair<Integer, String>... pairs)
+	public final void addCondClassId(PlayerClass classId, KeyValuePair<Integer, String>... pairs)
 	{
-		addCondStart(p -> p.getClassId() == classId, pairs);
+		addCondStart(p -> p.getPlayerClass() == classId, pairs);
 	}
 	
 	/**
@@ -3175,9 +2780,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param classIds the class ID
 	 * @param html the HTML to display if the condition is not met
 	 */
-	public void addCondClassIds(List<ClassId> classIds, String html)
+	public void addCondClassIds(List<PlayerClass> classIds, String html)
 	{
-		addCondStart(p -> classIds.contains(p.getClassId()), html);
+		addCondStart(p -> classIds.contains(p.getPlayerClass()), html);
 	}
 	
 	/**
@@ -3200,7 +2805,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	{
 		if (!condition.getAllowedClassIds().isEmpty())
 		{
-			addCondStart(p -> condition.getAllowedClassIds().contains(p.getClassId()), html);
+			addCondStart(p -> condition.getAllowedClassIds().contains(p.getPlayerClass()), html);
 		}
 		
 		if (!condition.getPreviousQuestIds().isEmpty())
@@ -3231,9 +2836,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param classId the class ID
 	 * @param html the HTML to display if the condition is not met
 	 */
-	public void addCondNotClassId(ClassId classId, String html)
+	public void addCondNotClassId(PlayerClass classId, String html)
 	{
-		addCondStart(p -> p.getClassId() != classId, html);
+		addCondStart(p -> p.getPlayerClass() != classId, html);
 	}
 	
 	/**
@@ -3242,9 +2847,9 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 * @param pairs the HTML to display if the condition is not met per each npc
 	 */
 	@SafeVarargs
-	public final void addCondNotClassId(ClassId classId, KeyValuePair<Integer, String>... pairs)
+	public final void addCondNotClassId(PlayerClass classId, KeyValuePair<Integer, String>... pairs)
 	{
-		addCondStart(p -> p.getClassId() != classId, pairs);
+		addCondStart(p -> p.getPlayerClass() != classId, pairs);
 	}
 	
 	/**

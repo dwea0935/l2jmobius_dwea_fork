@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -143,7 +143,7 @@ public class DarkWaterDragon extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final int npcId = npc.getId();
 		final int npcObjId = npc.getObjectId();
@@ -170,11 +170,10 @@ public class DarkWaterDragon extends AbstractNpcAI
 				spawnShade(originalAttacker, SHADE2, npc.getX() - 150, npc.getY() + 150, npc.getZ());
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int npcId = npc.getId();
 		final int npcObjId = npc.getObjectId();
@@ -200,11 +199,10 @@ public class DarkWaterDragon extends AbstractNpcAI
 			MY_TRACKING_SET.remove(npcObjId);
 			ID_MAP.remove(npcObjId);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final int npcId = npc.getId();
 		final int npcObjId = npc.getObjectId();
@@ -230,7 +228,6 @@ public class DarkWaterDragon extends AbstractNpcAI
 			startQuestTimer("fafurion_poison", 3000, npc, null, true); // Every three seconds reduces Fafurions hp like it is poisoned
 			startQuestTimer("fafurion_despawn", 120000, npc, null); // Fafurion Kindred disappears after two minutes
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public void spawnShade(Creature attacker, int npcId, int x, int y, int z)
@@ -238,7 +235,7 @@ public class DarkWaterDragon extends AbstractNpcAI
 		final Npc shade = addSpawn(npcId, x, y, z, 0, false, 0);
 		shade.setRunning();
 		shade.asAttackable().addDamageHate(attacker, 0, 999);
-		shade.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, attacker);
+		shade.getAI().setIntention(Intention.ATTACK, attacker);
 	}
 	
 	public static void main(String[] args)

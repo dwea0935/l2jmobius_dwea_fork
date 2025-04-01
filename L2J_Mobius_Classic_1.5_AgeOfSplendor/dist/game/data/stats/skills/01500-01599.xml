@@ -3471,7 +3471,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>379</effectPoint>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isSharedWithSummon>false</isSharedWithSummon>
 		<magicCriticalRate>5</magicCriticalRate>

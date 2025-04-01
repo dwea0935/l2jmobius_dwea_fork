@@ -40,7 +40,7 @@ public class Q00167_DwarvenKinship extends Quest
 	
 	public Q00167_DwarvenKinship()
 	{
-		super(167);
+		super(167, "Dwarven Kinship");
 		addStartNpc(CARLON);
 		addTalkId(CARLON, NORMAN, HAPROCK);
 		registerQuestItems(CARLONS_LETTER, NORMANS_LETTER);

@@ -31,13 +31,13 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.PartyMessageType;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.interfaces.INamable;
+import org.l2jmobius.gameserver.model.groups.PartyMessageType;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -48,7 +48,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
 
-public class CursedWeapon implements INamable
+public class CursedWeapon
 {
 	private static final Logger LOGGER = Logger.getLogger(CursedWeapon.class.getName());
 	
@@ -109,7 +109,7 @@ public class CursedWeapon implements INamable
 				_player.storeMe();
 				
 				// Destroy
-				_player.getInventory().destroyItemByItemId("", _itemId, 1, _player, null);
+				_player.getInventory().destroyItemByItemId(ItemProcessType.NONE, _itemId, 1, _player, null);
 				_player.sendItemList();
 				_player.broadcastUserInfo();
 			}
@@ -152,7 +152,7 @@ public class CursedWeapon implements INamable
 			if ((_player != null) && (_player.getInventory().getItemByItemId(_itemId) != null))
 			{
 				// Destroy
-				_player.getInventory().destroyItemByItemId("", _itemId, 1, _player, null);
+				_player.getInventory().destroyItemByItemId(ItemProcessType.NONE, _itemId, 1, _player, null);
 				_player.sendItemList();
 				_player.broadcastUserInfo();
 			}
@@ -231,7 +231,7 @@ public class CursedWeapon implements INamable
 		else
 		{
 			_item = _player.getInventory().getItemByItemId(_itemId);
-			_player.dropItem("DieDrop", _item, killer, true);
+			_player.dropItem(ItemProcessType.DEATH, _item, killer, true);
 			_player.setReputation(_playerReputation);
 			_player.setPkKills(_playerPkKills);
 			_player.setCursedWeaponEquippedId(0);
@@ -364,7 +364,7 @@ public class CursedWeapon implements INamable
 		{
 			// TODO: Verify the following system message, may still be custom.
 			player.sendPacket(SystemMessageId.YOU_HAVE_FAILED_TO_PICK_UP_S1);
-			player.dropItem("InvDrop", item, null, true);
+			player.dropItem(ItemProcessType.DROP, item, null, true);
 			return;
 		}
 		
@@ -409,8 +409,7 @@ public class CursedWeapon implements INamable
 		// Refresh player stats
 		_player.broadcastUserInfo();
 		
-		final SocialAction atk = new SocialAction(_player.getObjectId(), 17);
-		_player.broadcastPacket(atk);
+		ThreadPool.schedule(() -> _player.broadcastPacket(new SocialAction(_player.getObjectId(), 17)), 300);
 		
 		sm = new SystemMessage(SystemMessageId.THE_S2_S_OWNER_HAS_APPEARED_IN_S1_THE_TREASURE_CHEST_CONTAINS_S2_ADENA_FIXED_REWARD_S3_ADDITIONAL_REWARD_S4_THE_ADENA_WILL_BE_GIVEN_TO_THE_LAST_OWNER_AT_23_59);
 		sm.addZoneName(_player.getX(), _player.getY(), _player.getZ()); // Region Name
@@ -571,7 +570,6 @@ public class CursedWeapon implements INamable
 		return _endTime;
 	}
 	
-	@Override
 	public String getName()
 	{
 		return _name;

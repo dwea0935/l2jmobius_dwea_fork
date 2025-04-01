@@ -25,8 +25,9 @@ import java.util.List;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.AttendanceRewardData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.AttendanceInfoHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.AttendanceInfoHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -77,12 +78,12 @@ public class RequestVipAttendanceItemReward extends ClientPacket
 			for (int i = rewardIndex; i < (_day - 1); i++)
 			{
 				final ItemHolder unreclaimedReward = rewards.get(i);
-				player.addItem("Attendance Reward", unreclaimedReward, player, true);
+				player.addItem(ItemProcessType.REWARD, unreclaimedReward, player, true);
 			}
 			
 			// Claim the current day's reward
 			final ItemHolder reward = rewards.get(_day - 1); // Subtract 1 because the index is 0-based.
-			player.addItem("Attendance Reward", reward, player, true);
+			player.addItem(ItemProcessType.REWARD, reward, player, true);
 			player.setAttendanceInfo(_day); // Update reward index.
 			
 			// Send message.

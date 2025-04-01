@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="49100" name="Teleport: Floran" type="EtcItem">
 		<!-- Magic stone, used to teleport the character to Floran Village. Cooldown: 60 minutes. -->
@@ -103,7 +103,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="32012" level="1" /> <!-- High-Quality Dye Chest -->
+			<skill id="32012" level="1" /> <!-- High-grade Dye Chest -->
 		</skills>
 	</item>
 	<item id="49111" name="Dye Chest" type="EtcItem">
@@ -115,7 +115,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="32013" level="1" /> <!-- Wind Dye Pack -->
+			<skill id="32013" level="1" /> <!-- Dye Chest -->
 		</skills>
 	</item>
 	<item id="49112" name="Staff Chest" additionalName="Grade C" type="EtcItem">

@@ -16,17 +16,17 @@
  */
 package quests.Q00084_SagaOfTheGhostSentinel;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * Saga of the Ghost Sentinel (84)
  * @author Emperorc
  */
-public class Q00084_SagaOfTheGhostSentinel extends SagasSuperClass
+public class Q00084_SagaOfTheGhostSentinel extends AbstractSagaQuest
 {
 	public Q00084_SagaOfTheGhostSentinel()
 	{
-		super(84);
+		super(84, "Saga of the Ghost Sentinel");
 		_npc = new int[]
 		{
 			30702,

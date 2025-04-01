@@ -415,8 +415,8 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21477" level="1" /> <!-- Power of Abundance - Lv. 1 -->
-			<skill id="21364" level="9" /> <!-- Talisman - Abundance -->
+			<skill id="21477" level="1" /> <!-- Power of Abundance -->
+			<skill id="21364" level="1" subLevel="9001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26339" name="Talisman - Abundance Lv. 2 (High-grade)" type="Armor">
@@ -428,8 +428,8 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21477" level="2" /> <!-- Power of Abundance - Lv. 1 -->
-			<skill id="21364" level="10" /> <!-- Talisman - Abundance -->
+			<skill id="21477" level="2" /> <!-- Power of Abundance -->
+			<skill id="21364" level="1" subLevel="9002" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26340" name="Talisman - Abundance Lv. 3 (High-grade)" type="Armor">
@@ -441,8 +441,8 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21477" level="3" /> <!-- Power of Abundance - Lv. 1 -->
-			<skill id="21364" level="11" /> <!-- Talisman - Abundance -->
+			<skill id="21477" level="3" /> <!-- Power of Abundance -->
+			<skill id="21364" level="1" subLevel="9003" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26341" name="Talisman - Abundance Lv. 4 (High-grade)" type="Armor">
@@ -454,8 +454,8 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21477" level="4" /> <!-- Power of Abundance - Lv. 1 -->
-			<skill id="21364" level="12" /> <!-- Talisman - Abundance -->
+			<skill id="21477" level="4" /> <!-- Power of Abundance -->
+			<skill id="21364" level="1" subLevel="9004" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26342" name="Recipe: Talisman - Abundance Lv. 1 (High-grade)" type="EtcItem">

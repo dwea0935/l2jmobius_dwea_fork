@@ -29,13 +29,15 @@ import org.l2jmobius.commons.util.StringUtil;
 
 public class OlympiadFormatter extends Formatter
 {
-	private final SimpleDateFormat dateFmt = new SimpleDateFormat("dd/MM/yyyy H:mm:ss");
+	private final SimpleDateFormat _dateFormat = new SimpleDateFormat("dd/MM/yyyy H:mm:ss");
 	
 	@Override
 	public String format(LogRecord record)
 	{
 		final Object[] params = record.getParameters();
-		final StringBuilder output = StringUtil.startAppend(30 + record.getMessage().length() + (params == null ? 0 : params.length * 10), dateFmt.format(new Date(record.getMillis())), ",", record.getMessage());
+		final StringBuilder output = new StringBuilder(30 + record.getMessage().length() + (params == null ? 0 : params.length * 10));
+		StringUtil.append(output, _dateFormat.format(new Date(record.getMillis())), ",", record.getMessage());
+		
 		if (params != null)
 		{
 			for (Object p : params)
@@ -44,9 +46,11 @@ public class OlympiadFormatter extends Formatter
 				{
 					continue;
 				}
+				
 				StringUtil.append(output, ",", p.toString());
 			}
 		}
+		
 		output.append(System.lineSeparator());
 		return output.toString();
 	}

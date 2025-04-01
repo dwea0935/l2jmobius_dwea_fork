@@ -16,7 +16,6 @@
  */
 package quests.Q10365_SeekerEscort;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -24,9 +23,10 @@ import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExRotation;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q10364_ObligationsOfTheSeeker.Q10364_ObligationsOfTheSeeker;
 
@@ -253,7 +253,7 @@ public class Q10365_SeekerEscort extends Quest
 		if (owner != null)
 		{
 			showOnScreenMsg(owner, NpcStringId.CATCH_UP_TO_KING_HE_S_WAITING, ExShowScreenMessage.TOP_CENTER, 4500);
-			npc.setHeading(Util.calculateHeadingFrom(npc, owner));
+			npc.setHeading(LocationUtil.calculateHeadingFrom(npc, owner));
 			npc.broadcastPacket(new ExRotation(npc.getObjectId(), npc.getHeading()));
 			startQuestTimer("CHECK_PLAYER", 1000, npc, owner);
 		}

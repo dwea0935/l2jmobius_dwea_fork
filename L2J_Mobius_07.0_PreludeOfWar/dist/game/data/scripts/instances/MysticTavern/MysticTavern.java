@@ -1,35 +1,39 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package instances.MysticTavern;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.zone.type.ScriptZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.OnEventTrigger;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
@@ -168,7 +172,7 @@ public class MysticTavern extends AbstractNpcAI
 				if (GLOBE_1_ZONE.isInsideZone(npc))
 				{
 					npc.broadcastPacket(new OnEventTrigger(18133000, true));
-					_brodien.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-50000, -148560, -14152));
+					_brodien.getAI().setIntention(Intention.MOVE_TO, new Location(-50000, -148560, -14152));
 					_brodien.setHeading(48440);
 					startQuestTimer("msg_text_brodien_1", 16000, _brodien, player);
 					startQuestTimer("msg_text_brodien_2", 23000, _brodien, player);
@@ -177,7 +181,7 @@ public class MysticTavern extends AbstractNpcAI
 				else if (GLOBE_2_ZONE.isInsideZone(npc))
 				{
 					npc.broadcastPacket(new OnEventTrigger(18132000, true));
-					_lupia.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-50161, -148356, -14152));
+					_lupia.getAI().setIntention(Intention.MOVE_TO, new Location(-50161, -148356, -14152));
 					_lupia.setHeading(45808);
 					startQuestTimer("msg_text_lupia_1", 12000, _lupia, player);
 					startQuestTimer("msg_text_lupia_2", 19000, _lupia, player);
@@ -186,7 +190,7 @@ public class MysticTavern extends AbstractNpcAI
 				else if (GLOBE_3_ZONE.isInsideZone(npc))
 				{
 					npc.broadcastPacket(new OnEventTrigger(18131000, true));
-					_mey.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-50092, -148096, -14152));
+					_mey.getAI().setIntention(Intention.MOVE_TO, new Location(-50092, -148096, -14152));
 					_mey.setHeading(34669);
 					startQuestTimer("msg_text_mey_1", 8000, _mey, player);
 					startQuestTimer("msg_text_mey_2", 15000, _mey, player);
@@ -195,7 +199,7 @@ public class MysticTavern extends AbstractNpcAI
 				else if (GLOBE_4_ZONE.isInsideZone(npc))
 				{
 					npc.broadcastPacket(new OnEventTrigger(18135000, true));
-					_lollia.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-49480, -148074, -14152));
+					_lollia.getAI().setIntention(Intention.MOVE_TO, new Location(-49480, -148074, -14152));
 					_lollia.setHeading(13255);
 					startQuestTimer("msg_text_lollia_1", 10000, _lollia, player);
 					startQuestTimer("msg_text_lollia_2", 17000, _lollia, player);
@@ -204,7 +208,7 @@ public class MysticTavern extends AbstractNpcAI
 				else if (GLOBE_5_ZONE.isInsideZone(npc))
 				{
 					npc.broadcastPacket(new OnEventTrigger(18134000, true));
-					_hanna.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-49283, -148179, -14152));
+					_hanna.getAI().setIntention(Intention.MOVE_TO, new Location(-49283, -148179, -14152));
 					_hanna.setHeading(26747);
 					startQuestTimer("msg_text_hanna_1", 12000, _hanna, player);
 					startQuestTimer("msg_text_hanna_2", 19000, _hanna, player);
@@ -320,7 +324,7 @@ public class MysticTavern extends AbstractNpcAI
 			}
 			case "return":
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, npc.getSpawn());
+				npc.getAI().setIntention(Intention.MOVE_TO, npc.getSpawn());
 				npc.setHeading(npc.getSpawn().getHeading());
 				break;
 			}
@@ -352,7 +356,7 @@ public class MysticTavern extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -382,7 +386,6 @@ public class MysticTavern extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override

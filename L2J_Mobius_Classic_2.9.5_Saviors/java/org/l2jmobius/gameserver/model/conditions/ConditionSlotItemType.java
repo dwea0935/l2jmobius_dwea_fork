@@ -53,6 +53,7 @@ public class ConditionSlotItemType extends ConditionInventory
 		{
 			return false;
 		}
+		
 		return (itemSlot.getTemplate().getItemMask() & _mask) != 0;
 	}
 }

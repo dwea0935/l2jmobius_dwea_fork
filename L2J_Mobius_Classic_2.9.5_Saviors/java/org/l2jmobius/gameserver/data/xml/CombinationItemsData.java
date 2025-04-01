@@ -35,6 +35,7 @@ import org.l2jmobius.gameserver.model.item.combination.CombinationItemType;
 public class CombinationItemsData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(CombinationItemsData.class.getName());
+	
 	private final List<CombinationItem> _items = new ArrayList<>();
 	
 	protected CombinationItemsData()
@@ -51,9 +52,9 @@ public class CombinationItemsData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "item", itemNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "item", itemNode ->
 		{
 			final CombinationItem item = new CombinationItem(new StatSet(parseAttributes(itemNode)));
 			

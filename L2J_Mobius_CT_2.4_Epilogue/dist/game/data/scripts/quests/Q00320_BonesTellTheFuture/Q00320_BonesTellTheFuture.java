@@ -16,9 +16,9 @@
  */
 package quests.Q00320_BonesTellTheFuture;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -46,7 +46,7 @@ public class Q00320_BonesTellTheFuture extends Quest
 	
 	public Q00320_BonesTellTheFuture()
 	{
-		super(320);
+		super(320, "Bones Tell the Future");
 		addStartNpc(TETRACH_KAITAR);
 		addTalkId(TETRACH_KAITAR);
 		addKillId(MONSTERS);
@@ -66,14 +66,13 @@ public class Q00320_BonesTellTheFuture extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, 1, 3, npc);
 		if ((qs != null) && giveItemRandomly(killer, npc, BONE_FRAGMENT, 1, REQUIRED_BONE_COUNT, DROP_CHANCE, true))
 		{
 			qs.setCond(2);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

@@ -1,19 +1,40 @@
+/*
+ * Copyright (c) 2013 L2jMobius
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 package org.l2jmobius.gameserver.network.clientpackets.pet;
 
 import java.util.List;
 import java.util.Map.Entry;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.enums.EvolveLevel;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.PetTypeData;
-import org.l2jmobius.gameserver.enums.EvolveLevel;
 import org.l2jmobius.gameserver.model.PetData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 
 /**
@@ -46,11 +67,11 @@ public class ExEvolvePet extends ClientPacket
 			final boolean isAbleToEvolveLevel1 = (pet.getLevel() >= 40) && (pet.getEvolveLevel() == EvolveLevel.None.ordinal());
 			final boolean isAbleToEvolveLevel2 = (pet.getLevel() >= 76) && (pet.getEvolveLevel() == EvolveLevel.First.ordinal());
 			
-			if (isAbleToEvolveLevel1 && activeChar.destroyItemByItemId("PetEvolve", 94096, 1, null, true))
+			if (isAbleToEvolveLevel1 && activeChar.destroyItemByItemId(ItemProcessType.FEE, 94096, 1, null, true))
 			{
 				doEvolve(activeChar, pet, EvolveLevel.First);
 			}
-			else if (isAbleToEvolveLevel2 && activeChar.destroyItemByItemId("PetEvolve", 94117, 1, null, true))
+			else if (isAbleToEvolveLevel2 && activeChar.destroyItemByItemId(ItemProcessType.FEE, 94117, 1, null, true))
 			{
 				doEvolve(activeChar, pet, EvolveLevel.Second);
 			}

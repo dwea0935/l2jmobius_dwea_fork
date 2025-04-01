@@ -23,8 +23,8 @@ package org.l2jmobius.gameserver.network.clientpackets.virtualItem;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.l2jmobius.gameserver.data.holders.VirtualItemHolder;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.VirtualItemHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.virtualItem.ExVirtualItemSystem;

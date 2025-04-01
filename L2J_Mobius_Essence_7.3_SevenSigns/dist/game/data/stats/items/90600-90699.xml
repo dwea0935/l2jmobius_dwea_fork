@@ -433,7 +433,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90654" name="Wynn's Soul Crystal Lv. 1" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +4%. Wynn's Decrease Weight. - Weight limit +1000 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +4%. Wynn's Decrease Weight. - Weight limit +1000 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv01" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -441,7 +441,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90655" name="Wynn's Soul Crystal Lv. 2" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +5%. Wynn's Decrease Weight. - Weight limit +1400 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +5%. Wynn's Decrease Weight. - Weight limit +1400 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv01" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -449,7 +449,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90656" name="Wynn's Soul Crystal Lv. 3" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +6%. Wynn's Decrease Weight. - Weight limit +1800 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +6%. Wynn's Decrease Weight. - Weight limit +1800 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv01" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -457,7 +457,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90657" name="Wynn's Soul Crystal Lv. 4" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +7%. Wynn's Decrease Weight. - Weight limit +2200 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +7%. Wynn's Decrease Weight. - Weight limit +2200 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv01" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -465,7 +465,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90658" name="Wynn's Soul Crystal Lv. 5" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +8%. Wynn's Decrease Weight. - Weight limit +2600 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +8%. Wynn's Decrease Weight. - Weight limit +2600 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv01" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -473,7 +473,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90659" name="Wynn's Soul Crystal Lv. 6" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +9%. Wynn's Decrease Weight. - Weight limit +3000 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +9%. Wynn's Decrease Weight. - Weight limit +3000 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv02" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -481,7 +481,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90660" name="Wynn's Soul Crystal Lv. 7" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +10%. Wynn's Decrease Weight. - Weight limit +3400 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +10%. Wynn's Decrease Weight. - Weight limit +3400 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv02" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -489,7 +489,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90661" name="Wynn's Soul Crystal Lv. 8" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +12%. Wynn's Decrease Weight. - Weight limit +3800 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +12%. Wynn's Decrease Weight. - Weight limit +3800 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv02" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -497,7 +497,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90662" name="Wynn's Soul Crystal Lv. 9" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +14%. Wynn's Decrease Weight. - Weight limit +4200 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +14%. Wynn's Decrease Weight. - Weight limit +4200 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv02" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -505,7 +505,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90663" name="Wynn's Soul Crystal Lv. 10" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +16%. Wynn's Decrease Weight. - Weight limit +4600 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +16%. Wynn's Decrease Weight. - Weight limit +4600 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv02" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -513,7 +513,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90664" name="Wynn's Soul Crystal Lv. 11" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +18%. Wynn's Decrease Weight. - Weight limit +5200 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +18%. Wynn's Decrease Weight. - Weight limit +5200 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv03" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -521,7 +521,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90665" name="Wynn's Soul Crystal Lv. 12" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +20%. Wynn's Decrease Weight. - Weight limit +5800 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +20%. Wynn's Decrease Weight. - Weight limit +5800 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv03" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -529,7 +529,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90666" name="Wynn's Soul Crystal Lv. 13" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +22%. Wynn's Decrease Weight. - Weight limit +6400 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +22%. Wynn's Decrease Weight. - Weight limit +6400 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv03" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -537,7 +537,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90667" name="Wynn's Soul Crystal Lv. 14" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +25%. Wynn's Decrease Weight. - Weight limit +7000 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. Can be enhanced through compounding. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +25%. Wynn's Decrease Weight. - Weight limit +7000 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv03" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />
@@ -545,7 +545,7 @@
 		<set name="material" val="CRYSTAL" />
 	</item>
 	<item id="90668" name="Wynn's Soul Crystal Lv. 15" type="EtcItem">
-		<!-- Has two properties. You can choose one of them and apply it to your weapon through a town blacksmith. <Soul crystal properties>. Wynn's Mana Effect Boost. - Max MP +28%. Wynn's Decrease Weight. - Weight limit +7600 -->
+		<!-- A soul crystal with two properties. Talk to a town blacksmith to apply one of them to your weapon. <Soul crystal properties>. Wynn's Mana Reserve Boost. - Max MP +28%. Wynn's Decrease Weight. - Weight limit +7600 -->
 		<set name="icon" val="BranchIcon.Icon.g_rune_wynn_lv03" />
 		<set name="weight" val="20" />
 		<set name="is_stackable" val="true" />

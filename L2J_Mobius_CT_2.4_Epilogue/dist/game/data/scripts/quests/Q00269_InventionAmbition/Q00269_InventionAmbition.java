@@ -52,7 +52,7 @@ public class Q00269_InventionAmbition extends Quest
 	
 	public Q00269_InventionAmbition()
 	{
-		super(269);
+		super(269, "Invention Ambition");
 		addStartNpc(INVENTOR_MARU);
 		addTalkId(INVENTOR_MARU);
 		addKillId(MONSTERS.keySet());
@@ -104,14 +104,13 @@ public class Q00269_InventionAmbition extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, -1, 3, npc);
 		if (qs != null)
 		{
 			giveItemRandomly(qs.getPlayer(), npc, ENERGY_ORE, 1, 0, MONSTERS.get(npc.getId()), true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

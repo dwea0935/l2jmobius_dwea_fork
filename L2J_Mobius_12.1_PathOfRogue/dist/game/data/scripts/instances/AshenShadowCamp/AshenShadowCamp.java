@@ -22,17 +22,17 @@ package instances.AshenShadowCamp;
 
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -522,7 +522,7 @@ public class AshenShadowCamp extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -572,7 +572,7 @@ public class AshenShadowCamp extends AbstractInstance
 					}
 				}
 			}
-			else if ((CommonUtil.contains(COMMANDERS_105, npc.getId())) || (CommonUtil.contains(COMMANDERS_110, npc.getId())) || (CommonUtil.contains(COMMANDERS_115, npc.getId())) || (CommonUtil.contains(COMMANDERS_120, npc.getId())))
+			else if ((ArrayUtil.contains(COMMANDERS_105, npc.getId())) || (ArrayUtil.contains(COMMANDERS_110, npc.getId())) || (ArrayUtil.contains(COMMANDERS_115, npc.getId())) || (ArrayUtil.contains(COMMANDERS_120, npc.getId())))
 			{
 				switch (instanceLv)
 				{
@@ -598,7 +598,7 @@ public class AshenShadowCamp extends AbstractInstance
 					}
 				}
 			}
-			else if ((CommonUtil.contains(RAIDBOSSES_105, npc.getId())) || (CommonUtil.contains(RAIDBOSSES_110, npc.getId())) || (CommonUtil.contains(RAIDBOSSES_115, npc.getId())) || (CommonUtil.contains(RAIDBOSSES_120, npc.getId())))
+			else if ((ArrayUtil.contains(RAIDBOSSES_105, npc.getId())) || (ArrayUtil.contains(RAIDBOSSES_110, npc.getId())) || (ArrayUtil.contains(RAIDBOSSES_115, npc.getId())) || (ArrayUtil.contains(RAIDBOSSES_120, npc.getId())))
 			{
 				switch (instanceLv)
 				{
@@ -680,7 +680,6 @@ public class AshenShadowCamp extends AbstractInstance
 				world.finishInstance();
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
@@ -690,10 +689,9 @@ public class AshenShadowCamp extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomWalking(false);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

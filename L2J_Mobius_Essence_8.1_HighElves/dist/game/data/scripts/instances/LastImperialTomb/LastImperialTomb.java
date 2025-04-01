@@ -25,15 +25,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -43,6 +42,7 @@ import org.l2jmobius.gameserver.network.serverpackets.NpcInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -679,7 +679,7 @@ public class LastImperialTomb extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomWalking(false);
 		npc.setImmobilized(true);
@@ -691,11 +691,10 @@ public class LastImperialTomb extends AbstractInstance
 		{
 			npc.setInvul(true);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (npc.getId() == SCARLET1)
 		{
@@ -713,26 +712,24 @@ public class LastImperialTomb extends AbstractInstance
 		if (skill != null)
 		{
 			// When Dewdrop of Destruction is used on Portraits they suicide.
-			if (CommonUtil.contains(PORTRAITS, npc.getId()) && (skill.getId() == DEWDROP_OF_DESTRUCTION_SKILL_ID))
+			if (ArrayUtil.contains(PORTRAITS, npc.getId()) && (skill.getId() == DEWDROP_OF_DESTRUCTION_SKILL_ID))
 			{
 				npc.doDie(attacker);
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if (skill.isSuicideAttack())
 		{
-			return onKill(npc, null, false);
+			onKill(npc, null, false);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = killer.getInstanceWorld();
 		if ((npc.getId() == HALL_ALARM) && (world.getStatus() == 0))
@@ -757,7 +754,7 @@ public class LastImperialTomb extends AbstractInstance
 			startQuestTimer("FINISH_CAMERA_1", 500, npc, killer, false);
 			world.finishInstance();
 		}
-		else if (CommonUtil.contains(DEMONS, npc.getId()))
+		else if (ArrayUtil.contains(DEMONS, npc.getId()))
 		{
 			final List<Npc> demons = world.getParameters().getList("demons", Npc.class);
 			if (demons != null)
@@ -766,7 +763,7 @@ public class LastImperialTomb extends AbstractInstance
 				world.setParameter("demons", demons);
 			}
 		}
-		else if (CommonUtil.contains(PORTRAITS, npc.getId()))
+		else if (ArrayUtil.contains(PORTRAITS, npc.getId()))
 		{
 			final Map<Npc, Integer> portraits = world.getParameters().getMap("portraits", Npc.class, Integer.class);
 			if (portraits != null)
@@ -824,7 +821,6 @@ public class LastImperialTomb extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void playRandomSong(Instance world)
@@ -865,7 +861,7 @@ public class LastImperialTomb extends AbstractInstance
 				player.setTarget(null);
 				player.stopMove(null);
 				player.setImmobilized(true);
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				player.getAI().setIntention(Intention.IDLE);
 			}
 		}
 	}

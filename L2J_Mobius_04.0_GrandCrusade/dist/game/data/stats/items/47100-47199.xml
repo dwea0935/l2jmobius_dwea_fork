@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="47100" name="Lilith Soul Crystal" additionalName="Stage 1" type="EtcItem">
 		<!-- A crystal with Lilith's Soul. Can assign soul crystal enhancement ability to weapons. Can be upgraded to the next stage by compounding with a monster's soul. If upgrade is successful, the power of the soul sealed into the Soul Crystal becomes stronger. -->
@@ -1020,7 +1020,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="18603" level="1" /> <!-- Basic Supply Box (lower level) -->
+			<skill id="18603" level="1" /> <!-- Basic Supply Box -->
 		</skills>
 	</item>
 	<item id="47185" name="Intermediate Supply Box" additionalName="Giant Trackers" type="EtcItem">
@@ -1034,7 +1034,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="18603" level="2" /> <!-- Intermediate Supply Box (lower level) -->
+			<skill id="18603" level="2" /> <!-- Intermediate Supply Box -->
 		</skills>
 	</item>
 	<item id="47186" name="Advanced Supply Box" additionalName="Giant Trackers" type="EtcItem">
@@ -1048,7 +1048,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="18603" level="3" /> <!-- Advanced Supply Box (lower level) -->
+			<skill id="18603" level="3" /> <!-- Advanced Supply Box -->
 		</skills>
 	</item>
 	<item id="47187" name="Proofs of Battle Readiness" type="EtcItem">

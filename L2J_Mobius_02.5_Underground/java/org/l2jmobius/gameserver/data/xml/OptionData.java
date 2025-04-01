@@ -28,9 +28,9 @@ import org.w3c.dom.Document;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.handler.EffectHandler;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.options.Options;
 import org.l2jmobius.gameserver.model.options.OptionSkillHolder;
 import org.l2jmobius.gameserver.model.options.OptionSkillType;
+import org.l2jmobius.gameserver.model.options.Options;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
@@ -64,9 +64,9 @@ public class OptionData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "option", optionNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "option", optionNode ->
 		{
 			final int id = parseInteger(optionNode.getAttributes(), "id");
 			final Options option = new Options(id);

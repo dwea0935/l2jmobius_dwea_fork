@@ -17,14 +17,14 @@
 package quests.Q00223_TestOfTheChampion;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Test Of The Champion (223)
@@ -185,7 +185,7 @@ public class Q00223_TestOfTheChampion extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isStarted())
@@ -276,14 +276,13 @@ public class Q00223_TestOfTheChampion extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -410,7 +409,6 @@ public class Q00223_TestOfTheChampion extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -422,11 +420,11 @@ public class Q00223_TestOfTheChampion extends Quest
 		{
 			if (npc.getId() == VETERAN_ASCALON)
 			{
-				if ((player.getClassId() == ClassId.WARRIOR) || (player.getClassId() == ClassId.ORC_RAIDER))
+				if ((player.getPlayerClass() == PlayerClass.WARRIOR) || (player.getPlayerClass() == PlayerClass.ORC_RAIDER))
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
-						if (player.getClassId() == ClassId.WARRIOR)
+						if (player.getPlayerClass() == PlayerClass.WARRIOR)
 						{
 							htmltext = "30624-03.htm";
 						}

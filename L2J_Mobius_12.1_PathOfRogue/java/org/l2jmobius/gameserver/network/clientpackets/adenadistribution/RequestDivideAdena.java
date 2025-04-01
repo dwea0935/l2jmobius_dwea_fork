@@ -18,10 +18,11 @@ package org.l2jmobius.gameserver.network.clientpackets.adenadistribution;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.CommandChannel;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.AdenaDistributionRequest;
+import org.l2jmobius.gameserver.model.groups.CommandChannel;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.adenadistribution.ExDivideAdenaCancel;
@@ -117,7 +118,7 @@ public class RequestDivideAdena extends ClientPacket
 		}
 		
 		final long memberAdenaGet = (long) Math.floor(_adenaCount / targets.size());
-		if (player.reduceAdena("Adena Distribution", memberAdenaGet * targets.size(), player, false))
+		if (player.reduceAdena(ItemProcessType.TRANSFER, memberAdenaGet * targets.size(), player, false))
 		{
 			for (Player target : targets)
 			{
@@ -127,7 +128,7 @@ public class RequestDivideAdena extends ClientPacket
 					// those sys msg exists and bother me ADENA_WAS_NOT_DISTRIBUTED_TO_S1 / YOU_DID_NOT_RECEIVE_ADENA_DISTRIBUTION
 					continue;
 				}
-				target.addAdena("Adena Distribution", memberAdenaGet, player, false);
+				target.addAdena(ItemProcessType.TRANSFER, memberAdenaGet, player, false);
 				target.sendPacket(new ExDivideAdenaDone(party.isLeader(target), (commandChannel != null) && commandChannel.isLeader(target), _adenaCount, memberAdenaGet, targets.size(), player.getName()));
 				target.removeRequest(AdenaDistributionRequest.class);
 			}

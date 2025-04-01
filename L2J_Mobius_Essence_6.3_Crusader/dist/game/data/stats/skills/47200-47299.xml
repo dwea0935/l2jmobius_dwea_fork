@@ -258,7 +258,7 @@
 		<abnormalVisualEffect>V_VITAL_GAIN_LV1</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -282,7 +282,7 @@
 		<abnormalVisualEffect>V_VITAL_GAIN_LV2</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -310,7 +310,7 @@
 		<abnormalVisualEffect>V_VITAL_GAIN_LV3</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -338,7 +338,7 @@
 		<abnormalVisualEffect>V_VITAL_GAIN_LV4</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -712,7 +712,7 @@
 		<effectPoint>1</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>0</isMagic> <!-- Auto generated with parser -->
 		<itemConsumeCount>50</itemConsumeCount>
 		<itemConsumeId>3031</itemConsumeId>
@@ -911,7 +911,6 @@
 		<activateRate>50</activateRate>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>PHYSICAL</basicProperty>
-		<basicProperty>PHYSICAL</basicProperty>
 		<castRange>500</castRange>
 		<coolTime>200</coolTime>
 		<effectPoint>
@@ -1040,7 +1039,7 @@
 		<abnormalType>LIFE_GAIN</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1064,7 +1063,7 @@
 		<abnormalVisualEffect>V_VITAL_GAIN_LV5</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1603,7 +1602,6 @@
 		<operateType>A2</operateType>
 		<targetType>TARGET_OR_SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
-		<abnormalTime>5</abnormalTime>
 		<abnormalTime>5</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<castRange>700</castRange>
@@ -2800,7 +2798,6 @@
 		</mpConsume>
 		<mpInitialConsume>10</mpInitialConsume>
 		<reuseDelay>300000</reuseDelay>
-		<reuseDelay>300000</reuseDelay>
 		<staticReuse>true</staticReuse>
 		<effects>
 			<effect name="MaxHp">
@@ -3095,9 +3092,7 @@
 			<value level="8">2</value>
 			<value level="9">2</value>
 		</itemConsumeCount>
-		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>3031</itemConsumeId>
-		<itemConsumeId>3031</itemConsumeId> <!-- Spirit Ore -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
 			<value level="1">30</value>
@@ -4559,7 +4554,6 @@
 		</abnormalLevel>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
-		<isTriggeredSkill>true</isTriggeredSkill>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>

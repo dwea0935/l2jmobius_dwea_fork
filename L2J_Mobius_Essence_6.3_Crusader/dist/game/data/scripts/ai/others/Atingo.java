@@ -30,7 +30,7 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureHpChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureHpChange;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 
@@ -72,10 +72,9 @@ public class Atingo extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.addListener(new ConsumerEventListener(npc, EventType.ON_CREATURE_HP_CHANGE, (Consumer<OnCreatureHpChange>) this::onHpChange, this));
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -105,7 +104,7 @@ public class Atingo extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int petObjId = npc.getScriptValue();
 		if (petObjId > 0)
@@ -125,8 +124,6 @@ public class Atingo extends AbstractNpcAI
 				addSpawn(ATINGO, getRandomEntry(SPAWNS));
 			}
 		}, ATINGO_RESPAWN_DURATION.toMillis());
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

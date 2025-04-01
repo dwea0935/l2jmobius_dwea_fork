@@ -20,10 +20,10 @@
  */
 package quests.Q00345_MethodToRaiseTheDead;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -48,7 +48,7 @@ public class Q00345_MethodToRaiseTheDead extends Quest
 	
 	public Q00345_MethodToRaiseTheDead()
 	{
-		super(345);
+		super(345, "Method to Raise the Dead");
 		registerQuestItems(VICTIM_ARM_BONE, VICTIM_THIGH_BONE, VICTIM_SKULL, VICTIM_RIB_BONE, VICTIM_SPINE, POWDER_TO_SUMMON_DEAD_SOULS, USELESS_BONE_PIECES);
 		addStartNpc(DOROTHY);
 		addTalkId(DOROTHY, XENOVIA, MEDIUM_JAR, ORPHEUS);
@@ -241,12 +241,12 @@ public class Q00345_MethodToRaiseTheDead extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isCond(1))
 		{
-			return null;
+			return;
 		}
 		
 		if (getRandom(4) == 0)
@@ -256,13 +256,11 @@ public class Q00345_MethodToRaiseTheDead extends Quest
 			{
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				giveItems(player, randomPart, 1);
-				return null;
+				return;
 			}
 		}
 		
 		playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		giveItems(player, USELESS_BONE_PIECES, 1);
-		
-		return null;
 	}
 }

@@ -28,7 +28,8 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -79,39 +80,37 @@ public class BeeHive extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (!isSummon)
 		{
-			return super.onAttack(npc, attacker, damage, isSummon);
+			return;
 		}
 		
 		final Pet pet = attacker.getPet();
 		if ((pet == null) || (pet.getCurrentFed() == 0) || pet.isDead() || pet.isAffectedBySkill(SKILLS[0]) || pet.isAffectedBySkill(SKILLS[1]))
 		{
-			return super.onAttack(npc, attacker, damage, isSummon);
+			return;
 		}
 		
 		if ((npc.getId() == PET_70_MONSTER) || (npc.getId() == PET_80_MONSTER))
 		{
 			pet.doCast(getRandomEntry(SKILLS).getSkill());
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (killer.hasPet() && ((npc.getId() == PET_70_MONSTER) || (npc.getId() == PET_80_MONSTER)))
 		{
 			if (getRandom(1000) < 1)
 			{
-				killer.addItem("Bee hive special monster", LOW_PET_XP_CRYSTAL, 1, killer, true);
+				killer.addItem(ItemProcessType.QUEST, LOW_PET_XP_CRYSTAL, 1, killer, true);
 			}
 			else if (getRandom(100) < 1)
 			{
-				killer.addItem("Bee hive special monster", TAG_PET_BOX, 1, killer, true);
+				killer.addItem(ItemProcessType.QUEST, TAG_PET_BOX, 1, killer, true);
 			}
 		}
 		else if (getRandomBoolean())
@@ -121,7 +120,7 @@ public class BeeHive extends AbstractNpcAI
 			{
 				if (((monster.getId() == PET_70_MONSTER) || (monster.getId() == PET_80_MONSTER) || (monster.getId() == PLAYER_70_MONSTER) || (monster.getId() == PLAYER_80_MONSTER)) && (monster.getScriptValue() == killer.getObjectId()))
 				{
-					return super.onKill(npc, killer, isSummon);
+					return;
 				}
 			}
 			
@@ -142,8 +141,6 @@ public class BeeHive extends AbstractNpcAI
 				addAttackPlayerDesire(spawn, killer.hasPet() ? killer.getPet() : killer);
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

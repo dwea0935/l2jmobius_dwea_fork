@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * Destroy Key Targets (738)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00738_DestroyKeyTargets extends TerritoryWarSuperClass
 {
 	public Q00738_DestroyKeyTargets()
 	{
-		super(738);
+		super(738, "Destroy Key Targets");
 		CLASS_IDS = new int[]
 		{
 			51,
@@ -36,10 +34,10 @@ public class Q00738_DestroyKeyTargets extends TerritoryWarSuperClass
 		};
 		RANDOM_MIN = 3;
 		RANDOM_MAX = 8;
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.YOU_HAVE_DEFEATED_S2_OF_S1_WARSMITHS_AND_OVERLORDS,
-			NpcStringId.YOU_DESTROYED_THE_ENEMY_S_PROFESSIONALS
+			"You have defeated $s2 of $s1 warsmiths and overlords.",
+			"You destroyed the enemy's professionals!"
 		};
 	}
 }

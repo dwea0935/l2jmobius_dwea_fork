@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../xsd/optionsData.xsd">
 	<option id="90600" name="All received Critical Damage -4.1%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-4.1</amount>
+				<amount>4.1</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-4.1</amount>
+				<amount>4.1</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-4.1</amount>
+				<amount>4.1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -19,15 +19,15 @@
 	<option id="90601" name="All received Critical Damage -4.4%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-4.4</amount>
+				<amount>4.4</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-4.4</amount>
+				<amount>4.4</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-4.4</amount>
+				<amount>4.4</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -35,15 +35,15 @@
 	<option id="90602" name="All received Critical Damage -4.8%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-4.8</amount>
+				<amount>4.8</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-4.8</amount>
+				<amount>4.8</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-4.8</amount>
+				<amount>4.8</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -51,15 +51,15 @@
 	<option id="90603" name="All received Critical Damage -5.2%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-5.2</amount>
+				<amount>5.2</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-5.2</amount>
+				<amount>5.2</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-5.2</amount>
+				<amount>5.2</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -67,15 +67,15 @@
 	<option id="90604" name="All received Critical Damage -5.6%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-5.6</amount>
+				<amount>5.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-5.6</amount>
+				<amount>5.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-5.6</amount>
+				<amount>5.6</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -83,15 +83,15 @@
 	<option id="90605" name="All received Critical Damage -6%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-6.0</amount>
+				<amount>6.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-6.0</amount>
+				<amount>6.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-6.0</amount>
+				<amount>6.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -99,15 +99,15 @@
 	<option id="90606" name="All received Critical Damage -6.5%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-6.5</amount>
+				<amount>6.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-6.5</amount>
+				<amount>6.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-6.5</amount>
+				<amount>6.5</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -115,15 +115,15 @@
 	<option id="90607" name="All received Critical Damage -7%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-7.0</amount>
+				<amount>7.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-7.0</amount>
+				<amount>7.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-7.0</amount>
+				<amount>7.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -131,15 +131,15 @@
 	<option id="90608" name="All received Critical Damage -7.6%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-7.6</amount>
+				<amount>7.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-7.6</amount>
+				<amount>7.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-7.6</amount>
+				<amount>7.6</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -147,15 +147,15 @@
 	<option id="90609" name="All received Critical Damage -8.2%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-8.2</amount>
+				<amount>8.2</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-8.2</amount>
+				<amount>8.2</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-8.2</amount>
+				<amount>8.2</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -163,15 +163,15 @@
 	<option id="90610" name="All received Critical Damage -8.9%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-8.9</amount>
+				<amount>8.9</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-8.9</amount>
+				<amount>8.9</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-8.9</amount>
+				<amount>8.9</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -179,15 +179,15 @@
 	<option id="90611" name="All received Critical Damage -9.6%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-9.6</amount>
+				<amount>9.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-9.6</amount>
+				<amount>9.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-9.6</amount>
+				<amount>9.6</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -195,15 +195,15 @@
 	<option id="90612" name="All received Critical Damage -11%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-11.0</amount>
+				<amount>11.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-11.0</amount>
+				<amount>11.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-11.0</amount>
+				<amount>11.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -211,15 +211,15 @@
 	<option id="90613" name="All received Critical Damage -11.5%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-11.5</amount>
+				<amount>11.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-11.5</amount>
+				<amount>11.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-11.5</amount>
+				<amount>11.5</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -227,15 +227,15 @@
 	<option id="90614" name="All received Critical Damage -12%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-12.0</amount>
+				<amount>12.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-12.0</amount>
+				<amount>12.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-12.0</amount>
+				<amount>12.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -243,15 +243,15 @@
 	<option id="90615" name="All received Critical Damage -12.5%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-12.5</amount>
+				<amount>12.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-12.5</amount>
+				<amount>12.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-12.5</amount>
+				<amount>12.5</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -259,15 +259,15 @@
 	<option id="90616" name="All received Critical Damage -13%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-13.0</amount>
+				<amount>13.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-13.0</amount>
+				<amount>13.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-13.0</amount>
+				<amount>13.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -275,15 +275,15 @@
 	<option id="90617" name="All received Critical Damage -14%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-14.0</amount>
+				<amount>14.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-14.0</amount>
+				<amount>14.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-14.0</amount>
+				<amount>14.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -291,15 +291,15 @@
 	<option id="90618" name="All received Critical Damage -15%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-15.0</amount>
+				<amount>15.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-15.0</amount>
+				<amount>15.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-15.0</amount>
+				<amount>15.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -307,15 +307,15 @@
 	<option id="90619" name="All received Critical Rate -4%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-4.0</amount>
+				<amount>4.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-4.0</amount>
+				<amount>4.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-4.0</amount>
+				<amount>4.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -323,15 +323,15 @@
 	<option id="90620" name="All received Critical Rate -4.1%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-4.1</amount>
+				<amount>4.1</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-4.1</amount>
+				<amount>4.1</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-4.1</amount>
+				<amount>4.1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -339,15 +339,15 @@
 	<option id="90621" name="All received Critical Rate -4.4%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-4.4</amount>
+				<amount>4.4</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-4.4</amount>
+				<amount>4.4</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-4.4</amount>
+				<amount>4.4</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -355,15 +355,15 @@
 	<option id="90622" name="All received Critical Rate -4.8%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-4.8</amount>
+				<amount>4.8</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-4.8</amount>
+				<amount>4.8</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-4.8</amount>
+				<amount>4.8</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -371,15 +371,15 @@
 	<option id="90623" name="All received Critical Rate -5.2%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-5.2</amount>
+				<amount>5.2</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-5.2</amount>
+				<amount>5.2</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-5.2</amount>
+				<amount>5.2</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -387,15 +387,15 @@
 	<option id="90624" name="All received Critical Rate -5.6%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-5.6</amount>
+				<amount>5.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-5.6</amount>
+				<amount>5.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-5.6</amount>
+				<amount>5.6</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -403,15 +403,15 @@
 	<option id="90625" name="All received Critical Rate -6%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-6.0</amount>
+				<amount>6.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-6.0</amount>
+				<amount>6.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-6.0</amount>
+				<amount>6.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -419,15 +419,15 @@
 	<option id="90626" name="All received Critical Rate -6.5%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-6.5</amount>
+				<amount>6.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-6.5</amount>
+				<amount>6.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-6.5</amount>
+				<amount>6.5</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -435,15 +435,15 @@
 	<option id="90627" name="All received Critical Rate -7%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-7.0</amount>
+				<amount>7.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-7.0</amount>
+				<amount>7.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-7.0</amount>
+				<amount>7.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -451,15 +451,15 @@
 	<option id="90628" name="All received Critical Rate -7.6%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-7.6</amount>
+				<amount>7.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-7.6</amount>
+				<amount>7.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-7.6</amount>
+				<amount>7.6</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -467,15 +467,15 @@
 	<option id="90629" name="All received Critical Rate -8.2%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-8.2</amount>
+				<amount>8.2</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-8.2</amount>
+				<amount>8.2</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-8.2</amount>
+				<amount>8.2</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -483,15 +483,15 @@
 	<option id="90630" name="All received Critical Rate -8.9%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-8.9</amount>
+				<amount>8.9</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-8.9</amount>
+				<amount>8.9</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-8.9</amount>
+				<amount>8.9</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -499,15 +499,15 @@
 	<option id="90631" name="All received Critical Rate -9.6%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-9.6</amount>
+				<amount>9.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-9.6</amount>
+				<amount>9.6</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-9.6</amount>
+				<amount>9.6</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -515,15 +515,15 @@
 	<option id="90632" name="All received Critical Rate -11%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-11.0</amount>
+				<amount>11.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-11.0</amount>
+				<amount>11.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-11.0</amount>
+				<amount>11.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -531,15 +531,15 @@
 	<option id="90633" name="All received Critical Rate -11.5%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-11.5</amount>
+				<amount>11.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-11.5</amount>
+				<amount>11.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-11.5</amount>
+				<amount>11.5</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -547,15 +547,15 @@
 	<option id="90634" name="All received Critical Rate -12%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-12.0</amount>
+				<amount>12.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-12.0</amount>
+				<amount>12.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-12.0</amount>
+				<amount>12.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -563,15 +563,15 @@
 	<option id="90635" name="All received Critical Rate -12.5%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-12.5</amount>
+				<amount>12.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-12.5</amount>
+				<amount>12.5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-12.5</amount>
+				<amount>12.5</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -579,15 +579,15 @@
 	<option id="90636" name="All received Critical Rate -13%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-13.0</amount>
+				<amount>13.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-13.0</amount>
+				<amount>13.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-13.0</amount>
+				<amount>13.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -595,15 +595,15 @@
 	<option id="90637" name="All received Critical Rate -14%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-14.0</amount>
+				<amount>14.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-14.0</amount>
+				<amount>14.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-14.0</amount>
+				<amount>14.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -611,15 +611,15 @@
 	<option id="90638" name="All received Critical Rate -15%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-15.0</amount>
+				<amount>15.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-15.0</amount>
+				<amount>15.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalRate">
-				<amount>-15.0</amount>
+				<amount>15.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>

@@ -23,16 +23,17 @@ package ai.bosses.Antharas;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcInfo;
 
 import instances.AbstractInstance;
@@ -115,7 +116,7 @@ public class Antharas extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if ((world != null) && (npc.getId() == ANTHARAS_SYMBOL))
@@ -124,7 +125,6 @@ public class Antharas extends AbstractInstance
 			startQuestTimer("add_symbol_buff", 10000, npc, null);
 			checkSymbols(world);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -145,7 +145,7 @@ public class Antharas extends AbstractInstance
 						final Player target = playersInRange.isEmpty() ? null : getRandomEntry(playersInRange);
 						if (target != null)
 						{
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, ATTACK_SKILL.getSkill(), target);
+							npc.getAI().setIntention(Intention.CAST, ATTACK_SKILL.getSkill(), target);
 						}
 					}
 					break;
@@ -277,12 +277,12 @@ public class Antharas extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world == null)
 		{
-			return null;
+			return;
 		}
 		
 		if (npc.getId() == ANTHARAS_SYMBOL)
@@ -330,7 +330,7 @@ public class Antharas extends AbstractInstance
 			{
 				if ((player != null) && player.isOnline())
 				{
-					player.addItem("FightAntharas Reward", BELLRA_GREEN_CHEST, REWARD_COUNT, player, true);
+					player.addItem(ItemProcessType.REWARD, BELLRA_GREEN_CHEST, REWARD_COUNT, player, true);
 				}
 			}
 			for (Npc symbol : world.getNpcs(ANTHARAS_SYMBOL))
@@ -352,8 +352,6 @@ public class Antharas extends AbstractInstance
 			
 			finishInstance(killer);
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

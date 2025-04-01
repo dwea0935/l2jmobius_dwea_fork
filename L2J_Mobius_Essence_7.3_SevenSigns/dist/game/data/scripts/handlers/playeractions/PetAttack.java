@@ -20,7 +20,7 @@
  */
 package handlers.playeractions;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IPlayerActionHandler;
 import org.l2jmobius.gameserver.model.ActionDataHolder;
@@ -65,7 +65,7 @@ public class PetAttack implements IPlayerActionHandler
 		
 		if ((player.calculateDistance3D(target) > 3000) || !GeoEngine.getInstance().canMoveToTarget(pet, target))
 		{
-			pet.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+			pet.getAI().setIntention(Intention.FOLLOW, player);
 		}
 		else if (pet.canAttack(target, ctrlPressed))
 		{

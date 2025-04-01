@@ -16,18 +16,14 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_REST;
-
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.AIType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.npc.AIType;
 
 /**
  * @author Sdw
@@ -40,12 +36,12 @@ public class FriendlyNpcAI extends AttackableAI
 	}
 	
 	@Override
-	protected void onEvtAttacked(Creature attacker)
+	protected void onActionAttacked(Creature attacker)
 	{
 	}
 	
 	@Override
-	protected void onEvtAggression(Creature target, int aggro)
+	protected void onActionAggression(Creature target, int aggro)
 	{
 	}
 	
@@ -58,7 +54,7 @@ public class FriendlyNpcAI extends AttackableAI
 			return;
 		}
 		
-		if (getIntention() == AI_INTENTION_REST)
+		if (getIntention() == Intention.REST)
 		{
 			clientActionFailed();
 			return;
@@ -70,16 +66,16 @@ public class FriendlyNpcAI extends AttackableAI
 			return;
 		}
 		
-		// Set the Intention of this AbstractAI to AI_INTENTION_ATTACK
-		changeIntention(AI_INTENTION_ATTACK, target);
+		// Set the Intention of this AbstractAI to ATTACK
+		changeIntention(Intention.ATTACK, target);
 		
 		// Set the AI attack target
 		setTarget(target);
 		
 		stopFollow();
 		
-		// Launch the Think Event
-		notifyEvent(CtrlEvent.EVT_THINK, null);
+		// Launch the Think Action
+		notifyAction(Action.THINK, null);
 	}
 	
 	@Override
@@ -91,20 +87,18 @@ public class FriendlyNpcAI extends AttackableAI
 			return;
 		}
 		
+		// Check if target is dead or if timeout is expired to stop this attack.
 		final WorldObject target = getTarget();
 		final Creature originalAttackTarget = (target != null) && target.isCreature() ? target.asCreature() : null;
-		// Check if target is dead or if timeout is expired to stop this attack
 		if ((originalAttackTarget == null) || originalAttackTarget.isAlikeDead())
 		{
-			// Stop hating this target after the attack timeout or if target is dead
+			// Stop hating this target after the attack timeout or if target is dead.
 			if (originalAttackTarget != null)
 			{
 				npc.stopHating(originalAttackTarget);
 			}
 			
-			// Set the AI Intention to AI_INTENTION_ACTIVE
-			setIntention(AI_INTENTION_ACTIVE);
-			
+			setIntention(Intention.ACTIVE);
 			npc.setWalking();
 			return;
 		}
@@ -154,8 +148,8 @@ public class FriendlyNpcAI extends AttackableAI
 		// Calculate Archer movement.
 		if ((!npc.isMovementDisabled()) && (npc.getAiType() == AIType.ARCHER) && (Rnd.get(100) < 15))
 		{
-			final double distance2 = npc.calculateDistanceSq2D(originalAttackTarget);
-			if (Math.sqrt(distance2) <= (60 + combinedCollision))
+			final double distance = npc.calculateDistance2D(originalAttackTarget);
+			if (distance <= (60 + combinedCollision))
 			{
 				int posX = npc.getX();
 				int posY = npc.getY();
@@ -180,7 +174,7 @@ public class FriendlyNpcAI extends AttackableAI
 				
 				if (GeoEngine.getInstance().canMoveToTarget(npc.getX(), npc.getY(), npc.getZ(), posX, posY, posZ, npc.getInstanceWorld()))
 				{
-					setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(posX, posY, posZ, 0));
+					setIntention(Intention.MOVE_TO, new Location(posX, posY, posZ, 0));
 				}
 				return;
 			}
@@ -225,10 +219,12 @@ public class FriendlyNpcAI extends AttackableAI
 			setTarget(null);
 			return;
 		}
+		
 		if (maybeMoveToPawn(target, _actor.getMagicalAttackRange(_skill)))
 		{
 			return;
 		}
+		
 		_actor.doCast(_skill, _item, _forceUse, _dontMove);
 	}
 }

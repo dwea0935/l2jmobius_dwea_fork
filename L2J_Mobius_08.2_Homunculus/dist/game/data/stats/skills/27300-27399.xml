@@ -1018,7 +1018,6 @@
 		<effectPoint>100</effectPoint>
 		<hitTime>1500</hitTime>
 		<isMagic>1</isMagic>
-		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>
 			<value level="1">225000</value>
@@ -1273,7 +1272,6 @@
 		<affectScope>RANGE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad> <!-- Unconfirmed -->
-		<castRange>1100</castRange>
 		<castRange>1100</castRange>
 		<effectPoint>-707</effectPoint>
 		<effectRange>1100</effectRange>

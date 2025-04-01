@@ -19,11 +19,11 @@ package org.l2jmobius.gameserver.network.serverpackets.ceremonyofchaos;
 import java.util.Collection;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.CeremonyOfChaosResult;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.enums.CeremonyOfChaosResult;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 
 /**
@@ -55,7 +55,7 @@ public class ExCuriousHouseResult extends ServerPacket
 		{
 			buffer.writeInt(player.getObjectId());
 			buffer.writeInt(pos++); // position
-			buffer.writeInt(player.getClassId().getId());
+			buffer.writeInt(player.getPlayerClass().getId());
 			buffer.writeInt(_time); // getLifeTime
 			buffer.writeInt(player.getVariables().getInt(PlayerVariables.CEREMONY_OF_CHAOS_SCORE, 0));
 		}

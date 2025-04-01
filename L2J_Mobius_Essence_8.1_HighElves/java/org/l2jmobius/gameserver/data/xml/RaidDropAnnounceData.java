@@ -59,9 +59,9 @@ public class RaidDropAnnounceData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -94,6 +94,11 @@ public class RaidDropAnnounceData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Checks if an item with the specified item ID is in the list of announced items.
+	 * @param itemId the ID of the item to check
+	 * @return {@code true} if the item ID exists in the list of announced items, {@code false} otherwise
+	 */
 	public boolean isAnnounce(int itemId)
 	{
 		return _itemIds.contains(itemId);

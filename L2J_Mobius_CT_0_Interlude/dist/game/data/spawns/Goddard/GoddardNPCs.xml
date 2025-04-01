@@ -18,6 +18,7 @@
 		<npc id="31755" x="146553" y="-52608" z="-2760" heading="49500" respawnDelay="60" /> <!-- Halaster -->
 		<npc id="31585" x="146688" y="-52592" z="-2736" heading="16000" respawnDelay="60" /> <!-- Sparky the Cat -->
 		<npc id="31608" x="146560" y="-53632" z="-2736" heading="16000" respawnDelay="60" /> <!-- Belinda -->
+		<npc id="31609" x="146560" y="-53632" z="-2736" heading="16000" respawnDelay="60" /> <!-- Aurora the Unicorn -->
 		<npc id="31284" x="147840" y="-53872" z="-2731" heading="17000" respawnDelay="60" /> <!-- Elena -->
 		<npc id="31275" x="147966" y="-55228" z="-2728" heading="48000" respawnDelay="60" /> <!-- Tatiana -->
 		<npc id="31688" x="147472" y="-55232" z="-2736" heading="49000" respawnDelay="60" /> <!-- Grand Olympiad Manager -->
@@ -41,9 +42,11 @@
 		<npc id="35366" x="145704" y="-57104" z="-2979" heading="39000" respawnDelay="60" /> <!-- Manor Manager -->
 		<npc id="31674" x="150012" y="-56808" z="-2979" heading="59000" respawnDelay="60" /> <!-- Patrol -->
 		<npc id="31674" x="149864" y="-57020" z="-2979" heading="59000" respawnDelay="60" /> <!-- Patrol -->
-		<npc id="31700" x="149536" y="-57136" z="-2979" heading="35000" respawnDelay="60" /> <!-- Saint's Follower -->
-		<npc id="31701" x="149528" y="-57180" z="-2979" heading="27000" respawnDelay="60" /> <!-- Saint's Follower -->
-		<npc id="31702" x="149492" y="-57200" z="-2979" heading="18000" respawnDelay="60" /> <!-- Saint's Follower -->
+		<npc id="31700" x="149536" y="-57136" z="-2979" heading="35000" respawnDelay="60" /> <!-- Saint's Follower_1 -->
+		<npc id="31701" x="149528" y="-57180" z="-2979" heading="27000" respawnDelay="60" /> <!-- Saint's Follower_2 -->
+		<npc id="31702" x="149492" y="-57200" z="-2979" heading="18000" respawnDelay="60" /> <!-- Saint's Follower_3 -->
+		<npc id="31703" x="149528" y="-57180" z="-2979" heading="27000" respawnDelay="60" /> <!-- Saint's Follower_a -->
+		<npc id="31704" x="149492" y="-57200" z="-2979" heading="18000" respawnDelay="60" /> <!-- Saint's Follower_b -->
 		<npc id="31588" x="149488" y="-57152" z="-2979" heading="57000" respawnDelay="60" /> <!-- Agnes -->
 		<npc id="31841" x="150748" y="-57372" z="-2979" heading="28000" respawnDelay="60" /> <!-- Adventure Guildsman -->
 		<npc id="31741" x="150208" y="-57872" z="-2979" heading="26000" respawnDelay="60" /> <!-- Ossian -->
@@ -134,6 +137,7 @@
 		<npc id="31561" x="106288" y="-53808" z="-2288" heading="33000" respawnDelay="60" /> <!-- Udan Mardui's Box -->
 		<npc id="31626" x="149312" y="-112484" z="-2065" heading="11000" respawnDelay="60" /> <!-- Duncan -->
 		<npc id="31624" x="149404" y="-112468" z="-2065" heading="24000" respawnDelay="60" /> <!-- Donath -->
+		<npc id="31625" x="149404" y="-112468" z="-2065" heading="24000" respawnDelay="60" /> <!-- Yeti -->
 		<npc id="31521" x="149520" y="-112704" z="-2065" heading="10000" respawnDelay="60" /> <!-- Jeremy -->
 		<npc id="31697" x="149568" y="-112768" z="-2065" heading="8000" respawnDelay="60" /> <!-- Eindarkner -->
 		<npc id="31622" x="149760" y="-112928" z="-2065" heading="29000" respawnDelay="60" /> <!-- Keats -->

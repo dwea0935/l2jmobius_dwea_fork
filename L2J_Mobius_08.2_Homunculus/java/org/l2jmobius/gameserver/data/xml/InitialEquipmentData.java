@@ -29,26 +29,19 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.item.PlayerItemTemplate;
 
 /**
- * This class holds the Initial Equipment information.<br>
- * What items get each newly created character and if this item is equipped upon creation (<b>Requires the item to be equippable</b>).
  * @author Zoey76
  */
 public class InitialEquipmentData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(InitialEquipmentData.class.getName());
 	
-	private final Map<ClassId, List<PlayerItemTemplate>> _initialEquipmentList = new EnumMap<>(ClassId.class);
-	private static final String NORMAL = "data/stats/initialEquipment.xml";
-	private static final String EVENT = "data/stats/initialEquipmentEvent.xml";
+	private final Map<PlayerClass, List<PlayerItemTemplate>> _initialEquipmentList = new EnumMap<>(PlayerClass.class);
 	
-	/**
-	 * Instantiates a new initial equipment data.
-	 */
 	protected InitialEquipmentData()
 	{
 		load();
@@ -58,14 +51,14 @@ public class InitialEquipmentData implements IXmlReader
 	public void load()
 	{
 		_initialEquipmentList.clear();
-		parseDatapackFile(Config.INITIAL_EQUIPMENT_EVENT ? EVENT : NORMAL);
+		parseDatapackFile(Config.INITIAL_EQUIPMENT_EVENT ? "data/stats/initialEquipmentEvent.xml" : "data/stats/initialEquipment.xml");
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _initialEquipmentList.size() + " initial equipment data.");
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -87,7 +80,7 @@ public class InitialEquipmentData implements IXmlReader
 	private void parseEquipment(Node d)
 	{
 		NamedNodeMap attrs = d.getAttributes();
-		final ClassId classId = ClassId.getClassId(Integer.parseInt(attrs.getNamedItem("classId").getNodeValue()));
+		final PlayerClass classId = PlayerClass.getPlayerClass(Integer.parseInt(attrs.getNamedItem("classId").getNodeValue()));
 		final List<PlayerItemTemplate> equipList = new ArrayList<>();
 		for (Node c = d.getFirstChild(); c != null; c = c.getNextSibling())
 		{
@@ -107,29 +100,25 @@ public class InitialEquipmentData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the equipment list.
-	 * @param cId the class Id for the required initial equipment.
-	 * @return the initial equipment for the given class Id.
+	 * Retrieves the list of initial equipment items associated with a specified class.
+	 * @param classId the {@link PlayerClass} representing the class for which the initial equipment is required
+	 * @return a {@link List} of {@link PlayerItemTemplate} objects representing the initial equipment for the specified class, or {@code null} if no equipment is found for the given class
 	 */
-	public List<PlayerItemTemplate> getEquipmentList(ClassId cId)
+	public List<PlayerItemTemplate> getEquipmentList(PlayerClass classId)
 	{
-		return _initialEquipmentList.get(cId);
+		return _initialEquipmentList.get(classId);
 	}
 	
 	/**
-	 * Gets the equipment list.
-	 * @param cId the class Id for the required initial equipment.
-	 * @return the initial equipment for the given class Id.
+	 * Retrieves the list of initial equipment items associated with a specified class.
+	 * @param classId the integer ID representing the class for which the initial equipment is required
+	 * @return a {@link List} of {@link PlayerItemTemplate} objects representing the initial equipment for the specified class, or {@code null} if no equipment is found for the given class
 	 */
-	public List<PlayerItemTemplate> getEquipmentList(int cId)
+	public List<PlayerItemTemplate> getEquipmentList(int classId)
 	{
-		return _initialEquipmentList.get(ClassId.getClassId(cId));
+		return _initialEquipmentList.get(PlayerClass.getPlayerClass(classId));
 	}
 	
-	/**
-	 * Gets the single instance of InitialEquipmentData.
-	 * @return single instance of InitialEquipmentData
-	 */
 	public static InitialEquipmentData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

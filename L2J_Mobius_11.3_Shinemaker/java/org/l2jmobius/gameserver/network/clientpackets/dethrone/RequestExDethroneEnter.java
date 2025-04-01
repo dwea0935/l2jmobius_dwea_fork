@@ -1,24 +1,28 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.clientpackets.dethrone;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
@@ -59,12 +63,39 @@ public class RequestExDethroneEnter extends ClientPacket
 		{
 			return;
 		}
-		if (!Config.CONQUEST_SYSTEM_ENABLED || (Config.CONQUEST_SYSTEM_ENABLED && (GlobalVariablesManager.getInstance().hasVariable("CONQUEST_AVAILABLE") && (GlobalVariablesManager.getInstance().getBoolean("CONQUEST_AVAILABLE", false) == false))))
+		
+		if (player.isInsideZone(ZoneId.CONQUEST))
+		{
+			player.sendPacket(new SystemMessage(SystemMessageId.YOU_WILL_BE_TAKEN_TO_THE_MAIN_SERVER_IN_3_SEC));
+			player.stopMove(null);
+			
+			ThreadPool.schedule(() ->
+			{
+				final PlayerVariables vars = player.getVariables();
+				Location location = new Location(147458, 26903, -2206); // Aden center if no location stored.
+				if (vars.contains(PlayerVariables.CONQUEST_ORIGIN))
+				{
+					final int[] loc = vars.getIntArray(PlayerVariables.CONQUEST_ORIGIN, ";");
+					if ((loc != null) && (loc.length == 3))
+					{
+						location = new Location(loc[0], loc[1], loc[2]);
+					}
+					player.teleToLocation(location);
+					vars.remove(PlayerVariables.CONQUEST_ORIGIN);
+				}
+				else
+				{
+					player.teleToLocation(location);
+				}
+			}, 3000);
+			return;
+		}
+		else if (!Config.CONQUEST_SYSTEM_ENABLED || (Config.CONQUEST_SYSTEM_ENABLED && (GlobalVariablesManager.getInstance().hasVariable("CONQUEST_AVAILABLE") && (GlobalVariablesManager.getInstance().getBoolean("CONQUEST_AVAILABLE", false) == false))))
 		{
 			player.sendPacket(SystemMessageId.THE_PATH_TO_THE_CONQUEST_WORLD_IS_CLOSED_YOU_CAN_GET_THERE_ON_MONDAYS_TUESDAYS_WEDNESDAYS_AND_THURSDAYS_FROM_10_00_TILL_14_00_AND_FROM_22_00_TILL_00_00_AND_ON_FRIDAYS_SATURDAYS_AND_SUNDAYS_FROM_20_00_TILL_01_00_OF_THE_FOLLOWING_DAY_SERVER_TIME_PVP_IS_DISABLED_FROM_20_00_TILL_22_00_FOR_2_HOURS_BECAUSE_THE_NEW_WORLD_EXPLORATION_IS_UNDER_WAY);
 			return;
 		}
-		if ((!player.isInsideZone(ZoneId.PEACE) || (player.isInOlympiadMode()) || (player.isFishing()) || (!player.isInventoryUnder80(false))))
+		else if ((!player.isInsideZone(ZoneId.PEACE) || (player.isInOlympiadMode()) || (player.isFishing()) || (!player.isInventoryUnder80(false))))
 		{
 			player.sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_ENTER_THE_CONQUEST_WORLD_IF_YOU_ARE_REGISTERED_OR_PARTICIPATING_IN_THE_OLYMPIAD_OR_THE_CEREMONY_OF_CHAOS_IF_YOU_HAVE_A_CURSED_SWORD_IF_YOU_ARE_FISHING_DUELING_IF_YOU_ARE_DEAD_IF_YOU_HAVE_OVERWEIGHT_OR_YOUR_INVENTORY_IS_FILLED_UP_FOR_90_OR_MORE));
 			return;

@@ -32,16 +32,12 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.item.Henna;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
- * This class holds the henna related information.<br>
- * Cost and required amount to add the henna to the player.<br>
- * Cost and retrieved amount for removing the henna from the player.<br>
- * Allowed classes to wear each henna.
  * @author Zoey76, Mobius
  */
 public class HennaData implements IXmlReader
@@ -50,9 +46,6 @@ public class HennaData implements IXmlReader
 	
 	private final Map<Integer, Henna> _hennaList = new HashMap<>();
 	
-	/**
-	 * Instantiates a new henna data.
-	 */
 	protected HennaData()
 	{
 		load();
@@ -67,9 +60,9 @@ public class HennaData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equals(n.getNodeName()))
 			{
@@ -91,7 +84,7 @@ public class HennaData implements IXmlReader
 	private void parseHenna(Node d)
 	{
 		final StatSet set = new StatSet();
-		final List<ClassId> wearClassIds = new ArrayList<>();
+		final List<PlayerClass> wearClassIds = new ArrayList<>();
 		final List<Skill> skills = new ArrayList<>();
 		NamedNodeMap attrs = d.getAttributes();
 		Node attr;
@@ -145,7 +138,7 @@ public class HennaData implements IXmlReader
 				}
 				case "classId":
 				{
-					wearClassIds.add(ClassId.getClassId(Integer.parseInt(c.getTextContent())));
+					wearClassIds.add(PlayerClass.getPlayerClass(Integer.parseInt(c.getTextContent())));
 					break;
 				}
 			}
@@ -157,9 +150,9 @@ public class HennaData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the henna.
-	 * @param id of the dye.
-	 * @return the dye with that id.
+	 * Retrieves the henna (dye) associated with the specified ID.
+	 * @param id the ID of the dye.
+	 * @return the {@link Henna} with the specified ID, or {@code null} if not found.
 	 */
 	public Henna getHenna(int id)
 	{
@@ -167,11 +160,11 @@ public class HennaData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the henna list.
-	 * @param classId the player's class Id.
-	 * @return the list with all the allowed dyes.
+	 * Retrieves a list of all dyes allowed for the specified class ID.
+	 * @param classId the {@link PlayerClass} of the player.
+	 * @return a list of {@link Henna} objects allowed for the specified class ID.
 	 */
-	public List<Henna> getHennaList(ClassId classId)
+	public List<Henna> getHennaList(PlayerClass classId)
 	{
 		final List<Henna> list = new ArrayList<>();
 		for (Henna henna : _hennaList.values())
@@ -184,10 +177,6 @@ public class HennaData implements IXmlReader
 		return list;
 	}
 	
-	/**
-	 * Gets the single instance of HennaData.
-	 * @return single instance of HennaData
-	 */
 	public static HennaData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

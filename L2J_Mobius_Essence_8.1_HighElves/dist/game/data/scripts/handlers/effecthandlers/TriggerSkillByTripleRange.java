@@ -26,9 +26,9 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * Trigger Skill By Triple Range effect implementation.
@@ -96,7 +96,7 @@ public class TriggerSkillByTripleRange extends AbstractEffect
 		}
 		
 		final Player caster = effector.asPlayer();
-		if (effected.isPlayable() && !effected.isAutoAttackable(caster))
+		if ((effected != effector) && effected.isPlayable() && !effected.isAutoAttackable(caster))
 		{
 			caster.updatePvPStatus();
 		}

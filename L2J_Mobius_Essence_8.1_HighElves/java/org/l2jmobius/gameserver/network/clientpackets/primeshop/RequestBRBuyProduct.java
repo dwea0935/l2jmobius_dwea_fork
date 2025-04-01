@@ -25,17 +25,18 @@ import java.util.Calendar;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.PrimeShopData;
-import org.l2jmobius.gameserver.enums.ExBrProductReplyType;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.PrimeShopRequest;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.primeshop.PrimeShopGroup;
 import org.l2jmobius.gameserver.model.primeshop.PrimeShopItem;
 import org.l2jmobius.gameserver.model.variables.AccountVariables;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.ExBrProductReplyType;
 import org.l2jmobius.gameserver.network.serverpackets.primeshop.ExBRBuyProduct;
 import org.l2jmobius.gameserver.network.serverpackets.primeshop.ExBRGamePoint;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Mobius
@@ -91,7 +92,7 @@ public class RequestBRBuyProduct extends ClientPacket
 			}
 			else if (paymentId > 0)
 			{
-				if (!player.destroyItemByItemId("PrimeShop-" + item.getBrId(), paymentId, price, player, true))
+				if (!player.destroyItemByItemId(ItemProcessType.FEE, paymentId, price, player, true))
 				{
 					player.sendPacket(new ExBRBuyProduct(ExBrProductReplyType.LACK_OF_POINT));
 					player.removeRequest(PrimeShopRequest.class);
@@ -115,7 +116,7 @@ public class RequestBRBuyProduct extends ClientPacket
 			
 			for (PrimeShopItem subItem : item.getItems())
 			{
-				player.addItem("PrimeShop", subItem.getId(), subItem.getCount() * _count, player, true);
+				player.addItem(ItemProcessType.BUY, subItem.getId(), subItem.getCount() * _count, player, true);
 			}
 			if (item.isVipGift())
 			{
@@ -151,12 +152,12 @@ public class RequestBRBuyProduct extends ClientPacket
 		if (item == null)
 		{
 			player.sendPacket(new ExBRBuyProduct(ExBrProductReplyType.INVALID_PRODUCT));
-			Util.handleIllegalPlayerAction(player, player + " tried to buy invalid brId from Prime", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to buy invalid brId from Prime", Config.DEFAULT_PUNISH);
 			return false;
 		}
 		else if ((count < 1) || (count > 99))
 		{
-			Util.handleIllegalPlayerAction(player, player + " tried to buy invalid itemcount [" + count + "] from Prime", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to buy invalid itemcount [" + count + "] from Prime", Config.DEFAULT_PUNISH);
 			player.sendPacket(new ExBRBuyProduct(ExBrProductReplyType.INVALID_USER_STATE));
 			return false;
 		}

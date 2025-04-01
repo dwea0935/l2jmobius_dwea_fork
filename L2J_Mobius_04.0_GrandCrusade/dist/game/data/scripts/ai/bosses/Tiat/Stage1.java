@@ -29,13 +29,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.TrapAction;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.GraciaSeedsManager;
+import org.l2jmobius.gameserver.managers.GraciaSeedsManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Territory;
 import org.l2jmobius.gameserver.model.World;
@@ -43,13 +40,16 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.TrapAction;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Trap;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -212,10 +212,10 @@ public class Stage1 extends AbstractInstance implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File file)
+	public void parseDocument(Document document, File file)
 	{
 		final Set<Integer> killIds = new HashSet<>();
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if (n.getNodeName().equals("list"))
 			{
@@ -311,7 +311,7 @@ public class Stage1 extends AbstractInstance implements IXmlReader
 		spawnState(instance);
 		for (Door door : instance.getDoors())
 		{
-			if (CommonUtil.contains(ATTACKABLE_DOORS, door.getId()))
+			if (ArrayUtil.contains(ATTACKABLE_DOORS, door.getId()))
 			{
 				door.setIsAttackableDoor(true);
 			}
@@ -450,14 +450,13 @@ public class Stage1 extends AbstractInstance implements IXmlReader
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.disableCoreAI(true);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -473,11 +472,10 @@ public class Stage1 extends AbstractInstance implements IXmlReader
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -502,7 +500,6 @@ public class Stage1 extends AbstractInstance implements IXmlReader
 				world.setReenterTime();
 			}
 		}
-		return null;
 	}
 	
 	@Override
@@ -524,7 +521,7 @@ public class Stage1 extends AbstractInstance implements IXmlReader
 						final Attackable mob = addSpawn(getRandomEntry(SPAWN_MOB_IDS), npc.getSpawn().getLocation(), false, 0, false, world.getId()).asAttackable();
 						mob.setSeeThroughSilentMove(true);
 						mob.setRunning();
-						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, (world.getStatus() >= 7) ? MOVE_TO_TIAT : MOVE_TO_DOOR);
+						mob.getAI().setIntention(Intention.MOVE_TO, (world.getStatus() >= 7) ? MOVE_TO_TIAT : MOVE_TO_DOOR);
 					}
 					break;
 				}
@@ -557,7 +554,7 @@ public class Stage1 extends AbstractInstance implements IXmlReader
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -624,7 +621,6 @@ public class Stage1 extends AbstractInstance implements IXmlReader
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
@@ -657,7 +653,7 @@ public class Stage1 extends AbstractInstance implements IXmlReader
 	}
 	
 	@Override
-	public String onTrapAction(Trap trap, Creature trigger, TrapAction action)
+	public void onTrapAction(Trap trap, Creature trigger, TrapAction action)
 	{
 		final Instance world = trap.getInstanceWorld();
 		if ((world != null) && (action == TrapAction.TRAP_TRIGGERED))
@@ -668,7 +664,6 @@ public class Stage1 extends AbstractInstance implements IXmlReader
 				addSpawn(npcId, trap.getX(), trap.getY(), trap.getZ(), trap.getHeading(), true, 0, true, world.getId());
 			}
 		}
-		return null;
 	}
 	
 	public static void main(String[] args)

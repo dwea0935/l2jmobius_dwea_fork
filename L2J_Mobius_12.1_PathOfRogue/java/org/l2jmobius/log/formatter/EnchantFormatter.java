@@ -32,13 +32,14 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 
 public class EnchantFormatter extends Formatter
 {
-	private final SimpleDateFormat dateFmt = new SimpleDateFormat("dd MMM H:mm:ss");
+	private final SimpleDateFormat _dateFormat = new SimpleDateFormat("dd MMM H:mm:ss");
 	
 	@Override
 	public String format(LogRecord record)
 	{
 		final Object[] params = record.getParameters();
-		final StringBuilder output = StringUtil.startAppend(30 + record.getMessage().length() + (params == null ? 0 : params.length * 10), "[", dateFmt.format(new Date(record.getMillis())), "] ", record.getMessage());
+		final StringBuilder output = new StringBuilder(30 + record.getMessage().length() + (params == null ? 0 : params.length * 10));
+		StringUtil.append(output, "[", _dateFormat.format(new Date(record.getMillis())), "] ", record.getMessage());
 		
 		if (params != null)
 		{
@@ -49,12 +50,12 @@ public class EnchantFormatter extends Formatter
 					continue;
 				}
 				
-				StringUtil.append(output, ", ");
+				output.append(", ");
 				
 				if (p instanceof Player)
 				{
 					final Player player = (Player) p;
-					StringUtil.append(output, "Character:", player.getName(), " [" + player.getObjectId() + "] Account:", player.getAccountName());
+					StringUtil.append(output, "Character:", player.getName(), " [", String.valueOf(player.getObjectId()), "] Account:", player.getAccountName());
 					if ((player.getClient() != null) && !player.getClient().isDetached())
 					{
 						StringUtil.append(output, " IP:", player.getClient().getIp());
@@ -67,8 +68,7 @@ public class EnchantFormatter extends Formatter
 					{
 						StringUtil.append(output, "+", String.valueOf(item.getEnchantLevel()), " ");
 					}
-					StringUtil.append(output, item.getTemplate().getName(), "(", String.valueOf(item.getCount()), ")");
-					StringUtil.append(output, " [", String.valueOf(item.getObjectId()), "]");
+					StringUtil.append(output, item.getTemplate().getName(), "(", String.valueOf(item.getCount()), ")", " [", String.valueOf(item.getObjectId()), "]");
 				}
 				else if (p instanceof Skill)
 				{
@@ -81,7 +81,7 @@ public class EnchantFormatter extends Formatter
 				}
 				else
 				{
-					StringUtil.append(output, p.toString());
+					output.append(p.toString());
 				}
 			}
 		}

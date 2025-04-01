@@ -16,15 +16,14 @@
  */
 package ai.areas.Hellbound.AI;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
@@ -48,19 +47,19 @@ public class Amaskari extends AbstractNpcAI
 		new SkillHolder(BUFF_ID, 3)
 	};
 	// Misc
-	private static final NpcStringId[] AMASKARI_NPCSTRING_ID =
+	private static final String[] AMASKARI_NPCSTRING_ID =
 	{
-		NpcStringId.I_LL_MAKE_EVERYONE_FEEL_THE_SAME_SUFFERING_AS_ME,
-		NpcStringId.HA_HA_YES_DIE_SLOWLY_WRITHING_IN_PAIN_AND_AGONY,
-		NpcStringId.MORE_NEED_MORE_SEVERE_PAIN,
-		NpcStringId.SOMETHING_IS_BURNING_INSIDE_MY_BODY
+		"I'll make everyone feel the same suffering as me!",
+		"Ha-ha yes, die slowly writhing in pain and agony!",
+		"More... need more... severe pain...",
+		"Something is burning inside my body!"
 	};
-	private static final NpcStringId[] MINIONS_NPCSTRING_ID =
+	private static final String[] MINIONS_NPCSTRING_ID =
 	{
-		NpcStringId.AHH_MY_LIFE_IS_BEING_DRAINED_OUT,
-		NpcStringId.THANK_YOU_FOR_SAVING_ME,
-		NpcStringId.IT_WILL_KILL_EVERYONE,
-		NpcStringId.EEEK_I_FEEL_SICK_YOW
+		"Ahh! My life is being drained out!",
+		"Thank you for saving me.",
+		"It... will... kill... everyone...",
+		"Eeek... I feel sick...yow...!"
 	};
 	
 	public Amaskari()
@@ -77,7 +76,7 @@ public class Amaskari extends AbstractNpcAI
 		{
 			npc.broadcastSay(ChatType.NPC_GENERAL, AMASKARI_NPCSTRING_ID[2]);
 			npc.asMonster().clearAggroList();
-			npc.asMonster().getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			npc.asMonster().getAI().setIntention(Intention.ACTIVE);
 			npc.setInvul(false);
 			// npc.doCast(INVINCIBILITY.getSkill())
 		}
@@ -97,7 +96,7 @@ public class Amaskari extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if ((npc.getId() == AMASKARI) && (getRandom(1000) < 25))
 		{
@@ -111,11 +110,10 @@ public class Amaskari extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == AMASKARI_PRISONER)
 		{
@@ -131,7 +129,7 @@ public class Amaskari extends AbstractNpcAI
 				else
 				{
 					master.clearAggroList();
-					master.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+					master.getAI().setIntention(Intention.ACTIVE);
 					if (info == null)
 					{
 						master.doCast(BUFF[0].getSkill());
@@ -165,13 +163,11 @@ public class Amaskari extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("onspawn_msg", (getRandom(3) + 1) * 30000, npc, null);
-		return super.onSpawn(npc);
 	}
 }

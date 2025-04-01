@@ -17,15 +17,14 @@
 package quests.Q00503_PursuitOfClanAmbition;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Pursuit Of Clan Ambition (503)
@@ -77,7 +76,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 	
 	public Q00503_PursuitOfClanAmbition()
 	{
-		super(503);
+		super(503, "Pursuit of Clan Ambition!");
 		addStartNpc(SIR_GUSTAV_ATHEBALDT);
 		addTalkId(SIR_GUSTAV_ATHEBALDT, HEAD_BLACKSMITH_KUSTO, MARTIEN, WITCH_ATHREA, WITCH_KALIS, CORPSE_OF_FRITZ, CORPSE_OF_LUTZ, CORPSE_OF_KURTZ, BALTHAZAR, IMPERIAL_COFFER, WITCH_CLEO, SIR_ERIC_RODEMAI);
 		addKillId(DRAKE, DRAKE2, THUNDER_WYRM, THUNDER_WYRM2, GRAVE_GUARD, SPITEFUL_SOUL_LEADER, GRAVE_KEYMASTER, BLITZ_WYRM, IMPERIAL_GRAVEKEEPER);
@@ -261,7 +260,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 			{
 				qs.setMemoState(8100);
 				qs.setCond(9, true);
-				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.BLOOD_AND_HONOR));
+				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Blood and honor!"));
 				startQuestTimer("SPAWN_WITCH", 5000, npc, player);
 				htmltext = event;
 				break;
@@ -310,9 +309,9 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 			case "SPAWN_WITCH":
 			{
 				final Npc athrea = addSpawn(WITCH_ATHREA, 160688, 21296, -3714, 0, false, 180000);
-				athrea.broadcastPacket(new NpcSay(athrea, ChatType.NPC_GENERAL, NpcStringId.WAR_AND_DEATH));
+				athrea.broadcastPacket(new NpcSay(athrea, ChatType.NPC_GENERAL, "War and death!"));
 				final Npc kalis = addSpawn(WITCH_KALIS, 160690, 21176, -3712, 0, false, 180000);
-				kalis.broadcastPacket(new NpcSay(kalis, ChatType.NPC_GENERAL, NpcStringId.AMBITION_AND_POWER));
+				kalis.broadcastPacket(new NpcSay(kalis, ChatType.NPC_GENERAL, "Ambition and power!"));
 				break;
 			}
 			case "DESPAWN":
@@ -325,30 +324,30 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs == null) || !qs.isStarted() || !Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs == null) || !qs.isStarted() || !LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		final Clan clan = killer.getClan();
 		if (clan == null)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		final Player leader = clan.getLeader().getPlayer();
-		if ((leader == null) || !Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, leader, true))
+		if ((leader == null) || !LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, leader, true))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		final QuestState leaderQS = getQuestState(leader, false);
 		if (leaderQS == null)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		switch (npc.getId())
@@ -427,12 +426,11 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 				if ((leaderQS.getMemoState() < 8511) || (leaderQS.getMemoState() >= 8500))
 				{
 					final Npc coffer = addSpawn(IMPERIAL_COFFER, npc.getX(), npc.getY(), npc.getZ(), 0, true, 180000);
-					coffer.broadcastPacket(new NpcSay(coffer, ChatType.NPC_GENERAL, NpcStringId.CURSE_OF_THE_GODS_ON_THE_ONE_THAT_DEFILES_THE_PROPERTY_OF_THE_EMPIRE));
+					coffer.broadcastPacket(new NpcSay(coffer, ChatType.NPC_GENERAL, "Curse of the gods on the one that defiles the property of the empire!"));
 				}
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

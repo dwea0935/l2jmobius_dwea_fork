@@ -24,9 +24,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -84,7 +84,7 @@ public class Q00999_T0Tutorial extends Quest
 	
 	public Q00999_T0Tutorial()
 	{
-		super(-1);
+		super(-1, "");
 		// @formatter:off
 		Event.put("30008_02", new Object[]{"30008-03.htm", -84058, 243239, -3730, RECOMMENDATION_01, 0x00, SOULSHOT_NOVICE, 200, 0x00, 0, 0});
 		Event.put("30008_04", new Object[]{"30008-04.htm", -84058, 243239, -3730, 0, 0x00, 0, 0, 0, 0, 0});
@@ -160,7 +160,7 @@ public class Q00999_T0Tutorial extends Quest
 		{
 			if (Ex == 0)
 			{
-				if (player.getClassId().isMage())
+				if (player.getPlayerClass().isMage())
 				{
 					st.playTutorialVoice("tutorial_voice_009b");
 				}
@@ -215,7 +215,7 @@ public class Q00999_T0Tutorial extends Quest
 				{
 					qs.set("Ex", "4");
 				}
-				if (player.getClassId().getId() == classId1)
+				if (player.getPlayerClass().getId() == classId1)
 				{
 					giveItems(player, gift1, count1);
 					if (gift1 == SPIRITSHOT_NOVICE)
@@ -227,7 +227,7 @@ public class Q00999_T0Tutorial extends Quest
 						st.playTutorialVoice("tutorial_voice_026");
 					}
 				}
-				else if ((player.getClassId().getId() == classId2) && (gift2 != 0))
+				else if ((player.getPlayerClass().getId() == classId2) && (gift2 != 0))
 				{
 					giveItems(player, gift2, count2);
 					st.playTutorialVoice("tutorial_voice_026");
@@ -280,7 +280,7 @@ public class Q00999_T0Tutorial extends Quest
 					{
 						qs.set("Ex", "0");
 						startQuestTimer("TimerEx_NewbieHelper", 30000, npc, player);
-						if (player.getClassId().isMage())
+						if (player.getPlayerClass().isMage())
 						{
 							st.set("step", "1");
 							st.setState(State.STARTED);
@@ -302,7 +302,7 @@ public class Q00999_T0Tutorial extends Quest
 							qs.set("Ex", "3");
 							startQuestTimer("TimerEx_NewbieHelper", 30000, npc, player);
 							qs.set("ucMemo", "3");
-							if (player.getClassId().isMage())
+							if (player.getPlayerClass().isMage())
 							{
 								st.playTutorialVoice("tutorial_voice_027");
 								giveItems(player, SPIRITSHOT_NOVICE, 100);
@@ -325,7 +325,7 @@ public class Q00999_T0Tutorial extends Quest
 						}
 						else
 						{
-							if (player.getClassId().isMage())
+							if (player.getPlayerClass().isMage())
 							{
 								if (player.getRace() == Race.ORC)
 								{
@@ -380,18 +380,18 @@ public class Q00999_T0Tutorial extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
-			return null;
+			return;
 		}
 		
 		final QuestState qs = player.getQuestState("Q00255_Tutorial");
 		if (qs == null)
 		{
-			return null;
+			return;
 		}
 		
 		final int Ex = qs.getInt("Ex");
@@ -408,6 +408,5 @@ public class Q00999_T0Tutorial extends Quest
 			playSound(player, "ItemSound.quest_tutorial");
 			st.set("step", "1");
 		}
-		return null;
 	}
 }

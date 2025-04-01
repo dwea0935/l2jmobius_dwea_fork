@@ -18,19 +18,20 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.holders.RecipeHolder;
 import org.l2jmobius.gameserver.data.xml.RecipeData;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.RecipeHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeShopItemInfo;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * It appears you are able to successfully create from manufacture store while casting, while in manufacture store and within 250 range. So basic checks<br>
@@ -124,7 +125,7 @@ public class RequestRecipeShopMakeItem extends ClientPacket
 		
 		if (!manufacturer.hasRecipeList(recipe.getId()))
 		{
-			Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false recipe id.", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false recipe id.", Config.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -178,7 +179,7 @@ public class RequestRecipeShopMakeItem extends ClientPacket
 		if (manufactureRecipeCost > 0)
 		{
 			// Attempt to pay the required manufacturing price by the manufacturer.
-			final Item paidAdena = player.transferItem("PayManufacture", player.getInventory().getAdenaInstance().getObjectId(), manufactureRecipeCost, manufacturer.getInventory(), manufacturer);
+			final Item paidAdena = player.transferItem(ItemProcessType.TRANSFER, player.getInventory().getAdenaInstance().getObjectId(), manufactureRecipeCost, manufacturer.getInventory(), manufacturer);
 			if (paidAdena == null)
 			{
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
@@ -194,7 +195,7 @@ public class RequestRecipeShopMakeItem extends ClientPacket
 			for (ItemHolder offer : _offeredItems)
 			{
 				final Item item = player.getInventory().getItemByObjectId(offer.getId());
-				if (player.destroyItem("CraftOffering", item, offer.getCount(), manufacturer, true))
+				if (player.destroyItem(ItemProcessType.FEE, item, offer.getCount(), manufacturer, true))
 				{
 					offeredAdenaWorth += (item.getTemplate().getReferencePrice() * offer.getCount());
 				}

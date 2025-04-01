@@ -25,14 +25,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.AcquireSkillType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.status.FolkStatus;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExAcquirableSkillListByClass;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -64,7 +64,7 @@ public class Folk extends Npc
 	 * @param npc the last folk.
 	 * @param classId player's active class id.
 	 */
-	public static void showSkillList(Player player, Npc npc, ClassId classId)
+	public static void showSkillList(Player player, Npc npc, PlayerClass classId)
 	{
 		final int npcId = npc.getTemplate().getId();
 		if (npcId == 32611) // Tolonis (Officer)
@@ -103,7 +103,7 @@ public class Folk extends Npc
 				sm.addInt(minLevel);
 				player.sendPacket(sm);
 			}
-			else if (player.getClassId().level() == 1)
+			else if (player.getPlayerClass().level() == 1)
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.THERE_ARE_NO_OTHER_SKILLS_TO_LEARN_PLEASE_COME_BACK_AFTER_S1ND_CLASS_CHANGE);
 				sm.addInt(2);

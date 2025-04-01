@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.item.enchant.attribute;
 
-import org.l2jmobius.gameserver.enums.AttributeType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
 
 /**
  * @author UnAfraid

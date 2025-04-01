@@ -16,9 +16,9 @@
  */
 package quests.Q00173_ToTheIsleOfSouls;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -43,7 +43,7 @@ public class Q00173_ToTheIsleOfSouls extends Quest
 	
 	public Q00173_ToTheIsleOfSouls()
 	{
-		super(173);
+		super(173, "To the Isle of Souls");
 		addStartNpc(GALLADUCCI);
 		addTalkId(GALLADUCCI, GENTLER);
 		registerQuestItems(GALLADUCCIS_ORDER, MAGIC_SWORD_HILT);

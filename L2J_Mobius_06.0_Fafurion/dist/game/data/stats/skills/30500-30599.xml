@@ -4610,7 +4610,7 @@
 			</effect>
 			<effect name="DefenceCriticalDamage" fromLevel="2" toLevel="4" fromSubLevel="2001" toSubLevel="2020">
 				<amount>
-					<value fromLevel="2" toLevel="4" fromSubLevel="2001" toSubLevel="2020">{-1 - (subIndex - 1 * 0.5)}</value>
+					<value fromLevel="2" toLevel="4" fromSubLevel="2001" toSubLevel="2020">{1 + ((subIndex - 1) * 0.5)}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
@@ -6527,7 +6527,6 @@
 		<isDebuff>true</isDebuff>
 		<isMagic>4</isMagic>
 		<lvlBonusRate>30</lvlBonusRate>
-		<reuseDelay>3000</reuseDelay>
 		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="DefenceCriticalDamage">

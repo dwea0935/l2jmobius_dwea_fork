@@ -39,12 +39,6 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillEnchantData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.AttributeType;
-import org.l2jmobius.gameserver.enums.BasicProperty;
-import org.l2jmobius.gameserver.enums.NextActionType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.ShotType;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.handler.AffectScopeHandler;
 import org.l2jmobius.gameserver.handler.IAffectScopeHandler;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
@@ -52,12 +46,17 @@ import org.l2jmobius.gameserver.handler.TargetHandler;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.holders.AttachSkillHolder;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.skill.enums.BasicProperty;
+import org.l2jmobius.gameserver.model.skill.enums.NextActionType;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.AttachSkillHolder;
 import org.l2jmobius.gameserver.model.skill.targets.AffectObject;
 import org.l2jmobius.gameserver.model.skill.targets.AffectScope;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
@@ -67,7 +66,7 @@ import org.l2jmobius.gameserver.model.stats.TraitType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
-public class Skill implements IIdentifiable
+public class Skill
 {
 	private static final Logger LOGGER = Logger.getLogger(Skill.class.getName());
 	
@@ -203,7 +202,7 @@ public class Skill implements IIdentifiable
 	private final boolean _isSharedWithSummon;
 	private final boolean _isNecessaryToggle;
 	private final boolean _deleteAbnormalOnLeave;
-	private final boolean _irreplacableBuff; // Stays after death, on subclass change, cannot be canceled.
+	private final boolean _irreplaceableBuff; // Stays after death, on subclass change, cannot be canceled.
 	private final boolean _blockActionUseSkill; // Blocks the use skill client action and is not showed on skill list.
 	
 	private final int _toggleGroupId;
@@ -369,7 +368,7 @@ public class Skill implements IIdentifiable
 		_isSharedWithSummon = set.getBoolean("isSharedWithSummon", true);
 		_isNecessaryToggle = set.getBoolean("isNecessaryToggle", false);
 		_deleteAbnormalOnLeave = set.getBoolean("deleteAbnormalOnLeave", false);
-		_irreplacableBuff = set.getBoolean("irreplacableBuff", false);
+		_irreplaceableBuff = set.getBoolean("irreplaceableBuff", false);
 		_blockActionUseSkill = set.getBoolean("blockActionUseSkill", false);
 		_toggleGroupId = set.getInt("toggleGroupId", -1);
 		_attachToggleGroupId = set.getInt("attachToggleGroupId", -1);
@@ -634,7 +633,6 @@ public class Skill implements IIdentifiable
 	 * Gets the skill ID.
 	 * @return the skill ID
 	 */
-	@Override
 	public int getId()
 	{
 		return _id;
@@ -1046,7 +1044,7 @@ public class Skill implements IIdentifiable
 	
 	public boolean isStayAfterDeath()
 	{
-		return _stayAfterDeath || _irreplacableBuff || _isNecessaryToggle;
+		return _stayAfterDeath || _irreplaceableBuff || _isNecessaryToggle;
 	}
 	
 	public boolean isBad()
@@ -1190,7 +1188,7 @@ public class Skill implements IIdentifiable
 	 */
 	public void addEffect(EffectScope effectScope, AbstractEffect effect)
 	{
-		_effectLists.computeIfAbsent(effectScope, k -> new ArrayList<>()).add(effect);
+		_effectLists.computeIfAbsent(effectScope, _ -> new ArrayList<>()).add(effect);
 	}
 	
 	/**
@@ -1511,7 +1509,7 @@ public class Skill implements IIdentifiable
 	 */
 	public void addCondition(SkillConditionScope skillConditionScope, ISkillCondition skillCondition)
 	{
-		_conditionLists.computeIfAbsent(skillConditionScope, k -> new ArrayList<>()).add(skillCondition);
+		_conditionLists.computeIfAbsent(skillConditionScope, _ -> new ArrayList<>()).add(skillCondition);
 	}
 	
 	/**
@@ -1566,7 +1564,7 @@ public class Skill implements IIdentifiable
 	 */
 	public boolean canBeStolen()
 	{
-		return !isPassive() && !isToggle() && !_isDebuff && !_irreplacableBuff && !isHeroSkill() && !isGMSkill() && !(isStatic() && (getId() != CommonSkill.CARAVANS_SECRET_MEDICINE.getId())) && _canBeDispelled;
+		return !isPassive() && !isToggle() && !_isDebuff && !_irreplaceableBuff && !isHeroSkill() && !isGMSkill() && !(isStatic() && (getId() != CommonSkill.CARAVANS_SECRET_MEDICINE.getId())) && _canBeDispelled;
 	}
 	
 	public boolean isClanSkill()
@@ -1803,9 +1801,9 @@ public class Skill implements IIdentifiable
 	 * @return {@code true} if the buff cannot be replaced, canceled, removed on death, etc.<br>
 	 *         It can be only overriden by higher stack, but buff still remains ticking and activates once the higher stack buff has passed away.
 	 */
-	public boolean isIrreplacableBuff()
+	public boolean isIrreplaceableBuff()
 	{
-		return _irreplacableBuff;
+		return _irreplaceableBuff;
 	}
 	
 	public boolean isDisplayInList()

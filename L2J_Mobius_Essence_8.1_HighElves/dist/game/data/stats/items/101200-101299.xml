@@ -81,6 +81,7 @@
 		<!-- A scroll for safely enchanting A-grade Weapons. <font color=eeaa22>In case of failure the enchant value remains the same. Can be used for safe enchanting to +7 and higher.</font>. <font color=ff6666>Cannot be used for mass enchanting.</font> -->
 		<set name="icon" val="icon.giant_scrl_of_ench_wp_a" />
 		<set name="default_action" val="SKILL_REDUCE" />
+		<set name="etcitem_type" val="ENCHT_ATTR_ANCIENT_CRYSTAL_ENCHANT_WP" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="is_tradable" val="false" />
@@ -97,6 +98,7 @@
 		<!-- A scroll for safely enchanting A-grade upper armor/ lower armor/ full-body armor/ helmet/ gloves/ boots/ sigil/ shield. <font color=eeaa22>In case of failure the enchant value remains the same. Can be used for safe enchanting to +7 and higher.</font>. <font color=ff6666>Cannot be used for mass enchanting.</font> -->
 		<set name="icon" val="icon.giant_scrl_of_ench_am_a" />
 		<set name="default_action" val="SKILL_REDUCE" />
+		<set name="etcitem_type" val="ENCHT_ATTR_ANCIENT_CRYSTAL_ENCHANT_AM" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="is_tradable" val="false" />
@@ -388,6 +390,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
+		<set name="etcitem_type" val="ENCHT_AM" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
 			<skill id="40529" level="1" /> <!-- Scroll: Enchant Truth-seeker's Ornaments -->

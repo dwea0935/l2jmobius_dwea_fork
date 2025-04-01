@@ -21,6 +21,7 @@
 		<npc id="31666" x="145332" y="23112" z="-2116" heading="0" respawnDelay="60" /> <!-- Lumen -->
 		<npc id="30855" x="145648" y="22752" z="-2116" heading="16384" respawnDelay="60" /> <!-- Desmond -->
 		<npc id="31614" x="145928" y="22768" z="-2116" heading="25000" respawnDelay="60" /> <!-- Radyss -->
+		<npc id="31630" x="145928" y="22768" z="-2116" heading="25000" respawnDelay="60" /> <!-- Kaleidos the Unicorn -->
 		<npc id="30854" x="145856" y="23168" z="-2115" heading="32768" respawnDelay="60" /> <!-- Drikiyan -->
 		<npc id="30856" x="145646" y="23568" z="-2116" heading="49152" respawnDelay="60" /> <!-- Winonin -->
 		<npc id="30864" x="144096" y="23584" z="-2117" heading="16384" respawnDelay="60" /> <!-- Hanellin -->

@@ -16,9 +16,9 @@
  */
 package handlers.skillconditionhandlers;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.TransformData;
-import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -69,7 +69,7 @@ public class CanTransformSkillCondition implements ISkillCondition
 			player.sendPacket(SystemMessageId.YOU_CANNOT_TRANSFORM_WHILE_RIDING_A_PET);
 			canTransform = false;
 		}
-		else if (CategoryData.getInstance().isInCategory(CategoryType.VANGUARD_ALL_CLASS, player.getClassId().getId()))
+		else if (CategoryData.getInstance().isInCategory(CategoryType.VANGUARD_ALL_CLASS, player.getPlayerClass().getId()))
 		{
 			final Transform transform = TransformData.getInstance().getTransform(_transformId);
 			if (transform.isRiding())

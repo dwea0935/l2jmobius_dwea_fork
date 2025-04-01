@@ -1526,11 +1526,11 @@
 		</stats>
 		<skills>
 			<skill id="50555" level="1" type="ON_ENCHANT" type_value="0" /> <!-- Beleth' Ring -->
-			<skill id="50555" level="2" type="ON_ENCHANT" type_value="1" /> <!-- Beleth' Ring -->
-			<skill id="50555" level="3" type="ON_ENCHANT" type_value="2" /> <!-- Beleth' Ring -->
-			<skill id="50555" level="4" type="ON_ENCHANT" type_value="3" /> <!-- Beleth' Ring -->
-			<skill id="50555" level="5" type="ON_ENCHANT" type_value="4" /> <!-- Beleth' Ring -->
-			<skill id="50555" level="6" type="ON_ENCHANT" type_value="5" /> <!-- Beleth' Ring -->
+			<skill id="50555" level="2" type="ON_ENCHANT" type_value="1" /> <!-- +1 Beleth' Ring -->
+			<skill id="50555" level="3" type="ON_ENCHANT" type_value="2" /> <!-- +2 Beleth' Ring -->
+			<skill id="50555" level="4" type="ON_ENCHANT" type_value="3" /> <!-- +3 Beleth' Ring -->
+			<skill id="50555" level="5" type="ON_ENCHANT" type_value="4" /> <!-- +4 Beleth' Ring -->
+			<skill id="50555" level="6" type="ON_ENCHANT" type_value="5" /> <!-- +5 Beleth' Ring -->
 		</skills>
 	</item>
 	<item id="97075" name="Balok's Treasure Chest" additionalName="Sealed" type="EtcItem">

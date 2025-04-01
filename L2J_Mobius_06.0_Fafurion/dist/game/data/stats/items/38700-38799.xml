@@ -1667,7 +1667,8 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
-			<skill id="17742" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17718" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17742" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38776" name="Sealed Antharas Slasher Borrowed by Toy Knight" type="Weapon">
@@ -1693,7 +1694,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17743" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17719" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17743" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38777" name="Sealed Antharas Thrower Borrowed by Toy Knight" type="Weapon">
@@ -1720,7 +1722,8 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
-			<skill id="17744" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17720" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17744" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38778" name="Sealed Antharas Buster Borrowed by Toy Knight" type="Weapon">
@@ -1747,7 +1750,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17745" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17721" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17745" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38779" name="Sealed Antharas Cutter Borrowed by Toy Knight" type="Weapon">
@@ -1773,7 +1777,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17746" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17722" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17746" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38780" name="Sealed Antharas Stormer Borrowed by Toy Knight" type="Weapon">
@@ -1800,8 +1805,9 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
+			<skill id="17723" level="1" /> <!-- Dandy's Breath -->
 			<skill id="13115" level="1" /> <!-- Polearm Multi-attack -->
-			<skill id="17747" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17747" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38781" name="Sealed Antharas Fighter Borrowed by Toy Knight" type="Weapon">
@@ -1828,7 +1834,8 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
-			<skill id="17748" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17724" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17748" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38782" name="Sealed Antharas Avenger Borrowed by Toy Knight" type="Weapon">
@@ -1855,7 +1862,8 @@
 			<stat type="randomDamage">20</stat>
 		</stats>
 		<skills>
-			<skill id="17749" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17725" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17749" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38783" name="Sealed Antharas Dual Blunt Weapon Borrowed by Toy Knight" type="Weapon">
@@ -1882,7 +1890,8 @@
 			<stat type="randomDamage">20</stat>
 		</stats>
 		<skills>
-			<skill id="17750" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17726" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17750" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38784" name="Sealed Antharas Dual Sword Borrowed by Toy Knight" type="Weapon">
@@ -1908,7 +1917,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17751" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17727" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17751" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38785" name="Sealed Valakas Shaper Borrowed by Toy Knight" type="Weapon">
@@ -1935,7 +1945,8 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
-			<skill id="17752" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17728" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17752" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38786" name="Sealed Valakas Cutter Borrowed by Toy Knight" type="Weapon">
@@ -1961,7 +1972,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17753" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17729" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17753" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38787" name="Sealed Valakas Slasher Borrowed by Toy Knight" type="Weapon">
@@ -1987,7 +1999,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17754" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17730" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17754" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38788" name="Sealed Valakas Thrower Borrowed by Toy Knight" type="Weapon">
@@ -2014,7 +2027,8 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
-			<skill id="17755" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17731" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17755" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38789" name="Sealed Valakas Buster Borrowed by Toy Knight" type="Weapon">
@@ -2041,7 +2055,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17756" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17732" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17756" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38790" name="Sealed Valakas Caster Borrowed by Toy Knight" type="Weapon">
@@ -2069,7 +2084,8 @@
 			<stat type="randomDamage">20</stat>
 		</stats>
 		<skills>
-			<skill id="17757" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17733" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17757" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38791" name="Sealed Valakas Retributer Borrowed by Toy Knight" type="Weapon">
@@ -2098,7 +2114,8 @@
 			<stat type="randomDamage">20</stat>
 		</stats>
 		<skills>
-			<skill id="17758" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17734" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17758" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38792" name="Sealed Lindvior Shaper Borrowed by Toy Knight" type="Weapon">
@@ -2125,7 +2142,8 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
-			<skill id="17759" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17735" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17759" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38793" name="Sealed Lindvior Thrower Borrowed by Toy Knight" type="Weapon">
@@ -2152,7 +2170,8 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
-			<skill id="17760" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17736" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17760" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38794" name="Sealed Lindvior Slasher Borrowed by Toy Knight" type="Weapon">
@@ -2178,7 +2197,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17761" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17737" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17761" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38795" name="Sealed Lindvior Caster Borrowed by Toy Knight" type="Weapon">
@@ -2205,7 +2225,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17762" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17738" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17762" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38796" name="Sealed Lindvior Cutter Borrowed by Toy Knight" type="Weapon">
@@ -2231,7 +2252,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17763" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17739" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17763" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38797" name="Sealed Lindvior Shooter Borrowed by Toy Knight" type="Weapon">
@@ -2258,7 +2280,8 @@
 			<stat type="randomDamage">5</stat>
 		</stats>
 		<skills>
-			<skill id="17764" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17740" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17764" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38798" name="Sealed Lindvior Dual Dagger Borrowed by Toy Knight" type="Weapon">
@@ -2285,7 +2308,8 @@
 			<stat type="randomDamage">10</stat>
 		</stats>
 		<skills>
-			<skill id="17765" level="1" /> <!-- Toy Knight's Strength -->
+			<skill id="17741" level="1" /> <!-- Dandy's Breath -->
+			<skill id="17765" level="1" /> <!-- Dandy's Strength -->
 		</skills>
 	</item>
 	<item id="38799" name="Antharas Shaper Borrowed by Toy Knight" type="Weapon">

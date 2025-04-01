@@ -1596,7 +1596,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="98" /> <!-- rhand: Halberd -->
 		<acquire exp="1255" sp="12" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="934.704377634099" hpRegen="4.5" mp="447.96" mpRegen="1.8" />
@@ -3816,7 +3815,6 @@
 		</parameters>
 		<race>DRAGON</race>
 		<sex>MALE</sex>
-		<equipment rhand="3939" /> <!-- rhand: Lady's Fan -->
 		<acquire exp="5177" sp="47" attributeExp="1230" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="11816.46" hpRegen="17" mp="2614.5" mpRegen="6" />
@@ -3940,7 +3938,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="1472" /> <!-- rhand: Dreadbane -->
 		<acquire exp="5931" sp="59" attributeExp="1134" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="11676.58" hpRegen="17" mp="2563.2" mpRegen="6" />

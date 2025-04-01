@@ -30,11 +30,29 @@
 	<skill id="52002" toLevel="1" name="Flag Power - Warrior">
 		<!-- Flag Power for warriors. Decreases nearby enemies' Speed. -->
 		<icon>icon.skill1298</icon>
-		<operateType>P</operateType>
+		<operateType>A2</operateType>
+		<targetType>ENEMY_ONLY</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>SPEED_DOWN</abnormalType>
 		<abnormalVisualEffect>FORT_FLAG_AVE</abnormalVisualEffect>
+		<activateRate>40</activateRate>
+		<affectLimit>10-10</affectLimit>
+		<affectObject>NOT_FRIEND</affectObject>
+		<affectRange>200</affectRange>
+		<affectScope>RANGE</affectScope>
+		<basicProperty>MAGIC</basicProperty>
+		<castRange>600</castRange>
+		<effectRange>1000</effectRange>
+		<hitTime>1500</hitTime>
+		<hitTime>4000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic>
+		<magicCriticalRate>5</magicCriticalRate>
+		<reuseDelay>10000</reuseDelay>
 		<effects>
 			<effect name="Speed">
-				<amount>-50</amount>
+				<amount>-30</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -368,9 +386,17 @@
 	<skill id="52016" toLevel="1" name="Orc Fortress Owner">
 		<!-- A special buff for members of the clan that owns the Orc Fortress. Acquired XP/ SP 10% -->
 		<icon>icon.skill32121</icon>
-		<operateType>P</operateType>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>21600</abnormalTime>
+		<abnormalType>VOTE</abnormalType>
+		<affectScope>SINGLE</affectScope>
+		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
+		<reuseDelay>600000</reuseDelay>
+		<stayAfterDeath>true</stayAfterDeath>
 		<effects>
 			<effect name="ExpModify">
 				<amount>
@@ -454,7 +480,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -468,7 +494,13 @@
 	<skill id="52021" toLevel="1" name="Clan's Vitality Bonus">
 		<!-- Sayha's Grace charging rate +5% -->
 		<icon>icon.skill19005</icon>
-		<operateType>A1</operateType>
+		<operateType>P</operateType>
+		<effects>
+			<effect name="VitalityPointsRate">
+				<amount>5</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="52022" toLevel="1" name="Sylph Blessing">
 		<!-- Atk. Spd. +50. Casting Spd. +50. Speed +5. Soulshot Damage +10%. Spiritshot Damage +10%. Acquired XP/ SP +30% -->
@@ -506,7 +538,6 @@
 		<!-- A special buff for members of the clan that owns the Giran Castle. Acquired XP/ SP 20%. Acquired adena 10% -->
 		<icon>icon.s_castle_winner_reward1</icon>
 		<operateType>P</operateType>
-		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="ExpModify">
@@ -530,7 +561,6 @@
 		<!-- A special buff for members of the clan that owns the Goddard Castle. Acquired XP/ SP 20%. Acquired adena 10% -->
 		<icon>icon.s_castle_winner_reward2</icon>
 		<operateType>P</operateType>
-		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="ExpModify">

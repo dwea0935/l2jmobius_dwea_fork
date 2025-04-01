@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="7900" type="Weapon" name="Ice Storm Hammer">
 		<!-- Bestows either Focus, Anger, or Critical Bleed. -->
@@ -125,7 +125,7 @@
 		<set name="price" val="2000" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="7906" type="EtcItem" name="Fire Blessing">
+	<item id="7906" type="EtcItem" name="Blessing of Fire">
 		<!-- Bestows fire attack attribute while engaged in a physical attack. -->
 		<set name="icon" val="icon.etc_fire_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -137,7 +137,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2248-1" /> <!-- Bless of Fire -->
 	</item>
-	<item id="7907" type="EtcItem" name="Water Blessing">
+	<item id="7907" type="EtcItem" name="Blessing of Water">
 		<!-- Bestows water attack attribute while engaged in a physical attack. -->
 		<set name="icon" val="icon.etc_water_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -149,7 +149,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2249-1" /> <!-- Bless of Water -->
 	</item>
-	<item id="7908" type="EtcItem" name="Wind Blessing">
+	<item id="7908" type="EtcItem" name="Blessing of Wind">
 		<!-- Bestows wind attack attribute while engaged in a physical attack. -->
 		<set name="icon" val="icon.etc_wind_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -161,7 +161,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2250-1" /> <!-- Bless of Wind -->
 	</item>
-	<item id="7909" type="EtcItem" name="Earth Blessing">
+	<item id="7909" type="EtcItem" name="Blessing of Earth">
 		<!-- Bestows earth attack attribute while engaged in a physical attack. -->
 		<set name="icon" val="icon.etc_earth_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -173,7 +173,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2251-1" /> <!-- Bless of Earth -->
 	</item>
-	<item id="7910" type="EtcItem" name="Dark Blessing">
+	<item id="7910" type="EtcItem" name="Blessing of Darkness">
 		<!-- Bestows darkness attack attribute while engaged in a physical attack. -->
 		<set name="icon" val="icon.etc_unholy_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -185,7 +185,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2252-1" /> <!-- Bless of Darkness -->
 	</item>
-	<item id="7911" type="EtcItem" name="Holy Blessing">
+	<item id="7911" type="EtcItem" name="Blessing of Sanctity">
 		<!-- Bestows sacred attack attribute while engaged in a physical attack. -->
 		<set name="icon" val="icon.etc_holy_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -197,7 +197,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2253-1" /> <!-- Bless of Sacredness -->
 	</item>
-	<item id="7912" type="EtcItem" name="Fire Shard">
+	<item id="7912" type="EtcItem" name="Fire Crystal">
 		<!-- Eliminates vulnerability to fire attacks. -->
 		<set name="icon" val="icon.etc_fire_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -209,7 +209,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2254-3" /> <!-- Crystal of Fire -->
 	</item>
-	<item id="7913" type="EtcItem" name="Water Shard">
+	<item id="7913" type="EtcItem" name="Water Crystal">
 		<!-- Eliminates vulnerability to to water attacks. -->
 		<set name="icon" val="icon.etc_water_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -221,7 +221,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2255-3" /> <!-- Crystal of Water -->
 	</item>
-	<item id="7914" type="EtcItem" name="Wind Shard">
+	<item id="7914" type="EtcItem" name="Wind Crystal">
 		<!-- Eliminates vulnerability to wind attacks. -->
 		<set name="icon" val="icon.etc_wind_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -233,7 +233,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2256-3" /> <!-- Crystal of Wind -->
 	</item>
-	<item id="7915" type="EtcItem" name="Earth Shard">
+	<item id="7915" type="EtcItem" name="Earth Crystal">
 		<!-- Eliminates vulnerability to earth attacks. -->
 		<set name="icon" val="icon.etc_earth_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -245,7 +245,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2257-3" /> <!-- Crystal of Earth -->
 	</item>
-	<item id="7916" type="EtcItem" name="Dark Shard">
+	<item id="7916" type="EtcItem" name="Dark Crystal">
 		<!-- Eliminates vulnerability to darkness attacks. -->
 		<set name="icon" val="icon.etc_unholy_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -257,7 +257,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2258-3" /> <!-- Crystal of Darkness -->
 	</item>
-	<item id="7917" type="EtcItem" name="Holy Shard">
+	<item id="7917" type="EtcItem" name="Sanctity Crystal">
 		<!-- Eliminates vulnerability to sacred attacks. -->
 		<set name="icon" val="icon.etc_holy_crystal_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />

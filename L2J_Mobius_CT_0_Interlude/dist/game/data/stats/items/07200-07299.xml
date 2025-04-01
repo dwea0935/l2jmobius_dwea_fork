@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="7200" type="EtcItem" name="Buffalo Meat">
 		<!-- Rare ingredient for food. -->
@@ -803,7 +803,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="7267" type="EtcItem" name="Vacualite Floating Stone">
+	<item id="7267" type="EtcItem" name="Floating Stone">
 		<!-- A stone required to go to entrance of the Flame Path. It will break after use. Talk to Klein for instruction. -->
 		<set name="icon" val="icon.etc_vacualite_glowing_white_i00" />
 		<set name="immediate_effect" val="true" />

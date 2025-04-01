@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20300" name="Agathion - Blue Sumo Wrestler" additionalName="Wild Magic (7-day)" type="Armor">
 		<!-- Bracelet that summons Agathion - Blue Sumo Wrestler. Cooldown is 1 hour. -->
@@ -662,7 +662,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="300" />
 		<skills>
-			<skill id="26046" level="3" /> <!-- XP Rune III (Lv. 1-100+) 30% -->
+			<skill id="26046" level="3" /> <!-- XP Rune III (Lv. 1-99) 30% -->
 		</skills>
 	</item>
 	<item id="20336" name="XP Rune III (Lv. 1-99) 50%" additionalName="5-hour" type="EtcItem">
@@ -680,7 +680,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="300" />
 		<skills>
-			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-100+) 50% -->
+			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-99) 50% -->
 		</skills>
 	</item>
 	<item id="20337" name="XP Rune III (Lv. 1-99) 30%" additionalName="10-hour" type="EtcItem">
@@ -698,7 +698,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="600" />
 		<skills>
-			<skill id="26046" level="3" /> <!-- XP Rune III (Lv. 1-100+) 30% -->
+			<skill id="26046" level="3" /> <!-- XP Rune III (Lv. 1-99) 30% -->
 		</skills>
 	</item>
 	<item id="20338" name="XP Rune III (Lv. 1-99) 50%" additionalName="10-hour" type="EtcItem">
@@ -716,7 +716,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="600" />
 		<skills>
-			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-100+) 50% -->
+			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-99) 50% -->
 		</skills>
 	</item>
 	<item id="20339" name="XP Rune III (Lv. 1-99) 30%" additionalName="7-day" type="EtcItem">
@@ -734,7 +734,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="26046" level="3" /> <!-- XP Rune III (Lv. 1-100+) 30% -->
+			<skill id="26046" level="3" /> <!-- XP Rune III (Lv. 1-99) 30% -->
 		</skills>
 	</item>
 	<item id="20340" name="XP Rune III (Lv. 1-99) 50%" additionalName="7-day" type="EtcItem">
@@ -752,7 +752,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-100+) 50% -->
+			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-99) 50% -->
 		</skills>
 	</item>
 	<item id="20341" name="SP Rune 30%" additionalName="5-hour" type="EtcItem">

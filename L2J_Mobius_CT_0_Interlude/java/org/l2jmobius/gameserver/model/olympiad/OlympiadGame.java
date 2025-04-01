@@ -29,10 +29,8 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.data.HeroSkillTable;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.AntiFeedManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.managers.AntiFeedManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -43,17 +41,18 @@ import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.olympiad.OnOlympiadMatchResult;
+import org.l2jmobius.gameserver.model.events.holders.olympiad.OnOlympiadMatchResult;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.ExOlympiadMatchEnd;
 import org.l2jmobius.gameserver.network.serverpackets.ExOlympiadMode;
-import org.l2jmobius.gameserver.network.serverpackets.ExOlympiadUserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
-import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SkillCoolTime;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -182,7 +181,7 @@ class OlympiadGame
 			spawn.setAmount(1);
 			spawn.setHeading(0);
 			spawn.setRespawnDelay(1);
-			SpawnTable.getInstance().addNewSpawn(spawn, false);
+			SpawnTable.getInstance().addSpawn(spawn);
 			spawn.init();
 			spawn.stopRespawn();
 			return spawn;
@@ -591,7 +590,6 @@ class OlympiadGame
 			{
 				final int lostPoints = Math.min(playerOnePoints / 3, Config.OLYMPIAD_MAX_POINTS);
 				playerOneStat.set(POINTS, playerOnePoints - lostPoints);
-				Olympiad.updateNobleStats(_playerOneID, playerOneStat);
 				final SystemMessage sm = new SystemMessage(SystemMessageId.S1_HAS_LOST_S2_POINTS_IN_THE_GRAND_OLYMPIAD_GAMES);
 				sm.addString(_playerOneName);
 				sm.addInt(lostPoints);
@@ -618,7 +616,6 @@ class OlympiadGame
 			{
 				final int lostPoints = Math.min(playerTwoPoints / 3, Config.OLYMPIAD_MAX_POINTS);
 				playerTwoStat.set(POINTS, playerTwoPoints - lostPoints);
-				Olympiad.updateNobleStats(_playerTwoID, playerTwoStat);
 				final SystemMessage sm = new SystemMessage(SystemMessageId.S1_HAS_LOST_S2_POINTS_IN_THE_GRAND_OLYMPIAD_GAMES);
 				sm.addString(_playerTwoName);
 				sm.addInt(lostPoints);
@@ -780,10 +777,6 @@ class OlympiadGame
 			}
 			playerOneStat.set(COMP_DONE, playerOnePlayed + 1);
 			playerTwoStat.set(COMP_DONE, playerTwoPlayed + 1);
-			
-			Olympiad.updateNobleStats(_playerOneID, playerOneStat);
-			Olympiad.updateNobleStats(_playerTwoID, playerTwoStat);
-			
 			return;
 		}
 		
@@ -843,7 +836,7 @@ class OlympiadGame
 				// Save Fight Result
 				saveResults(_playerOneID, _playerTwoID, _playerOneClass, _playerTwoClass, 1, _startTime, fightTime, (_type == CompetitionType.CLASSED ? 1 : 0));
 				
-				final Item item = _playerOne.getInventory().addItem("Olympiad", Config.OLYMPIAD_BATTLE_REWARD_ITEM, _gpreward, _playerOne, null);
+				final Item item = _playerOne.getInventory().addItem(ItemProcessType.REWARD, Config.OLYMPIAD_BATTLE_REWARD_ITEM, _gpreward, _playerOne, null);
 				final InventoryUpdate iu = new InventoryUpdate();
 				iu.addModifiedItem(item);
 				_playerOne.sendInventoryUpdate(iu);
@@ -886,7 +879,7 @@ class OlympiadGame
 				// Save Fight Result
 				saveResults(_playerOneID, _playerTwoID, _playerOneClass, _playerTwoClass, 2, _startTime, fightTime, (_type == CompetitionType.CLASSED ? 1 : 0));
 				
-				final Item item = _playerTwo.getInventory().addItem("Olympiad", Config.OLYMPIAD_BATTLE_REWARD_ITEM, _gpreward, _playerTwo, null);
+				final Item item = _playerTwo.getInventory().addItem(ItemProcessType.REWARD, Config.OLYMPIAD_BATTLE_REWARD_ITEM, _gpreward, _playerTwo, null);
 				final InventoryUpdate iu = new InventoryUpdate();
 				iu.addModifiedItem(item);
 				_playerTwo.sendInventoryUpdate(iu);
@@ -932,9 +925,6 @@ class OlympiadGame
 		
 		playerOneStat.set(COMP_DONE, playerOnePlayed + 1);
 		playerTwoStat.set(COMP_DONE, playerTwoPlayed + 1);
-		
-		Olympiad.updateNobleStats(_playerOneID, playerOneStat);
-		Olympiad.updateNobleStats(_playerTwoID, playerTwoStat);
 		
 		if (Config.OLYMPIAD_LOG_FIGHTS)
 		{
@@ -1123,330 +1113,5 @@ class OlympiadGame
 				LOGGER.log(Level.SEVERE, "SQL exception while saving olympiad fight.", e);
 			}
 		}
-	}
-}
-
-/**
- * @author ascharot
- */
-class OlympiadGameTask implements Runnable
-{
-	protected static final Logger _log = Logger.getLogger(OlympiadGameTask.class.getName());
-	public OlympiadGame _game = null;
-	protected static final long BATTLE_PERIOD = Config.OLYMPIAD_BATTLE; // 6 mins
-	
-	private boolean _terminated = false;
-	private boolean _started = false;
-	
-	public boolean isTerminated()
-	{
-		return _terminated || _game._aborted;
-	}
-	
-	public boolean isStarted()
-	{
-		return _started;
-	}
-	
-	public OlympiadGameTask(OlympiadGame game)
-	{
-		_game = game;
-	}
-	
-	protected boolean checkBattleStatus()
-	{
-		final boolean pOneCrash = ((_game._playerOne == null) || _game._playerOneDisconnected);
-		final boolean pTwoCrash = ((_game._playerTwo == null) || _game._playerTwoDisconnected);
-		if (pOneCrash || pTwoCrash || _game._aborted)
-		{
-			return false;
-		}
-		
-		return true;
-	}
-	
-	protected boolean checkDefaulted()
-	{
-		_game._playerOne = World.getInstance().getPlayer(_game._playerOneID);
-		_game._players.set(0, _game._playerOne);
-		_game._playerTwo = World.getInstance().getPlayer(_game._playerTwoID);
-		_game._players.set(1, _game._playerTwo);
-		
-		for (int i = 0; i < 2; i++)
-		{
-			boolean defaulted = false;
-			final Player player = _game._players.get(i);
-			if (player != null)
-			{
-				player.setOlympiadGameId(_game._stadiumID);
-			}
-			final Player otherPlayer = _game._players.get(i ^ 1);
-			SystemMessage sm = null;
-			
-			if (player == null)
-			{
-				defaulted = true;
-			}
-			else if (player.isDead())
-			{
-				sm = new SystemMessage(SystemMessageId.YOU_CANNOT_PARTICIPATE_IN_THE_OLYMPIAD_WHILE_DEAD);
-				sm.addPcName(player);
-				defaulted = true;
-			}
-			else if (player.isSubClassActive())
-			{
-				sm = new SystemMessage(SystemMessageId.YOU_HAVE_CHANGED_FROM_YOUR_MAIN_CLASS_TO_A_SUBCLASS_AND_THEREFORE_ARE_REMOVED_FROM_THE_GRAND_OLYMPIAD_GAMES_WAITING_LIST);
-				sm.addPcName(player);
-				defaulted = true;
-			}
-			else if (player.isCursedWeaponEquipped())
-			{
-				sm = new SystemMessage(SystemMessageId.IF_YOU_POSSESS_S1_YOU_CANNOT_PARTICIPATE_IN_THE_OLYMPIAD);
-				sm.addPcName(player);
-				sm.addItemName(player.getCursedWeaponEquippedId());
-				defaulted = true;
-			}
-			else if ((player.getInventoryLimit() * 0.8) <= player.getInventory().getSize())
-			{
-				sm = new SystemMessage(SystemMessageId.YOU_CAN_T_JOIN_A_GRAND_OLYMPIAD_GAME_MATCH_WITH_THAT_MUCH_STUFF_ON_YOU_REDUCE_YOUR_WEIGHT_TO_BELOW_80_PERCENT_FULL_AND_REQUEST_TO_JOIN_AGAIN);
-				sm.addPcName(player);
-				defaulted = true;
-			}
-			else if ((Config.DUALBOX_CHECK_MAX_OLYMPIAD_PARTICIPANTS_PER_IP > 0) && !AntiFeedManager.getInstance().tryAddPlayer(AntiFeedManager.OLYMPIAD_ID, player, Config.DUALBOX_CHECK_MAX_OLYMPIAD_PARTICIPANTS_PER_IP))
-			{
-				final NpcHtmlMessage message = new NpcHtmlMessage(player.getLastHtmlActionOriginId());
-				message.setFile(player, "data/html/mods/OlympiadIPRestriction.htm");
-				message.replace("%max%", String.valueOf(AntiFeedManager.getInstance().getLimit(player, Config.DUALBOX_CHECK_MAX_OLYMPIAD_PARTICIPANTS_PER_IP)));
-				player.sendPacket(message);
-				defaulted = true;
-			}
-			
-			if (defaulted)
-			{
-				if ((player != null) && (sm != null))
-				{
-					player.sendPacket(sm);
-				}
-				if (otherPlayer != null)
-				{
-					otherPlayer.sendPacket(SystemMessageId.YOUR_OPPONENT_DOES_NOT_MEET_THE_REQUIREMENTS_TO_DO_BATTLE_THE_MATCH_HAS_BEEN_CANCELLED);
-				}
-				if (i == 0)
-				{
-					_game._playerOneDefaulted = true;
-				}
-				else
-				{
-					_game._playerTwoDefaulted = true;
-				}
-			}
-		}
-		return _game._playerOneDefaulted || _game._playerTwoDefaulted;
-	}
-	
-	@Override
-	public void run()
-	{
-		_started = true;
-		if (_game != null)
-		{
-			if ((_game._playerOne == null) || (_game._playerTwo == null))
-			{
-				return;
-			}
-			
-			if (teleportCountdown())
-			{
-				runGame();
-			}
-			
-			_terminated = true;
-			_game.validateWinner();
-			_game.PlayersStatusBack();
-			_game.cleanEffects();
-			
-			if (_game._gamestarted)
-			{
-				_game._gamestarted = false;
-				try
-				{
-					_game.portPlayersBack();
-				}
-				catch (Exception e)
-				{
-					_log.log(Level.WARNING, "Exception on portPlayersBack(): " + e.getMessage(), e);
-				}
-			}
-			
-			if (OlympiadManager.STADIUMS[_game._stadiumID].getSpectators() != null)
-			{
-				for (Player spec : OlympiadManager.STADIUMS[_game._stadiumID].getSpectators())
-				{
-					if (spec != null)
-					{
-						spec.sendPacket(ExOlympiadMatchEnd.STATIC_PACKET);
-					}
-				}
-			}
-			
-			_game.clearPlayers();
-			OlympiadManager.getInstance().removeGame(_game);
-			_game = null;
-		}
-	}
-	
-	private boolean runGame()
-	{
-		SystemMessage sm;
-		// Checking for opponents and teleporting to arena
-		if (checkDefaulted())
-		{
-			return false;
-		}
-		
-		_game.portPlayersToArena();
-		_game.removals();
-		if (Config.OLYMPIAD_ANNOUNCE_GAMES)
-		{
-			_game.announceGame();
-		}
-		try
-		{
-			Thread.sleep(5000);
-		}
-		catch (Exception e)
-		{
-			// Ignore.
-		}
-		
-		synchronized (this)
-		{
-			if (!OlympiadGame._battleStarted)
-			{
-				OlympiadGame._battleStarted = true;
-			}
-		}
-		
-		byte step = 10;
-		for (byte i = 60; i > 0; i -= step)
-		{
-			sm = new SystemMessage(SystemMessageId.THE_GRAND_OLYMPIAD_MATCH_WILL_START_IN_S1_SECOND_S);
-			sm.addInt(i);
-			_game.broadcastMessage(sm, true);
-			
-			switch (i)
-			{
-				case 10:
-					_game._damageP1 = 0;
-					_game._damageP2 = 0;
-					step = 5;
-					break;
-				case 5:
-					step = 1;
-					break;
-			}
-			
-			try
-			{
-				Thread.sleep(step * 1000);
-			}
-			catch (Exception e)
-			{
-				// Ignore.
-			}
-		}
-		
-		if (!checkBattleStatus())
-		{
-			return false;
-		}
-		
-		if (!_game.makeCompetitionStart())
-		{
-			return false;
-		}
-		
-		// TODO: Check if this can be removed.
-		_game._playerOne.broadcastInfo();
-		_game._playerTwo.broadcastInfo();
-		
-		_game._playerOne.sendPacket(new ExOlympiadUserInfo(_game._playerTwo, 1));
-		_game._playerTwo.sendPacket(new ExOlympiadUserInfo(_game._playerOne, 1));
-		
-		if (OlympiadManager.STADIUMS[_game._stadiumID].getSpectators() != null)
-		{
-			for (Player spec : OlympiadManager.STADIUMS[_game._stadiumID].getSpectators())
-			{
-				if (spec != null)
-				{
-					spec.sendPacket(new ExOlympiadUserInfo(_game._playerOne, 1));
-					spec.sendPacket(new ExOlympiadUserInfo(_game._playerTwo, 2));
-				}
-			}
-		}
-		
-		// Wait 3 mins (Battle)
-		for (int i = 0; i < BATTLE_PERIOD; i += 10000)
-		{
-			try
-			{
-				Thread.sleep(10000);
-				// If game haveWinner then stop waiting battle_period
-				// and validate winner
-				if (_game.haveWinner())
-				{
-					break;
-				}
-			}
-			catch (Exception e)
-			{
-				// Ignore.
-			}
-		}
-		
-		// TODO: Check if this can be removed.
-		_game._playerOne.broadcastInfo();
-		_game._playerTwo.broadcastInfo();
-		
-		return checkBattleStatus();
-	}
-	
-	private boolean teleportCountdown()
-	{
-		SystemMessage sm;
-		// Waiting for teleport to arena
-		byte step = 60;
-		for (int i = Config.OLYMPIAD_WAIT_TIME; i > 0; i -= step)
-		{
-			sm = new SystemMessage(SystemMessageId.YOU_WILL_BE_MOVED_TO_THE_OLYMPIAD_STADIUM_IN_S1_SECOND_S);
-			sm.addInt(i);
-			_game.broadcastMessage(sm, false);
-			
-			switch (i)
-			{
-				case 60:
-					step = 30;
-					break;
-				case 30:
-					step = 15;
-					break;
-				case 15:
-					step = 5;
-					break;
-				case 5:
-					step = 1;
-					break;
-			}
-			try
-			{
-				Thread.sleep(step * 1000);
-			}
-			catch (InterruptedException e)
-			{
-				return false;
-			}
-		}
-		
-		return true;
 	}
 }

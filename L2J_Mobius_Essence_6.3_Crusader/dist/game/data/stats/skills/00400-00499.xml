@@ -2252,7 +2252,6 @@
 		<channelingStart>3.6</channelingStart>
 		<channelingTickInterval>2</channelingTickInterval>
 		<effectPoint>1</effectPoint>
-		<effectPoint>1</effectPoint>
 		<effectRange>600</effectRange>
 		<hitTime>15000</hitTime>
 		<isMagic>2</isMagic> <!-- Static Skill -->

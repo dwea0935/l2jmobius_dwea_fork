@@ -1,23 +1,26 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,18 +36,17 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.commons.util.file.filter.NumericNameFilter;
-import org.l2jmobius.gameserver.enums.SpecialItemType;
+import org.l2jmobius.gameserver.data.holders.MultisellEntryHolder;
+import org.l2jmobius.gameserver.data.holders.MultisellListHolder;
+import org.l2jmobius.gameserver.data.holders.PreparedMultisellListHolder;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.MultisellEntryHolder;
-import org.l2jmobius.gameserver.model.holders.MultisellListHolder;
-import org.l2jmobius.gameserver.model.holders.PreparedMultisellListHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantItemGroup;
+import org.l2jmobius.gameserver.model.item.enums.SpecialItemType;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.serverpackets.MultiSellList;
 
 public class MultisellData implements IXmlReader
@@ -52,7 +54,6 @@ public class MultisellData implements IXmlReader
 	private static final Logger LOGGER = Logger.getLogger(MultisellData.class.getName());
 	
 	public static final int PAGE_SIZE = 40;
-	private static final FileFilter NUMERIC_FILTER = new NumericNameFilter();
 	
 	private final Map<Integer, MultisellListHolder> _multisells = new ConcurrentHashMap<>();
 	
@@ -76,7 +77,7 @@ public class MultisellData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		final EnchantItemGroup magicWeaponGroup = EnchantItemGroupsData.getInstance().getItemGroup("MAGE_WEAPON_GROUP");
 		final int magicWeaponGroupMax = magicWeaponGroup != null ? magicWeaponGroup.getMaximumEnchant() : -2;
@@ -89,10 +90,10 @@ public class MultisellData implements IXmlReader
 		
 		try
 		{
-			forEach(doc, "list", listNode ->
+			forEach(document, "list", listNode ->
 			{
 				final StatSet set = new StatSet(parseAttributes(listNode));
-				final int listId = Integer.parseInt(f.getName().substring(0, f.getName().length() - 4));
+				final int listId = Integer.parseInt(file.getName().substring(0, file.getName().length() - 4));
 				final List<MultisellEntryHolder> entries = new ArrayList<>(listNode.getChildNodes().getLength());
 				final AtomicInteger entryCounter = new AtomicInteger();
 				
@@ -222,45 +223,31 @@ public class MultisellData implements IXmlReader
 		}
 		catch (Exception e)
 		{
-			LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Error in file " + f, e);
+			LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Error in file " + file, e);
 		}
 	}
 	
 	@Override
-	public FileFilter getCurrentFileFilter()
+	public boolean isValidXmlFile(File file)
 	{
-		return NUMERIC_FILTER;
+		return (file != null) && file.isFile() && file.getName().toLowerCase().matches("\\d+\\.xml");
 	}
 	
 	/**
-	 * This will generate the multisell list for the items.<br>
-	 * There exist various parameters in multisells that affect the way they will appear:
+	 * Generates and sends the multisell list to the player. The multisell list can be customized based on various parameters:
 	 * <ol>
-	 * <li>Inventory only:
-	 * <ul>
-	 * <li>If true, only show items of the multisell for which the "primary" ingredients are already in the player's inventory. By "primary" ingredients we mean weapon and armor.</li>
-	 * <li>If false, show the entire list.</li>
-	 * </ul>
-	 * </li>
-	 * <li>Maintain enchantment: presumably, only lists with "inventory only" set to true should sometimes have this as true. This makes no sense otherwise...
-	 * <ul>
-	 * <li>If true, then the product will match the enchantment level of the ingredient.<br>
-	 * If the player has multiple items that match the ingredient list but the enchantment levels differ, then the entries need to be duplicated to show the products and ingredients for each enchantment level.<br>
-	 * For example: If the player has a crystal staff +1 and a crystal staff +3 and goes to exchange it at the mammon, the list should have all exchange possibilities for the +1 staff, followed by all possibilities for the +3 staff.</li>
-	 * <li>If false, then any level ingredient will be considered equal and product will always be at +0</li>
-	 * </ul>
-	 * </li>
-	 * <li>Apply taxes: Uses the "taxIngredient" entry in order to add a certain amount of adena to the ingredients.
-	 * <li>
-	 * <li>Additional product and ingredient multipliers.</li>
+	 * <li><b>Inventory only:</b> Determines if only items with primary ingredients (weapons or armor) in the player's inventory are shown.</li>
+	 * <li><b>Maintain enchantment:</b> If set to true, the product retains the enchantment level of the ingredient.</li>
+	 * <li><b>Apply taxes:</b> Includes a tax in the ingredient list, specified by the "taxIngredient" entry.</li>
+	 * <li><b>Product and ingredient multipliers:</b> Additional multipliers can be applied to the product and ingredient quantities.</li>
 	 * </ol>
-	 * @param listId
-	 * @param player
-	 * @param npc
-	 * @param inventoryOnly
-	 * @param ingredientMultiplierValue
-	 * @param productMultiplierValue
-	 * @param type
+	 * @param listId the ID of the multisell list to be generated.
+	 * @param player the player requesting the multisell list.
+	 * @param npc the NPC through which the multisell is accessed.
+	 * @param inventoryOnly if true, only shows items for which the primary ingredients are in the player's inventory.
+	 * @param ingredientMultiplierValue multiplier applied to the ingredients in the multisell list.
+	 * @param productMultiplierValue multiplier applied to the products in the multisell list.
+	 * @param type the type of multisell list.
 	 */
 	public void separateAndSend(int listId, Player player, Npc npc, boolean inventoryOnly, double ingredientMultiplierValue, double productMultiplierValue, int type)
 	{
@@ -291,7 +278,7 @@ public class MultisellData implements IXmlReader
 		int index = 0;
 		do
 		{
-			// send list at least once even if size = 0
+			// Send list at least once even if size = 0.
 			player.sendPacket(new MultiSellList(player, list, index, type));
 			index += PAGE_SIZE;
 		}
@@ -300,11 +287,23 @@ public class MultisellData implements IXmlReader
 		player.setMultiSell(list);
 	}
 	
+	/**
+	 * Generates and sends the multisell list to the player using default multipliers and type.
+	 * @param listId the ID of the multisell list to be generated.
+	 * @param player the player requesting the multisell list.
+	 * @param npc the NPC through which the multisell is accessed.
+	 * @param inventoryOnly if true, only shows items for which the primary ingredients are in the player's inventory.
+	 */
 	public void separateAndSend(int listId, Player player, Npc npc, boolean inventoryOnly)
 	{
 		separateAndSend(listId, player, npc, inventoryOnly, Double.NaN, Double.NaN, 0);
 	}
 	
+	/**
+	 * Checks if an item specified by the {@code ItemHolder} exists in the game database. Stackable items must have a count of at least 1, while non-stackable items must have a count of exactly 1.
+	 * @param holder the {@code ItemHolder} instance representing the item to check.
+	 * @return {@code true} if the item exists and meets the count requirements, {@code false} otherwise.
+	 */
 	private final boolean itemExists(ItemHolder holder)
 	{
 		final SpecialItemType specialItem = SpecialItemType.getByClientId(holder.getId());
@@ -317,6 +316,11 @@ public class MultisellData implements IXmlReader
 		return (template != null) && (template.isStackable() ? (holder.getCount() >= 1) : (holder.getCount() == 1));
 	}
 	
+	/**
+	 * Retrieves a {@code MultisellListHolder} by its ID.
+	 * @param id the ID of the multisell list to retrieve.
+	 * @return the {@code MultisellListHolder} instance for the specified ID, or {@code null} if it does not exist.
+	 */
 	public MultisellListHolder getMultisell(int id)
 	{
 		return _multisells.getOrDefault(id, null);

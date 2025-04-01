@@ -16,10 +16,10 @@
  */
 package quests.Q00620_FourGoblets;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 
 /**
@@ -1150,7 +1150,7 @@ public class Q00620_FourGoblets extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = killer.getQuestState(getName());
 		final Player partyMember = getRandomPartyMember(killer, 3);
@@ -1171,57 +1171,61 @@ public class Q00620_FourGoblets extends Quest
 				giveItems(killer, RELIC, 1);
 			}
 		}
+		
 		switch (npc.getId())
 		{
 			case BOSS_1:
 			{
 				if (partyMember == null)
 				{
-					return null;
+					return;
 				}
+				
 				if ((npc.isInsideRadius3D(partyMember, 1000) && (getQuestItemsCount(partyMember, GOBLETS[0]) < 1)))
 				{
 					giveItems(partyMember, GOBLETS[0], 1);
 				}
-			}
 				break;
+			}
 			case BOSS_2:
 			{
 				if (partyMember == null)
 				{
-					return null;
+					return;
 				}
+				
 				if ((npc.isInsideRadius3D(partyMember, 1000) && (getQuestItemsCount(partyMember, GOBLETS[1]) < 1)))
 				{
 					giveItems(partyMember, GOBLETS[1], 1);
 				}
-			}
 				break;
+			}
 			case BOSS_3:
 			{
 				if (partyMember == null)
 				{
-					return null;
+					return;
 				}
+				
 				if ((npc.isInsideRadius3D(partyMember, 1000) && (getQuestItemsCount(partyMember, GOBLETS[2]) < 1)))
 				{
 					giveItems(partyMember, GOBLETS[2], 1);
 				}
-			}
 				break;
+			}
 			case BOSS_4:
 			{
 				if (partyMember == null)
 				{
-					return null;
+					return;
 				}
+				
 				if ((npc.isInsideRadius3D(partyMember, 1000) && (getQuestItemsCount(partyMember, GOBLETS[3]) < 1)))
 				{
 					giveItems(partyMember, GOBLETS[3], 1);
 				}
-			}
 				break;
+			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

@@ -20,16 +20,17 @@
  */
 package handlers.bypasshandlers;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.network.serverpackets.PartySmallWindowAll;
 import org.l2jmobius.gameserver.network.serverpackets.PartySmallWindowDeleteAll;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Mobius
@@ -54,7 +55,7 @@ public class ChangePlayerName implements IBypassHandler
 		}
 		
 		final String newName = command.split(" ")[1].trim();
-		if (!Util.isAlphaNumeric(newName))
+		if (!StringUtil.isAlphaNumeric(newName))
 		{
 			player.sendMessage("Name must only contain alphanumeric characters.");
 			return false;
@@ -66,7 +67,7 @@ public class ChangePlayerName implements IBypassHandler
 		}
 		
 		// Destroy item.
-		player.destroyItemByItemId("ChangePlayerName to " + newName, NAME_CHANGE_TICKET, 1, player, true);
+		player.destroyItemByItemId(ItemProcessType.FEE, NAME_CHANGE_TICKET, 1, player, true);
 		
 		// Set name and proceed.
 		player.setName(newName);

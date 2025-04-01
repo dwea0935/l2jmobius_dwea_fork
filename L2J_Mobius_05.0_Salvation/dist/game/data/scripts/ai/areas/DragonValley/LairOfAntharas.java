@@ -16,11 +16,11 @@
  */
 package ai.areas.DragonValley;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 
 import ai.AbstractNpcAI;
@@ -74,7 +74,7 @@ public class LairOfAntharas extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		if (npc.isScriptValue(0) && (getRandom(100) < KNORIKS_CHANCE))
 		{
@@ -84,11 +84,10 @@ public class LairOfAntharas extends AbstractNpcAI
 			}
 			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.WHO_S_THERE_IF_YOU_DISTURB_THE_TEMPER_OF_THE_GREAT_LAND_DRAGON_ANTHARAS_I_WILL_NEVER_FORGIVE_YOU);
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -121,18 +120,16 @@ public class LairOfAntharas extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if ((npc.getId() == DRAGON_GUARD) || (npc.getId() == DRAGON_MAGE))
 		{
 			npc.setRandomWalking(true);
 			getTimers().addTimer("CHECK_HOME_" + npc.getObjectId(), null, 10000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

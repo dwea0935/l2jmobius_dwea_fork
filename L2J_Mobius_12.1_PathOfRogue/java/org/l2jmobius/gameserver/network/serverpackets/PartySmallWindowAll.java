@@ -21,9 +21,9 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -62,7 +62,7 @@ public class PartySmallWindowAll extends ServerPacket
 				buffer.writeInt(member.getMaxMp());
 				buffer.writeInt(member.getVitalityPoints());
 				buffer.writeByte(member.getLevel());
-				buffer.writeShort(member.getClassId().getId());
+				buffer.writeShort(member.getPlayerClass().getId());
 				buffer.writeByte(1); // Unk
 				buffer.writeShort(member.getRace().ordinal());
 				buffer.writeInt(0); // 228

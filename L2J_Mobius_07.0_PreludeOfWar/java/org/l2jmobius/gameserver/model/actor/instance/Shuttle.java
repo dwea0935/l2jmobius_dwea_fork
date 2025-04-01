@@ -20,10 +20,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.l2jmobius.gameserver.ai.ShuttleAI;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Vehicle;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
 import org.l2jmobius.gameserver.model.shuttle.ShuttleDataHolder;
 import org.l2jmobius.gameserver.model.shuttle.ShuttleStop;

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="61500" toLevel="1" name="Armor Break">
 		<icon>icon.force_breaker</icon>
@@ -13,17 +13,30 @@
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61503" toLevel="6" name="Pet's Satiety Recovery +500">
-		<!-- Pet's Satiety Recovery +500 -->
+		<!-- Level 1: Pet's Satiety Recovery +500 -->
+		<!-- Level 2: Pet's Satiety Recovery -500 -->
+		<!-- Level 3: Pet's Satiety Recovery +100% -->
+		<!-- Level 4: Pet's Satiety Recovery -100% -->
+		<!-- Level 5: Pet's Satiety Recovery -2000 -->
+		<!-- Level 6: Pet's Satiety Recovery -200% -->
 		<icon>icon.skill0000</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61504" toLevel="5" name="Property Increase +10">
-		<!-- Weapon property increase +10 -->
+		<!-- Level 1: Weapon property increase +10 -->
+		<!-- Level 2: Weapon property increase +100 -->
+		<!-- Level 3: Weapon property increase +1000 -->
+		<!-- Level 4: Weapon property increase +10000 -->
+		<!-- Level 5: Weapon property increase +100000 -->
 		<icon>icon.skill0000</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61505" toLevel="5" name="Property Decrease -10">
-		<!-- Weapon property decrease -10 -->
+		<!-- Level 1: Weapon property decrease -10 -->
+		<!-- Level 2: Weapon property decrease -100 -->
+		<!-- Level 3: Weapon property decrease -1000 -->
+		<!-- Level 4: Weapon property decrease -10000 -->
+		<!-- Level 5: Weapon property decrease -100000 -->
 		<icon>icon.skill0000</icon>
 		<operateType>A1</operateType>
 	</skill>
@@ -102,42 +115,114 @@
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61524" toLevel="10" name="Test - p_mp_vampiric_rate_down">
-		<!-- Target's MP Drain -10% -->
+		<!-- Level 1: Target's MP Drain -10% -->
+		<!-- Level 2: Target's MP Drain -20% -->
+		<!-- Level 3: Target's MP Drain -30% -->
+		<!-- Level 4: Target's MP Drain -40% -->
+		<!-- Level 5: Target's MP Drain -50% -->
+		<!-- Level 6: Target's MP Drain -60% -->
+		<!-- Level 7: Target's MP Drain -70% -->
+		<!-- Level 8: Target's MP Drain -80% -->
+		<!-- Level 9: Target's MP Drain -90% -->
+		<!-- Level 10: Target's MP Drain -100% -->
 		<icon>icon.s_soul_sign</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61525" toLevel="10" name="Test - p_mp_vampiric_rate_down (simultaneous use test)">
-		<!-- Target's MP Drain -10% -->
+		<!-- Level 1: Target's MP Drain -10% -->
+		<!-- Level 2: Target's MP Drain -20% -->
+		<!-- Level 3: Target's MP Drain -30% -->
+		<!-- Level 4: Target's MP Drain -40% -->
+		<!-- Level 5: Target's MP Drain -50% -->
+		<!-- Level 6: Target's MP Drain -60% -->
+		<!-- Level 7: Target's MP Drain -70% -->
+		<!-- Level 8: Target's MP Drain -80% -->
+		<!-- Level 9: Target's MP Drain -90% -->
+		<!-- Level 10: Target's MP Drain -100% -->
 		<icon>icon.skill1447</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61526" toLevel="10" name="Test - p_hp_vampiric_rate_down">
-		<!-- Target's HP Drain -10% -->
+		<!-- Level 1: Target's HP Drain -10% -->
+		<!-- Level 2: Target's HP Drain -20% -->
+		<!-- Level 3: Target's HP Drain -30% -->
+		<!-- Level 4: Target's HP Drain -40% -->
+		<!-- Level 5: Target's HP Drain -50% -->
+		<!-- Level 6: Target's HP Drain -60% -->
+		<!-- Level 7: Target's HP Drain -70% -->
+		<!-- Level 8: Target's HP Drain -80% -->
+		<!-- Level 9: Target's HP Drain -90% -->
+		<!-- Level 10: Target's HP Drain -100% -->
 		<icon>icon.s_soul_sign</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61527" toLevel="10" name="Test - p_hp_vampiric_rate_down (simultaneous use test)">
-		<!-- Target's HP Drain -10% -->
+		<!-- Level 1: Target's HP Drain -10% -->
+		<!-- Level 2: Target's HP Drain -20% -->
+		<!-- Level 3: Target's HP Drain -30% -->
+		<!-- Level 4: Target's HP Drain -40% -->
+		<!-- Level 5: Target's HP Drain -50% -->
+		<!-- Level 6: Target's HP Drain -60% -->
+		<!-- Level 7: Target's HP Drain -70% -->
+		<!-- Level 8: Target's HP Drain -80% -->
+		<!-- Level 9: Target's HP Drain -90% -->
+		<!-- Level 10: Target's HP Drain -100% -->
 		<icon>icon.skill1447</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61528" toLevel="10" name="HP Blood Siphon Resistance">
-		<!-- HP Blood Siphon Resistance 10% -->
+		<!-- Level 1: HP Blood Siphon Resistance 10% -->
+		<!-- Level 2: HP Blood Siphon Resistance 20% -->
+		<!-- Level 3: HP Blood Siphon Resistance 30% -->
+		<!-- Level 4: HP Blood Siphon Resistance 40% -->
+		<!-- Level 5: HP Blood Siphon Resistance 50% -->
+		<!-- Level 6: HP Blood Siphon Resistance 60% -->
+		<!-- Level 7: HP Blood Siphon Resistance 70% -->
+		<!-- Level 8: HP Blood Siphon Resistance 80% -->
+		<!-- Level 9: HP Blood Siphon Resistance 90% -->
+		<!-- Level 10: HP Blood Siphon Resistance 100% -->
 		<icon>icon.skill0000</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61529" toLevel="10" name="HP Blood Siphon Resistance (Stacks)">
-		<!-- HP Blood Siphon Resistance 10% (stacks) -->
+		<!-- Level 1: HP Blood Siphon Resistance 10% (stacks) -->
+		<!-- Level 2: HP Blood Siphon Resistance 20% (stacks) -->
+		<!-- Level 3: HP Blood Siphon Resistance 30% (stacks) -->
+		<!-- Level 4: HP Blood Siphon Resistance 40% (stacks) -->
+		<!-- Level 5: HP Blood Siphon Resistance 50% (stacks) -->
+		<!-- Level 6: HP Blood Siphon Resistance 60% (stacks) -->
+		<!-- Level 7: HP Blood Siphon Resistance 70% (stacks) -->
+		<!-- Level 8: HP Blood Siphon Resistance 80% (stacks) -->
+		<!-- Level 9: HP Blood Siphon Resistance 90% (stacks) -->
+		<!-- Level 10: HP Blood Siphon Resistance 100% (stacks) -->
 		<icon>icon.skill0000</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61530" toLevel="10" name="MP Blood Siphon Resistance">
-		<!-- MP Blood Siphon Resistance 10% -->
+		<!-- Level 1: MP Blood Siphon Resistance 10% -->
+		<!-- Level 2: MP Blood Siphon Resistance 20% -->
+		<!-- Level 3: MP Blood Siphon Resistance 30% -->
+		<!-- Level 4: MP Blood Siphon Resistance 40% -->
+		<!-- Level 5: MP Blood Siphon Resistance 50% -->
+		<!-- Level 6: MP Blood Siphon Resistance 60% -->
+		<!-- Level 7: MP Blood Siphon Resistance 70% -->
+		<!-- Level 8: MP Blood Siphon Resistance 80% -->
+		<!-- Level 9: MP Blood Siphon Resistance 90% -->
+		<!-- Level 10: MP Blood Siphon Resistance 100% -->
 		<icon>icon.skill0000</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61531" toLevel="10" name="MP Blood Siphon Resistance (Stacks)">
-		<!-- MP Blood Siphon Resistance 10% (Stacks) -->
+		<!-- Level 1: MP Blood Siphon Resistance 10% (Stacks) -->
+		<!-- Level 2: MP Blood Siphon Resistance 20% (Stacks) -->
+		<!-- Level 3: MP Blood Siphon Resistance 30% (Stacks) -->
+		<!-- Level 4: MP Blood Siphon Resistance 40% (Stacks) -->
+		<!-- Level 5: MP Blood Siphon Resistance 50% (Stacks) -->
+		<!-- Level 6: MP Blood Siphon Resistance 60% (Stacks) -->
+		<!-- Level 7: MP Blood Siphon Resistance 70% (Stacks) -->
+		<!-- Level 8: MP Blood Siphon Resistance 80% (Stacks) -->
+		<!-- Level 9: MP Blood Siphon Resistance 90% (Stacks) -->
+		<!-- Level 10: MP Blood Siphon Resistance 100% (Stacks) -->
 		<icon>icon.skill0000</icon>
 		<operateType>A1</operateType>
 	</skill>
@@ -257,12 +342,12 @@
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61560" toLevel="1" name="Test - Dark Disruption">
-		<!-- Deals magic damage to the target and enemies around them. Power 130. Cancels the Opal effect with a 50% chance. Duration: 10 sec. HP Recovery Potions' Effect -500. Removes the following buffs and blocks them for 10 sec.:. - Special class transformation -->
+		<!-- Deals magic damage to the target and enemies around them. Power 130. Cancels the Opal effect with a 50% chance. Duration: 10 sec. HP Recovery Potions' Effect -500. Removes the following buffs and blocks them for 10 sec.:. - Special class transformation;. - Other unique buffs. -->
 		<icon>icon.banish</icon>
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61561" toLevel="1" name="Test - Dark Disruption">
-		<!-- Removes the following buffs and blocks them for 10 sec.:. - Special class transformation -->
+		<!-- Removes the following buffs and blocks them for 10 sec.:. - Special class transformation;. - Other unique buffs. -->
 		<icon>icon.banish</icon>
 		<operateType>A1</operateType>
 	</skill>
@@ -419,7 +504,26 @@
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="61593" toLevel="20" name="Einhasad's Protection">
-		<!-- Acquired XP +100%. Acquired SP +100%. The effect remains after death. -->
+		<!-- Level 1: Acquired XP +100%. Acquired SP +100%. The effect remains after death. -->
+		<!-- Level 2: Acquired XP +200%. Acquired SP +200%. The effect remains after death. -->
+		<!-- Level 3: Acquired XP +300%. Acquired SP +300%. The effect remains after death. -->
+		<!-- Level 4: Acquired XP +400%. Acquired SP +400%. The effect remains after death. -->
+		<!-- Level 5: Acquired XP +500%. Acquired SP +500%. The effect remains after death. -->
+		<!-- Level 6: Acquired XP +600%. Acquired SP +600%. The effect remains after death. -->
+		<!-- Level 7: Acquired XP +700%. Acquired SP +700%. The effect remains after death. -->
+		<!-- Level 8: Acquired XP +800%. Acquired SP +800%. The effect remains after death. -->
+		<!-- Level 9: Acquired XP +900%. Acquired SP +900%. The effect remains after death. -->
+		<!-- Level 10: Acquired XP +1000%. Acquired SP +1000%. The effect remains after death. -->
+		<!-- Level 11: Acquired XP +1100%. Acquired SP +1100%. The effect remains after death. -->
+		<!-- Level 12: Acquired XP +1200%. Acquired SP +1200%. The effect remains after death. -->
+		<!-- Level 13: Acquired XP +1300%. Acquired SP +1300%. The effect remains after death. -->
+		<!-- Level 14: Acquired XP +1400%. Acquired SP +1400%. The effect remains after death. -->
+		<!-- Level 15: Acquired XP +1500%. Acquired SP +1500%. The effect remains after death. -->
+		<!-- Level 16: Acquired XP +1600%. Acquired SP +1600%. The effect remains after death. -->
+		<!-- Level 17: Acquired XP +1700%. Acquired SP +1700%. The effect remains after death. -->
+		<!-- Level 18: Acquired XP +1800%. Acquired SP +1800%. The effect remains after death. -->
+		<!-- Level 19: Acquired XP +1900%. Acquired SP +1900%. The effect remains after death. -->
+		<!-- Level 20: Acquired XP +2000%. Acquired SP +2000%. The effect remains after death. -->
 		<icon>icon.etc_dragons_blood_i03</icon>
 		<operateType>A1</operateType>
 	</skill>

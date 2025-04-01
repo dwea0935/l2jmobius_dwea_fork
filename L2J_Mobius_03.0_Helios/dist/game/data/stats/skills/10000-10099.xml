@@ -1439,7 +1439,7 @@
 		<effectRange>400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>800</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
@@ -3213,7 +3213,6 @@
 			<value level="10">106</value>
 			<value level="11">109</value>
 		</mpConsume>
-		<nextAction>ATTACK</nextAction>
 		<nextAction>ATTACK</nextAction>
 		<reuseDelay>5000</reuseDelay>
 		<trait>DERANGEMENT</trait>
@@ -8336,7 +8335,7 @@
 			</effect>
 			<effect name="DefenceCriticalDamage" fromLevel="1" toLevel="2" fromSubLevel="2001" toSubLevel="2030">
 				<amount>
-					<value fromLevel="1" toLevel="2" fromSubLevel="2001" toSubLevel="2030">{-1 - ((subIndex - 1} * 0.5)}</value>
+					<value fromLevel="1" toLevel="2" fromSubLevel="2001" toSubLevel="2030">{1 + ((subIndex - 1) * 0.5)}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
@@ -8822,7 +8821,6 @@
 			<value level="6">102</value>
 			<value level="7">104</value>
 		</magicLevel>
-		<mpConsume>50</mpConsume>
 		<mpConsume>50</mpConsume>
 		<effects>
 			<effect name="MpConsumePerLevel">
@@ -10757,7 +10755,6 @@
 		</mpConsume>
 		<reuseDelay>600000</reuseDelay>
 		<staticReuse>true</staticReuse>
-		<staticReuse>true</staticReuse>
 		<effects>
 			<effect name="Speed">
 				<amount>
@@ -11885,7 +11882,6 @@
 		</magicLevel>
 		<reuseDelay>10000</reuseDelay>
 		<staticReuse>true</staticReuse>
-		<staticReuse>true</staticReuse>
 		<effects>
 			<effect name="TargetMe" />
 			<effect name="GetAgro" />
@@ -12788,7 +12784,7 @@
 		<effectRange>400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>800</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>86</magicLevel>
@@ -12858,7 +12854,7 @@
 		<effectRange>400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>800</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>88</magicLevel>
@@ -12928,7 +12924,7 @@
 		<effectRange>400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>800</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>90</magicLevel>
@@ -12998,7 +12994,7 @@
 		<effectRange>400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>800</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>92</magicLevel>
@@ -13068,7 +13064,7 @@
 		<effectRange>400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>800</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>94</magicLevel>
@@ -13138,7 +13134,7 @@
 		<effectRange>400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>800</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>96</magicLevel>
@@ -13810,7 +13806,7 @@
 		<effectRange>400</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>800</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>98</magicLevel>
@@ -13870,7 +13866,6 @@
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>99</magicLevel>
-		<magicLevel>99</magicLevel>
 		<staticReuse>true</staticReuse>
 		<effects>
 			<effect name="HateAttack">
@@ -13900,7 +13895,6 @@
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
-		<magicLevel>99</magicLevel>
 		<magicLevel>99</magicLevel>
 		<reuseDelay>8000</reuseDelay>
 		<specialLevel>-1</specialLevel>
@@ -16867,7 +16861,7 @@
 			</effect>
 			<effect name="DefenceCriticalDamage" fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2030">
 				<amount>
-					<value fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2030">{-1 - ((subIndex - 1} * 0.5)}</value>
+					<value fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2030">{1 + ((subIndex - 1) * 0.5)}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
@@ -17116,7 +17110,7 @@
 			</effect>
 			<effect name="DefenceCriticalDamage" fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2030">
 				<amount>
-					<value fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2030">{-1 - ((subIndex - 1} * 0.5)}</value>
+					<value fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2030">{1 + ((subIndex - 1) * 0.5)}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>

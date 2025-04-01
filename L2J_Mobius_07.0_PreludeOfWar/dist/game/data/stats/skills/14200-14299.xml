@@ -367,7 +367,6 @@
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>8000</hitTime>
 		<isMagic>2</isMagic>
-		<isMagic>2</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>99</magicLevel>
 	</skill>
@@ -381,7 +380,6 @@
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>8000</hitTime>
 		<isMagic>2</isMagic>
-		<isMagic>2</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>99</magicLevel>
 	</skill>
@@ -394,7 +392,6 @@
 		<effectPoint>100</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>8000</hitTime>
-		<isMagic>2</isMagic>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>99</magicLevel>
@@ -1162,7 +1159,7 @@
 		<effectPoint>-1</effectPoint>
 		<effectRange>1500</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>

@@ -20,9 +20,9 @@
  */
 package vehicles.SoDController;
 
-import org.l2jmobius.gameserver.enums.Movie;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.VehiclePathPoint;
+import org.l2jmobius.gameserver.network.enums.Movie;
 
 import vehicles.AirShipController;
 

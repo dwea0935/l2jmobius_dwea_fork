@@ -22,6 +22,7 @@ package handlers.admincommandhandlers;
 
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -51,7 +52,7 @@ public class AdminDestroyItems implements IAdminCommandHandler
 				continue;
 			}
 			iu.addRemovedItem(item);
-			inventory.destroyItem("Admin Destroy", item, activeChar, null);
+			inventory.destroyItem(ItemProcessType.DESTROY, item, activeChar, null);
 		}
 		activeChar.sendInventoryUpdate(iu);
 		return true;

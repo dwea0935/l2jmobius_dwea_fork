@@ -43,7 +43,7 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.model.holders.BuffSkillHolder;
+import org.l2jmobius.gameserver.model.actor.holders.npc.BuffSkillHolder;
 
 /**
  * This class loads available skills and stores players' buff schemes into _schemesTable.
@@ -63,10 +63,10 @@ public class SchemeBufferTable
 	{
 		try
 		{
-			final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			final DocumentBuilder db = dbf.newDocumentBuilder();
-			final Document doc = db.parse(new File("./data/SchemeBufferSkills.xml"));
-			final Node n = doc.getFirstChild();
+			final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			final DocumentBuilder builder = factory.newDocumentBuilder();
+			final Document document = builder.parse(new File("./data/SchemeBufferSkills.xml"));
+			final Node n = document.getFirstChild();
 			for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling())
 			{
 				if (!d.getNodeName().equalsIgnoreCase("category"))

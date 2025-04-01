@@ -16,10 +16,10 @@
  */
 package ai.others.VillageMasters.ClassTransferTalk;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -146,11 +146,11 @@ public class ClassTransferTalk extends AbstractNpcAI
 		String htmltext = null;
 		
 		// Custom... retail still use old class transfer way for quest
-		if (CommonUtil.contains(FIRST_CLASS_TOWNS, npc.getId()))
+		if (ArrayUtil.contains(FIRST_CLASS_TOWNS, npc.getId()))
 		{
 			htmltext = "first_class_transfer.html";
 		}
-		else if (CommonUtil.contains(SECOND_CLASS_TOWNS, npc.getId()))
+		else if (ArrayUtil.contains(SECOND_CLASS_TOWNS, npc.getId()))
 		{
 			htmltext = "second_class_transfer.html";
 		}

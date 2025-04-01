@@ -595,7 +595,7 @@
 			<defence physical="301296" magical="1458092" />
 			<speed>
 				<walk ground="100" />
-				<run ground="90" />
+				<run ground="190" />
 			</speed>
 			<hitTime>600</hitTime>
 		</stats>

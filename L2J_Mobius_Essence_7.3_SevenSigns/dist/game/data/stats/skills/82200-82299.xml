@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="82201" toLevel="20" name="Defense Property - Upper Armor">
-		<!-- <Effect>. P./ M. Def. +10 -->
+		<!-- Level 1: <Effect>. P./ M. Def. +10 -->
+		<!-- Level 2: <Effect>. P./ M. Def. +25 -->
+		<!-- Level 3: <Effect>. P./ M. Def. +40 -->
+		<!-- Level 4: <Effect>. P./ M. Def. +55 -->
+		<!-- Level 5: <Effect>. P./ M. Def. +70 -->
+		<!-- Level 6: <Effect>. P./ M. Def. +100 -->
+		<!-- Level 7: <Effect>. P./ M. Def. +120 -->
+		<!-- Level 8: <Effect>. P./ M. Def. +140 -->
+		<!-- Level 9: <Effect>. P./ M. Def. +160 -->
+		<!-- Level 10: <Effect>. P./ M. Def. +180 -->
+		<!-- Level 11: <Effect>. P./ M. Def. +210 -->
+		<!-- Level 12: <Effect>. P./ M. Def. +230 -->
+		<!-- Level 13: <Effect>. P./ M. Def. +250 -->
+		<!-- Level 14: <Effect>. P./ M. Def. +270 -->
+		<!-- Level 15: <Effect>. P./ M. Def. +290 -->
+		<!-- Level 16: <Effect>. P./ M. Def. +320 -->
+		<!-- Level 17: <Effect>. P./ M. Def. +340 -->
+		<!-- Level 18: <Effect>. P./ M. Def. +360 -->
+		<!-- Level 19: <Effect>. P./ M. Def. +380 -->
+		<!-- Level 20: <Effect>. P./ M. Def. +400 -->
 		<icon>
 			<value level="1">icon.aden_rune_am_i01</value>
 			<value level="2">icon.aden_rune_am_i01</value>
@@ -79,7 +98,26 @@
 		</effects>
 	</skill>
 	<skill id="82202" toLevel="20" name="Defense Property - Lower Armor">
-		<!-- <Effect>. P./ M. Def. +10 -->
+		<!-- Level 1: <Effect>. P./ M. Def. +10 -->
+		<!-- Level 2: <Effect>. P./ M. Def. +25 -->
+		<!-- Level 3: <Effect>. P./ M. Def. +40 -->
+		<!-- Level 4: <Effect>. P./ M. Def. +55 -->
+		<!-- Level 5: <Effect>. P./ M. Def. +70 -->
+		<!-- Level 6: <Effect>. P./ M. Def. +100 -->
+		<!-- Level 7: <Effect>. P./ M. Def. +120 -->
+		<!-- Level 8: <Effect>. P./ M. Def. +140 -->
+		<!-- Level 9: <Effect>. P./ M. Def. +160 -->
+		<!-- Level 10: <Effect>. P./ M. Def. +180 -->
+		<!-- Level 11: <Effect>. P./ M. Def. +210 -->
+		<!-- Level 12: <Effect>. P./ M. Def. +230 -->
+		<!-- Level 13: <Effect>. P./ M. Def. +250 -->
+		<!-- Level 14: <Effect>. P./ M. Def. +270 -->
+		<!-- Level 15: <Effect>. P./ M. Def. +290 -->
+		<!-- Level 16: <Effect>. P./ M. Def. +320 -->
+		<!-- Level 17: <Effect>. P./ M. Def. +340 -->
+		<!-- Level 18: <Effect>. P./ M. Def. +360 -->
+		<!-- Level 19: <Effect>. P./ M. Def. +380 -->
+		<!-- Level 20: <Effect>. P./ M. Def. +400 -->
 		<icon>
 			<value level="1">icon.aden_rune_am_i01</value>
 			<value level="2">icon.aden_rune_am_i01</value>
@@ -157,7 +195,26 @@
 		</effects>
 	</skill>
 	<skill id="82203" toLevel="20" name="Defense Property - Helmet">
-		<!-- <Effect>. P./ M. Def. +10 -->
+		<!-- Level 1: <Effect>. P./ M. Def. +10 -->
+		<!-- Level 2: <Effect>. P./ M. Def. +25 -->
+		<!-- Level 3: <Effect>. P./ M. Def. +40 -->
+		<!-- Level 4: <Effect>. P./ M. Def. +55 -->
+		<!-- Level 5: <Effect>. P./ M. Def. +70 -->
+		<!-- Level 6: <Effect>. P./ M. Def. +100 -->
+		<!-- Level 7: <Effect>. P./ M. Def. +120 -->
+		<!-- Level 8: <Effect>. P./ M. Def. +140 -->
+		<!-- Level 9: <Effect>. P./ M. Def. +160 -->
+		<!-- Level 10: <Effect>. P./ M. Def. +180 -->
+		<!-- Level 11: <Effect>. P./ M. Def. +210 -->
+		<!-- Level 12: <Effect>. P./ M. Def. +230 -->
+		<!-- Level 13: <Effect>. P./ M. Def. +250 -->
+		<!-- Level 14: <Effect>. P./ M. Def. +270 -->
+		<!-- Level 15: <Effect>. P./ M. Def. +290 -->
+		<!-- Level 16: <Effect>. P./ M. Def. +320 -->
+		<!-- Level 17: <Effect>. P./ M. Def. +340 -->
+		<!-- Level 18: <Effect>. P./ M. Def. +360 -->
+		<!-- Level 19: <Effect>. P./ M. Def. +380 -->
+		<!-- Level 20: <Effect>. P./ M. Def. +400 -->
 		<icon>
 			<value level="1">icon.aden_rune_am_i01</value>
 			<value level="2">icon.aden_rune_am_i01</value>
@@ -235,7 +292,26 @@
 		</effects>
 	</skill>
 	<skill id="82204" toLevel="20" name="Defense Property - Gloves">
-		<!-- <Effect>. P./ M. Def. +10 -->
+		<!-- Level 1: <Effect>. P./ M. Def. +10 -->
+		<!-- Level 2: <Effect>. P./ M. Def. +25 -->
+		<!-- Level 3: <Effect>. P./ M. Def. +40 -->
+		<!-- Level 4: <Effect>. P./ M. Def. +55 -->
+		<!-- Level 5: <Effect>. P./ M. Def. +70 -->
+		<!-- Level 6: <Effect>. P./ M. Def. +100 -->
+		<!-- Level 7: <Effect>. P./ M. Def. +120 -->
+		<!-- Level 8: <Effect>. P./ M. Def. +140 -->
+		<!-- Level 9: <Effect>. P./ M. Def. +160 -->
+		<!-- Level 10: <Effect>. P./ M. Def. +180 -->
+		<!-- Level 11: <Effect>. P./ M. Def. +210 -->
+		<!-- Level 12: <Effect>. P./ M. Def. +230 -->
+		<!-- Level 13: <Effect>. P./ M. Def. +250 -->
+		<!-- Level 14: <Effect>. P./ M. Def. +270 -->
+		<!-- Level 15: <Effect>. P./ M. Def. +290 -->
+		<!-- Level 16: <Effect>. P./ M. Def. +320 -->
+		<!-- Level 17: <Effect>. P./ M. Def. +340 -->
+		<!-- Level 18: <Effect>. P./ M. Def. +360 -->
+		<!-- Level 19: <Effect>. P./ M. Def. +380 -->
+		<!-- Level 20: <Effect>. P./ M. Def. +400 -->
 		<icon>
 			<value level="1">icon.aden_rune_am_i01</value>
 			<value level="2">icon.aden_rune_am_i01</value>
@@ -313,7 +389,26 @@
 		</effects>
 	</skill>
 	<skill id="82205" toLevel="20" name="Defense Property - Boots">
-		<!-- <Effect>. P./ M. Def. +10 -->
+		<!-- Level 1: <Effect>. P./ M. Def. +10 -->
+		<!-- Level 2: <Effect>. P./ M. Def. +25 -->
+		<!-- Level 3: <Effect>. P./ M. Def. +40 -->
+		<!-- Level 4: <Effect>. P./ M. Def. +55 -->
+		<!-- Level 5: <Effect>. P./ M. Def. +70 -->
+		<!-- Level 6: <Effect>. P./ M. Def. +100 -->
+		<!-- Level 7: <Effect>. P./ M. Def. +120 -->
+		<!-- Level 8: <Effect>. P./ M. Def. +140 -->
+		<!-- Level 9: <Effect>. P./ M. Def. +160 -->
+		<!-- Level 10: <Effect>. P./ M. Def. +180 -->
+		<!-- Level 11: <Effect>. P./ M. Def. +210 -->
+		<!-- Level 12: <Effect>. P./ M. Def. +230 -->
+		<!-- Level 13: <Effect>. P./ M. Def. +250 -->
+		<!-- Level 14: <Effect>. P./ M. Def. +270 -->
+		<!-- Level 15: <Effect>. P./ M. Def. +290 -->
+		<!-- Level 16: <Effect>. P./ M. Def. +320 -->
+		<!-- Level 17: <Effect>. P./ M. Def. +340 -->
+		<!-- Level 18: <Effect>. P./ M. Def. +360 -->
+		<!-- Level 19: <Effect>. P./ M. Def. +380 -->
+		<!-- Level 20: <Effect>. P./ M. Def. +400 -->
 		<icon>
 			<value level="1">icon.aden_rune_am_i01</value>
 			<value level="2">icon.aden_rune_am_i01</value>
@@ -391,7 +486,26 @@
 		</effects>
 	</skill>
 	<skill id="82206" toLevel="20" name="Defense Property - Upper/ Lower Armor">
-		<!-- <Effect>. P./ M. Def. +18 -->
+		<!-- Level 1: <Effect>. P./ M. Def. +18 -->
+		<!-- Level 2: <Effect>. P./ M. Def. +45 -->
+		<!-- Level 3: <Effect>. P./ M. Def. +72 -->
+		<!-- Level 4: <Effect>. P./ M. Def. +99 -->
+		<!-- Level 5: <Effect>. P./ M. Def. +126 -->
+		<!-- Level 6: <Effect>. P./ M. Def. +180 -->
+		<!-- Level 7: <Effect>. P./ M. Def. +216 -->
+		<!-- Level 8: <Effect>. P./ M. Def. +252 -->
+		<!-- Level 9: <Effect>. P./ M. Def. +288 -->
+		<!-- Level 10: <Effect>. P./ M. Def. +324 -->
+		<!-- Level 11: <Effect>. P./ M. Def. +378 -->
+		<!-- Level 12: <Effect>. P./ M. Def. +414 -->
+		<!-- Level 13: <Effect>. P./ M. Def. +450 -->
+		<!-- Level 14: <Effect>. P./ M. Def. +486 -->
+		<!-- Level 15: <Effect>. P./ M. Def. +522 -->
+		<!-- Level 16: <Effect>. P./ M. Def. +576 -->
+		<!-- Level 17: <Effect>. P./ M. Def. +612 -->
+		<!-- Level 18: <Effect>. P./ M. Def. +648 -->
+		<!-- Level 19: <Effect>. P./ M. Def. +684 -->
+		<!-- Level 20: <Effect>. P./ M. Def. +720 -->
 		<icon>
 			<value level="1">icon.aden_rune_am_i01</value>
 			<value level="2">icon.aden_rune_am_i01</value>

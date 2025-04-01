@@ -22,14 +22,14 @@ package ai.bosses.Lindvior;
 
 import java.util.Collection;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.FlyType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.skill.enums.FlyType;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 
@@ -63,7 +63,7 @@ public class Vortex extends AbstractNpcAI
 				{
 					if ((attackers != null) && !attackers.isDead() && !attackers.isAlikeDead())
 					{
-						attackers.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+						attackers.getAI().setIntention(Intention.IDLE);
 						final int radians = (int) Math.toRadians(npc.calculateDirectionTo(attackers));
 						final int x = (int) (attackers.getX() + (600 * Math.cos(radians)));
 						final int y = (int) (attackers.getY() + (600 * Math.sin(radians)));
@@ -72,7 +72,7 @@ public class Vortex extends AbstractNpcAI
 						attackers.broadcastPacket(new FlyToLocation(attackers, x, y, z, FlyType.THROW_UP, 800, 800, 800));
 						attackers.setXYZ(loc);
 						attackers.broadcastPacket(new ValidateLocation(attackers));
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+						npc.getAI().setIntention(Intention.ATTACK, player);
 						startQuestTimer("stop_knock_down", 5000, npc, attackers);
 						startQuestTimer("despawn_small", 5000, npc, null);
 					}
@@ -118,7 +118,7 @@ public class Vortex extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		switch (npc.getId())
 		{
@@ -133,16 +133,14 @@ public class Vortex extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		attackRandomTarget(npc);
 		npc.setRandomWalking(true);
 		npc.setRunning();
-		return super.onSpawn(npc);
 	}
 	
 	private void attackRandomTarget(Npc npc)

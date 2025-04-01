@@ -1254,7 +1254,7 @@
 		<set name="etcitem_type" val="ENCHT_ATTR_ANCIENT_CRYSTAL_ENCHANT_AM" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="40330" level="1" /> <!-- 17th Anniversary Scroll: Enchant Dragon Belt -->
+			<skill id="40330" level="1" /> <!-- Special Scroll: Enchant Dragon Belt -->
 		</skills>
 	</item>
 	<item id="95597" name="Scroll: Enchant Cloak of Protection (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -1269,7 +1269,7 @@
 		<set name="etcitem_type" val="ENCHT_ATTR_ANCIENT_CRYSTAL_ENCHANT_AM" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="40229" level="1" /> <!-- 17th Anniversary Scroll: Enchant Cloak of Protection -->
+			<skill id="40229" level="1" /> <!-- Scroll: Boost Attack - Event -->
 		</skills>
 	</item>
 	<item id="95598" name="Scroll: Enchant Circlet of Hero (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -1284,7 +1284,7 @@
 		<set name="etcitem_type" val="ENCHT_ATTR_ANCIENT_CRYSTAL_ENCHANT_AM" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="40228" level="1" /> <!-- Scroll: Enchant Circlet of Hero -->
+			<skill id="40228" level="1" /> <!-- Forgotten Primeval Garden's Time Stone -->
 		</skills>
 	</item>
 	<item id="95599" name="Random Craft: Create +7 Kite Shield" additionalName="Sealed" type="EtcItem">

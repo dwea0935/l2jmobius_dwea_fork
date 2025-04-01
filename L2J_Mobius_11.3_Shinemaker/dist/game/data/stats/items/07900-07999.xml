@@ -136,7 +136,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="7906" name="Blessing of Fire" type="EtcItem">
-		<!-- Bestows fire attribute attack while engaged in a physical attack. -->
+		<!-- Adds Fire attribute to your physical attacks. -->
 		<set name="icon" val="icon.etc_fire_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -151,7 +151,7 @@
 		</skills>
 	</item>
 	<item id="7907" name="Blessing of Water" type="EtcItem">
-		<!-- Bestows water attribute attack while engaged in a physical attack. -->
+		<!-- Adds Water attribute to your physical attacks. -->
 		<set name="icon" val="icon.etc_water_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -166,7 +166,7 @@
 		</skills>
 	</item>
 	<item id="7908" name="Blessing of Wind" type="EtcItem">
-		<!-- Bestows wind attribute attack while engaged in a physical attack. -->
+		<!-- Adds Wind attribute to your physical attacks. -->
 		<set name="icon" val="icon.etc_wind_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -181,7 +181,7 @@
 		</skills>
 	</item>
 	<item id="7909" name="Blessing of Earth" type="EtcItem">
-		<!-- Bestows earth attribute attack while engaged in a physical attack. -->
+		<!-- Adds Earth attribute to your physical attacks. -->
 		<set name="icon" val="icon.etc_earth_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -196,7 +196,7 @@
 		</skills>
 	</item>
 	<item id="7910" name="Blessing of Dark" type="EtcItem">
-		<!-- Bestows Dark attribute attack while engaged in a physical attack. -->
+		<!-- Adds Dark attribute to your physical attacks. -->
 		<set name="icon" val="icon.etc_unholy_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -211,7 +211,7 @@
 		</skills>
 	</item>
 	<item id="7911" name="Holy Blessing" type="EtcItem">
-		<!-- Bestows Holy attribute attack while engaged in a physical attack. -->
+		<!-- Adds Holy attribute to your physical attacks. -->
 		<set name="icon" val="icon.etc_holy_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -222,11 +222,11 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2253" level="1" /> <!-- Holy Blessing -->
+			<skill id="2253" level="1" /> <!-- Blessing of Holiness -->
 		</skills>
 	</item>
 	<item id="7912" name="Fire Crystal" type="EtcItem">
-		<!-- Eliminates vulnerability to fire attacks. -->
+		<!-- Removes vulnerability to Fire attacks. -->
 		<set name="icon" val="icon.etc_fire_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -237,11 +237,11 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2254" level="3" /> <!-- Fire Crystal -->
+			<skill id="2254" level="3" /> <!-- Fire Quartz -->
 		</skills>
 	</item>
 	<item id="7913" name="Water Crystal" type="EtcItem">
-		<!-- Eliminates vulnerability to water attacks. -->
+		<!-- Removes vulnerability to Water attacks. -->
 		<set name="icon" val="icon.etc_water_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -252,11 +252,11 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2255" level="3" /> <!-- Water Crystal -->
+			<skill id="2255" level="3" /> <!-- Water Quartz -->
 		</skills>
 	</item>
 	<item id="7914" name="Wind Crystal" type="EtcItem">
-		<!-- Eliminates vulnerability to wind attacks. -->
+		<!-- Removes vulnerability to Wind attacks. -->
 		<set name="icon" val="icon.etc_wind_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -267,11 +267,11 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2256" level="3" /> <!-- Wind Crystal -->
+			<skill id="2256" level="3" /> <!-- Wind Quartz -->
 		</skills>
 	</item>
 	<item id="7915" name="Earth Crystal" type="EtcItem">
-		<!-- Eliminates vulnerability to earth attacks. -->
+		<!-- Removes vulnerability to Earth attacks. -->
 		<set name="icon" val="icon.etc_earth_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -282,11 +282,11 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2257" level="3" /> <!-- Earth Crystal -->
+			<skill id="2257" level="3" /> <!-- Earth Quartz -->
 		</skills>
 	</item>
 	<item id="7916" name="Dark Shard" type="EtcItem">
-		<!-- Eliminates vulnerability to Dark attacks. -->
+		<!-- Removes vulnerability to Dark attacks. -->
 		<set name="icon" val="icon.etc_unholy_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -297,11 +297,11 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2258" level="3" /> <!-- Dark Shard -->
+			<skill id="2258" level="3" /> <!-- Dark Quartz -->
 		</skills>
 	</item>
 	<item id="7917" name="Holy Crystal" type="EtcItem">
-		<!-- Eliminates vulnerability to Holy attacks. -->
+		<!-- Removes vulnerability to Holy attacks. -->
 		<set name="icon" val="icon.etc_holy_crystal_1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
@@ -312,7 +312,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2259" level="3" /> <!-- Holy Crystal -->
+			<skill id="2259" level="3" /> <!-- Holy Quartz -->
 		</skills>
 	</item>
 	<item id="7918" name="Mercenary Posting Ticket (Sword/ Stationary)" type="EtcItem">

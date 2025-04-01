@@ -112,6 +112,7 @@
 			<npc id="34547" x="147841" y="23783" z="-1984" heading="32768" respawnTime="60sec" /> <!-- Eileen - Lulu's Mom -->
 			<npc id="34546" x="147841" y="23727" z="-1984" heading="32768" respawnTime="60sec" /> <!-- Wael - Lulu's Dad -->
 			<npc id="34545" x="147799" y="23755" z="-1984" heading="32768" respawnTime="60sec" /> <!-- Lulu - Cherub of Luck -->
+			<npc id="34584" x="147177" y="23750" z="-2018" heading="65163" respawnTime="60sec" /> <!-- Eraton - Fate Changer -->
 		</group>
 	</spawn>
 </list>

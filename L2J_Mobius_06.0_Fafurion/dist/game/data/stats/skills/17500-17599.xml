@@ -1929,7 +1929,7 @@
 		</passiveConditions>
 		<effects>
 			<effect name="CrystalGradeModify">
-				<grade>1</grade>
+				<amount>1</amount>
 			</effect>
 		</effects>
 	</skill>
@@ -1944,7 +1944,7 @@
 		</passiveConditions>
 		<effects>
 			<effect name="CrystalGradeModify">
-				<grade>2</grade>
+				<amount>2</amount>
 			</effect>
 		</effects>
 	</skill>
@@ -1959,7 +1959,7 @@
 		</passiveConditions>
 		<effects>
 			<effect name="CrystalGradeModify">
-				<grade>3</grade>
+				<amount>3</amount>
 			</effect>
 		</effects>
 	</skill>
@@ -1974,7 +1974,7 @@
 		</passiveConditions>
 		<effects>
 			<effect name="CrystalGradeModify">
-				<grade>4</grade>
+				<amount>4</amount>
 			</effect>
 		</effects>
 	</skill>
@@ -1989,7 +1989,7 @@
 		</passiveConditions>
 		<effects>
 			<effect name="CrystalGradeModify">
-				<grade>5</grade>
+				<amount>5</amount>
 			</effect>
 		</effects>
 	</skill>
@@ -2004,7 +2004,7 @@
 		</passiveConditions>
 		<effects>
 			<effect name="CrystalGradeModify">
-				<grade>6</grade>
+				<amount>6</amount>
 			</effect>
 		</effects>
 	</skill>
@@ -2019,7 +2019,7 @@
 		</passiveConditions>
 		<effects>
 			<effect name="CrystalGradeModify">
-				<grade>8</grade>
+				<amount>8</amount>
 			</effect>
 		</effects>
 	</skill>
@@ -2034,7 +2034,7 @@
 		</passiveConditions>
 		<effects>
 			<effect name="CrystalGradeModify">
-				<grade>9</grade>
+				<amount>9</amount>
 			</effect>
 		</effects>
 	</skill>
@@ -2049,7 +2049,7 @@
 		</passiveConditions>
 		<effects>
 			<effect name="CrystalGradeModify">
-				<grade>10</grade>
+				<amount>10</amount>
 			</effect>
 		</effects>
 	</skill>

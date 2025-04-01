@@ -29,10 +29,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.options.EnchantOptions;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author UnAfraid, Mobius
@@ -56,10 +56,10 @@ public class EnchantItemOptionsData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		int counter = 0;
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -82,7 +82,7 @@ public class EnchantItemOptionsData implements IXmlReader
 								for (byte i = 0; i < 3; i++)
 								{
 									final Node att = cd.getAttributes().getNamedItem("option" + (i + 1));
-									if ((att != null) && Util.isDigit(att.getNodeValue()))
+									if ((att != null) && StringUtil.isNumeric(att.getNodeValue()))
 									{
 										final int id = parseInteger(att);
 										if (OptionData.getInstance().getOptions(id) == null)
@@ -116,8 +116,9 @@ public class EnchantItemOptionsData implements IXmlReader
 	}
 	
 	/**
-	 * @param itemId
-	 * @return if specified item id has available enchant effects.
+	 * Checks if the specified item ID has available enchant effects.
+	 * @param itemId the ID of the item to check.
+	 * @return {@code true} if the item has available enchant effects, {@code false} otherwise.
 	 */
 	public boolean hasOptions(int itemId)
 	{
@@ -125,9 +126,10 @@ public class EnchantItemOptionsData implements IXmlReader
 	}
 	
 	/**
-	 * @param itemId
-	 * @param enchantLevel
-	 * @return enchant effects information.
+	 * Retrieves the enchant effects information for a specific item and enchant level.
+	 * @param itemId the ID of the item.
+	 * @param enchantLevel the enchantment level of the item.
+	 * @return the {@link EnchantOptions} for the specified item and enchant level, or {@code null} if none are available.
 	 */
 	public EnchantOptions getOptions(int itemId, int enchantLevel)
 	{
@@ -139,18 +141,15 @@ public class EnchantItemOptionsData implements IXmlReader
 	}
 	
 	/**
-	 * @param item
-	 * @return enchant effects information.
+	 * Retrieves the enchant effects information for the specified item based on its current enchant level.
+	 * @param item the {@link Item} for which to retrieve enchant effects.
+	 * @return the {@link EnchantOptions} for the specified item, or {@code null} if none are available or if the item is {@code null}.
 	 */
 	public EnchantOptions getOptions(Item item)
 	{
 		return item != null ? getOptions(item.getId(), item.getEnchantLevel()) : null;
 	}
 	
-	/**
-	 * Gets the single instance of EnchantOptionsData.
-	 * @return single instance of EnchantOptionsData
-	 */
 	public static EnchantItemOptionsData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

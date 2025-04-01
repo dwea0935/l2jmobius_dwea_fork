@@ -21,13 +21,12 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager.Territory;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager.TerritoryNPCSpawn;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager.Territory;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager.TerritoryNPCSpawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowDominionRegistry;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
@@ -190,15 +189,15 @@ public class MercenaryCaptain extends AbstractNpcAI
 		{
 			if (TerritoryWarManager.getInstance().isTWInProgress())
 			{
-				npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.CHARGE_CHARGE_CHARGE);
+				npc.broadcastSay(ChatType.NPC_SHOUT, "Charge! Charge! Charge!");
 			}
 			else if (getRandom(2) == 0)
 			{
-				npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.COURAGE_AMBITION_PASSION_MERCENARIES_WHO_WANT_TO_REALIZE_THEIR_DREAM_OF_FIGHTING_IN_THE_TERRITORY_WAR_COME_TO_ME_FORTUNE_AND_GLORY_ARE_WAITING_FOR_YOU);
+				npc.broadcastSay(ChatType.NPC_SHOUT, "Courage! Ambition! Passion! Mercenaries who want to realize their dream of fighting in the territory war, come to me! Fortune and glory are waiting for you!");
 			}
 			else
 			{
-				npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.DO_YOU_WISH_TO_FIGHT_ARE_YOU_AFRAID_NO_MATTER_HOW_HARD_YOU_TRY_YOU_HAVE_NOWHERE_TO_RUN_BUT_IF_YOU_FACE_IT_HEAD_ON_OUR_MERCENARY_TROOP_WILL_HELP_YOU_OUT);
+				npc.broadcastSay(ChatType.NPC_SHOUT, "Do you wish to fight? Are you afraid? No matter how hard you try, you have nowhere to run. But if you face it head on, our mercenary troop will help you out!");
 			}
 		}
 		return htmltext;
@@ -208,7 +207,7 @@ public class MercenaryCaptain extends AbstractNpcAI
 	public String onFirstTalk(Npc npc, Player player)
 	{
 		final String htmltext;
-		if ((player.getLevel() < MIN_LEVEL) || (player.getClassId().level() < CLASS_LEVEL))
+		if ((player.getLevel() < MIN_LEVEL) || (player.getPlayerClass().level() < CLASS_LEVEL))
 		{
 			htmltext = "36481-08.html";
 		}

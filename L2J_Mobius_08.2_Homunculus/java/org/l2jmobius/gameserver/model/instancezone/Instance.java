@@ -37,12 +37,8 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.enums.InstanceReenterType;
-import org.l2jmobius.gameserver.enums.InstanceTeleportType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -51,18 +47,17 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.templates.DoorTemplate;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceCreated;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceDestroy;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceEnter;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceLeave;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceCreated;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceDestroy;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceEnter;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceLeave;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
-import org.l2jmobius.gameserver.model.interfaces.INamable;
 import org.l2jmobius.gameserver.model.spawns.NpcSpawnTemplate;
 import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
 import org.l2jmobius.gameserver.model.spawns.SpawnTemplate;
@@ -70,12 +65,13 @@ import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Instance world.
  * @author malyelfik
  */
-public class Instance implements IIdentifiable, INamable
+public class Instance
 {
 	private static final Logger LOGGER = Logger.getLogger(Instance.class.getName());
 	
@@ -140,13 +136,11 @@ public class Instance implements IIdentifiable, INamable
 		}
 	}
 	
-	@Override
 	public int getId()
 	{
 		return _id;
 	}
 	
-	@Override
 	public String getName()
 	{
 		return _template.getName();
@@ -630,7 +624,7 @@ public class Instance implements IIdentifiable, INamable
 		final List<Npc> result = new LinkedList<>();
 		for (Npc npc : _npcs)
 		{
-			if (CommonUtil.contains(id, npc.getId()))
+			if (ArrayUtil.contains(id, npc.getId()))
 			{
 				result.add(npc);
 			}
@@ -652,7 +646,7 @@ public class Instance implements IIdentifiable, INamable
 		final List<T> result = new LinkedList<>();
 		for (Npc npc : _npcs)
 		{
-			if (((ids.length == 0) || CommonUtil.contains(ids, npc.getId())) && clazz.isInstance(npc))
+			if (((ids.length == 0) || ArrayUtil.contains(ids, npc.getId())) && clazz.isInstance(npc))
 			{
 				result.add((T) npc);
 			}
@@ -687,7 +681,7 @@ public class Instance implements IIdentifiable, INamable
 		final List<Npc> result = new LinkedList<>();
 		for (Npc npc : _npcs)
 		{
-			if ((npc.getCurrentHp() > 0) && CommonUtil.contains(id, npc.getId()))
+			if ((npc.getCurrentHp() > 0) && ArrayUtil.contains(id, npc.getId()))
 			{
 				result.add(npc);
 			}
@@ -709,7 +703,7 @@ public class Instance implements IIdentifiable, INamable
 		final List<T> result = new LinkedList<>();
 		for (Npc npc : _npcs)
 		{
-			if ((((ids.length == 0) || CommonUtil.contains(ids, npc.getId())) && (npc.getCurrentHp() > 0)) && clazz.isInstance(npc))
+			if ((((ids.length == 0) || ArrayUtil.contains(ids, npc.getId())) && (npc.getCurrentHp() > 0)) && clazz.isInstance(npc))
 			{
 				result.add((T) npc);
 			}
@@ -744,7 +738,7 @@ public class Instance implements IIdentifiable, INamable
 		int count = 0;
 		for (Npc npc : _npcs)
 		{
-			if ((npc.getCurrentHp() > 0) && CommonUtil.contains(id, npc.getId()))
+			if ((npc.getCurrentHp() > 0) && ArrayUtil.contains(id, npc.getId()))
 			{
 				count++;
 			}

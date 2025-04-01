@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="47700" name="Greater Blue Cat's Eye" type="Armor">
 		<!-- When equipped, M. Skill Critical Damage + 12% and M. Skill Power + 5%. Effect does not stack with additional jewels of the same type. Equipping various Greater Jewels will grant additional effects. -->
@@ -10,7 +10,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18714" level="6" /> <!-- Blue Cat's Eye -->
+			<skill id="18714" level="6" /> <!-- Greater Blue Cat's Eye -->
 		</skills>
 	</item>
 	<item id="47701" name="La Vie En Rose's Red Cat's Eye Chest" type="EtcItem">

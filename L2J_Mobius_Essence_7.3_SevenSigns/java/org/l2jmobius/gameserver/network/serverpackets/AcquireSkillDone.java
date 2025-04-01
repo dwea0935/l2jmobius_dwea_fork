@@ -27,7 +27,6 @@ public class AcquireSkillDone extends ServerPacket
 {
 	public AcquireSkillDone()
 	{
-		//
 	}
 	
 	@Override

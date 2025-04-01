@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="22000" name="Small Fortuna Box" type="EtcItem">
 		<!-- Double-click to obtain Ancient Crystal: Enchant Weapon or Scroll: Enchant Weapon (enchant success rate +10%). -->
@@ -31,7 +31,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="26001" level="1" /> <!-- Medium Fortuna Box -->
+			<skill id="26001" level="1" /> <!-- Medium Fortune Box -->
 		</skills>
 	</item>
 	<item id="22002" name="Large Fortuna Box" type="EtcItem">
@@ -48,7 +48,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="26002" level="1" /> <!-- Large Fortuna Box -->
+			<skill id="26002" level="1" /> <!-- Large Fortune Box -->
 		</skills>
 	</item>
 	<item id="22003" name="Small Fortuna Cube" type="EtcItem">
@@ -99,7 +99,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="26005" level="1" /> <!-- Large Fortuna Cube -->
+			<skill id="26005" level="1" /> <!-- Large Fortune Cube -->
 		</skills>
 	</item>
 	<item id="22006" name="Scroll: Enchant D-grade Weapon" type="EtcItem">
@@ -117,7 +117,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26006" level="1" /> <!-- Scroll: Enchant Weapon (D-grade) -->
+			<skill id="26006" level="1" /> <!-- Scroll: Enchant D-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22007" name="Scroll: Enchant C-grade Weapon" type="EtcItem">
@@ -135,7 +135,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26007" level="1" /> <!-- Scroll: Enchant Weapon (C-grade) -->
+			<skill id="26007" level="1" /> <!-- Scroll: Enchant C-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22008" name="Scroll: Enchant B-grade Weapon" type="EtcItem">
@@ -153,7 +153,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26008" level="1" /> <!-- Scroll: Enchant Weapon (B-grade) -->
+			<skill id="26008" level="1" /> <!-- Scroll: Enchant B-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22009" name="Scroll: Enchant A-grade Weapon" type="EtcItem">
@@ -171,7 +171,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26009" level="1" /> <!-- Scroll: Enchant Weapon (A-grade) -->
+			<skill id="26009" level="1" /> <!-- Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22010" name="Scroll: Enchant D-grade Armor" type="EtcItem">
@@ -189,7 +189,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26010" level="1" /> <!-- Scroll: Enchant Armor (D-grade) -->
+			<skill id="26010" level="1" /> <!-- Scroll: Enchant D-grade Armor -->
 		</skills>
 	</item>
 	<item id="22011" name="Scroll: Enchant C-grade Armor" type="EtcItem">
@@ -207,7 +207,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26011" level="1" /> <!-- Scroll: Enchant Armor (C-grade) -->
+			<skill id="26011" level="1" /> <!-- Scroll: Enchant C-grade Armor -->
 		</skills>
 	</item>
 	<item id="22012" name="Scroll: Enchant B-grade Armor" type="EtcItem">
@@ -225,7 +225,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26012" level="1" /> <!-- Scroll: Enchant Armor (B-grade) -->
+			<skill id="26012" level="1" /> <!-- Scroll: Enchant B-grade Armor -->
 		</skills>
 	</item>
 	<item id="22013" name="Scroll: Enchant A-grade Armor" type="EtcItem">
@@ -243,7 +243,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26013" level="1" /> <!-- Scroll: Enchant Armor (A-grade) -->
+			<skill id="26013" level="1" /> <!-- Scroll: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="22014" name="Ancient Crystal: Enchant B-grade Weapon" type="EtcItem">
@@ -261,7 +261,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26014" level="1" /> <!-- Ancient Scroll: Enchant Weapon (B-grade) -->
+			<skill id="26014" level="1" /> <!-- Ancient Crystal: Enchant B-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22015" name="Ancient Crystal: Enchant A-grade Weapon" type="EtcItem">
@@ -279,7 +279,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26015" level="1" /> <!-- Ancient Scroll: Enchant Weapon (A-grade) -->
+			<skill id="26015" level="1" /> <!-- Ancient Crystal: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22016" name="Ancient Crystal: Enchant B-grade Armor" type="EtcItem">
@@ -297,7 +297,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26016" level="1" /> <!-- Ancient Scroll: Enchant Armor (B-grade) -->
+			<skill id="26016" level="1" /> <!-- Ancient Crystal: Enchant B-grade Armor -->
 		</skills>
 	</item>
 	<item id="22017" name="Ancient Crystal: Enchant A-grade Armor" type="EtcItem">
@@ -315,7 +315,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26017" level="1" /> <!-- Ancient Scroll: Enchant Armor (A-grade) -->
+			<skill id="26017" level="1" /> <!-- Ancient Crystal: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="22018" name="Sacred Crystal: Enchant B-grade Weapon" type="EtcItem">
@@ -333,7 +333,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26018" level="1" /> <!-- Divine Scroll: Enchant Weapon (B-grade) -->
+			<skill id="26018" level="1" /> <!-- Sacred Crystal: Enchant B-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22019" name="Sacred Crystal: Enchant A-grade Weapon" type="EtcItem">
@@ -351,7 +351,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26019" level="1" /> <!-- Divine Scroll: Enchant Weapon (A-grade) -->
+			<skill id="26019" level="1" /> <!-- Sacred Crystal: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22020" name="Sacred Crystal: Enchant B-grade Armor" type="EtcItem">
@@ -369,7 +369,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26020" level="1" /> <!-- Divine Scroll: Enchant Armor (B-grade) -->
+			<skill id="26020" level="1" /> <!-- Sacred Crystal: Enchant B-grade Armor -->
 		</skills>
 	</item>
 	<item id="22021" name="Sacred Crystal: Enchant A-grade Armor" type="EtcItem">
@@ -387,7 +387,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="26021" level="1" /> <!-- Divine Scroll: Enchant Armor (A-grade) -->
+			<skill id="26021" level="1" /> <!-- Sacred Crystal: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="22022" name="Greater Haste Potion" type="EtcItem">
@@ -522,7 +522,7 @@
 		<set name="crystal_type" val="D" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26027" level="2" /> <!-- Elixir of CP (D-grade) -->
+			<skill id="26027" level="2" /> <!-- D-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="22028" name="Elixir of CP" type="EtcItem">
@@ -546,7 +546,7 @@
 		<set name="crystal_type" val="C" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26027" level="3" /> <!-- Elixir of CP (C-grade) -->
+			<skill id="26027" level="3" /> <!-- C-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="22029" name="Elixir of CP" type="EtcItem">
@@ -570,7 +570,7 @@
 		<set name="crystal_type" val="B" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26027" level="4" /> <!-- Elixir of CP (B-grade) -->
+			<skill id="26027" level="4" /> <!-- B-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="22030" name="Elixir of CP" type="EtcItem">
@@ -594,7 +594,7 @@
 		<set name="crystal_type" val="A" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26027" level="5" /> <!-- Elixir of CP (A-grade) -->
+			<skill id="26027" level="5" /> <!-- A-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="22031" name="Elixir of CP" type="EtcItem">
@@ -619,7 +619,7 @@
 		<set name="is_event_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26027" level="6" /> <!-- Elixir of CP (S-grade) -->
+			<skill id="26027" level="6" /> <!-- S-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="22032" name="Elixir of Life" type="EtcItem">
@@ -643,7 +643,7 @@
 		<set name="crystal_type" val="D" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26028" level="2" /> <!-- Elixir of Life (D-grade) -->
+			<skill id="26028" level="2" /> <!-- D-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="22033" name="Elixir of Life" type="EtcItem">
@@ -667,7 +667,7 @@
 		<set name="crystal_type" val="C" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26028" level="3" /> <!-- Elixir of Life (C-grade) -->
+			<skill id="26028" level="3" /> <!-- C-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="22034" name="Elixir of Life" type="EtcItem">
@@ -691,7 +691,7 @@
 		<set name="crystal_type" val="B" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26028" level="4" /> <!-- Elixir of Life (B-grade) -->
+			<skill id="26028" level="4" /> <!-- B-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="22035" name="Elixir of Life" type="EtcItem">
@@ -715,7 +715,7 @@
 		<set name="crystal_type" val="A" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26028" level="5" /> <!-- Elixir of Life (A-grade) -->
+			<skill id="26028" level="5" /> <!-- A-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="22036" name="Elixir of Life" type="EtcItem">
@@ -740,7 +740,7 @@
 		<set name="is_event_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26028" level="6" /> <!-- Elixir of Life (S-grade) -->
+			<skill id="26028" level="6" /> <!-- S-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="22037" name="CP Potion" type="EtcItem">
@@ -1104,7 +1104,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-100+) 50% -->
+			<skill id="26046" level="5" /> <!-- XP Rune 50% -->
 		</skills>
 	</item>
 	<item id="22055" name="XP Rune" additionalName="168-hour" type="EtcItem">
@@ -1123,7 +1123,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-100+) 50% -->
+			<skill id="26046" level="5" /> <!-- XP Rune 50% -->
 		</skills>
 	</item>
 	<item id="22056" name="XP Rune" additionalName="336-hour" type="EtcItem">
@@ -1142,7 +1142,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-100+) 50% -->
+			<skill id="26046" level="5" /> <!-- XP Rune 50% -->
 		</skills>
 	</item>
 	<item id="22057" name="XP Rune" additionalName="720-hour" type="EtcItem">
@@ -1161,7 +1161,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26046" level="5" /> <!-- XP Rune III (Lv. 1-100+) 50% -->
+			<skill id="26046" level="5" /> <!-- XP Rune 50% -->
 		</skills>
 	</item>
 	<item id="22058" name="SP Rune" additionalName="24-hour" type="EtcItem">
@@ -1256,7 +1256,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26048" level="5" /> <!-- Rune of Crystal (Lv. 5) -->
+			<skill id="26048" level="5" /> <!-- Rune of Crystal Lv. 5 -->
 		</skills>
 	</item>
 	<item id="22063" name="Rune of Crystal" additionalName="168-hour" type="EtcItem">
@@ -1275,7 +1275,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26048" level="5" /> <!-- Rune of Crystal (Lv. 5) -->
+			<skill id="26048" level="5" /> <!-- Rune of Crystal Lv. 5 -->
 		</skills>
 	</item>
 	<item id="22064" name="Rune of Crystal" additionalName="336-hour" type="EtcItem">
@@ -1294,7 +1294,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26048" level="5" /> <!-- Rune of Crystal (Lv. 5) -->
+			<skill id="26048" level="5" /> <!-- Rune of Crystal Lv. 5 -->
 		</skills>
 	</item>
 	<item id="22065" name="Rune of Crystal" additionalName="720-hour" type="EtcItem">
@@ -1313,7 +1313,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="26048" level="5" /> <!-- Rune of Crystal (Lv. 5) -->
+			<skill id="26048" level="5" /> <!-- Rune of Crystal Lv. 5 -->
 		</skills>
 	</item>
 	<item id="22066" name="Rune of Feather" additionalName="24-hour" type="EtcItem">
@@ -1432,7 +1432,7 @@
 		<set name="crystal_type" val="D" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26050" level="1" /> <!-- Blessed Spiritshot (D-grade) -->
+			<skill id="26050" level="1" /> <!-- Blessed D-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="22073" name="Blessed C-grade Spiritshot" type="EtcItem">
@@ -1452,7 +1452,7 @@
 		<set name="crystal_type" val="C" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26051" level="1" /> <!-- Blessed Spiritshot (C-grade) -->
+			<skill id="26051" level="1" /> <!-- Blessed C-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="22074" name="Blessed B-grade Spiritshot" type="EtcItem">
@@ -1472,7 +1472,7 @@
 		<set name="crystal_type" val="B" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26052" level="1" /> <!-- Blessed Spiritshot (B-grade) -->
+			<skill id="26052" level="1" /> <!-- Blessed B-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="22075" name="Blessed A-grade Spiritshot" type="EtcItem">
@@ -1492,7 +1492,7 @@
 		<set name="crystal_type" val="A" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26053" level="1" /> <!-- Blessed Spiritshot (A-grade) -->
+			<skill id="26053" level="1" /> <!-- Blessed A-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="22076" name="Blessed S-grade Spiritshot" type="EtcItem">
@@ -1512,7 +1512,7 @@
 		<set name="crystal_type" val="S" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26054" level="1" /> <!-- Blessed Spiritshot (S-grade) -->
+			<skill id="26054" level="1" /> <!-- Blessed S-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="22077" name="D-grade Spiritshot" type="EtcItem">
@@ -1532,7 +1532,7 @@
 		<set name="crystal_type" val="D" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26055" level="1" /> <!-- Spiritshot (D-grade) -->
+			<skill id="26055" level="1" /> <!-- D-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="22078" name="C-grade Spiritshot" type="EtcItem">
@@ -1552,7 +1552,7 @@
 		<set name="crystal_type" val="C" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26056" level="1" /> <!-- Spiritshot (C-grade) -->
+			<skill id="26056" level="1" /> <!-- C-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="22079" name="B-grade Spiritshot" type="EtcItem">
@@ -1572,7 +1572,7 @@
 		<set name="crystal_type" val="B" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26057" level="1" /> <!-- Spiritshot (B-grade) -->
+			<skill id="26057" level="1" /> <!-- B-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="22080" name="A-grade Spiritshot" type="EtcItem">
@@ -1592,7 +1592,7 @@
 		<set name="crystal_type" val="A" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26058" level="1" /> <!-- Spiritshot (A-grade) -->
+			<skill id="26058" level="1" /> <!-- A-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="22081" name="S-grade Spiritshot" type="EtcItem">
@@ -1612,7 +1612,7 @@
 		<set name="crystal_type" val="S" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26059" level="1" /> <!-- Spiritshot (S-grade) -->
+			<skill id="26059" level="1" /> <!-- S-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="22082" name="D-grade Soulshot" type="EtcItem">
@@ -1632,7 +1632,7 @@
 		<set name="crystal_type" val="D" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26060" level="1" /> <!-- Soulshot (D-grade) -->
+			<skill id="26060" level="1" /> <!-- D-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="22083" name="C-grade Soulshot" type="EtcItem">
@@ -1652,7 +1652,7 @@
 		<set name="crystal_type" val="C" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26061" level="1" /> <!-- Soulshot (C-grade) -->
+			<skill id="26061" level="1" /> <!-- C-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="22084" name="B-grade Soulshot" type="EtcItem">
@@ -1672,7 +1672,7 @@
 		<set name="crystal_type" val="B" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26062" level="1" /> <!-- Soulshot (B-grade) -->
+			<skill id="26062" level="1" /> <!-- B-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="22085" name="A-grade Soulshot" type="EtcItem">
@@ -1692,7 +1692,7 @@
 		<set name="crystal_type" val="A" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26063" level="1" /> <!-- Soulshot (A-grade) -->
+			<skill id="26063" level="1" /> <!-- A-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="22086" name="S-grade Soulshot" type="EtcItem">
@@ -1712,7 +1712,7 @@
 		<set name="crystal_type" val="S" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="26064" level="1" /> <!-- Soulshot (S-grade) -->
+			<skill id="26064" level="1" /> <!-- S-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="22087" name="Fighter's Scroll Bundle" type="EtcItem">
@@ -1869,7 +1869,7 @@
 		<set name="for_npc" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="26068" level="1" /> <!-- Blessed Spiritshot Pack (D-grade) -->
+			<skill id="26068" level="1" /> <!-- Package: Blessed D-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="22095" name="Package: Blessed C-grade Spiritshots" type="EtcItem">
@@ -1887,7 +1887,7 @@
 		<set name="for_npc" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="26068" level="2" /> <!-- Blessed Spiritshot Pack (C-grade) -->
+			<skill id="26068" level="2" /> <!-- Package: Blessed C-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="22096" name="Package: Blessed B-grade Spiritshots" type="EtcItem">
@@ -1905,7 +1905,7 @@
 		<set name="for_npc" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="26068" level="3" /> <!-- Blessed Spiritshot Pack (B-grade) -->
+			<skill id="26068" level="3" /> <!-- Package: Blessed B-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="22097" name="Package: Blessed A-grade Spiritshots" type="EtcItem">
@@ -1923,7 +1923,7 @@
 		<set name="for_npc" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="26068" level="4" /> <!-- Blessed Spiritshot Pack (A-grade) -->
+			<skill id="26068" level="4" /> <!-- Package: Blessed A-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="22098" name="Package: Blessed S-grade Spiritshots" type="EtcItem">
@@ -1941,7 +1941,7 @@
 		<set name="for_npc" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="26068" level="5" /> <!-- Blessed Spiritshot Pack (S-grade) -->
+			<skill id="26068" level="5" /> <!-- Package: Blessed S-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="22099" name="Package: D-grade Spiritshots" type="EtcItem">
@@ -1959,7 +1959,7 @@
 		<set name="for_npc" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="26069" level="1" /> <!-- Spiritshot Pack (D-grade) -->
+			<skill id="26069" level="1" /> <!-- Package: D-grade Spiritshots -->
 		</skills>
 	</item>
 </list>

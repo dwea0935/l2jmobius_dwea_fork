@@ -21,16 +21,16 @@
 package ai.areas.Giran;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.OnDayNightChange;
+import org.l2jmobius.gameserver.model.events.holders.OnDayNightChange;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * @author Mobius
@@ -47,10 +47,9 @@ public class GiranZoneEffect extends Quest
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		sendEffect(creature);
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@RegisterEvent(EventType.ON_DAY_NIGHT_CHANGE)

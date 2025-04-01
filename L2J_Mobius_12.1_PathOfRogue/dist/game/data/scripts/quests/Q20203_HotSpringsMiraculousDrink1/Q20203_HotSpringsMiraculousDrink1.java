@@ -20,7 +20,6 @@
  */
 package quests.Q20203_HotSpringsMiraculousDrink1;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.TeleportListData;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -33,6 +32,7 @@ import org.l2jmobius.gameserver.model.quest.newquestdata.NewQuestLocation;
 import org.l2jmobius.gameserver.model.quest.newquestdata.QuestCondType;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestDialog;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestNotification;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q20204_HotSpringsMiraculousDrink2.Q20204_HotSpringsMiraculousDrink2;
 
@@ -139,7 +139,7 @@ public class Q20203_HotSpringsMiraculousDrink1 extends Quest
 		{
 			if (questState.isCond(QuestCondType.STARTED))
 			{
-				if (CommonUtil.contains(WATER_PUMPS, npc.getId()) && (npc.getScriptValue() != 1))
+				if (ArrayUtil.contains(WATER_PUMPS, npc.getId()) && (npc.getScriptValue() != 1))
 				{
 					npc.setScriptValue(1);
 					final NewQuest data = getQuestData();
@@ -156,13 +156,13 @@ public class Q20203_HotSpringsMiraculousDrink1 extends Quest
 					else
 					{
 						final int currentCount = questState.getCount();
-						if (currentCount != data.getGoal().getCount())
+						if (currentCount < data.getGoal().getCount())
 						{
 							questState.setCount(currentCount + 1);
 						}
 					}
 					
-					if (questState.getCount() == data.getGoal().getCount())
+					if (questState.getCount() >= data.getGoal().getCount())
 					{
 						questState.setCond(QuestCondType.DONE);
 						player.sendPacket(new ExQuestNotification(questState));

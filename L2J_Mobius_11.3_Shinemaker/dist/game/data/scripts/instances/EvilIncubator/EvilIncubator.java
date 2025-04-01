@@ -19,23 +19,23 @@ package instances.EvilIncubator;
 import java.util.EnumMap;
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyNpc;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -98,83 +98,83 @@ public class EvilIncubator extends AbstractInstance
 	//	RACE_QUESTS.put(Race.DWARF, Q10345_DayOfDestinyDwarfsFate.class.getSimpleName());
 	//	RACE_QUESTS.put(Race.KAMAEL, Q10346_DayOfDestinyKamaelsFate.class.getSimpleName());
 	//}
-	private static final EnumMap<ClassId, Integer> CLASS_BOSS = new EnumMap<>(ClassId.class);
+	private static final EnumMap<PlayerClass, Integer> CLASS_BOSS = new EnumMap<>(PlayerClass.class);
 	static
 	{
-		CLASS_BOSS.put(ClassId.GLADIATOR, 27426);
-		CLASS_BOSS.put(ClassId.WARLORD, 27426);
-		CLASS_BOSS.put(ClassId.PALADIN, 27425);
-		CLASS_BOSS.put(ClassId.DARK_AVENGER, 27425);
-		CLASS_BOSS.put(ClassId.TREASURE_HUNTER, 27426);
-		CLASS_BOSS.put(ClassId.HAWKEYE, 27428);
-		CLASS_BOSS.put(ClassId.SORCERER, 27428);
-		CLASS_BOSS.put(ClassId.NECROMANCER, 27428);
-		CLASS_BOSS.put(ClassId.WARLOCK, 27428);
-		CLASS_BOSS.put(ClassId.BISHOP, 27427);
-		CLASS_BOSS.put(ClassId.PROPHET, 27429);
-		CLASS_BOSS.put(ClassId.TEMPLE_KNIGHT, 27425);
-		CLASS_BOSS.put(ClassId.SWORDSINGER, 27429);
-		CLASS_BOSS.put(ClassId.PLAINS_WALKER, 27426);
-		CLASS_BOSS.put(ClassId.SILVER_RANGER, 27428);
-		CLASS_BOSS.put(ClassId.SPELLSINGER, 27428);
-		CLASS_BOSS.put(ClassId.ELEMENTAL_SUMMONER, 27428);
-		CLASS_BOSS.put(ClassId.ELDER, 27427);
-		CLASS_BOSS.put(ClassId.SHILLIEN_KNIGHT, 27425);
-		CLASS_BOSS.put(ClassId.BLADEDANCER, 27429);
-		CLASS_BOSS.put(ClassId.ABYSS_WALKER, 27426);
-		CLASS_BOSS.put(ClassId.PHANTOM_RANGER, 27428);
-		CLASS_BOSS.put(ClassId.SPELLHOWLER, 27428);
-		CLASS_BOSS.put(ClassId.PHANTOM_SUMMONER, 27428);
-		CLASS_BOSS.put(ClassId.SHILLIEN_ELDER, 27427);
-		CLASS_BOSS.put(ClassId.DESTROYER, 27426);
-		CLASS_BOSS.put(ClassId.TYRANT, 27426);
-		CLASS_BOSS.put(ClassId.OVERLORD, 27429);
-		CLASS_BOSS.put(ClassId.WARCRYER, 27429);
-		CLASS_BOSS.put(ClassId.BOUNTY_HUNTER, 27426);
-		CLASS_BOSS.put(ClassId.WARSMITH, 27426);
-		CLASS_BOSS.put(ClassId.BERSERKER, 27426);
-		CLASS_BOSS.put(ClassId.MALE_SOULBREAKER, 27426);
-		CLASS_BOSS.put(ClassId.FEMALE_SOULBREAKER, 27426);
-		CLASS_BOSS.put(ClassId.ARBALESTER, 27428);
+		CLASS_BOSS.put(PlayerClass.GLADIATOR, 27426);
+		CLASS_BOSS.put(PlayerClass.WARLORD, 27426);
+		CLASS_BOSS.put(PlayerClass.PALADIN, 27425);
+		CLASS_BOSS.put(PlayerClass.DARK_AVENGER, 27425);
+		CLASS_BOSS.put(PlayerClass.TREASURE_HUNTER, 27426);
+		CLASS_BOSS.put(PlayerClass.HAWKEYE, 27428);
+		CLASS_BOSS.put(PlayerClass.SORCERER, 27428);
+		CLASS_BOSS.put(PlayerClass.NECROMANCER, 27428);
+		CLASS_BOSS.put(PlayerClass.WARLOCK, 27428);
+		CLASS_BOSS.put(PlayerClass.BISHOP, 27427);
+		CLASS_BOSS.put(PlayerClass.PROPHET, 27429);
+		CLASS_BOSS.put(PlayerClass.TEMPLE_KNIGHT, 27425);
+		CLASS_BOSS.put(PlayerClass.SWORDSINGER, 27429);
+		CLASS_BOSS.put(PlayerClass.PLAINS_WALKER, 27426);
+		CLASS_BOSS.put(PlayerClass.SILVER_RANGER, 27428);
+		CLASS_BOSS.put(PlayerClass.SPELLSINGER, 27428);
+		CLASS_BOSS.put(PlayerClass.ELEMENTAL_SUMMONER, 27428);
+		CLASS_BOSS.put(PlayerClass.ELDER, 27427);
+		CLASS_BOSS.put(PlayerClass.SHILLIEN_KNIGHT, 27425);
+		CLASS_BOSS.put(PlayerClass.BLADEDANCER, 27429);
+		CLASS_BOSS.put(PlayerClass.ABYSS_WALKER, 27426);
+		CLASS_BOSS.put(PlayerClass.PHANTOM_RANGER, 27428);
+		CLASS_BOSS.put(PlayerClass.SPELLHOWLER, 27428);
+		CLASS_BOSS.put(PlayerClass.PHANTOM_SUMMONER, 27428);
+		CLASS_BOSS.put(PlayerClass.SHILLIEN_ELDER, 27427);
+		CLASS_BOSS.put(PlayerClass.DESTROYER, 27426);
+		CLASS_BOSS.put(PlayerClass.TYRANT, 27426);
+		CLASS_BOSS.put(PlayerClass.OVERLORD, 27429);
+		CLASS_BOSS.put(PlayerClass.WARCRYER, 27429);
+		CLASS_BOSS.put(PlayerClass.BOUNTY_HUNTER, 27426);
+		CLASS_BOSS.put(PlayerClass.WARSMITH, 27426);
+		CLASS_BOSS.put(PlayerClass.BERSERKER, 27426);
+		CLASS_BOSS.put(PlayerClass.MALE_SOULBREAKER, 27426);
+		CLASS_BOSS.put(PlayerClass.FEMALE_SOULBREAKER, 27426);
+		CLASS_BOSS.put(PlayerClass.ARBALESTER, 27428);
 	}
-	private static final EnumMap<ClassId, Integer> CLASS_ITEMS = new EnumMap<>(ClassId.class);
+	private static final EnumMap<PlayerClass, Integer> CLASS_ITEMS = new EnumMap<>(PlayerClass.class);
 	static
 	{
-		CLASS_ITEMS.put(ClassId.GLADIATOR, 17484);
-		CLASS_ITEMS.put(ClassId.WARLORD, 17485);
-		CLASS_ITEMS.put(ClassId.PALADIN, 17486);
-		CLASS_ITEMS.put(ClassId.DARK_AVENGER, 17487);
-		CLASS_ITEMS.put(ClassId.TREASURE_HUNTER, 17488);
-		CLASS_ITEMS.put(ClassId.HAWKEYE, 17489);
-		CLASS_ITEMS.put(ClassId.SORCERER, 17490);
-		CLASS_ITEMS.put(ClassId.NECROMANCER, 17491);
-		CLASS_ITEMS.put(ClassId.WARLOCK, 17492);
-		CLASS_ITEMS.put(ClassId.BISHOP, 17493);
-		CLASS_ITEMS.put(ClassId.PROPHET, 17494);
-		CLASS_ITEMS.put(ClassId.TEMPLE_KNIGHT, 17495);
-		CLASS_ITEMS.put(ClassId.SWORDSINGER, 17496);
-		CLASS_ITEMS.put(ClassId.PLAINS_WALKER, 17497);
-		CLASS_ITEMS.put(ClassId.SILVER_RANGER, 17498);
-		CLASS_ITEMS.put(ClassId.SPELLSINGER, 17499);
-		CLASS_ITEMS.put(ClassId.ELEMENTAL_SUMMONER, 17500);
-		CLASS_ITEMS.put(ClassId.ELDER, 17501);
-		CLASS_ITEMS.put(ClassId.SHILLIEN_KNIGHT, 17502);
-		CLASS_ITEMS.put(ClassId.BLADEDANCER, 17503);
-		CLASS_ITEMS.put(ClassId.ABYSS_WALKER, 17504);
-		CLASS_ITEMS.put(ClassId.PHANTOM_RANGER, 17505);
-		CLASS_ITEMS.put(ClassId.SPELLHOWLER, 17506);
-		CLASS_ITEMS.put(ClassId.PHANTOM_SUMMONER, 17507);
-		CLASS_ITEMS.put(ClassId.SHILLIEN_ELDER, 17508);
-		CLASS_ITEMS.put(ClassId.DESTROYER, 17509);
-		CLASS_ITEMS.put(ClassId.TYRANT, 17510);
-		CLASS_ITEMS.put(ClassId.OVERLORD, 17511);
-		CLASS_ITEMS.put(ClassId.WARCRYER, 17512);
-		CLASS_ITEMS.put(ClassId.BOUNTY_HUNTER, 17513);
-		CLASS_ITEMS.put(ClassId.WARSMITH, 17514);
-		CLASS_ITEMS.put(ClassId.BERSERKER, 17515);
-		CLASS_ITEMS.put(ClassId.MALE_SOULBREAKER, 17516);
-		CLASS_ITEMS.put(ClassId.FEMALE_SOULBREAKER, 17516);
-		CLASS_ITEMS.put(ClassId.ARBALESTER, 17517);
+		CLASS_ITEMS.put(PlayerClass.GLADIATOR, 17484);
+		CLASS_ITEMS.put(PlayerClass.WARLORD, 17485);
+		CLASS_ITEMS.put(PlayerClass.PALADIN, 17486);
+		CLASS_ITEMS.put(PlayerClass.DARK_AVENGER, 17487);
+		CLASS_ITEMS.put(PlayerClass.TREASURE_HUNTER, 17488);
+		CLASS_ITEMS.put(PlayerClass.HAWKEYE, 17489);
+		CLASS_ITEMS.put(PlayerClass.SORCERER, 17490);
+		CLASS_ITEMS.put(PlayerClass.NECROMANCER, 17491);
+		CLASS_ITEMS.put(PlayerClass.WARLOCK, 17492);
+		CLASS_ITEMS.put(PlayerClass.BISHOP, 17493);
+		CLASS_ITEMS.put(PlayerClass.PROPHET, 17494);
+		CLASS_ITEMS.put(PlayerClass.TEMPLE_KNIGHT, 17495);
+		CLASS_ITEMS.put(PlayerClass.SWORDSINGER, 17496);
+		CLASS_ITEMS.put(PlayerClass.PLAINS_WALKER, 17497);
+		CLASS_ITEMS.put(PlayerClass.SILVER_RANGER, 17498);
+		CLASS_ITEMS.put(PlayerClass.SPELLSINGER, 17499);
+		CLASS_ITEMS.put(PlayerClass.ELEMENTAL_SUMMONER, 17500);
+		CLASS_ITEMS.put(PlayerClass.ELDER, 17501);
+		CLASS_ITEMS.put(PlayerClass.SHILLIEN_KNIGHT, 17502);
+		CLASS_ITEMS.put(PlayerClass.BLADEDANCER, 17503);
+		CLASS_ITEMS.put(PlayerClass.ABYSS_WALKER, 17504);
+		CLASS_ITEMS.put(PlayerClass.PHANTOM_RANGER, 17505);
+		CLASS_ITEMS.put(PlayerClass.SPELLHOWLER, 17506);
+		CLASS_ITEMS.put(PlayerClass.PHANTOM_SUMMONER, 17507);
+		CLASS_ITEMS.put(PlayerClass.SHILLIEN_ELDER, 17508);
+		CLASS_ITEMS.put(PlayerClass.DESTROYER, 17509);
+		CLASS_ITEMS.put(PlayerClass.TYRANT, 17510);
+		CLASS_ITEMS.put(PlayerClass.OVERLORD, 17511);
+		CLASS_ITEMS.put(PlayerClass.WARCRYER, 17512);
+		CLASS_ITEMS.put(PlayerClass.BOUNTY_HUNTER, 17513);
+		CLASS_ITEMS.put(PlayerClass.WARSMITH, 17514);
+		CLASS_ITEMS.put(PlayerClass.BERSERKER, 17515);
+		CLASS_ITEMS.put(PlayerClass.MALE_SOULBREAKER, 17516);
+		CLASS_ITEMS.put(PlayerClass.FEMALE_SOULBREAKER, 17516);
+		CLASS_ITEMS.put(PlayerClass.ARBALESTER, 17517);
 	}
 	//@formatter:on
 	
@@ -254,9 +254,9 @@ public class EvilIncubator extends AbstractInstance
 						if (st.isCond(9))
 						{
 							st.setCond(10, true);
-							if (CLASS_ITEMS.containsKey(player.getClassId()))
+							if (CLASS_ITEMS.containsKey(player.getPlayerClass()))
 							{
-								final int classItemId = CLASS_ITEMS.get(player.getClassId()).intValue();
+								final int classItemId = CLASS_ITEMS.get(player.getPlayerClass()).intValue();
 								if (!hasQuestItems(player, classItemId))
 								{
 									giveItems(player, classItemId, 1);
@@ -417,7 +417,7 @@ public class EvilIncubator extends AbstractInstance
 		if (world != null)
 		{
 			final int waveId = world.getParameters().getInt("WORLD_WAVE", 1);
-			if (CommonUtil.contains(BOSSES, npc.getId()))
+			if (ArrayUtil.contains(BOSSES, npc.getId()))
 			{
 				final QuestState st = getQuestState(world.getFirstPlayer());
 				if ((st == null) || !st.isStarted())
@@ -498,7 +498,7 @@ public class EvilIncubator extends AbstractInstance
 				world.setParameter("WORLD_WAVE", waveId);
 				showOnScreenMsg(world, NpcStringId.I_SHALL_GRANT_YOU_DEATH_IT_S_THE_ONLY_GIFT_FROM_THE_GODDESS_OF_DESTRUCTION, ExShowScreenMessage.TOP_CENTER, 5000, true);
 				getTimers().addTimer("SPAWN_WAVE", 20000, e -> manageWaveSpawn(world));
-				final Npc boss = addSpawn(CLASS_BOSS.get(world.getFirstPlayer().getClassId()).intValue(), BOSS_LOC, false, 0, false, world.getId());
+				final Npc boss = addSpawn(CLASS_BOSS.get(world.getFirstPlayer().getPlayerClass()).intValue(), BOSS_LOC, false, 0, false, world.getId());
 				world.broadcastPacket(new Earthquake(boss, 50, 10));
 				break;
 			}
@@ -516,7 +516,7 @@ public class EvilIncubator extends AbstractInstance
 				if (!helperList.isEmpty())
 				{
 					final FriendlyNpc helper = helperList.get(getRandom(helperList.size()));
-					if (CommonUtil.contains(HELPERS, helper.getId()))
+					if (ArrayUtil.contains(HELPERS, helper.getId()))
 					{
 						npc.reduceCurrentHp(1, helper, null);
 						helper.reduceCurrentHp(1, npc, null);

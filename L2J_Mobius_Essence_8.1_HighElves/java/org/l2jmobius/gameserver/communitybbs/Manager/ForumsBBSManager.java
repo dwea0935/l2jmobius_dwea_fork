@@ -99,11 +99,11 @@ public class ForumsBBSManager extends BaseBBSManager
 	 */
 	public Forum getForumByName(String name)
 	{
-		for (Forum f : _table)
+		for (Forum forum : _table)
 		{
-			if (f.getName().equals(name))
+			if (forum.getName().equals(name))
 			{
-				return f;
+				return forum;
 			}
 		}
 		return null;

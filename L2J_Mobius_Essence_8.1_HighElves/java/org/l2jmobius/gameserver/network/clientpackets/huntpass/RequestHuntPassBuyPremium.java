@@ -24,6 +24,7 @@ import java.util.Calendar;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.huntpass.HuntPassInfo;
@@ -58,7 +59,7 @@ public class RequestHuntPassBuyPremium extends ClientPacket
 			return;
 		}
 		
-		if (!player.destroyItemByItemId("RequestHuntPassBuyPremium", Config.HUNT_PASS_PREMIUM_ITEM_ID, Config.HUNT_PASS_PREMIUM_ITEM_COUNT, player, true))
+		if (!player.destroyItemByItemId(ItemProcessType.FEE, Config.HUNT_PASS_PREMIUM_ITEM_ID, Config.HUNT_PASS_PREMIUM_ITEM_COUNT, player, true))
 		{
 			player.sendPacket(SystemMessageId.NOT_ENOUGH_MONEY_TO_USE_THE_FUNCTION);
 			return;

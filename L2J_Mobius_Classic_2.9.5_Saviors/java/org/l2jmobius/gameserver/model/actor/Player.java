@@ -51,17 +51,20 @@ import java.util.logging.Level;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.LoginServerThread;
 import org.l2jmobius.gameserver.ai.CreatureAI;
 import org.l2jmobius.gameserver.ai.CreatureAI.IntentionCommand;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.PlayerAI;
 import org.l2jmobius.gameserver.ai.SummonAI;
 import org.l2jmobius.gameserver.cache.RelationCache;
 import org.l2jmobius.gameserver.communitybbs.BB.Forum;
 import org.l2jmobius.gameserver.communitybbs.Manager.ForumsBBSManager;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
+import org.l2jmobius.gameserver.data.holders.PreparedMultisellListHolder;
+import org.l2jmobius.gameserver.data.holders.SellBuffHolder;
+import org.l2jmobius.gameserver.data.holders.TrainingHolder;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.CharSummonTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
@@ -83,75 +86,39 @@ import org.l2jmobius.gameserver.data.xml.RecipeData;
 import org.l2jmobius.gameserver.data.xml.SendMessageLocalisationData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.AdminTeleportType;
-import org.l2jmobius.gameserver.enums.BroochJewel;
-import org.l2jmobius.gameserver.enums.CastleSide;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClanWarState;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.ElementalType;
-import org.l2jmobius.gameserver.enums.GroupType;
-import org.l2jmobius.gameserver.enums.HtmlActionScope;
-import org.l2jmobius.gameserver.enums.IllegalActionPunishmentType;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.ItemLocation;
-import org.l2jmobius.gameserver.enums.MountType;
-import org.l2jmobius.gameserver.enums.NextActionType;
-import org.l2jmobius.gameserver.enums.PartyDistributionType;
-import org.l2jmobius.gameserver.enums.PartyMessageType;
-import org.l2jmobius.gameserver.enums.PartySmallWindowUpdateType;
-import org.l2jmobius.gameserver.enums.PlayerAction;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.Sex;
-import org.l2jmobius.gameserver.enums.ShortcutType;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.enums.StatusUpdateType;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
-import org.l2jmobius.gameserver.enums.Team;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.enums.UserInfoType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.handler.ItemHandler;
-import org.l2jmobius.gameserver.instancemanager.AntiFeedManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
-import org.l2jmobius.gameserver.instancemanager.DuelManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.ItemsOnGroundManager;
-import org.l2jmobius.gameserver.instancemanager.MatchingRoomManager;
-import org.l2jmobius.gameserver.instancemanager.MentorManager;
-import org.l2jmobius.gameserver.instancemanager.PunishmentManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
-import org.l2jmobius.gameserver.instancemanager.RecipeManager;
-import org.l2jmobius.gameserver.instancemanager.SellBuffsManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.AntiFeedManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.DuelManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.ItemManager;
+import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
+import org.l2jmobius.gameserver.managers.MatchingRoomManager;
+import org.l2jmobius.gameserver.managers.MentorManager;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.RecipeManager;
+import org.l2jmobius.gameserver.managers.SellBuffsManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.AccessLevel;
 import org.l2jmobius.gameserver.model.BlockList;
 import org.l2jmobius.gameserver.model.ClientSettings;
-import org.l2jmobius.gameserver.model.CommandChannel;
 import org.l2jmobius.gameserver.model.ContactList;
-import org.l2jmobius.gameserver.model.Duel;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Macro;
-import org.l2jmobius.gameserver.model.MacroList;
 import org.l2jmobius.gameserver.model.ManufactureItem;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.PetData;
 import org.l2jmobius.gameserver.model.PetLevelData;
 import org.l2jmobius.gameserver.model.PremiumItem;
 import org.l2jmobius.gameserver.model.Radar;
 import org.l2jmobius.gameserver.model.RecipeList;
 import org.l2jmobius.gameserver.model.Request;
-import org.l2jmobius.gameserver.model.ShortCuts;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.TeleportBookmark;
 import org.l2jmobius.gameserver.model.TimeStamp;
@@ -159,6 +126,33 @@ import org.l2jmobius.gameserver.model.TradeList;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
+import org.l2jmobius.gameserver.model.actor.enums.player.AdminTeleportType;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
+import org.l2jmobius.gameserver.model.actor.enums.player.GroupType;
+import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerAction;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
+import org.l2jmobius.gameserver.model.actor.enums.player.Sex;
+import org.l2jmobius.gameserver.model.actor.enums.player.ShortcutType;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.model.actor.holders.player.AttendanceInfoHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.AutoPlaySettingsHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.AutoUseSettingsHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.DamageTakenHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.Duel;
+import org.l2jmobius.gameserver.model.actor.holders.player.Macro;
+import org.l2jmobius.gameserver.model.actor.holders.player.MacroList;
+import org.l2jmobius.gameserver.model.actor.holders.player.MovieHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcuts;
+import org.l2jmobius.gameserver.model.actor.holders.player.SubClassHolder;
 import org.l2jmobius.gameserver.model.actor.instance.AirShip;
 import org.l2jmobius.gameserver.model.actor.instance.Boat;
 import org.l2jmobius.gameserver.model.actor.instance.ControlTower;
@@ -191,49 +185,43 @@ import org.l2jmobius.gameserver.model.actor.tasks.player.WaterTask;
 import org.l2jmobius.gameserver.model.actor.templates.PlayerTemplate;
 import org.l2jmobius.gameserver.model.actor.transform.Transform;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanPrivileges;
 import org.l2jmobius.gameserver.model.clan.ClanWar;
+import org.l2jmobius.gameserver.model.clan.enums.ClanWarState;
 import org.l2jmobius.gameserver.model.cubic.Cubic;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayableExpChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerAbilityPointsChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerFameChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerHennaAdd;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerHennaRemove;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerItemEquip;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLoad;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogout;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeStatus;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMentorStatus;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPKChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionCancel;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionChange;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPvPChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPvPKill;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerReputationChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSubChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayableExpChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerAbilityPointsChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerFameChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerHennaAdd;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerHennaRemove;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemEquip;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLoad;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeStatus;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMentorStatus;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPKChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionCancel;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPvPChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPvPKill;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerReputationChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSubChange;
 import org.l2jmobius.gameserver.model.events.listeners.FunctionEventListener;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.events.timers.TimerHolder;
 import org.l2jmobius.gameserver.model.fishing.Fishing;
-import org.l2jmobius.gameserver.model.holders.AttendanceInfoHolder;
-import org.l2jmobius.gameserver.model.holders.AutoPlaySettingsHolder;
-import org.l2jmobius.gameserver.model.holders.AutoUseSettingsHolder;
-import org.l2jmobius.gameserver.model.holders.DamageTakenHolder;
-import org.l2jmobius.gameserver.model.holders.ElementalSpiritDataHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.MovieHolder;
-import org.l2jmobius.gameserver.model.holders.PreparedMultisellListHolder;
-import org.l2jmobius.gameserver.model.holders.SellBuffHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.holders.SkillUseHolder;
-import org.l2jmobius.gameserver.model.holders.SubClassHolder;
-import org.l2jmobius.gameserver.model.holders.TrainingHolder;
+import org.l2jmobius.gameserver.model.groups.CommandChannel;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.groups.PartyDistributionType;
+import org.l2jmobius.gameserver.model.groups.PartyMessageType;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingRoom;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import org.l2jmobius.gameserver.model.item.Armor;
@@ -241,6 +229,11 @@ import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.Henna;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.BroochJewel;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ElementalSpiritDataHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
 import org.l2jmobius.gameserver.model.item.type.ArmorType;
@@ -252,7 +245,6 @@ import org.l2jmobius.gameserver.model.itemcontainer.PlayerFreight;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerRefund;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerWarehouse;
-import org.l2jmobius.gameserver.model.matching.MatchingRoom;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameManager;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameTask;
@@ -263,6 +255,7 @@ import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.QuestTimer;
 import org.l2jmobius.gameserver.model.siege.Castle;
+import org.l2jmobius.gameserver.model.siege.CastleSide;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.siege.Siege;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
@@ -271,6 +264,10 @@ import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
 import org.l2jmobius.gameserver.model.skill.SkillCastingType;
+import org.l2jmobius.gameserver.model.skill.enums.NextActionType;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillUseHolder;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.model.stats.BaseStat;
 import org.l2jmobius.gameserver.model.stats.Formulas;
@@ -286,12 +283,18 @@ import org.l2jmobius.gameserver.model.zone.type.WaterZone;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.HtmlActionScope;
+import org.l2jmobius.gameserver.network.enums.PartySmallWindowUpdateType;
+import org.l2jmobius.gameserver.network.enums.StatusUpdateType;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.AbstractHtmlPacket;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ChangeWaitType;
 import org.l2jmobius.gameserver.network.serverpackets.CharInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
+import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.EtcStatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.ExAbnormalStatusUpdateFromTarget;
 import org.l2jmobius.gameserver.network.serverpackets.ExAdenaInvenCount;
@@ -340,7 +343,7 @@ import org.l2jmobius.gameserver.network.serverpackets.RelationChanged;
 import org.l2jmobius.gameserver.network.serverpackets.Ride;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SetupGauge;
-import org.l2jmobius.gameserver.network.serverpackets.ShortCutInit;
+import org.l2jmobius.gameserver.network.serverpackets.ShortcutInit;
 import org.l2jmobius.gameserver.network.serverpackets.SkillCoolTime;
 import org.l2jmobius.gameserver.network.serverpackets.SkillList;
 import org.l2jmobius.gameserver.network.serverpackets.Snoop;
@@ -361,17 +364,16 @@ import org.l2jmobius.gameserver.network.serverpackets.commission.ExResponseCommi
 import org.l2jmobius.gameserver.network.serverpackets.elementalspirits.ElementalSpiritInfo;
 import org.l2jmobius.gameserver.network.serverpackets.friend.FriendStatus;
 import org.l2jmobius.gameserver.network.serverpackets.vip.ReceiveVipInfo;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
-import org.l2jmobius.gameserver.taskmanager.AutoPlayTaskManager;
-import org.l2jmobius.gameserver.taskmanager.AutoUseTaskManager;
-import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
-import org.l2jmobius.gameserver.taskmanager.ItemsAutoDestroyTaskManager;
-import org.l2jmobius.gameserver.taskmanager.PlayerAutoSaveTaskManager;
-import org.l2jmobius.gameserver.taskmanager.PvpFlagTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AutoPlayTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AutoUseTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.ItemsAutoDestroyTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.PlayerAutoSaveTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.PvpFlagTaskManager;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.EnumIntBitmask;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * This class represents all player characters in the world.<br>
@@ -418,7 +420,6 @@ public class Player extends Playable
 	private static final String RESTORE_CHAR_HENNAS = "SELECT slot,symbol_id FROM character_hennas WHERE charId=? AND class_index=?";
 	private static final String ADD_CHAR_HENNA = "INSERT INTO character_hennas (charId,symbol_id,slot,class_index) VALUES (?,?,?,?)";
 	private static final String DELETE_CHAR_HENNA = "DELETE FROM character_hennas WHERE charId=? AND slot=? AND class_index=?";
-	private static final String DELETE_CHAR_HENNAS = "DELETE FROM character_hennas WHERE charId=? AND class_index=?";
 	
 	// Character Shortcut SQL String Definitions:
 	private static final String DELETE_CHAR_SHORTCUTS = "DELETE FROM character_shortcuts WHERE charId=? AND class_index=?";
@@ -630,8 +631,8 @@ public class Player extends Playable
 	/** The table containing all Quests began by the Player */
 	private final Map<String, QuestState> _quests = new ConcurrentSkipListMap<>(String.CASE_INSENSITIVE_ORDER);
 	
-	/** The list containing all shortCuts of this player. */
-	private final ShortCuts _shortCuts = new ShortCuts(this);
+	/** The list containing all shortcuts of this player. */
+	private final Shortcuts _shortcuts = new Shortcuts(this);
 	
 	/** The list containing all macros of this player. */
 	private final MacroList _macros = new MacroList(this);
@@ -679,7 +680,7 @@ public class Player extends Playable
 	private long _clanCreateExpiryTime;
 	
 	private int _powerGrade = 0;
-	private EnumIntBitmask<ClanPrivilege> _clanPrivileges = new EnumIntBitmask<>(ClanPrivilege.class, false);
+	private ClanPrivileges _clanPrivileges = new ClanPrivileges();
 	
 	/** Player's pledge class (knight, Baron, etc.) */
 	private int _pledgeClass = 0;
@@ -875,7 +876,7 @@ public class Player extends Playable
 	private final Set<Integer> _whisperers = ConcurrentHashMap.newKeySet();
 	
 	private ElementalSpirit[] _spirits;
-	private ElementalType _activeElementalSpiritType;
+	private ElementalSpiritType _activeElementalSpiritType;
 	
 	private byte _vipTier = 0;
 	
@@ -948,7 +949,7 @@ public class Player extends Playable
 		// Set Character's create time
 		player.setCreateDate(Calendar.getInstance());
 		// Set the base class ID to that of the actual class ID.
-		player.setBaseClass(player.getClassId());
+		player.setBaseClass(player.getPlayerClass());
 		// Give 20 recommendations
 		player.setRecomLeft(20);
 		// Add the player in the characters table of the database
@@ -1146,7 +1147,7 @@ public class Player extends Playable
 	{
 		super(objectId, template);
 		setInstanceType(InstanceType.Player);
-		super.initCharStatusUpdateValues();
+		initCharStatusUpdateValues();
 		initPcStatusUpdateValues();
 		
 		for (int i = 0; i < _htmlActionCaches.length; ++i)
@@ -1235,7 +1236,7 @@ public class Player extends Playable
 	/**
 	 * @param newclass
 	 */
-	public void setTemplate(ClassId newclass)
+	public void setTemplate(PlayerClass newclass)
 	{
 		super.setTemplate(PlayerTemplateData.getInstance().getTemplate(newclass));
 	}
@@ -1258,9 +1259,9 @@ public class Player extends Playable
 		_baseClass = baseClass;
 	}
 	
-	public void setBaseClass(ClassId classId)
+	public void setBaseClass(PlayerClass playerClass)
 	{
-		_baseClass = classId.getId();
+		_baseClass = playerClass.getId();
 	}
 	
 	public boolean isInStoreMode()
@@ -1352,11 +1353,11 @@ public class Player extends Playable
 			LOGGER.warning("Attempted to remove unknown RecipeList: " + recipeId);
 		}
 		
-		for (Shortcut sc : _shortCuts.getAllShortCuts())
+		for (Shortcut sc : _shortcuts.getAllShortcuts())
 		{
 			if ((sc != null) && (sc.getId() == recipeId) && (sc.getType() == ShortcutType.RECIPE))
 			{
-				deleteShortCut(sc.getSlot(), sc.getPage());
+				deleteShortcut(sc.getSlot(), sc.getPage());
 			}
 		}
 	}
@@ -1568,30 +1569,30 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * @return a collection containing all ShortCut of the Player.
+	 * @return a collection containing all Shortcut of the Player.
 	 */
-	public Collection<Shortcut> getAllShortCuts()
+	public Collection<Shortcut> getAllShortcuts()
 	{
-		return _shortCuts.getAllShortCuts();
+		return _shortcuts.getAllShortcuts();
 	}
 	
 	/**
-	 * @param slot The slot in which the shortCuts is equipped
-	 * @param page The page of shortCuts containing the slot
-	 * @return the ShortCut of the Player corresponding to the position (page-slot).
+	 * @param slot The slot in which the shortcuts is equipped
+	 * @param page The page of shortcuts containing the slot
+	 * @return the Shortcut of the Player corresponding to the position (page-slot).
 	 */
-	public Shortcut getShortCut(int slot, int page)
+	public Shortcut getShortcut(int slot, int page)
 	{
-		return _shortCuts.getShortCut(slot, page);
+		return _shortcuts.getShortcut(slot, page);
 	}
 	
 	/**
-	 * Add a L2shortCut to the Player _shortCuts
+	 * Add a L2shortcut to the Player _shortcuts
 	 * @param shortcut
 	 */
-	public void registerShortCut(Shortcut shortcut)
+	public void registerShortcut(Shortcut shortcut)
 	{
-		_shortCuts.registerShortCut(shortcut);
+		_shortcuts.registerShortcut(shortcut);
 	}
 	
 	/**
@@ -1600,19 +1601,19 @@ public class Player extends Playable
 	 * @param skillLevel the skill level to update.
 	 * @param skillSubLevel the skill sub level to update.
 	 */
-	public void updateShortCuts(int skillId, int skillLevel, int skillSubLevel)
+	public void updateShortcuts(int skillId, int skillLevel, int skillSubLevel)
 	{
-		_shortCuts.updateShortCuts(skillId, skillLevel, skillSubLevel);
+		_shortcuts.updateShortcuts(skillId, skillLevel, skillSubLevel);
 	}
 	
 	/**
-	 * Delete the ShortCut corresponding to the position (page-slot) from the Player _shortCuts.
+	 * Delete the Shortcut corresponding to the position (page-slot) from the Player _shortcuts.
 	 * @param slot
 	 * @param page
 	 */
-	public void deleteShortCut(int slot, int page)
+	public void deleteShortcut(int slot, int page)
 	{
-		_shortCuts.deleteShortCut(slot, page);
+		_shortcuts.deleteShortcut(slot, page);
 	}
 	
 	/**
@@ -2061,9 +2062,9 @@ public class Player extends Playable
 		{
 			World.getInstance().forEachVisibleObject(this, Guard.class, object ->
 			{
-				if (object.getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE)
+				if (object.getAI().getIntention() == Intention.IDLE)
 				{
-					object.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+					object.getAI().setIntention(Intention.ACTIVE);
 				}
 			});
 		}
@@ -2426,18 +2427,18 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * @return the ClassId object of the Player contained in PlayerTemplate.
+	 * @return the PlayerClass of the Player contained in PlayerTemplate.
 	 */
-	public ClassId getClassId()
+	public PlayerClass getPlayerClass()
 	{
-		return getTemplate().getClassId();
+		return getTemplate().getPlayerClass();
 	}
 	
 	/**
 	 * Set the template of the Player.
 	 * @param id The Identifier of the PlayerTemplate to set to the Player
 	 */
-	public void setClassId(int id)
+	public void setPlayerClass(int id)
 	{
 		if (_subclassLock)
 		{
@@ -2471,16 +2472,16 @@ public class Player extends Playable
 				sendPacket(SystemMessageId.CONGRATULATIONS_YOU_WILL_NOW_GRADUATE_FROM_THE_CLAN_ACADEMY_AND_LEAVE_YOUR_CURRENT_CLAN_YOU_CAN_NOW_JOIN_A_CLAN_WITHOUT_BEING_SUBJECT_TO_ANY_PENALTIES);
 				
 				// receive graduation gift
-				_inventory.addItem("Gift", 8181, 1, this, null); // give academy circlet
+				_inventory.addItem(ItemProcessType.REWARD, 8181, 1, this, null); // give academy circlet
 			}
 			if (isSubClassActive())
 			{
-				getSubClasses().get(_classIndex).setClassId(id);
+				getSubClasses().get(_classIndex).setPlayerClass(id);
 			}
 			setTarget(this);
 			broadcastPacket(new MagicSkillUse(this, 5103, 1, 0, 0));
 			setClassTemplate(id);
-			if (getClassId().level() == 3)
+			if (getPlayerClass().level() == 3)
 			{
 				sendPacket(SystemMessageId.CONGRATULATIONS_YOU_VE_COMPLETED_YOUR_THIRD_CLASS_TRANSFER_QUEST);
 				initElementalSpirits();
@@ -2494,7 +2495,7 @@ public class Player extends Playable
 			for (int slot = 1; slot < 4; slot++)
 			{
 				final Henna henna = getHenna(slot);
-				if ((henna != null) && !henna.isAllowedClass(getClassId()))
+				if ((henna != null) && !henna.isAllowedClass(getPlayerClass()))
 				{
 					removeHenna(slot);
 				}
@@ -2526,11 +2527,16 @@ public class Player extends Playable
 		finally
 		{
 			_subclassLock = false;
-			getStat().recalculateStats(false);
-			updateAbnormalVisualEffects();
-			sendSkillList();
 			
 			CharInfoTable.getInstance().setClassId(getObjectId(), id);
+			
+			ThreadPool.schedule(() ->
+			{
+				getInventory().applyItemSkills();
+				getStat().recalculateStats(false);
+				updateAbnormalVisualEffects();
+				sendSkillList();
+			}, 100);
 		}
 	}
 	
@@ -2722,7 +2728,7 @@ public class Player extends Playable
 	{
 		int skillCounter = 0;
 		// Get available skills
-		final Collection<Skill> skills = SkillTreeData.getInstance().getAllAvailableSkills(this, getTemplate().getClassId(), includeByFs, includeAutoGet, includeRequiredItems);
+		final Collection<Skill> skills = SkillTreeData.getInstance().getAllAvailableSkills(this, getTemplate().getPlayerClass(), includeByFs, includeAutoGet, includeRequiredItems);
 		final List<Skill> skillsForStore = new ArrayList<>();
 		for (Skill skill : skills)
 		{
@@ -2754,7 +2760,7 @@ public class Player extends Playable
 			
 			if (Config.AUTO_LEARN_SKILLS)
 			{
-				updateShortCuts(skill.getId(), skill.getLevel(), skill.getSubLevel());
+				updateShortcuts(skill.getId(), skill.getLevel(), skill.getSubLevel());
 			}
 		}
 		
@@ -2762,8 +2768,8 @@ public class Player extends Playable
 		
 		if (Config.AUTO_LEARN_SKILLS && (skillCounter > 0))
 		{
-			// Sending ShortCutInit breaks auto use shortcuts.
-			// sendPacket(new ShortCutInit(this));
+			// Sending ShortcutInit breaks auto use shortcuts.
+			// sendPacket(new ShortcutInit(this));
 			
 			sendMessage("You have learned " + skillCounter + " new skills.");
 		}
@@ -2944,12 +2950,12 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * Delete a ShortCut of the Player _shortCuts.
+	 * Delete a Shortcut of the Player _shortcuts.
 	 * @param objectId
 	 */
-	public void removeItemFromShortCut(int objectId)
+	public void removeItemFromShortcut(int objectId)
 	{
-		_shortCuts.deleteShortCutByObjectId(objectId);
+		_shortcuts.deleteShortcutByObjectId(objectId);
 	}
 	
 	/**
@@ -2979,7 +2985,7 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * Sit down the Player, set the AI Intention to AI_INTENTION_REST and send a Server->Client ChangeWaitType packet (broadcast)
+	 * Sit down the Player, set the AI Intention to REST and send a Server->Client ChangeWaitType packet (broadcast)
 	 */
 	public void sitDown()
 	{
@@ -3004,7 +3010,7 @@ public class Player extends Playable
 			breakAttack();
 			setSitting(true);
 			setSittingProgress(true);
-			getAI().setIntention(CtrlIntention.AI_INTENTION_REST);
+			getAI().setIntention(Intention.REST);
 			broadcastPacket(new ChangeWaitType(this, ChangeWaitType.WT_SITTING));
 			
 			// Schedule a sit down task to wait for the animation to finish
@@ -3013,7 +3019,7 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * Stand up the Player, set the AI Intention to AI_INTENTION_IDLE and send a Server->Client ChangeWaitType packet (broadcast)
+	 * Stand up the Player, set the AI Intention to IDLE and send a Server->Client ChangeWaitType packet (broadcast)
 	 */
 	public void standUp()
 	{
@@ -3126,13 +3132,28 @@ public class Player extends Playable
 	
 	/**
 	 * Add adena to Inventory of the Player and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param count : int Quantity of adena to be added
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 */
-	public void addAdena(String process, long count, WorldObject reference, boolean sendMessage)
+	public void addAdena(ItemProcessType process, long count, WorldObject reference, boolean sendMessage)
 	{
+		final long limitRemaining = Config.MAX_ADENA - _inventory.getAdena();
+		if (count > limitRemaining)
+		{
+			count = limitRemaining;
+		}
+		
+		if (count == 0)
+		{
+			if (sendMessage)
+			{
+				sendPacket(SystemMessageId.YOU_HAVE_EXCEEDED_YOUR_OUT_OF_POCKET_ADENA_LIMIT);
+			}
+			return;
+		}
+		
 		if (sendMessage)
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1_ADENA);
@@ -3156,17 +3177,22 @@ public class Player extends Playable
 				sendInventoryUpdate(iu);
 			}
 		}
+		
+		if ((_inventory.getAdena() == Config.MAX_ADENA) && sendMessage)
+		{
+			sendPacket(SystemMessageId.YOU_HAVE_EXCEEDED_YOUR_OUT_OF_POCKET_ADENA_LIMIT);
+		}
 	}
 	
 	/**
 	 * Reduce adena in Inventory of the Player and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param count : long Quantity of adena to be reduced
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 * @return boolean informing if the action was successful
 	 */
-	public boolean reduceAdena(String process, long count, WorldObject reference, boolean sendMessage)
+	public boolean reduceAdena(ItemProcessType process, long count, WorldObject reference, boolean sendMessage)
 	{
 		if (count > _inventory.getAdena())
 		{
@@ -3203,13 +3229,13 @@ public class Player extends Playable
 	
 	/**
 	 * Reduce Beauty Tickets in Inventory of the Player and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param count : long Quantity of Beauty Tickets to be reduced
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 * @return boolean informing if the action was successful
 	 */
-	public boolean reduceBeautyTickets(String process, long count, WorldObject reference, boolean sendMessage)
+	public boolean reduceBeautyTickets(ItemProcessType process, long count, WorldObject reference, boolean sendMessage)
 	{
 		if (count > _inventory.getBeautyTickets())
 		{
@@ -3256,12 +3282,12 @@ public class Player extends Playable
 	
 	/**
 	 * Add ancient adena to Inventory of the Player and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param count : int Quantity of ancient adena to be added
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 */
-	public void addAncientAdena(String process, long count, WorldObject reference, boolean sendMessage)
+	public void addAncientAdena(ItemProcessType process, long count, WorldObject reference, boolean sendMessage)
 	{
 		if (sendMessage)
 		{
@@ -3283,13 +3309,13 @@ public class Player extends Playable
 	
 	/**
 	 * Reduce ancient adena in Inventory of the Player and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param count : long Quantity of ancient adena to be reduced
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 * @return boolean informing if the action was successful
 	 */
-	public boolean reduceAncientAdena(String process, long count, WorldObject reference, boolean sendMessage)
+	public boolean reduceAncientAdena(ItemProcessType process, long count, WorldObject reference, boolean sendMessage)
 	{
 		if (count > _inventory.getAncientAdena())
 		{
@@ -3335,12 +3361,12 @@ public class Player extends Playable
 	
 	/**
 	 * Adds item to inventory and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be added
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 */
-	public void addItem(String process, Item item, WorldObject reference, boolean sendMessage)
+	public void addItem(ItemProcessType process, Item item, WorldObject reference, boolean sendMessage)
 	{
 		if (item.getCount() > 0)
 		{
@@ -3375,7 +3401,7 @@ public class Player extends Playable
 			// If over capacity, drop the item
 			if (!canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && !_inventory.validateCapacity(0, item.isQuestItem()) && newitem.isDropable() && (!newitem.isStackable() || (newitem.getLastChange() != Item.MODIFIED)))
 			{
-				dropItem("InvDrop", newitem, null, true, true);
+				dropItem(ItemProcessType.DROP, newitem, null, true, true);
 			}
 			else if (CursedWeaponsManager.getInstance().isCursed(newitem.getId()))
 			{
@@ -3391,21 +3417,21 @@ public class Player extends Playable
 	
 	/**
 	 * Adds item to Inventory and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param itemId : int Item Identifier of the item to be added
 	 * @param count : long Quantity of items to be added
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 * @return
 	 */
-	public Item addItem(String process, int itemId, long count, WorldObject reference, boolean sendMessage)
+	public Item addItem(ItemProcessType process, int itemId, long count, WorldObject reference, boolean sendMessage)
 	{
 		return addItem(process, itemId, count, -1, reference, sendMessage);
 	}
 	
 	/**
 	 * Adds item to Inventory and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param itemId : int Item Identifier of the item to be added
 	 * @param count : long Quantity of items to be added
 	 * @param enchantLevel : int EnchantLevel of the item to be added
@@ -3413,7 +3439,7 @@ public class Player extends Playable
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 * @return
 	 */
-	public Item addItem(String process, int itemId, long count, int enchantLevel, WorldObject reference, boolean sendMessage)
+	public Item addItem(ItemProcessType process, int itemId, long count, int enchantLevel, WorldObject reference, boolean sendMessage)
 	{
 		if (count > 0)
 		{
@@ -3428,7 +3454,7 @@ public class Player extends Playable
 			{
 				if (count > 1)
 				{
-					if (process.equalsIgnoreCase("Sweeper") || process.equalsIgnoreCase("Quest"))
+					if ((process == ItemProcessType.SWEEP) || (process == ItemProcessType.QUEST))
 					{
 						final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S2_S1_S);
 						sm.addItemName(itemId);
@@ -3443,7 +3469,7 @@ public class Player extends Playable
 						sendPacket(sm);
 					}
 				}
-				else if (process.equalsIgnoreCase("Sweeper") || process.equalsIgnoreCase("Quest"))
+				else if ((process == ItemProcessType.SWEEP) || (process == ItemProcessType.QUEST))
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
 					sm.addItemName(itemId);
@@ -3478,7 +3504,7 @@ public class Player extends Playable
 				// If over capacity, drop the item
 				if (!canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && !_inventory.validateCapacity(0, item.isQuestItem()) && createdItem.isDropable() && (!createdItem.isStackable() || (createdItem.getLastChange() != Item.MODIFIED)))
 				{
-					dropItem("InvDrop", createdItem, null, true);
+					dropItem(ItemProcessType.DROP, createdItem, null, true);
 				}
 				else if (CursedWeaponsManager.getInstance().isCursed(createdItem.getId()))
 				{
@@ -3491,39 +3517,39 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * @param process the process name
+	 * @param process the ItemProcessType identifier of process triggering this action
 	 * @param item the item holder
 	 * @param reference the reference object
 	 * @param sendMessage if {@code true} a system message will be sent
 	 */
-	public void addItem(String process, ItemHolder item, WorldObject reference, boolean sendMessage)
+	public void addItem(ItemProcessType process, ItemHolder item, WorldObject reference, boolean sendMessage)
 	{
 		addItem(process, item.getId(), item.getCount(), reference, sendMessage);
 	}
 	
 	/**
 	 * Destroy item from inventory and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be destroyed
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 * @return boolean informing if the action was successful
 	 */
-	public boolean destroyItem(String process, Item item, WorldObject reference, boolean sendMessage)
+	public boolean destroyItem(ItemProcessType process, Item item, WorldObject reference, boolean sendMessage)
 	{
 		return destroyItem(process, item, item.getCount(), reference, sendMessage);
 	}
 	
 	/**
 	 * Destroy item from inventory and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be destroyed
 	 * @param count
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 * @return boolean informing if the action was successful
 	 */
-	public boolean destroyItem(String process, Item item, long count, WorldObject reference, boolean sendMessage)
+	public boolean destroyItem(ItemProcessType process, Item item, long count, WorldObject reference, boolean sendMessage)
 	{
 		final Item destoyedItem = _inventory.destroyItem(process, item, count, this, reference);
 		if (destoyedItem == null)
@@ -3570,18 +3596,18 @@ public class Player extends Playable
 	
 	/**
 	 * Destroys item from inventory and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action (if null item will not be logged)
 	 * @param objectId : int Item Instance identifier of the item to be destroyed
-	 * @param count : int Quantity of items to be destroyed
+	 * @param count : long Quantity of items to be destroyed
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 * @return boolean informing if the action was successful
 	 */
 	@Override
-	public boolean destroyItem(String process, int objectId, long count, WorldObject reference, boolean sendMessage)
+	public boolean destroyItem(ItemProcessType process, int objectId, long count, WorldObject reference, boolean sendMessage)
 	{
 		final Item item = _inventory.getItemByObjectId(objectId);
-		if (item == null)
+		if ((item == null) || (item.getCount() < count))
 		{
 			if (sendMessage)
 			{
@@ -3593,18 +3619,24 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * Destroys shots from inventory without logging and only occasional saving to database. Sends a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
-	 * @param objectId : int Item Instance identifier of the item to be destroyed
-	 * @param count : int Quantity of items to be destroyed
+	 * Destroy item from inventory by using its <b>itemId</b> and send a Server->Client InventoryUpdate packet to the Player.
+	 * @param process : ItemProcessType identifier of process triggering this action
+	 * @param itemId : int Item identifier of the item to be destroyed
+	 * @param count : long Quantity of items to be destroyed
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
 	 * @return boolean informing if the action was successful
 	 */
-	public boolean destroyItemWithoutTrace(String process, int objectId, long count, WorldObject reference, boolean sendMessage)
+	@Override
+	public boolean destroyItemByItemId(ItemProcessType process, int itemId, long count, WorldObject reference, boolean sendMessage)
 	{
-		final Item item = _inventory.getItemByObjectId(objectId);
-		if ((item == null) || (item.getCount() < count))
+		if (itemId == Inventory.ADENA_ID)
+		{
+			return reduceAdena(process, count, reference, sendMessage);
+		}
+		
+		final Item item = _inventory.getItemByItemId(itemId);
+		if (item == null)
 		{
 			if (sendMessage)
 			{
@@ -3613,29 +3645,9 @@ public class Player extends Playable
 			return false;
 		}
 		
-		return destroyItem(null, item, count, reference, sendMessage);
-	}
-	
-	/**
-	 * Destroy item from inventory by using its <b>itemId</b> and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
-	 * @param itemId : int Item identifier of the item to be destroyed
-	 * @param count : int Quantity of items to be destroyed
-	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
-	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
-	 * @return boolean informing if the action was successful
-	 */
-	@Override
-	public boolean destroyItemByItemId(String process, int itemId, long count, WorldObject reference, boolean sendMessage)
-	{
-		if (itemId == Inventory.ADENA_ID)
-		{
-			return reduceAdena(process, count, reference, sendMessage);
-		}
-		
-		final Item item = _inventory.getItemByItemId(itemId);
-		final long quantity = (count < 0) && (item != null) ? item.getCount() : count;
-		if ((item == null) || (item.getCount() < quantity) || (quantity <= 0) || (_inventory.destroyItemByItemId(process, itemId, quantity, this, reference) == null))
+		final long itemCount = item.isStackable() ? item.getCount() : _inventory.getInventoryItemCount(itemId, -1);
+		final long removeCount = count < 0 ? itemCount : count;
+		if ((removeCount <= 0) || (itemCount < removeCount) || (_inventory.destroyItemByItemId(process, itemId, removeCount, this, reference) == null))
 		{
 			if (sendMessage)
 			{
@@ -3646,7 +3658,7 @@ public class Player extends Playable
 		
 		// Send inventory update packet
 		final InventoryUpdate playerIU = new InventoryUpdate();
-		if (item.isStackable() && (item.getCount() > 0))
+		if (item.isStackable() && (itemCount > 0) && (itemCount != removeCount))
 		{
 			playerIU.addModifiedItem(item);
 		}
@@ -3659,11 +3671,11 @@ public class Player extends Playable
 		// Sends message to client if requested
 		if (sendMessage)
 		{
-			if (quantity > 1)
+			if (removeCount > 1)
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.S2_S1_S_DISAPPEARED);
 				sm.addItemName(itemId);
-				sm.addLong(quantity);
+				sm.addLong(removeCount);
 				sendPacket(sm);
 			}
 			else
@@ -3679,14 +3691,14 @@ public class Player extends Playable
 	
 	/**
 	 * Transfers item to another ItemContainer and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param objectId : int Item Identifier of the item to be transfered
 	 * @param count : long Quantity of items to be transfered
 	 * @param target
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the new item or the updated item in inventory
 	 */
-	public Item transferItem(String process, int objectId, long count, Inventory target, WorldObject reference)
+	public Item transferItem(ItemProcessType process, int objectId, long count, Inventory target, WorldObject reference)
 	{
 		final Item oldItem = checkItemManipulation(objectId, count, "transfer");
 		if (oldItem == null)
@@ -3730,9 +3742,9 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * Use instead of calling {@link #addItem(String, Item, WorldObject, boolean)} and {@link #destroyItemByItemId(String, int, long, WorldObject, boolean)}<br>
+	 * Use instead of calling {@link #addItem(ItemProcessType, Item, WorldObject, boolean)} and {@link #destroyItemByItemId(ItemProcessType, int, long, WorldObject, boolean)}<br>
 	 * This method validates slots and weight limit, for stackable and non-stackable items.
-	 * @param process a generic string representing the process that is exchanging this items
+	 * @param process a ItemProcessType representing the process that is exchanging this items
 	 * @param reference the (probably NPC) reference, could be null
 	 * @param coinId the item Id of the item given on the exchange
 	 * @param cost the amount of items given on the exchange
@@ -3741,7 +3753,7 @@ public class Player extends Playable
 	 * @param sendMessage if {@code true} it will send messages to the acting player
 	 * @return {@code true} if the player successfully exchanged the items, {@code false} otherwise
 	 */
-	public boolean exchangeItemsById(String process, WorldObject reference, int coinId, long cost, int rewardId, long count, boolean sendMessage)
+	public boolean exchangeItemsById(ItemProcessType process, WorldObject reference, int coinId, long cost, int rewardId, long count, boolean sendMessage)
 	{
 		if (!_inventory.validateCapacityByItemId(rewardId, count))
 		{
@@ -3771,14 +3783,14 @@ public class Player extends Playable
 	
 	/**
 	 * Drop item from inventory and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process String Identifier of process triggering this action
+	 * @param process ItemProcessType identifier of process triggering this action
 	 * @param item Item to be dropped
 	 * @param reference WorldObject Object referencing current action like NPC selling item or previous item in transformation
 	 * @param sendMessage boolean Specifies whether to send message to Client about this action
 	 * @param protectItem whether or not dropped item must be protected temporary against other players
 	 * @return boolean informing if the action was successful
 	 */
-	public boolean dropItem(String process, Item item, WorldObject reference, boolean sendMessage, boolean protectItem)
+	public boolean dropItem(ItemProcessType process, Item item, WorldObject reference, boolean sendMessage, boolean protectItem)
 	{
 		final Item droppedItem = _inventory.dropItem(process, item, this, reference);
 		if (droppedItem == null)
@@ -3828,14 +3840,14 @@ public class Player extends Playable
 		return true;
 	}
 	
-	public boolean dropItem(String process, Item item, WorldObject reference, boolean sendMessage)
+	public boolean dropItem(ItemProcessType process, Item item, WorldObject reference, boolean sendMessage)
 	{
 		return dropItem(process, item, reference, sendMessage, false);
 	}
 	
 	/**
 	 * Drop item from inventory by using its <b>objectID</b> and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param objectId : int Item Instance identifier of the item to be dropped
 	 * @param count : long Quantity of items to be dropped
 	 * @param x : int coordinate for drop X
@@ -3846,7 +3858,7 @@ public class Player extends Playable
 	 * @param protectItem
 	 * @return Item corresponding to the new item or the updated item in inventory
 	 */
-	public Item dropItem(String process, int objectId, long count, int x, int y, int z, WorldObject reference, boolean sendMessage, boolean protectItem)
+	public Item dropItem(ItemProcessType process, int objectId, long count, int x, int y, int z, WorldObject reference, boolean sendMessage, boolean protectItem)
 	{
 		final Item invitem = _inventory.getItemByObjectId(objectId);
 		final Item item = _inventory.dropItem(process, objectId, count, this, reference);
@@ -4409,11 +4421,11 @@ public class Player extends Playable
 		}
 		else if (itemId == Inventory.ADENA_ID)
 		{
-			addAdena("Loot", itemCount, target, true);
+			addAdena(ItemProcessType.LOOT, itemCount, target, true);
 		}
 		else
 		{
-			addItem("Loot", itemId, itemCount, target, true);
+			addItem(ItemProcessType.LOOT, itemId, itemCount, target, true);
 		}
 	}
 	
@@ -4452,8 +4464,8 @@ public class Player extends Playable
 			return;
 		}
 		
-		// Set the AI Intention to AI_INTENTION_IDLE
-		getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		// Set the AI Intention to IDLE
+		getAI().setIntention(Intention.IDLE);
 		
 		// Check if the WorldObject to pick up is a Item
 		if (!object.isItem())
@@ -4560,16 +4572,16 @@ public class Player extends Playable
 			{
 				handler.useItem(this, target, false);
 			}
-			ItemData.getInstance().destroyItem("Consume", target, this, null);
+			ItemManager.destroyItem(ItemProcessType.NONE, target, this, null);
 		}
 		// Cursed Weapons are not distributed
 		else if (CursedWeaponsManager.getInstance().isCursed(target.getId()))
 		{
-			addItem("Pickup", target, null, true);
+			addItem(ItemProcessType.PICKUP, target, null, true);
 		}
 		else if (FortSiegeManager.getInstance().isCombat(target.getId()))
 		{
-			addItem("Pickup", target, null, true);
+			addItem(ItemProcessType.PICKUP, target, null, true);
 		}
 		else
 		{
@@ -4600,12 +4612,12 @@ public class Player extends Playable
 			}
 			else if ((target.getId() == Inventory.ADENA_ID) && (_inventory.getAdenaInstance() != null))
 			{
-				addAdena("Pickup", target.getCount(), null, true);
-				ItemData.getInstance().destroyItem("Pickup", target, this, null);
+				addAdena(ItemProcessType.PICKUP, target.getCount(), null, true);
+				ItemManager.destroyItem(ItemProcessType.PICKUP, target, this, null);
 			}
 			else
 			{
-				addItem("Pickup", target, null, true);
+				addItem(ItemProcessType.PICKUP, target, null, true);
 				// Auto-Equip arrows/bolts if player has a bow/crossbow and player picks up arrows/bolts.
 				final Item weapon = _inventory.getPaperdollItem(Inventory.PAPERDOLL_RHAND);
 				if (weapon != null)
@@ -4648,7 +4660,7 @@ public class Player extends Playable
 		{
 			for (Creature creature : World.getInstance().getVisibleObjectsInRange(this, Creature.class, 1000))
 			{
-				if ((creature.getMinShopDistance() > 0) && Util.checkIfInRange(creature.getMinShopDistance(), this, creature, true))
+				if ((creature.getMinShopDistance() > 0) && LocationUtil.checkIfInRange(creature.getMinShopDistance(), this, creature, true))
 				{
 					sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_OPEN_A_PRIVATE_STORE_HERE));
 					return false;
@@ -4941,12 +4953,12 @@ public class Player extends Playable
 						// pvp
 						if (Config.REWARD_PVP_ITEM && (_pvpFlag != 0))
 						{
-							pk.addItem("PvP Item Reward", Config.REWARD_PVP_ITEM_ID, Config.REWARD_PVP_ITEM_AMOUNT, this, Config.REWARD_PVP_ITEM_MESSAGE);
+							pk.addItem(ItemProcessType.REWARD, Config.REWARD_PVP_ITEM_ID, Config.REWARD_PVP_ITEM_AMOUNT, this, Config.REWARD_PVP_ITEM_MESSAGE);
 						}
 						// pk
 						if (Config.REWARD_PK_ITEM && (_pvpFlag == 0))
 						{
-							pk.addItem("PK Item Reward", Config.REWARD_PK_ITEM_ID, Config.REWARD_PK_ITEM_AMOUNT, this, Config.REWARD_PK_ITEM_MESSAGE);
+							pk.addItem(ItemProcessType.REWARD, Config.REWARD_PK_ITEM_ID, Config.REWARD_PK_ITEM_AMOUNT, this, Config.REWARD_PK_ITEM_MESSAGE);
 						}
 					}
 				}
@@ -5017,7 +5029,7 @@ public class Player extends Playable
 				{
 					final long slot = _inventory.getSlotFromItem(_inventory.getItemByItemId(9819));
 					_inventory.unEquipItemInBodySlot(slot);
-					destroyItem("CombatFlag", _inventory.getItemByItemId(9819), null, true);
+					destroyItem(ItemProcessType.DESTROY, _inventory.getItemByItemId(9819), null, true);
 				}
 			}
 			else
@@ -5212,7 +5224,6 @@ public class Player extends Playable
 					{
 						// Set proper chance according to Item type of equipped Item
 						itemDropPercent = itemDrop.getTemplate().getType2() == ItemTemplate.TYPE2_WEAPON ? dropEquipWeapon : dropEquip;
-						_inventory.unEquipItemInSlot(itemDrop.getLocationSlot());
 					}
 					else
 					{
@@ -5222,8 +5233,13 @@ public class Player extends Playable
 					// NOTE: Each time an item is dropped, the chance of another item being dropped gets lesser (dropCount * 2)
 					if (Rnd.get(100) < itemDropPercent)
 					{
-						dropItem("DieDrop", itemDrop, killer, true);
+						if (itemDrop.isEquipped())
+						{
+							_inventory.unEquipItemInSlot(itemDrop.getLocationSlot());
+						}
+						dropItem(ItemProcessType.DEATH, itemDrop, killer, true);
 						droppedItems.add(itemDrop);
+						sendItemList();
 						
 						if (isKarmaDrop)
 						{
@@ -5929,7 +5945,7 @@ public class Player extends Playable
 		{
 			setTitle("");
 			_clanId = 0;
-			_clanPrivileges = new EnumIntBitmask<>(ClanPrivilege.class, false);
+			_clanPrivileges = new ClanPrivileges();
 			_pledgeType = 0;
 			_powerGrade = 0;
 			_lvlJoinedAcademy = 0;
@@ -6227,7 +6243,7 @@ public class Player extends Playable
 				sendPacket(SystemMessageId.A_HUNGRY_MOUNT_CANNOT_BE_MOUNTED_OR_DISMOUNTED);
 				return false;
 			}
-			else if (!Util.checkIfInRange(200, this, pet, true))
+			else if (!LocationUtil.checkIfInRange(200, this, pet, true))
 			{
 				sendPacket(ActionFailed.STATIC_PACKET);
 				sendPacket(SystemMessageId.YOU_ARE_TOO_FAR_AWAY_FROM_YOUR_MOUNT_TO_RIDE);
@@ -6607,13 +6623,13 @@ public class Player extends Playable
 			statement.setInt(21, _pkKills);
 			statement.setInt(22, _clanId);
 			statement.setInt(23, getRace().ordinal());
-			statement.setInt(24, getClassId().getId());
+			statement.setInt(24, getPlayerClass().getId());
 			statement.setLong(25, _deleteTimer);
 			statement.setInt(26, hasDwarvenCraft() ? 1 : 0);
 			statement.setString(27, getTitle());
 			statement.setInt(28, _appearance.getTitleColor());
 			statement.setInt(29, isOnlineInt());
-			statement.setInt(30, _clanPrivileges.getBitmask());
+			statement.setInt(30, _clanPrivileges.getMask());
 			statement.setInt(31, _wantsPeace);
 			statement.setInt(32, _baseClass);
 			statement.setInt(33, isNoble() ? 1 : 0);
@@ -6727,7 +6743,7 @@ public class Player extends Playable
 							}
 							else
 							{
-								player.getClanPrivileges().setAll();
+								player.getClanPrivileges().enableAll();
 								player.setPowerGrade(1);
 							}
 							
@@ -6746,7 +6762,7 @@ public class Player extends Playable
 							player.setPledgeClass(8);
 						}
 						
-						player.getClanPrivileges().clear();
+						player.getClanPrivileges().disableAll();
 					}
 					
 					player.setDeleteTimer(rset.getLong("deletetime"));
@@ -6779,7 +6795,7 @@ public class Player extends Playable
 					{
 						for (SubClassHolder subClass : player.getSubClasses().values())
 						{
-							if (subClass.getClassId() == activeClassId)
+							if (subClass.getId() == activeClassId)
 							{
 								player.setClassIndex(subClass.getClassIndex());
 							}
@@ -6790,7 +6806,7 @@ public class Player extends Playable
 						// Subclass in use but doesn't exist in DB -
 						// a possible restart-while-modifysubclass cheat has been attempted.
 						// Switching to use base class
-						player.setClassId(player.getBaseClass());
+						player.setPlayerClass(player.getBaseClass());
 						LOGGER.warning(player + " reverted to base class. Possibly has tried a relogin exploit while subclassing.");
 					}
 					else
@@ -6802,7 +6818,7 @@ public class Player extends Playable
 					player.setSponsor(rset.getInt("sponsor"));
 					player.setLvlJoinedAcademy(rset.getInt("lvl_joined_academy"));
 					
-					if ((player.getLevel() >= 76) && (player.getClassId().level() > 2))
+					if ((player.getLevel() >= 76) && (player.getPlayerClass().level() > 2))
 					{
 						player.initElementalSpirits();
 					}
@@ -6815,7 +6831,7 @@ public class Player extends Playable
 					// Set the x,y,z position of the Player and make it invisible
 					final int x = rset.getInt("x");
 					final int y = rset.getInt("y");
-					final int z = rset.getInt("z");
+					final int z = GeoEngine.getInstance().getHeight(x, y, rset.getInt("z"));
 					player.setXYZInvisible(x, y, z);
 					player.setLastServerPosition(x, y, z);
 					
@@ -6875,7 +6891,7 @@ public class Player extends Playable
 			player.rewardSkills();
 			
 			// Restore player shortcuts
-			player.restoreShortCuts();
+			player.restoreShortcuts();
 			
 			// Initialize status update cache
 			player.initStatusUpdateCache();
@@ -6993,7 +7009,7 @@ public class Player extends Playable
 				while (rset.next())
 				{
 					final SubClassHolder subClass = new SubClassHolder();
-					subClass.setClassId(rset.getInt("class_id"));
+					subClass.setPlayerClass(rset.getInt("class_id"));
 					subClass.setDualClassActive(rset.getBoolean("dual_class"));
 					subClass.setVitalityPoints(rset.getInt("vitality_points"));
 					subClass.setLevel(rset.getByte("level"));
@@ -7062,10 +7078,10 @@ public class Player extends Playable
 	 * <li>Short-cuts</li>
 	 * </ul>
 	 */
-	private void restoreShortCuts()
+	private void restoreShortcuts()
 	{
-		// Retrieve from the database all shortCuts of this Player and add them to _shortCuts.
-		_shortCuts.restoreMe();
+		// Retrieve from the database all shortcuts of this Player and add them to _shortcuts.
+		_shortcuts.restoreMe();
 	}
 	
 	/**
@@ -7264,12 +7280,12 @@ public class Player extends Playable
 			statement.setInt(23, _pkKills);
 			statement.setInt(24, _clanId);
 			statement.setInt(25, getRace().ordinal());
-			statement.setInt(26, getClassId().getId());
+			statement.setInt(26, getPlayerClass().getId());
 			statement.setLong(27, _deleteTimer);
 			statement.setString(28, getTitle());
 			statement.setInt(29, _appearance.getTitleColor());
 			statement.setInt(30, isOnlineInt());
-			statement.setInt(31, _clanPrivileges.getBitmask());
+			statement.setInt(31, _clanPrivileges.getMask());
 			statement.setInt(32, _wantsPeace);
 			statement.setInt(33, _baseClass);
 			long totalOnlineTime = _onlineTime;
@@ -7326,7 +7342,7 @@ public class Player extends Playable
 				statement.setLong(2, subClass.getSp());
 				statement.setInt(3, subClass.getLevel());
 				statement.setInt(4, subClass.getVitalityPoints());
-				statement.setInt(5, subClass.getClassId());
+				statement.setInt(5, subClass.getId());
 				statement.setBoolean(6, subClass.isDualClass());
 				statement.setInt(7, getObjectId());
 				statement.setInt(8, subClass.getClassIndex());
@@ -7651,11 +7667,11 @@ public class Player extends Playable
 		
 		if (skill != null)
 		{
-			for (Shortcut sc : _shortCuts.getAllShortCuts())
+			for (Shortcut sc : _shortcuts.getAllShortcuts())
 			{
 				if ((sc != null) && (sc.getId() == skill.getId()) && (sc.getType() == ShortcutType.SKILL) && !((skill.getId() >= 3080) && (skill.getId() <= 3259)))
 				{
-					deleteShortCut(sc.getSlot(), sc.getPage());
+					deleteShortcut(sc.getSlot(), sc.getPage());
 				}
 			}
 		}
@@ -7774,7 +7790,7 @@ public class Player extends Playable
 					
 					if (Config.SKILL_CHECK_ENABLE && (!canOverrideCond(PlayerCondOverride.SKILL_CONDITIONS) || Config.SKILL_CHECK_GM) && !SkillTreeData.getInstance().isSkillAllowed(this, skill))
 					{
-						Util.handleIllegalPlayerAction(this, "Player " + getName() + " has invalid skill " + skill.getName() + " (" + skill.getId() + "/" + skill.getLevel() + "), class:" + ClassListData.getInstance().getClass(getClassId()).getClassName(), IllegalActionPunishmentType.BROADCAST);
+						PunishmentManager.handleIllegalPlayerAction(this, "Player " + getName() + " has invalid skill " + skill.getName() + " (" + skill.getId() + "/" + skill.getLevel() + "), class:" + ClassListData.getInstance().getClass(getPlayerClass()).getClassName(), IllegalActionPunishmentType.BROADCAST);
 						if (Config.SKILL_CHECK_REMOVE)
 						{
 							removeSkill(skill);
@@ -7995,11 +8011,11 @@ public class Player extends Playable
 	public int getHennaEmptySlots()
 	{
 		int totalSlots = 0;
-		if (getClassId().level() == 1)
+		if (getPlayerClass().level() == 1)
 		{
 			totalSlots = 2;
 		}
-		else if (getClassId().level() > 1)
+		else if (getPlayerClass().level() > 1)
 		{
 			totalSlots = 3;
 		}
@@ -8068,11 +8084,11 @@ public class Player extends Playable
 			// Add the recovered dyes to the player's inventory and notify them.
 			if (henna.getCancelFee() > 0)
 			{
-				reduceAdena("Henna", henna.getCancelFee(), this, false);
+				reduceAdena(ItemProcessType.FEE, henna.getCancelFee(), this, false);
 			}
 			if (henna.getCancelCount() > 0)
 			{
-				_inventory.addItem("Henna", henna.getDyeItemId(), henna.getCancelCount(), this, null);
+				_inventory.addItem(ItemProcessType.RESTORE, henna.getDyeItemId(), henna.getCancelCount(), this, null);
 				final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S2_S1_S);
 				sm.addItemName(henna.getDyeItemId());
 				sm.addLong(henna.getCancelCount());
@@ -8490,7 +8506,7 @@ public class Player extends Playable
 	 * <li>Check if the caster own the weapon needed</li>
 	 * <li>Check if the skill is active</li>
 	 * <li>Check if all casting conditions are completed</li>
-	 * <li>Notify the AI with AI_INTENTION_CAST and target</li>
+	 * <li>Notify the AI with CAST and target</li>
 	 * </ul>
 	 * @param skill The Skill to use
 	 * @param forceUse used to force ATTACK on players
@@ -8659,15 +8675,15 @@ public class Player extends Playable
 			if ((usedSkill.getNextAction() != NextActionType.NONE) && (target != this) && target.isAutoAttackable(this))
 			{
 				final IntentionCommand nextIntention = getAI().getNextIntention();
-				if ((nextIntention == null) || (nextIntention.getCtrlIntention() != CtrlIntention.AI_INTENTION_MOVE_TO))
+				if ((nextIntention == null) || (nextIntention.getIntention() != Intention.MOVE_TO))
 				{
 					if (usedSkill.getNextAction() == NextActionType.ATTACK)
 					{
-						getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+						getAI().setIntention(Intention.ATTACK, target);
 					}
 					else if (usedSkill.getNextAction() == NextActionType.CAST)
 					{
-						getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, usedSkill, target, item, false, false);
+						getAI().setIntention(Intention.CAST, usedSkill, target, item, false, false);
 					}
 				}
 			}
@@ -8696,8 +8712,8 @@ public class Player extends Playable
 			setQueuedSkill(null, null, false, false);
 		}
 		
-		// Notify the AI with AI_INTENTION_CAST and target
-		getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, usedSkill, target, item, forceUse, dontMove);
+		// Notify the AI with CAST and target
+		getAI().setIntention(Intention.CAST, usedSkill, target, item, forceUse, dontMove);
 		return true;
 	}
 	
@@ -8724,7 +8740,7 @@ public class Player extends Playable
 	 */
 	public boolean isMageClass()
 	{
-		return getClassId().isMage();
+		return getPlayerClass().isMage();
 	}
 	
 	public boolean isMounted()
@@ -9069,25 +9085,25 @@ public class Player extends Playable
 		}
 	}
 	
-	public EnumIntBitmask<ClanPrivilege> getClanPrivileges()
+	public ClanPrivileges getClanPrivileges()
 	{
 		return _clanPrivileges;
 	}
 	
-	public void setClanPrivileges(EnumIntBitmask<ClanPrivilege> clanPrivileges)
+	public void setClanPrivileges(ClanPrivileges clanPrivileges)
 	{
 		_clanPrivileges = clanPrivileges.clone();
 	}
 	
-	public boolean hasClanPrivilege(ClanPrivilege privilege)
+	public boolean hasAccess(ClanAccess access)
 	{
-		return _clanPrivileges.has(privilege);
+		return _clanPrivileges.hasMinimumPrivileges(access);
 	}
 	
 	// baron etc
-	public void setPledgeClass(int classId)
+	public void setPledgeClass(int id)
 	{
-		_pledgeClass = classId;
+		_pledgeClass = id;
 		checkItemRestriction();
 	}
 	
@@ -9144,6 +9160,64 @@ public class Player extends Playable
 		sendPacket(new SystemMessage(SendMessageLocalisationData.getLocalisation(this, message)));
 	}
 	
+	/**
+	 * Sends a system message to the player.
+	 * <p>
+	 * If the GM startup builder hide configuration is enabled, the message will be sent using a localized say packet. Otherwise, the message will be sent using the standard sendMessage method.
+	 * </p>
+	 * @param message the message to send to the player.
+	 */
+	public void sendSysMessage(String message)
+	{
+		if (Config.GM_STARTUP_BUILDER_HIDE)
+		{
+			sendPacket(new CreatureSay(null, ChatType.GENERAL, "SYS", SendMessageLocalisationData.getLocalisation(this, message)));
+		}
+		else
+		{
+			sendMessage(message);
+		}
+	}
+	
+	/**
+	 * Toggles the hiding state for GM characters.
+	 * <p>
+	 * Only applicable for GM characters. This method sets the player's invisibility, invulnerability and silence mode based on the provided hiding state. It also updates the player's abnormal visual effects and broadcasts user info.
+	 * </p>
+	 * @param hide {@code true} to enable hiding (invisibility, silence, invulnerability), {@code false} to disable hiding.
+	 * @return {@code true} if the hiding state was changed, {@code false} if the state was already set or the player is not a GM.
+	 */
+	public boolean setHiding(boolean hide)
+	{
+		if (!isGM())
+		{
+			return false;
+		}
+		
+		if (hasEnteredWorld())
+		{
+			if (isInvisible() && hide)
+			{
+				// Already hiding.
+				return false;
+			}
+			
+			if (!isInvisible() && !hide)
+			{
+				// Already visible.
+				return false;
+			}
+		}
+		
+		setSilenceMode(hide);
+		setInvul(hide);
+		setInvisible(hide);
+		
+		broadcastUserInfo();
+		sendPacket(new ExUserInfoAbnormalVisualEffect(this));
+		return true;
+	}
+	
 	public void setObserving(boolean value)
 	{
 		_observerMode = value;
@@ -9153,7 +9227,7 @@ public class Player extends Playable
 		setInvisible(value);
 		if (hasAI() && !value)
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			getAI().setIntention(Intention.IDLE);
 		}
 	}
 	
@@ -9242,7 +9316,7 @@ public class Player extends Playable
 		}
 		if (hasAI())
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			getAI().setIntention(Intention.IDLE);
 		}
 		
 		setFalling(); // prevent receive falling damage
@@ -9269,7 +9343,7 @@ public class Player extends Playable
 		}
 		if (hasAI())
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			getAI().setIntention(Intention.IDLE);
 		}
 		unsetLastLocation();
 		broadcastUserInfo();
@@ -9713,7 +9787,7 @@ public class Player extends Playable
 			// Note: Never change _classIndex in any method other than setActiveClass().
 			
 			final SubClassHolder newClass = new SubClassHolder();
-			newClass.setClassId(classId);
+			newClass.setPlayerClass(classId);
 			newClass.setClassIndex(classIndex);
 			newClass.setVitalityPoints(PlayerStat.MAX_VITALITY_POINTS);
 			if (isDualClass)
@@ -9728,7 +9802,7 @@ public class Player extends Playable
 			{
 				// Store the basic info about this new sub-class.
 				statement.setInt(1, getObjectId());
-				statement.setInt(2, newClass.getClassId());
+				statement.setInt(2, newClass.getId());
 				statement.setLong(3, newClass.getExp());
 				statement.setLong(4, newClass.getSp());
 				statement.setInt(5, newClass.getLevel());
@@ -9746,7 +9820,7 @@ public class Player extends Playable
 			// Commit after database INSERT incase exception is thrown.
 			getSubClasses().put(newClass.getClassIndex(), newClass);
 			
-			final ClassId subTemplate = ClassId.getClassId(classId);
+			final PlayerClass subTemplate = PlayerClass.getPlayerClass(classId);
 			final Map<Long, SkillLearn> skillTree = SkillTreeData.getInstance().getCompleteClassSkillTree(subTemplate);
 			final Map<Integer, Skill> prevSkillList = new HashMap<>();
 			for (SkillLearn skillInfo : skillTree.values())
@@ -9794,7 +9868,7 @@ public class Player extends Playable
 		// Notify to scripts before class is removed.
 		if (!getSubClasses().isEmpty() && EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_PROFESSION_CANCEL, this))
 		{
-			final int classId = getSubClasses().get(classIndex).getClassId();
+			final int classId = getSubClasses().get(classIndex).getId();
 			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerProfessionCancel(this, classId), this);
 		}
 		
@@ -9824,16 +9898,24 @@ public class Player extends Playable
 		getSubClasses().remove(classIndex);
 		
 		try (Connection con = DatabaseFactory.getConnection();
-			PreparedStatement deleteHennas = con.prepareStatement(DELETE_CHAR_HENNAS);
+			PreparedStatement deleteHennas = con.prepareStatement(DELETE_CHAR_HENNA);
 			PreparedStatement deleteShortcuts = con.prepareStatement(DELETE_CHAR_SHORTCUTS);
 			PreparedStatement deleteSkillReuse = con.prepareStatement(DELETE_SKILL_SAVE);
 			PreparedStatement deleteSkills = con.prepareStatement(DELETE_CHAR_SKILLS);
 			PreparedStatement deleteSubclass = con.prepareStatement(DELETE_CHAR_SUBCLASS))
 		{
-			// Remove all henna info stored for this sub-class.
-			deleteHennas.setInt(1, getObjectId());
-			deleteHennas.setInt(2, classIndex);
-			deleteHennas.execute();
+			// Remove class permitted hennas.
+			for (int slot = 1; slot < 4; slot++)
+			{
+				final Henna henna = getHenna(slot);
+				if ((henna != null) && !henna.isAllowedClass(getPlayerClass()))
+				{
+					deleteHennas.setInt(1, getObjectId());
+					deleteHennas.setInt(2, slot);
+					deleteHennas.setInt(3, classIndex);
+					deleteHennas.execute();
+				}
+			}
 			
 			// Remove all shortcuts info stored for this sub-class.
 			deleteShortcuts.setInt(1, getObjectId());
@@ -10043,7 +10125,7 @@ public class Player extends Playable
 			{
 				try
 				{
-					setClassTemplate(getSubClasses().get(classIndex).getClassId());
+					setClassTemplate(getSubClasses().get(classIndex).getId());
 				}
 				catch (Exception e)
 				{
@@ -10078,7 +10160,7 @@ public class Player extends Playable
 			getEffectList().stopEffects(info -> !info.getSkill().isStayAfterDeath(), true, false);
 			
 			// stopAllEffects();
-			getEffectList().stopEffects(info -> !info.getSkill().isNecessaryToggle() && !info.getSkill().isIrreplacableBuff(), true, false);
+			getEffectList().stopEffects(info -> !info.getSkill().isNecessaryToggle() && !info.getSkill().isIrreplaceableBuff(), true, false);
 			
 			// In controversy with isNecessaryToggle above, new class rewarded skills should be rewarded bellow.
 			getEffectList().stopAllToggles();
@@ -10127,8 +10209,8 @@ public class Player extends Playable
 			// Clear resurrect xp calculation
 			setExpBeforeDeath(0);
 			
-			_shortCuts.restoreMe();
-			sendPacket(new ShortCutInit(this));
+			_shortcuts.restoreMe();
+			sendPacket(new ShortcutInit(this));
 			broadcastPacket(new SocialAction(getObjectId(), SocialAction.LEVEL_UP));
 			sendPacket(new SkillCoolTime(this));
 			sendStorageMaxCount();
@@ -10381,6 +10463,8 @@ public class Player extends Playable
 		{
 			instance.doRevive(this);
 		}
+		
+		getEffectList().updateEffectList();
 		
 		clearDamageTaken();
 	}
@@ -11056,7 +11140,7 @@ public class Player extends Playable
 				{
 					final long slot = _inventory.getSlotFromItem(_inventory.getItemByItemId(9819));
 					_inventory.unEquipItemInBodySlot(slot);
-					destroyItem("CombatFlag", _inventory.getItemByItemId(9819), null, true);
+					destroyItem(ItemProcessType.DESTROY, _inventory.getItemByItemId(9819), null, true);
 				}
 			}
 		}
@@ -11548,10 +11632,16 @@ public class Player extends Playable
 	
 	public void startFameTask(long delay, int fameFixRate)
 	{
-		if ((getLevel() < 40) || (getClassId().level() < 2))
+		if (!Config.FAME_SYSTEM_ENABLED)
 		{
 			return;
 		}
+		
+		if ((getLevel() < 40) || (getPlayerClass().level() < 2))
+		{
+			return;
+		}
+		
 		if (_fameTask == null)
 		{
 			_fameTask = ThreadPool.scheduleAtFixedRate(new FameTask(this, fameFixRate), delay, delay);
@@ -12256,7 +12346,7 @@ public class Player extends Playable
 		final TeleportBookmark bookmark = _tpbookmarks.get(id);
 		if (bookmark != null)
 		{
-			destroyItem("Consume", _inventory.getItemByItemId(13016).getObjectId(), 1, null, false);
+			destroyItem(null, _inventory.getItemByItemId(13016).getObjectId(), 1, null, false);
 			teleToLocation(bookmark, false);
 		}
 		sendPacket(new ExGetBookMarkInfoPacket(this));
@@ -12358,7 +12448,7 @@ public class Player extends Playable
 				return;
 			}
 			
-			destroyItem("Consume", _inventory.getItemByItemId(Config.BOOKMARK_CONSUME_ITEM_ID).getObjectId(), 1, null, true);
+			destroyItem(ItemProcessType.NONE, _inventory.getItemByItemId(Config.BOOKMARK_CONSUME_ITEM_ID).getObjectId(), 1, null, true);
 		}
 		
 		int id;
@@ -13017,7 +13107,7 @@ public class Player extends Playable
 		SkillLearn learn;
 		for (Entry<Integer, Skill> e : getSkills().entrySet())
 		{
-			learn = SkillTreeData.getInstance().getClassSkill(e.getKey(), e.getValue().getLevel() % 100, getClassId());
+			learn = SkillTreeData.getInstance().getClassSkill(e.getKey(), e.getValue().getLevel() % 100, getPlayerClass());
 			if (learn != null)
 			{
 				final int levelDiff = e.getKey() == CommonSkill.EXPERTISE.getId() ? 0 : 9;
@@ -13032,7 +13122,7 @@ public class Player extends Playable
 	private void deacreaseSkillLevel(Skill skill, int levelDiff)
 	{
 		int nextLevel = -1;
-		final Map<Long, SkillLearn> skillTree = SkillTreeData.getInstance().getCompleteClassSkillTree(getClassId());
+		final Map<Long, SkillLearn> skillTree = SkillTreeData.getInstance().getCompleteClassSkillTree(getPlayerClass());
 		for (SkillLearn sl : skillTree.values())
 		{
 			if ((sl.getSkillId() == skill.getId()) && (nextLevel < sl.getSkillLevel()) && (getLevel() >= (sl.getGetLevel() - levelDiff)))
@@ -13055,7 +13145,7 @@ public class Player extends Playable
 	
 	public boolean canMakeSocialAction()
 	{
-		return ((_privateStoreType == PrivateStoreType.NONE) && (getActiveRequester() == null) && !isAlikeDead() && !isAllSkillsDisabled() && !isCastingNow() && (getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE));
+		return ((_privateStoreType == PrivateStoreType.NONE) && (getActiveRequester() == null) && !isAlikeDead() && !isAllSkillsDisabled() && !isCastingNow() && (getAI().getIntention() == Intention.IDLE));
 	}
 	
 	public void setMultiSocialAction(int id, int targetId)
@@ -13464,7 +13554,7 @@ public class Player extends Playable
 	@Override
 	public int getId()
 	{
-		return getClassId().getId();
+		return getPlayerClass().getId();
 	}
 	
 	public boolean isPartyBanned()
@@ -13895,7 +13985,7 @@ public class Player extends Playable
 	
 	public void disableExpGain()
 	{
-		addListener(new FunctionEventListener(this, EventType.ON_PLAYABLE_EXP_CHANGED, (OnPlayableExpChanged event) -> onExperienceReceived(), this));
+		addListener(new FunctionEventListener(this, EventType.ON_PLAYABLE_EXP_CHANGED, (OnPlayableExpChanged _) -> onExperienceReceived(), this));
 	}
 	
 	public void enableExpGain()
@@ -14381,11 +14471,11 @@ public class Player extends Playable
 		
 		if (_spirits == null)
 		{
-			final ElementalType[] types = ElementalType.values();
+			final ElementalSpiritType[] types = ElementalSpiritType.values();
 			_spirits = new ElementalSpirit[types.length - 1]; // exclude None
-			for (ElementalType type : types)
+			for (ElementalSpiritType type : types)
 			{
-				if (ElementalType.NONE == type)
+				if (ElementalSpiritType.NONE == type)
 				{
 					continue;
 				}
@@ -14398,7 +14488,7 @@ public class Player extends Playable
 		
 		if (_activeElementalSpiritType == null)
 		{
-			changeElementalSpirit(ElementalType.FIRE.getId());
+			changeElementalSpirit(ElementalSpiritType.FIRE.getId());
 		}
 	}
 	
@@ -14439,58 +14529,66 @@ public class Player extends Playable
 		
 		if (!restoredSpirits.isEmpty())
 		{
-			_spirits = new ElementalSpirit[ElementalType.values().length - 1];
+			_spirits = new ElementalSpirit[ElementalSpiritType.values().length - 1];
 			for (ElementalSpiritDataHolder spiritData : restoredSpirits)
 			{
 				_spirits[spiritData.getType() - 1] = new ElementalSpirit(spiritData, this);
 				if (spiritData.isInUse())
 				{
-					_activeElementalSpiritType = ElementalType.of(spiritData.getType());
+					_activeElementalSpiritType = ElementalSpiritType.of(spiritData.getType());
 				}
 			}
 			ThreadPool.schedule(() -> sendPacket(new ElementalSpiritInfo(this, getActiveElementalSpiritType(), (byte) 0)), 2000);
 		}
 	}
 	
-	public double getActiveElementalSpiritAttack()
-	{
-		return getStat().getElementalSpiritPower(_activeElementalSpiritType, CommonUtil.zeroIfNullOrElse(getElementalSpirit(_activeElementalSpiritType), ElementalSpirit::getAttack));
-	}
-	
 	public double getFireSpiritDefense()
 	{
-		return getElementalSpiritDefenseOf(ElementalType.FIRE);
+		return getElementalSpiritDefenseOf(ElementalSpiritType.FIRE);
 	}
 	
 	public double getWaterSpiritDefense()
 	{
-		return getElementalSpiritDefenseOf(ElementalType.WATER);
+		return getElementalSpiritDefenseOf(ElementalSpiritType.WATER);
 	}
 	
 	public double getWindSpiritDefense()
 	{
-		return getElementalSpiritDefenseOf(ElementalType.WIND);
+		return getElementalSpiritDefenseOf(ElementalSpiritType.WIND);
 	}
 	
 	public double getEarthSpiritDefense()
 	{
-		return getElementalSpiritDefenseOf(ElementalType.EARTH);
+		return getElementalSpiritDefenseOf(ElementalSpiritType.EARTH);
+	}
+	
+	public double getActiveElementalSpiritAttack()
+	{
+		final ElementalSpirit spirit = getElementalSpirit(_activeElementalSpiritType);
+		final int attackValue = spirit != null ? spirit.getAttack() : 0;
+		return getStat().getElementalSpiritPower(_activeElementalSpiritType, attackValue);
 	}
 	
 	@Override
-	public double getElementalSpiritDefenseOf(ElementalType type)
+	public double getElementalSpiritDefenseOf(ElementalSpiritType type)
 	{
-		return getStat().getElementalSpiritDefense(type, CommonUtil.zeroIfNullOrElse(getElementalSpirit(type), ElementalSpirit::getDefense));
+		final ElementalSpirit spirit = getElementalSpirit(type);
+		final int defenseValue = spirit != null ? spirit.getDefense() : 0;
+		return getStat().getElementalSpiritDefense(type, defenseValue);
 	}
 	
 	public double getElementalSpiritCritRate()
 	{
-		return getStat().getElementalSpiritCriticalRate(CommonUtil.zeroIfNullOrElse(getElementalSpirit(_activeElementalSpiritType), ElementalSpirit::getCriticalRate));
+		final ElementalSpirit spirit = getElementalSpirit(_activeElementalSpiritType);
+		final int critRateValue = spirit != null ? spirit.getCriticalRate() : 0;
+		return getStat().getElementalSpiritCriticalRate(critRateValue);
 	}
 	
 	public double getElementalSpiritCritDamage()
 	{
-		return getStat().getElementalSpiritCriticalDamage(CommonUtil.zeroIfNullOrElse(getElementalSpirit(_activeElementalSpiritType), ElementalSpirit::getCriticalDamage));
+		final ElementalSpirit spirit = getElementalSpirit(_activeElementalSpiritType);
+		final double critDamageValue = spirit != null ? spirit.getCriticalDamage() : 0;
+		return getStat().getElementalSpiritCriticalDamage(critDamageValue);
 	}
 	
 	public double getElementalSpiritXpBonus()
@@ -14498,23 +14596,29 @@ public class Player extends Playable
 		return getStat().getElementalSpiritXpBonus();
 	}
 	
-	public ElementalSpirit getElementalSpirit(ElementalType type)
+	public ElementalSpirit getElementalSpirit(ElementalSpiritType type)
 	{
-		if ((_spirits == null) || (type == null) || (type == ElementalType.NONE))
+		if ((_spirits == null) || (type == null) || (type == ElementalSpiritType.NONE))
 		{
 			return null;
 		}
+		
 		return _spirits[type.getId() - 1];
 	}
 	
 	public byte getActiveElementalSpiritType()
 	{
-		return (byte) CommonUtil.zeroIfNullOrElse(_activeElementalSpiritType, ElementalType::getId);
+		if (_activeElementalSpiritType != null)
+		{
+			return _activeElementalSpiritType.getId();
+		}
+		
+		return 0;
 	}
 	
 	public void changeElementalSpirit(byte element)
 	{
-		_activeElementalSpiritType = ElementalType.of(element);
+		_activeElementalSpiritType = ElementalSpiritType.of(element);
 		if (_spirits != null)
 		{
 			for (ElementalSpirit spirit : _spirits)
@@ -14617,9 +14721,9 @@ public class Player extends Playable
 		}
 		
 		final List<Integer> positions = getVariables().getIntegerList(PlayerVariables.AUTO_USE_SHORTCUTS);
-		for (Shortcut shortcut : getAllShortCuts())
+		for (Shortcut shortcut : getAllShortcuts())
 		{
-			final Integer position = shortcut.getSlot() + (shortcut.getPage() * ShortCuts.MAX_SHORTCUTS_PER_BAR);
+			final Integer position = shortcut.getSlot() + (shortcut.getPage() * Shortcuts.MAX_SHORTCUTS_PER_BAR);
 			if (!positions.contains(position))
 			{
 				continue;
@@ -14656,9 +14760,9 @@ public class Player extends Playable
 		}
 		
 		final List<Integer> positions = getVariables().getIntegerList(PlayerVariables.AUTO_USE_SHORTCUTS);
-		for (Shortcut shortcut : getAllShortCuts())
+		for (Shortcut shortcut : getAllShortcuts())
 		{
-			final Integer position = shortcut.getSlot() + (shortcut.getPage() * ShortCuts.MAX_SHORTCUTS_PER_BAR);
+			final Integer position = shortcut.getSlot() + (shortcut.getPage() * Shortcuts.MAX_SHORTCUTS_PER_BAR);
 			if (!positions.contains(position))
 			{
 				continue;
@@ -14706,21 +14810,21 @@ public class Player extends Playable
 	public synchronized void addAutoShortcut(int slot, int page)
 	{
 		final List<Integer> positions = getVariables().getIntegerList(PlayerVariables.AUTO_USE_SHORTCUTS);
-		final Shortcut usedShortcut = getShortCut(slot, page);
+		final Shortcut usedShortcut = getShortcut(slot, page);
 		if (usedShortcut == null)
 		{
-			final Integer position = slot + (page * ShortCuts.MAX_SHORTCUTS_PER_BAR);
+			final Integer position = slot + (page * Shortcuts.MAX_SHORTCUTS_PER_BAR);
 			positions.remove(position);
 		}
 		else
 		{
-			for (Shortcut shortcut : getAllShortCuts())
+			for (Shortcut shortcut : getAllShortcuts())
 			{
 				if ((usedShortcut.getId() == shortcut.getId()) && (usedShortcut.getType() == shortcut.getType()))
 				{
 					shortcut.setAutoUse(true);
 					sendPacket(new ExActivateAutoShortcut(shortcut, true));
-					final Integer position = shortcut.getSlot() + (shortcut.getPage() * ShortCuts.MAX_SHORTCUTS_PER_BAR);
+					final Integer position = shortcut.getSlot() + (shortcut.getPage() * Shortcuts.MAX_SHORTCUTS_PER_BAR);
 					if (!positions.contains(position))
 					{
 						positions.add(position);
@@ -14740,21 +14844,21 @@ public class Player extends Playable
 		}
 		
 		final List<Integer> positions = getVariables().getIntegerList(PlayerVariables.AUTO_USE_SHORTCUTS);
-		final Shortcut usedShortcut = getShortCut(slot, page);
+		final Shortcut usedShortcut = getShortcut(slot, page);
 		if (usedShortcut == null)
 		{
-			final Integer position = slot + (page * ShortCuts.MAX_SHORTCUTS_PER_BAR);
+			final Integer position = slot + (page * Shortcuts.MAX_SHORTCUTS_PER_BAR);
 			positions.remove(position);
 		}
 		else
 		{
-			for (Shortcut shortcut : getAllShortCuts())
+			for (Shortcut shortcut : getAllShortcuts())
 			{
 				if ((usedShortcut.getId() == shortcut.getId()) && (usedShortcut.getType() == shortcut.getType()))
 				{
 					shortcut.setAutoUse(false);
 					sendPacket(new ExActivateAutoShortcut(shortcut, false));
-					final Integer position = shortcut.getSlot() + (shortcut.getPage() * ShortCuts.MAX_SHORTCUTS_PER_BAR);
+					final Integer position = shortcut.getSlot() + (shortcut.getPage() * Shortcuts.MAX_SHORTCUTS_PER_BAR);
 					positions.remove(position);
 				}
 			}

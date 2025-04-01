@@ -1,111 +1,73 @@
-L2J-Mobius The Kamael
+Lineage 2 Classic - The Kamael
+https://eu.4game.com/patchnotes/lineage2classic/154/
 
-JDK: https://www.mediafire.com/file/lb0by9xcvbzapi7/bellsoft-jdk21.0.2%252B14-windows-amd64.msi
-XAMPP: https://www.mediafire.com/file/0m05e3p7wdal224/xampp-windows-x64-8.0.30-0-VS16-installer.exe
-Eclipse: https://www.mediafire.com/file/ef5eub52bx4iixc/eclipse-java-2024-06-R-win32-x86_64.zip
+## Kamael Race and Skills
+- A new race, Kamael, has been added with the option to choose either female or male gender and can only be a Warrior initially.
+- Kamael have unique primary stats and can choose from various classes after the First Class Transfer, including Kamael Soldier, Trooper, Berserker and more.
+- Kamael have access to special skills, such as Light Master/Shadow Master, which provide Light Souls/Shadow Souls and can be used to assume the Light/Shadow Veil, granting various buffs and effects.
+- Eva's Kiss skill now decreases MP consumption by 10% for magic skills.
 
+## Skill Rebalancing and Adjustments
+- Summoning skills (Kat the Cat, Mew the Cat, Boxer the Unicorn, etc.) have reduced casting times and cooldowns.
+- Various skills have been rebalanced, including increased power, reduced casting times and reduced cooldowns (e.g., Holy Strike, Freezing Strike, Spoil Crush, Poison Blade Dance).
+- Some skills have been reclassified from magic to physical (e.g., Remedy, Life Scavenge, Life Leech, Cure Bleed, Holy Strike).
+- Vampiric Rage skill now affects melee, bow, physical and magical damage.
+- The duration of certain skills (e.g., Weapon Reinforcement, War Cry, Rage) has been increased to 20 minutes, with increased MP consumption.
+- Errors in skills such as Lethal Shot, Force Blaster and Stun Shot have been fixed.
+- Some skills have been changed to work with a certain possibility, decreasing if the target has a higher level (e.g., Aggression, Aggression Aura).
+- Restrictions on the number of targets have been added to some skills (e.g., Mass Chain Strike).
+- The "Extra Inventory" skill can now be learned in the Skills Window.
+- Multiple skills have been updated with reduced usage times and cooldowns, including Dicing Death, Corpse Burst, Anonymous Jackal and others.
 
-Saviors: https://eu.4game.com/lineage2classic/play/saviors/
--Classic packet compatibility
--Parsed item data from client
--Proper Daily Mission rewards
--Zone changes to match starting locations
--Parsed recipes from client
--Parsed skill names from client
--Parsed NPC names from client
--Temporary NPC info from Interlude retail files
--Temporary spawns from Interlude retail files
--Further manual spawn fixes
--Skilltrees info from L2Wiki
--Parsed NPC droplists from L2Wiki
--Further manual NPC corrections from L2Wiki
--Retail NPC dialogs
--Retail NPC buylists
--Basic Tutorial quest
--Added 156 quest scripts
--Village Master AI scripts
--Fixed skill levels to match retail
--Added new class mounts
--Fisherman NPC updates
--Fixed fishing to match retail
--Added new fishing zone locations
--Quest Fishing Specialist's Request
--Olympiad NPC updates
--Dimensional Merchant updates
--Classic gatekeeper teleports
--Admin menu teleport and shop cleanups
--Blacksmith NPC updates
--New Race Track arena zone
--Giran Luxury Shop updates
--Grandboss scripts and stats
--Whisper of Dreams quests
--Moon Knight quest
--Item augmentation support
--Retail Henna list
--Floran Agricultural Area clan halls
--Maille Lizardmen Barracks clan halls
--Augmentation chances from L2Wiki
--Working Runes system
--Added new Savior skills
--Classic 3rd class quests
--Dungeon of Abyss
--Attendance rewards
--Various retail Classic events
--Classic Olympiad shedule
--Ruin area herb drops
+## Hunting Zones Updates
+- New hunting zones have been added, including Tomb of Ancient Pirates and Goldberg's Room, with unique features and rewards.
+- Existing hunting zones have been updated with changes to monster levels, difficulty and rewards, including Antharas' Lair and Antharas' Nest.
+- Attribute hunting zones have been updated with increased XP and SP rewards, reduced difficulty and changed monster levels.
 
-Zaken: https://eu.4game.com/lineage2classic/play/zaken/
--Parsed new system messages and npc strings from client.
--Parsed new skills from client
--Parsed new items from client
--Parsed new NPCs from L2Wiki
--Parsed recipes from client
--Added raidbosses according to map
--Giants Cave
--Zaken boss AI
--Newbie quest changes
+## Raid Bosses and Rewards
+- Raid bosses have been updated with changes to HP, defense and rewards, including the removal of Raid Curse and changes to Death Knight's drops.
 
-Antharas: https://eu.4game.com/lineage2classic/play/antharas/
--Parsed new system messages and npc strings from client.
--Parsed new skills from client
--Parsed new items from client
--Parsed new NPCs from L2Wiki and client
--Clan Arena
--New Agathion item support
+## Items and Recipes
+- New recipes and items have been added, including recipes for Demon's Dagger, Lance and Deadman's Glory.
 
-Seven Signs: https://eu.4gameforum.com/threads/658543/
--Parsed new system messages and npc strings from client
--Parsed new skills from client
--Parsed new items from client
--Parsed new NPCs from client
--Updated skiltrees and skills from L2Wiki
--Updated experience values from L2Wiki
--Elemental Spirits
--Elemental Spirit boss instances
--Land of Winds spawns
--Goddard territory spawns
--Goddard clanhalls
+## Zaken and Attribute Bosses
+- Zaken now spawns at 9 p.m. server time every day and is located at the beginning of Devil's Isle.
+- The minimum number of participants in battles with attribute bosses has been reduced from 27 to 18 characters.
 
-Secret of Empire: https://eu.4game.com/patchnotes/lineage2classic/133/
--Parsed new system messages and npc strings from client
--Parsed new skills from client
--Parsed new items from client
--Parsed new recipes from client
--Imperial tomb area spawns
--Retail gatekeeper teleports
--Equipment upgrade system
+## Missions and Quests
+- New daily missions have been added to the "Hunting" and "System" tabs with various rewards.
+- The rewards for defeating attribute bosses, Scarlet van Halisha and completing certain quests have been changed.
+- The respawn time of field raid bosses has been changed to 22 hours after defeat.
+- The location of several raid bosses has been changed.
+- New upgrades and rewards are available for reaching certain levels, including Rice Cake of Flaming Fighting Spirit, Super XP Scroll and Sayha's Effect Scroll.
+- The Way of Hero I ~ VII missions have been removed and players will receive a Magical Tablet item as compensation.
+- Multiple quests have been added, including Tutorial: Blue Gemstones, Unbearable Wolves' Howling and Saga of Legend, among others.
+- Many quests have been deleted, including The Way of the Warrior, Path of the Human Knight and various Saga quests.
+- Class change quests have been modified, allowing characters to change class at levels 20, 40 and 76 under certain conditions.
 
-The Kamael: https://eu.4game.com/patchnotes/lineage2classic/154/
--Kamael creation support
--Teleport list system
--Removed item grade penalty
--New starting quests
--Auto attack system
--Auto potion system
--Rank system
+## Gameplay Mechanics and Features
+- Automatic hunting features have been added, including auto-use skills, auto-use next target/macro, auto-loot and auto-consume supplies.
+- A "Respectful Hunting" mode has been introduced, which prevents characters from targeting monsters already engaged in combat with other players.
+- Einhasad Overseeing debuff has been added, affecting chaotic characters with negative reputation values, causing penalties to P./M. Def. and Speed.
+- A rank and reward system has been introduced, rating characters by level on the server and among their own race, with top-ranked characters receiving buffs and rewards.
+- A revenge system has been added, allowing characters to track and teleport to their killers within 24 hours of death, with a limited number of uses per day.
+- An attribute system has been introduced for characters level 40 and above, with spirits evolving up to level 5 and attribute fragments affecting damage output.
+- New items and changes to existing items have been made, including attribute attack potions and necklaces, available for purchase via NPC Svein.
+- A censure system has been added, allowing players to mark other characters as untrustworthy, with a limited number of uses per day.
+- Combat mode has been introduced, allowing players to use attacks and skills without the "Ctrl" button, with a special button or command to toggle it on and off.
+- The "Strike Back" action has been added, allowing players to easily identify and target their attackers in PvP.
+- A "Teleport" function has been added, enabling players to teleport to hunting zones from any location, even during combat.
 
-Customs:
--Newbie Helper NPC location info
--Newbie Helper buff support until 40 level
--Test Server Helper NPCs
--Fake players engine
+## Items, Soulshots and Spiritshots
+- The Soulshots and Spiritshots system has been changed, with new items having the same grade and restrictions and old recipes and items being deleted or replaced.
+- New items have been added, including Adventurer's Mark, which provides bonus HP and MP regeneration when stored in the inventory.
+- Various other changes have been made, including updates to potions, fishing and equipment upgrading, as well as changes to item names, restrictions and selling prices.
+
+## Miscellaneous Updates and Fixes
+- The game has introduced various updates, including changes to the world map, clan chat color and the addition of a Dimensional Merchant call-button.
+- Several issues have been fixed, such as problems with skills, macro and radar functionality.
+
+## Siege System and Spectator Mode
+- The game has introduced a new mercenary system for sieges, allowing players to join as mercenaries and participate in battles.
+- The siege system has been updated, with new rules and features, including the ability to teleport to different parts of the castle and the introduction of a "Seal of Ruler" skill.
+- The game has also introduced a spectator mode, allowing players to watch sieges for free using a city Broadcasting system.

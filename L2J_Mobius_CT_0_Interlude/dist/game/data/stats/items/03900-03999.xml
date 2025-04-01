@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="3900" type="Armor" name="Wolf's Luxury Plate">
 		<!-- Double-click to wear. Only for wolves. -->
@@ -579,7 +579,7 @@
 			<set stat="pAtkSpd" val="277" />
 		</for>
 	</item>
-	<item id="3926" type="EtcItem" name="L2Day - Guidance Scroll">
+	<item id="3926" type="EtcItem" name="L2Day - Scroll of Guidance">
 		<!-- Increases accuracy. Intensity 3. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -592,7 +592,7 @@
 		<set name="item_skill" val="2050-1" /> <!-- Scroll of Guidance -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="3927" type="EtcItem" name="L2Day - Death Whisper Scroll">
+	<item id="3927" type="EtcItem" name="L2Day - Scroll of Death Whisper">
 		<!-- Increases critical attack power. Intensity 3. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -605,7 +605,7 @@
 		<set name="item_skill" val="2051-1" /> <!-- Scroll of Death Whisper -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="3928" type="EtcItem" name="L2Day - Focus Scroll">
+	<item id="3928" type="EtcItem" name="L2Day - Scroll of Focus">
 		<!-- Increases critical rate. Intensity 3. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -618,7 +618,7 @@
 		<set name="item_skill" val="2052-1" /> <!-- Scroll of Focus -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="3929" type="EtcItem" name="L2Day - Greater Acumen Scroll">
+	<item id="3929" type="EtcItem" name="L2Day - Scroll of Greater Acumen">
 		<!-- Increases spell casting speed. Intensity 3. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -631,7 +631,7 @@
 		<set name="item_skill" val="2053-1" /> <!-- Scroll of Greater Acumen -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="3930" type="EtcItem" name="L2Day - Haste Scroll">
+	<item id="3930" type="EtcItem" name="L2Day - Scroll of Haste">
 		<!-- Increases attack speed. Intensity 2. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -644,7 +644,7 @@
 		<set name="item_skill" val="2054-1" /> <!-- Scroll of Haste -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="3931" type="EtcItem" name="L2Day - Agility Scroll">
+	<item id="3931" type="EtcItem" name="L2Day - Scroll of Agility">
 		<!-- Increases evasion. Intensity 3. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -657,7 +657,7 @@
 		<set name="item_skill" val="2055-1" /> <!-- Scroll of Agility -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="3932" type="EtcItem" name="L2Day - Mystic Empower Scroll">
+	<item id="3932" type="EtcItem" name="L2Day - Scroll of Mystic Empower">
 		<!-- Increases magic power. Intensity 3. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -670,7 +670,7 @@
 		<set name="item_skill" val="2056-1" /> <!-- Scroll of Mystic Empower -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="3933" type="EtcItem" name="L2Day - Might Scroll">
+	<item id="3933" type="EtcItem" name="L2Day - Scroll of Might">
 		<!-- Increases attack power. Intensity 3. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -683,7 +683,7 @@
 		<set name="item_skill" val="2057-1" /> <!-- Scroll of Might -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="3934" type="EtcItem" name="L2Day - Windwalk Scroll">
+	<item id="3934" type="EtcItem" name="L2Day - Scroll of Windwalk">
 		<!-- Increases movement speed. Intensity 2. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -696,7 +696,7 @@
 		<set name="item_skill" val="2058-1" /> <!-- Scroll of Wind Walk -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="3935" type="EtcItem" name="L2Day - Shield Scroll">
+	<item id="3935" type="EtcItem" name="L2Day - Scroll of Shield">
 		<!-- Increases defense. Intensity 3. -->
 		<set name="icon" val="icon.etc_scroll_white_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -884,7 +884,7 @@
 		<set name="handler" val="BlessedSpiritShot" />
 		<set name="item_skill" val="2061-1" /> <!-- Blessed Spiritshot: No Grade -->
 	</item>
-	<item id="3948" type="EtcItem" name="Blessed Spiritshot (D-Grade)">
+	<item id="3948" type="EtcItem" name="Blessed Spiritshot: D-Grade">
 		<!-- The power of a higher-level spirit is bestowed upon a weapon, temporarily increasing its magic significantly. Used with D-grade weapons. -->
 		<set name="icon" val="icon.etc_spell_shot_blue_i01" />
 		<set name="default_action" val="SPIRITSHOT" />
@@ -898,7 +898,7 @@
 		<set name="handler" val="BlessedSpiritShot" />
 		<set name="item_skill" val="2160-1" /> <!-- Blessed Spiritshot: D-Grade -->
 	</item>
-	<item id="3949" type="EtcItem" name="Blessed Spiritshot (C-Grade)">
+	<item id="3949" type="EtcItem" name="Blessed Spiritshot: C-Grade">
 		<!-- The power of a higher-level spirit is bestowed upon a weapon, temporarily increasing its magic significantly. Used with C-grade weapons. -->
 		<set name="icon" val="icon.etc_spell_shot_green_i01" />
 		<set name="default_action" val="SPIRITSHOT" />
@@ -912,7 +912,7 @@
 		<set name="handler" val="BlessedSpiritShot" />
 		<set name="item_skill" val="2161-1" /> <!-- Blessed Spiritshot: C-Grade -->
 	</item>
-	<item id="3950" type="EtcItem" name="Blessed Spiritshot (B-Grade)">
+	<item id="3950" type="EtcItem" name="Blessed Spiritshot: B-Grade">
 		<!-- The power of a higher-level spirit is bestowed upon a weapon, temporarily increasing its magic significantly. Used with B-grade weapons. -->
 		<set name="icon" val="icon.etc_spell_shot_red_i01" />
 		<set name="default_action" val="SPIRITSHOT" />
@@ -926,7 +926,7 @@
 		<set name="handler" val="BlessedSpiritShot" />
 		<set name="item_skill" val="2162-1" /> <!-- Blessed Spiritshot: B-Grade -->
 	</item>
-	<item id="3951" type="EtcItem" name="Blessed Spiritshot (A-Grade)">
+	<item id="3951" type="EtcItem" name="Blessed Spiritshot: A-Grade">
 		<!-- The power of a higher-level spirit is bestowed upon a weapon, temporarily increasing its magic significantly. Used with a-grade weapons. -->
 		<set name="icon" val="icon.etc_spell_shot_silver_i01" />
 		<set name="default_action" val="SPIRITSHOT" />
@@ -940,7 +940,7 @@
 		<set name="handler" val="BlessedSpiritShot" />
 		<set name="item_skill" val="2163-1" /> <!-- Blessed Spiritshot: A-Grade -->
 	</item>
-	<item id="3952" type="EtcItem" name="Blessed Spiritshot (S-Grade)">
+	<item id="3952" type="EtcItem" name="Blessed Spiritshot: S Grade">
 		<!-- The power of a higher-level spirit is bestowed upon a weapon, temporarily increasing its magic significantly. Used with S-grade weapons. -->
 		<set name="icon" val="icon.etc_spell_shot_gold_i01" />
 		<set name="default_action" val="SPIRITSHOT" />
@@ -1019,7 +1019,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="3958" type="EtcItem" name="Blessed Scroll of Escape - Event">
+	<item id="3958" type="EtcItem" name="L2Day - Blessed Escape Effect">
 		<!-- A magical scroll that relocates user to the nearest village -->
 		<set name="icon" val="icon.etc_scroll_of_return_i01" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -1029,9 +1029,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2036-2" /> <!-- Blessed Scroll of Escape -->
+		<set name="item_skill" val="2036-2" /> <!-- L2day Blessed Scroll of Escape -->
 	</item>
-	<item id="3959" type="EtcItem" name="Blessed Scroll of Resurrection - Event">
+	<item id="3959" type="EtcItem" name="L2Day - Blessed Resurrection Effect">
 		<!-- A magic scroll that resurrects a dead character and restores his or her Exp. completely. -->
 		<set name="icon" val="icon.etc_scroll_of_resurrection_i01" />
 		<set name="default_action" val="SKILL_REDUCE" />

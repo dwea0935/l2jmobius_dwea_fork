@@ -20,13 +20,14 @@
  */
 package handlers.itemhandlers;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -59,7 +60,7 @@ public class FatedSupportBox implements IItemHandler
 		
 		final Player player = playable.asPlayer();
 		final Race race = player.getRace();
-		final ClassId classId = player.getClassId();
+		final PlayerClass classId = player.getPlayerClass();
 		
 		if (!player.isInventoryUnder80(false))
 		{
@@ -74,7 +75,7 @@ public class FatedSupportBox implements IItemHandler
 			return false;
 		}
 		
-		player.getInventory().destroyItem(getClass().getSimpleName(), item, 1, player, null);
+		player.getInventory().destroyItem(ItemProcessType.FEE, item, 1, player, null);
 		player.sendInventoryUpdate(new InventoryUpdate(item));
 		
 		// It will stay in your inventory after use until you reach level 84.
@@ -93,19 +94,19 @@ public class FatedSupportBox implements IItemHandler
 			{
 				if (player.isMageClass())
 				{
-					player.addItem(getClass().getSimpleName(), FATED_BOX_WIZARD, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, FATED_BOX_WIZARD, 1, player, true);
 				}
 				else if (CategoryData.getInstance().isInCategory(CategoryType.SUB_GROUP_ROGUE, classId.getId()))
 				{
-					player.addItem(getClass().getSimpleName(), FATED_BOX_ROGUE, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, FATED_BOX_ROGUE, 1, player, true);
 				}
 				else if (CategoryData.getInstance().isInCategory(CategoryType.SUB_GROUP_KNIGHT, classId.getId()))
 				{
-					player.addItem(getClass().getSimpleName(), FATED_BOX_FIGHTER, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, FATED_BOX_FIGHTER, 1, player, true);
 				}
 				else
 				{
-					player.addItem(getClass().getSimpleName(), FATED_BOX_WARRIOR, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, FATED_BOX_WARRIOR, 1, player, true);
 				}
 				break;
 			}
@@ -113,28 +114,28 @@ public class FatedSupportBox implements IItemHandler
 			{
 				if (player.isMageClass())
 				{
-					player.addItem(getClass().getSimpleName(), FATED_BOX_ORC_WIZARD, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, FATED_BOX_ORC_WIZARD, 1, player, true);
 				}
 				else
 				{
-					player.addItem(getClass().getSimpleName(), FATED_BOX_ORC_FIGHTER, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, FATED_BOX_ORC_FIGHTER, 1, player, true);
 				}
 				break;
 			}
 			case KAMAEL:
 			{
-				player.addItem(getClass().getSimpleName(), FATED_BOX_KAMAEL, 1, player, true);
+				player.addItem(ItemProcessType.REWARD, FATED_BOX_KAMAEL, 1, player, true);
 				break;
 			}
 			case ERTHEIA:
 			{
 				if (player.isMageClass())
 				{
-					player.addItem(getClass().getSimpleName(), FATED_BOX_ERTHEIA_WIZARD, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, FATED_BOX_ERTHEIA_WIZARD, 1, player, true);
 				}
 				else
 				{
-					player.addItem(getClass().getSimpleName(), FATED_BOX_ERTHEIA_FIGHTER, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, FATED_BOX_ERTHEIA_FIGHTER, 1, player, true);
 				}
 				break;
 			}

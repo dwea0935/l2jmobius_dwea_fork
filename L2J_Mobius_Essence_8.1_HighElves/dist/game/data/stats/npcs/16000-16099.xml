@@ -275,7 +275,7 @@
 			</speed>
 			<hitTime>600</hitTime>
 		</stats>
-		<status attackable="true" />
+		<status attackable="false" undying="true" canMove="false" targetable="false" />
 		<collision>
 			<radius normal="50" />
 			<height normal="127" />

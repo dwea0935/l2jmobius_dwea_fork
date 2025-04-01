@@ -20,9 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.teleports;
 
-import org.l2jmobius.gameserver.instancemanager.SharedTeleportManager;
+import org.l2jmobius.gameserver.data.holders.SharedTeleportHolder;
+import org.l2jmobius.gameserver.managers.SharedTeleportManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SharedTeleportHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.teleports.ExShowSharedLocationTeleportUi;
 

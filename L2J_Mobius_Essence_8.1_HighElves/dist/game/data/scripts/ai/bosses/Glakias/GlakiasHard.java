@@ -22,9 +22,9 @@ package ai.bosses.Glakias;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -54,7 +54,7 @@ public class GlakiasHard extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (npc.isAttackable())
 		{
@@ -67,8 +67,6 @@ public class GlakiasHard extends AbstractNpcAI
 				manageTwoGlakiasSkills(npc, attacker);
 			}
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	private void manageGlakiasSkills(Npc npc, Player player)

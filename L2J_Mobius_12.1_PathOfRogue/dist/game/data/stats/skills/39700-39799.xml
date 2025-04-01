@@ -275,7 +275,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -993,7 +993,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<canBeDispelled>true</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<stayAfterDeath>true</stayAfterDeath>
 		<effects>
@@ -1135,7 +1135,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<canBeDispelled>true</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<stayAfterDeath>true</stayAfterDeath>
 		<effects>
@@ -1244,7 +1244,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<canBeDispelled>true</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<stayAfterDeath>true</stayAfterDeath>
 		<effects>

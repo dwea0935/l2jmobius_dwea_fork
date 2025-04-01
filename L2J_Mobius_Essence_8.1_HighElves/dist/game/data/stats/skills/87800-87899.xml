@@ -1368,7 +1368,6 @@
 		<targetType>SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>30</abnormalTime>
-		<abnormalTime>30</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<coolTime>500</coolTime>
@@ -2434,109 +2433,127 @@
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87821</castSkillId> <!-- Flying Leap -->
+				<onFinishCast>false</onFinishCast>
 				<skillId>87867</skillId> <!-- Divine Guardian - Rush -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87802</castSkillId> <!-- Sacral Strike (Attack) -->
-				<skillId>87852</skillId> <!-- Sacral Strike -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87852</skillId> <!-- Guardian: Sacral Strike (Attack) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87952</castSkillId> <!-- Noblesse Sacral Strike (Attack) -->
-				<skillId>87852</skillId> <!-- Sacral Strike -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87852</skillId> <!-- Guardian: Sacral Strike (Attack) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87831</castSkillId> <!-- Transcendent Sacral Strike (Attack) -->
-				<skillId>87852</skillId> <!-- Sacral Strike -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87852</skillId> <!-- Guardian: Sacral Strike (Attack) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87803</castSkillId> <!-- Sacral Strike (Buff) -->
-				<skillId>87853</skillId> <!-- Sacral Strike -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87853</skillId> <!-- Guardian: Sacral Strike (Buff) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87953</castSkillId> <!-- Noblesse Sacral Strike (Buff) -->
-				<skillId>87853</skillId> <!-- Sacral Strike -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87853</skillId> <!-- Guardian: Sacral Strike (Buff) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87805</castSkillId> <!-- Purify (Attack) -->
-				<skillId>87855</skillId> <!-- Purify -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87855</skillId> <!-- Guardian: Purify (Attack) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87955</castSkillId> <!-- Noblesse Purify (Attack) -->
-				<skillId>87855</skillId> <!-- Purify -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87855</skillId> <!-- Guardian: Purify (Attack) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87834</castSkillId> <!-- Transcendent Purify (Attack) -->
-				<skillId>87855</skillId> <!-- Purify -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87855</skillId> <!-- Guardian: Purify (Attack) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87806</castSkillId> <!-- Purify (Buff) -->
-				<skillId>87856</skillId> <!-- Purify -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87856</skillId> <!-- Guardian: Purify (Buff) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87956</castSkillId> <!-- Noblesse Purify (Buff) -->
-				<skillId>87856</skillId> <!-- Purify -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87856</skillId> <!-- Guardian: Purify (Buff) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87807</castSkillId> <!-- Judgment (Attack) -->
-				<skillId>87857</skillId> <!-- Judgment -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87857</skillId> <!-- Guardian: Judgment (Attack) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87957</castSkillId> <!-- Noblesse Judgment (Buff) -->
-				<skillId>87857</skillId> <!-- Judgment -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87857</skillId> <!-- Guardian: Judgment (Buff) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87811</castSkillId> <!-- Light Discharge (Attack) -->
-				<skillId>87861</skillId> <!-- Light Discharge -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87861</skillId> <!-- Guardian: Light Discharge (Attack) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87812</castSkillId> <!-- Light Discharge (Buff) -->
-				<skillId>87862</skillId> <!-- Light Discharge -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87862</skillId> <!-- Guardian: Light Discharge (Buff) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87961</castSkillId> <!-- Noblesse Light Discharge (Attack) -->
-				<skillId>87861</skillId> <!-- Light Discharge -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87861</skillId> <!-- Guardian: Light Discharge (Attack) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87962</castSkillId> <!-- Noblesse Light Discharge (Buff) -->
-				<skillId>87862</skillId> <!-- Light Discharge -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87862</skillId> <!-- Guardian: Light Discharge (Buff) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 			<effect name="AssistOwnerCast">
 				<summonId>34207</summonId> <!-- Guardian -->
 				<castSkillId>87813</castSkillId> <!-- Holy Circle (Buff) -->
-				<skillId>87863</skillId> <!-- Vow -->
+				<onFinishCast>false</onFinishCast>
+				<skillId>87863</skillId> <!-- Guardian: Vow (Buff) -->
 				<skillLevel>1</skillLevel>
 			</effect>
 		</effects>
@@ -2771,7 +2788,6 @@
 		<castRange>700</castRange>
 		<effectPoint>-990</effectPoint>
 		<effectRange>400</effectRange>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<lvlBonusRate>2</lvlBonusRate>

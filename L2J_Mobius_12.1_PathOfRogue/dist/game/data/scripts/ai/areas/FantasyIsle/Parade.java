@@ -26,10 +26,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 import ai.AbstractNpcAI;
 
@@ -215,7 +215,7 @@ public class Parade extends AbstractNpcAI
 					final int[] goal = GOAL[route][i];
 					final Npc actor = addSpawn(npcId, start[0], start[1], start[2], start[3], false, 0);
 					actor.setRunning();
-					actor.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(goal[0], goal[1], goal[2], goal[3]));
+					actor.getAI().setIntention(Intention.MOVE_TO, new Location(goal[0], goal[1], goal[2], goal[3]));
 					spawns.add(actor);
 				}
 			}
@@ -239,14 +239,14 @@ public class Parade extends AbstractNpcAI
 			{
 				if (actor != null)
 				{
-					if (actor.calculateDistanceSq2D(actor.getXdestination(), actor.getYdestination(), 0) < (100 * 100))
+					if (actor.calculateDistance2D(actor.getXdestination(), actor.getYdestination(), 0) < 100)
 					{
 						actor.deleteMe();
 						spawns.remove(actor);
 					}
 					else if (!actor.isMoving())
 					{
-						actor.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(actor.getXdestination(), actor.getYdestination(), actor.getZdestination(), actor.getHeading()));
+						actor.getAI().setIntention(Intention.MOVE_TO, new Location(actor.getXdestination(), actor.getYdestination(), actor.getZdestination(), actor.getHeading()));
 					}
 				}
 			}

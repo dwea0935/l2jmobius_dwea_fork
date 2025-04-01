@@ -433,7 +433,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="7236" name="Head of Mos" type="EtcItem">
-		<!-- Proof of slaying Mos. -->
+		<!-- A proof of slaying Mos. -->
 		<set name="icon" val="icon.etc_skull_red_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
@@ -481,7 +481,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="7240" name="Head of Hekaton" type="EtcItem">
-		<!-- Proof of slaying the Hero of Ketra, Hekaton. -->
+		<!-- A proof of slaying Ketra Hero Hekaton. -->
 		<set name="icon" val="icon.etc_skull_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
@@ -804,7 +804,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="7267" name="Vacualite Floating Stone" type="EtcItem">
-		<!-- Stone needed to reach the entrance to the Hall of Flames. If you bring it and speak to Valakas Watchman Klein, you will be permitted to go up to the entrance to the Hall of Flames. -->
+		<!-- A stone required to enter the Hall of Flames. Talk to Klein to learn how to use it. -->
 		<set name="icon" val="icon.etc_vacualite_glowing_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />

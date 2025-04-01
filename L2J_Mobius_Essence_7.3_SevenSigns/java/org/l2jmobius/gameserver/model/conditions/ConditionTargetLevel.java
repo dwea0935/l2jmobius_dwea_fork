@@ -44,6 +44,7 @@ public class ConditionTargetLevel extends Condition
 		{
 			return false;
 		}
+		
 		return effected.getLevel() >= _level;
 	}
 }

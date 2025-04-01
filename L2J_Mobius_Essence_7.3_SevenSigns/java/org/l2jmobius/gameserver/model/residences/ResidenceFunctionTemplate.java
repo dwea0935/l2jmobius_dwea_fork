@@ -19,7 +19,7 @@ package org.l2jmobius.gameserver.model.residences;
 import java.time.Duration;
 
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author UnAfraid

@@ -299,7 +299,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39657" level="2" /> <!-- Tower of Insolence's Time Stone (Lower Floor) -->
+			<skill id="39657" level="2" /> <!-- Tower of Insolence's Time Stone (Middle) -->
 		</skills>
 	</item>
 	<item id="82026" name="Ultimate Death Knight C - Not Available" additionalName="Blue" type="Armor">
@@ -544,7 +544,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="27787" level="11" /> <!-- Sayha's Talisman Lv.11 -->
+			<skill id="27787" level="11" /> <!-- Enhanced Sayha's Talisman Lv. 1 -->
 			<skill id="27789" level="4" /> <!-- Sayha's Grace -->
 			<skill id="27790" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="27791" level="4" /> <!-- Sayha's Anger -->
@@ -559,7 +559,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="27787" level="12" /> <!-- Sayha's Talisman Lv.12 -->
+			<skill id="27787" level="12" /> <!-- Enhanced Sayha's Talisman Lv. 2 -->
 			<skill id="27789" level="4" /> <!-- Sayha's Grace -->
 			<skill id="27790" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="27791" level="4" /> <!-- Sayha's Anger -->
@@ -574,7 +574,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="27787" level="13" /> <!-- Sayha's Talisman Lv.13 -->
+			<skill id="27787" level="13" /> <!-- Enhanced Sayha's Talisman Lv. 3 -->
 			<skill id="27789" level="5" /> <!-- Sayha's Grace -->
 			<skill id="27790" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="27791" level="5" /> <!-- Sayha's Anger -->
@@ -589,7 +589,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="27787" level="14" /> <!-- Sayha's Talisman Lv.14 -->
+			<skill id="27787" level="14" /> <!-- Enhanced Sayha's Talisman Lv. 4 -->
 			<skill id="27789" level="5" /> <!-- Sayha's Grace -->
 			<skill id="27790" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="27791" level="5" /> <!-- Sayha's Anger -->
@@ -604,7 +604,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="27787" level="15" /> <!-- Sayha's Talisman Lv.15 -->
+			<skill id="27787" level="15" /> <!-- Enhanced Sayha's Talisman Lv. 5 -->
 			<skill id="27789" level="6" /> <!-- Sayha's Grace -->
 			<skill id="27790" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="27791" level="6" /> <!-- Sayha's Anger -->
@@ -619,7 +619,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="27787" level="16" /> <!-- Sayha's Talisman Lv.16 -->
+			<skill id="27787" level="16" /> <!-- Enhanced Sayha's Talisman Lv. 6 -->
 			<skill id="27789" level="6" /> <!-- Sayha's Grace -->
 			<skill id="27790" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="27791" level="6" /> <!-- Sayha's Anger -->
@@ -634,7 +634,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="27787" level="17" /> <!-- Sayha's Talisman Lv.17 -->
+			<skill id="27787" level="17" /> <!-- Enhanced Sayha's Talisman Lv. 7 -->
 			<skill id="27789" level="7" /> <!-- Sayha's Grace -->
 			<skill id="27790" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="27791" level="7" /> <!-- Sayha's Anger -->
@@ -649,7 +649,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="27787" level="18" /> <!-- Sayha's Talisman Lv.18 -->
+			<skill id="27787" level="18" /> <!-- Enhanced Sayha's Talisman Lv. 8 -->
 			<skill id="27789" level="7" /> <!-- Sayha's Grace -->
 			<skill id="27790" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="27791" level="7" /> <!-- Sayha's Anger -->
@@ -664,7 +664,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="27787" level="19" /> <!-- Sayha's Talisman Lv.19 -->
+			<skill id="27787" level="19" /> <!-- Enhanced Sayha's Talisman Lv. 9 -->
 			<skill id="27789" level="7" /> <!-- Sayha's Grace -->
 			<skill id="27790" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="27791" level="7" /> <!-- Sayha's Anger -->
@@ -679,7 +679,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="27787" level="20" /> <!-- Sayha's Talisman Lv.20 -->
+			<skill id="27787" level="20" /> <!-- Enhanced Sayha's Talisman Lv. 10 -->
 			<skill id="27789" level="8" /> <!-- Sayha's Grace -->
 			<skill id="27790" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="27791" level="8" /> <!-- Sayha's Anger -->
@@ -928,7 +928,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="39742" level="1" /> <!-- Scroll: Enchant Blessed Exalted Weapon -->
+			<skill id="39742" level="1" /> <!-- Blessed Scroll: Enchant Exalted Weapon -->
 		</skills>
 	</item>
 	<item id="82075" name="Prophetess' Gift Cube" additionalName="Event" type="EtcItem">

@@ -48,7 +48,7 @@ public class Q00147_PathtoBecominganEliteMercenary extends Quest
 	
 	public Q00147_PathtoBecominganEliteMercenary()
 	{
-		super(147);
+		super(147, "Path to Becoming an Elite Mercenary");
 		addStartNpc(MERC);
 		addTalkId(MERC);
 	}

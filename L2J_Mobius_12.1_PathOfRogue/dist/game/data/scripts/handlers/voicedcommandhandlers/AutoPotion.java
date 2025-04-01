@@ -23,7 +23,7 @@ package handlers.voicedcommandhandlers;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.taskmanager.AutoPotionTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AutoPotionTaskManager;
 
 /**
  * @author Mobius, Gigi

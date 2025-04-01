@@ -839,7 +839,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="273" /> <!-- Compound Bow -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="12518.7694823552" hpRegen="43.4767816366365" mp="463.32" mpRegen="1.8" />
 			<attack physical="822.67619300665" magical="239.880400057452" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -2485,7 +2484,6 @@
 	<npc id="25142" level="80" type="Monster" name="Hekaton Chires" title="Minion">
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="3937" /> <!-- Monster Only (Lesser Giant) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="99633.6" hpRegen="17" mp="71253" mpRegen="10" />
 			<attack physical="3633" magical="6279" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -2809,7 +2807,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment lhand="73" /> <!-- Shamshir -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="330000" hpRegen="1" mp="3349.6" mpRegen="6" />
 			<attack physical="1809.34202064" magical="981.225735" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3935,7 +3932,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="124" /> <!-- Elemental Sword -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="184928.483815466" hpRegen="1" mp="3693.6" mpRegen="6" />
 			<attack physical="4372.85376" magical="1756.026816" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -4723,7 +4719,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="4028" /> <!-- Giant Cannon -->
 		<acquire exp="34637834" sp="8313" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="1459260.16483454" hpRegen="72.9643823396131" mp="1036.8" mpRegen="2.4" />
@@ -4766,7 +4761,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="3938" /> <!-- Monster Only (Lesser Giant Wizard's Weapon) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="23070.2557526169" hpRegen="71.371053660127" mp="1007" mpRegen="2.4" />
 			<attack physical="1996.68410988141" magical="872.03634502851" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -4927,7 +4921,6 @@
 	<npc id="25184" level="58" type="Monster" name="Devil Blader of Chaos" title="Minion">
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="1472" /> <!-- Dreadbane -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="16728.062067113" hpRegen="69.6906910362243" mp="977.4" mpRegen="2.4" />
 			<attack physical="1426.0444120344" magical="460.012771989048" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -4970,7 +4963,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="225" /> <!-- Mithril Dagger -->
 		<acquire exp="5476116" sp="1314" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="208348.705363847" hpRegen="26.794392073316" mp="402.6" mpRegen="1.8" />
@@ -5012,7 +5004,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="272" /> <!-- Forest Bow -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="7052.86747194841" hpRegen="25.6128307622386" mp="387.72" mpRegen="1.8" />
 			<attack physical="303.485602119585" magical="48.1624477605241" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -5048,7 +5039,6 @@
 	<npc id="25187" level="34" type="Monster" name="Hellena's Soldier" title="Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="16" /> <!-- Great Spear -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="5263.33393428986" hpRegen="25.6128307622386" mp="387.72" mpRegen="1.8" />
 			<attack physical="303.485602119585" magical="48.1624477605241" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -5438,7 +5428,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="181" /> <!-- Mace of Miracle -->
 		<acquire exp="5139653" sp="1233" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="2530835.47853144" hpRegen="3500" mp="1410" mpRegen="3" />

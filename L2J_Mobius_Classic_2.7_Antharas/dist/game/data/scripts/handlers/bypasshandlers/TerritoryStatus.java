@@ -21,12 +21,12 @@
 package handlers.bypasshandlers;
 
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.enums.TaxType;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.siege.TaxType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 public class TerritoryStatus implements IBypassHandler

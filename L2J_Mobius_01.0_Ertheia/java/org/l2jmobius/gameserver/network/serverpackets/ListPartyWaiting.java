@@ -20,10 +20,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.PartyMatchingRoomLevelType;
-import org.l2jmobius.gameserver.instancemanager.MatchingRoomManager;
+import org.l2jmobius.gameserver.managers.MatchingRoomManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.matching.MatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.PartyMatchingRoomLevelType;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -71,7 +71,7 @@ public class ListPartyWaiting extends ServerPacket
 			buffer.writeInt(room.getMembersCount());
 			for (Player member : room.getMembers())
 			{
-				buffer.writeInt(member.getClassId().getId());
+				buffer.writeInt(member.getPlayerClass().getId());
 				buffer.writeString(member.getName());
 			}
 		}

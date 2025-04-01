@@ -228,7 +228,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17477" level="1" /> <!-- Little Angel Wings: STR -->
+			<skill id="17477" level="1" /> <!-- Little Angel Wing - STR -->
 		</skills>
 	</item>
 	<item id="38313" name="Little Angel Wings" additionalName="DEX" type="Armor">
@@ -243,7 +243,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17478" level="1" /> <!-- Little Angel Wings: DEX -->
+			<skill id="17478" level="1" /> <!-- Little Angel Wing - DEX -->
 		</skills>
 	</item>
 	<item id="38314" name="Little Angel Wings" additionalName="CON" type="Armor">
@@ -258,7 +258,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17479" level="1" /> <!-- Little Angel Wings: CON -->
+			<skill id="17479" level="1" /> <!-- Little Angel Wing - CON -->
 		</skills>
 	</item>
 	<item id="38315" name="Little Angel Wings" additionalName="MEN" type="Armor">
@@ -273,7 +273,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17480" level="1" /> <!-- Little Angel Wings: MEN -->
+			<skill id="17480" level="1" /> <!-- Little Angel Wing - MEN -->
 		</skills>
 	</item>
 	<item id="38316" name="Little Angel Wings" additionalName="INT" type="Armor">
@@ -288,7 +288,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17481" level="1" /> <!-- Little Angel Wings: INT -->
+			<skill id="17481" level="1" /> <!-- Little Angel Wing - INT -->
 		</skills>
 	</item>
 	<item id="38317" name="Little Angel Wings" additionalName="WIT" type="Armor">
@@ -303,7 +303,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17482" level="1" /> <!-- Little Angel Wings: WIT -->
+			<skill id="17482" level="1" /> <!-- Little Angel Wing - WIT -->
 		</skills>
 	</item>
 	<item id="38318" name="Little Angel Wings" additionalName="Critical Rate" type="Armor">
@@ -318,7 +318,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17483" level="1" /> <!-- Little Angel Wings: Critical Rate -->
+			<skill id="17483" level="1" /> <!-- Little Angel Wing - Critical Rate -->
 		</skills>
 	</item>
 	<item id="38319" name="Little Angel Wings" additionalName="Critical Damage" type="Armor">
@@ -333,7 +333,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17484" level="1" /> <!-- Little Angel Wings: Critical Damage -->
+			<skill id="17484" level="1" /> <!-- Little Angel Wing - Critical Damage -->
 		</skills>
 	</item>
 	<item id="38320" name="Little Angel Wings" additionalName="P. Def." type="Armor">
@@ -348,7 +348,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17485" level="1" /> <!-- Little Angel Wings: P. Def. -->
+			<skill id="17485" level="1" /> <!-- Little Angel Wing - P. Def. -->
 		</skills>
 	</item>
 	<item id="38321" name="Little Angel Wings" additionalName="M. Def." type="Armor">
@@ -363,7 +363,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17486" level="1" /> <!-- Little Angel Wings: M. Def. -->
+			<skill id="17486" level="1" /> <!-- Little Angel Wing - M. Def. -->
 		</skills>
 	</item>
 	<item id="38322" name="Little Angel Wings" additionalName="Evasion" type="Armor">
@@ -378,7 +378,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17487" level="1" /> <!-- Little Angel Wings: Evasion -->
+			<skill id="17487" level="1" /> <!-- Little Angel Wing - Evasion -->
 		</skills>
 	</item>
 	<item id="38323" name="Little Angel Wings" additionalName="P. Atk." type="Armor">
@@ -393,7 +393,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17488" level="1" /> <!-- Little Angel Wings: P. Atk. -->
+			<skill id="17488" level="1" /> <!-- Little Angel Wing - P. Atk. -->
 		</skills>
 	</item>
 	<item id="38324" name="Little Angel Wings" additionalName="M. Atk." type="Armor">
@@ -408,7 +408,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17489" level="1" /> <!-- Little Angel Wings: M. Atk. -->
+			<skill id="17489" level="1" /> <!-- Little Angel Wing - M. Atk. -->
 		</skills>
 	</item>
 	<item id="38325" name="Little Angel Wings" additionalName="Accuracy" type="Armor">
@@ -423,7 +423,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17490" level="1" /> <!-- Little Angel Wings: Accuracy -->
+			<skill id="17490" level="1" /> <!-- Little Angel Wing - Accuracy -->
 		</skills>
 	</item>
 	<item id="38326" name="Fairy Antennae" additionalName="STR" type="Armor">
@@ -1263,7 +1263,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17546" level="1" /> <!-- Arrow-pierced Apple:Accuracy -->
+			<skill id="17546" level="1" /> <!-- Arrow-pierced Apple: Accuracy -->
 		</skills>
 	</item>
 	<item id="38382" name="Apprentice's Spellbook" type="Weapon">
@@ -1290,7 +1290,7 @@
 		</stats>
 	</item>
 	<item id="38383" name="Lady's Hairpin Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain Lady's Hairpin with pendant properties (1 pc.). -->
+		<!-- Double-click to obtain 1 Lady's Hairpin with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1304,7 +1304,7 @@
 		</skills>
 	</item>
 	<item id="38384" name="Party Mask Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain a Party Mask with pendant options. -->
+		<!-- Double-click to obtain 1 Party Mask with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1318,7 +1318,7 @@
 		</skills>
 	</item>
 	<item id="38385" name="Monocle Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain Monocle with pendant properties (1 pc.). -->
+		<!-- Double-click to obtain 1 Monocle with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1332,7 +1332,7 @@
 		</skills>
 	</item>
 	<item id="38386" name="Maiden's Hairpin Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain a Maiden's Hairpin with pendant options. -->
+		<!-- Double-click to obtain 1 Maiden's Hairpin with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1346,7 +1346,7 @@
 		</skills>
 	</item>
 	<item id="38387" name="Forget-me-not Hairpin Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain a Forget-me-not Hairpin with pendant options. -->
+		<!-- Double-click to obtain 1 Forget-me-not Hairpin with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1360,7 +1360,7 @@
 		</skills>
 	</item>
 	<item id="38388" name="Daisy Hairpin Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain a Daisy Hairpin with pendant options. -->
+		<!-- Double-click to obtain 1 Daisy Hairpin with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1374,7 +1374,7 @@
 		</skills>
 	</item>
 	<item id="38389" name="Little Angel Wings Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain Little Angel Wings with pendant options. -->
+		<!-- Double-click to obtain 1 Little Angel Wing with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1384,11 +1384,11 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="17559" level="1" /> <!-- Little Angel Wings Pendant Pouch -->
+			<skill id="17559" level="1" /> <!-- Little Angel Wing Pouch (Pendant) -->
 		</skills>
 	</item>
 	<item id="38390" name="Fairy Antennae Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain Fairy Antennae with pendant options. -->
+		<!-- Double-click to obtain 1 Fairy Antennae with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1402,7 +1402,7 @@
 		</skills>
 	</item>
 	<item id="38391" name="Chapeau Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain a Chapeau with pendant options. -->
+		<!-- Double-click to obtain 1 Chapeau with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1416,7 +1416,7 @@
 		</skills>
 	</item>
 	<item id="38392" name="Artisan's Goggles Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain Artisan's Goggles with pendant options. -->
+		<!-- Double-click to obtain 1 Artisan's Goggles with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1430,7 +1430,7 @@
 		</skills>
 	</item>
 	<item id="38393" name="Arrow-pierced Apple Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain an Arrow-pierced Apple with pendant options. -->
+		<!-- Double-click to obtain 1 Arrow-pierced Apple with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1445,7 +1445,7 @@
 		</skills>
 	</item>
 	<item id="38394" name="Pirate's Eyepatch Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain Pirate's Eyepatch with pendant properties (1 pc.). -->
+		<!-- Double-click to obtain 1 Pirate's Eyepatch with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1459,7 +1459,7 @@
 		</skills>
 	</item>
 	<item id="38395" name="Outlaw's Eyepatch Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain Outlaw's Eyepatch with pendant properties (1 pc.). -->
+		<!-- Double-click to obtain 1 Outlaw's Eyepatch with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1473,7 +1473,7 @@
 		</skills>
 	</item>
 	<item id="38396" name="Party Hat Pendant Pouch" type="EtcItem">
-		<!-- Double-click to obtain a Party Hat with pendant options. -->
+		<!-- Double-click to obtain 1 Party Hat with pendant properties. -->
 		<set name="icon" val="icon.etc_pouch_gold_i00" />
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
@@ -1487,7 +1487,7 @@
 		</skills>
 	</item>
 	<item id="38397" name="D-grade Expertise Rune" additionalName="2-hour" type="EtcItem">
-		<!-- Available for 2 h. When in inventory, allows you to equip D-grade equipment without penalty. -->
+		<!-- Available for 2 h. When in inventory, allows you to use D-grade equipment without penalty. -->
 		<set name="icon" val="br_cashtex.item.br_cash_rune_of_feather_i00" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
@@ -1496,7 +1496,7 @@
 		<set name="time" val="120" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17569" level="1" /> <!-- Expertise Rune (D-grade) -->
+			<skill id="17569" level="1" /> <!-- D-grade Expertise Rune -->
 		</skills>
 	</item>
 	<item id="38398" name="Expertise Rune Pack" additionalName="D-grade" type="EtcItem">
@@ -1523,7 +1523,7 @@
 		<set name="time" val="120" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17570" level="1" /> <!-- Expertise Rune (C-grade) -->
+			<skill id="17570" level="1" /> <!-- C-grade Expertise Rune -->
 		</skills>
 	</item>
 </list>

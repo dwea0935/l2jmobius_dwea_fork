@@ -57,7 +57,7 @@ public class GardenOfSpirits extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -105,7 +105,6 @@ public class GardenOfSpirits extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	public static void main(String[] args)

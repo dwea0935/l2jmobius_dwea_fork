@@ -252,7 +252,7 @@
 		<set name="handler" val="Harvester" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2098" level="1" /> <!-- Harvesting -->
+			<skill id="2098" level="1" /> <!-- Collections -->
 		</skills>
 	</item>
 	<item id="5126" name="Dual Sword Crafting Stamp" type="EtcItem">
@@ -462,7 +462,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SOULSHOT" />
 		<skills>
-			<skill id="2078" level="1" /> <!-- Soulshot Compressed Package (No-grade) -->
+			<skill id="2078" level="1" /> <!-- Compressed Package: No-grade Soulshots -->
 		</skills>
 	</item>
 	<item id="5135" name="Compressed Package: D-grade Soulshots" type="EtcItem">
@@ -476,7 +476,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SOULSHOT" />
 		<skills>
-			<skill id="2079" level="1" /> <!-- Soulshot Compressed Package (D-grade) -->
+			<skill id="2079" level="1" /> <!-- Compressed Package: D-grade Soulshots -->
 		</skills>
 	</item>
 	<item id="5136" name="Compressed Package: C-grade Soulshots" type="EtcItem">
@@ -490,7 +490,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SOULSHOT" />
 		<skills>
-			<skill id="2080" level="1" /> <!-- Soulshot Compressed Package (C-grade) -->
+			<skill id="2080" level="1" /> <!-- Compressed Package: C-grade Soulshots -->
 		</skills>
 	</item>
 	<item id="5137" name="Compressed Package: B-grade Soulshots" type="EtcItem">
@@ -504,7 +504,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SOULSHOT" />
 		<skills>
-			<skill id="2081" level="1" /> <!-- Soulshot Compressed Package (B-grade) -->
+			<skill id="2081" level="1" /> <!-- Compressed Package: B-grade Soulshots -->
 		</skills>
 	</item>
 	<item id="5138" name="Compressed Package: A-grade Soulshots" type="EtcItem">
@@ -518,7 +518,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SOULSHOT" />
 		<skills>
-			<skill id="2082" level="1" /> <!-- Soulshot Compressed Package (A-grade) -->
+			<skill id="2082" level="1" /> <!-- Compressed Package: A-grade Soulshots -->
 		</skills>
 	</item>
 	<item id="5139" name="Compressed Package: S-grade Soulshots" type="EtcItem">
@@ -532,7 +532,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SOULSHOT" />
 		<skills>
-			<skill id="2083" level="1" /> <!-- Soulshot Compressed Package (S-grade) -->
+			<skill id="2083" level="1" /> <!-- Compressed Package: S-grade Soulshots -->
 		</skills>
 	</item>
 	<item id="5140" name="Compressed Package: No-grade Spiritshots" type="EtcItem">
@@ -546,7 +546,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2084" level="1" /> <!-- Spiritshot Compressed Package (No-grade) -->
+			<skill id="2084" level="1" /> <!-- Compressed Package: No-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5141" name="Compressed Package: D-grade Spiritshots" type="EtcItem">
@@ -560,7 +560,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2085" level="1" /> <!-- Spiritshot Compressed Package (D-grade) -->
+			<skill id="2085" level="1" /> <!-- Compressed Package: D-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5142" name="Compressed Package: C-grade Spiritshots" type="EtcItem">
@@ -574,7 +574,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2086" level="1" /> <!-- Spiritshot Compressed Package (C-grade) -->
+			<skill id="2086" level="1" /> <!-- Compressed Package: C-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5143" name="Compressed Package: B-grade Spiritshots" type="EtcItem">
@@ -588,7 +588,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2087" level="1" /> <!-- Spiritshot Compressed Package (B-grade) -->
+			<skill id="2087" level="1" /> <!-- Compressed Package: B-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5144" name="Compressed Package: A-grade Spiritshots" type="EtcItem">
@@ -602,7 +602,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2088" level="1" /> <!-- Spiritshot Compressed Package (A-grade) -->
+			<skill id="2088" level="1" /> <!-- Compressed Package: A-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5145" name="Compressed Package: S-grade Spiritshots" type="EtcItem">
@@ -616,7 +616,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2089" level="1" /> <!-- Spiritshot Compressed Package (S-grade) -->
+			<skill id="2089" level="1" /> <!-- Compressed Package: S-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5146" name="Compressed Package: Blessed No-grade Spiritshots" type="EtcItem">
@@ -630,7 +630,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2090" level="1" /> <!-- Blessed Spiritshot Compressed Package (No-grade) -->
+			<skill id="2090" level="1" /> <!-- Compressed Package: Blessed No-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5147" name="Compressed Package: Blessed D-grade Spiritshots" type="EtcItem">
@@ -644,7 +644,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2091" level="1" /> <!-- Blessed Spiritshot Compressed Package (D-grade) -->
+			<skill id="2091" level="1" /> <!-- Compressed Package: Blessed D-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5148" name="Compressed Package: Blessed C-grade Spiritshots" type="EtcItem">
@@ -658,7 +658,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2092" level="1" /> <!-- Blessed Spiritshot Compressed Package (C-grade) -->
+			<skill id="2092" level="1" /> <!-- Compressed Package: Blessed C-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5149" name="Compressed Package: Blessed B-grade Spiritshots" type="EtcItem">
@@ -672,7 +672,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2093" level="1" /> <!-- Blessed Spiritshot Compressed Package (B-grade) -->
+			<skill id="2093" level="1" /> <!-- Compressed Package: Blessed B-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5150" name="Compressed Package: Blessed A-grade Spiritshots" type="EtcItem">
@@ -686,7 +686,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2094" level="1" /> <!-- Blessed Spiritshot Compressed Package (A-grade) -->
+			<skill id="2094" level="1" /> <!-- Compressed Package: Blessed A-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5151" name="Compressed Package: Blessed S-grade Spiritshots" type="EtcItem">
@@ -700,7 +700,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2095" level="1" /> <!-- Blessed Spiritshot Compressed Package (S-grade) -->
+			<skill id="2095" level="1" /> <!-- Compressed Package: Blessed S-grade Spiritshots -->
 		</skills>
 	</item>
 	<item id="5152" name="Magic Compressor" type="EtcItem">
@@ -939,7 +939,7 @@
 			<player categoryType="STRIDER" />
 		</cond>
 		<skills>
-			<skill id="2101" level="1" /> <!-- General Strider Food -->
+			<skill id="2101" level="1" /> <!-- Food: Common Strider -->
 		</skills>
 	</item>
 	<item id="5169" name="Deluxe Strider Food" type="EtcItem">
@@ -959,7 +959,7 @@
 			<player categoryType="STRIDER" />
 		</cond>
 		<skills>
-			<skill id="2102" level="1" /> <!-- Clan Hall Strider Food -->
+			<skill id="2102" level="1" /> <!-- Food: Clan Hall Strider -->
 		</skills>
 	</item>
 	<item id="5170" name="Mithril Panzer Coat" type="Armor">

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="91600" name="Dimensional Talisman Lv. 9" type="Armor">
 		<!-- When equipped, P./ M. Def. +90, P./ M. Evasion +4, Max. HP/ MP/ CP +1600, Speed +9, Atk. Spd. +50, Casting Spd. +80, Acquired XP/ SP +20%. Activates Dimensional Border Power (at a certain probability, increases attack abilities) Lv. 8, Dimensional Guard Lv. 9 (reduced chance of being hit by a quick stab attack for a certain amount of time, reduced Received P./ M. Critical Damage, increased M. Damage Resistance) skill can be used. Take it to Alchemist Veruti in Giran for upgrade. Dimensional powers cancel the power of Talisman of Border. Effect does not stack with the Talisman of Border. Cannot be dropped. -->
@@ -46,7 +46,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="51297" level="1" /> <!-- Frintezza Doll's Sorcery -->
+			<skill id="51297" level="1" /> <!-- Frintesa's Doll Spell -->
 		</skills>
 	</item>
 	<item id="91604" name="Frintezza Doll" additionalName="Lv. 1" type="EtcItem">
@@ -59,7 +59,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="51297" level="2" /> <!-- Frintezza Doll's Sorcery -->
+			<skill id="51297" level="2" /> <!-- Frintesa's Doll Spell -->
 		</skills>
 	</item>
 	<item id="91605" name="Frintezza Doll" additionalName="Lv. 2" type="EtcItem">

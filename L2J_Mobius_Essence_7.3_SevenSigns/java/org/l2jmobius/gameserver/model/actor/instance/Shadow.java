@@ -20,18 +20,17 @@
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.Team;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameManager;
@@ -278,7 +277,7 @@ public class Shadow extends Attackable
 		{
 			try
 			{
-				_shadow.getAI().setIntention(AI_INTENTION_IDLE);
+				_shadow.getAI().setIntention(Intention.IDLE);
 				_shadow.setTarget(_shadow);
 				_shadow.doCast(_skill);
 			}

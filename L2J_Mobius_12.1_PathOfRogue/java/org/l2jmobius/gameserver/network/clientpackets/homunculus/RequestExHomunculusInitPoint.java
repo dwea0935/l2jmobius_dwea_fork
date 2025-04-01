@@ -21,6 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets.homunculus;
 
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -62,7 +63,7 @@ public class RequestExHomunculusInitPoint extends ClientPacket
 			}
 			else if ((usedResetKills <= 3) && (usedKillConvert == 5))
 			{
-				player.destroyItemByItemId("Homunculus Points", POWERFUL_FISH, FISH_COUNT, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, POWERFUL_FISH, FISH_COUNT, player, true);
 				player.getVariables().set(PlayerVariables.HOMUNCULUS_USED_KILL_CONVERT, 0);
 				player.getVariables().set(PlayerVariables.HOMUNCULUS_USED_RESET_KILLS, usedResetKills + 1);
 				player.sendPacket(new ExHomunculusInitPointResult(true, _type));
@@ -80,7 +81,7 @@ public class RequestExHomunculusInitPoint extends ClientPacket
 			}
 			else if ((usedResetVp <= 3) && (usedVpConvert == 5))
 			{
-				player.destroyItemByItemId("Homunculus Points", POWERFUL_FISH, FISH_COUNT, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, POWERFUL_FISH, FISH_COUNT, player, true);
 				player.getVariables().set(PlayerVariables.HOMUNCULUS_USED_VP_CONVERT, 0);
 				player.getVariables().set(PlayerVariables.HOMUNCULUS_USED_RESET_VP, usedResetVp + 1);
 				player.sendPacket(new ExHomunculusInitPointResult(true, _type));

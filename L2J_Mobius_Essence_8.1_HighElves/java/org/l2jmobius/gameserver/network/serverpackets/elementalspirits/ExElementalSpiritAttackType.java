@@ -21,8 +21,8 @@
 package org.l2jmobius.gameserver.network.serverpackets.elementalspirits;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.ElementalType;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -44,11 +44,11 @@ public class ExElementalSpiritAttackType extends ServerPacket
 	{
 		ServerPackets.EX_ELEMENTAL_SPIRIT_ATTACK_TYPE.writeId(this, buffer);
 		final byte elementalId = _player.getActiveElementalSpiritType();
-		if (elementalId == ElementalType.WIND.getId())
+		if (elementalId == ElementalSpiritType.WIND.getId())
 		{
 			buffer.writeByte(4);
 		}
-		else if (elementalId == ElementalType.EARTH.getId())
+		else if (elementalId == ElementalSpiritType.EARTH.getId())
 		{
 			buffer.writeByte(8);
 		}

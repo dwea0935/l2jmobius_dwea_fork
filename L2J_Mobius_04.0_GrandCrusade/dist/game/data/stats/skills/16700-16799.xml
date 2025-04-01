@@ -432,7 +432,6 @@
 		<fanRange>0;0;900;120</fanRange>
 		<hitTime>2000</hitTime>
 		<isMagic>1</isMagic> <!-- Static Skill -->
-		<isMagic>1</isMagic> <!-- Static Skill -->
 		<mpConsume>10</mpConsume>
 		<reuseDelay>5000</reuseDelay>
 		<effects>
@@ -1765,7 +1764,6 @@
 		<effectPoint>-2140</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>500</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>102</magicLevel>

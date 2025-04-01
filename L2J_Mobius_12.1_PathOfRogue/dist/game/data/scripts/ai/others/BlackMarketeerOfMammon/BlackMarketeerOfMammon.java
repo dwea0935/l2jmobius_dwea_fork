@@ -18,10 +18,10 @@ package ai.others.BlackMarketeerOfMammon;
 
 import java.util.StringTokenizer;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 
@@ -59,7 +59,7 @@ public class BlackMarketeerOfMammon extends AbstractNpcAI
 			}
 			
 			final String value = st.nextToken();
-			if (!Util.isDigit(value))
+			if (!StringUtil.isNumeric(value))
 			{
 				return "31092-02.html";
 			}

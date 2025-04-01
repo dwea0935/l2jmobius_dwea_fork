@@ -67,7 +67,7 @@ public class L2FriendList extends ServerPacket
 			{
 				online = true;
 				level = player1.getLevel();
-				classId = player1.getClassId().getId();
+				classId = player1.getPlayerClass().getId();
 			}
 			else
 			{

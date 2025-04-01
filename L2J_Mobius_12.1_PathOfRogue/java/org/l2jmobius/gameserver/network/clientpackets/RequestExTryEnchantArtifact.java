@@ -26,6 +26,7 @@ import java.util.Set;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExTryEnchantArtifactResult;
@@ -153,7 +154,7 @@ public class RequestExTryEnchantArtifact extends ClientPacket
 				player.sendPacket(ExTryEnchantArtifactResult.ERROR_PACKET);
 				return;
 			}
-			player.destroyItem("Artifact", ingredient, 1, player, true);
+			player.destroyItem(ItemProcessType.FEE, ingredient, 1, player, true);
 		}
 		
 		if (Rnd.get(100) < chance)

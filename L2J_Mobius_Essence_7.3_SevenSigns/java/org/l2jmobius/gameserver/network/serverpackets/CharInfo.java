@@ -22,15 +22,15 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Set;
 
-import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.Team;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.VariationInstance;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
 import org.l2jmobius.gameserver.model.actor.instance.Decoy;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
@@ -155,7 +155,7 @@ public class CharInfo extends ServerPacket
 		buffer.writeString(_player.isMercenary() ? _player.getMercenaryName() : _appearance.getVisibleName()); // Confirmed
 		buffer.writeShort(_player.getRace().ordinal()); // Confirmed
 		buffer.writeByte(_appearance.isFemale()); // Confirmed
-		buffer.writeInt(_player.getBaseTemplate().getClassId().getRootClassId().getId());
+		buffer.writeInt(_player.getBaseTemplate().getPlayerClass().getRootClass().getId());
 		
 		for (int slot : getPaperdollOrder())
 		{
@@ -215,7 +215,7 @@ public class CharInfo extends ServerPacket
 		buffer.writeByte(_player.isInsideZone(ZoneId.WATER) ? 1 : _player.isFlyingMounted() ? 2 : 0);
 		buffer.writeShort(_player.getRecomHave()); // Confirmed
 		buffer.writeInt(_player.getMountNpcId() == 0 ? 0 : _player.getMountNpcId() + 1000000);
-		buffer.writeInt(_player.getClassId().getId()); // Confirmed
+		buffer.writeInt(_player.getPlayerClass().getId()); // Confirmed
 		buffer.writeInt(0); // TODO: Find me!
 		buffer.writeByte(_player.isMounted() ? 0 : _enchantLevel); // Confirmed
 		buffer.writeByte(_player.getTeam().getId()); // Confirmed
@@ -287,11 +287,11 @@ public class CharInfo extends ServerPacket
 		buffer.writeInt(_rank);
 		buffer.writeShort(0);
 		buffer.writeByte(0);
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		buffer.writeByte(0);
 		buffer.writeInt(_player.getVisualHairColor() + 1); // 338 - DK color.
 		buffer.writeInt(0);
-		buffer.writeByte(_player.getClassId().level() + 1); // 362 - Vanguard mount.
+		buffer.writeByte(_player.getPlayerClass().level() + 1); // 362 - Vanguard mount.
 	}
 	
 	@Override

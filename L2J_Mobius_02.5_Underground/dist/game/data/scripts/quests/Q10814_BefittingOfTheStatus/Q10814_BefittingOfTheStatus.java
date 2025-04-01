@@ -19,9 +19,8 @@ package quests.Q10814_BefittingOfTheStatus;
 import java.util.Arrays;
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -29,6 +28,7 @@ import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q10811_ExaltedOneWhoFacesTheLimit.Q10811_ExaltedOneWhoFacesTheLimit;
 
@@ -131,7 +131,7 @@ public class Q10814_BefittingOfTheStatus extends Quest
 				if (event.startsWith("insertItem_"))
 				{
 					final int itemId = Integer.parseInt(event.replace("insertItem_", ""));
-					if (CommonUtil.contains(HATS, itemId))
+					if (ArrayUtil.contains(HATS, itemId))
 					{
 						if (hasQuestItems(player, itemId))
 						{

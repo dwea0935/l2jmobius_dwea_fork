@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.model;
 
-import org.l2jmobius.gameserver.model.holders.RecipeHolder;
-import org.l2jmobius.gameserver.model.holders.RecipeStatHolder;
+import org.l2jmobius.gameserver.data.holders.RecipeHolder;
+import org.l2jmobius.gameserver.data.holders.RecipeStatHolder;
 
 /**
  * This class describes a Recipe used by Dwarf to craft Item. All RecipeList are made of RecipeHolder (1 line of the recipe : Item-Quantity needed).

@@ -24,7 +24,7 @@ import java.util.Calendar;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.GraciaSeedsManager;
+import org.l2jmobius.gameserver.managers.GraciaSeedsManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 

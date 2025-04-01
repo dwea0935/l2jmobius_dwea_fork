@@ -20,8 +20,8 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.enums.ElementalType;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
 
 /**
  * @author JoeAlisson
@@ -30,6 +30,6 @@ public class ElementalSpiritAttack extends AbstractStatEffect
 {
 	public ElementalSpiritAttack(StatSet params)
 	{
-		super(params, params.getEnum("type", ElementalType.class).getAttackStat());
+		super(params, params.getEnum("type", ElementalSpiritType.class).getAttackStat());
 	}
 }

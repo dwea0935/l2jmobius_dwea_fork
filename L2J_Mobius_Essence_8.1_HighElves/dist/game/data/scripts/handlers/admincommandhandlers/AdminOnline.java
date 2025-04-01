@@ -27,8 +27,7 @@ import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
-import org.l2jmobius.gameserver.util.BuilderUtil;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 /**
  * @author Mobius
@@ -92,16 +91,16 @@ public class AdminOnline implements IAdminCommandHandler
 				}
 			}
 			
-			BuilderUtil.sendSysMessage(activeChar, "Online Player Report");
-			BuilderUtil.sendSysMessage(activeChar, "Total count: " + total);
-			BuilderUtil.sendSysMessage(activeChar, "Total online: " + online);
-			BuilderUtil.sendSysMessage(activeChar, "Total offline: " + offline);
-			BuilderUtil.sendSysMessage(activeChar, "Max connected: " + World.MAX_CONNECTED_COUNT);
-			BuilderUtil.sendSysMessage(activeChar, "Unique IPs: " + ips.size());
-			BuilderUtil.sendSysMessage(activeChar, "In peace zone: " + peace);
-			BuilderUtil.sendSysMessage(activeChar, "Not in peace zone: " + notPeace);
-			BuilderUtil.sendSysMessage(activeChar, "In instances: " + instanced);
-			BuilderUtil.sendSysMessage(activeChar, "In combat: " + combat);
+			activeChar.sendSysMessage("Online Player Report");
+			activeChar.sendSysMessage("Total count: " + total);
+			activeChar.sendSysMessage("Total online: " + online);
+			activeChar.sendSysMessage("Total offline: " + offline);
+			activeChar.sendSysMessage("Max connected: " + World.MAX_CONNECTED_COUNT);
+			activeChar.sendSysMessage("Unique IPs: " + ips.size());
+			activeChar.sendSysMessage("In peace zone: " + peace);
+			activeChar.sendSysMessage("Not in peace zone: " + notPeace);
+			activeChar.sendSysMessage("In instances: " + instanced);
+			activeChar.sendSysMessage("In combat: " + combat);
 		}
 		return true;
 	}

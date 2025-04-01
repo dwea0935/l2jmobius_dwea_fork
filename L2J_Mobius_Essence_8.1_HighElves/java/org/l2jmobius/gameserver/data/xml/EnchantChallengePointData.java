@@ -69,9 +69,9 @@ public class EnchantChallengePointData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -202,7 +202,7 @@ public class EnchantChallengePointData implements IXmlReader
 		final int pointsToGive = info.pointsByEnchantLevel().getOrDefault(item.getEnchantLevel(), 0);
 		if (pointsToGive > 0)
 		{
-			player.getChallengeInfo().getChallengePoints().compute(groupId, (k, v) -> v == null ? Math.min(getMaxPoints(), pointsToGive) : Math.min(getMaxPoints(), v + pointsToGive));
+			player.getChallengeInfo().getChallengePoints().compute(groupId, (_, v) -> v == null ? Math.min(getMaxPoints(), pointsToGive) : Math.min(getMaxPoints(), v + pointsToGive));
 			player.getChallengeInfo().setNowGroup(groupId);
 			player.getChallengeInfo().setNowGroup(pointsToGive);
 		}

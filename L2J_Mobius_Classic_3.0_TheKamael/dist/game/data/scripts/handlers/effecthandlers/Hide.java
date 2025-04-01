@@ -16,7 +16,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -42,9 +42,9 @@ public class Hide extends AbstractEffect
 		{
 			effected.setInvisible(true);
 			
-			if ((effected.getAI().getNextIntention() != null) && (effected.getAI().getNextIntention().getCtrlIntention() == CtrlIntention.AI_INTENTION_ATTACK))
+			if ((effected.getAI().getNextIntention() != null) && (effected.getAI().getNextIntention().getIntention() == Intention.ATTACK))
 			{
-				effected.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				effected.getAI().setIntention(Intention.IDLE);
 			}
 			
 			World.getInstance().forEachVisibleObject(effected, Creature.class, target ->
@@ -54,7 +54,7 @@ public class Hide extends AbstractEffect
 					target.setTarget(null);
 					target.abortAttack();
 					target.abortCast();
-					target.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+					target.getAI().setIntention(Intention.IDLE);
 				}
 			});
 		}

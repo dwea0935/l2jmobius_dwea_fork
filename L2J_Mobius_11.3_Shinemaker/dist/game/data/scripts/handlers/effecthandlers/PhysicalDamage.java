@@ -26,12 +26,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -217,16 +217,17 @@ public class PhysicalDamage extends AbstractEffect
 			final double weaponMod = effector.getAttackType().isRanged() ? 70 : 77;
 			final double rangedBonus = effector.getAttackType().isRanged() ? attack + power : 0;
 			final double critMod = critical ? Formulas.calcCritDamage(effector, effected, skill) : 1;
+			final double critPSkillAdd = critical ? Formulas.calcCritDamageAdd(effector, effected, skill) : 0;
 			double ssmod = 1;
 			if (skill.useSoulShot())
 			{
 				if (effector.isChargedShot(ShotType.SOULSHOTS))
 				{
-					ssmod = 2 * effector.getStat().getValue(Stat.SHOTS_BONUS) * effected.getStat().getValue(Stat.SOULSHOT_RESISTANCE, 1); // 2.04 for dual weapon?
+					ssmod = Math.max(1, (2 + (effector.getStat().getValue(Stat.SHOTS_BONUS) / 100)) - (effected.getStat().getValue(Stat.SOULSHOT_RESISTANCE, 0) / 100)); // 2.04 for dual weapon?
 				}
 				else if (effector.isChargedShot(ShotType.BLESSED_SOULSHOTS))
 				{
-					ssmod = 4 * effector.getStat().getValue(Stat.SHOTS_BONUS) * effected.getStat().getValue(Stat.SOULSHOT_RESISTANCE, 1);
+					ssmod = Math.max(1, (4 + (effector.getStat().getValue(Stat.SHOTS_BONUS) / 100)) - (effected.getStat().getValue(Stat.SOULSHOT_RESISTANCE, 0) / 100));
 				}
 			}
 			
@@ -244,18 +245,16 @@ public class PhysicalDamage extends AbstractEffect
 				damage *= _raceModifier;
 			}
 			
+			damage += critPSkillAdd;
+			
 			// AoE modifiers.
 			if (skill.isBad() && (skill.getAffectLimit() > 0))
 			{
 				damage *= Math.max((effector.getStat().getMulValue(Stat.AREA_OF_EFFECT_DAMAGE_MODIFY, 1) - effected.getStat().getValue(Stat.AREA_OF_EFFECT_DAMAGE_DEFENCE, 0)), 0.01);
 				damage -= effected.getStat().getValue(Stat.AREA_OF_EFFECT_DAMAGE_DEFENCE_ADD, 0);
-				if (damage < 1)
-				{
-					damage = 1;
-				}
 			}
 		}
 		
-		effector.doAttack(damage, effected, skill, false, false, critical, false);
+		effector.doAttack(Math.max(1, damage), effected, skill, false, false, critical, false);
 	}
 }

@@ -16,12 +16,12 @@
  */
 package custom.NpcLocationInfo;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -270,11 +270,11 @@ public class NpcLocationInfo extends AbstractNpcAI
 	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = event;
-		if (Util.isDigit(event))
+		if (StringUtil.isNumeric(event))
 		{
 			htmltext = null;
 			final int npcId = Integer.parseInt(event);
-			if (CommonUtil.contains(NPCRADAR, npcId))
+			if (ArrayUtil.contains(NPCRADAR, npcId))
 			{
 				int x = 0;
 				int y = 0;
@@ -299,7 +299,7 @@ public class NpcLocationInfo extends AbstractNpcAI
 		String htmltext = getNoQuestMsg(player);
 		final int npcId = npc.getId();
 		getQuestState(player, true);
-		if (CommonUtil.contains(NPC, npcId))
+		if (ArrayUtil.contains(NPC, npcId))
 		{
 			htmltext = npcId + ".htm";
 		}

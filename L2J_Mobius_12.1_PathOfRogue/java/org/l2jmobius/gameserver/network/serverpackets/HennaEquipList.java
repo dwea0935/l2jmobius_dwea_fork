@@ -40,7 +40,7 @@ public class HennaEquipList extends ServerPacket
 	public HennaEquipList(Player player)
 	{
 		_player = player;
-		_hennaEquipList = HennaData.getInstance().getHennaList(player.getClassId());
+		_hennaEquipList = HennaData.getInstance().getHennaList(player.getPlayerClass());
 	}
 	
 	public HennaEquipList(Player player, List<Henna> list)
@@ -66,7 +66,7 @@ public class HennaEquipList extends ServerPacket
 				buffer.writeInt(henna.getDyeItemId()); // item Id of the dye
 				buffer.writeLong(henna.getWearCount()); // amount of dyes required
 				buffer.writeLong(henna.getWearFee()); // amount of Adena required
-				buffer.writeInt(henna.isAllowedClass(_player.getClassId())); // meet the requirement or not
+				buffer.writeInt(henna.isAllowedClass(_player.getPlayerClass())); // meet the requirement or not
 				buffer.writeInt(henna.getDuration());
 			}
 		}

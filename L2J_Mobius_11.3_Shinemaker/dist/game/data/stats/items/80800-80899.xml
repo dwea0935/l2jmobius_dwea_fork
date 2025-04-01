@@ -531,7 +531,6 @@
 		<set name="material" val="SILVER" />
 		<skills>
 			<skill id="35524" level="1" /> <!-- Kaliel's Bracelet -->
-			<skill id="35524" level="1" /> <!-- Kaliel's Bracelet -->
 			<skill id="35524" level="2" type="ON_ENCHANT" type_value="1" /> <!-- Kaliel's Bracelet: Enchant Effect -->
 			<skill id="35524" level="3" type="ON_ENCHANT" type_value="2" /> <!-- Kaliel's Bracelet: Enchant Effect -->
 			<skill id="35524" level="4" type="ON_ENCHANT" type_value="3" /> <!-- Kaliel's Bracelet: Enchant Effect -->
@@ -550,7 +549,6 @@
 		<set name="enchant_limit" val="5" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="35525" level="1" /> <!-- Kaliel's Greater Bracelet -->
 			<skill id="35525" level="1" /> <!-- Kaliel's Greater Bracelet -->
 			<skill id="35525" level="2" type="ON_ENCHANT" type_value="1" /> <!-- Kaliel's Greater Bracelet: Enchant Effect -->
 			<skill id="35525" level="3" type="ON_ENCHANT" type_value="2" /> <!-- Kaliel's Greater Bracelet: Enchant Effect -->

@@ -1338,7 +1338,6 @@
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
-		<magicLevel>85</magicLevel>
 		<reuseDelay>5000</reuseDelay>
 		<reuseDelayGroup>11509</reuseDelayGroup>
 		<trait>SHOCK</trait>
@@ -1381,7 +1380,6 @@
 		<hitTime>2000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>85</magicLevel>
-		<magicLevel>85</magicLevel>
 		<nextAction>ATTACK</nextAction>
 		<reuseDelay>10000</reuseDelay>
 		<conditions>
@@ -1410,7 +1408,6 @@
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
-		<magicLevel>85</magicLevel>
 		<magicLevel>85</magicLevel>
 		<nextAction>ATTACK</nextAction>
 		<reuseDelay>10000</reuseDelay>
@@ -5099,7 +5096,6 @@
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>2</abnormalTime>
 		<abnormalType>STUN</abnormalType>
-		<abnormalType>STUN</abnormalType>
 		<abnormalVisualEffect>STUN</abnormalVisualEffect>
 		<activateRate>90</activateRate>
 		<affectObject>NOT_FRIEND</affectObject>
@@ -8413,7 +8409,6 @@
 		<effectPoint>2</effectPoint>
 		<hitTime>1000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
-		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
 			<value level="1">85</value>
 			<value level="2">90</value>
@@ -8521,7 +8516,6 @@
 		<affectObject>NOT_FRIEND</affectObject>
 		<affectRange>1000</affectRange>
 		<affectScope>POINT_BLANK</affectScope>
-		<castRange>800</castRange>
 		<castRange>800</castRange>
 		<coolTime>500</coolTime>
 		<effectRange>1400</effectRange>

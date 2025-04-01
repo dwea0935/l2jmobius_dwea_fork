@@ -23,6 +23,7 @@ import org.l2jmobius.gameserver.model.actor.request.CompoundRequest;
 import org.l2jmobius.gameserver.model.item.combination.CombinationItem;
 import org.l2jmobius.gameserver.model.item.combination.CombinationItemReward;
 import org.l2jmobius.gameserver.model.item.combination.CombinationItemType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -100,12 +101,12 @@ public class RequestNewEnchantTry extends ClientPacket
 			return;
 		}
 		
-		if (player.destroyItem("Compound-Item-One", itemOne, 1, null, true) && player.destroyItem("Compound-Item-Two", itemTwo, 1, null, true))
+		if (player.destroyItem(ItemProcessType.FEE, itemOne, 1, null, true) && player.destroyItem(ItemProcessType.FEE, itemTwo, 1, null, true))
 		{
 			final double random = (Rnd.nextDouble() * 100);
 			final boolean success = random <= combinationItem.getChance();
 			final CombinationItemReward rewardItem = combinationItem.getReward(success ? CombinationItemType.ON_SUCCESS : CombinationItemType.ON_FAILURE);
-			final Item item = player.addItem("Compound-Result", rewardItem.getId(), rewardItem.getCount(), null, true);
+			final Item item = player.addItem(ItemProcessType.REWARD, rewardItem.getId(), rewardItem.getCount(), null, true);
 			if (success)
 			{
 				player.sendPacket(new ExEnchantSucess(item.getId()));

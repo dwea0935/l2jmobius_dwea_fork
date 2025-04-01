@@ -24,10 +24,11 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.commons.time.TimeUtil;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -38,7 +39,7 @@ import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.type.BossZone;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 import ai.AbstractNpcAI;
 
@@ -239,7 +240,7 @@ public class Zaken extends AbstractNpcAI
 						npc.setTarget(npc);
 						npc.doCast(SkillData.getInstance().getSkill(4227, 1));
 					}
-					if ((npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ATTACK) && (_ai0 == 0))
+					if ((npc.getAI().getIntention() == Intention.ATTACK) && (_ai0 == 0))
 					{
 						int i0 = 0;
 						int i1 = 1;
@@ -371,7 +372,7 @@ public class Zaken extends AbstractNpcAI
 						_ai3 = npc.getZ();
 					}
 					Creature cAi0 = null;
-					if ((npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ATTACK) && (_quest1 == 0))
+					if ((npc.getAI().getIntention() == Intention.ATTACK) && (_quest1 == 0))
 					{
 						if (npc.asAttackable().getMostHated() != null)
 						{
@@ -379,7 +380,7 @@ public class Zaken extends AbstractNpcAI
 							_quest1 = 1;
 						}
 					}
-					else if ((npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ATTACK) && (_quest1 != 0) && (npc.asAttackable().getMostHated() != null))
+					else if ((npc.getAI().getIntention() == Intention.ATTACK) && (_quest1 != 0) && (npc.asAttackable().getMostHated() != null))
 					{
 						if (cAi0 == npc.asAttackable().getMostHated())
 						{
@@ -391,7 +392,7 @@ public class Zaken extends AbstractNpcAI
 							cAi0 = npc.asAttackable().getMostHated();
 						}
 					}
-					if (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE)
+					if (npc.getAI().getIntention() == Intention.IDLE)
 					{
 						_quest1 = 0;
 					}
@@ -401,7 +402,7 @@ public class Zaken extends AbstractNpcAI
 						final Creature nextTarget = npc.asAttackable().getMostHated();
 						if (nextTarget != null)
 						{
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, nextTarget);
+							npc.getAI().setIntention(Intention.ATTACK, nextTarget);
 						}
 						_quest1 = 0;
 					}
@@ -577,7 +578,8 @@ public class Zaken extends AbstractNpcAI
 			}
 			case "zaken_unlock":
 			{
-				if (GrandBossManager.getInstance().getStatus(ZAKEN) != DEAD)
+				final int status = GrandBossManager.getInstance().getStatus(ZAKEN);
+				if (status == DEAD)
 				{
 					final GrandBoss zaken = (GrandBoss) addSpawn(ZAKEN, 55312, 219168, -3223, 0, false, 0);
 					GrandBossManager.getInstance().setStatus(ZAKEN, ALIVE);
@@ -595,11 +597,11 @@ public class Zaken extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onFactionCall(Npc npc, Npc caller, Player attacker, boolean isPet)
+	public void onFactionCall(Npc npc, Npc caller, Player attacker, boolean isPet)
 	{
 		if ((caller == null) || (npc == null))
 		{
-			return super.onFactionCall(npc, caller, attacker, isPet);
+			return;
 		}
 		
 		final int npcId = npc.getId();
@@ -607,7 +609,7 @@ public class Zaken extends AbstractNpcAI
 		if ((getTimeHour() < 5) && (callerId != ZAKEN) && (npcId == ZAKEN))
 		{
 			final int damage = 0;
-			if ((npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE) && (_ai0 == 0) && (damage < 10) && (getRandom((30 * 15)) < 1))// todo - damage missing
+			if ((npc.getAI().getIntention() == Intention.IDLE) && (_ai0 == 0) && (damage < 10) && (getRandom((30 * 15)) < 1))// todo - damage missing
 			{
 				_ai0 = 1;
 				_ai1 = caller.getX();
@@ -616,11 +618,10 @@ public class Zaken extends AbstractNpcAI
 				startQuestTimer("1002", 300, caller, null);
 			}
 		}
-		return super.onFactionCall(npc, caller, attacker, isPet);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if (npc.getId() == ZAKEN)
 		{
@@ -628,7 +629,7 @@ public class Zaken extends AbstractNpcAI
 			if (skillId == 4222)
 			{
 				npc.teleToLocation(_ai1, _ai2, _ai3);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				npc.getAI().setIntention(Intention.IDLE);
 			}
 			else if (skillId == 4216)
 			{
@@ -638,7 +639,7 @@ public class Zaken extends AbstractNpcAI
 				final Creature nextTarget = npc.asAttackable().getMostHated();
 				if (nextTarget != null)
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, nextTarget);
+					npc.getAI().setIntention(Intention.ATTACK, nextTarget);
 				}
 			}
 			else if (skillId == 4217)
@@ -735,15 +736,14 @@ public class Zaken extends AbstractNpcAI
 				final Creature nextTarget = npc.asAttackable().getMostHated();
 				if (nextTarget != null)
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, nextTarget);
+					npc.getAI().setIntention(Intention.ATTACK, nextTarget);
 				}
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		final int npcId = npc.getId();
 		if (npcId == ZAKEN)
@@ -822,11 +822,10 @@ public class Zaken extends AbstractNpcAI
 				npc.doCast(SkillData.getInstance().getSkill(4222, 1));
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isPet);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		final int npcId = npc.getId();
 		final Integer status = GrandBossManager.getInstance().getStatus(ZAKEN);
@@ -838,9 +837,15 @@ public class Zaken extends AbstractNpcAI
 			final long baseIntervalMillis = Config.ZAKEN_SPAWN_INTERVAL * 3600000;
 			final long randomRangeMillis = Config.ZAKEN_SPAWN_RANDOM * 3600000;
 			final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
+			
+			// Next respawn time.
+			final long nextRespawnTime = System.currentTimeMillis() + respawnTime;
+			LOGGER.info("Zaken will respawn at: " + TimeUtil.getDateTimeString(nextRespawnTime));
+			
 			startQuestTimer("zaken_unlock", respawnTime, null, null);
 			cancelQuestTimer("1001", npc, null);
 			cancelQuestTimer("1003", npc, null);
+			
 			// Also save the respawn time so that the info is maintained past reboots.
 			final StatSet info = GrandBossManager.getInstance().getStatSet(ZAKEN);
 			info.set("respawn_time", System.currentTimeMillis() + respawnTime);
@@ -850,11 +855,10 @@ public class Zaken extends AbstractNpcAI
 		{
 			startQuestTimer("CreateOnePrivateEx", ((30 + getRandom(60)) * 1000), npc, null);
 		}
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isPet)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isPet)
 	{
 		final int npcId = npc.getId();
 		if (npcId == ZAKEN)
@@ -936,7 +940,6 @@ public class Zaken extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAggroRangeEnter(npc, player, isPet);
 	}
 	
 	public void spawnBoss(GrandBoss npc)

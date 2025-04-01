@@ -36,15 +36,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
-import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.Party;
-import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -52,11 +44,19 @@ import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.html.PageBuilder;
 import org.l2jmobius.gameserver.model.html.PageResult;
+import org.l2jmobius.gameserver.model.html.formatters.BypassParserFormatter;
+import org.l2jmobius.gameserver.model.html.pagehandlers.NextPrevPageHandler;
+import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -67,7 +67,6 @@ import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.PartySmallWindowAll;
 import org.l2jmobius.gameserver.network.serverpackets.PartySmallWindowDeleteAll;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * EditChar admin command implementation.
@@ -148,14 +147,14 @@ public class AdminEditChar implements IAdminCommandHandler
 		{
 			try
 			{
-				final String val = command.substring(22);
+				final String val = command.substring(22).replace("page=", "");
 				final int page = Integer.parseInt(val);
 				listCharacters(activeChar, page);
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
 				// Case of empty page number
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //show_characters <page_number>");
+				activeChar.sendSysMessage("Usage: //show_characters <page_number>");
 			}
 		}
 		else if (command.startsWith("admin_find_character"))
@@ -167,7 +166,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{ // Case of empty character name
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //find_character <character_name>");
+				activeChar.sendSysMessage("Usage: //find_character <character_name>");
 				listCharacters(activeChar, 0);
 			}
 		}
@@ -180,7 +179,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{ // Case of empty or malformed IP number
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //find_ip <www.xxx.yyy.zzz>");
+				activeChar.sendSysMessage("Usage: //find_ip <www.xxx.yyy.zzz>");
 				listCharacters(activeChar, 0);
 			}
 		}
@@ -193,7 +192,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{ // Case of empty or malformed player name
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //find_account <player_name>");
+				activeChar.sendSysMessage("Usage: //find_account <player_name>");
 				listCharacters(activeChar, 0);
 			}
 		}
@@ -227,14 +226,14 @@ public class AdminEditChar implements IAdminCommandHandler
 				{
 					LOGGER.warning("Set reputation error: " + e);
 				}
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //setreputation <new_reputation_value>");
+				activeChar.sendSysMessage("Usage: //setreputation <new_reputation_value>");
 			}
 		}
 		else if (command.startsWith("admin_nokarma"))
 		{
 			if ((activeChar.getTarget() == null) || !activeChar.getTarget().isPlayer())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "You must target a player.");
+				activeChar.sendSysMessage("You must target a player.");
 				return false;
 			}
 			
@@ -269,7 +268,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				{
 					LOGGER.warning("Set pk error: " + e);
 				}
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //setpk <pk_count>");
+				activeChar.sendSysMessage("Usage: //setpk <pk_count>");
 			}
 		}
 		else if (command.startsWith("admin_setpvp"))
@@ -299,11 +298,17 @@ public class AdminEditChar implements IAdminCommandHandler
 				{
 					LOGGER.warning("Set pvp error: " + e);
 				}
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //setpvp <pvp_count>");
+				activeChar.sendSysMessage("Usage: //setpvp <pvp_count>");
 			}
 		}
 		else if (command.startsWith("admin_setfame"))
 		{
+			if (!Config.FAME_SYSTEM_ENABLED)
+			{
+				activeChar.sendMessage("Fame system is not enabled on the server!");
+				return false;
+			}
+			
 			try
 			{
 				final String val = command.substring(14);
@@ -328,7 +333,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				{
 					LOGGER.warning("Set Fame error: " + e);
 				}
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //setfame <new_fame_value>");
+				activeChar.sendSysMessage("Usage: //setfame <new_fame_value>");
 			}
 		}
 		else if (command.startsWith("admin_rec"))
@@ -353,7 +358,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //rec number");
+				activeChar.sendSysMessage("Usage: //rec number");
 			}
 		}
 		else if (command.startsWith("admin_setclass"))
@@ -368,12 +373,12 @@ public class AdminEditChar implements IAdminCommandHandler
 					return false;
 				}
 				final Player player = target.asPlayer();
-				if ((ClassId.getClassId(classidval) != null) && (player.getClassId().getId() != classidval))
+				if ((PlayerClass.getPlayerClass(classidval) != null) && (player.getPlayerClass().getId() != classidval))
 				{
-					player.setClassId(classidval);
+					player.setPlayerClass(classidval);
 					if (player.isSubClassActive())
 					{
-						player.getSubClasses().get(player.getClassIndex()).setClassId(player.getActiveClass());
+						player.getSubClasses().get(player.getClassIndex()).setPlayerClass(player.getActiveClass());
 					}
 					else
 					{
@@ -421,18 +426,16 @@ public class AdminEditChar implements IAdminCommandHandler
 						appearance.setFemale();
 					}
 					
-					final String newclass = ClassListData.getInstance().getClass(player.getClassId()).getClassName();
-					if (player.isInCategory(CategoryType.SIXTH_CLASS_GROUP))
+					final String newclass = ClassListData.getInstance().getClass(player.getPlayerClass()).getClassName();
+					player.getEffectList().stopAllEffectsWithoutExclusions(true, true);
+					for (Skill oldSkill : player.getAllSkills())
 					{
-						SkillTreeData.getInstance().cleanSkillUponAwakening(player);
-						for (SkillLearn skill : SkillTreeData.getInstance().getRaceSkillTree(player.getRace()))
-						{
-							player.addSkill(SkillData.getInstance().getSkill(skill.getSkillId(), skill.getSkillLevel()), true);
-						}
+						player.removeSkill(oldSkill, true, true);
 					}
-					player.store(false);
 					player.broadcastUserInfo();
 					player.sendSkillList();
+					player.rewardSkills();
+					player.store(false);
 					player.sendPacket(new ExSubjobInfo(player, SubclassInfoType.CLASS_CHANGED));
 					player.sendPacket(new ExUserInfoInvenWeight(player));
 					player.sendMessage("A GM changed your class to " + newclass + ".");
@@ -440,7 +443,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //setclass <valid_new_classid>");
+					activeChar.sendSysMessage("Usage: //setclass <valid_new_classid>");
 				}
 			}
 			catch (StringIndexOutOfBoundsException e)
@@ -449,7 +452,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (NumberFormatException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //setclass <valid_new_classid>");
+				activeChar.sendSysMessage("Usage: //setclass <valid_new_classid>");
 			}
 		}
 		else if (command.startsWith("admin_settitle"))
@@ -473,7 +476,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{ // Case of empty character title
-				BuilderUtil.sendSysMessage(activeChar, "You need to specify the new title.");
+				activeChar.sendSysMessage("You need to specify the new title.");
 			}
 		}
 		else if (command.startsWith("admin_changename"))
@@ -493,21 +496,21 @@ public class AdminEditChar implements IAdminCommandHandler
 				}
 				if (CharInfoTable.getInstance().doesCharNameExist(val))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Warning, player " + val + " already exists");
+					activeChar.sendSysMessage("Warning, player " + val + " already exists");
 					return false;
 				}
 				player.setName(val);
 				CharInfoTable.getInstance().addName(player);
 				player.storeMe();
 				
-				BuilderUtil.sendSysMessage(activeChar, "Changed name to " + val);
+				activeChar.sendSysMessage("Changed name to " + val);
 				player.sendMessage("Your name has been changed by a GM.");
 				player.broadcastUserInfo();
 				
-				if (player.isInParty())
+				final Party party = player.getParty();
+				if (party != null)
 				{
 					// Delete party window for other party members
-					final Party party = player.getParty();
 					party.broadcastToPartyMembers(player, PartySmallWindowDeleteAll.STATIC_PACKET);
 					for (Player member : party.getMembers())
 					{
@@ -527,7 +530,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{ // Case of empty character name
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //setname new_name_for_target");
+				activeChar.sendSysMessage("Usage: //setname new_name_for_target");
 			}
 		}
 		else if (command.startsWith("admin_setsex"))
@@ -576,7 +579,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{ // Case of empty color or invalid hex string
-				BuilderUtil.sendSysMessage(activeChar, "You need to specify a valid new color.");
+				activeChar.sendSysMessage("You need to specify a valid new color.");
 			}
 		}
 		else if (command.startsWith("admin_settcolor"))
@@ -600,7 +603,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{ // Case of empty color or invalid hex string
-				BuilderUtil.sendSysMessage(activeChar, "You need to specify a valid new color.");
+				activeChar.sendSysMessage("You need to specify a valid new color.");
 			}
 		}
 		else if (command.startsWith("admin_fullfood"))
@@ -624,7 +627,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				final StringTokenizer st = new StringTokenizer(command, " ");
 				if (st.countTokens() != 3)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //remove_clan_penalty join|create charname");
+					activeChar.sendSysMessage("Usage: //remove_clan_penalty join|create charname");
 					return false;
 				}
 				
@@ -650,7 +653,7 @@ public class AdminEditChar implements IAdminCommandHandler
 					player.setClanJoinExpiryTime(0);
 				}
 				
-				BuilderUtil.sendSysMessage(activeChar, "Clan penalty successfully removed to character: " + playerName);
+				activeChar.sendSysMessage("Clan penalty successfully removed to character: " + playerName);
 			}
 			catch (Exception e)
 			{
@@ -666,7 +669,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				multibox = Integer.parseInt(val);
 				if (multibox < 1)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //find_dualbox [number > 0]");
+					activeChar.sendSysMessage("Usage: //find_dualbox [number > 0]");
 					return false;
 				}
 			}
@@ -684,7 +687,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				multibox = Integer.parseInt(val);
 				if (multibox < 1)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //strict_find_dualbox [number > 0]");
+					activeChar.sendSysMessage("Usage: //strict_find_dualbox [number > 0]");
 					return false;
 				}
 			}
@@ -719,13 +722,13 @@ public class AdminEditChar implements IAdminCommandHandler
 			final GameClient client = pl.getClient();
 			if (client == null)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Client is null.");
+				activeChar.sendSysMessage("Client is null.");
 				return false;
 			}
 			
 			if (client.isDetached())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Client is detached.");
+				activeChar.sendSysMessage("Client is detached.");
 				return false;
 			}
 			
@@ -742,7 +745,7 @@ public class AdminEditChar implements IAdminCommandHandler
 						ip = ip + ".";
 					}
 				}
-				BuilderUtil.sendSysMessage(activeChar, "Hop" + i + ": " + ip);
+				activeChar.sendSysMessage("Hop" + i + ": " + ip);
 			}
 		}
 		else if (command.startsWith("admin_summon_info"))
@@ -754,7 +757,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Invalid target.");
+				activeChar.sendSysMessage("Invalid target.");
 			}
 		}
 		else if (command.startsWith("admin_unsummon"))
@@ -766,7 +769,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usable only with Pets/Summons");
+				activeChar.sendSysMessage("Usable only with Pets/Summons");
 			}
 		}
 		else if (command.startsWith("admin_summon_setlvl"))
@@ -796,7 +799,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usable only with Pets");
+				activeChar.sendSysMessage("Usable only with Pets");
 			}
 		}
 		else if (command.startsWith("admin_show_pet_inv"))
@@ -819,7 +822,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usable only with Pets");
+				activeChar.sendSysMessage("Usable only with Pets");
 			}
 		}
 		else if (command.startsWith("admin_partyinfo"))
@@ -847,7 +850,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Not in party.");
+					activeChar.sendSysMessage("Not in party.");
 				}
 			}
 			else
@@ -872,7 +875,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				player.setNoble(!player.isNoble());
 				if (player.getObjectId() != activeChar.getObjectId())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "You've changed nobless status of: " + player.getName());
+					activeChar.sendSysMessage("You've changed nobless status of: " + player.getName());
 				}
 				player.broadcastUserInfo();
 				player.sendMessage("GM changed your nobless status!");
@@ -893,7 +896,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //set_hp 1000");
+				activeChar.sendSysMessage("Usage: //set_hp 1000");
 			}
 		}
 		else if (command.startsWith("admin_set_mp"))
@@ -911,7 +914,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //set_mp 1000");
+				activeChar.sendSysMessage("Usage: //set_mp 1000");
 			}
 		}
 		else if (command.startsWith("admin_set_cp"))
@@ -929,7 +932,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //set_cp 1000");
+				activeChar.sendSysMessage("Usage: //set_cp 1000");
 			}
 		}
 		else if (command.startsWith("admin_set_pvp_flag"))
@@ -947,7 +950,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //set_pvp_flag");
+				activeChar.sendSysMessage("Usage: //set_pvp_flag");
 			}
 		}
 		else if (command.startsWith("admin_setparam"))
@@ -962,13 +965,13 @@ public class AdminEditChar implements IAdminCommandHandler
 			st.nextToken(); // admin_setparam
 			if (!st.hasMoreTokens())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Syntax: //setparam <stat> <value>");
+				activeChar.sendSysMessage("Syntax: //setparam <stat> <value>");
 				return false;
 			}
 			final String statName = st.nextToken();
 			if (!st.hasMoreTokens())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Syntax: //setparam <stat> <value>");
+				activeChar.sendSysMessage("Syntax: //setparam <stat> <value>");
 				return false;
 			}
 			
@@ -985,7 +988,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				}
 				if (stat == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Couldn't find such stat!");
+					activeChar.sendSysMessage("Couldn't find such stat!");
 					return false;
 				}
 				
@@ -995,16 +998,16 @@ public class AdminEditChar implements IAdminCommandHandler
 				{
 					targetCreature.getStat().addFixedValue(stat, value);
 					targetCreature.getStat().recalculateStats(true);
-					BuilderUtil.sendSysMessage(activeChar, "Fixed stat: " + stat + " has been set to " + value);
+					activeChar.sendSysMessage("Fixed stat: " + stat + " has been set to " + value);
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Non negative values are only allowed!");
+					activeChar.sendSysMessage("Non negative values are only allowed!");
 				}
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Syntax: //setparam <stat> <value>");
+				activeChar.sendSysMessage("Syntax: //setparam <stat> <value>");
 				return false;
 			}
 		}
@@ -1020,7 +1023,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			st.nextToken(); // admin_setparam
 			if (!st.hasMoreTokens())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Syntax: //unsetparam <stat>");
+				activeChar.sendSysMessage("Syntax: //unsetparam <stat>");
 				return false;
 			}
 			final String statName = st.nextToken();
@@ -1035,14 +1038,14 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			if (stat == null)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Couldn't find such stat!");
+				activeChar.sendSysMessage("Couldn't find such stat!");
 				return false;
 			}
 			
 			final Creature targetCreature = target.asCreature();
 			targetCreature.getStat().removeFixedValue(stat);
 			targetCreature.getStat().recalculateStats(true);
-			BuilderUtil.sendSysMessage(activeChar, "Fixed stat: " + stat + " has been removed.");
+			activeChar.sendSysMessage("Fixed stat: " + stat + " has been removed.");
 		}
 		return true;
 	}
@@ -1061,11 +1064,11 @@ public class AdminEditChar implements IAdminCommandHandler
 		final NpcHtmlMessage html = new NpcHtmlMessage(0, 1);
 		html.setFile(activeChar, "data/html/admin/charlist.htm");
 		
-		final PageResult result = PageBuilder.newBuilder(players, 20, "bypass -h admin_show_characters").currentPage(page).bodyHandler((pages, player, sb) ->
+		final PageResult result = PageBuilder.newBuilder(players, 20, "bypass -h admin_show_characters").currentPage(page).pageHandler(NextPrevPageHandler.INSTANCE).formatter(BypassParserFormatter.INSTANCE).style(ButtonsStyle.INSTANCE).bodyHandler((pages, player, sb) ->
 		{
 			sb.append("<tr>");
 			sb.append("<td width=80><a action=\"bypass -h admin_character_info " + player.getName() + "\">" + ((player.isInOfflineMode() ? ("<font color=\"808080\">" + player.getName() + "</font>") : player.getName()) + "</a></td>"));
-			sb.append("<td width=110>" + ClassListData.getInstance().getClass(player.getClassId()).getClientCode() + "</td><td width=40>" + player.getLevel() + "</td>");
+			sb.append("<td width=110>" + ClassListData.getInstance().getClass(player.getPlayerClass()).getClientCode() + "</td><td width=40>" + player.getLevel() + "</td>");
 			sb.append("</tr>");
 		}).build();
 		
@@ -1115,18 +1118,18 @@ public class AdminEditChar implements IAdminCommandHandler
 		String ip = "N/A";
 		if (player == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Player is null.");
+			activeChar.sendSysMessage("Player is null.");
 			return;
 		}
 		
 		final GameClient client = player.getClient();
 		if (client == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Client is null.");
+			activeChar.sendSysMessage("Client is null.");
 		}
 		else if (client.isDetached())
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Client is detached.");
+			activeChar.sendSysMessage("Client is detached.");
 		}
 		else
 		{
@@ -1141,9 +1144,9 @@ public class AdminEditChar implements IAdminCommandHandler
 		adminReply.replace("%clan%", String.valueOf(player.getClan() != null ? "<a action=\"bypass -h admin_clan_info " + player.getObjectId() + "\">" + player.getClan().getName() + "</a>" : null));
 		adminReply.replace("%xp%", String.valueOf(player.getExp()));
 		adminReply.replace("%sp%", String.valueOf(player.getSp()));
-		adminReply.replace("%class%", ClassListData.getInstance().getClass(player.getClassId()).getClientCode());
-		adminReply.replace("%ordinal%", String.valueOf(player.getClassId().getId()));
-		adminReply.replace("%classid%", String.valueOf(player.getClassId()));
+		adminReply.replace("%class%", ClassListData.getInstance().getClass(player.getPlayerClass()).getClientCode());
+		adminReply.replace("%ordinal%", String.valueOf(player.getPlayerClass().getId()));
+		adminReply.replace("%classid%", String.valueOf(player.getPlayerClass()));
 		adminReply.replace("%baseclass%", ClassListData.getInstance().getClass(player.getBaseClass()).getClientCode());
 		adminReply.replace("%x%", String.valueOf(player.getX()));
 		adminReply.replace("%y%", String.valueOf(player.getY()));
@@ -1211,7 +1214,7 @@ public class AdminEditChar implements IAdminCommandHandler
 		final SystemMessage sm = new SystemMessage(SystemMessageId.YOUR_REPUTATION_HAS_BEEN_CHANGED_TO_S1);
 		sm.addInt(newReputation);
 		player.sendPacket(sm);
-		BuilderUtil.sendSysMessage(activeChar, "Successfully Changed karma for " + player.getName() + " from (" + oldReputation + ") to (" + newReputation + ").");
+		activeChar.sendSysMessage("Successfully Changed karma for " + player.getName() + " from (" + oldReputation + ") to (" + newReputation + ").");
 	}
 	
 	private void editCharacter(Player activeChar, String targetName)
@@ -1258,7 +1261,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				replyMSG.append("\">");
 				replyMSG.append(name);
 				replyMSG.append("</a></td><td width=110>");
-				replyMSG.append(ClassListData.getInstance().getClass(player.getClassId()).getClientCode());
+				replyMSG.append(ClassListData.getInstance().getClass(player.getPlayerClass()).getClientCode());
 				replyMSG.append("</td><td width=40>");
 				replyMSG.append(player.getLevel());
 				replyMSG.append("</td></tr>");
@@ -1355,7 +1358,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			replyMSG.append("\">");
 			replyMSG.append(name);
 			replyMSG.append("</a></td><td width=110>");
-			replyMSG.append(ClassListData.getInstance().getClass(player.getClassId()).getClientCode());
+			replyMSG.append(ClassListData.getInstance().getClass(player.getPlayerClass()).getClientCode());
 			replyMSG.append("</td><td width=40>");
 			replyMSG.append(player.getLevel());
 			replyMSG.append("</td></tr>");
@@ -1655,7 +1658,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				text.append("<tr><td><table width=270 border=0 cellpadding=2><tr><td width=30 align=right>");
 			}
 			text.append(member.getLevel() + "</td><td width=130><a action=\"bypass -h admin_character_info " + member.getName() + "\">" + member.getName() + "</a>");
-			text.append("</td><td width=110 align=right>" + member.getClassId() + "</td></tr></table></td></tr>");
+			text.append("</td><td width=110 align=right>" + member.getPlayerClass() + "</td></tr></table></td></tr>");
 			color = !color;
 		}
 		html.replace("%player%", target.getName());

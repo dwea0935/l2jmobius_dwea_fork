@@ -566,7 +566,6 @@
 		<hitTime>1000</hitTime>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic>
-		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>5</reuseDelay>
 		<trait>AIRBIND</trait>
@@ -616,7 +615,6 @@
 		<operateType>A2</operateType>
 		<targetType>ENEMY</targetType>
 		<abnormalLevel>1</abnormalLevel>
-		<abnormalTime>5</abnormalTime>
 		<abnormalTime>5</abnormalTime>
 		<abnormalType>STUN</abnormalType>
 		<abnormalVisualEffect>STUN</abnormalVisualEffect>
@@ -794,7 +792,7 @@
 		<coolTime>300</coolTime>
 		<effectPoint>1</effectPoint>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>22</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1502,7 +1500,7 @@
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>687</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>-1</isMagic>
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1997,7 +1995,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isSharedWithSummon>false</isSharedWithSummon>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>105</magicLevel>

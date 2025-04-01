@@ -16,16 +16,16 @@
  */
 package quests.Q00091_SagaOfTheArcanaLord;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00091_SagaOfTheArcanaLord extends SagasSuperClass
+public class Q00091_SagaOfTheArcanaLord extends AbstractSagaQuest
 {
 	public Q00091_SagaOfTheArcanaLord()
 	{
-		super(91);
+		super(91, "Saga of the Arcana Lord");
 		_npc = new int[]
 		{
 			31605,

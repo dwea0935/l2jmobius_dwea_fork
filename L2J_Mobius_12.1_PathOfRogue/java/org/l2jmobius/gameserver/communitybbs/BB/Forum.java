@@ -208,11 +208,11 @@ public class Forum
 	public Forum getChildByName(String name)
 	{
 		vload();
-		for (Forum f : _children)
+		for (Forum forum : _children)
 		{
-			if (f.getName().equals(name))
+			if (forum.getName().equals(name))
 			{
-				return f;
+				return forum;
 			}
 		}
 		return null;

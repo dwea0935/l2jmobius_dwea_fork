@@ -20,14 +20,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 
 /**
@@ -420,7 +419,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 	
 	public Q00335_TheSongOfTheHunter()
 	{
-		super(335);
+		super(335, "Song of the Hunter");
 		addStartNpc(GREY);
 		addTalkId(GREY, TOR, CYBELLIN);
 		addKillId(BREKA_ORC_SHAMAN, BREKA_ORC_WARRIOR, GUARDIAN_BASILISK, FETTERED_SOUL, WINDSUS, GRANDIS, GIANT_FUNGUS, GIANT_MONSTEREYE, DIRE_WYRM, ROTTING_TREE, TRISALIM_SPIDER, TRISALIM_TARANTULA, SPORE_ZOMBIE, MANASHEN_GARGOYLE, ENCHANTED_STONE_GOLEM, ENCHANTED_GARGOYLE, TARLK_BUGBEAR_WARRIOR, LETO_LIZARDMAN_ARCHER, LETO_LIZARDMAN_SOLDIER, LETO_LIZARDMAN_SHAMAN, LETO_LIZARDMAN_OVERLORD, TIMAK_ORC_WARRIOR, TIMAK_ORC_OVERLORD, FLINE, LIELE, VALLEY_TREANT, SATYR, UNICORN, FOREST_RUNNER, VALLEY_TREANT_ELDER, SATYR_ELDER, UNICORN_ELDER, KARUL_BUGBEAR, TAMLIN_ORC, TAMLIN_ORC_ARCHER, KRONBE_SPIDER, TAIK_ORC_ARCHER, TAIK_ORC_WARRIOR, TAIK_ORC_SHAMAN, TAIK_ORC_CAPTAIN, MIRROR, HARIT_LIZARDMAN_GRUNT, HARIT_LIZARDMAN_ARCHER, HARIT_LIZARDMAN_WARRIOR, GRAVE_WANDERER, ARCHER_OF_GREED, HATAR_RATMAN_THIEF, HATAR_RATMAN_BOSS, DEPRIVE, FARCRAN, TAIRIM, JUDGE_OF_MARSH, VANOR_SILENOS_GRUNT, VANOR_SILENOS_SCOUT, VANOR_SILENOS_WARRIOR, BREKA_OVERLORD_HAKA, BREKA_OVERLORD_JAKA, BREKA_OVERLORD_MARKA, WINDSUS_ALEPH, TARLK_RAIDER_ATHU, TARLK_RAIDER_LANKA, TARLK_RAIDER_TRISKA, TARLK_RAIDER_MOTURA, TARLK_RAIDER_KALATH, GREMLIN_FILCHER, LETO_SHAMAN_KETZ, LETO_CHIEF_NARAK, TIMAK_RAIDER_KAIKEE, TIMAK_OVERLORD_OKUN, GOK_MAGOK, TAIK_OVERLORD_KAKRAN, HATAR_CHIEFTAIN_KUBEL, VANOR_ELDER_KERUNOS, KARUL_CHIEF_OROOTO, VANOR_SILENOS_CHIEFTAIN);
@@ -1245,7 +1244,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs != null)
@@ -1365,7 +1364,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_7C) && (getQuestItemsCount(qs.getPlayer(), TEMPEST_SHARD) < 40) && (getRandom(20) < 2))
 					{
 						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.SHOW_ME_THE_PRETTY_SPARKLING_THINGS_THEY_RE_ALL_MINE));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "Show me the pretty sparkling things! They're all mine!"));
 					}
 					break;
 				}
@@ -1374,7 +1373,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_10C) && (getQuestItemsCount(qs.getPlayer(), HAMADRYAD_SHARD) < 40) && (getRandom(20) < 2))
 					{
 						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.SHOW_ME_THE_PRETTY_SPARKLING_THINGS_THEY_RE_ALL_MINE));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "Show me the pretty sparkling things! They're all mine!"));
 					}
 					break;
 				}
@@ -1399,7 +1398,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_3B) && (getQuestItemsCount(qs.getPlayer(), NARCISSUSS_SOULSTONE) < 40) && (getRandom(20) < 2))
 					{
 						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.SHOW_ME_THE_PRETTY_SPARKLING_THINGS_THEY_RE_ALL_MINE));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "Show me the pretty sparkling things! They're all mine!"));
 					}
 					break;
 				}
@@ -1408,7 +1407,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_5C) && (getQuestItemsCount(qs.getPlayer(), COIN_OF_OLD_EMPIRE) < 20) && (getRandom(20) < 2))
 					{
 						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.SHOW_ME_THE_PRETTY_SPARKLING_THINGS_THEY_RE_ALL_MINE));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "Show me the pretty sparkling things! They're all mine!"));
 					}
 					break;
 				}
@@ -1417,7 +1416,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_5C) && (getQuestItemsCount(qs.getPlayer(), COIN_OF_OLD_EMPIRE) < 20) && (getRandom(20) < 2))
 					{
 						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.SHOW_ME_THE_PRETTY_SPARKLING_THINGS_THEY_RE_ALL_MINE));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "Show me the pretty sparkling things! They're all mine!"));
 					}
 					
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_2A) && !hasQuestItems(qs.getPlayer(), BUST_OF_TRAVIS) && (getRandom(10) < 2))
@@ -1443,7 +1442,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 							playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 						}
 						
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.PRETTY_GOOD));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "Pretty good!"));
 					}
 					
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_8C) && (getQuestItemsCount(qs.getPlayer(), TSUNAMI_SHARD) < 40))
@@ -1453,7 +1452,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 							playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 						}
 						
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.PRETTY_GOOD));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "Pretty good!"));
 					}
 					
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_10C) && (getQuestItemsCount(qs.getPlayer(), HAMADRYAD_SHARD) < 40))
@@ -1463,7 +1462,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 							playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 						}
 						
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.PRETTY_GOOD));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "Pretty good!"));
 					}
 					
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_3B) && (getQuestItemsCount(qs.getPlayer(), NARCISSUSS_SOULSTONE) < 40))
@@ -1473,7 +1472,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 							playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 						}
 						
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.PRETTY_GOOD));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "Pretty good!"));
 					}
 					
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_5C) && (getQuestItemsCount(qs.getPlayer(), COIN_OF_OLD_EMPIRE) < 20))
@@ -1483,7 +1482,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 							playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 						}
 						
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.PRETTY_GOOD));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "Pretty good!"));
 					}
 					break;
 				}
@@ -1493,7 +1492,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 					{
 						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.WE_LL_TAKE_THE_PROPERTY_OF_THE_ANCIENT_EMPIRE));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "We'll take the property of the ancient empire!"));
 					}
 					break;
 				}
@@ -1503,7 +1502,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 					{
 						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.WE_LL_TAKE_THE_PROPERTY_OF_THE_ANCIENT_EMPIRE));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "We'll take the property of the ancient empire!"));
 					}
 					break;
 				}
@@ -1513,7 +1512,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 					{
 						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
-						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.WE_LL_TAKE_THE_PROPERTY_OF_THE_ANCIENT_EMPIRE));
+						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, "We'll take the property of the ancient empire!"));
 					}
 					break;
 				}
@@ -1528,7 +1527,6 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	private String reward(Player player, QuestState qs, int[][] rewards)

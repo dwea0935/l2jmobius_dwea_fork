@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * Weaken the magic! (736)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00736_WeakenTheMagic extends TerritoryWarSuperClass
 {
 	public Q00736_WeakenTheMagic()
 	{
-		super(736);
+		super(736, "Weaken magic");
 		CLASS_IDS = new int[]
 		{
 			40,
@@ -46,10 +44,10 @@ public class Q00736_WeakenTheMagic extends TerritoryWarSuperClass
 		};
 		RANDOM_MIN = 10;
 		RANDOM_MAX = 15;
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.YOU_HAVE_DEFEATED_S2_OF_S1_ENEMIES,
-			NpcStringId.YOU_WEAKENED_THE_ENEMY_S_MAGIC
+			"You have defeated $s2 of $s1 enemies.",
+			"You weakened the enemy's magic!"
 		};
 	}
 }

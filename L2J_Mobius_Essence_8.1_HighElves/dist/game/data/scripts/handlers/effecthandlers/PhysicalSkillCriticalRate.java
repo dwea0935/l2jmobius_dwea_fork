@@ -26,7 +26,7 @@ import org.l2jmobius.gameserver.model.stats.Stat;
 /**
  * @author NasSeKa
  */
-public class PhysicalSkillCriticalRate extends AbstractStatPercentEffect
+public class PhysicalSkillCriticalRate extends AbstractStatEffect
 {
 	public PhysicalSkillCriticalRate(StatSet params)
 	{

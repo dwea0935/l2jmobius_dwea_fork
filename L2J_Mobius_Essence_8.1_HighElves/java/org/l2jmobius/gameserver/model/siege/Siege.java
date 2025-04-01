@@ -41,15 +41,10 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.cache.RelationCache;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SiegeScheduleData;
-import org.l2jmobius.gameserver.enums.MailType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.SiegeClanType;
-import org.l2jmobius.gameserver.enums.SiegeTeleportWhoType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeGuardManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.SiegeGuardManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.SiegeClan;
 import org.l2jmobius.gameserver.model.SiegeScheduleDate;
@@ -60,18 +55,22 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.ControlTower;
 import org.l2jmobius.gameserver.model.actor.instance.FlameTower;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.sieges.OnCastleSiegeFinish;
-import org.l2jmobius.gameserver.model.events.impl.sieges.OnCastleSiegeOwnerChange;
-import org.l2jmobius.gameserver.model.events.impl.sieges.OnCastleSiegeStart;
+import org.l2jmobius.gameserver.model.events.holders.sieges.OnCastleSiegeFinish;
+import org.l2jmobius.gameserver.model.events.holders.sieges.OnCastleSiegeOwnerChange;
+import org.l2jmobius.gameserver.model.events.holders.sieges.OnCastleSiegeStart;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.MailType;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.RelationChanged;
 import org.l2jmobius.gameserver.network.serverpackets.SiegeInfo;
@@ -308,7 +307,7 @@ public class Siege implements Siegable
 					{
 						final Message msg = new Message(elem, "Reward from Siege!", "Your reward mercenary.", MailType.REGULAR);
 						final Mail attachments = msg.createAttachments();
-						attachments.addItem("Reward from Siege!", 57, reward, null, null);
+						attachments.addItem(ItemProcessType.REWARD, 57, reward, null, null);
 						MailManager.getInstance().sendMessage(msg);
 					}
 				}
@@ -1664,7 +1663,7 @@ public class Siege implements Siegable
 						continue;
 					}
 					
-					distance = ct.calculateDistanceSq3D(spawn);
+					distance = ct.calculateDistance3D(spawn);
 					if (distance < distanceClosest)
 					{
 						closestCt = ct;

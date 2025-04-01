@@ -24,10 +24,10 @@ import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.EnchantItemData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.EnchantItemRequest;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantScroll;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantSupportItem;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -44,14 +44,8 @@ public class ResetEnchantItemFailRewardInfo extends ServerPacket
 	
 	public ResetEnchantItemFailRewardInfo(Player player)
 	{
-		if (player.getRequest(EnchantItemRequest.class) == null)
-		{
-			_enchantItem = null;
-			return;
-		}
-		
 		final EnchantItemRequest request = player.getRequest(EnchantItemRequest.class);
-		if ((request.getEnchantingItem() == null) || request.isProcessing() || (request.getEnchantingScroll() == null))
+		if ((request == null) || (request.getEnchantingItem() == null) || request.isProcessing() || (request.getEnchantingScroll() == null))
 		{
 			_enchantItem = null;
 			return;

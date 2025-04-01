@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets.dethrone;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
@@ -63,12 +63,39 @@ public class RequestExDethroneEnter extends ClientPacket
 		{
 			return;
 		}
-		if (!Config.CONQUEST_SYSTEM_ENABLED || (Config.CONQUEST_SYSTEM_ENABLED && (GlobalVariablesManager.getInstance().hasVariable("CONQUEST_AVAILABLE") && (GlobalVariablesManager.getInstance().getBoolean("CONQUEST_AVAILABLE", false) == false))))
+		
+		if (player.isInsideZone(ZoneId.CONQUEST))
+		{
+			player.sendPacket(new SystemMessage(SystemMessageId.YOU_WILL_BE_TAKEN_TO_THE_MAIN_SERVER_IN_3_SEC));
+			player.stopMove(null);
+			
+			ThreadPool.schedule(() ->
+			{
+				final PlayerVariables vars = player.getVariables();
+				Location location = new Location(147458, 26903, -2206); // Aden center if no location stored.
+				if (vars.contains(PlayerVariables.CONQUEST_ORIGIN))
+				{
+					final int[] loc = vars.getIntArray(PlayerVariables.CONQUEST_ORIGIN, ";");
+					if ((loc != null) && (loc.length == 3))
+					{
+						location = new Location(loc[0], loc[1], loc[2]);
+					}
+					player.teleToLocation(location);
+					vars.remove(PlayerVariables.CONQUEST_ORIGIN);
+				}
+				else
+				{
+					player.teleToLocation(location);
+				}
+			}, 3000);
+			return;
+		}
+		else if (!Config.CONQUEST_SYSTEM_ENABLED || (Config.CONQUEST_SYSTEM_ENABLED && (GlobalVariablesManager.getInstance().hasVariable("CONQUEST_AVAILABLE") && (GlobalVariablesManager.getInstance().getBoolean("CONQUEST_AVAILABLE", false) == false))))
 		{
 			player.sendPacket(SystemMessageId.THE_PATH_TO_THE_CONQUEST_WORLD_IS_CLOSED_YOU_CAN_GET_THERE_ON_MONDAYS_TUESDAYS_WEDNESDAYS_AND_THURSDAYS_FROM_10_00_TILL_12_00_AND_FROM_22_00_TILL_24_00_AND_ON_FRIDAYS_SATURDAYS_AND_SUNDAYS_FROM_20_00_TILL_01_00_OF_THE_FOLLOWING_DAY_PVP_IS_DISABLED_FROM_20_00_TILL_22_00_FOR_2_HOURS_BECAUSE_THE_NEW_WORLD_EXPLORATION_IS_UNDER_WAY);
 			return;
 		}
-		if ((!player.isInsideZone(ZoneId.PEACE) || (player.isInOlympiadMode()) || (player.isFishing()) || (!player.isInventoryUnder80(false))))
+		else if ((!player.isInsideZone(ZoneId.PEACE) || (player.isInOlympiadMode()) || (player.isFishing()) || (!player.isInventoryUnder80(false))))
 		{
 			player.sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_ENTER_THE_CONQUEST_WORLD_IF_YOU_ARE_REGISTERED_OR_PARTICIPATING_IN_THE_OLYMPIAD_OR_THE_CEREMONY_OF_CHAOS_IF_YOU_HAVE_A_CURSED_SWORD_IF_YOU_ARE_FISHING_DUELING_IF_YOU_ARE_DEAD_IF_YOU_HAVE_OVERWEIGHT_OR_YOUR_INVENTORY_IS_FILLED_UP_FOR_90_OR_MORE));
 			return;

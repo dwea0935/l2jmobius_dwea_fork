@@ -412,7 +412,7 @@
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="21477" level="1" /> <!-- Power of Abundance -->
-			<skill id="21364" level="9" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="9001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26339" name="High-grade Talisman of Abundance Lv. 2" type="Armor">
@@ -425,7 +425,7 @@
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="21477" level="2" /> <!-- Power of Abundance -->
-			<skill id="21364" level="10" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="9002" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26340" name="High-grade Talisman of Abundance Lv. 3" type="Armor">
@@ -438,7 +438,7 @@
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="21477" level="3" /> <!-- Power of Abundance -->
-			<skill id="21364" level="11" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="9003" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26341" name="High-grade Talisman of Abundance Lv. 4" type="Armor">
@@ -451,7 +451,7 @@
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="21477" level="4" /> <!-- Power of Abundance -->
-			<skill id="21364" level="12" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="9004" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26342" name="Recipe: High-grade Talisman of Abundance Lv. 1" type="EtcItem">
@@ -681,7 +681,6 @@
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
@@ -693,7 +692,6 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -707,7 +705,6 @@
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
@@ -719,7 +716,6 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -746,7 +742,6 @@
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
@@ -758,7 +753,6 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -772,7 +766,6 @@
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
@@ -784,7 +777,6 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -811,7 +803,6 @@
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
@@ -823,7 +814,6 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -837,7 +827,6 @@
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
@@ -849,7 +838,6 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -876,7 +864,6 @@
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
@@ -888,7 +875,6 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -902,7 +888,6 @@
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
@@ -914,7 +899,6 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="Appearance" />
 		<set name="is_sellable" val="false" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -1048,7 +1032,10 @@
 		<set name="icon" val="icon.etc_reagent_white_i00" />
 		<set name="weight" val="5" />
 		<set name="etcitem_type" val="POTION" />
+		<set name="immediate_effect" val="true" />
 		<set name="is_stackable" val="true" />
+		<set name="is_oly_restricted" val="true" />
+		<set name="is_event_restricted" val="true" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="material" val="LIQUID" />
 	</item>

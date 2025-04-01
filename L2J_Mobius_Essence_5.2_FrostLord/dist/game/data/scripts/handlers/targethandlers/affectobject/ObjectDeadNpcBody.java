@@ -32,6 +32,7 @@ public class ObjectDeadNpcBody implements IAffectObjectHandler
 		{
 			return false;
 		}
+		
 		return target.isNpc() && target.isDead();
 	}
 	

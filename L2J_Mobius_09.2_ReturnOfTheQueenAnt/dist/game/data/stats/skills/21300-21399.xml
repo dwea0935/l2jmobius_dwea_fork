@@ -133,14 +133,14 @@
 		<basicProperty>NONE</basicProperty>
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>1200000</reuseDelay>
 		<specialLevel>-1</specialLevel>
 		<staticReuse>true</staticReuse>
 		<conditions>
 			<condition name="OpAgathionEnergy">
-				<enegry>500</enegry>
+				<energy>500</energy>
 			</condition>
 		</conditions>
 	</skill>
@@ -154,7 +154,7 @@
 		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAgathionEnergy">
-				<enegry>4</enegry>
+				<energy>4</energy>
 			</condition>
 		</conditions>
 	</skill>
@@ -168,7 +168,7 @@
 		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAgathionEnergy">
-				<enegry>2</enegry>
+				<energy>2</energy>
 			</condition>
 		</conditions>
 	</skill>
@@ -182,7 +182,7 @@
 		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAgathionEnergy">
-				<enegry>2</enegry>
+				<energy>2</energy>
 			</condition>
 		</conditions>
 	</skill>
@@ -196,7 +196,7 @@
 		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAgathionEnergy">
-				<enegry>2</enegry>
+				<energy>2</energy>
 			</condition>
 		</conditions>
 	</skill>
@@ -210,7 +210,7 @@
 		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAgathionEnergy">
-				<enegry>2</enegry>
+				<energy>2</energy>
 			</condition>
 		</conditions>
 	</skill>
@@ -224,7 +224,7 @@
 		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAgathionEnergy">
-				<enegry>2</enegry>
+				<energy>2</energy>
 			</condition>
 		</conditions>
 	</skill>
@@ -238,7 +238,7 @@
 		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAgathionEnergy">
-				<enegry>2</enegry>
+				<energy>2</energy>
 			</condition>
 		</conditions>
 	</skill>
@@ -915,7 +915,7 @@
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>3600000</reuseDelay>
@@ -941,7 +941,7 @@
 		<blockActionUseSkill>true</blockActionUseSkill>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>3600000</reuseDelay>
@@ -963,7 +963,7 @@
 		<abnormalType>VP_UP</abnormalType>
 		<abnormalVisualEffect>VP_UP</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>23728</itemConsumeId> <!-- Erupting Vitality XP Potion -->
@@ -995,7 +995,7 @@
 		<abnormalType>VP_UP</abnormalType>
 		<abnormalVisualEffect>VP_UP</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>23729</itemConsumeId> <!-- Erupting Vitality Replenishing Potion -->
@@ -1027,7 +1027,7 @@
 		<abnormalType>VP_UP</abnormalType>
 		<abnormalVisualEffect>VP_UP</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>23730</itemConsumeId> <!-- Erupting Vitality Conservation Potion -->
@@ -1207,238 +1207,238 @@
 		<operateType>P</operateType>
 		<abnormalLevel>
 			<value level="1">1</value> <!-- Talisman - Abundance War -->
-			<value level="2">2</value> <!-- Talisman - Abundance Tactics -->
-			<value level="3">3</value> <!-- Talisman - Abundance Morale -->
-			<value level="4">4</value> <!-- Talisman - Abundance Physique -->
-			<value level="5">5</value> <!-- Talisman - Hunter -->
-			<value level="6">6</value> <!-- Talisman - Slaughterer -->
-			<value level="7">7</value> <!-- Talisman - Conquerer -->
-			<value level="8">8</value> <!-- Talisman - Outlaw -->
-			<value level="9">9</value> <!-- Talisman - Abundance Lv. 1 (High-grade) -->
-			<value level="10">10</value> <!-- Talisman - Abundance Lv. 2 (High-grade) -->
-			<value level="11">11</value> <!-- Talisman - Abundance Lv. 3 (High-grade) -->
-			<value level="12">12</value> <!-- Talisman - Abundance Lv. 4 (High-grade) -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">2</value> <!-- Talisman - Abundance Tactics -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">3</value> <!-- Talisman - Abundance Morale -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">4</value> <!-- Talisman - Abundance Physique -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">5</value> <!-- Talisman - Hunter -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">6</value> <!-- Talisman - Slaughterer -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">7</value> <!-- Talisman - Conquerer -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">8</value> <!-- Talisman - Outlaw -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">9</value> <!-- Talisman - Abundance Lv. 1 (High-grade) -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">10</value> <!-- Talisman - Abundance Lv. 2 (High-grade) -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">11</value> <!-- Talisman - Abundance Lv. 3 (High-grade) -->
+			<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">12</value> <!-- Talisman - Abundance Lv. 4 (High-grade) -->
 		</abnormalLevel>
 		<magicLevel>55</magicLevel>
 		<effects>
 			<effect name="MagicalAttack">
 				<amount>
 					<value level="1">181</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">271</value>
-					<value level="6">271</value>
-					<value level="7">271</value>
-					<value level="8">0</value>
-					<value level="9">0</value>
-					<value level="10">0</value>
-					<value level="11">0</value>
-					<value level="12">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">271</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">271</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">271</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">0</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="PhysicalAttack">
 				<amount>
 					<value level="1">154</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">231</value>
-					<value level="6">231</value>
-					<value level="7">231</value>
-					<value level="8">0</value>
-					<value level="9">0</value>
-					<value level="10">0</value>
-					<value level="11">0</value>
-					<value level="12">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">231</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">231</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">231</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">0</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="PhysicalDefence">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">0</value>
-					<value level="6">0</value>
-					<value level="7">0</value>
-					<value level="8">0</value>
-					<value level="9">971</value>
-					<value level="10">1051</value>
-					<value level="11">1184</value>
-					<value level="12">1307</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">971</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">1051</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">1184</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">1307</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="MagicalDefence">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">0</value>
-					<value level="6">0</value>
-					<value level="7">0</value>
-					<value level="8">0</value>
-					<value level="9">552</value>
-					<value level="10">609</value>
-					<value level="11">706</value>
-					<value level="12">799</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">552</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">609</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">706</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">799</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="PhysicalEvasion">
 				<amount>
 					<value level="1">4</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">7</value>
-					<value level="6">7</value>
-					<value level="7">7</value>
-					<value level="8">0</value>
-					<value level="9">7</value>
-					<value level="10">8</value>
-					<value level="11">9</value>
-					<value level="12">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">8</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">9</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">10</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="MagicalEvasion">
 				<amount>
 					<value level="1">4</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">7</value>
-					<value level="6">7</value>
-					<value level="7">7</value>
-					<value level="8">0</value>
-					<value level="9">7</value>
-					<value level="10">8</value>
-					<value level="11">9</value>
-					<value level="12">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">8</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">9</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">10</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="DefenceAttribute">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">10</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">15</value>
-					<value level="6">15</value>
-					<value level="7">0</value>
-					<value level="8">15</value>
-					<value level="9">15</value>
-					<value level="10">17</value>
-					<value level="11">20</value>
-					<value level="12">25</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">17</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">20</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">25</value>
 				</amount>
 				<attribute>FIRE</attribute>
 			</effect>
 			<effect name="DefenceAttribute">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">10</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">15</value>
-					<value level="6">15</value>
-					<value level="7">0</value>
-					<value level="8">15</value>
-					<value level="9">15</value>
-					<value level="10">17</value>
-					<value level="11">20</value>
-					<value level="12">25</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">17</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">20</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">25</value>
 				</amount>
 				<attribute>WATER</attribute>
 			</effect>
 			<effect name="DefenceAttribute">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">10</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">15</value>
-					<value level="6">15</value>
-					<value level="7">0</value>
-					<value level="8">15</value>
-					<value level="9">15</value>
-					<value level="10">17</value>
-					<value level="11">20</value>
-					<value level="12">25</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">17</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">20</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">25</value>
 				</amount>
 				<attribute>WIND</attribute>
 			</effect>
 			<effect name="DefenceAttribute">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">10</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">15</value>
-					<value level="6">15</value>
-					<value level="7">0</value>
-					<value level="8">15</value>
-					<value level="9">15</value>
-					<value level="10">17</value>
-					<value level="11">20</value>
-					<value level="12">25</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">17</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">20</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">25</value>
 				</amount>
 				<attribute>EARTH</attribute>
 			</effect>
 			<effect name="DefenceAttribute">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">10</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">15</value>
-					<value level="6">15</value>
-					<value level="7">0</value>
-					<value level="8">15</value>
-					<value level="9">15</value>
-					<value level="10">17</value>
-					<value level="11">20</value>
-					<value level="12">25</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">17</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">20</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">25</value>
 				</amount>
 				<attribute>DARK</attribute>
 			</effect>
 			<effect name="DefenceAttribute">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">10</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">15</value>
-					<value level="6">15</value>
-					<value level="7">0</value>
-					<value level="8">15</value>
-					<value level="9">15</value>
-					<value level="10">17</value>
-					<value level="11">20</value>
-					<value level="12">25</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">17</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">20</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">25</value>
 				</amount>
 				<attribute>HOLY</attribute>
 			</effect>
 			<effect name="ResistAbnormalByCategory">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">10</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">13</value>
-					<value level="6">13</value>
-					<value level="7">0</value>
-					<value level="8">13</value>
-					<value level="9">15</value>
-					<value level="10">15</value>
-					<value level="11">15</value>
-					<value level="12">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">-10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">-10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">-10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">-13</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">-13</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">-13</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">-13</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">-15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">-15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">-15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">-15</value>
 				</amount>
 				<slot>DEBUFF</slot>
 				<mode>PER</mode>
@@ -1446,204 +1446,204 @@
 			<effect name="CriticalRate">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">8</value>
-					<value level="4">0</value>
-					<value level="5">13</value>
-					<value level="6">0</value>
-					<value level="7">13</value>
-					<value level="8">13</value>
-					<value level="9">0</value>
-					<value level="10">0</value>
-					<value level="11">0</value>
-					<value level="12">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">8</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">13</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">13</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">13</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">1</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="MagicCriticalRate">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">8</value>
-					<value level="4">0</value>
-					<value level="5">13</value>
-					<value level="6">0</value>
-					<value level="7">13</value>
-					<value level="8">13</value>
-					<value level="9">0</value>
-					<value level="10">0</value>
-					<value level="11">0</value>
-					<value level="12">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">8</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">13</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">13</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">13</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">1</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">10</value>
-					<value level="4">0</value>
-					<value level="5">15</value>
-					<value level="6">0</value>
-					<value level="7">15</value>
-					<value level="8">15</value>
-					<value level="9">15</value>
-					<value level="10">15</value>
-					<value level="11">15</value>
-					<value level="12">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">15</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="PvpMagicalSkillDefenceBonus">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">10</value>
-					<value level="4">0</value>
-					<value level="5">15</value>
-					<value level="6">0</value>
-					<value level="7">15</value>
-					<value level="8">15</value>
-					<value level="9">15</value>
-					<value level="10">15</value>
-					<value level="11">15</value>
-					<value level="12">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">15</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="PvpPhysicalAttackDefenceBonus">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">0</value>
-					<value level="5">15</value>
-					<value level="6">0</value>
-					<value level="7">0</value>
-					<value level="8">0</value>
-					<value level="9">0</value>
-					<value level="10">0</value>
-					<value level="11">0</value>
-					<value level="12">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">1</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="PvpPhysicalSkillDefenceBonus">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">10</value>
-					<value level="4">0</value>
-					<value level="5">15</value>
-					<value level="6">0</value>
-					<value level="7">15</value>
-					<value level="8">15</value>
-					<value level="9">15</value>
-					<value level="10">15</value>
-					<value level="11">15</value>
-					<value level="12">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">10</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">1</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">15</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">15</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="MaxHp">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">325</value>
-					<value level="5">0</value>
-					<value level="6">490</value>
-					<value level="7">490</value>
-					<value level="8">490</value>
-					<value level="9">510</value>
-					<value level="10">531</value>
-					<value level="11">563</value>
-					<value level="12">591</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">325</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">490</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">490</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">490</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">510</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">531</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">563</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">591</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="MaxMp">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">325</value>
-					<value level="5">0</value>
-					<value level="6">490</value>
-					<value level="7">490</value>
-					<value level="8">490</value>
-					<value level="9">510</value>
-					<value level="10">531</value>
-					<value level="11">563</value>
-					<value level="12">591</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">325</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">490</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">490</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">490</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">510</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">531</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">563</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">591</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="MaxCp">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">325</value>
-					<value level="5">0</value>
-					<value level="6">490</value>
-					<value level="7">490</value>
-					<value level="8">490</value>
-					<value level="9">510</value>
-					<value level="10">531</value>
-					<value level="11">563</value>
-					<value level="12">591</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">325</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">490</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">490</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">490</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">510</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">531</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">563</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">591</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="HpRegen">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">5</value>
-					<value level="5">0</value>
-					<value level="6">7</value>
-					<value level="7">7</value>
-					<value level="8">7</value>
-					<value level="9">0</value>
-					<value level="10">0</value>
-					<value level="11">0</value>
-					<value level="12">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">5</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">0</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="MpRegen">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">5</value>
-					<value level="5">0</value>
-					<value level="6">7</value>
-					<value level="7">7</value>
-					<value level="8">7</value>
-					<value level="9">0</value>
-					<value level="10">0</value>
-					<value level="11">0</value>
-					<value level="12">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">5</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">0</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="CpRegen">
 				<amount>
 					<value level="1">0</value>
-					<value level="2">0</value>
-					<value level="3">0</value>
-					<value level="4">5</value>
-					<value level="5">0</value>
-					<value level="6">7</value>
-					<value level="7">7</value>
-					<value level="8">7</value>
-					<value level="9">0</value>
-					<value level="10">0</value>
-					<value level="11">0</value>
-					<value level="12">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="3001" toSubLevel="3001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="4001" toSubLevel="4001">5</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="5001" toSubLevel="5001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="6001" toSubLevel="6001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="7001" toSubLevel="7001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="8001" toSubLevel="8001">7</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9001" toSubLevel="9001">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9002" toSubLevel="9002">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9003" toSubLevel="9003">0</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="9004" toSubLevel="9004">0</value>
 				</amount>
 				<mode>DIFF</mode>
 			</effect>

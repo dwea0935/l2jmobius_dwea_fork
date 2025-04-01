@@ -2064,7 +2064,6 @@
 		<affectLimit>10-10</affectLimit> <!-- Custom -->
 		<affectObject>FRIEND</affectObject>
 		<affectRange>1000</affectRange>
-		<affectRange>1000</affectRange> <!-- Custom -->
 		<affectScope>PARTY</affectScope>
 		<coolTime>300</coolTime>
 		<effectPoint>687</effectPoint>

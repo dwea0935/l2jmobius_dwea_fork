@@ -23,6 +23,7 @@ package org.l2jmobius.gameserver.network.clientpackets.mablegame;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.MableGameData;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.mablegame.ExMableGameDiceResult;
 import org.l2jmobius.gameserver.network.serverpackets.mablegame.ExMableGamePrison;
@@ -70,7 +71,7 @@ public class ExRequestMableGameRollDice extends ClientPacket
 			playerState.setRemainCommonDice(playerState.getRemainCommonDice() - 1);
 		}
 		
-		if (!player.destroyItemByItemId(getClass().getSimpleName(), _diceType == 1 ? MableGameData.ENHANCED_DICE_ITEM_ID : MableGameData.COMMON_DICE_ITEM_ID, 1, player, true))
+		if (!player.destroyItemByItemId(ItemProcessType.FEE, _diceType == 1 ? MableGameData.ENHANCED_DICE_ITEM_ID : MableGameData.COMMON_DICE_ITEM_ID, 1, player, true))
 		{
 			return;
 		}

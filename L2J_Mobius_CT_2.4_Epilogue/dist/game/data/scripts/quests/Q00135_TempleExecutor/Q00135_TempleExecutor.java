@@ -62,7 +62,7 @@ public class Q00135_TempleExecutor extends Quest
 	
 	public Q00135_TempleExecutor()
 	{
-		super(135);
+		super(135, "Temple Executor");
 		addStartNpc(SHEGFIELD);
 		addTalkId(SHEGFIELD, ALEX, SONIN, PANO);
 		addKillId(MOBS.keySet());
@@ -128,13 +128,14 @@ public class Q00135_TempleExecutor extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player member = getRandomPartyMember(player, 3);
 		if (member == null)
 		{
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
+		
 		final QuestState qs = getQuestState(member, false);
 		if (getRandom(1000) < MOBS.get(npc.getId()))
 		{
@@ -156,7 +157,6 @@ public class Q00135_TempleExecutor extends Quest
 				qs.setCond(4, true);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

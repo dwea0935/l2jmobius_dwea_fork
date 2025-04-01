@@ -26,27 +26,27 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q00697_DefendTheHallOfErosion.Q00697_DefendTheHallOfErosion;
@@ -298,7 +298,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 				return false;
 			}
 			
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(2096);
 				sm.addPcName(partyMember);
@@ -375,7 +375,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 	{
 		ThreadPool.schedule(() ->
 		{
-			broadCastPacket(world, new ExShowScreenMessage(NpcStringId.YOU_CAN_HEAR_THE_UNDEAD_OF_EKIMUS_RUSHING_TOWARD_YOU_S1_S2_IT_HAS_NOW_BEGUN, 2, 8000));
+			broadCastPacket(world, new ExShowScreenMessage("You can hear the undead of Ekimus rushing toward you. It has now begun!", 2, 8000));
 			for (int[] spawn1 : ROOMS_MOBS)
 			{
 				for (int i1 = 0; i1 < spawn1[6]; i1++)
@@ -445,7 +445,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 							world.deadTumors.add(npc4);
 						}
 					}
-					broadCastPacket(world, new ExShowScreenMessage(NpcStringId.THE_TUMOR_INSIDE_S1_HAS_COMPLETELY_REVIVED_NEKIMUS_STARTED_TO_REGAIN_HIS_ENERGY_AND_IS_DESPERATELY_LOOKING_FOR_HIS_PREY, 2, 8000));
+					broadCastPacket(world, new ExShowScreenMessage("The tumor inside has completely revived. Ekimus started to regain his energy and is desperately looking for his prey...", 2, 8000));
 				}
 			}, tumorRespawnTime);
 			
@@ -468,7 +468,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 			
 			if (event.startsWith("warpechmus"))
 			{
-				broadCastPacket(world, new ExShowScreenMessage(NpcStringId.S1_S_PARTY_HAS_MOVED_TO_A_DIFFERENT_LOCATION_THROUGH_THE_CRACK_IN_THE_TUMOR, 2, 8000));
+				broadCastPacket(world, new ExShowScreenMessage(player.getParty().getLeader().getName() + "'s party has moved to a different location through the crack in the tumor!", 2, 8000));
 				for (Player partyMember : player.getParty().getMembers())
 				{
 					if (partyMember.isInsideRadius3D(player, 800))
@@ -479,7 +479,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 			}
 			else if (event.startsWith("reenterechmus"))
 			{
-				player.destroyItemByItemId("SOI", 13797, 3, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, 13797, 3, player, true);
 				for (Player partyMember : player.getParty().getMembers())
 				{
 					if (partyMember.isInsideRadius3D(player, 400))
@@ -497,11 +497,11 @@ public class HeartInfinityDefence extends AbstractNpcAI
 					world.deadTumors.add(victim);
 				}
 				
-				player.destroyItemByItemId("SOI", 13797, 1, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, 13797, 1, player, true);
 				final Location loc = world.deadTumors.get(getRandom(world.deadTumors.size())).getLocation();
 				if (loc != null)
 				{
-					broadCastPacket(world, new ExShowScreenMessage(NpcStringId.S1_S_PARTY_HAS_MOVED_TO_A_DIFFERENT_LOCATION_THROUGH_THE_CRACK_IN_THE_TUMOR, 2, 8000));
+					broadCastPacket(world, new ExShowScreenMessage(player.getParty().getLeader().getName() + "'s party has moved to a different location through the crack in the tumor!", 2, 8000));
 					for (Player partyMember : player.getParty().getMembers())
 					{
 						if (partyMember.isInsideRadius3D(player, 500))
@@ -533,7 +533,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HIDWorld)
@@ -549,13 +549,12 @@ public class HeartInfinityDefence extends AbstractNpcAI
 				npc.doDie(npc);
 			}
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		if (CommonUtil.contains(NOTMOVE, npc.getId()))
+		if (ArrayUtil.contains(NOTMOVE, npc.getId()))
 		{
 			npc.setRandomWalking(false);
 			npc.setImmobilized(true);
@@ -565,13 +564,12 @@ public class HeartInfinityDefence extends AbstractNpcAI
 		if ((tmpworld instanceof HIDWorld) && (npc.getId() == SOULWAGON))
 		{
 			// npc.asMonster().setPassive(true);
-			npc.asMonster().getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			npc.asMonster().getAI().setIntention(Intention.IDLE);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HIDWorld)
@@ -585,7 +583,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 				world.deadTumor = addSpawn(DEADTUMOR, loc, world.getInstanceId());
 				world.deadTumors.add(world.deadTumor);
 				wagonRespawnTime += 10000;
-				broadCastPacket(world, new ExShowScreenMessage(NpcStringId.THE_TUMOR_INSIDE_S1_HAS_BEEN_DESTROYED_NTHE_SPEED_THAT_EKIMUS_CALLS_OUT_HIS_PREY_HAS_SLOWED_DOWN, 2, 8000));
+				broadCastPacket(world, new ExShowScreenMessage("The tumor inside has been destroyed! The speed that Ekimus calls out his prey has slowed down!", 2, 8000));
 				
 				ThreadPool.schedule(() ->
 				{
@@ -594,7 +592,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 					alivetumor.setCurrentHp(alivetumor.getMaxHp() * .25);
 					world.npcList.add(alivetumor);
 					wagonRespawnTime -= 10000;
-					broadCastPacket(world, new ExShowScreenMessage(NpcStringId.THE_TUMOR_INSIDE_S1_HAS_COMPLETELY_REVIVED_NEKIMUS_STARTED_TO_REGAIN_HIS_ENERGY_AND_IS_DESPERATELY_LOOKING_FOR_HIS_PREY, 2, 8000));
+					broadCastPacket(world, new ExShowScreenMessage("The tumor inside has completely revived. Ekimus started to regain his energy and is desperately looking for his prey...", 2, 8000));
 				}, tumorRespawnTime);
 			}
 			
@@ -603,7 +601,6 @@ public class HeartInfinityDefence extends AbstractNpcAI
 				tumorRespawnTime += 5 * 1000;
 			}
 		}
-		return "";
 	}
 	
 	protected void notifyWagonArrived(Npc npc, HIDWorld world)
@@ -615,9 +612,8 @@ public class HeartInfinityDefence extends AbstractNpcAI
 		}
 		else
 		{
-			preawakenedEchmus.broadcastPacket(new NpcSay(preawakenedEchmus.getObjectId(), ChatType.SHOUT, preawakenedEchmus.getId(), NpcStringId.BRING_MORE_MORE_SOULS));
-			final ExShowScreenMessage message = new ExShowScreenMessage(NpcStringId.THE_SOUL_COFFIN_HAS_AWAKENED_EKIMUS_IF_S1_MORE_SOUL_COFFIN_S_ARE_CREATED_THE_DEFENSE_OF_THE_HEART_OF_IMMORTALITY_WILL_FAIL, 2, 8000);
-			message.addStringParameter(Integer.toString(maxCoffins - coffinsCreated));
+			preawakenedEchmus.broadcastPacket(new NpcSay(preawakenedEchmus.getObjectId(), ChatType.SHOUT, preawakenedEchmus.getId(), "Bring more, more souls...!"));
+			final ExShowScreenMessage message = new ExShowScreenMessage("The Soul Coffin has awakened Ekimus. If " + Integer.toString(maxCoffins - coffinsCreated) + " more Soul Coffin(s) are created, the defense of the Heart of Immortality will fail...", 2, 8000);
 			broadCastPacket(world, message);
 		}
 	}
@@ -681,7 +677,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 							qs.set("defenceDone", 1);
 						}
 					}
-					broadCastPacket(_world, new ExShowScreenMessage(NpcStringId.CONGRATULATIONS_YOU_HAVE_SUCCEEDED_AT_S1_S2_THE_INSTANCE_WILL_SHORTLY_EXPIRE, 2, 8000));
+					broadCastPacket(_world, new ExShowScreenMessage("Congratulations! You have succeeded! The instance will shortly expire.", 2, 8000));
 					inst.removeNpcs();
 					if (inst.getPlayers().isEmpty())
 					{
@@ -714,7 +710,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 			world.wagonSpawnTask.cancel(false);
 		}
 		
-		broadCastPacket(world, new ExShowScreenMessage(NpcStringId.YOU_HAVE_FAILED_AT_S1_S2_THE_INSTANCE_WILL_SHORTLY_EXPIRE, 2, 8000));
+		broadCastPacket(world, new ExShowScreenMessage("You have failed... The instance will shortly expire.", 2, 8000));
 		
 		conquestEnded = true;
 		final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
@@ -734,7 +730,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isAttackable())
 		{
@@ -750,7 +746,6 @@ public class HeartInfinityDefence extends AbstractNpcAI
 				}
 			}
 		}
-		return null;
 	}
 	
 	protected void broadCastPacket(HIDWorld world, ServerPacket packet)

@@ -28,6 +28,6 @@ public class EnchantItemFilter implements Filter
 	@Override
 	public boolean isLoggable(LogRecord record)
 	{
-		return record.getLoggerName().equalsIgnoreCase("enchant.items");
+		return "enchant.items".equals(record.getLoggerName());
 	}
 }

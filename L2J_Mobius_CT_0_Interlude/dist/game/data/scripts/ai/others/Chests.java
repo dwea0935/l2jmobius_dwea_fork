@@ -18,7 +18,7 @@ package ai.others;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -62,7 +62,7 @@ public class Chests extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (npc instanceof Chest)
 		{
@@ -79,7 +79,7 @@ public class Chests extends AbstractNpcAI
 			}
 			if (!found)
 			{
-				return super.onSkillSee(npc, caster, skill, targets, isSummon);
+				return;
 			}
 			final Chest chest = ((Chest) npc);
 			
@@ -107,7 +107,7 @@ public class Chests extends AbstractNpcAI
 						chest.setMustRewardExpSp(false);
 						chest.setSpecialDrop();
 						chest.reduceCurrentHp(99999999, caster, null);
-						return null;
+						return;
 					}
 					caster.broadcastSocialAction(13);
 				}
@@ -116,15 +116,14 @@ public class Chests extends AbstractNpcAI
 					final Creature originalCaster = isSummon ? caster.getSummon() : caster;
 					chest.setRunning();
 					chest.addDamageHate(originalCaster, 0, 999);
-					chest.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, originalCaster);
+					chest.getAI().setIntention(Intention.ATTACK, originalCaster);
 				}
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc instanceof Chest)
 		{
@@ -144,7 +143,7 @@ public class Chests extends AbstractNpcAI
 					final Creature originalAttacker = isSummon ? attacker.getSummon() : attacker;
 					chest.setRunning();
 					chest.addDamageHate(originalAttacker, 0, (damage * 100) / (chest.getLevel() + 7));
-					chest.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, originalAttacker);
+					chest.getAI().setIntention(Intention.ATTACK, originalAttacker);
 					// Maybe here?
 					if (getRandomBoolean())
 					{
@@ -153,7 +152,6 @@ public class Chests extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	public static void main(String[] args)

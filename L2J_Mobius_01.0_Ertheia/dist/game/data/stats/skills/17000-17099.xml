@@ -212,7 +212,7 @@
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>100</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>
@@ -256,7 +256,6 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>37017</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
-		<magicLevel>1</magicLevel>
 		<magicLevel>1</magicLevel>
 		<conditions>
 			<condition name="OpAlignment">
@@ -532,7 +531,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -585,7 +584,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -648,7 +647,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isMentoring>true</isMentoring>
 		<magicCriticalRate>5</magicCriticalRate>

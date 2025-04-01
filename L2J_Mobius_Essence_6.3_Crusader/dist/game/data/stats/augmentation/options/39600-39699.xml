@@ -563,7 +563,7 @@
 	<option id="39669" name="Collector of High-grade Purge Equipment I">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -571,7 +571,7 @@
 	<option id="39670" name="Collector of High-grade Purge Equipment II">
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -579,7 +579,7 @@
 	<option id="39671" name="Collector of High-grade Purge Equipment III">
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>DIFF</mode>
 			</effect>
 		</effects>
@@ -587,7 +587,7 @@
 	<option id="39672" name="Enhanced Weapons - Cruma Tower">
 		<effects>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -595,7 +595,7 @@
 	<option id="39673" name="Enhanced Weapons - Silent Valley">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -604,7 +604,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -613,7 +613,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -621,7 +621,7 @@
 	<option id="39676" name="Enhanced Weapons - Dragon Valley">
 		<effects>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>

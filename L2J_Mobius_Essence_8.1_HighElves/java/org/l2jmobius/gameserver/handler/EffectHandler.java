@@ -25,7 +25,7 @@ import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.scripting.ScriptEngineManager;
 
 /**
- * @author BiggBoss, UnAfraid
+ * @author BiggBoss
  */
 public class EffectHandler
 {

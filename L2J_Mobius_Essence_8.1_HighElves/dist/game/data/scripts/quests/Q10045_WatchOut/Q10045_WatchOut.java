@@ -47,7 +47,8 @@ public class Q10045_WatchOut extends Quest
 		20020, // Marsh Zombie Researcher
 		20105, // Dark Horror
 		20025, // Lesser Dark Horror
-		20379 // Stone Giant Soldier
+		20379, // Stone Giant Soldier
+		20433, // Festering Bat
 	};
 	
 	public Q10045_WatchOut()
@@ -173,7 +174,7 @@ public class Q10045_WatchOut extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -192,19 +193,17 @@ public class Q10045_WatchOut extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

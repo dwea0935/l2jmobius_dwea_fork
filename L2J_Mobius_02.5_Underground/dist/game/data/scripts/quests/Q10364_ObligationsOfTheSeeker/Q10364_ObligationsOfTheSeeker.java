@@ -114,7 +114,7 @@ public class Q10364_ObligationsOfTheSeeker extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isCond(2))
@@ -125,7 +125,6 @@ public class Q10364_ObligationsOfTheSeeker extends Quest
 				showOnScreenMsg(killer, NpcStringId.USE_THE_YE_SAGIRA_TELEPORT_DEVICE_TO_GO_TO_EXPLORATION_AREA_4, ExShowScreenMessage.TOP_CENTER, 4500);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

@@ -1619,7 +1619,9 @@
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<effects>
-			<effect name="BlockSkill" fromLevel="3" toLevel="3" />
+			<effect name="BlockSkill" fromLevel="3" toLevel="3">
+				<skillIds>31281;31282</skillIds>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="31310" toLevel="1" name="Shining Salvation Time">
@@ -1948,7 +1950,6 @@
 		<targetType>SELF</targetType>
 		<abnormalTime>10</abnormalTime>
 		<affectScope>SINGLE</affectScope>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<conditions>
 			<condition name="OpTargetPc" />

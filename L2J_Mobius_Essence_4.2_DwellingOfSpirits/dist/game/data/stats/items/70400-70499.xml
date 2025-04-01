@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="70400" name="Refined Romantic Chapeau: Yellow" type="Armor">
 		<!-- Refined yellow romantic chapeau. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in private warehouse -->
@@ -899,7 +899,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17817" level="3" /> <!-- Ruby -->
+			<skill id="17817" level="3" /> <!-- Greater Ruby -->
 		</skills>
 	</item>
 	<item id="70454" name="Ruby" additionalName="Lv. 4" type="Armor">
@@ -914,7 +914,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17817" level="4" /> <!-- Ruby -->
+			<skill id="17817" level="4" /> <!-- Greater Ruby -->
 		</skills>
 	</item>
 	<item id="70455" name="Ruby" additionalName="Lv. 5" type="Armor">
@@ -929,7 +929,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17817" level="5" /> <!-- Ruby -->
+			<skill id="17817" level="5" /> <!-- Greater Ruby -->
 		</skills>
 	</item>
 	<item id="70456" name="Sapphire" additionalName="Lv. 1" type="Armor">
@@ -974,7 +974,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17821" level="3" /> <!-- Sapphire -->
+			<skill id="17821" level="3" /> <!-- Greater Sapphire -->
 		</skills>
 	</item>
 	<item id="70459" name="Sapphire" additionalName="Lv. 4" type="Armor">
@@ -989,7 +989,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17821" level="4" /> <!-- Sapphire -->
+			<skill id="17821" level="4" /> <!-- Greater Sapphire -->
 		</skills>
 	</item>
 	<item id="70460" name="Sapphire" additionalName="Lv. 5" type="Armor">
@@ -1004,7 +1004,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17821" level="5" /> <!-- Sapphire -->
+			<skill id="17821" level="5" /> <!-- Greater Sapphire -->
 		</skills>
 	</item>
 	<item id="70461" name="Diamond" additionalName="Lv. 1" type="Armor">
@@ -1169,7 +1169,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17706" level="1" /> <!-- Jewel Vital -->
+			<skill id="17706" level="1" /> <!-- Vital Stone -->
 		</skills>
 	</item>
 	<item id="70472" name="Jewel Vital" additionalName="Lv. 2" type="Armor">
@@ -1184,7 +1184,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17706" level="2" /> <!-- Jewel Vital -->
+			<skill id="17706" level="2" /> <!-- Vital Stone -->
 		</skills>
 	</item>
 	<item id="70473" name="Jewel Vital" additionalName="Lv. 3" type="Armor">
@@ -1199,7 +1199,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17706" level="3" /> <!-- Jewel Vital -->
+			<skill id="17706" level="3" /> <!-- Vital Stone -->
 		</skills>
 	</item>
 	<item id="70474" name="Jewel Vital" additionalName="Lv. 4" type="Armor">
@@ -1214,7 +1214,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17706" level="4" /> <!-- Jewel Vital -->
+			<skill id="17706" level="4" /> <!-- Vital Stone -->
 		</skills>
 	</item>
 	<item id="70475" name="Jewel Vital" additionalName="Lv. 5" type="Armor">
@@ -1229,7 +1229,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17706" level="5" /> <!-- Jewel Vital -->
+			<skill id="17706" level="5" /> <!-- Vital Stone -->
 		</skills>
 	</item>
 	<item id="70476" name="NoItemName" type="EtcItem">

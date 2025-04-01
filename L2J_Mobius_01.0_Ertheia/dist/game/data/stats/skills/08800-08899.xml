@@ -1562,9 +1562,7 @@
 				<amount>54</amount>
 				<mode>DIFF</mode>
 				<weaponType>
-					<weaponType>
-						<item>BLUNT</item>
-					</weaponType>
+					<item>BLUNT</item>
 				</weaponType>
 			</effect>
 		</effects>

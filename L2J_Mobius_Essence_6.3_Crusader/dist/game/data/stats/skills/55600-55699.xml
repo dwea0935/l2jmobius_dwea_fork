@@ -1407,7 +1407,6 @@
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>60000</reuseDelay>
-		<reuseDelay>60000</reuseDelay>
 		<stayAfterDeath>true</stayAfterDeath>
 		<effects>
 			<effect name="ExpModify">

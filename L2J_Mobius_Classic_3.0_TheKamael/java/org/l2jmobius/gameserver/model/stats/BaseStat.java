@@ -115,9 +115,9 @@ public enum BaseStat
 			}
 			
 			@Override
-			public void parseDocument(Document doc, File f)
+			public void parseDocument(Document document, File file)
 			{
-				forEach(doc, "list", listNode -> forEach(listNode, IXmlReader::isNode, statNode ->
+				forEach(document, "list", listNode -> forEach(listNode, IXmlReader::isNode, statNode ->
 				{
 					final BaseStat baseStat;
 					try

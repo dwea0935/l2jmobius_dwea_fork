@@ -16,13 +16,12 @@
  */
 package quests.Q00158_SeedOfEvil;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 /**
@@ -43,7 +42,7 @@ public class Q00158_SeedOfEvil extends Quest
 	
 	public Q00158_SeedOfEvil()
 	{
-		super(158);
+		super(158, "Seed of Evil");
 		addStartNpc(BIOTIN);
 		addTalkId(BIOTIN);
 		addAttackId(NERKAS);
@@ -64,18 +63,17 @@ public class Q00158_SeedOfEvil extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.isScriptValue(0))
 		{
-			npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.HOW_DARE_YOU_CHALLENGE_ME));
+			npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "... How dare you challenge me!"));
 			npc.setScriptValue(1);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && !hasQuestItems(killer, CLAY_TABLET))
@@ -83,8 +81,7 @@ public class Q00158_SeedOfEvil extends Quest
 			giveItems(killer, CLAY_TABLET, 1);
 			qs.setCond(2, true);
 		}
-		npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.THE_POWER_OF_LORD_BELETH_RULES_THE_WHOLE_WORLD));
-		return super.onKill(npc, killer, isSummon);
+		npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "The power of Lord Beleth rules the whole world...!"));
 	}
 	
 	@Override

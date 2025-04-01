@@ -343,11 +343,20 @@
 		<!-- Recovers a large amount of HP. Cooldown: 3 min. -->
 		<set name="icon" val="icon.etc_super_hp_potion_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
+		<set name="etcitem_type" val="ELIXIR" />
+		<set name="immediate_effect" val="true" />
 		<set name="material" val="LIQUID" />
 		<set name="weight" val="5" />
 		<set name="is_sellable" val="false" />
+		<set name="shared_reuse_group" val="1" />
+		<set name="reuse_delay" val="180000" />
 		<set name="is_stackable" val="true" />
-		<set name="handler" val="ItemSkills" />
+		<set name="is_oly_restricted" val="true" />
+		<set name="handler" val="Elixir" />
+		<set name="commissionItemType" val="POTION" />
+		<cond addName="1" msgId="113">
+			<player flyMounted="false" />
+		</cond>
 		<skills>
 			<skill id="9985" level="7" /> <!-- Elixir of Life -->
 		</skills>
@@ -356,11 +365,20 @@
 		<!-- Recovers a large amount of MP. Cooldown: 3 min. -->
 		<set name="icon" val="icon.etc_super_mp_potion_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
+		<set name="etcitem_type" val="ELIXIR" />
+		<set name="immediate_effect" val="true" />
 		<set name="material" val="LIQUID" />
 		<set name="weight" val="5" />
 		<set name="is_sellable" val="false" />
+		<set name="shared_reuse_group" val="1" />
+		<set name="reuse_delay" val="180000" />
 		<set name="is_stackable" val="true" />
-		<set name="handler" val="ItemSkills" />
+		<set name="is_oly_restricted" val="true" />
+		<set name="handler" val="Elixir" />
+		<set name="commissionItemType" val="POTION" />
+		<cond addName="1" msgId="113">
+			<player flyMounted="false" />
+		</cond>
 		<skills>
 			<skill id="9986" level="7" /> <!-- Elixir of Mind -->
 		</skills>

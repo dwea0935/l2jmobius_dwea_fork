@@ -1680,7 +1680,6 @@
 		<affectScope>RANGE</affectScope>
 		<basicProperty>PHYSICAL</basicProperty>
 		<castRange>600</castRange>
-		<castRange>600</castRange>
 		<coolTime>300</coolTime>
 		<effectPoint>
 			<value level="1">-1000</value>

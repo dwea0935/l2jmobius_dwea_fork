@@ -77,7 +77,7 @@ public class CharSummonTable
 			{
 				while (rs.next())
 				{
-					_servitors.computeIfAbsent(rs.getInt("ownerId"), k -> ConcurrentHashMap.newKeySet()).add(rs.getInt("summonId"));
+					_servitors.computeIfAbsent(rs.getInt("ownerId"), _ -> ConcurrentHashMap.newKeySet()).add(rs.getInt("summonId"));
 				}
 			}
 			catch (Exception e)
@@ -106,7 +106,7 @@ public class CharSummonTable
 	
 	public void removeServitor(Player player, int summonObjectId)
 	{
-		_servitors.computeIfPresent(player.getObjectId(), (k, v) ->
+		_servitors.computeIfPresent(player.getObjectId(), (_, v) ->
 		{
 			v.remove(summonObjectId);
 			return !v.isEmpty() ? v : null;
@@ -243,7 +243,7 @@ public class CharSummonTable
 			return;
 		}
 		
-		_servitors.computeIfAbsent(summon.getOwner().getObjectId(), k -> ConcurrentHashMap.newKeySet()).add(summon.getObjectId());
+		_servitors.computeIfAbsent(summon.getOwner().getObjectId(), _ -> ConcurrentHashMap.newKeySet()).add(summon.getObjectId());
 		
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement ps = con.prepareStatement(SAVE_SUMMON))

@@ -19,18 +19,18 @@ package quests.Q10420_TheVarkaSilenosSupporters;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.NpcLogListHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.quest.NpcLogListHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * The Varka Silenos Supporters (10420)
@@ -143,7 +143,7 @@ public class Q10420_TheVarkaSilenosSupporters extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isCond(1))
@@ -171,7 +171,7 @@ public class Q10420_TheVarkaSilenosSupporters extends Quest
 					qs.setCond(2, true);
 				}
 			}
-			else if (CommonUtil.contains(WIZARD_MONSTERS, npc.getId()))
+			else if (ArrayUtil.contains(WIZARD_MONSTERS, npc.getId()))
 			{
 				if (qs.getInt("KillCount_" + EMBRYO_WIZARD) < 100)
 				{
@@ -187,7 +187,6 @@ public class Q10420_TheVarkaSilenosSupporters extends Quest
 				embryo.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.YOU_DARE_INTERFERE_WITH_EMBRYO_SURELY_YOU_WISH_FOR_DEATH);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

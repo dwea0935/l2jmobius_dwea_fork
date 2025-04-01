@@ -62,7 +62,7 @@ public class SkillCoolTime extends ServerPacket
 			buffer.writeInt(sharedReuseGroup > 0 ? sharedReuseGroup : ts.getSkillId());
 			buffer.writeInt(ts.getSkillLevel());
 			buffer.writeInt((int) (reuse > 0 ? reuse : remaining) / 1000);
-			buffer.writeInt((int) remaining / 1000);
+			buffer.writeInt(Math.max(1, (int) remaining / 1000));
 		}
 	}
 }

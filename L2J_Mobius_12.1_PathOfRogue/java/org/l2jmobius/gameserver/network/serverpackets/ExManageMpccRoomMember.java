@@ -17,13 +17,13 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.ExManagePartyRoomMemberType;
-import org.l2jmobius.gameserver.enums.MatchingMemberType;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.matching.CommandChannelMatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.CommandChannelMatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingMemberType;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.enums.ExManagePartyRoomMemberType;
 
 /**
  * @author Gnacik
@@ -48,7 +48,7 @@ public class ExManageMpccRoomMember extends ServerPacket
 		buffer.writeInt(_type.ordinal());
 		buffer.writeInt(_player.getObjectId());
 		buffer.writeString(_player.getName());
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		buffer.writeInt(_player.getLevel());
 		buffer.writeInt(MapRegionManager.getInstance().getBBs(_player.getLocation()));
 		buffer.writeInt(_memberType.ordinal());

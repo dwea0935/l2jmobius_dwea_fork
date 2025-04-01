@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="1900" type="EtcItem" name="Enchanted Necklace Chain">
 		<!-- A key material that Dwarves use to make an Enchanted Necklace. Can be sold in any shop. -->
@@ -140,7 +140,7 @@
 		<set name="price" val="3289" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="1914" type="EtcItem" name="Earring of Seal Gemstone">
+	<item id="1914" type="EtcItem" name="Earring of Binding Gemstone">
 		<!-- A key material that Dwarves use to make an Earring of Binding. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_gem_clear_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -200,7 +200,7 @@
 		<set name="price" val="3482" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="1920" type="EtcItem" name="Necklace of Seal Chain">
+	<item id="1920" type="EtcItem" name="Necklace of Binding Chain">
 		<!-- A key material that Dwarves use to make a Necklace of Binding. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_jewel_box_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -230,7 +230,7 @@
 		<set name="price" val="784" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="1923" type="EtcItem" name="Leather Stockings Pattern">
+	<item id="1923" type="EtcItem" name="Leather Stocking Pattern">
 		<!-- A key material that Dwarves use to make Leather Stockings. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_letter_red_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -310,7 +310,7 @@
 		<set name="price" val="780" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="1931" type="EtcItem" name="Leather Boots Lining">
+	<item id="1931" type="EtcItem" name="Leather Boot Lining">
 		<!-- A key material that Dwarves use to make Leather Boots. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_leather_gray_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -330,7 +330,7 @@
 		<set name="price" val="1260" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="1933" type="EtcItem" name="Dark Stockings Fabric">
+	<item id="1933" type="EtcItem" name="Dark Stocking Fabric">
 		<!-- A key material that Dwarves use to make Dark Stockings. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_piece_of_cloth_white_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -580,7 +580,7 @@
 		<set name="price" val="1792" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="1958" type="EtcItem" name="Reinforced Mithril Boots Design">
+	<item id="1958" type="EtcItem" name="Mithril Boots Design">
 		<!-- A key material for Dwarves to make Mithril Boots. This can be sold at shops. -->
 		<set name="icon" val="icon.etc_pouch_brown_i00" />
 		<set name="etcitem_type" val="MATERIAL" />

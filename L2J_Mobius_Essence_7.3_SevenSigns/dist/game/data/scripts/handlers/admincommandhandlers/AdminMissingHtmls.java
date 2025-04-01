@@ -31,14 +31,13 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.instance.BroadcastingTower;
 import org.l2jmobius.gameserver.model.actor.instance.Fisherman;
 import org.l2jmobius.gameserver.model.actor.instance.FlyTerrainObject;
 import org.l2jmobius.gameserver.model.actor.instance.Guard;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
-import org.l2jmobius.gameserver.model.actor.instance.BroadcastingTower;
 import org.l2jmobius.gameserver.model.actor.instance.Warehouse;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * @author Mobius
@@ -67,7 +66,7 @@ public class AdminMissingHtmls implements IAdminCommandHandler
 				final int topLeftY = (y - World.TILE_ZERO_COORD_Y) * World.TILE_SIZE;
 				final int bottomRightX = (((x - World.TILE_ZERO_COORD_X) * World.TILE_SIZE) + World.TILE_SIZE) - 1;
 				final int bottomRightY = (((y - World.TILE_ZERO_COORD_Y) * World.TILE_SIZE) + World.TILE_SIZE) - 1;
-				BuilderUtil.sendSysMessage(activeChar, "GeoMap: " + x + "_" + y + " (" + topLeftX + "," + topLeftY + " to " + bottomRightX + "," + bottomRightY + ")");
+				activeChar.sendSysMessage("GeoMap: " + x + "_" + y + " (" + topLeftX + "," + topLeftY + " to " + bottomRightX + "," + bottomRightY + ")");
 				final List<Integer> results = new ArrayList<>();
 				for (WorldObject obj : World.getInstance().getVisibleObjects())
 				{
@@ -95,14 +94,14 @@ public class AdminMissingHtmls implements IAdminCommandHandler
 				Collections.sort(results);
 				for (int id : results)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "NPC " + id + " does not have a default html.");
+					activeChar.sendSysMessage("NPC " + id + " does not have a default html.");
 				}
-				BuilderUtil.sendSysMessage(activeChar, "Found " + results.size() + " results.");
+				activeChar.sendSysMessage("Found " + results.size() + " results.");
 				break;
 			}
 			case "admin_world_missing_htmls":
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Missing htmls for the whole world.");
+				activeChar.sendSysMessage("Missing htmls for the whole world.");
 				final List<Integer> results = new ArrayList<>();
 				for (WorldObject obj : World.getInstance().getVisibleObjects())
 				{
@@ -130,9 +129,9 @@ public class AdminMissingHtmls implements IAdminCommandHandler
 				Collections.sort(results);
 				for (int id : results)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "NPC " + id + " does not have a default html.");
+					activeChar.sendSysMessage("NPC " + id + " does not have a default html.");
 				}
-				BuilderUtil.sendSysMessage(activeChar, "Found " + results.size() + " results.");
+				activeChar.sendSysMessage("Found " + results.size() + " results.");
 				break;
 			}
 			case "admin_next_missing_html":
@@ -155,7 +154,7 @@ public class AdminMissingHtmls implements IAdminCommandHandler
 								|| ((obj instanceof Guard) && (HtmCache.getInstance().getHtm(null, "data/html/guard/" + npc.getId() + ".htm") == null)))
 							{
 								activeChar.teleToLocation(npc);
-								BuilderUtil.sendSysMessage(activeChar, "NPC " + npc.getId() + " does not have a default html.");
+								activeChar.sendSysMessage("NPC " + npc.getId() + " does not have a default html.");
 								break;
 							}
 						}

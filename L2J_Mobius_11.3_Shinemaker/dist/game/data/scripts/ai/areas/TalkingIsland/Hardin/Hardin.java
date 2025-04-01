@@ -23,25 +23,25 @@ package ai.areas.TalkingIsland.Hardin;
 import java.util.List;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.ExSubjobInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExUserInfoInvenWeight;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.taskmanager.AutoUseTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AutoUseTaskManager;
 
 import ai.AbstractNpcAI;
 
@@ -77,13 +77,13 @@ public class Hardin extends AbstractNpcAI
 		if (event.equals("list"))
 		{
 			final StringBuilder classes = new StringBuilder();
-			final ClassId playerBaseTemplate = player.getBaseTemplate().getClassId();
-			for (ClassId c : ClassId.values())
+			final PlayerClass playerBaseTemplate = player.getBaseTemplate().getPlayerClass();
+			for (PlayerClass c : PlayerClass.values())
 			{
 				if ((((c.level() != 4) && (c.getRace() != Race.ERTHEIA)) //
 					|| (Config.HARDIN_ENABLE_ERTHEIAS && (c.getRace() == Race.ERTHEIA) && (c.level() != 3))) //
 					|| (!Config.HARDIN_ENABLE_ERTHEIAS && (c.getRace() == Race.ERTHEIA)) //
-					|| (c == player.getClassId()) //
+					|| (c == player.getPlayerClass()) //
 					|| (c == playerBaseTemplate))
 				{
 					continue;
@@ -91,7 +91,7 @@ public class Hardin extends AbstractNpcAI
 				
 				if (!player.isDualClassActive() || (player.isDualClassActive() && Config.HARDIN_ENABLE_DUALCLASS_CHECKS))
 				{
-					if (!Config.HARDIN_ENABLE_ALL_RACES && (c.getRace() != player.getClassId().getRace()))
+					if (!Config.HARDIN_ENABLE_ALL_RACES && (c.getRace() != player.getPlayerClass().getRace()))
 					{
 						continue;
 					}
@@ -102,7 +102,7 @@ public class Hardin extends AbstractNpcAI
 					if (Config.HARDIN_SAME_AWAKEN_GROUP)
 					{
 						final String original = c.toString().contains("_") ? c.toString().substring(0, c.toString().indexOf('_') - 1) : c.toString();
-						final String search = player.getClassId().toString().contains("_") ? player.getClassId().toString().substring(0, player.getClassId().toString().indexOf('_') - 1) : player.getClassId().toString();
+						final String search = player.getPlayerClass().toString().contains("_") ? player.getPlayerClass().toString().substring(0, player.getPlayerClass().toString().indexOf('_') - 1) : player.getPlayerClass().toString();
 						if (!original.equals(search))
 						{
 							continue;
@@ -110,11 +110,11 @@ public class Hardin extends AbstractNpcAI
 					}
 					if (Config.HARDIN_RETAIL_LIMITATIONS)
 					{
-						if ((c == ClassId.TYRR_MAESTRO) && (player.getRace() != Race.DWARF))
+						if ((c == PlayerClass.TYRR_MAESTRO) && (player.getRace() != Race.DWARF))
 						{
 							continue;
 						}
-						if ((c == ClassId.ISS_DOMINATOR) && (player.getRace() != Race.ORC))
+						if ((c == PlayerClass.ISS_DOMINATOR) && (player.getRace() != Race.ORC))
 						{
 							continue;
 						}
@@ -141,19 +141,19 @@ public class Hardin extends AbstractNpcAI
 			// Save original ClassId
 			if (!player.isDualClassActive() && (player.getOriginalClass() == null))
 			{
-				player.setOriginalClass(player.getClassId());
+				player.setOriginalClass(player.getPlayerClass());
 			}
 			
 			// Ertheias can only be female
-			final ClassId newClass = ClassId.getClassId(Integer.parseInt(event.replace("try_", "")));
+			final PlayerClass newClass = PlayerClass.getPlayerClass(Integer.parseInt(event.replace("try_", "")));
 			final PlayerAppearance appearance = player.getAppearance();
-			if ((newClass.getRace() == Race.ERTHEIA) && (player.getClassId().getRace() != Race.ERTHEIA) && !appearance.isFemale())
+			if ((newClass.getRace() == Race.ERTHEIA) && (player.getPlayerClass().getRace() != Race.ERTHEIA) && !appearance.isFemale())
 			{
 				appearance.setFemale();
 			}
 			
 			// Stop auto use.
-			for (Shortcut shortcut : player.getAllShortCuts())
+			for (Shortcut shortcut : player.getAllShortcuts())
 			{
 				if (!shortcut.isAutoUse())
 				{
@@ -195,10 +195,10 @@ public class Hardin extends AbstractNpcAI
 			}
 			
 			// Change class
-			player.setClassId(newClass.getId());
+			player.setPlayerClass(newClass.getId());
 			if (player.isDualClassActive())
 			{
-				player.getSubClasses().get(player.getClassIndex()).setClassId(player.getActiveClass());
+				player.getSubClasses().get(player.getClassIndex()).setPlayerClass(player.getActiveClass());
 			}
 			else
 			{

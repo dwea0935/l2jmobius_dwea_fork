@@ -18,11 +18,11 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.VariationData;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPutItemResultForVariationCancel;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Format(ch) d
@@ -54,7 +54,7 @@ public class RequestConfirmCancelItem extends ClientPacket
 		
 		if (item.getOwnerId() != player.getObjectId())
 		{
-			Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tryied to destroy augment on item that doesn't own.", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tryied to destroy augment on item that doesn't own.", Config.DEFAULT_PUNISH);
 			return;
 		}
 		

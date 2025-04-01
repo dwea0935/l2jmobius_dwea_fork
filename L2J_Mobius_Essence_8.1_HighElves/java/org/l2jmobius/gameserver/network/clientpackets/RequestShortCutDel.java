@@ -20,15 +20,15 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.ShortCuts;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.taskmanager.AutoUseTaskManager;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcuts;
+import org.l2jmobius.gameserver.taskmanagers.AutoUseTaskManager;
 
 /**
  * @author Mobius
  */
-public class RequestShortCutDel extends ClientPacket
+public class RequestShortcutDel extends ClientPacket
 {
 	private int _slot;
 	private int _page;
@@ -37,8 +37,8 @@ public class RequestShortCutDel extends ClientPacket
 	protected void readImpl()
 	{
 		final int position = readInt();
-		_slot = position % ShortCuts.MAX_SHORTCUTS_PER_BAR;
-		_page = position / ShortCuts.MAX_SHORTCUTS_PER_BAR;
+		_slot = position % Shortcuts.MAX_SHORTCUTS_PER_BAR;
+		_page = position / Shortcuts.MAX_SHORTCUTS_PER_BAR;
 	}
 	
 	@Override
@@ -56,8 +56,8 @@ public class RequestShortCutDel extends ClientPacket
 		}
 		
 		// Delete the shortcut.
-		final Shortcut oldShortcut = player.getShortCut(_slot, _page);
-		player.deleteShortCut(_slot, _page);
+		final Shortcut oldShortcut = player.getShortcut(_slot, _page);
+		player.deleteShortcut(_slot, _page);
 		
 		if (oldShortcut != null)
 		{
@@ -67,7 +67,7 @@ public class RequestShortCutDel extends ClientPacket
 			if (oldShortcut.isAutoUse())
 			{
 				player.removeAutoShortcut(_slot, _page);
-				for (Shortcut shortcut : player.getAllShortCuts())
+				for (Shortcut shortcut : player.getAllShortcuts())
 				{
 					if ((oldShortcut.getId() == shortcut.getId()) && (oldShortcut.getType() == shortcut.getType()))
 					{

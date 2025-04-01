@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="49700" name="Scroll Box: Emperor Baium's Enchant" type="EtcItem">
 		<!-- Double-click to get one of the following items: Blessed Scroll: Enchant Weapon/ Improved Scroll: Enchant Weapon (D-, C-, or B-grade). -->
@@ -80,7 +80,7 @@
 		<set name="time" val="60" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="3272" level="3" /> <!-- Blue Talisman - P. Atk. -->
+			<skill id="3272" level="3" /> <!-- Talisman of Darkness - P. Atk. -->
 		</skills>
 	</item>
 	<item id="49708" name="Talisman of Darkness - M. Atk." additionalName="1 hour" type="Armor">
@@ -96,7 +96,7 @@
 		<set name="time" val="60" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="3276" level="3" /> <!-- Blue Talisman - M. Atk. -->
+			<skill id="3276" level="3" /> <!-- Talisman of Darkness - M. Atk. -->
 		</skills>
 	</item>
 	<item id="49709" name="Talisman of Darkness - P. Def." additionalName="1 hour" type="Armor">
@@ -112,7 +112,7 @@
 		<set name="time" val="60" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="3273" level="3" /> <!-- Blue Talisman - P. Def. -->
+			<skill id="3273" level="3" /> <!-- Talisman of Darkness - M. Def. -->
 		</skills>
 	</item>
 	<item id="49710" name="Talisman of Darkness - M. Def." additionalName="1 hour" type="Armor">
@@ -128,7 +128,7 @@
 		<set name="time" val="60" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="3277" level="3" /> <!-- Blue Talisman - M. Def. -->
+			<skill id="3277" level="3" /> <!-- Talisman of Darkness - P. Def. -->
 		</skills>
 	</item>
 	<item id="49711" name="Talisman of Darkness - P. Skills Evasion" additionalName="1 hour" type="Armor">
@@ -144,7 +144,7 @@
 		<set name="time" val="60" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="3274" level="3" /> <!-- Blue Talisman - Physical Skill Evasion Rate -->
+			<skill id="3274" level="3" /> <!-- Talisman of Darkness - Physical Skill Evasion Rate -->
 		</skills>
 	</item>
 	<item id="49712" name="Talisman of Darkness - M. Skills Evasion" additionalName="1 hour" type="Armor">
@@ -160,7 +160,7 @@
 		<set name="time" val="60" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="3278" level="3" /> <!-- Blue Talisman - Magic Skill Evasion Rate -->
+			<skill id="3278" level="3" /> <!-- Talisman of Darkness - Magic Skill Evasion Rate -->
 		</skills>
 	</item>
 	<item id="49713" name="Talisman of Darkness - HP" additionalName="1 hour" type="Armor">
@@ -176,7 +176,7 @@
 		<set name="time" val="60" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="3279" level="3" /> <!-- Blue Talisman - Max. HP -->
+			<skill id="3279" level="3" /> <!-- Talisman of Darkness - Max HP -->
 		</skills>
 	</item>
 	<item id="49714" name="Talisman of Darkness - MP" additionalName="1 hour" type="Armor">
@@ -192,7 +192,7 @@
 		<set name="time" val="60" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="3280" level="3" /> <!-- Blue Talisman - Max. MP -->
+			<skill id="3280" level="3" /> <!-- Talisman of Darkness - Max MP -->
 		</skills>
 	</item>
 	<item id="49715" name="Talisman of Darkness - Healing Power" additionalName="1 hour" type="Armor">
@@ -388,7 +388,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="1" /> <!-- Talisman of Border -->
+			<skill id="35024" level="1" /> <!-- Talisman of Border Stage 1 -->
 		</skills>
 	</item>
 	<item id="49728" name="Talisman of Border - Lv. 2" type="Armor">
@@ -402,7 +402,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="2" /> <!-- Talisman of Border -->
+			<skill id="35024" level="2" /> <!-- Talisman of Border Stage 2 -->
 		</skills>
 	</item>
 	<item id="49729" name="Talisman of Border - Lv. 3" type="Armor">
@@ -416,7 +416,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="3" /> <!-- Talisman of Border -->
+			<skill id="35024" level="3" /> <!-- Talisman of Border Stage 3 -->
 		</skills>
 	</item>
 	<item id="49730" name="Talisman of Border - Lv. 4" type="Armor">
@@ -430,7 +430,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="4" /> <!-- Talisman of Border -->
+			<skill id="35024" level="4" /> <!-- Talisman of Border Stage 4 -->
 		</skills>
 	</item>
 	<item id="49731" name="Talisman of Border - Lv. 5" type="Armor">
@@ -444,7 +444,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="5" /> <!-- Talisman of Border -->
+			<skill id="35024" level="5" /> <!-- Talisman of Border Stage 5 -->
 		</skills>
 	</item>
 	<item id="49732" name="Talisman of Border - Lv. 6" type="Armor">
@@ -458,7 +458,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="6" /> <!-- Talisman of Border -->
+			<skill id="35024" level="6" /> <!-- Talisman of Border Stage 6 -->
 			<skill id="35025" level="1" /> <!-- Border Purification -->
 		</skills>
 	</item>
@@ -474,7 +474,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="7" /> <!-- Talisman of Border -->
+			<skill id="35024" level="7" /> <!-- Talisman of Border Stage 7 -->
 			<skill id="35025" level="1" /> <!-- Border Purification -->
 		</skills>
 	</item>
@@ -490,7 +490,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="8" /> <!-- Talisman of Border -->
+			<skill id="35024" level="8" /> <!-- Talisman of Border Stage 8 -->
 			<skill id="35025" level="1" /> <!-- Border Purification -->
 		</skills>
 	</item>
@@ -506,7 +506,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="9" /> <!-- Talisman of Border -->
+			<skill id="35024" level="9" /> <!-- Talisman of Border Stage 9 -->
 			<skill id="35025" level="1" /> <!-- Border Purification -->
 		</skills>
 	</item>
@@ -522,7 +522,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="10" /> <!-- Talisman of Border -->
+			<skill id="35024" level="10" /> <!-- Talisman of Border Stage 10 -->
 			<skill id="35025" level="1" /> <!-- Border Purification -->
 		</skills>
 	</item>
@@ -538,7 +538,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="bodypart" val="talisman" />
 		<skills>
-			<skill id="35024" level="11" /> <!-- Talisman of Border -->
+			<skill id="35024" level="11" /> <!-- Blessed Talisman of Border -->
 			<skill id="35025" level="1" /> <!-- Border Purification -->
 		</skills>
 	</item>
@@ -647,7 +647,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="BlessedSoulShots" />
 		<skills>
-			<skill id="8910" level="1" /> <!-- Player Commendation - Blessed Soulshot (No-grade) -->
+			<skill id="8910" level="1" /> <!-- Mysterious Blessed Soulshot (No-grade) -->
 		</skills>
 	</item>
 	<item id="49745" name="Mysterious Blessed Soulshot (D-grade)" type="EtcItem">
@@ -665,7 +665,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="BlessedSoulShots" />
 		<skills>
-			<skill id="8911" level="1" /> <!-- Player Commendation - Blessed Soulshot (D-grade) -->
+			<skill id="8911" level="1" /> <!-- Mysterious Blessed Soulshot (D-grade) -->
 		</skills>
 	</item>
 	<item id="49746" name="Mysterious Blessed Soulshot (C-grade)" type="EtcItem">
@@ -683,7 +683,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="BlessedSoulShots" />
 		<skills>
-			<skill id="8912" level="1" /> <!-- Player Commendation - Blessed Soulshot (C-grade) -->
+			<skill id="8912" level="1" /> <!-- Mysterious Blessed Soulshot (C-grade) -->
 		</skills>
 	</item>
 	<item id="49747" name="Mysterious Blessed Soulshot (B-grade)" type="EtcItem">
@@ -701,7 +701,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="BlessedSoulShots" />
 		<skills>
-			<skill id="8913" level="1" /> <!-- Player Commendation - Blessed Soulshot (B-grade) -->
+			<skill id="8913" level="1" /> <!-- Mysterious Blessed Soulshot (B-grade) -->
 		</skills>
 	</item>
 	<item id="49748" name="Mysterious Blessed Soulshot (A-grade)" type="EtcItem">
@@ -719,7 +719,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="BlessedSoulShots" />
 		<skills>
-			<skill id="8907" level="1" /> <!-- Player Commendation - Blessed Soulshot (A-grade) -->
+			<skill id="8907" level="1" /> <!-- Mysterious Blessed Spiritshot (A-grade) -->
 		</skills>
 	</item>
 	<item id="49749" name="Mysterious Spiritshot (B-grade)" type="EtcItem">
@@ -735,7 +735,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="SpiritShot" />
 		<skills>
-			<skill id="8908" level="1" /> <!-- Player Commendation - Spiritshot (B-grade) -->
+			<skill id="8908" level="1" /> <!-- Mysterious Spiritshot (B-grade) -->
 		</skills>
 	</item>
 	<item id="49750" name="Mysterious Spiritshot (A-grade)" type="EtcItem">
@@ -751,7 +751,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="SpiritShot" />
 		<skills>
-			<skill id="8909" level="1" /> <!-- Player Commendation - Spiritshot (A-grade) -->
+			<skill id="8909" level="1" /> <!-- Mysterious Spiritshot (A-grade) -->
 		</skills>
 	</item>
 	<item id="49751" name="Recipe: Blessed Soulshot (D)" type="EtcItem">
@@ -857,7 +857,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39173" level="1" /> <!-- Armor Supply Box (A-grade) -->
+			<skill id="39173" level="1" /> <!-- A-grade Armor Supply Box -->
 		</skills>
 	</item>
 	<item id="49761" name="Ornament Supply Box (A-grade)" type="EtcItem">
@@ -881,7 +881,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39153" level="1" /> <!-- A-grade Armor Ingredient Pack -->
+			<skill id="39153" level="1" /> <!-- Armor Ingredient Box - A-grade -->
 		</skills>
 	</item>
 	<item id="49763" name="Ornament Ingredient Box - A-grade" type="EtcItem">
@@ -985,7 +985,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39164" level="1" /> <!-- Scroll of Mood Melody -->
+			<skill id="39164" level="1" /> <!-- Mood Melody -->
 		</skills>
 	</item>
 	<item id="49773" name="Fighter Pirate Fruit - Attack" type="EtcItem">
@@ -1001,7 +1001,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="reuse_delay" val="60000" />
 		<skills>
-			<skill id="39162" level="1" /> <!-- Special Pirate Fruit -->
+			<skill id="39162" level="1" /> <!-- Special Fruit Buff - Attack -->
 		</skills>
 	</item>
 	<item id="49774" name="Fighter Pirate Fruit - Defense" type="EtcItem">
@@ -1017,7 +1017,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="reuse_delay" val="60000" />
 		<skills>
-			<skill id="39163" level="1" /> <!-- Special Pirate Fruit -->
+			<skill id="39163" level="1" /> <!-- Special Fruit Buff - Defense -->
 		</skills>
 	</item>
 	<item id="49775" name="Red Spinel" additionalName="Event" type="EtcItem">
@@ -1045,7 +1045,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39180" level="1" /> <!-- XP Scroll: 1,000 -->
+			<skill id="39180" level="1" /> <!-- Low-grade Scroll: XP -->
 		</skills>
 	</item>
 	<item id="49778" name="Mid-grade XP Scroll" type="EtcItem">
@@ -1059,7 +1059,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39181" level="1" /> <!-- XP Scroll: 10,000 -->
+			<skill id="39181" level="1" /> <!-- Mid-grade Scroll: XP -->
 		</skills>
 	</item>
 	<item id="49779" name="High-grade XP Scroll" type="EtcItem">
@@ -1073,7 +1073,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39182" level="1" /> <!-- XP Scroll: 100,000 -->
+			<skill id="39182" level="1" /> <!-- High-grade Scroll: XP -->
 		</skills>
 	</item>
 	<item id="49780" name="Top-grade XP Scroll" type="EtcItem">
@@ -1087,7 +1087,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39183" level="1" /> <!-- XP Scroll: 500,000 -->
+			<skill id="39183" level="1" /> <!-- Top-grade Scroll: XP -->
 		</skills>
 	</item>
 	<item id="49781" name="Super XP Scroll" type="EtcItem">
@@ -1101,7 +1101,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39184" level="1" /> <!-- XP Scroll: 10,000,000 -->
+			<skill id="39184" level="1" /> <!-- Highest-grade Scroll: XP -->
 		</skills>
 	</item>
 	<item id="49782" name="Balthus Knights Supply Items" type="EtcItem">
@@ -1160,7 +1160,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39173" level="1" /> <!-- Armor Supply Box (A-grade) -->
+			<skill id="39173" level="1" /> <!-- A-grade Armor Supply Box -->
 		</skills>
 	</item>
 	<item id="49787" name="Solid Scroll: Enchant (A-grade) Box" type="EtcItem">

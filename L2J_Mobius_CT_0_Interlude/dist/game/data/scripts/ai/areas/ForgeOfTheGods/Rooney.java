@@ -16,12 +16,11 @@
  */
 package ai.areas.ForgeOfTheGods;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -93,22 +92,22 @@ public class Rooney extends AbstractNpcAI
 			{
 				case 1:
 				{
-					npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.HURRY_HURRY);
+					npc.broadcastSay(ChatType.NPC_GENERAL, "Hurry hurry");
 					break;
 				}
 				case 2:
 				{
-					npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.I_AM_NOT_THAT_TYPE_OF_PERSON_WHO_STAYS_IN_ONE_PLACE_FOR_A_LONG_TIME);
+					npc.broadcastSay(ChatType.NPC_GENERAL, "I am not that type of person who stays in one place for a long time");
 					break;
 				}
 				case 3:
 				{
-					npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.IT_S_HARD_FOR_ME_TO_KEEP_STANDING_LIKE_THIS);
+					npc.broadcastSay(ChatType.NPC_GENERAL, "It's hard for me to keep standing like this");
 					break;
 				}
 				case 4:
 				{
-					npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.WHY_DON_T_I_GO_THAT_WAY_THIS_TIME);
+					npc.broadcastSay(ChatType.NPC_GENERAL, "Why don't I go that way this time");
 					break;
 				}
 				default:
@@ -125,15 +124,14 @@ public class Rooney extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer() && npc.isScriptValue(0))
 		{
-			npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.WELCOME);
+			npc.broadcastSay(ChatType.NPC_GENERAL, "Welcome!");
 			startQuestTimer("teleport", 60000, npc, null);
 			npc.setScriptValue(1);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public static void main(String[] args)

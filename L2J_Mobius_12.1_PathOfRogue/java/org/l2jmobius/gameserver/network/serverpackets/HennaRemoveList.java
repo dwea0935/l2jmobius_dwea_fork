@@ -54,7 +54,7 @@ public class HennaRemoveList extends ServerPacket
 				buffer.writeInt(henna.getDyeItemId());
 				buffer.writeLong(henna.getCancelCount());
 				buffer.writeLong(henna.getCancelFee());
-				buffer.writeInt(henna.isAllowedClass(_player.getClassId()) ? 1 : 0);
+				buffer.writeInt(henna.isAllowedClass(_player.getPlayerClass()) ? 1 : 0);
 				buffer.writeInt(henna.getDuration() * 60000);
 			}
 		}

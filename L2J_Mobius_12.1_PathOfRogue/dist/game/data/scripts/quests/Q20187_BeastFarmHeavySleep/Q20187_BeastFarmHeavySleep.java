@@ -21,7 +21,7 @@
 package quests.Q20187_BeastFarmHeavySleep;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.TeleportListData;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -69,6 +69,7 @@ public class Q20187_BeastFarmHeavySleep extends Quest
 		super(QUEST_ID);
 		addKillId(MONSTERS);
 		addSkillSeeId(BEAST_RAVAGER);
+		registerQuestItems(SLEEP_CANNON, SLEEP_CANNON_BALL);
 		setType(2);
 	}
 	
@@ -164,18 +165,17 @@ public class Q20187_BeastFarmHeavySleep extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (!hasQuestItems(killer, SLEEP_CANNON_BALL) || (hasQuestItems(killer, SLEEP_CANNON_BALL) && (killer.getInventory().getItemByItemId(SLEEP_CANNON_BALL).getCount() < 8)))
 		{
 			npc.broadcastPacket(new ExShowScreenMessage(NpcStringId.YOU_HAVE_OBTAINED_A_SLEEP_CANNONBALL, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, killer.getName()));
 			giveItems(killer, SLEEP_CANNON_BALL, 1);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		if (npc.getId() == BEAST_RAVAGER)
 		{
@@ -192,12 +192,12 @@ public class Q20187_BeastFarmHeavySleep extends Quest
 					{
 						final NewQuest data = getQuestData();
 						final int currentCount = questState.getCount();
-						if (currentCount != data.getGoal().getCount())
+						if (currentCount < data.getGoal().getCount())
 						{
 							questState.setCount(currentCount + 1);
 						}
 						
-						if (questState.getCount() == data.getGoal().getCount())
+						if (questState.getCount() >= data.getGoal().getCount())
 						{
 							questState.setCond(QuestCondType.DONE);
 							caster.sendPacket(new ExQuestNotification(questState));
@@ -205,7 +205,7 @@ public class Q20187_BeastFarmHeavySleep extends Quest
 					}
 					npc.setDisplayEffect(2); // Sleep display effect
 					npc.setImmobilized(true);
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_REST);
+					npc.getAI().setIntention(Intention.REST);
 					
 					ThreadPool.schedule(() ->
 					{
@@ -219,6 +219,5 @@ public class Q20187_BeastFarmHeavySleep extends Quest
 				}
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 }

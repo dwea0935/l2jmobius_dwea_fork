@@ -24,32 +24,32 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.quest.QuestTimer;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
 /**
  * Lilith AI
- * @author LasTravel
+ * @author LasTravel, NviX
  * @URL http://boards.lineage2.com/showpost.php?p=3386784&postcount=6<br>
  * @video https://www.youtube.com/watch?v=H3MuIwUjjD4
  */
@@ -261,7 +261,7 @@ public class Lilith extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		_lastAction = System.currentTimeMillis();
 		if (npc.isMinion() || npc.isRaid()) // Lilith and minions
@@ -280,12 +280,10 @@ public class Lilith extends AbstractNpcAI
 				}
 			}
 		}
-		
-		return super.onAttack(npc, attacker, damage, isPet);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		if (npc.getId() == LILITH)
 		{
@@ -301,13 +299,12 @@ public class Lilith extends AbstractNpcAI
 			startQuestTimer("unlock_lilith", respawnTime, null, null);
 			startQuestTimer("end_lilith", 900000, null, null);
 		}
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isPet)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isPet)
 	{
-		if (CommonUtil.contains(LILITH_MINIONS, npc.getId()) && getRandomBoolean())
+		if (ArrayUtil.contains(LILITH_MINIONS, npc.getId()) && getRandomBoolean())
 		{
 			if (skill.getAbnormalType() == AbnormalType.HP_RECOVER)
 			{
@@ -316,11 +313,10 @@ public class Lilith extends AbstractNpcAI
 					npc.asAttackable().clearAggroList();
 					npc.setTarget(caster);
 					npc.asAttackable().addDamageHate(caster, 500, 99999);
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, caster);
+					npc.getAI().setIntention(Intention.ATTACK, caster);
 				}
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isPet);
 	}
 	
 	private int getRespawnTime()

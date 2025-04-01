@@ -19,15 +19,14 @@ package instances.CavernOfThePirateCaptain;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -324,7 +323,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 						{
 							final int room = getRoomByCandle(npc);
 							npc.setRHandId(RED);
-							manageScreenMsg(world, NpcStringId.THE_CANDLES_CAN_LEAD_YOU_TO_ZAKEN_DESTROY_HIM);
+							manageScreenMsg(world, "The candles can lead you to Zaken. Destroy him");
 							spawnNpc(DOLL_BLADER_60, room, player, world);
 							spawnNpc(VALE_MASTER_60, room, player, world);
 							spawnNpc(PIRATES_ZOMBIE_60, room, player, world);
@@ -336,7 +335,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 					{
 						if (world.getParameters().getBoolean("is83", false))
 						{
-							manageScreenMsg(world, NpcStringId.WHO_DARES_AWAKEN_THE_MIGHTY_ZAKEN);
+							manageScreenMsg(world, "Who dares awaken the mighty Zaken?");
 						}
 						world.getParameters().getObject("zaken", Npc.class).setInvisible(false);
 						world.getParameters().getObject("zaken", Npc.class).setParalyzed(false);
@@ -352,14 +351,13 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if (world != null)
 		{
 			finishInstance(world);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -414,13 +412,13 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 		return 0;
 	}
 	
-	private void manageScreenMsg(InstanceWorld world, NpcStringId stringId)
+	private void manageScreenMsg(InstanceWorld world, String text)
 	{
 		for (Player players : world.getParameters().getList("playersInside", Player.class))
 		{
 			if ((players != null) && (players.getInstanceId() == world.getInstanceId()))
 			{
-				showOnScreenMsg(players, stringId, 2, 6000);
+				showOnScreenMsg(players, text, 2, 6000);
 			}
 		}
 	}

@@ -332,12 +332,12 @@
 		<point X="-82091" Y="245028" Z="-3720" delay="0" run="false" />
 		<point X="-82381" Y="244911" Z="-3720" delay="0" run="false" />
 		<point X="-82935" Y="244481" Z="-3728" delay="0" run="false" />
-		<point npcStringId="1010205" X="-83980" Y="242776" Z="-3728" delay="10" run="false" />
+		<point string="Where has he gone?" X="-83980" Y="242776" Z="-3728" delay="10" run="false" />
 		<point X="-85966" Y="241371" Z="-3728" delay="0" run="false" />
-		<point npcStringId="1010206" X="-86079" Y="240868" Z="-3720" delay="5" run="false" />
+		<point string="Have you seen Windawood?" X="-86079" Y="240868" Z="-3720" delay="5" run="false" />
 		<point X="-86076" Y="240392" Z="-3712" delay="0" run="false" />
 		<point X="-86519" Y="240706" Z="-3704" delay="0" run="false" />
-		<point npcStringId="1010207" X="-86343" Y="241130" Z="-3728" delay="60" run="false" />
+		<point string="Where did he go?" X="-86343" Y="241130" Z="-3728" delay="60" run="false" />
 	</route>
 	<!-- Remy -->
 	<route name="porter_remy" repeat="true" repeatStyle="cycle">
@@ -345,20 +345,20 @@
 		<point X="-81926" Y="243894" Z="-3712" delay="3" run="true" />
 		<point X="-82134" Y="243600" Z="-3728" delay="0" run="true" />
 		<point X="-83182" Y="243723" Z="-3728" delay="0" run="true" />
-		<point npcStringId="1010202" X="-84486" Y="243236" Z="-3728" delay="5" run="true" />
+		<point string="I need a break!" X="-84486" Y="243236" Z="-3728" delay="5" run="true" />
 		<point X="-85205" Y="243187" Z="-3728" delay="0" run="true" />
 		<point X="-86152" Y="242898" Z="-3728" delay="0" run="true" />
 		<point X="-86288" Y="242962" Z="-3720" delay="0" run="true" />
-		<point npcStringId="1010203" X="-86352" Y="243207" Z="-3720" delay="5" run="true" />
+		<point string="Hello, Mr. Lector! Long time no see, Mr. Jackson!" X="-86352" Y="243207" Z="-3720" delay="5" run="true" />
 		<point X="-86501" Y="242762" Z="-3720" delay="0" run="true" />
 		<point X="-86500" Y="242615" Z="-3728" delay="0" run="true" />
 		<point X="-86123" Y="241606" Z="-3728" delay="0" run="true" />
 		<point X="-85207" Y="240698" Z="-3728" delay="0" run="true" />
-		<point npcStringId="1010204" X="-84066" Y="241285" Z="-3728" delay="5" run="true" />
+		<point string="Lulu!" X="-84066" Y="241285" Z="-3728" delay="5" run="true" />
 		<point X="-83215" Y="241170" Z="-3728" delay="0" run="true" />
 		<point X="-82364" Y="242944" Z="-3720" delay="0" run="true" />
 		<point X="-82392" Y="242982" Z="-3729" delay="0" run="true" /> <!-- extra point -->
-		<point npcStringId="1010201" X="-81674" Y="243391" Z="-3712" delay="60" run="true" />
+		<point string="A delivery for Mr. Lector? Very good!" X="-81674" Y="243391" Z="-3712" delay="60" run="true" />
 		<point X="-81926" Y="243894" Z="-3712" delay="0" run="true" />
 	</route>
 	<!-- Yakand -->
@@ -393,7 +393,7 @@
 		<point X="23436" Y="11164" Z="-3720" delay="0" run="true" />
 		<point X="20256" Y="11104" Z="-3720" delay="0" run="true" />
 		<point X="17330" Y="13579" Z="-3728" delay="0" run="true" />
-		<point npcStringId="1010214" X="17415" Y="13044" Z="-3736" delay="10" run="true" />
+		<point string="The mass of darkness will start in a couple of days. Pay more attention to the guard!" X="17415" Y="13044" Z="-3736" delay="10" run="true" />
 		<point X="20153" Y="12880" Z="-3712" delay="0" run="true" />
 		<point X="21621" Y="13349" Z="-3624" delay="0" run="true" />
 		<point X="20686" Y="10432" Z="-3712" delay="0" run="true" />
@@ -406,13 +406,13 @@
 		<point X="10968" Y="14620" Z="-4240" delay="0" run="false" />
 		<point X="11308" Y="15847" Z="-4584" delay="0" run="false" />
 		<point X="12119" Y="16441" Z="-4584" delay="0" run="false" />
-		<point npcStringId="1010212" X="15104" Y="15661" Z="-4376" delay="5" run="false" />
+		<point string="You're a hard worker, Rayla!" X="15104" Y="15661" Z="-4376" delay="5" run="false" />
 		<point X="15265" Y="16288" Z="-4376" delay="0" run="false" />
 		<point X="12292" Y="16934" Z="-4584" delay="0" run="false" />
 		<point X="11777" Y="17669" Z="-4584" delay="0" run="false" />
 		<point X="11229" Y="17650" Z="-4568" delay="0" run="false" />
 		<point X="10641" Y="17282" Z="-4584" delay="0" run="false" />
-		<point npcStringId="1010213" X="7683" Y="18034" Z="-4376" delay="5" run="false" />
+		<point string="You're a hard worker!" X="7683" Y="18034" Z="-4376" delay="5" run="false" />
 		<point X="10551" Y="16775" Z="-4584" delay="0" run="false" />
 		<point X="10873" Y="16221" Z="-4575" delay="0" run="false" /> <!-- extra point -->
 		<point X="11004" Y="15942" Z="-4584" delay="0" run="false" />
@@ -427,11 +427,11 @@
 		<point X="43041" Y="49312" Z="-2992" delay="0" run="false" />
 		<point X="43612" Y="48322" Z="-2992" delay="0" run="false" />
 		<point X="44009" Y="47645" Z="-2992" delay="0" run="false" />
-		<point npcStringId="1010210" X="45309" Y="47341" Z="-2992" delay="5" run="false" />
+		<point string="The Mother Tree is always so gorgeous!" X="45309" Y="47341" Z="-2992" delay="5" run="false" />
 		<point X="46726" Y="47762" Z="-2992" delay="0" run="false" />
 		<point X="47509" Y="49004" Z="-2992" delay="0" run="false" />
 		<point X="47443" Y="50456" Z="-2992" delay="0" run="false" />
-		<point npcStringId="1010211" X="47013" Y="51287" Z="-2992" delay="60" run="false" />
+		<point string="Lady Mirabel, may the peace of the lake be with you!" X="47013" Y="51287" Z="-2992" delay="60" run="false" />
 	</route>
 	<!-- Jaradine -->
 	<route name="treekeeper_jaradine" repeat="true" repeatStyle="back">
@@ -443,8 +443,8 @@
 		<point X="44674" Y="49036" Z="-3056" delay="0" run="false" /> <!-- extra point -->
 		<point X="44637" Y="48822" Z="-3056" delay="0" run="false" /> <!-- extra point -->
 		<point X="44998" Y="48523" Z="-3056" delay="0" run="false" /> <!-- extra point -->
-		<point npcStringId="1010208" X="45402" Y="48437" Z="-3056" delay="5" run="false" />
-		<point npcStringId="1010209" X="46104" Y="48788" Z="-3056" delay="5" run="false" />
+		<point string="The Mother Tree is slowly dying." X="45402" Y="48437" Z="-3056" delay="5" run="false" />
+		<point string="How can we save the Mother Tree?" X="46104" Y="48788" Z="-3056" delay="5" run="false" />
 		<point X="46045" Y="49064" Z="-3056" delay="0" run="false" /> <!-- extra point -->
 		<point X="46294" Y="49080" Z="-3056" delay="0" run="false" /> <!-- extra point -->
 		<point X="46452" Y="49743" Z="-3056" delay="0" run="false" />
@@ -468,11 +468,11 @@
 		<point X="115744" Y="-183424" Z="-1472" delay="60" run="true" />
 		<point X="115878" Y="-183267" Z="-1472" delay="0" run="true" />
 		<point X="116116" Y="-183090" Z="-1496" delay="0" run="true" />
-		<point npcStringId="1010215" X="116587" Y="-184306" Z="-1568" delay="10" run="true" />
+		<point string="Have you seen Torocco today?" X="116587" Y="-184306" Z="-1568" delay="10" run="true" />
 		<point X="116392" Y="-184090" Z="-1560" delay="0" run="true" />
 		<point X="117083" Y="-182538" Z="-1520" delay="0" run="true" />
-		<point npcStringId="1010216" X="117802" Y="-182541" Z="-1528" delay="10" run="true" />
-		<point npcStringId="1010217" X="116720" Y="-182479" Z="-1512" delay="10" run="true" />
+		<point string="Have you seen Torocco?" X="117802" Y="-182541" Z="-1528" delay="10" run="true" />
+		<point string="Where is that fool hiding?" X="116720" Y="-182479" Z="-1512" delay="10" run="true" />
 		<point X="115857" Y="-183287" Z="-1472" delay="0" run="true" />
 		<point X="115744" Y="-183424" Z="-1472" delay="0" run="true" />
 	</route>
@@ -480,17 +480,17 @@
 	<route name="porter_tate" repeat="true" repeatStyle="cycle">
 		<target id="31362" spawnX="115820" spawnY="-181568" spawnZ="-1338" />
 		<point X="115824" Y="-181564" Z="-1336" delay="20" run="false" />
-		<point npcStringId="1010218" X="116048" Y="-181575" Z="-1352" delay="0" run="false" />
+		<point string="Care to go a round?" X="116048" Y="-181575" Z="-1352" delay="0" run="false" />
 		<point X="116521" Y="-181476" Z="-1384" delay="0" run="false" />
 		<point X="116632" Y="-180022" Z="-1160" delay="0" run="false" />
 		<point X="115355" Y="-178617" Z="-928" delay="0" run="false" />
 		<point X="115763" Y="-177585" Z="-888" delay="0" run="false" />
-		<point npcStringId="1010219" X="115795" Y="-177361" Z="-880" delay="0" run="false" />
+		<point string="Have a nice day, Mr. Garita and Mion!" X="115795" Y="-177361" Z="-880" delay="0" run="false" />
 		<point X="115877" Y="-177338" Z="-880" delay="15" run="false" />
 		<point X="115783" Y="-177493" Z="-880" delay="0" run="false" />
 		<point X="115112" Y="-179836" Z="-880" delay="0" run="false" />
 		<point X="115102" Y="-180026" Z="-872" delay="0" run="false" />
-		<point npcStringId="1010220" X="114876" Y="-180045" Z="-872" delay="30" run="false" />
+		<point string="Mr. Lid, Murdoc, and Airy! How are you doing?" X="114876" Y="-180045" Z="-872" delay="30" run="false" />
 		<point X="114840" Y="-179694" Z="-872" delay="0" run="false" />
 		<point X="116322" Y="-179602" Z="-1088" delay="0" run="false" />
 		<point X="116792" Y="-180386" Z="-1200" delay="0" run="false" />

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="92200" name="Coral Jewelry Box Lv. 6" type="EtcItem">
 		<!-- Double-click to get more information about the contents. -->
@@ -790,7 +790,7 @@
 		</stats>
 		<skills>
 			<skill id="50221" level="1" /> <!-- A-grade: Dark Crystal Breastplate -->
-			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top Armor -->
+			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper Armor -->
 		</skills>
 	</item>
 	<item id="92256" name="Armor of Nightmare" additionalName="Sealed" type="Armor">
@@ -813,7 +813,7 @@
 		</stats>
 		<skills>
 			<skill id="50231" level="1" /> <!-- A-grade: Armor of Nightmare -->
-			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top Armor -->
+			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper Armor -->
 		</skills>
 	</item>
 	<item id="92257" name="Dark Crystal Gaiters" additionalName="Sealed" type="Armor">
@@ -836,7 +836,7 @@
 		</stats>
 		<skills>
 			<skill id="50224" level="1" /> <!-- A-grade: Dark Crystal Gaiters -->
-			<skill id="50262" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Bottom Armor -->
+			<skill id="50262" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Lower Armor -->
 		</skills>
 	</item>
 	<item id="92258" name="Dark Crystal Helmet" additionalName="Sealed" type="Armor">
@@ -912,7 +912,7 @@
 		</stats>
 		<skills>
 			<skill id="50234" level="1" /> <!-- A-grade: Tallum Plate Armor -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="92262" name="Majestic Plate Armor" additionalName="Sealed" type="Armor">
@@ -935,7 +935,7 @@
 		</stats>
 		<skills>
 			<skill id="50228" level="1" /> <!-- A-grade: Majestic Plate Armor -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="92263" name="Dark Crystal Leather Armor" additionalName="Sealed" type="Armor">
@@ -958,7 +958,7 @@
 		</stats>
 		<skills>
 			<skill id="50222" level="1" /> <!-- A-grade: Dark Crystal Leather Armor -->
-			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top Armor -->
+			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper Armor -->
 		</skills>
 	</item>
 	<item id="92264" name="Dark Crystal Leggings" additionalName="Sealed" type="Armor">
@@ -981,7 +981,7 @@
 		</stats>
 		<skills>
 			<skill id="50225" level="1" /> <!-- A-grade: Dark Crystal Leggings -->
-			<skill id="50262" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Bottom Armor -->
+			<skill id="50262" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Lower Armor -->
 		</skills>
 	</item>
 	<item id="92265" name="Tallum Leather Armor" additionalName="Sealed" type="Armor">
@@ -1004,7 +1004,7 @@
 		</stats>
 		<skills>
 			<skill id="50235" level="1" /> <!-- A-grade: Tallum Leather Armor -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="92266" name="Leather Armor of Nightmare" additionalName="Sealed" type="Armor">
@@ -1027,7 +1027,7 @@
 		</stats>
 		<skills>
 			<skill id="50233" level="1" /> <!-- A-grade: Leather Armor of Nightmare -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="92267" name="Majestic Leather Armor" additionalName="Sealed" type="Armor">
@@ -1050,7 +1050,7 @@
 		</stats>
 		<skills>
 			<skill id="50230" level="1" /> <!-- A-grade: Majestic Leather Armor -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="92268" name="Tallum Tunic" additionalName="Sealed" type="Armor">
@@ -1074,7 +1074,7 @@
 		</stats>
 		<skills>
 			<skill id="50223" level="1" /> <!-- A-grade: Tallum Tunic -->
-			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top Armor -->
+			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper Armor -->
 		</skills>
 	</item>
 	<item id="92269" name="Tallum Stockings" additionalName="Sealed" type="Armor">
@@ -1098,7 +1098,7 @@
 		</stats>
 		<skills>
 			<skill id="50226" level="1" /> <!-- A-grade: Tallum Stockings -->
-			<skill id="50262" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Bottom Armor -->
+			<skill id="50262" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Lower Armor -->
 		</skills>
 	</item>
 	<item id="92270" name="Dark Crystal Robe" additionalName="Sealed" type="Armor">
@@ -1122,7 +1122,7 @@
 		</stats>
 		<skills>
 			<skill id="50227" level="1" /> <!-- A-grade: Dark Crystal Robe -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="92271" name="Robe of Nightmare" additionalName="Sealed" type="Armor">
@@ -1146,7 +1146,7 @@
 		</stats>
 		<skills>
 			<skill id="50232" level="1" /> <!-- A-grade: Robe of Nightmare -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="92272" name="Majestic Robe" additionalName="Sealed" type="Armor">
@@ -1170,7 +1170,7 @@
 		</stats>
 		<skills>
 			<skill id="50229" level="1" /> <!-- A-grade: Majestic Robe -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="92273" name="Helm of Nightmare" additionalName="Sealed" type="Armor">
@@ -1261,17 +1261,17 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50236" level="1" type="ON_ENCHANT" type_value="5" /> <!-- A-grade: Dark Crystal Gloves -->
+			<skill id="50236" level="1" type="ON_ENCHANT" type_value="5" /> <!-- A-grade: Dark Crystal Gloves (Heavy) -->
 			<skill id="50263" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92278" name="Dark Crystal Gloves (Light)" additionalName="Sealed" type="Armor">
@@ -1288,22 +1288,21 @@
 		<set name="is_sellable" val="false" />
 		<set name="ensoulNormalSlots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<stats>
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50238" level="1" /> <!-- A-grade: Dark Crystal Gloves -->
+			<skill id="50238" level="1" /> <!-- A-grade: Dark Crystal Gloves (Light) -->
 			<skill id="50263" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92279" name="Dark Crystal Gloves (Robe)" additionalName="Sealed" type="Armor">
@@ -1324,17 +1323,17 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50237" level="1" /> <!-- A-grade: Dark Crystal Gloves -->
+			<skill id="50237" level="1" /> <!-- A-grade: Dark Crystal Gloves (Robe) -->
 			<skill id="50264" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92280" name="Tallum Gloves (Heavy)" additionalName="Sealed" type="Armor">
@@ -1355,17 +1354,17 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50245" level="1" /> <!-- A-grade: Tallum Gloves -->
+			<skill id="50245" level="1" /> <!-- A-grade: Tallum Gloves (Heavy) -->
 			<skill id="50263" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92281" name="Tallum Gloves (Light)" additionalName="Sealed" type="Armor">
@@ -1386,17 +1385,17 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50247" level="1" /> <!-- A-grade: Tallum Gloves -->
+			<skill id="50247" level="1" /> <!-- A-grade: Tallum Gloves (Light) -->
 			<skill id="50263" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92282" name="Tallum Gloves (Robe)" additionalName="Sealed" type="Armor">
@@ -1417,17 +1416,17 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50246" level="1" /> <!-- A-grade: Tallum Gloves -->
+			<skill id="50246" level="1" /> <!-- A-grade: Tallum Gloves (Robe) -->
 			<skill id="50264" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92283" name="Gauntlets of Nightmare (Heavy)" additionalName="Sealed" type="Armor">
@@ -1448,17 +1447,17 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50242" level="1" /> <!-- A-grade: Gauntlets of Nightmare -->
+			<skill id="50242" level="1" /> <!-- A-grade: Gauntlets of Nightmare (Heavy) -->
 			<skill id="50263" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92284" name="Gauntlets of Nightmare (Light)" additionalName="Sealed" type="Armor">
@@ -1479,17 +1478,17 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50244" level="1" /> <!-- A-grade: Gauntlets of Nightmare -->
+			<skill id="50244" level="1" /> <!-- A-grade: Gauntlets of Nightmare (Light) -->
 			<skill id="50263" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92285" name="Gauntlets of Nightmare (Robe)" additionalName="Sealed" type="Armor">
@@ -1510,17 +1509,17 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50243" level="1" /> <!-- A-grade: Gauntlets of Nightmare -->
+			<skill id="50243" level="1" /> <!-- A-grade: Gauntlets of Nightmare (Robe) -->
 			<skill id="50264" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92286" name="Majestic Gauntlets (Heavy)" additionalName="Sealed" type="Armor">
@@ -1541,17 +1540,17 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50239" level="1" /> <!-- A-grade: Majestic Gauntlets -->
+			<skill id="50239" level="1" /> <!-- A-grade: Majestic Gauntlets (Heavy) -->
 			<skill id="50263" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92287" name="Majestic Gauntlets (Light)" additionalName="Sealed" type="Armor">
@@ -1572,17 +1571,17 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50241" level="1" /> <!-- A-grade: Majestic Gauntlets -->
+			<skill id="50241" level="1" /> <!-- A-grade: Majestic Gauntlets (Light) -->
 			<skill id="50263" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 			<skill id="50263" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92288" name="Majestic Gauntlets (Robe)" additionalName="Sealed" type="Armor">
@@ -1603,17 +1602,17 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50240" level="1" /> <!-- A-grade: Majestic Gauntlets -->
+			<skill id="50240" level="1" /> <!-- A-grade: Majestic Gauntlets (Robe) -->
 			<skill id="50264" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 			<skill id="50264" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
-			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Gloves Blessing Effect -->
-			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Blessing Effect -->
-			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- +7 Blessing Effect -->
-			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- +8 Blessing Effect -->
+			<skill id="83222" level="2" type="ON_BLESSING" /> <!-- Glove Blessing Effect -->
+			<skill id="83191" level="1" type="ON_BLESSING" type_value="6" /> <!-- Common A-grade Gloves - 6 Item Effect -->
+			<skill id="83192" level="1" type="ON_BLESSING" type_value="7" /> <!-- Common A-grade Gloves - 7 Item Effect -->
+			<skill id="83193" level="1" type="ON_BLESSING" type_value="8" /> <!-- Common A-grade Gloves - 8 Item Effect -->
 		</skills>
 	</item>
 	<item id="92289" name="Dark Crystal Boots (Heavy)" additionalName="Sealed" type="Armor">
@@ -1634,7 +1633,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50248" level="1" /> <!-- A-grade: Dark Crystal Boots -->
+			<skill id="50248" level="1" /> <!-- A-grade: Dark Crystal Boots (Heavy) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -1656,7 +1655,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50250" level="1" /> <!-- A-grade: Dark Crystal Boots -->
+			<skill id="50250" level="1" /> <!-- A-grade: Dark Crystal Boots (Light) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -1678,8 +1677,8 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50249" level="1" /> <!-- A-grade: Dark Crystal Boots -->
-			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Magic) -->
+			<skill id="50249" level="1" /> <!-- A-grade: Dark Crystal Boots (Robe) -->
+			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
 	<item id="92292" name="Tallum Boots (Heavy)" additionalName="Sealed" type="Armor">
@@ -1700,7 +1699,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50257" level="1" /> <!-- A-grade: Tallum Boots -->
+			<skill id="50257" level="1" /> <!-- A-grade: Tallum Boots (Heavy) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -1722,7 +1721,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50259" level="1" /> <!-- A-grade: Tallum Boots -->
+			<skill id="50259" level="1" /> <!-- A-grade: Tallum Boots (Light) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -1744,7 +1743,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50258" level="1" /> <!-- A-grade: Tallum Boots -->
+			<skill id="50258" level="1" /> <!-- A-grade: Tallum Boots (Robe) -->
 			<skill id="50266" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Magic) -->
 		</skills>
 	</item>
@@ -1766,7 +1765,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50254" level="1" /> <!-- A-grade: Boots of Nightmare -->
+			<skill id="50254" level="1" /> <!-- A-grade: Boots of Nightmare (Heavy) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -1788,7 +1787,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50256" level="1" /> <!-- A-grade: Boots of Nightmare -->
+			<skill id="50256" level="1" /> <!-- A-grade: Boots of Nightmare (Light) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -1810,7 +1809,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50255" level="1" /> <!-- A-grade: Boots of Nightmare -->
+			<skill id="50255" level="1" /> <!-- A-grade: Boots of Nightmare (Robe) -->
 			<skill id="50266" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Magic) -->
 		</skills>
 	</item>
@@ -1832,7 +1831,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50251" level="1" /> <!-- A-grade: Majestic Boots -->
+			<skill id="50251" level="1" /> <!-- A-grade: Majestic Boots (Heavy) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -1854,7 +1853,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50253" level="1" /> <!-- A-grade: Majestic Boots -->
+			<skill id="50253" level="1" /> <!-- A-grade: Majestic Boots (Light) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>

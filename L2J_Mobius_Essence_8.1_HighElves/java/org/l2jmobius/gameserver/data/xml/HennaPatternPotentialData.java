@@ -34,9 +34,9 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.henna.DyePotential;
 import org.l2jmobius.gameserver.model.item.henna.DyePotentialFee;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
@@ -72,9 +72,9 @@ public class HennaPatternPotentialData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node m = doc.getFirstChild(); m != null; m = m.getNextSibling())
+		for (Node m = document.getFirstChild(); m != null; m = m.getNextSibling())
 		{
 			if ("list".equals(m.getNodeName()))
 			{

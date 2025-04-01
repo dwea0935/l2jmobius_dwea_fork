@@ -23,10 +23,11 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
+import org.l2jmobius.gameserver.data.sql.OfflineTraderTable;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
@@ -36,7 +37,6 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.CharSelectionInfo;
 import org.l2jmobius.gameserver.network.serverpackets.RestartResponse;
-import org.l2jmobius.gameserver.util.OfflineTradeUtil;
 
 /**
  * @author Mobius
@@ -103,7 +103,7 @@ public class RequestRestart extends ClientPacket
 		final GameClient client = getClient();
 		LOGGER_ACCOUNTING.info("Logged out, " + client);
 		
-		if (!OfflineTradeUtil.enteredOfflineMode(player))
+		if (!OfflineTraderTable.getInstance().enteredOfflineMode(player))
 		{
 			Disconnection.of(client, player).storeMe().deleteMe();
 		}

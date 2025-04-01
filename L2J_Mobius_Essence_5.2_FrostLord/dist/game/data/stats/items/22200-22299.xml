@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="22221" name="Stable Scroll: Enchant S-grade Weapon" type="EtcItem">
 		<!-- <font color=bbaa88><When enchanted from +1 to +3></font>. One-handed sword/ blunt weapon, dagger, rapier, spear: P. Atk. +15, M. Atk. +10. Two-handed sword/ blunt weapon, dual swords, fist weapon, ancient sword: P. Atk. +19, M. Atk. +10. Bow, firearms: P. Atk. +31, M. Atk. +10. <font color=bbaa88><When enchanted to +4 or higher></font>. One-handed sword/ blunt weapon, dagger, rapier, spear: P. Atk. +43, M. Atk. +43. Two-handed sword/ blunt weapon, dual swords, fist weapon, ancient sword: P. Atk. +77, M. Atk. +43. Bow, firearms: P. Atk. +126, M. Atk. +43. <font color=eeaa22>Safe enchanting to +4. In case of failure the enchant value remains the same.</font>. <font color=ff6666>Cannot be used with items enchanted to +7 and higher.</font> -->
@@ -12,7 +12,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="22361" level="1" /> <!-- Solid Scroll -->
+			<skill id="22361" level="1" /> <!-- Stable Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22222" name="Stable Scroll: Enchant S-grade Armor" type="EtcItem">
@@ -27,7 +27,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="22361" level="1" /> <!-- Solid Scroll -->
+			<skill id="22361" level="1" /> <!-- Stable Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22223" name="Stable Scroll: Enchant A-grade Weapon" type="EtcItem">
@@ -42,7 +42,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="22361" level="1" /> <!-- Solid Scroll -->
+			<skill id="22361" level="1" /> <!-- Stable Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22224" name="Stable Scroll: Enchant A-grade Armor" type="EtcItem">
@@ -57,7 +57,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="22362" level="1" /> <!-- Solid Scroll -->
+			<skill id="22362" level="1" /> <!-- Stable Scroll: Enchant A-grade Armor -->
 		</skills>
 	</item>
 </list>

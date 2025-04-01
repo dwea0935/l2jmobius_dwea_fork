@@ -17,7 +17,7 @@
 package org.l2jmobius.gameserver.network.serverpackets.olympiad;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.OlympiadMode;
+import org.l2jmobius.gameserver.model.olympiad.OlympiadMode;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;

@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
  * Format: ch
- * @author devScarlet & mrTJO
+ * @author devScarlet, mrTJO
  */
 public class ExShowSlideshowKamael extends ServerPacket
 {

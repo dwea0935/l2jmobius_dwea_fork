@@ -24,13 +24,14 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.holders.EnchantStarHolder;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillEnchantData;
-import org.l2jmobius.gameserver.enums.SkillEnchantType;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.EnchantStarHolder;
-import org.l2jmobius.gameserver.model.holders.SkillEnchantHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillEnchantType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillEnchantHolder;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillResult;
@@ -160,7 +161,7 @@ public class RequestExEnchantSkill extends ClientPacket
 			return;
 		}
 		
-		player.reduceAdena(getClass().getSimpleName(), 1000000, null, true);
+		player.reduceAdena(ItemProcessType.FEE, 1000000, null, true);
 		
 		final int starLevel = starHolder.getLevel();
 		if (Rnd.get(100) <= SkillEnchantData.getInstance().getChanceEnchantMap(skill))
@@ -204,7 +205,7 @@ public class RequestExEnchantSkill extends ClientPacket
 		}
 		
 		player.sendPacket(new ExSkillEnchantInfo(skill, player));
-		player.updateShortCuts(skill.getId(), skill.getLevel(), skill.getSubLevel());
+		player.updateShortcuts(skill.getId(), skill.getLevel(), skill.getSubLevel());
 		
 		player.broadcastUserInfo();
 		player.sendSkillList();

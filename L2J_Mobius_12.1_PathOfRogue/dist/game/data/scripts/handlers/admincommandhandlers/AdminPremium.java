@@ -26,12 +26,11 @@ import java.util.concurrent.TimeUnit;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.PcCafePointsManager;
-import org.l2jmobius.gameserver.instancemanager.PremiumManager;
+import org.l2jmobius.gameserver.managers.PcCafePointsManager;
+import org.l2jmobius.gameserver.managers.PremiumManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * @author Mobius
@@ -63,7 +62,7 @@ public class AdminPremium implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Please enter a valid account name.");
+				activeChar.sendSysMessage("Please enter a valid account name.");
 			}
 		}
 		else if (command.startsWith("admin_premium_add2"))
@@ -74,7 +73,7 @@ public class AdminPremium implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Please enter a valid account name.");
+				activeChar.sendSysMessage("Please enter a valid account name.");
 			}
 		}
 		else if (command.startsWith("admin_premium_add3"))
@@ -85,7 +84,7 @@ public class AdminPremium implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Please enter a valid account name.");
+				activeChar.sendSysMessage("Please enter a valid account name.");
 			}
 		}
 		else if (command.startsWith("admin_premium_info"))
@@ -96,7 +95,7 @@ public class AdminPremium implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Please enter a valid account name.");
+				activeChar.sendSysMessage("Please enter a valid account name.");
 			}
 		}
 		else if (command.startsWith("admin_premium_remove"))
@@ -107,7 +106,7 @@ public class AdminPremium implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Please enter a valid account name.");
+				activeChar.sendSysMessage("Please enter a valid account name.");
 			}
 		}
 		

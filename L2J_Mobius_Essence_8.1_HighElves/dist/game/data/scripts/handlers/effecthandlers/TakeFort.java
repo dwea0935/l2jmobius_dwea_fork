@@ -16,20 +16,21 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.enums.MailType;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.network.enums.MailType;
 
 /**
  * Take Fort effect implementation.
@@ -68,7 +69,7 @@ public class TakeFort extends AbstractEffect
 					
 					final Message mail = new Message(player.getObjectId(), "Orc Fortress", "", MailType.NPC);
 					final Mail attachment = mail.createAttachments();
-					attachment.addItem("Orc Fortress", Inventory.ADENA_ID, 30_000_000, player, player);
+					attachment.addItem(ItemProcessType.REWARD, Inventory.ADENA_ID, 30_000_000, player, player);
 					MailManager.getInstance().sendMessage(mail);
 				}
 			}

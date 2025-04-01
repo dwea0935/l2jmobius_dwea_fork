@@ -29,16 +29,16 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.DBSpawnManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
-import org.l2jmobius.gameserver.model.ChanceLocation;
+import org.l2jmobius.gameserver.managers.DBSpawnManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.actor.holders.npc.ChanceLocation;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionHolder;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.MinionHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.interfaces.IParameterized;
 import org.l2jmobius.gameserver.model.zone.type.BannedSpawnTerritory;
@@ -626,7 +626,7 @@ public class NpcSpawnTemplate implements Cloneable, IParameterized<StatSet>
 			}
 			_spawnedNpcs.add(npc);
 			
-			SpawnTable.getInstance().addNewSpawn(spawn, false);
+			SpawnTable.getInstance().addSpawn(spawn);
 		}
 	}
 	
@@ -635,7 +635,7 @@ public class NpcSpawnTemplate implements Cloneable, IParameterized<StatSet>
 		_spawnedNpcs.forEach(npc ->
 		{
 			npc.getSpawn().stopRespawn();
-			SpawnTable.getInstance().deleteSpawn(npc.getSpawn(), false);
+			SpawnTable.getInstance().removeSpawn(npc.getSpawn());
 			npc.deleteMe();
 		});
 		_spawnedNpcs.clear();

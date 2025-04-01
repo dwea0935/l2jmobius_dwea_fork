@@ -21,9 +21,11 @@
 package org.l2jmobius.gameserver.network.clientpackets.attributechange;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.AttributeType;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
 import org.l2jmobius.gameserver.model.item.enchant.attribute.AttributeHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -32,7 +34,6 @@ import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.attributechange.ExChangeAttributeFail;
 import org.l2jmobius.gameserver.network.serverpackets.attributechange.ExChangeAttributeOk;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Mobius
@@ -64,11 +65,11 @@ public class RequestChangeAttributeItem extends ClientPacket
 		final Item item = inventory.getItemByObjectId(_itemObjId);
 		
 		// attempting to destroy item
-		if (player.getInventory().destroyItemByItemId("ChangeAttribute", _consumeItemId, 1, player, item) == null)
+		if (player.getInventory().destroyItemByItemId(ItemProcessType.FEE, _consumeItemId, 1, player, item) == null)
 		{
 			player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 			player.sendPacket(ExChangeAttributeFail.STATIC);
-			Util.handleIllegalPlayerAction(player, player + " tried to change attribute without an attribute change crystal.", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to change attribute without an attribute change crystal.", Config.DEFAULT_PUNISH);
 			return;
 		}
 		

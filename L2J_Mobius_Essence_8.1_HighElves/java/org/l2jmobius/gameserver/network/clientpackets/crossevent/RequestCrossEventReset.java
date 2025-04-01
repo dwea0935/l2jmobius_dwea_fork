@@ -20,8 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.crossevent;
 
-import org.l2jmobius.gameserver.instancemanager.events.CrossEventManager;
+import org.l2jmobius.gameserver.managers.events.CrossEventManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.crossevent.ExCrossEventInfo;
 import org.l2jmobius.gameserver.network.serverpackets.crossevent.ExCrossEventReset;
@@ -60,6 +61,6 @@ public class RequestCrossEventReset extends ClientPacket
 		player.getCrossEventCells().clear();
 		CrossEventManager.getInstance().resetAdvancedRewards(player);
 		player.sendPacket(new ExCrossEventInfo(player));
-		player.getInventory().destroyItemByItemId("CrossEvent Reset Fee", ITEM_RESET_ID, CrossEventManager.getInstance().getResetCostAmount(), player, null);
+		player.getInventory().destroyItemByItemId(ItemProcessType.FEE, ITEM_RESET_ID, CrossEventManager.getInstance().getResetCostAmount(), player, null);
 	}
 }

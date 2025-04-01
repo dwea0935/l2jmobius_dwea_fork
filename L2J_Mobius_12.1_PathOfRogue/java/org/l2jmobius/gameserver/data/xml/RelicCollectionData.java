@@ -35,9 +35,9 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.RelicCollectionDataHolder;
+import org.l2jmobius.gameserver.data.holders.RelicDataHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.RelicCollectionDataHolder;
-import org.l2jmobius.gameserver.model.holders.RelicDataHolder;
 
 /**
  * @author CostyKiller
@@ -75,9 +75,9 @@ public class RelicCollectionData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -118,18 +118,28 @@ public class RelicCollectionData implements IXmlReader
 						
 						final RelicCollectionDataHolder template = new RelicCollectionDataHolder(id, optionId, category, completeCount, relics);
 						RELIC_COLLECTIONS.put(id, template);
-						RELIC_COLLECTION_CATEGORIES.computeIfAbsent(template.getCategory(), list -> new ArrayList<>()).add(template);
+						RELIC_COLLECTION_CATEGORIES.computeIfAbsent(template.getCategory(), _ -> new ArrayList<>()).add(template);
 					}
 				}
 			}
 		}
 	}
 	
+	/**
+	 * Retrieves the relic collection associated with the specified collection ID.
+	 * @param id the unique ID of the relic collection
+	 * @return the {@code RelicCollectionDataHolder} containing the details of the relic collection, or {@code null} if no collection is associated with the specified ID
+	 */
 	public RelicCollectionDataHolder getRelicCollection(int id)
 	{
 		return RELIC_COLLECTIONS.get(id);
 	}
 	
+	/**
+	 * Retrieves a list of relic collections within a specified category.
+	 * @param tabId the ID of the category to retrieve
+	 * @return a list of {@code RelicCollectionDataHolder} objects in the specified category, or an empty list if the category ID has no associated relic collections
+	 */
 	public List<RelicCollectionDataHolder> getRelicCategory(int tabId)
 	{
 		if (RELIC_COLLECTION_CATEGORIES.containsKey(tabId))
@@ -139,6 +149,10 @@ public class RelicCollectionData implements IXmlReader
 		return Collections.emptyList();
 	}
 	
+	/**
+	 * Retrieves all available relic collections.
+	 * @return a collection of {@code RelicCollectionDataHolder} objects representing all relic collections
+	 */
 	public Collection<RelicCollectionDataHolder> getRelicCollections()
 	{
 		return RELIC_COLLECTIONS.values();

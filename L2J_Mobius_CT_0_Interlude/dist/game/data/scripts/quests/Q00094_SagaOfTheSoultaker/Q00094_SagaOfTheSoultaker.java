@@ -16,17 +16,17 @@
  */
 package quests.Q00094_SagaOfTheSoultaker;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * Saga of the Soultaker (94)
  * @author Emperorc
  */
-public class Q00094_SagaOfTheSoultaker extends SagasSuperClass
+public class Q00094_SagaOfTheSoultaker extends AbstractSagaQuest
 {
 	public Q00094_SagaOfTheSoultaker()
 	{
-		super(94);
+		super(94, "Saga of the Soultaker");
 		_npc = new int[]
 		{
 			30832,

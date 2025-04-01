@@ -16,8 +16,7 @@
  */
 package quests.Q00114_ResurrectionOfAnOldManager;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -26,7 +25,7 @@ import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00121_PavelTheGiant.Q00121_PavelTheGiant;
@@ -57,7 +56,7 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 	
 	public Q00114_ResurrectionOfAnOldManager()
 	{
-		super(114);
+		super(114, "Resurrection of an Old Manager");
 		addStartNpc(YUMI);
 		addTalkId(YUMI, WENDY, BOX, STONES, NEWYEAR);
 		addKillId(GUARDIAN);
@@ -239,10 +238,10 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 				if ((golem == null) || golem.isDead())
 				{
 					golem = addSpawn(GUARDIAN, 96977, -110625, -3280, 0, false, 0).asAttackable();
-					golem.broadcastPacket(new NpcSay(golem.getObjectId(), ChatType.NPC_GENERAL, golem.getId(), NpcStringId.YOU_S1_YOU_ATTACKED_WENDY_PREPARE_TO_DIE).addStringParameter(player.getName()));
+					golem.broadcastPacket(new NpcSay(golem.getObjectId(), ChatType.NPC_GENERAL, golem.getId(), "You, " + player.getName() + ", you attacked Wendy. Prepare to die!"));
 					golem.setRunning();
 					golem.addDamageHate(player, 0, 999);
-					golem.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+					golem.getAI().setIntention(Intention.ATTACK, player);
 					qs.set("spawned", "1");
 					startQuestTimer("golem_despawn", 300000, null, player);
 				}
@@ -335,7 +334,7 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 			case "golem_despawn":
 			{
 				qs.unset("spawned");
-				golem.broadcastPacket(new NpcSay(golem.getObjectId(), ChatType.NPC_GENERAL, golem.getId(), NpcStringId.S1_YOUR_ENEMY_WAS_DRIVEN_OUT_I_WILL_NOW_WITHDRAW_AND_AWAIT_YOUR_NEXT_COMMAND).addStringParameter(player.getName()));
+				golem.broadcastPacket(new NpcSay(golem.getObjectId(), ChatType.NPC_GENERAL, golem.getId(), player.getName() + ", your enemy was driven out. I will now withdraw and await your next command."));
 				golem.deleteMe();
 				golem = null;
 				htmltext = null;
@@ -395,21 +394,20 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && qs.isCond(10) && (qs.getInt("spawned") == 1))
 		{
-			npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.THIS_ENEMY_IS_FAR_TOO_POWERFUL_FOR_ME_TO_FIGHT_I_MUST_WITHDRAW));
+			npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "This enemy is far too powerful for me to fight. I must withdraw."));
 			qs.setCond(11, true);
 			qs.unset("spawned");
 			cancelQuestTimers("golem_despawn");
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -420,10 +418,9 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 				takeItems(creature.asPlayer(), DETCTOR, 1);
 				giveItems(creature.asPlayer(), DETCTOR2, 1);
 				qs.setCond(18, true);
-				showOnScreenMsg(player, NpcStringId.THE_RADIO_SIGNAL_DETECTOR_IS_RESPONDING_A_SUSPICIOUS_PILE_OF_STONES_CATCHES_YOUR_EYE, 2, 4500);
+				showOnScreenMsg(player, "The radio signal detector is responding. A suspicious pile of stones catches your eye.", 2, 4500);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override

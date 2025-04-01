@@ -10,6 +10,7 @@
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
 											<xs:attribute type="xs:byte" name="enchantLevel" use="optional" />
+											<xs:attribute type="xs:int" name="skillId" use="optional" />
 											<xs:attribute type="xs:byte" name="skillLevel" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -18,7 +19,6 @@
 						</xs:sequence>
 						<xs:attribute type="xs:short" name="id" use="optional" />
 						<xs:attribute type="xs:byte" name="grade" use="optional" />
-						<xs:attribute type="xs:int" name="skillId" use="optional" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

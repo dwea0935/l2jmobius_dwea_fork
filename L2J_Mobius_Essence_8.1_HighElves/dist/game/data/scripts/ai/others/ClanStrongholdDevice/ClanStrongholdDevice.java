@@ -23,16 +23,16 @@ package ai.others.ClanStrongholdDevice;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExChangeNpcState;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -139,21 +139,20 @@ public class ClanStrongholdDevice extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (npc.getTemplate().getId() == CLAN_STRONGHOLD_DEVICE)
 		{
 			creature.sendPacket(new ExChangeNpcState(npc.getObjectId(), CURRENT_CLAN_ID.containsKey(npc.getScriptValue()) ? 1 : 2));
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getTemplate().getId() != CLAN_STRONGHOLD_DEVICE)
 		{
-			return super.onSpawn(npc);
+			return;
 		}
 		
 		npc.disableCoreAI(true);
@@ -168,23 +167,20 @@ public class ClanStrongholdDevice extends AbstractNpcAI
 		npc.broadcastInfo();
 		npc.broadcastPacket(new ExShowScreenMessage(NpcStringId.THE_CLAN_STRONGHOLD_DEVICE_CAN_BE_CAPTURED, 2, 5000, true));
 		DEVICE_LOCATION.put(npc.getObjectId(), npc.getLocation());
-		
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (CURRENT_CLAN_ID.containsKey(npc.getScriptValue()) && (LAST_ATTACK.getOrDefault(npc.getObjectId(), 0L) < (System.currentTimeMillis() - 5000)))
 		{
 			npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.AT_TACK_SIG_NAL_DE_TEC_TED_S1).addStringParameter(attacker.getName()));
 			LAST_ATTACK.put(npc.getObjectId(), System.currentTimeMillis());
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getTemplate().getId() == CLAN_STRONGHOLD_DEVICE)
 		{
@@ -192,12 +188,12 @@ public class ClanStrongholdDevice extends AbstractNpcAI
 			CURRENT_CLAN_ID.remove(npc.getScriptValue());
 			LAST_ATTACK.remove(npc.getObjectId());
 			DEVICE_LOCATION.remove(npc.getObjectId());
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		if (!CURRENT_CLAN_ID.containsKey(killer.getClanId()))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		CLAN_STRONGHOLD_EFFECT.getSkill().activateSkill(npc, killer);
@@ -214,8 +210,6 @@ public class ClanStrongholdDevice extends AbstractNpcAI
 				clanMate.doCast(CLAN_STRONGHOLD_EFFECT.getSkill());
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

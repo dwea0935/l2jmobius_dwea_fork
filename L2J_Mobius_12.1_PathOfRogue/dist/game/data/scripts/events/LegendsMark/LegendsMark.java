@@ -292,7 +292,7 @@ public class LegendsMark extends LongTimeEvent
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (isEventPeriod() && (killer.getLevel() >= PLAYER_LEVEL) && (getRandom(100) < CHANCE))
 		{
@@ -303,7 +303,6 @@ public class LegendsMark extends LongTimeEvent
 				giveItems(killer, PROPHECY_FRAGMENTS, getRandom(DROP_MIN, DROP_MAX));
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

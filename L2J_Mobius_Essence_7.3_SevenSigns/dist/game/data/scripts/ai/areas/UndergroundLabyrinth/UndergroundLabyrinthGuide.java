@@ -24,6 +24,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 
 import ai.AbstractNpcAI;
 
@@ -72,7 +73,7 @@ public class UndergroundLabyrinthGuide extends AbstractNpcAI
 					break;
 				}
 				
-				if (player.destroyItemByItemId("Prison", MARKS_OF_REPENTANCE, Config.MARK_RELEASE_AMOUNT, player, true))
+				if (player.destroyItemByItemId(ItemProcessType.FEE, MARKS_OF_REPENTANCE, Config.MARK_RELEASE_AMOUNT, player, true))
 				{
 					player.setReputation(-135000);
 					player.getPrisonerInfo().processFreedom(false);
@@ -88,7 +89,7 @@ public class UndergroundLabyrinthGuide extends AbstractNpcAI
 					break;
 				}
 				
-				if (player.destroyItemByItemId("Prison", LCOIN, count, player, true))
+				if (player.destroyItemByItemId(ItemProcessType.FEE, LCOIN, count, player, true))
 				{
 					player.getPrisonerInfo().processFreedom(false);
 				}

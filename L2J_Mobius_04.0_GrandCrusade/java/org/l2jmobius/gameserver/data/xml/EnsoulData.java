@@ -31,7 +31,7 @@ import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.ensoul.EnsoulFee;
 import org.l2jmobius.gameserver.model.ensoul.EnsoulOption;
 import org.l2jmobius.gameserver.model.ensoul.EnsoulStone;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
 
 /**
@@ -59,9 +59,9 @@ public class EnsoulData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, IXmlReader::isNode, ensoulNode ->
+		forEach(document, "list", listNode -> forEach(listNode, IXmlReader::isNode, ensoulNode ->
 		{
 			switch (ensoulNode.getNodeName())
 			{

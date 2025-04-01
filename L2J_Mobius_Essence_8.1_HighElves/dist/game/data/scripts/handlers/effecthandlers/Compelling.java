@@ -20,8 +20,8 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
@@ -58,7 +58,7 @@ public class Compelling extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill, Item item)
 	{
-		effected.getAI().notifyEvent(CtrlEvent.EVT_AFRAID);
+		effected.getAI().notifyAction(Action.AFRAID);
 		compellingAction(effector, effected);
 	}
 	
@@ -74,13 +74,13 @@ public class Compelling extends AbstractEffect
 	{
 		if (!effected.isPlayer())
 		{
-			effected.getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			effected.getAI().notifyAction(Action.THINK);
 		}
 	}
 	
 	private void compellingAction(Creature effector, Creature effected)
 	{
 		effected.setRunning();
-		effected.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, effector.getLocation());
+		effected.getAI().setIntention(Intention.MOVE_TO, effector.getLocation());
 	}
 }

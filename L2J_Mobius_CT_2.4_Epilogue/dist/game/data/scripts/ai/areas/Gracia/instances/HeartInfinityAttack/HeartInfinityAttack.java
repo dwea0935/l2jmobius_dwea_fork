@@ -27,28 +27,28 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.SoIManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -278,7 +278,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				return false;
 			}
 			
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(2096);
 				sm.addPcName(partyMember);
@@ -338,7 +338,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 					}
 				}
 			}
-			broadCastPacket(((HIAWorld) world), new ExShowScreenMessage(NpcStringId.YOU_WILL_PARTICIPATE_IN_S1_S2_SHORTLY_BE_PREPARED_FOR_ANYTHING, 2, 8000));
+			broadCastPacket(((HIAWorld) world), new ExShowScreenMessage("You will participate shortly. Be prepared for anything.", 2, 8000));
 			final Npc npc = addSpawn(32536, -179376, 206111, -15538, 16384, false, 0, false, world.getInstanceId());
 			((HIAWorld) world).startroom.add(npc);
 		}
@@ -402,9 +402,9 @@ public class HeartInfinityAttack extends AbstractNpcAI
 		}
 		
 		InstanceManager.getInstance().getInstance(world.getInstanceId()).getDoor(14240102).openMe();
-		broadCastPacket(world, new ExShowScreenMessage(NpcStringId.YOU_CAN_HEAR_THE_UNDEAD_OF_EKIMUS_RUSHING_TOWARD_YOU_S1_S2_IT_HAS_NOW_BEGUN, 2, 8000));
+		broadCastPacket(world, new ExShowScreenMessage("You can hear the undead of Ekimus rushing toward you. It has now begun!", 2, 8000));
 		world.ekimus = addSpawn(EKIMUS, -179537, 208854, -15504, 16384, false, 0, false, world.getInstanceId());
-		world.ekimus.broadcastPacket(new NpcSay(world.ekimus.getObjectId(), ChatType.SHOUT, world.ekimus.getId(), NpcStringId.I_SHALL_ACCEPT_YOUR_CHALLENGE_S1_COME_AND_DIE_IN_THE_ARMS_OF_IMMORTALITY));
+		world.ekimus.broadcastPacket(new NpcSay(world.ekimus.getObjectId(), ChatType.SHOUT, world.ekimus.getId(), "I shall accept your challenge! Come and die in the arms of immortality!"));
 		world.hounds.add(addSpawn(HOUND, -179224, 209624, -15504, 16384, false, 0, false, world.getInstanceId()));
 		world.hounds.add(addSpawn(HOUND, -179880, 209464, -15504, 16384, false, 0, false, world.getInstanceId()));
 		world.startTime = System.currentTimeMillis();
@@ -421,7 +421,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			
 			if (event.startsWith("warpechmus"))
 			{
-				broadCastPacket(world, new ExShowScreenMessage(NpcStringId.S1_S_PARTY_HAS_MOVED_TO_A_DIFFERENT_LOCATION_THROUGH_THE_CRACK_IN_THE_TUMOR, 2, 8000));
+				broadCastPacket(world, new ExShowScreenMessage(player.getParty().getLeader().getName() + "'s party has moved to a different location through the crack in the tumor!", 2, 8000));
 				for (Player partyMember : player.getParty().getMembers())
 				{
 					if (partyMember.isInsideRadius3D(player, 800))
@@ -433,7 +433,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			}
 			else if (event.startsWith("reenterechmus"))
 			{
-				player.destroyItemByItemId("SOI", 13797, 3, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, 13797, 3, player, true);
 				notifyEkimusRoomEntrance(world);
 				for (Player partyMember : player.getParty().getMembers())
 				{
@@ -452,11 +452,11 @@ public class HeartInfinityAttack extends AbstractNpcAI
 					world.deadTumors.add(victim);
 				}
 				
-				player.destroyItemByItemId("SOI", 13797, 1, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, 13797, 1, player, true);
 				final Location loc = world.deadTumors.get(getRandom(world.deadTumors.size())).getLocation();
 				if (loc != null)
 				{
-					broadCastPacket(world, new ExShowScreenMessage(NpcStringId.S1_S_PARTY_HAS_MOVED_TO_A_DIFFERENT_LOCATION_THROUGH_THE_CRACK_IN_THE_TUMOR, 2, 8000));
+					broadCastPacket(world, new ExShowScreenMessage(player.getParty().getLeader().getName() + "'s party has moved to a different location through the crack in the tumor!", 2, 8000));
 					for (Player partyMember : player.getParty().getMembers())
 					{
 						if (partyMember.isInsideRadius3D(player, 500))
@@ -488,7 +488,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HIAWorld)
@@ -504,11 +504,10 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				npc.doDie(npc);
 			}
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HIAWorld)
@@ -542,17 +541,16 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				{
 					mob.asMonster().addDamageHate(attacker, 0, 500);
 					mob.setRunning();
-					mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, attacker);
+					mob.getAI().setIntention(Intention.ATTACK, attacker);
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		if (CommonUtil.contains(NOTMOVE, npc.getId()))
+		if (ArrayUtil.contains(NOTMOVE, npc.getId()))
 		{
 			npc.setRandomWalking(false);
 			npc.setImmobilized(true);
@@ -580,11 +578,10 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				world.setParameter("tag", tag + 1);
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HIAWorld)
@@ -607,11 +604,11 @@ public class HeartInfinityAttack extends AbstractNpcAI
 					{
 						hound.setInvul(true);
 					}
-					broadCastPacket(world, new ExShowScreenMessage(NpcStringId.WITH_ALL_CONNECTIONS_TO_THE_TUMOR_SEVERED_EKIMUS_HAS_LOST_ITS_POWER_TO_CONTROL_THE_FERAL_HOUND, 2, 8000));
+					broadCastPacket(world, new ExShowScreenMessage("With all connections to the tumor severed, Ekimus has lost its power to control the Feral Hound!", 2, 8000));
 				}
 				else
 				{
-					broadCastPacket(world, new ExShowScreenMessage(NpcStringId.THE_TUMOR_INSIDE_S1_THAT_HAS_PROVIDED_ENERGY_N_TO_EKIMUS_IS_DESTROYED, 2, 8000));
+					broadCastPacket(world, new ExShowScreenMessage("The tumor inside that has provided energy to Ekimus is destroyed!", 2, 8000));
 				}
 				handleEkimusStats(world);
 			}
@@ -627,7 +624,6 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				tumorRespawnTime += 8 * 1000;
 			}
 		}
-		return "";
 	}
 	
 	private class TumorRevival implements Runnable
@@ -673,7 +669,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			final long time = ((_world.startTime + (25 * 60 * 1000)) - System.currentTimeMillis()) / 60000;
 			if (time == 0)
 			{
-				broadCastPacket(_world, new ExShowScreenMessage(NpcStringId.YOU_HAVE_FAILED_AT_S1_S2_THE_INSTANCE_WILL_SHORTLY_EXPIRE, 2, 8000));
+				broadCastPacket(_world, new ExShowScreenMessage("You have failed... The instance will shortly expire.", 2, 8000));
 				if (_world != null)
 				{
 					conquestEnded = true;
@@ -715,11 +711,11 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			{
 				hound.setInvul(false);
 			}
-			broadCastPacket(world, new ExShowScreenMessage(NpcStringId.WITH_THE_CONNECTION_TO_THE_TUMOR_RESTORED_EKIMUS_HAS_REGAINED_CONTROL_OVER_THE_FERAL_HOUND, 2, 8000));
+			broadCastPacket(world, new ExShowScreenMessage("With the connection to the tumor restored, Ekimus has regained control over the Feral Hound...", 2, 8000));
 		}
 		else
 		{
-			broadCastPacket(world, new ExShowScreenMessage(NpcStringId.THE_TUMOR_INSIDE_S1_HAS_BEEN_COMPLETELY_RESURRECTED_N_AND_STARTED_TO_ENERGIZE_EKIMUS_AGAIN, 2, 8000));
+			broadCastPacket(world, new ExShowScreenMessage("The tumor inside has been completely resurrected and started to energize Ekimus again...", 2, 8000));
 		}
 		handleEkimusStats(world);
 	}
@@ -831,7 +827,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			}
 		}
 		
-		ThreadPool.schedule(() -> broadCastPacket(world, new ExShowScreenMessage(NpcStringId.EKIMUS_HAS_SENSED_ABNORMAL_ACTIVITY_NTHE_ADVANCING_PARTY_IS_FORCEFULLY_EXPELLED, 2, 8000)), 10000);
+		ThreadPool.schedule(() -> broadCastPacket(world, new ExShowScreenMessage("Ekimus has sensed abnormal activity. The advancing party is forcefully expelled!", 2, 8000)), 10000);
 	}
 	
 	protected void conquestConclusion(HIAWorld world)
@@ -841,7 +837,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			world.timerTask.cancel(false);
 		}
 		
-		broadCastPacket(world, new ExShowScreenMessage(NpcStringId.CONGRATULATIONS_YOU_HAVE_SUCCEEDED_AT_S1_S2_THE_INSTANCE_WILL_SHORTLY_EXPIRE, 2, 8000));
+		broadCastPacket(world, new ExShowScreenMessage("Congratulations! You have succeeded! The instance will shortly expire.", 2, 8000));
 		conquestEnded = true;
 		final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
 		if (inst != null)

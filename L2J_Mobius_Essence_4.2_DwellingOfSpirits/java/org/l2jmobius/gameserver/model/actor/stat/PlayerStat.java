@@ -25,19 +25,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
-import org.l2jmobius.gameserver.enums.ElementalType;
-import org.l2jmobius.gameserver.enums.PartySmallWindowUpdateType;
-import org.l2jmobius.gameserver.enums.UserInfoType;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
+import org.l2jmobius.gameserver.model.actor.holders.player.SubClassHolder;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.holders.ItemSkillHolder;
-import org.l2jmobius.gameserver.model.holders.SubClassHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.holders.ItemSkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
@@ -45,6 +43,8 @@ import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.PartySmallWindowUpdateType;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.ExVitalityPointInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExVoteSystemInfo;
@@ -55,7 +55,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.dailymission.ExConnectedTimeAndGettableReward;
 import org.l2jmobius.gameserver.network.serverpackets.dailymission.ExOneDayReceiveRewardList;
 import org.l2jmobius.gameserver.network.serverpackets.friend.FriendStatus;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 public class PlayerStat extends PlayableStat
 {
@@ -153,7 +153,7 @@ public class PlayerStat extends PlayableStat
 		
 		// if this player has a pet and it is in his range he takes from the owner's Exp, give the pet Exp now
 		final Summon sPet = player.getPet();
-		if ((sPet != null) && Util.checkIfInShortRange(Config.ALT_PARTY_RANGE, player, sPet, false))
+		if ((sPet != null) && LocationUtil.checkIfInShortRange(Config.ALT_PARTY_RANGE, player, sPet, false))
 		{
 			final Pet pet = sPet.asPet();
 			ratioTakenByPlayer = pet.getPetLevelData().getOwnerExpTaken() / 100f;
@@ -722,7 +722,7 @@ public class PlayerStat extends PlayableStat
 		return getValue(Stat.ELEMENTAL_SPIRIT_BONUS_EXP, 1);
 	}
 	
-	public double getElementalSpiritPower(ElementalType type, double base)
+	public double getElementalSpiritPower(ElementalSpiritType type, double base)
 	{
 		return type == null ? 0 : getValue(type.getAttackStat(), base);
 	}
@@ -737,7 +737,7 @@ public class PlayerStat extends PlayableStat
 		return getValue(Stat.ELEMENTAL_SPIRIT_CRITICAL_DAMAGE, base);
 	}
 	
-	public double getElementalSpiritDefense(ElementalType type, double base)
+	public double getElementalSpiritDefense(ElementalSpiritType type, double base)
 	{
 		return type == null ? 0 : getValue(type.getAttackStat(), base);
 	}

@@ -33,6 +33,8 @@ import org.l2jmobius.gameserver.model.quest.newquestdata.QuestCondType;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestDialog;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestNotification;
 
+import quests.Q10357_ReconnaissanceInTheWesternDragonValley1.Q10357_ReconnaissanceInTheWesternDragonValley1;
+
 /**
  * @author Magik
  */
@@ -138,12 +140,11 @@ public class Q10356_StopTheLizardmen5 extends Quest
 					rewardPlayer(player);
 				}
 				
-				// Removed with High Elves update.
-				// final QuestState nextQuestState = player.getQuestState(Q19905_LevelUpTo78.class.getSimpleName());
-				// if (nextQuestState == null)
-				// {
-				// player.sendPacket(new ExQuestDialog(19905, QuestDialogType.ACCEPT));
-				// }
+				final QuestState nextQuestState = player.getQuestState(Q10357_ReconnaissanceInTheWesternDragonValley1.class.getSimpleName());
+				if (nextQuestState == null)
+				{
+					player.sendPacket(new ExQuestDialog(10357, QuestDialogType.ACCEPT));
+				}
 				break;
 			}
 		}
@@ -172,7 +173,7 @@ public class Q10356_StopTheLizardmen5 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -191,19 +192,17 @@ public class Q10356_StopTheLizardmen5 extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

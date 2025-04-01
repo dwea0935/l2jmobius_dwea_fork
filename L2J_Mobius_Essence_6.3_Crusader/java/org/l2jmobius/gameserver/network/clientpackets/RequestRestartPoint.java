@@ -26,19 +26,20 @@ import java.util.Map;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.data.holders.ResurrectByPaymentHolder;
 import org.l2jmobius.gameserver.data.xml.ClanHallData;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.SiegeClan;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
-import org.l2jmobius.gameserver.model.holders.ResurrectByPaymentHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.Event;
 import org.l2jmobius.gameserver.model.residences.ClanHall;
@@ -268,7 +269,7 @@ public class RequestRestartPoint extends ClientPacket
 				{
 					player.doRevive(100);
 				}
-				else if (player.destroyItemByItemId("Feather", 10649, 1, player, false) /* || player.destroyItemByItemId("Feather", 13300, 1, player, false) || player.destroyItemByItemId("Feather", 13128, 1, player, false) */)
+				else if (player.destroyItemByItemId(ItemProcessType.FEE, 10649, 1, player, false) /* || player.destroyItemByItemId("Feather", 13300, 1, player, false) || player.destroyItemByItemId("Feather", 13128, 1, player, false) */)
 				{
 					player.doRevive(100);
 					CommonSkill.FEATHER_OF_BLESSING.getSkill().applyEffects(player, player);
@@ -354,7 +355,7 @@ public class RequestRestartPoint extends ClientPacket
 						}
 						
 						player.getVariables().set(PlayerVariables.RESURRECT_BY_PAYMENT_COUNT, originalValue + 1);
-						player.destroyItem("item revive", item, fee, player, true);
+						player.destroyItem(ItemProcessType.FEE, item, fee, player, true);
 						player.doRevive(rbph.getResurrectPercent());
 						loc = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.TOWN);
 						player.teleToLocation(loc, true, instance);

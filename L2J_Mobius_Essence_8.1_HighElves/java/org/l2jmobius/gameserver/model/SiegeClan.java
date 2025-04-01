@@ -23,8 +23,8 @@ package org.l2jmobius.gameserver.model;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.enums.SiegeClanType;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.siege.SiegeClanType;
 
 public class SiegeClan
 {

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests.Q10366_ExploringTheCrumaTowers3rdFloor5;
 
@@ -29,7 +33,7 @@ import org.l2jmobius.gameserver.model.quest.newquestdata.QuestCondType;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestDialog;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestNotification;
 
-import quests.Q19906_LevelUpTo81.Q19906_LevelUpTo81;
+import quests.Q10367_ThwartingDragonsPlans1.Q10367_ThwartingDragonsPlans1;
 
 /**
  * @author Magik
@@ -39,11 +43,10 @@ public class Q10366_ExploringTheCrumaTowers3rdFloor5 extends Quest
 	private static final int QUEST_ID = 10366;
 	private static final int[] MONSTERS =
 	{
-		22205, // CATHEROK
-		22203, // RICENSEO
-		22204, // KRATOR
-		22202, // MORDEO
-		22200, // PORTA
+		22203, // Ricenseo
+		22727, // Snerio
+		22725, // Mutated Protector / Keeper
+		22728, // Giant Soldier
 	};
 	
 	public Q10366_ExploringTheCrumaTowers3rdFloor5()
@@ -136,10 +139,10 @@ public class Q10366_ExploringTheCrumaTowers3rdFloor5 extends Quest
 					rewardPlayer(player);
 				}
 				
-				final QuestState nextQuestState = player.getQuestState(Q19906_LevelUpTo81.class.getSimpleName());
+				final QuestState nextQuestState = player.getQuestState(Q10367_ThwartingDragonsPlans1.class.getSimpleName());
 				if (nextQuestState == null)
 				{
-					player.sendPacket(new ExQuestDialog(19906, QuestDialogType.ACCEPT));
+					player.sendPacket(new ExQuestDialog(10367, QuestDialogType.ACCEPT));
 				}
 				break;
 			}
@@ -169,7 +172,7 @@ public class Q10366_ExploringTheCrumaTowers3rdFloor5 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -188,19 +191,17 @@ public class Q10366_ExploringTheCrumaTowers3rdFloor5 extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

@@ -1267,7 +1267,7 @@
 		</capsuled_items>
 	</item>
 	<item id="21679" name="Package: Little Angel Wings (7-day)" additionalName="Mana Regeneration" type="EtcItem">
-		<!-- Double-click to obtain Little Angel Wings (7-day). -->
+		<!-- Double-click to obtain Little Angel Wing (7-day). -->
 		<set name="icon" val="BranchSys.icon.br_four_leaf_clover_box_i00" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -1279,11 +1279,11 @@
 		<set name="handler" val="ExtractableItems" />
 		<set name="is_freightable" val="true" />
 		<capsuled_items>
-			<item id="20444" min="1" max="1" chance="100" /> <!-- Little Angel Wings - Mana Regeneration / 7-day -->
+			<item id="20444" min="1" max="1" chance="100" /> <!-- Little Angel Wing - Mana Regeneration / 7-day -->
 		</capsuled_items>
 	</item>
 	<item id="21680" name="Package: Little Angel Wings" type="EtcItem">
-		<!-- Double-click to obtain Little Angel Wings -->
+		<!-- Double-click to obtain Little Angel Wing. -->
 		<set name="icon" val="BranchSys.icon.br_four_leaf_clover_box_i00" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -1295,7 +1295,7 @@
 		<set name="handler" val="ExtractableItems" />
 		<set name="is_freightable" val="true" />
 		<capsuled_items>
-			<item id="22169" min="1" max="1" chance="100" /> <!-- Little Angel Wings -->
+			<item id="22169" min="1" max="1" chance="100" /> <!-- Little Angel Wing -->
 		</capsuled_items>
 	</item>
 	<item id="21681" name="Package: Fairy Antennae (7-day)" additionalName="Reflect Damage" type="EtcItem">

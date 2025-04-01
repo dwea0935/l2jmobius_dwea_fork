@@ -27,9 +27,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.AppearanceHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.appearance.AppearanceHolder;
 import org.l2jmobius.gameserver.model.item.appearance.AppearanceStone;
 import org.l2jmobius.gameserver.model.item.appearance.AppearanceTargetType;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
@@ -87,9 +88,9 @@ public class AppearanceItemData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -116,7 +117,7 @@ public class AppearanceItemData implements IXmlReader
 								}
 								case "bodyPart":
 								{
-									final int part = ItemData.SLOTS.get(c.getTextContent());
+									final int part = ItemTemplate.SLOTS.get(c.getTextContent());
 									stone.addBodyPart(part);
 									break;
 								}
@@ -161,10 +162,6 @@ public class AppearanceItemData implements IXmlReader
 		return null;
 	}
 	
-	/**
-	 * Gets the single instance of AppearanceItemData.
-	 * @return single instance of AppearanceItemData
-	 */
 	public static AppearanceItemData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

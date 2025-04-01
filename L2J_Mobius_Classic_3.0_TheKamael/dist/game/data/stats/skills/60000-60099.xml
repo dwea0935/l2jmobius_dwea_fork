@@ -29,9 +29,8 @@
 		<abnormalType>PK_DEBUFF1</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>-100</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>

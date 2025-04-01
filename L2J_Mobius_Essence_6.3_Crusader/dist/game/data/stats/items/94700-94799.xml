@@ -246,16 +246,16 @@
 		</stats>
 		<skills>
 			<skill id="50468" level="1" /> <!-- Hellbound Ring -->
-			<skill id="50468" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Hellbound Ring -->
-			<skill id="50468" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Hellbound Ring -->
-			<skill id="50468" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Hellbound Ring -->
-			<skill id="50468" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Hellbound Ring -->
-			<skill id="50468" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Hellbound Ring -->
-			<skill id="50468" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Hellbound Ring -->
-			<skill id="50468" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Hellbound Ring -->
-			<skill id="50468" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Hellbound Ring -->
-			<skill id="50468" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Hellbound Ring -->
-			<skill id="50468" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Hellbound Ring -->
+			<skill id="50468" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Hellbound Ring -->
+			<skill id="50468" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Hellbound Ring -->
+			<skill id="50468" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +2 Hellbound Ring -->
+			<skill id="50468" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +3 Hellbound Ring -->
+			<skill id="50468" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +4 Hellbound Ring -->
+			<skill id="50468" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +5 Hellbound Ring -->
+			<skill id="50468" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +6 Hellbound Ring -->
+			<skill id="50468" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +7 Hellbound Ring -->
+			<skill id="50468" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +8 Hellbound Ring -->
+			<skill id="50468" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +9 Hellbound Ring -->
 		</skills>
 	</item>
 	<item id="94719" name="Scroll: Enchant Hellbound Ring" type="EtcItem">
@@ -1325,7 +1325,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="40258" level="1" /> <!-- Berserker's Scroll -->
+			<skill id="40258" level="1" /> <!-- Berserker's Scroll (Exchangeable) -->
 		</skills>
 	</item>
 	<item id="94777" name="Berserker's Scroll" additionalName="Sealed" type="EtcItem">

@@ -1140,7 +1140,6 @@
 		<set name="is_stackable" val="true" />
 		<set name="etcitem_type" val="ENCHT_ATTR_INC_PROP_ENCHT_WP" />
 		<set name="immediate_effect" val="true" />
-		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>

@@ -683,7 +683,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17945" level="1" /> <!-- Escape - Hunter's Village Teleport -->
+			<skill id="17945" level="1" /> <!-- Scroll of Escape: Magmeld -->
 		</skills>
 	</item>
 	<item id="39555" name="Minstrel's Scroll of Escape: Magmeld" type="EtcItem">
@@ -947,8 +947,8 @@
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="8864" level="7" /> <!-- Talisman - Insanity -->
-			<skill id="17978" level="1" type="ON_EQUIP" /> <!-- Equip Talisman - Infinity -->
-			<skill id="17979" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Infinity -->
+			<skill id="17978" level="1" type="ON_EQUIP" /> <!-- Equip Talisman - Insanity -->
+			<skill id="17979" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Insanity -->
 		</skills>
 	</item>
 	<item id="39573" name="Sealed Talisman - Insanity" type="EtcItem">

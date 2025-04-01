@@ -20,10 +20,10 @@
  */
 package ai.areas.GainakUnderground.TavernEmployee;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import ai.AbstractNpcAI;
@@ -172,7 +172,7 @@ public class TavernEmployee extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setTalkable(false);
 		
@@ -200,7 +200,6 @@ public class TavernEmployee extends AbstractNpcAI
 		{
 			startQuestTimer("spam_text6", 18000, npc, null, true);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

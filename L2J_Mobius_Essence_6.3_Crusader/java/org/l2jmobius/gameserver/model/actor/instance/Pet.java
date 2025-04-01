@@ -38,24 +38,20 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.data.enums.EvolveLevel;
 import org.l2jmobius.gameserver.data.sql.CharSummonTable;
 import org.l2jmobius.gameserver.data.sql.SummonEffectTable;
 import org.l2jmobius.gameserver.data.sql.SummonEffectTable.SummonEffect;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
-import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.EvolveLevel;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.ItemLocation;
-import org.l2jmobius.gameserver.enums.PartyDistributionType;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.handler.ItemHandler;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.ItemsOnGroundManager;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.ItemManager;
+import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
 import org.l2jmobius.gameserver.model.PetData;
 import org.l2jmobius.gameserver.model.PetLevelData;
 import org.l2jmobius.gameserver.model.World;
@@ -63,11 +59,15 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.holders.creature.PetEvolveHolder;
 import org.l2jmobius.gameserver.model.actor.stat.PetStat;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.PetEvolveHolder;
+import org.l2jmobius.gameserver.model.groups.PartyDistributionType;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.itemcontainer.PetInventory;
@@ -75,6 +75,7 @@ import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.EffectScope;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -85,7 +86,7 @@ import org.l2jmobius.gameserver.network.serverpackets.StopMove;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.pet.PetInventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.pet.PetItemList;
-import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
 
 public class Pet extends Summon
 {
@@ -507,7 +508,7 @@ public class Pet extends Summon
 	
 	/**
 	 * Destroys item from inventory and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param objectId : int Item Instance identifier of the item to be destroyed
 	 * @param count : int Quantity of items to be destroyed
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
@@ -515,7 +516,7 @@ public class Pet extends Summon
 	 * @return boolean informing if the action was successfull
 	 */
 	@Override
-	public boolean destroyItem(String process, int objectId, long count, WorldObject reference, boolean sendMessage)
+	public boolean destroyItem(ItemProcessType process, int objectId, long count, WorldObject reference, boolean sendMessage)
 	{
 		final Item item = _inventory.destroyItem(process, objectId, count, getOwner(), reference);
 		if (item == null)
@@ -553,7 +554,7 @@ public class Pet extends Summon
 	
 	/**
 	 * Destroy item from inventory by using its <b>itemId</b> and send a Server->Client InventoryUpdate packet to the Player.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param itemId : int Item identifier of the item to be destroyed
 	 * @param count : int Quantity of items to be destroyed
 	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
@@ -561,7 +562,7 @@ public class Pet extends Summon
 	 * @return boolean informing if the action was successfull
 	 */
 	@Override
-	public boolean destroyItemByItemId(String process, int itemId, long count, WorldObject reference, boolean sendMessage)
+	public boolean destroyItemByItemId(ItemProcessType process, int itemId, long count, WorldObject reference, boolean sendMessage)
 	{
 		final Item item = _inventory.destroyItemByItemId(process, itemId, count, getOwner(), reference);
 		if (item == null)
@@ -606,7 +607,7 @@ public class Pet extends Summon
 			return;
 		}
 		
-		getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		getAI().setIntention(Intention.IDLE);
 		broadcastPacket(new StopMove(this));
 		if (!object.isItem())
 		{
@@ -709,7 +710,7 @@ public class Pet extends Summon
 				handler.useItem(this, target, false);
 			}
 			
-			ItemData.getInstance().destroyItem("Consume", target, getOwner(), null);
+			ItemManager.destroyItem(ItemProcessType.NONE, target, getOwner(), null);
 			broadcastStatusUpdate();
 		}
 		else
@@ -748,7 +749,7 @@ public class Pet extends Summon
 			}
 			else
 			{
-				final Item item = getOwner().getInventory().addItem("Pet Pickup", target, getOwner(), this);
+				final Item item = getOwner().getInventory().addItem(ItemProcessType.PICKUP, target, getOwner(), this);
 				if (item != null)
 				{
 					getOwner().sendPacket(new PetItemList(getInventory().getItems()));
@@ -756,7 +757,7 @@ public class Pet extends Summon
 			}
 		}
 		
-		getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		getAI().setIntention(Intention.IDLE);
 		
 		if (follow)
 		{
@@ -824,7 +825,7 @@ public class Pet extends Summon
 		{
 			setRunning();
 		}
-		getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+		getAI().setIntention(Intention.ACTIVE);
 	}
 	
 	@Override
@@ -838,7 +839,7 @@ public class Pet extends Summon
 	
 	/**
 	 * Transfers item to another inventory
-	 * @param process string identifier of process triggering this action
+	 * @param process ItemProcessType identifier of process triggering this action
 	 * @param objectId Item Identifier of the item to be transfered
 	 * @param count Quantity of items to be transfered
 	 * @param target
@@ -846,7 +847,7 @@ public class Pet extends Summon
 	 * @param reference Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the new item or the updated item in inventory
 	 */
-	public Item transferItem(String process, int objectId, long count, Inventory target, Player actor, WorldObject reference)
+	public Item transferItem(ItemProcessType process, int objectId, long count, Inventory target, Player actor, WorldObject reference)
 	{
 		final Item oldItem = _inventory.getItemByObjectId(objectId);
 		final Item playerOldItem = target.getItemByItemId(oldItem.getId());
@@ -895,11 +896,11 @@ public class Pet extends Summon
 			Item removedItem;
 			if (evolve)
 			{
-				removedItem = owner.getInventory().destroyItem("Evolve", _controlObjectId, 1, getOwner(), this);
+				removedItem = owner.getInventory().destroyItem(ItemProcessType.FEE, _controlObjectId, 1, getOwner(), this);
 			}
 			else
 			{
-				removedItem = owner.getInventory().destroyItem("PetDestroy", _controlObjectId, 1, getOwner(), this);
+				removedItem = owner.getInventory().destroyItem(ItemProcessType.DESTROY, _controlObjectId, 1, getOwner(), this);
 				if (removedItem != null)
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.S1_DISAPPEARED);
@@ -956,7 +957,7 @@ public class Pet extends Summon
 	
 	public void dropItemHere(Item item, boolean protect)
 	{
-		final Item dropit = _inventory.dropItem("Drop", item.getObjectId(), item.getCount(), getOwner(), this);
+		final Item dropit = _inventory.dropItem(ItemProcessType.DROP, item.getObjectId(), item.getCount(), getOwner(), this);
 		if (dropit != null)
 		{
 			if (protect)
@@ -1193,7 +1194,7 @@ public class Pet extends Summon
 					ps2.setInt(6, ++buffIndex);
 					ps2.addBatch();
 					
-					SummonEffectTable.getInstance().getPetEffects().computeIfAbsent(getControlObjectId(), k -> ConcurrentHashMap.newKeySet()).add(new SummonEffect(skill, info.getTime()));
+					SummonEffectTable.getInstance().getPetEffects().computeIfAbsent(getControlObjectId(), _ -> ConcurrentHashMap.newKeySet()).add(new SummonEffect(skill, info.getTime()));
 				}
 				ps2.executeBatch();
 			}
@@ -1227,7 +1228,7 @@ public class Pet extends Summon
 						
 						if (skill.hasEffects(EffectScope.GENERAL))
 						{
-							SummonEffectTable.getInstance().getPetEffects().computeIfAbsent(getControlObjectId(), k -> ConcurrentHashMap.newKeySet()).add(new SummonEffect(skill, effectCurTime));
+							SummonEffectTable.getInstance().getPetEffects().computeIfAbsent(getControlObjectId(), _ -> ConcurrentHashMap.newKeySet()).add(new SummonEffect(skill, effectCurTime));
 						}
 					}
 				}

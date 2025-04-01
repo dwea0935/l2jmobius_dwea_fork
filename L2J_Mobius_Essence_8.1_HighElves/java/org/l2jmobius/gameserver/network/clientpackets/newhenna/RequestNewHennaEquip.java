@@ -22,8 +22,10 @@ package org.l2jmobius.gameserver.network.clientpackets.newhenna;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.HennaData;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.henna.Henna;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -33,7 +35,6 @@ import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.newhenna.NewHennaEquip;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Index, Serenitty
@@ -106,8 +107,8 @@ public class RequestNewHennaEquip extends ClientPacket
 				feeType = henna.getL2CoinFee();
 			}
 			
-			player.destroyItemByItemId("HennaDye", henna.getDyeItemId(), henna.getWearCount(), player, true);
-			player.destroyItemByItemId("fee", _otherItemId, feeType, player, true);
+			player.destroyItemByItemId(ItemProcessType.FEE, henna.getDyeItemId(), henna.getWearCount(), player, true);
+			player.destroyItemByItemId(ItemProcessType.FEE, _otherItemId, feeType, player, true);
 			if (player.getAdena() > 0)
 			{
 				final InventoryUpdate iu = new InventoryUpdate();
@@ -123,7 +124,7 @@ public class RequestNewHennaEquip extends ClientPacket
 			player.sendPacket(SystemMessageId.YOU_CANNOT_MAKE_A_PATTERN);
 			if (!player.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && !henna.isAllowedClass(player))
 			{
-				Util.handleIllegalPlayerAction(player, "Exploit attempt: Character " + player.getName() + " of account " + player.getAccountName() + " tryed to add a forbidden henna.", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Exploit attempt: Character " + player.getName() + " of account " + player.getAccountName() + " tryed to add a forbidden henna.", Config.DEFAULT_PUNISH);
 			}
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			player.sendPacket(new NewHennaEquip(_slotId, henna.getDyeId(), false));

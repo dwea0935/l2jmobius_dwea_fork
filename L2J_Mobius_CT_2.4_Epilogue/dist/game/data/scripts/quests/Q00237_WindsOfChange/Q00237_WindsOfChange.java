@@ -50,7 +50,7 @@ public class Q00237_WindsOfChange extends Quest
 	
 	public Q00237_WindsOfChange()
 	{
-		super(237);
+		super(237, "Winds of Change");
 		addStartNpc(FLAUEN);
 		addTalkId(FLAUEN, IASON, ROMAN, MORELYN, HELVETICA, ATHENIA);
 		registerQuestItems(FLAUENS_LETTER, DOSKOZER_LETTER, ATHENIA_LETTER);

@@ -51,7 +51,7 @@ public class OlympiadStat implements IUserCommandHandler
 		
 		final int nobleObjId = player.getObjectId();
 		final WorldObject target = player.getTarget();
-		if ((target == null) || !target.isPlayer() || (target.asPlayer().getClassId().level() < 2))
+		if ((target == null) || !target.isPlayer() || (target.asPlayer().getPlayerClass().level() < 2))
 		{
 			player.sendPacket(SystemMessageId.THIS_COMMAND_CAN_ONLY_BE_USED_IN_CASE_A_TARGET_IS_AWAKENED_NOBLESSE_OR_EXALTED);
 			return false;

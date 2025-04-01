@@ -16,9 +16,9 @@
  */
 package quests.Q00161_FruitOfTheMotherTree;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -40,7 +40,7 @@ public class Q00161_FruitOfTheMotherTree extends Quest
 	
 	public Q00161_FruitOfTheMotherTree()
 	{
-		super(161);
+		super(161, "Fruit of the Mothertree");
 		addStartNpc(ANDELLIA);
 		addTalkId(ANDELLIA, THALIA);
 		registerQuestItems(ANDELLRIAS_LETTER, MOTHERTREE_FRUIT);

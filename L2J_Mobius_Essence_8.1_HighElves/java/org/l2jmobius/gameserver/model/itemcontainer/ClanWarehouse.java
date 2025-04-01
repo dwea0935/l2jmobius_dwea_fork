@@ -21,14 +21,15 @@
 package org.l2jmobius.gameserver.model.itemcontainer;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanWHItemAdd;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanWHItemDestroy;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanWHItemTransfer;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanWHItemAdd;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanWHItemDestroy;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanWHItemTransfer;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 
 public class ClanWarehouse extends Warehouse
@@ -71,52 +72,52 @@ public class ClanWarehouse extends Warehouse
 	}
 	
 	@Override
-	public Item addItem(String process, int itemId, long count, Player actor, Object reference)
+	public Item addItem(ItemProcessType process, int itemId, long count, Player actor, Object reference)
 	{
 		final Item item = super.addItem(process, itemId, count, actor, reference);
 		
 		// Notify to scripts
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_CLAN_WH_ITEM_ADD, item.getTemplate()))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemAdd(process, actor, item, this), item.getTemplate());
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemAdd(actor, item, this), item.getTemplate());
 		}
 		
 		return item;
 	}
 	
 	@Override
-	public Item addItem(String process, Item item, Player actor, Object reference)
+	public Item addItem(ItemProcessType process, Item item, Player actor, Object reference)
 	{
 		// Notify to scripts
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_CLAN_WH_ITEM_ADD, item.getTemplate()))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemAdd(process, actor, item, this), item.getTemplate());
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemAdd(actor, item, this), item.getTemplate());
 		}
 		
 		return super.addItem(process, item, actor, reference);
 	}
 	
 	@Override
-	public Item destroyItem(String process, Item item, long count, Player actor, Object reference)
+	public Item destroyItem(ItemProcessType process, Item item, long count, Player actor, Object reference)
 	{
 		// Notify to scripts
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_CLAN_WH_ITEM_DESTROY, item.getTemplate()))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemDestroy(process, actor, item, count, this), item.getTemplate());
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemDestroy(actor, item, count, this), item.getTemplate());
 		}
 		
 		return super.destroyItem(process, item, count, actor, reference);
 	}
 	
 	@Override
-	public Item transferItem(String process, int objectId, long count, ItemContainer target, Player actor, Object reference)
+	public Item transferItem(ItemProcessType process, int objectId, long count, ItemContainer target, Player actor, Object reference)
 	{
 		final Item item = getItemByObjectId(objectId);
 		
 		// Notify to scripts
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_CLAN_WH_ITEM_TRANSFER, item.getTemplate()))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemTransfer(process, actor, item, count, target), item.getTemplate());
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemTransfer(actor, item, count, target), item.getTemplate());
 		}
 		
 		return super.transferItem(process, objectId, count, target, actor, reference);

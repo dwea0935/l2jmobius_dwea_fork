@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20000" name="Spicy Kimchi" type="EtcItem">
 		<!-- Event Item. Temporarily increases Recovery Rate. Effect 1. -->
@@ -91,7 +91,7 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21000" level="1" /> <!-- Release Agathion's Seal - Majo -->
+			<skill id="21000" level="1" /> <!-- Summon Agathion Majo -->
 			<skill id="23000" level="1" /> <!-- Majo Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -148,9 +148,9 @@
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="21000" level="1" /> <!-- Release Agathion's Seal - Majo -->
+			<skill id="21000" level="1" /> <!-- Summon Agathion Majo -->
 			<skill id="23000" level="1" /> <!-- Majo Agathion Cute Trick -->
-			<skill id="23004" level="1" /> <!-- Majo Agathion Special Skill: Mysterious Power -->
+			<skill id="23004" level="1" /> <!-- Agathion Majo's Special Skill: Mysterious Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -210,7 +210,7 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21003" level="1" /> <!-- Release Agathion's Seal - Plaipitak -->
+			<skill id="21003" level="1" /> <!-- Summon Agathion Plaipitak -->
 			<skill id="23003" level="1" /> <!-- Plaipitak Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -229,7 +229,7 @@
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="21003" level="1" /> <!-- Release Agathion's Seal - Plaipitak -->
+			<skill id="21003" level="1" /> <!-- Summon Agathion Plaipitak -->
 			<skill id="23003" level="1" /> <!-- Plaipitak Agathion Cute Trick -->
 			<skill id="23007" level="1" /> <!-- Plaipitak Agathion Special Skill: Mysterious Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
@@ -250,9 +250,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="21003" level="1" /> <!-- Release Agathion's Seal - Plaipitak -->
+			<skill id="21003" level="1" /> <!-- Summon Agathion Plaipitak -->
 			<skill id="23003" level="1" /> <!-- Plaipitak Agathion Cute Trick -->
-			<skill id="23009" level="1" /> <!-- Plaipitak Agathion Special Skill: Blessed Resurrection -->
+			<skill id="23009" level="1" /> <!-- Agathion Plaipitak's Special Skill: Blessed Resurrection Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -271,9 +271,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="21003" level="1" /> <!-- Release Agathion's Seal - Plaipitak -->
+			<skill id="21003" level="1" /> <!-- Summon Agathion Plaipitak -->
 			<skill id="23003" level="1" /> <!-- Plaipitak Agathion Cute Trick -->
-			<skill id="23008" level="1" /> <!-- Plaipitak Agathion Special Skill: Blessed Escape -->
+			<skill id="23008" level="1" /> <!-- Agathion Plaipitak's Special Skill: Blessed Escape Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -1073,8 +1073,8 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21008" level="1" /> <!-- Release Agathion's Seal - Baby Panda -->
-			<skill id="23010" level="1" /> <!-- Baby Panda Agathion Cute Trick -->
+			<skill id="21008" level="1" /> <!-- Summon Agathion Baby Panda -->
+			<skill id="23010" level="1" /> <!-- Agathion Baby Panda's Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -1092,7 +1092,7 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21009" level="1" /> <!-- Release Agathion's Seal - Bamboo Panda -->
+			<skill id="21009" level="1" /> <!-- Summon Agathion Bamboo Panda -->
 			<skill id="23011" level="1" /> <!-- Bamboo Panda Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1111,7 +1111,7 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21010" level="1" /> <!-- Release Agathion's Seal - Sexy Panda -->
+			<skill id="21010" level="1" /> <!-- Summon Agathion Sexy Panda -->
 			<skill id="23012" level="1" /> <!-- Sexy Panda Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1130,8 +1130,8 @@
 		<set name="is_premium" val="true" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="21008" level="1" /> <!-- Release Agathion's Seal - Baby Panda -->
-			<skill id="23013" level="1" /> <!-- Baby Panda Agathion Special Skill: Mysterious Power -->
+			<skill id="21008" level="1" /> <!-- Summon Agathion Baby Panda -->
+			<skill id="23013" level="1" /> <!-- Agathion Baby Panda's Special Skill: Mysterious Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -1150,8 +1150,8 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="21009" level="1" /> <!-- Release Agathion's Seal - Bamboo Panda -->
-			<skill id="23014" level="1" /> <!-- Bamboo Panda Agathion Special Skill: Blessed Resurrection -->
+			<skill id="21009" level="1" /> <!-- Summon Agathion Bamboo Panda -->
+			<skill id="23014" level="1" /> <!-- Agathion Bamboo Panda's Special Skill: Blessed Resurrection Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -1170,8 +1170,8 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="21010" level="1" /> <!-- Release Agathion's Seal - Sexy Panda -->
-			<skill id="23015" level="1" /> <!-- Sexy Panda Agathion Special Skill: Blessed Escape -->
+			<skill id="21010" level="1" /> <!-- Summon Agathion Sexy Panda -->
+			<skill id="23015" level="1" /> <!-- Agathion Sexy Panda's Special Skill: Blessed Escape Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -1643,7 +1643,7 @@
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="3425" level="1" /> <!-- Release Agathion's Seal - Rudolph -->
+			<skill id="3425" level="1" /> <!-- Agathion Summon - Rudolph -->
 			<skill id="5537" level="1" /> <!-- Rudolph Cuteness Trick -->
 			<skill id="23016" level="1" /> <!-- Rudolph Agathion Special Skill: Ability of Vitality -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->

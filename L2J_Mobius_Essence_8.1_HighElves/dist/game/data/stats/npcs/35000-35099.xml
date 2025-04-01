@@ -454,7 +454,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>MALE</sex>
-		<equipment rhand="150" /> <!-- Elemental Sword -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -542,7 +541,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>MALE</sex>
-		<equipment rhand="288" /> <!-- Carnage Bow -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -587,7 +585,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="325" /> <!-- Horn of Glory -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -678,7 +675,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>MALE</sex>
-		<equipment rhand="150" /> <!-- Elemental Sword -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -766,7 +762,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>MALE</sex>
-		<equipment rhand="288" /> <!-- Carnage Bow -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -811,7 +806,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="325" /> <!-- Horn of Glory -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -1081,7 +1075,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="6579" /> <!-- Arcana Mace -->
 		<acquire exp="810" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="1933.24044" hpRegen="6.5" mp="1036.8" mpRegen="2.4" />
@@ -1305,7 +1298,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="6579" /> <!-- Arcana Mace -->
 		<acquire exp="810" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="1933.24044" hpRegen="6.5" mp="1036.8" mpRegen="2.4" />
@@ -2248,7 +2240,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>MALE</sex>
-		<equipment rhand="2500" lhand="6377" /> <!-- Dark Legion's Edge / Imperial Crusader Shield -->
 		<acquire exp="563" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2676.65854" hpRegen="8.5" mp="47100" mpRegen="3" />
@@ -2297,7 +2288,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="8687" /> <!-- Cabrio's Hand -->
 		<acquire exp="518" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2540.15331" hpRegen="8.5" mp="44856" mpRegen="3" />
@@ -2571,7 +2561,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="6579" /> <!-- Arcana Mace -->
 		<acquire exp="336" sp="0" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="1828.68266" hpRegen="6.5" mp="977.4" mpRegen="2.4" />
@@ -3160,7 +3149,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="6579" /> <!-- Arcana Mace -->
 		<acquire exp="336" sp="0" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="1828.68266" hpRegen="6.5" mp="977.4" mpRegen="2.4" />

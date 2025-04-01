@@ -154,13 +154,13 @@ public class Q20122_FieldOfWhispersHelpingTheSpirit extends Quest
 					else
 					{
 						final int currentCount = questState.getCount();
-						if (currentCount != data.getGoal().getCount())
+						if (currentCount < data.getGoal().getCount())
 						{
 							questState.setCount(currentCount + 1);
 						}
 					}
 					
-					if (questState.getCount() == data.getGoal().getCount())
+					if (questState.getCount() >= data.getGoal().getCount())
 					{
 						questState.setCond(QuestCondType.DONE);
 						player.sendPacket(new ExQuestNotification(questState));
@@ -183,7 +183,7 @@ public class Q20122_FieldOfWhispersHelpingTheSpirit extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && !questState.isCompleted())
@@ -194,6 +194,5 @@ public class Q20122_FieldOfWhispersHelpingTheSpirit extends Quest
 				questState.setMemoState(1);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

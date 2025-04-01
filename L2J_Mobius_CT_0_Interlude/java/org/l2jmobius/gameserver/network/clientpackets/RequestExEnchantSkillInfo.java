@@ -78,7 +78,7 @@ public class RequestExEnchantSkillInfo extends ClientPacket
 			return;
 		}
 		
-		if (!trainer.getTemplate().canTeach(player.getClassId()))
+		if (!trainer.getTemplate().canTeach(player.getPlayerClass()))
 		{
 			return; // cheater
 		}

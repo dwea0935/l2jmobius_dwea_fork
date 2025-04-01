@@ -78,7 +78,7 @@
 		<set name="time" val="43200" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22588" level="1" /> <!-- High-grade Drop Rate Rune -->
+			<skill id="22588" level="1" /> <!-- High-grade Maphr's Rune -->
 		</skills>
 	</item>
 	<item id="23808" name="High-grade Maphr's Rune 50%" additionalName="30-day" type="EtcItem">
@@ -91,7 +91,7 @@
 		<set name="time" val="43200" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22588" level="2" /> <!-- High-grade Drop Rate Rune -->
+			<skill id="22588" level="2" /> <!-- High-grade Maphr's Rune -->
 		</skills>
 	</item>
 	<item id="23809" name="High-grade Maphr's Rune 100%" additionalName="30-day" type="EtcItem">
@@ -104,7 +104,7 @@
 		<set name="time" val="43200" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22588" level="3" /> <!-- High-grade Drop Rate Rune -->
+			<skill id="22588" level="3" /> <!-- High-grade Maphr's Rune -->
 		</skills>
 	</item>
 	<item id="23810" name="High-grade Maphr's Rune 30% Pack" additionalName="30-day" type="EtcItem">
@@ -118,7 +118,7 @@
 		<set name="time" val="43200" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22588" level="1" /> <!-- High-grade Drop Rate Rune -->
+			<skill id="22588" level="1" /> <!-- High-grade Maphr's Rune -->
 		</skills>
 	</item>
 	<item id="23811" name="High-grade Maphr's Rune 50% Pack" additionalName="30-day" type="EtcItem">
@@ -132,7 +132,7 @@
 		<set name="time" val="43200" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22588" level="2" /> <!-- High-grade Drop Rate Rune -->
+			<skill id="22588" level="2" /> <!-- High-grade Maphr's Rune -->
 		</skills>
 	</item>
 	<item id="23812" name="High-grade Maphr's Rune 100% Pack" additionalName="30-day" type="EtcItem">
@@ -387,7 +387,6 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="21364" level="1" /> <!-- Talisman - Abundance -->
@@ -400,10 +399,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="2" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="2001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="23835" name="Talisman - Abundance" additionalName="Morale" type="Armor">
@@ -413,10 +411,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="3" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="3001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="23836" name="Talisman - Abundance" additionalName="Physique" type="Armor">
@@ -426,10 +423,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="4" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="4001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="23837" name="Talisman - Hunter" additionalName="Abundance" type="Armor">
@@ -439,12 +435,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="5" /> <!-- Talisman - Abundance -->
-			<skill id="21365" level="1" type="ON_EQUIP" /> <!-- Talisman - Hunter -->
-			<skill id="21373" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Hunter -->
+			<skill id="21364" level="1" subLevel="5001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="23838" name="Talisman - Slaughterer" additionalName="Abundance" type="Armor">
@@ -454,12 +447,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="6" /> <!-- Talisman - Abundance -->
-			<skill id="21370" level="1" type="ON_EQUIP" /> <!-- Talisman - Slaughterer -->
-			<skill id="21374" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Slaughterer -->
+			<skill id="21364" level="1" subLevel="6001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="23839" name="Talisman - Conquerer" additionalName="Abundance" type="Armor">
@@ -469,12 +459,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="7" /> <!-- Talisman - Abundance -->
-			<skill id="21371" level="1" type="ON_EQUIP" /> <!-- Talisman - Conquerer -->
-			<skill id="21375" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Conquerer -->
+			<skill id="21364" level="1" subLevel="7001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="23840" name="Talisman - Outlaw" additionalName="Abundance" type="Armor">
@@ -484,19 +471,15 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="8" /> <!-- Talisman - Abundance -->
-			<skill id="21372" level="1" type="ON_EQUIP" /> <!-- Talisman - Outlaw -->
-			<skill id="21376" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Outlaw -->
+			<skill id="21364" level="1" subLevel="8001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="23841" name="Abundance Gift Box" additionalName="War" type="EtcItem">
 		<!-- Has a chance of obtaining either Talisman - Abundance: War, Blessed Scroll: Enchant Weapon/ Armor (R-grade), Lucky Enchant Stone: Weapon/ Armor (R-grade), Scroll: Enchant Weapon/ Armor (R-grade), Elcyum Powder, Divine Protection Elixir, Pa'agrio's Warm Breeze Pack (1-hour), XP Rune I (Lv. 1-85) 100% Pack (1-hour), High-grade Maphr's Rune 100% Pack, or XP Rune II (Lv. 1-95) 100% Pack (1-hour). -->
 		<set name="icon" val="icon.etc_pi_gift_box_i03" />
 		<set name="material" val="PAPER" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="PEEL" />
@@ -524,7 +507,6 @@
 		<set name="icon" val="icon.etc_pi_gift_box_i03" />
 		<set name="material" val="PAPER" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -551,7 +533,6 @@
 		<set name="icon" val="icon.etc_pi_gift_box_i03" />
 		<set name="material" val="PAPER" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -577,7 +558,6 @@
 		<!-- Has a chance of obtaining either Talisman - Abundance: Physique, Blessed Scroll: Enchant Weapon/ Armor (R-grade), Lucky Enchant Stone: Weapon/ Armor (R-grade), Scroll: Enchant Weapon/ Armor (R-grade), Elcyum Powder, Divine Protection Elixir, Pa'agrio's Warm Breeze Pack (1-hour), XP Rune I (Lv. 1-85) 100% Pack (1-hour), High-grade Maphr's Rune 100% Pack, or XP Rune II (Lv. 1-95) 100% Pack (1-hour). -->
 		<set name="icon" val="icon.etc_pi_gift_box_i03" />
 		<set name="material" val="PAPER" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="PEEL" />
@@ -696,7 +676,6 @@
 		<set name="material" val="STEEL" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -711,7 +690,6 @@
 		<set name="material" val="STEEL" />
 		<set name="is_sellable" val="false" />
 		<set name="is_dropable" val="false" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="PEEL" />
@@ -749,7 +727,6 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -786,7 +763,6 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
@@ -820,7 +796,6 @@
 		<set name="material" val="STEEL" />
 		<set name="is_sellable" val="false" />
 		<set name="is_dropable" val="false" />
-		<set name="is_freightable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_stackable" val="true" />
 		<set name="default_action" val="PEEL" />

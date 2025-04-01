@@ -22,12 +22,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
-import org.l2jmobius.gameserver.enums.AttributeType;
-import org.l2jmobius.gameserver.enums.MailType;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
+import org.l2jmobius.gameserver.network.enums.MailType;
 
 /**
  * @author Migi, DS
@@ -208,7 +209,7 @@ public class Message
 		else if (mailType == MailType.COMMISSION_ITEM_RETURNED)
 		{
 			final Mail attachement = createAttachments();
-			attachement.addItem("CommissionReturnItem", item, null, null);
+			attachement.addItem(ItemProcessType.REFUND, item, null, null);
 		}
 	}
 	

@@ -19,7 +19,7 @@ package ai.others.ClanTrader;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -111,7 +111,7 @@ public class ClanTrader extends AbstractNpcAI
 		String htmltext = null;
 		if (player.getClanId() > 0)
 		{
-			htmltext = npc.getId() + ((player.isClanLeader() || player.hasClanPrivilege(ClanPrivilege.CL_TROOPS_FAME)) ? ".html" : "-06.html");
+			htmltext = npc.getId() + ((player.isClanLeader() || player.hasAccess(ClanAccess.MEMBER_FAME)) ? ".html" : "-06.html");
 		}
 		else
 		{

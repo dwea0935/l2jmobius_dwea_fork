@@ -26,16 +26,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerWarehouse;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * SendWareHouseDepositList client packet class.
@@ -111,7 +112,7 @@ public class SendWareHouseDepositList extends ClientPacket
 		
 		if (player.hasItemRequest())
 		{
-			Util.handleIllegalPlayerAction(player, player + " tried to use enchant Exploit!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to use enchant Exploit!", Config.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -157,7 +158,7 @@ public class SendWareHouseDepositList extends ClientPacket
 		}
 		
 		// Check if enough adena and charge the fee
-		if ((currentAdena < fee) || !player.reduceAdena(warehouse.getName(), fee, manager, false))
+		if ((currentAdena < fee) || !player.reduceAdena(ItemProcessType.FEE, fee, manager, false))
 		{
 			player.sendPacket(SystemMessageId.NOT_ENOUGH_ADENA);
 			return;
@@ -186,7 +187,7 @@ public class SendWareHouseDepositList extends ClientPacket
 				continue;
 			}
 			
-			final Item newItem = player.getInventory().transferItem(warehouse.getName(), itemHolder.getId(), itemHolder.getCount(), warehouse, player, manager);
+			final Item newItem = player.getInventory().transferItem(ItemProcessType.TRANSFER, itemHolder.getId(), itemHolder.getCount(), warehouse, player, manager);
 			if (newItem == null)
 			{
 				PacketLogger.warning("Error depositing a warehouse object for char " + player.getName() + " (newitem == null)");

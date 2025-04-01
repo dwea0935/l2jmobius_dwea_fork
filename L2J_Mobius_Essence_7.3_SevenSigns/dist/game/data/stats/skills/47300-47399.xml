@@ -723,10 +723,9 @@
 		<hitTime>1300</hitTime>
 		<itemConsumeCount>
 			<value fromLevel="1" toLevel="1">0</value>
-			<value fromLevel="1" toLevel="1" fromSubLevel="1001" toSubLevel="1003">2</value>
+			<value fromLevel="1" toLevel="1" fromSubLevel="1001" toSubLevel="1002">2</value>
+			<value fromLevel="1" toLevel="1" fromSubLevel="1003" toSubLevel="1003">3</value>
 		</itemConsumeCount>
-		<itemConsumeCount>3</itemConsumeCount>
-		<itemConsumeId>3031</itemConsumeId>
 		<itemConsumeId>3031</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>77</magicLevel>
@@ -2857,7 +2856,7 @@
 		<abnormalType>STAT_SKILL</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -3779,7 +3778,7 @@
 				<targetType>ENEMY</targetType>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-2</amount>
+				<amount>2</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DamageByAttack">
@@ -4220,7 +4219,6 @@
 			<value level="7">67</value>
 			<value level="8">72</value>
 			<value level="9">76</value>
-			<value level="10">80</value>
 			<value level="10">80</value>
 			<value level="11">82</value>
 			<value level="12">84</value>

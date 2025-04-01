@@ -1563,7 +1563,6 @@
 		<set name="bodypart" val="brooch_jewel" />
 		<set name="weight" val="5" />
 		<set name="is_sellable" val="false" />
-		<set name="is_sellable" val="false" />
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="17701" level="5" /> <!-- Topaz - Spirit Hit -->
@@ -1632,7 +1631,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="brooch_jewel" />
 		<set name="weight" val="5" />
-		<set name="is_sellable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="material" val="GOLD" />
 		<skills>
@@ -1822,7 +1820,6 @@
 		<set name="bodypart" val="brooch_jewel" />
 		<set name="weight" val="5" />
 		<set name="is_sellable" val="false" />
-		<set name="is_sellable" val="false" />
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="17704" level="5" /> <!-- Obsidian -->
@@ -1890,7 +1887,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="brooch_jewel" />
 		<set name="weight" val="5" />
-		<set name="is_sellable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="material" val="GOLD" />
 		<skills>

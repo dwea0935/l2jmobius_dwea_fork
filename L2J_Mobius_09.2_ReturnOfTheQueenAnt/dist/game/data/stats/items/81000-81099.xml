@@ -28,7 +28,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17825" level="5" /> <!-- Emerald Lv. 5 -->
+			<skill id="17825" level="5" /> <!-- Emerald -->
 		</skills>
 	</item>
 	<item id="81002" name="PA - Diamond Lv. 5" additionalName="1-day" type="Armor">
@@ -43,7 +43,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="17708" level="5" /> <!-- Diamond Lv. 5 -->
+			<skill id="17708" level="5" /> <!-- Diamond -->
 		</skills>
 	</item>
 	<item id="81003" name="PA - Opal Lv. 5" additionalName="1-day" type="Armor">
@@ -73,8 +73,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="18568" level="5" /> <!-- Superior Vital Stone Lv. 10 -->
-			<skill id="27439" level="4" /> <!-- Superior Vital Stone - Vital Wind -->
+			<skill id="18568" level="5" /> <!-- Vital Stone -->
+			<skill id="27439" level="4" /> <!-- Vital Stone - Vital Wind -->
 		</skills>
 	</item>
 	<item id="81005" name="PA - Red Cat's Eye Lv. 5" additionalName="1-day" type="Armor">
@@ -89,7 +89,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="18713" level="5" /> <!-- Superior Red Cat's Eye Lv. 10 -->
+			<skill id="18713" level="5" /> <!-- Red Cat's Eye -->
 		</skills>
 	</item>
 	<item id="81006" name="PA - Blue Cat's Eye Lv. 5" additionalName="1-day" type="Armor">
@@ -104,7 +104,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="18714" level="5" /> <!-- Superior Blue Cat's Eye Lv. 10 -->
+			<skill id="18714" level="5" /> <!-- Blue Cat's Eye -->
 		</skills>
 	</item>
 	<item id="81007" name="PA - La Vie En Rose's Brooch" additionalName="1-day" type="Armor">
@@ -216,12 +216,12 @@
 			<skill id="39517" level="1" /> <!-- Fantasia Melody - Emperor's Special Cocktail -->
 			<skill id="39407" level="1" /> <!-- Horn Melody - Emperor's Special Cocktail -->
 			<skill id="39408" level="1" /> <!-- Drum Melody - Emperor's Special Cocktail -->
-			<skill id="39409" level="1" /> <!-- Pipe organ Melody - Emperor's Special Cocktail -->
+			<skill id="39409" level="1" /> <!-- Pipe Organ Melody - Emperor's Special Cocktail -->
 			<skill id="39410" level="1" /> <!-- Guitar Melody - Emperor's Special Cocktail -->
-			<skill id="39413" level="1" /> <!-- Mental Attack Resistance - Emperor's Special Cocktail -->
-			<skill id="39412" level="1" /> <!-- Resistance Debuff - Emperor's Special Cocktail -->
-			<skill id="39411" level="1" /> <!-- Elemental Resistance - Emperor's Special Cocktail -->
-			<skill id="39414" level="1" /> <!-- War drum - Emperor's Special Cocktail -->
+			<skill id="39413" level="1" /> <!-- Mental Resistance - Emperor's Special Cocktail -->
+			<skill id="39412" level="1" /> <!-- Debuff Resistance - Emperor's Special Cocktail -->
+			<skill id="39411" level="1" /> <!-- Attribute Resistance - Emperor's Special Cocktail -->
+			<skill id="39414" level="1" /> <!-- War Drum - Emperor's Special Cocktail -->
 			<skill id="39415" level="1" /> <!-- Marching Drum - Emperor's Special Cocktail -->
 			<skill id="39416" level="1" /> <!-- Soothing Drum - Emperor's Special Cocktail -->
 		</skills>

@@ -77,7 +77,7 @@ public class Q00632_NecromancersRequest extends Quest
 	
 	public Q00632_NecromancersRequest()
 	{
-		super(632);
+		super(632, "Necromancer's Request");
 		addStartNpc(MYSTERIOUS_WIZARD);
 		addTalkId(MYSTERIOUS_WIZARD);
 		addKillId(BRAIN_MONSTERS.keySet());
@@ -139,7 +139,7 @@ public class Q00632_NecromancersRequest extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs != null)
@@ -158,7 +158,6 @@ public class Q00632_NecromancersRequest extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

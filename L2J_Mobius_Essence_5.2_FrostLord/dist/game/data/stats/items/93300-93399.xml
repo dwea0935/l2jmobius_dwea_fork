@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="93300" name="Einhasad's Pendant Lv. 5" additionalName="Sealed" type="Armor">
 		<!-- <Invocation>. Increases Speed and recovers HP/ MP for 15 sec. <Einhasad's Pendant>. M. Def. +45. Acquired XP/ SP +35%. Received damage -25%. Atk. Spd. +10%. Casting Spd. +10%. P. Critical Damage +10%. M. Skill Critical Damage +10%. P. Atk. +15%. M. Atk. +15% -->
@@ -15,7 +15,7 @@
 			<stat type="pDef">75</stat>
 		</stats>
 		<skills>
-			<skill id="50341" level="5" /> <!-- Pendant: Einhasad's Pendant Lv1 -->
+			<skill id="50341" level="5" /> <!-- Einhasad's Pendant -->
 		</skills>
 	</item>
 	<item id="93301" name="Cloak of Protection" additionalName="Sealed" type="Armor">
@@ -261,18 +261,18 @@
 			<stat type="pDef">165</stat>
 		</stats>
 		<skills>
-			<skill id="50343" level="1" /> <!-- Leather Armor of Lightning -->
-			<skill id="50344" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Leather Armor of Lightning -->
+			<skill id="50343" level="1" /> <!-- A-grade: Leather Armor of Lightning -->
+			<skill id="50344" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Leather Armor of Lightning -->
+			<skill id="50345" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Leather Armor of Lightning -->
+			<skill id="50345" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Leather Armor of Lightning -->
+			<skill id="50345" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Leather Armor of Lightning -->
+			<skill id="50345" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Leather Armor of Lightning -->
+			<skill id="50345" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Leather Armor of Lightning -->
+			<skill id="50345" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Leather Armor of Lightning -->
+			<skill id="50345" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Leather Armor of Lightning -->
+			<skill id="50345" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Leather Armor of Lightning -->
+			<skill id="50345" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Leather Armor of Lightning -->
+			<skill id="50345" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Leather Armor of Lightning -->
 		</skills>
 	</item>
 	<item id="93316" name="Leather Leggings of Lightning" type="Armor">
@@ -291,18 +291,18 @@
 			<stat type="pDef">115</stat>
 		</stats>
 		<skills>
-			<skill id="50346" level="1" /> <!-- Leather Leggings of Lightning -->
-			<skill id="50347" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
+			<skill id="50346" level="1" /> <!-- A-grade: Leather Leggings of Lightning -->
+			<skill id="50347" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Leather Leggings of Lightning -->
+			<skill id="50348" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Leather Leggings of Lightning -->
+			<skill id="50348" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Leather Leggings of Lightning -->
+			<skill id="50348" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Leather Leggings of Lightning -->
+			<skill id="50348" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Leather Leggings of Lightning -->
+			<skill id="50348" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Leather Leggings of Lightning -->
+			<skill id="50348" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Leather Leggings of Lightning -->
+			<skill id="50348" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Leather Leggings of Lightning -->
+			<skill id="50348" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Leather Leggings of Lightning -->
+			<skill id="50348" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Leather Leggings of Lightning -->
+			<skill id="50348" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Leather Leggings of Lightning -->
 		</skills>
 	</item>
 	<item id="93317" name="Leather Armor of Lightning" additionalName="Sealed" type="Armor">
@@ -323,18 +323,18 @@
 			<stat type="pDef">165</stat>
 		</stats>
 		<skills>
-			<skill id="50343" level="1" /> <!-- Leather Armor of Lightning -->
-			<skill id="50344" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Leather Armor of Lightning -->
-			<skill id="50345" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Leather Armor of Lightning -->
+			<skill id="50343" level="1" /> <!-- A-grade: Leather Armor of Lightning -->
+			<skill id="50344" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Leather Armor of Lightning -->
+			<skill id="50345" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Leather Armor of Lightning -->
+			<skill id="50345" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Leather Armor of Lightning -->
+			<skill id="50345" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Leather Armor of Lightning -->
+			<skill id="50345" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Leather Armor of Lightning -->
+			<skill id="50345" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Leather Armor of Lightning -->
+			<skill id="50345" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Leather Armor of Lightning -->
+			<skill id="50345" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Leather Armor of Lightning -->
+			<skill id="50345" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Leather Armor of Lightning -->
+			<skill id="50345" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Leather Armor of Lightning -->
+			<skill id="50345" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Leather Armor of Lightning -->
 		</skills>
 	</item>
 	<item id="93318" name="Leather Leggings of Lightning" additionalName="Sealed" type="Armor">
@@ -355,18 +355,18 @@
 			<stat type="pDef">115</stat>
 		</stats>
 		<skills>
-			<skill id="50346" level="1" /> <!-- Leather Leggings of Lightning -->
-			<skill id="50347" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
-			<skill id="50348" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Leather Leggings of Lightning -->
+			<skill id="50346" level="1" /> <!-- A-grade: Leather Leggings of Lightning -->
+			<skill id="50347" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Leather Leggings of Lightning -->
+			<skill id="50348" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Leather Leggings of Lightning -->
+			<skill id="50348" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Leather Leggings of Lightning -->
+			<skill id="50348" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Leather Leggings of Lightning -->
+			<skill id="50348" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Leather Leggings of Lightning -->
+			<skill id="50348" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Leather Leggings of Lightning -->
+			<skill id="50348" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Leather Leggings of Lightning -->
+			<skill id="50348" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Leather Leggings of Lightning -->
+			<skill id="50348" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Leather Leggings of Lightning -->
+			<skill id="50348" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Leather Leggings of Lightning -->
+			<skill id="50348" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Leather Leggings of Lightning -->
 		</skills>
 	</item>
 	<item id="93319" name="Scroll of Escape: Quartermaster Mathorn" additionalName="Sealed" type="EtcItem">
@@ -641,7 +641,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40121" level="1" /> <!-- Highr-Grade Red Lantern -->
+			<skill id="40121" level="1" /> <!-- High-grade Red Lantern -->
 		</skills>
 	</item>
 	<item id="93339" name="High-grade Purple Lantern - 2nd Place (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -655,7 +655,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40122" level="1" /> <!-- Highr-Grade Purple Lantern -->
+			<skill id="40122" level="1" /> <!-- High-grade Purple Lantern -->
 		</skills>
 	</item>
 	<item id="93340" name="High-grade Blue Lantern - 3rd Place (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -669,7 +669,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40123" level="1" /> <!-- Highr-Grade Blue Lantern -->
+			<skill id="40123" level="1" /> <!-- High-grade Blue Lantern -->
 		</skills>
 	</item>
 	<item id="93341" name="High-grade Green Lantern - 4th Place (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -683,7 +683,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40124" level="1" /> <!-- Highr-Grade Green Lantern -->
+			<skill id="40124" level="1" /> <!-- High-grade Green Lantern -->
 		</skills>
 	</item>
 	<item id="93342" name="High-grade Lit Red Lantern - 1st Place (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -698,7 +698,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40125" level="1" /> <!-- Highr-Grade Red Lantern -->
+			<skill id="40125" level="1" /> <!-- High-grade Lit Red Lantern -->
 		</skills>
 	</item>
 	<item id="93343" name="High-grade Lit Purple Lantern - 2nd Place (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -713,7 +713,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40126" level="1" /> <!-- Highr-Grade Purple Lantern -->
+			<skill id="40126" level="1" /> <!-- High-grade Lit Purple Lantern -->
 		</skills>
 	</item>
 	<item id="93344" name="High-grade Lit Blue Lantern - 3rd Place (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -728,7 +728,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40127" level="1" /> <!-- Highr-Grade Blue Lantern -->
+			<skill id="40127" level="1" /> <!-- High-grade Lit Blue Lantern -->
 		</skills>
 	</item>
 	<item id="93345" name="High-grade Lit Green Lantern - 4th Place (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -743,7 +743,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40128" level="1" /> <!-- Highr-Grade Green Lantern -->
+			<skill id="40128" level="1" /> <!-- High-grade Lit Green Lantern -->
 		</skills>
 	</item>
 	<item id="93346" name="Deton's Request Lv. 1" additionalName="Sealed" type="EtcItem">

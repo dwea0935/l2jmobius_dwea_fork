@@ -24,7 +24,7 @@ import java.util.Set;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
 import org.l2jmobius.gameserver.model.VariationInstance;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
@@ -138,7 +138,7 @@ public class CharInfo extends ServerPacket
 		buffer.writeString(appearance.getVisibleName()); // Confirmed
 		buffer.writeShort(_player.getRace().ordinal()); // Confirmed
 		buffer.writeByte(appearance.isFemale()); // Confirmed
-		buffer.writeInt(_player.getBaseTemplate().getClassId().getRootClassId().getId());
+		buffer.writeInt(_player.getBaseTemplate().getPlayerClass().getRootClass().getId());
 		
 		for (int slot : getPaperdollOrder())
 		{
@@ -198,7 +198,7 @@ public class CharInfo extends ServerPacket
 		buffer.writeByte(_player.isInsideZone(ZoneId.WATER) ? 1 : _player.isFlyingMounted() ? 2 : 0);
 		buffer.writeShort(_player.getRecomHave()); // Confirmed
 		buffer.writeInt(_player.getMountNpcId() == 0 ? 0 : _player.getMountNpcId() + 1000000);
-		buffer.writeInt(_player.getClassId().getId()); // Confirmed
+		buffer.writeInt(_player.getPlayerClass().getId()); // Confirmed
 		buffer.writeInt(0); // TODO: Find me!
 		buffer.writeByte(_player.isMounted() ? 0 : _enchantLevel); // Confirmed
 		buffer.writeByte(_player.getTeam().getId()); // Confirmed

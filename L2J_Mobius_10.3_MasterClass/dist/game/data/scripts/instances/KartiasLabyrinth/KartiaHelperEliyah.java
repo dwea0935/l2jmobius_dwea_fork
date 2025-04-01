@@ -20,17 +20,17 @@
  */
 package instances.KartiasLabyrinth;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyNpc;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttacked;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -117,7 +117,7 @@ public class KartiaHelperEliyah extends AbstractNpcAI
 				else if (!npc.isInCombat() || (npc.getTarget() == null))
 				{
 					final Creature monster = adolph.getTarget().asCreature();
-					if ((monster != null) && adolph.isInCombat() && !CommonUtil.contains(KARTIA_FRIENDS, monster.getId()))
+					if ((monster != null) && adolph.isInCombat() && !ArrayUtil.contains(KARTIA_FRIENDS, monster.getId()))
 					{
 						npc.setTarget(monster);
 					}
@@ -141,17 +141,16 @@ public class KartiaHelperEliyah extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
 			npc.getVariables().set("PLAYER_OBJECT", creature.asPlayer());
 		}
-		else if (CommonUtil.contains(KARTIA_ADOLPH, creature.getId()))
+		else if (ArrayUtil.contains(KARTIA_ADOLPH, creature.getId()))
 		{
 			npc.getVariables().set("ADOLPH_OBJECT", creature);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public void onCreatureAttacked(OnCreatureAttacked event)
@@ -160,7 +159,7 @@ public class KartiaHelperEliyah extends AbstractNpcAI
 		if (npc != null)
 		{
 			final Instance instance = npc.getInstanceWorld();
-			if ((instance != null) && !event.getAttacker().isPlayable() && !CommonUtil.contains(KARTIA_FRIENDS, npc.getTargetId()))
+			if ((instance != null) && !event.getAttacker().isPlayable() && !ArrayUtil.contains(KARTIA_FRIENDS, npc.getTargetId()))
 			{
 				npc.setTarget(event.getAttacker());
 			}

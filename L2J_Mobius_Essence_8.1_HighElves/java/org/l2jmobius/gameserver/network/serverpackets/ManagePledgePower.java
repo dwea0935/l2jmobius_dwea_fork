@@ -44,6 +44,6 @@ public class ManagePledgePower extends ServerPacket
 		ServerPackets.MANAGE_PLEDGE_POWER.writeId(this, buffer);
 		buffer.writeInt(_rank);
 		buffer.writeInt(_action);
-		buffer.writeInt(_clan.getRankPrivs(_rank).getBitmask());
+		buffer.writeInt(_clan.getRankPrivs(_rank).getMask());
 	}
 }

@@ -209,45 +209,129 @@
 	</option>
 	<option id="96723" name="option_id_96723">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96724" name="option_id_96724">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96725" name="option_id_96725">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96726" name="option_id_96726">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96727" name="option_id_96727">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96728" name="option_id_96728">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96729" name="option_id_96729">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96730" name="option_id_96730">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96731" name="option_id_96731">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96732" name="option_id_96732">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96733" name="option_id_96733">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96734" name="option_id_96734">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96735" name="option_id_96735">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96736" name="option_id_96736">
 		<!-- M. Damage Resistance +1% -->
+		<effects>
+			<effect name="MagicalSuccessResistance">
+				<amount>1</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</option>
 	<option id="96737" name="option_id_96737">
 		<!-- M. Damage Resistance +2% -->

@@ -33,7 +33,7 @@ import org.l2jmobius.gameserver.model.quest.newquestdata.QuestCondType;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestDialog;
 import org.l2jmobius.gameserver.network.serverpackets.quest.ExQuestNotification;
 
-import quests.Q19907_LevelUpTo84.Q19907_LevelUpTo84;
+import quests.Q10377_StopSelMahumTroops1.Q10377_StopSelMahumTroops1;
 
 /**
  * @author Magik
@@ -43,12 +43,10 @@ public class Q10376_ExploringTheCrumaTowers2ndFloor5 extends Quest
 	private static final int QUEST_ID = 10376;
 	private static final int[] MONSTERS =
 	{
-		22206, // Premo
-		22210, // Torfe
-		22207, // Validus
-		22209, // Perum
-		22208, // Dicor
 		22211, // Death Lord
+		22729, // Dark Warrior
+		22731, // Susceptor Ayr
+		22734, // Susceptor Bayer
 	};
 	
 	public Q10376_ExploringTheCrumaTowers2ndFloor5()
@@ -141,10 +139,10 @@ public class Q10376_ExploringTheCrumaTowers2ndFloor5 extends Quest
 					rewardPlayer(player);
 				}
 				
-				final QuestState nextQuestState = player.getQuestState(Q19907_LevelUpTo84.class.getSimpleName());
+				final QuestState nextQuestState = player.getQuestState(Q10377_StopSelMahumTroops1.class.getSimpleName());
 				if (nextQuestState == null)
 				{
-					player.sendPacket(new ExQuestDialog(19907, QuestDialogType.ACCEPT));
+					player.sendPacket(new ExQuestDialog(10377, QuestDialogType.ACCEPT));
 				}
 				break;
 			}
@@ -174,7 +172,7 @@ public class Q10376_ExploringTheCrumaTowers2ndFloor5 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -193,19 +191,17 @@ public class Q10376_ExploringTheCrumaTowers2ndFloor5 extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

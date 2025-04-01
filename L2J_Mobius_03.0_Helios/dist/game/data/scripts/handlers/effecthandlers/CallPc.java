@@ -16,17 +16,17 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.enums.FlyType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.SummonRequestHolder;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.SummonRequestHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.FlyType;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -78,7 +78,7 @@ public class CallPc extends AbstractEffect
 						target.sendPacket(sm);
 						return;
 					}
-					target.getInventory().destroyItemByItemId("Consume", _itemId, _itemCount, player, target);
+					target.getInventory().destroyItemByItemId(null, _itemId, _itemCount, player, target);
 					final SystemMessage sm = new SystemMessage(SystemMessageId.S1_DISAPPEARED);
 					sm.addItemName(_itemId);
 					target.sendPacket(sm);

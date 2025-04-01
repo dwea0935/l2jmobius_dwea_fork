@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="2900" type="EtcItem" name="Hermodt's Thigh Bone">
 		<!-- The thigh bones of Hermodt, an ancient Orc hero. Take this, along with the additional 4 remains, to Seer Manakia. -->
@@ -219,7 +219,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="2917" type="EtcItem" name="Ring of Seal Gemstone">
+	<item id="2917" type="EtcItem" name="Ring of Binding Gemstone">
 		<!-- A key material for Dwarves to make a Ring of Binding. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_bead_silver_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -329,7 +329,7 @@
 		<set name="price" val="1480" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="2928" type="EtcItem" name="Mithril Gloves Design">
+	<item id="2928" type="EtcItem" name="Elven Mithril Gloves Design">
 		<!-- A key material for Dwarves to make Elven Mithril Gloves. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_pouch_brown_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -399,7 +399,7 @@
 		<set name="price" val="1762" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="2935" type="EtcItem" name="Reinforced Mithril Gaiters Fragment">
+	<item id="2935" type="EtcItem" name="Tempered Mithril Gaiters Fragment">
 		<!-- A key material for Dwarves to make Tempered Mithril Gaiters. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_plate_silver_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -439,7 +439,7 @@
 		<set name="price" val="2225" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="2939" type="EtcItem" name="Plate Leather Boots Lining">
+	<item id="2939" type="EtcItem" name="Plate Leather Boot Lining">
 		<!-- A key material for Dwarves to make Plated Leather Boots. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_leather_gray_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -529,7 +529,7 @@
 		<set name="price" val="2800" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="2948" type="EtcItem" name="Rind Leather Boots Lining">
+	<item id="2948" type="EtcItem" name="Rind Leather Boot Lining">
 		<!-- A key material for Dwarves to make Rind Leather Boots. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_leather_gray_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -729,7 +729,7 @@
 		<set name="price" val="23062" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="2968" type="EtcItem" name="Dwarven War Hammer Head">
+	<item id="2968" type="EtcItem" name="Dwarven Warhammer Head">
 		<!-- A key material for Dwarves to make a Dwarven War Hammer. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_squares_gray_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -749,7 +749,7 @@
 		<set name="price" val="41636" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="2970" type="EtcItem" name="Recipe: Ring of Seal">
+	<item id="2970" type="EtcItem" name="Recipe: Ring of Binding">
 		<!-- For Dwarves only. The recipe for a Ring of Binding. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_yellow_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -892,7 +892,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="2981" type="EtcItem" name="Recipe: Mithril Gloves">
+	<item id="2981" type="EtcItem" name="Recipe: Elven Mithril Gloves">
 		<!-- For Dwarves only. The recipe for Elven Mithril Gloves. Requires Create Item - Skill Level 3. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -983,7 +983,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="2988" type="EtcItem" name="Recipe: Reinforced Mithril Gaiters">
+	<item id="2988" type="EtcItem" name="Recipe: Tempered Mithril Gaiters">
 		<!-- For Dwarves only. The recipe for the Tempered Mithril Gaiters. Requires Create Item - Skill Level 4. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_yellow_i00" />
 		<set name="default_action" val="RECIPE" />

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="22100" level="85" type="RaidBoss" name="Lord Ishka" title="Apostle of the Valley" element="EARTH">
 		<race>UNDEAD</race>
@@ -392,7 +392,7 @@
 			<attack physical="388.11142" magical="265.02979" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="223.6362" magical="163.64727" />
 			<speed>
-				<walk ground="45" />
+				<walk ground="36" />
 				<run ground="174" />
 			</speed>
 			<hitTime>580</hitTime>
@@ -442,7 +442,7 @@
 			<attack physical="388.11142" magical="265.02979" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="223.6362" magical="163.64727" />
 			<speed>
-				<walk ground="46" />
+				<walk ground="15" />
 				<run ground="174" />
 			</speed>
 			<hitTime>740</hitTime>
@@ -494,7 +494,7 @@
 			<attack physical="388.11142" magical="265.02979" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="223.6362" magical="163.64727" />
 			<speed>
-				<walk ground="60" />
+				<walk ground="80" />
 				<run ground="174" />
 			</speed>
 			<hitTime>560</hitTime>
@@ -545,7 +545,7 @@
 			<attack physical="582.81759" magical="397.98887" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="271.89033" magical="198.95754" />
 			<speed>
-				<walk ground="36" />
+				<walk ground="27" />
 				<run ground="175" />
 			</speed>
 			<hitTime>540</hitTime>
@@ -583,7 +583,7 @@
 			<attack physical="582.81759" magical="397.98887" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="271.89033" magical="198.95754" />
 			<speed>
-				<walk ground="100" />
+				<walk ground="36" />
 				<run ground="175" />
 			</speed>
 			<hitTime>450</hitTime>
@@ -630,7 +630,7 @@
 			<attack physical="582.81759" magical="397.98887" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="271.89033" magical="198.95754" />
 			<speed>
-				<walk ground="60" />
+				<walk ground="29" />
 				<run ground="174" />
 			</speed>
 			<hitTime>500</hitTime>
@@ -2622,6 +2622,11 @@
 			<hitTime>600</hitTime>
 			<abnormalResist physical="10" magical="10" />
 		</stats>
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<status attackable="true" noSleepMode="true" />
 		<collision>
 			<radius normal="115" />
@@ -2655,6 +2660,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="180" />
 			<height normal="111" />
@@ -2687,6 +2697,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="63" />
 			<height normal="138" />
@@ -2719,6 +2734,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" canMove="false" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="60" />
 			<height normal="169" />
@@ -2751,6 +2771,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="39" />
 			<height normal="76.5" />
@@ -2783,6 +2808,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="50" />
 			<height normal="81" />
@@ -2815,6 +2845,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="56" />
 			<height normal="70" />
@@ -2847,6 +2882,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="42" />
 			<height normal="83.25" />
@@ -2878,6 +2918,11 @@
 			<hitTime>460</hitTime>
 			<abnormalResist physical="10" magical="10" />
 		</stats>
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<status attackable="true" noSleepMode="true" />
 		<collision>
 			<radius normal="22.5" />
@@ -2912,6 +2957,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="22.5" />
 			<height normal="51" />
@@ -2944,6 +2994,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="22.5" />
 			<height normal="44.25" />
@@ -2977,6 +3032,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="22.5" />
 			<height normal="41.25" />
@@ -3010,6 +3070,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="12" />
 			<height normal="30" />
@@ -3043,6 +3108,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="11" />
 			<height normal="38.5" />
@@ -3076,6 +3146,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="12" />
 			<height normal="24" />
@@ -3109,6 +3184,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="12" />
 			<height normal="29" />
@@ -3142,6 +3222,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="14" />
 			<height normal="28.8" />
@@ -3175,6 +3260,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="12" />
 			<height normal="29" />
@@ -3208,6 +3298,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="12" />
 			<height normal="24" />
@@ -3241,6 +3336,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="9" />
 			<height normal="21.5" />
@@ -3274,6 +3374,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="10" />
 			<height normal="20" />
@@ -3307,6 +3412,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="12" />
 			<height normal="24" />
@@ -3340,6 +3450,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="11" />
 			<height normal="16" />
@@ -3373,6 +3488,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="10" />
 			<height normal="23" />
@@ -3406,6 +3526,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="11" />
 			<height normal="21.5" />
@@ -3439,6 +3564,11 @@
 			<abnormalResist physical="10" magical="10" />
 		</stats>
 		<status attackable="true" noSleepMode="true" />
+		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="true">
+			<clanList>
+				<clan>ORC_FORTRESS</clan>
+			</clanList>
+		</ai>
 		<collision>
 			<radius normal="12" />
 			<height normal="27" />

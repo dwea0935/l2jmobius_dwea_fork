@@ -16,13 +16,13 @@
  */
 package quests.Q10734_DoOrDie;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowHtml;
@@ -256,7 +256,7 @@ public class Q10734_DoOrDie extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && (qs.isCond(1) || qs.isCond(6)))
@@ -264,7 +264,6 @@ public class Q10734_DoOrDie extends Quest
 			final int nextCond = (killer.isMageClass()) ? (qs.getCond() + 1) : (qs.getCond() + 2);
 			qs.setCond(nextCond, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private boolean meetStartRestrictions(Player player)

@@ -862,7 +862,7 @@
 		<set name="etcitem_type" val="ENCHT_ATTR_RUNE" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17117" level="1" /> <!-- Growth Rune -->
+			<skill id="17117" level="1" /> <!-- Rune of Bountiful Growth -->
 		</skills>
 	</item>
 	<item id="40056" name="Mysterious Wind Scroll" type="EtcItem">
@@ -882,7 +882,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17898" level="1" /> <!-- Mysterious Wind Scroll -->
+			<skill id="17898" level="1" /> <!-- Wondrous Wind Scroll -->
 		</skills>
 	</item>
 	<item id="40057" name="Magic Broom" type="Weapon">

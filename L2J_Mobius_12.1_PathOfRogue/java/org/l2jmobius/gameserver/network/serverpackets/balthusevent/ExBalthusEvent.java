@@ -21,7 +21,7 @@
 package org.l2jmobius.gameserver.network.serverpackets.balthusevent;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.events.BalthusEventManager;
+import org.l2jmobius.gameserver.managers.events.BalthusEventManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.GameClient;

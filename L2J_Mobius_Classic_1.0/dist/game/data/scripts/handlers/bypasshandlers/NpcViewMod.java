@@ -24,11 +24,9 @@ import java.util.StringTokenizer;
 import java.util.concurrent.TimeUnit;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.AttributeType;
-import org.l2jmobius.gameserver.enums.DropType;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
@@ -36,15 +34,16 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
+import org.l2jmobius.gameserver.model.actor.enums.npc.DropType;
+import org.l2jmobius.gameserver.model.actor.holders.npc.DropGroupHolder;
+import org.l2jmobius.gameserver.model.actor.holders.npc.DropHolder;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
-import org.l2jmobius.gameserver.model.holders.DropGroupHolder;
-import org.l2jmobius.gameserver.model.holders.DropHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.HtmlUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author NosBit
@@ -215,7 +214,10 @@ public class NpcViewMod implements IBypassHandler
 		}
 		else
 		{
+			long minRespawnDelay = (long) (npcSpawn.getRespawnMinDelay() * Config.RAID_MIN_RESPAWN_MULTIPLIER);
+			long maxRespawnDelay = (long) (npcSpawn.getRespawnMaxDelay() * Config.RAID_MAX_RESPAWN_MULTIPLIER);
 			TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+			
 			long min = Long.MAX_VALUE;
 			for (TimeUnit tu : TimeUnit.values())
 			{
@@ -227,8 +229,10 @@ public class NpcViewMod implements IBypassHandler
 					timeUnit = tu;
 				}
 			}
-			final long minRespawnDelay = timeUnit.convert(npcSpawn.getRespawnMinDelay(), TimeUnit.MILLISECONDS);
-			final long maxRespawnDelay = timeUnit.convert(npcSpawn.getRespawnMaxDelay(), TimeUnit.MILLISECONDS);
+			
+			minRespawnDelay = timeUnit.convert(minRespawnDelay, TimeUnit.MILLISECONDS);
+			maxRespawnDelay = timeUnit.convert(maxRespawnDelay, TimeUnit.MILLISECONDS);
+			
 			final String timeUnitName = timeUnit.name().charAt(0) + timeUnit.name().toLowerCase().substring(1);
 			if (npcSpawn.hasRespawnRandom())
 			{
@@ -240,7 +244,7 @@ public class NpcViewMod implements IBypassHandler
 			}
 		}
 		
-		html.replace("%atktype%", CommonUtil.capitalizeFirst(npc.getAttackType().name().toLowerCase()));
+		html.replace("%atktype%", StringUtil.capitalizeFirst(npc.getAttackType().name().toLowerCase()));
 		html.replace("%atkrange%", npc.getStat().getPhysicalAttackRange());
 		html.replace("%patk%", npc.getPAtk());
 		html.replace("%pdef%", npc.getPDef());
@@ -605,6 +609,6 @@ public class NpcViewMod implements IBypassHandler
 		html = html.replace("%dropListButtons%", getDropListButtons(npc));
 		html = html.replace("%pages%", pagesSb.toString());
 		html = html.replace("%items%", bodySb.toString() + limitReachedMsg);
-		Util.sendCBHtml(player, html);
+		HtmlUtil.sendCBHtml(player, html);
 	}
 }

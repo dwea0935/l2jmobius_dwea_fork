@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * For the Sake of the Territory - Innadril (722)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00722_ForTheSakeOfTheTerritoryInnadril extends TerritoryWarSuperCl
 {
 	public Q00722_ForTheSakeOfTheTerritoryInnadril()
 	{
-		super(722);
+		super(722, "For the Sake of the Territory - Innadril");
 		CATAPULT_ID = 36504;
 		TERRITORY_ID = 86;
 		LEADER_IDS = new int[]
@@ -42,9 +40,9 @@ public class Q00722_ForTheSakeOfTheTerritoryInnadril extends TerritoryWarSuperCl
 			36541,
 			36542
 		};
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.THE_CATAPULT_OF_INNADRIL_HAS_BEEN_DESTROYED
+			"The catapult of Innadril has been destroyed!"
 		};
 		registerKillIds();
 	}

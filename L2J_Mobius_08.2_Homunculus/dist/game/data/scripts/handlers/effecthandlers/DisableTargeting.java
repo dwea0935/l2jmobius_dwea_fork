@@ -16,7 +16,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
@@ -40,7 +40,7 @@ public class DisableTargeting extends AbstractEffect
 		effected.setTarget(null);
 		effected.abortAttack();
 		effected.abortCast();
-		effected.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		effected.getAI().setIntention(Intention.IDLE);
 	}
 	
 	@Override

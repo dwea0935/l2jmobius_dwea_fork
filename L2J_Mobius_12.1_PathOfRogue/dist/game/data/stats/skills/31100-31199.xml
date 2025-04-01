@@ -1758,9 +1758,7 @@
 		<effectPoint>673</effectPoint>
 		<hitTime>1000</hitTime>
 		<itemConsumeCount>15</itemConsumeCount>
-		<itemConsumeCount>15</itemConsumeCount>
 		<itemConsumeId>1785</itemConsumeId> <!-- Soulstone -->
-		<itemConsumeId>1785</itemConsumeId> <!-- Soulstones -->
 		<magicLevel>110</magicLevel>
 		<mpConsume>64</mpConsume>
 		<reuseDelay>180000</reuseDelay>

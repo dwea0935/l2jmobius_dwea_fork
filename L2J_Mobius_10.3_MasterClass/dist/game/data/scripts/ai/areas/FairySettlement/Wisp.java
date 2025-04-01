@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -65,7 +65,7 @@ public class Wisp extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Spawn spawn = npc.getSpawn();
 		spawn.stopRespawn();
@@ -74,11 +74,10 @@ public class Wisp extends AbstractNpcAI
 			addSpawn(LARGE_WISP, npc);
 			npc.deleteMe();
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer() || creature.isFakePlayer())
 		{
@@ -86,7 +85,6 @@ public class Wisp extends AbstractNpcAI
 			npc.doCast(npc.getId() == WISP ? WISP_HEAL.getSkill() : LARGE_WISP_HEAL.getSkill());
 			getTimers().addTimer("DELETE_NPC", 5000, npc, null);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public static void main(String[] args)

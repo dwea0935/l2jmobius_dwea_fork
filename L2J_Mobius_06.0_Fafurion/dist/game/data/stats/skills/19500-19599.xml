@@ -197,7 +197,6 @@
 		<affectLimit>50-50</affectLimit> <!-- Custom -->
 		<affectObject>FRIEND_PC</affectObject>
 		<affectRange>1000</affectRange>
-		<affectRange>1000</affectRange> <!-- Custom -->
 		<affectScope>PLEDGE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<coolTime>300</coolTime>
@@ -268,7 +267,6 @@
 		<affectLimit>50-50</affectLimit> <!-- Custom -->
 		<affectObject>FRIEND_PC</affectObject>
 		<affectRange>1000</affectRange>
-		<affectRange>1000</affectRange> <!-- Custom -->
 		<affectScope>PLEDGE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<coolTime>300</coolTime>
@@ -335,7 +333,6 @@
 		<affectLimit>50-50</affectLimit> <!-- Custom -->
 		<affectObject>FRIEND_PC</affectObject>
 		<affectRange>1000</affectRange>
-		<affectRange>1000</affectRange> <!-- Custom -->
 		<affectScope>PLEDGE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<coolTime>300</coolTime>
@@ -1328,7 +1325,6 @@
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1500</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<lvlBonusRate>2</lvlBonusRate>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
@@ -1414,7 +1410,6 @@
 		<effectRange>400</effectRange>
 		<hitTime>500</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
 			<value level="1">95</value>
@@ -1491,7 +1486,6 @@
 		<effectPoint>-5000</effectPoint>
 		<effectRange>400</effectRange>
 		<hitTime>500</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
@@ -1570,7 +1564,6 @@
 		<effectRange>400</effectRange>
 		<hitTime>3000</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
 			<value level="1">95</value>
@@ -1641,7 +1634,6 @@
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<lvlBonusRate>2</lvlBonusRate>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
@@ -1702,7 +1694,6 @@
 		<basicProperty>PHYSICAL</basicProperty>
 		<effectPoint>-5000</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>2</lvlBonusRate>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1767,7 +1758,6 @@
 		<effectPoint>-20000</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>3000</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>2</lvlBonusRate>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1860,7 +1850,6 @@
 		<fanRange>0;0;600;180</fanRange>
 		<hitTime>3000</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
@@ -1890,7 +1879,6 @@
 			<value level="11">57</value>
 		</mpConsume>
 		<nextAction>ATTACK</nextAction>
-		<reuseDelay>45000</reuseDelay>
 		<reuseDelay>45000</reuseDelay>
 		<trait>PULL</trait>
 		<conditions>
@@ -2055,7 +2043,6 @@
 		<effectPoint>-5000</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>2500</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>2</lvlBonusRate>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -2378,7 +2365,6 @@
 		<fanRange>0;0;600;180</fanRange>
 		<hitTime>3000</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
@@ -2408,7 +2394,6 @@
 			<value level="11">57</value>
 		</mpConsume>
 		<nextAction>ATTACK</nextAction>
-		<reuseDelay>45000</reuseDelay>
 		<reuseDelay>45000</reuseDelay>
 		<trait>PULL</trait>
 		<conditions>
@@ -2457,7 +2442,6 @@
 		<effectPoint>2</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<magicCriticalRate>5</magicCriticalRate>
-		<magicLevel>99</magicLevel>
 		<magicLevel>99</magicLevel>
 		<mpConsume>96</mpConsume>
 		<staticReuse>true</staticReuse>
@@ -2831,7 +2815,6 @@
 			<value level="8">105</value>
 		</magicLevel>
 		<reuseDelay>1000</reuseDelay>
-		<staticReuse>true</staticReuse>
 		<staticReuse>true</staticReuse>
 		<effects>
 			<effect name="TargetMe" />

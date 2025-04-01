@@ -20,12 +20,12 @@
  */
 package org.l2jmobius.gameserver.model.events;
 
-import java.util.Queue;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.model.events.impl.IBaseEvent;
+import org.l2jmobius.gameserver.model.events.holders.IBaseEvent;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 import org.l2jmobius.gameserver.model.events.returns.AbstractEventReturn;
 
@@ -283,7 +283,7 @@ public class EventDispatcher
 	 * @param callbackValue
 	 * @return
 	 */
-	private <T extends AbstractEventReturn> T notifyToListeners(Queue<AbstractEventListener> listeners, IBaseEvent event, Class<T> returnBackClass, T callbackValue)
+	private <T extends AbstractEventReturn> T notifyToListeners(Collection<AbstractEventListener> listeners, IBaseEvent event, Class<T> returnBackClass, T callbackValue)
 	{
 		T callback = callbackValue;
 		for (AbstractEventListener listener : listeners)

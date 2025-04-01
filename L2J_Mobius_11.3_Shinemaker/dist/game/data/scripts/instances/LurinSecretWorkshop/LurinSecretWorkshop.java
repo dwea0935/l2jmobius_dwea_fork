@@ -20,14 +20,13 @@
  */
 package instances.LurinSecretWorkshop;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -36,6 +35,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -424,7 +424,7 @@ public class LurinSecretWorkshop extends AbstractInstance
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature player)
+	public void onCreatureSee(Npc npc, Creature player)
 	{
 		final Instance world = player.getInstanceWorld();
 		if ((world != null) && (player.isPlayer()))
@@ -433,43 +433,40 @@ public class LurinSecretWorkshop extends AbstractInstance
 			if ((distance < 900))
 			{
 				npc.asMonster().addDamageHate(player, 0, 1000);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+				npc.getAI().setIntention(Intention.ACTIVE);
 				addAttackDesire(npc, player);
 			}
 		}
-		return super.onCreatureSee(npc, player);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		final Instance world = killer.getInstanceWorld();
 		if (!isInInstance(world))
 		{
-			return null;
+			return;
 		}
 		
-		if (CommonUtil.contains(BOSSES, npc.getId()))
+		if (ArrayUtil.contains(BOSSES, npc.getId()))
 		{
 			// TODO: Gives player illussory equipment points until daily mission is working.
 			killer.getVariables().set(PlayerVariables.ILLUSORY_POINTS_ACQUIRED, killer.getVariables().getInt(PlayerVariables.ILLUSORY_POINTS_ACQUIRED, 0) + ILLUSORY_POINTS_REWARD);
 			killer.sendMessage("You received " + ILLUSORY_POINTS_REWARD + " Illusory equipement points.");
 		}
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (!isInInstance(world))
 		{
-			return null;
+			return;
 		}
 		
 		npc.setRandomAnimation(false);
 		npc.setWalking();
-		return super.onSpawn(npc);
 	}
 	
 	@Override

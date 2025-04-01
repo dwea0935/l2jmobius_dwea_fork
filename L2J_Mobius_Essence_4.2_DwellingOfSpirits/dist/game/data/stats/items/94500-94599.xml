@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="94500" name="Spellbook: Titanic Sweep" type="EtcItem">
 		<!-- A spellbook for learning the Titanic Sweep skill. <Classes>. Titan. <Skill effect>. Widely swings a sword to attack nearby enemies. -->
@@ -192,7 +192,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40241" level="1" />
+			<skill id="40241" level="1" /> <!-- Improved Pet Crystals of Experience -->
 		</skills>
 	</item>
 	<item id="94518" name="Amber" additionalName="Lv. 5" type="Armor">
@@ -224,7 +224,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="50195" level="5" /> <!-- Gem: Coral -->
+			<skill id="50195" level="5" /> <!-- Gem: Opal -->
 		</skills>
 	</item>
 	<item id="94520" name="Coral" additionalName="Lv. 5" type="Armor">
@@ -1294,7 +1294,6 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="material" val="FISH" />
-		<set name="handler" val="ExtractableItems" />
 		<set name="handler" val="ExtractableItems" />
 		<capsuled_items>
 			<item id="92964" min="1" max="1" chance="100" maxEnchant="5" minEnchant="5" /> <!-- Cabrio's Hand - Sealed -->

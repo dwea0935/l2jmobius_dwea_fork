@@ -16,16 +16,16 @@
  */
 package quests.Q00079_SagaOfTheAdventurer;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00079_SagaOfTheAdventurer extends SagasSuperClass
+public class Q00079_SagaOfTheAdventurer extends AbstractSagaQuest
 {
 	public Q00079_SagaOfTheAdventurer()
 	{
-		super(79);
+		super(79, "Saga of the Adventurer");
 		_npc = new int[]
 		{
 			31603,

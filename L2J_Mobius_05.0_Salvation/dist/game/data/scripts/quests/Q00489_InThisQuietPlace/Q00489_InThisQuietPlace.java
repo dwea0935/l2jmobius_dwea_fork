@@ -16,11 +16,11 @@
  */
 package quests.Q00489_InThisQuietPlace;
 
-import org.l2jmobius.gameserver.enums.QuestType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
 
 /**
@@ -144,7 +144,7 @@ public class Q00489_InThisQuietPlace extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isCond(1))
@@ -154,6 +154,5 @@ public class Q00489_InThisQuietPlace extends Quest
 				qs.setCond(2, true);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

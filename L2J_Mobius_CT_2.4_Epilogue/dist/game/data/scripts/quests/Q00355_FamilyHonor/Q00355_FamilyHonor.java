@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Family Honor (355)
@@ -78,7 +78,7 @@ public class Q00355_FamilyHonor extends Quest
 	
 	public Q00355_FamilyHonor()
 	{
-		super(355);
+		super(355, "Family Honor");
 		addStartNpc(GALIBREDO);
 		addTalkId(GALIBREDO, PATRIN);
 		addKillId(MOBS.keySet());
@@ -188,12 +188,12 @@ public class Q00355_FamilyHonor extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs == null) || !Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs == null) || !LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
-			return null;
+			return;
 		}
 		
 		final DropInfo info = MOBS.get(npc.getId());
@@ -206,7 +206,6 @@ public class Q00355_FamilyHonor extends Quest
 		{
 			giveItemRandomly(killer, npc, SCULPTOR_BERONA, 1, 0, 1, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

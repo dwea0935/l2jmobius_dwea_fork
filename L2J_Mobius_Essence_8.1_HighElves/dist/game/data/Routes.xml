@@ -11,18 +11,17 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xsd/Routes.xsd">
 	<route name="FPC_Giran_Evi" repeat="true" repeatStyle="cycle">
 		<target id="80000" spawnX="83485" spawnY="147998" spawnZ="-3407" />
-		<point X="83485" Y="147998" Z="-3407" delay="10" run="true" /> <!-- Gatekeeper -->
-		<point X="82853" Y="148022" Z="-3470" delay="0" run="true" />
-		<point X="82117" Y="147642" Z="-3469" delay="0" run="true" />
-		<point X="82084" Y="147569" Z="-3469" delay="12" run="true" /> <!-- Olympiad Manager -->
-		<point X="81532" Y="147578" Z="-3469" delay="0" run="true" />
-		<point X="81593" Y="146626" Z="-3533" delay="3" run="true" />
-		<point X="81932" Y="146566" Z="-3533" delay="0" run="true" />
-		<point X="82651" Y="146714" Z="-3466" delay="20" run="true" /> <!-- Dimesional Merchant -->
-		<point X="82807" Y="146649" Z="-3465" delay="0" run="true" />
-		<point X="83192" Y="146680" Z="-3464" delay="28" run="true" /> <!-- Warehouse -->
-		<point X="83198" Y="146731" Z="-3469" delay="88" run="true" /> <!-- Warehouse 2 -->
-		<point X="81659" Y="146555" Z="-3533" delay="3" run="true" />
+		<point X="83505" Y="147926" Z="-3428" delay="30" run="true" /> <!-- Gatekeeper -->
+		<point X="82918" Y="147583" Z="-3495" delay="24" run="true" /> <!-- Olympiad Manager -->
+		<point X="82622" Y="147514" Z="-3495" delay="0" run="true" />
+		<point X="82607" Y="146884" Z="-3490" delay="20" run="true" /> <!-- Dimesional Merchant -->
+		<point X="82451" Y="146828" Z="-3490" delay="0" run="true" />
+		<point X="82456" Y="146265" Z="-3488" delay="28" run="true" /> <!-- Warehouse -->
+		<point X="82399" Y="146281" Z="-3488" delay="88" run="true" /> <!-- Warehouse 2 -->
+		<point X="82451" Y="146973" Z="-3490" delay="3" run="true" />
+		<point X="82248" Y="147582" Z="-3495" delay="0" run="true" />
+		<point X="81604" Y="147499" Z="-3495" delay="0" run="true" />
+		<point X="81424" Y="145551" Z="-3559" delay="0" run="true" />
 		<point X="81283" Y="145519" Z="-3533" delay="0" run="true" />
 		<point X="80334" Y="145706" Z="-3533" delay="28" run="true" /> <!-- Pona -->
 		<point X="80201" Y="145826" Z="-3524" delay="0" run="true" />
@@ -34,12 +33,9 @@
 		<point X="79999" Y="145152" Z="-3496" delay="0" run="true" />
 		<point X="80393" Y="145136" Z="-3533" delay="0" run="true" />
 		<point X="81061" Y="145563" Z="-3533" delay="0" run="true" />
-		<point X="81563" Y="145532" Z="-3533" delay="3" run="true" />
-		<point X="81517" Y="147231" Z="-3533" delay="0" run="true" />
-		<point X="81542" Y="147570" Z="-3469" delay="0" run="true" />
-		<point X="81139" Y="148567" Z="-3469" delay="0" run="true" />
-		<point X="81413" Y="149700" Z="-3469" delay="52" run="true" /> <!-- Clan Hall Managers -->
-		<point X="82815" Y="148840" Z="-3469" delay="3" run="true" />
-		<point X="83318" Y="148422" Z="-3406" delay="0" run="true" />
+		<point X="81340" Y="145531" Z="-3559" delay="0" run="true" />
+		<point X="81591" Y="147629" Z="-3495" delay="0" run="true" />
+		<point X="81352" Y="149753" Z="-3495" delay="52" run="true" /> <!-- Clan Hall Managers -->
+		<point X="81968" Y="149721" Z="-3495" delay="60" run="true" /> <!-- Cooper -->
 	</route>
 </routes>

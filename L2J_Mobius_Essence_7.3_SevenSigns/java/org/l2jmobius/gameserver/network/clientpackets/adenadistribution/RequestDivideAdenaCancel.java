@@ -47,6 +47,11 @@ public class RequestDivideAdenaCancel extends ClientPacket
 		if (_cancel)
 		{
 			final AdenaDistributionRequest request = player.getRequest(AdenaDistributionRequest.class);
+			if (request == null)
+			{
+				return;
+			}
+			
 			for (Player p : request.getPlayers())
 			{
 				if (p != null)

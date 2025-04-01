@@ -26,22 +26,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyNpc;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.MapUtil;
 
 import ai.AbstractNpcAI;
 
@@ -170,7 +170,7 @@ public class KartiaHelperElise extends AbstractNpcAI
 				final Map<WorldObject, Integer> hpMap = new HashMap<>();
 				instance.getAliveNpcs(KARTIA_FRIENDS).forEach(friend -> hpMap.put(friend, friend != null ? friend.getCurrentHpPercent() : 100));
 				hpMap.put(plr, plr != null ? plr.getCurrentHpPercent() : 100);
-				final Map<WorldObject, Integer> sortedHpMap = Util.sortByValue(hpMap, false);
+				final Map<WorldObject, Integer> sortedHpMap = MapUtil.sortByValue(hpMap, false);
 				
 				// See if any friends are below 80% HP and add to list of people to heal.
 				final List<WorldObject> peopleToHeal = new ArrayList<>();
@@ -247,7 +247,7 @@ public class KartiaHelperElise extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer() || (creature instanceof FriendlyNpc))
 		{
@@ -256,24 +256,23 @@ public class KartiaHelperElise extends AbstractNpcAI
 			{
 				npcVars.set("PLAYER_OBJECT", creature.asPlayer());
 			}
-			else if (CommonUtil.contains(KARTIA_ADOLPH, creature.getId()))
+			else if (ArrayUtil.contains(KARTIA_ADOLPH, creature.getId()))
 			{
 				npcVars.set("ADOLPH_OBJECT", creature);
 			}
-			else if (CommonUtil.contains(KARTIA_BARTON, creature.getId()))
+			else if (ArrayUtil.contains(KARTIA_BARTON, creature.getId()))
 			{
 				npcVars.set("BARTON_OBJECT", creature);
 			}
-			else if (CommonUtil.contains(KARTIA_ELIYAH, creature.getId()))
+			else if (ArrayUtil.contains(KARTIA_ELIYAH, creature.getId()))
 			{
 				npcVars.set("ELIYAH_OBJECT", creature);
 			}
-			else if (CommonUtil.contains(KARTIA_HAYUK, creature.getId()))
+			else if (ArrayUtil.contains(KARTIA_HAYUK, creature.getId()))
 			{
 				npcVars.set("HAYUK_OBJECT", creature);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public void onCreatureKill(OnCreatureDeath event)

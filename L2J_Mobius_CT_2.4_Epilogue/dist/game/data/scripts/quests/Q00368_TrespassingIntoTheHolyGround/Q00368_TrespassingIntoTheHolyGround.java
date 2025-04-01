@@ -48,7 +48,7 @@ public class Q00368_TrespassingIntoTheHolyGround extends Quest
 	
 	public Q00368_TrespassingIntoTheHolyGround()
 	{
-		super(368);
+		super(368, "Trespassing into the Sacred Area");
 		addStartNpc(RESTINA);
 		addTalkId(RESTINA);
 		addKillId(MOBS.keySet());
@@ -89,7 +89,7 @@ public class Q00368_TrespassingIntoTheHolyGround extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final int i;
 		switch (npc.getId())
@@ -112,7 +112,6 @@ public class Q00368_TrespassingIntoTheHolyGround extends Quest
 		{
 			giveItemRandomly(player, npc, BLADE_STAKATO_FANG, 1, 0, MOBS.get(npc.getId()), true);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

@@ -926,7 +926,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2073" level="1" /> <!-- Item - Theme Sound Crystal -->
+			<skill id="2073" level="1" /> <!-- Item - Fight Song Crystal -->
 		</skills>
 	</item>
 	<item id="7062" name="Echo Crystal - Theme of Wedding" type="EtcItem">

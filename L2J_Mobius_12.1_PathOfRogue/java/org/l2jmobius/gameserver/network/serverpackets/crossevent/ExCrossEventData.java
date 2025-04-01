@@ -23,9 +23,9 @@ package org.l2jmobius.gameserver.network.serverpackets.crossevent;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.events.CrossEventManager;
-import org.l2jmobius.gameserver.model.holders.CrossEventAdvancedRewardHolder;
-import org.l2jmobius.gameserver.model.holders.CrossEventRegularRewardHolder;
+import org.l2jmobius.gameserver.managers.events.CrossEventManager;
+import org.l2jmobius.gameserver.model.actor.holders.player.CrossEventAdvancedRewardHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.CrossEventRegularRewardHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;

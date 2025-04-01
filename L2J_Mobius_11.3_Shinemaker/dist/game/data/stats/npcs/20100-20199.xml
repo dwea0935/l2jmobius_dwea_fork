@@ -944,7 +944,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment lhand="4" /> <!-- Club -->
 		<acquire exp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="68.20985" hpRegen="2" mp="62.08" mpRegen="0.9" />

@@ -1221,7 +1221,6 @@
 		<operateType>A1</operateType>
 		<targetType>SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
-		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>60</abnormalTime>
 		<abnormalType>SPEED_UP_SPECIAL</abnormalType>
 		<affectObject>CLAN</affectObject>
@@ -1332,7 +1331,6 @@
 		<mpConsume>175</mpConsume>
 		<nextAction>ATTACK</nextAction>
 		<reuseDelay>30000</reuseDelay>
-		<reuseDelay>30000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage">
 				<power>10000</power>
@@ -1400,7 +1398,6 @@
 		<magicLevel>100</magicLevel>
 		<mpConsume>80</mpConsume>
 		<reuseDelay>30000</reuseDelay>
-		<reuseDelay>30000</reuseDelay>
 		<trait>SHOCK</trait>
 		<effects>
 			<effect name="PhysicalDamage">
@@ -1439,7 +1436,6 @@
 		<magicLevel>100</magicLevel>
 		<mpConsume>80</mpConsume>
 		<nextAction>ATTACK</nextAction>
-		<reuseDelay>45000</reuseDelay>
 		<reuseDelay>45000</reuseDelay>
 		<trait>PULL</trait>
 		<effects>

@@ -70,14 +70,13 @@ public class DrillSergeant extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == SERGANT)
 		{
 			startQuestTimer("SOCIAL_SHOW", 10000, npc, null, true);
 		}
 		npc.setRandomAnimation(false);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

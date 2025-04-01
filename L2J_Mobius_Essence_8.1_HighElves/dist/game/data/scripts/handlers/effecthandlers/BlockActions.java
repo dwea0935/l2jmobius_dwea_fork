@@ -19,8 +19,8 @@ package handlers.effecthandlers;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
@@ -109,12 +109,12 @@ public class BlockActions extends AbstractEffect
 			}
 			else
 			{
-				effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+				effected.getAI().setIntention(Intention.ACTIVE);
 			}
 		}
 		else
 		{
-			effected.getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			effected.getAI().notifyAction(Action.THINK);
 		}
 	}
 }

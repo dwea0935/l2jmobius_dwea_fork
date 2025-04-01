@@ -16,9 +16,6 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +29,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.instance.ControllableMob;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * AI for controllable mobs
@@ -58,7 +55,7 @@ public class ControllableMobAI extends AttackableAI
 	protected void thinkFollow()
 	{
 		final Attackable me = _actor.asAttackable();
-		if (!Util.checkIfInRange(MobGroupTable.FOLLOW_RANGE, me, getForcedTarget(), true))
+		if (!LocationUtil.checkIfInRange(MobGroupTable.FOLLOW_RANGE, me, getForcedTarget(), true))
 		{
 			final int signX = Rnd.nextBoolean() ? -1 : 1;
 			final int signY = Rnd.nextBoolean() ? -1 : 1;
@@ -69,7 +66,7 @@ public class ControllableMobAI extends AttackableAI
 	}
 	
 	@Override
-	public void onEvtThink()
+	public void onActionThink()
 	{
 		if (_isThinking)
 		{
@@ -84,9 +81,9 @@ public class ControllableMobAI extends AttackableAI
 			{
 				case AI_IDLE:
 				{
-					if (getIntention() != AI_INTENTION_ACTIVE)
+					if (getIntention() != Intention.ACTIVE)
 					{
-						setIntention(AI_INTENTION_ACTIVE);
+						setIntention(Intention.ACTIVE);
 					}
 					break;
 				}
@@ -112,11 +109,11 @@ public class ControllableMobAI extends AttackableAI
 				}
 				default:
 				{
-					if (getIntention() == AI_INTENTION_ACTIVE)
+					if (getIntention() == Intention.ACTIVE)
 					{
 						thinkActive();
 					}
-					else if (getIntention() == AI_INTENTION_ATTACK)
+					else if (getIntention() == Intention.ATTACK)
 					{
 						thinkAttack();
 					}
@@ -152,7 +149,7 @@ public class ControllableMobAI extends AttackableAI
 			// check distant skills
 			for (Skill sk : _actor.getAllSkills())
 			{
-				if (Util.checkIfInRange(sk.getCastRange(), _actor, target, true) && !_actor.isSkillDisabled(sk) && (_actor.getCurrentMp() > _actor.getStat().getMpConsume(sk)))
+				if (LocationUtil.checkIfInRange(sk.getCastRange(), _actor, target, true) && !_actor.isSkillDisabled(sk) && (_actor.getCurrentMp() > _actor.getStat().getMpConsume(sk)))
 				{
 					_actor.doCast(sk);
 					return;
@@ -185,19 +182,19 @@ public class ControllableMobAI extends AttackableAI
 		setTarget(target);
 		// as a response, we put the target in a forcedattack mode
 		final ControllableMob theTarget = (ControllableMob) target;
-		final ControllableMobAI ctrlAi = (ControllableMobAI) theTarget.getAI();
-		ctrlAi.forceAttack(_actor);
+		final ControllableMobAI controllableMobAI = (ControllableMobAI) theTarget.getAI();
+		controllableMobAI.forceAttack(_actor);
 		
-		final double dist2 = _actor.calculateDistanceSq2D(target);
+		final double distance = _actor.calculateDistance2D(target);
 		final int range = _actor.getPhysicalAttackRange() + _actor.getTemplate().getCollisionRadius() + target.getTemplate().getCollisionRadius();
 		int maxRange = range;
-		if (!_actor.isMuted() && (dist2 > ((range + 20) * (range + 20))))
+		if (!_actor.isMuted() && (distance > (range + 20)))
 		{
 			// check distant skills
 			for (Skill sk : _actor.getAllSkills())
 			{
 				final int castRange = sk.getCastRange();
-				if (((castRange * castRange) >= dist2) && !_actor.isSkillDisabled(sk) && (_actor.getCurrentMp() > _actor.getStat().getMpConsume(sk)))
+				if ((castRange >= distance) && !_actor.isSkillDisabled(sk) && (_actor.getCurrentMp() > _actor.getStat().getMpConsume(sk)))
 				{
 					_actor.doCast(sk);
 					return;
@@ -221,21 +218,21 @@ public class ControllableMobAI extends AttackableAI
 		if ((getForcedTarget() == null) || getForcedTarget().isAlikeDead())
 		{
 			clientStopMoving(null);
-			setIntention(AI_INTENTION_ACTIVE);
+			setIntention(Intention.ACTIVE);
 			setAlternateAI(AI_IDLE);
 		}
 		
 		setTarget(getForcedTarget());
-		final double dist2 = _actor.calculateDistanceSq2D(getForcedTarget());
+		final double distance = _actor.calculateDistance2D(getForcedTarget());
 		final int range = _actor.getPhysicalAttackRange() + _actor.getTemplate().getCollisionRadius() + getForcedTarget().getTemplate().getCollisionRadius();
 		int maxRange = range;
-		if (!_actor.isMuted() && (dist2 > ((range + 20) * (range + 20))))
+		if (!_actor.isMuted() && (distance > (range + 20)))
 		{
 			// check distant skills
 			for (Skill sk : _actor.getAllSkills())
 			{
 				final int castRange = sk.getCastRange();
-				if (((castRange * castRange) >= dist2) && !_actor.isSkillDisabled(sk) && (_actor.getCurrentMp() > _actor.getStat().getMpConsume(sk)))
+				if ((castRange >= distance) && !_actor.isSkillDisabled(sk) && (_actor.getCurrentMp() > _actor.getStat().getMpConsume(sk)))
 				{
 					_actor.doCast(sk);
 					return;
@@ -268,7 +265,7 @@ public class ControllableMobAI extends AttackableAI
 				npc.stopHating(target);
 			}
 			
-			setIntention(AI_INTENTION_ACTIVE);
+			setIntention(Intention.ACTIVE);
 		}
 		else
 		{
@@ -285,22 +282,22 @@ public class ControllableMobAI extends AttackableAI
 					
 					if (_actor.isInsideRadius3D(npc, npc.getTemplate().getClanHelpRange()))
 					{
-						npc.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, finalTarget, 1);
+						npc.getAI().notifyAction(Action.AGGRESSION, finalTarget, 1);
 					}
 				});
 			}
 			
 			setTarget(target);
-			final double dist2 = _actor.calculateDistanceSq2D(target);
+			final double distance = _actor.calculateDistance2D(target);
 			final int range = _actor.getPhysicalAttackRange() + _actor.getTemplate().getCollisionRadius() + target.getTemplate().getCollisionRadius();
 			int maxRange = range;
-			if (!_actor.isMuted() && (dist2 > ((range + 20) * (range + 20))))
+			if (!_actor.isMuted() && (distance > (range + 20)))
 			{
 				// check distant skills
 				for (Skill sk : _actor.getAllSkills())
 				{
 					final int castRange = sk.getCastRange();
-					if (((castRange * castRange) >= dist2) && !_actor.isSkillDisabled(sk) && (_actor.getCurrentMp() > _actor.getStat().getMpConsume(sk)))
+					if ((castRange >= distance) && !_actor.isSkillDisabled(sk) && (_actor.getCurrentMp() > _actor.getStat().getMpConsume(sk)))
 					{
 						_actor.doCast(sk);
 						return;
@@ -326,7 +323,7 @@ public class ControllableMobAI extends AttackableAI
 			
 			if (hated == null)
 			{
-				setIntention(AI_INTENTION_ACTIVE);
+				setIntention(Intention.ACTIVE);
 				return;
 			}
 			
@@ -340,7 +337,7 @@ public class ControllableMobAI extends AttackableAI
 				for (Skill sk : _actor.getAllSkills())
 				{
 					final int castRange = sk.getCastRange();
-					if (((castRange * castRange) >= dist2) && !_actor.isSkillDisabled(sk) && (_actor.getCurrentMp() < _actor.getStat().getMpConsume(sk)))
+					if ((castRange >= distance) && !_actor.isSkillDisabled(sk) && (_actor.getCurrentMp() < _actor.getStat().getMpConsume(sk)))
 					{
 						_actor.doCast(sk);
 						return;
@@ -369,7 +366,7 @@ public class ControllableMobAI extends AttackableAI
 		if (hated != null)
 		{
 			_actor.setRunning();
-			setIntention(AI_INTENTION_ATTACK, hated);
+			setIntention(Intention.ATTACK, hated);
 		}
 	}
 	
@@ -422,7 +419,7 @@ public class ControllableMobAI extends AttackableAI
 		final List<Creature> potentialTarget = new ArrayList<>();
 		World.getInstance().forEachVisibleObject(_actor, Creature.class, target ->
 		{
-			if (Util.checkIfInShortRange(_actor.asAttackable().getAggroRange(), _actor, target, true) && checkAutoAttackCondition(target))
+			if (LocationUtil.checkIfInShortRange(_actor.asAttackable().getAggroRange(), _actor, target, true) && checkAutoAttackCondition(target))
 			{
 				potentialTarget.add(target);
 			}

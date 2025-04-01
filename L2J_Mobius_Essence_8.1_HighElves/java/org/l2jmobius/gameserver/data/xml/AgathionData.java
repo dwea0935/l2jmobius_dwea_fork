@@ -31,7 +31,7 @@ import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.AgathionSkillHolder;
+import org.l2jmobius.gameserver.model.item.holders.AgathionSkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
@@ -57,10 +57,11 @@ public class AgathionData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "agathion", agathionNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "agathion", agathionNode ->
 		{
+			// Parse attributes into a StatSet.
 			final StatSet set = new StatSet(parseAttributes(agathionNode));
 			
 			final int id = set.getInt("id");
@@ -72,9 +73,11 @@ public class AgathionData implements IXmlReader
 			
 			final int enchant = set.getInt("enchant", 0);
 			
+			// Process main skills.
 			final Map<Integer, List<Skill>> mainSkills = AGATHION_SKILLS.containsKey(id) ? AGATHION_SKILLS.get(id).getMainSkills() : new HashMap<>();
 			final List<Skill> mainSkillList = new ArrayList<>();
 			final String main = set.getString("mainSkill", "");
+			
 			for (String ids : main.split(";"))
 			{
 				if (ids.isEmpty())
@@ -97,9 +100,11 @@ public class AgathionData implements IXmlReader
 			}
 			mainSkills.put(enchant, mainSkillList);
 			
+			// Process sub skills.
 			final Map<Integer, List<Skill>> subSkills = AGATHION_SKILLS.containsKey(id) ? AGATHION_SKILLS.get(id).getSubSkills() : new HashMap<>();
 			final List<Skill> subSkillList = new ArrayList<>();
 			final String sub = set.getString("subSkill", "");
+			
 			for (String ids : sub.split(";"))
 			{
 				if (ids.isEmpty())
@@ -122,6 +127,7 @@ public class AgathionData implements IXmlReader
 			}
 			subSkills.put(enchant, subSkillList);
 			
+			// Add agathion skills to AGATHION_SKILLS map.
 			AGATHION_SKILLS.put(id, new AgathionSkillHolder(mainSkills, subSkills));
 		}));
 	}

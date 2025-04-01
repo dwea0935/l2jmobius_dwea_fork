@@ -2273,7 +2273,6 @@
 		<affectScope>RANGE</affectScope>
 		<castRange>70</castRange>
 		<coolTime>2000</coolTime>
-		<coolTime>2000</coolTime>
 		<effectPoint>
 			<value level="1">-220</value>
 			<value level="2">-270</value>
@@ -2534,7 +2533,6 @@
 		<affectRange>150</affectRange>
 		<affectScope>RANGE</affectScope>
 		<castRange>70</castRange>
-		<coolTime>2000</coolTime>
 		<coolTime>2000</coolTime>
 		<effectPoint>
 			<value level="1">-220</value>
@@ -3033,7 +3031,6 @@
 		<affectScope>RANGE</affectScope>
 		<castRange>70</castRange>
 		<coolTime>2000</coolTime>
-		<coolTime>2000</coolTime>
 		<effectPoint>
 			<value level="1">-220</value>
 			<value level="2">-270</value>
@@ -3285,7 +3282,6 @@
 		<affectRange>150</affectRange>
 		<affectScope>RANGE</affectScope>
 		<castRange>70</castRange>
-		<coolTime>2000</coolTime>
 		<coolTime>2000</coolTime>
 		<effectPoint>
 			<value level="1">-220</value>
@@ -3644,7 +3640,6 @@
 		<affectScope>RANGE</affectScope>
 		<castRange>70</castRange>
 		<coolTime>2000</coolTime>
-		<coolTime>2000</coolTime>
 		<effectPoint>
 			<value level="1">-220</value>
 			<value level="2">-270</value>
@@ -3946,7 +3941,6 @@
 		<affectRange>150</affectRange>
 		<affectScope>RANGE</affectScope>
 		<castRange>70</castRange>
-		<coolTime>2000</coolTime>
 		<coolTime>2000</coolTime>
 		<effectPoint>
 			<value level="1">-220</value>
@@ -5277,7 +5271,6 @@
 		<activateRate>60</activateRate>
 		<affectRange>1000</affectRange>
 		<castRange>700</castRange>
-		<castRange>700</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-800</value>
@@ -5292,7 +5285,6 @@
 		</effectPoint>
 		<effectRange>1400</effectRange>
 		<hitTime>1500</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<mpConsume>
@@ -5438,7 +5430,6 @@
 		<activateRate>60</activateRate>
 		<affectRange>1000</affectRange>
 		<castRange>700</castRange>
-		<castRange>700</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-800</value>
@@ -5453,7 +5444,6 @@
 		</effectPoint>
 		<effectRange>1400</effectRange>
 		<hitTime>1500</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<mpConsume>
@@ -5599,7 +5589,6 @@
 		<activateRate>60</activateRate>
 		<affectRange>1000</affectRange>
 		<castRange>700</castRange>
-		<castRange>700</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-800</value>
@@ -5614,7 +5603,6 @@
 		</effectPoint>
 		<effectRange>1400</effectRange>
 		<hitTime>1500</hitTime>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<mpConsume>
@@ -5674,7 +5662,6 @@
 			<value level="12">-900</value>
 			<value level="13">-900</value>
 		</effectPoint>
-		<isMagic>2</isMagic> <!-- Static Skill -->
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>

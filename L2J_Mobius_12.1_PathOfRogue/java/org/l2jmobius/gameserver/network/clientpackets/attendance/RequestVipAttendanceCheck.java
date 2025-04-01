@@ -22,6 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets.attendance;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -52,7 +53,7 @@ public class RequestVipAttendanceCheck extends ClientPacket
 			return;
 		}
 		
-		if (!player.destroyItemByItemId("RequestVipAttendanceCheck", Inventory.EINHASAD_COIN_ID, 100, player, true))
+		if (!player.destroyItemByItemId(ItemProcessType.FEE, Inventory.EINHASAD_COIN_ID, 100, player, true))
 		{
 			player.sendPacket(SystemMessageId.NOT_ENOUGH_MONEY_TO_USE_THE_FUNCTION);
 			return;

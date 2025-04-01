@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="47100" name="Lilith' Soul Crystal Lv. 1" type="EtcItem">
 		<!-- A special Soul Crystal that contains Lilith's soul. Imbues a weapon with the crystal effect. The higher the crystal's level is, the more powerful effect is granted. <Using>. Visit a town blacksmith to imbue your equipment with a crystal effect. <Enchanting>. Compound with Monster Spirit. -->
@@ -1036,7 +1036,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="18603" level="1" /> <!-- Basic Supply Box (lower level) -->
+			<skill id="18603" level="1" /> <!-- Basic Supply Box -->
 		</skills>
 	</item>
 	<item id="47185" name="Giant Trackers Intermediate Treasure Chest" additionalName="Giant's Cave" type="EtcItem">
@@ -1050,7 +1050,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="18603" level="2" /> <!-- Intermediate Supply Box (lower level) -->
+			<skill id="18603" level="2" /> <!-- Intermediate Supply Box -->
 		</skills>
 	</item>
 	<item id="47186" name="Giant Trackers Advanced Treasure Chest" additionalName="Giant's Cave" type="EtcItem">
@@ -1064,7 +1064,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="18603" level="3" /> <!-- Advanced Supply Box (lower level) -->
+			<skill id="18603" level="3" /> <!-- Advanced Supply Box -->
 		</skills>
 	</item>
 	<item id="47187" name="Proofs of Battle Readiness" type="EtcItem">

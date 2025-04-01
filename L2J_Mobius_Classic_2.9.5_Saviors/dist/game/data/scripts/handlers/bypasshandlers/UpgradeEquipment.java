@@ -20,10 +20,10 @@
  */
 package handlers.bypasshandlers;
 
-import org.l2jmobius.gameserver.enums.UpgradeType;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.UpgradeType;
 import org.l2jmobius.gameserver.network.serverpackets.equipmentupgrade.ExShowUpgradeSystem;
 import org.l2jmobius.gameserver.network.serverpackets.equipmentupgrade.ExShowUpgradeSystemNormal;
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="13307" name="Color Title (Event)" type="EtcItem">
 		<!-- A dimensional item. An item which can be used to change the color of a character's title. Upon leaving a clan, the color title disappears, just as the regular one does (for everyone except Noblesse) -->
@@ -30,7 +30,7 @@
 		<set name="is_destroyable" val="false" />
 		<skills>
 			<skill id="5763" level="1" /> <!-- Wink -->
-			<skill id="8245" level="1" /> <!-- Release Agathion's Seal - Love -->
+			<skill id="8245" level="1" /> <!-- Summon Agathion Love -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>

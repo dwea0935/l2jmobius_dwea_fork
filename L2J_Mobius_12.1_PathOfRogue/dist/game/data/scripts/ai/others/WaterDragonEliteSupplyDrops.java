@@ -123,7 +123,7 @@ public class WaterDragonEliteSupplyDrops extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player player = getRandomPartyMember(killer);
 		if ((player.getLevel() >= PLAYER_LEVEL) && (getRandom(100) < CHANCE) && ((player.getParty() == null) || ((player.getParty() != null) && player.isInsideRadius3D(npc, Config.ALT_PARTY_RANGE))))
@@ -144,7 +144,6 @@ public class WaterDragonEliteSupplyDrops extends AbstractNpcAI
 				player.sendMessage("You obtained all available Water Dragon's Elite Supplies for this day!");
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

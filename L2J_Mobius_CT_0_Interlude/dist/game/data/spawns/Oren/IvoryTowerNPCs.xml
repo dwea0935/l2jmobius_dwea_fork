@@ -21,7 +21,7 @@
 		<npc id="30715" x="84985" y="15991" z="-2799" heading="5300" respawnDelay="60" /> <!-- Marina -->
 		<npc id="30176" x="85675" y="15994" z="-2799" heading="27000" respawnDelay="60" /> <!-- Valleria -->
 		<npc id="31605" x="85728" y="16416" z="-2802" heading="38000" respawnDelay="60" /> <!-- Kinsley -->
-		<npc id="31606" x="85731" y="16380" z="-2809" heading="46905" respawnDelay="60" /> <!-- Alice de Catrina -->
+		<npc id="31606" x="85728" y="16416" z="-2802" heading="38000" respawnDelay="60" /> <!-- Alice de Catrina -->
 		<npc id="30171" x="85332" y="16592" z="-2799" heading="48500" respawnDelay="60" /> <!-- Galios -->
 		<npc id="30719" x="85336" y="16194" z="-2285" heading="59500" respawnDelay="60" /> <!-- Mariell -->
 		<npc id="30174" x="85675" y="15994" z="-2285" heading="27000" respawnDelay="60" /> <!-- Arkenias -->

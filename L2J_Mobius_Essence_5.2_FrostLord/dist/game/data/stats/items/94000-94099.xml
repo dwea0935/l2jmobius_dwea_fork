@@ -658,7 +658,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="40160" level="1" /> <!-- Equipment Restoration Stone -->
+			<skill id="40160" level="1" /> <!-- Scroll: Restore Equipment -->
 		</skills>
 	</item>
 	<item id="94042" name="Emerald Weapon Appearance Stone" additionalName="Sealed" type="EtcItem">
@@ -726,7 +726,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40164" level="1" /> <!-- Spellbook: Glorious Warrior's Ability -->
+			<skill id="40164" level="1" /> <!-- Spellbook: Glorious Warrior's Ability Lv. 1 -->
 		</skills>
 	</item>
 	<item id="94047" name="Spellbook: Glorious Warrior's Ability" additionalName="Sealed" type="EtcItem">
@@ -742,7 +742,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40164" level="1" /> <!-- Spellbook: Glorious Warrior's Ability -->
+			<skill id="40164" level="1" /> <!-- Spellbook: Glorious Warrior's Ability Lv. 1 -->
 		</skills>
 	</item>
 	<item id="94048" name="+16 Weapon Craft Kit (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -1144,17 +1144,17 @@
 			<stat type="pDef">88</stat>
 		</stats>
 		<skills>
-			<skill id="50380" level="1" /> <!-- Helmet of Mana -->
-			<skill id="50382" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Helmet of Mana -->
+			<skill id="50380" level="1" /> <!-- A-grade: Helmet of Mana -->
+			<skill id="50382" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Helmet of Mana -->
+			<skill id="50382" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Helmet of Mana -->
+			<skill id="50382" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Helmet of Mana -->
+			<skill id="50382" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Helmet of Mana -->
+			<skill id="50382" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Helmet of Mana -->
+			<skill id="50382" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Helmet of Mana -->
+			<skill id="50382" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Helmet of Mana -->
+			<skill id="50382" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Helmet of Mana -->
+			<skill id="50382" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Helmet of Mana -->
+			<skill id="50382" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Helmet of Mana -->
 		</skills>
 	</item>
 	<item id="94084" name="Helmet of Mana" additionalName="Sealed" type="Armor">
@@ -1174,17 +1174,17 @@
 			<stat type="pDef">88</stat>
 		</stats>
 		<skills>
-			<skill id="50380" level="1" /> <!-- Helmet of Mana -->
-			<skill id="50382" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Helmet of Mana -->
-			<skill id="50382" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Helmet of Mana -->
+			<skill id="50380" level="1" /> <!-- A-grade: Helmet of Mana -->
+			<skill id="50382" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Helmet of Mana -->
+			<skill id="50382" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Helmet of Mana -->
+			<skill id="50382" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Helmet of Mana -->
+			<skill id="50382" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Helmet of Mana -->
+			<skill id="50382" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Helmet of Mana -->
+			<skill id="50382" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Helmet of Mana -->
+			<skill id="50382" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Helmet of Mana -->
+			<skill id="50382" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Helmet of Mana -->
+			<skill id="50382" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Helmet of Mana -->
+			<skill id="50382" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Helmet of Mana -->
 		</skills>
 	</item>
 	<item id="94085" name="Boots of Evasion" type="Armor">
@@ -1201,18 +1201,18 @@
 			<stat type="pDef">59</stat>
 		</stats>
 		<skills>
-			<skill id="50384" level="1" /> <!-- Boots of Evasion -->
-			<skill id="50385" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Boots of Evasion -->
+			<skill id="50384" level="1" /> <!-- A-grade: Boots of Evasion -->
+			<skill id="50385" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Boots of Evasion -->
+			<skill id="50386" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Boots of Evasion -->
+			<skill id="50386" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Boots of Evasion -->
+			<skill id="50386" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Boots of Evasion -->
+			<skill id="50386" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Boots of Evasion -->
+			<skill id="50386" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Boots of Evasion -->
+			<skill id="50386" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Boots of Evasion -->
+			<skill id="50386" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Boots of Evasion -->
+			<skill id="50386" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Boots of Evasion -->
+			<skill id="50386" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Boots of Evasion -->
+			<skill id="50386" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Boots of Evasion -->
 		</skills>
 	</item>
 	<item id="94086" name="Boots of Evasion" additionalName="Sealed" type="Armor">
@@ -1232,18 +1232,18 @@
 			<stat type="pDef">59</stat>
 		</stats>
 		<skills>
-			<skill id="50384" level="1" /> <!-- Boots of Evasion -->
-			<skill id="50385" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Boots of Evasion -->
-			<skill id="50386" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Boots of Evasion -->
+			<skill id="50384" level="1" /> <!-- A-grade: Boots of Evasion -->
+			<skill id="50385" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Boots of Evasion -->
+			<skill id="50386" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Boots of Evasion -->
+			<skill id="50386" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Boots of Evasion -->
+			<skill id="50386" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Boots of Evasion -->
+			<skill id="50386" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Boots of Evasion -->
+			<skill id="50386" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Boots of Evasion -->
+			<skill id="50386" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Boots of Evasion -->
+			<skill id="50386" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Boots of Evasion -->
+			<skill id="50386" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Boots of Evasion -->
+			<skill id="50386" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Boots of Evasion -->
+			<skill id="50386" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Boots of Evasion -->
 		</skills>
 	</item>
 	<item id="94087" name="Package: Helmet of Mana" additionalName="Sealed" type="EtcItem">

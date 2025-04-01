@@ -50,7 +50,7 @@ public class GateOfUnlimitedSummoning extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Creature summoner = npc.getSummoner();
 		if ((summoner != null) && summoner.isPlayer())
@@ -59,7 +59,6 @@ public class GateOfUnlimitedSummoning extends AbstractNpcAI
 			getTimers().addTimer("SKILL_CAST_DAMAGE", 2000, npc, null);
 			getTimers().addTimer("END_OF_LIFE", 30000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override

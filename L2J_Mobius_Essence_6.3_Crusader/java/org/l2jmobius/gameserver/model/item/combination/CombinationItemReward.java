@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.item.combination;
 
-import org.l2jmobius.gameserver.model.holders.ItemEnchantHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemEnchantHolder;
 
 /**
  * @author UnAfraid

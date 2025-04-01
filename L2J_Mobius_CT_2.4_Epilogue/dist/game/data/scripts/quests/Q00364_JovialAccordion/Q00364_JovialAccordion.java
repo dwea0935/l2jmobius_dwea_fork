@@ -16,10 +16,10 @@
  */
 package quests.Q00364_JovialAccordion;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -47,7 +47,7 @@ public class Q00364_JovialAccordion extends Quest
 	
 	public Q00364_JovialAccordion()
 	{
-		super(364);
+		super(364, "Jovial Accordion");
 		addStartNpc(BARBADO);
 		addTalkId(BARBADO, BEER_CHEST, CLOTH_CHEST, SABRIN, XABER, SWAN);
 		registerQuestItems(STOLEN_BLACK_BEER, STOLEN_EVENT_CLOTHES, CLOTHES_CHEST_KEY, BEER_CHEST_KEY);

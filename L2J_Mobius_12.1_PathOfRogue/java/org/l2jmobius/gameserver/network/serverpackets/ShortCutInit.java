@@ -23,9 +23,9 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Collection;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.VariationInstance;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -33,15 +33,15 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 /**
  * @author Mobius
  */
-public class ShortCutInit extends ServerPacket
+public class ShortcutInit extends ServerPacket
 {
 	private final Player _player;
-	private final Collection<Shortcut> _shortCuts;
+	private final Collection<Shortcut> _shortcuts;
 	
-	public ShortCutInit(Player player)
+	public ShortcutInit(Player player)
 	{
 		_player = player;
-		_shortCuts = player.getAllShortCuts();
+		_shortcuts = player.getAllShortcuts();
 		player.restoreAutoShortcutVisual();
 	}
 	
@@ -49,8 +49,8 @@ public class ShortCutInit extends ServerPacket
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.SHORT_CUT_INIT.writeId(this, buffer);
-		buffer.writeInt(_shortCuts.size());
-		for (Shortcut sc : _shortCuts)
+		buffer.writeInt(_shortcuts.size());
+		for (Shortcut sc : _shortcuts)
 		{
 			buffer.writeInt(sc.getType().ordinal());
 			buffer.writeInt(sc.getSlot() + (sc.getPage() * 12));

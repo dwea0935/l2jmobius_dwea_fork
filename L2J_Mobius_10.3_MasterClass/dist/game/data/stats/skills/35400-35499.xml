@@ -56,7 +56,6 @@
 		<castRange>900</castRange>
 		<effectPoint>0</effectPoint>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<trait>HOLD</trait>
 		<effects>
 			<effect name="Root" />
@@ -80,7 +79,6 @@
 		<affectScope>POINT_BLANK</affectScope>
 		<castRange>900</castRange>
 		<effectPoint>0</effectPoint>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<trait>HOLD</trait>
 		<effects>

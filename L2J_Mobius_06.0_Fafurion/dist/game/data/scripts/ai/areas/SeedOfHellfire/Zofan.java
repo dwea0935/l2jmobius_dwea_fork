@@ -56,7 +56,7 @@ public class Zofan extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if ((npc.getInstanceWorld() == null) && (npc.getSpawn() != null))
 		{
@@ -72,7 +72,6 @@ public class Zofan extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

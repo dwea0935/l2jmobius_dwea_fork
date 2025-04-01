@@ -831,7 +831,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22460" level="1" /> <!-- Scroll: Enchant Weapon (A-grade) -->
+			<skill id="22460" level="1" /> <!-- Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22551" name="Scroll: Enchant Armor (A-grade)" additionalName="Event" type="EtcItem">
@@ -848,7 +848,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22461" level="1" /> <!-- Scroll: Enchant Armor (A-grade) -->
+			<skill id="22461" level="1" /> <!-- Scroll: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="22552" name="Scroll: Enchant Weapon (B-grade)" additionalName="Event" type="EtcItem">
@@ -865,7 +865,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22458" level="1" /> <!-- Scroll: Enchant Weapon (B-grade) -->
+			<skill id="22458" level="1" /> <!-- Scroll: Enchant B-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22553" name="Scroll: Enchant Armor (B-grade)" additionalName="Event" type="EtcItem">
@@ -882,7 +882,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22459" level="1" /> <!-- Scroll: Enchant Armor (B-grade) -->
+			<skill id="22459" level="1" /> <!-- Scroll: Enchant B-grade Armor -->
 		</skills>
 	</item>
 	<item id="22554" name="Scroll: Enchant Weapon (C-grade)" additionalName="Event" type="EtcItem">
@@ -899,7 +899,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22456" level="1" /> <!-- Scroll: Enchant Weapon (C-grade) -->
+			<skill id="22456" level="1" /> <!-- Scroll: Enchant C-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22555" name="Scroll: Enchant Armor (C-grade)" additionalName="Event" type="EtcItem">
@@ -916,7 +916,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22457" level="1" /> <!-- Scroll: Enchant Armor (C-grade) -->
+			<skill id="22457" level="1" /> <!-- Scroll: Enchant C-grade Armor -->
 		</skills>
 	</item>
 	<item id="22556" name="Scroll: Enchant Weapon (D-grade)" additionalName="Event" type="EtcItem">
@@ -933,7 +933,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22454" level="1" /> <!-- Scroll: Enchant Weapon (D-grade) -->
+			<skill id="22454" level="1" /> <!-- Scroll: Enchant D-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22557" name="Scroll: Enchant Armor (D-grade)" additionalName="Event" type="EtcItem">
@@ -950,7 +950,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22455" level="1" /> <!-- Scroll: Enchant Armor (D-grade) -->
+			<skill id="22455" level="1" /> <!-- Scroll: Enchant D-grade Armor -->
 		</skills>
 	</item>
 	<item id="22558" name="Scroll: Enchant Weapon (S-grade)" additionalName="Event" type="EtcItem">
@@ -967,7 +967,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22462" level="1" /> <!-- Scroll: Enchant Weapon (S-grade) -->
+			<skill id="22462" level="1" /> <!-- Scroll: Enchant S-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22559" name="Scroll: Enchant Armor (S-grade)" additionalName="Event" type="EtcItem">
@@ -984,7 +984,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22463" level="1" /> <!-- Scroll: Enchant Armor (S-grade) -->
+			<skill id="22463" level="1" /> <!-- Scroll: Enchant S-grade Armor -->
 		</skills>
 	</item>
 	<item id="22560" name="Scroll: Enchant Weapon (R-grade)" additionalName="Event" type="EtcItem">
@@ -1001,7 +1001,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22464" level="1" /> <!-- Scroll: Enchant Weapon (R-grade) -->
+			<skill id="22464" level="1" /> <!-- Scroll: Enchant R-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22561" name="Scroll: Enchant Armor (R-grade)" additionalName="Event" type="EtcItem">
@@ -1018,7 +1018,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22465" level="1" /> <!-- Scroll: Enchant Armor (R-grade) -->
+			<skill id="22465" level="1" /> <!-- Scroll: Enchant R-grade Weapon -->
 		</skills>
 	</item>
 	<item id="22562" name="Elixir of Life" additionalName="Event" type="EtcItem">
@@ -1038,7 +1038,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LIQUID" />
 		<skills>
-			<skill id="2860" level="7" /> <!-- Superior Elixir of Life (R-grade) -->
+			<skill id="2860" level="7" /> <!-- Superior R-grade Elixir of Life -->
 		</skills>
 	</item>
 	<item id="22563" name="Elixir of Mind" additionalName="Event" type="EtcItem">
@@ -1058,7 +1058,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LIQUID" />
 		<skills>
-			<skill id="2861" level="7" /> <!-- Superior Elixir of Mind (R-grade) -->
+			<skill id="2861" level="7" /> <!-- Superior R-grade Elixir of Mind -->
 		</skills>
 	</item>
 	<item id="22564" name="Elixir of CP" additionalName="Event" type="EtcItem">
@@ -1078,7 +1078,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LIQUID" />
 		<skills>
-			<skill id="2862" level="7" /> <!-- Superior Elixir of CP (R-grade) -->
+			<skill id="2862" level="7" /> <!-- Superior R-grade Elixir of CP -->
 		</skills>
 	</item>
 	<item id="22565" name="Dimensional Support Pack" type="EtcItem">
@@ -1335,7 +1335,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22479" level="10" /> <!-- Soulshot s 10000 -->
+			<skill id="22479" level="10" /> <!-- S-grade Soulshots (10,000) -->
 		</skills>
 	</item>
 	<item id="22578" name="Weapon Pack (C-grade) (30-day)" type="EtcItem">
@@ -1621,7 +1621,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22481" level="10" /> <!-- Mysterious Soulshot d 10000 -->
+			<skill id="22481" level="10" /> <!-- Mysterious D-grade Soulshots (10,000) -->
 		</skills>
 	</item>
 	<item id="22591" name="Mysterious Soulshot Pack (D-grade)" type="EtcItem">

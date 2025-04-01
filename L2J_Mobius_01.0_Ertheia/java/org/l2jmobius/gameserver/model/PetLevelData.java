@@ -20,7 +20,7 @@ import org.l2jmobius.gameserver.model.stats.Stat;
 
 /**
  * Stats definition for each pet level.
- * @author JIV, Zoey76
+ * @author JIV
  */
 public class PetLevelData
 {

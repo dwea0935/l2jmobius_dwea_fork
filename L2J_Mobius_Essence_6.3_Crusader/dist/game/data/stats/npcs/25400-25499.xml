@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="25400" level="34" type="Monster" name="Watchman's Servant" title="Raid Minion">
 		<parameters>
@@ -196,7 +196,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="231" /> <!-- Grace Dagger -->
 		<acquire exp="386510" sp="92" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="187194.439563282" hpRegen="24.5170941308607" mp="372.96" mpRegen="1.8" />
@@ -240,7 +239,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="946" lhand="945" /> <!-- Skeleton Dagger / Skeleton Buckler -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="9481.3095676498" hpRegen="23.5043088957683" mp="358.32" mpRegen="1.8" />
 			<attack physical="520.402401832572" magical="166.500906572535" random="5" critical="8" accuracy="0" attackSpeed="253" type="DAGGER" range="40" distance="80" width="120" />
@@ -281,7 +279,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="130" lhand="103" /> <!-- Elven Sword / Tower Shield -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="9481.3095676498" hpRegen="23.5043088957683" mp="358.32" mpRegen="1.8" />
 			<attack physical="520.402401832572" magical="166.500906572535" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -608,7 +605,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="946" lhand="946" /> <!-- Skeleton Dagger / Skeleton Dagger -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="168116.803468606" hpRegen="1" mp="3693.6" mpRegen="6" />
 			<attack physical="4372.85376" magical="1756.026816" random="5" critical="8" accuracy="0" attackSpeed="253" type="DAGGER" range="40" distance="80" width="120" />
@@ -882,7 +878,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="75" /> <!-- Caliburs -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="104387.308038203" hpRegen="1" mp="3349.6" mpRegen="6" />
 			<attack physical="4372.85376" magical="1756.026816" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3157,7 +3152,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="194" /> <!-- Heavy Doom Axe -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="168116.803468606" hpRegen="1" mp="3693.6" mpRegen="6" />
 			<attack physical="4372.85376" magical="1756.026816" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -3943,7 +3937,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="145" /> <!-- Sword of Whispering Death -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="104387.308038203" hpRegen="1" mp="3349.6" mpRegen="6" />
 			<attack physical="4372.85376" magical="1756.026816" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -4083,7 +4076,6 @@
 		</parameters>
 		<race>ELEMENTAL</race>
 		<sex>FEMALE</sex>
-		<equipment lhand="230" /> <!-- Needle Wolverine -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="2505295.39291686" hpRegen="2647.36823225113" mp="3349.6" mpRegen="6" />
 			<attack physical="27330.336" magical="9145.973" random="5" critical="8" accuracy="0" attackSpeed="253" type="DAGGER" range="40" distance="80" width="120" />
@@ -4419,7 +4411,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="3939" /> <!-- Monster Only (Bensh) -->
 		<acquire exp="1184052" sp="284" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="1055985.61987293" hpRegen="60.1633937196702" mp="832.4" mpRegen="2.4" />
@@ -4544,7 +4535,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" /> <!-- Battle Axe -->
 		<acquire exp="1194883" sp="286" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="930276.386850356" hpRegen="53.8546339421093" mp="747.8" mpRegen="2.1" />
@@ -4588,7 +4578,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="131" /> <!-- Spirit Sword -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="23692.1750442966" hpRegen="51.7193112926872" mp="720" mpRegen="2.1" />
 			<attack physical="1725.13343799437" magical="830.841572363032" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -4796,7 +4785,6 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>MALE</sex>
-		<equipment rhand="129" /> <!-- Sword of Revolution -->
 		<acquire exp="406193" sp="97" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="413718.237630093" hpRegen="34.0387779378852" mp="478.8" mpRegen="1.8" />
@@ -4835,7 +4823,6 @@
 	<npc id="25491" level="39" type="Monster" name="Gwindorr's Escort" title="Raid Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="2507" /> <!-- Lizardspear -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="9312.60864407141" hpRegen="32.4117473308651" mp="463.32" mpRegen="1.8" />
 			<attack physical="439.938707656487" magical="69.1975609087206" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -4870,7 +4857,6 @@
 	<npc id="25492" level="39" type="Monster" name="Gwindorr's Follower" title="Raid Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="2" /> <!-- Long Sword -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="6949.70794333687" hpRegen="32.4117473308651" mp="463.32" mpRegen="1.8" />
 			<attack physical="439.938707656487" magical="69.1975609087206" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -5077,7 +5063,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="76" /> <!-- Sword of Delusion -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="25927.4071349988" hpRegen="55.9818993783759" mp="775.8" mpRegen="2.4" />
 			<attack physical="1947.10624672538" magical="1087.2679854484" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />

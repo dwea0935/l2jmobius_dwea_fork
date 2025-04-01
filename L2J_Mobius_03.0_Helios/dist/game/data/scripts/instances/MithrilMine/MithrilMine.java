@@ -18,16 +18,16 @@ package instances.MithrilMine;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import instances.AbstractInstance;
 import quests.Q10284_AcquisitionOfDivineSword.Q10284_AcquisitionOfDivineSword;
@@ -84,7 +84,7 @@ public class MithrilMine extends AbstractInstance
 					{
 						n.setScriptValue(1);
 						n.setRunning();
-						n.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, npc);
+						n.getAI().setIntention(Intention.ATTACK, npc);
 						n.asAttackable().addDamageHate(npc, 0, 999999);
 					}
 				}
@@ -100,7 +100,7 @@ public class MithrilMine extends AbstractInstance
 						kegor.setScriptValue(2);
 						kegor.setWalking();
 						kegor.setTarget(player);
-						kegor.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+						kegor.getAI().setIntention(Intention.FOLLOW, player);
 						kegor.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.I_CAN_FINALLY_TAKE_A_BREATHER_BY_THE_WAY_WHO_ARE_YOU_HMM_I_THINK_I_KNOW_WHO_SENT_YOU);
 					}
 				});
@@ -133,7 +133,7 @@ public class MithrilMine extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -161,7 +161,6 @@ public class MithrilMine extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

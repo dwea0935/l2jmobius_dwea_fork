@@ -16,16 +16,16 @@
  */
 package quests.Q00075_SagaOfTheTitan;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00075_SagaOfTheTitan extends SagasSuperClass
+public class Q00075_SagaOfTheTitan extends AbstractSagaQuest
 {
 	public Q00075_SagaOfTheTitan()
 	{
-		super(75);
+		super(75, "Saga of the Titan");
 		_npc = new int[]
 		{
 			31327,

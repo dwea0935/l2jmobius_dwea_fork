@@ -634,7 +634,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="40160" level="1" /> <!-- Equipment Restoration Stone -->
+			<skill id="40160" level="1" /> <!-- Scroll: Restore Equipment -->
 		</skills>
 	</item>
 	<item id="94042" name="Emerald Weapon Appearance Stone" type="EtcItem">
@@ -700,7 +700,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40164" level="1" /> <!-- Spellbook: Glorious Warrior's Ability -->
+			<skill id="40164" level="1" /> <!-- Spellbook: Ability of Glory -->
 		</skills>
 	</item>
 	<item id="94047" name="Spellbook: Ability of Glory" type="EtcItem">
@@ -716,7 +716,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40164" level="1" /> <!-- Spellbook: Glorious Warrior's Ability -->
+			<skill id="40164" level="1" /> <!-- Spellbook: Ability of Glory -->
 		</skills>
 	</item>
 	<item id="94048" name="+16 Weapon Craft Kit" additionalName="Event" type="EtcItem">

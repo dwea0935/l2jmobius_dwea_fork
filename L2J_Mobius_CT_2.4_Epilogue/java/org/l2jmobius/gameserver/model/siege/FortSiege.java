@@ -37,30 +37,28 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.FortTeleportWhoType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.SiegeClanType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeGuardManager;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.FortSiegeGuardManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.CombatFlag;
 import org.l2jmobius.gameserver.model.FortSiegeSpawn;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.FortCommander;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.sieges.fort.OnFortSiegeFinish;
-import org.l2jmobius.gameserver.model.events.impl.sieges.fort.OnFortSiegeStart;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.events.holders.sieges.fort.OnFortSiegeFinish;
+import org.l2jmobius.gameserver.model.events.holders.sieges.fort.OnFortSiegeStart;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -611,27 +609,27 @@ public class FortSiege implements Siegable
 			{
 				if (spawn2.getId() == spawn.getId())
 				{
-					NpcStringId npcString = null;
+					String npcString = null;
 					switch (spawn2.getMessageId())
 					{
 						case 1:
 						{
-							npcString = NpcStringId.YOU_MAY_HAVE_BROKEN_OUR_ARROWS_BUT_YOU_WILL_NEVER_BREAK_OUR_WILL_ARCHERS_RETREAT;
+							npcString = "You may have broken our arrows, but you will never break our will! Archers, retreat!";
 							break;
 						}
 						case 2:
 						{
-							npcString = NpcStringId.AIIEEEE_COMMAND_CENTER_THIS_IS_GUARD_UNIT_WE_NEED_BACKUP_RIGHT_AWAY;
+							npcString = "Aiieeee! Command Center! This is guard unit! We need backup right away!";
 							break;
 						}
 						case 3:
 						{
-							npcString = NpcStringId.AT_LAST_THE_MAGIC_FIELD_THAT_PROTECTS_THE_FORTRESS_HAS_WEAKENED_VOLUNTEERS_STAND_BACK;
+							npcString = "At last! The Magic Field that protects the fortress has weakened! Volunteers, stand back!";
 							break;
 						}
 						case 4:
 						{
-							npcString = NpcStringId.I_FEEL_SO_MUCH_GRIEF_THAT_I_CAN_T_EVEN_TAKE_CARE_OF_MYSELF_THERE_ISN_T_ANY_REASON_FOR_ME_TO_STAY_HERE_ANY_LONGER;
+							npcString = "I feel so much grief that I can't even take care of myself. There isn't any reason for me to stay here any longer.";
 							break;
 						}
 					}
@@ -754,7 +752,7 @@ public class FortSiege implements Siegable
 		{
 			if (checkConditions)
 			{
-				player.reduceAdena("FortressSiege", 250000, null, true);
+				player.reduceAdena(ItemProcessType.FEE, 250000, null, true);
 			}
 			startAutoTask(true);
 		}

@@ -295,7 +295,7 @@ public class Q10390_KekropusLetter extends Quest
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -306,7 +306,6 @@ public class Q10390_KekropusLetter extends Quest
 				showOnScreenMsg(player, NpcStringId.ALLIGATOR_ISLAND_IS_A_GOOD_HUNTING_ZONE_FOR_LV_40_OR_ABOVE, ExShowScreenMessage.TOP_CENTER, 6000);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	private boolean isRightMaster(Npc npc, Player player)

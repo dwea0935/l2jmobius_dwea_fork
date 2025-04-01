@@ -98,7 +98,7 @@
 	<teleport id="278" x="-9082" y="241664" z="-1960" price="300000" /> <!-- Desert Quarry -->
 	<teleport id="305" x="207512" y="86588" z="-1000" price="300000" /> <!-- Ancient City Arcan -->
 	<teleport id="311" x="-109300" y="237498" z="-2944" price="300000" /> <!-- Ruins of Ye Sagira -->
-	<teleport id="316" x="-80536" y="24716" z="-3488" price="300000" /> <!-- Faeron -->
+	<teleport id="316" x="-80536" y="247714" z="-3488" price="300000" /> <!-- Faeron -->
 	<teleport id="317" x="-82379" y="244103" z="-3736" price="300000" /> <!-- Whispering Woods -->
 	<teleport id="320" x="-51015" y="-147271" z="-14944" price="300000" /> <!-- Underground Gainak -->
 	<teleport id="321" x="79827" y="152588" z="2304" price="300000" /> <!-- Superion Fortress -->

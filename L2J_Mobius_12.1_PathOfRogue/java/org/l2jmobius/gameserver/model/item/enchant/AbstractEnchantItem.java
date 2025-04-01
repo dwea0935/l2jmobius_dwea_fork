@@ -65,6 +65,7 @@ public abstract class AbstractEnchantItem
 	private final int _safeEnchantLevel;
 	private final int _randomEnchantMin;
 	private final int _randomEnchantMax;
+	private final int _randomEnchantChance;
 	private final double _bonusRate;
 	
 	public AbstractEnchantItem(StatSet set)
@@ -84,6 +85,7 @@ public abstract class AbstractEnchantItem
 		_safeEnchantLevel = set.getInt("safeEnchant", 0);
 		_randomEnchantMin = set.getInt("randomEnchantMin", 1);
 		_randomEnchantMax = set.getInt("randomEnchantMax", _randomEnchantMin);
+		_randomEnchantChance = set.getInt("randomEnchantChance", 50);
 		_bonusRate = set.getDouble("bonusRate", 0);
 	}
 	
@@ -162,6 +164,14 @@ public abstract class AbstractEnchantItem
 	public int getRandomEnchantMax()
 	{
 		return _randomEnchantMax;
+	}
+	
+	/**
+	 * @return the chance to get the maximum random enchant
+	 */
+	public int getRandomEnchantChance()
+	{
+		return _randomEnchantChance;
 	}
 	
 	/**

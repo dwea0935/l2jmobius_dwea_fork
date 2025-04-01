@@ -192,7 +192,7 @@ public class ThroneOfHeroesMaryReed extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -216,11 +216,10 @@ public class ThroneOfHeroesMaryReed extends AbstractInstance
 				showOnScreenMsg(world, ZAKEN_MESSAGES[getRandom(4)], ExShowScreenMessage.TOP_CENTER, 5000, true);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -253,7 +252,6 @@ public class ThroneOfHeroesMaryReed extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

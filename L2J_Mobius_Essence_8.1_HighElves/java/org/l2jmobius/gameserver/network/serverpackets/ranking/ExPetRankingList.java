@@ -28,11 +28,11 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.RankingCategory;
-import org.l2jmobius.gameserver.enums.RankingScope;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.RankingCategory;
+import org.l2jmobius.gameserver.model.actor.enums.player.RankingScope;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;

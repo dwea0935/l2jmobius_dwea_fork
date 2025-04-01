@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * For the Sake of the Territory - Goddard (723)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00723_ForTheSakeOfTheTerritoryGoddard extends TerritoryWarSuperCla
 {
 	public Q00723_ForTheSakeOfTheTerritoryGoddard()
 	{
-		super(723);
+		super(723, "For the Sake of the Territory - Goddard");
 		CATAPULT_ID = 36505;
 		TERRITORY_ID = 87;
 		LEADER_IDS = new int[]
@@ -42,9 +40,9 @@ public class Q00723_ForTheSakeOfTheTerritoryGoddard extends TerritoryWarSuperCla
 			36547,
 			36548
 		};
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.THE_CATAPULT_OF_GODDARD_HAS_BEEN_DESTROYED
+			"The catapult of Goddard has been destroyed!"
 		};
 		registerKillIds();
 	}

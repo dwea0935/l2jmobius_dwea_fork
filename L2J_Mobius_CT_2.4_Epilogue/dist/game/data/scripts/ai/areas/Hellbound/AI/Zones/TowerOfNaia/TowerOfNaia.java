@@ -27,23 +27,22 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.LocationUtil;
 import org.l2jmobius.gameserver.util.MinionList;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 
@@ -133,12 +132,12 @@ public class TowerOfNaia extends AbstractNpcAI
 		{-45462, 248174, -14183},
 	};
 	//@formatter:on
-	private static final NpcStringId[] SPORES_NPCSTRING_ID =
+	private static final String[] SPORES_NPCSTRING_ID =
 	{
-		NpcStringId.IT_S_S1,
-		NpcStringId.S1_IS_STRONG,
-		NpcStringId.IT_S_ALWAYS_S1,
-		NpcStringId.S1_WON_T_DO
+		"...It's $s1...",
+		"...$s1 is strong...",
+		"...It's always $s1...",
+		"...$s1 won't do..."
 	};
 	
 	private static Map<Integer, int[]> DOORS = new HashMap<>();
@@ -505,11 +504,11 @@ public class TowerOfNaia extends AbstractNpcAI
 			final Party party = player.getParty();
 			if (party != null)
 			{
-				if (Util.checkIfInRange(3000, party.getLeader(), npc, true))
+				if (LocationUtil.checkIfInRange(3000, party.getLeader(), npc, true))
 				{
 					for (Player partyMember : party.getMembers())
 					{
-						if (Util.checkIfInRange(2000, partyMember, npc, true))
+						if (LocationUtil.checkIfInRange(2000, partyMember, npc, true))
 						{
 							partyMember.teleToLocation(-47271, 246098, -9120, true);
 						}
@@ -553,7 +552,7 @@ public class TowerOfNaia extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if ((_lock != null) && (npc.getObjectId() == _lock.getObjectId()))
 		{
@@ -570,15 +569,14 @@ public class TowerOfNaia extends AbstractNpcAI
 					MinionList.spawnMinion(_lock, 18493);
 					MinionList.spawnMinion(_lock, 18493);
 				}
-				_controller.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.EMERGENCY_EMERGENCY_THE_OUTER_WALL_IS_WEAKENING_RAPIDLY);
+				_controller.broadcastSay(ChatType.NPC_GENERAL, "Emergency! Emergency! The outer wall is weakening rapidly!");
 				_counter -= 10;
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int npcId = npc.getId();
 		if (npcId == LOCK)
@@ -671,7 +669,7 @@ public class TowerOfNaia extends AbstractNpcAI
 						{
 							if ((spore != null) && !spore.isDead() && (spore.getId() == npcId))
 							{
-								spore.broadcastSay(ChatType.NPC_GENERAL, SPORES_NPCSTRING_ID[getRandom(4)], el);
+								spore.broadcastSay(ChatType.NPC_GENERAL, SPORES_NPCSTRING_ID[getRandom(4)].replace("$s1", el));
 							}
 						}
 					}
@@ -706,11 +704,10 @@ public class TowerOfNaia extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final int npcId = npc.getId();
 		if (npcId == MUTATED_ELPY)
@@ -726,10 +723,9 @@ public class TowerOfNaia extends AbstractNpcAI
 			npc.setWalking();
 			final int[] coord = SPORES_MOVE_POINTS[getRandom(SPORES_MOVE_POINTS.length)];
 			npc.getSpawn().setXYZ(coord[0], coord[1], coord[2]);
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(coord[0], coord[1], coord[2], 0));
+			npc.getAI().setIntention(Intention.MOVE_TO, new Location(coord[0], coord[1], coord[2], 0));
 			startQuestTimer("despawn_spore", 60000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	private int getSporeGroup(int sporeId)
@@ -808,12 +804,12 @@ public class TowerOfNaia extends AbstractNpcAI
 		if (npc != null)
 		{
 			final double distance = npc.calculateDistance3D(coords[0], coords[1], coords[2]);
-			final int heading = Util.calculateHeadingFrom(npc.getX(), npc.getY(), coords[0], coords[1]);
+			final int heading = LocationUtil.calculateHeadingFrom(npc.getX(), npc.getY(), coords[0], coords[1]);
 			time = (int) ((distance / npc.getWalkSpeed()) * 1000);
 			npc.setWalking();
 			npc.disableCoreAI(true);
 			npc.setRandomWalking(false);
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(coords[0], coords[1], coords[2], heading));
+			npc.getAI().setIntention(Intention.MOVE_TO, new Location(coords[0], coords[1], coords[2], heading));
 			npc.getSpawn().setXYZ(coords[0], coords[1], coords[2]);
 		}
 		return time == 0 ? 100 : time;

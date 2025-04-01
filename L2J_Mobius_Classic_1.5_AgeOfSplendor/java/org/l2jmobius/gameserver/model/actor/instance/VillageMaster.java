@@ -31,30 +31,31 @@ import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.AcquireSkillType;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.holders.player.SubClassHolder;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.Clan.SubPledge;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.holders.SubClassHolder;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
+import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -63,7 +64,6 @@ import org.l2jmobius.gameserver.network.serverpackets.MagicSkillLaunched;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @version $Revision: 1.4.2.3.2.8 $ $Date: 2005/03/29 23:15:15 $
@@ -72,35 +72,35 @@ public class VillageMaster extends Folk
 {
 	private static final Logger LOGGER = Logger.getLogger(VillageMaster.class.getName());
 	
-	private static final Set<ClassId> mainSubclassSet;
-	private static final Set<ClassId> neverSubclassed = EnumSet.of(ClassId.OVERLORD, ClassId.WARSMITH);
-	private static final Set<ClassId> subclasseSet1 = EnumSet.of(ClassId.DARK_AVENGER, ClassId.PALADIN, ClassId.TEMPLE_KNIGHT, ClassId.SHILLIEN_KNIGHT);
-	private static final Set<ClassId> subclasseSet2 = EnumSet.of(ClassId.TREASURE_HUNTER, ClassId.ABYSS_WALKER, ClassId.PLAINS_WALKER);
-	private static final Set<ClassId> subclasseSet3 = EnumSet.of(ClassId.HAWKEYE, ClassId.SILVER_RANGER, ClassId.PHANTOM_RANGER);
-	private static final Set<ClassId> subclasseSet4 = EnumSet.of(ClassId.WARLOCK, ClassId.ELEMENTAL_SUMMONER, ClassId.PHANTOM_SUMMONER);
-	private static final Set<ClassId> subclasseSet5 = EnumSet.of(ClassId.SORCERER, ClassId.SPELLSINGER, ClassId.SPELLHOWLER);
-	private static final EnumMap<ClassId, Set<ClassId>> subclassSetMap = new EnumMap<>(ClassId.class);
+	private static final Set<PlayerClass> mainSubclassSet;
+	private static final Set<PlayerClass> neverSubclassed = EnumSet.of(PlayerClass.OVERLORD, PlayerClass.WARSMITH);
+	private static final Set<PlayerClass> subclasseSet1 = EnumSet.of(PlayerClass.DARK_AVENGER, PlayerClass.PALADIN, PlayerClass.TEMPLE_KNIGHT, PlayerClass.SHILLIEN_KNIGHT);
+	private static final Set<PlayerClass> subclasseSet2 = EnumSet.of(PlayerClass.TREASURE_HUNTER, PlayerClass.ABYSS_WALKER, PlayerClass.PLAINS_WALKER);
+	private static final Set<PlayerClass> subclasseSet3 = EnumSet.of(PlayerClass.HAWKEYE, PlayerClass.SILVER_RANGER, PlayerClass.PHANTOM_RANGER);
+	private static final Set<PlayerClass> subclasseSet4 = EnumSet.of(PlayerClass.WARLOCK, PlayerClass.ELEMENTAL_SUMMONER, PlayerClass.PHANTOM_SUMMONER);
+	private static final Set<PlayerClass> subclasseSet5 = EnumSet.of(PlayerClass.SORCERER, PlayerClass.SPELLSINGER, PlayerClass.SPELLHOWLER);
+	private static final EnumMap<PlayerClass, Set<PlayerClass>> subclassSetMap = new EnumMap<>(PlayerClass.class);
 	static
 	{
-		final Set<ClassId> subclasses = CategoryData.getInstance().getCategoryByType(CategoryType.THIRD_CLASS_GROUP).stream().map(ClassId::getClassId).collect(Collectors.toSet());
+		final Set<PlayerClass> subclasses = CategoryData.getInstance().getCategoryByType(CategoryType.THIRD_CLASS_GROUP).stream().map(PlayerClass::getPlayerClass).collect(Collectors.toSet());
 		subclasses.removeAll(neverSubclassed);
 		mainSubclassSet = subclasses;
-		subclassSetMap.put(ClassId.DARK_AVENGER, subclasseSet1);
-		subclassSetMap.put(ClassId.PALADIN, subclasseSet1);
-		subclassSetMap.put(ClassId.TEMPLE_KNIGHT, subclasseSet1);
-		subclassSetMap.put(ClassId.SHILLIEN_KNIGHT, subclasseSet1);
-		subclassSetMap.put(ClassId.TREASURE_HUNTER, subclasseSet2);
-		subclassSetMap.put(ClassId.ABYSS_WALKER, subclasseSet2);
-		subclassSetMap.put(ClassId.PLAINS_WALKER, subclasseSet2);
-		subclassSetMap.put(ClassId.HAWKEYE, subclasseSet3);
-		subclassSetMap.put(ClassId.SILVER_RANGER, subclasseSet3);
-		subclassSetMap.put(ClassId.PHANTOM_RANGER, subclasseSet3);
-		subclassSetMap.put(ClassId.WARLOCK, subclasseSet4);
-		subclassSetMap.put(ClassId.ELEMENTAL_SUMMONER, subclasseSet4);
-		subclassSetMap.put(ClassId.PHANTOM_SUMMONER, subclasseSet4);
-		subclassSetMap.put(ClassId.SORCERER, subclasseSet5);
-		subclassSetMap.put(ClassId.SPELLSINGER, subclasseSet5);
-		subclassSetMap.put(ClassId.SPELLHOWLER, subclasseSet5);
+		subclassSetMap.put(PlayerClass.DARK_AVENGER, subclasseSet1);
+		subclassSetMap.put(PlayerClass.PALADIN, subclasseSet1);
+		subclassSetMap.put(PlayerClass.TEMPLE_KNIGHT, subclasseSet1);
+		subclassSetMap.put(PlayerClass.SHILLIEN_KNIGHT, subclasseSet1);
+		subclassSetMap.put(PlayerClass.TREASURE_HUNTER, subclasseSet2);
+		subclassSetMap.put(PlayerClass.ABYSS_WALKER, subclasseSet2);
+		subclassSetMap.put(PlayerClass.PLAINS_WALKER, subclasseSet2);
+		subclassSetMap.put(PlayerClass.HAWKEYE, subclasseSet3);
+		subclassSetMap.put(PlayerClass.SILVER_RANGER, subclasseSet3);
+		subclassSetMap.put(PlayerClass.PHANTOM_RANGER, subclasseSet3);
+		subclassSetMap.put(PlayerClass.WARLOCK, subclasseSet4);
+		subclassSetMap.put(PlayerClass.ELEMENTAL_SUMMONER, subclasseSet4);
+		subclassSetMap.put(PlayerClass.PHANTOM_SUMMONER, subclasseSet4);
+		subclassSetMap.put(PlayerClass.SORCERER, subclasseSet5);
+		subclassSetMap.put(PlayerClass.SPELLSINGER, subclasseSet5);
+		subclassSetMap.put(PlayerClass.SPELLHOWLER, subclasseSet5);
 	}
 	
 	/**
@@ -399,7 +399,7 @@ public class VillageMaster extends Folk
 				LOGGER.warning(VillageMaster.class.getName() + ": Wrong numeric values for command " + command);
 			}
 			
-			Set<ClassId> subsAvailable = null;
+			Set<PlayerClass> subsAvailable = null;
 			switch (cmdChoice)
 			{
 				case 0: // Subclass change menu
@@ -418,7 +418,7 @@ public class VillageMaster extends Folk
 					{
 						html.setFile(player, "data/html/villagemaster/SubClass_Add.htm");
 						final StringBuilder content1 = new StringBuilder(200);
-						for (ClassId subClass : subsAvailable)
+						for (PlayerClass subClass : subsAvailable)
 						{
 							content1.append("<a action=\"bypass npc_%objectId%_Subclass 4 " + subClass.getId() + "\" msg=\"1268;" + ClassListData.getInstance().getClass(subClass.getId()).getClassName() + "\">" + ClassListData.getInstance().getClass(subClass.getId()).getClientCode() + "</a><br>");
 						}
@@ -460,9 +460,9 @@ public class VillageMaster extends Folk
 						for (Iterator<SubClassHolder> subList = iterSubClasses(player); subList.hasNext();)
 						{
 							final SubClassHolder subClass = subList.next();
-							if (checkVillageMaster(subClass.getClassDefinition()))
+							if (checkVillageMaster(subClass.getPlayerClass()))
 							{
-								content2.append("<a action=\"bypass -h npc_%objectId%_Subclass 5 " + subClass.getClassIndex() + "\">" + ClassListData.getInstance().getClass(subClass.getClassId()).getClientCode() + "</a><br>");
+								content2.append("<a action=\"bypass -h npc_%objectId%_Subclass 5 " + subClass.getClassIndex() + "\">" + ClassListData.getInstance().getClass(subClass.getId()).getClientCode() + "</a><br>");
 							}
 						}
 						
@@ -493,7 +493,7 @@ public class VillageMaster extends Folk
 						for (Iterator<SubClassHolder> subList = iterSubClasses(player); subList.hasNext();)
 						{
 							final SubClassHolder subClass = subList.next();
-							content3.append("Sub-class " + classIndex++ + "<br><a action=\"bypass -h npc_%objectId%_Subclass 6 " + subClass.getClassIndex() + "\">" + ClassListData.getInstance().getClass(subClass.getClassId()).getClientCode() + "</a><br>");
+							content3.append("Sub-class " + classIndex++ + "<br><a action=\"bypass -h npc_%objectId%_Subclass 6 " + subClass.getClassIndex() + "\">" + ClassListData.getInstance().getClass(subClass.getId()).getClientCode() + "</a><br>");
 						}
 						html.replace("%list%", content3.toString());
 					}
@@ -503,7 +503,7 @@ public class VillageMaster extends Folk
 						html.setFile(player, "data/html/villagemaster/SubClass_Modify.htm");
 						if (player.getSubClasses().containsKey(1))
 						{
-							html.replace("%sub1%", ClassListData.getInstance().getClass(player.getSubClasses().get(1).getClassId()).getClientCode());
+							html.replace("%sub1%", ClassListData.getInstance().getClass(player.getSubClasses().get(1).getId()).getClientCode());
 						}
 						else
 						{
@@ -512,7 +512,7 @@ public class VillageMaster extends Folk
 						
 						if (player.getSubClasses().containsKey(2))
 						{
-							html.replace("%sub2%", ClassListData.getInstance().getClass(player.getSubClasses().get(2).getClassId()).getClientCode());
+							html.replace("%sub2%", ClassListData.getInstance().getClass(player.getSubClasses().get(2).getId()).getClientCode());
 						}
 						else
 						{
@@ -521,7 +521,7 @@ public class VillageMaster extends Folk
 						
 						if (player.getSubClasses().containsKey(3))
 						{
-							html.replace("%sub3%", ClassListData.getInstance().getClass(player.getSubClasses().get(3).getClassId()).getClientCode());
+							html.replace("%sub3%", ClassListData.getInstance().getClass(player.getSubClasses().get(3).getId()).getClientCode());
 						}
 						else
 						{
@@ -584,7 +584,7 @@ public class VillageMaster extends Folk
 						html.setFile(player, "data/html/villagemaster/SubClass_AddOk.htm");
 						
 						final SystemMessage msg = new SystemMessage(SystemMessageId.THE_NEW_SUBCLASS_HAS_BEEN_ADDED);
-						msg.addClassId(player.getClassId().getId());
+						msg.addClassId(player.getPlayerClass().getId());
 						player.sendPacket(msg);
 					}
 					else
@@ -619,7 +619,7 @@ public class VillageMaster extends Folk
 					{
 						try
 						{
-							if (!checkVillageMaster(player.getSubClasses().get(paramOne).getClassDefinition()))
+							if (!checkVillageMaster(player.getSubClasses().get(paramOne).getPlayerClass()))
 							{
 								return;
 							}
@@ -651,7 +651,7 @@ public class VillageMaster extends Folk
 					}
 					
 					final StringBuilder content6 = new StringBuilder(200);
-					for (ClassId subClass : subsAvailable)
+					for (PlayerClass subClass : subsAvailable)
 					{
 						content6.append("<a action=\"bypass npc_%objectId%_Subclass 7 " + paramOne + " " + subClass.getId() + "\" msg=\"1445;\">" + ClassListData.getInstance().getClass(subClass.getId()).getClientCode() + "</a><br>");
 					}
@@ -699,7 +699,7 @@ public class VillageMaster extends Folk
 						html.replace("%name%", ClassListData.getInstance().getClass(paramTwo).getClientCode());
 						
 						final SystemMessage msg = new SystemMessage(SystemMessageId.THE_NEW_SUBCLASS_HAS_BEEN_ADDED);
-						msg.addClassId(player.getClassId().getId());
+						msg.addClassId(player.getPlayerClass().getId());
 						player.sendPacket(msg);
 					}
 					else
@@ -764,11 +764,11 @@ public class VillageMaster extends Folk
 	 * @param player
 	 * @return
 	 */
-	private final Set<ClassId> getAvailableSubClasses(Player player)
+	private final Set<PlayerClass> getAvailableSubClasses(Player player)
 	{
 		// get player base class
 		final int currentBaseId = player.getBaseClass();
-		final ClassId baseCID = ClassId.getClassId(currentBaseId);
+		final PlayerClass baseCID = PlayerClass.getPlayerClass(currentBaseId);
 		
 		// we need 2nd occupation ID
 		final int baseClassId;
@@ -787,12 +787,12 @@ public class VillageMaster extends Folk
 		 * and Shillien Knight Warlocks, Elemental Summoner and Phantom Summoner Elder and Shillien Elder Swordsinger and Bladedancer Sorcerer, Spellsinger and Spellhowler Also, Kamael have a special, hidden 4 subclass, the inspector, which can only be taken if you have already completed the other
 		 * two Kamael subclasses
 		 */
-		final Set<ClassId> availSubs = getSubclasses(player, baseClassId);
+		final Set<PlayerClass> availSubs = getSubclasses(player, baseClassId);
 		if ((availSubs != null) && !availSubs.isEmpty())
 		{
-			for (Iterator<ClassId> availSub = availSubs.iterator(); availSub.hasNext();)
+			for (Iterator<PlayerClass> availSub = availSubs.iterator(); availSub.hasNext();)
 			{
-				final ClassId pclass = availSub.next();
+				final PlayerClass pclass = availSub.next();
 				
 				// check for the village master
 				if (!checkVillageMaster(pclass))
@@ -803,13 +803,13 @@ public class VillageMaster extends Folk
 				
 				// scan for already used subclasses
 				final int availClassId = pclass.getId();
-				final ClassId cid = ClassId.getClassId(availClassId);
+				final PlayerClass cid = PlayerClass.getPlayerClass(availClassId);
 				SubClassHolder prevSubClass;
-				ClassId subClassId;
+				PlayerClass subClassId;
 				for (Iterator<SubClassHolder> subList = iterSubClasses(player); subList.hasNext();)
 				{
 					prevSubClass = subList.next();
-					subClassId = ClassId.getClassId(prevSubClass.getClassId());
+					subClassId = PlayerClass.getPlayerClass(prevSubClass.getId());
 					if (subClassId.equalsOrChildOf(cid))
 					{
 						availSub.remove();
@@ -822,10 +822,10 @@ public class VillageMaster extends Folk
 		return availSubs;
 	}
 	
-	public final Set<ClassId> getSubclasses(Player player, int classId)
+	public final Set<PlayerClass> getSubclasses(Player player, int classId)
 	{
-		Set<ClassId> subclasses = null;
-		final ClassId pClass = ClassId.getClassId(classId);
+		Set<PlayerClass> subclasses = null;
+		final PlayerClass pClass = PlayerClass.getPlayerClass(classId);
 		if (CategoryData.getInstance().isInCategory(CategoryType.THIRD_CLASS_GROUP, classId) || (CategoryData.getInstance().isInCategory(CategoryType.FOURTH_CLASS_GROUP, classId)))
 		{
 			subclasses = EnumSet.copyOf(mainSubclassSet);
@@ -833,7 +833,7 @@ public class VillageMaster extends Folk
 			
 			if (player.getRace() == Race.KAMAEL)
 			{
-				for (ClassId cid : ClassId.values())
+				for (PlayerClass cid : PlayerClass.values())
 				{
 					if (cid.getRace() != Race.KAMAEL)
 					{
@@ -843,23 +843,23 @@ public class VillageMaster extends Folk
 				
 				if (player.getAppearance().isFemale())
 				{
-					subclasses.remove(ClassId.MALE_SOULBREAKER);
+					subclasses.remove(PlayerClass.MALE_SOULBREAKER);
 				}
 				else
 				{
-					subclasses.remove(ClassId.FEMALE_SOULBREAKER);
+					subclasses.remove(PlayerClass.FEMALE_SOULBREAKER);
 				}
 				
 				if (!player.getSubClasses().containsKey(2) || (player.getSubClasses().get(2).getLevel() < 75))
 				{
-					subclasses.remove(ClassId.INSPECTOR);
+					subclasses.remove(PlayerClass.INSPECTOR);
 				}
 			}
 			else
 			{
 				if (player.getRace() == Race.ELF)
 				{
-					for (ClassId cid : ClassId.values())
+					for (PlayerClass cid : PlayerClass.values())
 					{
 						if (cid.getRace() == Race.DARK_ELF)
 						{
@@ -869,7 +869,7 @@ public class VillageMaster extends Folk
 				}
 				else if (player.getRace() == Race.DARK_ELF)
 				{
-					for (ClassId cid : ClassId.values())
+					for (PlayerClass cid : PlayerClass.values())
 					{
 						if (cid.getRace() == Race.ELF)
 						{
@@ -878,7 +878,7 @@ public class VillageMaster extends Folk
 					}
 				}
 				
-				for (ClassId cid : ClassId.values())
+				for (PlayerClass cid : PlayerClass.values())
 				{
 					if (cid.getRace() == Race.KAMAEL)
 					{
@@ -887,7 +887,7 @@ public class VillageMaster extends Folk
 				}
 			}
 			
-			final Set<ClassId> unavailableClasses = subclassSetMap.get(pClass);
+			final Set<PlayerClass> unavailableClasses = subclassSetMap.get(pClass);
 			if (unavailableClasses != null)
 			{
 				subclasses.removeAll(unavailableClasses);
@@ -896,8 +896,8 @@ public class VillageMaster extends Folk
 		
 		if (subclasses != null)
 		{
-			final ClassId currClassId = player.getClassId();
-			for (ClassId tempClass : subclasses)
+			final PlayerClass currClassId = player.getPlayerClass();
+			for (PlayerClass tempClass : subclasses)
 			{
 				if (currClassId.equalsOrChildOf(tempClass))
 				{
@@ -921,13 +921,13 @@ public class VillageMaster extends Folk
 			return false;
 		}
 		
-		final ClassId cid = ClassId.getClassId(classId);
+		final PlayerClass cid = PlayerClass.getPlayerClass(classId);
 		SubClassHolder sub;
-		ClassId subClassId;
+		PlayerClass subClassId;
 		for (Iterator<SubClassHolder> subList = iterSubClasses(player); subList.hasNext();)
 		{
 			sub = subList.next();
-			subClassId = ClassId.getClassId(sub.getClassId());
+			subClassId = PlayerClass.getPlayerClass(sub.getId());
 			if (subClassId.equalsOrChildOf(cid))
 			{
 				return false;
@@ -936,7 +936,7 @@ public class VillageMaster extends Folk
 		
 		// get player base class
 		final int currentBaseId = player.getBaseClass();
-		final ClassId baseCID = ClassId.getClassId(currentBaseId);
+		final PlayerClass baseCID = PlayerClass.getPlayerClass(currentBaseId);
 		
 		// we need 2nd occupation ID
 		final int baseClassId;
@@ -949,14 +949,14 @@ public class VillageMaster extends Folk
 			baseClassId = currentBaseId;
 		}
 		
-		final Set<ClassId> availSubs = getSubclasses(player, baseClassId);
+		final Set<PlayerClass> availSubs = getSubclasses(player, baseClassId);
 		if ((availSubs == null) || availSubs.isEmpty())
 		{
 			return false;
 		}
 		
 		boolean found = false;
-		for (ClassId pclass : availSubs)
+		for (PlayerClass pclass : availSubs)
 		{
 			if (pclass.getId() == classId)
 			{
@@ -967,12 +967,12 @@ public class VillageMaster extends Folk
 		return found;
 	}
 	
-	protected boolean checkVillageMasterRace(ClassId pClass)
+	protected boolean checkVillageMasterRace(PlayerClass pClass)
 	{
 		return true;
 	}
 	
-	protected boolean checkVillageMasterTeachType(ClassId pClass)
+	protected boolean checkVillageMasterTeachType(PlayerClass pClass)
 	{
 		return true;
 	}
@@ -984,7 +984,7 @@ public class VillageMaster extends Folk
 	 */
 	public boolean checkVillageMaster(int classId)
 	{
-		return checkVillageMaster(ClassId.getClassId(classId));
+		return checkVillageMaster(PlayerClass.getPlayerClass(classId));
 	}
 	
 	/**
@@ -992,7 +992,7 @@ public class VillageMaster extends Folk
 	 * @param pclass
 	 * @return
 	 */
-	public boolean checkVillageMaster(ClassId pclass)
+	public boolean checkVillageMaster(PlayerClass pclass)
 	{
 		if (Config.ALT_GAME_SUBCLASS_EVERYWHERE)
 		{
@@ -1102,7 +1102,7 @@ public class VillageMaster extends Folk
 			
 			return;
 		}
-		if (!Util.isAlphaNumeric(clanName) || !isValidName(clanName) || (2 > clanName.length()))
+		if (!StringUtil.isAlphaNumeric(clanName) || !isValidName(clanName) || (2 > clanName.length()))
 		{
 			player.sendPacket(SystemMessageId.CLAN_NAME_IS_INVALID);
 			return;
@@ -1205,7 +1205,7 @@ public class VillageMaster extends Folk
 			player.sendMessage("Pledge don't exists.");
 			return;
 		}
-		if (!Util.isAlphaNumeric(pledgeName) || !isValidName(pledgeName) || (2 > pledgeName.length()))
+		if (!StringUtil.isAlphaNumeric(pledgeName) || !isValidName(pledgeName) || (2 > pledgeName.length()))
 		{
 			player.sendPacket(SystemMessageId.CLAN_NAME_IS_INVALID);
 			return;

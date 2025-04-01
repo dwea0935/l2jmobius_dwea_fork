@@ -21,7 +21,7 @@
 package ai.others.PrisonManager;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -206,7 +206,7 @@ public class PrisonManager extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -302,11 +302,10 @@ public class PrisonManager extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.NARCISSUS_IS_A_MIGHT_FALLEN_ANGEL_WHO_CAN_ENSLAVE_OTHER_WITH_HIS_SONGS);
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -341,7 +340,6 @@ public class PrisonManager extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.GO_MY_LOYAL_SERVANTS_BRING_ME_THOSE_WHO_WALLOW_IN_SHAME_AND_CURSES);
 			}
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	public static void main(String[] args)

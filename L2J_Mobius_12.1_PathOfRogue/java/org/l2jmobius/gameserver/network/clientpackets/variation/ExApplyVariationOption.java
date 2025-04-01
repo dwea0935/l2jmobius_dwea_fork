@@ -54,11 +54,15 @@ public class ExApplyVariationOption extends ClientPacket
 		}
 		
 		final VariationRequest request = player.getRequest(VariationRequest.class);
+		if (request == null)
+		{
+			return;
+		}
+		
 		final Item targetItem = request.getAugmentedItem();
 		final VariationInstance augment = request.getAugment();
 		final int option1Id = augment.getOption1Id();
 		final int option2Id = augment.getOption2Id();
-		
 		if ((targetItem.getObjectId() != _enchantedObjectId) || (_option1 != option1Id) || (_option2 != option2Id))
 		{
 			player.sendPacket(new ApplyVariationOption(0, 0, 0, 0));

@@ -172,7 +172,7 @@ public class Q10829_InSearchOfTheCause extends Quest
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -182,6 +182,5 @@ public class Q10829_InSearchOfTheCause extends Quest
 				qs.setCond(2, true);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 }

@@ -24,10 +24,11 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.HomunculusCreationData;
 import org.l2jmobius.gameserver.data.xml.HomunculusData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.homunculus.Homunculus;
 import org.l2jmobius.gameserver.model.homunculus.HomunculusCreationTemplate;
 import org.l2jmobius.gameserver.model.homunculus.HomunculusTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -82,7 +83,7 @@ public class RequestExSummonHomunculusCouponResult extends ClientPacket
 		}
 		for (ItemHolder itemHolder : creationTemplate.getItemFee())
 		{
-			if (!player.destroyItemByItemId("Homunculus Coupon Creation", itemHolder.getId(), itemHolder.getCount(), player, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, itemHolder.getId(), itemHolder.getCount(), player, true))
 			{
 				PacketLogger.info("Player " + player.getObjectId() + " " + player.getName() + ", trying create homunculus without " + itemHolder + "!");
 				return;

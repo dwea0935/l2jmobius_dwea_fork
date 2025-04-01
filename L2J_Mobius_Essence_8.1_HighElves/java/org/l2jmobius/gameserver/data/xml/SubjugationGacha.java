@@ -53,9 +53,9 @@ public class SubjugationGacha implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "purge", purgeNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "purge", purgeNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(purgeNode));
 			final int category = set.getInt("category");

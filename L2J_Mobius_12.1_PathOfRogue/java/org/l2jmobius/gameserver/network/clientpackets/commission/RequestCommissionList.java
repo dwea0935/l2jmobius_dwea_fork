@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets.commission;
 
 import java.util.function.Predicate;
 
-import org.l2jmobius.gameserver.instancemanager.ItemCommissionManager;
+import org.l2jmobius.gameserver.managers.ItemCommissionManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.commission.CommissionItemType;
 import org.l2jmobius.gameserver.model.commission.CommissionTreeType;
@@ -67,7 +67,7 @@ public class RequestCommissionList extends ClientPacket
 			return;
 		}
 		
-		Predicate<ItemTemplate> filter = i -> true;
+		Predicate<ItemTemplate> filter = _ -> true;
 		switch (_treeViewDepth)
 		{
 			case 1:
@@ -94,12 +94,12 @@ public class RequestCommissionList extends ClientPacket
 		{
 			case 0: // General
 			{
-				filter = filter.and(i -> true); // TODO: condition
+				filter = filter.and(_ -> true); // TODO: condition
 				break;
 			}
 			case 1: // Rare
 			{
-				filter = filter.and(i -> true); // TODO: condition
+				filter = filter.and(_ -> true); // TODO: condition
 				break;
 			}
 		}

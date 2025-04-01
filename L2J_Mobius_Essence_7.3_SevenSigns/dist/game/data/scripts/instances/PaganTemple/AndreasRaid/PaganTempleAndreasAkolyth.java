@@ -39,13 +39,12 @@ public class PaganTempleAndreasAkolyth extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (Rnd.get(10_000) < 5_500)
 		{
 			npc.dropItem(killer, ITEM_ID, 1);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

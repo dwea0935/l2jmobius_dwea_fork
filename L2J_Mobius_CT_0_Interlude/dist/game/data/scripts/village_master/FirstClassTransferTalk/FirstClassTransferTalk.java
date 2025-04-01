@@ -19,9 +19,9 @@ package village_master.FirstClassTransferTalk;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.instance.VillageMasterFighter;
 import org.l2jmobius.gameserver.model.actor.instance.VillageMasterPriest;
 
@@ -72,7 +72,7 @@ public class FirstClassTransferTalk extends AbstractNpcAI
 		{
 			case HUMAN:
 			{
-				if (player.getClassId().level() == 0)
+				if (player.getPlayerClass().level() == 0)
 				{
 					if (player.isMageClass())
 					{
@@ -94,7 +94,7 @@ public class FirstClassTransferTalk extends AbstractNpcAI
 						htmltext += "no.html";
 					}
 				}
-				else if (player.getClassId().level() == 1)
+				else if (player.getPlayerClass().level() == 1)
 				{
 					htmltext += "transfer_1.html";
 				}
@@ -108,7 +108,7 @@ public class FirstClassTransferTalk extends AbstractNpcAI
 			case DARK_ELF:
 			case ORC:
 			{
-				if (player.getClassId().level() == 0)
+				if (player.getPlayerClass().level() == 0)
 				{
 					if (player.isMageClass())
 					{
@@ -119,7 +119,7 @@ public class FirstClassTransferTalk extends AbstractNpcAI
 						htmltext += "fighter.html";
 					}
 				}
-				else if (player.getClassId().level() == 1)
+				else if (player.getPlayerClass().level() == 1)
 				{
 					htmltext += "transfer_1.html";
 				}
@@ -131,11 +131,11 @@ public class FirstClassTransferTalk extends AbstractNpcAI
 			}
 			case DWARF:
 			{
-				if (player.getClassId().level() == 0)
+				if (player.getPlayerClass().level() == 0)
 				{
 					htmltext += "fighter.html";
 				}
-				else if (player.getClassId().level() == 1)
+				else if (player.getPlayerClass().level() == 1)
 				{
 					htmltext += "transfer_1.html";
 				}

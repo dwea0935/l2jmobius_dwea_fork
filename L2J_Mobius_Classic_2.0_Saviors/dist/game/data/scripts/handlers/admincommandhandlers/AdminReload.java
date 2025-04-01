@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.admincommandhandlers;
 
@@ -23,6 +27,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.enums.ServerMode;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.CrestTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
@@ -35,7 +40,6 @@ import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemOptionsData;
-import org.l2jmobius.gameserver.data.xml.FakePlayerData;
 import org.l2jmobius.gameserver.data.xml.FishingData;
 import org.l2jmobius.gameserver.data.xml.ItemCrystallizationData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
@@ -51,23 +55,19 @@ import org.l2jmobius.gameserver.data.xml.TeleporterData;
 import org.l2jmobius.gameserver.data.xml.TransformData;
 import org.l2jmobius.gameserver.data.xml.VariationData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
-import org.l2jmobius.gameserver.instancemanager.FakePlayerChatManager;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.FakePlayerChatManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.scripting.ScriptEngineManager;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
- * @author NosBit
+ * @author NosBit, Mobius
  */
 public class AdminReload implements IAdminCommandHandler
 {
@@ -120,7 +120,7 @@ public class AdminReload implements IAdminCommandHandler
 					if (st.hasMoreElements())
 					{
 						final String value = st.nextToken();
-						if (!Util.isDigit(value))
+						if (!StringUtil.isNumeric(value))
 						{
 							QuestManager.getInstance().reload(value);
 							AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quest Name:" + value + ".");
@@ -135,7 +135,7 @@ public class AdminReload implements IAdminCommandHandler
 					else
 					{
 						QuestManager.getInstance().reloadAllScripts();
-						BuilderUtil.sendSysMessage(activeChar, "All scripts have been reloaded.");
+						activeChar.sendSysMessage("All scripts have been reloaded.");
 						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quests.");
 					}
 					break;
@@ -143,7 +143,7 @@ public class AdminReload implements IAdminCommandHandler
 				case "walker":
 				{
 					WalkingManager.getInstance().load();
-					BuilderUtil.sendSysMessage(activeChar, "All walkers have been reloaded");
+					activeChar.sendSysMessage("All walkers have been reloaded");
 					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Walkers.");
 					break;
 				}
@@ -161,13 +161,13 @@ public class AdminReload implements IAdminCommandHandler
 						}
 						else
 						{
-							BuilderUtil.sendSysMessage(activeChar, "File or Directory does not exist.");
+							activeChar.sendSysMessage("File or Directory does not exist.");
 						}
 					}
 					else
 					{
 						HtmCache.getInstance().reload();
-						BuilderUtil.sendSysMessage(activeChar, "Cache[HTML]: " + HtmCache.getInstance().getMemoryUsage() + " megabytes on " + HtmCache.getInstance().getLoadedFiles() + " files loaded");
+						activeChar.sendSysMessage("Cache[HTML]: " + HtmCache.getInstance().getMemoryUsage() + " megabytes on " + HtmCache.getInstance().getLoadedFiles() + " files loaded");
 						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Htms.");
 					}
 					break;
@@ -236,7 +236,7 @@ public class AdminReload implements IAdminCommandHandler
 					catch (Exception e)
 					{
 						LOGGER.log(Level.WARNING, "Failed executing effect master handler!", e);
-						BuilderUtil.sendSysMessage(activeChar, "Error reloading effect master handler!");
+						activeChar.sendSysMessage("Error reloading effect master handler!");
 					}
 					break;
 				}
@@ -250,7 +250,7 @@ public class AdminReload implements IAdminCommandHandler
 					catch (Exception e)
 					{
 						LOGGER.log(Level.WARNING, "Failed executing master handler!", e);
-						BuilderUtil.sendSysMessage(activeChar, "Error reloading master handler!");
+						activeChar.sendSysMessage("Error reloading master handler!");
 					}
 					break;
 				}
@@ -316,19 +316,6 @@ public class AdminReload implements IAdminCommandHandler
 					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Attendance Reward data.");
 					break;
 				}
-				case "fakeplayers":
-				{
-					FakePlayerData.getInstance().load();
-					for (WorldObject obj : World.getInstance().getVisibleObjects())
-					{
-						if (obj.isFakePlayer())
-						{
-							obj.broadcastInfo();
-						}
-					}
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Fake Player data.");
-					break;
-				}
 				case "fakeplayerchat":
 				{
 					FakePlayerChatManager.getInstance().load();
@@ -368,7 +355,7 @@ public class AdminReload implements IAdminCommandHandler
 					return true;
 				}
 			}
-			BuilderUtil.sendSysMessage(activeChar, "WARNING: There are several known issues regarding this feature. Reloading server data during runtime is STRONGLY NOT RECOMMENDED for live servers, just for developing environments.");
+			activeChar.sendSysMessage("WARNING: There are several known issues regarding this feature. Reloading server data during runtime is STRONGLY NOT RECOMMENDED for live servers, just for developing environments.");
 		}
 		return true;
 	}

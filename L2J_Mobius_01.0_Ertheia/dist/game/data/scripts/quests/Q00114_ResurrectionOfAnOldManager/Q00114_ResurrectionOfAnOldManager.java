@@ -16,7 +16,6 @@
  */
 package quests.Q00114_ResurrectionOfAnOldManager;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -26,6 +25,7 @@ import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00121_PavelTheGiant.Q00121_PavelTheGiant;
@@ -391,7 +391,7 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && qs.isCond(10) && (qs.getInt("spawned") == 1))
@@ -401,11 +401,10 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 			qs.unset("spawned");
 			cancelQuestTimers("golem_despawn");
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -419,7 +418,6 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 				showOnScreenMsg(player, NpcStringId.THE_RADIO_SIGNAL_DETECTOR_IS_RESPONDING_A_SUSPICIOUS_PILE_OF_STONES_CATCHES_YOUR_EYE, 2, 4500);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override

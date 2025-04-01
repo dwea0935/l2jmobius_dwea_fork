@@ -676,7 +676,6 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<stats>
@@ -1472,7 +1471,6 @@
 		<set name="crystal_type" val="A" />
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1180" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />

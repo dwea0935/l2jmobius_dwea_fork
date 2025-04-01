@@ -28,7 +28,6 @@ import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.loginserverpackets.game.ServerStatus;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles the admin commands that acts on the login
@@ -52,13 +51,13 @@ public class AdminLogin implements IAdminCommandHandler
 		if (command.equals("admin_server_gm_only"))
 		{
 			gmOnly();
-			BuilderUtil.sendSysMessage(activeChar, "Server is now GM only");
+			activeChar.sendSysMessage("Server is now GM only");
 			showMainPage(activeChar);
 		}
 		else if (command.equals("admin_server_all"))
 		{
 			allowToAll();
-			BuilderUtil.sendSysMessage(activeChar, "Server is not GM only anymore");
+			activeChar.sendSysMessage("Server is not GM only anymore");
 			showMainPage(activeChar);
 		}
 		else if (command.startsWith("admin_server_max_player"))
@@ -71,17 +70,17 @@ public class AdminLogin implements IAdminCommandHandler
 				try
 				{
 					LoginServerThread.getInstance().setMaxPlayer(Integer.parseInt(number));
-					BuilderUtil.sendSysMessage(activeChar, "maxPlayer set to " + number);
+					activeChar.sendSysMessage("maxPlayer set to " + number);
 					showMainPage(activeChar);
 				}
 				catch (NumberFormatException e)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Max players must be a number.");
+					activeChar.sendSysMessage("Max players must be a number.");
 				}
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Format is server_max_player <max>");
+				activeChar.sendSysMessage("Format is server_max_player <max>");
 			}
 		}
 		else if (command.startsWith("admin_server_list_type"))
@@ -109,18 +108,18 @@ public class AdminLogin implements IAdminCommandHandler
 				{
 					Config.SERVER_LIST_TYPE = newType;
 					LoginServerThread.getInstance().sendServerType();
-					BuilderUtil.sendSysMessage(activeChar, "Server Type changed to " + getServerTypeName(newType));
+					activeChar.sendSysMessage("Server Type changed to " + getServerTypeName(newType));
 					showMainPage(activeChar);
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Server Type is already " + getServerTypeName(newType));
+					activeChar.sendSysMessage("Server Type is already " + getServerTypeName(newType));
 					showMainPage(activeChar);
 				}
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Format is server_list_type <normal/relax/test/nolabel/restricted/event/free>");
+				activeChar.sendSysMessage("Format is server_list_type <normal/relax/test/nolabel/restricted/event/free>");
 			}
 		}
 		else if (command.startsWith("admin_server_list_age"))
@@ -138,23 +137,23 @@ public class AdminLogin implements IAdminCommandHandler
 					{
 						Config.SERVER_LIST_TYPE = age;
 						LoginServerThread.getInstance().sendServerStatus(ServerStatus.SERVER_AGE, age);
-						BuilderUtil.sendSysMessage(activeChar, "Server Age changed to " + age);
+						activeChar.sendSysMessage("Server Age changed to " + age);
 						showMainPage(activeChar);
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Server Age is already " + age);
+						activeChar.sendSysMessage("Server Age is already " + age);
 						showMainPage(activeChar);
 					}
 				}
 				catch (NumberFormatException e)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Age must be a number");
+					activeChar.sendSysMessage("Age must be a number");
 				}
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Format is server_list_age <number>");
+				activeChar.sendSysMessage("Format is server_list_age <number>");
 			}
 		}
 		else if (command.equals("admin_server_login"))

@@ -22,24 +22,24 @@ package instances.AshenShadowRevolutionaries;
 
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.ScriptZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -345,12 +345,12 @@ public class AshenShadowRevolutionaries extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world == null)
 		{
-			return null;
+			return;
 		}
 		
 		final int id = npc.getId();
@@ -362,7 +362,7 @@ public class AshenShadowRevolutionaries extends AbstractInstance
 		{
 			addSpawn(getRandomEntry(COMMANDERS_110), world.isStatus(1) ? COMMANDER_LOCATION_1 : COMMANDER_LOCATION_2, false, 0, false, world.getId());
 		}
-		else if (CommonUtil.contains(world.getTemplateId() == TEMPLATE_IDS[0] ? COMMANDERS : COMMANDERS_110, id))
+		else if (ArrayUtil.contains(world.getTemplateId() == TEMPLATE_IDS[0] ? COMMANDERS : COMMANDERS_110, id))
 		{
 			world.incStatus();
 			if (world.getStatus() < 3)
@@ -396,21 +396,19 @@ public class AshenShadowRevolutionaries extends AbstractInstance
 				world.finishInstance();
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (getRandom(10) < 1)
 		{
 			npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(DWARF_SPY_TEXT));
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomWalking(false);
 		if (npc.getId() == 34103)
@@ -418,18 +416,16 @@ public class AshenShadowRevolutionaries extends AbstractInstance
 			npc.setImmobilized(true);
 			npc.detachAI();
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		final Instance world = creature.getInstanceWorld();
 		if (creature.isPlayer() && (world != null))
 		{
 			creature.asPlayer().teleToLocation(world.getEnterLocation());
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	public static void main(String[] args)

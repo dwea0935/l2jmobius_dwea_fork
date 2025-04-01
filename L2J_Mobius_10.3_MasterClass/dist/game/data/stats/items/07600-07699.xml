@@ -364,7 +364,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2217" level="1" /> <!-- Looted Goods - White Cargo Box -->
+			<skill id="2217" level="1" /> <!-- Looted Goods - White Box -->
 		</skills>
 	</item>
 	<item id="7630" name="Looted Goods - Blue Cargo box" type="EtcItem">
@@ -469,7 +469,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2218" level="1" /> <!-- Booty - Yellow Pouch -->
+			<skill id="2218" level="1" /> <!-- Looted Goods - Yellow Pouch -->
 		</skills>
 	</item>
 	<item id="7637" name="Booty - Brown Pouch" type="EtcItem">
@@ -484,7 +484,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2218" level="2" /> <!-- Booty - Brown Pouch -->
+			<skill id="2218" level="2" /> <!-- Looted Goods - Brown Pouch -->
 		</skills>
 	</item>
 	<item id="7638" name="Spellbook: Mass Summon Storm Cubic" type="EtcItem">

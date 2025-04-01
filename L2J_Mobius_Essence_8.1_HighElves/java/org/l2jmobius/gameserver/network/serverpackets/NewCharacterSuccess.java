@@ -50,7 +50,7 @@ public class NewCharacterSuccess extends ServerPacket
 			}
 			// TODO: Unhardcode these
 			buffer.writeInt(chr.getRace().ordinal());
-			buffer.writeInt(chr.getClassId().getId());
+			buffer.writeInt(chr.getPlayerClass().getId());
 			buffer.writeInt(99);
 			buffer.writeInt(chr.getBaseSTR());
 			buffer.writeInt(1);

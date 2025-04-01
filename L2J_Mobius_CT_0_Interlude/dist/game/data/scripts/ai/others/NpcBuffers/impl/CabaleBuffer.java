@@ -18,14 +18,13 @@ package ai.others.NpcBuffers.impl;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -38,19 +37,19 @@ public class CabaleBuffer extends AbstractNpcAI
 	private static final int DISTANCE_TO_WATCH_OBJECT = 900;
 	
 	// Messages
-	protected static final NpcStringId[] ORATOR_MSG =
+	protected static final String[] ORATOR_MSG =
 	{
-		NpcStringId.THE_DAY_OF_JUDGMENT_IS_NEAR,
-		NpcStringId.THE_PROPHECY_OF_DARKNESS_HAS_BEEN_FULFILLED,
-		NpcStringId.AS_FORETOLD_IN_THE_PROPHECY_OF_DARKNESS_THE_ERA_OF_CHAOS_HAS_BEGUN,
-		NpcStringId.THE_PROPHECY_OF_DARKNESS_HAS_COME_TO_PASS
+		"The day of judgment is near!",
+		"The prophecy of darkness has been fulfilled!",
+		"As foretold in the prophecy of darkness, the era of chaos has begun!",
+		"The prophecy of darkness has come to pass!"
 	};
-	protected static final NpcStringId[] PREACHER_MSG =
+	protected static final String[] PREACHER_MSG =
 	{
-		NpcStringId.THIS_WORLD_WILL_SOON_BE_ANNIHILATED,
-		NpcStringId.ALL_IS_LOST_PREPARE_TO_MEET_THE_GODDESS_OF_DEATH,
-		NpcStringId.ALL_IS_LOST_THE_PROPHECY_OF_DESTRUCTION_HAS_BEEN_FULFILLED,
-		NpcStringId.THE_END_OF_TIME_HAS_COME_THE_PROPHECY_OF_DESTRUCTION_HAS_BEEN_FULFILLED
+		"This world will soon be annihilated!",
+		"All is lost! Prepare to meet the goddess of death!",
+		"All is lost! The prophecy of destruction has been fulfilled!",
+		"The end of time has come! The prophecy of destruction has been fulfilled!"
 	};
 	
 	// Skills
@@ -72,11 +71,10 @@ public class CabaleBuffer extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		ThreadPool.schedule(new CabaleAI(npc), 3000);
 		ThreadPool.schedule(new Talk(npc), 60000);
-		return super.onSpawn(npc);
 	}
 	
 	protected class Talk implements Runnable
@@ -93,12 +91,12 @@ public class CabaleBuffer extends AbstractNpcAI
 		{
 			if ((_npc != null) && !_npc.isDecayed())
 			{
-				NpcStringId[] messages = ORATOR_MSG;
+				String[] messages = ORATOR_MSG;
 				if (_npc.getId() == SevenSigns.PREACHER_NPC_ID)
 				{
 					messages = PREACHER_MSG;
 				}
-				broadcastSay(_npc, getRandomEntry(messages), null, -1);
+				broadcastSay(_npc, getRandomEntry(messages), -1);
 				ThreadPool.schedule(this, 60000);
 			}
 		}
@@ -151,11 +149,11 @@ public class CabaleBuffer extends AbstractNpcAI
 						{
 							if (getAbnormalLevel(player, ORATOR_FIGTER) == 2)
 							{
-								broadcastSay(_npc, NpcStringId.S1_I_GIVE_YOU_THE_BLESSING_OF_PROPHECY, player.getName(), 500);
+								broadcastSay(_npc, player.getName() + "! I give you the blessing of prophecy!", 500);
 							}
 							else
 							{
-								broadcastSay(_npc, NpcStringId.I_BESTOW_UPON_YOU_A_BLESSING, null, 1);
+								broadcastSay(_npc, "I bestow upon you a blessing!", 1);
 							}
 							isBuffAWinner = true;
 							continue;
@@ -167,11 +165,11 @@ public class CabaleBuffer extends AbstractNpcAI
 						{
 							if (getAbnormalLevel(player, ORATOR_MAGE) == 2)
 							{
-								broadcastSay(_npc, NpcStringId.S1_I_BESTOW_UPON_YOU_THE_AUTHORITY_OF_THE_ABYSS, player.getName(), 500);
+								broadcastSay(_npc, player.getName() + "! I bestow upon you the authority of the abyss!", 500);
 							}
 							else
 							{
-								broadcastSay(_npc, NpcStringId.HERALD_OF_THE_NEW_ERA_OPEN_YOUR_EYES, null, 1);
+								broadcastSay(_npc, "Herald of the new era, open your eyes!", 1);
 							}
 							isBuffAWinner = true;
 							continue;
@@ -186,11 +184,11 @@ public class CabaleBuffer extends AbstractNpcAI
 						{
 							if (getAbnormalLevel(player, PREACHER_FIGTER) == 2)
 							{
-								broadcastSay(_npc, NpcStringId.A_CURSE_UPON_YOU, player.getName(), 500);
+								broadcastSay(_npc, "A curse upon you!", 500);
 							}
 							else
 							{
-								broadcastSay(_npc, NpcStringId.YOU_DON_T_HAVE_ANY_HOPE_YOUR_END_HAS_COME, null, 1);
+								broadcastSay(_npc, "You don't have any hope! Your end has come!", 1);
 							}
 							isBuffALoser = true;
 							continue;
@@ -202,11 +200,11 @@ public class CabaleBuffer extends AbstractNpcAI
 						{
 							if (getAbnormalLevel(player, PREACHER_MAGE) == 2)
 							{
-								broadcastSay(_npc, NpcStringId.S1_YOU_MIGHT_AS_WELL_GIVE_UP, player.getName(), 500);
+								broadcastSay(_npc, player.getName() + "! You might as well give up!", 500);
 							}
 							else
 							{
-								broadcastSay(_npc, NpcStringId.S1_YOU_BRING_AN_ILL_WIND, player.getName(), 1);
+								broadcastSay(_npc, player.getName() + "! You bring an ill wind!", 1);
 							}
 							isBuffALoser = true;
 							continue;
@@ -270,7 +268,7 @@ public class CabaleBuffer extends AbstractNpcAI
 		}
 	}
 	
-	public void broadcastSay(Npc npc, NpcStringId message, String param, int chance)
+	public void broadcastSay(Npc npc, String message, int chance)
 	{
 		if (chance == -1)
 		{
@@ -278,7 +276,7 @@ public class CabaleBuffer extends AbstractNpcAI
 		}
 		else if (getRandom(10000) < chance)
 		{
-			npc.broadcastSay(ChatType.NPC_GENERAL, message, param);
+			npc.broadcastSay(ChatType.NPC_GENERAL, message);
 		}
 	}
 	

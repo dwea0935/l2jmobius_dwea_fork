@@ -16,14 +16,13 @@
  */
 package ai.areas.DenOfEvil;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -50,7 +49,7 @@ public class FrightenedRagnaOrc extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.isScriptValue(0))
 		{
@@ -60,20 +59,18 @@ public class FrightenedRagnaOrc extends AbstractNpcAI
 		else if ((npc.getCurrentHp() < (npc.getMaxHp() * 0.2)) && npc.isScriptValue(1))
 		{
 			startQuestTimer("reward", 10000, npc, attacker);
-			npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.WAIT_WAIT_STOP_SAVE_ME_AND_I_LL_GIVE_YOU_10_000_000_ADENA);
+			npc.broadcastSay(ChatType.NPC_GENERAL, "Wait... Wait! Stop! Save me, and I'll give you 10,000,000 adena!!");
 			npc.setScriptValue(2);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
-		final NpcStringId msg = getRandomBoolean() ? NpcStringId.UGH_A_CURSE_UPON_YOU : NpcStringId.I_REALLY_DIDN_T_WANT_TO_FIGHT;
+		final String msg = getRandomBoolean() ? "Ugh... A curse upon you...!" : "I really... didn't want... to fight...";
 		npc.broadcastSay(ChatType.NPC_GENERAL, msg);
 		cancelQuestTimer("say", npc, null);
 		cancelQuestTimer("reward", npc, player);
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
@@ -88,7 +85,7 @@ public class FrightenedRagnaOrc extends AbstractNpcAI
 					cancelQuestTimer("say", npc, null);
 					return null;
 				}
-				final NpcStringId msg = getRandomBoolean() ? NpcStringId.I_DON_T_WANT_TO_FIGHT : NpcStringId.IS_THIS_REALLY_NECESSARY;
+				final String msg = getRandomBoolean() ? "I... don't want to fight..." : "Is this really necessary...?";
 				npc.broadcastSay(ChatType.NPC_GENERAL, msg);
 				break;
 			}
@@ -98,7 +95,7 @@ public class FrightenedRagnaOrc extends AbstractNpcAI
 				{
 					if (getRandom(100000) < CHANCE2)
 					{
-						final NpcStringId msg = getRandomBoolean() ? NpcStringId.TH_THANKS_I_COULD_HAVE_BECOME_GOOD_FRIENDS_WITH_YOU : NpcStringId.I_LL_GIVE_YOU_10_000_000_ADENA_LIKE_I_PROMISED_I_MIGHT_BE_AN_ORC_WHO_KEEPS_MY_PROMISES;
+						final String msg = getRandomBoolean() ? "Th... Thanks... I could have become good friends with you..." : "I'll give you 10,000,000 adena, like I promised! I might be an orc who keeps my promises!";
 						npc.broadcastSay(ChatType.NPC_GENERAL, msg);
 						npc.setScriptValue(3);
 						npc.doCast(SKILL.getSkill());
@@ -109,7 +106,7 @@ public class FrightenedRagnaOrc extends AbstractNpcAI
 					}
 					else if (getRandom(100000) < CHANCE)
 					{
-						final NpcStringId msg = getRandomBoolean() ? NpcStringId.TH_THANKS_I_COULD_HAVE_BECOME_GOOD_FRIENDS_WITH_YOU : NpcStringId.SORRY_BUT_THIS_IS_ALL_I_HAVE_GIVE_ME_A_BREAK;
+						final String msg = getRandomBoolean() ? "Th... Thanks... I could have become good friends with you..." : "Sorry but this is all I have.. Give me a break!";
 						npc.broadcastSay(ChatType.NPC_GENERAL, msg);
 						npc.setScriptValue(3);
 						npc.doCast(SKILL.getSkill());
@@ -120,7 +117,7 @@ public class FrightenedRagnaOrc extends AbstractNpcAI
 					}
 					else
 					{
-						npc.broadcastSay(ChatType.NPC_GENERAL, getRandomBoolean() ? NpcStringId.THANKS_BUT_THAT_THING_ABOUT_10_000_000_ADENA_WAS_A_LIE_SEE_YA : NpcStringId.YOU_RE_PRETTY_DUMB_TO_BELIEVE_ME);
+						npc.broadcastSay(ChatType.NPC_GENERAL, getRandomBoolean() ? "Thanks, but that thing about 10,000,000 adena was a lie! See ya!!" : "You're pretty dumb to believe me!");
 					}
 					startQuestTimer("despawn", 1000, npc, null);
 				}
@@ -129,7 +126,7 @@ public class FrightenedRagnaOrc extends AbstractNpcAI
 			case "despawn":
 			{
 				npc.setRunning();
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location((npc.getX() + getRandom(-800, 800)), (npc.getY() + getRandom(-800, 800)), npc.getZ(), npc.getHeading()));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location((npc.getX() + getRandom(-800, 800)), (npc.getY() + getRandom(-800, 800)), npc.getZ(), npc.getHeading()));
 				npc.deleteMe();
 				break;
 			}

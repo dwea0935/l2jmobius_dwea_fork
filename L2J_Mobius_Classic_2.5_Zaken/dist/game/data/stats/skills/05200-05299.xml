@@ -1025,7 +1025,7 @@
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>100</effectPoint>
 		<hitTime>1200</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
 		<specialLevel>-1</specialLevel>
@@ -2180,7 +2180,6 @@
 		<affectRange>150</affectRange>
 		<affectScope>RANGE</affectScope>
 		<castRange>500</castRange>
-		<coolTime>800</coolTime>
 		<coolTime>800</coolTime>
 		<effectPoint>-100</effectPoint>
 		<effectRange>1000</effectRange>

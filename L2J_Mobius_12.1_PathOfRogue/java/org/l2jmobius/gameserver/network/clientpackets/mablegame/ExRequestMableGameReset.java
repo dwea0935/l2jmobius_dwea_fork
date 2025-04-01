@@ -22,7 +22,8 @@ package org.l2jmobius.gameserver.network.clientpackets.mablegame;
 
 import org.l2jmobius.gameserver.data.xml.MableGameData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.mablegame.ExMableGameShowPlayerState;
@@ -70,7 +71,7 @@ public class ExRequestMableGameReset extends ClientPacket
 		// Remove Items.
 		for (ItemHolder itemHolder : data.getResetItems())
 		{
-			if (!player.destroyItemByItemId(getClass().getSimpleName(), itemHolder.getId(), itemHolder.getCount(), player, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, itemHolder.getId(), itemHolder.getCount(), player, true))
 			{
 				player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT);
 				return;

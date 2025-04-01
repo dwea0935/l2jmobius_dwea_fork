@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="22300" level="80" type="Monster" name="Strong Kima">
 		<race>ANIMAL</race>
@@ -865,7 +865,7 @@
 			<defence physical="1085.36442" magical="794.22258" />
 			<speed>
 				<walk ground="50" />
-				<run ground="230" />
+				<run ground="120" />
 			</speed>
 			<hitTime>600</hitTime>
 			<abnormalResist physical="10" magical="10" />
@@ -901,7 +901,7 @@
 			<defence physical="1085.36442" magical="794.22258" />
 			<speed>
 				<walk ground="50" />
-				<run ground="230" />
+				<run ground="120" />
 			</speed>
 			<hitTime>600</hitTime>
 			<abnormalResist physical="10" magical="10" />
@@ -936,7 +936,7 @@
 			<defence physical="1085.36442" magical="794.22258" />
 			<speed>
 				<walk ground="60" />
-				<run ground="230" />
+				<run ground="174" />
 			</speed>
 			<hitTime>600</hitTime>
 			<abnormalResist physical="10" magical="10" />
@@ -971,7 +971,7 @@
 			<defence physical="1085.36442" magical="794.22258" />
 			<speed>
 				<walk ground="60" />
-				<run ground="230" />
+				<run ground="174" />
 			</speed>
 			<hitTime>600</hitTime>
 			<abnormalResist physical="10" magical="10" />
@@ -1006,7 +1006,7 @@
 			<defence physical="1085.36442" magical="794.22258" />
 			<speed>
 				<walk ground="15" />
-				<run ground="185" />
+				<run ground="174" />
 			</speed>
 			<hitTime>560</hitTime>
 			<abnormalResist physical="10" magical="10" />
@@ -1041,7 +1041,7 @@
 			<defence physical="1085.36442" magical="794.22258" />
 			<speed>
 				<walk ground="60" />
-				<run ground="150" />
+				<run ground="174" />
 			</speed>
 			<hitTime>600</hitTime>
 			<abnormalResist physical="10" magical="10" />
@@ -1076,7 +1076,7 @@
 			<defence physical="1085.36442" magical="794.22258" />
 			<speed>
 				<walk ground="60" />
-				<run ground="150" />
+				<run ground="174" />
 			</speed>
 			<hitTime>600</hitTime>
 			<abnormalResist physical="10" magical="10" />
@@ -1111,7 +1111,7 @@
 			<defence physical="1085.36442" magical="794.22258" />
 			<speed>
 				<walk ground="60" />
-				<run ground="150" />
+				<run ground="174" />
 			</speed>
 			<hitTime>600</hitTime>
 			<abnormalResist physical="10" magical="10" />
@@ -1891,8 +1891,8 @@
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="8446" hpRegen="10.5" mp="2355" mpRegen="3.6" />
 			<speed>
-				<walk ground="40" />
-				<run ground="180" />
+				<walk ground="70" />
+				<run ground="150" />
 			</speed>
 			<attack physical="1950.2231755595" magical="1331.5869440987" critical="4" attackSpeed="253" range="20" />
 			<defence physical="405.85106382979" magical="297.0297029703" />
@@ -1905,8 +1905,8 @@
 		<ai type="BALANCED" aggroRange="500" isAggressive="true">
 		</ai>
 		<collision>
-			<radius normal="14" />
-			<height normal="25" />
+			<radius normal="22.5" />
+			<height normal="48" />
 		</collision>
 		<dropLists>
 			<drop>
@@ -2046,8 +2046,8 @@
 		<ai type="ARCHER" aggroRange="600" isAggressive="true">
 		</ai>
 		<collision>
-			<radius normal="14" />
-			<height normal="25" />
+			<radius normal="15" />
+			<height normal="36.75" />
 		</collision>
 		<dropLists>
 			<drop>

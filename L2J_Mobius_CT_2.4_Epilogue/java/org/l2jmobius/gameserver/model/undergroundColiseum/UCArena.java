@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.undergroundColiseum;
 
@@ -24,14 +28,13 @@ import java.util.concurrent.ScheduledFuture;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.enums.Team;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPVPMatchRecord;
 import org.l2jmobius.gameserver.network.serverpackets.ExPVPMatchUserDie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -252,7 +255,7 @@ public class UCArena
 	public void prepareStart()
 	{
 		_isBattleNow = true;
-		broadcastToAll(new ExShowScreenMessage(NpcStringId.MATCH_BEGINS_IN_S1_MINUTE_S_PLEASE_GATHER_AROUND_THE_ADMINISTRATOR, 2, 5000, "1"));
+		broadcastToAll(new ExShowScreenMessage("Match begins in " + "1" + " minute(s). Please gather around the administrator.", 2, 5000));
 		try
 		{
 			Thread.sleep(30000);
@@ -261,7 +264,8 @@ public class UCArena
 		{
 		}
 		
-		broadcastToAll(new ExShowScreenMessage(NpcStringId.S1_SECOND_S_REMAINING, 2, 5000, "30"));
+		broadcastToAll(new ExShowScreenMessage("30 second(s) remaining.", 2, 5000));
+
 		try
 		{
 			Thread.sleep(20000);
@@ -270,7 +274,7 @@ public class UCArena
 		{
 		}
 		
-		broadcastToAll(new ExShowScreenMessage(NpcStringId.S1_SECOND_S_REMAINING, 2, 3000, "10"));
+		broadcastToAll(new ExShowScreenMessage("10 second(s) remaining.", 2, 3000));
 		
 		try
 		{
@@ -280,7 +284,7 @@ public class UCArena
 		{
 		}
 		
-		broadcastToAll(new ExShowScreenMessage(NpcStringId.S1_SECOND_S_REMAINING, 2, 1000, "5"));
+		broadcastToAll(new ExShowScreenMessage("5 second(s) remaining.", 2, 1000));
 		
 		try
 		{
@@ -290,7 +294,7 @@ public class UCArena
 		{
 		}
 		
-		broadcastToAll(new ExShowScreenMessage(NpcStringId.S1_SECOND_S_REMAINING, 2, 1000, "4"));
+		broadcastToAll(new ExShowScreenMessage("4 second(s) remaining.", 2, 1000));
 		
 		try
 		{
@@ -300,7 +304,7 @@ public class UCArena
 		{
 		}
 		
-		broadcastToAll(new ExShowScreenMessage(NpcStringId.S1_SECOND_S_REMAINING, 2, 1000, "3"));
+		broadcastToAll(new ExShowScreenMessage("3 second(s) remaining.", 2, 1000));
 		
 		try
 		{
@@ -310,7 +314,7 @@ public class UCArena
 		{
 		}
 		
-		broadcastToAll(new ExShowScreenMessage(NpcStringId.S1_SECOND_S_REMAINING, 2, 1000, "2"));
+		broadcastToAll(new ExShowScreenMessage("2 second(s) remaining.", 2, 1000));
 		
 		try
 		{
@@ -320,7 +324,7 @@ public class UCArena
 		{
 		}
 		
-		broadcastToAll(new ExShowScreenMessage(NpcStringId.S1_SECOND_S_REMAINING, 2, 1000, "1"));
+		broadcastToAll(new ExShowScreenMessage("1 second(s) remaining.", 2, 1000));
 		
 		try
 		{
@@ -357,7 +361,7 @@ public class UCArena
 		
 		if (!isValid)
 		{
-			broadcastToAll(new ExShowScreenMessage(NpcStringId.THE_MATCH_IS_AUTOMATICALLY_CANCELED_BECAUSE_YOU_ARE_TOO_FAR_FROM_THE_ADMISSION_MANAGER, 2, 5000));
+			broadcastToAll(new ExShowScreenMessage("The match is automatically canceled because you are too far from the admission manager.", 2, 5000));
 			for (UCTeam team : _teams)
 			{
 				team.setParty(null);

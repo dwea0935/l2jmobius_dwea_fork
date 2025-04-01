@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.others.ClassMaster;
 
@@ -31,25 +35,26 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerBypass;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPressTutorialMark;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionChange;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerBypass;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPressTutorialMark;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionChange;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.spawns.SpawnTemplate;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialCloseHtml;
@@ -59,7 +64,7 @@ import ai.AbstractNpcAI;
 
 /**
  * Class Master AI.
- * @author Nik
+ * @author Nik, Mobius
  */
 public class ClassMaster extends AbstractNpcAI implements IXmlReader
 {
@@ -102,10 +107,10 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		NamedNodeMap attrs;
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equals(n.getNodeName()))
 			{
@@ -335,7 +340,7 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 							}
 							for (ItemHolder ri : data.getItemsRequired())
 							{
-								player.destroyItemByItemId(getClass().getSimpleName(), ri.getId(), ri.getCount(), npc, true);
+								player.destroyItemByItemId(ItemProcessType.FEE, ri.getId(), ri.getCount(), npc, true);
 							}
 						}
 						// Give possible rewards.
@@ -358,10 +363,10 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 						}
 					}
 					
-					player.setClassId(classId);
+					player.setPlayerClass(classId);
 					if (player.isSubClassActive())
 					{
-						player.getSubClasses().get(player.getClassIndex()).setClassId(player.getActiveClass());
+						player.getSubClasses().get(player.getClassIndex()).setPlayerClass(player.getActiveClass());
 					}
 					else
 					{
@@ -436,7 +441,7 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 			}
 			else
 			{
-				switch (player.getClassId())
+				switch (player.getPlayerClass())
 				{
 					case FIGHTER:
 					{
@@ -552,7 +557,7 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 			}
 			else
 			{
-				switch (player.getClassId())
+				switch (player.getPlayerClass())
 				{
 					case FIGHTER:
 					{
@@ -755,13 +760,13 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 	
 	private boolean changeToNextClass(Player player)
 	{
-		final ClassId newClass = Arrays.stream(ClassId.values()).filter(cid -> player.getClassId() == cid.getParent()).findAny().orElse(null);
+		final PlayerClass newClass = Arrays.stream(PlayerClass.values()).filter(cid -> player.getPlayerClass() == cid.getParent()).findAny().orElse(null);
 		if (newClass == null)
 		{
 			LOGGER.warning(getClass().getSimpleName() + ": No new classId found for " + player);
 			return false;
 		}
-		else if (newClass == player.getClassId())
+		else if (newClass == player.getPlayerClass())
 		{
 			LOGGER.warning(getClass().getSimpleName() + ": New classId found for " + player + " is exactly the same as the one he currently is!");
 			return false;
@@ -800,7 +805,7 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 					}
 					for (ItemHolder ri : data.getItemsRequired())
 					{
-						player.destroyItemByItemId(getClass().getSimpleName(), ri.getId(), ri.getCount(), player, true);
+						player.destroyItemByItemId(ItemProcessType.FEE, ri.getId(), ri.getCount(), player, true);
 					}
 				}
 				// Give possible rewards.
@@ -823,10 +828,10 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 				}
 			}
 			
-			player.setClassId(newClass.getId());
+			player.setPlayerClass(newClass.getId());
 			if (player.isSubClassActive())
 			{
-				player.getSubClasses().get(player.getClassIndex()).setClassId(player.getActiveClass());
+				player.getSubClasses().get(player.getClassIndex()).setPlayerClass(player.getActiveClass());
 			}
 			else
 			{
@@ -871,7 +876,7 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 		}
 		
 		String html = null;
-		if ((player.isInCategory(CategoryType.SECOND_CLASS_GROUP) || (player.isInCategory(CategoryType.FIRST_CLASS_GROUP) && (player.getRace() != Race.KAMAEL) && (player.getClassId().getId() < 196))) && (player.getLevel() >= 40)) // In retail you can skip first occupation
+		if ((player.isInCategory(CategoryType.SECOND_CLASS_GROUP) || (player.isInCategory(CategoryType.FIRST_CLASS_GROUP) && (player.getRace() != Race.KAMAEL) && (player.getPlayerClass().getId() < 196))) && (player.getLevel() >= 40)) // In retail you can skip first occupation
 		{
 			html = getHtm(player, getSecondOccupationChangeHtml(player));
 		}

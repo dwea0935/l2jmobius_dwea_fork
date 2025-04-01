@@ -474,7 +474,6 @@
 			<value fromLevel="1" toLevel="2" fromSubLevel="1001" toSubLevel="1020">{base + (subIndex * 90)}</value>
 		</abnormalTime>
 		<abnormalType>BUFF_SPECIAL_CLASS</abnormalType>
-		<abnormalType>BUFF_SPECIAL_CLASS</abnormalType>
 		<affectObject>FRIEND</affectObject>
 		<affectRange>1000</affectRange>
 		<affectScope>PARTY</affectScope>
@@ -886,12 +885,7 @@
 		<effectPoint>687</effectPoint>
 		<hitTime>700</hitTime>
 		<isMagic>22</isMagic>
-		<itemConsumeCount>
-			<value level="1">0</value>
-			<value level="2">10</value>
-		</itemConsumeCount>
 		<itemConsumeCount>50</itemConsumeCount>
-		<itemConsumeId>3031</itemConsumeId> <!-- Spirit Ore -->
 		<itemConsumeId>3031</itemConsumeId> <!-- Spirit Ore -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>

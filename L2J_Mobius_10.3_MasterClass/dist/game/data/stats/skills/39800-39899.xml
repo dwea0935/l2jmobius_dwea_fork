@@ -96,7 +96,7 @@
 		<coolTime>3000</coolTime>
 		<effectPoint>0</effectPoint>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>300000</reuseDelay>

@@ -22,15 +22,16 @@ package org.l2jmobius.gameserver.network.clientpackets.elementalspirits;
 
 import java.util.stream.Collectors;
 
-import org.l2jmobius.gameserver.enums.ElementalType;
-import org.l2jmobius.gameserver.enums.InventoryBlockType;
-import org.l2jmobius.gameserver.enums.UserInfoType;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.itemcontainer.InventoryBlockType;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.elementalspirits.ElementalSpiritEvolution;
@@ -57,7 +58,7 @@ public class ExElementalSpiritEvolution extends ClientPacket
 			return;
 		}
 		
-		final ElementalSpirit spirit = player.getElementalSpirit(ElementalType.of(_type));
+		final ElementalSpirit spirit = player.getElementalSpirit(ElementalSpiritType.of(_type));
 		if (spirit == null)
 		{
 			player.sendPacket(SystemMessageId.NO_SPIRITS_ARE_AVAILABLE);
@@ -117,7 +118,7 @@ public class ExElementalSpiritEvolution extends ClientPacket
 			
 			for (ItemHolder itemHolder : spirit.getItemsToEvolve())
 			{
-				player.destroyItemByItemId("Evolve", itemHolder.getId(), itemHolder.getCount(), player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, itemHolder.getId(), itemHolder.getCount(), player, true);
 			}
 			return true;
 		}

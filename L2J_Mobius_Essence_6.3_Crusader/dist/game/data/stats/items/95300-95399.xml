@@ -848,10 +848,10 @@
 		<stats>
 			<stat type="mDef">73</stat>
 		</stats>
+		
 		<skills>
 			<skill id="50446" level="1" /> <!-- Baium's Ring -->
 		</skills>
-		
 	</item>
 	<item id="95331" name="Zaken's Earring" additionalName="Sealed" type="Armor">
 		<!-- Max enchant value: +6. (Requires Scroll: Enchant Rare Accessories.). Boosts the item's parameters after enchanting. Effects of two identical earrings do not stack. Safe enchanting to +1. <font color=ff6666>Transformation is unavailable</font> -->

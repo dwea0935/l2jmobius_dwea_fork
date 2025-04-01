@@ -75,7 +75,7 @@
 		<effectPoint>0</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Magic Skill -->
 		<isNecessaryToggle>true</isNecessaryToggle>
 		<itemConsumeCount>1</itemConsumeCount>
@@ -83,7 +83,6 @@
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>56</magicLevel>
 		<reuseDelay>60000</reuseDelay>
-		<stayAfterDeath>true</stayAfterDeath>
 		<stayAfterDeath>true</stayAfterDeath>
 		<conditions>
 			<condition name="CheckLevel">

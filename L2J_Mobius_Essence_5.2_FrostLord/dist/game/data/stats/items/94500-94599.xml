@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="94500" name="Spellbook: Titanic Sweep" type="EtcItem">
 		<!-- A spellbook for learning the Titanic Sweep skill. <Class>. Titan. <Skill effect>. Widely swings a sword to attack nearby enemies. -->
@@ -192,7 +192,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40241" level="1" />
+			<skill id="40241" level="1" /> <!-- Improved Pet XP Crystal -->
 		</skills>
 	</item>
 	<item id="94518" name="Amber Lv. 5" additionalName="Sealed" type="Armor">
@@ -208,7 +208,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="50194" level="5" /> <!-- Gem: Amber -->
+			<skill id="50194" level="5" /> <!-- Amber -->
 		</skills>
 	</item>
 	<item id="94519" name="Opal Lv. 5" additionalName="Sealed" type="Armor">
@@ -224,7 +224,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="50195" level="5" /> <!-- Gem: Opal -->
+			<skill id="50195" level="5" /> <!-- Opal -->
 		</skills>
 	</item>
 	<item id="94520" name="Coral Lv. 5" additionalName="Sealed" type="Armor">
@@ -240,7 +240,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="50197" level="5" /> <!-- Gem: Coral -->
+			<skill id="50197" level="5" /> <!-- Coral -->
 		</skills>
 	</item>
 	<item id="94521" name="Onyx Lv. 5" additionalName="Sealed" type="Armor">
@@ -256,7 +256,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="50204" level="5" /> <!-- Gem: Onyx -->
+			<skill id="50204" level="5" /> <!-- Onyx -->
 		</skills>
 	</item>
 	<item id="94522" name="Spinel Lv. 5" additionalName="Sealed" type="Armor">
@@ -272,7 +272,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="50206" level="5" /> <!-- Gem: Spinel -->
+			<skill id="50206" level="5" /> <!-- Spinel -->
 		</skills>
 	</item>
 	<item id="94523" name="Zircon Lv. 5" additionalName="Sealed" type="Armor">
@@ -304,7 +304,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="50208" level="5" /> <!-- Gem: Moonstone -->
+			<skill id="50208" level="5" /> <!-- Moonstone -->
 		</skills>
 	</item>
 	<item id="94525" name="Kit: Reinforced Jewelry Boxes (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -1294,7 +1294,6 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="material" val="FISH" />
-		<set name="handler" val="ExtractableItems" />
 		<set name="handler" val="ExtractableItems" />
 		<capsuled_items>
 			<item id="92964" min="1" max="1" chance="100" maxEnchant="5" minEnchant="5" /> <!-- Cabrio's Hand - Sealed -->

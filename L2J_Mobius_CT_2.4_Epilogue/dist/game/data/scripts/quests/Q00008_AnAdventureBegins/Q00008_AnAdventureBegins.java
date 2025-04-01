@@ -16,9 +16,9 @@
  */
 package quests.Q00008_AnAdventureBegins;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -42,7 +42,7 @@ public class Q00008_AnAdventureBegins extends Quest
 	
 	public Q00008_AnAdventureBegins()
 	{
-		super(8);
+		super(8, "An Adventure Begins");
 		addStartNpc(JASMINE);
 		addTalkId(JASMINE, ROSELYN, HARNE);
 		registerQuestItems(ROSELYNS_NOTE);

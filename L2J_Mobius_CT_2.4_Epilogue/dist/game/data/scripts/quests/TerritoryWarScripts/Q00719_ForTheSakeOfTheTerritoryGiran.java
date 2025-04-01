@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * For the Sake of the Territory - Giran (719)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00719_ForTheSakeOfTheTerritoryGiran extends TerritoryWarSuperClass
 {
 	public Q00719_ForTheSakeOfTheTerritoryGiran()
 	{
-		super(719);
+		super(719, "For the Sake of the Territory - Giran");
 		CATAPULT_ID = 36501;
 		TERRITORY_ID = 83;
 		LEADER_IDS = new int[]
@@ -42,9 +40,9 @@ public class Q00719_ForTheSakeOfTheTerritoryGiran extends TerritoryWarSuperClass
 			36523,
 			36524
 		};
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.THE_CATAPULT_OF_GIRAN_HAS_BEEN_DESTROYED
+			"The catapult of Giran has been destroyed!"
 		};
 		registerKillIds();
 	}

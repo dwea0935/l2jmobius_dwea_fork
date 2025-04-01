@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="29000" name="Scorpio Agathion Charm From the Star" additionalName="Lv. 4" type="Armor">
 		<!-- Activates the power of Agathion Scorpio. Can be upgraded up to Lv. +12 through compounding with Starlight Jar. Also can be enchanted to +10 by using Book of Growth. Active skill: Scorpion's Mass Exile Lv. 4. Enables various additional skills when upgraded. Equipping it in the main slot summons the agathion and activates its active and unique skills. Equipping in an additional slot activates only unique abilities. Note!. 1. Compounding the charm resets its enchant value. 2. If Agathion Scorpio is also equipped, only secondary skills will be active. -->
@@ -14,7 +14,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Scorpio Agathion -->
+			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Scorpio -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -32,7 +32,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Scorpio Agathion -->
+			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Scorpio -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -50,7 +50,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Scorpio Agathion -->
+			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Scorpio -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -68,7 +68,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Scorpio Agathion -->
+			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Scorpio -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -86,7 +86,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Scorpio Agathion -->
+			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Scorpio -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -104,7 +104,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Scorpio Agathion -->
+			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Scorpio -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -122,7 +122,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Scorpio Agathion -->
+			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Scorpio -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -140,7 +140,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Scorpio Agathion -->
+			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Scorpio -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -158,7 +158,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Scorpio Agathion -->
+			<skill id="28058" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Scorpio -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -176,7 +176,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -194,7 +194,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -212,7 +212,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -230,7 +230,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -248,7 +248,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -266,7 +266,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -284,7 +284,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -302,7 +302,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -320,7 +320,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -338,7 +338,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -356,7 +356,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -374,7 +374,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28059" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -392,7 +392,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -410,7 +410,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -428,7 +428,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -446,7 +446,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -464,7 +464,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -482,7 +482,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -500,7 +500,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -518,7 +518,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -536,7 +536,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -554,7 +554,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -572,7 +572,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -590,7 +590,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28060" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -608,7 +608,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -626,7 +626,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -644,7 +644,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -662,7 +662,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -680,7 +680,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -698,7 +698,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -716,7 +716,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -734,7 +734,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -752,7 +752,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -770,7 +770,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -788,7 +788,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -806,7 +806,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28061" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -824,7 +824,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -842,7 +842,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -860,7 +860,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -878,7 +878,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -896,7 +896,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -914,7 +914,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -932,7 +932,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -950,7 +950,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -968,7 +968,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -986,7 +986,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1004,7 +1004,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1022,7 +1022,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28062" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1038,7 +1038,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13970" level="1" /> <!-- Sayha's Talisman Stage 1 -->
+			<skill id="13970" level="1" /> <!-- Sayha's Talisman -->
 		</skills>
 	</item>
 	<item id="29058" name="Sayha's Talisman Lv. 2" additionalName="Not Available" type="Armor">
@@ -1053,7 +1053,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13970" level="2" /> <!-- Sayha's Talisman Stage 2 -->
+			<skill id="13970" level="2" /> <!-- Sayha's Talisman -->
 		</skills>
 	</item>
 	<item id="29059" name="Sayha's Talisman Lv. 3" additionalName="Not Available" type="Armor">
@@ -1068,7 +1068,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13970" level="3" /> <!-- Sayha's Talisman Stage 3 -->
+			<skill id="13970" level="3" /> <!-- Sayha's Talisman -->
 		</skills>
 	</item>
 	<item id="29060" name="Sayha's Talisman Lv. 4" additionalName="Not Available" type="Armor">
@@ -1083,7 +1083,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13970" level="4" /> <!-- Sayha's Talisman Stage 4 -->
+			<skill id="13970" level="4" /> <!-- Sayha's Talisman -->
 		</skills>
 	</item>
 	<item id="29061" name="Sayha's Talisman Lv. 5" additionalName="Not Available" type="Armor">
@@ -1098,8 +1098,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13970" level="5" /> <!-- Sayha's Talisman Stage 5 -->
-			<skill id="28144" level="1" /> <!-- Sayha's Protection -->
+			<skill id="13970" level="5" /> <!-- Sayha's Talisman -->
+			<skill id="28144" level="1" /> <!-- Sayha's Grace -->
 		</skills>
 	</item>
 	<item id="29062" name="Sayha's Talisman Lv. 6" additionalName="Not Available" type="Armor">
@@ -1114,8 +1114,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13970" level="6" /> <!-- Sayha's Talisman Stage 6 -->
-			<skill id="28144" level="1" /> <!-- Sayha's Protection -->
+			<skill id="13970" level="6" /> <!-- Sayha's Talisman -->
+			<skill id="28144" level="1" /> <!-- Sayha's Grace -->
 			<skill id="28145" level="1" /> <!-- Sayha's Encouragement -->
 		</skills>
 	</item>
@@ -1131,8 +1131,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13970" level="7" /> <!-- Sayha's Talisman Stage 7 -->
-			<skill id="28144" level="1" /> <!-- Sayha's Protection -->
+			<skill id="13970" level="7" /> <!-- Sayha's Talisman -->
+			<skill id="28144" level="1" /> <!-- Sayha's Grace -->
 			<skill id="28145" level="1" /> <!-- Sayha's Encouragement -->
 			<skill id="28146" level="1" /> <!-- Sayha's Anger -->
 		</skills>
@@ -1149,8 +1149,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13970" level="8" /> <!-- Sayha's Talisman Stage 8 -->
-			<skill id="28144" level="2" /> <!-- Sayha's Protection -->
+			<skill id="13970" level="8" /> <!-- Sayha's Talisman -->
+			<skill id="28144" level="2" /> <!-- Sayha's Grace -->
 			<skill id="28145" level="2" /> <!-- Sayha's Encouragement -->
 			<skill id="28146" level="2" /> <!-- Sayha's Anger -->
 			<skill id="28147" level="1" /> <!-- Sayha's Support -->
@@ -1168,7 +1168,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13970" level="9" /> <!-- Sayha's Talisman Stage 9 -->
+			<skill id="13970" level="9" /> <!-- Sayha's Talisman -->
 			<skill id="28144" level="3" /> <!-- Sayha's Protection -->
 			<skill id="28145" level="3" /> <!-- Sayha's Encouragement -->
 			<skill id="28146" level="3" /> <!-- Sayha's Anger -->
@@ -1187,7 +1187,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13970" level="10" /> <!-- Sayha's Talisman Stage 10 -->
+			<skill id="13970" level="10" /> <!-- Sayha's Talisman -->
 			<skill id="28144" level="4" /> <!-- Sayha's Protection -->
 			<skill id="28145" level="4" /> <!-- Sayha's Encouragement -->
 			<skill id="28146" level="4" /> <!-- Sayha's Anger -->
@@ -1308,7 +1308,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="28154" level="1" /> <!-- Talisman - Abundance Pack -->
+			<skill id="28154" level="1" /> <!-- Talisman of Abundance Pack -->
 		</skills>
 	</item>
 	<item id="29078" name="Greater Vital Stone Lv. 1" additionalName="30-day" type="Armor">
@@ -1324,7 +1324,7 @@
 		<set name="time" val="43200" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="18568" level="6" /> <!-- Vital Stone -->
+			<skill id="18568" level="6" /> <!-- Greater Vital Stone -->
 		</skills>
 	</item>
 	<item id="29079" name="Greater Vital Stone Box" additionalName="30-day" type="EtcItem">
@@ -1393,7 +1393,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28027" level="1" type="ON_EQUIP" /> <!-- Summon Virgo Agathion -->
+			<skill id="28027" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Virgo -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1410,7 +1410,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28028" level="1" type="ON_EQUIP" /> <!-- Summon Capricorn Agathion -->
+			<skill id="28028" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Capricorn -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1427,7 +1427,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28029" level="1" type="ON_EQUIP" /> <!-- Summon Libra Agathion -->
+			<skill id="28029" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Libra -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1444,7 +1444,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28030" level="1" type="ON_EQUIP" /> <!-- Summon Aries Agathion -->
+			<skill id="28030" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aries -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1461,7 +1461,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28031" level="1" type="ON_EQUIP" /> <!-- Summon Taurus Agathion -->
+			<skill id="28031" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Taurus -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1478,7 +1478,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28032" level="1" type="ON_EQUIP" /> <!-- Summon Leo Agathion -->
+			<skill id="28032" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Leo -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1495,7 +1495,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28033" level="1" type="ON_EQUIP" /> <!-- Summon Gemini Agathion -->
+			<skill id="28033" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Gemini -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1512,7 +1512,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28034" level="1" type="ON_EQUIP" /> <!-- Summon Scorpio Agathion -->
+			<skill id="28034" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Scorpio -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1529,7 +1529,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28035" level="1" type="ON_EQUIP" /> <!-- Summon Aquarius Agathion -->
+			<skill id="28035" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aquarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1546,7 +1546,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28036" level="1" type="ON_EQUIP" /> <!-- Summon Pisces Agathion -->
+			<skill id="28036" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Pisces -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1563,7 +1563,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28037" level="1" type="ON_EQUIP" /> <!-- Summon Sagittarius Agathion -->
+			<skill id="28037" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Sagittarius -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1580,7 +1580,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="21600" />
 		<skills>
-			<skill id="28038" level="1" type="ON_EQUIP" /> <!-- Summon Cancer Agathion -->
+			<skill id="28038" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Cancer -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1597,7 +1597,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="28051" level="1" type="ON_EQUIP" /> <!-- Summon Virgo Agathion -->
+			<skill id="28051" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Virgo -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1614,7 +1614,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="28028" level="1" type="ON_EQUIP" /> <!-- Summon Capricorn Agathion -->
+			<skill id="28028" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Capricorn -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1631,7 +1631,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="28029" level="1" type="ON_EQUIP" /> <!-- Summon Libra Agathion -->
+			<skill id="28029" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Libra -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1648,7 +1648,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="28030" level="1" type="ON_EQUIP" /> <!-- Summon Aries Agathion -->
+			<skill id="28030" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Aries -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>
@@ -1665,7 +1665,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="28031" level="1" type="ON_EQUIP" /> <!-- Summon Taurus Agathion -->
+			<skill id="28031" level="1" type="ON_EQUIP" /> <!-- Summon Agathion Taurus -->
 			<skill id="28064" level="1" type="ON_UNEQUIP" /> <!-- Release Seal -->
 		</skills>
 	</item>

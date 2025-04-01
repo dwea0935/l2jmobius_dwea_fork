@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="3700" type="EtcItem" name="Blood Crystal: Purity 3">
 		<!-- Bloody jewel that contains dreary magical power. Purity 3. The higher the purity of the crystal is, the higher the value. -->
@@ -96,7 +96,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3708" type="EtcItem" name="Broken Blood Crystal">
+	<item id="3708" type="EtcItem" name="Blood Crystal: Broken">
 		<!-- Blood crystal broken by magical inequality. -->
 		<set name="icon" val="icon.etc_broken_crystal_red_i00" />
 		<set name="immediate_effect" val="true" />
@@ -180,7 +180,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3715" type="EtcItem" name="Indigo Spirit Ore">
+	<item id="3715" type="EtcItem" name="Indigo Runestone">
 		<!-- Runestone obtained from killing manashen or enchanted stone golem. Collect 20 and take them to Hunter Guild Member Grey. -->
 		<set name="icon" val="icon.etc_crystal_blue_i00" />
 		<set name="immediate_effect" val="true" />
@@ -888,7 +888,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3774" type="EtcItem" name="Guardian Basilisk Talon">
+	<item id="3774" type="EtcItem" name="Grd Basilisk Talon">
 		<!-- Claw removed from guardian basilisk corpse. Collect 100 and take them to Guild Member Tor. -->
 		<set name="icon" val="icon.etc_claw_i00" />
 		<set name="immediate_effect" val="true" />
@@ -924,7 +924,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3777" type="EtcItem" name="Grandis's Skull">
+	<item id="3777" type="EtcItem" name="Grandis Skull">
 		<!-- Skull obtained from killing grandis. Collect 100 and take them to Guild Member Tor. -->
 		<set name="icon" val="icon.etc_skull_black_i00" />
 		<set name="immediate_effect" val="true" />
@@ -984,7 +984,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3782" type="EtcItem" name="Enchanted Gargoyle's Horn">
+	<item id="3782" type="EtcItem" name="Enchanted Gargoyle Horn">
 		<!-- Horn obtained from destroyed enchanted gargoyle body. Collect 50 and take them to Guild Member Tor. -->
 		<set name="icon" val="icon.etc_gargoyle_claw_i00" />
 		<set name="immediate_effect" val="true" />

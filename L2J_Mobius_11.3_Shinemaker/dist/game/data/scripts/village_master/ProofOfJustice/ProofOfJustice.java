@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -37,18 +37,18 @@ public class ProofOfJustice extends AbstractNpcAI
 	// Items
 	private static final int JUSTICE = 17822; // Proof of Justice
 	// Misc
-	private static final Map<Integer, List<ClassId>> CLASSLIST = new HashMap<>();
+	private static final Map<Integer, List<PlayerClass>> CLASSLIST = new HashMap<>();
 	
 	static
 	{
-		CLASSLIST.put(30505, Arrays.asList(ClassId.DESTROYER, ClassId.TYRANT, ClassId.OVERLORD, ClassId.WARCRYER));
-		CLASSLIST.put(30504, Arrays.asList(ClassId.BOUNTY_HUNTER, ClassId.WARSMITH));
-		CLASSLIST.put(30288, Arrays.asList(ClassId.GLADIATOR, ClassId.WARLORD, ClassId.PALADIN, ClassId.DARK_AVENGER, ClassId.TREASURE_HUNTER, ClassId.HAWKEYE));
-		CLASSLIST.put(30297, Arrays.asList(ClassId.SHILLIEN_KNIGHT, ClassId.BLADEDANCER, ClassId.ABYSS_WALKER, ClassId.PHANTOM_RANGER, ClassId.SPELLHOWLER, ClassId.PHANTOM_SUMMONER, ClassId.SHILLIEN_ELDER));
-		CLASSLIST.put(30158, Arrays.asList(ClassId.SPELLSINGER, ClassId.ELEMENTAL_SUMMONER, ClassId.ELDER));
-		CLASSLIST.put(30155, Arrays.asList(ClassId.TEMPLE_KNIGHT, ClassId.SWORDSINGER, ClassId.PLAINS_WALKER, ClassId.SILVER_RANGER));
-		CLASSLIST.put(30289, Arrays.asList(ClassId.SORCERER, ClassId.NECROMANCER, ClassId.WARLOCK, ClassId.BISHOP, ClassId.PROPHET));
-		CLASSLIST.put(32196, Arrays.asList(ClassId.BERSERKER, ClassId.MALE_SOULBREAKER, ClassId.FEMALE_SOULBREAKER, ClassId.ARBALESTER));
+		CLASSLIST.put(30505, Arrays.asList(PlayerClass.DESTROYER, PlayerClass.TYRANT, PlayerClass.OVERLORD, PlayerClass.WARCRYER));
+		CLASSLIST.put(30504, Arrays.asList(PlayerClass.BOUNTY_HUNTER, PlayerClass.WARSMITH));
+		CLASSLIST.put(30288, Arrays.asList(PlayerClass.GLADIATOR, PlayerClass.WARLORD, PlayerClass.PALADIN, PlayerClass.DARK_AVENGER, PlayerClass.TREASURE_HUNTER, PlayerClass.HAWKEYE));
+		CLASSLIST.put(30297, Arrays.asList(PlayerClass.SHILLIEN_KNIGHT, PlayerClass.BLADEDANCER, PlayerClass.ABYSS_WALKER, PlayerClass.PHANTOM_RANGER, PlayerClass.SPELLHOWLER, PlayerClass.PHANTOM_SUMMONER, PlayerClass.SHILLIEN_ELDER));
+		CLASSLIST.put(30158, Arrays.asList(PlayerClass.SPELLSINGER, PlayerClass.ELEMENTAL_SUMMONER, PlayerClass.ELDER));
+		CLASSLIST.put(30155, Arrays.asList(PlayerClass.TEMPLE_KNIGHT, PlayerClass.SWORDSINGER, PlayerClass.PLAINS_WALKER, PlayerClass.SILVER_RANGER));
+		CLASSLIST.put(30289, Arrays.asList(PlayerClass.SORCERER, PlayerClass.NECROMANCER, PlayerClass.WARLOCK, PlayerClass.BISHOP, PlayerClass.PROPHET));
+		CLASSLIST.put(32196, Arrays.asList(PlayerClass.BERSERKER, PlayerClass.MALE_SOULBREAKER, PlayerClass.FEMALE_SOULBREAKER, PlayerClass.ARBALESTER));
 	}
 	
 	private ProofOfJustice()
@@ -60,7 +60,7 @@ public class ProofOfJustice extends AbstractNpcAI
 	@Override
 	public String onTalk(Npc npc, Player player)
 	{
-		if (player.getClassId().level() < 2)
+		if (player.getPlayerClass().level() < 2)
 		{
 			return npc.getId() + "-noclass.html";
 		}
@@ -68,7 +68,7 @@ public class ProofOfJustice extends AbstractNpcAI
 		{
 			return npc.getId() + "-noitem.html";
 		}
-		else if (!CLASSLIST.get(npc.getId()).contains(player.getClassId()))
+		else if (!CLASSLIST.get(npc.getId()).contains(player.getPlayerClass()))
 		{
 			return npc.getId() + "-no.html";
 		}

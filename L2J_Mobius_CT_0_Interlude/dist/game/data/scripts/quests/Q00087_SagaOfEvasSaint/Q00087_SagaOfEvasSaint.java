@@ -16,16 +16,16 @@
  */
 package quests.Q00087_SagaOfEvasSaint;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00087_SagaOfEvasSaint extends SagasSuperClass
+public class Q00087_SagaOfEvasSaint extends AbstractSagaQuest
 {
 	public Q00087_SagaOfEvasSaint()
 	{
-		super(87);
+		super(87, "Saga of Eva's Saint");
 		_npc = new int[]
 		{
 			30191,

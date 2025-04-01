@@ -35,21 +35,22 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.Containers;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerItemAdd;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemAdd;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.HtmlUtil;
 
 import ai.AbstractNpcAI;
 
@@ -107,7 +108,7 @@ public class Transmog extends AbstractNpcAI
 								return null;
 							}
 							
-							player.reduceAdena("Transmog remove " + transmogId, Config.TRANSMOG_REMOVE_COST, player, true);
+							player.reduceAdena(ItemProcessType.FEE, Config.TRANSMOG_REMOVE_COST, player, true);
 						}
 						
 						item.removeTransmog();
@@ -152,7 +153,7 @@ public class Transmog extends AbstractNpcAI
 									return null;
 								}
 								
-								player.reduceAdena("Transmog apply " + transmogId, Config.TRANSMOG_APPLY_COST, player, true);
+								player.reduceAdena(ItemProcessType.FEE, Config.TRANSMOG_APPLY_COST, player, true);
 							}
 							
 							item.setTransmogId(transmogId);
@@ -213,7 +214,7 @@ public class Transmog extends AbstractNpcAI
 			content = content.replace("%next%", "<a action=\"bypass Quest Transmog " + slot + "!" + Math.min(pages, (page + 1)) + "\">Next</a>");
 			content = content.replace("%remove%", "<a action=\"bypass Quest Transmog rem!" + slot + "!" + page + "\">Remove Transmog</a>");
 			
-			Util.sendCBHtml(player, content);
+			HtmlUtil.sendCBHtml(player, content);
 		}
 		
 		return super.onEvent(event, npc, player);

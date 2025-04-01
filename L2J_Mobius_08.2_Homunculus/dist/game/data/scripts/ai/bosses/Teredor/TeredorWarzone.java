@@ -19,18 +19,18 @@ package ai.bosses.Teredor;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
@@ -225,7 +225,7 @@ public class TeredorWarzone extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -267,11 +267,10 @@ public class TeredorWarzone extends AbstractInstance
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -358,7 +357,6 @@ public class TeredorWarzone extends AbstractInstance
 				}
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
@@ -447,7 +445,7 @@ public class TeredorWarzone extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -477,7 +475,7 @@ public class TeredorWarzone extends AbstractInstance
 							npc.breakCast();
 							npc.setWalking();
 							npc.asAttackable().clearAggroList();
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+							npc.getAI().setIntention(Intention.ACTIVE);
 							npc.broadcastSocialAction(4);
 							WalkingManager.getInstance().resumeMoving(npc);
 							getTimers().addTimer("TEREDOR_BUHATIMER", 10000, npc, null);
@@ -502,7 +500,7 @@ public class TeredorWarzone extends AbstractInstance
 							npc.breakCast();
 							npc.setWalking();
 							npc.asAttackable().clearAggroList();
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+							npc.getAI().setIntention(Intention.ACTIVE);
 							npc.broadcastSocialAction(4);
 							WalkingManager.getInstance().resumeMoving(npc);
 							// myself->BroadcastScriptEvent(@SCE_EGG_SPAWN5, 0, 3000);
@@ -540,7 +538,7 @@ public class TeredorWarzone extends AbstractInstance
 							npc.breakCast();
 							npc.setWalking();
 							npc.asAttackable().clearAggroList();
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+							npc.getAI().setIntention(Intention.ACTIVE);
 							npc.broadcastSocialAction(4);
 							WalkingManager.getInstance().resumeMoving(npc);
 							// myself->BroadcastScriptEvent(@SCE_TRAJAN_EGG_DIE, gg->GetIndexFromCreature(c0), 3000);
@@ -579,7 +577,7 @@ public class TeredorWarzone extends AbstractInstance
 							npc.breakCast();
 							npc.setWalking();
 							npc.asAttackable().clearAggroList();
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+							npc.getAI().setIntention(Intention.ACTIVE);
 							npc.broadcastSocialAction(4);
 							WalkingManager.getInstance().resumeMoving(npc);
 							// myself->BroadcastScriptEvent(@SCE_TRAJAN_EGG_DIE, gg->GetIndexFromCreature(c0), 3000);
@@ -609,11 +607,10 @@ public class TeredorWarzone extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -637,11 +634,10 @@ public class TeredorWarzone extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -655,7 +651,6 @@ public class TeredorWarzone extends AbstractInstance
 				}
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	public static void main(String[] args)

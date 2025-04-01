@@ -16,16 +16,16 @@
  */
 package quests.Q00072_SagaOfTheSwordMuse;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00072_SagaOfTheSwordMuse extends SagasSuperClass
+public class Q00072_SagaOfTheSwordMuse extends AbstractSagaQuest
 {
 	public Q00072_SagaOfTheSwordMuse()
 	{
-		super(72);
+		super(72, "Saga of the Sword Muse");
 		_npc = new int[]
 		{
 			30853,

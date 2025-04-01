@@ -432,7 +432,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<skills>
-			<skill id="2036" level="1" /> <!-- Blessed Scroll of Escape -->
+			<skill id="2036" level="1" /> <!-- Improved Scroll of Escape -->
 		</skills>
 	</item>
 	<item id="1539" name="Top-grade HP Replenishing Potion" type="EtcItem">
@@ -480,7 +480,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2038" level="1" /> <!-- Quick Healing Potion -->
+			<skill id="2038" level="1" /> <!-- High-grade HP Recovery Potion -->
 		</skills>
 	</item>
 	<item id="1541" name="Honey Khandar" type="EtcItem">

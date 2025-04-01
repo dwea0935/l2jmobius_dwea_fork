@@ -28,7 +28,7 @@ public class Q00086_SagaOfTheHierophant extends AbstractSagaQuest
 {
 	public Q00086_SagaOfTheHierophant()
 	{
-		super(86);
+		super(86, "Saga of the Hierophant");
 		_npc = new int[]
 		{
 			30191,

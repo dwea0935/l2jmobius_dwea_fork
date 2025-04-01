@@ -754,7 +754,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3561" name="Small Boxes" type="EtcItem">
-		<!-- Small boxes to be taken to Sentry Irene in front of the western bridge of the Neutral Zone. -->
+		<!-- Small boxes to be taken to Sentinel Irene at the western bridge in the Neutral Zone. -->
 		<set name="icon" val="icon.etc_adamantite_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -766,7 +766,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3562" name="Document" type="EtcItem">
-		<!-- Document to be taken to Sentinel Trionell in front of the eastern bridge of the Neutral Zone. -->
+		<!-- A document to be taken to Sentinel Trionell at the eastern bridge in the Neutral Zone. -->
 		<set name="icon" val="icon.etc_paper_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -886,7 +886,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3572" name="Box" type="EtcItem">
-		<!-- Box to be taken to Summoner Celestiel at the ruins of the Circular Coliseum to the south of the Underground Fortress of the Elven autonomous region. -->
+		<!-- A box to be taken to Summoner Celestiel at the ruins to the south of the Underground Fortress of the Elven lands. -->
 		<set name="icon" val="icon.etc_squares_wood_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1162,7 +1162,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3595" name="Delivery Receipt" type="EtcItem">
-		<!-- Confirmation document received when delivering item. It is signed by Perrin. -->
+		<!-- A delivery confirmation document signed by Perrin. -->
 		<set name="icon" val="icon.etc_piece_of_paper_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1174,7 +1174,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3596" name="Delivery Receipt" type="EtcItem">
-		<!-- Confirmation document received when delivering item. It is signed by Clancy. -->
+		<!-- A delivery confirmation document signed by Clancy. -->
 		<set name="icon" val="icon.etc_piece_of_paper_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

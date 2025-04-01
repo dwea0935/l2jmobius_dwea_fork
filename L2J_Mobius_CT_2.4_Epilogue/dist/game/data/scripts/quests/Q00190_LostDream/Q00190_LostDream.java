@@ -40,7 +40,7 @@ public class Q00190_LostDream extends Quest
 	
 	public Q00190_LostDream()
 	{
-		super(190);
+		super(190, "Lost Dream");
 		addStartNpc(HEAD_BLACKSMITH_KUSTO);
 		addTalkId(HEAD_BLACKSMITH_KUSTO, RESEARCHER_LORAIN, MAESTRO_NIKOLA, JURIS);
 	}

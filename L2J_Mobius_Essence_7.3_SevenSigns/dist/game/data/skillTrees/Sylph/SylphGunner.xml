@@ -4,7 +4,6 @@
 		<skill skillName="Weapon Mastery" skillId="141" skillLevel="1" getLevel="1" autoGet="true" />
 		<skill skillName="Armor Mastery" skillId="142" skillLevel="1" getLevel="1" autoGet="true" />
 		<skill skillName="Lucky" skillId="194" skillLevel="1" getLevel="1" autoGet="true" />
-		<skill skillName="Lucky" skillId="194" skillLevel="1" getLevel="1" autoGet="true" />
 		<skill skillName="Expand Trade" skillId="1370" skillLevel="1" getLevel="1">
 			<item id="98084,98086" count="1" /> <!-- Private Store Coupon -->
 		</skill>

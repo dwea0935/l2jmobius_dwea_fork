@@ -23,8 +23,8 @@ package org.l2jmobius.gameserver.network.serverpackets.storereview;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
-import org.l2jmobius.gameserver.instancemanager.PrivateStoreHistoryManager.ItemHistoryTransaction;
+import org.l2jmobius.gameserver.managers.PrivateStoreHistoryManager.ItemHistoryTransaction;
+import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.AbstractItemPacket;

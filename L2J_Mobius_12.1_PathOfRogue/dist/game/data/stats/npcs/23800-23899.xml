@@ -953,7 +953,6 @@
 	<npc id="23820" level="115" type="Monster" name="Nephilim Swordsman">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" />
 		<acquire exp="1198928" sp="1079" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="595748" hpRegen="6.5" mp="2983" mpRegen="2.4" />
@@ -1039,7 +1038,6 @@
 	<npc id="23822" level="120" type="Monster" name="Lilim's Magus">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" />
 		<acquire exp="3204174" sp="2884" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="1312389" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -1215,7 +1213,6 @@
 	<npc id="23826" level="125" type="Monster" name="Nephilim Bishop">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="279" />
 		<acquire exp="4179713" sp="3762" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="3004509" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -1260,7 +1257,6 @@
 	<npc id="23827" level="125" type="Monster" name="Nephilim Guardsman">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" />
 		<acquire exp="4179713" sp="3762" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="3004509" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -1305,7 +1301,6 @@
 	<npc id="23828" level="125" type="Monster" name="Nephilim Commander">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="2503" />
 		<acquire exp="4179713" sp="3762" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="3004509" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -1395,7 +1390,6 @@
 	<npc id="23830" level="130" type="Monster" name="Lillim's Great Magus">
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="84" />
 		<acquire exp="5470337" sp="4923" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="7050334" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -3126,7 +3120,6 @@
 	<npc id="23878" level="128" type="Monster" name="Fire Spirit Boss">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="6.5" mp="3190" mpRegen="2.4" />
 			<attack physical="1599215" magical="145753" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3158,7 +3151,6 @@
 	<npc id="23879" level="128" type="Monster" name="Water Spirit Boss">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="279" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="7.5" mp="3190" mpRegen="2.7" />
 			<attack physical="1599215" magical="145753" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -3190,7 +3182,6 @@
 	<npc id="23880" level="128" type="Monster" name="Wind Spirit Boss">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="7.5" mp="3190" mpRegen="2.7" />
 			<attack physical="1599215" magical="145753" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -3222,7 +3213,6 @@
 	<npc id="23881" level="128" type="Monster" name="Earth Spirit Boss">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="2503" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="7.5" mp="3190" mpRegen="2.7" />
 			<attack physical="1599215" magical="145753" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -3254,7 +3244,6 @@
 	<npc id="23882" level="128" type="Monster" name="Water Slime">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="298" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="7.5" mp="3190" mpRegen="2.7" />
 			<attack physical="1599215" magical="145753" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3286,7 +3275,6 @@
 	<npc id="23883" level="128" type="Monster" name="Wind Spirit Servant">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="6.5" mp="3190" mpRegen="2.4" />
 			<attack physical="1599215" magical="145753" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3318,7 +3306,6 @@
 	<npc id="23884" level="128" type="Monster" name="Wind Spirit Skill">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="279" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="7.5" mp="3190" mpRegen="2.7" />
 			<attack physical="1599215" magical="145753" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -3350,7 +3337,6 @@
 	<npc id="23885" level="128" type="Monster" name="Red Balok">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="160" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="7.5" mp="3190" mpRegen="2.7" />
 			<attack physical="1599215" magical="145753" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -3382,7 +3368,6 @@
 	<npc id="23886" level="128" type="Monster" name="Green Balok">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="2503" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="7.5" mp="3190" mpRegen="2.7" />
 			<attack physical="1599215" magical="145753" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -3414,7 +3399,6 @@
 	<npc id="23887" level="128" type="Monster" name="Golden Balok">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="299" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="7.5" mp="3190" mpRegen="2.7" />
 			<attack physical="1599215" magical="145753" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3446,7 +3430,6 @@
 	<npc id="23888" level="128" type="Monster" name="Balok's Fire">
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="84" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="7.5" mp="3190" mpRegen="2.7" />
 			<attack physical="1599215" magical="145753" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3478,7 +3461,6 @@
 	<npc id="23889" level="128" type="Monster" name="Andreas van Halter">
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="946" lhand="945" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="2538603" hpRegen="7.5" mp="3190" mpRegen="2.7" />
 			<attack physical="1599215" magical="145753" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />

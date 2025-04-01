@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="8400" type="EtcItem" name="Spellbook: Turn Undead">
 		<!-- Spellbook needed to learn Turn Undead. Used by Bishops and Elven Elders. -->
@@ -855,7 +855,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2268-6" /> <!-- Item - Hard White Fish -->
 	</item>
-	<item id="8472" type="EtcItem" name="Large White Nimble Fish - Upper Grade">
+	<item id="8472" type="EtcItem" name="High Grade - Large White Nimble Fish">
 		<!-- Double-click to randomly transform an item. The transformed item can be used to make other items. -->
 		<set name="icon" val="icon.etc_tuna_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -1128,7 +1128,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="8496" type="EtcItem" name="Gludio Luminous Lure">
+	<item id="8496" type="EtcItem" name="Gludio's Luminous Lure">
 		<!-- A luminous lure that is used to catch Gludio's Big Fish. It is used in Gludio Territory by fishermen whose Fishing Mastery Level is between 7 and 9. -->
 		<set name="icon" val="icon.etc_gludio_fish_lure_i00" />
 		<set name="default_action" val="EQUIP" />

@@ -24,6 +24,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.RelicData;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -88,7 +89,7 @@ public class ExRelicsUpgrade extends ServerPacket
 			}
 		}
 		
-		_player.destroyItemByItemId("RelicsUpgrade", itemFeeId, itemFeeCount, _player, true);
+		_player.destroyItemByItemId(ItemProcessType.FEE, itemFeeId, itemFeeCount, _player, true);
 		
 		buffer.writeByte(_success);
 		buffer.writeInt(_relicId);

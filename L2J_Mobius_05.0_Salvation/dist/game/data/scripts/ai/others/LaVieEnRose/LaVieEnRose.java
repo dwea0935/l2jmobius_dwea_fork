@@ -16,12 +16,12 @@
  */
 package ai.others.LaVieEnRose;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExResponseBeautyList;
 import org.l2jmobius.gameserver.network.serverpackets.ExResponseResetList;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowBeautyMenu;
@@ -139,10 +139,9 @@ public class LaVieEnRose extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("SPAM_TEXT", (5 * 60 * 1000), npc, null, true);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

@@ -28,10 +28,9 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.xml.HitConditionBonusData;
 import org.l2jmobius.gameserver.data.xml.KarmaData;
-import org.l2jmobius.gameserver.enums.ShotType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Cubic;
@@ -41,6 +40,7 @@ import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.item.Armor;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.type.ArmorType;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.residences.ClanHall;
@@ -75,7 +75,8 @@ import org.l2jmobius.gameserver.model.zone.type.ClanHallZone;
 import org.l2jmobius.gameserver.model.zone.type.MotherTreeZone;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 /**
  * Global calculations.
@@ -489,7 +490,7 @@ public class Formulas
 		}
 		
 		final SiegeClan siegeClan = siege.getAttackerClan(player.getClan().getId());
-		if ((siegeClan == null) || siegeClan.getFlag().isEmpty() || !Util.checkIfInRange(200, player, siegeClan.getFlag().stream().findFirst().get(), true))
+		if ((siegeClan == null) || siegeClan.getFlag().isEmpty() || !LocationUtil.checkIfInRange(200, player, siegeClan.getFlag().stream().findFirst().get(), true))
 		{
 			return 0;
 		}
@@ -544,30 +545,11 @@ public class Formulas
 		final double attributeMod = calcAttributeBonus(attacker, target, skill);
 		final double weaponMod = attacker.getRandomDamageMultiplier();
 		
-		double penaltyMod = 1;
-		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY))
-		{
-			final Player attackerPlayer = attacker.asPlayer();
-			if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
-			{
-				final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 1;
-				if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
-				{
-					penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
-				}
-				else
-				{
-					penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
-				}
-			}
-		}
-		
 		damage = (baseMod * criticalMod * criticalModPos * criticalVulnMod * proximityBonus * pvpBonus) + criticalAddMod + criticalAddVuln;
 		damage *= weaponTraitMod;
 		damage *= generalTraitMod;
 		damage *= attributeMod;
 		damage *= weaponMod;
-		damage *= penaltyMod;
 		
 		return Math.max(damage, 1);
 	}
@@ -617,29 +599,10 @@ public class Formulas
 		final double attributeMod = calcAttributeBonus(attacker, target, skill);
 		final double weaponMod = attacker.getRandomDamageMultiplier();
 		
-		double penaltyMod = 1;
-		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY))
-		{
-			final Player attackerPlayer = attacker.asPlayer();
-			if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
-			{
-				final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 1;
-				if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
-				{
-					penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
-				}
-				else
-				{
-					penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
-				}
-			}
-		}
-		
 		damage = (baseMod * criticalMod * criticalModPos * criticalVulnMod * proximityBonus * pvpBonus) + criticalAddMod + criticalAddVuln;
 		damage *= generalTraitMod;
 		damage *= attributeMod;
 		damage *= weaponMod;
-		damage *= penaltyMod;
 		
 		return Math.max(damage, 1);
 	}
@@ -759,48 +722,6 @@ public class Formulas
 			{
 				damage *= attacker.calcStat(Stat.PVE_PHYSICAL_DMG, 1, null, null);
 			}
-			
-			if (!target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY))
-			{
-				final Player attackerPlayer = attacker.asPlayer();
-				if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
-				{
-					final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 1;
-					if (skill != null)
-					{
-						if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
-						{
-							damage *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
-						}
-						else
-						{
-							damage *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
-						}
-					}
-					else if (crit)
-					{
-						if (levelDiff >= Config.NPC_CRIT_DMG_PENALTY.length)
-						{
-							damage *= Config.NPC_CRIT_DMG_PENALTY[Config.NPC_CRIT_DMG_PENALTY.length - 1];
-						}
-						else
-						{
-							damage *= Config.NPC_CRIT_DMG_PENALTY[levelDiff];
-						}
-					}
-					else
-					{
-						if (levelDiff >= Config.NPC_DMG_PENALTY.length)
-						{
-							damage *= Config.NPC_DMG_PENALTY[Config.NPC_DMG_PENALTY.length - 1];
-						}
-						else
-						{
-							damage *= Config.NPC_DMG_PENALTY[levelDiff];
-						}
-					}
-				}
-			}
 		}
 		return damage;
 	}
@@ -898,22 +819,6 @@ public class Formulas
 		if (target.isAttackable())
 		{
 			damage *= attacker.calcStat(Stat.PVE_MAGICAL_DMG, 1, null, null);
-			if (!target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY))
-			{
-				final Player attackerPlayer = attacker.asPlayer();
-				if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
-				{
-					final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 1;
-					if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
-					{
-						damage *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
-					}
-					else
-					{
-						damage *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
-					}
-				}
-			}
 		}
 		return damage;
 	}
@@ -988,23 +893,11 @@ public class Formulas
 		}
 		
 		damage *= calcAttributeBonus(owner, target, skill);
-		
 		if (target.isAttackable())
 		{
 			damage *= attacker.getOwner().calcStat(Stat.PVE_MAGICAL_DMG, 1, null, null);
-			if (!target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY) && (attacker.getOwner() != null) && ((target.getLevel() - attacker.getOwner().getLevel()) >= 2))
-			{
-				final int levelDiff = target.getLevel() - attacker.getOwner().getLevel() - 1;
-				if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
-				{
-					damage *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
-				}
-				else
-				{
-					damage *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
-				}
-			}
 		}
+		
 		return damage;
 	}
 	
@@ -1170,7 +1063,7 @@ public class Formulas
 		}
 		
 		final int degreeside = (int) target.calcStat(Stat.SHIELD_DEFENCE_ANGLE, 0, null, null) + 120;
-		if ((degreeside < 360) && (Math.abs(target.calculateDirectionTo(attacker) - Util.convertHeadingToDegree(target.getHeading())) > (degreeside / 2)))
+		if ((degreeside < 360) && (Math.abs(target.calculateDirectionTo(attacker) - LocationUtil.convertHeadingToDegree(target.getHeading())) > (degreeside / 2)))
 		{
 			return 0;
 		}
@@ -1347,7 +1240,7 @@ public class Formulas
 		}
 		
 		final double rate = baseMod * elementMod * traitMod * mAtkMod * buffDebuffMod;
-		final double finalRate = traitMod > 0 ? Util.constrain(rate, skill.getMinChance(), skill.getMaxChance()) : 0;
+		final double finalRate = traitMod > 0 ? MathUtil.clamp(rate, skill.getMinChance(), skill.getMaxChance()) : 0;
 		
 		if (finalRate <= Rnd.get(100))
 		{
@@ -1406,7 +1299,7 @@ public class Formulas
 		// Add Matk/Mdef Bonus (TODO: Pending)
 		
 		// Check the Rate Limits.
-		final double finalRate = Util.constrain(rate, skill.getMinChance(), skill.getMaxChance());
+		final double finalRate = MathUtil.clamp(rate, skill.getMinChance(), skill.getMaxChance());
 		
 		return (Rnd.get(100) < finalRate);
 	}
@@ -1419,26 +1312,10 @@ public class Formulas
 		}
 		
 		final double lvlModifier = Math.pow(1.3, target.getLevel() - (Config.CALCULATE_MAGIC_SUCCESS_BY_SKILL_MAGIC_LEVEL && (skill.getMagicLevel() > 0) ? skill.getMagicLevel() : attacker.getLevel()));
-		float targetModifier = 1;
-		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_MAGIC_PENALTY))
-		{
-			final Player attackerPlayer = attacker.asPlayer();
-			if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 3))
-			{
-				final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 2;
-				if (levelDiff >= Config.NPC_SKILL_CHANCE_PENALTY.length)
-				{
-					targetModifier = Config.NPC_SKILL_CHANCE_PENALTY[Config.NPC_SKILL_CHANCE_PENALTY.length - 1];
-				}
-				else
-				{
-					targetModifier = Config.NPC_SKILL_CHANCE_PENALTY[levelDiff];
-				}
-			}
-		}
+		
 		// general magic resist
 		final double resModifier = target.calcStat(Stat.MAGIC_SUCCESS_RES, 1, null, skill);
-		final int rate = 100 - Math.round((float) (lvlModifier * targetModifier * resModifier));
+		final int rate = 100 - Math.round((float) (lvlModifier * resModifier));
 		
 		return (Rnd.get(100) < rate);
 	}
@@ -1474,22 +1351,6 @@ public class Formulas
 		if (target.isAttackable())
 		{
 			damage *= attacker.calcStat(Stat.PVE_MAGICAL_DMG, 1, null, null);
-			if (!target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY))
-			{
-				final Player attackerPlayer = attacker.asPlayer();
-				if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
-				{
-					final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 1;
-					if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
-					{
-						damage *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
-					}
-					else
-					{
-						damage *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
-					}
-				}
-			}
 		}
 		
 		// Failure calculation
@@ -1754,7 +1615,7 @@ public class Formulas
 		defenceAttribute *= defenceAttribute;
 		defenceAttributeMod *= (defenceAttribute / 169.0);
 		double attributeModDiff = attackAttributeMod - defenceAttributeMod;
-		attributeModDiff = Util.constrain(attributeModDiff, min, max);
+		attributeModDiff = MathUtil.clamp(attributeModDiff, min, max);
 		double result = (attributeModDiff / 100.0) + 1;
 		if (attacker.isPlayable() && target.isPlayable() && (result < 1.0))
 		{
@@ -1928,7 +1789,7 @@ public class Formulas
 	{
 		// Lvl Bonus Modifier.
 		final int chance = (int) (rate * (info.getSkill().getMagicLevel() > 0 ? 1 + ((cancelMagicLvl - info.getSkill().getMagicLevel()) / 100.) : 1));
-		return Rnd.get(100) < Util.constrain(chance, skill.getMinChance(), skill.getMaxChance());
+		return Rnd.get(100) < MathUtil.clamp(chance, skill.getMinChance(), skill.getMaxChance());
 	}
 	
 	/**
@@ -1963,7 +1824,7 @@ public class Formulas
 			final double resMod = calcGeneralTraitBonus(caster, target, skill.getTraitType(), false);
 			final double lvlBonusMod = calcLvlBonusMod(caster, target, skill);
 			final double elementMod = calcAttributeBonus(caster, target, skill);
-			time = (int) Math.ceil(Util.constrain(((time * resMod * lvlBonusMod * elementMod) / statMod), (time * 0.5), time));
+			time = (int) Math.ceil(MathUtil.clamp(((time * resMod * lvlBonusMod * elementMod) / statMod), (time * 0.5), time));
 		}
 		return time;
 	}
@@ -2075,7 +1936,7 @@ public class Formulas
 		}
 		
 		final double result = (attacker.getStat().getAttackTrait(traitType) - target.getStat().getDefenceTrait(traitType)) + 1.0;
-		return Util.constrain(result, 0.05, 2.0);
+		return MathUtil.clamp(result, 0.05, 2.0);
 	}
 	
 	public static double calcWeaponTraitBonus(Creature attacker, Creature target)
@@ -2106,6 +1967,6 @@ public class Formulas
 			}
 		}
 		
-		return Util.constrain((weaponTraitBonus * weaknessBonus), 0.05, 2.0);
+		return MathUtil.clamp((weaponTraitBonus * weaknessBonus), 0.05, 2.0);
 	}
 }

@@ -516,7 +516,6 @@
 		<abnormalType>LIFE_FORCE_OTHERS</abnormalType>
 		<affectObject>FRIEND</affectObject>
 		<affectRange>1000</affectRange>
-		<affectRange>1000</affectRange>
 		<affectScope>PARTY</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad> <!-- Unconfirmed -->
@@ -565,7 +564,6 @@
 		<coolTime>500</coolTime>
 		<effectPoint>100</effectPoint>
 		<hitTime>1500</hitTime>
-		<isMagic>1</isMagic>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>
@@ -773,7 +771,6 @@
 			<value level="12">30000</value>
 		</reuseDelay>
 		<trait>DEPORT</trait>
-		<trait>DEPORT</trait>
 		<effects>
 			<effect name="BlockActions">
 				<allowedSkills>10279;10517;10025;10776;11770;1904;11264;11093;13314;1912</allowedSkills>
@@ -808,7 +805,6 @@
 		<affectScope>RANGE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad> <!-- Unconfirmed -->
-		<castRange>1100</castRange>
 		<castRange>1100</castRange>
 		<effectPoint>-707</effectPoint>
 		<effectRange>1100</effectRange>

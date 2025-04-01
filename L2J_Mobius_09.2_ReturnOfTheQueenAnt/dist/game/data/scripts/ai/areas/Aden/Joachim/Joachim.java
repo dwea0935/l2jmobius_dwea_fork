@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.Aden.Joachim;
 
@@ -23,20 +27,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMenuSelect;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMenuSelect;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.ExSubjobInfo;
@@ -68,17 +73,17 @@ public class Joachim extends AbstractNpcAI
 		POWER_ITEMS.put(CategoryType.SIXTH_EOLH_GROUP, 32271); // Laksis Power
 	}
 	// Misc
-	private static final List<ClassId> DUAL_CLASS_LIST = new ArrayList<>();
+	private static final List<PlayerClass> DUAL_CLASS_LIST = new ArrayList<>();
 	static
 	{
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.SIGEL_PHOENIX_KNIGHT, ClassId.SIGEL_HELL_KNIGHT, ClassId.SIGEL_EVA_TEMPLAR, ClassId.SIGEL_SHILLIEN_TEMPLAR));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.TYRR_DUELIST, ClassId.TYRR_DREADNOUGHT, ClassId.TYRR_TITAN, ClassId.TYRR_GRAND_KHAVATARI, ClassId.TYRR_DOOMBRINGER));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.OTHELL_ADVENTURER, ClassId.OTHELL_WIND_RIDER, ClassId.OTHELL_GHOST_HUNTER, ClassId.OTHELL_FORTUNE_SEEKER));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.YUL_SAGITTARIUS, ClassId.YUL_MOONLIGHT_SENTINEL, ClassId.YUL_GHOST_SENTINEL, ClassId.YUL_TRICKSTER));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.FEOH_ARCHMAGE, ClassId.FEOH_SOULTAKER, ClassId.FEOH_MYSTIC_MUSE, ClassId.FEOH_STORM_SCREAMER, ClassId.FEOH_SOUL_HOUND));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.ISS_HIEROPHANT, ClassId.ISS_SWORD_MUSE, ClassId.ISS_SPECTRAL_DANCER, ClassId.ISS_DOOMCRYER));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.WYNN_ARCANA_LORD, ClassId.WYNN_ELEMENTAL_MASTER, ClassId.WYNN_SPECTRAL_MASTER));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.AEORE_CARDINAL, ClassId.AEORE_EVA_SAINT, ClassId.AEORE_SHILLIEN_SAINT));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.SIGEL_PHOENIX_KNIGHT, PlayerClass.SIGEL_HELL_KNIGHT, PlayerClass.SIGEL_EVA_TEMPLAR, PlayerClass.SIGEL_SHILLIEN_TEMPLAR));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.TYRR_DUELIST, PlayerClass.TYRR_DREADNOUGHT, PlayerClass.TYRR_TITAN, PlayerClass.TYRR_GRAND_KHAVATARI, PlayerClass.TYRR_DOOMBRINGER));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.OTHELL_ADVENTURER, PlayerClass.OTHELL_WIND_RIDER, PlayerClass.OTHELL_GHOST_HUNTER, PlayerClass.OTHELL_FORTUNE_SEEKER));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.YUL_SAGITTARIUS, PlayerClass.YUL_MOONLIGHT_SENTINEL, PlayerClass.YUL_GHOST_SENTINEL, PlayerClass.YUL_TRICKSTER));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.FEOH_ARCHMAGE, PlayerClass.FEOH_SOULTAKER, PlayerClass.FEOH_MYSTIC_MUSE, PlayerClass.FEOH_STORM_SCREAMER, PlayerClass.FEOH_SOUL_HOUND));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.ISS_HIEROPHANT, PlayerClass.ISS_SWORD_MUSE, PlayerClass.ISS_SPECTRAL_DANCER, PlayerClass.ISS_DOOMCRYER));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.WYNN_ARCANA_LORD, PlayerClass.WYNN_ELEMENTAL_MASTER, PlayerClass.WYNN_SPECTRAL_MASTER));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.AEORE_CARDINAL, PlayerClass.AEORE_EVA_SAINT, PlayerClass.AEORE_SHILLIEN_SAINT));
 	}
 	
 	private Joachim()
@@ -132,7 +137,7 @@ public class Joachim extends AbstractNpcAI
 				
 				final StringBuilder sb = new StringBuilder();
 				final NpcHtmlMessage html = getNpcHtmlMessage(player, npc, "34513-06.html");
-				for (ClassId dualClasses : getDualClasses(player, cType))
+				for (PlayerClass dualClasses : getDualClasses(player, cType))
 				{
 					if (dualClasses != null)
 					{
@@ -167,12 +172,12 @@ public class Joachim extends AbstractNpcAI
 		return html;
 	}
 	
-	private List<ClassId> getDualClasses(Player player, CategoryType cType)
+	private List<PlayerClass> getDualClasses(Player player, CategoryType cType)
 	{
-		final List<ClassId> tempList = new ArrayList<>();
+		final List<PlayerClass> tempList = new ArrayList<>();
 		final int baseClassId = player.getBaseClass();
-		final int dualClassId = player.getClassId().getId();
-		for (ClassId temp : DUAL_CLASS_LIST)
+		final int dualClassId = player.getPlayerClass().getId();
+		for (PlayerClass temp : DUAL_CLASS_LIST)
 		{
 			if ((temp.getId() != baseClassId) && (temp.getId() != dualClassId) && ((cType == null) || CategoryData.getInstance().isInCategory(cType, temp.getId())))
 			{
@@ -202,7 +207,7 @@ public class Joachim extends AbstractNpcAI
 				}
 				
 				// Validating classId
-				if (!getDualClasses(player, null).contains(ClassId.getClassId(classId)))
+				if (!getDualClasses(player, null).contains(PlayerClass.getPlayerClass(classId)))
 				{
 					break;
 				}
@@ -223,8 +228,8 @@ public class Joachim extends AbstractNpcAI
 					player.broadcastUserInfo();
 					
 					// Item rewards
-					player.addItem("subclass", CHAOS_POMANDER_DUAL_CLASS, 2, player, true);
-					player.addItem("subclass", PAULINAS_RGRADE_EQUIPMENT_SET, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, CHAOS_POMANDER_DUAL_CLASS, 2, player, true);
+					player.addItem(ItemProcessType.REWARD, PAULINAS_RGRADE_EQUIPMENT_SET, 1, player, true);
 					giveItems(player, getPowerItemId(player), 1);
 				}
 				break;

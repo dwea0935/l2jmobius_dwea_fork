@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="39300" name="+6 Twilight Circlet Coupon" additionalName="Robe" type="EtcItem">
 		<!-- Bring this to the Memory Fragment manager Chaotic Chronicle to exchange it for a +6 Twilight Circlet. Deleted after event. -->
@@ -506,7 +506,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17875" level="1" /> <!-- + 4 Helios Pack -->
+			<skill id="17875" level="1" /> <!-- +4 Helios Pack -->
 		</skills>
 	</item>
 	<item id="39347" name="+5 Helios Weapon Pack" type="EtcItem">
@@ -519,7 +519,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17876" level="1" /> <!-- + 5 Helios Pack -->
+			<skill id="17876" level="1" /> <!-- +5 Helios Pack -->
 		</skills>
 	</item>
 	<item id="39348" name="+6 Helios Weapon Pack" type="EtcItem">
@@ -532,7 +532,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17877" level="1" /> <!-- + 6 Helios Pack -->
+			<skill id="17877" level="1" /> <!-- +6 Helios Pack -->
 		</skills>
 	</item>
 	<item id="39349" name="+7 Helios Weapon Pack" type="EtcItem">
@@ -545,7 +545,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17878" level="1" /> <!-- + 7 Helios Pack -->
+			<skill id="17878" level="1" /> <!-- +7 Helios Pack -->
 		</skills>
 	</item>
 	<item id="39350" name="+8 Helios Weapon Pack" type="EtcItem">
@@ -558,7 +558,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17879" level="1" /> <!-- + 8 Helios Pack -->
+			<skill id="17879" level="1" /> <!-- +8 Helios Pack -->
 		</skills>
 	</item>
 	<item id="39351" name="Designer Specter Weapon Pack" type="EtcItem">
@@ -610,7 +610,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17867" level="1" /> <!-- + 4 Specter Pack -->
+			<skill id="17867" level="1" /> <!-- +4 Specter Pack -->
 		</skills>
 	</item>
 	<item id="39355" name="+5 Specter Weapon Pack" type="EtcItem">
@@ -623,7 +623,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17868" level="1" /> <!-- + 5 Specter Pack -->
+			<skill id="17868" level="1" /> <!-- +5 Specter Pack -->
 		</skills>
 	</item>
 	<item id="39356" name="+6 Specter Weapon Pack" type="EtcItem">
@@ -636,7 +636,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17869" level="1" /> <!-- + 6 Specter Pack -->
+			<skill id="17869" level="1" /> <!-- +6 Specter Pack -->
 		</skills>
 	</item>
 	<item id="39357" name="+7 Specter Weapon Pack" type="EtcItem">
@@ -649,7 +649,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17870" level="1" /> <!-- + 7 Specter Pack -->
+			<skill id="17870" level="1" /> <!-- +7 Specter Pack -->
 		</skills>
 	</item>
 	<item id="39358" name="+8 Specter Weapon Pack" type="EtcItem">
@@ -662,7 +662,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17871" level="1" /> <!-- + 8 Specter Pack -->
+			<skill id="17871" level="1" /> <!-- +8 Specter Pack -->
 		</skills>
 	</item>
 	<item id="39359" name="Designer Apocalypse Weapon Pack" type="EtcItem">
@@ -711,7 +711,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17859" level="1" /> <!-- + 4 Apocalypse Pack -->
+			<skill id="17859" level="1" /> <!-- +4 Apocalypse Pack -->
 		</skills>
 	</item>
 	<item id="39363" name="+5 Apocalypse Weapon Pack" type="EtcItem">
@@ -723,7 +723,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17860" level="1" /> <!-- + 5 Apocalypse Pack -->
+			<skill id="17860" level="1" /> <!-- +5 Apocalypse Pack -->
 		</skills>
 	</item>
 	<item id="39364" name="+6 Apocalypse Weapon Pack" type="EtcItem">
@@ -735,7 +735,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17861" level="1" /> <!-- + 6 Apocalypse Pack -->
+			<skill id="17861" level="1" /> <!-- +6 Apocalypse Pack -->
 		</skills>
 	</item>
 	<item id="39365" name="+7 Apocalypse Weapon Pack" type="EtcItem">
@@ -747,7 +747,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17862" level="1" /> <!-- + 7 Apocalypse Pack -->
+			<skill id="17862" level="1" /> <!-- +7 Apocalypse Pack -->
 		</skills>
 	</item>
 	<item id="39366" name="+8 Apocalypse Weapon Pack" type="EtcItem">
@@ -759,7 +759,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17863" level="1" /> <!-- + 8 Apocalypse Pack -->
+			<skill id="17863" level="1" /> <!-- +8 Apocalypse Pack -->
 		</skills>
 	</item>
 	<item id="39367" name="Orc Supply Box" type="EtcItem">

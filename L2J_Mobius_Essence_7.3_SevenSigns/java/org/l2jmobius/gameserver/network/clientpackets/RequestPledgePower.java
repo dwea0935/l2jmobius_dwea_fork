@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.network.serverpackets.ManagePledgePower;
 
 public class RequestPledgePower extends ClientPacket
@@ -67,8 +67,8 @@ public class RequestPledgePower extends ClientPacket
 				// bulletin board administration
 				// Clan war, right to dismiss, set functions
 				// Auction, manage taxes, attack/defend registration, mercenary management
-				// => Leaves only CP_CL_VIEW_WAREHOUSE, CP_CH_OPEN_DOOR, CP_CS_OPEN_DOOR?
-				_privs &= ClanPrivilege.CL_VIEW_WAREHOUSE.getBitmask() | ClanPrivilege.CH_OPEN_DOOR.getBitmask() | ClanPrivilege.CS_OPEN_DOOR.getBitmask();
+				// => Leaves only ACCESS_WAREHOUSE, HALL_OPEN_DOOR, CASTLE_OPEN_DOOR?
+				_privs &= ClanAccess.ACCESS_WAREHOUSE.getMask() | ClanAccess.HALL_OPEN_DOOR.getMask() | ClanAccess.CASTLE_OPEN_DOOR.getMask();
 			}
 			clan.setRankPrivs(_rank, _privs);
 		}

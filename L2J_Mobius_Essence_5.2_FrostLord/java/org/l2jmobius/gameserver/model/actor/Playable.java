@@ -24,20 +24,20 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.enums.ClanWarState;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.stat.PlayableStat;
 import org.l2jmobius.gameserver.model.actor.status.PlayableStatus;
 import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanWar;
+import org.l2jmobius.gameserver.model.clan.enums.ClanWarState;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -187,7 +187,7 @@ public abstract class Playable extends Creature
 		{
 			for (QuestState qs : player.getNotifyQuestOfDeath())
 			{
-				qs.getQuest().notifyDeath((killer == null ? this : killer), this, qs);
+				qs.getQuest().onDeath(killer == null ? this : killer, this, qs);
 			}
 		}
 		
@@ -211,7 +211,7 @@ public abstract class Playable extends Creature
 		}
 		
 		// Notify Creature AI
-		getAI().notifyEvent(CtrlEvent.EVT_DEAD);
+		getAI().notifyAction(Action.DEATH);
 		return true;
 	}
 	

@@ -16,9 +16,9 @@
  */
 package quests.Q00007_ATripBegins;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -42,7 +42,7 @@ public class Q00007_ATripBegins extends Quest
 	
 	public Q00007_ATripBegins()
 	{
-		super(7);
+		super(7, "A Trip Begins");
 		addStartNpc(MIRABEL);
 		addTalkId(MIRABEL, ARIEL, ASTERIOS);
 		registerQuestItems(ARIELS_RECOMMENDATION);

@@ -28,6 +28,6 @@ public class GMAuditFilter implements Filter
 	@Override
 	public boolean isLoggable(LogRecord record)
 	{
-		return record.getLoggerName().equalsIgnoreCase("gmaudit");
+		return "gmaudit".equals(record.getLoggerName());
 	}
 }

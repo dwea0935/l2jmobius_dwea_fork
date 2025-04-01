@@ -17,18 +17,17 @@
 package quests.Q00064_CertifiedBerserker;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Certified Berserker (64)
@@ -68,7 +67,7 @@ public class Q00064_CertifiedBerserker extends Quest
 	
 	public Q00064_CertifiedBerserker()
 	{
-		super(64);
+		super(64, "Certified Berserker");
 		addStartNpc(MASTER_ORKURUS);
 		addTalkId(MASTER_ORKURUS, MASTER_ENTIENS, MASTER_TENAIN, CARAVANER_GORT, HARKILGAMED);
 		addKillId(DEAD_SEEKER, MARSH_STAKATO_DRONE, BREKA_ORC, BREKA_ORC_ARCHER, BREKA_ORC_SHAMAN, BREKA_ORC_OVERLORD, BREKA_ORC_WARRIOR, ROAD_SCAVENGER, DIVINE_EMISSARY);
@@ -196,10 +195,10 @@ public class Q00064_CertifiedBerserker extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -270,14 +269,13 @@ public class Q00064_CertifiedBerserker extends Quest
 					if (qs.isMemoState(9) && (getRandom(100) < 20))
 					{
 						final Npc kamael = addSpawn(HARKILGAMED, npc, true, 60000);
-						kamael.broadcastPacket(new NpcSay(kamael, ChatType.NPC_GENERAL, NpcStringId.S1_DID_YOU_COME_TO_HELP_ME).addStringParameter(killer.getAppearance().getVisibleName()));
+						kamael.broadcastPacket(new NpcSay(kamael, ChatType.NPC_GENERAL, killer.getAppearance().getVisibleName() + ", did you come to help me?"));
 						playSound(killer, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 					}
 					break;
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -292,7 +290,7 @@ public class Q00064_CertifiedBerserker extends Quest
 			{
 				if (player.getRace() == Race.KAMAEL)
 				{
-					if (player.getClassId() == ClassId.TROOPER)
+					if (player.getPlayerClass() == PlayerClass.TROOPER)
 					{
 						if (player.getLevel() >= MIN_LEVEL)
 						{

@@ -39,35 +39,33 @@ import org.w3c.dom.Node;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.SchedulingPattern;
+import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.commons.util.TimeUtil;
-import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.PartyDistributionType;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.enums.Team;
-import org.l2jmobius.gameserver.instancemanager.AntiFeedManager;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
-import org.l2jmobius.gameserver.model.CommandChannel;
+import org.l2jmobius.gameserver.managers.AntiFeedManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.ItemManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.CommandChannel;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.groups.PartyDistributionType;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
@@ -76,10 +74,13 @@ import org.l2jmobius.gameserver.model.quest.QuestTimer;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneForm;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.ExPVPMatchCCRecord;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
@@ -87,7 +88,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.MapUtil;
 
 /**
  * Capture The Flag event.
@@ -218,14 +219,14 @@ public class CtF extends Event
 			}
 			
 			@Override
-			public void parseDocument(Document doc, File f)
+			public void parseDocument(Document document, File file)
 			{
 				final AtomicInteger count = new AtomicInteger(0);
-				forEach(doc, "event", eventNode ->
+				forEach(document, "event", eventNode ->
 				{
 					final StatSet att = new StatSet(parseAttributes(eventNode));
 					final String name = att.getString("name");
-					for (Node node = doc.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
+					for (Node node = document.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
 					{
 						switch (node.getNodeName())
 						{
@@ -487,7 +488,7 @@ public class CtF extends Event
 				BLUE_SCORE = 0;
 				RED_SCORE = 0;
 				// Initialize scoreboard.
-				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.INITIALIZE, Util.sortByValue(PLAYER_SCORES, true)));
+				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.INITIALIZE, MapUtil.sortByValue(PLAYER_SCORES, true)));
 				// Schedule start.
 				startQuestTimer("5", (WAIT_TIME * 60000) - 5000, null, null);
 				startQuestTimer("4", (WAIT_TIME * 60000) - 4000, null, null);
@@ -643,7 +644,7 @@ public class CtF extends Event
 			}
 			case "ScoreBoard":
 			{
-				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, Util.sortByValue(PLAYER_SCORES, true)));
+				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, MapUtil.sortByValue(PLAYER_SCORES, true)));
 				// remove event FIGHT_TIME
 				for (Player participant : PLAYER_LIST)
 				{
@@ -774,7 +775,7 @@ public class CtF extends Event
 				}
 				
 				player.sendPacket(new ExSendUIEvent(player, false, false, 0, 0, NpcStringId.REMAINING_TIME));
-				player.sendPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, Util.sortByValue(PLAYER_SCORES, true)));
+				player.sendPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, MapUtil.sortByValue(PLAYER_SCORES, true)));
 			}
 		}
 		return htmltext;
@@ -880,7 +881,7 @@ public class CtF extends Event
 									
 									// take flag
 									setCarrierUnequippedWeapons(player, player.getInventory().getPaperdollItem(Inventory.PAPERDOLL_RHAND), player.getInventory().getPaperdollItem(Inventory.PAPERDOLL_LHAND));
-									player.getInventory().equipItem(ItemData.getInstance().createItem("CtF", CtF.getEnemyTeamFlagId(player), 1, player, null));
+									player.getInventory().equipItem(ItemManager.createItem(ItemProcessType.PICKUP, CtF.getEnemyTeamFlagId(player), 1, player, null));
 									player.getInventory().blockAllItems();
 									player.broadcastUserInfo();
 									setTeamCarrier(player);
@@ -916,7 +917,7 @@ public class CtF extends Event
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayable())
 		{
@@ -959,11 +960,10 @@ public class CtF extends Event
 				}
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -980,7 +980,6 @@ public class CtF extends Event
 				}
 			}
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	private boolean canRegister(Player player)
@@ -1090,7 +1089,7 @@ public class CtF extends Event
 		// Check if team carrier has disconnected.
 		if ((BLUE_TEAM.contains(player) && (BLUE_TEAM_CARRIER != null) && (!BLUE_TEAM_CARRIER.isOnline() || (BLUE_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))) || ((RED_TEAM.contains(player) == true) && (RED_TEAM_CARRIER != null) && (!RED_TEAM_CARRIER.isOnline() || (RED_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))))
 		{
-			player.destroyItemByItemId("ctf flag", getEnemyTeamFlagId(player), 1, player, false);
+			player.destroyItemByItemId(ItemProcessType.DESTROY, getEnemyTeamFlagId(player), 1, player, false);
 			return null;
 		}
 		// Return team carrier.
@@ -1102,7 +1101,7 @@ public class CtF extends Event
 		// Check if enemy carrier has disconnected.
 		if ((BLUE_TEAM.contains(player) && (RED_TEAM_CARRIER != null) && (!RED_TEAM_CARRIER.isOnline() || (RED_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))) || ((RED_TEAM.contains(player) == true) && (BLUE_TEAM_CARRIER != null) && (!BLUE_TEAM_CARRIER.isOnline() || (BLUE_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))))
 		{
-			player.destroyItemByItemId("ctf flag", getEnemyTeamFlagId(player), 1, player, false);
+			player.destroyItemByItemId(ItemProcessType.DESTROY, getEnemyTeamFlagId(player), 1, player, false);
 			return null;
 		}
 		// Return enemy carrier.
@@ -1137,7 +1136,7 @@ public class CtF extends Event
 	{
 		// Un-equip - destroy flag.
 		player.getInventory().unEquipItemInSlot(Inventory.PAPERDOLL_RHAND);
-		player.destroyItemByItemId("ctf flag", getEnemyTeamFlagId(player), 1, player, false);
+		player.destroyItemByItemId(ItemProcessType.DESTROY, getEnemyTeamFlagId(player), 1, player, false);
 		// Unblock inventory.
 		player.getInventory().unblock();
 		// Re-equip player items.
@@ -1319,13 +1318,13 @@ public class CtF extends Event
 			if ((killer.getTeam() == Team.BLUE) && (killedPlayer.getTeam() == Team.RED))
 			{
 				PLAYER_SCORES.put(killer, PLAYER_SCORES.get(killer) + 1);
-				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.UPDATE, Util.sortByValue(PLAYER_SCORES, true)));
+				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.UPDATE, MapUtil.sortByValue(PLAYER_SCORES, true)));
 			}
 			// Confirm Red team kill.
 			if ((killer.getTeam() == Team.RED) && (killedPlayer.getTeam() == Team.BLUE))
 			{
 				PLAYER_SCORES.put(killer, PLAYER_SCORES.get(killer) + 1);
-				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.UPDATE, Util.sortByValue(PLAYER_SCORES, true)));
+				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.UPDATE, MapUtil.sortByValue(PLAYER_SCORES, true)));
 				
 				final CreatureSay cs = new CreatureSay(killer, ChatType.WHISPER, killer.getName(), "I have killed " + killedPlayer.getName() + "!");
 				for (Player activeChar : getParticipantTeam(killer))
@@ -1438,7 +1437,7 @@ public class CtF extends Event
 		}
 		if (IS_STARTED())
 		{
-			PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, Util.sortByValue(PLAYER_SCORES, true)));
+			PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, MapUtil.sortByValue(PLAYER_SCORES, true)));
 		}
 		if (PVP_WORLD != null)
 		{

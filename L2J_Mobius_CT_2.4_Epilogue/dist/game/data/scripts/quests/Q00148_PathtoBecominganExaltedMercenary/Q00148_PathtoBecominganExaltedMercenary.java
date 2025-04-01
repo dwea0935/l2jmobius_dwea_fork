@@ -50,7 +50,7 @@ public class Q00148_PathtoBecominganExaltedMercenary extends Quest
 	
 	public Q00148_PathtoBecominganExaltedMercenary()
 	{
-		super(148);
+		super(148, "Path to Becoming an Exalted Mercenary");
 		addStartNpc(MERC);
 		addTalkId(MERC);
 	}

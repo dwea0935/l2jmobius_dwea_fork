@@ -23,7 +23,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q00123_TheLeaderAndTheFollower.Q00123_TheLeaderAndTheFollower;
 
@@ -62,7 +62,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 	
 	public Q00118_ToLeadAndBeLed()
 	{
-		super(118);
+		super(118, "To Lead and Be Led");
 		addStartNpc(BLACKSMITH_PINTER);
 		addTalkId(BLACKSMITH_PINTER);
 		addKillId(MAILLE_LIZARDMAN, MAILLE_LIZARDMAN_SCOUT, MAILLE_LIZARDMAN_GUARD, KING_OF_THE_ARANEID);
@@ -87,7 +87,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 			{
 				case "sponsor":
 				{
-					if (!Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, apprentice, true))
+					if (!LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, apprentice, true))
 					{
 						htmltext = "30298-09.html";
 					}
@@ -110,7 +110,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 				}
 				case "30298-10.html":
 				{
-					if (Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, apprentice, true) && (q118 != null) && q118.isMemoState(2))
+					if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, apprentice, true) && (q118 != null) && q118.isMemoState(2))
 					{
 						switch (q118.getMemoStateEx(1))
 						{
@@ -280,7 +280,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 					else
 					{
 						final Player c0 = World.getInstance().getPlayer(player.getSponsor());
-						if ((c0 != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, c0, true))
+						if ((c0 != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, c0, true))
 						{
 							htmltext = "30298-07.html";
 						}
@@ -355,7 +355,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isStarted())
@@ -377,7 +377,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 					if (qs.isMemoState(4) && (killer.getSponsor() > 0))
 					{
 						final Player c0 = World.getInstance().getPlayer(killer.getSponsor());
-						if ((c0 != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, c0, true) && giveItemRandomly(killer, npc, LEG_OF_KING_ARANEID, 1, 8, 7, true))
+						if ((c0 != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, c0, true) && giveItemRandomly(killer, npc, LEG_OF_KING_ARANEID, 1, 8, 7, true))
 						{
 							qs.setCond(8);
 						}
@@ -386,6 +386,5 @@ public class Q00118_ToLeadAndBeLed extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

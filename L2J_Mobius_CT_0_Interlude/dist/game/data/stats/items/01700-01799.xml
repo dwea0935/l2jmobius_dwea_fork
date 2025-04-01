@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
-	<item id="1700" type="EtcItem" name="(Not In Use) Oriharukon">
+	<item id="1700" type="EtcItem" name="(Not used) Oriharukon">
 		<!-- A material used to make Dwarven items. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_squares_wood_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -30,7 +30,7 @@
 		<set name="price" val="12500" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="1703" type="EtcItem" name="Steel of the Highest Grade">
+	<item id="1703" type="EtcItem" name="Steel of The Highest Grade">
 		<!-- A material used to make Dwarven items. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_squares_gray_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -490,7 +490,7 @@
 		<set name="price" val="13600" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="1749" type="EtcItem" name="Branch of the Mother Tree">
+	<item id="1749" type="EtcItem" name="Branch of The Mother Tree">
 		<!-- A material used to make Dwarven items. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_branch_green_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -560,7 +560,7 @@
 		<set name="price" val="8133" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="1756" type="EtcItem" name="Spirit of the Saber Smith">
+	<item id="1756" type="EtcItem" name="Spirit of The Saber Smith">
 		<!-- A material used to make Dwarven items. Can be sold in any shop. -->
 		<set name="icon" val="icon.etc_skull_black_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -977,7 +977,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="1795" type="EtcItem" name="Recipe: Leather Shoes">
+	<item id="1795" type="EtcItem" name="Recipe:Leather Shoes">
 		<!-- For Dwarves only. The recipe for Leather Shoes. Requires Create Item - Skill Level 1. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_white_i00" />
 		<set name="default_action" val="RECIPE" />

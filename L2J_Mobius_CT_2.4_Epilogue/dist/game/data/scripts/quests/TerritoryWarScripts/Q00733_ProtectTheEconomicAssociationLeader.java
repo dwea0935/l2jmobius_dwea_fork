@@ -24,7 +24,7 @@ public class Q00733_ProtectTheEconomicAssociationLeader extends TerritoryWarSupe
 {
 	public Q00733_ProtectTheEconomicAssociationLeader()
 	{
-		super(733);
+		super(733, "Protect the Economic Association Leader");
 		NPC_IDS = new int[]
 		{
 			36513,

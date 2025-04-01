@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package events.RedLibra.Eraton;
 
@@ -22,29 +26,32 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMenuSelect;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMenuSelect;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExSubjobInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExUserInfoInvenWeight;
+import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.taskmanager.AutoUseTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AutoUseTaskManager;
 
 import ai.AbstractNpcAI;
 
@@ -119,10 +126,10 @@ public class Eraton extends AbstractNpcAI
 			case ("ERATON_SIGEL"):
 			{
 				final StringBuilder sb = new StringBuilder();
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.SIGEL_PHOENIX_KNIGHT + "\">Sigel Phoenix Knight</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.SIGEL_HELL_KNIGHT + "\">Sigel Hell Knight</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.SIGEL_EVA_TEMPLAR + "\">Sigel Eva Templar</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.SIGEL_SHILLIEN_TEMPLAR + "\">Sigel Shillie Templar</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.SIGEL_PHOENIX_KNIGHT + "\">Sigel Phoenix Knight</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.SIGEL_HELL_KNIGHT + "\">Sigel Hell Knight</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.SIGEL_EVA_TEMPLAR + "\">Sigel Eva Templar</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.SIGEL_SHILLIEN_TEMPLAR + "\">Sigel Shillien Templar</button>");
 				// Death Knights cannot use the Stone of Destiny.
 				// sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.SIGEL_DEATH_KNIGHT + "\">Sigel Death Knight</button>");
 				htmltext = getHtm(player, "34584-2.html").replace("%CLASS_LIST%", sb.toString());
@@ -131,21 +138,21 @@ public class Eraton extends AbstractNpcAI
 			case ("ERATON_TYRR"):
 			{
 				final StringBuilder sb = new StringBuilder();
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.TYRR_DUELIST + "\">Tyrr Duelist</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.TYRR_DREADNOUGHT + "\">Tyrr Drearnought</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.TYRR_TITAN + "\">Tyrr Titan</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.TYRR_GRAND_KHAVATARI + "\">Tyrr Grand Khavatari</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.TYRR_DUELIST + "\">Tyrr Duelist</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.TYRR_DREADNOUGHT + "\">Tyrr Drearnought</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.TYRR_TITAN + "\">Tyrr Titan</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.TYRR_GRAND_KHAVATARI + "\">Tyrr Grand Khavatari</button>");
 				if (player.getRace() == Race.DWARF)
 				{
-					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.TYRR_MAESTRO + "\">Tyrr Maestro</button>");
+					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.TYRR_MAESTRO + "\">Tyrr Maestro</button>");
 				}
 				if ((player.getRace() == Race.KAMAEL) && !player.getAppearance().isFemale())
 				{
-					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.TYRR_DOOMBRINGER + "\">Tyrr Doombringer</button>");
+					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.TYRR_DOOMBRINGER + "\">Tyrr Doombringer</button>");
 				}
 				if (player.getRace() == Race.ERTHEIA)
 				{
-					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.EVISCERATOR + "\">Eviscerator</button>");
+					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.EVISCERATOR + "\">Eviscerator</button>");
 				}
 				htmltext = getHtm(player, "34584-2.html").replace("%CLASS_LIST%", sb.toString());
 				break;
@@ -153,12 +160,12 @@ public class Eraton extends AbstractNpcAI
 			case ("ERATON_OTHELL"):
 			{
 				final StringBuilder sb = new StringBuilder();
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.OTHELL_ADVENTURER + "\">OTHELL_ADVENTURER</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.OTHELL_WIND_RIDER + "\">OTHELL_WIND_RIDER</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.OTHELL_GHOST_HUNTER + "\">OTHELL_GHOST_HUNTER</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.OTHELL_ADVENTURER + "\">Othell Adventurer</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.OTHELL_WIND_RIDER + "\">Othell Wind Rider</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.OTHELL_GHOST_HUNTER + "\">Othell Ghost Hunter</button>");
 				if (player.getRace() == Race.DWARF)
 				{
-					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.OTHELL_FORTUNE_SEEKER + "\">OTHELL_FORTUNE_SEEKER</button>");
+					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.OTHELL_FORTUNE_SEEKER + "\">Othell Fortune Seeker</button>");
 				}
 				htmltext = getHtm(player, "34584-2.html").replace("%CLASS_LIST%", sb.toString());
 				break;
@@ -166,12 +173,12 @@ public class Eraton extends AbstractNpcAI
 			case ("ERATON_YUL"):
 			{
 				final StringBuilder sb = new StringBuilder();
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.YUL_SAGITTARIUS + "\">YUL_SAGITTARIUS</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.YUL_MOONLIGHT_SENTINEL + "\">YUL_MOONLIGHT_SENTINEL</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.YUL_GHOST_SENTINEL + "\">YUL_GHOST_SENTINEL</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.YUL_SAGITTARIUS + "\">Yul Sagittarius</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.YUL_MOONLIGHT_SENTINEL + "\">Yul Moonlight Sentinel</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.YUL_GHOST_SENTINEL + "\">Yul Ghost Sentinel</button>");
 				if ((player.getRace() == Race.KAMAEL) && player.getAppearance().isFemale())
 				{
-					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.YUL_TRICKSTER + "\">YUL_TRICKSTER</button>");
+					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.YUL_TRICKSTER + "\">Yul Trickster</button>");
 				}
 				htmltext = getHtm(player, "34584-2.html").replace("%CLASS_LIST%", sb.toString());
 				break;
@@ -179,14 +186,14 @@ public class Eraton extends AbstractNpcAI
 			case ("ERATON_FEOH"):
 			{
 				final StringBuilder sb = new StringBuilder();
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.FEOH_ARCHMAGE + "\">FEOH_ARCHMAGE</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.FEOH_SOULTAKER + "\">FEOH_SOULTAKER</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.FEOH_MYSTIC_MUSE + "\">FEOH_MYSTIC_MUSE</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.FEOH_STORM_SCREAMER + "\">FEOH_STORM_SCREAMER</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.FEOH_SOUL_HOUND + "\">FEOH_SOUL_HOUND</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.FEOH_ARCHMAGE + "\">Feoh Archmage</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.FEOH_SOULTAKER + "\">Feoh Soultaker</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.FEOH_MYSTIC_MUSE + "\">Feoh Mystic Muse</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.FEOH_STORM_SCREAMER + "\">Feoh Storm Screamer</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.FEOH_SOUL_HOUND + "\">Feoh SoulHound</button>");
 				if (player.getRace() == Race.ERTHEIA)
 				{
-					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.SAYHA_SEER + "\">SAYHA_SEER</button>");
+					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.SAYHA_SEER + "\">Sayha's Seer</button>");
 				}
 				htmltext = getHtm(player, "34584-2.html").replace("%CLASS_LIST%", sb.toString());
 				break;
@@ -194,13 +201,13 @@ public class Eraton extends AbstractNpcAI
 			case ("ERATON_ISS"):
 			{
 				final StringBuilder sb = new StringBuilder();
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.ISS_HIEROPHANT + "\">ISS_HIEROPHANT</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.ISS_SWORD_MUSE + "\">ISS_SWORD_MUSE</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.ISS_SPECTRAL_DANCER + "\">ISS_SPECTRAL_DANCER</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.ISS_DOOMCRYER + "\">ISS_DOOMCRYER</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.ISS_HIEROPHANT + "\">Iss Hierophant</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.ISS_SWORD_MUSE + "\">Iss Sword Muse</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.ISS_SPECTRAL_DANCER + "\">Iss Spectral Dancer</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.ISS_DOOMCRYER + "\">Iss Doomcryer</button>");
 				if (player.getRace() == Race.ORC)
 				{
-					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.ISS_DOMINATOR + "\">ISS_DOMINATOR</button>");
+					sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.ISS_DOMINATOR + "\">Iss Dominator</button>");
 				}
 				htmltext = getHtm(player, "34584-2.html").replace("%CLASS_LIST%", sb.toString());
 				break;
@@ -208,24 +215,24 @@ public class Eraton extends AbstractNpcAI
 			case ("ERATON_WYNN"):
 			{
 				final StringBuilder sb = new StringBuilder();
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.WYNN_ARCANA_LORD + "\">WYNN_ARCANA_LORD</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.WYNN_ELEMENTAL_MASTER + "\">WYNN_ELEMENTAL_MASTER</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.WYNN_SPECTRAL_MASTER + "\">WYNN_SPECTRAL_MASTER</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.WYNN_ARCANA_LORD + "\">Wynn Arcana Lord</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.WYNN_ELEMENTAL_MASTER + "\">Wynn Elemental Master</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.WYNN_SPECTRAL_MASTER + "\">Wynn Spectral Master</button>");
 				htmltext = getHtm(player, "34584-2.html").replace("%CLASS_LIST%", sb.toString());
 				break;
 			}
 			case ("ERATON_AEORE"):
 			{
 				final StringBuilder sb = new StringBuilder();
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.AEORE_CARDINAL + "\">AEORE_CARDINAL</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.AEORE_EVA_SAINT + "\">AEORE_EVA_SAINT</button>");
-				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + ClassId.AEORE_SHILLIEN_SAINT + "\">AEORE_SHILLIEN_SAINT</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.AEORE_CARDINAL + "\">Aeore Cardinal</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.AEORE_EVA_SAINT + "\">Aeore Eva Saint</button>");
+				sb.append("<button align=\"LEFT\" icon=\"NORMAL\" action=\"bypass -h Quest Eraton ERATON_" + PlayerClass.AEORE_SHILLIEN_SAINT + "\">Aeore Shillien Saint</button>");
 				htmltext = getHtm(player, "34584-2.html").replace("%CLASS_LIST%", sb.toString());
 				break;
 			}
 			default:
 			{
-				final ClassId classId = ClassId.valueOf(event.replace("ERATON_", ""));
+				final PlayerClass classId = PlayerClass.valueOf(event.replace("ERATON_", ""));
 				if (classId != null)
 				{
 					final StringBuilder sb = new StringBuilder();
@@ -267,7 +274,7 @@ public class Eraton extends AbstractNpcAI
 					player.sendPacket(new NpcHtmlMessage(getHtm(player, "34584-4.html").replace("%required_item%", ITEM_NAME_PATTERN).replace("%required_item_count%", String.valueOf(STONE_OF_DESTINY.getCount()))));
 					return;
 				}
-				if ((player.getDualClass() != null) && (player.getDualClass().getClassId() == classId))
+				if ((player.getDualClass() != null) && (player.getDualClass().getId() == classId))
 				{
 					player.sendPacket(new NpcHtmlMessage(getHtm(player, "34584-6.html").replace("%s1%", "Main").replace("%s2%", "Dual")));
 					return;
@@ -297,11 +304,16 @@ public class Eraton extends AbstractNpcAI
 				
 				if (player.getOriginalClass() == null)
 				{
-					player.setOriginalClass(player.getClassId());
+					player.setOriginalClass(player.getPlayerClass());
 				}
 				takeItem(player, STONE_OF_DESTINY);
 				takeItem(player, getCloakItemId(player));
 				
+				player.abortCast();
+				player.stopCubics();
+				player.stopAllEffects();
+				player.getEffectList().stopAllToggles();
+				player.getEffectList().stopAllEffectsWithoutExclusions(false, false); // ReplaceSkillBySkill should stop here.
 				if (Config.ERATON_RETAINED_SKILLS.isEmpty())
 				{
 					player.removeAllSkills();
@@ -316,10 +328,10 @@ public class Eraton extends AbstractNpcAI
 						}
 					}
 				}
-				player.getEffectList().stopAllEffectsWithoutExclusions(false, false);
+				player.getEffectList().stopAllEffectsWithoutExclusions(false, false); // After removal of skills.
 				
 				// Stop auto use.
-				for (Shortcut shortcut : player.getAllShortCuts())
+				for (Shortcut shortcut : player.getAllShortcuts())
 				{
 					if (!shortcut.isAutoUse())
 					{
@@ -360,11 +372,7 @@ public class Eraton extends AbstractNpcAI
 					}
 				}
 				
-				player.abortCast();
-				player.stopAllEffectsExceptThoseThatLastThroughDeath();
-				player.stopAllEffects();
-				player.stopCubics();
-				player.setClassId(classId);
+				player.setPlayerClass(classId);
 				player.setBaseClass(player.getActiveClass());
 				player.setAbilityPointsUsed(0);
 				player.storeMe();
@@ -390,7 +398,7 @@ public class Eraton extends AbstractNpcAI
 					final long warehouseCount = (player.getWarehouse().getItemByItemId(CHAOS_POMANDER.getId())).getCount();
 					if (warehouseCount > 0)
 					{
-						player.getWarehouse().destroyItemByItemId("Eraton", CHAOS_POMANDER.getId(), warehouseCount, player, null);
+						player.getWarehouse().destroyItemByItemId(ItemProcessType.FEE, CHAOS_POMANDER.getId(), warehouseCount, player, null);
 					}
 				}
 				if (hasAtLeastOneQuestItem(player, CHAOS_POMANDER.getId()))
@@ -411,6 +419,7 @@ public class Eraton extends AbstractNpcAI
 				giveItems(player, getCloakItemId(player));
 				giveItems(player, CHAOS_POMANDER);
 				player.sendPacket(new SocialAction(player.getObjectId(), 20));
+				Disconnection.of(player).defaultSequence(LeaveWorld.STATIC_PACKET);
 				break;
 			}
 		}
@@ -418,7 +427,7 @@ public class Eraton extends AbstractNpcAI
 	
 	private ItemHolder getCloakItemId(Player player)
 	{
-		switch (player.getClassId())
+		switch (player.getPlayerClass())
 		{
 			case SIGEL_PHOENIX_KNIGHT:
 			case SIGEL_HELL_KNIGHT:

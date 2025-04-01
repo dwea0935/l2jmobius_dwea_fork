@@ -16,16 +16,16 @@
  */
 package quests.Q10332_ToughRoad;
 
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
 import quests.Q10331_StartOfFate.Q10331_StartOfFate;
@@ -138,7 +138,7 @@ public class Q10332_ToughRoad extends Quest
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -152,6 +152,5 @@ public class Q10332_ToughRoad extends Quest
 				startQuestTimer("SCREEN_MSG", 11000, null, player);
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 }

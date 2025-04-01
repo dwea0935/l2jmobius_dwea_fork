@@ -56,12 +56,12 @@ public class TombStone extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if ((world == null) || (world.getTemplateId() != ValakasTemple.VALAKAS_TEMPLE_INSTANCE_ID))
 		{
-			return super.onSpawn(npc);
+			return;
 		}
 		
 		npc.setDisplayEffect(TOMB_100);
@@ -69,23 +69,21 @@ public class TombStone extends AbstractNpcAI
 		npc.setTargetable(false);
 		npc.setImmobilized(true);
 		DUMMY_STONE_NPC.put(world.getId(), npc);
-		
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if ((world == null) || (world.getTemplateId() != ValakasTemple.VALAKAS_TEMPLE_INSTANCE_ID))
 		{
-			return super.onSpawn(npc);
+			return;
 		}
 		
 		if (world.getStatus() != ValakasTemple.KILL_TOMB)
 		{
 			npc.setImmobilized(true);
-			return null;
+			return;
 		}
 		
 		final Npc dummyStone = DUMMY_STONE_NPC.get(world.getId());
@@ -109,17 +107,15 @@ public class TombStone extends AbstractNpcAI
 				break;
 			}
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if ((world == null) || (world.getTemplateId() != ValakasTemple.VALAKAS_TEMPLE_INSTANCE_ID))
 		{
-			return super.onSpawn(npc);
+			return;
 		}
 		
 		final Npc dummyStone = DUMMY_STONE_NPC.get(world.getId());
@@ -128,8 +124,6 @@ public class TombStone extends AbstractNpcAI
 		dummyStone.deleteMe();
 		world.getParameters().set(DUMMY_TOMB_STATE, TOMB_000);
 		world.setStatus(ValakasTemple.GOTO_DUMMY_IFRIT);
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

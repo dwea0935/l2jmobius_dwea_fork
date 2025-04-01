@@ -16,9 +16,9 @@
  */
 package quests.Q00172_NewHorizons;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -42,7 +42,7 @@ public class Q00172_NewHorizons extends Quest
 	
 	public Q00172_NewHorizons()
 	{
-		super(172);
+		super(172, "New Horizons");
 		addStartNpc(ZENYA);
 		addTalkId(ZENYA, RAGARA);
 	}

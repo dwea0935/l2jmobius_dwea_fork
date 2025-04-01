@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="48700" name="Red Libra Entrance Pass - Embryo Command Post" type="EtcItem">
 		<!-- An extra pass to a daily instance zone from the Red Libra Guild. Double-click to reset the instance zone timer for the Embryo Command Post. Can only be used when on a cooldown to the instance zone. Can only be used once a day outside of the dungeon. Duration: 4 h. -->
@@ -123,7 +123,7 @@
 		<set name="etcitem_type" val="SCROLL" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39344" level="1" /> <!-- "Red Libra Specialty - Fishing XP Bonus -->
+			<skill id="39344" level="1" /> <!-- Red Libra Specialty - Fishing XP Bonus -->
 		</skills>
 	</item>
 	<item id="48708" name="Chronicle Token (30-day) Box" additionalName="Not in Use" type="EtcItem">
@@ -625,7 +625,7 @@
 		<set name="is_event_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39347" level="1" /> <!-- Glowing Dragon's Attribute Potion -->
+			<skill id="39347" level="1" /> <!-- Glowing Dragon's Attribute Potion (XP) -->
 		</skills>
 	</item>
 	<item id="48756" name="+6 Shiny Elemental Shirt" additionalName="30-day" type="Armor">
@@ -709,7 +709,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="35212" level="1" /> <!-- Talisman - Battle: Cancel Hide -->
+			<skill id="35212" level="1" /> <!-- Talisman of Battle - Cancel Hide -->
 		</skills>
 	</item>
 	<item id="48764" name="Talisman - Battle: Cancel Hide (3-day)" type="Armor">
@@ -725,7 +725,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="35212" level="1" /> <!-- Talisman - Battle: Cancel Hide -->
+			<skill id="35212" level="1" /> <!-- Talisman of Battle - Cancel Hide -->
 		</skills>
 	</item>
 	<item id="48765" name="Cat Outfit" type="Armor">
@@ -759,8 +759,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18814" level="7" /> <!-- Topaz -->
-			<skill id="17701" level="7" /> <!-- Topaz - Spiritshot -->
+			<skill id="18814" level="7" /> <!-- Greater Topaz -->
+			<skill id="17701" level="7" /> <!-- Greater Topaz - Spiritshot -->
 		</skills>
 	</item>
 	<item id="48768" name="Greater Topaz" additionalName="Lv. 3" type="Armor">
@@ -773,8 +773,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18814" level="8" /> <!-- Topaz -->
-			<skill id="17701" level="8" /> <!-- Topaz - Spiritshot -->
+			<skill id="18814" level="8" /> <!-- Greater Topaz -->
+			<skill id="17701" level="8" /> <!-- Greater Topaz - Spiritshot -->
 		</skills>
 	</item>
 	<item id="48769" name="Greater Topaz" additionalName="Lv. 4" type="Armor">
@@ -787,8 +787,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18814" level="9" /> <!-- Topaz -->
-			<skill id="17701" level="9" /> <!-- Topaz - Spiritshot -->
+			<skill id="18814" level="9" /> <!-- Greater Topaz -->
+			<skill id="17701" level="9" /> <!-- Greater Topaz - Spiritshot -->
 		</skills>
 	</item>
 	<item id="48770" name="Greater Topaz" additionalName="Lv. 5" type="Armor">
@@ -801,8 +801,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18814" level="10" /> <!-- Topaz -->
-			<skill id="17701" level="10" /> <!-- Topaz - Spiritshot -->
+			<skill id="18814" level="10" /> <!-- Greater Topaz -->
+			<skill id="17701" level="10" /> <!-- Greater Topaz - Spiritshot -->
 		</skills>
 	</item>
 	<item id="48771" name="Greater Ruby" additionalName="Lv. 2" type="Armor">
@@ -817,7 +817,7 @@
 		<skills>
 			<skill id="18715" level="1" /> <!-- Greater Ruby -->
 			<skill id="18716" level="1" /> <!-- Greater Ruby -->
-			<skill id="18717" level="7" /> <!-- Ruby -->
+			<skill id="18717" level="7" /> <!-- Greater Ruby -->
 		</skills>
 	</item>
 	<item id="48772" name="Greater Ruby" additionalName="Lv. 3" type="Armor">
@@ -832,7 +832,7 @@
 		<skills>
 			<skill id="18715" level="1" /> <!-- Greater Ruby -->
 			<skill id="18716" level="1" /> <!-- Greater Ruby -->
-			<skill id="18717" level="8" /> <!-- Ruby -->
+			<skill id="18717" level="8" /> <!-- Greater Ruby -->
 		</skills>
 	</item>
 	<item id="48773" name="Greater Ruby" additionalName="Lv. 4" type="Armor">
@@ -847,7 +847,7 @@
 		<skills>
 			<skill id="18715" level="1" /> <!-- Greater Ruby -->
 			<skill id="18716" level="1" /> <!-- Greater Ruby -->
-			<skill id="18717" level="9" /> <!-- Ruby -->
+			<skill id="18717" level="9" /> <!-- Greater Ruby -->
 		</skills>
 	</item>
 	<item id="48774" name="Greater Ruby" additionalName="Lv. 5" type="Armor">
@@ -862,7 +862,7 @@
 		<skills>
 			<skill id="18715" level="1" /> <!-- Greater Ruby -->
 			<skill id="18716" level="1" /> <!-- Greater Ruby -->
-			<skill id="18717" level="10" /> <!-- Ruby -->
+			<skill id="18717" level="10" /> <!-- Greater Ruby -->
 		</skills>
 	</item>
 	<item id="48775" name="Greater Sapphire" additionalName="Lv. 2" type="Armor">
@@ -877,7 +877,7 @@
 		<skills>
 			<skill id="18718" level="1" /> <!-- Greater Sapphire -->
 			<skill id="18718" level="2" /> <!-- Greater Sapphire -->
-			<skill id="18719" level="7" /> <!-- Sapphire -->
+			<skill id="18719" level="7" /> <!-- Greater Sapphire -->
 		</skills>
 	</item>
 	<item id="48776" name="Greater Sapphire" additionalName="Lv. 3" type="Armor">
@@ -892,7 +892,7 @@
 		<skills>
 			<skill id="18718" level="1" /> <!-- Greater Sapphire -->
 			<skill id="18718" level="2" /> <!-- Greater Sapphire -->
-			<skill id="18719" level="8" /> <!-- Sapphire -->
+			<skill id="18719" level="8" /> <!-- Greater Sapphire -->
 		</skills>
 	</item>
 	<item id="48777" name="Greater Sapphire" additionalName="Lv. 4" type="Armor">
@@ -907,7 +907,7 @@
 		<skills>
 			<skill id="18718" level="1" /> <!-- Greater Sapphire -->
 			<skill id="18718" level="2" /> <!-- Greater Sapphire -->
-			<skill id="18719" level="9" /> <!-- Sapphire -->
+			<skill id="18719" level="9" /> <!-- Greater Sapphire -->
 		</skills>
 	</item>
 	<item id="48778" name="Greater Sapphire" additionalName="Lv. 5" type="Armor">
@@ -922,7 +922,7 @@
 		<skills>
 			<skill id="18718" level="1" /> <!-- Greater Sapphire -->
 			<skill id="18718" level="2" /> <!-- Greater Sapphire -->
-			<skill id="18719" level="10" /> <!-- Sapphire -->
+			<skill id="18719" level="10" /> <!-- Greater Sapphire -->
 		</skills>
 	</item>
 	<item id="48779" name="Greater Obsidian" additionalName="Lv. 2" type="Armor">
@@ -935,9 +935,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18720" level="1" /> <!-- Greater Obsidian -->
-			<skill id="18720" level="2" /> <!-- Greater Obsidian -->
-			<skill id="17704" level="7" /> <!-- Obsidian -->
+			<skill id="18720" level="1" /> <!-- Greater Obsidian - Cancel Target -->
+			<skill id="18720" level="2" /> <!-- Superior Obsidian - Cancel Target -->
+			<skill id="17704" level="7" /> <!-- Greater Obsidian -->
 		</skills>
 	</item>
 	<item id="48780" name="Greater Obsidian" additionalName="Lv. 3" type="Armor">
@@ -950,9 +950,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18720" level="1" /> <!-- Greater Obsidian -->
-			<skill id="18720" level="2" /> <!-- Greater Obsidian -->
-			<skill id="17704" level="8" /> <!-- Obsidian -->
+			<skill id="18720" level="1" /> <!-- Greater Obsidian - Cancel Target -->
+			<skill id="18720" level="2" /> <!-- Superior Obsidian - Cancel Target -->
+			<skill id="17704" level="8" /> <!-- Greater Obsidian -->
 		</skills>
 	</item>
 	<item id="48781" name="Greater Obsidian" additionalName="Lv. 4" type="Armor">
@@ -965,9 +965,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18720" level="1" /> <!-- Greater Obsidian -->
-			<skill id="18720" level="2" /> <!-- Greater Obsidian -->
-			<skill id="17704" level="9" /> <!-- Obsidian -->
+			<skill id="18720" level="1" /> <!-- Greater Obsidian - Cancel Target -->
+			<skill id="18720" level="2" /> <!-- Superior Obsidian - Cancel Target -->
+			<skill id="17704" level="9" /> <!-- Greater Obsidian -->
 		</skills>
 	</item>
 	<item id="48782" name="Greater Obsidian" additionalName="Lv. 5" type="Armor">
@@ -980,9 +980,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18720" level="1" /> <!-- Greater Obsidian -->
-			<skill id="18720" level="2" /> <!-- Greater Obsidian -->
-			<skill id="17704" level="10" /> <!-- Obsidian -->
+			<skill id="18720" level="1" /> <!-- Greater Obsidian - Cancel Target -->
+			<skill id="18720" level="2" /> <!-- Superior Obsidian - Cancel Target -->
+			<skill id="17704" level="10" /> <!-- Greater Obsidian -->
 		</skills>
 	</item>
 	<item id="48783" name="Greater Opal" additionalName="Lv. 2" type="Armor">
@@ -995,7 +995,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17705" level="7" /> <!-- Opal -->
+			<skill id="17705" level="7" /> <!-- Greater Opal -->
 		</skills>
 	</item>
 	<item id="48784" name="Greater Opal" additionalName="Lv. 3" type="Armor">
@@ -1008,7 +1008,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17705" level="8" /> <!-- Opal -->
+			<skill id="17705" level="8" /> <!-- Greater Opal -->
 		</skills>
 	</item>
 	<item id="48785" name="Greater Opal" additionalName="Lv. 4" type="Armor">
@@ -1021,7 +1021,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17705" level="9" /> <!-- Opal -->
+			<skill id="17705" level="9" /> <!-- Greater Opal -->
 		</skills>
 	</item>
 	<item id="48786" name="Greater Opal" additionalName="Lv. 5" type="Armor">
@@ -1034,7 +1034,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17705" level="10" /> <!-- Opal -->
+			<skill id="17705" level="10" /> <!-- Greater Opal -->
 		</skills>
 	</item>
 	<item id="48787" name="Greater Emerald" additionalName="Lv. 2" type="Armor">
@@ -1047,7 +1047,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17825" level="7" /> <!-- Emerald -->
+			<skill id="17825" level="7" /> <!-- Greater Emerald -->
 		</skills>
 	</item>
 	<item id="48788" name="Greater Emerald" additionalName="Lv. 3" type="Armor">
@@ -1060,7 +1060,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17825" level="8" /> <!-- Emerald -->
+			<skill id="17825" level="8" /> <!-- Greater Emerald -->
 		</skills>
 	</item>
 	<item id="48789" name="Greater Emerald" additionalName="Lv. 4" type="Armor">
@@ -1073,7 +1073,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17825" level="9" /> <!-- Emerald -->
+			<skill id="17825" level="9" /> <!-- Greater Emerald -->
 		</skills>
 	</item>
 	<item id="48790" name="Greater Emerald" additionalName="Lv. 5" type="Armor">
@@ -1086,7 +1086,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17825" level="10" /> <!-- Emerald -->
+			<skill id="17825" level="10" /> <!-- Greater Emerald -->
 		</skills>
 	</item>
 	<item id="48791" name="Greater Aquamarine" additionalName="Lv. 2" type="Armor">
@@ -1099,7 +1099,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17823" level="7" /> <!-- Aquamarine -->
+			<skill id="17823" level="7" /> <!-- Greater Aquamarine -->
 		</skills>
 	</item>
 	<item id="48792" name="Greater Aquamarine" additionalName="Lv. 3" type="Armor">
@@ -1112,7 +1112,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17823" level="8" /> <!-- Aquamarine -->
+			<skill id="17823" level="8" /> <!-- Greater Aquamarine -->
 		</skills>
 	</item>
 	<item id="48793" name="Greater Aquamarine" additionalName="Lv. 4" type="Armor">
@@ -1125,7 +1125,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17823" level="9" /> <!-- Aquamarine -->
+			<skill id="17823" level="9" /> <!-- Greater Aquamarine -->
 		</skills>
 	</item>
 	<item id="48794" name="Greater Aquamarine" additionalName="Lv. 5" type="Armor">
@@ -1138,7 +1138,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17823" level="10" /> <!-- Aquamarine -->
+			<skill id="17823" level="10" /> <!-- Greater Aquamarine -->
 		</skills>
 	</item>
 	<item id="48795" name="Greater Diamond" additionalName="Lv. 2" type="Armor">
@@ -1151,7 +1151,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17708" level="7" /> <!-- Diamond -->
+			<skill id="17708" level="7" /> <!-- Greater Diamond -->
 		</skills>
 	</item>
 	<item id="48796" name="Greater Diamond" additionalName="Lv. 3" type="Armor">
@@ -1164,7 +1164,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17708" level="8" /> <!-- Diamond -->
+			<skill id="17708" level="8" /> <!-- Greater Diamond -->
 		</skills>
 	</item>
 	<item id="48797" name="Greater Diamond" additionalName="Lv. 4" type="Armor">
@@ -1177,7 +1177,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17708" level="9" /> <!-- Diamond -->
+			<skill id="17708" level="9" /> <!-- Greater Diamond -->
 		</skills>
 	</item>
 	<item id="48798" name="Greater Diamond" additionalName="Lv. 5" type="Armor">
@@ -1190,7 +1190,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17708" level="10" /> <!-- Diamond -->
+			<skill id="17708" level="10" /> <!-- Greater Diamond -->
 		</skills>
 	</item>
 	<item id="48799" name="Greater Pearl" additionalName="Lv. 2" type="Armor">
@@ -1203,7 +1203,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17709" level="7" /> <!-- Pearl -->
+			<skill id="17709" level="7" /> <!-- Greater Pearl -->
 		</skills>
 	</item>
 </list>

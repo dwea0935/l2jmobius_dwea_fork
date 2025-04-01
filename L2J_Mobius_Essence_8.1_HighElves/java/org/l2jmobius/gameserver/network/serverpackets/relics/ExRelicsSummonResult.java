@@ -20,20 +20,17 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets.relics;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.holders.RelicCouponHolder;
+import org.l2jmobius.gameserver.data.holders.RelicDataHolder;
 import org.l2jmobius.gameserver.data.xml.RelicCouponData;
 import org.l2jmobius.gameserver.data.xml.RelicData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PlayerRelicData;
-import org.l2jmobius.gameserver.model.holders.RelicCouponHolder;
-import org.l2jmobius.gameserver.model.holders.RelicDataHolder;
-import org.l2jmobius.gameserver.model.variables.AccountVariables;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerRelicData;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -41,7 +38,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
- * @author CostyKiller, Mobius
+ * @author CostyKiller, Mobius, fruit
  */
 public class ExRelicsSummonResult extends ServerPacket
 {
@@ -89,34 +86,43 @@ public class ExRelicsSummonResult extends ServerPacket
 				}
 				
 				final PlayerRelicData newRelic = new PlayerRelicData(obtainedRelicId, 0, 0, 0, 0);
-				newRelic.setRelicCount(1);
-				newRelic.setRelicSummonTime(System.currentTimeMillis());
 				if (existingRelic != null)
 				{
-					// Check indexes of relics with same id to avoid duplicate 300+ index.
-					final List<Integer> unconfirmedRelics = new ArrayList<>();
-					final Collection<PlayerRelicData> storedRelics2 = _player.getRelics();
-					for (PlayerRelicData relic2 : storedRelics2)
-					{
-						if ((relic2.getRelicIndex() >= 300) && (relic2.getRelicId() == existingRelic.getRelicId())) // Unconfirmed relics are set on summon to index 300.
-						{
-							unconfirmedRelics.add(relic2.getRelicIndex());
-						}
-					}
-					
-					newRelic.setRelicIndex(300 + unconfirmedRelics.size());
-					
-					// Increase the unconfirmed relics variable count.
-					_player.getAccountVariables().set(AccountVariables.UNCONFIRMED_RELICS_COUNT, _player.getAccountVariables().getInt(AccountVariables.UNCONFIRMED_RELICS_COUNT, 0) + 1);
-					_player.getAccountVariables().storeMe();
-					
-					if (Config.RELIC_SUMMON_ANNOUNCE)
+					existingRelic.setRelicCount(existingRelic.getRelicCount() + 1);
+					_player.storeRelics();
+					_player.sendPacket(new ExRelicsUpdateList(1, existingRelic.getRelicId(), 0, 1)); // Update confirmed relic list with new relic.
+					// Announce the existing obtained relic.
+					if (Config.RELIC_SUMMON_ANNOUNCE && !Config.RELIC_ANNOUNCE_ONLY_A_B_GRADE)
 					{
 						Broadcast.toAllOnlinePlayers(new ExRelicsAnnounce(_player, newRelic.getRelicId()));
 					}
+					// Check if relic is already registered in some collection.
+					if (!_player.isRelicRegistered(existingRelic.getRelicId(), existingRelic.getRelicLevel()))
+					{
+						// Auto-Add to relic collections on summon.
+						_player.sendPacket(new ExRelicsCollectionUpdate(_player, existingRelic.getRelicId(), existingRelic.getRelicLevel())); // Update collection list.
+					}
 				}
-				storedRelics.add(newRelic);
-				
+				else
+				{
+					storedRelics.add(newRelic);
+					_player.storeRelics();
+					_player.sendPacket(new ExRelicsUpdateList(1, newRelic.getRelicId(), 0, 0)); // Update confirmed relic list with new relic.
+					if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
+					{
+						_player.sendMessage("2.New relic id: " + newRelic.getRelicId() + " was added to relic list.");
+					}
+					if (Config.RELIC_SUMMON_ANNOUNCE && !Config.RELIC_ANNOUNCE_ONLY_A_B_GRADE)
+					{
+						// Announce the new obtained relic
+						Broadcast.toAllOnlinePlayers(new ExRelicsAnnounce(_player, newRelic.getRelicId()));
+					}
+					if (!_player.isRelicRegistered(newRelic.getRelicId(), newRelic.getRelicLevel()))
+					{
+						// Auto-Add to relic collections on summon.
+						_player.sendPacket(new ExRelicsCollectionUpdate(_player, newRelic.getRelicId(), newRelic.getRelicLevel())); // Update collection list.
+					}
+				}
 				_player.storeRelics();
 				_player.sendPacket(new ExRelicsList(_player)); // Update confirmed relic list relics count.
 				_player.sendPacket(new ExRelicsExchangeList(_player)); // Update relic exchange/confirm list.
@@ -134,181 +140,91 @@ public class ExRelicsSummonResult extends ServerPacket
 				_player.sendMessage("I = " + i);
 			}
 			
-			// Relic Summon Coupon (relic of No-grade / D-grade / C-grade).
-			if (Config.RELIC_SUMMON_COUPONS.contains(_relicCouponItemId))
+			// Doll Summon Coupon (Common - Enhanced - Superior).
+			if (Config.COMMON_TO_SUPERIOR_DOLL_SUMMON_COUPONS.contains(_relicCouponItemId))
 			{
 				final int relicChance = Rnd.get(100);
-				final int shiningRelicChance = Rnd.get(100);
-				if (relicChance <= Config.RELIC_SUMMON_COMMON_COUPON_CHANCE_C_GRADE)
+				if (relicChance < Config.COMMON_TO_SUPERIOR_DOLL_SUPERIOR_CHANCE)
 				{
-					if (shiningRelicChance <= Config.RELIC_SUMMON_CHANCE_SHINING_C_GRADE)
-					{
-						obtainedRelicId = Config.C_GRADE_SHINING_RELICS.get(Rnd.get(Config.C_GRADE_SHINING_RELICS.size()));
-					}
-					else
-					{
-						obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size()));
-					}
+					obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size()));
 				}
-				else if (relicChance <= Config.RELIC_SUMMON_COMMON_COUPON_CHANCE_D_GRADE)
+				else if (relicChance < Config.COMMON_TO_SUPERIOR_DOLL_ENHANCED_CHANCE)
 				{
-					if (shiningRelicChance <= Config.RELIC_SUMMON_CHANCE_SHINING_D_GRADE)
-					{
-						obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size()));
-					}
-					else
-					{
-						obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size()));
-					}
+					obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size()));
 				}
 				else
 				{
 					obtainedRelicId = Config.NO_GRADE_COMMON_RELICS.get(Rnd.get(Config.NO_GRADE_COMMON_RELICS.size()));
 				}
 			}
-			// Shining Relic Summon Coupon (relics of No-grade / D-grade / C-grade / B-grade).
-			else if (Config.SHINING_RELIC_SUMMON_COUPONS.contains(_relicCouponItemId))
+			// Doll Summon Coupon (Common - Enhanced - Superior - Rare).
+			if (Config.COMMON_TO_RARE_DOLL_SUMMON_COUPONS.contains(_relicCouponItemId))
 			{
 				final int relicChance = Rnd.get(100);
-				final int shiningRelicChance = Rnd.get(100);
-				if (relicChance <= Config.RELIC_SUMMON_SHINING_COUPON_CHANCE_B_GRADE)
+				if (relicChance < Config.COMMON_TO_RARE_DOLL_RARE_CHANCE)
 				{
-					if (shiningRelicChance <= Config.RELIC_SUMMON_CHANCE_SHINING_B_GRADE)
-					{
-						obtainedRelicId = Config.B_GRADE_SHINING_RELICS.get(Rnd.get(Config.B_GRADE_SHINING_RELICS.size()));
-					}
-					else
-					{
-						obtainedRelicId = Config.B_GRADE_COMMON_RELICS.get(Rnd.get(Config.B_GRADE_COMMON_RELICS.size()));
-					}
+					obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size()));
 				}
-				else if (relicChance <= Config.RELIC_SUMMON_SHINING_COUPON_CHANCE_C_GRADE)
+				else if (relicChance < Config.COMMON_TO_RARE_DOLL_SUPERIOR_CHANCE)
 				{
-					if (shiningRelicChance <= Config.RELIC_SUMMON_CHANCE_SHINING_C_GRADE)
-					{
-						obtainedRelicId = Config.C_GRADE_SHINING_RELICS.get(Rnd.get(Config.C_GRADE_SHINING_RELICS.size()));
-					}
-					else
-					{
-						obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size()));
-					}
+					obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size()));
 				}
-				else if (relicChance <= Config.RELIC_SUMMON_SHINING_COUPON_CHANCE_D_GRADE)
+				else if (relicChance < Config.COMMON_TO_RARE_DOLL_ENHANCED_CHANCE)
 				{
-					if (shiningRelicChance <= Config.RELIC_SUMMON_CHANCE_SHINING_D_GRADE)
-					{
-						obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size()));
-					}
-					else
-					{
-						obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size()));
-					}
+					obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size()));
 				}
 				else
 				{
 					obtainedRelicId = Config.NO_GRADE_COMMON_RELICS.get(Rnd.get(Config.NO_GRADE_COMMON_RELICS.size()));
 				}
 			}
-			// C-grade Relic Summon Coupon (relics of C-grade).
-			else if (Config.C_GRADE_RELIC_SUMMON_COUPONS.contains(_relicCouponItemId))
-			{
-				final int shiningRelicChance = Rnd.get(100);
-				if (shiningRelicChance <= Config.RELIC_SUMMON_CHANCE_SHINING_C_GRADE)
-				{
-					obtainedRelicId = Config.C_GRADE_SHINING_RELICS.get(Rnd.get(Config.C_GRADE_SHINING_RELICS.size()));
-				}
-				else
-				{
-					obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size()));
-				}
-			}
-			// B-grade Relic Summon Coupon (relics of B-grade).
-			else if (Config.B_GRADE_RELIC_SUMMON_COUPONS.contains(_relicCouponItemId))
-			{
-				final int shiningRelicChance = Rnd.get(100);
-				if (shiningRelicChance <= Config.RELIC_SUMMON_CHANCE_SHINING_B_GRADE)
-				{
-					obtainedRelicId = Config.B_GRADE_SHINING_RELICS.get(Rnd.get(Config.B_GRADE_SHINING_RELICS.size()));
-				}
-				else
-				{
-					obtainedRelicId = Config.B_GRADE_COMMON_RELICS.get(Rnd.get(Config.B_GRADE_COMMON_RELICS.size()));
-				}
-			}
-			// A-grade Relic Summon Coupon (relics of A-grade).
-			else if (Config.A_GRADE_RELIC_SUMMON_COUPONS.contains(_relicCouponItemId))
-			{
-				obtainedRelicId = Config.A_GRADE_COMMON_RELICS.get(Rnd.get(Config.A_GRADE_COMMON_RELICS.size()));
-			}
-			// C-grade Relic Ticket (relics of D-grade / C-grade).
-			else if (Config.C_GRADE_RELIC_TICKETS.contains(_relicCouponItemId))
+			// Doll Summon Coupon (Enhanced - Superior).
+			if (Config.ENHANCED_TO_SUPERIOR_DOLL_SUMMON_COUPONS.contains(_relicCouponItemId))
 			{
 				final int relicChance = Rnd.get(100);
-				final int shiningRelicChance = Rnd.get(100);
-				if (relicChance < Config.RELIC_SUMMON_C_TICKET_CHANCE_C_GRADE)
+				if (relicChance < Config.ENHANCED_TO_SUPERIOR_DOLL_SUPERIOR_CHANCE)
 				{
-					obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size()));
+					obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size()));
 				}
 				else
 				{
-					if (shiningRelicChance <= Config.RELIC_SUMMON_CHANCE_SHINING_D_GRADE)
-					{
-						obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size()));
-					}
-					else
-					{
-						obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size()));
-					}
+					obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size()));
 				}
 			}
-			// B-grade Relic Ticket (relics of C-grade / B-grade).
-			else if (Config.B_GRADE_RELIC_TICKETS.contains(_relicCouponItemId))
+			// Doll Summon Coupon (Common).
+			else if (Config.COMMON_DOLL_SUMMON_COUPONS.contains(_relicCouponItemId))
 			{
-				final int relicChance = Rnd.get(100);
-				final int shiningRelicChance = Rnd.get(100);
-				if (relicChance < Config.RELIC_SUMMON_B_TICKET_CHANCE_B_GRADE)
-				{
-					if (shiningRelicChance <= Config.RELIC_SUMMON_CHANCE_SHINING_B_GRADE)
-					{
-						obtainedRelicId = Config.B_GRADE_SHINING_RELICS.get(Rnd.get(Config.B_GRADE_SHINING_RELICS.size()));
-					}
-					else
-					{
-						obtainedRelicId = Config.B_GRADE_COMMON_RELICS.get(Rnd.get(Config.B_GRADE_COMMON_RELICS.size()));
-					}
-				}
-				else
-				{
-					if (shiningRelicChance <= Config.RELIC_SUMMON_CHANCE_SHINING_C_GRADE)
-					{
-						obtainedRelicId = Config.C_GRADE_SHINING_RELICS.get(Rnd.get(Config.C_GRADE_SHINING_RELICS.size()));
-					}
-					else
-					{
-						obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size()));
-					}
-				}
+				obtainedRelicId = Config.NO_GRADE_COMMON_RELICS.get(Rnd.get(Config.NO_GRADE_COMMON_RELICS.size()));
 			}
-			// A-grade Relic Ticket (relics of B-grade / A-grade).
-			else if (Config.A_GRADE_RELIC_TICKETS.contains(_relicCouponItemId))
+			// Doll Summon Coupon (Enhanced).
+			else if (Config.ENHANCED_DOLL_SUMMON_COUPONS.contains(_relicCouponItemId))
 			{
-				final int relicChance = Rnd.get(100);
-				final int shiningRelicChance = Rnd.get(100);
-				if (relicChance < Config.RELIC_SUMMON_A_TICKET_CHANCE_A_GRADE)
-				{
-					obtainedRelicId = Config.A_GRADE_COMMON_RELICS.get(Rnd.get(Config.A_GRADE_COMMON_RELICS.size()));
-				}
-				else
-				{
-					if (shiningRelicChance < Config.RELIC_SUMMON_CHANCE_SHINING_B_GRADE)
-					{
-						obtainedRelicId = Config.B_GRADE_SHINING_RELICS.get(Rnd.get(Config.B_GRADE_SHINING_RELICS.size()));
-					}
-					else
-					{
-						obtainedRelicId = Config.B_GRADE_COMMON_RELICS.get(Rnd.get(Config.B_GRADE_COMMON_RELICS.size()));
-					}
-				}
+				obtainedRelicId = Config.D_GRADE_COMMON_RELICS.get(Rnd.get(Config.D_GRADE_COMMON_RELICS.size()));
+			}
+			// Doll Summon Coupon (Superior).
+			else if (Config.SUPERIOR_DOLL_SUMMON_COUPONS.contains(_relicCouponItemId))
+			{
+				obtainedRelicId = Config.D_GRADE_SHINING_RELICS.get(Rnd.get(Config.D_GRADE_SHINING_RELICS.size()));
+			}
+			// Doll Summon Coupon (Rare).
+			else if (Config.RARE_DOLL_SUMMON_COUPONS.contains(_relicCouponItemId))
+			{
+				obtainedRelicId = Config.C_GRADE_COMMON_RELICS.get(Rnd.get(Config.C_GRADE_COMMON_RELICS.size()));
+			}
+			// Doll Summon Coupon (Heroic).
+			else if (Config.HEROIC_DOLL_SUMMON_COUPONS.contains(_relicCouponItemId))
+			{
+				obtainedRelicId = Config.C_GRADE_SHINING_RELICS.get(Rnd.get(Config.C_GRADE_SHINING_RELICS.size()));
+			}
+			// Doll Summon Coupon (Legendary).
+			else if (Config.LEGENDARY_DOLL_SUMMON_COUPONS.contains(_relicCouponItemId))
+			{
+				obtainedRelicId = Config.B_GRADE_COMMON_RELICS.get(Rnd.get(Config.B_GRADE_COMMON_RELICS.size()));
+			}
+			// Doll Summon Coupon (Mythic).
+			else if (Config.MYTHIC_DOLL_SUMMON_COUPONS.contains(_relicCouponItemId))
+			{
+				obtainedRelicId = Config.B_GRADE_SHINING_RELICS.get(Rnd.get(Config.B_GRADE_SHINING_RELICS.size()));
 			}
 			
 			buffer.writeInt(obtainedRelicId);
@@ -331,111 +247,45 @@ public class ExRelicsSummonResult extends ServerPacket
 			if (obtainedRelicTemplate != null)
 			{
 				final PlayerRelicData newRelic = new PlayerRelicData(obtainedRelicId, 0, 0, 0, 0);
-				final int obtainedRelicGrade = obtainedRelicTemplate.getGrade();
 				if (existingRelic != null)
 				{
-					// A/B Grade relics need to be added to confirmation list first.
-					if ((obtainedRelicGrade == 4) || (obtainedRelicGrade == 5))
+					existingRelic.setRelicCount(existingRelic.getRelicCount() + 1);
+					_player.storeRelics();
+					_player.sendPacket(new ExRelicsUpdateList(1, existingRelic.getRelicId(), 0, 1)); // Update confirmed relic list with new relic.
+					if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
 					{
-						// Check indexes of relics with same id to avoid duplicate 300+ index.
-						final List<Integer> unconfirmedRelics = new ArrayList<>();
-						final Collection<PlayerRelicData> storedRelics2 = _player.getRelics();
-						for (PlayerRelicData relic2 : storedRelics2)
-						{
-							if ((relic2.getRelicIndex() >= 300) && (relic2.getRelicId() == existingRelic.getRelicId())) // Unconfirmed relics are set on summon to index 300.
-							{
-								unconfirmedRelics.add(relic2.getRelicIndex());
-							}
-						}
-						if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
-						{
-							_player.sendMessage("0.Duplicate relic indexes list: " + unconfirmedRelics);
-						}
-						newRelic.setRelicCount(1);
-						newRelic.setRelicIndex(300 + unconfirmedRelics.size());
-						newRelic.setRelicSummonTime(System.currentTimeMillis());
-						storedRelics.add(newRelic);
-						// Increase the unconfirmed relics variable count.
-						_player.getAccountVariables().set(AccountVariables.UNCONFIRMED_RELICS_COUNT, _player.getAccountVariables().getInt(AccountVariables.UNCONFIRMED_RELICS_COUNT, 0) + 1);
-						_player.getAccountVariables().storeMe();
-						_player.storeRelics();
-						_player.sendPacket(new ExRelicsExchangeList(_player)); // Update relic exchange/confirm list.
-						if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
-						{
-							_player.sendMessage("1.Duplicate relic id: " + newRelic.getRelicId() + " was added to confirmation list.");
-						}
-						if (Config.RELIC_SUMMON_ANNOUNCE)
-						{
-							// Announce new the obtained relic.
-							Broadcast.toAllOnlinePlayers(new ExRelicsAnnounce(_player, newRelic.getRelicId()));
-						}
+						_player.sendMessage("2.Existing relic id: " + existingRelic.getRelicId() + " count was updated.");
 					}
-					// Update existing relics if not A/B Grade relics.
-					else if (!((obtainedRelicGrade == 4) || (obtainedRelicGrade == 5)))
+					// Announce the existing obtained relic.
+					if (Config.RELIC_SUMMON_ANNOUNCE && !Config.RELIC_ANNOUNCE_ONLY_A_B_GRADE)
 					{
-						existingRelic.setRelicCount(existingRelic.getRelicCount() + 1);
-						_player.storeRelics();
-						_player.sendPacket(new ExRelicsUpdateList(1, existingRelic.getRelicId(), 0, 1)); // Update confirmed relic list with new relic.
-						if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
-						{
-							_player.sendMessage("2.Existing relic id: " + existingRelic.getRelicId() + " count was updated.");
-						}
-						// Announce the existing obtained relic.
-						if (Config.RELIC_SUMMON_ANNOUNCE && !Config.RELIC_ANNOUNCE_ONLY_A_B_GRADE)
-						{
-							Broadcast.toAllOnlinePlayers(new ExRelicsAnnounce(_player, existingRelic.getRelicId()));
-						}
-						// Check if relic is already registered in some collection.
-						if (!_player.isRelicRegistered(existingRelic.getRelicId(), existingRelic.getRelicLevel()))
-						{
-							// Auto-Add to relic collections on summon.
-							_player.sendPacket(new ExRelicsCollectionUpdate(_player, existingRelic.getRelicId(), existingRelic.getRelicLevel())); // Update collection list.
-						}
+						Broadcast.toAllOnlinePlayers(new ExRelicsAnnounce(_player, existingRelic.getRelicId()));
+					}
+					// Check if relic is already registered in some collection.
+					if (!_player.isRelicRegistered(existingRelic.getRelicId(), existingRelic.getRelicLevel()))
+					{
+						// Auto-Add to relic collections on summon.
+						_player.sendPacket(new ExRelicsCollectionUpdate(_player, existingRelic.getRelicId(), existingRelic.getRelicLevel())); // Update collection list.
 					}
 				}
 				else
 				{
-					// A/B Grade relics need to be confirmed before add them to relics list.
-					if ((obtainedRelicGrade == 4) || (obtainedRelicGrade == 5))
+					storedRelics.add(newRelic);
+					_player.storeRelics();
+					_player.sendPacket(new ExRelicsUpdateList(1, newRelic.getRelicId(), 0, 0)); // Update confirmed relic list with new relic.
+					if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
 					{
-						// Set Relic Index to 300 to be able to get the list of confirmation relics later.
-						newRelic.setRelicCount(1);
-						newRelic.setRelicIndex(300);
-						newRelic.setRelicSummonTime(System.currentTimeMillis());
-						storedRelics.add(newRelic);
-						_player.storeRelics();
-						_player.getAccountVariables().set(AccountVariables.UNCONFIRMED_RELICS_COUNT, _player.getAccountVariables().getInt(AccountVariables.UNCONFIRMED_RELICS_COUNT, 0) + 1);
-						_player.getAccountVariables().storeMe();
-						_player.sendPacket(new ExRelicsExchangeList(_player)); // Update relic exchange/confirm list.
-						if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
-						{
-							_player.sendMessage("1.New relic id: " + newRelic.getRelicId() + " was added to confirmation list.");
-						}
-						if (Config.RELIC_SUMMON_ANNOUNCE)
-						{
-							// Announce the new obtained relic.
-							Broadcast.toAllOnlinePlayers(new ExRelicsAnnounce(_player, newRelic.getRelicId()));
-						}
+						_player.sendMessage("2.New relic id: " + newRelic.getRelicId() + " was added to relic list.");
 					}
-					else // Add new relics if not A/B Grade relics.
+					if (Config.RELIC_SUMMON_ANNOUNCE && !Config.RELIC_ANNOUNCE_ONLY_A_B_GRADE)
 					{
-						storedRelics.add(newRelic);
-						_player.storeRelics();
-						_player.sendPacket(new ExRelicsUpdateList(1, newRelic.getRelicId(), 0, 0)); // Update confirmed relic list with new relic.
-						if (Config.RELIC_SYSTEM_DEBUG_ENABLED)
-						{
-							_player.sendMessage("2.New relic id: " + newRelic.getRelicId() + " was added to relic list.");
-						}
-						if (Config.RELIC_SUMMON_ANNOUNCE && !Config.RELIC_ANNOUNCE_ONLY_A_B_GRADE)
-						{
-							// Announce the new obtained relic
-							Broadcast.toAllOnlinePlayers(new ExRelicsAnnounce(_player, newRelic.getRelicId()));
-						}
-						if (!_player.isRelicRegistered(newRelic.getRelicId(), newRelic.getRelicLevel()))
-						{
-							// Auto-Add to relic collections on summon.
-							_player.sendPacket(new ExRelicsCollectionUpdate(_player, newRelic.getRelicId(), newRelic.getRelicLevel())); // Update collection list.
-						}
+						// Announce the new obtained relic
+						Broadcast.toAllOnlinePlayers(new ExRelicsAnnounce(_player, newRelic.getRelicId()));
+					}
+					if (!_player.isRelicRegistered(newRelic.getRelicId(), newRelic.getRelicLevel()))
+					{
+						// Auto-Add to relic collections on summon.
+						_player.sendPacket(new ExRelicsCollectionUpdate(_player, newRelic.getRelicId(), newRelic.getRelicLevel())); // Update collection list.
 					}
 				}
 				_player.storeRelics();

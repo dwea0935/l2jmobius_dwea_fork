@@ -29,15 +29,16 @@ import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.DBSpawnManager;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.DBSpawnManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -49,8 +50,7 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.MapUtil;
 
 /**
  * This class handles following admin commands: - show_spawns = shows menu - spawn_index lvl = shows menu for monsters with respective level - spawn_monster id = spawns monster id on target
@@ -206,17 +206,17 @@ public class AdminSpawn implements IAdminCommandHandler
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Cannot find instance " + instance);
+						activeChar.sendSysMessage("Cannot find instance " + instance);
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Invalid instance number.");
+					activeChar.sendSysMessage("Invalid instance number.");
 				}
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage //instance_spawns <instance_number>");
+				activeChar.sendSysMessage("Usage //instance_spawns <instance_number>");
 			}
 		}
 		else if (command.startsWith("admin_unspawnall"))
@@ -246,7 +246,7 @@ public class AdminSpawn implements IAdminCommandHandler
 					if (spawn != null)
 					{
 						spawn.stopRespawn();
-						SpawnTable.getInstance().deleteSpawn(spawn, false);
+						SpawnTable.getInstance().removeSpawn(spawn);
 					}
 				}
 			}
@@ -281,7 +281,7 @@ public class AdminSpawn implements IAdminCommandHandler
 					if (spawn != null)
 					{
 						spawn.stopRespawn();
-						SpawnTable.getInstance().deleteSpawn(spawn, false);
+						SpawnTable.getInstance().removeSpawn(spawn);
 					}
 				}
 			}
@@ -329,7 +329,7 @@ public class AdminSpawn implements IAdminCommandHandler
 				String npcId = st.nextToken();
 				
 				// If the second token is not a digit, search for the NPC template by name.
-				if (!Util.isDigit(npcId))
+				if (!StringUtil.isNumeric(npcId))
 				{
 					// Initialize the variables.
 					final StringBuilder searchParam = new StringBuilder();
@@ -422,7 +422,7 @@ public class AdminSpawn implements IAdminCommandHandler
 				
 				final String searchString = searchParam.toString().trim();
 				// If the search string is a number, use it as the NPC ID.
-				if (Util.isDigit(searchString))
+				if (StringUtil.isNumeric(searchString))
 				{
 					npcId = Integer.parseInt(searchString);
 				}
@@ -436,7 +436,7 @@ public class AdminSpawn implements IAdminCommandHandler
 				if (params.length > 2)
 				{
 					final String lastParam = params[params.length - 1];
-					if (Util.isDigit(lastParam))
+					if (StringUtil.isNumeric(lastParam))
 					{
 						teleportIndex = Integer.parseInt(lastParam);
 					}
@@ -444,7 +444,7 @@ public class AdminSpawn implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Command format is //list_spawns <npcId|npc_name> [tele_index]");
+				activeChar.sendSysMessage("Command format is //list_spawns <npcId|npc_name> [tele_index]");
 			}
 			
 			// Call the findNpcs method with the parsed NPC ID and teleport index.
@@ -458,7 +458,7 @@ public class AdminSpawn implements IAdminCommandHandler
 			if (st.hasMoreTokens())
 			{
 				final String nextToken = st.nextToken();
-				if (Util.isDigit(nextToken))
+				if (StringUtil.isNumeric(nextToken))
 				{
 					count = Integer.parseInt(nextToken);
 				}
@@ -484,8 +484,8 @@ public class AdminSpawn implements IAdminCommandHandler
 					npcsFound.put(npcId, 1);
 				}
 			}
-			BuilderUtil.sendSysMessage(activeChar, "Top " + count + " spawn count.");
-			for (Entry<Integer, Integer> entry : Util.sortByValue(npcsFound, true).entrySet())
+			activeChar.sendSysMessage("Top " + count + " spawn count.");
+			for (Entry<Integer, Integer> entry : MapUtil.sortByValue(npcsFound, true).entrySet())
 			{
 				count--;
 				if (count < 0)
@@ -493,7 +493,7 @@ public class AdminSpawn implements IAdminCommandHandler
 					break;
 				}
 				final int npcId = entry.getKey();
-				BuilderUtil.sendSysMessage(activeChar, NpcData.getInstance().getTemplate(npcId).getName() + " (" + npcId + "): " + entry.getValue());
+				activeChar.sendSysMessage(NpcData.getInstance().getTemplate(npcId).getName() + " (" + npcId + "): " + entry.getValue());
 			}
 		}
 		return true;
@@ -630,7 +630,14 @@ public class AdminSpawn implements IAdminCommandHandler
 				permanent = false;
 			}
 			
-			SpawnTable.getInstance().addNewSpawn(spawn, permanent);
+			if (permanent)
+			{
+				SpawnData.getInstance().addNewSpawn(spawn);
+			}
+			else
+			{
+				SpawnTable.getInstance().addSpawn(spawn);
+			}
 			spawn.init();
 			
 			if (!permanent || (respawnTime <= 0))
@@ -639,7 +646,7 @@ public class AdminSpawn implements IAdminCommandHandler
 			}
 			
 			spawn.getLastSpawn().broadcastInfo();
-			BuilderUtil.sendSysMessage(activeChar, "Created " + template1.getName() + " on " + target.getObjectId());
+			activeChar.sendSysMessage("Created " + template1.getName() + " on " + target.getObjectId());
 		}
 		catch (Exception e)
 		{
@@ -674,7 +681,7 @@ public class AdminSpawn implements IAdminCommandHandler
 				spawn.setInstanceId(activeChar.getInstanceId());
 			}
 			
-			SpawnTable.getInstance().addNewSpawn(spawn, true);
+			SpawnData.getInstance().addNewSpawn(spawn);
 			spawn.init();
 			
 			if (activeChar.isInInstance())
@@ -682,7 +689,7 @@ public class AdminSpawn implements IAdminCommandHandler
 				spawn.stopRespawn();
 			}
 			spawn.getLastSpawn().broadcastInfo();
-			BuilderUtil.sendSysMessage(activeChar, "Created " + template1.getName() + " on " + target.getObjectId());
+			activeChar.sendSysMessage("Created " + template1.getName() + " on " + target.getObjectId());
 		}
 		catch (Exception e)
 		{

@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * Pierce through a Shield! (734)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00734_PierceThroughAShield extends TerritoryWarSuperClass
 {
 	public Q00734_PierceThroughAShield()
 	{
-		super(734);
+		super(734, "Pierce through a shield");
 		CLASS_IDS = new int[]
 		{
 			6,
@@ -40,10 +38,10 @@ public class Q00734_PierceThroughAShield extends TerritoryWarSuperClass
 		};
 		RANDOM_MIN = 10;
 		RANDOM_MAX = 15;
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.YOU_HAVE_DEFEATED_S2_OF_S1_KNIGHTS,
-			NpcStringId.YOU_WEAKENED_THE_ENEMY_S_DEFENSE
+			"You have defeated $s2 of $s1 knights.",
+			"You weakened the enemy's defense!"
 		};
 	}
 }

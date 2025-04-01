@@ -70,8 +70,8 @@
 			<npc id="35458" x="81264" y="151728" z="-3528" heading="0" respawnTime="60sec" /> <!-- Theron - Clan Hall Gatekeeper -->
 			<npc id="35459" x="81920" y="151968" z="-3512" heading="0" respawnTime="60sec" /> <!-- Regina - Clan Hall Manager -->
 			<npc id="35460" x="81808" y="151776" z="-3528" heading="32000" respawnTime="60sec" /> <!-- Trey - Clan Hall Gatekeeper -->
-			<npc id="18424" x="82215" y="148643" z="-3416" heading="64265" respawnTime="60sec" /> <!-- Hermit -->
-			<npc id="18423" x="82194" y="148595" z="-3416" heading="2902" respawnTime="60sec" /> <!-- Flaming Sword -->
+			<npc id="18424" x="82216" y="148651" z="-3424" heading="64562" respawnTime="60sec" /> <!-- Hermit -->
+			<npc id="18423" x="82170" y="148610" z="-3396" heading="0" respawnTime="60sec" /> <!-- Flaming Sword -->
 			<npc id="30080" x="83587" y="147920" z="-3369" heading="30212" respawnTime="60sec" /> <!-- Clarissa - Gatekeeper -->
 			<npc id="34455" x="84900" y="146585" z="-3352" heading="23278" respawnTime="60sec" /> <!-- Eva's Avatar - Goddess of Water -->
 			<npc id="31690" x="82808" y="147487" z="-3472" heading="16068" respawnTime="60sec" /> <!-- Monument of Heroes -->

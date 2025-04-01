@@ -24,18 +24,18 @@ import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.model.ChanceLocation;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.npc.ChanceLocation;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.model.spawns.NpcSpawnTemplate;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -130,9 +130,9 @@ public class EnergyOfInsolence extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		if (CommonUtil.contains(ENERGY_OF_INSOLENCE_NPC_IDS, npc.getId()))
+		if (ArrayUtil.contains(ENERGY_OF_INSOLENCE_NPC_IDS, npc.getId()))
 		{
 			makeTalk(npc, true);
 			switch (npc.getId())
@@ -149,17 +149,16 @@ public class EnergyOfInsolence extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		if (CommonUtil.contains(UNIDENTIFIED_STONE_NPC_IDS, npc.getId()) && ((killer.getLevel() - npc.getLevel()) <= LEVEL_MAX_DIFF) && (getRandom(100) <= UNIDENTIFIED_STONE_DROP_RATE))
+		if (ArrayUtil.contains(UNIDENTIFIED_STONE_NPC_IDS, npc.getId()) && ((killer.getLevel() - npc.getLevel()) <= LEVEL_MAX_DIFF) && (getRandom(100) <= UNIDENTIFIED_STONE_DROP_RATE))
 		{
 			npc.dropItem(killer, UNIDENTIFIED_STONE_ITEM_ID, ENERGY_OF_INSOLENCE_DROP_COUNT);
 		}
-		if (CommonUtil.contains(ENERGY_OF_INSOLENCE_NPC_IDS, npc.getId()))
+		if (ArrayUtil.contains(ENERGY_OF_INSOLENCE_NPC_IDS, npc.getId()))
 		{
 			makeTalk(npc, false);
 			switch (npc.getId())
@@ -181,7 +180,7 @@ public class EnergyOfInsolence extends AbstractNpcAI
 				npc.dropItem(killer, ENERGY_OF_INSOLENCE_ITEM_ID, ENERGY_OF_INSOLENCE_DROP_COUNT);
 			}
 		}
-		if (CommonUtil.contains(ENERGY_OF_INSOLENCE_MINIONS, npc.getId()))
+		if (ArrayUtil.contains(ENERGY_OF_INSOLENCE_MINIONS, npc.getId()))
 		{
 			final Monster leader = npc.asMonster().getLeader();
 			if ((leader != null) && (leader.getMinionList().getSpawnedMinions().isEmpty()) && !leader.isDead())
@@ -189,7 +188,6 @@ public class EnergyOfInsolence extends AbstractNpcAI
 				makeMortal(leader);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public class ScheduleAITask implements Runnable

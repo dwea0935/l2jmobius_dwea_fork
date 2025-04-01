@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="24000" name="Agathion Virgo" additionalName="Lv. 12" type="Armor">
 		<!-- A bracelet for summoning Agathion Virgo. <Active skills>. 1. Healing Light: Restores entire party's HP/ MP/ CP with a chance to cancel debuffs. Cooldown: 10 min. 2. Balanced Power: STR/ INT/ CON/ DEX/ WIT/ MEN +1. 3. Attribute Enchant: Attribute Resistance +30. -->
@@ -16,8 +16,8 @@
 		<skills>
 			<skill id="17610" level="3" /> <!-- Release Agathion's Seal - Virgo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27349" level="12" /> <!-- Healing Light -->
 			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 		</skills>
@@ -38,7 +38,7 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27350" level="1" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -59,7 +59,7 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27350" level="2" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -80,8 +80,8 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27350" level="3" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -102,8 +102,8 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27350" level="4" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -124,8 +124,8 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27350" level="5" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -146,8 +146,8 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27350" level="6" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -168,8 +168,8 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27350" level="7" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -190,8 +190,8 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27350" level="8" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -212,8 +212,8 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27350" level="9" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -234,8 +234,8 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27350" level="10" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -256,8 +256,8 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27350" level="11" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -278,8 +278,8 @@
 		<skills>
 			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27350" level="12" /> <!-- Skipping Kid -->
 			<skill id="17623" level="1" /> <!-- Agathion Cute Trick - Capricorn -->
 		</skills>
@@ -300,7 +300,7 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27351" level="1" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -321,8 +321,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="2" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -343,8 +343,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="3" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -365,8 +365,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="4" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -387,8 +387,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="5" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -409,8 +409,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="6" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -431,8 +431,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="7" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -453,8 +453,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="8" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -475,8 +475,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="9" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -497,8 +497,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="10" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -519,8 +519,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="11" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -541,8 +541,8 @@
 		<skills>
 			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27351" level="12" /> <!-- Scale of Life -->
 			<skill id="17624" level="1" /> <!-- Agathion Cute Trick - Libra -->
 		</skills>
@@ -563,7 +563,7 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27352" level="1" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -584,8 +584,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="2" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -606,8 +606,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="3" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -628,8 +628,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="4" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -650,8 +650,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="5" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -672,8 +672,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="6" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -694,8 +694,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="7" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -716,8 +716,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="8" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -738,8 +738,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="9" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -760,8 +760,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="10" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -782,8 +782,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="11" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -804,8 +804,8 @@
 		<skills>
 			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27352" level="12" /> <!-- Rocky Camouflage -->
 			<skill id="17625" level="1" /> <!-- Agathion Cute Trick - Aries -->
 		</skills>
@@ -826,7 +826,7 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27353" level="1" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -847,8 +847,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="2" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -869,8 +869,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="3" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -891,8 +891,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="4" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -913,8 +913,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="5" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -935,8 +935,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="6" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -957,8 +957,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="7" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -979,8 +979,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="8" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -1001,8 +1001,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="9" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -1023,8 +1023,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="10" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -1045,8 +1045,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="11" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -1068,8 +1068,8 @@
 		<skills>
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
@@ -1090,8 +1090,8 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27354" level="1" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="27354" level="1" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1111,9 +1111,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="2" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="2" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1133,9 +1133,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="3" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="3" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1155,9 +1155,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="4" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="4" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1177,9 +1177,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="5" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="5" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1199,9 +1199,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="6" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="6" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1221,9 +1221,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="7" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="7" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1243,9 +1243,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="8" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="8" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1265,9 +1265,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="9" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="9" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1287,9 +1287,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="10" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="10" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1309,9 +1309,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="11" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="11" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1331,9 +1331,9 @@
 		<skills>
 			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27354" level="12" /> <!-- Maiden's Prayer -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
+			<skill id="27354" level="12" /> <!-- Nemean Lion's Defense -->
 			<skill id="17627" level="1" /> <!-- Agathion Cute Trick - Leo -->
 		</skills>
 	</item>
@@ -1353,7 +1353,7 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27355" level="1" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1374,8 +1374,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="2" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1396,8 +1396,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="3" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1418,8 +1418,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="4" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1440,8 +1440,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="5" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1462,8 +1462,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="6" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1484,8 +1484,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="7" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1506,8 +1506,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="8" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1528,8 +1528,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="9" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1550,8 +1550,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="10" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1572,8 +1572,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="11" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1594,8 +1594,8 @@
 		<skills>
 			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27355" level="12" /> <!-- Bountiful Resurrection -->
 			<skill id="17628" level="1" /> <!-- Agathion Cute Trick - Gemini -->
 		</skills>
@@ -1616,7 +1616,7 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27356" level="1" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1637,8 +1637,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="2" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1659,8 +1659,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="3" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1681,8 +1681,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="4" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1703,8 +1703,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="5" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1725,8 +1725,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="6" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1747,8 +1747,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="7" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1769,8 +1769,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="8" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1791,8 +1791,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="9" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1813,8 +1813,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="10" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1835,8 +1835,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="11" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1857,8 +1857,8 @@
 		<skills>
 			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27356" level="12" /> <!-- Scorpion's Mass Exile -->
 			<skill id="17629" level="1" /> <!-- Agathion Cute Trick - Scorpio -->
 		</skills>
@@ -1879,7 +1879,7 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27357" level="1" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -1900,8 +1900,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="2" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -1922,8 +1922,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="3" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -1944,8 +1944,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="4" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -1966,8 +1966,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="5" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -1988,8 +1988,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="6" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -2010,8 +2010,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="7" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -2032,8 +2032,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="8" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -2054,8 +2054,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="9" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -2076,8 +2076,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="10" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -2098,8 +2098,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="11" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -2120,8 +2120,8 @@
 		<skills>
 			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27357" level="12" /> <!-- Mass Binding Flood -->
 			<skill id="17630" level="1" /> <!-- Agathion Cute Trick - Aquarius -->
 		</skills>
@@ -2142,7 +2142,7 @@
 		<skills>
 			<skill id="17619" level="1" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27358" level="1" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>
@@ -2163,8 +2163,8 @@
 		<skills>
 			<skill id="17619" level="1" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27358" level="2" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>
@@ -2185,8 +2185,8 @@
 		<skills>
 			<skill id="17619" level="1" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27358" level="3" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>

@@ -21,10 +21,10 @@
 package org.l2jmobius.gameserver.network.serverpackets.newskillenchant;
 
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.data.holders.EnchantStarHolder;
 import org.l2jmobius.gameserver.data.xml.SkillEnchantData;
 import org.l2jmobius.gameserver.model.ItemInfo;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.EnchantStarHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.skill.Skill;

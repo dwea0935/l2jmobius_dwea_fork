@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="5600" type="Weapon" name="Meteor Shower - Critical Bleed">
 		<!-- <Soul Crystal Enhancement>. During a critical attack, increases probability of drawing target's blood by 42%. Effect 7. Enhances damage to a target during PvP. -->
@@ -1478,7 +1478,7 @@
 			<enchant val="0" stat="mAtk" />
 		</for>
 	</item>
-	<item id="5650" type="EtcItem" name="Seed: Alternative Dark Coda">
+	<item id="5650" type="EtcItem" name="Alternative Dark Coda Seed">
 		<!-- Plant this seed onto a monster in the Gludio area and it will bear the fruit of the Alternative Dark Coda. For best results, a level 5-15 character must plant it on a level 5-15 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1490,7 +1490,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5651" type="EtcItem" name="Seed: Alternative Red Coda">
+	<item id="5651" type="EtcItem" name="Alternative Red Coda Seed">
 		<!-- Plant this seed onto a monster in the Gludio area and it will bear the fruit of the Alternative Red Coda. For best results, a level 8-18 character must plant it on a level 8-18 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1502,7 +1502,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5652" type="EtcItem" name="Seed: Alternative Chilly Coda">
+	<item id="5652" type="EtcItem" name="Alternative Chilly Coda Seed">
 		<!-- Plant this seed onto a monster in the Gludio area and it will bear the fruit of the Alternative Chilly Coda. For best results, a level 11-21 character must plant it on a level 11-21 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1514,7 +1514,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5653" type="EtcItem" name="Seed: Alternative Blue Coda">
+	<item id="5653" type="EtcItem" name="Alternative Blue Coda Seed">
 		<!-- Plant this seed onto a monster in the Gludio area and it will bear the fruit of the Alternative Blue Coda. For best results, a level 14-24 character must plant it on a level 14-24 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1526,7 +1526,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5654" type="EtcItem" name="Seed: Alternative Golden Coda">
+	<item id="5654" type="EtcItem" name="Alternative Golden Coda Seed">
 		<!-- Plant this seed onto a monster in the Gludio area and it will bear the fruit of the Alternative Golden Coda. For best results, a level 17-27 character must plant it on a level 17-27 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1538,7 +1538,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5655" type="EtcItem" name="Seed: Alternative Lute Coda">
+	<item id="5655" type="EtcItem" name="Alternative Lute Coda Seed">
 		<!-- Plant this seed onto a monster in the Gludio area and it will bear the fruit of the Alternative Lute Coda. For best results, a level 20-30 character must plant it on a level 20-30 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1550,7 +1550,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5656" type="EtcItem" name="Seed: Alternative Desert Coda">
+	<item id="5656" type="EtcItem" name="Alternative Desert Coda Seed">
 		<!-- Plant this seed onto a monster in the Gludio area and it will bear the fruit of the Alternative Desert Coda. For best results, a level 23-33 character must plant it on a level 23-33 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1562,7 +1562,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5657" type="EtcItem" name="Seed: Alternative Blue Cobol">
+	<item id="5657" type="EtcItem" name="Alternative Blue Cobol Seed">
 		<!-- Plant this seed onto a monster in the Gludio area and it will bear the fruit of the Alternative Blue Coda. For best results, a level 32-42 character must plant it on a level 32-42 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1574,7 +1574,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5658" type="EtcItem" name="Seed: Alternative Blue Coda">
+	<item id="5658" type="EtcItem" name="Alternative Blue Coda Seed">
 		<!-- Plant this seed onto a monster in the Dion area and it will bear the fruit of the Alternative Blue Coda. For best results, a level 14-24 character must plant it on a level 14-24 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1586,7 +1586,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5659" type="EtcItem" name="Seed: Alternative Golden Coda">
+	<item id="5659" type="EtcItem" name="Alternative Golden Coda Seed">
 		<!-- Plant this seed onto a monster in the Dion area and it will bear the fruit of the Alternative Golden Coda. For best results, a level 17-27 character must plant it on a level 17-27 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1598,7 +1598,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5660" type="EtcItem" name="Seed: Alternative Lute Coda">
+	<item id="5660" type="EtcItem" name="Alternative Lute Coda Seed">
 		<!-- Plant this seed onto a monster in the Dion area and it will bear the fruit of the Alternative Lute Coda. For best results, a level 20-23 character must plant it on a level 20-23 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1610,7 +1610,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5661" type="EtcItem" name="Seed: Alternative Desert Coda">
+	<item id="5661" type="EtcItem" name="Alternative Desert Coda Seed">
 		<!-- Plant this seed onto a monster in the Dion area and it will bear the fruit of the Alternative Desert Coda. For best results, a level 23-33 character must plant it on a level 23-33 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1622,7 +1622,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5662" type="EtcItem" name="Seed: Alternative Red Cobol">
+	<item id="5662" type="EtcItem" name="Alternative Red Cobol Seed">
 		<!-- Plant this seed onto a monster in the Dion area and it will bear the fruit of the Alternative Red Cobol. For best results, a level 26-36 character must plant it on a level 26-36 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1634,7 +1634,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5663" type="EtcItem" name="Seed: Alternative Chilly Cobol">
+	<item id="5663" type="EtcItem" name="Alternative Chilly Cobol Seed">
 		<!-- Plant this seed onto a monster in the Dion area and it will bear the fruit of the Alternative Chilly Cobol. For best results, a level 29-39 character must plant it on a level 29-39 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1646,7 +1646,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5664" type="EtcItem" name="Seed: Alternative Thorn Cobol">
+	<item id="5664" type="EtcItem" name="Alternative Thorn Cobol Seed">
 		<!-- Plant this seed onto a monster in the Dion area and it will bear the fruit of the Alternative Thorn Cobol. For best results, a level 35-45 character must plant it on a level 35-45 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1658,7 +1658,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5665" type="EtcItem" name="Seed: Alternative Golden Cobol">
+	<item id="5665" type="EtcItem" name="Alternative Golden Cobol Seed">
 		<!-- Plant this seed onto a monster in the Dion area and it will bear the fruit of the Alternative Golden Cobol. For best results, a level 38-48 character must plant it on a level 38-48 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1670,7 +1670,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5666" type="EtcItem" name="Seed: Alternative Great Cobol">
+	<item id="5666" type="EtcItem" name="Alternative Great Cobol Seed">
 		<!-- Plant this seed onto a monster in the Dion area and it will bear the fruit of the Alternative Great Cobol. For best results, a level 41-51 character must plant it on a level 41-51 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1682,7 +1682,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5667" type="EtcItem" name="Seed: Alternative Red Cobol">
+	<item id="5667" type="EtcItem" name="Alternative Red Cobol Seed">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Red Cobol. For best results, a level 26-36 character must plant it on a level 26-36 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1694,7 +1694,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5668" type="EtcItem" name="Seed: Alternative Chilly Cobol">
+	<item id="5668" type="EtcItem" name="Alternative Chilly Cobol Seed">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Chilly Cobol. For best results, a level 29-39 character must plant it on a level 29-39 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1706,7 +1706,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5669" type="EtcItem" name="Seed: Alternative Blue Cobol">
+	<item id="5669" type="EtcItem" name="Alternative Blue Cobol Seed">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Blue Cobol. For best results, a level 32-42 character must plant it on a level 32-42 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1718,7 +1718,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5670" type="EtcItem" name="Seed: Alternative Thorn Cobol">
+	<item id="5670" type="EtcItem" name="Alternative Thorn Cobol Seed">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Thorn Cobol. For best results, a level 35-45 character must plant it on a level 35-45 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1730,7 +1730,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5671" type="EtcItem" name="Seed: Alternative Golden Cobol">
+	<item id="5671" type="EtcItem" name="Alternative Golden Cobol Seed">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Golden Cobol. For best results, a level 38-48 character must plant it on a level 38-48 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1742,7 +1742,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5672" type="EtcItem" name="Seed: Alternative Great Cobol">
+	<item id="5672" type="EtcItem" name="Alternative Great Cobol Seed">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Great Cobol. For best results, a level 41-51 character must plant it on a level 41-51 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1754,7 +1754,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5673" type="EtcItem" name="Seed: Alternative Red Codran">
+	<item id="5673" type="EtcItem" name="Alternative Red Codran Seed">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Red Codran. For best results, a level 44-54 character must plant it on a level 44-54 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1766,7 +1766,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5674" type="EtcItem" name="Seed: Alternative Twin Codran">
+	<item id="5674" type="EtcItem" name="Alternative Twin Codran Seed">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Twin Codran. For best results, a level 53-63 character must plant it on a level 53-63 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1778,7 +1778,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5675" type="EtcItem" name="Seed: Alternative Desert Codran">
+	<item id="5675" type="EtcItem" name="Alternative Desert Codran Seed">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Desert Codran. For best results, a level 59-69 character must plant it on a level 59-69 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1790,7 +1790,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5676" type="EtcItem" name="Seed: Alternative Dark Coda">
+	<item id="5676" type="EtcItem" name="Alternative Dark Coda Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Dark Coda. For best results, a level 5-15 character must plant it on a level 5-15 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1802,7 +1802,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5677" type="EtcItem" name="Seed: Alternative Red Coda">
+	<item id="5677" type="EtcItem" name="Alternative Red Coda Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Red Coda. For best results, a level 8-18 character must plant it on a level 8-18 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1814,7 +1814,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5678" type="EtcItem" name="Seed: Alternative Blue Coda">
+	<item id="5678" type="EtcItem" name="Alternative Blue Coda Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Blue Coda. For best results, a level 14-24 character must plant it on a level 14-24 monster. -->
 		<set name="icon" val="icon.etc_coda_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1826,7 +1826,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-1" /> <!-- Sowing -->
 	</item>
-	<item id="5679" type="EtcItem" name="Seed: Alternative Red Cobol">
+	<item id="5679" type="EtcItem" name="Alternative Red Cobol Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Red Cobol. For best results, a level 26-36 character must plant it on a level 26-36 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1838,7 +1838,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5680" type="EtcItem" name="Seed: Alternative Chilly Cobol">
+	<item id="5680" type="EtcItem" name="Alternative Chilly Cobol Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Chilly Cobol. For best results, a level 29-39 character must plant it on a level 29-39 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1850,7 +1850,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5681" type="EtcItem" name="Seed: Alternative Blue Cobol">
+	<item id="5681" type="EtcItem" name="Alternative Blue Cobol Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Blue Cobol. For best results, a level 32-42 character must plant it on a level 32-42 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1862,7 +1862,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5682" type="EtcItem" name="Seed: Alternative Thorn Cobol">
+	<item id="5682" type="EtcItem" name="Alternative Thorn Cobol Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Thorn Cobol. For best results, a level 35-45 character must plant it on a level 35-45 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1874,7 +1874,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5683" type="EtcItem" name="Seed: Alternative Sea Codran">
+	<item id="5683" type="EtcItem" name="Alternative Sea Codran Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Sea Codran. For best results, a level 45-55 character must plant it on a level 45-55 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1886,7 +1886,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5684" type="EtcItem" name="Seed: Alternative Chilly Codran">
+	<item id="5684" type="EtcItem" name="Alternative Chilly Codran Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Chilly Codran. For best results, a level 47-57 character must plant it on a level 47-57 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1898,7 +1898,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5685" type="EtcItem" name="Seed: Alternative Blue Codran">
+	<item id="5685" type="EtcItem" name="Alternative Blue Codran Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Blue Codran. For best results, a level 50-60 character must plant it on a level 50-60 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1910,7 +1910,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5686" type="EtcItem" name="Seed: Alternative Twin Codran">
+	<item id="5686" type="EtcItem" name="Alternative Twin Codran Seed">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Twin Codran. For best results, a level 53-63 character must plant it on a level 53-63 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1922,7 +1922,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5687" type="EtcItem" name="Seed: Alternative Thorn Cobol">
+	<item id="5687" type="EtcItem" name="Alternative Thorn Cobol Seed">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Thorn Cobol. For best results, a level 35-45 character must plant it on a level 35-45 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1934,7 +1934,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5688" type="EtcItem" name="Seed: Alternative Golden Cobol">
+	<item id="5688" type="EtcItem" name="Alternative Golden Cobol Seed">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Golden Cobol. For best results, a level 38-48 character must plant it on a level 38-48 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1946,7 +1946,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5689" type="EtcItem" name="Seed: Alternative Great Cobol">
+	<item id="5689" type="EtcItem" name="Alternative Great Cobol Seed">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Great Cobol. For best results, a level 41-51 character must plant it on a level 41-51 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1958,7 +1958,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5690" type="EtcItem" name="Seed: Alternative Red Codran">
+	<item id="5690" type="EtcItem" name="Alternative Red Codran Seed">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Red Codran. For best results, a level 44-54 character must plant it on a level 44-54 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1970,7 +1970,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5691" type="EtcItem" name="Seed: Alternative Chilly Codran">
+	<item id="5691" type="EtcItem" name="Alternative Chilly Codran Seed">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Chilly Codran. For best results, a level 47-57 character must plant it on a level 47-57 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1982,7 +1982,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5692" type="EtcItem" name="Seed: Alternative Blue Codran">
+	<item id="5692" type="EtcItem" name="Alternative Blue Codran Seed">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Blue Codran. For best results, a level 50-60 character must plant it on a level 50-60 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -1994,7 +1994,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5693" type="EtcItem" name="Seed: Alternative Twin Codran">
+	<item id="5693" type="EtcItem" name="Alternative Twin Codran Seed">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Twin Codran. For best results, a level 53-63 character must plant it on a level 53-63 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -2006,7 +2006,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5694" type="EtcItem" name="Seed: Alternative Great Codran">
+	<item id="5694" type="EtcItem" name="Alternative Great Codran Seed">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Great Codran. For best results, a level 56-66 character must plant it on a level 56-66 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -2018,7 +2018,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5695" type="EtcItem" name="Seed: Alternative Desert Codran">
+	<item id="5695" type="EtcItem" name="Alternative Desert Codran Seed">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Desert Codran. For best results, a level 59-69 character must plant it on a level 59-69 monster. -->
 		<set name="icon" val="icon.etc_codran_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -2030,7 +2030,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
 	</item>
-	<item id="5696" type="EtcItem" name="Seed: Alternative Chilly Cobol">
+	<item id="5696" type="EtcItem" name="Alternative Chilly Cobol Seed">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Alternative Chilly Cobol. For best results, a level 29-39 character must plant it on a level 29-39 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -2042,7 +2042,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5697" type="EtcItem" name="Seed: Alternative Blue Cobol">
+	<item id="5697" type="EtcItem" name="Alternative Blue Cobol Seed">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Alternative Blue Cobol. For best results, a level 32-42 character must plant it on a level 32-42 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -2054,7 +2054,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5698" type="EtcItem" name="Seed: Alternative Thorn Cobol">
+	<item id="5698" type="EtcItem" name="Alternative Thorn Cobol Seed">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Alternative Thorn Cobol. For best results, a level 35-45 character must plant it on a level 35-45 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />
@@ -2066,7 +2066,7 @@
 		<set name="handler" val="Seed" />
 		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
 	</item>
-	<item id="5699" type="EtcItem" name="Seed: Alternative Golden Cobol">
+	<item id="5699" type="EtcItem" name="Alternative Golden Cobol Seed">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Alternative Golden Cobol. For best results, a level 38-48 character must plant it on a level 38-48 monster. -->
 		<set name="icon" val="icon.etc_cobol_seed_i00" />
 		<set name="default_action" val="SEED" />

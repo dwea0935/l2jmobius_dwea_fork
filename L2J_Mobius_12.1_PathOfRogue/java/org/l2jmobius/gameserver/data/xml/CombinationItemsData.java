@@ -35,6 +35,7 @@ import org.l2jmobius.gameserver.model.item.combination.CombinationItemType;
 public class CombinationItemsData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(CombinationItemsData.class.getName());
+	
 	private final List<CombinationItem> _items = new ArrayList<>();
 	
 	protected CombinationItemsData()
@@ -51,23 +52,32 @@ public class CombinationItemsData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "item", itemNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "item", itemNode ->
 		{
+			// Create a CombinationItem using attributes from itemNode.
 			final CombinationItem item = new CombinationItem(new StatSet(parseAttributes(itemNode)));
+			
 			forEach(itemNode, "reward", rewardNode ->
 			{
+				// Parse reward attributes.
 				final int id = parseInteger(rewardNode.getAttributes(), "id");
 				final int count = parseInteger(rewardNode.getAttributes(), "count", 1);
 				final int enchant = parseInteger(rewardNode.getAttributes(), "enchant", 0);
 				final CombinationItemType type = parseEnum(rewardNode.getAttributes(), CombinationItemType.class, "type");
+				
+				// Add reward to the item.
 				item.addReward(new CombinationItemReward(id, count, type, enchant));
+				
+				// Log if the item template does not exist.
 				if ((id > 0) && (ItemData.getInstance().getTemplate(id) == null))
 				{
 					LOGGER.info(getClass().getSimpleName() + ": Could not find item with id " + id);
 				}
 			});
+			
+			// Add the item to the _items collection.
 			_items.add(item);
 		}));
 	}

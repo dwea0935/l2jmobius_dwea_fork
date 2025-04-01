@@ -21,17 +21,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.TamedBeast;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q00020_BringUpWithLove.Q00020_BringUpWithLove;
@@ -87,46 +86,46 @@ public class FeedableBeasts extends AbstractNpcAI
 		MAD_COW_POLYMORPH.put(21829, 21507);
 	}
 	
-	private static final NpcStringId[][] TEXT =
+	private static final String[][] TEXT =
 	{
 		{
-			NpcStringId.WHAT_DID_YOU_JUST_DO_TO_ME,
-			NpcStringId.ARE_YOU_TRYING_TO_TAME_ME_DON_T_DO_THAT,
-			NpcStringId.DON_T_GIVE_SUCH_A_THING_YOU_CAN_ENDANGER_YOURSELF,
-			NpcStringId.YUCK_WHAT_IS_THIS_IT_TASTES_TERRIBLE,
-			NpcStringId.I_M_HUNGRY_GIVE_ME_A_LITTLE_MORE_PLEASE,
-			NpcStringId.WHAT_IS_THIS_IS_THIS_EDIBLE,
-			NpcStringId.DON_T_WORRY_ABOUT_ME,
-			NpcStringId.THANK_YOU_THAT_WAS_DELICIOUS,
-			NpcStringId.I_THINK_I_AM_STARTING_TO_LIKE_YOU,
-			NpcStringId.EEEEEK_EEEEEK
+			"What did you just do to me?",
+			"Are you trying to tame me? Don't do that!",
+			"Don't give such a thing. You can endanger yourself!",
+			"Yuck! What is this? It tastes terrible!",
+			"I'm hungry. Give me a little more, please.",
+			"What is this? Is this edible?",
+			"Don't worry about me.",
+			"Thank you. That was delicious! ",
+			"I think I am starting to like you!",
+			"Eeeeek! Eeeeek!"
 		},
 		{
-			NpcStringId.DON_T_KEEP_TRYING_TO_TAME_ME_I_DON_T_WANT_TO_BE_TAMED,
-			NpcStringId.IT_IS_JUST_FOOD_TO_ME_ALTHOUGH_IT_MAY_ALSO_BE_YOUR_HAND,
-			NpcStringId.IF_I_KEEP_EATING_LIKE_THIS_WON_T_I_BECOME_FAT_CHOMP_CHOMP,
-			NpcStringId.WHY_DO_YOU_KEEP_FEEDING_ME,
-			NpcStringId.DON_T_TRUST_ME_I_M_AFRAID_I_MAY_BETRAY_YOU_LATER
+			"Don't keep trying to tame me. I don't want to be tamed.",
+			"It is just food to me. Although it may also be your hand.",
+			"If I keep eating like this, won't I become fat? *chomp chomp*",
+			"Why do you keep feeding me?",
+			"Don't trust me. I'm afraid I may betray you later."
 		},
 		{
-			NpcStringId.GRRRRR,
-			NpcStringId.YOU_BROUGHT_THIS_UPON_YOURSELF,
-			NpcStringId.I_FEEL_STRANGE_I_KEEP_HAVING_THESE_EVIL_THOUGHTS,
-			NpcStringId.ALAS_SO_THIS_IS_HOW_IT_ALL_ENDS,
-			NpcStringId.I_DON_T_FEEL_SO_GOOD_OH_MY_MIND_IS_VERY_TROUBLED
+			"Grrrrr....",
+			"You brought this upon yourself...!",
+			"I feel strange...! I keep having these evil thoughts...!",
+			"Alas... so this is how it all ends...",
+			"I don't feel so good... Oh, my mind is very troubled...!"
 		}
 	};
 	
-	private static final NpcStringId[] TAMED_TEXT =
+	private static final String[] TAMED_TEXT =
 	{
-		NpcStringId.S1_SO_WHAT_DO_YOU_THINK_IT_IS_LIKE_TO_BE_TAMED,
-		NpcStringId.S1_WHENEVER_I_SEE_SPICE_I_THINK_I_WILL_MISS_YOUR_HAND_THAT_USED_TO_FEED_IT_TO_ME,
-		NpcStringId.S1_DON_T_GO_TO_THE_VILLAGE_I_DON_T_HAVE_THE_STRENGTH_TO_FOLLOW_YOU,
-		NpcStringId.THANK_YOU_FOR_TRUSTING_ME_S1_I_HOPE_I_WILL_BE_HELPFUL_TO_YOU,
-		NpcStringId.S1_WILL_I_BE_ABLE_TO_HELP_YOU,
-		NpcStringId.I_GUESS_IT_S_JUST_MY_ANIMAL_MAGNETISM,
-		NpcStringId.TOO_MUCH_SPICY_FOOD_MAKES_ME_SWEAT_LIKE_A_BEAST,
-		NpcStringId.ANIMALS_NEED_LOVE_TOO
+		"$s1, so what do you think it is like to be tamed? ",
+		"$s1, whenever I see spice, I think I will miss your hand that used to feed it to me.",
+		"$s1, don't go to the village. I don't have the strength to follow you.",
+		"Thank you for trusting me, $s1. I hope I will be helpful to you.",
+		"$s1, will I be able to help you?",
+		"I guess it's just my animal magnetism.",
+		"Too much spicy food makes me sweat like a beast.",
+		"Animals need love too."
 	};
 	
 	private static final Map<Integer, Integer> FEED_INFO = new ConcurrentHashMap<>();
@@ -375,7 +374,7 @@ public class FeedableBeasts extends AbstractNpcAI
 			// if tamed, the mob that will spawn depends on the class type (fighter/mage) of the player!
 			if (getRandom(2) == 0)
 			{
-				if (player.getClassId().isMage())
+				if (player.getPlayerClass().isMage())
 				{
 					nextNpcId = GROWTH_CAPABLE_MONSTERS.get(npcId).getMob(food, 1, 1);
 				}
@@ -427,7 +426,7 @@ public class FeedableBeasts extends AbstractNpcAI
 		
 		// if this is finally a trained mob, then despawn any other trained mobs that the
 		// player might have and initialize the Tamed Beast.
-		if (CommonUtil.contains(TAMED_BEASTS, nextNpcId))
+		if (ArrayUtil.contains(TAMED_BEASTS, nextNpcId))
 		{
 			if ((player.getTrainedBeasts() != null) && !player.getTrainedBeasts().isEmpty())
 			{
@@ -445,13 +444,8 @@ public class FeedableBeasts extends AbstractNpcAI
 			// also, perform a rare random chat
 			if (getRandom(20) == 0)
 			{
-				final NpcStringId message = NpcStringId.getNpcStringId(getRandom(2024, 2029));
-				final NpcSay packet = new NpcSay(nextNpc, ChatType.GENERAL, message);
-				if (message.getParamCount() > 0) // player name, $s1
-				{
-					packet.addStringParameter(player.getName());
-				}
-				npc.broadcastPacket(packet);
+				final String message = getRandomEntry(TAMED_TEXT).replace("$s1", player.getName());
+				npc.broadcastPacket(new NpcSay(npc, ChatType.GENERAL, message));
 			}
 			// @formatter:off
 			/*
@@ -482,7 +476,7 @@ public class FeedableBeasts extends AbstractNpcAI
 			FEED_INFO.put(nextNpc.getObjectId(), player.getObjectId());
 			nextNpc.setRunning();
 			nextNpc.addDamageHate(player, 0, 99999);
-			nextNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+			nextNpc.getAI().setIntention(Intention.ATTACK, player);
 		}
 	}
 	
@@ -505,19 +499,19 @@ public class FeedableBeasts extends AbstractNpcAI
 			FEED_INFO.put(nextNpc.getObjectId(), player.getObjectId());
 			nextNpc.setRunning();
 			nextNpc.addDamageHate(player, 0, 99999);
-			nextNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+			nextNpc.getAI().setIntention(Intention.ATTACK, player);
 		}
 		return super.onEvent(event, npc, player);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		// this behavior is only run when the target of skill is the passed npc (chest)
 		// i.e. when the player is attempting to open the chest using a skill
 		if (!targets.contains(npc))
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
 		// gather some values on local variables
 		final int npcId = npc.getId();
@@ -525,7 +519,7 @@ public class FeedableBeasts extends AbstractNpcAI
 		// check if the npc and skills used are valid for this script. Exit if invalid.
 		if ((skillId != SKILL_GOLDEN_SPICE) && (skillId != SKILL_CRYSTAL_SPICE))
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
 		
 		// first gather some values on local variables
@@ -540,7 +534,7 @@ public class FeedableBeasts extends AbstractNpcAI
 		// If the mob is at 0th level (when it still listens to all feeders) lock it to the first feeder!
 		if ((growthLevel == 0) && FEED_INFO.containsKey(objectId))
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
 		
 		FEED_INFO.put(objectId, caster.getObjectId());
@@ -564,26 +558,21 @@ public class FeedableBeasts extends AbstractNpcAI
 			// do nothing if this mob doesn't eat the specified food (food gets consumed but has no effect).
 			if (GROWTH_CAPABLE_MONSTERS.get(npcId).getMob(food, 0, 0) == null)
 			{
-				return super.onSkillSee(npc, caster, skill, targets, isSummon);
+				return;
 			}
 			
 			// rare random talk...
 			if (getRandom(20) == 0)
 			{
-				final NpcStringId message = getRandomEntry(TEXT[growthLevel]);
-				final NpcSay packet = new NpcSay(npc, ChatType.GENERAL, message);
-				if (message.getParamCount() > 0) // player name, $s1
-				{
-					packet.addStringParameter(caster.getName());
-				}
-				npc.broadcastPacket(packet);
+				final String message = getRandomEntry(TEXT[growthLevel]).replace("$s1", caster.getName());
+				npc.broadcastPacket(new NpcSay(npc, ChatType.GENERAL, message));
 			}
 			
 			if ((growthLevel > 0) && (FEED_INFO.get(objectId) != caster.getObjectId()))
 			{
 				// check if this is the same player as the one who raised it from growth 0.
 				// if no, then do not allow a chance to raise the pet (food gets consumed but has no effect).
-				return super.onSkillSee(npc, caster, skill, targets, isSummon);
+				return;
 			}
 			
 			// Polymorph the mob, with a certain chance, given its current growth level
@@ -592,33 +581,26 @@ public class FeedableBeasts extends AbstractNpcAI
 				spawnNext(npc, growthLevel, caster, food);
 			}
 		}
-		else if (CommonUtil.contains(TAMED_BEASTS, npcId) && (npc instanceof TamedBeast))
+		else if (ArrayUtil.contains(TAMED_BEASTS, npcId) && (npc instanceof TamedBeast))
 		{
 			final TamedBeast beast = ((TamedBeast) npc);
 			if (skillId == beast.getFoodType())
 			{
 				beast.onReceiveFood();
-				final NpcStringId message = getRandomEntry(TAMED_TEXT);
-				final NpcSay packet = new NpcSay(npc, ChatType.GENERAL, message);
-				if (message.getParamCount() > 0)
-				{
-					packet.addStringParameter(caster.getName());
-				}
-				beast.broadcastPacket(packet);
+				final String message = getRandomEntry(TAMED_TEXT).replace("$s1", caster.getName());
+				beast.broadcastPacket(new NpcSay(npc, ChatType.GENERAL, message));
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		// remove the feedinfo of the mob that got killed, if any
 		if (FEED_INFO.containsKey(npc.getObjectId()))
 		{
 			FEED_INFO.remove(npc.getObjectId());
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

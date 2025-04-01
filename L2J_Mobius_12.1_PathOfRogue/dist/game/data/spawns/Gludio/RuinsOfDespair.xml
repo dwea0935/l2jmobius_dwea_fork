@@ -21,4 +21,9 @@
 			<npc id="33432" x="-20563" y="135333" z="-3898" heading="22532" respawnTime="60sec" /> <!-- Guard -->
 		</group>
 	</spawn>
+	<spawn name="Q20225">
+		<group>
+			<npc id="34751" x="750" y="137374" z="-2982" heading="13828" respawnTime="60sec" /> <!-- Pile of Bones -->
+		</group>
+	</spawn>
 </list>

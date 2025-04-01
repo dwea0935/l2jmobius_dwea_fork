@@ -20,7 +20,7 @@
  */
 package ai.areas.DungeonOfAbyss;
 
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -98,7 +98,7 @@ public class DungeonOfAbyssZone extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -113,7 +113,6 @@ public class DungeonOfAbyssZone extends AbstractNpcAI
 			cancelQuestTimer("EXIT_PLAYER" + ABYSS_EAST_ZONE_BOSS_4.getName() + player.getObjectId(), null, player);
 			startQuestTimer("EXIT_PLAYER" + zone.getName() + player.getObjectId(), zone.getName().contains("boss") ? EXIT_TIME_BOSS_ROOM : EXIT_TIME, null, player);
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	public static void main(String[] args)

@@ -19,11 +19,11 @@ package custom.NpcLocationInfo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 
@@ -218,7 +218,7 @@ public class NpcLocationInfo extends AbstractNpcAI
 	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = event;
-		if (Util.isDigit(event))
+		if (StringUtil.isNumeric(event))
 		{
 			htmltext = null;
 			final int npcId = Integer.parseInt(event);

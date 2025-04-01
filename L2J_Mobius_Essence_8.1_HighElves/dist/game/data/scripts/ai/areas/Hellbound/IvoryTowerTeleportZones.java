@@ -23,7 +23,7 @@ package ai.areas.Hellbound;
 import java.util.Calendar;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 
 import ai.AbstractNpcAI;

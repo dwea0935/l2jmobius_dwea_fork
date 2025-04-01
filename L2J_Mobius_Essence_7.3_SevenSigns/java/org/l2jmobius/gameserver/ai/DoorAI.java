@@ -83,63 +83,63 @@ public class DoorAI extends CreatureAI
 	}
 	
 	@Override
-	public void onEvtThink()
+	public void onActionThink()
 	{
 	}
 	
 	@Override
-	protected void onEvtAttacked(Creature attacker)
+	protected void onActionAttacked(Creature attacker)
 	{
 		ThreadPool.execute(new onEventAttackedDoorTask(_actor.asDoor(), attacker));
 	}
 	
 	@Override
-	protected void onEvtAggression(Creature target, int aggro)
+	protected void onActionAggression(Creature target, int aggro)
 	{
 	}
 	
 	@Override
-	protected void onEvtActionBlocked(Creature attacker)
+	protected void onActionBlocked(Creature attacker)
 	{
 	}
 	
 	@Override
-	protected void onEvtRooted(Creature attacker)
+	protected void onActionRooted(Creature attacker)
 	{
 	}
 	
 	@Override
-	protected void onEvtReadyToAct()
+	protected void onActionReadyToAct()
 	{
 	}
 	
 	@Override
-	protected void onEvtArrived()
+	protected void onActionArrived()
 	{
 	}
 	
 	@Override
-	protected void onEvtArrivedRevalidate()
+	protected void onActionArrivedRevalidate()
 	{
 	}
 	
 	@Override
-	protected void onEvtArrivedBlocked(Location location)
+	protected void onActionArrivedBlocked(Location location)
 	{
 	}
 	
 	@Override
-	protected void onEvtForgetObject(WorldObject object)
+	protected void onActionForgetObject(WorldObject object)
 	{
 	}
 	
 	@Override
-	protected void onEvtCancel()
+	protected void onActionCancel()
 	{
 	}
 	
 	@Override
-	protected void onEvtDead()
+	protected void onActionDeath()
 	{
 	}
 	
@@ -161,7 +161,7 @@ public class DoorAI extends CreatureAI
 			{
 				if (_actor.isInsideRadius3D(guard, guard.getTemplate().getClanHelpRange()))
 				{
-					guard.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, _attacker, 15);
+					guard.getAI().notifyAction(Action.AGGRESSION, _attacker, 15);
 				}
 			});
 		}

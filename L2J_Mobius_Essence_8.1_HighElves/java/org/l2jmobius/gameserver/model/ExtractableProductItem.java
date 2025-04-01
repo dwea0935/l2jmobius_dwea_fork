@@ -18,10 +18,10 @@ package org.l2jmobius.gameserver.model;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.holders.RestorationItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.RestorationItemHolder;
 
 /**
- * @author Zoey76
+ * @author -Nemesiss-
  */
 public class ExtractableProductItem
 {

@@ -330,7 +330,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39428" level="5" /> <!-- Artifact Box -->
+			<skill id="39428" level="5" /> <!-- Balance Artifact Box -->
 		</skills>
 	</item>
 	<item id="80420" name="Attack Artifact Box" type="EtcItem">
@@ -356,7 +356,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39428" level="2" /> <!-- Artifact Box -->
+			<skill id="39428" level="2" /> <!-- Fight Artifact Box -->
 		</skills>
 	</item>
 	<item id="80422" name="Support Artifact Box" type="EtcItem">
@@ -369,7 +369,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39428" level="3" /> <!-- Artifact Box -->
+			<skill id="39428" level="3" /> <!-- Protection Artifact Box -->
 		</skills>
 	</item>
 	<item id="80423" name="Balance Artifact Box" type="EtcItem">
@@ -382,7 +382,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39428" level="4" /> <!-- Artifact Box -->
+			<skill id="39428" level="4" /> <!-- Support Artifact Box -->
 		</skills>
 	</item>
 	<item id="80424" name="Cool Summer Hunting Herb Chest" type="EtcItem">
@@ -414,7 +414,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39429" level="2" /> <!-- +1 Fight Artifact Box -->
+			<skill id="39429" level="2" /> <!-- +3 Fight Artifact Box -->
 		</skills>
 	</item>
 	<item id="80427" name="+1 Protection Artifact Box" type="EtcItem">
@@ -440,7 +440,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39430" level="2" /> <!-- +1 Protection Artifact Box -->
+			<skill id="39430" level="2" /> <!-- +3 Protection Artifact Box -->
 		</skills>
 	</item>
 	<item id="80429" name="+1 Support Artifact Box" type="EtcItem">
@@ -466,7 +466,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39431" level="2" /> <!-- +1 Support Artifact Box -->
+			<skill id="39431" level="2" /> <!-- +3 Support Artifact Box -->
 		</skills>
 	</item>
 	<item id="80431" name="+1 Balance Artifact Box" type="EtcItem">
@@ -492,7 +492,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39432" level="2" /> <!-- +1 Balance Artifact Box -->
+			<skill id="39432" level="2" /> <!-- +3 Balance Artifact Box -->
 		</skills>
 	</item>
 	<item id="80433" name="Infinite Orichalcum Quiver" type="EtcItem">
@@ -793,7 +793,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="39433" level="2" /> <!-- Stage 4 Soul Crystal Box -->
+			<skill id="39433" level="2" /> <!-- Stage 5 Soul Crystal Box -->
 		</skills>
 	</item>
 	<item id="80459" name="+7 Agathion Charm Box" type="EtcItem">

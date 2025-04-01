@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package events.BalthusFestival;
 
@@ -26,8 +30,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.instancemanager.events.BalthusEventManager;
-import org.l2jmobius.gameserver.instancemanager.events.BalthusEventManager.BalthusEventHolder;
+import org.l2jmobius.gameserver.managers.events.BalthusEventManager;
+import org.l2jmobius.gameserver.managers.events.BalthusEventManager.BalthusEventHolder;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -36,15 +40,16 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogout;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemUse;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.ItemSkillHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemUse;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemSkillHolder;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.balthusevent.ExBalthusEvent;
 
 /**
@@ -91,10 +96,10 @@ public class BalthusFestival extends LongTimeEvent implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		final AtomicInteger i = new AtomicInteger();
-		forEach(doc, "list", listNode ->
+		forEach(document, "list", listNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(listNode));
 			if (BalthusEventManager.getInstance().getMinLevel() == 0)
@@ -158,7 +163,7 @@ public class BalthusFestival extends LongTimeEvent implements IXmlReader
 			else
 			{
 				player.getVariables().set(BALTHUS_BAG_VAR, true);
-				player.addItem("Balthus Event", GOOD_LUCK_BAG.getId(), GOOD_LUCK_BAG.getCount(), null, true);
+				player.addItem(ItemProcessType.REWARD, GOOD_LUCK_BAG.getId(), GOOD_LUCK_BAG.getCount(), null, true);
 				return "34330-2.htm";
 			}
 		}
@@ -180,29 +185,29 @@ public class BalthusFestival extends LongTimeEvent implements IXmlReader
 			{
 				case ("1"):
 				{
-					if (!player.destroyItemByItemId("Destroy Coupon", 81726, 1, null, true))
+					if (!player.destroyItemByItemId(ItemProcessType.FEE, 81726, 1, null, true))
 					{
 						return "34330-5.htm";
 					}
-					player.addItem("Balthus Coupon", 81711, 1, null, true);
+					player.addItem(ItemProcessType.REWARD, 81711, 1, null, true);
 					return "34330-6.htm";
 				}
 				case ("2"):
 				{
-					if (!player.destroyItemByItemId("Destroy Coupon", 81726, 1, null, true))
+					if (!player.destroyItemByItemId(ItemProcessType.FEE, 81726, 1, null, true))
 					{
 						return "34330-5.htm";
 					}
-					player.addItem("Balthus Coupon", 81710, 1, null, true);
+					player.addItem(ItemProcessType.REWARD, 81710, 1, null, true);
 					return "34330-6.htm";
 				}
 				case ("3"):
 				{
-					if (!player.destroyItemByItemId("Destroy Coupon", 81726, 1, null, true))
+					if (!player.destroyItemByItemId(ItemProcessType.FEE, 81726, 1, null, true))
 					{
 						return "34330-5.htm";
 					}
-					player.addItem("Balthus Coupon", 81709, 1, null, true);
+					player.addItem(ItemProcessType.REWARD, 81709, 1, null, true);
 					return "34330-6.htm";
 				}
 			}

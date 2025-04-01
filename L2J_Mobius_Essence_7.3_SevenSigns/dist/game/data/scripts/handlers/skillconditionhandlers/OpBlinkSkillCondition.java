@@ -16,14 +16,14 @@
  */
 package handlers.skillconditionhandlers;
 
-import org.l2jmobius.gameserver.enums.Position;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Position;
 import org.l2jmobius.gameserver.model.skill.ISkillCondition;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author Sdw
@@ -61,7 +61,7 @@ public class OpBlinkSkillCondition implements ISkillCondition
 	@Override
 	public boolean canUse(Creature caster, Skill skill, WorldObject target)
 	{
-		final double angle = Util.convertHeadingToDegree(caster.getHeading());
+		final double angle = LocationUtil.convertHeadingToDegree(caster.getHeading());
 		final double radian = Math.toRadians(angle);
 		final double course = Math.toRadians(_angle);
 		final int x1 = (int) (Math.cos(Math.PI + radian + course) * _range);

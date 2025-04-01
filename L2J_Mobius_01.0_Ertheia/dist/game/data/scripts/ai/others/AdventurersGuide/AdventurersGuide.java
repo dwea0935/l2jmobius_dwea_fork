@@ -18,9 +18,9 @@ package ai.others.AdventurersGuide;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -128,7 +128,7 @@ public class AdventurersGuide extends AbstractNpcAI
 		}
 		SkillCaster.triggerCast(npc, player, skill);
 		
-		if ((player.getLevel() < MIN_LEVEL_PROTECTION) && (player.getClassId().level() <= 1))
+		if ((player.getLevel() < MIN_LEVEL_PROTECTION) && (player.getPlayerClass().level() <= 1))
 		{
 			SkillCaster.triggerCast(npc, player, BLESS_PROTECTION.getSkill());
 		}

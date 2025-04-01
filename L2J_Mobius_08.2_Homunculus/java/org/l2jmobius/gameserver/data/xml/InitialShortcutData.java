@@ -29,32 +29,27 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.MacroType;
-import org.l2jmobius.gameserver.enums.ShortcutType;
-import org.l2jmobius.gameserver.model.Macro;
-import org.l2jmobius.gameserver.model.MacroCmd;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MacroType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.ShortcutType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Macro;
+import org.l2jmobius.gameserver.model.actor.holders.player.MacroCmd;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.network.serverpackets.ShortCutRegister;
+import org.l2jmobius.gameserver.network.serverpackets.ShortcutRegister;
 
 /**
- * This class holds the Initial Shortcuts information.<br>
- * What shortcuts get each newly created character.
  * @author Zoey76
  */
 public class InitialShortcutData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(InitialShortcutData.class.getName());
 	
-	private final Map<ClassId, List<Shortcut>> _initialShortcutData = new EnumMap<>(ClassId.class);
+	private final Map<PlayerClass, List<Shortcut>> _initialShortcutData = new EnumMap<>(PlayerClass.class);
 	private final List<Shortcut> _initialGlobalShortcutList = new ArrayList<>();
 	private final Map<Integer, Macro> _macroPresets = new HashMap<>();
 	
-	/**
-	 * Instantiates a new initial shortcuts data.
-	 */
 	protected InitialShortcutData()
 	{
 		load();
@@ -74,9 +69,9 @@ public class InitialShortcutData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equals(n.getNodeName()))
 			{
@@ -127,7 +122,7 @@ public class InitialShortcutData implements IXmlReader
 		
 		if (classIdNode != null)
 		{
-			_initialShortcutData.put(ClassId.getClassId(Integer.parseInt(classIdNode.getNodeValue())), list);
+			_initialShortcutData.put(PlayerClass.getPlayerClass(Integer.parseInt(classIdNode.getNodeValue())), list);
 		}
 		else
 		{
@@ -230,28 +225,28 @@ public class InitialShortcutData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the shortcut list.
-	 * @param cId the class ID for the shortcut list
-	 * @return the shortcut list for the give class ID
+	 * Retrieves the list of shortcuts specific to the given class ID.
+	 * @param cId the {@link PlayerClass} for which to retrieve the shortcut list.
+	 * @return a list of {@link Shortcut} objects for the specified class ID, or {@code null} if no shortcuts are found.
 	 */
-	public List<Shortcut> getShortcutList(ClassId cId)
+	public List<Shortcut> getShortcutList(PlayerClass cId)
 	{
 		return _initialShortcutData.get(cId);
 	}
 	
 	/**
-	 * Gets the shortcut list.
-	 * @param cId the class ID for the shortcut list
-	 * @return the shortcut list for the give class ID
+	 * Retrieves the list of shortcuts specific to the given class ID represented as an integer.
+	 * @param cId the integer ID of the class for which to retrieve the shortcut list.
+	 * @return a list of {@link Shortcut} objects for the specified class ID, or {@code null} if no shortcuts are found.
 	 */
 	public List<Shortcut> getShortcutList(int cId)
 	{
-		return _initialShortcutData.get(ClassId.getClassId(cId));
+		return _initialShortcutData.get(PlayerClass.getPlayerClass(cId));
 	}
 	
 	/**
-	 * Gets the global shortcut list.
-	 * @return the global shortcut list
+	 * Retrieves the global list of shortcuts available to all players.
+	 * @return a list of global {@link Shortcut} objects.
 	 */
 	public List<Shortcut> getGlobalMacroList()
 	{
@@ -259,8 +254,9 @@ public class InitialShortcutData implements IXmlReader
 	}
 	
 	/**
-	 * Register all the available shortcuts for the given player.
-	 * @param player the player
+	 * Registers all available shortcuts for the specified player, including global shortcuts and those specific to the player's class.<br>
+	 * This method ensures that item, skill, and macro shortcuts are correctly associated with the player, creating new shortcuts based on the player's current inventory, skills, and available macros.
+	 * @param player the {@link Player} for whom to register the shortcuts.
 	 */
 	public void registerAllShortcuts(Player player)
 	{
@@ -305,16 +301,16 @@ public class InitialShortcutData implements IXmlReader
 				}
 			}
 			
-			// Register shortcut
+			// Register shortcut.
 			final Shortcut newShortcut = new Shortcut(shortcut.getSlot(), shortcut.getPage(), shortcut.getType(), shortcutId, shortcut.getLevel(), shortcut.getSubLevel(), shortcut.getCharacterType());
-			player.sendPacket(new ShortCutRegister(newShortcut, player));
-			player.registerShortCut(newShortcut);
+			player.sendPacket(new ShortcutRegister(newShortcut, player));
+			player.registerShortcut(newShortcut);
 		}
 		
 		// Register class specific shortcuts.
-		if (_initialShortcutData.containsKey(player.getClassId()))
+		if (_initialShortcutData.containsKey(player.getPlayerClass()))
 		{
-			for (Shortcut shortcut : _initialShortcutData.get(player.getClassId()))
+			for (Shortcut shortcut : _initialShortcutData.get(player.getPlayerClass()))
 			{
 				int shortcutId = shortcut.getId();
 				switch (shortcut.getType())
@@ -348,18 +344,15 @@ public class InitialShortcutData implements IXmlReader
 						break;
 					}
 				}
-				// Register shortcut
+				
+				// Register shortcut.
 				final Shortcut newShortcut = new Shortcut(shortcut.getSlot(), shortcut.getPage(), shortcut.getType(), shortcutId, shortcut.getLevel(), shortcut.getSubLevel(), shortcut.getCharacterType());
-				player.sendPacket(new ShortCutRegister(newShortcut, player));
-				player.registerShortCut(newShortcut);
+				player.sendPacket(new ShortcutRegister(newShortcut, player));
+				player.registerShortcut(newShortcut);
 			}
 		}
 	}
 	
-	/**
-	 * Gets the single instance of InitialEquipmentData.
-	 * @return single instance of InitialEquipmentData
-	 */
 	public static InitialShortcutData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

@@ -1,220 +1,67 @@
-L2J-Mobius Path of Rogue
+Lineage 2 - Path of Rogue
+https://eu.4game.com/patchnotes/lineage2/447/
 
-JDK: https://www.mediafire.com/file/lb0by9xcvbzapi7/bellsoft-jdk21.0.2%252B14-windows-amd64.msi
-XAMPP: https://www.mediafire.com/file/0m05e3p7wdal224/xampp-windows-x64-8.0.30-0-VS16-installer.exe
-Eclipse: https://www.mediafire.com/file/ef5eub52bx4iixc/eclipse-java-2024-06-R-win32-x86_64.zip
+## Othell Rogue and Adventurer Skills Update
+- The "Path of a Rogue" update includes changes to Othell Rogue and Othell Adventurer skills.
+- New effects and skills have been added, including the "Perfection" effect, which activates with a certain chance when attacking vital points and deals additional damage or triggers additional effects.
+- Various Othell Rogue skills have been modified or removed, including changes to vital point attack mechanics, skill effects and visual effects.
+- Othell Wind Rider skills have been modified or removed, with a focus on the Perfection effect, which allows for effective chaining of skills that attack the enemy's vital points.
+- Othell Ghost Hunter skills have been modified or removed, with skills now delivering powerful blows after changing position relative to the enemy before attacking the target's vital point.
+- Othell Fortune Seeker skills have been changed or removed, with the Perfect effect making the class stronger, particularly in PvE damage and Perfection trigger rate.
+- Fortune Hunter skills have been updated, including Flip Lucky Coin, Fortune Seeker's Intuition and Coin Strike.
 
+## Other Class Skill Changes
+- Class skill changes have been made for Feoh Wizard, Shine Maker, Wynn Summoner, Sigel Death Knight, Yul Archer, Tyrr Warrior and Iss Enchanter.
 
-Working features...
+## Anomaly Rebalance
+- Anomalies have been rebalanced, with changes to debuff probability, resistance and new anomaly types, including Debilitation.
+- Some skills and items have been rebalanced according to the new anomaly formula, including Angel's Touch and Brilliant Purge.
+- Anomaly Resistance options have been modified in some hunting zones, including Neutral Zone and Tower of Insolence.
 
-Before Goddess of Destruction:
--Fantasy Isle Parade
--Pailaka Injured Dragon
--All Seven Sign Quests
--Imperial Tomb
--Gracia Area
--Kamaloka
--Castle Dungeons
--Fortress Dungeons
--Kratei's Cube
--Underground Coliseum
--Prime Shop
+## Skill Changes and Fixes
+- Skill Changes: Insolence and Conquest Debuff Resistance skills have been updated and issues with skill animations, descriptions and Debuff Resistance stats have been fixed.
 
-Goddess of Destruction:
--New Talking Island
--Ancient City Arcan
--Bloody Swampland
--Fairy Settlement
--Garden of Genesis
--Guillotine Fortress
--Orbis Temple
--Kartia
--Fortuna
--Nursery
--Altar of Shilen
--Kimerian
--Istina
--Octavis
--Spezion
--Tauti
--Teredor
--Trasken
--Lindvior
--Appearance stones
--Beauty Shop
--Mentoring
--Goddess class changes
--Harnak Underground Ruins
--Sayune Jump System
--Agent of Chaos
--Attribute Crystals
--Ability Points
--Training Camp
+## New Item: Silvery Circlet
+- New Item: Silvery Circlet has been added, which can be obtained by upgrading +10 Radiant Warrior's, Wizard's, or Knight's Circlet and provides various stat bonuses.
 
-Ertheia:
--Ertheia Race
--Alchemy
--Brooch system
--Luck system
--Auto fishing
--Dimensional Warp
+## Hunting Zone Updates
+- Hunting Zones: A new command channel instance zone, Spirit Seal, has been added and the Valakas raid has been modified, including changes to the boss's spawn cycle and loot privileges.
 
-Infinite Odyssey:
--Garden of Spirits
--Isabella
--Atelia Fortress
--Kelbim
--Enchanted Valley
--Ashen Shadow Revolutionaries
+## Boss Modifications
+- Boss Changes: World bosses Eigis, Bathin, Baium, Galaxia and Angel have been modified, including changes to their stats and XP rewards.
 
-Underground:
--Underground Gainak
--Automated soulshots
--Daily rewards
--Attendance rewards
+## Zone Modifications and Fixes
+- Zone Changes: The layout of the Tower of Insolence has been modified and issues with instance zones and totems have been fixed.
 
-Helios:
--Dimensional Rift
--Dimensional Crack
--Giants Cave
--Superion Fortress
--Ramona
--Helios
--Faction system
+## New Quests
+- New Quests: New quests have been added for various hunting zones, including Isle of Prayer, Field of Whispers and others.
+- New quests have been added, including one-time quests for the Neutral Zone, Ketra Orc Outpost, Varka Silenos Barracks and Sea of Spores hunting zones, as well as main quests and side quests for various locations.
 
-Grand Crusade:
--Monster Book
--Live world map information
--Messiah Citadel
+## Homunculus Updates
+- A new "heroic" Homunculus rank has been added, which can be obtained by evolving a top-grade Lv. 5 homunculus with 100% XP.
+- Destroying any homunculus now yields evolution points, which can be used to evolve homunculi.
 
-Salvation:
--New Agathion item support
--New clan system support
+## Giran City Update
+- The layout of Giran city has been modified and the appearance of Giran changes depending on the season.
 
-Etina's Fate:
--Parsed new items from client
--Artifact item support
+## Einhasad's Store Update
+- Einhasad's Store now sells a new item, Top-grade Homunculus' Hourglass and the purchase limit for the Dragon Skin Shirt has been changed.
 
-Fafurion: https://eu.4game.com/patchnotes/lineage2/132/
--Support for R110 items
--Spawned new areas
--Retail gatekeeper teleports
--Equipment upgrade system
+## Crafting Menu Update
+- The crafting menu limit no longer resets at 6:30 a.m. but instead when the crafting period starts.
 
-Prelude of War: https://eu.4game.com/patchnotes/lineage2/176/
--Teleport list system
--Removed item grade penalty
--New henna system
--New starting quests
--Auto attack system
--Auto potion system
--Rank system
+## New Relic Collections
+- new B-grade relic collections have been added.
 
-Homunculus: https://eu.4game.com/patchnotes/lineage2/206/
--Teleport favorites system
+## Item and Attribute Updates
+- The text describes updates to the online game Lineage 2 Europe, including changes to various items and their attributes.
+- New collections have been added, including "Elements of Our World," which provides a 3% increase to all critical rate and power.
 
-Homunculus Ch. 2: https://eu.4game.com/patchnotes/lineage2/270/
--New augment system
+## UI Updates
+- The game's UI has been updated with new features, such as tooltips for items and improved item descriptions.
 
-Return of the Queen Ant: https://eu.4game.com/patchnotes/lineage2/293/
--Collection system
+## Bug Fixes
+- Various bugs and issues have been fixed, including problems with auto-compounding, teleportation and character stats.
 
-Return of the Queen Ant Chapter 2: https://eu.4game.com/patchnotes/lineage2/331/
--Compound system changes
-
-Master Class: https://eu.4game.com/patchnotes/lineage2/362/
--Death Knight creation support
-
-Master Class Chapter 2: https://eu.4game.com/patchnotes/lineage2/374/
--New enchant system
-
-Master Class Chapter 3: https://eu.4game.com/patchnotes/lineage2/417/
--Tales of Hero system
--Private shop review
--World exchange system
--Chest and box auto-use
-
-The Source of Flame: https://eu.4game.com/patchnotes/lineage2/427/
--Dethrone Shop
--Fire Conquest area
--Water Conquest area
--Primordial Fire Source Abilities
--Krofin's Nest instance changes
--Freya instance changes
-
-Age of Magic: https://eu.4game.com/patchnotes/lineage2/437/
--Increased maximum level to 131
--Support for L grade items
--Trinity weapons and Supremacy armor
--New Pegasus, Devilet and Angel homunculi
--Ability point presets
--Updated attendance system
--Kastia's Labyrinth instance changes
--Crystal Prison instance changes
--Nightmare Kamaloka instance changes
--Ashen Shadow Camp instance changes
--Krofin Nest instance changes
--Spirit Forest instance changes
-
-Shinemaker: https://eu.4game.com/patchnotes/lineage2/444/
--Shine Maker creation support
--New quest system
--Relic system
-
-Path of Rogue: https://eu.4game.com/patchnotes/lineage2/447/
--Support for new keyboard movement
--Updated Giran
--Spirit Seal instance
-
-
-Events:
--Birth of Draco
--Character Birthday
--Eve the Fortune Teller
--Freya Celebration
--Gift of Vitality
--Halloween
--Happy Hours
--Heavy Medal
--Hungry Horse
--Hunt for Santa
--Letter Collector
--Lovers Jubilee
--Love your Gatekeeper
--Master of Enchanting
--The Power of Love
--Training with Dandy
--Custom Elpies Event
--Custom Rabbits Event
--Custom Race Event
--Custom Team vs Team
-
-Customs:
--Allowed player races
--Auto potions command
--Banking
--Champion monsters
--Classmaster
--Community board
--Faction system
--Fake players
--Find PvP
--NPC stat multipliers
--Realtime offline trade
--Password change
--Pc Cafe
--Premium system
--Private store range
--PvP announce
--PvP reward item
--PvP title color
--Random spawns
--Sayune for all
--Screen welcome message
--Sell buffs
--Starting location
--Vote reward
--Automated database backups
-
-TODO:
--Mystic Tavern instanced zones
+## Item Deletion
+- Some items, including the Amulet: Protection of Valakas and XP Bottle - 5000, will be deleted during a scheduled maintenance on April 17, 2024.

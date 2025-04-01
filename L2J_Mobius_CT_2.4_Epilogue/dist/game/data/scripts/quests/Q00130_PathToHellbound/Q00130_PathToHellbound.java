@@ -40,7 +40,7 @@ public class Q00130_PathToHellbound extends Quest
 	
 	public Q00130_PathToHellbound()
 	{
-		super(130);
+		super(130, "Path to Hellbound");
 		addStartNpc(CASIAN);
 		addTalkId(CASIAN, GALATE);
 		registerQuestItems(CASIANS_BLUE_CRYSTAL);

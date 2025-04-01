@@ -26,7 +26,8 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.serverpackets.prison.ExPrisonUserDonation;
 
 /**
@@ -149,7 +150,7 @@ public class Prisoner
 	
 	public void requestFreedomByDonation(Player player)
 	{
-		if (!player.destroyItemByItemId("Prisoner", _donationBailHolder.getId(), _donationBailHolder.getCount(), player, true))
+		if (!player.destroyItemByItemId(ItemProcessType.FEE, _donationBailHolder.getId(), _donationBailHolder.getCount(), player, true))
 		{
 			player.sendPacket(new ExPrisonUserDonation(false));
 		}

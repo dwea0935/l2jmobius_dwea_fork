@@ -23,7 +23,7 @@ package ai.others.OrcFortress;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -81,7 +81,7 @@ public class RunnersOrcs extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		World.getInstance().forEachVisibleObject(npc, Npc.class, flag ->
 		{
@@ -89,14 +89,13 @@ public class RunnersOrcs extends AbstractNpcAI
 			{
 				npc.setRunning();
 				npc.asAttackable().addDamageHate(flag, 0, 999999);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, flag);
+				npc.getAI().setIntention(Intention.ATTACK, flag);
 			}
 		});
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -104,10 +103,9 @@ public class RunnersOrcs extends AbstractNpcAI
 			{
 				npc.setRunning();
 				npc.asAttackable().addDamageHate(players, 0, 999999);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, players);
+				npc.getAI().setIntention(Intention.ATTACK, players);
 			});
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public static void main(String[] args)

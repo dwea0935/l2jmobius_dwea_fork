@@ -224,8 +224,6 @@
 		<affectRange>200</affectRange>
 		<affectScope>SINGLE</affectScope>
 		<attributeType>FIRE</attributeType>
-		<attributeType>FIRE</attributeType>
-		<attributeValue>100</attributeValue>
 		<attributeValue>300</attributeValue>
 		<castRange>900</castRange>
 		<coolTime>500</coolTime>
@@ -900,7 +898,6 @@
 		<targetType>ENEMY</targetType>
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalResists>STUN;TURN_FLEE</abnormalResists>
-		<abnormalTime>10</abnormalTime>
 		<abnormalTime>10</abnormalTime>
 		<abnormalType>AIRBIND</abnormalType>
 		<abnormalVisualEffect>AIRBIND</abnormalVisualEffect>

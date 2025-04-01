@@ -16,10 +16,10 @@
  */
 package quests.Q10745_TheSecretIngredients;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -164,7 +164,7 @@ public class Q10745_TheSecretIngredients extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if (qs != null)
@@ -184,6 +184,5 @@ public class Q10745_TheSecretIngredients extends Quest
 				qs.setMemoStateEx(0, killedMobs);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

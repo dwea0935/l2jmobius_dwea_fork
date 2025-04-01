@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="25300" name="Appearance Stone: Female Swimsuit No. 2" additionalName="Low-grade / Debuff Reflection" type="EtcItem">
 		<!-- Changes the appearance of the entire armor to that of Female Swimsuit No. 2. Used with upper or full-body armor. Debuff Reflection +3% after modification. Modified armor can be restored to its original appearance with Restoration Stone. -->
@@ -972,7 +972,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26540" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26540" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25361" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Damage Reflection Resistance" type="EtcItem">
@@ -987,7 +987,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26541" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26541" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25362" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Ranged Attack Resistance" type="EtcItem">
@@ -1002,7 +1002,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26542" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26542" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25363" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / P. Def." type="EtcItem">
@@ -1017,7 +1017,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26543" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26543" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25364" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / M. Def." type="EtcItem">
@@ -1032,7 +1032,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26544" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26544" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25365" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Attribute Resistance" type="EtcItem">
@@ -1047,7 +1047,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26545" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26545" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25366" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Received Healing" type="EtcItem">
@@ -1062,7 +1062,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26546" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26546" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25367" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Max HP" type="EtcItem">
@@ -1077,7 +1077,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26547" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26547" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25368" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Max MP" type="EtcItem">
@@ -1092,7 +1092,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26548" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26548" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25369" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Max CP" type="EtcItem">
@@ -1107,7 +1107,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26549" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26549" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25370" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Speed" type="EtcItem">
@@ -1122,7 +1122,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26550" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26550" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25371" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / HP Recovery" type="EtcItem">
@@ -1137,7 +1137,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26551" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26551" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25372" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / MP Recovery" type="EtcItem">
@@ -1152,7 +1152,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26552" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26552" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25373" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Evasion" type="EtcItem">
@@ -1167,7 +1167,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26553" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26553" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25374" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 15" type="EtcItem">
@@ -1182,7 +1182,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26554" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26554" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25375" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 16" type="EtcItem">
@@ -1197,7 +1197,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26555" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26555" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25376" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 17" type="EtcItem">
@@ -1212,7 +1212,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26556" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26556" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25377" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 18" type="EtcItem">
@@ -1227,7 +1227,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26557" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26557" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25378" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 19" type="EtcItem">
@@ -1242,7 +1242,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26558" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26558" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25379" name="Appearance Stone: Santa Outfit" additionalName="Low-grade / Option 20" type="EtcItem">
@@ -1257,7 +1257,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26559" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26559" level="1" /> <!-- Appearance Stone: Santa Outfit - Low-grade / Effect 20 -->
 		</skills>
 	</item>
 	<item id="25380" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Debuff Reflection" type="EtcItem">
@@ -1272,7 +1272,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26560" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26560" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25381" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Damage Reflection Resistance" type="EtcItem">
@@ -1287,7 +1287,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26561" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26561" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25382" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Ranged Attack Resistance" type="EtcItem">
@@ -1302,7 +1302,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26562" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26562" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25383" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / P. Def." type="EtcItem">
@@ -1317,7 +1317,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26563" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26563" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25384" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / M. Def." type="EtcItem">
@@ -1332,7 +1332,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26564" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26564" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25385" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Attribute Resistance" type="EtcItem">
@@ -1347,7 +1347,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26565" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26565" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25386" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Received Healing" type="EtcItem">
@@ -1362,7 +1362,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26566" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26566" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25387" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Max HP" type="EtcItem">
@@ -1377,7 +1377,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26567" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26567" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25388" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Max MP" type="EtcItem">
@@ -1392,7 +1392,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26568" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26568" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25389" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Max CP" type="EtcItem">
@@ -1407,7 +1407,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26569" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26569" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25390" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Speed" type="EtcItem">
@@ -1422,7 +1422,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26570" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26570" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25391" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / HP Recovery" type="EtcItem">
@@ -1437,7 +1437,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26571" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26571" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25392" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / MP Recovery" type="EtcItem">
@@ -1452,7 +1452,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26572" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26572" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25393" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Evasion" type="EtcItem">
@@ -1467,7 +1467,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26573" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26573" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25394" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 15" type="EtcItem">
@@ -1482,7 +1482,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26574" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26574" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25395" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 16" type="EtcItem">
@@ -1497,7 +1497,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26575" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26575" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25396" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 17" type="EtcItem">
@@ -1512,7 +1512,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26576" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26576" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25397" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 18" type="EtcItem">
@@ -1527,7 +1527,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26577" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26577" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25398" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 19" type="EtcItem">
@@ -1542,7 +1542,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26578" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26578" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25399" name="Appearance Stone: Santa Outfit" additionalName="Mid-grade / Option 20" type="EtcItem">
@@ -1557,7 +1557,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26579" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26579" level="1" /> <!-- Appearance Stone: Santa Outfit - Mid-grade / Effect 20 -->
 		</skills>
 	</item>
 </list>

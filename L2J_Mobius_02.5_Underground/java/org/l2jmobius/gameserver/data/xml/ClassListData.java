@@ -26,8 +26,8 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.model.holders.ClassInfoHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.holders.player.ClassInfoHolder;
 
 /**
  * Loads the the list of classes and it's info.
@@ -37,11 +37,8 @@ public class ClassListData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(ClassListData.class.getName());
 	
-	private final Map<ClassId, ClassInfoHolder> _classData = new ConcurrentHashMap<>();
+	private final Map<PlayerClass, ClassInfoHolder> _classData = new ConcurrentHashMap<>();
 	
-	/**
-	 * Instantiates a new class list data.
-	 */
 	protected ClassListData()
 	{
 		load();
@@ -56,14 +53,14 @@ public class ClassListData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		NamedNodeMap attrs;
 		Node attr;
-		ClassId classId;
+		PlayerClass classId;
 		String className;
-		ClassId parentClassId;
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		PlayerClass parentClassId;
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equals(n.getNodeName()))
 			{
@@ -73,11 +70,11 @@ public class ClassListData implements IXmlReader
 					if ("class".equals(d.getNodeName()))
 					{
 						attr = attrs.getNamedItem("classId");
-						classId = ClassId.getClassId(parseInteger(attr));
+						classId = PlayerClass.getPlayerClass(parseInteger(attr));
 						attr = attrs.getNamedItem("name");
 						className = attr.getNodeValue();
 						attr = attrs.getNamedItem("parentClassId");
-						parentClassId = (attr != null) ? ClassId.getClassId(parseInteger(attr)) : null;
+						parentClassId = (attr != null) ? PlayerClass.getPlayerClass(parseInteger(attr)) : null;
 						_classData.put(classId, new ClassInfoHolder(classId, className, parentClassId));
 					}
 				}
@@ -86,39 +83,35 @@ public class ClassListData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the class list.
-	 * @return the complete class list.
+	 * Retrieves the complete list of classes.
+	 * @return a map containing all class data, where each entry maps a {@link PlayerClass} to its corresponding {@link ClassInfoHolder}
 	 */
-	public Map<ClassId, ClassInfoHolder> getClassList()
+	public Map<PlayerClass, ClassInfoHolder> getClassList()
 	{
 		return _classData;
 	}
 	
 	/**
-	 * Gets the class info.
-	 * @param classId the class Id.
-	 * @return the class info related to the given {@code classId}.
+	 * Retrieves information for a specific class by its {@link PlayerClass}.
+	 * @param classId the class ID to look up
+	 * @return the {@link ClassInfoHolder} associated with the specified {@code classId}, or {@code null} if not found
 	 */
-	public ClassInfoHolder getClass(ClassId classId)
+	public ClassInfoHolder getClass(PlayerClass classId)
 	{
 		return _classData.get(classId);
 	}
 	
 	/**
-	 * Gets the class info.
-	 * @param classId the class Id as integer.
-	 * @return the class info related to the given {@code classId}.
+	 * Retrieves information for a specific class by its ID as an integer.
+	 * @param classId the class ID as an integer
+	 * @return the {@link ClassInfoHolder} associated with the specified {@code classId}, or {@code null} if not found
 	 */
 	public ClassInfoHolder getClass(int classId)
 	{
-		final ClassId id = ClassId.getClassId(classId);
+		final PlayerClass id = PlayerClass.getPlayerClass(classId);
 		return (id != null) ? _classData.get(id) : null;
 	}
 	
-	/**
-	 * Gets the single instance of ClassListData.
-	 * @return single instance of ClassListData
-	 */
 	public static ClassListData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

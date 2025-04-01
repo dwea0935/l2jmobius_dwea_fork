@@ -16,13 +16,12 @@
  */
 package ai.others.CastleTeleporter;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.siege.Siege;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import ai.AbstractNpcAI;
@@ -71,8 +70,7 @@ public class CastleTeleporter extends AbstractNpcAI
 		if (event.equalsIgnoreCase("teleport"))
 		{
 			final int region = MapRegionManager.getInstance().getMapRegionLocId(npc.getX(), npc.getY());
-			final NpcSay msg = new NpcSay(npc, ChatType.NPC_SHOUT, NpcStringId.THE_DEFENDERS_OF_S1_CASTLE_WILL_BE_TELEPORTED_TO_THE_INNER_CASTLE);
-			msg.addStringParameter(npc.getCastle().getName());
+			final NpcSay msg = new NpcSay(npc, ChatType.NPC_SHOUT, "The defenders of " + npc.getCastle().getName() + " castle will be teleported to the inner castle.");
 			npc.getCastle().oustAllPlayers();
 			npc.setScriptValue(0);
 			// TODO: Is it possible to get all the players for that region, instead of all players?

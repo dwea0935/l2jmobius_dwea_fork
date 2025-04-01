@@ -16,14 +16,14 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -71,7 +71,7 @@ public class PrisonGuards extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		if (npc.getId() == GUARD_HEAD)
 		{
@@ -97,29 +97,26 @@ public class PrisonGuards extends AbstractNpcAI
 			npc.doCast(STONE.getSkill());
 			npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.YOU_RE_OUT_OF_YOUR_MIND_COMING_HERE);
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		if (!caster.isAffectedBySkill(TIMER))
 		{
 			npc.setTarget(caster);
 			npc.doCast(SILENCE.getSkill());
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if ((skill == SILENCE.getSkill()) || (skill == STONE.getSkill()))
 		{
 			npc.asAttackable().clearAggroList();
 			npc.setTarget(npc);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
@@ -129,7 +126,7 @@ public class PrisonGuards extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == GUARD_HEAD)
 		{
@@ -142,7 +139,6 @@ public class PrisonGuards extends AbstractNpcAI
 			cancelQuestTimer("CHECK_HOME", npc, null);
 			startQuestTimer("CHECK_HOME", 30000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

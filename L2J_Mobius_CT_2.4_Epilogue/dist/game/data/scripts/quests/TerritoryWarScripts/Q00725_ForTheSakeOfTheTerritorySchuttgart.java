@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * For the Sake of the Territory - Schuttgart (725)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00725_ForTheSakeOfTheTerritorySchuttgart extends TerritoryWarSuper
 {
 	public Q00725_ForTheSakeOfTheTerritorySchuttgart()
 	{
-		super(725);
+		super(725, "For the Sake of the Territory - Schuttgart");
 		CATAPULT_ID = 36507;
 		TERRITORY_ID = 89;
 		LEADER_IDS = new int[]
@@ -42,9 +40,9 @@ public class Q00725_ForTheSakeOfTheTerritorySchuttgart extends TerritoryWarSuper
 			36559,
 			36560
 		};
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.THE_CATAPULT_OF_SCHUTTGART_HAS_BEEN_DESTROYED
+			"The catapult of Schuttgart has been destroyed!"
 		};
 		registerKillIds();
 	}

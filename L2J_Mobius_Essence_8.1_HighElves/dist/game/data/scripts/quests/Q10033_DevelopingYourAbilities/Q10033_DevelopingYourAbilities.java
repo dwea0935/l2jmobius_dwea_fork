@@ -20,9 +20,9 @@
  */
 package quests.Q10033_DevelopingYourAbilities;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.TeleportListData;
-import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -49,6 +49,11 @@ public class Q10033_DevelopingYourAbilities extends Quest
 		20308, // Hook Spider
 		20460, // Crimson Spider
 		20466, // Pincer Spider
+		20013, // Dryad
+		20019, // Dryad Elder
+		20472, // Kaboo Orc Warrior Captain
+		20036, // Lirein
+		20044, // Lirein Elder
 	};
 	
 	public Q10033_DevelopingYourAbilities()
@@ -140,7 +145,7 @@ public class Q10033_DevelopingYourAbilities extends Quest
 					questState.exitQuest(false, true);
 					rewardPlayer(player);
 					
-					if (CategoryData.getInstance().isInCategory(CategoryType.FIRST_CLASS_GROUP, player.getClassId().getId()))
+					if (CategoryData.getInstance().isInCategory(CategoryType.FIRST_CLASS_GROUP, player.getPlayerClass().getId()))
 					{
 						player.sendPacket(ExClassChangeSetAlarm.STATIC_PACKET);
 					}
@@ -179,7 +184,7 @@ public class Q10033_DevelopingYourAbilities extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -198,19 +203,17 @@ public class Q10033_DevelopingYourAbilities extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

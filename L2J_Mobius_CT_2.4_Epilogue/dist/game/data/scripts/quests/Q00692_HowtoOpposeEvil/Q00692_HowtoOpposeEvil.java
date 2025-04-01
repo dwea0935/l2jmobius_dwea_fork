@@ -20,11 +20,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 
 /**
@@ -81,7 +81,7 @@ public class Q00692_HowtoOpposeEvil extends Quest
 	
 	public Q00692_HowtoOpposeEvil()
 	{
-		super(692);
+		super(692, "How to Oppose Evil");
 		addStartNpc(DILIOS);
 		addTalkId(DILIOS, KIRKLAN);
 		addKillId(QUEST_MOBS.keySet());
@@ -160,13 +160,14 @@ public class Q00692_HowtoOpposeEvil extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 3);
 		if (partyMember == null)
 		{
-			return null;
+			return;
 		}
+		
 		final QuestState qs = getQuestState(partyMember, false);
 		final int npcId = npc.getId();
 		if ((qs != null) && QUEST_MOBS.containsKey(npcId))
@@ -184,7 +185,6 @@ public class Q00692_HowtoOpposeEvil extends Quest
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return null;
 	}
 	
 	@Override

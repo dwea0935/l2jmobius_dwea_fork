@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.settings.ExUISetting;
 
 /**
- * @author KenM / mrTJO
+ * @author KenM, mrTJO
  */
 public class RequestKeyMapping extends ClientPacket
 {

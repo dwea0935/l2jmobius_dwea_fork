@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="5703" name="Lucky Charm (No-grade)" type="EtcItem">
 		<!-- Bestows blessing on its owner such that when the owner dies during a boss/raid war, his/her abilities will not be diminished. This item can only be used on self by a character whose level is 19 or below. -->
@@ -536,7 +536,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50236" level="1" type="ON_ENCHANT" type_value="5" /> <!-- A-grade: Dark Crystal Gloves -->
+			<skill id="50236" level="1" type="ON_ENCHANT" type_value="5" /> <!-- A-grade: Dark Crystal Gloves (Heavy) -->
 			<skill id="50263" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 		</skills>
 	</item>
@@ -558,7 +558,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50238" level="1" /> <!-- A-grade: Dark Crystal Gloves -->
+			<skill id="50238" level="1" /> <!-- A-grade: Dark Crystal Gloves (Light) -->
 			<skill id="50263" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 		</skills>
 	</item>
@@ -580,7 +580,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50237" level="1" /> <!-- A-grade: Dark Crystal Gloves -->
+			<skill id="50237" level="1" /> <!-- A-grade: Dark Crystal Gloves (Robe) -->
 			<skill id="50264" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 		</skills>
 	</item>
@@ -602,7 +602,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50245" level="1" /> <!-- A-grade: Tallum Gloves -->
+			<skill id="50245" level="1" /> <!-- A-grade: Tallum Gloves (Heavy) -->
 			<skill id="50263" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 		</skills>
 	</item>
@@ -624,7 +624,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50247" level="1" /> <!-- A-grade: Tallum Gloves -->
+			<skill id="50247" level="1" /> <!-- A-grade: Tallum Gloves (Light) -->
 			<skill id="50263" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 		</skills>
 	</item>
@@ -646,7 +646,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50246" level="1" /> <!-- A-grade: Tallum Gloves -->
+			<skill id="50246" level="1" /> <!-- A-grade: Tallum Gloves (Robe) -->
 			<skill id="50264" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 		</skills>
 	</item>
@@ -668,7 +668,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50242" level="1" /> <!-- A-grade: Gauntlets of Nightmare -->
+			<skill id="50242" level="1" /> <!-- A-grade: Gauntlets of Nightmare (Heavy) -->
 			<skill id="50263" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 		</skills>
 	</item>
@@ -690,7 +690,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50244" level="1" /> <!-- A-grade: Gauntlets of Nightmare -->
+			<skill id="50244" level="1" /> <!-- A-grade: Gauntlets of Nightmare (Light) -->
 			<skill id="50263" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 		</skills>
 	</item>
@@ -712,8 +712,8 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50243" level="1" /> <!-- A-grade: Gauntlets of Nightmare -->
-			<skill id="50263" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
+			<skill id="50243" level="1" /> <!-- A-grade: Gauntlets of Nightmare (Robe) -->
+			<skill id="50263" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 		</skills>
 	</item>
 	<item id="5774" name="Majestic Gauntlets" additionalName="Heavy" type="Armor">
@@ -734,7 +734,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50239" level="1" /> <!-- A-grade: Majestic Gauntlets -->
+			<skill id="50239" level="1" /> <!-- A-grade: Majestic Gauntlets (Heavy) -->
 			<skill id="50263" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 		</skills>
 	</item>
@@ -756,7 +756,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50241" level="1" /> <!-- A-grade: Majestic Gauntlets -->
+			<skill id="50241" level="1" /> <!-- A-grade: Majestic Gauntlets (Light) -->
 			<skill id="50263" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Physical) -->
 		</skills>
 	</item>
@@ -778,7 +778,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50240" level="1" /> <!-- A-grade: Majestic Gauntlets -->
+			<skill id="50240" level="1" /> <!-- A-grade: Majestic Gauntlets (Robe) -->
 			<skill id="50264" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Gloves (Magic) -->
 		</skills>
 	</item>
@@ -800,7 +800,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50248" level="1" /> <!-- A-grade: Dark Crystal Boots -->
+			<skill id="50248" level="1" /> <!-- A-grade: Dark Crystal Boots (Heavy) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -822,7 +822,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50250" level="1" /> <!-- A-grade: Dark Crystal Boots -->
+			<skill id="50250" level="1" /> <!-- A-grade: Dark Crystal Boots (Light) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -844,8 +844,8 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50249" level="1" /> <!-- A-grade: Dark Crystal Boots -->
-			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Magic) -->
+			<skill id="50249" level="1" /> <!-- A-grade: Dark Crystal Boots (Robe) -->
+			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
 	<item id="5780" name="Tallum Boots" additionalName="Heavy" type="Armor">
@@ -866,7 +866,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50257" level="1" /> <!-- A-grade: Tallum Boots -->
+			<skill id="50257" level="1" /> <!-- A-grade: Tallum Boots (Heavy) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -888,7 +888,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50259" level="1" /> <!-- A-grade: Tallum Boots -->
+			<skill id="50259" level="1" /> <!-- A-grade: Tallum Boots (Light) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -910,7 +910,7 @@
 			<stat type="pDef">46</stat>
 		</stats>
 		<skills>
-			<skill id="50258" level="1" /> <!-- A-grade: Tallum Boots -->
+			<skill id="50258" level="1" /> <!-- A-grade: Tallum Boots (Robe) -->
 			<skill id="50266" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Magic) -->
 		</skills>
 	</item>
@@ -932,7 +932,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50254" level="1" /> <!-- A-grade: Boots of Nightmare -->
+			<skill id="50254" level="1" /> <!-- A-grade: Boots of Nightmare (Heavy) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -954,7 +954,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50256" level="1" /> <!-- A-grade: Boots of Nightmare -->
+			<skill id="50256" level="1" /> <!-- A-grade: Boots of Nightmare (Light) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -976,7 +976,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50255" level="1" /> <!-- A-grade: Boots of Nightmare -->
+			<skill id="50255" level="1" /> <!-- A-grade: Boots of Nightmare (Robe) -->
 			<skill id="50266" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Magic) -->
 		</skills>
 	</item>
@@ -998,7 +998,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50251" level="1" /> <!-- A-grade: Majestic Boots -->
+			<skill id="50251" level="1" /> <!-- A-grade: Majestic Boots (Heavy) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -1020,7 +1020,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50253" level="1" /> <!-- A-grade: Majestic Boots -->
+			<skill id="50253" level="1" /> <!-- A-grade: Majestic Boots (Light) -->
 			<skill id="50265" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Physical) -->
 		</skills>
 	</item>
@@ -1042,7 +1042,7 @@
 			<stat type="pDef">49</stat>
 		</stats>
 		<skills>
-			<skill id="50252" level="1" /> <!-- A-grade: Majestic Boots -->
+			<skill id="50252" level="1" /> <!-- A-grade: Majestic Boots (Robe) -->
 			<skill id="50266" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Boots (Magic) -->
 		</skills>
 	</item>
@@ -1060,7 +1060,7 @@
 		<set name="handler" val="SoulShots" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="2039" level="1" /> <!-- Soulshot (No-grade) -->
+			<skill id="2039" level="1" /> <!-- Soulshot -->
 		</skills>
 	</item>
 	<item id="5790" name="Spiritshot (No-grade) (Novice)" type="EtcItem">
@@ -1077,7 +1077,7 @@
 		<set name="handler" val="SpiritShot" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="2047" level="1" /> <!-- Spiritshot (No-grade) -->
+			<skill id="2047" level="1" /> <!-- No-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="5791" name="Tomb Guard A" type="Weapon">

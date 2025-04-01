@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="29100" name="Premium INT Dye (INT +2 WIT -2)" additionalName="Not Available" type="EtcItem">
 		<!-- The item is not available. Collect 10 units and take them to the Symbol Maker in town to get a symbol that boosts your abilities. Requirements: all classes after the 1st class change. -->
@@ -501,7 +501,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="32031" level="1" /> <!-- Scroll of Escape: Talking Island Village -->
+			<skill id="32031" level="1" /> <!-- Teleport Stone: Talking Island Village -->
 		</skills>
 	</item>
 	<item id="29150" name="Scroll of Escape: Elven Village" additionalName="Not Available" type="EtcItem">
@@ -519,7 +519,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="32032" level="1" /> <!-- Scroll of Escape: Elven Village -->
+			<skill id="32032" level="1" /> <!-- Teleport Stone: Elven Village -->
 		</skills>
 	</item>
 	<item id="29151" name="Scroll of Escape: Dark Elf Village" additionalName="Not Available" type="EtcItem">
@@ -537,7 +537,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="32033" level="1" /> <!-- Scroll of Escape: Dark Elven Village -->
+			<skill id="32033" level="1" /> <!-- Teleport Stone: Dark Elf Village -->
 		</skills>
 	</item>
 	<item id="29152" name="Scroll of Escape: Orc Village" additionalName="Not Available" type="EtcItem">
@@ -555,7 +555,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="32034" level="1" /> <!-- Scroll of Escape: Orc Village -->
+			<skill id="32034" level="1" /> <!-- Teleport Stone: Orc Village -->
 		</skills>
 	</item>
 	<item id="29153" name="Scroll of Escape: Dwarven Village" additionalName="Not Available" type="EtcItem">
@@ -573,7 +573,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="32035" level="1" /> <!-- Scroll of Escape: Dwarven Village -->
+			<skill id="32035" level="1" /> <!-- Teleport Stone: Dwarven Village -->
 		</skills>
 	</item>
 	<item id="29154" name="Scroll of Escape: Gludin Village" additionalName="Not Available" type="EtcItem">
@@ -591,7 +591,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="32036" level="1" /> <!-- Scroll of Escape: Gludin Village -->
+			<skill id="32036" level="1" /> <!-- Teleport Stone: Gludin -->
 		</skills>
 	</item>
 	<item id="29155" name="Scroll of Escape: Gludio" additionalName="Not Available" type="EtcItem">
@@ -609,7 +609,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="32037" level="1" /> <!-- Scroll of Escape: Gludio Village -->
+			<skill id="32037" level="1" /> <!-- Teleport Stone: Gludio -->
 		</skills>
 	</item>
 	<item id="29156" name="Bone Dagger" additionalName="Not Available" type="Weapon">

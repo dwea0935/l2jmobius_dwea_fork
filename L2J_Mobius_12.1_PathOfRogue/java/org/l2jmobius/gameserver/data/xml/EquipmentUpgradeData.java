@@ -30,9 +30,9 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.EquipmentUpgradeHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.EquipmentUpgradeHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author Mobius
@@ -40,6 +40,7 @@ import org.l2jmobius.gameserver.model.holders.ItemHolder;
 public class EquipmentUpgradeData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(EquipmentUpgradeData.class.getName());
+	
 	private static final Map<Integer, EquipmentUpgradeHolder> _upgrades = new HashMap<>();
 	
 	protected EquipmentUpgradeData()
@@ -56,49 +57,64 @@ public class EquipmentUpgradeData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "upgrade", upgradeNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "upgrade", upgradeNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(upgradeNode));
+			
 			final int id = set.getInt("id");
 			final String[] item = set.getString("item").split(",");
 			final int requiredItemId = Integer.parseInt(item[0]);
 			final int requiredItemEnchant = Integer.parseInt(item[1]);
+			
+			// Parsing materials.
 			final String materials = set.getString("materials", "");
 			final List<ItemHolder> materialList = new ArrayList<>();
-			final boolean announce = set.getBoolean("announce", false);
 			if (!materials.isEmpty())
 			{
 				for (String mat : materials.split(";"))
 				{
 					final String[] matValues = mat.split(",");
 					final int matItemId = Integer.parseInt(matValues[0]);
+					final long matItemCount = Long.parseLong(matValues[1]);
+					
 					if (ItemData.getInstance().getTemplate(matItemId) == null)
 					{
 						LOGGER.info(getClass().getSimpleName() + ": Material item with id " + matItemId + " does not exist.");
 					}
 					else
 					{
-						materialList.add(new ItemHolder(matItemId, Long.parseLong(matValues[1])));
+						materialList.add(new ItemHolder(matItemId, matItemCount));
 					}
 				}
 			}
+			
+			// Additional attributes.
 			final long adena = set.getLong("adena", 0);
 			final String[] resultItem = set.getString("result").split(",");
 			final int resultItemId = Integer.parseInt(resultItem[0]);
 			final int resultItemEnchant = Integer.parseInt(resultItem[1]);
+			final boolean announce = set.getBoolean("announce", false);
+			
+			// Validating required item existence.
 			if (ItemData.getInstance().getTemplate(requiredItemId) == null)
 			{
 				LOGGER.info(getClass().getSimpleName() + ": Required item with id " + requiredItemId + " does not exist.");
 			}
-			else
+			else // Creating and storing the upgrade entry.
 			{
-				_upgrades.put(id, new EquipmentUpgradeHolder(id, requiredItemId, requiredItemEnchant, materialList, adena, resultItemId, resultItemEnchant, announce));
+				final EquipmentUpgradeHolder upgrade = new EquipmentUpgradeHolder(id, requiredItemId, requiredItemEnchant, materialList, adena, resultItemId, resultItemEnchant, announce);
+				_upgrades.put(id, upgrade);
 			}
 		}));
 	}
 	
+	/**
+	 * Retrieves the {@link EquipmentUpgradeHolder} associated with the specified upgrade ID.
+	 * @param id the unique identifier of the upgrade to retrieve
+	 * @return the {@link EquipmentUpgradeHolder} for the specified ID, or {@code null} if no upgrade exists with that ID
+	 */
 	public EquipmentUpgradeHolder getUpgrade(int id)
 	{
 		return _upgrades.get(id);

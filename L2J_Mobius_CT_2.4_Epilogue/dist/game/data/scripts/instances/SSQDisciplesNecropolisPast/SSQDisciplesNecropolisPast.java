@@ -22,19 +22,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import instances.AbstractInstance;
 import quests.Q00196_SevenSignsSealOfTheEmperor.Q00196_SevenSignsSealOfTheEmperor;
@@ -86,12 +85,12 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 	// Locations
 	private static final Location ENTER = new Location(-89554, 216078, -7488, 0, 0);
 	private static final Location EXIT = new Location(171895, -17501, -4903, 0, 0);
-	// NpcStringId
-	private static final NpcStringId[] LILITH_SHOUT =
+	// String
+	private static final String[] LILITH_SHOUT =
 	{
-		NpcStringId.HOW_DARE_YOU_TRY_TO_CONTEND_AGAINST_ME_IN_STRENGTH_RIDICULOUS,
-		NpcStringId.ANAKIM_IN_THE_NAME_OF_GREAT_SHILIEN_I_WILL_CUT_YOUR_THROAT,
-		NpcStringId.YOU_CANNOT_BE_THE_MATCH_OF_LILITH_I_LL_TEACH_YOU_A_LESSON
+		"How dare you try to contend against me in strength? Ridiculous.",
+		"Anakim! In the name of Great Shilien, I will cut your throat!",
+		"You cannot be the match of Lilith. I'll teach you a lesson!"
 	};
 	// Misc
 	private static final int TEMPLATE_ID = 112;
@@ -232,7 +231,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 						{
 							if (caster.isScriptValue(0))
 							{
-								caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), NpcStringId.YOU_SUCH_A_FOOL_THE_VICTORY_OVER_THIS_WAR_BELONGS_TO_SHILIEN));
+								caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), "You, such a fool! The victory over this war belongs to Shilien!!!"));
 								caster.setScriptValue(1);
 							}
 							else if (getRandom(100) < 10)
@@ -251,10 +250,10 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 						{
 							if (caster.isScriptValue(0))
 							{
-								caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), NpcStringId.FOR_THE_ETERNITY_OF_EINHASAD));
-								if (Util.checkIfInRange(2000, caster, player, true))
+								caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), "For the eternity of Einhasad!!!"));
+								if (LocationUtil.checkIfInRange(2000, caster, player, true))
 								{
-									player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), NpcStringId.MY_POWER_S_WEAKENING_HURRY_AND_TURN_ON_THE_SEALING_DEVICE));
+									player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), "My power's weakening.. Hurry and turn on the sealing device!!!"));
 								}
 								caster.setScriptValue(1);
 							}
@@ -264,28 +263,28 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 								{
 									case 0:
 									{
-										caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), NpcStringId.DEAR_SHILLIEN_S_OFFSPRINGS_YOU_ARE_NOT_CAPABLE_OF_CONFRONTING_US));
-										if (Util.checkIfInRange(2000, caster, player, true))
+										caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), "Dear Shillien's offsprings! You are not capable of confronting us!"));
+										if (LocationUtil.checkIfInRange(2000, caster, player, true))
 										{
-											player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), NpcStringId.ALL_4_SEALING_DEVICES_MUST_BE_TURNED_ON));
+											player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), "All 4 sealing devices must be turned on!!!"));
 										}
 										break;
 									}
 									case 1:
 									{
-										caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), NpcStringId.I_LL_SHOW_YOU_THE_REAL_POWER_OF_EINHASAD));
-										if (Util.checkIfInRange(2000, caster, player, true))
+										caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), "I'll show you the real power of Einhasad!"));
+										if (LocationUtil.checkIfInRange(2000, caster, player, true))
 										{
-											player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), NpcStringId.LILITH_S_ATTACK_IS_GETTING_STRONGER_GO_AHEAD_AND_TURN_IT_ON));
+											player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), "Lilith's attack is getting stronger! Go ahead and turn it on!"));
 										}
 										break;
 									}
 									case 2:
 									{
-										caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), NpcStringId.DEAR_MILITARY_FORCE_OF_LIGHT_GO_DESTROY_THE_OFFSPRINGS_OF_SHILLIEN));
-										if (Util.checkIfInRange(2000, caster, player, true))
+										caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), "Dear Military Force of Light! Go destroy the offsprings of Shillien!!!"));
+										if (LocationUtil.checkIfInRange(2000, caster, player, true))
 										{
-											player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), NpcStringId.DEAR_S1_GIVE_ME_MORE_STRENGTH).addStringParameter(player.getName()));
+											player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), "Dear " + player.getName() + ", give me more strength."));
 										}
 										break;
 									}
@@ -302,7 +301,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -311,7 +310,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 			{
 				if (npc.isScriptValue(0))
 				{
-					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.THIS_PLACE_ONCE_BELONGED_TO_LORD_SHILEN));
+					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "This place once belonged to Lord Shilen."));
 					npc.setScriptValue(1);
 				}
 				break;
@@ -321,7 +320,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 			{
 				if (npc.isScriptValue(0))
 				{
-					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.WHO_DARES_ENTER_THIS_PLACE));
+					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "Who dares enter this place?"));
 					npc.setScriptValue(1);
 				}
 				break;
@@ -331,7 +330,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 			{
 				if (npc.isScriptValue(0))
 				{
-					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.THOSE_WHO_ARE_AFRAID_SHOULD_GET_AWAY_AND_THOSE_WHO_ARE_BRAVE_SHOULD_FIGHT));
+					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "Those who are afraid should get away and those who are brave should fight!"));
 					npc.setScriptValue(1);
 				}
 				break;
@@ -340,17 +339,16 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 			{
 				if (npc.isScriptValue(0))
 				{
-					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.LEAVE_NOW));
+					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "Leave now!"));
 					npc.setScriptValue(1);
 				}
 				break;
 			}
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
 		if (world != null)
@@ -368,7 +366,6 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 				npc.doCast(SEAL_ISOLATION.getSkill());
 			}
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
@@ -378,7 +375,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
 		if (world != null)
@@ -391,30 +388,28 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 			case LILIM_MAGUS:
 			case LILIM_GREAT_MAGUS:
 			{
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.LORD_SHILEN_SOME_DAY_YOU_WILL_ACCOMPLISH_THIS_MISSION));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "Lord Shilen... some day... you will accomplish... this mission..."));
 				break;
 			}
 			case LILIM_KNIGHT_ERRANT:
 			case LILIM_KNIGHT:
 			case LILIM_GUARD_KNIGHT:
 			{
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.WHY_ARE_YOU_GETTING_IN_OUR_WAY));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "Why are you getting in our way?"));
 				break;
 			}
 			case LILIM_SLAYER:
 			{
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.FOR_SHILEN));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "For Shilen!"));
 				break;
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setMortal(false);
-		return super.onSpawn(npc);
 	}
 	
 	@Override

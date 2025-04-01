@@ -12,7 +12,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="29424" level="1" /> <!-- Heir's Radiance Lv. 6 -->
-			<skill id="29431" level="1" /> <!-- Heir's Radiance - PvE -->
+			<skill id="29431" level="1" /> <!-- Heir's Radiance - PvE Lv. 3 -->
 		</skills>
 	</item>
 	<item id="29901" name="Heir's Radiance Lv. 7" additionalName="PvE" type="Armor">
@@ -27,7 +27,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="29425" level="1" /> <!-- Heir's Radiance Lv. 7 -->
-			<skill id="29433" level="1" /> <!-- Heir's Radiance - PvE -->
+			<skill id="29433" level="1" /> <!-- Heir's Radiance - PvE Lv. 4 -->
 		</skills>
 	</item>
 	<item id="29902" name="Heir's Radiance Lv. 5" additionalName="PvP" type="Armor">
@@ -42,7 +42,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="29426" level="1" /> <!-- Heir's Radiance Lv. 5 -->
-			<skill id="29430" level="1" /> <!-- Heir's Radiance - PvP -->
+			<skill id="29430" level="1" /> <!-- Heir's Radiance - PvP Lv. 2 -->
 		</skills>
 	</item>
 	<item id="29903" name="Heir's Radiance Lv. 6" additionalName="PvP" type="Armor">
@@ -57,7 +57,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="29427" level="1" /> <!-- Heir's Radiance Lv. 6 -->
-			<skill id="29432" level="1" /> <!-- Heir's Radiance - PvP -->
+			<skill id="29432" level="1" /> <!-- Heir's Radiance - PvP Lv. 3 -->
 		</skills>
 	</item>
 	<item id="29904" name="Heir's Radiance Lv. 7" additionalName="PvP" type="Armor">
@@ -72,7 +72,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="29428" level="1" /> <!-- Heir's Radiance Lv. 7 -->
-			<skill id="29434" level="1" /> <!-- Heir's Radiance - PvP -->
+			<skill id="29434" level="1" /> <!-- Heir's Radiance - PvP Lv. 4 -->
 		</skills>
 	</item>
 	<item id="29905" name="Legacy Chest" type="EtcItem">
@@ -286,7 +286,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="29435" level="1" /> <!-- +18 Supreme Krishna Weapon Pack Lv. 1 -->
+			<skill id="29435" level="1" /> <!-- +18 Supreme Krishna Weapon Pack -->
 		</skills>
 	</item>
 	<item id="29916" name="+20 Supreme Krishna Weapon Pack" type="EtcItem">
@@ -329,7 +329,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="29437" level="1" /> <!-- +10 Limited Leviathan Heavy Armor Pack Lv. 1 -->
+			<skill id="29437" level="1" /> <!-- +10 Supreme Leviathan Heavy Armor Set Pack -->
 		</skills>
 	</item>
 	<item id="29919" name="+10 Supreme Leviathan Light Armor Set Pack" type="EtcItem">
@@ -342,7 +342,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="29438" level="1" /> <!-- +10 Limited Leviathan Light Armor Pack Lv. 1 -->
+			<skill id="29438" level="1" /> <!-- +10 Supreme Leviathan Light Armor Set Pack -->
 		</skills>
 	</item>
 	<item id="29920" name="+10 Supreme Leviathan Robe Set Pack" type="EtcItem">
@@ -355,7 +355,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="29439" level="1" /> <!-- +10 Limited Leviathan Robe Pack Lv. 1 -->
+			<skill id="29439" level="1" /> <!-- +10 Supreme Leviathan Robe Set Pack -->
 		</skills>
 	</item>
 	<item id="29921" name="Top-grade Weapon Coupon" type="EtcItem">

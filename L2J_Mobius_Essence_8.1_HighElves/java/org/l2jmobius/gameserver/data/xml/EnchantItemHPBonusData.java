@@ -32,29 +32,33 @@ import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
 
 /**
- * This class holds the Enchant HP Bonus Data.
  * @author MrPoke, Zoey76
  */
 public class EnchantItemHPBonusData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(EnchantItemHPBonusData.class.getName());
 	
+	private static final float FULL_ARMOR_MODIFIER = 1.5f;
+	
 	private final Map<CrystalType, List<Integer>> _armorHPBonuses = new EnumMap<>(CrystalType.class);
 	
-	private static final float FULL_ARMOR_MODIFIER = 1.5f; // TODO: Move it to config!
-	
-	/**
-	 * Instantiates a new enchant hp bonus data.
-	 */
 	protected EnchantItemHPBonusData()
 	{
 		load();
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void load()
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		_armorHPBonuses.clear();
+		parseDatapackFile("data/stats/enchantHPBonus.xml");
+		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _armorHPBonuses.size() + " enchant HP bonuses.");
+	}
+	
+	@Override
+	public void parseDocument(Document document, File file)
+	{
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -77,18 +81,11 @@ public class EnchantItemHPBonusData implements IXmlReader
 		}
 	}
 	
-	@Override
-	public void load()
-	{
-		_armorHPBonuses.clear();
-		parseDatapackFile("data/stats/enchantHPBonus.xml");
-		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _armorHPBonuses.size() + " enchant HP bonuses.");
-	}
-	
 	/**
-	 * Gets the HP bonus.
-	 * @param item the item
-	 * @return the HP bonus
+	 * Calculates the HP bonus for a given item based on its crystal type, enchantment level and whether it is a full armor piece.<br>
+	 * The HP bonus is derived from a predefined list of bonuses for each crystal type and is adjusted for full armor pieces by applying a modifier.
+	 * @param item the {@link Item} for which the HP bonus is calculated.
+	 * @return the HP bonus value; returns 0 if the item has no applicable bonuses or if it is not enchanted.
 	 */
 	public int getHPBonus(Item item)
 	{
@@ -103,13 +100,10 @@ public class EnchantItemHPBonusData implements IXmlReader
 		{
 			return (int) (bonus * FULL_ARMOR_MODIFIER);
 		}
+		
 		return bonus;
 	}
 	
-	/**
-	 * Gets the single instance of EnchantHPBonusData.
-	 * @return single instance of EnchantHPBonusData
-	 */
 	public static EnchantItemHPBonusData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

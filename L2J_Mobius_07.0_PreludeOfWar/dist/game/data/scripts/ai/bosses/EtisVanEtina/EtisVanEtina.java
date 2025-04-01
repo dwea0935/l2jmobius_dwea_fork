@@ -26,28 +26,28 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.data.holders.SpawnHolder;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.holders.SpawnHolder;
 import org.l2jmobius.gameserver.model.quest.QuestTimer;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -583,7 +583,7 @@ public class EtisVanEtina extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		_lastAction = System.currentTimeMillis();
 		// Anti BUGGERS
@@ -738,11 +738,10 @@ public class EtisVanEtina extends AbstractNpcAI
 				BOSS_ZONE.getPlayersInside().forEach(player -> player.sendPacket(new ExShowScreenMessage(NpcStringId.ETIS_VAN_ETINA_AND_THE_POWER_OF_SEVEN_SEALS_ARE_WEAKENING, ExShowScreenMessage.TOP_CENTER, 7000, true)));
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onEnterZone(Creature character, ZoneType zone)
+	public void onEnterZone(Creature character, ZoneType zone)
 	{
 		if (zone.getId() == ZONE_ID)
 		{
@@ -772,21 +771,19 @@ public class EtisVanEtina extends AbstractNpcAI
 				startQuestTimer("check_activity_task", 60000, null, null);
 			}
 		}
-		return super.onEnterZone(character, zone);
 	}
 	
 	@Override
-	public String onExitZone(Creature character, ZoneType zone)
+	public void onExitZone(Creature character, ZoneType zone)
 	{
 		if ((zone.getId() == ZONE_ID) && zone.getPlayersInside().isEmpty())
 		{
 			_collapseTask = ThreadPool.schedule(this::clean, 900000);
 		}
-		return super.onExitZone(character, zone);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		if (npc.getId() == ETIS_VAN_ETINA1)
 		{
@@ -809,7 +806,7 @@ public class EtisVanEtina extends AbstractNpcAI
 			startQuestTimer("unlock_etina", respawnTime, null, null);
 			startQuestTimer("end_etina", 900000, null, null);
 		}
-		else if (CommonUtil.contains(CORRIDOR_MOBS, npc.getId()))
+		else if (ArrayUtil.contains(CORRIDOR_MOBS, npc.getId()))
 		{
 			_spawns.remove(npc);
 			if (_spawns.isEmpty())
@@ -840,7 +837,6 @@ public class EtisVanEtina extends AbstractNpcAI
 			_kain.deleteMe();
 			BOSS_ZONE.getPlayersInside().forEach(player -> playMovie(player, Movie.SC_KAIN_BOSS_ENDING));
 		}
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	public static void main(String[] args)

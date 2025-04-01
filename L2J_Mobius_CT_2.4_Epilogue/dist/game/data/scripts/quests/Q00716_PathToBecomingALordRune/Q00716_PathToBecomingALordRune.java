@@ -19,9 +19,8 @@ package quests.Q00716_PathToBecomingALordRune;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -29,7 +28,7 @@ import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00021_HiddenTruth.Q00021_HiddenTruth;
@@ -62,7 +61,7 @@ public class Q00716_PathToBecomingALordRune extends Quest
 	
 	public Q00716_PathToBecomingALordRune()
 	{
-		super(716);
+		super(716, "Path to Becoming a Lord - Rune");
 		addStartNpc(FREDERICK);
 		addKillId(PAGANS);
 		addTalkId(FREDERICK, AGRIPEL, INNOCENTIN);
@@ -226,8 +225,7 @@ public class Q00716_PathToBecomingALordRune extends Quest
 					{
 						if (castleOwner != null)
 						{
-							final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), NpcStringId.S1_HAS_BECOME_THE_LORD_OF_THE_TOWN_OF_RUNE_MAY_THERE_BE_GLORY_IN_THE_TERRITORY_OF_RUNE);
-							packet.addStringParameter(player.getName());
+							final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), player.getName() + " has become the lord of the Town of Rune. May there be glory in the territory of Rune!");
 							npc.broadcastPacket(packet);
 							htmltext = "35509-12.html";
 							qs.exitQuest(true, true);
@@ -287,17 +285,17 @@ public class Q00716_PathToBecomingALordRune extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = killer.getQuestState(getName());
 		if (qs == null)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		if (qs.getState() != State.STARTED)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		final Castle castle = CastleManager.getInstance().getCastleById(RUNE_CASTLE);
@@ -313,7 +311,6 @@ public class Q00716_PathToBecomingALordRune extends Quest
 				castleOwner.getQuestState(Q00716_PathToBecomingALordRune.class.getSimpleName()).set("paganCount", "1");
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private boolean hasFort()

@@ -21,13 +21,12 @@
 package custom.FakePlayers;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.data.xml.FakePlayerData;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -72,13 +71,13 @@ public class RecieveAdventurerBuffs extends AbstractNpcAI
 			{
 				for (Npc nearby : World.getInstance().getVisibleObjectsInRange(npc, Npc.class, 100))
 				{
-					if (CommonUtil.contains(ADVENTURERS_GUIDE, nearby.getId()))
+					if (ArrayUtil.contains(ADVENTURERS_GUIDE, nearby.getId()))
 					{
 						for (SkillHolder holder : GROUP_BUFFS)
 						{
 							SkillCaster.triggerCast(nearby, npc, holder.getSkill());
 						}
-						if (FakePlayerData.getInstance().getInfo(npc.getId()).getClassId().isMage())
+						if (npc.getTemplate().getFakePlayerInfo().getPlayerClass().isMage())
 						{
 							SkillCaster.triggerCast(nearby, npc, FANTASIA.getSkill()); // TODO: Merge events.
 						}
@@ -96,10 +95,9 @@ public class RecieveAdventurerBuffs extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("AUTOBUFF", 1000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

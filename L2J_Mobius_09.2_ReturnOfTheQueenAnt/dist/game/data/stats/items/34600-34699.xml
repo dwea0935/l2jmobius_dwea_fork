@@ -12,7 +12,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9324" level="1" /> <!-- Player Commendation - Transform Rose (Female) -->
+			<skill id="9324" level="1" /> <!-- PA - Rose (Female) Transformation -->
 		</skills>
 	</item>
 	<item id="34601" name="PA - Transformation Scroll: Rose (M)" additionalName="PA exclusive" type="EtcItem">
@@ -27,7 +27,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9323" level="1" /> <!-- Player Commendation - Transform Rose (Male) -->
+			<skill id="9323" level="1" /> <!-- PA - Rose (Male) Transformation -->
 		</skills>
 	</item>
 	<item id="34602" name="PA - Quick HP Replenishing Potion" additionalName="PA exclusive" type="EtcItem">
@@ -49,7 +49,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LIQUID" />
 		<skills>
-			<skill id="9292" level="1" /> <!-- Player Commendation - Quick Healing Potion -->
+			<skill id="9292" level="1" /> <!-- PA - Quick HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="34603" name="Mysterious No-grade Soulshot" additionalName="Event" type="EtcItem">
@@ -63,7 +63,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9293" level="1" /> <!-- Player Commendation - Soulshot (No-grade) -->
+			<skill id="9293" level="1" /> <!-- PA - No-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="34604" name="Mysterious D-grade Soulshot" additionalName="Event" type="EtcItem">
@@ -78,7 +78,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9294" level="1" /> <!-- Player Commendation - Soulshot (D-grade) -->
+			<skill id="9294" level="1" /> <!-- PA - D-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="34605" name="Mysterious C-grade Soulshot" additionalName="Event" type="EtcItem">
@@ -93,7 +93,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9295" level="1" /> <!-- Player Commendation - Soulshot (C-grade) -->
+			<skill id="9295" level="1" /> <!-- PA - C-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="34606" name="Mysterious B-grade Soulshot" additionalName="Event" type="EtcItem">
@@ -108,7 +108,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9296" level="1" /> <!-- Player Commendation - Soulshot (B-grade) -->
+			<skill id="9296" level="1" /> <!-- PA - B-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="34607" name="Mysterious A-grade Soulshot" additionalName="Event" type="EtcItem">
@@ -123,7 +123,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9297" level="1" /> <!-- Player Commendation - Soulshot (A-grade) -->
+			<skill id="9297" level="1" /> <!-- PA - A-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="34608" name="Mysterious S-grade Soulshot" additionalName="Event" type="EtcItem">
@@ -138,7 +138,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9298" level="1" /> <!-- Player Commendation - Soulshot (S-grade) -->
+			<skill id="9298" level="1" /> <!-- PA - S-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="34609" name="Mysterious R-grade Soulshot" additionalName="Event" type="EtcItem">
@@ -154,7 +154,7 @@
 		<set name="etcitem_type" val="SOULSHOT" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="9299" level="1" /> <!-- Player Commendation - Soulshot (R-grade) -->
+			<skill id="9299" level="1" /> <!-- PA - R-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="34610" name="Mysterious Blessed No-grade Spiritshot" additionalName="Event" type="EtcItem">
@@ -168,7 +168,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9300" level="1" /> <!-- Player Commendation - Blessed Spiritshot (No-grade) -->
+			<skill id="9300" level="1" /> <!-- PA - Blessed No-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="34611" name="Mysterious Blessed D-grade Spiritshot" additionalName="Event" type="EtcItem">
@@ -183,7 +183,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9301" level="1" /> <!-- Player Commendation - Blessed Spiritshot (D-grade) -->
+			<skill id="9301" level="1" /> <!-- PA - Blessed D-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="34612" name="Mysterious Blessed C-grade Spiritshot" additionalName="Event" type="EtcItem">
@@ -198,7 +198,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9302" level="1" /> <!-- Player Commendation - Blessed Spiritshot (C-grade) -->
+			<skill id="9302" level="1" /> <!-- PA - Blessed C-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="34613" name="Mysterious Blessed B-grade Spiritshot" additionalName="Event" type="EtcItem">
@@ -213,7 +213,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9303" level="1" /> <!-- Player Commendation - Blessed Spiritshot (B-grade) -->
+			<skill id="9303" level="1" /> <!-- PA - Blessed B-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="34614" name="Mysterious Blessed A-grade Spiritshot" additionalName="Event" type="EtcItem">
@@ -228,7 +228,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9304" level="1" /> <!-- Player Commendation - Blessed Spiritshot (A-grade) -->
+			<skill id="9304" level="1" /> <!-- PA - Blessed A-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="34615" name="Mysterious Blessed S-grade Spiritshot" additionalName="Event" type="EtcItem">
@@ -243,7 +243,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9305" level="1" /> <!-- Player Commendation - Blessed Spiritshot (S-grade) -->
+			<skill id="9305" level="1" /> <!-- PA - Blessed S-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="34616" name="Mysterious Blessed R-grade Spiritshot" additionalName="Event" type="EtcItem">
@@ -259,7 +259,7 @@
 		<set name="etcitem_type" val="SOULSHOT" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="9306" level="1" /> <!-- Player Commendation - Blessed Spiritshot (R-grade) -->
+			<skill id="9306" level="1" /> <!-- PA - Blessed R-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="34617" name="PA - Agathion's Gift" additionalName="PA exclusive" type="EtcItem">
@@ -274,7 +274,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9318" level="1" /> <!-- Open PC Points Coupon -->
+			<skill id="9318" level="1" /> <!-- Open PA Points Coupon -->
 		</skills>
 	</item>
 	<item id="34618" name="PA - Enhanced Cocktail" additionalName="PA exclusive" type="EtcItem">
@@ -314,7 +314,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9319" level="1" /> <!-- Use PC Points Coupon -->
+			<skill id="9319" level="1" /> <!-- Use PA Points Coupon -->
 		</skills>
 	</item>
 	<item id="34620" name="Heavenly Cocktail" type="EtcItem">
@@ -353,7 +353,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="13368" level="1" /> <!-- Talisman (R-grade) - Half-kill/Lethal Strike Resistance -->
+			<skill id="13368" level="1" /> <!-- R-grade Talisman - Half-kill/ Lethal Strike Resistance -->
 		</skills>
 	</item>
 	<item id="34622" name="R-grade Talisman - Half-kill/ Lethal Strike Resistance (Active)" type="Armor">
@@ -371,7 +371,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="13367" level="1" /> <!-- Talisman (R-grade) - Half-kill/Lethal Strike Resistance (Active) -->
+			<skill id="13367" level="1" /> <!-- R-grade Talisman - Half-kill/ Lethal Strike Resistance (Active) -->
 		</skills>
 	</item>
 	<item id="34623" name="Pa'agrio's Shirt" type="Armor">
@@ -1318,7 +1318,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9341" level="1" /> <!-- Hero's Lucky Enchant Stone Pack -->
+			<skill id="9341" level="1" /> <!-- Hero's Enchant Stone Pack -->
 		</skills>
 	</item>
 	<item id="34695" name="Hero's Destruction Enchant Scroll Pack" type="EtcItem">

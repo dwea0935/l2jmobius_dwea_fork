@@ -22,13 +22,12 @@ import java.util.Map.Entry;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
-import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * Fortress of the Dead clan hall siege script.
@@ -57,29 +56,28 @@ public class FortressOfTheDead extends ClanHallSiegeEngine
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == LIDIA)
 		{
-			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.HMM_THOSE_WHO_ARE_NOT_OF_THE_BLOODLINE_ARE_COMING_THIS_WAY_TO_TAKE_OVER_THE_CASTLE_HUMPH_THE_BITTER_GRUDGES_OF_THE_DEAD_YOU_MUST_NOT_MAKE_LIGHT_OF_THEIR_POWER);
+			npc.broadcastSay(ChatType.NPC_SHOUT, "Hmm, those who are not of the bloodline are coming this way to take over the castle?! Humph! The bitter grudges of the dead. You must not make light of their power!");
 		}
 		else if (npc.getId() == ALFRED)
 		{
-			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.HEH_HEH_I_SEE_THAT_THE_FEAST_HAS_BEGUN_BE_WARY_THE_CURSE_OF_THE_HELLMANN_FAMILY_HAS_POISONED_THIS_LAND);
+			npc.broadcastSay(ChatType.NPC_SHOUT, "Heh Heh... I see that the feast has begun! Be wary! The curse of the Hellmann family has poisoned this land!");
 		}
 		else if (npc.getId() == GISELLE)
 		{
-			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.ARISE_MY_FAITHFUL_SERVANTS_YOU_MY_PEOPLE_WHO_HAVE_INHERITED_THE_BLOOD_IT_IS_THE_CALLING_OF_MY_DAUGHTER_THE_FEAST_OF_BLOOD_WILL_NOW_BEGIN);
+			npc.broadcastSay(ChatType.NPC_SHOUT, "Arise, my faithful servants! You, my people who have inherited the blood. It is the calling of my daughter. The feast of blood will now begin!");
 		}
-		return null;
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (!_hall.isInSiege())
 		{
-			return null;
+			return;
 		}
 		
 		synchronized (this)
@@ -100,25 +98,24 @@ public class FortressOfTheDead extends ClanHallSiegeEngine
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (!_hall.isInSiege())
 		{
-			return null;
+			return;
 		}
 		
 		final int npcId = npc.getId();
 		if ((npcId == ALFRED) || (npcId == GISELLE))
 		{
-			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.AARGH_IF_I_DIE_THEN_THE_MAGIC_FORCE_FIELD_OF_BLOOD_WILL);
+			npc.broadcastSay(ChatType.NPC_SHOUT, "Aargh...! If I die, then the magic force field of blood will...!");
 		}
 		if (npcId == LIDIA)
 		{
-			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.GRARR_FOR_THE_NEXT_2_MINUTES_OR_SO_THE_GAME_ARENA_ARE_WILL_BE_CLEANED_THROW_ANY_ITEMS_YOU_DON_T_NEED_TO_THE_FLOOR_NOW);
+			npc.broadcastSay(ChatType.NPC_SHOUT, "Grarr! For the next 2 minutes or so, the game arena are will be cleaned. Throw any items you don't need to the floor now.");
 			_missionAccomplished = true;
 			synchronized (this)
 			{
@@ -126,8 +123,6 @@ public class FortressOfTheDead extends ClanHallSiegeEngine
 				endSiege();
 			}
 		}
-		
-		return null;
 	}
 	
 	@Override

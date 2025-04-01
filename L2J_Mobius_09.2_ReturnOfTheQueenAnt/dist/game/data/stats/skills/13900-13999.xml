@@ -34,7 +34,7 @@
 		<excludedFromCheck>true</excludedFromCheck>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<specialLevel>-1</specialLevel>
@@ -2538,7 +2538,6 @@
 				<AIRBIND>30</AIRBIND>
 				<KNOCKDOWN>30</KNOCKDOWN>
 				<KNOCKBACK>30</KNOCKBACK>
-				<KNOCKBACK>30</KNOCKBACK>
 				<PARALYZE>30</PARALYZE>
 				<PULL>30</PULL>
 			</effect>
@@ -2547,7 +2546,6 @@
 				<SHOCK>30</SHOCK>
 				<AIRBIND>30</AIRBIND>
 				<KNOCKDOWN>30</KNOCKDOWN>
-				<KNOCKBACK>30</KNOCKBACK>
 				<KNOCKBACK>30</KNOCKBACK>
 				<PARALYZE>30</PARALYZE>
 				<PULL>30</PULL>

@@ -131,7 +131,7 @@ public class Q10411_KekropusLetterTheForestOfTheDead extends LetterQuest
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -142,7 +142,6 @@ public class Q10411_KekropusLetterTheForestOfTheDead extends LetterQuest
 				showOnScreenMsg(player, NpcStringId.FOREST_OF_THE_DEAD_IS_A_GOOD_HUNTING_ZONE_FOR_LV_65_OR_ABOVE, ExShowScreenMessage.TOP_CENTER, 6000);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override

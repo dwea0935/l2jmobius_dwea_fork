@@ -35,36 +35,36 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.communitybbs.Manager.ForumsBBSManager;
 import org.l2jmobius.gameserver.data.xml.ClanHallData;
-import org.l2jmobius.gameserver.enums.ClanWarState;
-import org.l2jmobius.gameserver.enums.UserInfoType;
-import org.l2jmobius.gameserver.instancemanager.ClanEntryManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
+import org.l2jmobius.gameserver.managers.ClanEntryManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanPrivileges;
 import org.l2jmobius.gameserver.model.clan.ClanWar;
+import org.l2jmobius.gameserver.model.clan.enums.ClanWarState;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.clan.OnClanWarFinish;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanCreate;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanDestroy;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanCreate;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanDestroy;
+import org.l2jmobius.gameserver.model.events.holders.clan.OnClanWarFinish;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.residences.ClanHall;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.siege.FortSiege;
 import org.l2jmobius.gameserver.model.siege.Siege;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeShowInfoUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeShowMemberListAll;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeShowMemberListUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.EnumIntBitmask;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * This class loads the clan related data.
@@ -183,7 +183,7 @@ public class ClanTable
 			player.sendPacket(SystemMessageId.YOU_MUST_WAIT_10_DAYS_BEFORE_CREATING_A_NEW_CLAN);
 			return null;
 		}
-		if (!Util.isAlphaNumeric(clanName) || (clanName.length() < 2))
+		if (!StringUtil.isAlphaNumeric(clanName) || (clanName.length() < 2))
 		{
 			player.sendPacket(SystemMessageId.CLAN_NAME_IS_INVALID);
 			return null;
@@ -210,7 +210,10 @@ public class ClanTable
 		clan.store();
 		player.setClan(clan);
 		player.setPledgeClass(ClanMember.calculatePledgeClass(player));
-		player.setClanPrivileges(new EnumIntBitmask<>(ClanPrivilege.class, true));
+		
+		final ClanPrivileges privileges = new ClanPrivileges();
+		privileges.enableAll();
+		player.setClanPrivileges(privileges);
 		
 		_clans.put(clan.getId(), clan);
 		
@@ -269,11 +272,11 @@ public class ClanTable
 		final ClanMember leaderMember = clan.getLeader();
 		if (leaderMember == null)
 		{
-			clan.getWarehouse().destroyAllItems("ClanRemove", null, null);
+			clan.getWarehouse().destroyAllItems(ItemProcessType.DESTROY, null, null);
 		}
 		else
 		{
-			clan.getWarehouse().destroyAllItems("ClanRemove", clan.getLeader().getPlayer(), null);
+			clan.getWarehouse().destroyAllItems(ItemProcessType.DESTROY, clan.getLeader().getPlayer(), null);
 		}
 		
 		for (ClanMember member : clan.getMembers())

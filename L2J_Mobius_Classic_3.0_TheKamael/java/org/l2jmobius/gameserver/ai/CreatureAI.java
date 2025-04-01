@@ -16,24 +16,13 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_CAST;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_FOLLOW;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_INTERACT;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_MOVE_TO;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_PICK_UP;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_REST;
-
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.WorldRegion;
@@ -43,14 +32,15 @@ import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMoveFinished;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMoveFinished;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.AutoAttackStop;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 /**
  * This class manages AI of Creature.<br>
@@ -68,20 +58,20 @@ public class CreatureAI extends AbstractAI
 	
 	public static class IntentionCommand
 	{
-		protected final CtrlIntention _crtlIntention;
+		protected final Intention _intention;
 		protected final Object _arg0;
 		protected final Object _arg1;
 		
-		protected IntentionCommand(CtrlIntention pIntention, Object pArg0, Object pArg1)
+		protected IntentionCommand(Intention pIntention, Object pArg0, Object pArg1)
 		{
-			_crtlIntention = pIntention;
+			_intention = pIntention;
 			_arg0 = pArg0;
 			_arg1 = pArg1;
 		}
 		
-		public CtrlIntention getCtrlIntention()
+		public Intention getIntention()
 		{
-			return _crtlIntention;
+			return _intention;
 		}
 	}
 	
@@ -130,7 +120,7 @@ public class CreatureAI extends AbstractAI
 	}
 	
 	@Override
-	protected void onEvtAttacked(Creature attacker)
+	protected void onActionAttacked(Creature attacker)
 	{
 		clientStartAutoAttack();
 	}
@@ -140,7 +130,7 @@ public class CreatureAI extends AbstractAI
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
-	 * <li>Set the AI Intention to AI_INTENTION_IDLE</li>
+	 * <li>Set the AI Intention to IDLE</li>
 	 * <li>Init cast and attack target</li>
 	 * <li>Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)</li>
 	 * <li>Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)</li>
@@ -150,8 +140,8 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionIdle()
 	{
-		// Set the AI Intention to AI_INTENTION_IDLE
-		changeIntention(AI_INTENTION_IDLE);
+		// Set the AI Intention to IDLE
+		changeIntention(Intention.IDLE);
 		
 		// Init cast target
 		setCastTarget(null);
@@ -164,28 +154,28 @@ public class CreatureAI extends AbstractAI
 	}
 	
 	/**
-	 * Manage the Active Intention : Stop Attack, Movement and Launch Think Event.<br>
+	 * Manage the Active Intention : Stop Attack, Movement and Launch Think Action.<br>
 	 * <br>
 	 * <b><u>Actions</u> : <i>if the Intention is not already Active</i></b>
 	 * <ul>
-	 * <li>Set the AI Intention to AI_INTENTION_ACTIVE</li>
+	 * <li>Set the AI Intention to ACTIVE</li>
 	 * <li>Init cast and attack target</li>
 	 * <li>Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)</li>
 	 * <li>Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)</li>
-	 * <li>Launch the Think Event</li>
+	 * <li>Launch the Think Action</li>
 	 * </ul>
 	 */
 	@Override
 	protected void onIntentionActive()
 	{
 		// Check if the Intention is not already Active
-		if (getIntention() == AI_INTENTION_ACTIVE)
+		if (getIntention() == Intention.ACTIVE)
 		{
 			return;
 		}
 		
-		// Set the AI Intention to AI_INTENTION_ACTIVE
-		changeIntention(AI_INTENTION_ACTIVE);
+		// Set the AI Intention to ACTIVE
+		changeIntention(Intention.ACTIVE);
 		
 		// Check if region and its neighbors are active.
 		final WorldRegion region = _actor.getWorldRegion();
@@ -203,8 +193,8 @@ public class CreatureAI extends AbstractAI
 		// Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)
 		clientStopAutoAttack();
 		
-		// Launch the Think Event
-		onEvtThink();
+		// Launch the Think Action
+		onActionThink();
 	}
 	
 	/**
@@ -212,26 +202,26 @@ public class CreatureAI extends AbstractAI
 	 * <br>
 	 * <b><u>Actions</u> : </b>
 	 * <ul>
-	 * <li>Set the AI Intention to AI_INTENTION_IDLE</li>
+	 * <li>Set the AI Intention to IDLE</li>
 	 * </ul>
 	 */
 	@Override
 	protected void onIntentionRest()
 	{
-		// Set the AI Intention to AI_INTENTION_IDLE
-		setIntention(AI_INTENTION_IDLE);
+		// Set the AI Intention to IDLE
+		setIntention(Intention.IDLE);
 	}
 	
 	/**
-	 * Manage the Attack Intention : Stop current Attack (if necessary), Start a new Attack and Launch Think Event.<br>
+	 * Manage the Attack Intention : Stop current Attack (if necessary), Start a new Attack and Launch Think Action.<br>
 	 * <br>
 	 * <b><u>Actions</u> : </b>
 	 * <ul>
 	 * <li>Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)</li>
-	 * <li>Set the Intention of this AI to AI_INTENTION_ATTACK</li>
+	 * <li>Set the Intention of this AI to ATTACK</li>
 	 * <li>Set or change the AI attack target</li>
 	 * <li>Start the actor Auto Attack client side by sending Server->Client packet AutoAttackStart (broadcast)</li>
-	 * <li>Launch the Think Event</li>
+	 * <li>Launch the Think Action</li>
 	 * </ul>
 	 * <br>
 	 * <b><u>Overridden in</u>:</b>
@@ -248,7 +238,7 @@ public class CreatureAI extends AbstractAI
 			return;
 		}
 		
-		if (getIntention() == AI_INTENTION_REST)
+		if (getIntention() == Intention.REST)
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -262,8 +252,8 @@ public class CreatureAI extends AbstractAI
 			return;
 		}
 		
-		// Check if the Intention is already AI_INTENTION_ATTACK
-		if (getIntention() == AI_INTENTION_ATTACK)
+		// Check if the Intention is already ATTACK
+		if (getIntention() == Intention.ATTACK)
 		{
 			// Check if the AI already targets the Creature
 			if (getTarget() != target)
@@ -273,8 +263,8 @@ public class CreatureAI extends AbstractAI
 				
 				// stopFollow();
 				
-				// Launch the Think Event
-				notifyEvent(CtrlEvent.EVT_THINK, null);
+				// Launch the Think Action
+				notifyAction(Action.THINK, null);
 			}
 			else
 			{
@@ -283,21 +273,21 @@ public class CreatureAI extends AbstractAI
 		}
 		else
 		{
-			// Set the Intention of this AbstractAI to AI_INTENTION_ATTACK
-			changeIntention(AI_INTENTION_ATTACK, target);
+			// Set the Intention of this AbstractAI to ATTACK
+			changeIntention(Intention.ATTACK, target);
 			
 			// Set the AI attack target
 			setTarget(target);
 			
 			// stopFollow();
 			
-			// Launch the Think Event
-			notifyEvent(CtrlEvent.EVT_THINK, null);
+			// Launch the Think Action
+			notifyAction(Action.THINK, null);
 		}
 	}
 	
 	/**
-	 * Manage the Cast Intention : Stop current Attack, Init the AI in order to cast and Launch Think Event.<br>
+	 * Manage the Cast Intention : Stop current Attack, Init the AI in order to cast and Launch Think Action.<br>
 	 * <br>
 	 * <b><u>Actions</u> : </b>
 	 * <ul>
@@ -305,14 +295,14 @@ public class CreatureAI extends AbstractAI
 	 * <li>Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)</li>
 	 * <li>Cancel action client side by sending Server->Client packet ActionFailed to the Player actor</li>
 	 * <li>Set the AI skill used by INTENTION_CAST</li>
-	 * <li>Set the Intention of this AI to AI_INTENTION_CAST</li>
-	 * <li>Launch the Think Event</li>
+	 * <li>Set the Intention of this AI to CAST</li>
+	 * <li>Launch the Think Action</li>
 	 * </ul>
 	 */
 	@Override
 	protected void onIntentionCast(Skill skill, WorldObject target, Item item, boolean forceUse, boolean dontMove)
 	{
-		if ((getIntention() == AI_INTENTION_REST) && skill.isMagic())
+		if ((getIntention() == Intention.REST) && skill.isMagic())
 		{
 			clientActionFailed();
 			return;
@@ -345,11 +335,11 @@ public class CreatureAI extends AbstractAI
 		_forceUse = forceUse;
 		_dontMove = dontMove;
 		
-		// Change the Intention of this AbstractAI to AI_INTENTION_CAST
-		changeIntention(AI_INTENTION_CAST, skill);
+		// Change the Intention of this AbstractAI to CAST
+		changeIntention(Intention.CAST, skill);
 		
-		// Launch the Think Event
-		notifyEvent(CtrlEvent.EVT_THINK, null);
+		// Launch the Think Action
+		notifyAction(Action.THINK, null);
 	}
 	
 	/**
@@ -358,14 +348,14 @@ public class CreatureAI extends AbstractAI
 	 * <b><u>Actions</u> : </b>
 	 * <ul>
 	 * <li>Stop the actor auto-attack server side AND client side by sending Server->Client packet AutoAttackStop (broadcast)</li>
-	 * <li>Set the Intention of this AI to AI_INTENTION_MOVE_TO</li>
+	 * <li>Set the Intention of this AI to MOVE_TO</li>
 	 * <li>Move the actor to Location (x,y,z) server side AND client side by sending Server->Client packet MoveToLocation (broadcast)</li>
 	 * </ul>
 	 */
 	@Override
 	protected void onIntentionMoveTo(ILocational loc)
 	{
-		if (getIntention() == AI_INTENTION_REST)
+		if (getIntention() == Intention.REST)
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -379,8 +369,8 @@ public class CreatureAI extends AbstractAI
 			return;
 		}
 		
-		// Set the Intention of this AbstractAI to AI_INTENTION_MOVE_TO
-		changeIntention(AI_INTENTION_MOVE_TO, loc);
+		// Set the Intention of this AbstractAI to MOVE_TO
+		changeIntention(Intention.MOVE_TO, loc);
 		
 		// Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)
 		clientStopAutoAttack();
@@ -398,14 +388,14 @@ public class CreatureAI extends AbstractAI
 	 * <b><u>Actions</u> : </b>
 	 * <ul>
 	 * <li>Stop the actor auto-attack server side AND client side by sending Server->Client packet AutoAttackStop (broadcast)</li>
-	 * <li>Set the Intention of this AI to AI_INTENTION_FOLLOW</li>
+	 * <li>Set the Intention of this AI to FOLLOW</li>
 	 * <li>Create and Launch an AI Follow Task to execute every 1s</li>
 	 * </ul>
 	 */
 	@Override
 	protected void onIntentionFollow(Creature target)
 	{
-		if (getIntention() == AI_INTENTION_REST)
+		if (getIntention() == Intention.REST)
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -443,8 +433,8 @@ public class CreatureAI extends AbstractAI
 		// Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)
 		clientStopAutoAttack();
 		
-		// Set the Intention of this AbstractAI to AI_INTENTION_FOLLOW
-		changeIntention(AI_INTENTION_FOLLOW, target);
+		// Set the Intention of this AbstractAI to FOLLOW
+		changeIntention(Intention.FOLLOW, target);
 		
 		// Create and Launch an AI Follow Task to execute every 1s
 		startFollow(target);
@@ -456,14 +446,14 @@ public class CreatureAI extends AbstractAI
 	 * <b><u>Actions</u> : </b>
 	 * <ul>
 	 * <li>Set the AI pick up target</li>
-	 * <li>Set the Intention of this AI to AI_INTENTION_PICK_UP</li>
+	 * <li>Set the Intention of this AI to PICK_UP</li>
 	 * <li>Move the actor to Pawn server side AND client side by sending Server->Client packet MoveToPawn (broadcast)</li>
 	 * </ul>
 	 */
 	@Override
 	protected void onIntentionPickUp(WorldObject object)
 	{
-		if (getIntention() == AI_INTENTION_REST)
+		if (getIntention() == Intention.REST)
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -485,8 +475,8 @@ public class CreatureAI extends AbstractAI
 			return;
 		}
 		
-		// Set the Intention of this AbstractAI to AI_INTENTION_PICK_UP
-		changeIntention(AI_INTENTION_PICK_UP, object);
+		// Set the Intention of this AbstractAI to PICK_UP
+		changeIntention(Intention.PICK_UP, object);
 		
 		// Set the AI pick up target
 		setTarget(object);
@@ -508,14 +498,14 @@ public class CreatureAI extends AbstractAI
 	 * <ul>
 	 * <li>Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)</li>
 	 * <li>Set the AI interact target</li>
-	 * <li>Set the Intention of this AI to AI_INTENTION_INTERACT</li>
+	 * <li>Set the Intention of this AI to INTERACT</li>
 	 * <li>Move the actor to Pawn server side AND client side by sending Server->Client packet MoveToPawn (broadcast)</li>
 	 * </ul>
 	 */
 	@Override
 	protected void onIntentionInteract(WorldObject object)
 	{
-		if (getIntention() == AI_INTENTION_REST)
+		if (getIntention() == Intention.REST)
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -532,10 +522,10 @@ public class CreatureAI extends AbstractAI
 		// Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)
 		clientStopAutoAttack();
 		
-		if (getIntention() != AI_INTENTION_INTERACT)
+		if (getIntention() != Intention.INTERACT)
 		{
-			// Set the Intention of this AbstractAI to AI_INTENTION_INTERACT
-			changeIntention(AI_INTENTION_INTERACT, object);
+			// Set the Intention of this AbstractAI to INTERACT
+			changeIntention(Intention.INTERACT, object);
 			
 			// Set the AI interact target
 			setTarget(object);
@@ -549,7 +539,7 @@ public class CreatureAI extends AbstractAI
 	 * Do nothing.
 	 */
 	@Override
-	public void onEvtThink()
+	public void onActionThink()
 	{
 		// do nothing
 	}
@@ -558,13 +548,13 @@ public class CreatureAI extends AbstractAI
 	 * Do nothing.
 	 */
 	@Override
-	protected void onEvtAggression(Creature target, int aggro)
+	protected void onActionAggression(Creature target, int aggro)
 	{
 		// do nothing
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Stunned then onAttacked Event.<br>
+	 * Launch actions corresponding to the Action Stunned then onAttacked Action.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
@@ -572,11 +562,11 @@ public class CreatureAI extends AbstractAI
 	 * <li>Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)</li>
 	 * <li>Break an attack and send Server->Client ActionFailed packet and a System Message to the Creature</li>
 	 * <li>Break a cast and send Server->Client ActionFailed packet and a System Message to the Creature</li>
-	 * <li>Launch actions corresponding to the Event onAttacked (only for AttackableAI after the stunning periode)</li>
+	 * <li>Launch actions corresponding to the Action onAttacked (only for AttackableAI after the stunning periode)</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtActionBlocked(Creature attacker)
+	protected void onActionBlocked(Creature attacker)
 	{
 		// Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)
 		_actor.broadcastPacket(new AutoAttackStop(_actor.getObjectId()));
@@ -593,16 +583,16 @@ public class CreatureAI extends AbstractAI
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Rooted.<br>
+	 * Launch actions corresponding to the Action Rooted.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
 	 * <li>Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)</li>
-	 * <li>Launch actions corresponding to the Event onAttacked</li>
+	 * <li>Launch actions corresponding to the Action onAttacked</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtRooted(Creature attacker)
+	protected void onActionRooted(Creature attacker)
 	{
 		// Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)
 		// _actor.broadcastPacket(new AutoAttackStop(_actor.getObjectId()));
@@ -612,31 +602,31 @@ public class CreatureAI extends AbstractAI
 		// Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)
 		clientStopMoving(null);
 		
-		// Launch actions corresponding to the Event onAttacked
-		onEvtAttacked(attacker);
+		// Launch actions corresponding to the Action onAttacked
+		onActionAttacked(attacker);
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Confused.<br>
+	 * Launch actions corresponding to the Action Confused.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
 	 * <li>Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)</li>
-	 * <li>Launch actions corresponding to the Event onAttacked</li>
+	 * <li>Launch actions corresponding to the Action onAttacked</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtConfused(Creature attacker)
+	protected void onActionConfused(Creature attacker)
 	{
 		// Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)
 		clientStopMoving(null);
 		
-		// Launch actions corresponding to the Event onAttacked
-		onEvtAttacked(attacker);
+		// Launch actions corresponding to the Action onAttacked
+		onActionAttacked(attacker);
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Muted.<br>
+	 * Launch actions corresponding to the Action Muted.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
@@ -644,47 +634,47 @@ public class CreatureAI extends AbstractAI
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtMuted(Creature attacker)
+	protected void onActionMuted(Creature attacker)
 	{
 		// Break a cast and send Server->Client ActionFailed packet and a System Message to the Creature
-		onEvtAttacked(attacker);
+		onActionAttacked(attacker);
 	}
 	
 	/**
 	 * Do nothing.
 	 */
 	@Override
-	protected void onEvtEvaded(Creature attacker)
+	protected void onActionEvaded(Creature attacker)
 	{
 		// do nothing
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event ReadyToAct.<br>
+	 * Launch actions corresponding to the Action ReadyToAct.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
-	 * <li>Launch actions corresponding to the Event Think</li>
+	 * <li>Launch actions corresponding to the Action Think</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtReadyToAct()
+	protected void onActionReadyToAct()
 	{
-		// Launch actions corresponding to the Event Think
-		onEvtThink();
+		// Launch actions corresponding to the Action Think
+		onActionThink();
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Arrived.<br>
+	 * Launch actions corresponding to the Action Arrived.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
-	 * <li>If the Intention was AI_INTENTION_MOVE_TO, set the Intention to AI_INTENTION_ACTIVE</li>
-	 * <li>Launch actions corresponding to the Event Think</li>
+	 * <li>If the Intention was MOVE_TO, set the Intention to ACTIVE</li>
+	 * <li>Launch actions corresponding to the Action Think</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtArrived()
+	protected void onActionArrived()
 	{
 		getActor().revalidateZone(true);
 		
@@ -695,10 +685,10 @@ public class CreatureAI extends AbstractAI
 		
 		clientStoppedMoving();
 		
-		// If the Intention was AI_INTENTION_MOVE_TO, set the Intention to AI_INTENTION_ACTIVE
-		if (getIntention() == AI_INTENTION_MOVE_TO)
+		// If the Intention was MOVE_TO, set the Intention to ACTIVE
+		if (getIntention() == Intention.MOVE_TO)
 		{
-			setIntention(AI_INTENTION_ACTIVE);
+			setIntention(Intention.ACTIVE);
 		}
 		
 		if (_actor.isNpc())
@@ -717,72 +707,72 @@ public class CreatureAI extends AbstractAI
 			}
 		}
 		
-		// Launch actions corresponding to the Event Think
-		onEvtThink();
+		// Launch actions corresponding to the Action Think
+		onActionThink();
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event ArrivedRevalidate.<br>
+	 * Launch actions corresponding to the Action ArrivedRevalidate.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
-	 * <li>Launch actions corresponding to the Event Think</li>
+	 * <li>Launch actions corresponding to the Action Think</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtArrivedRevalidate()
+	protected void onActionArrivedRevalidate()
 	{
-		// Launch actions corresponding to the Event Think
-		onEvtThink();
+		// Launch actions corresponding to the Action Think
+		onActionThink();
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event ArrivedBlocked.<br>
+	 * Launch actions corresponding to the Action ArrivedBlocked.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
 	 * <li>Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)</li>
-	 * <li>If the Intention was AI_INTENTION_MOVE_TO, set the Intention to AI_INTENTION_ACTIVE</li>
-	 * <li>Launch actions corresponding to the Event Think</li>
+	 * <li>If the Intention was MOVE_TO, set the Intention to ACTIVE</li>
+	 * <li>Launch actions corresponding to the Action Think</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtArrivedBlocked(Location location)
+	protected void onActionArrivedBlocked(Location location)
 	{
-		// If the Intention was AI_INTENTION_MOVE_TO, set the Intention to AI_INTENTION_ACTIVE
-		if ((getIntention() == AI_INTENTION_MOVE_TO) || (getIntention() == AI_INTENTION_CAST))
+		// If the Intention was MOVE_TO, set the Intention to ACTIVE
+		if ((getIntention() == Intention.MOVE_TO) || (getIntention() == Intention.CAST))
 		{
-			setIntention(AI_INTENTION_ACTIVE);
+			setIntention(Intention.ACTIVE);
 		}
 		
 		// Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)
 		clientStopMoving(location);
 		
-		// Launch actions corresponding to the Event Think
-		onEvtThink();
+		// Launch actions corresponding to the Action Think
+		onActionThink();
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event ForgetObject.<br>
+	 * Launch actions corresponding to the Action ForgetObject.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
-	 * <li>If the object was targeted and the Intention was AI_INTENTION_INTERACT or AI_INTENTION_PICK_UP, set the Intention to AI_INTENTION_ACTIVE</li>
-	 * <li>If the object was targeted to attack, stop the auto-attack, cancel target and set the Intention to AI_INTENTION_ACTIVE</li>
-	 * <li>If the object was targeted to cast, cancel target and set the Intention to AI_INTENTION_ACTIVE</li>
-	 * <li>If the object was targeted to follow, stop the movement, cancel AI Follow Task and set the Intention to AI_INTENTION_ACTIVE</li>
-	 * <li>If the targeted object was the actor , cancel AI target, stop AI Follow Task, stop the movement and set the Intention to AI_INTENTION_IDLE</li>
+	 * <li>If the object was targeted and the Intention was INTERACT or PICK_UP, set the Intention to ACTIVE</li>
+	 * <li>If the object was targeted to attack, stop the auto-attack, cancel target and set the Intention to ACTIVE</li>
+	 * <li>If the object was targeted to cast, cancel target and set the Intention to ACTIVE</li>
+	 * <li>If the object was targeted to follow, stop the movement, cancel AI Follow Task and set the Intention to ACTIVE</li>
+	 * <li>If the targeted object was the actor , cancel AI target, stop AI Follow Task, stop the movement and set the Intention to IDLE</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtForgetObject(WorldObject object)
+	protected void onActionForgetObject(WorldObject object)
 	{
 		final WorldObject target = getTarget();
 		
 		// Stop any casting pointing to this object.
 		getActor().abortCast(sc -> sc.getTarget() == object);
 		
-		// If the object was targeted and the Intention was AI_INTENTION_INTERACT or AI_INTENTION_PICK_UP, set the Intention to AI_INTENTION_ACTIVE
+		// If the object was targeted and the Intention was INTERACT or PICK_UP, set the Intention to ACTIVE
 		if (target == object)
 		{
 			setTarget(null);
@@ -796,9 +786,9 @@ public class CreatureAI extends AbstractAI
 				stopFollow();
 			}
 			// Stop any intention that has target we want to forget.
-			if (getIntention() != AI_INTENTION_MOVE_TO)
+			if (getIntention() != Intention.MOVE_TO)
 			{
-				setIntention(AI_INTENTION_ACTIVE);
+				setIntention(Intention.ACTIVE);
 			}
 		}
 		
@@ -817,22 +807,22 @@ public class CreatureAI extends AbstractAI
 			// Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)
 			clientStopMoving(null);
 			
-			// Set the Intention of this AbstractAI to AI_INTENTION_IDLE
-			changeIntention(AI_INTENTION_IDLE);
+			// Set the Intention of this AbstractAI to IDLE
+			changeIntention(Intention.IDLE);
 		}
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Cancel.<br>
+	 * Launch actions corresponding to the Action Cancel.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
 	 * <li>Stop an AI Follow Task</li>
-	 * <li>Launch actions corresponding to the Event Think</li>
+	 * <li>Launch actions corresponding to the Action Think</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtCancel()
+	protected void onActionCancel()
 	{
 		_actor.abortCast();
 		
@@ -844,12 +834,12 @@ public class CreatureAI extends AbstractAI
 			_actor.broadcastPacket(new AutoAttackStop(_actor.getObjectId()));
 		}
 		
-		// Launch actions corresponding to the Event Think
-		onEvtThink();
+		// Launch actions corresponding to the Action Think
+		onActionThink();
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Dead.<br>
+	 * Launch actions corresponding to the Action Dead.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
@@ -858,7 +848,7 @@ public class CreatureAI extends AbstractAI
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtDead()
+	protected void onActionDeath()
 	{
 		// Stop an AI Tasks
 		stopAITask();
@@ -873,7 +863,7 @@ public class CreatureAI extends AbstractAI
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Fake Death.<br>
+	 * Launch actions corresponding to the Action Fake Death.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
@@ -881,7 +871,7 @@ public class CreatureAI extends AbstractAI
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtFakeDeath()
+	protected void onActionFakeDeath()
 	{
 		// Stop an AI Follow Task
 		stopFollow();
@@ -890,7 +880,7 @@ public class CreatureAI extends AbstractAI
 		clientStopMoving(null);
 		
 		// Init AI
-		_intention = AI_INTENTION_IDLE;
+		_intention = Intention.IDLE;
 		setTarget(null);
 		setCastTarget(null);
 	}
@@ -899,7 +889,7 @@ public class CreatureAI extends AbstractAI
 	 * Do nothing.
 	 */
 	@Override
-	protected void onEvtFinishCasting()
+	protected void onActionFinishCasting()
 	{
 		// do nothing
 	}
@@ -1010,15 +1000,15 @@ public class CreatureAI extends AbstractAI
 			{
 				// If player is trying attack target but he cannot move to attack target
 				// change his intention to idle
-				if (_actor.getAI().getIntention() == AI_INTENTION_ATTACK)
+				if (_actor.getAI().getIntention() == Intention.ATTACK)
 				{
-					_actor.getAI().setIntention(AI_INTENTION_IDLE);
+					_actor.getAI().setIntention(Intention.IDLE);
 				}
 				return true;
 			}
 			
 			// while flying there is no move to cast
-			if ((_actor.getAI().getIntention() == AI_INTENTION_CAST) && _actor.isPlayer() && _actor.checkTransformed(transform -> !transform.isCombat()))
+			if ((_actor.getAI().getIntention() == Intention.CAST) && _actor.isPlayer() && _actor.checkTransformed(transform -> !transform.isCombat()))
 			{
 				_actor.sendPacket(SystemMessageId.THE_DISTANCE_IS_TOO_FAR_AND_SO_THE_CASTING_HAS_BEEN_CANCELLED);
 				_actor.sendPacket(ActionFailed.STATIC_PACKET);
@@ -1070,7 +1060,7 @@ public class CreatureAI extends AbstractAI
 	 * <ul>
 	 * <li>Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)</li>
 	 * <li>Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)</li>
-	 * <li>Set the Intention of this AbstractAI to AI_INTENTION_ACTIVE</li>
+	 * <li>Set the Intention of this AbstractAI to ACTIVE</li>
 	 * </ul>
 	 * <br>
 	 * <b><u>Example of use</u>:</b>
@@ -1084,7 +1074,7 @@ public class CreatureAI extends AbstractAI
 	{
 		if ((target == null) || target.isDead())
 		{
-			setIntention(AI_INTENTION_ACTIVE);
+			setIntention(Intention.ACTIVE);
 			return true;
 		}
 		
@@ -1098,7 +1088,7 @@ public class CreatureAI extends AbstractAI
 	 * <ul>
 	 * <li>Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)</li>
 	 * <li>Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation (broadcast)</li>
-	 * <li>Set the Intention of this AbstractAI to AI_INTENTION_ACTIVE</li>
+	 * <li>Set the Intention of this AbstractAI to ACTIVE</li>
 	 * </ul>
 	 * <br>
 	 * <b><u>Example of use</u>:</b>
@@ -1112,7 +1102,7 @@ public class CreatureAI extends AbstractAI
 	{
 		if (target == null)
 		{
-			setIntention(AI_INTENTION_ACTIVE);
+			setIntention(Intention.ACTIVE);
 			return true;
 		}
 		
@@ -1124,7 +1114,7 @@ public class CreatureAI extends AbstractAI
 				{
 					if (!GeoEngine.getInstance().canMoveToTarget(_actor, target))
 					{
-						setIntention(AI_INTENTION_ACTIVE);
+						setIntention(Intention.ACTIVE);
 						return true;
 					}
 				}
@@ -1132,7 +1122,7 @@ public class CreatureAI extends AbstractAI
 				{
 					if (!GeoEngine.getInstance().canSeeTarget(_actor, target))
 					{
-						setIntention(AI_INTENTION_ACTIVE);
+						setIntention(Intention.ACTIVE);
 						return true;
 					}
 				}
@@ -1145,7 +1135,7 @@ public class CreatureAI extends AbstractAI
 					return false;
 				}
 				
-				setIntention(AI_INTENTION_ACTIVE);
+				setIntention(Intention.ACTIVE);
 				return true;
 			}
 		}

@@ -40,8 +40,8 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.scripting.java.JavaExecutionContext;
 
 /**
@@ -76,12 +76,12 @@ public class ScriptEngineManager implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		try
 		{
 			final Map<String, List<String>> excludePaths = new HashMap<>();
-			forEach(doc, "list", listNode -> forEach(listNode, "exclude", excludeNode ->
+			forEach(document, "list", listNode -> forEach(listNode, "exclude", excludeNode ->
 			{
 				final String excludeFile = parseString(excludeNode.getAttributes(), "file");
 				excludePaths.putIfAbsent(excludeFile, new ArrayList<>());
@@ -179,7 +179,7 @@ public class ScriptEngineManager implements IXmlReader
 			final Throwable cause = error.getValue();
 			if (cause != null)
 			{
-				LOGGER.warning(CommonUtil.getStackTrace(cause));
+				LOGGER.warning(TraceUtil.getStackTrace(cause));
 			}
 			throw new Exception("ScriptEngine: " + error.getKey() + " failed execution!", cause);
 		}

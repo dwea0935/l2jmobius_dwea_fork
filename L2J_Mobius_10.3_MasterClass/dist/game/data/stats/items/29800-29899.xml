@@ -11,7 +11,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29409" level="5" /> <!-- Superior Amethyst -->
-			<skill id="27443" level="6" /> <!-- Amethyst - Remove Invincibility/Immunity -->
+			<skill id="27443" level="6" /> <!-- Superior Amethyst - Remove Invincibility/Immunity -->
 		</skills>
 	</item>
 	<item id="29801" name="Superior Amethyst Lv. 6" type="Armor">
@@ -25,7 +25,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29409" level="6" /> <!-- Superior Amethyst -->
-			<skill id="27443" level="7" /> <!-- Amethyst - Remove Invincibility/Immunity -->
+			<skill id="27443" level="7" /> <!-- Superior Amethyst - Remove Invincibility/Immunity -->
 		</skills>
 	</item>
 	<item id="29802" name="Superior Amethyst Lv. 7" type="Armor">
@@ -39,7 +39,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29409" level="7" /> <!-- Superior Amethyst -->
-			<skill id="27443" level="8" /> <!-- Amethyst - Remove Invincibility/Immunity -->
+			<skill id="27443" level="8" /> <!-- Superior Amethyst - Remove Invincibility/Immunity -->
 		</skills>
 	</item>
 	<item id="29803" name="Superior Amethyst Lv. 8" type="Armor">
@@ -53,7 +53,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29409" level="8" /> <!-- Superior Amethyst -->
-			<skill id="27443" level="9" /> <!-- Amethyst - Remove Invincibility/Immunity -->
+			<skill id="27443" level="9" /> <!-- Superior Amethyst - Remove Invincibility/Immunity -->
 		</skills>
 	</item>
 	<item id="29804" name="Superior Amethyst Lv. 9" type="Armor">
@@ -67,7 +67,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29409" level="9" /> <!-- Superior Amethyst -->
-			<skill id="27443" level="10" /> <!-- Amethyst - Remove Invincibility/Immunity -->
+			<skill id="27443" level="10" /> <!-- Superior Amethyst - Remove Invincibility/Immunity -->
 		</skills>
 	</item>
 	<item id="29805" name="Superior Amethyst Lv. 10" type="Armor">
@@ -81,7 +81,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29409" level="10" /> <!-- Superior Amethyst -->
-			<skill id="27443" level="11" /> <!-- Amethyst - Remove Invincibility/Immunity -->
+			<skill id="27443" level="11" /> <!-- Superior Amethyst - Remove Invincibility/Immunity -->
 		</skills>
 	</item>
 	<item id="29806" name="Superior Cat's Eye Lv. 1" type="Armor">
@@ -95,7 +95,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29411" level="1" /> <!-- Superior Cat's Eye -->
-			<skill id="27441" level="4" /> <!-- Cat's Eye - Invincibility -->
+			<skill id="27441" level="4" /> <!-- Superior Cat's Eye - Invincibility -->
 		</skills>
 	</item>
 	<item id="29807" name="Superior Cat's Eye Lv. 2" type="Armor">
@@ -109,7 +109,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29411" level="2" /> <!-- Superior Cat's Eye -->
-			<skill id="27441" level="4" /> <!-- Cat's Eye - Invincibility -->
+			<skill id="27441" level="4" /> <!-- Superior Cat's Eye - Invincibility -->
 		</skills>
 	</item>
 	<item id="29808" name="Superior Cat's Eye Lv. 3" type="Armor">
@@ -123,7 +123,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29411" level="3" /> <!-- Superior Cat's Eye -->
-			<skill id="27441" level="4" /> <!-- Cat's Eye - Invincibility -->
+			<skill id="27441" level="4" /> <!-- Superior Cat's Eye - Invincibility -->
 		</skills>
 	</item>
 	<item id="29809" name="Superior Cat's Eye Lv. 4" type="Armor">
@@ -137,7 +137,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29411" level="4" /> <!-- Superior Cat's Eye -->
-			<skill id="27441" level="4" /> <!-- Cat's Eye - Invincibility -->
+			<skill id="27441" level="4" /> <!-- Superior Cat's Eye - Invincibility -->
 		</skills>
 	</item>
 	<item id="29810" name="Superior Cat's Eye Lv. 5" type="Armor">
@@ -151,7 +151,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29411" level="5" /> <!-- Superior Cat's Eye -->
-			<skill id="27441" level="4" /> <!-- Cat's Eye - Invincibility -->
+			<skill id="27441" level="4" /> <!-- Superior Cat's Eye - Invincibility -->
 		</skills>
 	</item>
 	<item id="29811" name="Superior Cat's Eye Lv. 6" type="Armor">
@@ -165,7 +165,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29411" level="6" /> <!-- Superior Cat's Eye -->
-			<skill id="27441" level="4" /> <!-- Cat's Eye - Invincibility -->
+			<skill id="27441" level="4" /> <!-- Superior Cat's Eye - Invincibility -->
 		</skills>
 	</item>
 	<item id="29812" name="Superior Cat's Eye Lv. 7" type="Armor">
@@ -179,7 +179,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29411" level="7" /> <!-- Superior Cat's Eye -->
-			<skill id="27441" level="4" /> <!-- Cat's Eye - Invincibility -->
+			<skill id="27441" level="4" /> <!-- Superior Cat's Eye - Invincibility -->
 		</skills>
 	</item>
 	<item id="29813" name="Superior Cat's Eye Lv. 8" type="Armor">
@@ -193,7 +193,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29411" level="8" /> <!-- Superior Cat's Eye -->
-			<skill id="27441" level="4" /> <!-- Cat's Eye - Invincibility -->
+			<skill id="27441" level="4" /> <!-- Superior Cat's Eye - Invincibility -->
 		</skills>
 	</item>
 	<item id="29814" name="Superior Cat's Eye Lv. 9" type="Armor">
@@ -207,7 +207,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29411" level="9" /> <!-- Superior Cat's Eye -->
-			<skill id="27441" level="4" /> <!-- Cat's Eye - Invincibility -->
+			<skill id="27441" level="4" /> <!-- Superior Cat's Eye - Invincibility -->
 		</skills>
 	</item>
 	<item id="29815" name="Superior Cat's Eye Lv. 10" type="Armor">
@@ -221,7 +221,7 @@
 		<set name="material" val="FISH" />
 		<skills>
 			<skill id="29411" level="10" /> <!-- Superior Cat's Eye -->
-			<skill id="27441" level="4" /> <!-- Cat's Eye - Invincibility -->
+			<skill id="27441" level="4" /> <!-- Superior Cat's Eye - Invincibility -->
 		</skills>
 	</item>
 	<item id="29816" name="Zodiac Agathion Charm (Random)" type="EtcItem">
@@ -302,7 +302,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="28068" level="2" /> <!-- Stable Scroll: Enchant Legendary Cloak -->
+			<skill id="28068" level="2" /> <!-- High-grade Scroll: Enchant Cloak - Legendary -->
 		</skills>
 	</item>
 	<item id="29824" name="Aden's Anniversary Treasure Chest" additionalName="Event" type="EtcItem">
@@ -527,7 +527,7 @@
 		<set name="etcitem_type" val="ENCHT_ATTR_RUNE" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="39703" level="1" /> <!-- Vitality Maintaining Rune (30-day) -->
+			<skill id="39703" level="1" /> <!-- Vitality Maintaining Rune - 30 d. -->
 		</skills>
 	</item>
 	<item id="29845" name="Vitality Maintaining Rune" additionalName="10-day" type="EtcItem">
@@ -1144,7 +1144,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="29423" level="1" /> <!-- Heir's Radiance Lv. 5 -->
-			<skill id="29429" level="1" /> <!-- Heir's Radiance - PvE -->
+			<skill id="29429" level="1" /> <!-- Heir's Radiance - PvE Lv. 2 -->
 		</skills>
 	</item>
 </list>

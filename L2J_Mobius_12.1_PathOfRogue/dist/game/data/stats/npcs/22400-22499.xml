@@ -920,7 +920,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="236" /> <!-- Soul Separator -->
 		<acquire exp="1" sp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="954966.6" hpRegen="3.5" mp="3190" mpRegen="1.5" />
@@ -1119,7 +1118,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="7886" /> <!-- Sword of Magic Fog -->
 		<acquire exp="1" sp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="1821870" hpRegen="4.5" mp="3190" mpRegen="1.8" />
@@ -1772,7 +1770,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="77" /> <!-- Tsurugi -->
 		<acquire exp="1" sp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="541874.4" hpRegen="5.5" mp="2983" mpRegen="2.1" />
@@ -1837,7 +1834,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="75" /> <!-- Caliburs -->
 		<acquire exp="1" sp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="541874.4" hpRegen="5.5" mp="2983" mpRegen="2.1" />
@@ -1904,7 +1900,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="84" /> <!-- Homunkulus' Sword -->
 		<acquire exp="1" sp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="541874.4" hpRegen="6.5" mp="2983" mpRegen="2.4" />
@@ -2101,7 +2096,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="135" /> <!-- Samurai Long Sword -->
 		<acquire exp="1" sp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="954966.6" hpRegen="6.5" mp="3190" mpRegen="2.4" />
@@ -2298,7 +2292,6 @@
 		</parameters>
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="161" /> <!-- Silver Axe -->
 		<acquire exp="1" sp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="1821870" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -2363,7 +2356,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<equipment rhand="85" /> <!-- Corroded Phantom Sword -->
 		<acquire exp="1" sp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="3664435" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -2428,7 +2420,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<equipment rhand="6723" /> <!-- Monster Only (Vampire Warrior) -->
 		<acquire exp="1" sp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="3664435" hpRegen="7.5" mp="3190" mpRegen="2.7" />
@@ -2495,7 +2486,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<equipment rhand="8686" /> <!-- Themis' Tongue -->
 		<acquire exp="1" sp="1" />
 		<stats str="79" int="34" dex="42" wit="66" con="75" men="12">
 			<vitals hp="3664435" hpRegen="7.5" mp="3190" mpRegen="2.7" />

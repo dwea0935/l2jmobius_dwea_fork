@@ -1,29 +1,32 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests.Q00503_PursuitOfClanAmbition;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 /**
@@ -97,7 +100,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 	
 	public Q00503_PursuitOfClanAmbition()
 	{
-		super(503);
+		super(503, "Pursuit of Clan Ambition!");
 		registerQuestItems(MI_DRAKE_EGGS, BL_WYRM_EGGS, DRAKE_EGGS, TH_WYRM_EGGS, BROOCH, NEBULITE_CRYSTALS, BROKE_POWER_STONE, POWER_STONE, IMP_KEYS, G_LET_MARTIEN, G_LET_BALTHAZAR, G_LET_RODEMAI, SCEPTER_JUDGEMENT);
 		addStartNpc(GUSTAF);
 		addTalkId(MARTIEN, ATHREA, KALIS, GUSTAF, FRITZ, LUTZ, KURTZ, KUSTO, BALTHAZAR, RODEMAI, COFFER, CLEO);
@@ -234,11 +237,11 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 			case "30766-04.htm":
 			{
 				st.setCond(9);
-				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.BLOOD_AND_HONOR));
+				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Blood and honor!"));
 				final Npc sister1 = addSpawn(KALIS, 160665, 21209, -3710, npc.getHeading(), false, 180000);
-				sister1.broadcastPacket(new NpcSay(sister1, ChatType.NPC_GENERAL, NpcStringId.AMBITION_AND_POWER));
+				sister1.broadcastPacket(new NpcSay(sister1, ChatType.NPC_GENERAL, "Ambition and power!"));
 				final Npc sister2 = addSpawn(ATHREA, 160665, 21291, -3710, npc.getHeading(), false, 180000);
-				sister2.broadcastPacket(new NpcSay(sister2, ChatType.NPC_GENERAL, NpcStringId.WAR_AND_DEATH));
+				sister2.broadcastPacket(new NpcSay(sister2, ChatType.NPC_GENERAL, "War and death!"));
 				break;
 			}
 			case "Open":
@@ -656,7 +659,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if ((skill == null) && ((npc.getMaxHp() / 2) > npc.getCurrentHp()))
 		{
@@ -669,17 +672,16 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 				attacker.teleToLocation(185462, 20342, -3250);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		QuestState st = null;
 		st = getClanLeaderQuestState(player, npc);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		for (int[] element : DROPLIST)
@@ -703,7 +705,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 						if (element[0] == IMPERIAL_GRAVEKEEPER)
 						{
 							final Npc coffer = addSpawn(COFFER, npc.getX(), npc.getY(), npc.getZ(), npc.getHeading(), true, 180000);
-							coffer.broadcastPacket(new NpcSay(coffer, ChatType.NPC_GENERAL, NpcStringId.CURSE_OF_THE_GODS_ON_THE_ONE_THAT_DEFILES_THE_PROPERTY_OF_THE_EMPIRE));
+							coffer.broadcastPacket(new NpcSay(coffer, ChatType.NPC_GENERAL, "Curse of the gods on the one that defiles the property of the empire!"));
 						}
 						else if ((element[0] == GRAVE_GUARD) && (getQuestItemsCount(st.getPlayer(), IMP_KEYS) < 6) && (getRandom(50) < chance))
 						{
@@ -724,7 +726,5 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 				}
 			}
 		}
-		
-		return null;
 	}
 }

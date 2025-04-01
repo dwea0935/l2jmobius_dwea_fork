@@ -23,13 +23,13 @@ package ai.areas.DragonValley;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import ai.AbstractNpcAI;
@@ -78,14 +78,14 @@ public class LeopardDragonHachling extends AbstractNpcAI
 			else
 			{
 				npc.abortAttack();
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, nearestLocation(npc));
+				npc.getAI().setIntention(Intention.MOVE_TO, nearestLocation(npc));
 			}
 		}
 		return super.onEvent(event, npc, player);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (npc.isScriptValue(0))
 		{
@@ -94,8 +94,7 @@ public class LeopardDragonHachling extends AbstractNpcAI
 			startQuestTimer("MOVE_TO_TRANSFORM", 1000, npc, attacker, true);
 		}
 		npc.abortAttack();
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, nearestLocation(npc));
-		return null;
+		npc.getAI().setIntention(Intention.MOVE_TO, nearestLocation(npc));
 	}
 	
 	private Location nearestLocation(Npc npc)

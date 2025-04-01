@@ -43,7 +43,7 @@ public class Q00131_BirdInACage extends Quest
 	
 	public Q00131_BirdInACage()
 	{
-		super(131);
+		super(131, "Bird in a Cage");
 		addStartNpc(KANIS);
 		addTalkId(KANIS, PARME);
 		registerQuestItems(ECHO_CRYSTAL_OF_FREE_THOUGHT, PARMES_LETTER);

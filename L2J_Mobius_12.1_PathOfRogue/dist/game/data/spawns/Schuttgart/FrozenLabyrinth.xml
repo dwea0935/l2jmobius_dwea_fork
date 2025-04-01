@@ -17,4 +17,15 @@
 			<npc id="32018" x="107888" y="-120464" z="-3744" heading="24576" respawnTime="60sec" /> <!-- Misa -->
 		</group>
 	</spawn>
+	<spawn name="Q20222">
+		<group>
+			<npc id="27584" x="128871" y="-125385" z="-2318" heading="24260" respawnTime="60sec" /> <!-- Ice Sculpture -->
+			<npc id="27584" x="120814" y="-124017" z="-2742" heading="43460" respawnTime="60sec" /> <!-- Ice Sculpture -->
+			<npc id="27584" x="121775" y="-122182" z="-2745" heading="45470" respawnTime="60sec" /> <!-- Ice Sculpture -->
+			<npc id="27584" x="114388" y="-119676" z="-2751" heading="8191" respawnTime="60sec" /> <!-- Ice Sculpture -->
+			<npc id="27584" x="105714" y="-117191" z="-2812" heading="40265" respawnTime="60sec" /> <!-- Ice Sculpture -->
+			<npc id="27584" x="127923" y="-112138" z="-2769" heading="31900" respawnTime="60sec" /> <!-- Ice Sculpture -->
+			<npc id="27584" x="128072" y="-105720" z="-2773" heading="48603" respawnTime="60sec" /> <!-- Ice Sculpture -->
+		</group>
+	</spawn>
 </list>

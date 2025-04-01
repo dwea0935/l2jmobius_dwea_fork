@@ -18,17 +18,18 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.holders.RecipeHolder;
 import org.l2jmobius.gameserver.data.xml.RecipeData;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.RecipeHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeItemMakeInfo;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Nik
@@ -112,7 +113,7 @@ public class RequestRecipeItemMakeSelf extends ClientPacket
 		
 		if (!player.hasRecipeList(recipe.getId()))
 		{
-			Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false recipe id.", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false recipe id.", Config.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -151,7 +152,7 @@ public class RequestRecipeItemMakeSelf extends ClientPacket
 			for (ItemHolder offer : _offeredItems)
 			{
 				final Item item = player.getInventory().getItemByObjectId(offer.getId());
-				if (player.destroyItem("CraftOffering", item, offer.getCount(), null, true))
+				if (player.destroyItem(ItemProcessType.FEE, item, offer.getCount(), null, true))
 				{
 					offeredAdenaWorth += (item.getTemplate().getReferencePrice() * offer.getCount());
 				}

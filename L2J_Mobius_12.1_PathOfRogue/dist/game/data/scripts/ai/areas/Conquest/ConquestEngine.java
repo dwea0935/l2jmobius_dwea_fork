@@ -20,8 +20,6 @@
  */
 package ai.areas.Conquest;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -30,7 +28,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Properties;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 
@@ -38,8 +35,8 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.DethroneShopData;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -48,7 +45,9 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPvPKill;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPvPKill;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.model.zone.type.ConquestZone;
@@ -56,6 +55,7 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.dethrone.ExDethroneSeasonInfo;
 import org.l2jmobius.gameserver.util.Broadcast;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -145,19 +145,8 @@ public class ConquestEngine extends AbstractNpcAI
 		}
 		if (!loaded)
 		{
-			LOGGER.info(ConquestEngine.class.getSimpleName() + ": Failed to load data from database, trying to load from file.");
-			final Properties conquestProperties = new Properties();
-			try (InputStream is = new FileInputStream(Config.CONQUEST_CONFIG_FILE))
-			{
-				conquestProperties.load(is);
-			}
-			catch (Exception e)
-			{
-				LOGGER.log(Level.SEVERE, ConquestEngine.class.getSimpleName() + ": Error loading conquest properties: ", e);
-				return;
-			}
-			_currentCycle = Integer.parseInt(conquestProperties.getProperty("ConquestCurrentCycle", "1"));
-			_conquestSeasonEnd = Long.parseLong(conquestProperties.getProperty("ConquestSeasonEnd", "0"));
+			_currentCycle = Config.CONQUEST_CURRENT_CYCLE;
+			_conquestSeasonEnd = Config.CONQUEST_SEASON_END;
 			LOGGER.info(ConquestEngine.class.getSimpleName() + ": Conquest Cycle data loaded from config.");
 		}
 		LOGGER.info(ConquestEngine.class.getSimpleName() + ": Conquest Current cycle: " + _currentCycle);
@@ -754,14 +743,27 @@ public class ConquestEngine extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (_isConquestAvailable)
 		{
 			final int npcId = npc.getId();
-			updatePoints(killer, CONQUEST_POINT_DATA.getPersonalPointsAmount(npcId), CONQUEST_POINT_DATA.getServerPointsAmount(npcId), 1, CONQUEST_POINT_DATA.getZonePointsAmount(npcId), CONQUEST_POINT_DATA.getZoneId(npcId), true);
+			final Party party = killer.getParty();
+			if (party == null)
+			{
+				updatePoints(killer, CONQUEST_POINT_DATA.getPersonalPointsAmount(npcId), CONQUEST_POINT_DATA.getServerPointsAmount(npcId), 1, CONQUEST_POINT_DATA.getZonePointsAmount(npcId), CONQUEST_POINT_DATA.getZoneId(npcId), true);
+			}
+			else
+			{
+				for (Player member : party.getMembers())
+				{
+					if (!member.isDead() && LocationUtil.checkIfInRange(1000, member, killer, true))
+					{
+						updatePoints(member, CONQUEST_POINT_DATA.getPersonalPointsAmount(npcId), CONQUEST_POINT_DATA.getServerPointsAmount(npcId), 1, CONQUEST_POINT_DATA.getZonePointsAmount(npcId), CONQUEST_POINT_DATA.getZoneId(npcId), true);
+					}
+				}
+			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@RegisterEvent(EventType.ON_PLAYER_PVP_KILL)
@@ -777,7 +779,7 @@ public class ConquestEngine extends AbstractNpcAI
 				updatePoints(attackerPlayer, CONQUEST_POINT_DATA.getPvpPersonalPointsAmount(targetPlayer.getLevel()), CONQUEST_POINT_DATA.getPvpServerPointsAmount(targetPlayer.getLevel()), 0, 0, 0, true);
 				if ((getAttackPoints(attackerPlayer) >= 1) && (getLifePoints(targetPlayer) >= 1))
 				{
-					attackerPlayer.addItem("ConquestCoins", BLOODY_COIN, CONQUEST_POINT_DATA.getCoinsAmount(targetPlayer.getLevel()) * Config.CONQUEST_RATE_BLOODY_COINS, attackerPlayer, true);
+					attackerPlayer.addItem(ItemProcessType.REWARD, BLOODY_COIN, CONQUEST_POINT_DATA.getCoinsAmount(targetPlayer.getLevel()) * Config.CONQUEST_RATE_BLOODY_COINS, attackerPlayer, true);
 					setAttackPoints(attackerPlayer, -1);
 					setLifePoints(targetPlayer, -1);
 					

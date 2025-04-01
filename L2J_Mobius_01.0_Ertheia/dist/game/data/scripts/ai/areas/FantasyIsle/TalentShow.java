@@ -20,15 +20,15 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 import ai.AbstractNpcAI;
 
@@ -314,7 +314,7 @@ public class TalentShow extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (IS_STARTED)
 		{
@@ -328,7 +328,7 @@ public class TalentShow extends AbstractNpcAI
 				}
 				case 32431:
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56657, -56338, -2008, 33102));
+					npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56657, -56338, -2008, 33102));
 					startQuestTimer("social1", 6000, npc, null, true);
 					startQuestTimer("7", 215000, npc, null);
 					break;
@@ -361,7 +361,6 @@ public class TalentShow extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -385,7 +384,7 @@ public class TalentShow extends AbstractNpcAI
 			if (event.equalsIgnoreCase("6"))
 			{
 				autoChat(npc, MESSAGES[6], ChatType.NPC_SHOUT);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56511, -56647, -2008, 36863));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56511, -56647, -2008, 36863));
 				npc.broadcastPacket(new PlaySound(1, "NS22_F", 0, 0, 0, 0, 0));
 				addSpawn(SINGERS[0], -56344, -56328, -2008, 32768, false, 224000);
 				addSpawn(SINGERS[1], -56552, -56245, -2008, 36863, false, 224000);
@@ -403,21 +402,21 @@ public class TalentShow extends AbstractNpcAI
 					case 32433:
 					{
 						autoChat(npc, MESSAGES[7], ChatType.NPC_SHOUT);
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56698, -56430, -2008, 32768));
+						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56698, -56430, -2008, 32768));
 						startQuestTimer("8", 12000, npc, null);
 						break;
 					}
 					default:
 					{
 						cancelQuestTimer("social1", npc, null);
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56594, -56064, -2008, 32768));
+						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56594, -56064, -2008, 32768));
 						break;
 					}
 				}
 			}
 			else if (event.equalsIgnoreCase("10"))
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56483, -56665, -2034, 32768));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56483, -56665, -2034, 32768));
 				npc.broadcastPacket(new PlaySound(1, "TP05_F", 0, 0, 0, 0, 0));
 				startQuestTimer("npc1_1", 3000, addSpawn(CIRCUS[0], -56495, -56375, -2008, 32768, false, 101000), null);
 				startQuestTimer("npc2_1", 3000, addSpawn(CIRCUS[0], -56491, -56289, -2008, 32768, false, 101000), null);
@@ -437,13 +436,13 @@ public class TalentShow extends AbstractNpcAI
 					case 32433:
 					{
 						autoChat(npc, MESSAGES[11], ChatType.NPC_SHOUT);
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56698, -56430, -2008, 32768));
+						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56698, -56430, -2008, 32768));
 						startQuestTimer("12", 5000, npc, null);
 						break;
 					}
 					default:
 					{
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56343, -56330, -2008, 32768));
+						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56343, -56330, -2008, 32768));
 						break;
 					}
 				}
@@ -466,7 +465,7 @@ public class TalentShow extends AbstractNpcAI
 			}
 			else if (event.equalsIgnoreCase("23"))
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56702, -56340, -2008, 32768));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56702, -56340, -2008, 32768));
 				startQuestTimer("24", 2800, npc, null);
 				addSpawn(SHOWSTUFF[0], -56672, -56406, -2000, 32768, false, 20900);
 				addSpawn(SHOWSTUFF[1], -56648, -56368, -2000, 32768, false, 20900);
@@ -481,7 +480,7 @@ public class TalentShow extends AbstractNpcAI
 			}
 			else if (event.equalsIgnoreCase("29"))
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(-56730, -56340, -2008, 32768));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56730, -56340, -2008, 32768));
 				startQuestTimer("clean_npc", 4100, npc, null);
 				startQuestTimer("timer_check", 60000, null, null, true);
 			}
@@ -508,7 +507,7 @@ public class TalentShow extends AbstractNpcAI
 				final WalkInfo wi = WALKS.get(event);
 				if (wi != null)
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, wi.getCharPos());
+					npc.getAI().setIntention(Intention.MOVE_TO, wi.getCharPos());
 					startQuestTimer(wi.getNextEvent(), wi.getTime(), npc, null);
 				}
 			}

@@ -28,7 +28,7 @@ public class Q00088_SagaOfTheArchmage extends AbstractSagaQuest
 {
 	public Q00088_SagaOfTheArchmage()
 	{
-		super(88);
+		super(88, "Saga of the Archmage");
 		_npc = new int[]
 		{
 			30176,

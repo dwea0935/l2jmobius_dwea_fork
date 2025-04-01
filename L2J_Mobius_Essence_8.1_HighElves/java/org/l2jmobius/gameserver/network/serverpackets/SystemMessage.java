@@ -25,10 +25,10 @@ import java.util.Arrays;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ElementalType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -381,7 +381,7 @@ public class SystemMessage extends ServerPacket
 	
 	public SystemMessage addElementalSpiritName(byte elementType)
 	{
-		append(new SMParam(TYPE_TEXT, ElementalType.of(elementType).getName()));
+		append(new SMParam(TYPE_TEXT, ElementalSpiritType.of(elementType).getName()));
 		return this;
 	}
 	

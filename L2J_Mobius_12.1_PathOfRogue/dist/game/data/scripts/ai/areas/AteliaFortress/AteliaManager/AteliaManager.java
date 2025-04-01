@@ -23,19 +23,19 @@ package ai.areas.AteliaFortress.AteliaManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -605,10 +605,10 @@ public class AteliaManager extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final int chance = getRandom(1000);
-		if (CommonUtil.contains(ATELIA_CURSE, npc.getId()))
+		if (ArrayUtil.contains(ATELIA_CURSE, npc.getId()))
 		{
 			if (!npc.isCastingNow() && (chance <= 20))
 			{
@@ -616,15 +616,14 @@ public class AteliaManager extends AbstractNpcAI
 				npc.doCast(getRandomEntry(ATELIA_POISON).getSkill());
 			}
 		}
-		else if (CommonUtil.contains(FLOOR_MOBS, npc.getId()) && (chance > 90))
+		else if (ArrayUtil.contains(FLOOR_MOBS, npc.getId()) && (chance > 90))
 		{
 			npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), ATELIA_MSG[getRandom(1)]));
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if ((npc.getZ() <= -2804) && (npc.getZ() >= -2999) && (npc.getId() == INFUSER_1))
 		{
@@ -666,11 +665,10 @@ public class AteliaManager extends AbstractNpcAI
 			startQuestTimer("SPY_CLEAR", 100, npc, null);
 			startQuestTimer("SB_3", 100, npc, killer);
 		}
-		else if (CommonUtil.contains(FLOOR_MOBS, npc.getId()) && (getRandom(100) <= 6))
+		else if (ArrayUtil.contains(FLOOR_MOBS, npc.getId()) && (getRandom(100) <= 6))
 		{
 			startQuestTimer("ALERT", 100, npc, killer);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -680,7 +678,7 @@ public class AteliaManager extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -701,7 +699,6 @@ public class AteliaManager extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

@@ -81,7 +81,6 @@
 		<effectPoint>-100</effectPoint>
 		<hitTime>3600</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<magicLevel>97</magicLevel>
 		<reuseDelay>6000</reuseDelay>
@@ -637,7 +636,7 @@
 		<abnormalType>PRISON</abnormalType>
 		<abnormalVisualEffect>DANCING_ANIMATION</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>3</isMagic>
 		<effects>
@@ -653,7 +652,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<abnormalType>PRISON</abnormalType>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>3</isMagic>
 		<effects>
@@ -669,7 +668,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<abnormalType>PRISON</abnormalType>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>3</isMagic>
 	</skill>

@@ -34,7 +34,8 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.holders.RestorationItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.RestorationItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -114,7 +115,7 @@ public class RestorationRandom extends AbstractEffect
 			}
 			
 			final long itemCount = (long) (createdItem.getCount() * Config.RATE_EXTRACTABLE);
-			final Item newItem = player.addItem("Extract", createdItem.getId(), itemCount, effector, false);
+			final Item newItem = player.addItem(ItemProcessType.REWARD, createdItem.getId(), itemCount, effector, false);
 			
 			if (createdItem.getMaxEnchant() > 0)
 			{

@@ -258,7 +258,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -283,7 +283,6 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 			}
 			world.finishInstance();
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

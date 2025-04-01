@@ -12,7 +12,6 @@
 		<set name="weight" val="7700" />
 		<set name="price" val="3562000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
 		<stats>
@@ -48,7 +47,6 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="3320" />
 		<set name="price" val="2226000" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
@@ -86,7 +84,6 @@
 		<set name="weight" val="4300" />
 		<set name="price" val="2671000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
 		<stats>
@@ -122,7 +119,6 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1480" />
 		<set name="price" val="1670000" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
@@ -160,7 +156,6 @@
 		<set name="weight" val="1860" />
 		<set name="price" val="2671000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
 		<stats>
@@ -197,7 +192,6 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="920" />
 		<set name="price" val="1670000" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />

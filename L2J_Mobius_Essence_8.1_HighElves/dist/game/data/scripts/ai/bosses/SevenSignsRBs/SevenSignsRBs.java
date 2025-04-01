@@ -22,14 +22,14 @@ package ai.bosses.SevenSignsRBs;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.RaidBossStatus;
-import org.l2jmobius.gameserver.instancemanager.DBSpawnManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.DBSpawnManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.npc.RaidBossStatus;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
 
@@ -107,6 +107,7 @@ public class SevenSignsRBs extends AbstractNpcAI
 							if (!member.isInsideRadius3D(npc, 1000))
 							{
 								player.sendMessage("Player " + member.getName() + " must go closer to Gatekeeper Spirit.");
+								break;
 							}
 							member.teleToLocation(TELEPORT_TO_ANAKIM);
 						}
@@ -151,6 +152,7 @@ public class SevenSignsRBs extends AbstractNpcAI
 							if (!member.isInsideRadius3D(npc, 1000))
 							{
 								player.sendMessage("Player " + member.getName() + " must go closer to Gatekeeper Spirit.");
+								break;
 							}
 							member.teleToLocation(TELEPORT_TO_LILITH);
 						}
@@ -252,7 +254,7 @@ public class SevenSignsRBs extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -269,7 +271,6 @@ public class SevenSignsRBs extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

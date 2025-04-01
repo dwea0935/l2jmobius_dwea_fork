@@ -20,12 +20,13 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.collection;
 
+import org.l2jmobius.gameserver.data.holders.CollectionDataHolder;
 import org.l2jmobius.gameserver.data.xml.CollectionData;
 import org.l2jmobius.gameserver.data.xml.OptionData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.CollectionDataHolder;
-import org.l2jmobius.gameserver.model.holders.ItemEnchantHolder;
-import org.l2jmobius.gameserver.model.holders.PlayerCollectionData;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerCollectionData;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemEnchantHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.options.Options;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -108,7 +109,7 @@ public class RequestCollectionRegister extends ClientPacket
 			return;
 		}
 		
-		player.destroyItem("Collection", item, count, player, true);
+		player.destroyItem(ItemProcessType.FEE, item, count, player, true);
 		
 		player.sendPacket(new ExCollectionRegister(true, _collectionId, _index, new ItemEnchantHolder(item.getId(), count, item.getEnchantLevel())));
 		

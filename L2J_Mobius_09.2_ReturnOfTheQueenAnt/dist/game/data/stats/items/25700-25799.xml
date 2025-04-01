@@ -15,7 +15,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26880" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26880" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25701" name="Maid Costume Appearance Stone" additionalName="High-grade / Damage Reflection Resistance" type="EtcItem">
@@ -33,7 +33,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26881" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26881" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25702" name="Maid Costume Appearance Stone" additionalName="High-grade / Ranged Attack Resistance" type="EtcItem">
@@ -51,7 +51,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26882" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26882" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25703" name="Maid Costume Appearance Stone" additionalName="High-grade / P. Def." type="EtcItem">
@@ -69,7 +69,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26883" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26883" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25704" name="Maid Costume Appearance Stone" additionalName="High-grade / M. Def." type="EtcItem">
@@ -87,7 +87,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26884" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26884" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25705" name="Maid Costume Appearance Stone" additionalName="High-grade / Attribute Resistance" type="EtcItem">
@@ -105,7 +105,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26885" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26885" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25706" name="Maid Costume Appearance Stone" additionalName="High-grade / Received Healing" type="EtcItem">
@@ -123,7 +123,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26886" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26886" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25707" name="Maid Costume Appearance Stone" additionalName="High-grade / Max HP" type="EtcItem">
@@ -141,7 +141,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26887" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26887" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25708" name="Maid Costume Appearance Stone" additionalName="High-grade / Max MP" type="EtcItem">
@@ -159,7 +159,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26888" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26888" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25709" name="Maid Costume Appearance Stone" additionalName="High-grade / Max CP" type="EtcItem">
@@ -177,7 +177,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26889" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26889" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25710" name="Maid Costume Appearance Stone" additionalName="High-grade / Speed" type="EtcItem">
@@ -195,7 +195,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26890" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26890" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25711" name="Maid Costume Appearance Stone" additionalName="High-grade / HP Recovery" type="EtcItem">
@@ -213,7 +213,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26891" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26891" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25712" name="Maid Costume Appearance Stone" additionalName="High-grade / MP Recovery" type="EtcItem">
@@ -231,7 +231,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26892" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26892" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25713" name="Maid Costume Appearance Stone" additionalName="High-grade / Evasion" type="EtcItem">
@@ -249,7 +249,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26893" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26893" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25714" name="Maid Costume Appearance Stone" additionalName="High-grade / Option 15" type="EtcItem">
@@ -267,7 +267,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26894" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26894" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25715" name="Maid Costume Appearance Stone" additionalName="High-grade / Option 16" type="EtcItem">
@@ -285,7 +285,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26895" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26895" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25716" name="Maid Costume Appearance Stone" additionalName="High-grade / Option 17" type="EtcItem">
@@ -303,7 +303,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26896" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26896" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25717" name="Maid Costume Appearance Stone" additionalName="High-grade / Option 18" type="EtcItem">
@@ -321,7 +321,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26897" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26897" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25718" name="Maid Costume Appearance Stone" additionalName="High-grade / Option 19" type="EtcItem">
@@ -339,7 +339,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26898" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26898" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25719" name="Maid Costume Appearance Stone" additionalName="High-grade / Option 20" type="EtcItem">
@@ -357,7 +357,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26899" level="1" /> <!-- Maid Costume Appearance Stone -->
+			<skill id="26899" level="1" /> <!-- Maid Costume Appearance Stone - High-grade / Effect 20 -->
 		</skills>
 	</item>
 	<item id="25720" name="Visual Enchant Stone" additionalName="Low-grade / Debuff Reflection" type="EtcItem">
@@ -959,7 +959,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="26917" level="1" /> <!-- Transformation Scroll: Priestess Tsubaki -->
+			<skill id="26917" level="1" /> <!-- Priestess Tsubaki Transformation -->
 		</skills>
 	</item>
 	<item id="25795" name="Extra Pass: Kartia's Labyrinth Lv. 85 (Solo)" type="EtcItem">

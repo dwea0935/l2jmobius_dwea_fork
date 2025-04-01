@@ -12,7 +12,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26580" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26580" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25401" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Damage Reflection Resistance" type="EtcItem">
@@ -27,7 +27,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26581" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26581" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25402" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Ranged Attack Resistance" type="EtcItem">
@@ -42,7 +42,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26582" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26582" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25403" name="Appearance Stone: Santa Outfit" additionalName="High-grade / P. Def." type="EtcItem">
@@ -57,7 +57,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26583" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26583" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25404" name="Appearance Stone: Santa Outfit" additionalName="High-grade / M. Def." type="EtcItem">
@@ -72,7 +72,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26584" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26584" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25405" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Attribute Resistance" type="EtcItem">
@@ -87,7 +87,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26585" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26585" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25406" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Received Healing" type="EtcItem">
@@ -102,7 +102,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26586" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26586" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25407" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Max HP" type="EtcItem">
@@ -117,7 +117,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26587" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26587" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25408" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Max MP" type="EtcItem">
@@ -132,7 +132,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26588" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26588" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25409" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Max CP" type="EtcItem">
@@ -147,7 +147,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26589" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26589" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25410" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Speed" type="EtcItem">
@@ -162,7 +162,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26590" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26590" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25411" name="Appearance Stone: Santa Outfit" additionalName="High-grade / HP Recovery" type="EtcItem">
@@ -177,7 +177,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26591" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26591" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25412" name="Appearance Stone: Santa Outfit" additionalName="High-grade / MP Recovery" type="EtcItem">
@@ -192,7 +192,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26592" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26592" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25413" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Evasion" type="EtcItem">
@@ -207,7 +207,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26593" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26593" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25414" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Option 15" type="EtcItem">
@@ -222,7 +222,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26594" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26594" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25415" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Option 16" type="EtcItem">
@@ -237,7 +237,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26595" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26595" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25416" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Option 17" type="EtcItem">
@@ -252,7 +252,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26596" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26596" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25417" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Option 18" type="EtcItem">
@@ -267,7 +267,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26597" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26597" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25418" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Option 19" type="EtcItem">
@@ -282,7 +282,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26598" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26598" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25419" name="Appearance Stone: Santa Outfit" additionalName="High-grade / Option 20" type="EtcItem">
@@ -297,7 +297,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26599" level="1" /> <!-- Appearance Stone: Santa Outfit -->
+			<skill id="26599" level="1" /> <!-- Appearance Stone: Santa Outfit - High-grade / Effect 20 -->
 		</skills>
 	</item>
 	<item id="25420" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Debuff Reflection" type="EtcItem">
@@ -314,7 +314,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26600" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26600" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25421" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Damage Reflection Resistance" type="EtcItem">
@@ -331,7 +331,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26601" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26601" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25422" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Ranged Attack Resistance" type="EtcItem">
@@ -348,7 +348,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26602" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26602" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25423" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / P. Def." type="EtcItem">
@@ -365,7 +365,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26603" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26603" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25424" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / M. Def." type="EtcItem">
@@ -382,7 +382,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26604" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26604" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25425" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Attribute Resistance" type="EtcItem">
@@ -399,7 +399,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26605" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26605" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25426" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Received Healing" type="EtcItem">
@@ -416,7 +416,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26606" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26606" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25427" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Max HP" type="EtcItem">
@@ -433,7 +433,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26607" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26607" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25428" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Max MP" type="EtcItem">
@@ -450,7 +450,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26608" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26608" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25429" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Max CP" type="EtcItem">
@@ -467,7 +467,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26609" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26609" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25430" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Speed" type="EtcItem">
@@ -484,7 +484,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26610" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26610" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25431" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / HP Recovery" type="EtcItem">
@@ -501,7 +501,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26611" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26611" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25432" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / MP Recovery" type="EtcItem">
@@ -518,7 +518,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26612" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26612" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25433" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Evasion" type="EtcItem">
@@ -535,7 +535,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26613" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26613" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25434" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Option 15" type="EtcItem">
@@ -552,7 +552,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26614" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26614" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25435" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Option 16" type="EtcItem">
@@ -569,7 +569,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26615" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26615" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25436" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Option 17" type="EtcItem">
@@ -586,7 +586,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26616" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26616" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25437" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Option 18" type="EtcItem">
@@ -603,7 +603,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26617" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26617" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25438" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Option 19" type="EtcItem">
@@ -620,7 +620,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26618" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26618" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25439" name="Appearance Stone: Beach Swimsuit" additionalName="Low-grade / Option 20" type="EtcItem">
@@ -637,7 +637,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26619" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26619" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Low-grade / Effect 20 -->
 		</skills>
 	</item>
 	<item id="25440" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Debuff Reflection" type="EtcItem">
@@ -654,7 +654,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26620" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26620" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25441" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Damage Reflection Resistance" type="EtcItem">
@@ -671,7 +671,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26621" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26621" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25442" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Ranged Attack Resistance" type="EtcItem">
@@ -688,7 +688,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26622" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26622" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25443" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / P. Def." type="EtcItem">
@@ -705,7 +705,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26623" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26623" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25444" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / M. Def." type="EtcItem">
@@ -722,7 +722,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26624" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26624" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25445" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Attribute Resistance" type="EtcItem">
@@ -739,7 +739,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26625" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26625" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25446" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Received Healing" type="EtcItem">
@@ -756,7 +756,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26626" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26626" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25447" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Max HP" type="EtcItem">
@@ -773,7 +773,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26627" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26627" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25448" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Max MP" type="EtcItem">
@@ -790,7 +790,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26628" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26628" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25449" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Max CP" type="EtcItem">
@@ -807,7 +807,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26629" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26629" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25450" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Speed" type="EtcItem">
@@ -824,7 +824,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26630" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26630" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25451" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / HP Recovery" type="EtcItem">
@@ -841,7 +841,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26631" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26631" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25452" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / MP Recovery" type="EtcItem">
@@ -858,7 +858,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26632" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26632" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25453" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Evasion" type="EtcItem">
@@ -875,7 +875,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26633" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26633" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25454" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Option 15" type="EtcItem">
@@ -892,7 +892,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26634" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26634" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25455" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Option 16" type="EtcItem">
@@ -909,7 +909,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26635" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26635" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25456" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Option 17" type="EtcItem">
@@ -926,7 +926,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26636" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26636" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25457" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Option 18" type="EtcItem">
@@ -943,7 +943,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26637" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26637" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25458" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Option 19" type="EtcItem">
@@ -960,7 +960,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26638" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26638" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25459" name="Appearance Stone: Beach Swimsuit" additionalName="Mid-grade / Option 20" type="EtcItem">
@@ -977,7 +977,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26639" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26639" level="1" /> <!-- Appearance Stone: Beach Swimsuit - Mid-grade / Effect 20 -->
 		</skills>
 	</item>
 	<item id="25460" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Debuff Reflection" type="EtcItem">
@@ -994,7 +994,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26640" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26640" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25461" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Damage Reflection Resistance" type="EtcItem">
@@ -1011,7 +1011,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26641" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26641" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25462" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Ranged Attack Resistance" type="EtcItem">
@@ -1028,7 +1028,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26642" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26642" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25463" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / P. Def." type="EtcItem">
@@ -1045,7 +1045,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26643" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26643" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25464" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / M. Def." type="EtcItem">
@@ -1062,7 +1062,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26644" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26644" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25465" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Attribute Resistance" type="EtcItem">
@@ -1079,7 +1079,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26645" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26645" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25466" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Received Healing" type="EtcItem">
@@ -1096,7 +1096,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26646" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26646" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25467" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Max HP" type="EtcItem">
@@ -1113,7 +1113,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26647" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26647" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25468" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Max MP" type="EtcItem">
@@ -1130,7 +1130,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26648" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26648" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25469" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Max CP" type="EtcItem">
@@ -1147,7 +1147,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26649" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26649" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25470" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Speed" type="EtcItem">
@@ -1164,7 +1164,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26650" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26650" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25471" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / HP Recovery" type="EtcItem">
@@ -1181,7 +1181,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26651" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26651" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25472" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / MP Recovery" type="EtcItem">
@@ -1198,7 +1198,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26652" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26652" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25473" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Evasion" type="EtcItem">
@@ -1215,7 +1215,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26653" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26653" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25474" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Option 15" type="EtcItem">
@@ -1232,7 +1232,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26654" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26654" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25475" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Option 16" type="EtcItem">
@@ -1249,7 +1249,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26655" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26655" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25476" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Option 17" type="EtcItem">
@@ -1266,7 +1266,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26656" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26656" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25477" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Option 18" type="EtcItem">
@@ -1283,7 +1283,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26657" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26657" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25478" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Option 19" type="EtcItem">
@@ -1300,7 +1300,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26658" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26658" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25479" name="Appearance Stone: Beach Swimsuit" additionalName="High-grade / Option 20" type="EtcItem">
@@ -1317,7 +1317,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26659" level="1" /> <!-- Beach Swimsuit Appearance Stone -->
+			<skill id="26659" level="1" /> <!-- Appearance Stone: Beach Swimsuit - High-grade / Effect 20 -->
 		</skills>
 	</item>
 	<item id="25480" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Debuff Reflection" type="EtcItem">
@@ -1334,7 +1334,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26660" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26660" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 1 -->
 		</skills>
 	</item>
 	<item id="25481" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Damage Reflection Resistance" type="EtcItem">
@@ -1351,7 +1351,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26661" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26661" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 2 -->
 		</skills>
 	</item>
 	<item id="25482" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Ranged Attack Resistance" type="EtcItem">
@@ -1368,7 +1368,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26662" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26662" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 3 -->
 		</skills>
 	</item>
 	<item id="25483" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / P. Def." type="EtcItem">
@@ -1385,7 +1385,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26663" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26663" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 4 -->
 		</skills>
 	</item>
 	<item id="25484" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / M. Def." type="EtcItem">
@@ -1402,7 +1402,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26664" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26664" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 5 -->
 		</skills>
 	</item>
 	<item id="25485" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Attribute Resistance" type="EtcItem">
@@ -1419,7 +1419,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26665" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26665" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 6 -->
 		</skills>
 	</item>
 	<item id="25486" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Received Healing" type="EtcItem">
@@ -1436,7 +1436,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26666" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26666" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 7 -->
 		</skills>
 	</item>
 	<item id="25487" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Max HP" type="EtcItem">
@@ -1453,7 +1453,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26667" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26667" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 8 -->
 		</skills>
 	</item>
 	<item id="25488" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Max MP" type="EtcItem">
@@ -1470,7 +1470,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26668" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26668" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 9 -->
 		</skills>
 	</item>
 	<item id="25489" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Max CP" type="EtcItem">
@@ -1487,7 +1487,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26669" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26669" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 10 -->
 		</skills>
 	</item>
 	<item id="25490" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Speed" type="EtcItem">
@@ -1504,7 +1504,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26670" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26670" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 11 -->
 		</skills>
 	</item>
 	<item id="25491" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / HP Recovery" type="EtcItem">
@@ -1521,7 +1521,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26671" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26671" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 12 -->
 		</skills>
 	</item>
 	<item id="25492" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / MP Recovery" type="EtcItem">
@@ -1538,7 +1538,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26672" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26672" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 13 -->
 		</skills>
 	</item>
 	<item id="25493" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Evasion" type="EtcItem">
@@ -1555,7 +1555,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26673" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26673" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 14 -->
 		</skills>
 	</item>
 	<item id="25494" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Option 15" type="EtcItem">
@@ -1572,7 +1572,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26674" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26674" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 15 -->
 		</skills>
 	</item>
 	<item id="25495" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Option 16" type="EtcItem">
@@ -1589,7 +1589,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26675" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26675" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 16 -->
 		</skills>
 	</item>
 	<item id="25496" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Option 17" type="EtcItem">
@@ -1606,7 +1606,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26676" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26676" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 17 -->
 		</skills>
 	</item>
 	<item id="25497" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Option 18" type="EtcItem">
@@ -1623,7 +1623,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26677" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26677" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 18 -->
 		</skills>
 	</item>
 	<item id="25498" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Option 19" type="EtcItem">
@@ -1640,7 +1640,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26678" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26678" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 19 -->
 		</skills>
 	</item>
 	<item id="25499" name="Appearance Stone: Alluring Swimsuit" additionalName="Low-grade / Option 20" type="EtcItem">
@@ -1657,7 +1657,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="26679" level="1" /> <!-- Alluring Swimsuit Appearance Stone -->
+			<skill id="26679" level="1" /> <!-- Appearance Stone: Alluring Swimsuit - Low-grade / Effect 20 -->
 		</skills>
 	</item>
 </list>

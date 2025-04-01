@@ -144,14 +144,14 @@ public class CastleAmbassador extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Fort fort = npc.getFort();
 		if (fort == null)
 		{
 			npc.deleteMe();
 			LOGGER.warning("Spawned: " + npc + " location: " + npc.getLocation() + " without fort!");
-			return null;
+			return;
 		}
 		
 		final Castle castle = fort.getCastleByAmbassador(npc.getId());
@@ -163,7 +163,6 @@ public class CastleAmbassador extends AbstractNpcAI
 		{
 			startQuestTimer("DESPAWN", 3600000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

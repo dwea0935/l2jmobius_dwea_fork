@@ -23,7 +23,6 @@ package org.l2jmobius.gameserver.network.serverpackets.teleports;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.GameClient;

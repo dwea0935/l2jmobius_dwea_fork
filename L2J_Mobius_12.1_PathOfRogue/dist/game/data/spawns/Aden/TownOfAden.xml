@@ -113,6 +113,8 @@
 			<npc id="34545" x="147799" y="23755" z="-1984" heading="32768" respawnTime="60sec" /> <!-- Lulu - Cherub of Luck -->
 			<npc id="34600" x="147809" y="28524" z="-2271" heading="47355" respawnTime="60sec" /> <!-- Chloe -->
 			<npc id="33780" x="146497" y="27228" z="-2212" heading="64957" respawnTime="60sec" /> <!-- Hesed - Black Anvil Guild -->
+			<npc id="30844" x="147178" y="23966" z="-2018" heading="57956" respawnTime="60sec" /> <!-- Walderal - Warehouse Keeper -->
+			<npc id="34584" x="147177" y="23750" z="-2018" heading="65163" respawnTime="60sec" /> <!-- Eraton - Fate Changer -->
 		</group>
 	</spawn>
 </list>

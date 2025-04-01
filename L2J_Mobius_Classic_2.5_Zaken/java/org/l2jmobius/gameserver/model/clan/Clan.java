@@ -39,6 +39,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.communitybbs.BB.Forum;
 import org.l2jmobius.gameserver.communitybbs.Manager.ForumsBBSManager;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
@@ -46,34 +47,33 @@ import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.sql.CrestTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.ClanRewardType;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.enums.UserInfoType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
 import org.l2jmobius.gameserver.model.BlockList;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.clan.enums.ClanRewardType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanJoin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanLeaderChange;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanLeft;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanLvlUp;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
-import org.l2jmobius.gameserver.model.interfaces.INamable;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanJoin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanLeaderChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanLeft;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanLvlUp;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.ClanWarehouse;
 import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.variables.ClanVariables;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.ExSubPledgeSkillAdd;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeReceiveSubPledgeCreated;
@@ -88,10 +88,8 @@ import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.pledgebonus.ExPledgeBonusMarkReset;
-import org.l2jmobius.gameserver.util.EnumIntBitmask;
-import org.l2jmobius.gameserver.util.Util;
 
-public class Clan implements IIdentifiable, INamable
+public class Clan
 {
 	private static final Logger LOGGER = Logger.getLogger(Clan.class.getName());
 	
@@ -212,7 +210,6 @@ public class Clan implements IIdentifiable, INamable
 	/**
 	 * @return Returns the clanId.
 	 */
-	@Override
 	public int getId()
 	{
 		return _clanId;
@@ -274,7 +271,7 @@ public class Clan implements IIdentifiable, INamable
 			{
 				SiegeManager.getInstance().removeSiegeSkills(exLeader);
 			}
-			exLeader.getClanPrivileges().clear();
+			exLeader.getClanPrivileges().disableAll();
 			exLeader.broadcastUserInfo();
 		}
 		else
@@ -309,7 +306,7 @@ public class Clan implements IIdentifiable, INamable
 		if (newLeader != null)
 		{
 			newLeader.setPledgeClass(ClanMember.calculatePledgeClass(newLeader));
-			newLeader.getClanPrivileges().setAll();
+			newLeader.getClanPrivileges().enableAll();
 			
 			if (getLevel() >= SiegeManager.getInstance().getSiegeClanMinLevel())
 			{
@@ -322,7 +319,7 @@ public class Clan implements IIdentifiable, INamable
 			try (Connection con = DatabaseFactory.getConnection();
 				PreparedStatement ps = con.prepareStatement("UPDATE characters SET clan_privs = ? WHERE charId = ?"))
 			{
-				ps.setInt(1, EnumIntBitmask.getAllBitmask(ClanPrivilege.class));
+				ps.setInt(1, ClanPrivileges.getCompleteMask());
 				ps.setInt(2, getLeaderId());
 				ps.execute();
 			}
@@ -354,7 +351,6 @@ public class Clan implements IIdentifiable, INamable
 	/**
 	 * @return the clan name.
 	 */
-	@Override
 	public String getName()
 	{
 		return _name;
@@ -1738,17 +1734,17 @@ public class Clan implements IIdentifiable, INamable
 	public static class RankPrivs
 	{
 		private final int _rankId;
-		private final int _party; // TODO find out what this stuff means and implement it
-		private final EnumIntBitmask<ClanPrivilege> _rankPrivs;
+		private final int _party; // TODO: Find out what this stuff means and implement it.
+		private final ClanPrivileges _rankPrivs;
 		
 		public RankPrivs(int rank, int party, int privs)
 		{
 			_rankId = rank;
 			_party = party;
-			_rankPrivs = new EnumIntBitmask<>(ClanPrivilege.class, privs);
+			_rankPrivs = new ClanPrivileges(privs);
 		}
 		
-		public RankPrivs(int rank, int party, EnumIntBitmask<ClanPrivilege> rankPrivs)
+		public RankPrivs(int rank, int party, ClanPrivileges rankPrivs)
 		{
 			_rankId = rank;
 			_party = party;
@@ -1765,14 +1761,14 @@ public class Clan implements IIdentifiable, INamable
 			return _party;
 		}
 		
-		public EnumIntBitmask<ClanPrivilege> getPrivs()
+		public ClanPrivileges getPrivs()
 		{
 			return _rankPrivs;
 		}
 		
 		public void setPrivs(int privs)
 		{
-			_rankPrivs.setBitmask(privs);
+			_rankPrivs.setMask(privs);
 		}
 	}
 	
@@ -2007,13 +2003,13 @@ public class Clan implements IIdentifiable, INamable
 	{
 		for (int i = 1; i < 10; i++)
 		{
-			_privs.put(i, new RankPrivs(i, 0, new EnumIntBitmask<>(ClanPrivilege.class, false)));
+			_privs.put(i, new RankPrivs(i, 0, new ClanPrivileges()));
 		}
 	}
 	
-	public EnumIntBitmask<ClanPrivilege> getRankPrivs(int rank)
+	public ClanPrivileges getRankPrivs(int rank)
 	{
-		return _privs.get(rank) != null ? _privs.get(rank).getPrivs() : new EnumIntBitmask<>(ClanPrivilege.class, false);
+		return _privs.get(rank) != null ? _privs.get(rank).getPrivs() : new ClanPrivileges();
 	}
 	
 	public void setRankPrivs(int rank, int privs)
@@ -2041,7 +2037,7 @@ public class Clan implements IIdentifiable, INamable
 			{
 				if (cm.isOnline() && (cm.getPowerGrade() == rank) && (cm.getPlayer() != null))
 				{
-					cm.getPlayer().getClanPrivileges().setBitmask(privs);
+					cm.getPlayer().getClanPrivileges().setMask(privs);
 					cm.getPlayer().updateUserInfo();
 				}
 			}
@@ -2192,7 +2188,7 @@ public class Clan implements IIdentifiable, INamable
 		{
 			return false;
 		}
-		if (!player.hasClanPrivilege(ClanPrivilege.CL_JOIN_CLAN))
+		if (!player.hasAccess(ClanAccess.INVITE_MEMBER))
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
 			return false;
@@ -2226,7 +2222,7 @@ public class Clan implements IIdentifiable, INamable
 			player.sendPacket(sm);
 			return false;
 		}
-		if (((target.getLevel() > 40) || (target.getClassId().level() >= 2)) && (pledgeType == -1))
+		if (((target.getLevel() > 40) || (target.getPlayerClass().level() >= 2)) && (pledgeType == -1))
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_DOES_NOT_MEET_THE_REQUIREMENTS_TO_JOIN_A_CLAN_ACADEMY);
 			sm.addString(target.getName());
@@ -2408,7 +2404,7 @@ public class Clan implements IIdentifiable, INamable
 			player.sendPacket(SystemMessageId.AS_YOU_ARE_CURRENTLY_SCHEDULE_FOR_CLAN_DISSOLUTION_NO_ALLIANCE_CAN_BE_CREATED);
 			return;
 		}
-		if (!Util.isAlphaNumeric(allyName))
+		if (!StringUtil.isAlphaNumeric(allyName))
 		{
 			player.sendPacket(SystemMessageId.INCORRECT_ALLIANCE_NAME_PLEASE_TRY_AGAIN);
 			return;
@@ -2495,7 +2491,7 @@ public class Clan implements IIdentifiable, INamable
 			case 0:
 			{
 				// Upgrade to 1
-				if ((player.getSp() >= 1000) && (player.getAdena() >= 150000) && (_members.size() >= 1) && player.reduceAdena("ClanLvl", 150000, player.getTarget(), true))
+				if ((player.getSp() >= 1000) && (player.getAdena() >= 150000) && (_members.size() >= 1) && player.reduceAdena(ItemProcessType.FEE, 150000, player.getTarget(), true))
 				{
 					player.setSp(player.getSp() - 1000);
 					final SystemMessage sp = new SystemMessage(SystemMessageId.YOUR_SP_HAS_DECREASED_BY_S1);
@@ -2508,7 +2504,7 @@ public class Clan implements IIdentifiable, INamable
 			case 1:
 			{
 				// Upgrade to 2
-				if ((player.getSp() >= 15000) && (player.getAdena() >= 300000) && (_members.size() >= 1) && player.reduceAdena("ClanLvl", 300000, player.getTarget(), true))
+				if ((player.getSp() >= 15000) && (player.getAdena() >= 300000) && (_members.size() >= 1) && player.reduceAdena(ItemProcessType.FEE, 300000, player.getTarget(), true))
 				{
 					player.setSp(player.getSp() - 15000);
 					final SystemMessage sp = new SystemMessage(SystemMessageId.YOUR_SP_HAS_DECREASED_BY_S1);
@@ -2521,7 +2517,7 @@ public class Clan implements IIdentifiable, INamable
 			case 2:
 			{
 				// Upgrade to 3 (itemId 1419 == Blood Mark)
-				if ((player.getSp() >= 100000) && (player.getInventory().getItemByItemId(1419) != null) && (_members.size() >= 1) && player.destroyItemByItemId("ClanLvl", 1419, 100, player.getTarget(), true))
+				if ((player.getSp() >= 100000) && (player.getInventory().getItemByItemId(1419) != null) && (_members.size() >= 1) && player.destroyItemByItemId(ItemProcessType.FEE, 1419, 100, player.getTarget(), true))
 				{
 					player.setSp(player.getSp() - 100000);
 					final SystemMessage sp = new SystemMessage(SystemMessageId.YOUR_SP_HAS_DECREASED_BY_S1);
@@ -2537,7 +2533,7 @@ public class Clan implements IIdentifiable, INamable
 			case 3:
 			{
 				// Upgrade to 4 (itemId 1419 == Blood Mark)
-				if ((player.getSp() >= 1000000) && (player.getInventory().getItemByItemId(1419) != null) && (_members.size() >= 1) && player.destroyItemByItemId("ClanLvl", 1419, 5000, player.getTarget(), true))
+				if ((player.getSp() >= 1000000) && (player.getInventory().getItemByItemId(1419) != null) && (_members.size() >= 1) && player.destroyItemByItemId(ItemProcessType.FEE, 1419, 5000, player.getTarget(), true))
 				{
 					player.setSp(player.getSp() - 1000000);
 					final SystemMessage sp = new SystemMessage(SystemMessageId.YOUR_SP_HAS_DECREASED_BY_S1);
@@ -2553,7 +2549,7 @@ public class Clan implements IIdentifiable, INamable
 			case 4:
 			{
 				// Upgrade to 5 (itemId 1419 == Blood Mark)
-				if ((player.getSp() >= 5000000) && (player.getInventory().getItemByItemId(1419) != null) && (_members.size() >= 1) && player.destroyItemByItemId("ClanLvl", 1419, 10000, player.getTarget(), true))
+				if ((player.getSp() >= 5000000) && (player.getInventory().getItemByItemId(1419) != null) && (_members.size() >= 1) && player.destroyItemByItemId(ItemProcessType.FEE, 1419, 10000, player.getTarget(), true))
 				{
 					player.setSp(player.getSp() - 5000000);
 					final SystemMessage sp = new SystemMessage(SystemMessageId.YOUR_SP_HAS_DECREASED_BY_S1);

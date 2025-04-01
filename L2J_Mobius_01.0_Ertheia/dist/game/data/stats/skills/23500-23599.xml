@@ -948,7 +948,7 @@
 		<effectRange>600</effectRange>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<reuseDelay>60000</reuseDelay>
@@ -2051,7 +2051,7 @@
 		<basicProperty>NONE</basicProperty>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<reuseDelay>3600000</reuseDelay>
@@ -2117,7 +2117,7 @@
 		<effectPoint>1</effectPoint>
 		<effectRange>-2</effectRange>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>

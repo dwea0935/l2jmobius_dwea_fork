@@ -20,19 +20,19 @@
  */
 package instances.EtisVanEtinaSolo;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -483,7 +483,7 @@ public class EtisVanEtinaSolo extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = attacker.getInstanceWorld();
 		if (isInInstance(world))
@@ -549,11 +549,10 @@ public class EtisVanEtinaSolo extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -571,7 +570,7 @@ public class EtisVanEtinaSolo extends AbstractInstance
 				{
 					cancelQuestTimer("gnosisCastTimer", npc, killer);
 				}
-				if (getQuestTimer("trifeCastTimer", npc, killer) != null)
+				if (getQuestTimer("strifeCastTimer", npc, killer) != null)
 				{
 					cancelQuestTimer("strifeCastTimer", npc, killer);
 				}
@@ -601,28 +600,28 @@ public class EtisVanEtinaSolo extends AbstractInstance
 				closeDoor(DOOR4, world.getId());
 				world.finishInstance(2);
 			}
-			else if (CommonUtil.contains(CORRIDOR_MOBS_1, npc.getId()))
+			else if (ArrayUtil.contains(CORRIDOR_MOBS_1, npc.getId()))
 			{
 				if (world.getAliveNpcCount(CORRIDOR_MOBS_1) == 0)
 				{
 					world.getParameters().set("BARRICADE_DESTROYED", false);
 				}
 			}
-			else if (CommonUtil.contains(CORRIDOR_MOBS_2, npc.getId()))
+			else if (ArrayUtil.contains(CORRIDOR_MOBS_2, npc.getId()))
 			{
 				if (world.getAliveNpcCount(CORRIDOR_MOBS_2) == 0)
 				{
 					world.getParameters().set("BARRICADE_DESTROYED", false);
 				}
 			}
-			else if (CommonUtil.contains(CORRIDOR_MOBS_3, npc.getId()))
+			else if (ArrayUtil.contains(CORRIDOR_MOBS_3, npc.getId()))
 			{
 				if (world.getAliveNpcCount(CORRIDOR_MOBS_3) == 0)
 				{
 					world.getParameters().set("BARRICADE_DESTROYED", false);
 				}
 			}
-			else if (CommonUtil.contains(CORRIDOR_MOBS_4, npc.getId()))
+			else if (ArrayUtil.contains(CORRIDOR_MOBS_4, npc.getId()))
 			{
 				if (world.getAliveNpcCount(CORRIDOR_MOBS_4) == 0)
 				{
@@ -668,7 +667,6 @@ public class EtisVanEtinaSolo extends AbstractInstance
 				world.getNpc(LEONA_BLACKBIRD).broadcastSay(ChatType.NPC_GENERAL, NpcStringId.KAIN_I_WON_T_FEEL_GUILTY_ABOUT_THIS);
 			}
 		}
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	@Override

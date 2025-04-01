@@ -22,18 +22,17 @@ package handlers.voicedcommandhandlers;
 
 import java.util.StringTokenizer;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.PunishmentManager;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
 import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
 import org.l2jmobius.gameserver.model.punishment.PunishmentType;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 public class ChatAdmin implements IVoicedCommandHandler
 {
@@ -60,7 +59,7 @@ public class ChatAdmin implements IVoicedCommandHandler
 			{
 				if (params == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: .banchat name [minutes]");
+					activeChar.sendSysMessage("Usage: .banchat name [minutes]");
 					return true;
 				}
 				final StringTokenizer st = new StringTokenizer(params);
@@ -71,7 +70,7 @@ public class ChatAdmin implements IVoicedCommandHandler
 					if (st.hasMoreTokens())
 					{
 						final String token = st.nextToken();
-						if (Util.isDigit(token))
+						if (StringUtil.isNumeric(token))
 						{
 							expirationTime = Integer.parseInt(token);
 						}
@@ -83,45 +82,45 @@ public class ChatAdmin implements IVoicedCommandHandler
 						final Player player = World.getInstance().getPlayer(objId);
 						if ((player == null) || !player.isOnline())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Player not online!");
+							activeChar.sendSysMessage("Player not online!");
 							return false;
 						}
 						if (player.isChatBanned())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Player is already punished!");
+							activeChar.sendSysMessage("Player is already punished!");
 							return false;
 						}
 						if (player == activeChar)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "You can't ban yourself!");
+							activeChar.sendSysMessage("You can't ban yourself!");
 							return false;
 						}
 						if (player.isGM())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "You can't ban a GM!");
+							activeChar.sendSysMessage("You can't ban a GM!");
 							return false;
 						}
 						if (AdminData.getInstance().hasAccess(command, player.getAccessLevel()))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "You can't ban moderator!");
+							activeChar.sendSysMessage("You can't ban moderator!");
 							return false;
 						}
 						
 						PunishmentManager.getInstance().startPunishment(new PunishmentTask(objId, PunishmentAffect.CHARACTER, PunishmentType.CHAT_BAN, System.currentTimeMillis() + (expirationTime * 1000 * 60), "Chat banned by moderator", activeChar.getName()));
 						if (expirationTime > 0)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Player " + player.getName() + " chat banned for " + expirationTime + " minutes.");
+							activeChar.sendSysMessage("Player " + player.getName() + " chat banned for " + expirationTime + " minutes.");
 						}
 						else
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Player " + player.getName() + " chat banned forever.");
+							activeChar.sendSysMessage("Player " + player.getName() + " chat banned forever.");
 						}
 						player.sendMessage("Chat banned by moderator " + activeChar.getName());
 						player.getEffectList().startAbnormalVisualEffect(AbnormalVisualEffect.NO_CHAT);
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Player not found!");
+						activeChar.sendSysMessage("Player not found!");
 						return false;
 					}
 				}
@@ -132,7 +131,7 @@ public class ChatAdmin implements IVoicedCommandHandler
 			{
 				if (params == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: .unbanchat name");
+					activeChar.sendSysMessage("Usage: .unbanchat name");
 					return true;
 				}
 				final StringTokenizer st = new StringTokenizer(params);
@@ -145,23 +144,23 @@ public class ChatAdmin implements IVoicedCommandHandler
 						final Player player = World.getInstance().getPlayer(objId);
 						if ((player == null) || !player.isOnline())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Player not online!");
+							activeChar.sendSysMessage("Player not online!");
 							return false;
 						}
 						if (!player.isChatBanned())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Player is not chat banned!");
+							activeChar.sendSysMessage("Player is not chat banned!");
 							return false;
 						}
 						
 						PunishmentManager.getInstance().stopPunishment(objId, PunishmentAffect.CHARACTER, PunishmentType.CHAT_BAN);
-						BuilderUtil.sendSysMessage(activeChar, "Player " + player.getName() + " chat unbanned.");
+						activeChar.sendSysMessage("Player " + player.getName() + " chat unbanned.");
 						player.sendMessage("Chat unbanned by moderator " + activeChar.getName());
 						player.getEffectList().stopAbnormalVisualEffect(AbnormalVisualEffect.NO_CHAT);
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Player not found!");
+						activeChar.sendSysMessage("Player not found!");
 						return false;
 					}
 				}

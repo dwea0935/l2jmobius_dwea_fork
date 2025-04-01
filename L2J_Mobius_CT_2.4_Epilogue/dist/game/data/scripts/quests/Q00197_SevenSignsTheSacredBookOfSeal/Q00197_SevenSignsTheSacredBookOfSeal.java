@@ -17,16 +17,15 @@
 package quests.Q00197_SevenSignsTheSacredBookOfSeal;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00196_SevenSignsSealOfTheEmperor.Q00196_SevenSignsSealOfTheEmperor;
@@ -53,7 +52,7 @@ public class Q00197_SevenSignsTheSacredBookOfSeal extends Quest
 	
 	public Q00197_SevenSignsTheSacredBookOfSeal()
 	{
-		super(197);
+		super(197, "Seven Signs, the Sacred Book of Seal");
 		addStartNpc(WOOD);
 		addTalkId(WOOD, ORVEN, LEOPARD, LAWRENCE, SOPHIA);
 		addKillId(SHILENS_EVIL_THOUGHTS);
@@ -68,7 +67,7 @@ public class Q00197_SevenSignsTheSacredBookOfSeal extends Quest
 			if (!npc.isDead())
 			{
 				isBusy = false;
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.NEXT_TIME_YOU_WILL_NOT_ESCAPE));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), "Next time, you will not escape!"));
 				npc.deleteMe();
 			}
 			return super.onEvent(event, npc, player);
@@ -169,12 +168,12 @@ public class Q00197_SevenSignsTheSacredBookOfSeal extends Quest
 				if (qs.isCond(3))
 				{
 					isBusy = true;
-					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.S1_THAT_STRANGER_MUST_BE_DEFEATED_HERE_IS_THE_ULTIMATE_HELP).addStringParameter(player.getName()));
+					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), player.getName() + "! That stranger must be defeated. Here is the ultimate help!"));
 					final Monster monster = addSpawn(SHILENS_EVIL_THOUGHTS, 152520, -57502, -3408, 0, false, 0, false).asMonster();
-					monster.broadcastPacket(new NpcSay(monster.getObjectId(), ChatType.NPC_GENERAL, monster.getId(), NpcStringId.YOU_ARE_NOT_THE_OWNER_OF_THAT_ITEM));
+					monster.broadcastPacket(new NpcSay(monster.getObjectId(), ChatType.NPC_GENERAL, monster.getId(), "You are not the owner of that item."));
 					monster.setRunning();
 					monster.addDamageHate(player, 0, 999);
-					monster.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+					monster.getAI().setIntention(Intention.ATTACK, player);
 					startQuestTimer("despawn", 300000, monster, null);
 				}
 				break;
@@ -222,12 +221,12 @@ public class Q00197_SevenSignsTheSacredBookOfSeal extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 3);
 		if (partyMember == null)
 		{
-			return null;
+			return;
 		}
 		
 		final QuestState qs = getQuestState(partyMember, false);
@@ -240,8 +239,7 @@ public class Q00197_SevenSignsTheSacredBookOfSeal extends Quest
 		
 		isBusy = false;
 		cancelQuestTimers("despawn");
-		npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.S1_YOU_MAY_HAVE_WON_THIS_TIME_BUT_NEXT_TIME_I_WILL_SURELY_CAPTURE_YOU).addStringParameter(partyMember.getName()));
-		return super.onKill(npc, player, isSummon);
+		npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), partyMember.getName() + "! You may have won this time... But next time, I will surely capture you!"));
 	}
 	
 	@Override

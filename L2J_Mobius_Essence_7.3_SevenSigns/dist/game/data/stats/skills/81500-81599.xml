@@ -128,7 +128,6 @@
 	</skill>
 	<skill id="81514" toLevel="1" name="Bow Resistance">
 		<icon>icon.skill3080</icon>
-
 		<operateType>P</operateType>
 		<effects>
 			<effect name="DefenceTrait">

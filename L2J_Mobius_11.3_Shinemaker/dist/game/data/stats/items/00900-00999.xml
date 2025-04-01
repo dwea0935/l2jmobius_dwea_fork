@@ -732,7 +732,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="2015" level="1" /> <!-- Scroll: Enchant Weapon (B-grade) -->
+			<skill id="2015" level="1" /> <!-- Scroll: Enchant B-grade Weapon -->
 		</skills>
 	</item>
 	<item id="948" name="Scroll: Enchant B-grade Armor" type="EtcItem">
@@ -750,7 +750,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="2016" level="1" /> <!-- Scroll: Enchant Armor (B-grade) -->
+			<skill id="2016" level="1" /> <!-- Scroll: Enchant B-grade Armor -->
 		</skills>
 	</item>
 	<item id="949" name="Crystal Scroll: Enchant B-grade Weapon" type="EtcItem">
@@ -792,7 +792,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="2017" level="1" /> <!-- Scroll: Enchant Weapon (C-grade) -->
+			<skill id="2017" level="1" /> <!-- Scroll: Enchant C-grade Weapon -->
 		</skills>
 	</item>
 	<item id="952" name="Scroll: Enchant C-grade Armor" type="EtcItem">
@@ -810,7 +810,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="2018" level="1" /> <!-- Scroll: Enchant Armor (C-grade) -->
+			<skill id="2018" level="1" /> <!-- Scroll: Enchant C-grade Armor -->
 		</skills>
 	</item>
 	<item id="953" name="Crystal Scroll: Enchant C-grade Weapon" type="EtcItem">
@@ -852,7 +852,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="2019" level="1" /> <!-- Scroll: Enchant Weapon (D-grade) -->
+			<skill id="2019" level="1" /> <!-- Scroll: Enchant D-grade Weapon -->
 		</skills>
 	</item>
 	<item id="956" name="Scroll: Enchant D-grade Armor" type="EtcItem">
@@ -870,7 +870,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="2020" level="1" /> <!-- Scroll: Enchant Armor (D-grade) -->
+			<skill id="2020" level="1" /> <!-- Scroll: Enchant D-grade Armor -->
 		</skills>
 	</item>
 	<item id="957" name="Crystal Scroll: Enchant D-grade Weapon" type="EtcItem">
@@ -912,7 +912,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="2021" level="1" /> <!-- Scroll: Enchant Weapon (S-grade) -->
+			<skill id="2021" level="1" /> <!-- Scroll: Enchant S-grade Weapon -->
 		</skills>
 	</item>
 	<item id="960" name="Scroll: Enchant S-grade Armor" type="EtcItem">
@@ -930,7 +930,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="2022" level="1" /> <!-- Scroll: Enchant Armor (S-grade) -->
+			<skill id="2022" level="1" /> <!-- Scroll: Enchant S-grade Armor -->
 		</skills>
 	</item>
 	<item id="961" name="Crystal Scroll: Enchant S-grade Weapon" type="EtcItem">
@@ -958,7 +958,7 @@
 		<set name="handler" val="EnchantScrolls" />
 	</item>
 	<item id="963" name="Orc Arrowhead" type="EtcItem">
-		<!-- An arrowhead that Tunath Orc Marksmen use on Talking Island. Collect these and take them to Master Minia. -->
+		<!-- An arrowhead that Tunath Orc Snipers use on Talking Island. Collect these and take them to Master Minia. -->
 		<set name="icon" val="icon.weapon_winged_spear_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1126,7 +1126,7 @@
 		</stats>
 	</item>
 	<item id="976" name="1st Badge of Sentinel" type="EtcItem">
-		<!-- A badge that certifies that its bearer is an Elven Sentinel. Destroy Tanuki Skullcrusher and report to Sentinel Kendell. -->
+		<!-- A badge that shows that its bearer is an Elven Sentinel. Destroy Tanuki Skullcrusher and report to Sentinel Kendell. -->
 		<set name="icon" val="icon.item_system03" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1138,7 +1138,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="977" name="1st Badge of Sentinel" type="EtcItem">
-		<!-- A badge that certifies that its bearer is an Elven Sentinel. Destroy Bhato Bloodspear and report to Sentinel Kendell. -->
+		<!-- A badge that shows that its bearer is an Elven Sentinel. Destroy Bhato Bloodspear and report to Sentinel Kendell. -->
 		<set name="icon" val="icon.item_system03" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1150,7 +1150,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="978" name="Skullcrusher Amulet" type="EtcItem">
-		<!-- The amulet that represents the Skullcrusher Orc tribe. Take this to Sentinel Kendell. -->
+		<!-- An amulet worn by the Skullcrusher Orc tribe. Take it to Sentinel Kendell. -->
 		<set name="icon" val="icon.item_normal145" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1162,7 +1162,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="979" name="Bloodspear Amulet" type="EtcItem">
-		<!-- The amulet that represents the Bloodspear Orc tribe. Take this to Sentinel Kendell. -->
+		<!-- An amulet worn by the Bloodspear Orc tribe. Take it to Sentinel Kendell. -->
 		<set name="icon" val="icon.item_normal89" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1294,7 +1294,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="989" name="Eldritch Dagger" type="Weapon">
-		<!-- Steel dagger engraved with the runes of Shillien and Gran Kain. -->
+		<!-- A steel dagger engraved with the runes of Shillien and Gran Kain. -->
 		<set name="icon" val="icon.weapon_knife_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />

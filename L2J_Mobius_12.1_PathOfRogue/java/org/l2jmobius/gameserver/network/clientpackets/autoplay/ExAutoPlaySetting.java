@@ -28,7 +28,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.autoplay.ExAutoPlaySettingSend;
-import org.l2jmobius.gameserver.taskmanager.AutoPlayTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AutoPlayTaskManager;
 
 /**
  * @author Mobius

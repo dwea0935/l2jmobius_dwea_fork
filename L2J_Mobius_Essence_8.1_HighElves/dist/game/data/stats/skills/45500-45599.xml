@@ -1350,7 +1350,6 @@
 			<value level="20">-950</value>
 		</effectPoint>
 		<effectRange>1200</effectRange>
-		<effectRange>1200</effectRange>
 		<hitTime>3000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicCriticalRate>5</magicCriticalRate>

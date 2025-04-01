@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package events.SavingSanta;
 
@@ -22,30 +26,30 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Christmas Event: Saving Santa<br>
@@ -101,37 +105,37 @@ public class SavingSanta extends LongTimeEvent
 	private static final int[] SANTA_FIGHTER_BUFFS = {7043, 7057, 7051};
 	//@formatter:on
 	
-	private static final NpcStringId[] NPC_STRINGS =
+	private static final String[] NPC_STRINGS =
 	{
-		NpcStringId.IT_S_HURTING_I_M_IN_PAIN_WHAT_CAN_I_DO_FOR_THE_PAIN,
-		NpcStringId.NO_WHEN_I_LOSE_THAT_ONE_I_LL_BE_IN_MORE_PAIN,
-		NpcStringId.HAHAHAH_I_CAPTURED_SANTA_CLAUS_THERE_WILL_BE_NO_GIFTS_THIS_YEAR,
-		NpcStringId.NOW_WHY_DON_T_YOU_TAKE_UP_THE_CHALLENGE,
-		NpcStringId.COME_ON_I_LL_TAKE_ALL_OF_YOU_ON,
-		NpcStringId.HOW_ABOUT_IT_I_THINK_I_WON,
-		NpcStringId.NOW_THOSE_OF_YOU_WHO_LOST_GO_AWAY,
-		NpcStringId.WHAT_A_BUNCH_OF_LOSERS,
-		NpcStringId.I_GUESS_YOU_CAME_TO_RESCUE_SANTA_BUT_YOU_PICKED_THE_WRONG_PERSON,
-		NpcStringId.AH_OKAY,
-		NpcStringId.AGH_I_WASN_T_GOING_TO_DO_THAT,
-		NpcStringId.YOU_RE_CURSED_OH_WHAT,
-		NpcStringId.STOP_IT_NO_MORE_I_DID_IT_BECAUSE_I_WAS_TOO_LONELY,
-		NpcStringId.I_HAVE_TO_RELEASE_SANTA_HOW_INFURIATING,
-		NpcStringId.I_HATE_HAPPY_MERRY_CHRISTMAS,
-		NpcStringId.OH_I_M_BORED,
-		NpcStringId.SHALL_I_GO_TO_TAKE_A_LOOK_IF_SANTA_IS_STILL_THERE_HEHE,
-		NpcStringId.OH_HO_HO_MERRY_CHRISTMAS,
-		NpcStringId.SANTA_COULD_GIVE_NICE_PRESENTS_ONLY_IF_HE_S_RELEASED_FROM_THE_TURKEY,
-		NpcStringId.OH_HO_HO_OH_HO_HO_THANK_YOU_LADIES_AND_GENTLEMEN_I_WILL_REPAY_YOU_FOR_SURE,
-		NpcStringId.MERRY_CHRISTMAS_YOU_RE_DOING_A_GOOD_JOB,
-		NpcStringId.MERRY_CHRISTMAS_THANK_YOU_FOR_RESCUING_ME_FROM_THAT_WRETCHED_TURKEY,
-		NpcStringId.S1_I_HAVE_PREPARED_A_GIFT_FOR_YOU,
-		NpcStringId.I_HAVE_A_GIFT_FOR_S1,
-		NpcStringId.TAKE_A_LOOK_AT_THE_INVENTORY_I_HOPE_YOU_LIKE_THE_GIFT_I_GAVE_YOU,
-		NpcStringId.TAKE_A_LOOK_AT_THE_INVENTORY_PERHAPS_THERE_MIGHT_BE_A_BIG_PRESENT,
-		NpcStringId.I_M_TIRED_OF_DEALING_WITH_YOU_I_M_LEAVING,
-		NpcStringId.WHEN_ARE_YOU_GOING_TO_STOP_I_SLOWLY_STARTED_TO_BE_TIRED_OF_IT,
-		NpcStringId.MESSAGE_FROM_SANTA_CLAUS_MANY_BLESSINGS_TO_S1_WHO_SAVED_ME
+		"It's hurting... I'm in pain... What can I do for the pain...",
+		"No... When I lose that one... I'll be in more pain...",
+		"Hahahah!!! I captured Santa Claus!! There will be no gifts this year!!!",
+		"Now! Why don’t you take up the challenge?",
+		"Come on, I'll take all of you on! ",
+		"How about it? I think I won?",
+		"Now!! Those of you who lost, go away!",
+		"What a bunch of losers.",
+		"I guess you came to rescue Santa. But you picked the wrong person.",
+		"Ah, okay...",
+		"Agh!! I wasn’t going to do that!",
+		"You’re cursed!! Oh.. What?",
+		"Stop it, no more... I did it because I was too lonely...",
+		"I have to release Santa... How infuriating!!!",
+		"I hate happy Merry Christmas!!! ",
+		"Oh. I'm bored.",
+		"Shall I go to take a look if Santa is still there? Hehe",
+		"Oh ho ho.... Merry Christmas!! ",
+		"Santa could give nice presents only if he's released from the Turkey...",
+		"Oh ho ho... Oh ho ho... Thank you. Ladies and gentlemen! I will repay you for sure.",
+		"Merry Christmas~ You’re doing a good job.",
+		"Merry Christmas~ Thank you for rescuing me from that wretched Turkey.",
+		"$s1. I have prepared a gift for you.",
+		"I have a gift for $s1.",
+		"Take a look at the inventory. I hope you like the gift I gave you. ",
+		"Take a look at the inventory. Perhaps there might be a big present~",
+		"I’m tired of dealing with you. I’m leaving.",
+		"When are you going to stop? I slowly started to be tired of it.",
+		"Message from Santa Claus: Many blessings to $s1, who saved me~"
 	};
 	
 	public SavingSanta()
@@ -163,25 +167,23 @@ public class SavingSanta extends LongTimeEvent
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		_specialTrees.add(npc);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (_isWaitingForPlayerSkill && (skill.getId() > 21013) && (skill.getId() < 21017))
 		{
 			caster.broadcastPacket(new MagicSkillUse(caster, caster, 23019, skill.getId() - 21013, 3000, 1));
 			SkillData.getInstance().getSkill(23019, skill.getId() - 21013).applyEffects(caster, caster);
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		// Turkey's Choice
 		// Level 1: Scissors
@@ -245,8 +247,7 @@ public class SavingSanta extends LongTimeEvent
 						startQuestTimer("SantaSpawn", 120000, null, null);
 						final Npc holidaySled = addSpawn(HOLIDAY_SLED_ID, 117935, -126003, -2585, 54625, false, 12000);
 						// Message from Santa Claus: Many blessings to $s1, who saved me~
-						final NpcSay santaSaved = new NpcSay(holidaySled.getObjectId(), ChatType.NPC_SHOUT, holidaySled.getId(), NPC_STRINGS[28]);
-						santaSaved.addStringParameter(pl.getName());
+						final NpcSay santaSaved = new NpcSay(holidaySled.getObjectId(), ChatType.NPC_SHOUT, holidaySled.getId(), NPC_STRINGS[28].replace("$s1", pl.getName()));
 						holidaySled.broadcastPacket(santaSaved);
 						// Oh ho ho.... Merry Christmas!!
 						holidaySled.broadcastPacket(new NpcSay(holidaySled.getObjectId(), ChatType.NPC_GENERAL, holidaySled.getId(), NPC_STRINGS[17]));
@@ -254,11 +255,11 @@ public class SavingSanta extends LongTimeEvent
 						if (getRandom(100) > 90)
 						{
 							_isJackPot = true;
-							pl.addItem("SavingSantaPresent", BR_XMAS_PRESENT_JACKPOT, 1, pl, true);
+							pl.addItem(ItemProcessType.REWARD, BR_XMAS_PRESENT_JACKPOT, 1, pl, true);
 						}
 						else
 						{
-							pl.addItem("SavingSantaPresent", BR_XMAS_PRESENT_NORMAL, 1, pl, true);
+							pl.addItem(ItemProcessType.REWARD, BR_XMAS_PRESENT_NORMAL, 1, pl, true);
 						}
 						
 						ThreadPool.schedule(new SledAnimation(holidaySled), 7000);
@@ -269,7 +270,6 @@ public class SavingSanta extends LongTimeEvent
 				}
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	private static class SledAnimation implements Runnable
@@ -286,7 +286,7 @@ public class SavingSanta extends LongTimeEvent
 		{
 			try
 			{
-				_sled.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				_sled.getAI().setIntention(Intention.IDLE);
 				_sled.broadcastPacket(new SocialAction(_sled.getObjectId(), 1));
 			}
 			catch (Exception e)
@@ -342,7 +342,7 @@ public class SavingSanta extends LongTimeEvent
 						}
 						final int locx = (int) (pl.getX() + (Math.pow(-1, getRandom(1, 2)) * 50));
 						final int locy = (int) (pl.getY() + (Math.pow(-1, getRandom(1, 2)) * 50));
-						final int heading = Util.calculateHeadingFrom(locx, locy, pl.getX(), pl.getY());
+						final int heading = LocationUtil.calculateHeadingFrom(locx, locy, pl.getX(), pl.getY());
 						final Npc santa = addSpawn(HOLIDAY_SANTA_ID, locx, locy, pl.getZ(), heading, false, 30000);
 						_rewardedPlayers.put(pl.getAccountName(), System.currentTimeMillis());
 						player.getVariables().set("LAST_SANTA_REWARD", System.currentTimeMillis());
@@ -414,8 +414,7 @@ public class SavingSanta extends LongTimeEvent
 		{
 			startQuestTimer("SantaRewarding3", 5000, npc, player);
 			// I have a gift for $s1.
-			final NpcSay iHaveAGift = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NPC_STRINGS[23]);
-			iHaveAGift.addStringParameter(player.getName());
+			final NpcSay iHaveAGift = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NPC_STRINGS[23].replace("$s1", player.getName()));
 			npc.broadcastPacket(iHaveAGift);
 		}
 		else if (event.equalsIgnoreCase("SantaRewarding3"))
@@ -425,14 +424,14 @@ public class SavingSanta extends LongTimeEvent
 			{
 				// Take a look at the inventory. Perhaps there might be a big present~
 				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NPC_STRINGS[25]));
-				player.addItem("SavingSantaPresent", BR_XMAS_PRESENT_JACKPOT, 1, player, true);
+				player.addItem(ItemProcessType.REWARD, BR_XMAS_PRESENT_JACKPOT, 1, player, true);
 				_isJackPot = false;
 			}
 			else
 			{
 				// Take a look at the inventory. I hope you like the gift I gave you.
 				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NPC_STRINGS[24]));
-				player.addItem("SavingSantaPresent", BR_XMAS_PRESENT_NORMAL, 1, player, true);
+				player.addItem(ItemProcessType.REWARD, BR_XMAS_PRESENT_NORMAL, 1, player, true);
 			}
 		}
 		else if (event.equalsIgnoreCase("SantaBlessings") && SANTAS_HELPER_AUTOBUFF)
@@ -466,7 +465,7 @@ public class SavingSanta extends LongTimeEvent
 						{
 							for (Player playerx : World.getInstance().getVisibleObjects(santaHelper, Player.class))
 							{
-								if (playerx.getClassId().isMage())
+								if (playerx.getPlayerClass().isMage())
 								{
 									for (int buffId : SANTA_MAGE_BUFFS)
 									{
@@ -567,9 +566,9 @@ public class SavingSanta extends LongTimeEvent
 				
 				for (ItemHolder item : TREE_REQUIRED_ITEMS)
 				{
-					player.destroyItemByItemId(event, item.getId(), item.getCount(), player, true);
+					player.destroyItemByItemId(ItemProcessType.FEE, item.getId(), item.getCount(), player, true);
 				}
-				player.addItem(event, X_MAS_TREE1, 1, player, true);
+				player.addItem(ItemProcessType.BUY, X_MAS_TREE1, 1, player, true);
 			}
 			else if (event.equalsIgnoreCase("SpecialTree"))
 			{
@@ -608,8 +607,8 @@ public class SavingSanta extends LongTimeEvent
 					player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 					return null;
 				}
-				player.destroyItemByItemId(event, X_MAS_TREE1, 10, player, true);
-				player.addItem(event, X_MAS_TREE2, 1, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, X_MAS_TREE1, 10, player, true);
+				player.addItem(ItemProcessType.BUY, X_MAS_TREE2, 1, player, true);
 			}
 			else if (event.equalsIgnoreCase("SantaHat"))
 			{
@@ -646,8 +645,8 @@ public class SavingSanta extends LongTimeEvent
 					player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 					return null;
 				}
-				player.destroyItemByItemId(event, X_MAS_TREE1, 10, player, true);
-				player.addItem(event, SANTAS_HAT_ID, 1, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, X_MAS_TREE1, 10, player, true);
+				player.addItem(ItemProcessType.BUY, SANTAS_HAT_ID, 1, player, true);
 			}
 			else if (event.equalsIgnoreCase("SavingSantaHat"))
 			{
@@ -686,8 +685,8 @@ public class SavingSanta extends LongTimeEvent
 				{
 					return null;
 				}
-				player.reduceAdena(event, 50000, player, true);
-				player.addItem(event, BR_XMAS_GAWIBAWIBO_CAP, 1, player, true);
+				player.reduceAdena(ItemProcessType.FEE, 50000, player, true);
+				player.addItem(ItemProcessType.BUY, BR_XMAS_GAWIBAWIBO_CAP, 1, player, true);
 			}
 			else if (event.equalsIgnoreCase("HolidayFestival"))
 			{
@@ -714,14 +713,14 @@ public class SavingSanta extends LongTimeEvent
 				final int itemId = Integer.parseInt(event.split("weapon_")[1]) - 1;
 				if (player.getInventory().getInventoryItemCount(BR_XMAS_WPN_TICKET_JACKPOT, -1) > 0)
 				{
-					player.destroyItemByItemId(event, BR_XMAS_WPN_TICKET_JACKPOT, 1, player, true);
-					player.addItem(event, WEAPON_REWARDS[itemId], 1, player, true).setEnchantLevel(10);
+					player.destroyItemByItemId(ItemProcessType.FEE, BR_XMAS_WPN_TICKET_JACKPOT, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, WEAPON_REWARDS[itemId], 1, player, true).setEnchantLevel(10);
 					player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 				}
 				else if ((player.getInventory().getInventoryItemCount(BR_XMAS_WPN_TICKET_NORMAL, -1) > 0) /* || (player.getLevel() < 20) */)
 				{
-					player.destroyItemByItemId(event, BR_XMAS_WPN_TICKET_NORMAL, 1, player, true);
-					player.addItem(event, WEAPON_REWARDS[itemId], 1, player, true).setEnchantLevel(getRandom(4, 16));
+					player.destroyItemByItemId(ItemProcessType.FEE, BR_XMAS_WPN_TICKET_NORMAL, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, WEAPON_REWARDS[itemId], 1, player, true).setEnchantLevel(getRandom(4, 16));
 				}
 			}
 		}
@@ -766,7 +765,7 @@ public class SavingSanta extends LongTimeEvent
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		// FIXME: Increase Thomas D. Turkey aggro rage.
 		if (npc.getId() == THOMAS_D_TURKEY_ID)
@@ -774,7 +773,6 @@ public class SavingSanta extends LongTimeEvent
 			// I guess you came to rescue Santa. But you picked the wrong person.
 			npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NPC_STRINGS[8]));
 		}
-		return null;
 	}
 	
 	public static void main(String[] args)

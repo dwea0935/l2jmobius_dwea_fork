@@ -624,4 +624,11 @@
 		<npc id="24968" count="2" respawnTime="10sec" respawnRandom="0sec" chaseRange="1200" /> <!-- Treant Blossom -->
 		<npc id="24969" count="2" respawnTime="10sec" respawnRandom="0sec" chaseRange="1200" /> <!-- Arsos Butterfly -->
 	</spawn>
+	<spawn name="Q20261">
+		<group>
+			<npc id="27589" x="58606" y="39864" z="-3035" heading="28082" respawnTime="60sec" /> <!-- Maliss' Clone - Quest Monster -->
+			<npc id="27588" x="57452" y="51447" z="-3605" heading="37604" respawnTime="60sec" /> <!-- Isadora's Clone - Quest Monster -->
+			<npc id="27587" x="41039" y="60625" z="-3219" heading="2718" respawnTime="60sec" /> <!-- Harp's Clone - Quest Monster -->
+		</group>
+	</spawn>
 </list>

@@ -20,7 +20,7 @@
  */
 package quests.Q10436_KekropusLetterTheSealOfPunishment;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -136,7 +136,7 @@ public class Q10436_KekropusLetterTheSealOfPunishment extends LetterQuest
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -147,7 +147,6 @@ public class Q10436_KekropusLetterTheSealOfPunishment extends LetterQuest
 				showOnScreenMsg(player, NpcStringId.PLAINS_OF_THE_LIZARDMEN_IS_A_GOOD_HUNTING_ZONE_FOR_LV_81_OR_ABOVE, ExShowScreenMessage.TOP_CENTER, 6000);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override

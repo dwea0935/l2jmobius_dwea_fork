@@ -28,7 +28,7 @@ import java.util.LinkedList;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.model.matching.MatchingRoomHistory;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingRoomHistory;
 
 /**
  * @author Mobius

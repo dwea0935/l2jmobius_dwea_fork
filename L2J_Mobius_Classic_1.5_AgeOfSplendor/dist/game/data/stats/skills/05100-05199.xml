@@ -918,8 +918,6 @@
 		<affectRange>300</affectRange>
 		<affectScope>POINT_BLANK</affectScope>
 		<attributeType>FIRE</attributeType>
-		<attributeType>FIRE</attributeType>
-		<attributeValue>20</attributeValue>
 		<attributeValue>20</attributeValue>
 		<hitCancelTime>0</hitCancelTime>
 		<isMagic>2</isMagic> <!-- Static Skill -->
@@ -939,8 +937,6 @@
 		<affectRange>300</affectRange>
 		<affectScope>POINT_BLANK</affectScope>
 		<attributeType>WATER</attributeType>
-		<attributeType>WATER</attributeType>
-		<attributeValue>20</attributeValue>
 		<attributeValue>20</attributeValue>
 		<hitCancelTime>0</hitCancelTime>
 		<isMagic>2</isMagic> <!-- Static Skill -->
@@ -960,8 +956,6 @@
 		<affectRange>300</affectRange>
 		<affectScope>POINT_BLANK</affectScope>
 		<attributeType>WIND</attributeType>
-		<attributeType>WIND</attributeType>
-		<attributeValue>20</attributeValue>
 		<attributeValue>20</attributeValue>
 		<hitCancelTime>0</hitCancelTime>
 		<isMagic>2</isMagic> <!-- Static Skill -->
@@ -981,8 +975,6 @@
 		<affectRange>300</affectRange>
 		<affectScope>POINT_BLANK</affectScope>
 		<attributeType>DARK</attributeType>
-		<attributeType>DARK</attributeType>
-		<attributeValue>20</attributeValue>
 		<attributeValue>20</attributeValue>
 		<hitCancelTime>0</hitCancelTime>
 		<isMagic>2</isMagic> <!-- Static Skill -->

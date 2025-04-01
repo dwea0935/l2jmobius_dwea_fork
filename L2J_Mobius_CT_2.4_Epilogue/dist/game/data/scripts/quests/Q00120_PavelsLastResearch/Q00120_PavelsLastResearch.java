@@ -18,14 +18,14 @@ package quests.Q00120_PavelsLastResearch;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import quests.Q00114_ResurrectionOfAnOldManager.Q00114_ResurrectionOfAnOldManager;
 
@@ -58,7 +58,7 @@ public class Q00120_PavelsLastResearch extends Quest
 	
 	public Q00120_PavelsLastResearch()
 	{
-		super(120);
+		super(120, "Pavel's Research");
 		addStartNpc(SUSPICIOUS_LOOKING_PILE_OF_STONES);
 		addTalkId(SUSPICIOUS_LOOKING_PILE_OF_STONES, WENDY, YUMI, WEATHERMASTER_1, WEATHERMASTER_2, WEATHERMASTER_3, DOCTOR_CHAOS_SECRET_BOOKSHELF);
 		addSkillSeeId(WEATHERMASTER_1, WEATHERMASTER_2, WEATHERMASTER_3);
@@ -1107,7 +1107,7 @@ public class Q00120_PavelsLastResearch extends Quest
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player player, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player player, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && qs.isStarted())
@@ -1116,7 +1116,6 @@ public class Q00120_PavelsLastResearch extends Quest
 			castSkill(npc, player, npcDefault);
 			castSkill(npc, player, npcDefault);
 		}
-		return null;
 	}
 	
 	@Override

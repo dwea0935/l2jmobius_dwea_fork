@@ -26,7 +26,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.holders.PurgePlayerHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerPurgeHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -36,9 +36,9 @@ import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
  */
 public class ExSubjugationList extends ServerPacket
 {
-	private final List<Entry<Integer, PurgePlayerHolder>> _playerHolder;
+	private final List<Entry<Integer, PlayerPurgeHolder>> _playerHolder;
 	
-	public ExSubjugationList(Map<Integer, PurgePlayerHolder> playerHolder)
+	public ExSubjugationList(Map<Integer, PlayerPurgeHolder> playerHolder)
 	{
 		_playerHolder = playerHolder.entrySet().stream().filter(it -> it.getValue() != null).collect(Collectors.toList());
 	}
@@ -48,12 +48,12 @@ public class ExSubjugationList extends ServerPacket
 	{
 		ServerPackets.EX_SUBJUGATION_LIST.writeId(this, buffer);
 		buffer.writeInt(_playerHolder.size());
-		for (Entry<Integer, PurgePlayerHolder> integerPurgePlayerHolderEntry : _playerHolder)
+		for (Entry<Integer, PlayerPurgeHolder> integerPlayerPurgeHolderEntry : _playerHolder)
 		{
-			buffer.writeInt(integerPurgePlayerHolderEntry.getKey());
-			buffer.writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getPoints() : 0);
-			buffer.writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getKeys() : 0);
-			buffer.writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getRemainingKeys() : 40);
+			buffer.writeInt(integerPlayerPurgeHolderEntry.getKey());
+			buffer.writeInt(integerPlayerPurgeHolderEntry.getValue() != null ? integerPlayerPurgeHolderEntry.getValue().getPoints() : 0);
+			buffer.writeInt(integerPlayerPurgeHolderEntry.getValue() != null ? integerPlayerPurgeHolderEntry.getValue().getKeys() : 0);
+			buffer.writeInt(integerPlayerPurgeHolderEntry.getValue() != null ? integerPlayerPurgeHolderEntry.getValue().getRemainingKeys() : 40);
 		}
 	}
 }

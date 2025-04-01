@@ -23,10 +23,11 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.List;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.instancemanager.events.LetterCollectorManager;
+import org.l2jmobius.gameserver.managers.events.LetterCollectorManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -73,7 +74,7 @@ public class ExLetterCollectorTakeReward extends ClientPacket
 		}
 		for (ItemHolder destroyLetter : LetterCollectorManager.getInstance().getWord(_wordId))
 		{
-			if (!player.destroyItemByItemId("LetterCollector", destroyLetter.getId(), destroyLetter.getCount(), player, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, destroyLetter.getId(), destroyLetter.getCount(), player, true))
 			{
 				return;
 			}
@@ -86,7 +87,7 @@ public class ExLetterCollectorTakeReward extends ClientPacket
 			return;
 		}
 		
-		player.addItem("LetterCollector", rewardItem.getId(), rewardItem.getCount(), rewardItem.getEnchantmentLevel(), player, true);
+		player.addItem(ItemProcessType.REWARD, rewardItem.getId(), rewardItem.getCount(), rewardItem.getEnchantmentLevel(), player, true);
 	}
 	
 	private ItemChanceHolder getRandomReward(List<ItemChanceHolder> rewards, double holderChance)

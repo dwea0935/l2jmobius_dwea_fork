@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="48600" name="Energy of Tanzanite" type="EtcItem">
 		<!-- Has a chance to produce a Greater Tanzanite if combined with a level 5 Tanzanite. -->
@@ -293,7 +293,7 @@
 		<set name="commissionItemType" val="POTION" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="17263" level="1" /> <!-- Hero's Quick Healing Potion -->
+			<skill id="17263" level="1" /> <!-- Warrior's Quick Healing Potion -->
 		</skills>
 	</item>
 	<item id="48625" name="Hero's Rune Box (1-hour)" type="EtcItem">
@@ -320,7 +320,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="60" />
 		<skills>
-			<skill id="39243" level="1" /> <!-- Hero's Rune -->
+			<skill id="39243" level="1" /> <!-- Warrior's Rune -->
 		</skills>
 	</item>
 	<item id="48627" name="Shining Fortune Box" type="EtcItem">
@@ -357,7 +357,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39231" level="1" /> <!-- Master Fisherman's Blessing -->
+			<skill id="39231" level="1" /> <!-- Master Fisherman's Blessing - 1-hr -->
 		</skills>
 	</item>
 	<item id="48631" name="Master Fisherman's Blessing - 2-hr" type="EtcItem">
@@ -370,7 +370,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39231" level="2" /> <!-- Master Fisherman's Blessing -->
+			<skill id="39231" level="2" /> <!-- Master Fisherman's Blessing - 2-hr -->
 		</skills>
 	</item>
 	<item id="48632" name="Master Fisherman's Blessing - 4-hr" type="EtcItem">
@@ -383,7 +383,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39231" level="3" /> <!-- Master Fisherman's Blessing -->
+			<skill id="39231" level="3" /> <!-- Master Fisherman's Blessing - 4-hr -->
 		</skills>
 	</item>
 	<item id="48633" name="Master Fisherman's Blessing - 8-hr" type="EtcItem">
@@ -396,7 +396,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39231" level="4" /> <!-- Master Fisherman's Blessing -->
+			<skill id="39231" level="4" /> <!-- Master Fisherman's Blessing - 8-hr -->
 		</skills>
 	</item>
 	<item id="48634" name="Fantastic Fishing Spot Entrance Pass Pack (1-hour)" type="EtcItem">
@@ -534,7 +534,7 @@
 		<skills>
 			<skill id="18715" level="1" /> <!-- Greater Ruby -->
 			<skill id="18716" level="1" /> <!-- Greater Ruby -->
-			<skill id="18717" level="6" /> <!-- Ruby -->
+			<skill id="18717" level="6" /> <!-- Greater Ruby -->
 		</skills>
 	</item>
 	<item id="48645" name="Greater Sapphire Lv. 1" additionalName="30-day" type="Armor">
@@ -552,7 +552,7 @@
 		<skills>
 			<skill id="18718" level="1" /> <!-- Greater Sapphire -->
 			<skill id="18718" level="2" /> <!-- Greater Sapphire -->
-			<skill id="18719" level="6" /> <!-- Sapphire -->
+			<skill id="18719" level="6" /> <!-- Greater Sapphire -->
 		</skills>
 	</item>
 	<item id="48646" name="Greater Opal Lv. 1" additionalName="30-day" type="Armor">
@@ -568,7 +568,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="17705" level="6" /> <!-- Opal -->
+			<skill id="17705" level="6" /> <!-- Greater Opal -->
 		</skills>
 	</item>
 	<item id="48647" name="Greater Diamond Lv. 1" additionalName="30-day" type="Armor">
@@ -584,7 +584,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="17708" level="6" /> <!-- Diamond -->
+			<skill id="17708" level="6" /> <!-- Greater Diamond -->
 		</skills>
 	</item>
 	<item id="48648" name="Greater Pearl Lv. 1" additionalName="30-day" type="Armor">
@@ -600,7 +600,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="17709" level="6" /> <!-- Pearl -->
+			<skill id="17709" level="6" /> <!-- Greater Pearl -->
 		</skills>
 	</item>
 	<item id="48649" name="Greater Ruby and Sapphire Lv. 1 Box" additionalName="30-day" type="EtcItem">
@@ -628,7 +628,7 @@
 		<set name="etcitem_type" val="POTION" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39232" level="1" /> <!-- Blue Potion - Fishing XP Bonus - 1-hr -->
+			<skill id="39232" level="1" /> <!-- Blue Potion - Fishing XP Bonus -->
 		</skills>
 	</item>
 	<item id="48651" name="Rudolph's Yellow Potion" type="EtcItem">
@@ -776,7 +776,7 @@
 		<set name="etcitem_type" val="POTION" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39232" level="2" /> <!-- Blue Potion - Fishing XP Bonus - 2-hr -->
+			<skill id="39232" level="2" /> <!-- Blue Potion - Fishing XP Bonus -->
 		</skills>
 	</item>
 	<item id="48664" name="Blue Potion - Fishing XP Bonus" additionalName="4-hour" type="EtcItem">
@@ -790,7 +790,7 @@
 		<set name="etcitem_type" val="POTION" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39232" level="3" /> <!-- Blue Potion - Fishing XP Bonus - 4-hr -->
+			<skill id="39232" level="3" /> <!-- Blue Potion - Fishing XP Bonus -->
 		</skills>
 	</item>
 	<item id="48665" name="Blue Potion - Fishing XP Bonus" additionalName="8-hour" type="EtcItem">
@@ -804,7 +804,7 @@
 		<set name="etcitem_type" val="POTION" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39232" level="4" /> <!-- Blue Potion - Fishing XP Bonus - (8-hour) -->
+			<skill id="39232" level="4" /> <!-- Blue Potion - Fishing XP Bonus -->
 		</skills>
 	</item>
 	<item id="48666" name="Dragon Weapon Box (Fragment)" type="EtcItem">
@@ -1136,7 +1136,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="13959" level="2" /> <!-- Mammon's Talisman - Skill Power -->
+			<skill id="13959" level="2" /> <!-- Advanced Mammon's Talisman - Skill Power -->
 		</skills>
 	</item>
 	<item id="48684" name="Advanced Mammon's Talisman (30-day)" additionalName="Attack Attribute" type="Armor">
@@ -1152,7 +1152,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="13960" level="2" /> <!-- Mammon's Talisman - Attribute Attack -->
+			<skill id="13960" level="2" /> <!-- Advanced Mammon's Talisman - Attack Attribute -->
 		</skills>
 	</item>
 	<item id="48685" name="Advanced Mammon's Talisman (30-day)" additionalName="Skill Cooldown" type="Armor">
@@ -1168,7 +1168,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="43200" />
 		<skills>
-			<skill id="13961" level="2" /> <!-- Mammon's Talisman - Skill Cooldown -->
+			<skill id="13961" level="2" /> <!-- Advanced Mammon's Talisman - Skill Cooldown -->
 		</skills>
 	</item>
 	<item id="48686" name="Dimensional Bracelet (30-day) Stage 6 Box" type="EtcItem">
@@ -1302,7 +1302,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39334" level="1" /> <!-- Red Libra's Extra Pass: Kartia's Labyrinth Lv. 95 (Party) -->
+			<skill id="39334" level="1" /> <!-- Red Libra Entrance Pass - Kartia Labyrinth (Lv. 95 Party) -->
 		</skills>
 	</item>
 	<item id="48698" name="Red Libra Entrance Pass - Crystal Prison (Baylor)" type="EtcItem">
@@ -1317,7 +1317,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39335" level="1" /> <!-- Red Libra's Extra Pass: Crystal Prison (Baylor) -->
+			<skill id="39335" level="1" /> <!-- Red Libra Entrance Pass - Crystal Prison (Baylor) -->
 		</skills>
 	</item>
 	<item id="48699" name="Red Libra Entrance Pass - Nightmare Kamaloka" type="EtcItem">
@@ -1332,7 +1332,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="39336" level="1" /> <!-- Red Libra's Extra Pass: Nightmare Kamaloka -->
+			<skill id="39336" level="1" /> <!-- Red Libra Entrance Pass - Nightmare Kamaloka -->
 		</skills>
 	</item>
 </list>

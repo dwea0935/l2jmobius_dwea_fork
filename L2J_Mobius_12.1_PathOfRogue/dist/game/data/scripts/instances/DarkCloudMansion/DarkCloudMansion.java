@@ -18,14 +18,14 @@ package instances.DarkCloudMansion;
 
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -241,7 +241,7 @@ public class DarkCloudMansion extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -277,11 +277,10 @@ public class DarkCloudMansion extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -381,7 +380,6 @@ public class DarkCloudMansion extends AbstractInstance
 				}
 			}
 		}
-		return null;
 	}
 	
 	private void spawnRoomE(Instance world)
@@ -400,7 +398,7 @@ public class DarkCloudMansion extends AbstractInstance
 	
 	private void handleRoomE(Instance world, Npc npc)
 	{
-		if (CommonUtil.contains(BELETH_SAMPLE, npc.getId()))
+		if (ArrayUtil.contains(BELETH_SAMPLE, npc.getId()))
 		{
 			final StatSet params = world.getParameters();
 			if (!params.getBoolean("blocked", false))

@@ -1049,7 +1049,6 @@
 		<effectRange>1200</effectRange>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<isTriggeredSkill>true</isTriggeredSkill>
 		<effects>
 			<effect name="MagicalDamage">
 				<power>
@@ -1215,7 +1214,6 @@
 		<effectPoint>-900</effectPoint>
 		<effectRange>1200</effectRange>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<isTriggeredSkill>true</isTriggeredSkill>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<effects>
 			<effect name="MagicalDamage">

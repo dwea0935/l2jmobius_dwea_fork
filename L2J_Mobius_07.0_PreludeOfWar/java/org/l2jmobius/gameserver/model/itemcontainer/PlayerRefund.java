@@ -18,9 +18,10 @@ package org.l2jmobius.gameserver.model.itemcontainer;
 
 import java.util.logging.Level;
 
-import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ItemLocation;
+import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 
 /**
@@ -64,7 +65,7 @@ public class PlayerRefund extends ItemContainer
 				final Item removedItem = _items.stream().findFirst().get();
 				if (_items.remove(removedItem))
 				{
-					ItemData.getInstance().destroyItem("ClearRefund", removedItem, getOwner(), null);
+					ItemManager.destroyItem(ItemProcessType.REFUND, removedItem, getOwner(), null);
 					removedItem.updateDatabase(true);
 				}
 			}
@@ -87,7 +88,7 @@ public class PlayerRefund extends ItemContainer
 		{
 			for (Item item : _items)
 			{
-				ItemData.getInstance().destroyItem("ClearRefund", item, getOwner(), null);
+				ItemManager.destroyItem(ItemProcessType.REFUND, item, getOwner(), null);
 				item.updateDatabase(true);
 			}
 		}

@@ -24,6 +24,7 @@ import org.l2jmobius.gameserver.data.xml.EnchantChallengePointData;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.enchant.challengepoint.ExEnchantChallengePointInfo;
@@ -91,7 +92,7 @@ public class ChallengePointsCoupon implements IItemHandler
 		final Player player = playable.asPlayer();
 		if (player.getChallengeInfo().canAddPoints(categoryId, pointsToGive))
 		{
-			player.destroyItem("Challenge Coupon", item.getObjectId(), 1, null, false);
+			player.destroyItem(ItemProcessType.FEE, item.getObjectId(), 1, null, false);
 			player.getChallengeInfo().getChallengePoints().compute(categoryId, (k, v) -> v == null ? Math.min(EnchantChallengePointData.getInstance().getMaxPoints(), pointsToGive) : Math.min(EnchantChallengePointData.getInstance().getMaxPoints(), v + pointsToGive));
 			player.sendPacket(new ExEnchantChallengePointInfo(player));
 		}

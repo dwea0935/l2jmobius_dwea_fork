@@ -16,19 +16,19 @@
  */
 package quests.Q00177_SplitDestiny;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExSubjobInfo;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Split of Destiny (177)
@@ -150,8 +150,8 @@ public class Q00177_SplitDestiny extends Quest
 					player.getSubClasses().get(player.getClassIndex()).setDualClassActive(true);
 					
 					final SystemMessage msg = new SystemMessage(SystemMessageId.SUBCLASS_S1_HAS_BEEN_UPGRADED_TO_DUEL_CLASS_S2_CONGRATULATIONS);
-					msg.addClassId(player.getClassId().getId());
-					msg.addClassId(player.getClassId().getId());
+					msg.addClassId(player.getPlayerClass().getId());
+					msg.addClassId(player.getPlayerClass().getId());
 					player.sendPacket(msg);
 					
 					player.sendPacket(new ExSubjobInfo(player, SubclassInfoType.CLASS_CHANGED));
@@ -310,7 +310,7 @@ public class Q00177_SplitDestiny extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && (killer.getClassIndex() == qs.getInt(VAR_SUB_INDEX)))
@@ -319,7 +319,7 @@ public class Q00177_SplitDestiny extends Quest
 			{
 				case 1:
 				{
-					if (CommonUtil.contains(GIANTS_HAND_MONSTERS, npc.getId()))
+					if (ArrayUtil.contains(GIANTS_HAND_MONSTERS, npc.getId()))
 					{
 						giveItems(killer, PETRIFIED_GIANTS_HAND_PIECE, 1);
 						qs.setCond(2, true);
@@ -328,7 +328,7 @@ public class Q00177_SplitDestiny extends Quest
 				}
 				case 2:
 				{
-					if (CommonUtil.contains(GIANTS_HAND_MONSTERS, npc.getId()))
+					if (ArrayUtil.contains(GIANTS_HAND_MONSTERS, npc.getId()))
 					{
 						if (giveItemRandomly(killer, npc, PETRIFIED_GIANTS_HAND_PIECE, 1, 10, 1, true))
 						{
@@ -339,7 +339,7 @@ public class Q00177_SplitDestiny extends Quest
 				}
 				case 4:
 				{
-					if (CommonUtil.contains(GIANTS_FOOT_MONSTERS, npc.getId()))
+					if (ArrayUtil.contains(GIANTS_FOOT_MONSTERS, npc.getId()))
 					{
 						giveItems(killer, PETRIFIED_GIANTS_FOOT_PIECE, 1);
 						qs.setCond(5, true);
@@ -348,7 +348,7 @@ public class Q00177_SplitDestiny extends Quest
 				}
 				case 5:
 				{
-					if (CommonUtil.contains(GIANTS_FOOT_MONSTERS, npc.getId()))
+					if (ArrayUtil.contains(GIANTS_FOOT_MONSTERS, npc.getId()))
 					{
 						if (giveItemRandomly(killer, npc, PETRIFIED_GIANTS_FOOT_PIECE, 1, 10, 1, true))
 						{
@@ -359,6 +359,5 @@ public class Q00177_SplitDestiny extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

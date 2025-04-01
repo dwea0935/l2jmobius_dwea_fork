@@ -22,16 +22,17 @@ package org.l2jmobius.gameserver.network.clientpackets.dethrone;
 
 import java.util.Collection;
 
+import org.l2jmobius.gameserver.data.holders.DethroneShopHolder;
 import org.l2jmobius.gameserver.data.xml.DethroneShopData;
-import org.l2jmobius.gameserver.enums.ExBrProductReplyType;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.PrimeShopRequest;
-import org.l2jmobius.gameserver.model.holders.DethroneShopHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.ExBrProductReplyType;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.dethrone.ExDethronePointInfo;
 import org.l2jmobius.gameserver.network.serverpackets.dethrone.ExDethroneShopBuy;
@@ -134,7 +135,7 @@ public class RequestExDethroneShopBuy extends ClientPacket
 			}
 			if (_product.getIngredientIds()[i] == Inventory.ADENA_ID)
 			{
-				player.reduceAdena("DethroneShop", _product.getIngredientQuantities()[i] * _amount, player, true);
+				player.reduceAdena(ItemProcessType.FEE, _product.getIngredientQuantities()[i] * _amount, player, true);
 			}
 			else if (_product.getIngredientIds()[i] == Inventory.CONQUEST_PERSONAL_POINTS)
 			{
@@ -157,12 +158,12 @@ public class RequestExDethroneShopBuy extends ClientPacket
 							break;
 						}
 						count++;
-						player.destroyItem("DethroneShop", item, player, true);
+						player.destroyItem(ItemProcessType.FEE, item, player, true);
 					}
 				}
 				else
 				{
-					player.destroyItemByItemId("DethroneShop", _product.getIngredientIds()[i], _product.getIngredientQuantities()[i] * _amount, player, true);
+					player.destroyItemByItemId(ItemProcessType.FEE, _product.getIngredientIds()[i], _product.getIngredientQuantities()[i] * _amount, player, true);
 				}
 			}
 		}
@@ -170,23 +171,23 @@ public class RequestExDethroneShopBuy extends ClientPacket
 		// Reward.
 		if (_product.getProductionId() > 0)
 		{
-			player.addItem("DethroneShop", _product.getProductionId(), _product.getCount() * _amount, player, true);
+			player.addItem(ItemProcessType.BUY, _product.getProductionId(), _product.getCount() * _amount, player, true);
 			
 			if (_product.getProductionId2() > 0)
 			{
-				player.addItem("DethroneShop", _product.getProductionId2(), _product.getCount2() * _amount, player, true);
+				player.addItem(ItemProcessType.BUY, _product.getProductionId2(), _product.getCount2() * _amount, player, true);
 			}
 			else if (_product.getProductionId4() > 0)
 			{
-				player.addItem("DethroneShop", _product.getProductionId3(), _product.getCount3() * _amount, player, true);
+				player.addItem(ItemProcessType.BUY, _product.getProductionId3(), _product.getCount3() * _amount, player, true);
 			}
 			else if (_product.getProductionId5() > 0)
 			{
-				player.addItem("DethroneShop", _product.getProductionId4(), _product.getCount4() * _amount, player, true);
+				player.addItem(ItemProcessType.BUY, _product.getProductionId4(), _product.getCount4() * _amount, player, true);
 			}
 			else if (_product.getProductionId5() > 0)
 			{
-				player.addItem("DethroneShop", _product.getProductionId5(), _product.getCount5() * _amount, player, true);
+				player.addItem(ItemProcessType.BUY, _product.getProductionId5(), _product.getCount5() * _amount, player, true);
 			}
 		}
 		

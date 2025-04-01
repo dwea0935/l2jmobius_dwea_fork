@@ -23,7 +23,6 @@ package handlers.admincommandhandlers;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles following admin commands: - target name = sets player with respective name as target
@@ -64,12 +63,12 @@ public class AdminTarget implements IAdminCommandHandler
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Player " + targetName + " not found");
+				activeChar.sendSysMessage("Player " + targetName + " not found");
 			}
 		}
 		catch (IndexOutOfBoundsException e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Please specify correct name.");
+			activeChar.sendSysMessage("Please specify correct name.");
 		}
 	}
 }

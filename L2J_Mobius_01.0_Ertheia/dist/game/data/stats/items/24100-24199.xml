@@ -785,7 +785,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="26133" level="1" /> <!-- Blessed Helios Pack -->
+			<skill id="26133" level="1" /> <!-- Blessed Amaranthine Pack -->
 		</skills>
 	</item>
 	<item id="24143" name="Blessed Eternal Pack" type="EtcItem">

@@ -21,14 +21,14 @@ import java.util.Map;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Kail's Magic Coin (382)
- * @author Sdw, jurchicks
+ * @author Sdw, jurchiks
  */
 public class Q00382_KailsMagicCoin extends Quest
 {
@@ -116,10 +116,10 @@ public class Q00382_KailsMagicCoin extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && hasQuestItems(killer, ROYAL_MEMBERSHIP) && Util.checkIfInRange(1500, npc, killer, true))
+		if ((qs != null) && hasQuestItems(killer, ROYAL_MEMBERSHIP) && LocationUtil.checkIfInRange(1500, npc, killer, true))
 		{
 			if (npc.getId() == FALLEN_ORC_CAPTAIN)
 			{
@@ -131,6 +131,5 @@ public class Q00382_KailsMagicCoin extends Quest
 				giveItemRandomly(killer, ih.getId(), 1, 0, ih.getChance(), true);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

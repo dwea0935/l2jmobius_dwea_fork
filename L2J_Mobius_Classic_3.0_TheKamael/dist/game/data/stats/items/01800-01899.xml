@@ -240,7 +240,7 @@
 		<set name="commissionItemType" val="POTION" />
 		<set name="for_npc" val="true" />
 		<skills>
-			<skill id="2043" level="1" /> <!-- Greater Antidote -->
+			<skill id="2043" level="1" /> <!-- Refined Antidote -->
 		</skills>
 	</item>
 	<item id="1833" name="Bandage" type="EtcItem">

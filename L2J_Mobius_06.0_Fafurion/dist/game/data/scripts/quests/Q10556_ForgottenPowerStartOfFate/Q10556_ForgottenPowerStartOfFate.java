@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests.Q10556_ForgottenPowerStartOfFate;
 
@@ -21,19 +25,18 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.UserInfoType;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMenuSelect;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMenuSelect;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
@@ -42,6 +45,7 @@ import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
@@ -88,43 +92,43 @@ public final class Q10556_ForgottenPowerStartOfFate extends Quest
 	private static final int LEISTER_POWER = 32270; // Iss Enchanter
 	private static final int LAKCIS_POWER = 32271; // Aeore Healer
 	// Misc
-	private static final Map<ClassId, Integer> AWAKE_POWER = new HashMap<>();
+	private static final Map<PlayerClass, Integer> AWAKE_POWER = new HashMap<>();
 	static
 	{
-		AWAKE_POWER.put(ClassId.TYRR_DUELIST, SAPYROS_POWER);
-		AWAKE_POWER.put(ClassId.TYRR_DREADNOUGHT, SAPYROS_POWER);
-		AWAKE_POWER.put(ClassId.TYRR_TITAN, SAPYROS_POWER);
-		AWAKE_POWER.put(ClassId.TYRR_GRAND_KHAVATARI, SAPYROS_POWER);
-		AWAKE_POWER.put(ClassId.TYRR_MAESTRO, SAPYROS_POWER);
-		AWAKE_POWER.put(ClassId.TYRR_DOOMBRINGER, SAPYROS_POWER);
-		AWAKE_POWER.put(ClassId.SIGEL_PHOENIX_KNIGHT, ABELIUS_POWER);
-		AWAKE_POWER.put(ClassId.SIGEL_HELL_KNIGHT, ABELIUS_POWER);
-		AWAKE_POWER.put(ClassId.SIGEL_EVA_TEMPLAR, ABELIUS_POWER);
-		AWAKE_POWER.put(ClassId.SIGEL_SHILLIEN_TEMPLAR, ABELIUS_POWER);
-		AWAKE_POWER.put(ClassId.OTHELL_ADVENTURER, ASHAGEN_POWER);
-		AWAKE_POWER.put(ClassId.OTHELL_WIND_RIDER, ASHAGEN_POWER);
-		AWAKE_POWER.put(ClassId.OTHELL_GHOST_HUNTER, ASHAGEN_POWER);
-		AWAKE_POWER.put(ClassId.OTHELL_FORTUNE_SEEKER, ASHAGEN_POWER);
-		AWAKE_POWER.put(ClassId.YUL_SAGITTARIUS, CRANIGG_POWER);
-		AWAKE_POWER.put(ClassId.YUL_MOONLIGHT_SENTINEL, CRANIGG_POWER);
-		AWAKE_POWER.put(ClassId.YUL_GHOST_SENTINEL, CRANIGG_POWER);
-		AWAKE_POWER.put(ClassId.YUL_TRICKSTER, CRANIGG_POWER);
-		AWAKE_POWER.put(ClassId.FEOH_ARCHMAGE, SOLTKREIG_POWER);
-		AWAKE_POWER.put(ClassId.FEOH_SOULTAKER, SOLTKREIG_POWER);
-		AWAKE_POWER.put(ClassId.FEOH_MYSTIC_MUSE, SOLTKREIG_POWER);
-		AWAKE_POWER.put(ClassId.FEOH_STORM_SCREAMER, SOLTKREIG_POWER);
-		AWAKE_POWER.put(ClassId.FEOH_SOUL_HOUND, SOLTKREIG_POWER);
-		AWAKE_POWER.put(ClassId.ISS_HIEROPHANT, LEISTER_POWER);
-		AWAKE_POWER.put(ClassId.ISS_SWORD_MUSE, LEISTER_POWER);
-		AWAKE_POWER.put(ClassId.ISS_SPECTRAL_DANCER, LEISTER_POWER);
-		AWAKE_POWER.put(ClassId.ISS_DOMINATOR, LEISTER_POWER);
-		AWAKE_POWER.put(ClassId.ISS_DOOMCRYER, LEISTER_POWER);
-		AWAKE_POWER.put(ClassId.WYNN_ARCANA_LORD, NAVIAROPE_POWER);
-		AWAKE_POWER.put(ClassId.WYNN_ELEMENTAL_MASTER, NAVIAROPE_POWER);
-		AWAKE_POWER.put(ClassId.WYNN_SPECTRAL_MASTER, NAVIAROPE_POWER);
-		AWAKE_POWER.put(ClassId.AEORE_CARDINAL, LAKCIS_POWER);
-		AWAKE_POWER.put(ClassId.AEORE_EVA_SAINT, LAKCIS_POWER);
-		AWAKE_POWER.put(ClassId.AEORE_SHILLIEN_SAINT, LAKCIS_POWER);
+		AWAKE_POWER.put(PlayerClass.TYRR_DUELIST, SAPYROS_POWER);
+		AWAKE_POWER.put(PlayerClass.TYRR_DREADNOUGHT, SAPYROS_POWER);
+		AWAKE_POWER.put(PlayerClass.TYRR_TITAN, SAPYROS_POWER);
+		AWAKE_POWER.put(PlayerClass.TYRR_GRAND_KHAVATARI, SAPYROS_POWER);
+		AWAKE_POWER.put(PlayerClass.TYRR_MAESTRO, SAPYROS_POWER);
+		AWAKE_POWER.put(PlayerClass.TYRR_DOOMBRINGER, SAPYROS_POWER);
+		AWAKE_POWER.put(PlayerClass.SIGEL_PHOENIX_KNIGHT, ABELIUS_POWER);
+		AWAKE_POWER.put(PlayerClass.SIGEL_HELL_KNIGHT, ABELIUS_POWER);
+		AWAKE_POWER.put(PlayerClass.SIGEL_EVA_TEMPLAR, ABELIUS_POWER);
+		AWAKE_POWER.put(PlayerClass.SIGEL_SHILLIEN_TEMPLAR, ABELIUS_POWER);
+		AWAKE_POWER.put(PlayerClass.OTHELL_ADVENTURER, ASHAGEN_POWER);
+		AWAKE_POWER.put(PlayerClass.OTHELL_WIND_RIDER, ASHAGEN_POWER);
+		AWAKE_POWER.put(PlayerClass.OTHELL_GHOST_HUNTER, ASHAGEN_POWER);
+		AWAKE_POWER.put(PlayerClass.OTHELL_FORTUNE_SEEKER, ASHAGEN_POWER);
+		AWAKE_POWER.put(PlayerClass.YUL_SAGITTARIUS, CRANIGG_POWER);
+		AWAKE_POWER.put(PlayerClass.YUL_MOONLIGHT_SENTINEL, CRANIGG_POWER);
+		AWAKE_POWER.put(PlayerClass.YUL_GHOST_SENTINEL, CRANIGG_POWER);
+		AWAKE_POWER.put(PlayerClass.YUL_TRICKSTER, CRANIGG_POWER);
+		AWAKE_POWER.put(PlayerClass.FEOH_ARCHMAGE, SOLTKREIG_POWER);
+		AWAKE_POWER.put(PlayerClass.FEOH_SOULTAKER, SOLTKREIG_POWER);
+		AWAKE_POWER.put(PlayerClass.FEOH_MYSTIC_MUSE, SOLTKREIG_POWER);
+		AWAKE_POWER.put(PlayerClass.FEOH_STORM_SCREAMER, SOLTKREIG_POWER);
+		AWAKE_POWER.put(PlayerClass.FEOH_SOUL_HOUND, SOLTKREIG_POWER);
+		AWAKE_POWER.put(PlayerClass.ISS_HIEROPHANT, LEISTER_POWER);
+		AWAKE_POWER.put(PlayerClass.ISS_SWORD_MUSE, LEISTER_POWER);
+		AWAKE_POWER.put(PlayerClass.ISS_SPECTRAL_DANCER, LEISTER_POWER);
+		AWAKE_POWER.put(PlayerClass.ISS_DOMINATOR, LEISTER_POWER);
+		AWAKE_POWER.put(PlayerClass.ISS_DOOMCRYER, LEISTER_POWER);
+		AWAKE_POWER.put(PlayerClass.WYNN_ARCANA_LORD, NAVIAROPE_POWER);
+		AWAKE_POWER.put(PlayerClass.WYNN_ELEMENTAL_MASTER, NAVIAROPE_POWER);
+		AWAKE_POWER.put(PlayerClass.WYNN_SPECTRAL_MASTER, NAVIAROPE_POWER);
+		AWAKE_POWER.put(PlayerClass.AEORE_CARDINAL, LAKCIS_POWER);
+		AWAKE_POWER.put(PlayerClass.AEORE_EVA_SAINT, LAKCIS_POWER);
+		AWAKE_POWER.put(PlayerClass.AEORE_SHILLIEN_SAINT, LAKCIS_POWER);
 	}
 	
 	public Q10556_ForgottenPowerStartOfFate()
@@ -149,7 +153,7 @@ public final class Q10556_ForgottenPowerStartOfFate extends Quest
 		if (event.equals("quest_accept"))
 		{
 			qs.startQuest();
-			switch (player.getClassId())
+			switch (player.getPlayerClass())
 			{
 				case SIGEL_KNIGHT:
 				{
@@ -211,7 +215,7 @@ public final class Q10556_ForgottenPowerStartOfFate extends Quest
 			}
 			case State.STARTED:
 			{
-				switch (player.getClassId())
+				switch (player.getPlayerClass())
 				{
 					case SIGEL_KNIGHT:
 					{
@@ -658,7 +662,7 @@ public final class Q10556_ForgottenPowerStartOfFate extends Quest
 	
 	private void changeBalthusClass(Player player, int classId)
 	{
-		player.setClassId(classId);
+		player.setPlayerClass(classId);
 		player.setBaseClass(player.getActiveClass());
 		player.getVariables().remove(PlayerVariables.PLAYER_RACE);
 		showOnScreenMsg(player, NpcStringId.TALK_TO_THE_MONK_OF_CHAOS_NYOU_CAN_LEARN_ABOUT_THE_REVELATION_SKILLS, ExShowScreenMessage.TOP_CENTER, 5000, true);
@@ -671,9 +675,9 @@ public final class Q10556_ForgottenPowerStartOfFate extends Quest
 		
 		player.broadcastPacket(new SocialAction(player.getObjectId(), 20));
 		giveItems(player, AGATHION_GRIFFIN, 1);
-		for (Entry<ClassId, Integer> ent : AWAKE_POWER.entrySet())
+		for (Entry<PlayerClass, Integer> ent : AWAKE_POWER.entrySet())
 		{
-			if (player.getClassId() == ent.getKey())
+			if (player.getPlayerClass() == ent.getKey())
 			{
 				giveItems(player, ent.getValue(), 1);
 				break;

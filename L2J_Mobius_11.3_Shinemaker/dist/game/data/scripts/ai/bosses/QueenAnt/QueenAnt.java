@@ -29,22 +29,22 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.instancemanager.DBSpawnManager;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
-import org.l2jmobius.gameserver.model.CommandChannel;
+import org.l2jmobius.gameserver.managers.DBSpawnManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.CommandChannel;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.type.ArenaZone;
 
 import ai.AbstractNpcAI;
@@ -188,15 +188,13 @@ public class QueenAnt extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("checkCombatStatus", 1000, npc, null, true);
-		
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		_bossInCombat = true;
 		checkCombatStatus(npc);
@@ -204,12 +202,10 @@ public class QueenAnt extends AbstractNpcAI
 		{
 			activateSpecialMechanics(npc);
 		}
-		
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (!_barrierActivated)
 		{
@@ -251,7 +247,7 @@ public class QueenAnt extends AbstractNpcAI
 		if (!ARENA_ZONE.isInsideZone(attacker))
 		{
 			attacker.teleToLocation(GLUDIO_LOCATION, false);
-			return null;
+			return;
 		}
 		
 		_lastAttackTime = System.currentTimeMillis();
@@ -271,23 +267,20 @@ public class QueenAnt extends AbstractNpcAI
 				if (member.getLevel() < 110)
 				{
 					attacker.teleToLocation(GLUDIO_LOCATION, false);
-					return null;
+					return;
 				}
 			}
 		}
 		else if (attacker.getLevel() < 110)
 		{
 			attacker.teleToLocation(GLUDIO_LOCATION, false);
-			return null;
+			return;
 		}
 		
 		if (!isPlayerInValidCommandChannel(attacker))
 		{
 			attacker.teleToLocation(GLUDIO_LOCATION, false);
-			return null;
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	private boolean isPlayerInValidCommandChannel(Player player)
@@ -509,7 +502,7 @@ public class QueenAnt extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc == _spawnedMainBoss)
 		{
@@ -525,8 +518,6 @@ public class QueenAnt extends AbstractNpcAI
 			GlobalVariablesManager.getInstance().set("QUEEN_ANT_LAST_DEATH_TIME", currentTime);
 			LOGGER.info("Queen Ant: Boss killed. Last death time recorded: " + currentTime + " / " + new java.util.Date(currentTime));
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -18,19 +18,17 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.enums.CastleSide;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.siege.Castle;
+import org.l2jmobius.gameserver.model.siege.CastleSide;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Admin Castle manage admin commands.
@@ -54,7 +52,7 @@ public class AdminCastle implements IAdminCommandHandler
 			{
 				final String param = st.nextToken();
 				final Castle castle;
-				if (Util.isDigit(param))
+				if (StringUtil.isNumeric(param))
 				{
 					castle = CastleManager.getInstance().getCastleById(Integer.parseInt(param));
 				}
@@ -65,7 +63,7 @@ public class AdminCastle implements IAdminCommandHandler
 				
 				if (castle == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Invalid parameters! Usage: //castlemanage <castleId[1-9] / castleName>");
+					activeChar.sendSysMessage("Invalid parameters! Usage: //castlemanage <castleId[1-9] / castleName>");
 					return false;
 				}
 				
@@ -140,7 +138,7 @@ public class AdminCastle implements IAdminCommandHandler
 							}
 							else
 							{
-								BuilderUtil.sendSysMessage(activeChar, "There is currently not registered any clan for castle siege!");
+								activeChar.sendSysMessage("There is currently not registered any clan for castle siege!");
 							}
 							break;
 						}
@@ -152,7 +150,7 @@ public class AdminCastle implements IAdminCommandHandler
 							}
 							else
 							{
-								BuilderUtil.sendSysMessage(activeChar, "Castle siege is not currently in progress!");
+								activeChar.sendSysMessage("Castle siege is not currently in progress!");
 							}
 							showCastleMenu(activeChar, castle.getResidenceId());
 							break;
@@ -165,15 +163,15 @@ public class AdminCastle implements IAdminCommandHandler
 							}
 							else if (target.getClan().getCastleId() > 0)
 							{
-								BuilderUtil.sendSysMessage(activeChar, "This clan already have castle!");
+								activeChar.sendSysMessage("This clan already have castle!");
 							}
 							else if (castle.getOwner() != null)
 							{
-								BuilderUtil.sendSysMessage(activeChar, "This castle is already taken by another clan!");
+								activeChar.sendSysMessage("This castle is already taken by another clan!");
 							}
 							else if (!st.hasMoreTokens())
 							{
-								BuilderUtil.sendSysMessage(activeChar, "Invalid parameters!!");
+								activeChar.sendSysMessage("Invalid parameters!!");
 							}
 							else
 							{
@@ -196,7 +194,7 @@ public class AdminCastle implements IAdminCommandHandler
 							}
 							else
 							{
-								BuilderUtil.sendSysMessage(activeChar, "Error during removing castle!");
+								activeChar.sendSysMessage("Error during removing castle!");
 							}
 							showCastleMenu(activeChar, castle.getResidenceId());
 							break;
@@ -213,7 +211,7 @@ public class AdminCastle implements IAdminCommandHandler
 							}
 							else
 							{
-								BuilderUtil.sendSysMessage(activeChar, "You can't switch sides when is castle neutral!");
+								activeChar.sendSysMessage("You can't switch sides when is castle neutral!");
 							}
 							showCastleMenu(activeChar, castle.getResidenceId());
 							break;
@@ -243,7 +241,7 @@ public class AdminCastle implements IAdminCommandHandler
 			html.replace("%castleName%", castle.getName());
 			html.replace("%ownerName%", ownerClan != null ? ownerClan.getLeaderName() : "NPC");
 			html.replace("%ownerClan%", ownerClan != null ? ownerClan.getName() : "NPC");
-			html.replace("%castleSide%", CommonUtil.capitalizeFirst(castle.getSide().toString().toLowerCase()));
+			html.replace("%castleSide%", StringUtil.capitalizeFirst(castle.getSide().toString().toLowerCase()));
 			player.sendPacket(html);
 		}
 	}

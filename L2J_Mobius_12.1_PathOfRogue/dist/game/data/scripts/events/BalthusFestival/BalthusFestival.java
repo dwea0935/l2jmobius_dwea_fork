@@ -30,8 +30,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.instancemanager.events.BalthusEventManager;
-import org.l2jmobius.gameserver.instancemanager.events.BalthusEventManager.BalthusEventHolder;
+import org.l2jmobius.gameserver.managers.events.BalthusEventManager;
+import org.l2jmobius.gameserver.managers.events.BalthusEventManager.BalthusEventHolder;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -40,15 +40,16 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogout;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemUse;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.ItemSkillHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemUse;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemSkillHolder;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.balthusevent.ExBalthusEvent;
 
 /**
@@ -95,10 +96,10 @@ public class BalthusFestival extends LongTimeEvent implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		final AtomicInteger i = new AtomicInteger();
-		forEach(doc, "list", listNode ->
+		forEach(document, "list", listNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(listNode));
 			if (BalthusEventManager.getInstance().getMinLevel() == 0)
@@ -162,7 +163,7 @@ public class BalthusFestival extends LongTimeEvent implements IXmlReader
 			else
 			{
 				player.getVariables().set(BALTHUS_BAG_VAR, true);
-				player.addItem("Balthus Event", GOOD_LUCK_BAG.getId(), GOOD_LUCK_BAG.getCount(), null, true);
+				player.addItem(ItemProcessType.REWARD, GOOD_LUCK_BAG.getId(), GOOD_LUCK_BAG.getCount(), null, true);
 				return "34330-2.htm";
 			}
 		}
@@ -184,29 +185,29 @@ public class BalthusFestival extends LongTimeEvent implements IXmlReader
 			{
 				case ("1"):
 				{
-					if (!player.destroyItemByItemId("Destroy Coupon", 81726, 1, null, true))
+					if (!player.destroyItemByItemId(ItemProcessType.FEE, 81726, 1, null, true))
 					{
 						return "34330-5.htm";
 					}
-					player.addItem("Balthus Coupon", 81711, 1, null, true);
+					player.addItem(ItemProcessType.REWARD, 81711, 1, null, true);
 					return "34330-6.htm";
 				}
 				case ("2"):
 				{
-					if (!player.destroyItemByItemId("Destroy Coupon", 81726, 1, null, true))
+					if (!player.destroyItemByItemId(ItemProcessType.FEE, 81726, 1, null, true))
 					{
 						return "34330-5.htm";
 					}
-					player.addItem("Balthus Coupon", 81710, 1, null, true);
+					player.addItem(ItemProcessType.REWARD, 81710, 1, null, true);
 					return "34330-6.htm";
 				}
 				case ("3"):
 				{
-					if (!player.destroyItemByItemId("Destroy Coupon", 81726, 1, null, true))
+					if (!player.destroyItemByItemId(ItemProcessType.FEE, 81726, 1, null, true))
 					{
 						return "34330-5.htm";
 					}
-					player.addItem("Balthus Coupon", 81709, 1, null, true);
+					player.addItem(ItemProcessType.REWARD, 81709, 1, null, true);
 					return "34330-6.htm";
 				}
 			}

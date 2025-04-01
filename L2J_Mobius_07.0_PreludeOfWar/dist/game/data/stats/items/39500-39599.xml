@@ -946,8 +946,8 @@
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="8864" level="7" /> <!-- Talisman - Insanity -->
-			<skill id="17978" level="1" type="ON_EQUIP" /> <!-- Equip Talisman - Infinity -->
-			<skill id="17979" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Infinity -->
+			<skill id="17978" level="1" type="ON_EQUIP" /> <!-- Equip Talisman - Insanity -->
+			<skill id="17979" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Insanity -->
 		</skills>
 	</item>
 	<item id="39573" name="Sealed Talisman - Insanity" type="EtcItem">
@@ -1283,7 +1283,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17985" level="1" /> <!-- Scroll of Escape: Town of Dion -->
+			<skill id="17985" level="1" /> <!-- Scroll of Escape: Dion -->
 		</skills>
 	</item>
 	<item id="39594" name="Scroll of Escape - Cruma Tower" type="EtcItem">
@@ -1317,7 +1317,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="17987" level="1" /> <!-- Scroll of Escape: Town of Dion -->
+			<skill id="17987" level="1" /> <!-- Scroll of Escape: Dion -->
 		</skills>
 	</item>
 	<item id="39596" name="Scroll of Escape - Cruma Tower" type="EtcItem">

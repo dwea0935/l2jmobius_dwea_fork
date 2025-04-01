@@ -111,7 +111,7 @@
 		<set name="commissionItemType" val="MAJOR_CRAFTING_INGREDIENTS" />
 	</item>
 	<item id="6908" name="Corroded Fish Oil" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_fish_oil_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="immediate_effect" val="true" />
@@ -121,7 +121,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6909" name="Corroded Greater Fish Oil" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_fish_oil_i01" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="immediate_effect" val="true" />
@@ -131,7 +131,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6910" name="Corroded Premium Fish Oil" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_fish_oil_i02" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="immediate_effect" val="true" />
@@ -141,7 +141,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6911" name="Corroded Fish Scale" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_fish_scale_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="immediate_effect" val="true" />
@@ -151,7 +151,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6912" name="Corroded Shiny Fish Scale" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_fish_scale_i01" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="immediate_effect" val="true" />
@@ -161,7 +161,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6913" name="Corroded Fish Gem" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_fish_gem_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="immediate_effect" val="true" />
@@ -171,7 +171,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6914" name="Corroded Shiny Fish Gem" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_fish_gem_i01" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="immediate_effect" val="true" />
@@ -181,7 +181,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6915" name="Corroded Thin Fish Bone" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_fang_gray_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="immediate_effect" val="true" />
@@ -191,7 +191,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6916" name="Corroded Thick Fish Bone" type="EtcItem">
-		<!-- Not used anymore. Can be sold to any shop. -->
+		<!-- A corroded item. Can be sold at a shop. -->
 		<set name="icon" val="icon.etc_fang_ivory_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="immediate_effect" val="true" />

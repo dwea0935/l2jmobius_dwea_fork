@@ -29,16 +29,17 @@ import java.util.Map.Entry;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.SchemeBufferTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.MathUtil;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.HtmlUtil;
 
 public class SchemeBuffer extends Npc
 {
@@ -110,7 +111,7 @@ public class SchemeBuffer extends Npc
 			{
 				player.sendMessage("You don't have a pet.");
 			}
-			else if ((cost == 0) || ((Config.BUFFER_ITEM_ID == 57) && player.reduceAdena("NPC Buffer", cost, this, true)) || ((Config.BUFFER_ITEM_ID != 57) && player.destroyItemByItemId("NPC Buffer", Config.BUFFER_ITEM_ID, cost, player, true)))
+			else if ((cost == 0) || ((Config.BUFFER_ITEM_ID == 57) && player.reduceAdena(ItemProcessType.FEE, cost, this, true)) || ((Config.BUFFER_ITEM_ID != 57) && player.destroyItemByItemId(ItemProcessType.FEE, Config.BUFFER_ITEM_ID, cost, player, true)))
 			{
 				for (int skillId : SchemeBufferTable.getInstance().getScheme(player.getObjectId(), schemeName))
 				{
@@ -185,7 +186,7 @@ public class SchemeBuffer extends Npc
 					return;
 				}
 				// Simple hack to use spaces, dots, commas, minus, plus, exclamations or question marks.
-				if (!Util.isAlphaNumeric(schemeName.replace(" ", "").replace(".", "").replace(",", "").replace("-", "").replace("+", "").replace("!", "").replace("?", "")))
+				if (!StringUtil.isAlphaNumeric(schemeName.replace(" ", "").replace(".", "").replace(",", "").replace("-", "").replace("+", "").replace("!", "").replace("?", "")))
 				{
 					player.sendMessage("Please use plain alphanumeric characters.");
 					return;
@@ -319,7 +320,7 @@ public class SchemeBuffer extends Npc
 		}
 		
 		// Calculate page number.
-		final int max = MathUtil.countPagesNumber(skills.size(), PAGE_LIMIT);
+		final int max = HtmlUtil.countPageNumber(skills.size(), PAGE_LIMIT);
 		int page = pageValue;
 		if (page > max)
 		{

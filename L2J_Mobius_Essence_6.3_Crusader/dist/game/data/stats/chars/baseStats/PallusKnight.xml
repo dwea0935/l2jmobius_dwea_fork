@@ -21,6 +21,7 @@
 		<basePAtk>4</basePAtk>
 		<baseCritRate>4</baseCritRate>
 		<baseMCritRate>5</baseMCritRate>
+		<basePSkillCritRate>5</basePSkillCritRate>
 		<baseAtkType>FIST</baseAtkType>
 		<basePAtkSpd>300</basePAtkSpd>
 		<baseMAtkSpd>333</baseMAtkSpd>

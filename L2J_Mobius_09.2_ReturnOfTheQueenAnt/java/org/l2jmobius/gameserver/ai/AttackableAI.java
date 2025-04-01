@@ -20,10 +20,6 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +28,8 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.AISkillScope;
-import org.l2jmobius.gameserver.enums.AIType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.ItemsOnGroundManager;
+import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
 import org.l2jmobius.gameserver.model.AggroInfo;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
@@ -45,6 +39,8 @@ import org.l2jmobius.gameserver.model.WorldRegion;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.npc.AISkillScope;
+import org.l2jmobius.gameserver.model.actor.enums.npc.AIType;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.Guard;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
@@ -53,17 +49,17 @@ import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableFactionCall;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableHate;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableFactionCall;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableHate;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.taskmanager.AttackableThinkTaskManager;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.taskmanagers.AttackableThinkTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * This class manages AI of Attackable.
@@ -201,36 +197,36 @@ public class AttackableAI extends CreatureAI
 	}
 	
 	/**
-	 * Set the Intention of this CreatureAI and create an AI Task executed every 1s (call onEvtThink method) for this Attackable.<br>
-	 * <font color=#FF0000><b><u>Caution</u>: If actor _knowPlayer isn't EMPTY, AI_INTENTION_IDLE will be change in AI_INTENTION_ACTIVE</b></font>
+	 * Set the Intention of this CreatureAI and create an AI Task executed every 1s (call onActionThink method) for this Attackable.<br>
+	 * <font color=#FF0000><b><u>Caution</u>: If actor _knowPlayer isn't EMPTY, IDLE will be change in ACTIVE</b></font>
 	 * @param newIntention The new Intention to set to the AI
 	 * @param args The first parameter of the Intention
 	 */
 	@Override
-	synchronized void changeIntention(CtrlIntention newIntention, Object... args)
+	synchronized void changeIntention(Intention newIntention, Object... args)
 	{
-		CtrlIntention intention = newIntention;
-		if ((intention == AI_INTENTION_IDLE) || (intention == AI_INTENTION_ACTIVE))
+		Intention intention = newIntention;
+		if ((intention == Intention.IDLE) || (intention == Intention.ACTIVE))
 		{
 			// Check if actor is not dead
 			final Attackable npc = getActiveChar();
 			if (!npc.isAlikeDead())
 			{
-				// If its _knownPlayer isn't empty set the Intention to AI_INTENTION_ACTIVE
+				// If its _knownPlayer isn't empty set the Intention to ACTIVE
 				if (!World.getInstance().getVisibleObjects(npc, Player.class).isEmpty())
 				{
-					intention = AI_INTENTION_ACTIVE;
+					intention = Intention.ACTIVE;
 				}
 				else if ((npc.getSpawn() != null) && !npc.isInsideRadius3D(npc.getSpawn(), Config.MAX_DRIFT_RANGE + Config.MAX_DRIFT_RANGE))
 				{
-					intention = AI_INTENTION_ACTIVE;
+					intention = Intention.ACTIVE;
 				}
 			}
 			
-			if (intention == AI_INTENTION_IDLE)
+			if (intention == Intention.IDLE)
 			{
-				// Set the Intention of this AttackableAI to AI_INTENTION_IDLE
-				super.changeIntention(AI_INTENTION_IDLE);
+				// Set the Intention of this AttackableAI to IDLE
+				super.changeIntention(Intention.IDLE);
 				
 				stopAITask();
 				
@@ -244,7 +240,7 @@ public class AttackableAI extends CreatureAI
 		// Set the Intention of this AttackableAI to intention
 		super.changeIntention(intention, args);
 		
-		// If not idle - create an AI task (schedule onEvtThink repeatedly)
+		// If not idle - create an AI task (schedule onActionThink repeatedly)
 		startAITask();
 	}
 	
@@ -257,7 +253,7 @@ public class AttackableAI extends CreatureAI
 	}
 	
 	/**
-	 * Manage the Attack Intention : Stop current Attack (if necessary), Calculate attack timeout, Start a new Attack and Launch Think Event.
+	 * Manage the Attack Intention : Stop current Attack (if necessary), Calculate attack timeout, Start a new Attack and Launch Think Action.
 	 * @param target The Creature to attack
 	 */
 	@Override
@@ -266,7 +262,7 @@ public class AttackableAI extends CreatureAI
 		// Calculate the attack timeout
 		_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeTaskManager.getInstance().getGameTicks();
 		
-		// Manage the Attack Intention : Stop current Attack (if necessary), Start a new Attack and Launch Think Event
+		// Manage the Attack Intention : Stop current Attack (if necessary), Start a new Attack and Launch Think Action
 		super.onIntentionAttack(target);
 	}
 	
@@ -284,12 +280,12 @@ public class AttackableAI extends CreatureAI
 			return;
 		}
 		
-		setIntention(AI_INTENTION_ACTIVE);
+		setIntention(Intention.ACTIVE);
 		_actor.doCast(_skill, _item, _forceUse, _dontMove);
 	}
 	
 	/**
-	 * Manage AI standard thinks of a Attackable (called by onEvtThink). <b><u>Actions</u>:</b>
+	 * Manage AI standard thinks of a Attackable (called by onActionThink). <b><u>Actions</u>:</b>
 	 * <ul>
 	 * <li>Update every 1s the _globalAggro counter to come close to 0</li>
 	 * <li>If the actor is Aggressive and can attack, add all autoAttackable Creature in its Aggro Range to its _aggroList, chose a target and order to attack it</li>
@@ -463,8 +459,8 @@ public class AttackableAI extends CreatureAI
 						npc.setRunning();
 					}
 					
-					// Set the AI Intention to AI_INTENTION_ATTACK
-					setIntention(AI_INTENTION_ATTACK, hated);
+					// Set the AI Intention to ATTACK
+					setIntention(Intention.ATTACK, hated);
 				}
 				
 				return;
@@ -523,7 +519,7 @@ public class AttackableAI extends CreatureAI
 				npc.setWalking();
 			}
 			
-			if (npc.calculateDistanceSq2D(leader) > (offset * offset))
+			if (npc.calculateDistance2D(leader) > offset)
 			{
 				int x1 = Rnd.get(minRadius * 2, offset * 2); // x
 				int y1 = Rnd.get(x1, offset * 2); // distance
@@ -590,7 +586,7 @@ public class AttackableAI extends CreatureAI
 			
 			// Move the actor to Location (x,y,z) server side AND client side by sending Server->Client packet MoveToLocation (broadcast)
 			final Location moveLoc = _actor.isFlying() ? new Location(x1, y1, z1) : GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), x1, y1, z1, npc.getInstanceWorld());
-			if (Util.calculateDistance(npc.getSpawn(), moveLoc, false, false) <= Config.MAX_DRIFT_RANGE)
+			if (LocationUtil.calculateDistance(npc.getSpawn(), moveLoc, false, false) <= Config.MAX_DRIFT_RANGE)
 			{
 				moveTo(moveLoc.getX(), moveLoc.getY(), moveLoc.getZ());
 			}
@@ -598,10 +594,10 @@ public class AttackableAI extends CreatureAI
 	}
 	
 	/**
-	 * Manage AI attack thinks of a Attackable (called by onEvtThink). <b><u>Actions</u>:</b>
+	 * Manage AI attack thinks of a Attackable (called by onActionThink). <b><u>Actions</u>:</b>
 	 * <ul>
 	 * <li>Update the attack timeout if actor is running</li>
-	 * <li>If target is dead or timeout is expired, stop this attack and set the Intention to AI_INTENTION_ACTIVE</li>
+	 * <li>If target is dead or timeout is expired, stop this attack and set the Intention to ACTIVE</li>
 	 * <li>Call all WorldObject of its Faction inside the Faction Range</li>
 	 * <li>Chose a target and order to attack it with magic skill or physical attack</li>
 	 * </ul>
@@ -632,7 +628,7 @@ public class AttackableAI extends CreatureAI
 					npc.getAttackByList().clear();
 					if (npc.hasAI())
 					{
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, spawn.getLocation());
+						npc.getAI().setIntention(Intention.MOVE_TO, spawn.getLocation());
 					}
 					else
 					{
@@ -654,7 +650,7 @@ public class AttackableAI extends CreatureAI
 							minion.getAttackByList().clear();
 							if (minion.hasAI())
 							{
-								minion.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, spawn.getLocation());
+								minion.getAI().setIntention(Intention.MOVE_TO, spawn.getLocation());
 							}
 							else
 							{
@@ -670,7 +666,7 @@ public class AttackableAI extends CreatureAI
 		Creature target = npc.getMostHated();
 		if (target == null)
 		{
-			setIntention(AI_INTENTION_ACTIVE);
+			setIntention(Intention.ACTIVE);
 			return;
 		}
 		
@@ -689,8 +685,8 @@ public class AttackableAI extends CreatureAI
 		
 		if (_attackTimeout < GameTimeTaskManager.getInstance().getGameTicks())
 		{
-			// Set the AI Intention to AI_INTENTION_ACTIVE
-			setIntention(AI_INTENTION_ACTIVE);
+			// Set the AI Intention to ACTIVE
+			setIntention(Intention.ACTIVE);
 			
 			if (!_actor.isFakePlayer())
 			{
@@ -749,7 +745,7 @@ public class AttackableAI extends CreatureAI
 							return;
 						}
 						// Don't call npcs who are already doing some action (e.g. attacking, casting).
-						if ((nearby.getAI()._intention != CtrlIntention.AI_INTENTION_IDLE) && (nearby.getAI()._intention != CtrlIntention.AI_INTENTION_ACTIVE))
+						if ((nearby.getAI()._intention != Intention.IDLE) && (nearby.getAI()._intention != Intention.ACTIVE))
 						{
 							return;
 						}
@@ -763,18 +759,18 @@ public class AttackableAI extends CreatureAI
 						if (finalTarget.isPlayable())
 						{
 							// By default, when a faction member calls for help, attack the caller's attacker.
-							// Notify the AI with EVT_AGGRESSION
-							nearby.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, finalTarget, 1);
+							// Notify the AI with AGGRESSION
+							nearby.getAI().notifyAction(Action.AGGRESSION, finalTarget, 1);
 							
 							if (EventDispatcher.getInstance().hasListener(EventType.ON_ATTACKABLE_FACTION_CALL, nearby))
 							{
 								EventDispatcher.getInstance().notifyEventAsync(new OnAttackableFactionCall(nearby, npc, finalTarget.asPlayer(), finalTarget.isSummon()), nearby);
 							}
 						}
-						else if (nearby.getAI()._intention != AI_INTENTION_ATTACK)
+						else if (nearby.getAI()._intention != Intention.ATTACK)
 						{
 							nearby.addDamageHate(finalTarget, 0, npc.getHating(finalTarget));
-							nearby.getAI().setIntention(AI_INTENTION_ATTACK, finalTarget);
+							nearby.getAI().setIntention(Intention.ATTACK, finalTarget);
 						}
 					});
 				}
@@ -847,8 +843,8 @@ public class AttackableAI extends CreatureAI
 		// Calculate Archer movement.
 		if ((!npc.isMovementDisabled()) && (npc.getAiType() == AIType.ARCHER) && (Rnd.get(100) < 15))
 		{
-			final double distance2 = npc.calculateDistanceSq2D(target);
-			if (Math.sqrt(distance2) <= (60 + combinedCollision))
+			final double distance = npc.calculateDistance2D(target);
+			if (distance <= (60 + combinedCollision))
 			{
 				int posX = npc.getX();
 				int posY = npc.getY();
@@ -873,7 +869,7 @@ public class AttackableAI extends CreatureAI
 				
 				if (GeoEngine.getInstance().canMoveToTarget(npc.getX(), npc.getY(), npc.getZ(), posX, posY, posZ, npc.getInstanceWorld()))
 				{
-					setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(posX, posY, posZ, 0));
+					setIntention(Intention.MOVE_TO, new Location(posX, posY, posZ, 0));
 				}
 				return;
 			}
@@ -1071,7 +1067,7 @@ public class AttackableAI extends CreatureAI
 			return false;
 		}
 		
-		if (!Util.checkIfInRange(skill.getCastRange(), attackable, target, true))
+		if (!LocationUtil.checkIfInRange(skill.getCastRange(), attackable, target, true))
 		{
 			return false;
 		}
@@ -1292,7 +1288,7 @@ public class AttackableAI extends CreatureAI
 	 * Manage AI thinking actions of a Attackable.
 	 */
 	@Override
-	public void onEvtThink()
+	public void onActionThink()
 	{
 		// Check if a thinking action is already in progress.
 		if (_thinking)
@@ -1321,17 +1317,17 @@ public class AttackableAI extends CreatureAI
 			// Manage AI thinks of a Attackable
 			switch (getIntention())
 			{
-				case AI_INTENTION_ACTIVE:
+				case ACTIVE:
 				{
 					thinkActive();
 					break;
 				}
-				case AI_INTENTION_ATTACK:
+				case ATTACK:
 				{
 					thinkAttack();
 					break;
 				}
-				case AI_INTENTION_CAST:
+				case CAST:
 				{
 					thinkCast();
 					break;
@@ -1340,7 +1336,7 @@ public class AttackableAI extends CreatureAI
 		}
 		catch (Exception e)
 		{
-			// LOGGER.warning(getClass().getSimpleName() + ": " + this.getActor().getName() + " - onEvtThink() failed!");
+			// LOGGER.warning(getClass().getSimpleName() + ": " + getActor().getName() + " - onActionThink() failed!");
 		}
 		finally
 		{
@@ -1350,18 +1346,18 @@ public class AttackableAI extends CreatureAI
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Attacked.<br>
+	 * Launch actions corresponding to the Action Attacked.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
 	 * <li>Init the attack : Calculate the attack timeout, Set the _globalAggro to 0, Add the attacker to the actor _aggroList</li>
 	 * <li>Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player</li>
-	 * <li>Set the Intention to AI_INTENTION_ATTACK</li>
+	 * <li>Set the Intention to ATTACK</li>
 	 * </ul>
 	 * @param attacker The Creature that attacks the actor
 	 */
 	@Override
-	protected void onEvtAttacked(Creature attacker)
+	protected void onActionAttacked(Creature attacker)
 	{
 		final Attackable me = getActiveChar();
 		final WorldObject target = getTarget();
@@ -1388,14 +1384,14 @@ public class AttackableAI extends CreatureAI
 		
 		if (!getActiveChar().isCoreAIDisabled())
 		{
-			// Set the Intention to AI_INTENTION_ATTACK
-			if (getIntention() != AI_INTENTION_ATTACK)
+			// Set the Intention to ATTACK
+			if (getIntention() != Intention.ATTACK)
 			{
-				setIntention(AI_INTENTION_ATTACK, attacker);
+				setIntention(Intention.ATTACK, attacker);
 			}
 			else if (me.getMostHated() != target)
 			{
-				setIntention(AI_INTENTION_ATTACK, attacker);
+				setIntention(Intention.ATTACK, attacker);
 			}
 		}
 		
@@ -1414,21 +1410,21 @@ public class AttackableAI extends CreatureAI
 			}
 		}
 		
-		super.onEvtAttacked(attacker);
+		super.onActionAttacked(attacker);
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Aggression.<br>
+	 * Launch actions corresponding to the Action Aggression.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
 	 * <li>Add the target to the actor _aggroList or update hate if already present</li>
-	 * <li>Set the actor Intention to AI_INTENTION_ATTACK (if actor is GuardInstance check if it isn't too far from its home location)</li>
+	 * <li>Set the actor Intention to ATTACK (if actor is GuardInstance check if it isn't too far from its home location)</li>
 	 * </ul>
 	 * @param aggro The value of hate to add to the actor against the target
 	 */
 	@Override
-	protected void onEvtAggression(Creature target, int aggro)
+	protected void onActionAggression(Creature target, int aggro)
 	{
 		final Attackable me = getActiveChar();
 		if (me.isDead())
@@ -1441,8 +1437,8 @@ public class AttackableAI extends CreatureAI
 			// Add the target to the actor _aggroList or update hate if already present
 			me.addDamageHate(target, 0, aggro);
 			
-			// Set the actor AI Intention to AI_INTENTION_ATTACK
-			if (getIntention() != AI_INTENTION_ATTACK)
+			// Set the actor AI Intention to ATTACK
+			if (getIntention() != Intention.ATTACK)
 			{
 				// Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player
 				if (!me.isRunning())
@@ -1450,7 +1446,7 @@ public class AttackableAI extends CreatureAI
 					me.setRunning();
 				}
 				
-				setIntention(AI_INTENTION_ATTACK, target);
+				setIntention(Intention.ATTACK, target);
 			}
 			
 			if (me.isMonster())

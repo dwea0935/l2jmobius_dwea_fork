@@ -19,11 +19,10 @@ package ai.others;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import ai.AbstractNpcAI;
@@ -60,7 +59,7 @@ public class SinWardens extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.isMinion())
 		{
@@ -72,7 +71,7 @@ public class SinWardens extends AbstractNpcAI
 				
 				if (killedCount == 5)
 				{
-					master.broadcastPacket(new NpcSay(master.getObjectId(), ChatType.NPC_GENERAL, master.getId(), NpcStringId.WE_MIGHT_NEED_NEW_SLAVES_I_LL_BE_BACK_SOON_SO_WAIT));
+					master.broadcastPacket(new NpcSay(master.getObjectId(), ChatType.NPC_GENERAL, master.getId(), "We might need new slaves... I'll be back soon, so wait!"));
 					master.doDie(killer);
 					killedMinionsCount.remove(master.getObjectId());
 				}
@@ -82,7 +81,6 @@ public class SinWardens extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

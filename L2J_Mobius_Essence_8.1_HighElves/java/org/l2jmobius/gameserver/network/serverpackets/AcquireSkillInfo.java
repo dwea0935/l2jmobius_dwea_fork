@@ -23,13 +23,13 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.AcquireSkillType;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
+import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -55,12 +55,6 @@ public class AcquireSkillInfo extends ServerPacket
 		public int type;
 		public int unk;
 		
-		/**
-		 * @param pType TODO identify.
-		 * @param pItemId the item Id.
-		 * @param itemCount the item count.
-		 * @param pUnk TODO identify.
-		 */
 		public Req(int pType, int pItemId, long itemCount, int pUnk)
 		{
 			itemId = pItemId;

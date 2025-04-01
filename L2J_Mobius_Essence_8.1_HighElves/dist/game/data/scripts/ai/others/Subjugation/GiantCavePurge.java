@@ -22,11 +22,11 @@ package ai.others.Subjugation;
 
 import java.util.Calendar;
 
+import org.l2jmobius.gameserver.data.holders.SubjugationHolder;
 import org.l2jmobius.gameserver.data.xml.SubjugationData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PurgePlayerHolder;
-import org.l2jmobius.gameserver.model.holders.SubjugationHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerPurgeHolder;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.serverpackets.subjugation.ExSubjugationSidebar;
 
@@ -48,7 +48,7 @@ public class GiantCavePurge extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (killer.getVitalityPoints() > 0)
 		{
@@ -67,12 +67,11 @@ public class GiantCavePurge extends AbstractNpcAI
 			final int currentPurgePoints = (killer.getPurgePoints().get(CATEGORY) == null) ? 0 : killer.getPurgePoints().get(CATEGORY).getPoints();
 			final int currentKeys = (killer.getPurgePoints().get(CATEGORY) == null) ? 0 : killer.getPurgePoints().get(CATEGORY).getKeys();
 			final int remainingKeys = (killer.getPurgePoints().get(CATEGORY) == null) ? 0 : killer.getPurgePoints().get(CATEGORY).getRemainingKeys();
-			killer.getPurgePoints().put(CATEGORY, new PurgePlayerHolder(Math.min(PURGE_MAX_POINT, currentPurgePoints + pointsForMob), currentKeys, remainingKeys));
+			killer.getPurgePoints().put(CATEGORY, new PlayerPurgeHolder(Math.min(PURGE_MAX_POINT, currentPurgePoints + pointsForMob), currentKeys, remainingKeys));
 			lastCategory(killer);
 			checkPurgeComplete(killer);
 			killer.sendPacket(new ExSubjugationSidebar(killer, killer.getPurgePoints().get(CATEGORY)));
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void checkPurgeComplete(Player player)
@@ -81,7 +80,7 @@ public class GiantCavePurge extends AbstractNpcAI
 		final int keys = player.getPurgePoints().get(CATEGORY).getKeys();
 		if ((points >= PURGE_MAX_POINT) && (keys < MAX_KEYS))
 		{
-			player.getPurgePoints().put(CATEGORY, new PurgePlayerHolder(points - PURGE_MAX_POINT, keys + 1, player.getPurgePoints().get(CATEGORY).getRemainingKeys() - 1));
+			player.getPurgePoints().put(CATEGORY, new PlayerPurgeHolder(points - PURGE_MAX_POINT, keys + 1, player.getPurgePoints().get(CATEGORY).getRemainingKeys() - 1));
 		}
 	}
 	

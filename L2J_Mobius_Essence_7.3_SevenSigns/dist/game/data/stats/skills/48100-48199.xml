@@ -30,7 +30,7 @@
 		<effectPoint>0</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<itemConsumeId>1</itemConsumeId>
 		<itemConsumeId>94202</itemConsumeId> <!-- Transformation Scroll: Queen Ant -->
@@ -79,7 +79,7 @@
 		<effectPoint>0</effectPoint>
 		<excludedFromCheck>true</excludedFromCheck>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<itemConsumeId>1</itemConsumeId>
 		<itemConsumeId>94203</itemConsumeId> <!-- Transformation Scroll: Orfen -->
@@ -111,7 +111,7 @@
 		<effectPoint>0</effectPoint>
 		<excludedFromCheck>true</excludedFromCheck>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<itemConsumeId>1</itemConsumeId>
 		<itemConsumeId>94204</itemConsumeId> <!-- Transformation Scroll: Baium -->
@@ -143,7 +143,7 @@
 		<effectPoint>0</effectPoint>
 		<excludedFromCheck>true</excludedFromCheck>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<itemConsumeId>1</itemConsumeId>
 		<itemConsumeId>94205</itemConsumeId> <!-- Transformation Scroll: Zaken -->
@@ -175,7 +175,7 @@
 		<effectPoint>0</effectPoint>
 		<excludedFromCheck>true</excludedFromCheck>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<itemConsumeId>1</itemConsumeId>
 		<itemConsumeId>94206</itemConsumeId> <!-- Transformation Scroll: Anakim -->
@@ -207,7 +207,7 @@
 		<effectPoint>0</effectPoint>
 		<excludedFromCheck>true</excludedFromCheck>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<itemConsumeId>1</itemConsumeId>
 		<itemConsumeId>94207</itemConsumeId> <!-- Transformation Scroll: Lilith -->
@@ -672,7 +672,7 @@
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>0</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-2</magicLevel>

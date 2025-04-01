@@ -1,31 +1,35 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.bosses.Lindvior;
 
 import java.util.Collection;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.FlyType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.skill.enums.FlyType;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 
@@ -59,7 +63,7 @@ public class Vortex extends AbstractNpcAI
 				{
 					if ((attackers != null) && !attackers.isDead() && !attackers.isAlikeDead())
 					{
-						attackers.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+						attackers.getAI().setIntention(Intention.IDLE);
 						final int radians = (int) Math.toRadians(npc.calculateDirectionTo(attackers));
 						final int x = (int) (attackers.getX() + (600 * Math.cos(radians)));
 						final int y = (int) (attackers.getY() + (600 * Math.sin(radians)));
@@ -68,7 +72,7 @@ public class Vortex extends AbstractNpcAI
 						attackers.broadcastPacket(new FlyToLocation(attackers, x, y, z, FlyType.THROW_UP, 800, 800, 800));
 						attackers.setXYZ(loc);
 						attackers.broadcastPacket(new ValidateLocation(attackers));
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+						npc.getAI().setIntention(Intention.ATTACK, player);
 						startQuestTimer("stop_knock_down", 5000, npc, attackers);
 						startQuestTimer("despawn_small", 5000, npc, null);
 					}
@@ -114,7 +118,7 @@ public class Vortex extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		switch (npc.getId())
 		{
@@ -129,16 +133,14 @@ public class Vortex extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		attackRandomTarget(npc);
 		npc.setRandomWalking(true);
 		npc.setRunning();
-		return super.onSpawn(npc);
 	}
 	
 	private void attackRandomTarget(Npc npc)

@@ -24,17 +24,17 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 
 public class Q00230_TestOfTheSummoner extends Quest
@@ -150,7 +150,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 	
 	public Q00230_TestOfTheSummoner()
 	{
-		super(230);
+		super(230, "Test of the Summoner");
 		registerQuestItems(LETO_LIZARDMAN_AMULET, SAC_OF_REDSPORES, KARUL_BUGBEAR_TOTEM, SHARDS_OF_MANASHEN, BREKA_ORC_TOTEM, CRIMSON_BLOODSTONE, TALONS_OF_TYRANT, WINGS_OF_DRONEANT, TUSK_OF_WINDSUS, FANGS_OF_WYRM, LARA_LIST_1, LARA_LIST_2, LARA_LIST_3, LARA_LIST_4, LARA_LIST_5, GALATEA_LETTER, BEGINNER_ARCANA, ALMORS_ARCANA, CAMONIELL_ARCANA, BELTHUS_ARCANA, BASILLIA_ARCANA, CELESTIEL_ARCANA, BRYNTHEA_ARCANA, CRYSTAL_OF_PROGRESS_1, CRYSTAL_OF_INPROGRESS_1, CRYSTAL_OF_FOUL_1, CRYSTAL_OF_DEFEAT_1, CRYSTAL_OF_VICTORY_1, CRYSTAL_OF_PROGRESS_2, CRYSTAL_OF_INPROGRESS_2, CRYSTAL_OF_FOUL_2, CRYSTAL_OF_DEFEAT_2, CRYSTAL_OF_VICTORY_2, CRYSTAL_OF_PROGRESS_3, CRYSTAL_OF_INPROGRESS_3, CRYSTAL_OF_FOUL_3, CRYSTAL_OF_DEFEAT_3, CRYSTAL_OF_VICTORY_3, CRYSTAL_OF_PROGRESS_4, CRYSTAL_OF_INPROGRESS_4, CRYSTAL_OF_FOUL_4, CRYSTAL_OF_DEFEAT_4, CRYSTAL_OF_VICTORY_4, CRYSTAL_OF_PROGRESS_5, CRYSTAL_OF_INPROGRESS_5, CRYSTAL_OF_FOUL_5, CRYSTAL_OF_DEFEAT_5, CRYSTAL_OF_VICTORY_5, CRYSTAL_OF_PROGRESS_6, CRYSTAL_OF_INPROGRESS_6, CRYSTAL_OF_FOUL_6, CRYSTAL_OF_DEFEAT_6, CRYSTAL_OF_VICTORY_6);
 		addStartNpc(GALATEA);
 		addTalkId(GALATEA, ALMORS, CAMONIELL, BELTHUS, BASILLA, CELESTIEL, BRYNTHEA, LARA);
@@ -183,7 +183,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 				if (!player.getVariables().getBoolean("secondClassChange39", false))
 				{
 					htmltext = "30634-08a.htm";
-					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getClassId().getId()));
+					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getPlayerClass().getId()));
 					player.getVariables().set("secondClassChange39", true);
 				}
 				break;
@@ -342,7 +342,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 		{
 			case State.CREATED:
 			{
-				if ((player.getClassId() != ClassId.WIZARD) && (player.getClassId() != ClassId.ELVEN_WIZARD) && (player.getClassId() != ClassId.DARK_WIZARD))
+				if ((player.getPlayerClass() != PlayerClass.WIZARD) && (player.getPlayerClass() != PlayerClass.ELVEN_WIZARD) && (player.getPlayerClass() != PlayerClass.DARK_WIZARD))
 				{
 					htmltext = "30634-01.htm";
 				}
@@ -709,16 +709,16 @@ public class Q00230_TestOfTheSummoner extends Quest
 	}
 	
 	@Override
-	public String onDeath(Creature killer, Creature victim, QuestState st)
+	public void onDeath(Creature killer, Creature victim, QuestState st)
 	{
 		if (st == null)
 		{
-			return null;
+			return;
 		}
 		
 		if (!(killer instanceof Attackable))
 		{
-			return super.onDeath(killer, victim, st);
+			return;
 		}
 		
 		switch (killer.asNpc().getId())
@@ -784,17 +784,15 @@ public class Q00230_TestOfTheSummoner extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		final int npcId = npc.getId();
@@ -990,17 +988,15 @@ public class Q00230_TestOfTheSummoner extends Quest
 				}
 				break;
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player player, int damage, boolean isPet)
 	{
 		QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		st.addNotifyOfDeath(npc);
@@ -1214,8 +1210,6 @@ public class Q00230_TestOfTheSummoner extends Quest
 				}
 				break;
 		}
-		
-		return null;
 	}
 	
 	private class ProgressDuelMob

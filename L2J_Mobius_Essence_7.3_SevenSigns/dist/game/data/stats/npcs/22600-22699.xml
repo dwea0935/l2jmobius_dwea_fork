@@ -708,7 +708,6 @@
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="123" /> <!-- Saber -->
 		<acquire exp="1728056" sp="17274" attributeExp="1001" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="105959.5" hpRegen="10.2" mp="2770.2" mpRegen="3.6" />
@@ -742,7 +741,6 @@
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="123" /> <!-- Saber -->
 		<acquire exp="1728056" sp="17274" attributeExp="1001" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="105959.5" hpRegen="10.2" mp="2770.2" mpRegen="3.6" />

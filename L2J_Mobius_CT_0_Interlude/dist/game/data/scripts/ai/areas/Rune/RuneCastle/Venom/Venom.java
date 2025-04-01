@@ -1,38 +1,41 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.Rune.RuneCastle.Venom;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.impl.sieges.castle.OnCastleSiegeFinish;
-import org.l2jmobius.gameserver.model.events.impl.sieges.castle.OnCastleSiegeStart;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeFinish;
+import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeStart;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -153,7 +156,7 @@ public class Venom extends AbstractNpcAI
 				if (CastleManager.getInstance().getCastleById(CASTLE).getSiege().getControlTowerCount() <= 1)
 				{
 					changeLocation(MoveTo.THRONE);
-					_massymore.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.OH_NO_THE_DEFENSES_HAVE_FAILED_IT_IS_TOO_DANGEROUS_TO_REMAIN_INSIDE_THE_CASTLE_FLEE_EVERY_MAN_FOR_HIMSELF);
+					_massymore.broadcastSay(ChatType.NPC_SHOUT, "Oh no! The defenses have failed. It is too dangerous to remain inside the castle. Flee! Every man for himself!");
 					cancelQuestTimer("tower_check", npc, null);
 					startQuestTimer("raid_check", 10000, npc, null, true);
 				}
@@ -180,18 +183,17 @@ public class Venom extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		if (isSummon)
 		{
-			return super.onAggroRangeEnter(npc, player, isSummon);
+			return;
 		}
 		
 		if (_aggroMode && (_targets.size() < 10) && (getRandom(3) < 1) && !player.isDead())
 		{
 			_targets.add(player);
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	public void onSiegeStart(OnCastleSiegeStart event)
@@ -223,7 +225,7 @@ public class Venom extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		switch (skill.getId())
 		{
@@ -261,11 +263,10 @@ public class Venom extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -281,7 +282,7 @@ public class Venom extends AbstractNpcAI
 				_venom.disableSkill(VENOM_TELEPORT.getSkill(), -1);
 				_venom.disableSkill(RANGE_TELEPORT.getSkill(), -1);
 				_venom.doRevive();
-				npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.WHO_DARES_TO_COVET_THE_THRONE_OF_OUR_CASTLE_LEAVE_IMMEDIATELY_OR_YOU_WILL_PAY_THE_PRICE_OF_YOUR_AUDACITY_WITH_YOUR_VERY_OWN_BLOOD);
+				npc.broadcastSay(ChatType.NPC_SHOUT, "Who dares to covet the throne of our castle! Leave immediately or you will pay the price of your audacity with your very own blood!");
 				_venom.asAttackable().setCanReturnToSpawnPoint(false);
 				if (checkStatus() == DEAD)
 				{
@@ -298,11 +299,10 @@ public class Venom extends AbstractNpcAI
 		{
 			npc.doRevive();
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final double distance = npc.calculateDistance2D(attacker);
 		if (_aggroMode && (getRandom(100) < 25))
@@ -325,21 +325,19 @@ public class Venom extends AbstractNpcAI
 			npc.setTarget(attacker);
 			npc.doCast(SONIC_STORM.getSkill());
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		updateStatus(DEAD);
-		npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.IT_S_NOT_OVER_YET_IT_WON_T_BE_OVER_LIKE_THIS_NEVER);
+		npc.broadcastSay(ChatType.NPC_SHOUT, "It's not over yet... It won't be... over... like this... Never...");
 		if (!CastleManager.getInstance().getCastleById(CASTLE).getSiege().isInProgress())
 		{
 			final Npc cube = addSpawn(TELEPORT_CUBE, CUBE, false, 0);
 			startQuestTimer("cube_despawn", 120000, cube, null);
 		}
 		cancelQuestTimer("raid_check", npc, null);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	/**
@@ -379,7 +377,7 @@ public class Venom extends AbstractNpcAI
 		{
 			final int rnd = getRandom(11);
 			player.teleToLocation(TARGET_TELEPORTS[rnd], TARGET_TELEPORTS_OFFSET[rnd]);
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			player.getAI().setIntention(Intention.IDLE);
 		}
 	}
 	

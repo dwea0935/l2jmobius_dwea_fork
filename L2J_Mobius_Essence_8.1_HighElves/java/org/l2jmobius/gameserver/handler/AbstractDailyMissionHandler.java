@@ -26,14 +26,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.enums.DailyMissionStatus;
-import org.l2jmobius.gameserver.model.DailyMissionDataHolder;
-import org.l2jmobius.gameserver.model.DailyMissionPlayerEntry;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.DailyMissionStatus;
+import org.l2jmobius.gameserver.model.actor.holders.player.DailyMissionDataHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.DailyMissionPlayerEntry;
+import org.l2jmobius.gameserver.model.actor.holders.player.MissionLevelPlayerDataHolder;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.MissionLevelPlayerDataHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -152,7 +153,7 @@ public abstract class AbstractDailyMissionHandler extends ListenersContainer
 				}
 				default:
 				{
-					player.addItem("One Day Reward", holder, player, true);
+					player.addItem(ItemProcessType.REWARD, holder, player, true);
 					break;
 				}
 			}
@@ -172,7 +173,7 @@ public abstract class AbstractDailyMissionHandler extends ListenersContainer
 			ps.execute();
 			
 			// Cache if not exists
-			_entries.computeIfAbsent(entry.getObjectId(), id -> entry);
+			_entries.computeIfAbsent(entry.getObjectId(), _ -> entry);
 		}
 		catch (Exception e)
 		{

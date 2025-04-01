@@ -56,13 +56,13 @@ public class ExRequestSetMultiEnchantItemList extends ClientPacket
 			return;
 		}
 		
-		if (player.getRequest(EnchantItemRequest.class) == null)
+		final EnchantItemRequest request = player.getRequest(EnchantItemRequest.class);
+		if (request == null)
 		{
 			player.sendPacket(new ExResultSetMultiEnchantItemList(player, 1));
 			return;
 		}
 		
-		final EnchantItemRequest request = player.getRequest(EnchantItemRequest.class);
 		if (request.getMultiEnchantingItemsBySlot(_slotId) != -1)
 		{
 			request.clearMultiEnchantingItemsBySlot();

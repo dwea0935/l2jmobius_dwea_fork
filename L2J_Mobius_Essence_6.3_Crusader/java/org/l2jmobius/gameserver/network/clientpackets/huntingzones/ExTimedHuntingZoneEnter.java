@@ -20,11 +20,12 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.huntingzones;
 
+import org.l2jmobius.gameserver.data.holders.TimedHuntingZoneHolder;
 import org.l2jmobius.gameserver.data.xml.TimedHuntingZoneData;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.TimedHuntingZoneHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
@@ -146,8 +147,8 @@ public class ExTimedHuntingZoneEnter extends ClientPacket
 			if (endTime == currentTime)
 			{
 				endTime += holder.getInitialTime();
-				player.getVariables().set(PlayerVariables.HUNTING_ZONE_ENTRY + _zoneId, currentTime);
 			}
+			player.getVariables().set(PlayerVariables.HUNTING_ZONE_ENTRY + _zoneId, currentTime);
 		}
 		
 		if (endTime > currentTime)
@@ -156,7 +157,7 @@ public class ExTimedHuntingZoneEnter extends ClientPacket
 			{
 				if (player.getAdena() > holder.getEntryFee())
 				{
-					player.reduceAdena("TimedHuntingZone", holder.getEntryFee(), player, true);
+					player.reduceAdena(ItemProcessType.FEE, holder.getEntryFee(), player, true);
 				}
 				else
 				{
@@ -164,7 +165,7 @@ public class ExTimedHuntingZoneEnter extends ClientPacket
 					return;
 				}
 			}
-			else if (!player.destroyItemByItemId("TimedHuntingZone", holder.getEntryItemId(), holder.getEntryFee(), player, true))
+			else if (!player.destroyItemByItemId(ItemProcessType.FEE, holder.getEntryItemId(), holder.getEntryFee(), player, true))
 			{
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_REQUIRED_ITEMS);
 				return;

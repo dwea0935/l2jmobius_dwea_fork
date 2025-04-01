@@ -37,7 +37,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.instancemanager.games.KrateisCubeManager;
+import org.l2jmobius.gameserver.managers.games.KrateisCubeManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -46,6 +46,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.KrateisMatchManager;
 import org.l2jmobius.gameserver.model.events.AbstractScript;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPCCafePointInfo;
@@ -233,7 +234,7 @@ public class KrateiArena
 	{
 		if (!_players.containsKey(player))
 		{
-			final KrateiCubePlayer pl = _players.computeIfAbsent(player, data -> new KrateiCubePlayer(player));
+			final KrateiCubePlayer pl = _players.computeIfAbsent(player, _ -> new KrateiCubePlayer(player));
 			_players.put(player, pl);
 			pl.setIsRegister(true);
 			player.setKrateiArena(this);
@@ -444,7 +445,7 @@ public class KrateiArena
 				return null;
 			}
 		}
-		final Map<Player, Integer> sortedMap = participants.entrySet().stream().sorted(Entry.comparingByValue(Comparator.reverseOrder())).collect(Collectors.toMap(Entry::getKey, Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+		final Map<Player, Integer> sortedMap = participants.entrySet().stream().sorted(Entry.comparingByValue(Comparator.reverseOrder())).collect(Collectors.toMap(Entry::getKey, Entry::getValue, (e1, _) -> e1, LinkedHashMap::new));
 		return sortedMap;
 	}
 	
@@ -693,7 +694,7 @@ public class KrateiArena
 									}
 									else if (reward.getId() > 0)
 									{
-										pl.getPlayer().addItem("Krateis Cube Reward", reward.getId(), amount, pl.getPlayer(), true);
+										pl.getPlayer().addItem(ItemProcessType.REWARD, reward.getId(), amount, pl.getPlayer(), true);
 									}
 								}
 							}

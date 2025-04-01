@@ -640,7 +640,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="18555" level="1" /> <!-- Curtiz's Reward Box -->
+			<skill id="18555" level="1" /> <!-- Kurtiz's Reward Box -->
 		</skills>
 	</item>
 	<item id="46561" name="Blue Dynasty" type="EtcItem">

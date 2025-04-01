@@ -20,13 +20,14 @@
  */
 package ai.areas.GardenOfGenesis.Apherus;
 
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -97,18 +98,17 @@ public class Apherus extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if ((getRandom(120) < 2) && !npc.isDead())
 		{
 			final Npc minions = addSpawn(APHERUS_SUBORDINATE, npc.getX() + getRandom(-30, 30), npc.getY() + getRandom(-30, 30), npc.getZ(), npc.getHeading(), true, 300000, false);
 			addAttackPlayerDesire(minions, attacker);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		World.getInstance().forEachVisibleObjectInRange(npc, Npc.class, 1500, minion ->
 		{
@@ -117,11 +117,10 @@ public class Apherus extends AbstractNpcAI
 				minion.deleteMe();
 			}
 		});
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		APHERUS_INVICIBILITY.getSkill().applyEffects(npc, npc);
 		_doorIsOpen = false;
@@ -129,11 +128,10 @@ public class Apherus extends AbstractNpcAI
 		{
 			closeDoor(door, npc.getInstanceId());
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isRaid())
 		{
@@ -143,17 +141,15 @@ public class Apherus extends AbstractNpcAI
 		{
 			creature.teleToLocation(TeleportWhereType.TOWN);
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isRaid())
 		{
 			GARDEN_APHERUS_RECOVERY.getSkill().applyEffects(creature, creature);
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	@Override
@@ -161,7 +157,7 @@ public class Apherus extends AbstractNpcAI
 	{
 		if (!_doorIsOpen)
 		{
-			if (!player.destroyItemByItemId("Apherus", APERUS_KEY, 1, player, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, APERUS_KEY, 1, player, true))
 			{
 				return "apherusDoor-no.html";
 			}

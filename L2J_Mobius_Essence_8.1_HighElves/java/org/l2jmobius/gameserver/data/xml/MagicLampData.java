@@ -31,8 +31,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.MagicLampDataHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.MagicLampDataHolder;
 
 /**
  * @author Serenitty
@@ -56,9 +56,9 @@ public class MagicLampData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		final NodeList list = doc.getFirstChild().getChildNodes();
+		final NodeList list = document.getFirstChild().getChildNodes();
 		for (int i = 0; i < list.getLength(); i++)
 		{
 			final Node n = list.item(i);

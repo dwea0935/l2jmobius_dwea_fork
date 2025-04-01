@@ -32,7 +32,7 @@ import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayableExpChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayableExpChanged;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
@@ -101,7 +101,7 @@ public class PlayableStat extends CreatureStat
 		if ((newLevel > oldLevel) && playable.isPlayer())
 		{
 			final Player player = playable.asPlayer();
-			if (SkillTreeData.getInstance().hasAvailableSkills(player, player.getClassId()))
+			if (SkillTreeData.getInstance().hasAvailableSkills(player, player.getPlayerClass()))
 			{
 				player.sendPacket(ExNewSkillToLearnByLevelUp.STATIC_PACKET);
 			}

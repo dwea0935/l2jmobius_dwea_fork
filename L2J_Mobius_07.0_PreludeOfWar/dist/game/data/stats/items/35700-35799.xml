@@ -1019,7 +1019,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9519" level="1" /> <!-- Draco's Blessing (1-hour) -->
+			<skill id="9519" level="1" /> <!-- Draco's Blessing (1-h.) -->
 		</skills>
 	</item>
 	<item id="35759" name="Draco's Blessing (1-hour)" additionalName="Event" type="EtcItem">
@@ -1034,7 +1034,7 @@
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9520" level="1" /> <!-- Draco's Blessing (1-hour) -->
+			<skill id="9520" level="1" /> <!-- Draco's Blessing (1-h.) -->
 		</skills>
 	</item>
 	<item id="35760" name="Draco's Blessing (3-hour)" additionalName="Event" type="EtcItem">
@@ -1049,7 +1049,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="9521" level="1" /> <!-- Draco's Blessing (3-hour) -->
+			<skill id="9521" level="1" /> <!-- Draco's Blessing (3-h.) -->
 		</skills>
 	</item>
 	<item id="35761" name="Rabbit Ears" additionalName="CON" type="Armor">
@@ -1154,7 +1154,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Hair Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35768" name="Rabbit Ears" additionalName="M. Def." type="Armor">
@@ -1184,7 +1184,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Hair Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35770" name="Rabbit Ears" additionalName="P. Atk." type="Armor">
@@ -1229,7 +1229,7 @@
 		<set name="commissionItemType" val="HAIR_ACCESSORY" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Hair Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35773" name="Raccoon Ears" additionalName="STR" type="Armor">
@@ -1334,7 +1334,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Hair Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35780" name="Raccoon Ears" additionalName="M. Def." type="Armor">
@@ -1364,7 +1364,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Hair Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35782" name="Raccoon Ears" additionalName="P. Atk." type="Armor">
@@ -1409,7 +1409,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Hair Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35785" name="Cat Ears" additionalName="STR" type="Armor">
@@ -1514,7 +1514,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9562" level="1" /> <!-- Hair Accessory Circlet: P. Def. -->
+			<skill id="9562" level="1" /> <!-- Hair Accessory: P. Def. -->
 		</skills>
 	</item>
 	<item id="35792" name="Cat Ears" additionalName="M. Def." type="Armor">
@@ -1544,7 +1544,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9564" level="1" /> <!-- Hair Accessory: Evasion -->
+			<skill id="9564" level="1" /> <!-- Hair Accessory: P. Evasion -->
 		</skills>
 	</item>
 	<item id="35794" name="Cat Ears" additionalName="P. Atk." type="Armor">
@@ -1589,7 +1589,7 @@
 		<set name="weight" val="10" />
 		<set name="material" val="STEEL" />
 		<skills>
-			<skill id="9567" level="1" /> <!-- Hair Accessory: Accuracy -->
+			<skill id="9567" level="1" /> <!-- Hair Accessory: P. Accuracy -->
 		</skills>
 	</item>
 	<item id="35797" name="Romantic Chapeau" additionalName="STR" type="Armor">

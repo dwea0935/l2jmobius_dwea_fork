@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.commons.network.PacketHandler;
 import org.l2jmobius.commons.network.ReadableBuffer;
 import org.l2jmobius.commons.network.ReadablePacket;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.network.clientpackets.RequestBookMarkSlotInfo;
 import org.l2jmobius.gameserver.network.clientpackets.RequestChangeBookMarkSlot;
 import org.l2jmobius.gameserver.network.clientpackets.RequestDeleteBookMarkSlot;
@@ -52,7 +52,7 @@ public class GamePacketHandler implements PacketHandler<GameClient>
 		catch (Exception e)
 		{
 			LOGGER.warning("PacketHandler: Problem receiving packet id from " + client);
-			LOGGER.warning(CommonUtil.getStackTrace(e));
+			LOGGER.warning(TraceUtil.getStackTrace(e));
 			client.closeNow();
 			return null;
 		}

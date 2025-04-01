@@ -704,7 +704,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<effectPoint>1</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic>
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>
@@ -1177,7 +1177,6 @@
 		<icon>icon.skill0000</icon>
 		<operateType>A1</operateType>
 		<targetType>SELF</targetType>
-		<affectScope>SINGLE</affectScope>
 		<affectScope>SINGLE</affectScope>
 		<hitTime>500</hitTime>
 		<itemConsumeCount>1</itemConsumeCount>

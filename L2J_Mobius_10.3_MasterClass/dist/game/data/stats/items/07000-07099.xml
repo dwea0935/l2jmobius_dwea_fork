@@ -941,7 +941,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="OTHER_ITEM" />
 		<skills>
-			<skill id="2230" level="1" /> <!-- Item - Fight Song Crystal -->
+			<skill id="2230" level="1" /> <!-- Item - Theme Sound Crystal -->
 		</skills>
 	</item>
 	<item id="7063" name="Map: Forest of the Dead" type="EtcItem">

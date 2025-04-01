@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="24000" name="Agathion - Virgo" additionalName="Stage 12" type="Armor">
 		<!-- Can summon Virgo when equipped. <Active Skill>. 1. Healing Light: Restores entire party's HP/MP/CP with a chance to cancel debuffs. (Cooldown is 600 sec.). 2. Balanced Power: STR/INT/CON/DEX/WIT/MEN +1. 2. Attribute Enchant: Attribute Atk./Resistance +30. -->
@@ -789,7 +789,7 @@
 			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="27353" level="1" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="1" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -810,7 +810,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="2" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="2" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -831,7 +831,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="3" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="3" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -852,7 +852,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="4" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="4" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -873,7 +873,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="5" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="5" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -894,7 +894,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="6" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="6" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -915,7 +915,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="7" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="7" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -936,7 +936,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="8" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="8" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -957,7 +957,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="9" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="9" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -978,7 +978,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="10" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="10" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -999,7 +999,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="11" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="11" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>
@@ -1021,7 +1021,7 @@
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
-			<skill id="27353" level="12" /> <!-- Battle Rhapsody -->
+			<skill id="27353" level="12" /> <!-- Mad Cow -->
 			<skill id="17626" level="1" /> <!-- Agathion Cute Trick - Taurus -->
 		</skills>
 	</item>

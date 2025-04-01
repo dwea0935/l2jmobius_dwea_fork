@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.model.quest.newquestdata;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.ClassId;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 /**
  * @author Magik
@@ -32,11 +32,11 @@ public class NewQuestCondition
 	private final int _minLevel;
 	private final int _maxLevel;
 	private final List<Integer> _previousQuestIds;
-	private final List<ClassId> _allowedClassIds;
+	private final List<PlayerClass> _allowedClassIds;
 	private final boolean _oneOfPreQuests;
 	private final boolean _specificStart;
 	
-	public NewQuestCondition(int minLevel, int maxLevel, List<Integer> previousQuestIds, List<ClassId> allowedClassIds, boolean oneOfPreQuests, boolean specificStart)
+	public NewQuestCondition(int minLevel, int maxLevel, List<Integer> previousQuestIds, List<PlayerClass> allowedClassIds, boolean oneOfPreQuests, boolean specificStart)
 	{
 		_minLevel = minLevel;
 		_maxLevel = maxLevel;
@@ -61,7 +61,7 @@ public class NewQuestCondition
 		return _previousQuestIds;
 	}
 	
-	public List<ClassId> getAllowedClassIds()
+	public List<PlayerClass> getAllowedClassIds()
 	{
 		return _allowedClassIds;
 	}

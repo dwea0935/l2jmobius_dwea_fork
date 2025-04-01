@@ -54,13 +54,13 @@ public class DynamicExpRateData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		int count = 0;
 		Arrays.fill(_expRates, 1f);
 		Arrays.fill(_spRates, 1f);
 		
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equals(n.getNodeName()))
 			{
@@ -116,10 +116,6 @@ public class DynamicExpRateData implements IXmlReader
 		return _enabled;
 	}
 	
-	/**
-	 * Gets the single instance of DynamicExpRates.
-	 * @return single instance of DynamicExpRates
-	 */
 	public static DynamicExpRateData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

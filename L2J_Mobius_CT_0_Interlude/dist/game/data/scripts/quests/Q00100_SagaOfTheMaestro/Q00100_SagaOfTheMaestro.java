@@ -16,17 +16,17 @@
  */
 package quests.Q00100_SagaOfTheMaestro;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * Saga of the Maestro (100)
  * @author Emperorc
  */
-public class Q00100_SagaOfTheMaestro extends SagasSuperClass
+public class Q00100_SagaOfTheMaestro extends AbstractSagaQuest
 {
 	public Q00100_SagaOfTheMaestro()
 	{
-		super(100);
+		super(100, "Saga of the Maestro");
 		_npc = new int[]
 		{
 			31592,

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="6569" name="Blessed Scroll: Enchant Weapon (A-grade)" type="EtcItem">
 		<!-- <font color=bbaa88><When enchanted from +1 to +3></font>. One-handed sword/ blunt weapon, dagger, spear: P. Atk. +10, M. Atk. +6. Two-handed blunt weapons, dual swords, fist weapon: P. Atk. +12, M. Atk. +6. Bow: P. Atk. +16, M. Atk. +6. <font color=bbaa88><When enchanted to +4 or higher></font>. One-handed sword/ blunt weapon, dagger, spear: P. Atk. +30, M. Atk. +18. Two-handed blunt weapons, dual swords, fist weapon: P. Atk. +36, M. Atk. +18. Bow: P. Atk. +48, M. Atk. +18. <font color=eeaa22>Safe enchanting to +4</font>. <font color=ff6666>In case of failure the enchant value is reset to 0.</font> -->
@@ -13,7 +13,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="2027" level="1" /> <!-- Blessed Scroll: Enchant Weapon (A-grade) -->
+			<skill id="2027" level="1" /> <!-- Blessed Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="6570" name="Blessed Scroll: Enchant Armor (A-grade)" type="EtcItem">
@@ -29,7 +29,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="2209" level="1" /> <!-- Blessed Scroll: Enchant Armor (A-grade) -->
+			<skill id="2209" level="1" /> <!-- Blessed Scroll: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="6571" name="Blessed Scroll: Enchant Weapon (B-grade)" type="EtcItem">
@@ -46,7 +46,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="2028" level="1" /> <!-- Blessed Scroll: Enchant Weapon (B-grade) -->
+			<skill id="2028" level="1" /> <!-- Blessed Scroll: Enchant B-grade Weapon -->
 		</skills>
 	</item>
 	<item id="6572" name="Blessed Scroll: Enchant Armor (B-grade)" type="EtcItem">
@@ -63,7 +63,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="2210" level="1" /> <!-- Blessed Scroll: Enchant Armor (B-grade) -->
+			<skill id="2210" level="1" /> <!-- Blessed Scroll: Enchant B-grade Armor -->
 		</skills>
 	</item>
 	<item id="6573" name="Blessed Scroll: Enchant Weapon (C-grade)" type="EtcItem">
@@ -80,7 +80,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="2029" level="1" /> <!-- Blessed Scroll: Enchant Weapon (C-grade) -->
+			<skill id="2029" level="1" /> <!-- Blessed Scroll: Enchant C-grade Weapon -->
 		</skills>
 	</item>
 	<item id="6574" name="Blessed Scroll: Enchant Armor (C-grade)" type="EtcItem">
@@ -97,7 +97,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="2211" level="1" /> <!-- Blessed Scroll: Enchant Armor (C-grade) -->
+			<skill id="2211" level="1" /> <!-- Blessed Scroll: Enchant C-grade Armor -->
 		</skills>
 	</item>
 	<item id="6575" name="Blessed Scroll: Enchant Weapon (D-grade)" type="EtcItem">
@@ -114,7 +114,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="2030" level="1" /> <!-- Blessed Scroll: Enchant Weapon (D-grade) -->
+			<skill id="2030" level="1" /> <!-- Blessed Scroll: Enchant D-grade Weapon -->
 		</skills>
 	</item>
 	<item id="6576" name="Blessed Scroll: Enchant Armor (D-grade)" type="EtcItem">
@@ -131,7 +131,7 @@
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="2212" level="1" /> <!-- Blessed Scroll: Enchant Armor (D-grade) -->
+			<skill id="2212" level="1" /> <!-- Blessed Scroll: Enchant D-grade Armor -->
 		</skills>
 	</item>
 	<item id="6577" name="Blessed Scroll: Enchant Weapon (S-grade)" type="EtcItem">
@@ -147,7 +147,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="51291" level="1" /> <!-- Blessed Scroll: Enchant Weapon (S-grade) -->
+			<skill id="51291" level="1" /> <!-- Blessed Scroll: Enchant S-grade Weapon -->
 		</skills>
 	</item>
 	<item id="6578" name="Blessed Scroll: Enchant Armor (S-grade)" type="EtcItem">
@@ -163,7 +163,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="51292" level="1" /> <!-- Blessed Scroll: Enchant Armor (S-grade) -->
+			<skill id="51292" level="1" /> <!-- Blessed Scroll: Enchant S-grade Armor -->
 		</skills>
 	</item>
 	<item id="6579" name="Arcana Mace" type="Weapon">

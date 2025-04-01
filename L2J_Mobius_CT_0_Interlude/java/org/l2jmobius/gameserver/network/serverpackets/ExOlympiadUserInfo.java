@@ -42,7 +42,7 @@ public class ExOlympiadUserInfo extends ServerPacket
 		buffer.writeByte(_side);
 		buffer.writeInt(_player.getObjectId());
 		buffer.writeString(_player.getName());
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		buffer.writeInt((int) _player.getCurrentHp());
 		buffer.writeInt(_player.getMaxHp());
 		buffer.writeInt((int) _player.getCurrentCp());

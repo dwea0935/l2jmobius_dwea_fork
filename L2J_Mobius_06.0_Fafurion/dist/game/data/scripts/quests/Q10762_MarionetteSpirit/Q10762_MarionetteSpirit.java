@@ -16,9 +16,9 @@
  */
 package quests.Q10762_MarionetteSpirit;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -120,7 +120,7 @@ public class Q10762_MarionetteSpirit extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isCond(1) && (DROP_RATE > getRandom(100)))
@@ -128,6 +128,5 @@ public class Q10762_MarionetteSpirit extends Quest
 			giveItems(killer, MAGIC_CHAIN_KEY, 1);
 			qs.setCond(2, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

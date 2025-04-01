@@ -1085,7 +1085,7 @@
 		<coolTime>500</coolTime>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>700</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>10000</reuseDelay>
@@ -1197,7 +1197,7 @@
 		<effectPoint>0</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic> <!-- Magic Skill -->
 		<isNecessaryToggle>true</isNecessaryToggle>
 		<itemConsumeCount>1</itemConsumeCount>
@@ -2735,7 +2735,6 @@
 		<icon>BranchIcon.icon.g_bm_perios_cloak_normal</icon>
 		<operateType>A2</operateType>
 		<targetType>SELF</targetType>
-		<abnormalLevel>1</abnormalLevel>
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>180</abnormalTime>
 		<abnormalType>RHAPSODY</abnormalType>

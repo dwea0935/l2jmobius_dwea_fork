@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="1000" type="Armor" name="Book of Aklantoth - Part 3">
 		<set name="icon" val="icon.item_normal07" />
@@ -221,7 +221,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="1019" type="EtcItem" name="Official Letter">
+	<item id="1019" type="EtcItem" name="official Letter">
 		<!-- An official letter that the Lord of Gludio has sent to Sir Colin Windawood, calling a meeting. Deliver this to Sir Windawood. -->
 		<set name="icon" val="icon.etc_letter_red_i00" />
 		<set name="immediate_effect" val="true" />
@@ -437,7 +437,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="1037" type="EtcItem" name="Fruit of the Mother Tree">
+	<item id="1037" type="EtcItem" name="Fruit of The Mother Tree">
 		<!-- Fruit that the Mother Tree bears once every few years. Take this to Andellia. -->
 		<set name="icon" val="icon.etc_fruit_green_i00" />
 		<set name="immediate_effect" val="true" />
@@ -690,7 +690,7 @@
 		<set name="item_skill" val="2031-1" /> <!-- Lesser Healing Potion -->
 		<set name="for_npc" val="true" />
 	</item>
-	<item id="1061" type="EtcItem" name="Greater Healing Potion">
+	<item id="1061" type="EtcItem" name="Healing Potion">
 		<!-- A magical potion that slowly restores HP. High endurance. -->
 		<set name="icon" val="icon.etc_potion_scarlet_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -1005,7 +1005,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="1087" type="EtcItem" name="Giant Spider's Leg">
+	<item id="1087" type="EtcItem" name="Giant Spider Leg">
 		<!-- The legs cut off from a giant spider. Collect 8 of these and take them to Alshupes. -->
 		<set name="icon" val="icon.etc_horn_i00" />
 		<set name="immediate_effect" val="true" />

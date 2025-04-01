@@ -23,8 +23,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.network.serverpackets.ExListPartyMatchingWaitingRoom;
 
 /**
@@ -35,7 +35,7 @@ public class RequestListPartyMatchingWaitingRoom extends ClientPacket
 	private int _page;
 	private int _minLevel;
 	private int _maxLevel;
-	private List<ClassId> _classId; // 1 - waitlist 0 - room waitlist
+	private List<PlayerClass> _classId; // 1 - waitlist 0 - room waitlist
 	private String _query;
 	
 	@Override
@@ -50,7 +50,7 @@ public class RequestListPartyMatchingWaitingRoom extends ClientPacket
 			_classId = new LinkedList<>();
 			for (int i = 0; i < size; i++)
 			{
-				_classId.add(ClassId.getClassId(readInt()));
+				_classId.add(PlayerClass.getPlayerClass(readInt()));
 			}
 		}
 		if (remaining() > 0)

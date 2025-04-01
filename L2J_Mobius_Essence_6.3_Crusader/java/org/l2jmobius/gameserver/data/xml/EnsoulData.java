@@ -31,8 +31,8 @@ import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.ensoul.EnsoulFee;
 import org.l2jmobius.gameserver.model.ensoul.EnsoulOption;
 import org.l2jmobius.gameserver.model.ensoul.EnsoulStone;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.EtcItem;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author UnAfraid
@@ -40,6 +40,7 @@ import org.l2jmobius.gameserver.model.item.EtcItem;
 public class EnsoulData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(EnsoulData.class.getName());
+	
 	private final Map<Integer, EnsoulFee> _ensoulFees = new ConcurrentHashMap<>();
 	private final Map<Integer, EnsoulOption> _ensoulOptions = new ConcurrentHashMap<>();
 	private final Map<Integer, EnsoulStone> _ensoulStones = new ConcurrentHashMap<>();
@@ -59,9 +60,9 @@ public class EnsoulData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, IXmlReader::isNode, ensoulNode ->
+		forEach(document, "list", listNode -> forEach(listNode, IXmlReader::isNode, ensoulNode ->
 		{
 			switch (ensoulNode.getNodeName())
 			{
@@ -179,34 +180,67 @@ public class EnsoulData implements IXmlReader
 		((EtcItem) ItemData.getInstance().getTemplate(stone.getId())).setEnsoulStone();
 	}
 	
+	/**
+	 * Retrieves the ensoul fee for a specified stone ID and index.
+	 * @param stoneId the ID of the stone.
+	 * @param index the index of the ensoul fee within the fee structure.
+	 * @return the {@link ItemHolder} representing the ensoul fee, or {@code null} if none is found.
+	 */
 	public ItemHolder getEnsoulFee(int stoneId, int index)
 	{
 		final EnsoulFee fee = _ensoulFees.get(stoneId);
 		return fee != null ? fee.getEnsoul(index) : null;
 	}
 	
+	/**
+	 * Retrieves the resoul fee for a specified stone ID and index.
+	 * @param stoneId the ID of the stone.
+	 * @param index the index of the resoul fee within the fee structure.
+	 * @return the {@link ItemHolder} representing the resoul fee, or {@code null} if none is found.
+	 */
 	public ItemHolder getResoulFee(int stoneId, int index)
 	{
 		final EnsoulFee fee = _ensoulFees.get(stoneId);
 		return fee != null ? fee.getResoul(index) : null;
 	}
 	
+	/**
+	 * Retrieves the removal fee for a specified stone ID.
+	 * @param stoneId the ID of the stone.
+	 * @return a collection of {@link ItemHolder} representing the removal fees, or an empty collection if none are found.
+	 */
 	public Collection<ItemHolder> getRemovalFee(int stoneId)
 	{
 		final EnsoulFee fee = _ensoulFees.get(stoneId);
 		return fee != null ? fee.getRemovalFee() : Collections.emptyList();
 	}
 	
+	/**
+	 * Retrieves the ensoul option associated with the specified option ID.
+	 * @param id the ID of the ensoul option.
+	 * @return the {@link EnsoulOption} for the specified ID, or {@code null} if none exists.
+	 */
 	public EnsoulOption getOption(int id)
 	{
 		return _ensoulOptions.get(id);
 	}
 	
+	/**
+	 * Retrieves the ensoul stone associated with the specified stone ID.
+	 * @param id the ID of the ensoul stone.
+	 * @return the {@link EnsoulStone} for the specified ID, or {@code null} if none exists.
+	 */
 	public EnsoulStone getStone(int id)
 	{
 		return _ensoulStones.get(id);
 	}
 	
+	/**
+	 * Searches for an ensoul stone that matches the specified slot type and option ID.
+	 * @param type the slot type of the stone.
+	 * @param optionId the option ID to match.
+	 * @return the ID of the matching ensoul stone, or 0 if no matching stone is found.
+	 */
 	public int getStone(int type, int optionId)
 	{
 		for (EnsoulStone stone : _ensoulStones.values())
@@ -225,10 +259,6 @@ public class EnsoulData implements IXmlReader
 		return 0;
 	}
 	
-	/**
-	 * Gets the single instance of EnsoulData.
-	 * @return single instance of EnsoulData
-	 */
 	public static EnsoulData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

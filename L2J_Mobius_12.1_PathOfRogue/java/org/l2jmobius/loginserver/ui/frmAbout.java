@@ -40,43 +40,44 @@ import javax.swing.WindowConstants;
  */
 public class frmAbout
 {
-	private JFrame frmAbout;
 	private static final String URL = "www.l2jmobius.org";
-	final URI uri;
+	
+	private final URI _uri;
+	private JFrame _frmAbout;
 	
 	public frmAbout()
 	{
 		initialize();
-		uri = createURI(URL);
-		frmAbout.setVisible(true);
+		_uri = createURI(URL);
+		_frmAbout.setVisible(true);
 	}
 	
 	private void initialize()
 	{
-		frmAbout = new JFrame();
-		frmAbout.setResizable(false);
-		frmAbout.setTitle("About");
-		frmAbout.setBounds(100, 100, 297, 197);
-		frmAbout.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmAbout.setType(Type.UTILITY);
-		frmAbout.getContentPane().setLayout(null);
+		_frmAbout = new JFrame();
+		_frmAbout.setResizable(false);
+		_frmAbout.setTitle("About");
+		_frmAbout.setBounds(100, 100, 297, 197);
+		_frmAbout.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		_frmAbout.setType(Type.UTILITY);
+		_frmAbout.getContentPane().setLayout(null);
 		
 		final JLabel lblLjmobius = new JLabel("L2jMobius");
 		lblLjmobius.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		lblLjmobius.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLjmobius.setBounds(10, 11, 271, 39);
-		frmAbout.getContentPane().add(lblLjmobius);
+		_frmAbout.getContentPane().add(lblLjmobius);
 		
 		final JLabel lblData = new JLabel("2013-" + Calendar.getInstance().get(Calendar.YEAR));
 		lblData.setHorizontalAlignment(SwingConstants.CENTER);
 		lblData.setBounds(10, 44, 271, 14);
-		frmAbout.getContentPane().add(lblData);
+		_frmAbout.getContentPane().add(lblData);
 		
 		final JLabel lblLoginServer = new JLabel("Login Server");
 		lblLoginServer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLoginServer.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblLoginServer.setBounds(10, 86, 271, 23);
-		frmAbout.getContentPane().add(lblLoginServer);
+		_frmAbout.getContentPane().add(lblLoginServer);
 		
 		final JLabel site = new JLabel(URL);
 		site.setText("<html><font color=\"#000099\"><u>" + URL + "</u></font></html>");
@@ -91,7 +92,7 @@ public class frmAbout
 				{
 					try
 					{
-						Desktop.getDesktop().browse(uri);
+						Desktop.getDesktop().browse(_uri);
 					}
 					catch (IOException e)
 					{
@@ -100,10 +101,10 @@ public class frmAbout
 				}
 			}
 		});
-		frmAbout.getContentPane().add(site);
+		_frmAbout.getContentPane().add(site);
 		
 		// Center frame to screen.
-		frmAbout.setLocationRelativeTo(null);
+		_frmAbout.setLocationRelativeTo(null);
 	}
 	
 	private static URI createURI(String str)

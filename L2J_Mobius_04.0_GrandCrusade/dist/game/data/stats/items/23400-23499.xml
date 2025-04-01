@@ -1502,7 +1502,7 @@
 		<set name="material" val="FISH" />
 		<set name="reuse_delay" val="3600000" />
 		<skills>
-			<skill id="22765" level="1" /> <!-- PC Vitality -->
+			<skill id="22765" level="1" /> <!-- PA Vitality -->
 		</skills>
 	</item>
 	<item id="23491" name="Vitality Maintaining Potion (10-minute) (Event)" type="EtcItem">

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests;
 
@@ -225,6 +229,13 @@ import quests.Q20203_HotSpringsMiraculousDrink1.Q20203_HotSpringsMiraculousDrink
 import quests.Q20204_HotSpringsMiraculousDrink2.Q20204_HotSpringsMiraculousDrink2;
 import quests.Q20205_BrekasStrongholdKillHalfDemonOrcs.Q20205_BrekasStrongholdKillHalfDemonOrcs;
 import quests.Q20221_CrumaMarshlandsHellsGate.Q20221_CrumaMarshlandsHellsGate;
+import quests.Q20222_FrozenLabyrinthSavingGuildsmen.Q20222_FrozenLabyrinthSavingGuildsmen;
+import quests.Q20223_DragonValleySearchForTheWatcher1.Q20223_DragonValleySearchForTheWatcher1;
+import quests.Q20224_DragonValleySearchForTheWatcher2.Q20224_DragonValleySearchForTheWatcher2;
+import quests.Q20225_DragonValleySearchForTheWatcher3.Q20225_DragonValleySearchForTheWatcher3;
+import quests.Q20241_SelMahumBaseDastardlyTask.Q20241_SelMahumBaseDastardlyTask;
+import quests.Q20242_FafurionTempleKillTheWaterDragon.Q20242_FafurionTempleKillTheWaterDragon;
+import quests.Q20261_ShadowOfTheMotherTreeFinalBattle.Q20261_ShadowOfTheMotherTreeFinalBattle;
 import quests.Q20262_ExecutionGroundsSecurity.Q20262_ExecutionGroundsSecurity;
 import quests.Q20281_ReconnaissanceInLangkLizardmenBarracks.Q20281_ReconnaissanceInLangkLizardmenBarracks;
 import quests.Q20282_FreePrisonersInLangkLizardmenTemple1.Q20282_FreePrisonersInLangkLizardmenTemple1;
@@ -247,9 +258,11 @@ import quests.Q21015_InTheSearchOfTheFireSource2.Q21015_InTheSearchOfTheFireSour
 import quests.Q21016_FireSmell1.Q21016_FireSmell1;
 import quests.Q21017_FireSmell2.Q21017_FireSmell2;
 import quests.Q21018_FireSmell3.Q21018_FireSmell3;
+import quests.Q30001_BattleForBanditStronghold.Q30001_BattleForBanditStronghold;
+import quests.Q30002_TamingWildBeasts.Q30002_TamingWildBeasts;
 
 /**
- * @author NosBit
+ * @author NosBit, Mobius
  */
 public class QuestMasterHandler
 {
@@ -463,13 +476,13 @@ public class QuestMasterHandler
 		Q20204_HotSpringsMiraculousDrink2.class,
 		Q20205_BrekasStrongholdKillHalfDemonOrcs.class,
 		Q20221_CrumaMarshlandsHellsGate.class,
-		// Q20222_FrozenLabyrinthSavingGuildsmen.class, TODO
-		// Q20223_DragonValleySearchForTheWatcher1.class, TODO
-		// Q20224_DragonValleySearchForTheWatcher2.class, TODO
-		// Q20225_DragonValleySearchForTheWatcher3.class, TODO
-		// Q20241_SelMahumBaseDastardlyTask.class, TODO
-		// Q20242_FafurionTempleKillTheWaterDragon.class, TODO
-		// Q20261_ShadowOfTheMotherTreeFinalBattle.class, TODO
+		Q20222_FrozenLabyrinthSavingGuildsmen.class,
+		Q20223_DragonValleySearchForTheWatcher1.class,
+		Q20224_DragonValleySearchForTheWatcher2.class,
+		Q20225_DragonValleySearchForTheWatcher3.class,
+		Q20241_SelMahumBaseDastardlyTask.class,
+		Q20242_FafurionTempleKillTheWaterDragon.class,
+		Q20261_ShadowOfTheMotherTreeFinalBattle.class,
 		Q20262_ExecutionGroundsSecurity.class,
 		Q20281_ReconnaissanceInLangkLizardmenBarracks.class,
 		Q20282_FreePrisonersInLangkLizardmenTemple1.class,
@@ -492,8 +505,8 @@ public class QuestMasterHandler
 		Q21016_FireSmell1.class,
 		Q21017_FireSmell2.class,
 		Q21018_FireSmell3.class,
-		// Q30001_BattleForBanditStronghold.class, TODO
-		// Q30002_TamingWildBeasts.class TODO
+		Q30001_BattleForBanditStronghold.class,
+		Q30002_TamingWildBeasts.class
 	};
 	
 	public static void main(String[] args)

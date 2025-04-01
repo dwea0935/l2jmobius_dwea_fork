@@ -28,6 +28,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.RandomCraftData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.RandomCraftRequest;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.randomcraft.ExCraftExtract;
@@ -112,11 +113,11 @@ public class ExRequestRandomCraftExtract extends ClientPacket
 			return;
 		}
 		
-		if (player.reduceAdena("RandomCraft Extract", fee, player, true))
+		if (player.reduceAdena(ItemProcessType.FEE, fee, player, true))
 		{
 			for (Entry<Integer, Long> e : toDestroy.entrySet())
 			{
-				player.destroyItem("RandomCraft Extract", e.getKey(), e.getValue(), player, true);
+				player.destroyItem(ItemProcessType.FEE, e.getKey(), e.getValue(), player, true);
 			}
 			player.getRandomCraft().addCraftPoints(points);
 		}

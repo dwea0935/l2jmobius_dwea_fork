@@ -30,9 +30,9 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.TeleportListHolder;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.TeleportListHolder;
 
 /**
  * @author NviX, Mobius
@@ -40,6 +40,7 @@ import org.l2jmobius.gameserver.model.holders.TeleportListHolder;
 public class TeleportListData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(TeleportListData.class.getName());
+	
 	private final Map<Integer, TeleportListHolder> _teleports = new HashMap<>();
 	private int _teleportCount = 0;
 	
@@ -58,32 +59,50 @@ public class TeleportListData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "teleport", teleportNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "teleport", teleportNode ->
 		{
+			// Parse attributes for the teleport node.
 			final StatSet set = new StatSet(parseAttributes(teleportNode));
 			final int tpId = set.getInt("id");
 			final int tpPrice = set.getInt("price");
+			
+			// Initialize locations list.
 			final List<Location> locations = new ArrayList<>();
+			
+			// Parse each "location" element within the "teleport" node.
 			forEach(teleportNode, "location", locationsNode ->
 			{
 				final StatSet locationSet = new StatSet(parseAttributes(locationsNode));
 				locations.add(new Location(locationSet.getInt("x"), locationSet.getInt("y"), locationSet.getInt("z")));
 			});
+			
+			// If no locations were added, add a default location from teleport attributes.
 			if (locations.isEmpty())
 			{
 				locations.add(new Location(set.getInt("x"), set.getInt("y"), set.getInt("z")));
 			}
+			
+			// Add the teleport entry to _teleports.
 			_teleports.put(tpId, new TeleportListHolder(tpId, locations, tpPrice));
 		}));
 	}
 	
+	/**
+	 * Retrieves the teleport information associated with the specified teleport ID.
+	 * @param teleportId the ID of the teleport
+	 * @return the {@link TeleportListHolder} associated with the given teleport ID, or {@code null} if no teleport is found
+	 */
 	public TeleportListHolder getTeleport(int teleportId)
 	{
 		return _teleports.get(teleportId);
 	}
 	
+	/**
+	 * Gets the total count of available teleports.
+	 * @return the number of teleports
+	 */
 	public int getTeleportCount()
 	{
 		return _teleportCount;

@@ -16,9 +16,9 @@
  */
 package org.l2jmobius.gameserver.model.clan;
 
-import org.l2jmobius.gameserver.enums.ClanRewardType;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.clan.enums.ClanRewardType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * @author UnAfraid

@@ -1,29 +1,33 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests.Q00229_TestOfWitchcraft;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 
 public class Q00229_TestOfWitchcraft extends Quest
@@ -94,7 +98,7 @@ public class Q00229_TestOfWitchcraft extends Quest
 	
 	public Q00229_TestOfWitchcraft()
 	{
-		super(229);
+		super(229, "Test of Witchcraft");
 		registerQuestItems(ORIM_DIAGRAM, ALEXANDRIA_BOOK, IKER_LIST, DIRE_WYRM_FANG, LETO_LIZARDMAN_CHARM, EN_GOLEM_HEARTSTONE, LARA_MEMO, NESTLE_MEMO, LEOPOLD_JOURNAL, AKLANTOTH_GEM_1, AKLANTOTH_GEM_2, AKLANTOTH_GEM_3, AKLANTOTH_GEM_4, AKLANTOTH_GEM_5, AKLANTOTH_GEM_6, BRIMSTONE_1, ORIM_INSTRUCTIONS, ORIM_LETTER_1, ORIM_LETTER_2, SIR_VASPER_LETTER, VADIN_CRUCIFIX, TAMLIN_ORC_AMULET, VADIN_SANCTIONS, IKER_AMULET, SOULTRAP_CRYSTAL, PURGATORY_KEY, ZERUEL_BIND_CRYSTAL, BRIMSTONE_2, SWORD_OF_BINDING);
 		addStartNpc(ORIM);
 		addTalkId(LARA, ALEXANDRIA, IKER, VADIN, NESTLE, SIR_KLAUS_VASPER, LEOPOLD, KAIRA, ORIM, RODERIK, ENDRIGO, EVERT);
@@ -121,7 +125,7 @@ public class Q00229_TestOfWitchcraft extends Quest
 				if (!player.getVariables().getBoolean("secondClassChange39", false))
 				{
 					htmltext = "30630-08a.htm";
-					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getClassId().getId()));
+					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getPlayerClass().getId()));
 					player.getVariables().set("secondClassChange39", true);
 				}
 				break;
@@ -273,7 +277,7 @@ public class Q00229_TestOfWitchcraft extends Quest
 		{
 			case State.CREATED:
 			{
-				if ((player.getClassId() != ClassId.KNIGHT) && (player.getClassId() != ClassId.WIZARD) && (player.getClassId() != ClassId.PALUS_KNIGHT))
+				if ((player.getPlayerClass() != PlayerClass.KNIGHT) && (player.getPlayerClass() != PlayerClass.WIZARD) && (player.getPlayerClass() != PlayerClass.PALUS_KNIGHT))
 				{
 					htmltext = "30630-01.htm";
 				}
@@ -283,7 +287,7 @@ public class Q00229_TestOfWitchcraft extends Quest
 				}
 				else
 				{
-					htmltext = (player.getClassId() == ClassId.WIZARD) ? "30630-03.htm" : "30630-05.htm";
+					htmltext = (player.getPlayerClass() == PlayerClass.WIZARD) ? "30630-03.htm" : "30630-05.htm";
 				}
 				break;
 			}
@@ -584,12 +588,12 @@ public class Q00229_TestOfWitchcraft extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		final QuestState st = getQuestState(attacker, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		switch (npc.getId())
@@ -643,17 +647,15 @@ public class Q00229_TestOfWitchcraft extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		switch (npc.getId())
@@ -786,7 +788,5 @@ public class Q00229_TestOfWitchcraft extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 }

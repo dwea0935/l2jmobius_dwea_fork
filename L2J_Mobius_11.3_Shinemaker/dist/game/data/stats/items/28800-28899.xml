@@ -62,7 +62,6 @@
 		<!-- Activates the power of Agathion Libra. Can be upgraded up to Lv. 12 through compounding with Starlight Jar. Also can be enchanted to +10 by using Book of Growth. Primary skill: Scale of Life Lv. 10. Enables various additional skills when upgraded. Equipping it in the main slot summons the agathion and activates its primary and secondary skills. Equipping in an additional slot activates only secondary skills. Note!. 1. Compounding the charm resets its enchant value. 2. If Agathion Capricorn is also equipped, only its secondary skills will be active. -->
 		<set name="icon" val="BranchIcon.icon.g_bm_lib_agathion_charm" />
 		<set name="default_action" val="EQUIP" />
-		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="agathion" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />

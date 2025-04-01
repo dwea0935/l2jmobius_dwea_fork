@@ -21,7 +21,7 @@ import org.l2jmobius.gameserver.network.serverpackets.PackageSendableList;
 
 /**
  * @author -Wooden-
- * @author UnAfraid Thanks mrTJO
+ * @author UnAfraid, mrTJO
  */
 public class RequestPackageSendableItemList extends ClientPacket
 {

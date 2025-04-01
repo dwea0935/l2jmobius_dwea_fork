@@ -17,19 +17,18 @@
 package quests.Q00229_TestOfWitchcraft;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Test Of Witchcraft (229)
@@ -105,7 +104,7 @@ public class Q00229_TestOfWitchcraft extends Quest
 	
 	public Q00229_TestOfWitchcraft()
 	{
-		super(229);
+		super(229, "Test of Witchcraft");
 		{
 			addStartNpc(SHADOW_ORIM);
 			addTalkId(SHADOW_ORIM, GROCER_LARA, TRADER_ALEXANDRIA, MAGISTER_IKER, PRIEST_VADIN, TRADER_NESTLE, SIR_KLAUS_VASPER, LEOPOLD, MAGISTER_KAIRA, WARDEN_RODERIK, WARDEN_ENDRIGO, FISHER_EVERT);
@@ -136,7 +135,7 @@ public class Q00229_TestOfWitchcraft extends Quest
 					giveItems(player, ORIMS_DIAGRAM, 1);
 					if (player.getVariables().getInt("2ND_CLASS_DIAMOND_REWARD", 0) == 0)
 					{
-						if (player.getClassId() == ClassId.WIZARD)
+						if (player.getPlayerClass() == PlayerClass.WIZARD)
 						{
 							giveItems(player, DIMENSIONAL_DIAMOND, 122);
 						}
@@ -299,7 +298,7 @@ public class Q00229_TestOfWitchcraft extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isStarted())
@@ -311,7 +310,7 @@ public class Q00229_TestOfWitchcraft extends Quest
 					if (npc.isScriptValue(0) && hasQuestItems(attacker, ALEXANDRIAS_BOOK, LARAS_MEMO) && !hasQuestItems(attacker, AKLANTOTH_3RD_GEM))
 					{
 						npc.setScriptValue(1);
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.I_ABSOLUTELY_CANNOT_GIVE_IT_TO_YOU_IT_IS_MY_PRECIOUS_JEWEL));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "I absolutely cannot give it to you! It is my precious jewel!"));
 					}
 					break;
 				}
@@ -320,7 +319,7 @@ public class Q00229_TestOfWitchcraft extends Quest
 					if (npc.isScriptValue(0) && hasQuestItems(attacker, LEOPOLDS_JOURNAL) && !hasQuestItems(attacker, AKLANTOTH_4TH_GEM, AKLANTOTH_5TH_GEM, AKLANTOTH_6TH_GEM))
 					{
 						npc.setScriptValue(1);
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.I_ABSOLUTELY_CANNOT_GIVE_IT_TO_YOU_IT_IS_MY_PRECIOUS_JEWEL));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "I absolutely cannot give it to you! It is my precious jewel!"));
 					}
 					break;
 				}
@@ -328,27 +327,26 @@ public class Q00229_TestOfWitchcraft extends Quest
 				{
 					if (hasQuestItems(attacker, BRIMSTONE_1ST))
 					{
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.I_LL_TAKE_YOUR_LIVES_LATER));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "I'll take your lives later!"));
 						npc.deleteMe();
 						qs.setCond(5, true);
 					}
 					else if (hasQuestItems(attacker, ORIMS_INSTRUCTIONS, BRIMSTONE_2ND, SWORD_OF_BINDING, SOULTRAP_CRYSTAL) && npc.isScriptValue(0) && checkWeapon(attacker))
 					{
 						npc.setScriptValue(1);
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.THAT_SWORD_IS_REALLY));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "That sword is really...!"));
 					}
 					break;
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -467,7 +465,7 @@ public class Q00229_TestOfWitchcraft extends Quest
 				{
 					if (hasQuestItems(killer, ORIMS_INSTRUCTIONS, BRIMSTONE_2ND, SWORD_OF_BINDING, SOULTRAP_CRYSTAL) && (npc.getKillingBlowWeapon() == SWORD_OF_BINDING))
 					{
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.NO_I_HAVEN_T_COMPLETELY_FINISHED_THE_COMMAND_FOR_DESTRUCTION_AND_SLAUGHTER_YET));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "No! I haven't completely finished the command for destruction and slaughter yet!!!"));
 						takeItems(killer, SOULTRAP_CRYSTAL, 1);
 						giveItems(killer, PURGATORY_KEY, 1);
 						giveItems(killer, ZERUEL_BIND_CRYSTAL, 1);
@@ -479,7 +477,6 @@ public class Q00229_TestOfWitchcraft extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -491,11 +488,11 @@ public class Q00229_TestOfWitchcraft extends Quest
 		{
 			if (npc.getId() == SHADOW_ORIM)
 			{
-				if ((player.getClassId() == ClassId.WIZARD) || (player.getClassId() == ClassId.KNIGHT) || (player.getClassId() == ClassId.PALUS_KNIGHT))
+				if ((player.getPlayerClass() == PlayerClass.WIZARD) || (player.getPlayerClass() == PlayerClass.KNIGHT) || (player.getPlayerClass() == PlayerClass.PALUS_KNIGHT))
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
-						if (player.getClassId() == ClassId.WIZARD)
+						if (player.getPlayerClass() == PlayerClass.WIZARD)
 						{
 							htmltext = "30630-03.htm";
 						}

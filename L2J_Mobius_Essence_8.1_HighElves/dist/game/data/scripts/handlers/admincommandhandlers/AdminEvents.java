@@ -23,12 +23,11 @@ package handlers.admincommandhandlers;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Event;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 public class AdminEvents implements IAdminCommandHandler
 {
@@ -85,18 +84,18 @@ public class AdminEvents implements IAdminCommandHandler
 					{
 						if (event.eventStart(activeChar))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Event " + eventName + " started.");
+							activeChar.sendSysMessage("Event " + eventName + " started.");
 							return true;
 						}
 						
-						BuilderUtil.sendSysMessage(activeChar, "There is problem starting " + eventName + " event.");
+						activeChar.sendSysMessage("There is problem starting " + eventName + " event.");
 						return true;
 					}
 				}
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //event_start <eventname>");
+				activeChar.sendSysMessage("Usage: //event_start <eventname>");
 				return false;
 			}
 		}
@@ -111,18 +110,18 @@ public class AdminEvents implements IAdminCommandHandler
 					{
 						if (event.eventStop())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Event " + eventName + " stopped.");
+							activeChar.sendSysMessage("Event " + eventName + " stopped.");
 							return true;
 						}
 						
-						BuilderUtil.sendSysMessage(activeChar, "There is problem with stoping " + eventName + " event.");
+						activeChar.sendSysMessage("There is problem with stoping " + eventName + " event.");
 						return true;
 					}
 				}
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //event_start <eventname>");
+				activeChar.sendSysMessage("Usage: //event_start <eventname>");
 				return false;
 			}
 		}
@@ -141,7 +140,7 @@ public class AdminEvents implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //event_bypass <eventname> <bypass>");
+				activeChar.sendSysMessage("Usage: //event_bypass <eventname> <bypass>");
 				return false;
 			}
 		}

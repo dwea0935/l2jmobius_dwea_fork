@@ -20,14 +20,15 @@ import java.util.Collection;
 import java.util.List;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.AcquireSkillType;
-import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExAcquirableSkillListByClass;
 
@@ -136,7 +137,7 @@ public class HealerTrainer extends AbstractNpcAI
 				else
 				{
 					boolean hasSkills = false;
-					final Collection<SkillLearn> skills = SkillTreeData.getInstance().getTransferSkillTree(player.getClassId()).values();
+					final Collection<SkillLearn> skills = SkillTreeData.getInstance().getTransferSkillTree(player.getPlayerClass()).values();
 					for (SkillLearn skillLearn : skills)
 					{
 						final Skill skill = player.getKnownSkill(skillLearn.getSkillId());
@@ -145,7 +146,7 @@ public class HealerTrainer extends AbstractNpcAI
 							player.removeSkill(skill);
 							for (List<ItemHolder> item : skillLearn.getRequiredItems())
 							{
-								player.addItem("Cleanse", item.get(0).getId(), item.get(0).getCount(), npc, true);
+								player.addItem(ItemProcessType.REFUND, item.get(0).getId(), item.get(0).getCount(), npc, true);
 							}
 							hasSkills = true;
 						}
@@ -154,7 +155,7 @@ public class HealerTrainer extends AbstractNpcAI
 					// Adena gets reduced once.
 					if (hasSkills)
 					{
-						player.reduceAdena("Cleanse", Config.FEE_DELETE_TRANSFER_SKILLS, npc, true);
+						player.reduceAdena(ItemProcessType.FEE, Config.FEE_DELETE_TRANSFER_SKILLS, npc, true);
 					}
 				}
 				break;
@@ -171,7 +172,7 @@ public class HealerTrainer extends AbstractNpcAI
 	private static boolean hasTransferSkillItems(Player player)
 	{
 		int itemId;
-		switch (player.getClassId())
+		switch (player.getPlayerClass())
 		{
 			case CARDINAL:
 			{

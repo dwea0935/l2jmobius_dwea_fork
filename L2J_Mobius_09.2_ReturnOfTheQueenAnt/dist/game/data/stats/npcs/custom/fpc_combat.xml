@@ -17,7 +17,8 @@
 				<run ground="132" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<status talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<fakePlayer classId="148" hair="0" hairColor="0" face="0" equipRHand="37869" equipLHand="37212" equipHead="37209" equipGloves="37210" equipChest="37207" equipLegs="37208" equipFeet="37211" equipCloak="30310" />
 		<ai type="FIGHTER" clanHelpRange="1000" aggroRange="1000" isAggressive="true"> <!-- FIGHTER, ARCHER, BALANCED, MAGE, HEALER -->
 			<clanList>
 				<clan>FAKE_PLAYER</clan>
@@ -57,7 +58,8 @@
 				<run ground="130" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<status talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<fakePlayer classId="154" hair="0" hairColor="0" face="0" equipRHand="37870" equipHead="37215" equipGloves="37216" equipChest="37213" equipLegs="37214" equipFeet="37217" equipCloak="30311" />
 		<ai type="FIGHTER" clanHelpRange="1000" aggroRange="1000" isAggressive="true"> <!-- FIGHTER, ARCHER, BALANCED, MAGE, HEALER -->
 			<clanList>
 				<clan>FAKE_PLAYER</clan>
@@ -93,7 +95,8 @@
 				<run ground="131" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<status talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<fakePlayer classId="161" hair="0" hairColor="0" face="0" equipRHand="37880" equipHead="37215" equipGloves="37216" equipChest="37213" equipLegs="37214" equipFeet="37217" equipCloak="30312" />
 		<ai type="FIGHTER" clanHelpRange="1000" aggroRange="1000" isAggressive="true"> <!-- FIGHTER, ARCHER, BALANCED, MAGE, HEALER -->
 			<clanList>
 				<clan>FAKE_PLAYER</clan>
@@ -131,7 +134,8 @@
 				<run ground="140" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<status talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<fakePlayer classId="165" hair="0" hairColor="0" face="0" equipRHand="37875" equipHead="37215" equipGloves="37216" equipChest="37213" equipLegs="37214" equipFeet="37217" equipCloak="30313" />
 		<ai type="ARCHER" clanHelpRange="1000" aggroRange="1000" isAggressive="true"> <!-- FIGHTER, ARCHER, BALANCED, MAGE, HEALER -->
 			<clanList>
 				<clan>FAKE_PLAYER</clan>
@@ -169,7 +173,8 @@
 				<run ground="124" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<status talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<fakePlayer classId="166" hair="0" hairColor="0" face="0" equipRHand="37878" equipHead="37220" equipGloves="37221" equipChest="37218" equipLegs="37219" equipFeet="37222" equipCloak="30314" />
 		<ai type="MAGE" clanHelpRange="1000" aggroRange="1000" isAggressive="true"> <!-- FIGHTER, ARCHER, BALANCED, MAGE, HEALER -->
 			<clanList>
 				<clan>FAKE_PLAYER</clan>
@@ -209,7 +214,8 @@
 				<run ground="139" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<status talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<fakePlayer classId="173" hair="0" hairColor="0" face="0" equipRHand="37879" equipHead="37209" equipGloves="37210" equipChest="37207" equipLegs="37208" equipFeet="37211" equipCloak="30316" />
 		<ai type="BALANCED" clanHelpRange="1000" aggroRange="1000" isAggressive="true"> <!-- FIGHTER, ARCHER, BALANCED, MAGE, HEALER -->
 			<clanList>
 				<clan>FAKE_PLAYER</clan>
@@ -247,7 +253,8 @@
 				<run ground="129" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<status talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<fakePlayer classId="180" hair="0" hairColor="0" face="0" equipRHand="37876" equipLHand="37223" equipHead="37220" equipGloves="37221" equipChest="37218" equipLegs="37219" equipFeet="37222" equipCloak="30317" />
 		<ai type="HEALER" clanHelpRange="1000" aggroRange="1000" isAggressive="true"> <!-- FIGHTER, ARCHER, BALANCED, MAGE, HEALER -->
 			<clanList>
 				<clan>FAKE_PLAYER</clan>
@@ -283,7 +290,8 @@
 				<run ground="141" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<status talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<fakePlayer classId="188" hair="0" hairColor="0" face="0" equipRHand="37872" equipHead="37215" equipGloves="37216" equipChest="37213" equipLegs="37214" equipFeet="37217" equipCloak="40200" />
 		<ai type="FIGHTER" clanHelpRange="1000" aggroRange="1000" isAggressive="true"> <!-- FIGHTER, ARCHER, BALANCED, MAGE, HEALER -->
 			<clanList>
 				<clan>FAKE_PLAYER</clan>
@@ -319,7 +327,8 @@
 				<run ground="141" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<status talkable="false" randomAnimation="false" randomWalk="false" attackable="true" />
+		<fakePlayer classId="189" hair="0" hairColor="0" face="0" equipRHand="37878" equipHead="37220" equipGloves="37221" equipChest="37218" equipLegs="37219" equipFeet="37222" equipCloak="40201" />
 		<ai type="BALANCED" clanHelpRange="1000" aggroRange="1000" isAggressive="true"> <!-- FIGHTER, ARCHER, BALANCED, MAGE, HEALER -->
 			<clanList>
 				<clan>FAKE_PLAYER</clan>

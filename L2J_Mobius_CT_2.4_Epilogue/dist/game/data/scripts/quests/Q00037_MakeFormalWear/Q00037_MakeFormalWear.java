@@ -47,7 +47,7 @@ public class Q00037_MakeFormalWear extends Quest
 	
 	public Q00037_MakeFormalWear()
 	{
-		super(37);
+		super(37, "Make Formal Wear");
 		addStartNpc(ALEXIS);
 		addTalkId(ALEXIS, JEREMY, LEIKAR, MIST);
 		registerQuestItems(SIGNET_RING, ICE_WINE, BOX_OF_COOKIES);

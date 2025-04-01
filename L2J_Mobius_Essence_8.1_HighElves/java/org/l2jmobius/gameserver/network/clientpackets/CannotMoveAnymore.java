@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 
@@ -54,7 +54,7 @@ public class CannotMoveAnymore extends ClientPacket
 		
 		if (player.getAI() != null)
 		{
-			player.getAI().notifyEvent(CtrlEvent.EVT_ARRIVED_BLOCKED, new Location(_x, _y, _z, _heading));
+			player.getAI().notifyAction(Action.ARRIVED_BLOCKED, new Location(_x, _y, _z, _heading));
 		}
 	}
 }

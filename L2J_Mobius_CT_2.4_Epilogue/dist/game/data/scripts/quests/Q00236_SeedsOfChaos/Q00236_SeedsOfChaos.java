@@ -17,16 +17,15 @@
 package quests.Q00236_SeedsOfChaos;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q00025_HidingBehindTheTruth.Q00025_HidingBehindTheTruth;
 
@@ -74,7 +73,7 @@ public class Q00236_SeedsOfChaos extends Quest
 	
 	public Q00236_SeedsOfChaos()
 	{
-		super(236);
+		super(236, "Seeds of Chaos");
 		addStartNpc(HIERARCH_KEKROPUS);
 		addTalkId(HIERARCH_KEKROPUS, KURSTIN, MYSTERIOU_WIZARD, VICE_HIERARCH_MAO, KATENAR, HARKILGAMED, RODENPICULA, ROCK, MOTHER_NORNIL, KATENAR_A, KATENAR_B, HARKILGAMED_A);
 		addKillId(NEEDLE_STAKATO_DRONE, SHOUT_OF_SPLENDOR, ALLIANCE_OF_SPLENDOR, ALLIANCE_OF_SPLENDOR_1, SIGNET_OF_SPLENDOR, CROWN_OF_SPLENDOR, FANG_OF_SPLENDOR, FANG_OF_SPLENDOR_1, WAILINGOF_SPLENDOR, WAILINGOF_SPLENDOR_1, VAMPIRE_WIZARD, VAMPIRE_WIZARD_A);
@@ -94,7 +93,7 @@ public class Q00236_SeedsOfChaos extends Quest
 				npc0.getVariables().set("SPAWNED", false);
 				if (c0 != null)
 				{
-					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.HMM_WHERE_DID_MY_FRIEND_GO));
+					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Hmm, where did my friend go?"));
 				}
 			}
 			npc.deleteMe();
@@ -106,7 +105,7 @@ public class Q00236_SeedsOfChaos extends Quest
 			if ((npc0 != null) && npc0.getVariables().getBoolean("SPAWNED"))
 			{
 				npc0.getVariables().set("SPAWNED", false);
-				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.GRAAAH_WE_RE_BEING_ATTACKED));
+				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Graaah, we're being attacked!"));
 			}
 			npc.deleteMe();
 			return super.onEvent(event, npc, player);
@@ -120,7 +119,7 @@ public class Q00236_SeedsOfChaos extends Quest
 				npc0.getVariables().set("SPAWNED", false);
 				if (c0 != null)
 				{
-					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.HMM_WHERE_DID_MY_FRIEND_GO));
+					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Hmm, where did my friend go?"));
 				}
 			}
 			npc.deleteMe();
@@ -135,7 +134,7 @@ public class Q00236_SeedsOfChaos extends Quest
 				npc0.getVariables().set("SPAWNED", false);
 				if (c0 != null)
 				{
-					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.HMM_WHERE_DID_MY_FRIEND_GO));
+					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Hmm, where did my friend go?"));
 				}
 			}
 			npc.deleteMe();
@@ -147,7 +146,7 @@ public class Q00236_SeedsOfChaos extends Quest
 			if ((npc0 != null) && npc0.getVariables().getBoolean("SPAWNED"))
 			{
 				npc0.getVariables().set("SPAWNED", false);
-				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.GRAAAH_WE_RE_BEING_ATTACKED));
+				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Graaah, we're being attacked!"));
 			}
 			npc.deleteMe();
 			return super.onEvent(event, npc, player);
@@ -518,7 +517,7 @@ public class Q00236_SeedsOfChaos extends Quest
 						{
 							npc0.getVariables().set("SPAWNED", false);
 						}
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.BEST_OF_LUCK_WITH_YOUR_FUTURE_ENDEAVOURS));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Best of luck with your future endeavours."));
 						npc.deleteMe();
 					}
 				}
@@ -536,7 +535,7 @@ public class Q00236_SeedsOfChaos extends Quest
 						{
 							npc0.getVariables().set("SPAWNED", false);
 						}
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.IN_THAT_CASE_I_WISH_YOU_GOOD_LUCK));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "In that case, I wish you good luck."));
 						npc.deleteMe();
 					}
 				}
@@ -552,7 +551,7 @@ public class Q00236_SeedsOfChaos extends Quest
 					{
 						npc0.getVariables().set("SPAWNED", false);
 					}
-					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.BEST_OF_LUCK_WITH_YOUR_FUTURE_ENDEAVOURS));
+					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Best of luck with your future endeavours."));
 					npc.deleteMe();
 				}
 				break;
@@ -569,7 +568,7 @@ public class Q00236_SeedsOfChaos extends Quest
 						{
 							npc0.getVariables().set("SPAWNED", false);
 						}
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.BEST_OF_LUCK_WITH_YOUR_FUTURE_ENDEAVOURS));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Best of luck with your future endeavours."));
 						npc.deleteMe();
 					}
 				}
@@ -587,7 +586,7 @@ public class Q00236_SeedsOfChaos extends Quest
 						{
 							npc0.getVariables().set("SPAWNED", false);
 						}
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.SAFE_TRAVELS));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Safe travels!"));
 						npc.deleteMe();
 					}
 				}
@@ -649,10 +648,10 @@ public class Q00236_SeedsOfChaos extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -702,7 +701,6 @@ public class Q00236_SeedsOfChaos extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -1130,7 +1128,7 @@ public class Q00236_SeedsOfChaos extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -1140,14 +1138,14 @@ public class Q00236_SeedsOfChaos extends Quest
 				startQuestTimer("KATENAR_120", 120000, npc, null);
 				if (c0 != null)
 				{
-					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.S1_FINALLY_WE_MEET).addStringParameter(c0.getAppearance().getVisibleName()));
+					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, c0.getAppearance().getVisibleName() + "! Finally, we meet!"));
 				}
 				break;
 			}
 			case HARKILGAMED:
 			{
 				startQuestTimer("HARKILGAMED_120", 120000, npc, null);
-				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.HMM_IS_SOMEONE_APPROACHING));
+				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Hmm? Is someone approaching?"));
 				break;
 			}
 			case KATENAR_A:
@@ -1156,7 +1154,7 @@ public class Q00236_SeedsOfChaos extends Quest
 				startQuestTimer("KATENAR_A_120", 120000, npc, null);
 				if (c0 != null)
 				{
-					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.S1_DID_YOU_WAIT_FOR_LONG).addStringParameter(c0.getAppearance().getVisibleName()));
+					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, c0.getAppearance().getVisibleName() + "! Did you wait for long?"));
 				}
 				break;
 			}
@@ -1166,7 +1164,7 @@ public class Q00236_SeedsOfChaos extends Quest
 				startQuestTimer("KATENAR_B_120", 120000, npc, null);
 				if (c0 != null)
 				{
-					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.DID_YOU_BRING_WHAT_I_ASKED_S1).addStringParameter(c0.getAppearance().getVisibleName()));
+					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Did you bring what I asked, " + c0.getAppearance().getVisibleName() + "?"));
 				}
 				break;
 			}
@@ -1176,11 +1174,10 @@ public class Q00236_SeedsOfChaos extends Quest
 				startQuestTimer("HARKILGAMED_A_120", 120000, npc, null);
 				if (c0 != null)
 				{
-					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.S1_HAS_EVERYTHING_BEEN_FOUND).addStringParameter(c0.getAppearance().getVisibleName()));
+					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, c0.getAppearance().getVisibleName() + ", has everything been found?"));
 				}
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 }

@@ -27,7 +27,8 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -69,7 +70,7 @@ public class ExAbilityOfFireLevelUp extends ServerPacket
 			{
 				for (ItemHolder requiredItems : getNextAbilityLevelRequirements())
 				{
-					_player.destroyItemByItemId(getClass().getSimpleName(), requiredItems.getId(), requiredItems.getCount(), _player, true);
+					_player.destroyItemByItemId(ItemProcessType.FEE, requiredItems.getId(), requiredItems.getCount(), _player, true);
 					_success = 1;
 				}
 				buffer.writeByte(_success); // int Result
@@ -92,7 +93,7 @@ public class ExAbilityOfFireLevelUp extends ServerPacket
 			{
 				for (ItemHolder requiredItems : getNextAbilityLevelRequirements())
 				{
-					_player.destroyItemByItemId(getClass().getSimpleName(), requiredItems.getId(), requiredItems.getCount(), _player, true);
+					_player.destroyItemByItemId(ItemProcessType.FEE, requiredItems.getId(), requiredItems.getCount(), _player, true);
 					_success = 1;
 				}
 				buffer.writeByte(_success); // int Result
@@ -115,7 +116,7 @@ public class ExAbilityOfFireLevelUp extends ServerPacket
 			{
 				for (ItemHolder requiredItems : getNextAbilityLevelRequirements())
 				{
-					_player.destroyItemByItemId(getClass().getSimpleName(), requiredItems.getId(), requiredItems.getCount(), _player, true);
+					_player.destroyItemByItemId(ItemProcessType.FEE, requiredItems.getId(), requiredItems.getCount(), _player, true);
 					_success = 1;
 				}
 				buffer.writeByte(_success); // int Result
@@ -138,7 +139,7 @@ public class ExAbilityOfFireLevelUp extends ServerPacket
 			{
 				for (ItemHolder requiredItems : getNextAbilityLevelRequirements())
 				{
-					_player.destroyItemByItemId(getClass().getSimpleName(), requiredItems.getId(), requiredItems.getCount(), _player, true);
+					_player.destroyItemByItemId(ItemProcessType.FEE, requiredItems.getId(), requiredItems.getCount(), _player, true);
 					_success = 1;
 				}
 				buffer.writeByte(_success); // int Result
@@ -161,7 +162,7 @@ public class ExAbilityOfFireLevelUp extends ServerPacket
 			{
 				for (ItemHolder requiredItems : getNextAbilityLevelRequirements())
 				{
-					_player.destroyItemByItemId(getClass().getSimpleName(), requiredItems.getId(), requiredItems.getCount(), _player, true);
+					_player.destroyItemByItemId(ItemProcessType.FEE, requiredItems.getId(), requiredItems.getCount(), _player, true);
 					_success = 1;
 				}
 				buffer.writeByte(_success); // int Result

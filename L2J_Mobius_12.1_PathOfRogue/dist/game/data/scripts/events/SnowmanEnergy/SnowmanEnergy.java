@@ -28,15 +28,16 @@ import java.util.logging.Level;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Snowman Energy event AI.
@@ -318,17 +319,17 @@ public class SnowmanEnergy extends LongTimeEvent
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		if (isEventPeriod())
 		{
 			if (getRandom(100) < 2)
 			{
-				if (CommonUtil.contains(MONSTERS_SOLO, npc.getId()))
+				if (ArrayUtil.contains(MONSTERS_SOLO, npc.getId()))
 				{
 					addSpawn(RED_SNOWMAN, npc, true, 60000);
 				}
-				else if (CommonUtil.contains(MONSTERS_PARTY, npc.getId()))
+				else if (ArrayUtil.contains(MONSTERS_PARTY, npc.getId()))
 				{
 					addSpawn(BLUE_SNOWMAN, npc, true, 60000);
 				}
@@ -338,7 +339,7 @@ public class SnowmanEnergy extends LongTimeEvent
 				SkillCaster.triggerCast(player, player, SNOWMAN_ENERGY);
 				if (getRandom(100) < 30)
 				{
-					player.addItem("Christmas gift", CHRISTMAS_GIFT, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, CHRISTMAS_GIFT, 1, player, true);
 				}
 			}
 			else if (npc.getId() == BLUE_SNOWMAN)
@@ -361,11 +362,10 @@ public class SnowmanEnergy extends LongTimeEvent
 				}
 				if (getRandom(100) < 30)
 				{
-					player.addItem("Christmas gift", CHRISTMAS_GIFT, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, CHRISTMAS_GIFT, 1, player, true);
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

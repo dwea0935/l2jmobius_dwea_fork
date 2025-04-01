@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="21500" level="69" type="FeedableBeast" name="Alpen Cougar">
 		<parameters>
@@ -1404,6 +1404,11 @@
 					<item id="8611" min="1" max="1" chance="100" /> <!-- Herb of Speed -->
 				</group>
 			</drop>
+			<spoil>
+				<item id="5442" min="1" max="1" chance="0.1199" /> <!-- Recipe: Soul Bow(60%) -->
+				<item id="5524" min="1" max="1" chance="3.1914" /> <!-- Sealed Dark Crystal Gaiters Pattern -->
+				<item id="5525" min="1" max="1" chance="5.0053" /> <!-- Sealed Dark Crystal Helmet Design -->
+			</spoil>
 		</dropLists>
 		<collision>
 			<radius normal="15" />

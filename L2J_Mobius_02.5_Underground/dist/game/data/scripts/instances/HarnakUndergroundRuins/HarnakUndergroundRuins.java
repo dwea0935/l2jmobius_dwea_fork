@@ -21,21 +21,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.variables.NpcVariables;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
@@ -499,7 +499,7 @@ public class HarnakUndergroundRuins extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = killer.getInstanceWorld();
 		if (world != null)
@@ -601,7 +601,6 @@ public class HarnakUndergroundRuins extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void moveNpcRoom1(int npcId, NpcStringId message, Instance world)
@@ -609,7 +608,7 @@ public class HarnakUndergroundRuins extends AbstractInstance
 		final Npc npc = world.getNpc(npcId);
 		if (npc != null)
 		{
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, NPC_ROOM1_LOC);
+			npc.getAI().setIntention(Intention.MOVE_TO, NPC_ROOM1_LOC);
 			npc.broadcastSay(ChatType.NPC_GENERAL, message);
 			startQuestTimer("timer", 2600, npc, null);
 			world.setParameter("currentNpc", npcId);
@@ -617,7 +616,7 @@ public class HarnakUndergroundRuins extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		final Instance world = player.getInstanceWorld();
 		if (world != null)
@@ -670,11 +669,10 @@ public class HarnakUndergroundRuins extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -685,15 +683,14 @@ public class HarnakUndergroundRuins extends AbstractInstance
 				startQuestTimer("whisper_to_player", 2000, npc, player);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (!creature.isPlayer())
 		{
-			return null;
+			return;
 		}
 		
 		final Player player = creature.asPlayer();
@@ -727,7 +724,6 @@ public class HarnakUndergroundRuins extends AbstractInstance
 				}
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	public static void main(String[] args)

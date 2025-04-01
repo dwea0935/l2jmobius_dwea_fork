@@ -23,10 +23,10 @@ package ai.areas.SeaOfSpores;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -71,7 +71,7 @@ public class SeaOfSpores extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if ((npc.getCurrentHp() <= (npc.getMaxHp() * 0.7)) && !npc.isCastingNow())
 		{
@@ -84,17 +84,16 @@ public class SeaOfSpores extends AbstractNpcAI
 				npc.doCast(ABSORB_ENERGY1.getSkill());
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		if (CommonUtil.contains(SOLO_MOBS, npc.getId()) && (getRandom(1000) < 2))
+		if (ArrayUtil.contains(SOLO_MOBS, npc.getId()) && (getRandom(1000) < 2))
 		{
 			addSpawn(ARIMUS, npc, false, 300000);
 		}
-		else if (CommonUtil.contains(GROUP_MOBS, npc.getId()) && (getRandom(1000) < 2))
+		else if (ArrayUtil.contains(GROUP_MOBS, npc.getId()) && (getRandom(1000) < 2))
 		{
 			addSpawn(ARIMA, npc, false, 300000);
 		}
@@ -135,7 +134,6 @@ public class SeaOfSpores extends AbstractNpcAI
 				member.doCast(REFINED_ENERGY.getSkill());
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

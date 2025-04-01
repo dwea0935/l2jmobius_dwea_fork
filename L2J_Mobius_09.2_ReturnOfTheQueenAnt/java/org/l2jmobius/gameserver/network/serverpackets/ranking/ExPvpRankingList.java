@@ -28,13 +28,13 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.RankingCategory;
-import org.l2jmobius.gameserver.enums.RankingScope;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.RankingCategory;
+import org.l2jmobius.gameserver.model.actor.enums.player.RankingScope;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -76,7 +76,7 @@ public class ExPvpRankingList extends ServerPacket
 		if (!_playerList.isEmpty() && (_type != 255) && (_race != 255))
 		{
 			final RankingCategory category = RankingCategory.values()[_tabId];
-			writeFilteredRankingData(category, category.getScopeByGroup(_type), Race.values()[_race], ClassId.getClassId(_class), buffer);
+			writeFilteredRankingData(category, category.getScopeByGroup(_type), Race.values()[_race], PlayerClass.getPlayerClass(_class), buffer);
 		}
 		else
 		{
@@ -84,7 +84,7 @@ public class ExPvpRankingList extends ServerPacket
 		}
 	}
 	
-	private void writeFilteredRankingData(RankingCategory category, RankingScope scope, Race race, ClassId baseclass, WritableBuffer buffer)
+	private void writeFilteredRankingData(RankingCategory category, RankingScope scope, Race race, PlayerClass baseclass, WritableBuffer buffer)
 	{
 		switch (category)
 		{

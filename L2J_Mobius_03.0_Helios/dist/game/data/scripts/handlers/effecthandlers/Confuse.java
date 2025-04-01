@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -65,7 +65,7 @@ public class Confuse extends AbstractEffect
 	@Override
 	public void instant(Creature effector, Creature effected, Skill skill, Item item)
 	{
-		effected.getAI().notifyEvent(CtrlEvent.EVT_CONFUSED);
+		effected.getAI().notifyAction(Action.CONFUSED);
 		
 		final List<Creature> targetList = new ArrayList<>();
 		// Getting the possible targets
@@ -79,7 +79,7 @@ public class Confuse extends AbstractEffect
 			final Creature target = targetList.get(Rnd.get(targetList.size()));
 			// Attacking the target
 			effected.setTarget(target);
-			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+			effected.getAI().setIntention(Intention.ATTACK, target);
 		}
 	}
 }

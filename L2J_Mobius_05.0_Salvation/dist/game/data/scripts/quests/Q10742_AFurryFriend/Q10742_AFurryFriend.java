@@ -17,13 +17,13 @@
 package quests.Q10742_AFurryFriend;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -111,7 +111,7 @@ public class Q10742_AFurryFriend extends Quest
 						ricky.setSummoner(player);
 						ricky.setTitle(player.getName());
 						ricky.setRunning();
-						ricky.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+						ricky.getAI().setIntention(Intention.FOLLOW, player);
 						startQuestTimer("CHECK_RICKY_DISTANCE", 2500, ricky, player);
 					}
 					else // Already have Ricky
@@ -130,7 +130,7 @@ public class Q10742_AFurryFriend extends Quest
 				else if ((npc != null) && !npc.isDecayed())
 				{
 					// Follow was breaking sometimes, making sure it doesn't happen.
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+					npc.getAI().setIntention(Intention.FOLLOW, player);
 					
 					// Check Ricky position
 					final double distanceToRicky = player.calculateDistance2D(npc);

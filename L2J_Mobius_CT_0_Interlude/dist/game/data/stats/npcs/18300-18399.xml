@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="18300" level="33" type="Folk" name="Offering of the Branded, Evoked Spirit">
 		<parameters>
@@ -1116,7 +1116,7 @@
 			<height normal="50" />
 		</collision>
 	</npc>
-	<npc id="18328" level="80" type="Monster" name="Hall Alarm Device">
+	<npc id="18328" level="83" type="Monster" name="Hall Alarm Device">
 		<parameters>
 			<param name="TDoorName1" value="grave_pathway_1" />
 			<param name="TDoorName2" value="grave_pathway_2" />
@@ -1132,16 +1132,17 @@
 		</parameters>
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" evasion="7" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="100000" hpRegen="8.8" mp="1846.8" mpRegen="3.1" />
+			<attack physical="1034.34087" magical="760.9193205984" random="30" critical="4" accuracy="-3.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<defence physical="378.92625" magical="277.281785" evasion="7" />
 			<speed>
 				<walk ground="50" />
 				<run ground="1" />
 			</speed>
+			<hitTime>600</hitTime>
 		</stats>
-		<status undying="false" canBeSown="true" />
+		<status undying="false" canBeSown="true" canMove="false" />
 		<skillList>
 			<skill id="4416" level="2" /> <!-- Magic Creatures -->
 			<skill id="4408" level="16" /> <!-- HP Increase (8x) -->
@@ -1155,21 +1156,21 @@
 			<height normal="21" />
 		</collision>
 	</npc>
-	<npc id="18329" level="80" type="Monster" name="Hall Keeper Captain">
+	<npc id="18329" level="83" type="Monster" name="Hall Keeper Captain">
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
 			<param name="MoveAroundSocial1" value="0" />
 			<param name="MoveAroundSocial2" value="0" />
 			<skill name="PhysicalSpecial" id="4032" level="9" /> <!-- NPC Strike -->
-			<!-- <skill name="SelfBuff" id="4028" level="3" /> --> <!-- NPC Might -->
+			<skill name="SelfBuff" id="4028" level="3" /> <!-- NPC Might -->
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
 		<equipment rhand="78" /> <!-- rhand: Great Sword -->
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="30" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="40" />
 				<run ground="160" />
@@ -1190,7 +1191,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>5</sNpcPropHpRate>
-		<ai aggroRange="250" clanHelpRange="4000" isAggressive="false">
+		<ai aggroRange="2000" clanHelpRange="300" isAggressive="true">
 			<clanList>
 				<clan>HALLGUARD</clan>
 			</clanList>
@@ -1200,21 +1201,21 @@
 			<height normal="40" grown="48" />
 		</collision>
 	</npc>
-	<npc id="18330" level="80" type="Monster" name="Hall Keeper Wizard">
+	<npc id="18330" level="83" type="Monster" name="Hall Keeper Wizard">
 		<parameters>
-			<param name="MoveAroundSocial" value="114" />
-			<param name="MoveAroundSocial1" value="114" />
-			<param name="MoveAroundSocial2" value="114" />
+			<param name="MoveAroundSocial" value="0" />
+			<param name="MoveAroundSocial1" value="0" />
+			<param name="MoveAroundSocial2" value="0" />
 			<skill name="W_LongRangeDDMagic" id="4137" level="9" /> <!-- Hydro Screw -->
 			<skill name="W_ShortRangeDDMagic" id="4560" level="9" /> <!-- NPC Fire Burn -->
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
 		<equipment rhand="326" /> <!-- rhand: Heathen's Book -->
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="70" />
 				<run ground="175" />
@@ -1233,7 +1234,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>4</sNpcPropHpRate>
-		<ai type="MAGE" aggroRange="250" clanHelpRange="4000" isAggressive="false">
+		<ai type="MAGE" aggroRange="2000" clanHelpRange="300" isAggressive="true">
 			<clanList>
 				<clan>HALLGUARD</clan>
 			</clanList>
@@ -1243,21 +1244,21 @@
 			<height normal="40" />
 		</collision>
 	</npc>
-	<npc id="18331" level="80" type="Monster" name="Hall Keeper Guard">
+	<npc id="18331" level="83" type="Monster" name="Hall Keeper Guard">
 		<parameters>
-			<param name="MoveAroundSocial" value="74" />
-			<param name="MoveAroundSocial1" value="74" />
-			<param name="MoveAroundSocial2" value="74" />
+			<param name="MoveAroundSocial" value="0" />
+			<param name="MoveAroundSocial1" value="0" />
+			<param name="MoveAroundSocial2" value="0" />
 			<skill name="PhysicalSpecial" id="4032" level="9" /> <!-- NPC Strike -->
-			<!-- <skill name="SelfBuff" id="4028" level="3" /> --> <!-- NPC Might -->
+			<skill name="SelfBuff" id="4028" level="3" /> <!-- NPC Might -->
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
 		<equipment rhand="142" /> <!-- rhand: Keshanberk -->
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="30" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="27" />
 				<run ground="110" />
@@ -1278,7 +1279,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>4</sNpcPropHpRate>
-		<ai aggroRange="250" clanHelpRange="4000" isAggressive="false">
+		<ai aggroRange="2000" clanHelpRange="300" isAggressive="true">
 			<clanList>
 				<clan>HALLGUARD</clan>
 			</clanList>
@@ -1288,21 +1289,21 @@
 			<height normal="31" grown="36" />
 		</collision>
 	</npc>
-	<npc id="18332" level="80" type="Monster" name="Hall Keeper Patrol">
+	<npc id="18332" level="83" type="Monster" name="Hall Keeper Patrol">
 		<parameters>
-			<param name="MoveAroundSocial" value="110" />
-			<param name="MoveAroundSocial1" value="110" />
-			<param name="MoveAroundSocial2" value="110" />
+			<param name="MoveAroundSocial" value="0" />
+			<param name="MoveAroundSocial1" value="0" />
+			<param name="MoveAroundSocial2" value="0" />
 			<skill name="PhysicalSpecial" id="4101" level="9" /> <!-- NPC Spinning Slash -->
-			<!-- <skill name="SelfBuff" id="4028" level="3" /> --> <!-- NPC Might -->
+			<skill name="SelfBuff" id="4028" level="3" /> <!-- NPC Might -->
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
 		<equipment rhand="124" /> <!-- rhand: Two-Handed Sword -->
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="30" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="70" />
 				<run ground="170" />
@@ -1323,7 +1324,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>4</sNpcPropHpRate>
-		<ai aggroRange="250" clanHelpRange="4000" isAggressive="false">
+		<ai aggroRange="2000" clanHelpRange="300" isAggressive="true">
 			<clanList>
 				<clan>HALLGUARD</clan>
 			</clanList>
@@ -1333,19 +1334,19 @@
 			<height normal="31" grown="38" />
 		</collision>
 	</npc>
-	<npc id="18333" level="80" type="Monster" name="Hall Keeper Suicidal Soldier">
+	<npc id="18333" level="83" type="Monster" name="Hall Keeper Suicidal Soldier">
 		<parameters>
-			<param name="MoveAroundSocial" value="80" />
-			<param name="MoveAroundSocial1" value="80" />
-			<param name="MoveAroundSocial2" value="111" />
+			<param name="MoveAroundSocial" value="0" />
+			<param name="MoveAroundSocial1" value="0" />
+			<param name="MoveAroundSocial2" value="0" />
 			<skill name="SelfRangeDDMagic" id="4614" level="9" /> <!-- NPC Death Bomb -->
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="30" />
 				<run ground="150" />
@@ -1366,7 +1367,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>4</sNpcPropHpRate>
-		<ai aggroRange="250" clanHelpRange="4000" isAggressive="false">
+		<ai aggroRange="2000" clanHelpRange="300" isAggressive="true">
 			<clanList>
 				<clan>HALLGUARD</clan>
 			</clanList>
@@ -1376,20 +1377,20 @@
 			<height normal="25.8" />
 		</collision>
 	</npc>
-	<npc id="18334" level="85" type="Monster" name="Dark Choir Captain">
+	<npc id="18334" level="83" type="Monster" name="Dark Choir Captain">
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="50" critical="1" accuracy="9" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="31" />
 				<run ground="150" />
 			</speed>
 			<hitTime>480</hitTime>
 		</stats>
-		<status undying="false" canBeSown="true" />
+		<status undying="false" canBeSown="true" canMove="false" />
 		<skillList>
 			<skill id="4416" level="9" /> <!-- Demons -->
 			<skill id="4408" level="13" /> <!-- HP Increase (5x) -->
@@ -1401,30 +1402,35 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>5</sNpcPropHpRate>
-		<ai type="BALANCED" aggroRange="700" clanHelpRange="1500" isAggressive="false">
+		<ai type="BALANCED" aggroRange="2000" clanHelpRange="300" isAggressive="true">
 			<clanList>
 				<clan>DARKBAND</clan>
 			</clanList>
 		</ai>
+		<dropLists>
+			<drop>
+				<group chance="100">
+					<item id="8192" min="10" max="20" chance="100" /> <!-- Breaking Arrow -->
+				</group>
+			</drop>
+		</dropLists>
 		<collision>
 			<radius normal="21" grown="24" />
 			<height normal="50" grown="60" />
 		</collision>
 	</npc>
-	<npc id="18335" level="80" type="Monster" name="Dark Choir Prima Donna">
+	<npc id="18335" level="83" type="Monster" name="Dark Choir Prima Donna">
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
 			<param name="MoveAroundSocial1" value="0" />
 			<param name="MoveAroundSocial2" value="0" />
-			<skill name="PhysicalSpecial" id="4032" level="9" /> <!-- NPC Strike -->
-			<!-- <skill name="SelfBuff" id="4028" level="3" /> --> <!-- NPC Might -->
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="30" />
 				<run ground="200" />
@@ -1444,7 +1450,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>4</sNpcPropHpRate>
-		<ai type="BALANCED" aggroRange="700" clanHelpRange="1500" isAggressive="false">
+		<ai type="BALANCED" aggroRange="1000" clanHelpRange="300" isAggressive="false">
 			<clanList>
 				<clan>DARKBAND</clan>
 			</clanList>
@@ -1454,21 +1460,19 @@
 			<height normal="40" grown="50" />
 		</collision>
 	</npc>
-	<npc id="18336" level="80" type="Monster" name="Dark Choir Lancer">
+	<npc id="18336" level="83" type="Monster" name="Dark Choir Lancer">
 		<parameters>
-			<param name="MoveAroundSocial" value="80" />
-			<param name="MoveAroundSocial1" value="80" />
-			<param name="MoveAroundSocial2" value="80" />
-			<skill name="PhysicalSpecial" id="4032" level="9" /> <!-- NPC Strike -->
-			<!-- <skill name="SelfBuff" id="4028" level="3" /> --> <!-- NPC Might -->
+			<param name="MoveAroundSocial" value="0" />
+			<param name="MoveAroundSocial1" value="0" />
+			<param name="MoveAroundSocial2" value="0" />
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
 		<equipment rhand="1472" /> <!-- rhand: Dreadbane -->
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="100" />
 				<run ground="180" />
@@ -1489,7 +1493,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>4</sNpcPropHpRate>
-		<ai aggroRange="700" clanHelpRange="1500" isAggressive="false">
+		<ai aggroRange="1000" clanHelpRange="300" isAggressive="false">
 			<clanList>
 				<clan>DARKBAND</clan>
 			</clanList>
@@ -1499,20 +1503,20 @@
 			<height normal="45" grown="52" />
 		</collision>
 	</npc>
-	<npc id="18337" level="80" type="Monster" name="Dark Choir Archer">
+	<npc id="18337" level="83" type="Monster" name="Dark Choir Archer">
 		<parameters>
-			<param name="MoveAroundSocial" value="157" />
-			<param name="MoveAroundSocial1" value="157" />
-			<param name="MoveAroundSocial2" value="157" />
+			<param name="MoveAroundSocial" value="0" />
+			<param name="MoveAroundSocial1" value="0" />
+			<param name="MoveAroundSocial2" value="0" />
 			<skill name="PhysicalSpecial" id="4040" level="9" /> <!-- NPC Bow Attack -->
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
 		<equipment rhand="279" /> <!-- rhand: Reinforced Long Bow -->
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="50" critical="1" accuracy="9" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="40" />
 				<run ground="140" />
@@ -1533,7 +1537,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>4</sNpcPropHpRate>
-		<ai type="ARCHER" aggroRange="700" clanHelpRange="500" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" isAggressive="false">
 			<clanList>
 				<clan>DARKBAND</clan>
 			</clanList>
@@ -1543,7 +1547,7 @@
 			<height normal="32.5" />
 		</collision>
 	</npc>
-	<npc id="18338" level="80" type="Monster" name="Dark Choir Witch Doctor">
+	<npc id="18338" level="83" type="Monster" name="Dark Choir Witch Doctor">
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
 			<param name="MoveAroundSocial1" value="0" />
@@ -1553,10 +1557,10 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="30" />
 				<run ground="190" />
@@ -1576,7 +1580,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>3</sNpcPropHpRate>
-		<ai type="BALANCED" aggroRange="700" clanHelpRange="500" isAggressive="false">
+		<ai type="BALANCED" aggroRange="1000" clanHelpRange="300" isAggressive="false">
 			<clanList>
 				<clan>DARKBAND</clan>
 			</clanList>
@@ -1586,19 +1590,19 @@
 			<height normal="40" />
 		</collision>
 	</npc>
-	<npc id="18339" level="80" type="Monster" name="Dark Choir Player">
+	<npc id="18339" level="83" type="Monster" name="Dark Choir Player">
 		<parameters>
-			<param name="MoveAroundSocial" value="167" />
-			<param name="MoveAroundSocial1" value="167" />
-			<param name="MoveAroundSocial2" value="167" />
+			<param name="MoveAroundSocial" value="0" />
+			<param name="MoveAroundSocial1" value="0" />
+			<param name="MoveAroundSocial2" value="0" />
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
 		<equipment rhand="150" lhand="103" /> <!-- rhand: Elemental Sword lhand: Tower Shield -->
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="30" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="60" />
 				<run ground="140" />
@@ -1617,7 +1621,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>4</sNpcPropHpRate>
-		<ai type="BALANCED" aggroRange="700" clanHelpRange="1500" isAggressive="false">
+		<ai type="BALANCED" aggroRange="1000" clanHelpRange="300" isAggressive="false">
 			<clanList>
 				<clan>DARKBAND</clan>
 			</clanList>
@@ -1633,10 +1637,10 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="30" />
 				<run ground="100" />
@@ -1655,7 +1659,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>4</sNpcPropHpRate>
-		<ai type="BALANCED" aggroRange="300" clanHelpRange="1000" isAggressive="false">
+		<ai type="BALANCED" aggroRange="1000" clanHelpRange="300" isAggressive="false">
 			<clanList>
 				<clan>DARKBAND</clan>
 			</clanList>
@@ -1665,16 +1669,16 @@
 			<height normal="25.8" />
 		</collision>
 	</npc>
-	<npc id="18341" level="80" type="Monster" name="Hall Keeper Suicidal Soldier">
+	<npc id="18341" level="83" type="Monster" name="Hall Keeper Suicidal Soldier">
 		<parameters>
 			<skill name="SelfRangeDDMagic" id="5042" level="9" /> <!-- NPC Dispel Bomb -->
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<stats str="40" int="21" dex="30" wit="20" con="43" men="10">
-			<vitals hp="253165" hpRegen="13.43" mp="9999" mpRegen="3.09" />
-			<attack physical="4500" magical="3240" random="7" critical="8" accuracy="-3.75" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
-			<defence physical="3000" magical="2820" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3835.59060587002" hpRegen="8.5" mp="1777.4" mpRegen="3" />
+			<attack physical="1099.42361669366" magical="750.763809564873" random="10" critical="4" accuracy="5" attackSpeed="253" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="353.86144" magical="258.94045" />
 			<speed>
 				<walk ground="30" />
 				<run ground="150" />
@@ -1695,7 +1699,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>4</sNpcPropHpRate>
-		<ai type="BALANCED" aggroRange="300" clanHelpRange="1000" isAggressive="false">
+		<ai type="BALANCED" aggroRange="1000" clanHelpRange="300" isAggressive="false">
 			<clanList>
 				<clan>DARKBAND</clan>
 			</clanList>

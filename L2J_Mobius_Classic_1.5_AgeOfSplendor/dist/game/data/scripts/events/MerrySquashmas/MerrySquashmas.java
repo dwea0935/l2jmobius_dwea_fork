@@ -24,13 +24,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 
 /**
@@ -504,7 +504,7 @@ public class MerrySquashmas extends LongTimeEvent
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setImmobilized(true);
 		npc.disableCoreAI(true);
@@ -512,11 +512,10 @@ public class MerrySquashmas extends LongTimeEvent
 		{
 			npc.setInvul(true);
 		}
-		return null;
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		if (LARGE_SQUASH_LIST.contains(npc.getId()))
 		{
@@ -532,11 +531,10 @@ public class MerrySquashmas extends LongTimeEvent
 				npc.setInvul(true);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isPet);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isPet)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isPet)
 	{
 		if (SQUASH_LIST.contains(npc.getId()) && (skill.getId() == SNOWY_NECTAR_SKILL))
 		{
@@ -554,17 +552,15 @@ public class MerrySquashmas extends LongTimeEvent
 				}
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isPet);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		if (SQUASH_LIST.contains(npc.getId()))
 		{
 			dropItem(npc, killer);
 		}
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	@Override

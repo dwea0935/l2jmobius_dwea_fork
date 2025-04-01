@@ -52,7 +52,15 @@ public class RequestExAddEnchantScrollItem extends ClientPacket
 		{
 			player.addRequest(new EnchantItemRequest(player, _scrollObjectId));
 		}
+		
 		final EnchantItemRequest request = player.getRequest(EnchantItemRequest.class);
+		if (request == null)
+		{
+			// Message may be custom.
+			player.sendPacket(SystemMessageId.AUGMENTATION_REQUIREMENTS_ARE_NOT_FULFILLED);
+			player.sendPacket(new ExPutEnchantScrollItemResult(0));
+			return;
+		}
 		request.setEnchantingScroll(_scrollObjectId);
 		
 		final Item scroll = request.getEnchantingScroll();

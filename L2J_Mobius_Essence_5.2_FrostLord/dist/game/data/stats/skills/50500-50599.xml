@@ -1041,7 +1041,6 @@
 		<abnormalVisualEffect>ROOT</abnormalVisualEffect>
 		<activateRate>80</activateRate>
 		<affectScope>SINGLE</affectScope>
-		<affectScope>SINGLE</affectScope>
 		<basicProperty>MAGIC</basicProperty>
 		<castRange>600</castRange>
 		<effectPoint>-900</effectPoint>

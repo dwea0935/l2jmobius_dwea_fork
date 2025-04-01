@@ -44,7 +44,7 @@ public class AskJoinPledge extends ServerPacket
 	{
 		ServerPackets.ASK_JOIN_PLEDGE.writeId(this, buffer);
 		buffer.writeInt(_requestor.getObjectId());
-		buffer.writeString("");
+		buffer.writeString(_requestor.getName());
 		buffer.writeString(_pledgeName);
 		buffer.writeInt(0);
 		buffer.writeString("");

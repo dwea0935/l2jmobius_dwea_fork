@@ -1,26 +1,30 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests.Q00225_TestOfTheSearcher;
 
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
@@ -77,7 +81,7 @@ public class Q00225_TestOfTheSearcher extends Quest
 	
 	public Q00225_TestOfTheSearcher()
 	{
-		super(225);
+		super(225, "Test of the Searcher");
 		registerQuestItems(LUTHER_LETTER, ALEX_WARRANT, LEIRYNN_ORDER_1, DELU_TOTEM, LEIRYNN_ORDER_2, CHIEF_KALKI_FANG, LEIRYNN_REPORT, STRANGE_MAP, LAMBERT_MAP, ALEX_LETTER, ALEX_ORDER, WINE_CATALOG, TYRA_CONTRACT, RED_SPORE_DUST, MALRUKIAN_WINE, OLD_ORDER, JAX_DIARY, TORN_MAP_PIECE_1, TORN_MAP_PIECE_2, SOLT_MAP, MAKEL_MAP, COMBINED_MAP, RUSTED_KEY, GOLD_BAR, ALEX_RECOMMEND);
 		addStartNpc(LUTHER);
 		addTalkId(ALEX, TYRA, TREE, STRONG_WOODEN_CHEST, LUTHER, LEIRYNN, BORYS, JAX);
@@ -104,7 +108,7 @@ public class Q00225_TestOfTheSearcher extends Quest
 				if (!player.getVariables().getBoolean("secondClassChange39", false))
 				{
 					htmltext = "30690-05a.htm";
-					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getClassId().getId()));
+					giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_39.get(player.getPlayerClass().getId()));
 					player.getVariables().set("secondClassChange39", true);
 				}
 				break;
@@ -187,7 +191,7 @@ public class Q00225_TestOfTheSearcher extends Quest
 		{
 			case State.CREATED:
 			{
-				if ((player.getClassId() != ClassId.ROGUE) && (player.getClassId() != ClassId.ELVEN_SCOUT) && (player.getClassId() != ClassId.ASSASSIN) && (player.getClassId() != ClassId.SCAVENGER))
+				if ((player.getPlayerClass() != PlayerClass.ROGUE) && (player.getPlayerClass() != PlayerClass.ELVEN_SCOUT) && (player.getPlayerClass() != PlayerClass.ASSASSIN) && (player.getPlayerClass() != PlayerClass.SCAVENGER))
 				{
 					htmltext = "30690-01.htm";
 				}
@@ -197,7 +201,7 @@ public class Q00225_TestOfTheSearcher extends Quest
 				}
 				else
 				{
-					htmltext = (player.getClassId() == ClassId.SCAVENGER) ? "30690-04.htm" : "30690-03.htm";
+					htmltext = (player.getPlayerClass() == PlayerClass.SCAVENGER) ? "30690-04.htm" : "30690-03.htm";
 				}
 				break;
 			}
@@ -429,12 +433,12 @@ public class Q00225_TestOfTheSearcher extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		final QuestState st = getQuestState(attacker, false);
 		if (st == null)
 		{
-			return null;
+			return;
 		}
 		
 		if (hasQuestItems(attacker, LEIRYNN_ORDER_1) && !npc.isScriptValue(1))
@@ -442,17 +446,15 @@ public class Q00225_TestOfTheSearcher extends Quest
 			npc.setScriptValue(1);
 			addSpawn(NEER_BODYGUARD, npc, false, 200000);
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		switch (npc.getId())
@@ -542,7 +544,5 @@ public class Q00225_TestOfTheSearcher extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 }

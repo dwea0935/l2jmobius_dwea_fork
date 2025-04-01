@@ -30,11 +30,13 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ItemLocation;
+import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 
@@ -186,13 +188,13 @@ public abstract class ItemContainer
 	
 	/**
 	 * Adds item to inventory
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be added
 	 * @param actor : Player Player requesting the item add
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the new item or the updated item in inventory
 	 */
-	public Item addItem(String process, Item item, Player actor, Object reference)
+	public Item addItem(ItemProcessType process, Item item, Player actor, Object reference)
 	{
 		Item newItem = item;
 		final Item olditem = getItemByItemId(newItem.getId());
@@ -205,7 +207,7 @@ public abstract class ItemContainer
 			olditem.setLastChange(Item.MODIFIED);
 			
 			// And destroys the item
-			ItemData.getInstance().destroyItem(process, newItem, actor, reference);
+			ItemManager.destroyItem(process, newItem, actor, reference);
 			newItem.updateDatabase();
 			newItem = olditem;
 		}
@@ -225,14 +227,14 @@ public abstract class ItemContainer
 	
 	/**
 	 * Adds item to inventory
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param itemId : int Item Identifier of the item to be added
 	 * @param count : long Quantity of items to be added
 	 * @param actor : Player Player requesting the item add
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the new item or the updated item in inventory
 	 */
-	public Item addItem(String process, int itemId, long count, Player actor, Object reference)
+	public Item addItem(ItemProcessType process, int itemId, long count, Player actor, Object reference)
 	{
 		Item item = getItemByItemId(itemId);
 		
@@ -254,7 +256,7 @@ public abstract class ItemContainer
 					return null;
 				}
 				
-				item = ItemData.getInstance().createItem(process, itemId, template.isStackable() ? count : 1, actor, reference);
+				item = ItemManager.createItem(process, itemId, template.isStackable() ? count : 1, actor, reference);
 				item.setOwnerId(getOwnerId());
 				item.setItemLocation(getBaseLocation());
 				item.setLastChange(Item.ADDED);
@@ -288,7 +290,7 @@ public abstract class ItemContainer
 	
 	/**
 	 * Transfers item to another inventory
-	 * @param process string Identifier of process triggering this action
+	 * @param process ItemProcessType identifier of process triggering this action
 	 * @param objectId Item Identifier of the item to be transfered
 	 * @param countValue Quantity of items to be transfered
 	 * @param target the item container where the item will be moved.
@@ -296,7 +298,7 @@ public abstract class ItemContainer
 	 * @param reference Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the new item or the updated item in inventory
 	 */
-	public Item transferItem(String process, int objectId, long countValue, ItemContainer target, Player actor, Object reference)
+	public Item transferItem(ItemProcessType process, int objectId, long countValue, ItemContainer target, Player actor, Object reference)
 	{
 		if (target == null)
 		{
@@ -341,7 +343,7 @@ public abstract class ItemContainer
 				else // Otherwise destroy old item
 				{
 					removeItem(sourceitem);
-					ItemData.getInstance().destroyItem(process, sourceitem, actor, reference);
+					ItemManager.destroyItem(process, sourceitem, actor, reference);
 				}
 				
 				if (targetitem != null) // If possible, only update counts
@@ -372,7 +374,7 @@ public abstract class ItemContainer
 	
 	/**
 	 * Detaches the item from this item container so it can be used as a single instance.
-	 * @param process string Identifier of process triggering this action
+	 * @param process ItemProcessType identifier of process triggering this action
 	 * @param item the item instance to be detached
 	 * @param count the count of items to be detached
 	 * @param newLocation the new item location
@@ -380,7 +382,7 @@ public abstract class ItemContainer
 	 * @param reference Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return the detached item instance if operation completes successfully, {@code null} if the item does not exist in this container anymore or item count is not available
 	 */
-	public Item detachItem(String process, Item item, long count, ItemLocation newLocation, Player actor, Object reference)
+	public Item detachItem(ItemProcessType process, Item item, long count, ItemLocation newLocation, Player actor, Object reference)
 	{
 		if (item == null)
 		{
@@ -413,7 +415,7 @@ public abstract class ItemContainer
 			item.changeCount(process, -count, actor, reference);
 			item.updateDatabase(true);
 			
-			final Item newItem = ItemData.getInstance().createItem(process, item.getId(), count, actor, reference);
+			final Item newItem = ItemManager.createItem(process, item.getId(), count, actor, reference);
 			newItem.setOwnerId(getOwnerId());
 			newItem.setItemLocation(newLocation);
 			newItem.updateDatabase(true);
@@ -425,7 +427,7 @@ public abstract class ItemContainer
 	
 	/**
 	 * Detaches the item from this item container so it can be used as a single instance.
-	 * @param process string Identifier of process triggering this action
+	 * @param process ItemProcessType identifier of process triggering this action
 	 * @param itemObjectId the item object id to be detached
 	 * @param count the count of items to be detached
 	 * @param newLocation the new item location
@@ -433,7 +435,7 @@ public abstract class ItemContainer
 	 * @param reference Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return the detached item instance if operation completes successfully, {@code null} if the item does not exist in this container anymore or item count is not available
 	 */
-	public Item detachItem(String process, int itemObjectId, long count, ItemLocation newLocation, Player actor, Object reference)
+	public Item detachItem(ItemProcessType process, int itemObjectId, long count, ItemLocation newLocation, Player actor, Object reference)
 	{
 		final Item item = getItemByObjectId(itemObjectId);
 		if (item == null)
@@ -445,27 +447,27 @@ public abstract class ItemContainer
 	
 	/**
 	 * Destroy item from inventory and updates database
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be destroyed
 	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
-	public Item destroyItem(String process, Item item, Player actor, Object reference)
+	public Item destroyItem(ItemProcessType process, Item item, Player actor, Object reference)
 	{
 		return destroyItem(process, item, item.getCount(), actor, reference);
 	}
 	
 	/**
 	 * Destroy item from inventory and updates database
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be destroyed
 	 * @param count
 	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
-	public Item destroyItem(String process, Item item, long count, Player actor, Object reference)
+	public Item destroyItem(ItemProcessType process, Item item, long count, Player actor, Object reference)
 	{
 		synchronized (item)
 		{
@@ -489,7 +491,7 @@ public abstract class ItemContainer
 					return null;
 				}
 				
-				ItemData.getInstance().destroyItem(process, item, actor, reference);
+				ItemManager.destroyItem(process, item, actor, reference);
 				item.updateDatabase();
 				refreshWeight();
 				
@@ -501,14 +503,14 @@ public abstract class ItemContainer
 	
 	/**
 	 * Destroy item from inventory by using its <b>objectID</b> and updates database
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param objectId : int Item Instance identifier of the item to be destroyed
 	 * @param count : int Quantity of items to be destroyed
 	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
-	public Item destroyItem(String process, int objectId, long count, Player actor, Object reference)
+	public Item destroyItem(ItemProcessType process, int objectId, long count, Player actor, Object reference)
 	{
 		final Item item = getItemByObjectId(objectId);
 		return item == null ? null : destroyItem(process, item, count, actor, reference);
@@ -516,14 +518,14 @@ public abstract class ItemContainer
 	
 	/**
 	 * Destroy item from inventory by using its <b>itemId</b> and updates database
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param itemId : int Item identifier of the item to be destroyed
 	 * @param count : int Quantity of items to be destroyed
 	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
-	public Item destroyItemByItemId(String process, int itemId, long count, Player actor, Object reference)
+	public Item destroyItemByItemId(ItemProcessType process, int itemId, long count, Player actor, Object reference)
 	{
 		final Item item = getItemByItemId(itemId);
 		return item == null ? null : destroyItem(process, item, count, actor, reference);
@@ -531,11 +533,11 @@ public abstract class ItemContainer
 	
 	/**
 	 * Destroy all items from inventory and updates database
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 */
-	public void destroyAllItems(String process, Player actor, Object reference)
+	public void destroyAllItems(ItemProcessType process, Player actor, Object reference)
 	{
 		for (Item item : _items)
 		{
@@ -654,7 +656,7 @@ public abstract class ItemContainer
 					// If stackable item is found in inventory just add to current quantity
 					if (item.isStackable() && (getItemByItemId(item.getId()) != null))
 					{
-						addItem("Restore", item, owner, null);
+						addItem(ItemProcessType.RESTORE, item, owner, null);
 					}
 					else
 					{

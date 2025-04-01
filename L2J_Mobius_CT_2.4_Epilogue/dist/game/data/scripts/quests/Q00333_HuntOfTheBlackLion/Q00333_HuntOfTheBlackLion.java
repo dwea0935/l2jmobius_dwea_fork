@@ -17,14 +17,14 @@
 package quests.Q00333_HuntOfTheBlackLion;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Hunt Of The Black Lion (333)
@@ -112,7 +112,7 @@ public class Q00333_HuntOfTheBlackLion extends Quest
 	
 	public Q00333_HuntOfTheBlackLion()
 	{
-		super(333);
+		super(333, "Hunt of the Black Lion");
 		addStartNpc(MERCENARY_CAPTAIN_SOPHYA);
 		addTalkId(MERCENARY_CAPTAIN_SOPHYA, ABYSSAL_CELEBRANT_UNDRIAS, BLACKSMITH_RUPIO, IRON_GATES_LOCKIRIN, MERCENARY_REEDFOOT, GUILDSMAN_MORGON);
 		addKillId(MARSH_STAKATO, NEER_CRAWLER, SPECTER, SORROW_MAIDEN, NEER_CRAWLER_BERSERKER, STRAIN, GHOUL, OL_MAHUM_GUERILLA, OL_MAHUM_RAIDER, OL_MAHUM_MARKSMAN, OL_MAHUM_SERGEANT, OL_MAHUM_CAPTAIN, MARSH_STAKATO_WORKER, MARSH_STAKATO_SOLDIER, MARSH_STAKATO_DRONE, DELU_LIZARDMAN, DELU_LIZARDMAN_SCOUT, DELU_LIZARDMAN_WARRIOR, DELU_LIZARDMAN_HEADHUNTER, MARSH_STAKATO_MARQUESS);
@@ -689,10 +689,10 @@ public class Q00333_HuntOfTheBlackLion extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -998,7 +998,6 @@ public class Q00333_HuntOfTheBlackLion extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

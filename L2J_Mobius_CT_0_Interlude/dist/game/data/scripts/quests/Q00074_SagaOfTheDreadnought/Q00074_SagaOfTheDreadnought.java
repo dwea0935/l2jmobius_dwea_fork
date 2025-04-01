@@ -16,16 +16,16 @@
  */
 package quests.Q00074_SagaOfTheDreadnought;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * @author Emperorc
  */
-public class Q00074_SagaOfTheDreadnought extends SagasSuperClass
+public class Q00074_SagaOfTheDreadnought extends AbstractSagaQuest
 {
 	public Q00074_SagaOfTheDreadnought()
 	{
-		super(74);
+		super(74, "Saga of the Dreadnoughts");
 		_npc = new int[]
 		{
 			30850,

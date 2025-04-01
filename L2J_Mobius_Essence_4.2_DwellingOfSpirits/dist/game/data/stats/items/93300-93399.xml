@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="93300" name="Einhasad's Pendant Lv. 5" type="Armor">
 		<!-- <Invocation>. Increases Speed and recovers HP/ MP for 15 sec. <Einhasad's Pendant>. M. Def. +45Acquired XP/ SP +35%. Received Damage -25%. Atk. Spd. +10%. Casting Spd. +10%. P. Critical Damage +10%. M. Skill Critical Damage +10%. P. Atk. +15%. M. Atk. +15%. -->
@@ -15,7 +15,7 @@
 			<stat type="pDef">75</stat>
 		</stats>
 		<skills>
-			<skill id="50341" level="5" /> <!-- Pendant: Einhasad's Pendant Lv1 -->
+			<skill id="50341" level="5" /> <!-- Pendant: Einhasad's Pendant -->
 		</skills>
 	</item>
 	<item id="93301" name="Cloak of Protection" type="Armor">
@@ -641,7 +641,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40121" level="1" /> <!-- Highr-Grade Red Lantern -->
+			<skill id="40121" level="1" /> <!-- High-grade Red Lantern -->
 		</skills>
 	</item>
 	<item id="93339" name="High-grade Purple Lantern" additionalName="2nd place" type="EtcItem">
@@ -655,7 +655,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40122" level="1" /> <!-- Highr-Grade Purple Lantern -->
+			<skill id="40122" level="1" /> <!-- High-grade Purple Lantern -->
 		</skills>
 	</item>
 	<item id="93340" name="High-grade Blue Lantern" additionalName="3rd place" type="EtcItem">
@@ -669,7 +669,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40123" level="1" /> <!-- Highr-Grade Blue Lantern -->
+			<skill id="40123" level="1" /> <!-- High-grade Blue Lantern -->
 		</skills>
 	</item>
 	<item id="93341" name="High-grade Green Lantern" additionalName="4th place" type="EtcItem">
@@ -683,7 +683,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40124" level="1" /> <!-- Highr-Grade Green Lantern -->
+			<skill id="40124" level="1" /> <!-- High-grade Green Lantern -->
 		</skills>
 	</item>
 	<item id="93342" name="High-grade Lit Red Lantern" additionalName="1st place" type="EtcItem">
@@ -698,7 +698,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40125" level="1" /> <!-- Highr-Grade Red Lantern -->
+			<skill id="40125" level="1" /> <!-- High-grade Lit Red Lantern -->
 		</skills>
 	</item>
 	<item id="93343" name="High-grade Lit Purple Lantern" additionalName="2nd place" type="EtcItem">
@@ -713,7 +713,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40126" level="1" /> <!-- Highr-Grade Purple Lantern -->
+			<skill id="40126" level="1" /> <!-- High-grade Lit Purple Lantern -->
 		</skills>
 	</item>
 	<item id="93344" name="High-grade Lit Blue Lantern" additionalName="3rd place" type="EtcItem">
@@ -728,7 +728,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40127" level="1" /> <!-- Highr-Grade Blue Lantern -->
+			<skill id="40127" level="1" /> <!-- High-grade Lit Blue Lantern -->
 		</skills>
 	</item>
 	<item id="93345" name="High-grade Lit Green Lantern" additionalName="4th place" type="EtcItem">
@@ -743,7 +743,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40128" level="1" /> <!-- Highr-Grade Green Lantern -->
+			<skill id="40128" level="1" /> <!-- High-grade Lit Green Lantern -->
 		</skills>
 	</item>
 	<item id="93346" name="Deton's Request Lv. 1" type="EtcItem">

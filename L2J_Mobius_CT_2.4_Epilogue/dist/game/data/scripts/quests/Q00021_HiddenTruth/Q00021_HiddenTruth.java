@@ -16,18 +16,17 @@
  */
 package quests.Q00021_HiddenTruth;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00022_TragedyInVonHellmannForest.Q00022_TragedyInVonHellmannForest;
@@ -64,7 +63,7 @@ public class Q00021_HiddenTruth extends Quest
 	
 	public Q00021_HiddenTruth()
 	{
-		super(21);
+		super(21, "Hidden Truth");
 		addStartNpc(MYSTERIOUS_WIZARD);
 		addTalkId(MYSTERIOUS_WIZARD, TOMBSTONE, GHOST_OF_VON_HELLMAN, GHOST_OF_VON_HELLMANS_PAGE, BROKEN_BOOKSHELF, AGRIPEL, BENEDICT, DOMINIC, INNOCENTIN);
 		addRouteFinishedId(GHOST_OF_VON_HELLMANS_PAGE);
@@ -136,7 +135,7 @@ public class Q00021_HiddenTruth extends Quest
 					else
 					{
 						final Npc ghost = addSpawn(GHOST_OF_VON_HELLMAN, GHOST_LOC, false, 0);
-						ghost.broadcastPacket(new NpcSay(ghost.getObjectId(), ChatType.GENERAL, ghost.getId(), NpcStringId.WHO_AWOKE_ME));
+						ghost.broadcastPacket(new NpcSay(ghost.getObjectId(), ChatType.GENERAL, ghost.getId(), "Who awoke me?"));
 						GHOST_SPAWNED = true;
 						startQuestTimer("DESPAWN_GHOST", 1000 * 300, ghost, player);
 						qs.setCond(2);
@@ -151,7 +150,7 @@ public class Q00021_HiddenTruth extends Quest
 					{
 						final Npc page = addSpawn(GHOST_OF_VON_HELLMANS_PAGE, PAGE_LOC, false, 0);
 						page.setScriptValue(player.getObjectId());
-						page.broadcastPacket(new NpcSay(page.getObjectId(), ChatType.NPC_GENERAL, page.getId(), NpcStringId.MY_MASTER_HAS_INSTRUCTED_ME_TO_BE_YOUR_GUIDE_S1).addStringParameter(player.getName()));
+						page.broadcastPacket(new NpcSay(page.getObjectId(), ChatType.NPC_GENERAL, page.getId(), "My master has instructed me to be your guide, " + player.getName() + "."));
 						WalkingManager.getInstance().startMoving(page, PAGE_ROUTE_NAME);
 						PAGE_COUNT++;
 						qs.setCond(3);
@@ -430,13 +429,12 @@ public class Q00021_HiddenTruth extends Quest
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
 			playSound(creature.asPlayer(), QuestSound.HORROR_01);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override

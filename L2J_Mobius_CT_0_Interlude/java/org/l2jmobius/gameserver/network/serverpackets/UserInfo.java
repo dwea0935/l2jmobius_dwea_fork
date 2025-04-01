@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
@@ -49,7 +49,7 @@ public class UserInfo extends ServerPacket
 		_relation = _player.isClanLeader() ? 0x40 : 0;
 		if (_player.getSiegeState() == 1)
 		{
-			_relation |= 0x1000;
+			_relation |= 0x180;
 		}
 		if (_player.getSiegeState() == 2)
 		{
@@ -224,12 +224,12 @@ public class UserInfo extends ServerPacket
 		buffer.writeByte(_player.isInPartyMatchRoom());
 		buffer.writeInt(_player.isInvisible() ? _player.getAbnormalVisualEffects() | AbnormalVisualEffect.STEALTH.getMask() : _player.getAbnormalVisualEffects());
 		buffer.writeByte(_player.isInsideZone(ZoneId.WATER));
-		buffer.writeInt(_player.getClanPrivileges().getBitmask());
+		buffer.writeInt(_player.getClanPrivileges().getMask());
 		buffer.writeShort(_player.getRecomLeft()); // c2 recommendations remaining
 		buffer.writeShort(_player.getRecomHave()); // c2 recommendations received
 		buffer.writeInt(_player.getMountNpcId() > 0 ? _player.getMountNpcId() + 1000000 : 0);
 		buffer.writeShort(_player.getInventoryLimit());
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		buffer.writeInt(0); // special effects? circles around player...
 		buffer.writeInt(_player.getMaxCp());
 		buffer.writeInt((int) _player.getCurrentCp());

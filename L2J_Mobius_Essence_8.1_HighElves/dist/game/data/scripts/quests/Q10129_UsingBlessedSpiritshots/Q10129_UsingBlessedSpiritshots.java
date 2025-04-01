@@ -171,7 +171,7 @@ public class Q10129_UsingBlessedSpiritshots extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -180,7 +180,5 @@ public class Q10129_UsingBlessedSpiritshots extends Quest
 			questState.setCond(QuestCondType.DONE);
 			killer.sendPacket(new ExQuestNotification(questState));
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

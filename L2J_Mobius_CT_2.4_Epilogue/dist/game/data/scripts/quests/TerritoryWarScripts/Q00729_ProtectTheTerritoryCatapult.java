@@ -24,7 +24,7 @@ public class Q00729_ProtectTheTerritoryCatapult extends TerritoryWarSuperClass
 {
 	public Q00729_ProtectTheTerritoryCatapult()
 	{
-		super(729);
+		super(729, "Protect the territory catapult!");
 		NPC_IDS = new int[]
 		{
 			36499,

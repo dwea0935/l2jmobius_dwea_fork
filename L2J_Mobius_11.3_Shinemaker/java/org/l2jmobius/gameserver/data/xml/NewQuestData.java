@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -28,7 +32,7 @@ import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.newquestdata.NewQuest;
 
 /**
@@ -50,26 +54,29 @@ public class NewQuestData implements IXmlReader
 	{
 		_newQuestData.clear();
 		parseDatapackFile("data/NewQuestData.xml");
-		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _newQuestData.size() + " new quest data.");
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "quest", questNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "quest", questNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(questNode));
+			
+			// Parse locations.
 			forEach(questNode, "locations", locationsNode ->
 			{
 				forEach(locationsNode, "param", paramNode -> set.set(parseString(paramNode.getAttributes(), "name"), paramNode.getTextContent()));
 			});
 			
+			// Parse conditions.
 			forEach(questNode, "conditions", conditionsNode ->
 			{
 				forEach(conditionsNode, "param", paramNode -> set.set(parseString(paramNode.getAttributes(), "name"), paramNode.getTextContent()));
 			});
 			
+			// Parse rewards.
 			forEach(questNode, "rewards", rewardsNode ->
 			{
 				
@@ -86,6 +93,7 @@ public class NewQuestData implements IXmlReader
 				forEach(rewardsNode, "param", paramNode -> set.set(parseString(paramNode.getAttributes(), "name"), paramNode.getTextContent()));
 			});
 			
+			// Parse goals.
 			forEach(questNode, "goals", goalsNode ->
 			{
 				forEach(goalsNode, "param", paramNode -> set.set(parseString(paramNode.getAttributes(), "name"), paramNode.getTextContent()));
@@ -96,20 +104,25 @@ public class NewQuestData implements IXmlReader
 		}));
 	}
 	
+	/**
+	 * Retrieves a quest by its unique ID.
+	 * @param id the unique identifier of the quest.
+	 * @return the {@code NewQuest} instance corresponding to the specified ID, or {@code null} if no quest is found.
+	 */
 	public NewQuest getQuestById(int id)
 	{
 		return _newQuestData.get(id);
 	}
 	
+	/**
+	 * Retrieves a collection of all available quests.
+	 * @return a {@code Collection} containing all {@code NewQuest} instances stored in the system.
+	 */
 	public Collection<NewQuest> getQuests()
 	{
 		return _newQuestData.values();
 	}
 	
-	/**
-	 * Gets the single instance of NewQuestData.
-	 * @return single instance of NewQuestData
-	 */
 	public static NewQuestData getInstance()
 	{
 		return NewQuestData.SingletonHolder.INSTANCE;

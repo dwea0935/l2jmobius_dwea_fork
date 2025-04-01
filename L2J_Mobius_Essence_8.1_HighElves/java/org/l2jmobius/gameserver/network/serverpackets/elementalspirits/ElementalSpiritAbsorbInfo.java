@@ -23,11 +23,11 @@ package org.l2jmobius.gameserver.network.serverpackets.elementalspirits;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ElementalType;
 import org.l2jmobius.gameserver.model.ElementalSpirit;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ElementalSpiritAbsorbItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.ElementalSpiritType;
+import org.l2jmobius.gameserver.model.item.holders.ElementalSpiritAbsorbItemHolder;
+import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -50,13 +50,14 @@ public class ElementalSpiritAbsorbInfo extends ServerPacket
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.EX_ELEMENTAL_SPIRIT_ABSORB_INFO.writeId(this, buffer);
-		final ElementalSpirit spirit = _player.getElementalSpirit(ElementalType.of(_type));
+		final ElementalSpirit spirit = _player.getElementalSpirit(ElementalSpiritType.of(_type));
 		if (spirit == null)
 		{
 			buffer.writeByte(0);
 			buffer.writeByte(0);
 			return;
 		}
+		
 		buffer.writeByte(1);
 		buffer.writeByte(_type);
 		buffer.writeByte(spirit.getStage());
@@ -65,12 +66,17 @@ public class ElementalSpiritAbsorbInfo extends ServerPacket
 		buffer.writeLong(spirit.getExperienceToNextLevel()); // MaxExp
 		buffer.writeInt(spirit.getLevel());
 		buffer.writeInt(spirit.getMaxLevel());
+		
 		final List<ElementalSpiritAbsorbItemHolder> absorbItems = spirit.getAbsorbItems();
-		buffer.writeInt(absorbItems.size()); // AbsorbCount
+		buffer.writeInt(absorbItems.size());
 		for (ElementalSpiritAbsorbItemHolder absorbItem : absorbItems)
 		{
 			buffer.writeInt(absorbItem.getId());
-			buffer.writeInt(CommonUtil.zeroIfNullOrElse(_player.getInventory().getItemByItemId(absorbItem.getId()), item -> (int) item.getCount()));
+			
+			final Item item = _player.getInventory().getItemByItemId(absorbItem.getId());
+			final int itemCount = item != null ? (int) item.getCount() : 0;
+			buffer.writeInt(itemCount);
+			
 			buffer.writeInt(absorbItem.getExperience());
 		}
 	}

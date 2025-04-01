@@ -21,7 +21,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
 		<set name="weight" val="5" />
-		<set name="weight" val="5" />
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="27441" level="1" /> <!-- Cat's Eye - Invincibility -->
@@ -90,7 +89,6 @@
 		<set name="bodypart" val="brooch_jewel" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_sellable" val="false" />
-		<set name="weight" val="5" />
 		<set name="weight" val="5" />
 		<set name="material" val="GOLD" />
 		<skills>

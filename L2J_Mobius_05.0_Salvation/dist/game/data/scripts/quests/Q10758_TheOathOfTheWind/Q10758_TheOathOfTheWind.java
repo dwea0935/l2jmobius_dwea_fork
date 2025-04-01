@@ -16,14 +16,14 @@
  */
 package quests.Q10758_TheOathOfTheWind;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import quests.Q10757_QuietingTheStorm.Q10757_QuietingTheStorm;
 
@@ -130,14 +130,13 @@ public class Q10758_TheOathOfTheWind extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.ARGHH);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isCond(1))
@@ -145,6 +144,5 @@ public class Q10758_TheOathOfTheWind extends Quest
 			qs.setCond(2, true);
 		}
 		npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.I_AM_LOYAL_TO_YOU_MASTER_OF_THE_WINDS_AND_LOYAL_I_SHALL_REMAIN_IF_MY_VERY_SOUL_BETRAYS_ME);
-		return super.onKill(npc, killer, isSummon);
 	}
 }

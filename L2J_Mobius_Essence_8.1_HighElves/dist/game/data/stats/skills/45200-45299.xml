@@ -163,7 +163,6 @@
 		<targetType>ENEMY</targetType>
 		<affectLimit>5-12</affectLimit>
 		<affectObject>NOT_FRIEND</affectObject>
-		<affectObject>NOT_FRIEND</affectObject>
 		<affectRange>300</affectRange>
 		<affectScope>RANGE</affectScope>
 		<basicProperty>PHYSICAL</basicProperty>
@@ -298,7 +297,6 @@
 		<affectScope>RANGE</affectScope>
 		<basicProperty>PHYSICAL</basicProperty>
 		<castRange>40</castRange>
-		<coolTime>500</coolTime>
 		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-35</value>
@@ -476,7 +474,6 @@
 		<affectScope>RANGE</affectScope>
 		<basicProperty>PHYSICAL</basicProperty>
 		<castRange>40</castRange>
-		<coolTime>500</coolTime>
 		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-800</value>
@@ -2783,7 +2780,6 @@
 		<coolTime>500</coolTime>
 		<effectPoint>-400</effectPoint>
 		<effectRange>400</effectRange>
-		<effectRange>400</effectRange>
 		<hitTime>0</hitTime>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>20</lvlBonusRate>
@@ -3265,7 +3261,6 @@
 		<effectRange>1400</effectRange>
 		<hitTime>4000</hitTime>
 		<isMagic>1</isMagic>
-		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<lvlBonusRate>1</lvlBonusRate>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
@@ -3570,7 +3565,6 @@
 		<effectRange>1400</effectRange>
 		<hitTime>4000</hitTime>
 		<isMagic>1</isMagic>
-		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<lvlBonusRate>1</lvlBonusRate>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
@@ -4167,7 +4161,6 @@
 		<effectRange>1250</effectRange>
 		<hitTime>4000</hitTime>
 		<isMagic>1</isMagic>
-		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
 			<value level="1">20</value>
@@ -9139,7 +9132,6 @@
 			<value level="20">-495</value>
 		</effectPoint>
 		<effectRange>400</effectRange>
-		<effectRange>400</effectRange>
 		<hitTime>1000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>
@@ -9404,7 +9396,7 @@
 		<abnormalType>STAT_SKILL</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -10899,7 +10891,7 @@
 		<abnormalType>STAT_SKILL</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -10926,7 +10918,7 @@
 		<abnormalType>STAT_SKILL</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -10953,7 +10945,7 @@
 		<abnormalType>STAT_SKILL</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -10980,7 +10972,7 @@
 		<abnormalType>STAT_SKILL</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>

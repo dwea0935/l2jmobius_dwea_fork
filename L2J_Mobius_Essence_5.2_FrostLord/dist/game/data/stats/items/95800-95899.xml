@@ -554,8 +554,8 @@
 			<item id="91550" min="1" max="1" chance="0.1" /> <!-- Frintezza's Necklace -->
 			<item id="90763" min="1" max="1" chance="0.1" /> <!-- Zaken's Earring -->
 			<item id="6662" min="1" max="1" chance="0.1" /> <!-- Ring of Core -->
-			<item id="94853" min="1" max="1" chance="0.3" /> <!-- Legendary Dye <STR +4> - 3rd Class -->
-			<item id="94856" min="1" max="1" chance="0.3" /> <!-- Legendary Dye <INT +4> - 3rd Class -->
+			<item id="94853" min="1" max="1" chance="0.3" /> <!-- Legendary Dye (STR +4) - 3rd Class -->
+			<item id="94856" min="1" max="1" chance="0.3" /> <!-- Legendary Dye (INT +4) - 3rd Class -->
 			<item id="94156" min="1" max="1" chance="0.5" /> <!-- Package: Baium Doll Lv. 1 - Sealed -->
 			<item id="94654" min="1" max="1" chance="0.5" /> <!-- Package: Core Doll Lv. 1 - Sealed -->
 			<item id="94159" min="1" max="1" chance="0.5" /> <!-- Package: Queen Ant Doll Lv. 1 - Sealed -->
@@ -741,7 +741,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40261" level="1" /> <!-- Random Transformation Scroll -->
+			<skill id="40261" level="1" /> <!-- Scroll: 1,000,000,000 SP -->
 		</skills>
 	</item>
 	<item id="95849" name="Freya's Necklace (Time-limited)" additionalName="Sealed" type="Armor">
@@ -828,12 +828,12 @@
 			<item id="94085" min="1" max="1" chance="1.587302" /> <!-- Boots of Evasion -->
 			<item id="94301" min="1" max="1" chance="1.587302" /> <!-- Shield of Vengeance -->
 			<item id="94299" min="1" max="1" chance="1.587302" /> <!-- Sigil of Inevitability -->
-			<item id="94853" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye <STR +4> - 3rd Class -->
-			<item id="94854" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye <CON +4> - 3rd Class -->
-			<item id="94856" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye <INT +4> - 3rd Class -->
-			<item id="94855" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye <DEX +4> - 3rd Class -->
-			<item id="94858" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye <WIT +4> - 3rd Class -->
-			<item id="94857" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye <MEN +4> - 3rd Class -->
+			<item id="94853" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye (STR +4) - 3rd Class -->
+			<item id="94854" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye (CON +4) - 3rd Class -->
+			<item id="94856" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye (INT +4) - 3rd Class -->
+			<item id="94855" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye (DEX +4) - 3rd Class -->
+			<item id="94858" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye (WIT +4) - 3rd Class -->
+			<item id="94857" min="1" max="1" chance="1.587302" /> <!-- Legendary Dye (MEN +4) - 3rd Class -->
 			<item id="93739" min="1" max="1" chance="1.587302" /> <!-- Package: Giran Seal (1000 pcs.) - Sealed -->
 			<item id="93255" min="1" max="1" chance="1.587302" /> <!-- Improved Scroll: Enchant A-grade Weapon -->
 			<item id="93256" min="1" max="1" chance="1.587302" /> <!-- Improved Scroll: Enchant A-grade Armor -->
@@ -949,7 +949,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<skills>
-			<skill id="40362" level="1" /> <!-- Scroll of Escape -->
+			<skill id="40362" level="1" /> <!-- Scroll of Escape: Frost Lord's Castle -->
 		</skills>
 	</item>
 	<item id="95854" name="Freya's Christmas Gift (Time-limited)" additionalName="Sealed" type="EtcItem">
@@ -1468,7 +1468,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="18024" level="26" /> <!-- Venir Talisman -->
+			<skill id="18024" level="26" /> <!-- Venir's Talisman -->
 		</skills>
 	</item>
 	<item id="95884" name="Venir's Talisman Lv. 27" additionalName="Sealed" type="Armor">
@@ -1482,7 +1482,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="18024" level="27" /> <!-- Venir Talisman -->
+			<skill id="18024" level="27" /> <!-- Venir's Talisman -->
 		</skills>
 	</item>
 	<item id="95885" name="Venir's Talisman Lv. 28" additionalName="Sealed" type="Armor">
@@ -1496,7 +1496,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="18024" level="28" /> <!-- Venir Talisman -->
+			<skill id="18024" level="28" /> <!-- Venir's Talisman -->
 		</skills>
 	</item>
 	<item id="95886" name="Venir's Talisman Lv. 29" additionalName="Sealed" type="Armor">
@@ -1510,7 +1510,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="18024" level="29" /> <!-- Venir Talisman -->
+			<skill id="18024" level="29" /> <!-- Venir's Talisman -->
 		</skills>
 	</item>
 	<item id="95887" name="Venir's Talisman Lv. 30" additionalName="Sealed" type="Armor">
@@ -1524,7 +1524,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="18024" level="30" /> <!-- Venir Talisman -->
+			<skill id="18024" level="30" /> <!-- Venir's Talisman -->
 		</skills>
 	</item>
 	<item id="95888" name="Lv. 91 Achievement Reward Box" additionalName="Sealed" type="EtcItem">

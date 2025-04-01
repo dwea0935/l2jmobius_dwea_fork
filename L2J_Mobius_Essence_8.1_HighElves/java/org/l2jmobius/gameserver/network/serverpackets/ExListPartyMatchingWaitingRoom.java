@@ -27,10 +27,10 @@ import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.MatchingRoomManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.MatchingRoomManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -45,7 +45,7 @@ public class ExListPartyMatchingWaitingRoom extends ServerPacket
 	private final int _size;
 	private final List<Player> _players = new LinkedList<>();
 	
-	public ExListPartyMatchingWaitingRoom(int page, int minLevel, int maxLevel, List<ClassId> classIds, String query)
+	public ExListPartyMatchingWaitingRoom(int page, int minLevel, int maxLevel, List<PlayerClass> classIds, String query)
 	{
 		final List<Player> players = MatchingRoomManager.getInstance().getPlayerInWaitingList(minLevel, maxLevel, classIds, query);
 		_size = players.size();
@@ -70,7 +70,7 @@ public class ExListPartyMatchingWaitingRoom extends ServerPacket
 		for (Player player : _players)
 		{
 			buffer.writeString(player.getName());
-			buffer.writeInt(player.getClassId().getId());
+			buffer.writeInt(player.getPlayerClass().getId());
 			buffer.writeInt(player.getLevel());
 			final Instance instance = InstanceManager.getInstance().getPlayerInstance(player, false);
 			buffer.writeInt((instance != null) && (instance.getTemplateId() >= 0) ? instance.getTemplateId() : -1);

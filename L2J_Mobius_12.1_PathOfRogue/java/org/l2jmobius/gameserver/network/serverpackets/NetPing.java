@@ -29,17 +29,17 @@ import org.l2jmobius.gameserver.network.ServerPackets;
  */
 public class NetPing extends ServerPacket
 {
-	private final int _onlineTime;
+	private final int _time;
 	
-	public NetPing(int onlineTime)
+	public NetPing(int time)
 	{
-		_onlineTime = onlineTime;
+		_time = time;
 	}
 	
 	@Override
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.NET_PING.writeId(this, buffer);
-		buffer.writeInt(_onlineTime);
+		buffer.writeInt(_time);
 	}
 }

@@ -554,7 +554,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="145" /> <!-- Sword of Whispering Death -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="1080221.66838182" hpRegen="1" mp="4047.6" mpRegen="6" />
 			<attack physical="4372.85376" magical="2465" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -1417,7 +1416,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="3939" /> <!-- Monster Only (Bensh) -->
 		<acquire exp="24815015" sp="5955" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="1740302.63496234" hpRegen="96.6048021593169" mp="977.4" mpRegen="2.4" />
@@ -1460,7 +1458,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="5131" /> <!-- Monster Only (Parhit Staff) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="30131.1742931153" hpRegen="94.0766869878181" mp="948" mpRegen="2.4" />
 			<attack physical="3384.055936281" magical="2642.16795390522" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -1500,7 +1497,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="946" lhand="945" /> <!-- Skeleton Dagger / Skeleton Buckler -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="44971.9019300228" hpRegen="94.0766869878181" mp="948" mpRegen="2.4" />
 			<attack physical="5076.21080969174" magical="5945.13799607407" random="5" critical="8" accuracy="0" attackSpeed="253" type="DAGGER" range="40" distance="80" width="120" />
@@ -2110,7 +2106,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="131" /> <!-- Spirit Sword -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="184928.483815466" hpRegen="1" mp="3693.6" mpRegen="6" />
 			<attack physical="4372.85376" magical="1756.026816" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -2242,7 +2237,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="1472" /> <!-- Dreadbane -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="184928.483815466" hpRegen="1" mp="3693.6" mpRegen="6" />
 			<attack physical="4372.85376" magical="1756.026816" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />

@@ -20,10 +20,10 @@
  */
 package ai.areas.TalkingIsland.HarnakUndergroundRuinsZone;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -69,20 +69,19 @@ public class HurnakMobMsg extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if ((npc != null) && !npc.isDead() && ((npc.getId() == NOCTUM) || (npc.getId() == KRAKIA)))
 		{
 			startQuestTimer("ATTACK", (getRandom(7) + 3) * 1000, npc, null);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player attacker, boolean isSummon)
+	public void onKill(Npc npc, Player attacker, boolean isSummon)
 	{
 		npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(ON_FAILED_MSG));
-		return super.onKill(npc, attacker, isSummon);
+		return;
 	}
 	
 	public static void main(String[] args)

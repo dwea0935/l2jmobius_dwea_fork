@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.model.holders.ItemSkillHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemSkillHolder;
 
 /**
  * @author Mobius

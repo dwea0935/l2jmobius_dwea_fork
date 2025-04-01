@@ -17,13 +17,13 @@
 package quests.Q10292_SevenSignsGirlOfDoubt;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q00198_SevenSignsEmbryo.Q00198_SevenSignsEmbryo;
 
@@ -199,9 +199,9 @@ public class Q10292_SevenSignsGirlOfDoubt extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
-		if (CommonUtil.contains(MOBS, npc.getId()))
+		if (ArrayUtil.contains(MOBS, npc.getId()))
 		{
 			final QuestState qs = getRandomPartyMemberState(player, 3, 3, npc);
 			if ((qs != null) && giveItemRandomly(qs.getPlayer(), npc, ELCADIAS_MARK.getId(), 1, ELCADIAS_MARK.getCount(), 1, true))
@@ -222,7 +222,6 @@ public class Q10292_SevenSignsGirlOfDoubt extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

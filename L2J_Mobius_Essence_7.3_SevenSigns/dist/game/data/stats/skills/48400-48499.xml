@@ -12,7 +12,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isSharedWithSummon>false</isSharedWithSummon>
 		<magicCriticalRate>5</magicCriticalRate>
 		<stayAfterDeath>true</stayAfterDeath>

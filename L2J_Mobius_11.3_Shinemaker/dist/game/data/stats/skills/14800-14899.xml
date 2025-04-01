@@ -1777,7 +1777,6 @@
 		<abnormalTime>2</abnormalTime>
 		<abnormalType>KNOCKDOWN</abnormalType>
 		<abnormalVisualEffect>KNOCKDOWN</abnormalVisualEffect>
-		<abnormalVisualEffect>KNOCKDOWN</abnormalVisualEffect>
 		<activateRate>90</activateRate>
 		<affectLimit>10-10</affectLimit>
 		<affectObject>NOT_FRIEND</affectObject>
@@ -1824,7 +1823,6 @@
 		<abnormalTime>2</abnormalTime>
 		<abnormalType>KNOCKDOWN</abnormalType>
 		<abnormalVisualEffect>KNOCKDOWN</abnormalVisualEffect>
-		<abnormalVisualEffect>KNOCKDOWN</abnormalVisualEffect>
 		<activateRate>90</activateRate>
 		<affectLimit>10-10</affectLimit>
 		<affectObject>NOT_FRIEND</affectObject>
@@ -1870,7 +1868,6 @@
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>2</abnormalTime>
 		<abnormalType>KNOCKDOWN</abnormalType>
-		<abnormalVisualEffect>KNOCKDOWN</abnormalVisualEffect>
 		<abnormalVisualEffect>KNOCKDOWN</abnormalVisualEffect>
 		<activateRate>90</activateRate>
 		<affectLimit>10-10</affectLimit>
@@ -2229,7 +2226,6 @@
 		<abnormalTime>2</abnormalTime>
 		<abnormalType>STUN</abnormalType>
 		<abnormalVisualEffect>KNOCKBACK</abnormalVisualEffect>
-		<abnormalVisualEffect>KNOCKBACK</abnormalVisualEffect>
 		<activateRate>90</activateRate>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>PHYSICAL</basicProperty>
@@ -2267,7 +2263,6 @@
 		<abnormalTime>2</abnormalTime>
 		<abnormalType>STUN</abnormalType>
 		<abnormalVisualEffect>KNOCKBACK</abnormalVisualEffect>
-		<abnormalVisualEffect>KNOCKBACK</abnormalVisualEffect>
 		<activateRate>90</activateRate>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>PHYSICAL</basicProperty>
@@ -2304,7 +2299,6 @@
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>2</abnormalTime>
 		<abnormalType>STUN</abnormalType>
-		<abnormalVisualEffect>KNOCKBACK</abnormalVisualEffect>
 		<abnormalVisualEffect>KNOCKBACK</abnormalVisualEffect>
 		<activateRate>90</activateRate>
 		<affectScope>SINGLE</affectScope>
@@ -2431,7 +2425,6 @@
 		<abnormalTime>10</abnormalTime>
 		<abnormalType>DEPORT</abnormalType>
 		<abnormalVisualEffect>DEPORT</abnormalVisualEffect>
-		<abnormalVisualEffect>DEPORT</abnormalVisualEffect>
 		<activateRate>80</activateRate>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
@@ -2470,7 +2463,6 @@
 		<abnormalLevel>3</abnormalLevel>
 		<abnormalTime>10</abnormalTime>
 		<abnormalType>DEPORT</abnormalType>
-		<abnormalVisualEffect>DEPORT</abnormalVisualEffect>
 		<abnormalVisualEffect>DEPORT</abnormalVisualEffect>
 		<activateRate>80</activateRate>
 		<affectScope>SINGLE</affectScope>
@@ -2511,7 +2503,6 @@
 		<abnormalLevel>5</abnormalLevel>
 		<abnormalTime>10</abnormalTime>
 		<abnormalType>DEPORT</abnormalType>
-		<abnormalVisualEffect>DEPORT</abnormalVisualEffect>
 		<abnormalVisualEffect>DEPORT</abnormalVisualEffect>
 		<activateRate>80</activateRate>
 		<affectScope>SINGLE</affectScope>

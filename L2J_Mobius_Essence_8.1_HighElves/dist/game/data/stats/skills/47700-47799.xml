@@ -1490,7 +1490,7 @@
 		</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicLevel>85</magicLevel>

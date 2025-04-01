@@ -20,14 +20,14 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.enums.CharacterDeleteFailType;
 import org.l2jmobius.gameserver.model.CharSelectInfoPackage;
 import org.l2jmobius.gameserver.model.events.Containers;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerDelete;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerDelete;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
+import org.l2jmobius.gameserver.network.enums.CharacterDeleteFailType;
 import org.l2jmobius.gameserver.network.serverpackets.CharDeleteFail;
 import org.l2jmobius.gameserver.network.serverpackets.CharDeleteSuccess;
 import org.l2jmobius.gameserver.network.serverpackets.CharSelectionInfo;

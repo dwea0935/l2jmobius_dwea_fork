@@ -46,7 +46,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="6370" /> <!-- Saint Spear -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="66618.740144135" hpRegen="118.846913053688" mp="1377.8" mpRegen="3" />
 			<attack physical="8875.02200335732" magical="12726.7271889741" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -90,7 +89,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="5130" /> <!-- Nos Sword -->
 		<acquire exp="5199405" sp="1247" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="2593113.11429698" hpRegen="3500" mp="1475" mpRegen="3" />
@@ -133,7 +131,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="5131" /> <!-- Monster Only (Parhit Staff) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="68331.1079763643" hpRegen="121.063992487928" mp="1442.4" mpRegen="3" />
 			<attack physical="4680.09940116917" magical="3338.16498534774" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -170,7 +167,6 @@
 	<npc id="25204" level="73" type="Monster" name="Padisha Sobekk's Crok" title="Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="5128" /> <!-- Crokian Blade -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="34165.5539881821" hpRegen="121.063992487928" mp="1442.4" mpRegen="3" />
 			<attack physical="4680.09940116917" magical="3338.16498534774" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -216,7 +212,6 @@
 		</parameters>
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="98" /> <!-- Halberd -->
 		<acquire exp="5267107" sp="1264" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="2652452.6596179" hpRegen="5000" mp="1540.8" mpRegen="3" />
@@ -260,7 +255,6 @@
 		</parameters>
 		<race>DIVINE</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="6717" /> <!-- Monster Only (Einhasad Warrior) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="69948.9562534559" hpRegen="123.216289543832" mp="1507.8" mpRegen="3" />
 			<attack physical="9804.8939216752" magical="13902.0164290252" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -296,7 +290,6 @@
 	<npc id="25207" level="75" type="Monster" name="Ashakiel's Staff" title="Minion">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="6718" /> <!-- Monster Only (Einhasad Shaman) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="34974.4781267279" hpRegen="123.216289543832" mp="1507.8" mpRegen="3" />
 			<attack physical="4902.4469608376" magical="3475.50410725631" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -463,7 +456,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="5130" /> <!-- Nos Sword -->
 		<acquire exp="5476117" sp="1314" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="220142.771927134" hpRegen="28.0640450927111" mp="417.6" mpRegen="1.8" />
@@ -505,7 +497,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="279" /> <!-- Reinforced Longbow -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="7444.99373833479" hpRegen="26.794392073316" mp="402.6" mpRegen="1.8" />
 			<attack physical="327.391297293902" magical="51.7199871013021" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -541,7 +532,6 @@
 	<npc id="25213" level="35" type="Monster" name="Sebek's Fanatic" title="Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="5127" /> <!-- Dailaon Knife -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="5555.96547636925" hpRegen="26.794392073316" mp="402.6" mpRegen="1.8" />
 			<attack physical="327.391297293902" magical="51.7199871013021" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -584,7 +574,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="5132" /> <!-- Monster Only (Giant Trident) -->
 		<acquire exp="3818045" sp="916" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="413718.237630093" hpRegen="34.0387779378852" mp="478.8" mpRegen="1.8" />
@@ -1490,7 +1479,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="2500" /> <!-- Dark Legion's Edge -->
 		<acquire exp="2969651" sp="712" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="3484887.99040026" hpRegen="2500" mp="1314" mpRegen="2.7" />
@@ -1588,7 +1576,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="135" /> <!-- Samurai Long Sword -->
 		<acquire exp="244058947" sp="58574" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="2530835.47853144" hpRegen="3500" mp="1410" mpRegen="3" />
@@ -1631,7 +1618,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="200" /> <!-- Sage's Staff -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="66618.740144135" hpRegen="118.846913053688" mp="1377.8" mpRegen="3" />
 			<attack physical="4437.51100167866" magical="3181.68179724353" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -1668,7 +1654,6 @@
 	<npc id="25237" level="71" type="Monster" name="Kandra's Watchman" title="Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="228" /> <!-- Crystal Dagger -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="33309.3700720675" hpRegen="118.846913053688" mp="1377.8" mpRegen="3" />
 			<attack physical="4437.51100167866" magical="3181.68179724353" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -1829,7 +1814,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment lhand="298" /> <!-- Orcish Glaive -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="4438283.61157119" hpRegen="2647.36823225113" mp="3693.6" mpRegen="6" />
 			<attack physical="27330.336" magical="9145.973" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -2153,7 +2137,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="78" /> <!-- Great Sword -->
 		<acquire exp="712305219" sp="170953" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="5246171.71900919" hpRegen="5000" mp="1507.8" mpRegen="3" />
@@ -2204,7 +2187,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="179" /> <!-- Mace of Prayer -->
 		<acquire exp="794494283" sp="190678" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="2709963.62038502" hpRegen="5000" mp="1607.4" mpRegen="3" />
@@ -2248,7 +2230,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="169" /> <!-- Skull Breaker -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="71503.1102081875" hpRegen="125.407546014654" mp="1574" mpRegen="3" />
 			<attack physical="10195.5578341013" magical="14646.9122064601" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -2284,7 +2265,6 @@
 	<npc id="25247" level="75" type="Monster" name="Glaki's Servant" title="Minion">
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="166" /> <!-- Heavy Mace -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="35751.5551040938" hpRegen="125.407546014654" mp="1574" mpRegen="3" />
 			<attack physical="5097.77891705067" magical="3661.72805161503" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -3035,7 +3015,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="297" /> <!-- Glaive -->
 		<acquire exp="1991547" sp="477" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="3148558.175119" hpRegen="221.738396239018" mp="889.8" mpRegen="2.4" />
@@ -3577,7 +3556,6 @@
 	<npc id="25267" level="74" type="Monster" name="Decarabia's Guardsman" title="Minion">
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="5286" /> <!-- Berserker Blade -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="34574.8415239598" hpRegen="122.142751323234" mp="1475" mpRegen="3" />
 			<attack physical="4793.98037614546" magical="3407.58884407368" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3617,7 +3595,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="234" /> <!-- Demon's Dagger -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="69149.6830479196" hpRegen="122.142751323234" mp="1475" mpRegen="3" />
 			<attack physical="9587.96075229092" magical="13630.3553762947" random="5" critical="8" accuracy="0" attackSpeed="253" type="DAGGER" range="40" distance="80" width="120" />
@@ -3704,7 +3681,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="2507" /> <!-- Lizardspear -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="43399.9524783556" hpRegen="116.468584127042" mp="1314" mpRegen="2.7" />
 			<attack physical="4178.50449075237" magical="2773.51840577869" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -3955,7 +3931,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="78" /> <!-- rhand: Great Sword -->
 		<acquire exp="712305220" sp="1255" raidPoints="3172" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="5246171.71900919" hpRegen="5000" mp="1507.8" mpRegen="3" />
@@ -4128,7 +4103,6 @@
 		</parameters>
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="75" /> <!-- Caliburs -->
 		<acquire exp="1991547" sp="477" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="3148558.175119" hpRegen="221.738396239018" mp="889.8" mpRegen="2.4" />
@@ -4224,7 +4198,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="2500" /> <!-- Dark Legion's Edge -->
 		<acquire exp="5231148" sp="1255" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="5246171.71900919" hpRegen="5000" mp="1507.8" mpRegen="3" />
@@ -5016,7 +4989,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="6719" /> <!-- Monster Only (Ketra Orc Chieftain) -->
 		<acquire exp="1670060147" sp="400814" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="1982158.55449171" hpRegen="5000" mp="1674.8" mpRegen="3" />

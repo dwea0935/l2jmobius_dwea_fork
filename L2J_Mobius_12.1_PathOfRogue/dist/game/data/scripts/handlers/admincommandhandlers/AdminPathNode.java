@@ -23,11 +23,10 @@ package handlers.admincommandhandlers;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.geoengine.pathfinding.AbstractNodeLoc;
+import org.l2jmobius.gameserver.geoengine.pathfinding.GeoLocation;
 import org.l2jmobius.gameserver.geoengine.pathfinding.PathFinding;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 public class AdminPathNode implements IAdminCommandHandler
 {
@@ -43,26 +42,26 @@ public class AdminPathNode implements IAdminCommandHandler
 		{
 			if (Config.PATHFINDING < 1)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "PathFinding is disabled.");
+				activeChar.sendSysMessage("PathFinding is disabled.");
 				return true;
 			}
 			
 			if (activeChar.getTarget() != null)
 			{
-				final List<AbstractNodeLoc> path = PathFinding.getInstance().findPath(activeChar.getX(), activeChar.getY(), (short) activeChar.getZ(), activeChar.getTarget().getX(), activeChar.getTarget().getY(), (short) activeChar.getTarget().getZ(), activeChar.getInstanceWorld(), true);
+				final List<GeoLocation> path = PathFinding.getInstance().findPath(activeChar.getX(), activeChar.getY(), (short) activeChar.getZ(), activeChar.getTarget().getX(), activeChar.getTarget().getY(), (short) activeChar.getTarget().getZ(), activeChar.getInstanceWorld(), true);
 				if (path == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "No Route!");
+					activeChar.sendSysMessage("No Route!");
 					return true;
 				}
-				for (AbstractNodeLoc a : path)
+				for (GeoLocation a : path)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "x:" + a.getX() + " y:" + a.getY() + " z:" + a.getZ());
+					activeChar.sendSysMessage("x:" + a.getX() + " y:" + a.getY() + " z:" + a.getZ());
 				}
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "No Target!");
+				activeChar.sendSysMessage("No Target!");
 			}
 		}
 		return true;

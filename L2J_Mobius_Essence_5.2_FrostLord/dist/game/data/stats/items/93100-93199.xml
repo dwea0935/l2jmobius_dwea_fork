@@ -438,7 +438,7 @@
 		<set name="is_freightable" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="51027" level="1" /> <!-- Summon Agathion Joy -->
+			<skill id="51027" level="1" /> <!-- Summon Joy Agathion -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -455,7 +455,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
-			<skill id="51338" level="1" /> <!-- Scroll: Agathion Enchant Scroll Lv.1 -->
+			<skill id="51338" level="1" /> <!-- Scroll: Enchant Agathion -->
 		</skills>
 	</item>
 	<item id="93134" name="Package: Agathion Ignis" additionalName="Sealed" type="EtcItem">
@@ -559,18 +559,18 @@
 			<stat type="pDef">200</stat>
 		</stats>
 		<skills>
-			<skill id="50330" level="1" /> <!-- Ice Crystal Breastplate -->
-			<skill id="50331" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
+			<skill id="50330" level="1" /> <!-- A-grade: Ice Crystal Breastplate -->
+			<skill id="50331" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Ice Crystal Breastplate -->
+			<skill id="50332" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Ice Crystal Breastplate -->
+			<skill id="50332" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Ice Crystal Breastplate -->
+			<skill id="50332" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Ice Crystal Breastplate -->
+			<skill id="50332" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Ice Crystal Breastplate -->
+			<skill id="50332" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Ice Crystal Breastplate -->
+			<skill id="50332" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Ice Crystal Breastplate -->
+			<skill id="50332" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Ice Crystal Breastplate -->
+			<skill id="50332" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Ice Crystal Breastplate -->
+			<skill id="50332" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Ice Crystal Breastplate -->
+			<skill id="50332" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Ice Crystal Breastplate -->
 		</skills>
 	</item>
 	<item id="93140" name="Ice Crystal Gaiters" type="Armor">
@@ -589,18 +589,18 @@
 			<stat type="pDef">175</stat>
 		</stats>
 		<skills>
-			<skill id="50333" level="1" /> <!-- Ice Crystal Gaiters -->
-			<skill id="50334" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
+			<skill id="50333" level="1" /> <!-- A-grade: Ice Crystal Gaiters -->
+			<skill id="50334" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Ice Crystal Gaiters -->
+			<skill id="50335" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Ice Crystal Gaiters -->
+			<skill id="50335" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Ice Crystal Gaiters -->
+			<skill id="50335" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Ice Crystal Gaiters -->
+			<skill id="50335" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Ice Crystal Gaiters -->
+			<skill id="50335" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Ice Crystal Gaiters -->
+			<skill id="50335" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Ice Crystal Gaiters -->
+			<skill id="50335" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Ice Crystal Gaiters -->
+			<skill id="50335" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Ice Crystal Gaiters -->
+			<skill id="50335" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Ice Crystal Gaiters -->
+			<skill id="50335" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Ice Crystal Gaiters -->
 		</skills>
 	</item>
 	<item id="93141" name="Ice Crystal Breastplate" additionalName="Sealed" type="Armor">
@@ -621,18 +621,18 @@
 			<stat type="pDef">200</stat>
 		</stats>
 		<skills>
-			<skill id="50330" level="1" /> <!-- Ice Crystal Breastplate -->
-			<skill id="50331" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
-			<skill id="50332" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Ice Crystal Breastplate -->
+			<skill id="50330" level="1" /> <!-- A-grade: Ice Crystal Breastplate -->
+			<skill id="50331" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Ice Crystal Breastplate -->
+			<skill id="50332" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Ice Crystal Breastplate -->
+			<skill id="50332" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Ice Crystal Breastplate -->
+			<skill id="50332" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Ice Crystal Breastplate -->
+			<skill id="50332" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Ice Crystal Breastplate -->
+			<skill id="50332" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Ice Crystal Breastplate -->
+			<skill id="50332" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Ice Crystal Breastplate -->
+			<skill id="50332" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Ice Crystal Breastplate -->
+			<skill id="50332" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Ice Crystal Breastplate -->
+			<skill id="50332" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Ice Crystal Breastplate -->
+			<skill id="50332" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Ice Crystal Breastplate -->
 		</skills>
 	</item>
 	<item id="93142" name="Ice Crystal Gaiters" additionalName="Sealed" type="Armor">
@@ -653,18 +653,18 @@
 			<stat type="pDef">175</stat>
 		</stats>
 		<skills>
-			<skill id="50333" level="1" /> <!-- Ice Crystal Gaiters -->
-			<skill id="50334" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="1" type="ON_ENCHANT" type_value="1" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="2" type="ON_ENCHANT" type_value="2" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="3" type="ON_ENCHANT" type_value="3" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="4" type="ON_ENCHANT" type_value="4" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="5" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="6" type="ON_ENCHANT" type_value="6" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="7" type="ON_ENCHANT" type_value="7" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="8" type="ON_ENCHANT" type_value="8" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="9" type="ON_ENCHANT" type_value="9" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
-			<skill id="50335" level="10" type="ON_ENCHANT" type_value="10" /> <!-- Enchant Effect: Ice Crystal Gaiters -->
+			<skill id="50333" level="1" /> <!-- A-grade: Ice Crystal Gaiters -->
+			<skill id="50334" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Ice Crystal Gaiters -->
+			<skill id="50335" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Ice Crystal Gaiters -->
+			<skill id="50335" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Ice Crystal Gaiters -->
+			<skill id="50335" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Ice Crystal Gaiters -->
+			<skill id="50335" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Ice Crystal Gaiters -->
+			<skill id="50335" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Ice Crystal Gaiters -->
+			<skill id="50335" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Ice Crystal Gaiters -->
+			<skill id="50335" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Ice Crystal Gaiters -->
+			<skill id="50335" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Ice Crystal Gaiters -->
+			<skill id="50335" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Ice Crystal Gaiters -->
+			<skill id="50335" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Ice Crystal Gaiters -->
 		</skills>
 	</item>
 	<item id="93143" name="Siege Support Box - Goddard" additionalName="Sealed" type="EtcItem">

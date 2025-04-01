@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="47501" name="Rune Stone Fragment" type="EtcItem">
 		<!-- A Rune Stone Fragment engraved in ancient Rune language. Collect 10 and take them to Lias in the Dimensional Rift to exchange for a Rune Stone. -->
@@ -61,7 +61,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13584" level="1" /> <!-- NOT RETAIL SKILL - But uses the same status -->
+			<skill id="13584" level="1" /> <!-- Aria's Bracelet: CON -->
 		</skills>
 	</item>
 	<item id="47506" name="Bracelet of the Conqueror - MEN" type="Armor">
@@ -78,7 +78,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13585" level="1" /> <!-- NOT RETAIL SKILL - But uses the same status -->
+			<skill id="13585" level="1" /> <!-- Aria's Bracelet: MEN -->
 		</skills>
 	</item>
 	<item id="47507" name="Bracelet of the Conqueror - DEX" type="Armor">
@@ -95,7 +95,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13586" level="1" /> <!-- NOT RETAIL SKILL - But uses the same status -->
+			<skill id="13586" level="1" /> <!-- Aria's Bracelet: DEX -->
 		</skills>
 	</item>
 	<item id="47508" name="Bracelet of the Conqueror - WIT" type="Armor">
@@ -112,7 +112,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13587" level="1" /> <!-- NOT RETAIL SKILL - But uses the same status -->
+			<skill id="13587" level="1" /> <!-- Aria's Bracelet: WIT -->
 		</skills>
 	</item>
 	<item id="47509" name="Bracelet of the Conqueror - STR" type="Armor">
@@ -129,7 +129,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13588" level="1" /> <!-- NOT RETAIL SKILL - But uses the same status -->
+			<skill id="13588" level="1" /> <!-- Aria's Bracelet: STR -->
 		</skills>
 	</item>
 	<item id="47510" name="Bracelet of the Conqueror - INT" type="Armor">
@@ -146,7 +146,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="13589" level="1" /> <!-- NOT RETAIL SKILL - But uses the same status -->
+			<skill id="13589" level="1" /> <!-- Aria's Bracelet: INT -->
 		</skills>
 	</item>
 	<item id="47511" name="Dimensional Traces" type="EtcItem">
@@ -1099,7 +1099,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="18683" level="1" /> <!-- Cat Fighter Appearance Stone - Ertheia Only -->
+			<skill id="18683" level="1" /> <!-- Cat Fighter Appearance Stone -->
 		</skills>
 	</item>
 	<item id="47592" name="Warm Bear Paws Appearance Stone" type="EtcItem">
@@ -1151,7 +1151,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="18687" level="1" /> <!-- Wedding Bouquet Appearance Stone -->
+			<skill id="18687" level="1" /> <!-- Wedding Bouquet Appearance Stone -One-handed Blunt Weapon -->
 		</skills>
 	</item>
 	<item id="47596" name="Pig Lollipop Appearance Stone" type="EtcItem">

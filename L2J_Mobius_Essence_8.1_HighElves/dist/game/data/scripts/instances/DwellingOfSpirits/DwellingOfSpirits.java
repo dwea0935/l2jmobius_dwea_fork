@@ -25,13 +25,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -207,7 +207,7 @@ public class DwellingOfSpirits extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		final StatSet worldParameters = instance.getParameters();
@@ -229,8 +229,9 @@ public class DwellingOfSpirits extends AbstractInstance
 					{
 						if (instance.getStatus() > totalBossDefeatCount)
 						{
-							return super.onKill(npc, player, isSummon);
+							return;
 						}
+						
 						instance.setStatus(instance.getStatus() + 1);
 						openPortal(player, portalId, instance);
 						worldParameters.set("portal" + portalId + "Opened", true);
@@ -250,12 +251,10 @@ public class DwellingOfSpirits extends AbstractInstance
 				break;
 			}
 		}
-		
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		Instance instance = creature.getInstanceWorld();
 		if ((instance != null) && creature.isPlayer())
@@ -291,7 +290,6 @@ public class DwellingOfSpirits extends AbstractInstance
 			}
 			
 		}
-		return null;
 	}
 	
 	@Override

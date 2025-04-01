@@ -3888,7 +3888,6 @@
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>2000</reuseDelay>
-		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="GiveSp">
 				<sp>1000000</sp>
@@ -3907,7 +3906,6 @@
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>2000</reuseDelay>
-		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="GiveSp">
 				<sp>5000000</sp>
@@ -3925,7 +3923,6 @@
 		<itemConsumeId>39375</itemConsumeId> <!-- Scroll: 10,000,000 SP -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
-		<reuseDelay>2000</reuseDelay>
 		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="GiveSp">

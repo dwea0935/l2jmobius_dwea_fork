@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="7600" type="EtcItem" name="Worn Tarot Card - Wealth">
 		<!-- An old and worn out tarot card given by the Lady of the Lake. This card symbolizes wealth. -->
@@ -191,7 +191,7 @@
 		<set name="weight" val="1" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="7618" type="EtcItem" name="Scroll of Escape: Ketra Orc Village">
+	<item id="7618" type="EtcItem" name="Scroll of Escape - Ketra Orc Village">
 		<!-- A magic scroll that transports its bearer to Ketra Orc Village. -->
 		<set name="icon" val="icon.etc_scroll_of_return_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -203,7 +203,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-20" /> <!-- Escape - Talking Island Village -->
 	</item>
-	<item id="7619" type="EtcItem" name="Scroll of Escape: Varka Silenos Village">
+	<item id="7619" type="EtcItem" name="Scroll of Escape - Varka Silenos Village">
 		<!-- A magic scroll that transports its bearer to Varka Silenos Village. -->
 		<set name="icon" val="icon.etc_scroll_of_return_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -359,7 +359,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2217-3" /> <!-- Item - Quest Treasure Box -->
 	</item>
-	<item id="7632" type="EtcItem" name="Looted Goods - Red Cargo Box">
+	<item id="7632" type="EtcItem" name="Looted Goods - Red Filing Cabinet">
 		<!-- Red Document Box looted from a trader's wagon. Seems to have valuable goods. Double-click to see the contents. -->
 		<set name="icon" val="icon.etc_royal_seal_of_lord_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -371,7 +371,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2217-4" /> <!-- Item - Quest Treasure Box -->
 	</item>
-	<item id="7633" type="EtcItem" name="Looted Goods - Purple Cargo Box">
+	<item id="7633" type="EtcItem" name="Looted Goods - Purple Filing Cabinet">
 		<!-- Violet Document Box looted from a trader's wagon. Seems to have valuable goods. Double-click to see the contents. -->
 		<set name="icon" val="icon.etc_royal_seal_of_lord_i03" />
 		<set name="default_action" val="CAPSULE" />

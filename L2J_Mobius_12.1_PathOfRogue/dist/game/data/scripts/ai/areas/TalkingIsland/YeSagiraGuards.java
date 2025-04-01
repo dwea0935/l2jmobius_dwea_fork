@@ -64,11 +64,10 @@ public class YeSagiraGuards extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setInvul(true);
 		getTimers().addTimer("GUARD_AGGRO_" + npc.getObjectId(), null, 5000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

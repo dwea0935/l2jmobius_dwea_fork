@@ -121,7 +121,7 @@
 		<set name="is_questitem" val="true" />
 		<set name="is_depositable" val="false" />
 		<skills>
-			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+			<skill id="2096" level="1" /> <!-- Soul Quartz -->
 		</skills>
 	</item>
 	<item id="5909" name="Anniversary Gift Box (8 Honey Rice Cakes)" type="EtcItem">
@@ -173,7 +173,7 @@
 		<set name="commissionItemType" val="SOUL_CRYSTAL" />
 		<set name="is_depositable" val="false" />
 		<skills>
-			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+			<skill id="2096" level="1" /> <!-- Soul Quartz -->
 		</skills>
 	</item>
 	<item id="5912" name="Anniversary Gift Box (6 Honey Rice Cakes)" type="EtcItem">
@@ -225,7 +225,7 @@
 		<set name="is_questitem" val="true" />
 		<set name="is_depositable" val="false" />
 		<skills>
-			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+			<skill id="2096" level="1" /> <!-- Soul Quartz -->
 		</skills>
 	</item>
 	<item id="5915" name="Pirate's Treasure Map" type="EtcItem">

@@ -455,7 +455,6 @@
 		<targetType>SELF</targetType>
 		<abnormalLevel>2</abnormalLevel>
 		<abnormalTime>1200</abnormalTime>
-		<abnormalTime>1200</abnormalTime>
 		<abnormalType>SPECIAL_BERSERKER</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
@@ -1169,7 +1168,6 @@
 		<targetType>SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>1200</abnormalTime>
-		<abnormalTime>1200</abnormalTime>
 		<abnormalType>SPECIAL_BERSERKER</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
@@ -1218,7 +1216,6 @@
 		<operateType>A2</operateType>
 		<targetType>SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
-		<abnormalTime>1200</abnormalTime>
 		<abnormalTime>1200</abnormalTime>
 		<abnormalType>SPECIAL_BERSERKER</abnormalType>
 		<affectScope>SINGLE</affectScope>
@@ -1302,7 +1299,6 @@
 		<icon>icon.flower_songpyeon</icon>
 		<operateType>A2</operateType>
 		<targetType>SELF</targetType>
-		<abnormalTime>1200</abnormalTime>
 		<abnormalTime>1200</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
@@ -1698,7 +1694,7 @@
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>3600</abnormalTime>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>

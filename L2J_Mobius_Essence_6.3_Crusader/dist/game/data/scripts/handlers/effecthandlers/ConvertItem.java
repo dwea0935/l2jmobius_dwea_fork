@@ -24,6 +24,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.item.enchant.attribute.AttributeHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -128,13 +129,13 @@ public class ConvertItem extends AbstractEffect
 			return;
 		}
 		
-		final Item destroyItem = player.getInventory().destroyItem("ChangeWeapon", wpn, player, null);
+		final Item destroyItem = player.getInventory().destroyItem(ItemProcessType.TRANSFER, wpn, player, null);
 		if (destroyItem == null)
 		{
 			return;
 		}
 		
-		final Item newItem = player.getInventory().addItem("ChangeWeapon", newItemId, 1, player, destroyItem);
+		final Item newItem = player.getInventory().addItem(ItemProcessType.TRANSFER, newItemId, 1, player, destroyItem);
 		if (newItem == null)
 		{
 			return;

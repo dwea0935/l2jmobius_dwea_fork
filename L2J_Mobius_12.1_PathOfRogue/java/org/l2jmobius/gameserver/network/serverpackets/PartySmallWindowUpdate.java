@@ -21,10 +21,10 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.PartySmallWindowUpdateType;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.enums.PartySmallWindowUpdateType;
 
 /**
  * @author Mobius
@@ -82,7 +82,7 @@ public class PartySmallWindowUpdate extends AbstractMaskPacket<PartySmallWindowU
 		}
 		if (containsMask(PartySmallWindowUpdateType.CLASS_ID))
 		{
-			buffer.writeShort(_member.getClassId().getId());
+			buffer.writeShort(_member.getPlayerClass().getId());
 		}
 		if (containsMask(PartySmallWindowUpdateType.PARTY_SUBSTITUTE))
 		{

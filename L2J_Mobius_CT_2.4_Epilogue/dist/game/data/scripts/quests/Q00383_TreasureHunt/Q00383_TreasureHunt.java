@@ -18,7 +18,7 @@ package quests.Q00383_TreasureHunt;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 
@@ -67,7 +67,7 @@ public class Q00383_TreasureHunt extends Quest
 	
 	public Q00383_TreasureHunt()
 	{
-		super(383);
+		super(383, "Searching for Treasure");
 		addStartNpc(ESPEN);
 		addTalkId(ESPEN, PIRATES_CHEST);
 	}

@@ -23,8 +23,8 @@ package org.l2jmobius.gameserver.model.item;
 import java.util.Collection;
 import java.util.Objects;
 
-import org.l2jmobius.gameserver.enums.AttributeType;
 import org.l2jmobius.gameserver.model.VariationInstance;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
 import org.l2jmobius.gameserver.model.ensoul.EnsoulOption;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;

@@ -34,11 +34,12 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
 import org.l2jmobius.gameserver.model.skill.SkillCastingType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -207,7 +208,7 @@ public class HolidayOutOfSchedule extends LongTimeEvent
 						final int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 						if (player.getAccountVariables().getInt(getClass().getSimpleName() + "_SANTA_GIFT", 0) != currentDay)
 						{
-							SANTA_GIFT.forEach(g -> player.addItem("Santa Gift", g, npc, true));
+							SANTA_GIFT.forEach(g -> player.addItem(ItemProcessType.REWARD, g, npc, true));
 							player.getAccountVariables().set(getClass().getSimpleName() + "_SANTA_GIFT", currentDay);
 						}
 						else
@@ -261,13 +262,12 @@ public class HolidayOutOfSchedule extends LongTimeEvent
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == LARGE_CHRISTMAS_TREE_NPC_ID)
 		{
 			TREE_NPCs.add(npc);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	private void activateSanta()

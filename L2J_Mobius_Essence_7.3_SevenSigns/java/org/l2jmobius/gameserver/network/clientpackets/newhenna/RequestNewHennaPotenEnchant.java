@@ -28,10 +28,11 @@ import org.l2jmobius.gameserver.data.xml.HennaPatternPotentialData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerHennaEnchant;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerHennaEnchant;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.henna.DyePotentialFee;
 import org.l2jmobius.gameserver.model.item.henna.HennaPoten;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.newhenna.NewHennaPotenEnchant;
 
@@ -82,7 +83,7 @@ public class RequestNewHennaPotenEnchant extends ClientPacket
 		}
 		
 		final Optional<ItemHolder> itemFee = currentFee.getItems().stream().filter(ih -> ih.getId() == _costItemId).findAny();
-		if (itemFee.isEmpty() || !player.destroyItemByItemId(getClass().getSimpleName(), itemFee.get().getId(), itemFee.get().getCount(), player, true))
+		if (itemFee.isEmpty() || !player.destroyItemByItemId(ItemProcessType.FEE, itemFee.get().getId(), itemFee.get().getCount(), player, true))
 		{
 			return;
 		}

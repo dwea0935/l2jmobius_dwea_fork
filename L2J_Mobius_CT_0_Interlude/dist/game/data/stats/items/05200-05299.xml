@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="5200" type="EtcItem" name="Chest Key - Grade 5">
 		<!-- Opens a level 30 treasure chest with a success rate of 60%. When opening a higher level treasure chest, the success rate will decrease. -->
@@ -634,7 +634,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 	</item>
-	<item id="5250" type="EtcItem" name="Greater Compressed Package of Soulshots (No-Grade)">
+	<item id="5250" type="EtcItem" name="Greater Compressed Package of Soulshots: No-grade">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 No-grade soulshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -645,7 +645,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2104-1" /> <!-- Greater Compressed Package of Soulshots: No-grade -->
 	</item>
-	<item id="5251" type="EtcItem" name="Greater Compressed Package of Soulshots (D-Grade)">
+	<item id="5251" type="EtcItem" name="Greater Compressed Package of Soulshots: D-grade">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 D-grade soulshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -656,7 +656,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2105-1" /> <!-- Greater Compressed Package of Soulshots: D-grade -->
 	</item>
-	<item id="5252" type="EtcItem" name="Greater Compressed Package of Soulshots (C-Grade)">
+	<item id="5252" type="EtcItem" name="Greater Compressed Package of Soulshots: C-grade">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 C-grade soulshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -667,7 +667,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2106-1" /> <!-- Greater Compressed Package of Soulshots: C-grade -->
 	</item>
-	<item id="5253" type="EtcItem" name="Greater Compressed Package of Soulshots (B-Grade)">
+	<item id="5253" type="EtcItem" name="Greater Compressed Package of Soulshots: B-grade">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 B-grade soulshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -678,7 +678,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2107-1" /> <!-- Greater Compressed Package of Soulshots: B-grade -->
 	</item>
-	<item id="5254" type="EtcItem" name="Greater Compressed Package of Soulshots (A-Grade)">
+	<item id="5254" type="EtcItem" name="Greater Compressed Package of Soulshots: A-grade">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 A-grade soulshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -689,7 +689,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2108-1" /> <!-- Greater Compressed Package of Soulshots: A-grade -->
 	</item>
-	<item id="5255" type="EtcItem" name="Greater Compressed Package of Soulshots (S-Grade)">
+	<item id="5255" type="EtcItem" name="Greater Compressed Package of Soulshots: S-grade">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 S-grade soulshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -700,7 +700,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2109-1" /> <!-- Greater Compressed Package of Soulshots: S-grade -->
 	</item>
-	<item id="5256" type="EtcItem" name="Greater Compressed Package of Spiritshots (No-Grade)">
+	<item id="5256" type="EtcItem" name="Greater Compressed Package of Spiritshots: No-grade">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 No-grade spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -711,7 +711,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2110-1" /> <!-- Greater Compressed Package of Spiritshots: No-grade -->
 	</item>
-	<item id="5257" type="EtcItem" name="Greater Compressed Package of Spiritshots (D-Grade)">
+	<item id="5257" type="EtcItem" name="Greater Compressed Package of Spiritshots: D-grade">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 D-grade spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -722,7 +722,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2111-1" /> <!-- Greater Compressed Package of Spiritshots: D-grade -->
 	</item>
-	<item id="5258" type="EtcItem" name="Greater Compressed Package of Spiritshots (C-Grade)">
+	<item id="5258" type="EtcItem" name="Greater Compressed Package of Spiritshots: C-grade">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 C-grade spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -733,7 +733,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2112-1" /> <!-- Greater Compressed Package of Spiritshots: C-grade -->
 	</item>
-	<item id="5259" type="EtcItem" name="Greater Compressed Package of Spiritshots (B-Grade)">
+	<item id="5259" type="EtcItem" name="Greater Compressed Package of Spiritshots: B-grade">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 B-grade spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -744,7 +744,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2113-1" /> <!-- Greater Compressed Package of Spiritshots: B-grade -->
 	</item>
-	<item id="5260" type="EtcItem" name="Greater Compressed Package of Spiritshots (A-Grade)">
+	<item id="5260" type="EtcItem" name="Greater Compressed Package of Spiritshots: A-grade">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 A-grade spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -755,7 +755,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2114-1" /> <!-- Greater Compressed Package of Spiritshots: A-grade -->
 	</item>
-	<item id="5261" type="EtcItem" name="Greater Compressed Package of Spiritshots (S-Grade)">
+	<item id="5261" type="EtcItem" name="Greater Compressed Package of Spiritshots: S-grade">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 S-grade spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -766,7 +766,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2115-1" /> <!-- Greater Compressed Package of Spiritshots: S-grade -->
 	</item>
-	<item id="5262" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (No-Grade)">
+	<item id="5262" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots: No-grade">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 No-grade blessed spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -777,7 +777,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2116-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: No-grade -->
 	</item>
-	<item id="5263" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (D-Grade)">
+	<item id="5263" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots: D-grade">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 D-grade blessed spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -788,7 +788,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2117-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: D-grade -->
 	</item>
-	<item id="5264" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (C-Grade)">
+	<item id="5264" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots: C-grade">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 C-grade blessed spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -799,7 +799,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2118-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: C-grade -->
 	</item>
-	<item id="5265" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (B-Grade)">
+	<item id="5265" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots: B-grade">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 B-grade blessed spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -810,7 +810,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2119-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: B-grade -->
 	</item>
-	<item id="5266" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (A-Grade)">
+	<item id="5266" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots: A-grade">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 A-grade blessed spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />
@@ -821,7 +821,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2120-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: A-grade -->
 	</item>
-	<item id="5267" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (S-Grade)">
+	<item id="5267" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots: S-grade">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 S-grade blessed spiritshots. -->
 		<set name="icon" val="icon.etc_pouch_gray_i00" />
 		<set name="default_action" val="CAPSULE" />

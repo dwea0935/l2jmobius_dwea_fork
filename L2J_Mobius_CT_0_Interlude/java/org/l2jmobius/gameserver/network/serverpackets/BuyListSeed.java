@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
+import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.model.SeedProduction;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -31,10 +31,10 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 public class BuyListSeed extends ServerPacket
 {
 	private final int _manorId;
-	private final long _money;
+	private final int _money;
 	private final List<SeedProduction> _list = new ArrayList<>();
 	
-	public BuyListSeed(long currentMoney, int castleId)
+	public BuyListSeed(int currentMoney, int castleId)
 	{
 		_money = currentMoney;
 		_manorId = castleId;
@@ -51,7 +51,7 @@ public class BuyListSeed extends ServerPacket
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.BUY_LIST_SEED.writeId(this, buffer);
-		buffer.writeInt((int) _money); // current money
+		buffer.writeInt(_money); // current money
 		buffer.writeInt(_manorId); // manor id
 		if (!_list.isEmpty())
 		{

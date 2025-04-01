@@ -20,10 +20,10 @@
  */
 package ai.areas.DragonValley;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -47,7 +47,7 @@ public class DragonValleySummoners extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (getRandom(100) < CHANCE)
 		{
@@ -80,7 +80,6 @@ public class DragonValleySummoners extends AbstractNpcAI
 			}
 			npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.THE_DEAD_ARE_CALLING_AND_I_ANSWER);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

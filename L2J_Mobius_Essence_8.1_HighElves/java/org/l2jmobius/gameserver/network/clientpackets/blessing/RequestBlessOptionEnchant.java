@@ -22,21 +22,22 @@ package org.l2jmobius.gameserver.network.clientpackets.blessing;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.ItemSkillType;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.BlessingItemRequest;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.ItemSkillType;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.blessing.ExBlessOptionEnchant;
 import org.l2jmobius.gameserver.network.serverpackets.blessing.ExBlessOptionPutItem;
 import org.l2jmobius.gameserver.network.serverpackets.enchant.EnchantResult;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Horus
@@ -111,10 +112,10 @@ public class RequestBlessOptionEnchant extends ClientPacket
 		}
 		
 		// attempting to destroy scroll
-		if (player.getInventory().destroyItem("Blessing", targetScroll.getObjectId(), 1, player, item) == null)
+		if (player.getInventory().destroyItem(ItemProcessType.FEE, targetScroll.getObjectId(), 1, player, item) == null)
 		{
 			getClient().sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
-			Util.handleIllegalPlayerAction(player, player + " tried to bless with a scroll he doesn't have", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to bless with a scroll he doesn't have", Config.DEFAULT_PUNISH);
 			player.sendPacket(new ExBlessOptionEnchant(EnchantResult.ERROR));
 			return;
 		}

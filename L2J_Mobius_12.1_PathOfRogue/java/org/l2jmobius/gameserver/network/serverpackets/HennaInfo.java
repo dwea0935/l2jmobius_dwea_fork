@@ -68,7 +68,7 @@ public class HennaInfo extends ServerPacket
 		for (Henna henna : _hennas)
 		{
 			buffer.writeInt(henna.getDyeId());
-			buffer.writeInt(henna.isAllowedClass(_player.getClassId()));
+			buffer.writeInt(henna.isAllowedClass(_player.getPlayerClass()));
 		}
 		final Henna premium = _player.getHenna(4);
 		if (premium != null)
@@ -81,7 +81,7 @@ public class HennaInfo extends ServerPacket
 			}
 			buffer.writeInt(premium.getDyeId());
 			buffer.writeInt(duration); // Premium Slot Dye Time Left
-			buffer.writeInt(premium.isAllowedClass(_player.getClassId()));
+			buffer.writeInt(premium.isAllowedClass(_player.getPlayerClass()));
 		}
 		else
 		{

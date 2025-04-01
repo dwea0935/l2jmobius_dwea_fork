@@ -133,7 +133,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3211" name="Scepter of Breka" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. The flame scepter obtained from the Breka Orc chief. Take it along with 4 other tribes' scepters to Gandi Chief Chianta in Dion. -->
+		<!-- The item is not available. The flame scepter obtained from the Breka Chief. Collect the 5 flame scepters from the lesser Orc tribes and take them to Gandi Chief Chianta in Dion. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -145,7 +145,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3212" name="Scepter of Enku" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. The flame scepter obtained from the Enku Orc chief. Take it along with 4 other tribes' scepters to Gandi Chief Chianta in Dion. -->
+		<!-- The item is not available. The flame scepter obtained from the Enku Chief. Collect the 5 flame scepters from the lesser Orc tribes and take them to Gandi Chief Chianta in Dion. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -157,7 +157,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3213" name="Scepter of Vuku" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. The flame scepter obtained from the Vuku Orc chief. Take it along with 4 other tribes' scepters to Gandi Chief Chianta in Dion. -->
+		<!-- The item is not available. The flame scepter obtained from the Vuku Chief. Collect the 5 flame scepters from the lesser Orc tribes and take them to Gandi Chief Chianta in Dion. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -169,7 +169,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3214" name="Scepter of Turek" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. The flame scepter obtained from the Turek Orc chief. Take it along with 4 other tribes' scepters to Gandi Chief Chianta in Dion. -->
+		<!-- The item is not available. The flame scepter obtained from the Turek Orc Chief. Collect the 5 flame scepters from the lesser Orc tribes and take them to Gandi Chief Chianta in Dion. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -181,7 +181,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3215" name="Scepter of Tunath" additionalName="Not Available" type="EtcItem">
-		<!-- The item is not available. The flame scepter obtained from the Tunath Orc chief. Take it along with 4 other tribes' scepters to Gandi Chief Chianta in Dion. -->
+		<!-- The item is not available. The flame scepter obtained from the Tunath Orc Chief. Collect the 5 flame scepters from the lesser Orc tribes and take them to Gandi Chief Chianta in Dion. -->
 		<set name="icon" val="icon.etc_ertheia2" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

@@ -1,144 +1,148 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.events;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.model.events.impl.IBaseEvent;
-import org.l2jmobius.gameserver.model.events.impl.OnDayNightChange;
-import org.l2jmobius.gameserver.model.events.impl.OnServerStart;
-import org.l2jmobius.gameserver.model.events.impl.clan.OnClanWarFinish;
-import org.l2jmobius.gameserver.model.events.impl.clan.OnClanWarStart;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttack;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttackAvoid;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttacked;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDamageDealt;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDamageReceived;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureHpChange;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureKilled;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSee;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSkillFinishCast;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSkillUse;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureTeleport;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureTeleported;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureZoneEnter;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureZoneExit;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableAggroRangeEnter;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableAttack;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableFactionCall;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableHate;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableKill;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcCanBeSeen;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcDespawn;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcEventReceived;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcFirstTalk;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcManorBypass;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMenuSelect;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMoveFinished;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMoveNodeArrived;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMoveRouteFinished;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSkillFinished;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSkillSee;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSpawn;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcTeleport;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcTeleportRequest;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayableExpChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerAbilityPointsChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerAugment;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerBypass;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerCallToChangeClass;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerChangeToAwakenedClass;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerChat;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanCreate;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanDestroy;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanJoin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanLeaderChange;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanLeft;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanLvlUp;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanWHItemAdd;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanWHItemDestroy;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerClanWHItemTransfer;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerCreate;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerDelete;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerDlgAnswer;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerFameChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerFishing;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerHennaAdd;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerHennaRemove;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerItemAdd;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerItemDestroy;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerItemDrop;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerItemEquip;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerItemPickup;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerItemTransfer;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerItemUnequip;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLoad;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogout;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeAdd;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeLeft;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeRemove;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMenteeStatus;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMentorStatus;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMoveRequest;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPKChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPressTutorialMark;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionCancel;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionChange;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPvPChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPvPKill;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerQuestAbort;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerQuestComplete;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerReputationChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerRestore;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSelect;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSkillLearn;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSocialAction;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSubChange;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSummonAgathion;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSummonSpawn;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSummonTalk;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerTakeHero;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerTransform;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerUnsummonAgathion;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnTrapAction;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceCreated;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceDestroy;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceEnter;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceLeave;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemBypassEvent;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemCreate;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemTalk;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemUse;
-import org.l2jmobius.gameserver.model.events.impl.olympiad.OnOlympiadMatchResult;
-import org.l2jmobius.gameserver.model.events.impl.sieges.OnCastleSiegeFinish;
-import org.l2jmobius.gameserver.model.events.impl.sieges.OnCastleSiegeOwnerChange;
-import org.l2jmobius.gameserver.model.events.impl.sieges.OnCastleSiegeStart;
-import org.l2jmobius.gameserver.model.events.impl.sieges.OnFortSiegeFinish;
-import org.l2jmobius.gameserver.model.events.impl.sieges.OnFortSiegeStart;
+import org.l2jmobius.gameserver.model.events.holders.IBaseEvent;
+import org.l2jmobius.gameserver.model.events.holders.OnDayNightChange;
+import org.l2jmobius.gameserver.model.events.holders.OnServerStart;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttack;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttackAvoid;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDamageDealt;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDamageReceived;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureHpChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureKilled;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSee;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSkillFinishCast;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSkillUse;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureTeleport;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureTeleported;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureZoneEnter;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureZoneExit;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableAggroRangeEnter;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableAttack;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableFactionCall;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableHate;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableKill;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcCanBeSeen;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcDespawn;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcEventReceived;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcFirstTalk;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcManorBypass;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMenuSelect;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMoveFinished;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMoveNodeArrived;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMoveRouteFinished;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSkillFinished;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSkillSee;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSpawn;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcTeleport;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcTeleportRequest;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayableExpChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerAbilityPointsChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerAugment;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerBypass;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerCallToChangeClass;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerChangeToAwakenedClass;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerChat;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanCreate;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanDestroy;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanJoin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanLeaderChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanLeft;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanLvlUp;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanWHItemAdd;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanWHItemDestroy;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerClanWHItemTransfer;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerCreate;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerDelete;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerDlgAnswer;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerFameChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerFishing;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerHennaAdd;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerHennaRemove;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemAdd;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemDestroy;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemDrop;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemEquip;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemPickup;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemTransfer;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemUnequip;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLoad;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeAdd;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeLeft;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeRemove;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMenteeStatus;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMentorStatus;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMoveRequest;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPKChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPressTutorialMark;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionCancel;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPvPChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPvPKill;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerQuestAbort;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerQuestComplete;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerReputationChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerRestore;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSelect;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSkillLearn;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSocialAction;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSubChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonAgathion;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonSpawn;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonTalk;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerTakeHero;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerTransform;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerUnsummonAgathion;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnTrapAction;
+import org.l2jmobius.gameserver.model.events.holders.clan.OnClanWarFinish;
+import org.l2jmobius.gameserver.model.events.holders.clan.OnClanWarStart;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceCreated;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceDestroy;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceEnter;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceLeave;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemBypassEvent;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemCreate;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemTalk;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemUse;
+import org.l2jmobius.gameserver.model.events.holders.olympiad.OnOlympiadMatchResult;
+import org.l2jmobius.gameserver.model.events.holders.sieges.OnCastleSiegeFinish;
+import org.l2jmobius.gameserver.model.events.holders.sieges.OnCastleSiegeOwnerChange;
+import org.l2jmobius.gameserver.model.events.holders.sieges.OnCastleSiegeStart;
+import org.l2jmobius.gameserver.model.events.holders.sieges.OnFortSiegeFinish;
+import org.l2jmobius.gameserver.model.events.holders.sieges.OnFortSiegeStart;
 import org.l2jmobius.gameserver.model.events.returns.ChatFilterReturn;
 import org.l2jmobius.gameserver.model.events.returns.DamageReturn;
 import org.l2jmobius.gameserver.model.events.returns.LocationReturn;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
- * @author UnAfraid
+ * @author UnAfraid, Mobius
  */
 public enum EventType
 {
@@ -316,6 +320,6 @@ public enum EventType
 	
 	public boolean isReturnClass(Class<?> clazz)
 	{
-		return CommonUtil.contains(_returnClass, clazz);
+		return ArrayUtil.contains(_returnClass, clazz);
 	}
 }

@@ -141,13 +141,13 @@ public class Q20204_HotSpringsMiraculousDrink2 extends Quest
 					else
 					{
 						final int currentCount = questState.getCount();
-						if (currentCount != data.getGoal().getCount())
+						if (currentCount < data.getGoal().getCount())
 						{
 							questState.setCount(currentCount + 1);
 						}
 					}
 					
-					if (questState.getCount() == data.getGoal().getCount())
+					if (questState.getCount() >= data.getGoal().getCount())
 					{
 						questState.setCond(QuestCondType.DONE);
 						player.sendPacket(new ExQuestNotification(questState));

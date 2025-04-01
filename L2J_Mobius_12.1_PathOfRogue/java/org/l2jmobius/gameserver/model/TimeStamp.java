@@ -160,10 +160,11 @@ public class TimeStamp
 			return 0;
 		}
 		
-		final long remainingTime = Math.max(_stamp - System.currentTimeMillis(), 0);
-		if (remainingTime == 0)
+		final long remainingTime = _stamp - System.currentTimeMillis();
+		if (remainingTime <= 0)
 		{
 			_stamp = 0;
+			return 0;
 		}
 		
 		return remainingTime;
@@ -180,12 +181,12 @@ public class TimeStamp
 			return false;
 		}
 		
-		final boolean hasNotPassed = System.currentTimeMillis() < _stamp;
-		if (!hasNotPassed)
+		if (System.currentTimeMillis() >= _stamp)
 		{
 			_stamp = 0;
+			return false;
 		}
 		
-		return hasNotPassed;
+		return true;
 	}
 }

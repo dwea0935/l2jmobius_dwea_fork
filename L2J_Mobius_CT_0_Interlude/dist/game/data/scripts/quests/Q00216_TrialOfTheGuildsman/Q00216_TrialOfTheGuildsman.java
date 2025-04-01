@@ -20,11 +20,11 @@
  */
 package quests.Q00216_TrialOfTheGuildsman;
 
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
@@ -80,7 +80,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 	
 	public Q00216_TrialOfTheGuildsman()
 	{
-		super(216);
+		super(216, "Trial of the Guildsman");
 		registerQuestItems(RECIPE_JOURNEYMAN_RING, RECIPE_AMBER_BEAD, VALKON_RECOMMENDATION, MANDRAGORA_BERRY, ALTRAN_INSTRUCTIONS, ALTRAN_RECOMMENDATION_1, ALTRAN_RECOMMENDATION_2, NORMAN_INSTRUCTIONS, NORMAN_RECEIPT, DUNING_INSTRUCTIONS, DUNING_KEY, NORMAN_LIST, GRAY_BONE_POWDER, GRANITE_WHETSTONE, RED_PIGMENT, BRAIDED_YARN, JOURNEYMAN_GEM, PINTER_INSTRUCTIONS, AMBER_BEAD, AMBER_LUMP, JOURNEYMAN_DECO_BEADS, JOURNEYMAN_RING);
 		addStartNpc(VALKON);
 		addTalkId(VALKON, NORMAN, ALTRAN, PINTER, DUNING);
@@ -110,7 +110,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 					if (!player.getVariables().getBoolean("secondClassChange35", false))
 					{
 						htmltext = "30103-06d.htm";
-						giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_35.get(player.getClassId().getId()));
+						giveItems(player, DIMENSIONAL_DIAMOND, DF_REWARD_35.get(player.getPlayerClass().getId()));
 						player.getVariables().set("secondClassChange35", true);
 					}
 				}
@@ -171,7 +171,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 				takeItems(player, ALTRAN_RECOMMENDATION_2, 1);
 				giveItems(player, PINTER_INSTRUCTIONS, 1);
 				// Artisan receives a recipe to craft Amber Beads, while spoiler case is handled in onKill section.
-				if (player.getClassId() == ClassId.ARTISAN)
+				if (player.getPlayerClass() == PlayerClass.ARTISAN)
 				{
 					htmltext = "30298-05.htm";
 					giveItems(player, RECIPE_AMBER_BEAD, 1);
@@ -200,7 +200,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 		{
 			case State.CREATED:
 			{
-				if ((player.getClassId() != ClassId.SCAVENGER) && (player.getClassId() != ClassId.ARTISAN))
+				if ((player.getPlayerClass() != PlayerClass.SCAVENGER) && (player.getPlayerClass() != PlayerClass.ARTISAN))
 				{
 					htmltext = "30103-01.htm";
 				}
@@ -391,12 +391,12 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		switch (npc.getId())
@@ -464,12 +464,12 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 			case ANT_CAPTAIN:
 			{
 				int count = 0;
-				if ((player.getClassId() == ClassId.SCAVENGER) && npc.isSweepActive() && (npc.asAttackable().getSpoilerObjectId() == player.getObjectId()))
+				if ((player.getPlayerClass() == PlayerClass.SCAVENGER) && npc.isSweepActive() && (npc.asAttackable().getSpoilerObjectId() == player.getObjectId()))
 				{
 					count += 5;
 				}
 				
-				if (getRandomBoolean() && (player.getClassId() == ClassId.ARTISAN))
+				if (getRandomBoolean() && (player.getPlayerClass() == PlayerClass.ARTISAN))
 				{
 					giveItems(player, AMBER_LUMP, 1);
 					playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
@@ -487,7 +487,5 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 }

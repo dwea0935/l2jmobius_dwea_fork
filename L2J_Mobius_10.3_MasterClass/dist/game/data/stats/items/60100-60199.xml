@@ -1159,7 +1159,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="etcitem_type" val="SCROLL" />
 		<skills>
-			<skill id="29482" level="1" /> <!-- Glittering Freya's Ice Rose -->
+			<skill id="29482" level="1" /> <!-- Freya's Glittering Ice Rose -->
 		</skills>
 	</item>
 	<item id="60182" name="Glowing Royal Dragon's Attribute Potion" additionalName="Event" type="EtcItem">

@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets.steadybox;
 
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
-import org.l2jmobius.gameserver.network.serverpackets.steadybox.ExSteadyAllBoxUpdate;
+import org.l2jmobius.gameserver.network.serverpackets.achievementbox.ExSteadyAllBoxUpdate;
 
 /**
  * @author Serenitty

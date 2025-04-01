@@ -38,7 +38,7 @@ public class Q00020_BringUpWithLove extends Quest
 	
 	public Q00020_BringUpWithLove()
 	{
-		super(20);
+		super(20, "Bring Up With Love");
 		addStartNpc(TUNATUN);
 		addTalkId(TUNATUN);
 	}

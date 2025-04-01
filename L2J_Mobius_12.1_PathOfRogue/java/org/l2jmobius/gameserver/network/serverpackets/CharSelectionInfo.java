@@ -31,10 +31,10 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
-import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.model.CharSelectInfoPackage;
 import org.l2jmobius.gameserver.model.VariationInstance;
 import org.l2jmobius.gameserver.model.World;
@@ -238,7 +238,24 @@ public class CharSelectionInfo extends ServerPacket
 			buffer.writeInt(charInfoPackage.getFace());
 			buffer.writeDouble(charInfoPackage.getMaxHp()); // Maximum HP
 			buffer.writeDouble(charInfoPackage.getMaxMp()); // Maximum MP
-			buffer.writeInt(charInfoPackage.getDeleteTimer() > 0 ? (int) ((charInfoPackage.getDeleteTimer() - System.currentTimeMillis()) / 1000) : 0);
+			
+			if (charInfoPackage.getAccessLevel() > -1)
+			{
+				// Deleted.
+				if (charInfoPackage.getDeleteTimer() > 0)
+				{
+					buffer.writeInt((int) ((charInfoPackage.getDeleteTimer() - System.currentTimeMillis()) / 1000));
+				}
+				else // Normal.
+				{
+					buffer.writeInt(0);
+				}
+			}
+			else // Banned.
+			{
+				buffer.writeInt(-1);
+			}
+			
 			buffer.writeInt(charInfoPackage.getClassId());
 			buffer.writeInt(i == _activeId);
 			buffer.writeByte(charInfoPackage.getEnchantEffect(Inventory.PAPERDOLL_RHAND) > 127 ? 127 : charInfoPackage.getEnchantEffect(Inventory.PAPERDOLL_RHAND));

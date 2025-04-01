@@ -25,7 +25,7 @@ import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -50,8 +50,8 @@ public class AcquireSkillList extends ServerPacket
 			}
 			else
 			{
-				_learnable = SkillTreeData.getInstance().getAvailableSkills(player, player.getClassId(), false, false);
-				_learnable.addAll(SkillTreeData.getInstance().getNextAvailableSkills(player, player.getClassId(), false, false));
+				_learnable = SkillTreeData.getInstance().getAvailableSkills(player, player.getPlayerClass(), false, false);
+				_learnable.addAll(SkillTreeData.getInstance().getNextAvailableSkills(player, player.getPlayerClass(), false, false));
 			}
 		}
 	}

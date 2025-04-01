@@ -30,7 +30,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.holders.SymbolSealHolder;
+import org.l2jmobius.gameserver.data.holders.SymbolSealHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
@@ -52,9 +52,9 @@ public class SymbolSealData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -82,6 +82,15 @@ public class SymbolSealData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Retrieves a skill associated with a specific class and symbol.
+	 * <p>
+	 * This method looks up the skill based on the provided {@code classId} and {@code symbolId}. If the specified symbol exists within the data for the given class, the corresponding {@link Skill} is returned. If no matching skill is found, {@code null} is returned.
+	 * </p>
+	 * @param classId the ID of the class to look up
+	 * @param symbolId the ID of the symbol within the class to retrieve the skill for
+	 * @return the {@link Skill} associated with the specified class and symbol, or {@code null} if not found
+	 */
 	public Skill getSkill(int classId, int symbolId)
 	{
 		final List<SymbolSealHolder> data = _data.get(classId);

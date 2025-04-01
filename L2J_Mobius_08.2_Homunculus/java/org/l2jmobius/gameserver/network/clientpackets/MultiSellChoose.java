@@ -25,22 +25,22 @@ import java.util.Collections;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.gameserver.data.holders.MultisellEntryHolder;
+import org.l2jmobius.gameserver.data.holders.PreparedMultisellListHolder;
 import org.l2jmobius.gameserver.data.xml.EnsoulData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.AttributeType;
-import org.l2jmobius.gameserver.enums.SpecialItemType;
 import org.l2jmobius.gameserver.model.ItemInfo;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.ensoul.EnsoulOption;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.MultisellEntryHolder;
-import org.l2jmobius.gameserver.model.holders.PreparedMultisellListHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.enchant.attribute.AttributeHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.SpecialItemType;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
@@ -50,6 +50,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ExMultiSellResult;
 import org.l2jmobius.gameserver.network.serverpackets.ExPCCafePointInfo;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * @author Mobius
@@ -153,7 +154,7 @@ public class MultiSellChoose extends ClientPacket
 			}
 		}
 		
-		if (((_soulCrystalOptions != null) && CommonUtil.contains(_soulCrystalOptions, null)) || ((_soulCrystalSpecialOptions != null) && CommonUtil.contains(_soulCrystalSpecialOptions, null)))
+		if (((_soulCrystalOptions != null) && ArrayUtil.contains(_soulCrystalOptions, null)) || ((_soulCrystalSpecialOptions != null) && ArrayUtil.contains(_soulCrystalSpecialOptions, null)))
 		{
 			PacketLogger.warning("Character: " + player.getName() + " requested multisell entry with invalid soul crystal options. Multisell: " + _listId + " entry: " + _entryId);
 			player.setMultiSell(null);
@@ -394,7 +395,7 @@ public class MultiSellChoose extends ClientPacket
 				else if (ingredient.getEnchantmentLevel() > 0)
 				{
 					// Take the enchanted item.
-					final Item destroyedItem = inventory.destroyItem("Multisell", inventory.getAllItemsByItemId(ingredient.getId(), ingredient.getEnchantmentLevel()).iterator().next(), totalCount, player, npc);
+					final Item destroyedItem = inventory.destroyItem(ItemProcessType.FEE, inventory.getAllItemsByItemId(ingredient.getId(), ingredient.getEnchantmentLevel()).iterator().next(), totalCount, player, npc);
 					if (destroyedItem != null)
 					{
 						itemEnchantmentProcessed = true;
@@ -415,7 +416,7 @@ public class MultiSellChoose extends ClientPacket
 				else if (!itemEnchantmentProcessed && (itemEnchantment != null) && (itemEnchantment.getItem().getId() == ingredient.getId()))
 				{
 					// Take the enchanted item.
-					final Item destroyedItem = inventory.destroyItem("Multisell", itemEnchantment.getObjectId(), totalCount, player, npc);
+					final Item destroyedItem = inventory.destroyItem(ItemProcessType.FEE, itemEnchantment.getObjectId(), totalCount, player, npc);
 					if (destroyedItem != null)
 					{
 						itemEnchantmentProcessed = true;
@@ -436,7 +437,7 @@ public class MultiSellChoose extends ClientPacket
 				else
 				{
 					// Take a regular item.
-					final Item destroyedItem = inventory.destroyItemByItemId("Multisell", ingredient.getId(), totalCount, player, npc);
+					final Item destroyedItem = inventory.destroyItemByItemId(ItemProcessType.FEE, ingredient.getId(), totalCount, player, npc);
 					if (destroyedItem != null)
 					{
 						iu.addItem(destroyedItem);
@@ -504,7 +505,7 @@ public class MultiSellChoose extends ClientPacket
 				else
 				{
 					// Give item.
-					final Item addedItem = inventory.addItem("Multisell", product.getId(), totalCount, player, npc, false);
+					final Item addedItem = inventory.addItem(ItemProcessType.BUY, product.getId(), totalCount, player, npc, false);
 					
 					// Check if the newly given item should be enchanted.
 					if (itemEnchantmentProcessed && list.isMaintainEnchantment() && (itemEnchantment != null) && addedItem.isEquipable() && addedItem.getTemplate().getClass().equals(itemEnchantment.getItem().getClass()))

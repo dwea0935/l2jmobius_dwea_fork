@@ -25,18 +25,18 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.OnEventTrigger;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -1146,7 +1146,7 @@ public class KrofinNest extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = attacker.getInstanceWorld();
 		if (isInInstance(world))
@@ -1180,11 +1180,10 @@ public class KrofinNest extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -1194,7 +1193,7 @@ public class KrofinNest extends AbstractInstance
 			final boolean minionKilled = world.getParameters().getBoolean("MINION_KILLED", false);
 			if (world.getStatus() == 8)
 			{
-				if (CommonUtil.contains(KROTANION_MINION, npc.getId()) && !minionKilled)
+				if (ArrayUtil.contains(KROTANION_MINION, npc.getId()) && !minionKilled)
 				{
 					showOnScreenMsg(world, NpcStringId.IN_ANGER_KROPION_PROTECTS_HIMSELF_WITH_A_CURSE, ExShowScreenMessage.TOP_CENTER, 7000, true);
 					world.getParameters().set("MINION_KILLED", true);
@@ -1206,7 +1205,7 @@ public class KrofinNest extends AbstractInstance
 						}
 					});
 				}
-				else if (CommonUtil.contains(KROPION_MINION, npc.getId()) && !minionKilled)
+				else if (ArrayUtil.contains(KROPION_MINION, npc.getId()) && !minionKilled)
 				{
 					showOnScreenMsg(world, NpcStringId.IN_ANGER_KROTANION_PUTS_A_CURSE_ON_THOSE_AROUND_HIM, ExShowScreenMessage.TOP_CENTER, 7000, true);
 					world.getParameters().set("MINION_KILLED", true);
@@ -1290,7 +1289,6 @@ public class KrofinNest extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	@Override

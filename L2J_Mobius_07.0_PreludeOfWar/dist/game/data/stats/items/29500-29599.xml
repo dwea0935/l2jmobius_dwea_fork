@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="29500" name="Krishna Crafting Recipe Box" type="EtcItem">
 		<!-- Double-click to obtain 1 Krishna Crafting Recipe. -->
@@ -232,7 +232,7 @@
 		<set name="time" val="60" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="22588" level="4" /> <!-- High-grade Drop Rate Rune -->
+			<skill id="22588" level="4" /> <!-- High-grade Maphr's Rune -->
 		</skills>
 	</item>
 	<item id="29523" name="Maphr's Rune 300% Pack (1-hr)" type="EtcItem">

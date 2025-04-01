@@ -16,10 +16,10 @@
  */
 package quests.Q00363_SorrowfulSoundOfFlute;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -47,7 +47,7 @@ public class Q00363_SorrowfulSoundOfFlute extends Quest
 	
 	public Q00363_SorrowfulSoundOfFlute()
 	{
-		super(363);
+		super(363, "Sorrowful Sound of Flute");
 		addStartNpc(NANARIN);
 		addTalkId(NANARIN, POITAN, RANSPO, ALDO, HOLVAS, OPIX, BARBADO);
 		registerQuestItems(EVENT_CLOTHES, NANARINS_FLUTE, SABRINS_BLACK_BEER);

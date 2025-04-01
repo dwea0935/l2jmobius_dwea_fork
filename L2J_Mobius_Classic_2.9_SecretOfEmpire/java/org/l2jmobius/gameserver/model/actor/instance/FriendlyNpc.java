@@ -17,18 +17,18 @@
 package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.gameserver.ai.CreatureAI;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.ai.FriendlyNpcAI;
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableAttack;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnAttackableKill;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcFirstTalk;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableAttack;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnAttackableKill;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcFirstTalk;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
@@ -123,8 +123,8 @@ public class FriendlyNpc extends Attackable
 			// Calculate the distance between the Player and the Npc
 			if (!canInteract(player))
 			{
-				// Set the Player Intention to AI_INTENTION_INTERACT
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+				// Set the Player Intention to INTERACT
+				player.getAI().setIntention(Intention.INTERACT, this);
 			}
 			else
 			{

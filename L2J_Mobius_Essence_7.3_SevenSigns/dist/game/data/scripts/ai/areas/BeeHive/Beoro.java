@@ -25,14 +25,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.AggroInfo;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
@@ -75,24 +75,23 @@ public class Beoro extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		_beoroTransformAttempted = false;
 		for (int key : ROYDA_SPAWN_HP_PERCENTAGES.keySet())
 		{
 			ROYDA_SPAWN_HP_PERCENTAGES.put(key, false);
 		}
-		return null;
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if ((npc.getId() != ROYDA) && !attacker.isPet())
 		{
 			petrify(npc, attacker);
 			npc.setCurrentHp(npc.getCurrentHp() + damage);
-			return null;
+			return;
 		}
 		
 		if (npc.getId() == BEORO)
@@ -138,15 +137,14 @@ public class Beoro extends AbstractNpcAI
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		if (isSummon)
 		{
-			return null;
+			return;
 		}
 		
 		boolean isTarget = false;
@@ -162,8 +160,6 @@ public class Beoro extends AbstractNpcAI
 		{
 			petrify(npc, caster);
 		}
-		
-		return null;
 	}
 	
 	private void petrify(Npc npc, Playable playable)

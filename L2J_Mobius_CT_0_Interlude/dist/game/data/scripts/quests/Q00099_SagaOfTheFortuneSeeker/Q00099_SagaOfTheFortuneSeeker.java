@@ -16,17 +16,17 @@
  */
 package quests.Q00099_SagaOfTheFortuneSeeker;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * Saga of the Fortune Seeker (99)
  * @author Emperorc
  */
-public class Q00099_SagaOfTheFortuneSeeker extends SagasSuperClass
+public class Q00099_SagaOfTheFortuneSeeker extends AbstractSagaQuest
 {
 	public Q00099_SagaOfTheFortuneSeeker()
 	{
-		super(99);
+		super(99, "Saga of the Fortune Seeker");
 		_npc = new int[]
 		{
 			31594,

@@ -20,13 +20,14 @@
  */
 package handlers.itemhandlers;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -143,14 +144,14 @@ public class PaulinasSupportBox implements IItemHandler
 		
 		final Player player = playable.asPlayer();
 		final Race race = player.getRace();
-		final ClassId classId = player.getClassId();
+		final PlayerClass classId = player.getPlayerClass();
 		if (!player.isInventoryUnder80(false))
 		{
 			player.sendPacket(SystemMessageId.YOU_HAVE_EXCEEDED_THE_ITEM_OWNERSHIP_LIMIT_AND_YOU_CANNOT_TAKE_THE_ITEM_CHECK_ITEM_OWNERSHIP_TIME_LIMITS_FOR_THE_INVENTORY_PLEASE);
 			return false;
 		}
 		
-		player.getInventory().destroyItem(getClass().getSimpleName(), item, 1, player, null);
+		player.getInventory().destroyItem(ItemProcessType.FEE, item, 1, player, null);
 		player.sendInventoryUpdate(new InventoryUpdate(item));
 		
 		switch (item.getId())
@@ -165,23 +166,23 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_MAGIC_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_D, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_ROGUE_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DAGGER_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DAGGER_D, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_WARRIOR_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SWORD_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SWORD_D, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_KNIGHT_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_D, 1, player, true);
 						}
 						break;
 					}
@@ -189,13 +190,13 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.DWARF_BOUNTY_CLASS, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DAGGER_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DAGGER_D, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_BLUNT_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_BLUNT_D, 1, player, true);
 						}
 						break;
 					}
@@ -203,32 +204,32 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_ORCM_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_D, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.LIGHT_ARMOR_CLASS, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_D, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_D, 1, player, true);
 						}
 						break;
 					}
 					case KAMAEL:
 					{
-						player.addItem(getClass().getSimpleName(), BOX_D_LIGHT, 1, player, true);
+						player.addItem(ItemProcessType.REWARD, BOX_D_LIGHT, 1, player, true);
 						if (CategoryData.getInstance().isInCategory(CategoryType.KAMAEL_FEMALE_MAIN_OCCUPATION, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_CROSSBOW_D, 1, player, true);
-							player.addItem(getClass().getSimpleName(), BOLTS_D, 2000, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_CROSSBOW_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOLTS_D, 2000, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_ANCIENT_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_ANCIENT_D, 1, player, true);
 						}
 						break;
 					}
@@ -236,13 +237,13 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (player.isMageClass())
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_D, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_D_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_D, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_D_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_D, 1, player, true);
 						}
 						break;
 					}
@@ -259,39 +260,39 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_WIZARD, classId.getId()) || (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_HEAL, classId.getId())))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_C, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_BOW, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_BOW_C, 1, player, true);
-							player.addItem(getClass().getSimpleName(), ARROWS_C, 3000, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_BOW_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, ARROWS_C, 3000, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DAGGER, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DAGGER_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DAGGER_C, 1, player, true);
 						}
-						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DANCE, classId.getId()) || (player.getClassId() == ClassId.GLADIATOR))
+						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DANCE, classId.getId()) || (player.getPlayerClass() == PlayerClass.GLADIATOR))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALSWORD_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALSWORD_C, 1, player, true);
 						}
-						else if (player.getClassId() == ClassId.WARLORD)
+						else if (player.getPlayerClass() == PlayerClass.WARLORD)
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SPEAR_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SPEAR_C, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_WARRIOR_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SWORD_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SWORD_C, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_C, 1, player, true);
 						}
 						break;
 					}
@@ -299,13 +300,13 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.DWARF_BOUNTY_CLASS, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DAGGER_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DAGGER_C, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_BLUNT_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_BLUNT_C, 1, player, true);
 						}
 						break;
 					}
@@ -313,36 +314,36 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_ORCM_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_C, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.LIGHT_ARMOR_CLASS, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_C, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_C, 1, player, true);
 						}
 						break;
 					}
 					case KAMAEL:
 					{
-						player.addItem(getClass().getSimpleName(), BOX_C_LIGHT, 1, player, true);
+						player.addItem(ItemProcessType.REWARD, BOX_C_LIGHT, 1, player, true);
 						if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_WIZARD, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_RAPIER_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_RAPIER_C, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_ARCHER, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_CROSSBOW_C, 1, player, true);
-							player.addItem(getClass().getSimpleName(), BOLTS_C, 3000, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_CROSSBOW_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOLTS_C, 3000, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_ANCIENT_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_ANCIENT_C, 1, player, true);
 						}
 						break;
 					}
@@ -350,13 +351,13 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (player.isMageClass())
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_C, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_C_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_C, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_C_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_C, 1, player, true);
 						}
 						break;
 					}
@@ -373,39 +374,39 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_WIZARD, classId.getId()) || (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_HEAL, classId.getId())))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_A, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_BOW, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_BOW_A, 1, player, true);
-							player.addItem(getClass().getSimpleName(), ARROWS_A, 3000, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_BOW_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, ARROWS_A, 3000, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DAGGER, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DAGGER_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DAGGER_A, 1, player, true);
 						}
-						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DANCE, classId.getId()) || (player.getClassId() == ClassId.GLADIATOR))
+						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DANCE, classId.getId()) || (player.getPlayerClass() == PlayerClass.GLADIATOR))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALSWORD_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALSWORD_A, 1, player, true);
 						}
-						else if (player.getClassId() == ClassId.WARLORD)
+						else if (player.getPlayerClass() == PlayerClass.WARLORD)
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SPEAR_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SPEAR_A, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_WARRIOR_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SWORD_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SWORD_A, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_A, 1, player, true);
 						}
 						break;
 					}
@@ -413,13 +414,13 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.DWARF_BOUNTY_CLASS, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DAGGER_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DAGGER_A, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_BLUNT_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_BLUNT_A, 1, player, true);
 						}
 						break;
 					}
@@ -427,36 +428,36 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_ORCM_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_A, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.LIGHT_ARMOR_CLASS, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_A, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_A, 1, player, true);
 						}
 						break;
 					}
 					case KAMAEL:
 					{
-						player.addItem(getClass().getSimpleName(), BOX_A_LIGHT, 1, player, true);
+						player.addItem(ItemProcessType.REWARD, BOX_A_LIGHT, 1, player, true);
 						if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_WIZARD, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_RAPIER_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_RAPIER_A, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_ARCHER, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_CROSSBOW_A, 1, player, true);
-							player.addItem(getClass().getSimpleName(), BOLTS_A, 3000, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_CROSSBOW_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOLTS_A, 3000, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_ANCIENT_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_ANCIENT_A, 1, player, true);
 						}
 						break;
 					}
@@ -464,13 +465,13 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (player.isMageClass())
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_A, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_A_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_A, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_A_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_A, 1, player, true);
 						}
 						break;
 					}
@@ -487,39 +488,39 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_WIZARD, classId.getId()) || (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_HEAL, classId.getId())))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_S, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_BOW, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), ARROW_OF_LIGHT_S, 5000, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_BOW_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, ARROW_OF_LIGHT_S, 5000, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_BOW_S, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DAGGER, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DAGGER_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DAGGER_S, 1, player, true);
 						}
-						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DANCE, classId.getId()) || (player.getClassId() == ClassId.DUELIST))
+						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DANCE, classId.getId()) || (player.getPlayerClass() == PlayerClass.DUELIST))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALSWORD_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALSWORD_S, 1, player, true);
 						}
-						else if (player.getClassId() == ClassId.DREADNOUGHT)
+						else if (player.getPlayerClass() == PlayerClass.DREADNOUGHT)
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SPEAR_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SPEAR_S, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_WARRIOR_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SWORD_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SWORD_S, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_S, 1, player, true);
 						}
 						break;
 					}
@@ -527,13 +528,13 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.DWARF_BOUNTY_CLASS, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DAGGER_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DAGGER_S, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_BLUNT_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_BLUNT_S, 1, player, true);
 						}
 						break;
 					}
@@ -541,36 +542,36 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_ORCM_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_S, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.LIGHT_ARMOR_CLASS, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_S, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_S, 1, player, true);
 						}
 						break;
 					}
 					case KAMAEL:
 					{
-						player.addItem(getClass().getSimpleName(), BOX_S_LIGHT, 1, player, true);
+						player.addItem(ItemProcessType.REWARD, BOX_S_LIGHT, 1, player, true);
 						if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_WIZARD, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_RAPIER_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_RAPIER_S, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_ARCHER, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_CROSSBOW_S, 1, player, true);
-							player.addItem(getClass().getSimpleName(), BOLT_OF_LIGHT_S, 5000, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_CROSSBOW_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOLT_OF_LIGHT_S, 5000, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), WEAPON_ANCIENT_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_ANCIENT_S, 1, player, true);
 						}
 						break;
 					}
@@ -578,13 +579,13 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (player.isMageClass())
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_S, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_S_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_S, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_S_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_S, 1, player, true);
 						}
 						break;
 					}
@@ -601,88 +602,88 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_FEOH_GROUP, classId.getId()) || (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_WYNN_GROUP, classId.getId())))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_EOLH_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_CASTER_R, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SIGIL_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_CASTER_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SIGIL_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_OTHEL_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALDAGGER_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALDAGGER_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_YR_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), ORICHALCUM_ARROW_R, 5000, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_BOW_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, ORICHALCUM_ARROW_R, 5000, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_BOW_R, 1, player, true);
 						}
-						else if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_IS_GROUP, classId.getId()) || (player.getClassId() == ClassId.TYRR_DUELIST))
+						else if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_IS_GROUP, classId.getId()) || (player.getPlayerClass() == PlayerClass.TYRR_DUELIST))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALSWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALSWORD_R, 1, player, true);
 						}
-						else if (player.getClassId() == ClassId.TYRR_DREADNOUGHT)
+						else if (player.getPlayerClass() == PlayerClass.TYRR_DREADNOUGHT)
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SPEAR_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SPEAR_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_SIGEL_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SWORD_R, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SHIELD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SHIELD_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_WIZARD, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_BOW, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_BOW_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_BOW_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DAGGER, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALDAGGER_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALDAGGER_R, 1, player, true);
 						}
-						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DANCE, classId.getId()) || (player.getClassId() == ClassId.GLADIATOR))
+						else if (CategoryData.getInstance().isInCategory(CategoryType.SUBJOB_GROUP_DANCE, classId.getId()) || (player.getPlayerClass() == PlayerClass.GLADIATOR))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALSWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALSWORD_R, 1, player, true);
 						}
-						else if (player.getClassId() == ClassId.WARLORD)
+						else if (player.getPlayerClass() == PlayerClass.WARLORD)
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SPEAR_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SPEAR_R, 1, player, true);
 						}
-						else if (player.getClassId() == ClassId.DUELIST)
+						else if (player.getPlayerClass() == PlayerClass.DUELIST)
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALSWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALSWORD_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.TANKER_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SWORD_R, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SHIELD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SHIELD_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.RECOM_WARRIOR_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SWORD_R, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SWORD_R, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_R, 1, player, true);
 						}
 						break;
 					}
@@ -690,19 +691,19 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_OTHEL_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALDAGGER_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALDAGGER_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.DWARF_BOUNTY_CLASS, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALDAGGER_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALDAGGER_R, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_BLUNT_R, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_SHIELD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_BLUNT_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_SHIELD_R, 1, player, true);
 						}
 						break;
 					}
@@ -710,33 +711,33 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_IS_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_DUALSWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_DUALSWORD_R, 1, player, true);
 						}
-						else if (player.getClassId() == ClassId.TYRR_GRAND_KHAVATARI)
+						else if (player.getPlayerClass() == PlayerClass.TYRR_GRAND_KHAVATARI)
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_R, 1, player, true);
 						}
-						else if (player.getClassId() == ClassId.TYRR_TITAN)
+						else if (player.getPlayerClass() == PlayerClass.TYRR_TITAN)
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_R, 1, player, true);
 						}
 						else if (player.isMageClass())
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.LIGHT_ARMOR_CLASS, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_R, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_HEAVY, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_HEAVY, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_R, 1, player, true);
 						}
 						break;
 					}
@@ -744,30 +745,30 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_FEOH_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.SIXTH_YR_GROUP, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), ORICHALCUM_BOLT_R, 5000, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_CROSSBOW_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, ORICHALCUM_BOLT_R, 5000, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_CROSSBOW_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_WIZARD, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_R, 1, player, true);
 						}
 						else if (CategoryData.getInstance().isInCategory(CategoryType.DIVISION_ARCHER, classId.getId()))
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), ORICHALCUM_BOLT_R, 5000, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_CROSSBOW_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, ORICHALCUM_BOLT_R, 5000, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_CROSSBOW_R, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_GSWORD_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_GSWORD_R, 1, player, true);
 							break;
 						}
 						break;
@@ -776,13 +777,13 @@ public class PaulinasSupportBox implements IItemHandler
 					{
 						if (player.isMageClass())
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_ROBE, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_STAFF_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_ROBE, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_STAFF_R, 1, player, true);
 						}
 						else
 						{
-							player.addItem(getClass().getSimpleName(), BOX_R_LIGHT, 1, player, true);
-							player.addItem(getClass().getSimpleName(), WEAPON_FIST_R, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, BOX_R_LIGHT, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, WEAPON_FIST_R, 1, player, true);
 						}
 						break;
 					}

@@ -8815,7 +8815,6 @@
 		<effectPoint>-712</effectPoint>
 		<hitTime>4780</hitTime>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic>
 		<itemConsumeCount>2</itemConsumeCount>
 		<itemConsumeId>3031</itemConsumeId> <!-- Spirit Ore -->

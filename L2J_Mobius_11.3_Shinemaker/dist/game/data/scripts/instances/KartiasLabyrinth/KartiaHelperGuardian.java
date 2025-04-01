@@ -20,7 +20,6 @@
  */
 package instances.KartiasLabyrinth;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -28,12 +27,13 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyNpc;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttacked;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -131,7 +131,7 @@ public class KartiaHelperGuardian extends AbstractNpcAI
 				else if (!npc.isInCombat() || (npc.getTarget() == null))
 				{
 					final Creature monster = eliyah.getTarget().asCreature();
-					if ((monster != null) && !CommonUtil.contains(KARTIA_FRIENDS, monster.getId()))
+					if ((monster != null) && !ArrayUtil.contains(KARTIA_FRIENDS, monster.getId()))
 					{
 						addAttackDesire(npc, monster);
 					}
@@ -140,7 +140,7 @@ public class KartiaHelperGuardian extends AbstractNpcAI
 		}
 		else if (event.equals("USE_SKILL"))
 		{
-			if ((npc.isInCombat() || npc.isAttackingNow() || (npc.getTarget() != null)) && (npc.getCurrentMpPercent() > 25) && !CommonUtil.contains(KARTIA_FRIENDS, npc.getTargetId()))
+			if ((npc.isInCombat() || npc.isAttackingNow() || (npc.getTarget() != null)) && (npc.getCurrentMpPercent() > 25) && !ArrayUtil.contains(KARTIA_FRIENDS, npc.getTargetId()))
 			{
 				useRandomSkill(npc);
 			}
@@ -159,21 +159,20 @@ public class KartiaHelperGuardian extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
 			npc.getVariables().set("PLAYER_OBJECT", creature.asPlayer());
 		}
-		else if (CommonUtil.contains(KARTIA_ADOLPH, creature.getId()))
+		else if (ArrayUtil.contains(KARTIA_ADOLPH, creature.getId()))
 		{
 			npc.getVariables().set("ADOLPH_OBJECT", creature);
 		}
-		else if (CommonUtil.contains(KARTIA_ELIYAH, creature.getId()))
+		else if (ArrayUtil.contains(KARTIA_ELIYAH, creature.getId()))
 		{
 			npc.getVariables().set("ELIYAH_OBJECT", creature);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public void useRandomSkill(Npc npc)
@@ -185,7 +184,7 @@ public class KartiaHelperGuardian extends AbstractNpcAI
 			return;
 		}
 		
-		if ((instance != null) && !npc.isCastingNow() && (!CommonUtil.contains(KARTIA_FRIENDS, target.getId())))
+		if ((instance != null) && !npc.isCastingNow() && (!ArrayUtil.contains(KARTIA_FRIENDS, target.getId())))
 		{
 			final StatSet instParams = instance.getTemplateParameters();
 			final SkillHolder skill01 = instParams.getSkillHolder("guardianSpiritsBlow");
@@ -222,7 +221,7 @@ public class KartiaHelperGuardian extends AbstractNpcAI
 		if (npc != null)
 		{
 			final Instance instance = npc.getInstanceWorld();
-			if ((instance != null) && !npc.isInCombat() && !event.getAttacker().isPlayable() && !CommonUtil.contains(KARTIA_FRIENDS, event.getAttacker().getId()))
+			if ((instance != null) && !npc.isInCombat() && !event.getAttacker().isPlayable() && !ArrayUtil.contains(KARTIA_FRIENDS, event.getAttacker().getId()))
 			{
 				npc.setTarget(event.getAttacker());
 				addAttackDesire(npc, npc.getTarget().asCreature());

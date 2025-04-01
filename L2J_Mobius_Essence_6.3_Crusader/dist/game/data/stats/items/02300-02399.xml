@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="2300" name="Recipe: Scythe" type="EtcItem">
 		<!-- For Dwarves only. A recipe for Scythe. Requires Create Item Lv. 4. The success rate is 100%. -->
@@ -1129,7 +1129,7 @@
 		</stats>
 		<skills>
 			<skill id="50234" level="1" /> <!-- A-grade: Tallum Plate Armor -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="2383" name="Majestic Plate Armor" type="Armor">
@@ -1153,7 +1153,7 @@
 		</stats>
 		<skills>
 			<skill id="50228" level="1" /> <!-- A-grade: Majestic Plate Armor -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="2384" name="Zubei's Leather Shirt" type="Armor">
@@ -1196,7 +1196,7 @@
 		</stats>
 		<skills>
 			<skill id="50222" level="1" /> <!-- A-grade: Dark Crystal Leather Armor -->
-			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top Armor -->
+			<skill id="50261" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper Armor -->
 		</skills>
 	</item>
 	<item id="2386" name="Wooden Gaiters" type="Armor">
@@ -1273,7 +1273,7 @@
 		</stats>
 		<skills>
 			<skill id="50225" level="1" /> <!-- A-grade: Dark Crystal Leggings -->
-			<skill id="50262" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Bottom Armor -->
+			<skill id="50262" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Lower Armor -->
 		</skills>
 	</item>
 	<item id="2390" name="Avadon Leather Armor" type="Armor">
@@ -1357,7 +1357,7 @@
 		</stats>
 		<skills>
 			<skill id="50235" level="1" /> <!-- A-grade: Tallum Leather Armor -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="2394" name="Leather Armor of Nightmare" type="Armor">
@@ -1381,7 +1381,7 @@
 		</stats>
 		<skills>
 			<skill id="50233" level="1" /> <!-- A-grade: Leather Armor of Nightmare -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="2395" name="Majestic Leather Armor" type="Armor">
@@ -1405,7 +1405,7 @@
 		</stats>
 		<skills>
 			<skill id="50230" level="1" /> <!-- A-grade: Majestic Leather Armor -->
-			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Top/ Bottom Armor -->
+			<skill id="50260" level="1" type="ON_ENCHANT" type_value="5" /> <!-- Enchant Effect: A-grade Upper/ Lower Armor -->
 		</skills>
 	</item>
 	<item id="2396" name="Elven Mithril Tunic" type="Armor">

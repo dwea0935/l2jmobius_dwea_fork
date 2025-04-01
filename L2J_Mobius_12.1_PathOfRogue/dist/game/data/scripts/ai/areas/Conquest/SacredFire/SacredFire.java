@@ -31,8 +31,8 @@ import java.util.logging.Level;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -45,11 +45,12 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.OnServerStart;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSummonSacredFire;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemUse;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.OnServerStart;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonSacredFire;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemUse;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -280,7 +281,7 @@ public class SacredFire extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		final Player player = creature.asPlayer();
 		if (player != null)
@@ -334,7 +335,6 @@ public class SacredFire extends AbstractNpcAI
 				LOGGER.info("Sacred Fire Vars have been reset, since you exit the conquest zone");
 			}
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	@RegisterEvent(EventType.ON_ITEM_USE)
@@ -346,7 +346,7 @@ public class SacredFire extends AbstractNpcAI
 		if (!GlobalVariablesManager.getInstance().getBoolean("CONQUEST_AVAILABLE", false))
 		{
 			player.sendMessage("You can't summon Sacred Fires if you're not in proper zone and conquest is not available.");
-			player.getInventory().addItem("Sacred Fire Summon Scroll refund", SACRED_FIRE_SUMMON_SCROLL, 1, player, player);
+			player.getInventory().addItem(ItemProcessType.REFUND, SACRED_FIRE_SUMMON_SCROLL, 1, player, player);
 			return;
 		}
 		
@@ -410,7 +410,7 @@ public class SacredFire extends AbstractNpcAI
 						// Points rewards.
 						if (Config.CONQUEST_SACRED_FIRE_REWARD_FIRE_SOURCE_POINTS != 0)
 						{
-							player.addItem("CONQUEST_SACRED_FIRE_REWARDS", SEALED_FIRE_SOURCE, Config.CONQUEST_SACRED_FIRE_REWARD_FIRE_SOURCE_POINTS, player, false);
+							player.addItem(ItemProcessType.REWARD, SEALED_FIRE_SOURCE, Config.CONQUEST_SACRED_FIRE_REWARD_FIRE_SOURCE_POINTS, player, false);
 						}
 						
 						// Message update.
@@ -436,7 +436,7 @@ public class SacredFire extends AbstractNpcAI
 						{
 							for (ItemHolder reward : Config.CONQUEST_SACRED_FIRE_REWARDS)
 							{
-								player.addItem("CONQUEST_SACRED_FIRE_REWARDS", reward.getId(), reward.getCount(), player, true);
+								player.addItem(ItemProcessType.REWARD, reward.getId(), reward.getCount(), player, true);
 							}
 						}
 					}
@@ -470,21 +470,22 @@ public class SacredFire extends AbstractNpcAI
 							LOGGER.info("Sacred Fire Count Setup Task. -> " + player.getObjectId() + " - " + "SACRED_FIRE_SLOT_" + sacredFire.getVariables().getInt("SLOT", 0));
 						}
 					}, SACRED_FIRE_COUNT_UPDATE_TIME);
+					
+					_scheduledSacredFireCountSetupTasksList.put(sacredFire.getObjectId(), _scheduledSacredFireCountSetupTask); // Store the current task for bulk usage on clean.
 				}, LIFETIME);
 				
 				_scheduledSuccessfulDefenseRewardTasksList.put(sacredFire.getObjectId(), _scheduledSuccessfulDefenseRewardTask); // Store the current task for bulk usage on clean.
-				_scheduledSacredFireCountSetupTasksList.put(sacredFire.getObjectId(), _scheduledSacredFireCountSetupTask); // Store the current task for bulk usage on clean.
 			}
 			else
 			{
 				player.sendMessage("You already have max number of Sacred Fires.");
-				player.getInventory().addItem("Sacred Fire Summon Scroll refund", SACRED_FIRE_SUMMON_SCROLL, 1, player, player);
+				player.getInventory().addItem(ItemProcessType.REFUND, SACRED_FIRE_SUMMON_SCROLL, 1, player, player);
 			}
 		}
 		else
 		{
 			player.sendMessage("You can't summon Sacred Fires here.");
-			player.getInventory().addItem("Sacred Fire Summon Scroll refund", SACRED_FIRE_SUMMON_SCROLL, 1, player, player);
+			player.getInventory().addItem(ItemProcessType.REFUND, SACRED_FIRE_SUMMON_SCROLL, 1, player, player);
 		}
 	}
 	

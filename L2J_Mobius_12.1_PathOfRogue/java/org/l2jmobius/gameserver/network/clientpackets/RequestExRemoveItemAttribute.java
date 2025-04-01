@@ -20,9 +20,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.enums.AttributeType;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExBaseAttributeCancelResult;
@@ -71,7 +72,7 @@ public class RequestExRemoveItemAttribute extends ClientPacket
 			return;
 		}
 		
-		if (player.reduceAdena("RemoveElement", getPrice(targetItem), player, true))
+		if (player.reduceAdena(ItemProcessType.FEE, getPrice(targetItem), player, true))
 		{
 			targetItem.clearAttribute(type);
 			player.updateUserInfo();

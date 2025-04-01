@@ -2522,7 +2522,7 @@
 		<abnormalVisualEffect>VP_KEEP</abnormalVisualEffect>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<itemConsumeId>47918</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>

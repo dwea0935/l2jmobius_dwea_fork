@@ -20,11 +20,11 @@
  */
 package quests.Q00417_PathOfTheScavenger;
 
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
@@ -67,7 +67,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 	
 	public Q00417_PathOfTheScavenger()
 	{
-		super(417);
+		super(417, "Path to become a Scavenger");
 		registerQuestItems(PIPPI_LETTER, RAUT_TELEPORT_SCROLL, SUCCUBUS_UNDIES, MION_LETTER, BRONK_INGOT, SHARI_AXE, ZIMENF_POTION, BRONK_PAY, SHARI_PAY, ZIMENF_PAY, BEAR_PICTURE, TARANTULA_PICTURE, HONEY_JAR, BEAD, BEAD_PARCEL_1, BEAD_PARCEL_2);
 		addStartNpc(PIPPI);
 		addTalkId(RAUT, SHARI, MION, PIPPI, BRONK, ZIMENF, TOMA, TORAI, YASHENI);
@@ -88,9 +88,9 @@ public class Q00417_PathOfTheScavenger extends Quest
 		{
 			case "30524-05.htm":
 			{
-				if (player.getClassId() != ClassId.DWARVEN_FIGHTER)
+				if (player.getPlayerClass() != PlayerClass.DWARVEN_FIGHTER)
 				{
-					htmltext = (player.getClassId() == ClassId.SCAVENGER) ? "30524-02a.htm" : "30524-08.htm";
+					htmltext = (player.getPlayerClass() == PlayerClass.SCAVENGER) ? "30524-02a.htm" : "30524-08.htm";
 				}
 				else if (player.getLevel() < 19)
 				{
@@ -443,12 +443,12 @@ public class Q00417_PathOfTheScavenger extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st == null) || !st.isStarted())
 		{
-			return null;
+			return;
 		}
 		
 		switch (npc.getId())
@@ -511,7 +511,5 @@ public class Q00417_PathOfTheScavenger extends Quest
 				break;
 			}
 		}
-		
-		return null;
 	}
 }

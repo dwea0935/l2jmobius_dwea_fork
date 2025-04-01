@@ -1,34 +1,39 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests.Q00245_ComeToMe;
 
 import java.util.Collection;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.QuestType;
-import org.l2jmobius.gameserver.instancemanager.MentorManager;
+import org.l2jmobius.gameserver.managers.MentorManager;
 import org.l2jmobius.gameserver.model.Mentee;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Come To Me (245)
@@ -84,7 +89,7 @@ public class Q00245_ComeToMe extends Quest
 			final Player mentee = getCurrentMentee(player);
 			if (mentee != null)
 			{
-				if (player.destroyItemByItemId("quest_245", CRYSTAL_A, 100, npc, true))
+				if (player.destroyItemByItemId(ItemProcessType.QUEST, CRYSTAL_A, 100, npc, true))
 				{
 					mentee.getQuestState(getName()).setCond(3, true);
 					return event;
@@ -151,7 +156,7 @@ public class Q00245_ComeToMe extends Quest
 							else if (player.isMentee())
 							{
 								final Player mentor = MentorManager.getInstance().getMentor(player.getObjectId()).getPlayer();
-								if ((mentor != null) && mentor.isOnline() && Util.checkIfInRange(200, npc, mentor, true))
+								if ((mentor != null) && mentor.isOnline() && LocationUtil.checkIfInRange(200, npc, mentor, true))
 								{
 									htmltext = "30847-10.html";
 								}
@@ -211,17 +216,17 @@ public class Q00245_ComeToMe extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, true);
 		if ((npc == null) || (qs == null))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		if (qs.getCond() == 1)
 		{
-			if (CommonUtil.contains(BLAZING_MOBS_1, npc.getId()) && (getRandom(100) < 50))
+			if (ArrayUtil.contains(BLAZING_MOBS_1, npc.getId()) && (getRandom(100) < 50))
 			{
 				giveItems(killer, FLAME_ASHES, 1);
 				playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -233,12 +238,12 @@ public class Q00245_ComeToMe extends Quest
 		}
 		else if (qs.getCond() == 4)
 		{
-			if (CommonUtil.contains(BLAZING_MOBS_2, npc.getId()))
+			if (ArrayUtil.contains(BLAZING_MOBS_2, npc.getId()))
 			{
 				if (killer.isMentee())
 				{
 					final Player mentor = MentorManager.getInstance().getMentor(killer.getObjectId()).getPlayer();
-					if ((mentor != null) && Util.checkIfInRange(500, killer, mentor, false))
+					if ((mentor != null) && LocationUtil.checkIfInRange(500, killer, mentor, false))
 					{
 						giveItems(killer, CRYSTALS_OF_EXPERIENCE, 1);
 						playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -250,7 +255,6 @@ public class Q00245_ComeToMe extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -274,7 +278,7 @@ public class Q00245_ComeToMe extends Quest
 		final Collection<Mentee> mentees = MentorManager.getInstance().getMentees(mentor.getObjectId());
 		for (Mentee pl : mentees)
 		{
-			if (pl.isOnline() && Util.checkIfInRange(400, mentor, pl.getPlayer(), false))
+			if (pl.isOnline() && LocationUtil.checkIfInRange(400, mentor, pl.getPlayer(), false))
 			{
 				final QuestState qs = getQuestState(pl.getPlayer(), true);
 				if ((qs != null) && (qs.getCond() == 2))

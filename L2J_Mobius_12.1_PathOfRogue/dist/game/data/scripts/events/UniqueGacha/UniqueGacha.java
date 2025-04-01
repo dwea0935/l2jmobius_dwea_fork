@@ -27,11 +27,11 @@ import java.util.logging.Level;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.UniqueGachaRank;
-import org.l2jmobius.gameserver.instancemanager.events.UniqueGachaManager;
+import org.l2jmobius.gameserver.managers.events.UniqueGachaManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.UniqueGachaRank;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.quest.Quest;
 
@@ -62,10 +62,10 @@ public class UniqueGacha extends LongTimeEvent implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		final UniqueGachaManager manager = UniqueGachaManager.getInstance();
-		forEach(doc, "list", listNode ->
+		forEach(document, "list", listNode ->
 		{
 			final StatSet paramSet = new StatSet();
 			paramSet.set("isActive", isEventPeriod());

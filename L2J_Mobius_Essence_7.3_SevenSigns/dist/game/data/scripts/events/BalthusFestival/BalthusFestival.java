@@ -28,7 +28,7 @@ import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.time.SchedulingPattern;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.instancemanager.events.BalthusEventManager;
+import org.l2jmobius.gameserver.managers.events.BalthusEventManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -36,7 +36,8 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -67,11 +68,11 @@ public class BalthusFestival extends LongTimeEvent implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		final BalthusEventManager manager = BalthusEventManager.getInstance();
 		manager.setEventPeriod(getEventPeriod());
-		forEach(doc, "list", listNode ->
+		forEach(document, "list", listNode ->
 		{
 			forEach(listNode, "parameters", parametersSet ->
 			{
@@ -150,12 +151,12 @@ public class BalthusFestival extends LongTimeEvent implements IXmlReader
 					return "34262-2.htm";
 				}
 				
-				if ((manager.getDailySupplyFeeItem() != null) && !player.destroyItem(getClass().getSimpleName(), player.getInventory().getItemByItemId(manager.getDailySupplyFeeItem().getId()).getObjectId(), manager.getDailySupplyFeeItem().getCount(), npc, true))
+				if ((manager.getDailySupplyFeeItem() != null) && !player.destroyItem(ItemProcessType.FEE, player.getInventory().getItemByItemId(manager.getDailySupplyFeeItem().getId()).getObjectId(), manager.getDailySupplyFeeItem().getCount(), npc, true))
 				{
 					return "34262-2.htm";
 				}
 				
-				player.addItem(getClass().getSimpleName(), manager.getDailySupplyItem().getId(), manager.getDailySupplyItem().getCount(), npc, true);
+				player.addItem(ItemProcessType.REWARD, manager.getDailySupplyItem().getId(), manager.getDailySupplyItem().getCount(), npc, true);
 				player.getVariables().set(PlayerVariables.BALTHUS_BAG, CRON_PATTERN.next(System.currentTimeMillis()));
 				break;
 			}

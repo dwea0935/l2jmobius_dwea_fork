@@ -49,7 +49,7 @@ public class HennaItemRemoveInfo extends ServerPacket
 		buffer.writeInt(_henna.getDyeItemId()); // item id of dye
 		buffer.writeLong(_henna.getCancelCount()); // total amount of dye require
 		buffer.writeLong(_henna.getCancelFee()); // total amount of Adena require to remove symbol
-		buffer.writeInt(_henna.isAllowedClass(_player.getClassId())); // able to remove or not
+		buffer.writeInt(_henna.isAllowedClass(_player.getPlayerClass())); // able to remove or not
 		buffer.writeLong(_player.getAdena());
 		buffer.writeInt(_player.getINT()); // current INT
 		buffer.writeShort(_player.getINT() - _player.getHennaValue(BaseStat.INT)); // equip INT

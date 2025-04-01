@@ -29,27 +29,28 @@ import java.util.List;
 import java.util.logging.Level;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMenuSelect;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMenuSelect;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.ExSubjobInfo;
@@ -78,17 +79,17 @@ public class RedLibra extends LongTimeEvent
 	private static final String STONE_OF_DESTINY_VAR = "STONE_OF_DESTINY_RECEIVED";
 	private static final String GREEN_BUFF_VAR = "GREEN_BUFF_RECEIVED";
 	private static final int PLAYER_MIN_LEVEL = 105;
-	private static final List<ClassId> dualClassList = new ArrayList<>();
+	private static final List<PlayerClass> dualClassList = new ArrayList<>();
 	static
 	{
-		dualClassList.addAll(Arrays.asList(ClassId.AEORE_CARDINAL, ClassId.AEORE_EVA_SAINT, ClassId.AEORE_SHILLIEN_SAINT));
-		dualClassList.addAll(Arrays.asList(ClassId.FEOH_ARCHMAGE, ClassId.FEOH_SOULTAKER, ClassId.FEOH_MYSTIC_MUSE, ClassId.FEOH_STORM_SCREAMER, ClassId.FEOH_SOUL_HOUND));
-		dualClassList.addAll(Arrays.asList(ClassId.ISS_HIEROPHANT, ClassId.ISS_SWORD_MUSE, ClassId.ISS_SPECTRAL_DANCER, ClassId.ISS_DOOMCRYER));
-		dualClassList.addAll(Arrays.asList(ClassId.OTHELL_ADVENTURER, ClassId.OTHELL_WIND_RIDER, ClassId.OTHELL_GHOST_HUNTER, ClassId.OTHELL_FORTUNE_SEEKER));
-		dualClassList.addAll(Arrays.asList(ClassId.SIGEL_PHOENIX_KNIGHT, ClassId.SIGEL_HELL_KNIGHT, ClassId.SIGEL_EVA_TEMPLAR, ClassId.SIGEL_SHILLIEN_TEMPLAR));
-		dualClassList.addAll(Arrays.asList(ClassId.TYRR_DUELIST, ClassId.TYRR_DREADNOUGHT, ClassId.TYRR_TITAN, ClassId.TYRR_GRAND_KHAVATARI, ClassId.TYRR_DOOMBRINGER));
-		dualClassList.addAll(Arrays.asList(ClassId.WYNN_ARCANA_LORD, ClassId.WYNN_ELEMENTAL_MASTER, ClassId.WYNN_SPECTRAL_MASTER));
-		dualClassList.addAll(Arrays.asList(ClassId.YUL_SAGITTARIUS, ClassId.YUL_MOONLIGHT_SENTINEL, ClassId.YUL_GHOST_SENTINEL, ClassId.YUL_TRICKSTER));
+		dualClassList.addAll(Arrays.asList(PlayerClass.AEORE_CARDINAL, PlayerClass.AEORE_EVA_SAINT, PlayerClass.AEORE_SHILLIEN_SAINT));
+		dualClassList.addAll(Arrays.asList(PlayerClass.FEOH_ARCHMAGE, PlayerClass.FEOH_SOULTAKER, PlayerClass.FEOH_MYSTIC_MUSE, PlayerClass.FEOH_STORM_SCREAMER, PlayerClass.FEOH_SOUL_HOUND));
+		dualClassList.addAll(Arrays.asList(PlayerClass.ISS_HIEROPHANT, PlayerClass.ISS_SWORD_MUSE, PlayerClass.ISS_SPECTRAL_DANCER, PlayerClass.ISS_DOOMCRYER));
+		dualClassList.addAll(Arrays.asList(PlayerClass.OTHELL_ADVENTURER, PlayerClass.OTHELL_WIND_RIDER, PlayerClass.OTHELL_GHOST_HUNTER, PlayerClass.OTHELL_FORTUNE_SEEKER));
+		dualClassList.addAll(Arrays.asList(PlayerClass.SIGEL_PHOENIX_KNIGHT, PlayerClass.SIGEL_HELL_KNIGHT, PlayerClass.SIGEL_EVA_TEMPLAR, PlayerClass.SIGEL_SHILLIEN_TEMPLAR));
+		dualClassList.addAll(Arrays.asList(PlayerClass.TYRR_DUELIST, PlayerClass.TYRR_DREADNOUGHT, PlayerClass.TYRR_TITAN, PlayerClass.TYRR_GRAND_KHAVATARI, PlayerClass.TYRR_DOOMBRINGER));
+		dualClassList.addAll(Arrays.asList(PlayerClass.WYNN_ARCANA_LORD, PlayerClass.WYNN_ELEMENTAL_MASTER, PlayerClass.WYNN_SPECTRAL_MASTER));
+		dualClassList.addAll(Arrays.asList(PlayerClass.YUL_SAGITTARIUS, PlayerClass.YUL_MOONLIGHT_SENTINEL, PlayerClass.YUL_GHOST_SENTINEL, PlayerClass.YUL_TRICKSTER));
 	}
 	private static final int REAWAKEN_PRICE = 300000000;
 	private static final int RED_BUFF_PRICE = 100000000;
@@ -175,7 +176,7 @@ public class RedLibra extends LongTimeEvent
 					break;
 				}
 				SkillCaster.triggerCast(player, player, RED_BUFF.getSkill());
-				player.reduceAdena((getClass().getSimpleName() + "_redBuff"), RED_BUFF_PRICE, npc, true);
+				player.reduceAdena(ItemProcessType.FEE, RED_BUFF_PRICE, npc, true);
 				htmltext = "34210-buffGiven.htm";
 				break;
 			}
@@ -246,7 +247,7 @@ public class RedLibra extends LongTimeEvent
 				
 				final StringBuilder sb = new StringBuilder();
 				final NpcHtmlMessage html = getNpcHtmlMessage(player, npc, "34211-reawakenClassList.htm");
-				for (ClassId dualClasses : getDualClasses(player, cType))
+				for (PlayerClass dualClasses : getDualClasses(player, cType))
 				{
 					if (dualClasses != null)
 					{
@@ -345,12 +346,12 @@ public class RedLibra extends LongTimeEvent
 					break;
 				}
 				
-				if (!getDualClasses(player, null).contains(ClassId.getClassId(classId)))
+				if (!getDualClasses(player, null).contains(PlayerClass.getPlayerClass(classId)))
 				{
 					break;
 				}
 				
-				player.reduceAdena((getClass().getSimpleName() + "_Reawaken"), REAWAKEN_PRICE, npc, true);
+				player.reduceAdena(ItemProcessType.FEE, REAWAKEN_PRICE, npc, true);
 				final int level = player.getLevel();
 				
 				final int classIndex = player.getClassIndex();
@@ -377,12 +378,12 @@ public class RedLibra extends LongTimeEvent
 		}
 	}
 	
-	public List<ClassId> getAvailableDualclasses(Player player)
+	public List<PlayerClass> getAvailableDualclasses(Player player)
 	{
-		final List<ClassId> dualClasses = new ArrayList<>();
-		for (ClassId ClassId : ClassId.values())
+		final List<PlayerClass> dualClasses = new ArrayList<>();
+		for (PlayerClass ClassId : PlayerClass.values())
 		{
-			if ((ClassId.getRace() != Race.ERTHEIA) && CategoryData.getInstance().isInCategory(CategoryType.SIXTH_CLASS_GROUP, ClassId.getId()) && (ClassId.getId() != player.getClassId().getId()))
+			if ((ClassId.getRace() != Race.ERTHEIA) && CategoryData.getInstance().isInCategory(CategoryType.SIXTH_CLASS_GROUP, ClassId.getId()) && (ClassId.getId() != player.getPlayerClass().getId()))
 			{
 				dualClasses.add(ClassId);
 			}
@@ -390,12 +391,12 @@ public class RedLibra extends LongTimeEvent
 		return dualClasses;
 	}
 	
-	private List<ClassId> getDualClasses(Player player, CategoryType cType)
+	private List<PlayerClass> getDualClasses(Player player, CategoryType cType)
 	{
-		final List<ClassId> tempList = new ArrayList<>();
+		final List<PlayerClass> tempList = new ArrayList<>();
 		final int baseClassId = player.getBaseClass();
-		final int dualClassId = player.getClassId().getId();
-		for (ClassId temp : dualClassList)
+		final int dualClassId = player.getPlayerClass().getId();
+		for (PlayerClass temp : dualClassList)
 		{
 			if ((temp.getId() != baseClassId) && (temp.getId() != dualClassId) && ((cType == null) || CategoryData.getInstance().isInCategory(cType, temp.getId())))
 			{

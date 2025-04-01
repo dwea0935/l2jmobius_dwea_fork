@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="29400" name="Ancient Coin" type="EtcItem">
 		<!-- A coin that can be exchanged for various items through Alexandria. -->
@@ -21,7 +21,7 @@
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="28295" level="1" /> <!-- Ultimate Jewelry Box -->
+			<skill id="28295" level="1" /> <!-- Ultimate Jewelry Box Lv. 3 -->
 		</skills>
 	</item>
 	<item id="29402" name="Ultimate Jewelry Box Lv. 4" type="EtcItem">
@@ -35,7 +35,7 @@
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="28296" level="1" /> <!-- Ultimate Jewelry Box -->
+			<skill id="28296" level="1" /> <!-- Ultimate Jewelry Box Lv. 4 -->
 		</skills>
 	</item>
 	<item id="29403" name="Ultimate Jewelry Box Lv. 5" type="EtcItem">
@@ -49,7 +49,7 @@
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="28297" level="1" /> <!-- Ultimate Jewelry Box -->
+			<skill id="28297" level="1" /> <!-- Ultimate Jewelry Box Lv. 5 -->
 		</skills>
 	</item>
 	<item id="29404" name="Shiny Coin" type="EtcItem">
@@ -73,7 +73,7 @@
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="28295" level="1" /> <!-- Ultimate Jewelry Box -->
+			<skill id="28295" level="1" /> <!-- Ultimate Jewelry Box Lv. 3 -->
 		</skills>
 	</item>
 	<item id="29406" name="Transformation Sealbook: Sales Part-timer" additionalName="Kat the Cat" type="EtcItem">
@@ -299,7 +299,7 @@
 		<set name="time" val="43200" />
 		<set name="etcitem_type" val="ENCHT_ATTR_RUNE" />
 		<skills>
-			<skill id="28172" level="1" /> <!-- High-grade Maphr's Rune -->
+			<skill id="28172" level="1" /> <!-- High-grade Maphr's Rune 300% -->
 		</skills>
 	</item>
 	<item id="29433" name="Package: High-grade Maphr's Rune 300%" additionalName="30-day" type="EtcItem">
@@ -344,7 +344,7 @@
 		<set name="time" val="10080" />
 		<set name="etcitem_type" val="ENCHT_ATTR_RUNE" />
 		<skills>
-			<skill id="28172" level="1" /> <!-- High-grade Maphr's Rune -->
+			<skill id="28172" level="1" /> <!-- High-grade Maphr's Rune 300% -->
 		</skills>
 	</item>
 	<item id="29436" name="Package: High-grade Maphr's Rune 300%" additionalName="1-day" type="EtcItem">
@@ -373,7 +373,7 @@
 		<set name="time" val="1440" />
 		<set name="etcitem_type" val="ENCHT_ATTR_RUNE" />
 		<skills>
-			<skill id="28172" level="1" /> <!-- High-grade Maphr's Rune -->
+			<skill id="28172" level="1" /> <!-- High-grade Maphr's Rune 300% -->
 		</skills>
 	</item>
 	<item id="29438" name="Sibi's Suspicious Supplies" type="EtcItem">
@@ -396,7 +396,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18568" level="7" /> <!-- Vital Stone -->
+			<skill id="18568" level="7" /> <!-- Greater Vital Stone -->
 			<skill id="27439" level="4" /> <!-- Vital Stone - Vital Wind -->
 		</skills>
 	</item>
@@ -410,7 +410,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18568" level="8" /> <!-- Vital Stone -->
+			<skill id="18568" level="8" /> <!-- Greater Vital Stone -->
 			<skill id="27439" level="4" /> <!-- Vital Stone - Vital Wind -->
 		</skills>
 	</item>
@@ -424,7 +424,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18568" level="9" /> <!-- Vital Stone -->
+			<skill id="18568" level="9" /> <!-- Greater Vital Stone -->
 			<skill id="27439" level="4" /> <!-- Vital Stone - Vital Wind -->
 		</skills>
 	</item>
@@ -438,7 +438,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18568" level="10" /> <!-- Vital Stone -->
+			<skill id="18568" level="10" /> <!-- Greater Vital Stone -->
 			<skill id="27439" level="5" /> <!-- Vital Stone - Vital Wind -->
 		</skills>
 	</item>
@@ -452,8 +452,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="7" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="7" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Purge -->
 		</skills>
 	</item>
 	<item id="29444" name="Greater Garnet Lv. 3" additionalName="Not Available" type="Armor">
@@ -466,8 +466,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="8" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="8" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Purge -->
 		</skills>
 	</item>
 	<item id="29445" name="Greater Garnet Lv. 4" additionalName="Not Available" type="Armor">
@@ -480,8 +480,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="9" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="9" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Purge -->
 		</skills>
 	</item>
 	<item id="29446" name="Greater Garnet Lv. 5" additionalName="Not Available" type="Armor">
@@ -494,8 +494,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="10" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="10" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Purge -->
 		</skills>
 	</item>
 	<item id="29447" name="Greater Garnet Lv. 2" additionalName="Not Available" type="Armor">
@@ -508,8 +508,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="7" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="7" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Purge -->
 		</skills>
 	</item>
 	<item id="29448" name="Greater Garnet Lv. 3" additionalName="Not Available" type="Armor">
@@ -522,8 +522,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="8" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="8" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Purge -->
 		</skills>
 	</item>
 	<item id="29449" name="Greater Garnet Lv. 4" additionalName="Not Available" type="Armor">
@@ -536,8 +536,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="9" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="9" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Purge -->
 		</skills>
 	</item>
 	<item id="29450" name="Greater Garnet Lv. 5" additionalName="Not Available" type="Armor">
@@ -550,8 +550,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="10" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="10" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Purge -->
 		</skills>
 	</item>
 	<item id="29451" name="Greater Tanzanite Lv. 2" additionalName="Not Available" type="Armor">
@@ -616,7 +616,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="27440" level="7" /> <!-- Cat's Eye -->
+			<skill id="27440" level="7" /> <!-- Greater Cat's Eye -->
 			<skill id="27441" level="1" /> <!-- Cat's Eye - Invincibility -->
 		</skills>
 	</item>
@@ -630,7 +630,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="27440" level="8" /> <!-- Cat's Eye -->
+			<skill id="27440" level="8" /> <!-- Greater Cat's Eye -->
 			<skill id="27441" level="2" /> <!-- Cat's Eye - Invincibility -->
 		</skills>
 	</item>
@@ -644,7 +644,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="27440" level="9" /> <!-- Cat's Eye -->
+			<skill id="27440" level="9" /> <!-- Greater Cat's Eye -->
 			<skill id="27441" level="2" /> <!-- Cat's Eye - Invincibility -->
 		</skills>
 	</item>
@@ -658,7 +658,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="27440" level="10" /> <!-- Cat's Eye -->
+			<skill id="27440" level="10" /> <!-- Greater Cat's Eye -->
 			<skill id="27441" level="3" /> <!-- Cat's Eye - Invincibility -->
 		</skills>
 	</item>
@@ -672,7 +672,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="27442" level="7" /> <!-- Amethyst -->
+			<skill id="27442" level="7" /> <!-- Greater Amethyst -->
 			<skill id="27443" level="1" /> <!-- Amethyst - Remove Invincibility/Immunity -->
 		</skills>
 	</item>
@@ -686,7 +686,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="27442" level="8" /> <!-- Amethyst -->
+			<skill id="27442" level="8" /> <!-- Greater Amethyst -->
 			<skill id="27443" level="1" /> <!-- Amethyst - Remove Invincibility/Immunity -->
 		</skills>
 	</item>
@@ -700,7 +700,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="27442" level="9" /> <!-- Amethyst -->
+			<skill id="27442" level="9" /> <!-- Greater Amethyst -->
 			<skill id="27443" level="1" /> <!-- Amethyst - Remove Invincibility/Immunity -->
 		</skills>
 	</item>
@@ -714,7 +714,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="27442" level="10" /> <!-- Amethyst -->
+			<skill id="27442" level="10" /> <!-- Greater Amethyst -->
 			<skill id="27443" level="1" /> <!-- Amethyst - Remove Invincibility/Immunity -->
 		</skills>
 	</item>

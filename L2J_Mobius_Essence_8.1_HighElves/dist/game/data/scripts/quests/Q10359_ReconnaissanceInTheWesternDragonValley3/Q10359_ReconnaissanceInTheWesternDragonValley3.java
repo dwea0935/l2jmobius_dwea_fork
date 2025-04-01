@@ -62,6 +62,14 @@ public class Q10359_ReconnaissanceInTheWesternDragonValley3 extends Quest
 		20240,
 		20235,
 		20243,
+		22361, // Dragon
+		22362, // Dragon
+		22363, // Dragon
+		22364, // Dragon
+		22365, // Dragon
+		22366, // Dragon
+		22367, // Dragon
+		22368, // Dragon
 	};
 	
 	public Q10359_ReconnaissanceInTheWesternDragonValley3()
@@ -187,7 +195,7 @@ public class Q10359_ReconnaissanceInTheWesternDragonValley3 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -206,19 +214,17 @@ public class Q10359_ReconnaissanceInTheWesternDragonValley3 extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

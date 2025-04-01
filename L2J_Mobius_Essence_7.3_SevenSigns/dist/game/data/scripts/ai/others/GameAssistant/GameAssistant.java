@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.others.GameAssistant;
 
@@ -27,7 +31,8 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerBypass;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerBypass;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerFreight;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -43,7 +48,7 @@ import ai.AbstractNpcAI;
 
 /**
  * Dimensional Merchant AI.
- * @author Mobius, quangnguyen, manax
+ * @author Mobius, QuangNguyen, Manax
  */
 public class GameAssistant extends AbstractNpcAI
 {
@@ -129,7 +134,7 @@ public class GameAssistant extends AbstractNpcAI
 					{
 						if (i.isTimeLimitedItem() && (i.getRemainingTime() <= 0))
 						{
-							player.getActiveWarehouse().destroyItem("ItemInstance", i, player, null);
+							player.getActiveWarehouse().destroyItem(ItemProcessType.DESTROY, i, player, null);
 						}
 					}
 					player.sendPacket(new WareHouseWithdrawalList(1, player, WareHouseWithdrawalList.FREIGHT));
@@ -418,7 +423,7 @@ public class GameAssistant extends AbstractNpcAI
 						return null;
 					}
 					
-					player.addItem("GameAssistant", ADVENTURER_MARK_LV_1, 1, null, false);
+					player.addItem(ItemProcessType.QUEST, ADVENTURER_MARK_LV_1, 1, null, false);
 				}
 				if ((player.getLevel() >= 30) || (player.getLevel() <= 40))
 				{
@@ -430,7 +435,7 @@ public class GameAssistant extends AbstractNpcAI
 						return null;
 					}
 					
-					player.addItem("GameAssistant", ADVENTURER_MARK_LV_2, 1, null, false);
+					player.addItem(ItemProcessType.QUEST, ADVENTURER_MARK_LV_2, 1, null, false);
 				}
 				if ((player.getLevel() >= 40) || (player.getLevel() <= 60))
 				{
@@ -442,7 +447,7 @@ public class GameAssistant extends AbstractNpcAI
 						return null;
 					}
 					
-					player.addItem("GameAssistant", ADVENTURER_MARK_LV_3, 1, null, false);
+					player.addItem(ItemProcessType.QUEST, ADVENTURER_MARK_LV_3, 1, null, false);
 				}
 				if ((player.getLevel() >= 60) || (player.getLevel() <= 75))
 				{
@@ -454,7 +459,7 @@ public class GameAssistant extends AbstractNpcAI
 						return null;
 					}
 					
-					player.addItem("GameAssistant", ADVENTURER_MARK_LV_4, 1, null, false);
+					player.addItem(ItemProcessType.QUEST, ADVENTURER_MARK_LV_4, 1, null, false);
 				}
 				if ((player.getLevel() >= 76) || (player.getLevel() <= 99))
 				{
@@ -466,7 +471,7 @@ public class GameAssistant extends AbstractNpcAI
 						return null;
 					}
 					
-					player.addItem("GameAssistant", ADVENTURER_MARK_LV_5, 1, null, false);
+					player.addItem(ItemProcessType.QUEST, ADVENTURER_MARK_LV_5, 1, null, false);
 				}
 				break;
 			}
@@ -513,9 +518,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 1);
-				final Item reward = player.addItem("GameAssistant", BLACK_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, BLACK_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(1);
 				player.sendItemList();
 				break;
@@ -551,9 +556,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 2);
-				final Item reward = player.addItem("GameAssistant", BLACK_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, BLACK_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(2);
 				player.sendItemList();
 				break;
@@ -589,9 +594,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 3);
-				final Item reward = player.addItem("GameAssistant", BLACK_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, BLACK_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(3);
 				player.sendItemList();
 				break;
@@ -627,9 +632,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 5);
-				final Item reward = player.addItem("GameAssistant", BLACK_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, BLACK_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(4);
 				player.sendItemList();
 				break;
@@ -665,9 +670,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 10);
-				final Item reward = player.addItem("GameAssistant", BLACK_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, BLACK_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(5);
 				player.sendItemList();
 				break;
@@ -703,9 +708,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 25);
-				final Item reward = player.addItem("GameAssistant", BLACK_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, BLACK_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(6);
 				player.sendItemList();
 				break;
@@ -741,9 +746,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 81);
-				final Item reward = player.addItem("GameAssistant", BLACK_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, BLACK_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(7);
 				player.sendItemList();
 				break;
@@ -779,9 +784,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 200);
-				final Item reward = player.addItem("GameAssistant", BLACK_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, BLACK_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(8);
 				player.sendItemList();
 				break;
@@ -817,9 +822,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 300);
-				final Item reward = player.addItem("GameAssistant", BLACK_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, BLACK_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(9);
 				player.sendItemList();
 				break;
@@ -855,9 +860,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 400);
-				final Item reward = player.addItem("GameAssistant", BLACK_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, BLACK_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(10);
 				player.sendItemList();
 				break;
@@ -905,9 +910,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 1);
-				final Item reward = player.addItem("GameAssistant", WHITE_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, WHITE_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(1);
 				player.sendItemList();
 				break;
@@ -943,9 +948,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 2);
-				final Item reward = player.addItem("GameAssistant", WHITE_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, WHITE_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(2);
 				player.sendItemList();
 				break;
@@ -981,9 +986,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 3);
-				final Item reward = player.addItem("GameAssistant", WHITE_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, WHITE_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(3);
 				player.sendItemList();
 				break;
@@ -1019,9 +1024,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 5);
-				final Item reward = player.addItem("GameAssistant", WHITE_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, WHITE_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(4);
 				player.sendItemList();
 				break;
@@ -1057,9 +1062,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 10);
-				final Item reward = player.addItem("GameAssistant", WHITE_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, WHITE_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(5);
 				player.sendItemList();
 				break;
@@ -1095,9 +1100,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 25);
-				final Item reward = player.addItem("GameAssistant", WHITE_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, WHITE_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(6);
 				player.sendItemList();
 				break;
@@ -1133,9 +1138,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 81);
-				final Item reward = player.addItem("GameAssistant", WHITE_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, WHITE_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(7);
 				player.sendItemList();
 				break;
@@ -1171,9 +1176,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 200);
-				final Item reward = player.addItem("GameAssistant", WHITE_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, WHITE_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(8);
 				player.sendItemList();
 				break;
@@ -1209,9 +1214,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 300);
-				final Item reward = player.addItem("GameAssistant", WHITE_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, WHITE_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(9);
 				player.sendItemList();
 				break;
@@ -1247,9 +1252,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 400);
-				final Item reward = player.addItem("GameAssistant", WHITE_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, WHITE_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(10);
 				player.sendItemList();
 				break;
@@ -1297,9 +1302,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 1);
-				final Item reward = player.addItem("GameAssistant", RED_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, RED_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(1);
 				player.sendItemList();
 				break;
@@ -1335,9 +1340,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 2);
-				final Item reward = player.addItem("GameAssistant", RED_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, RED_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(2);
 				player.sendItemList();
 				break;
@@ -1373,9 +1378,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 3);
-				final Item reward = player.addItem("GameAssistant", RED_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, RED_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(3);
 				player.sendItemList();
 				break;
@@ -1411,9 +1416,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 5);
-				final Item reward = player.addItem("GameAssistant", RED_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, RED_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(4);
 				player.sendItemList();
 				break;
@@ -1449,9 +1454,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 10);
-				final Item reward = player.addItem("GameAssistant", RED_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, RED_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(5);
 				player.sendItemList();
 				break;
@@ -1487,9 +1492,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 25);
-				final Item reward = player.addItem("GameAssistant", RED_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, RED_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(6);
 				player.sendItemList();
 				break;
@@ -1525,9 +1530,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 81);
-				final Item reward = player.addItem("GameAssistant", RED_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, RED_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(7);
 				player.sendItemList();
 				break;
@@ -1563,9 +1568,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 200);
-				final Item reward = player.addItem("GameAssistant", RED_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, RED_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(8);
 				player.sendItemList();
 				break;
@@ -1601,9 +1606,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 300);
-				final Item reward = player.addItem("GameAssistant", RED_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, RED_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(9);
 				player.sendItemList();
 				break;
@@ -1639,9 +1644,9 @@ public class GameAssistant extends AbstractNpcAI
 					return null;
 				}
 				
-				player.destroyItem("GameAssistant", cloak, player, true);
+				player.destroyItem(ItemProcessType.FEE, cloak, player, true);
 				takeItems(player, PACKAGE_CLOAK, 400);
-				final Item reward = player.addItem("GameAssistant", RED_SAYHA_CLOAK, 1, null, false);
+				final Item reward = player.addItem(ItemProcessType.REWARD, RED_SAYHA_CLOAK, 1, null, false);
 				reward.setEnchantLevel(10);
 				player.sendItemList();
 				break;

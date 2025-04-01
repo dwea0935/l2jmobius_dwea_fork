@@ -21,6 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets.newskillenchant;
 
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -49,8 +50,8 @@ public class RequestExSpExtractItem extends ClientPacket
 		{
 			player.removeExpAndSp(0, 5000000000L);
 			player.broadcastUserInfo();
-			player.reduceAdena("SpExtract", 3000000, null, true);
-			player.addItem("AddSpExtract", Inventory.SP_POUCH, 1, null, true);
+			player.reduceAdena(ItemProcessType.FEE, 3000000, null, true);
+			player.addItem(ItemProcessType.REWARD, Inventory.SP_POUCH, 1, null, true);
 			final int current = player.getVariables().getInt(PlayerVariables.DAILY_EXTRACT_ITEM + Inventory.SP_POUCH, 5);
 			player.getVariables().set(PlayerVariables.DAILY_EXTRACT_ITEM + Inventory.SP_POUCH, current - 1);
 			player.sendPacket(new ExSpExtractItem());

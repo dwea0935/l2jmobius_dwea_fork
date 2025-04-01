@@ -1,23 +1,26 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,18 +36,17 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.commons.util.file.filter.NumericNameFilter;
-import org.l2jmobius.gameserver.enums.SpecialItemType;
+import org.l2jmobius.gameserver.data.holders.MultisellEntryHolder;
+import org.l2jmobius.gameserver.data.holders.MultisellListHolder;
+import org.l2jmobius.gameserver.data.holders.PreparedMultisellListHolder;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.MultisellEntryHolder;
-import org.l2jmobius.gameserver.model.holders.MultisellListHolder;
-import org.l2jmobius.gameserver.model.holders.PreparedMultisellListHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantItemGroup;
+import org.l2jmobius.gameserver.model.item.enums.SpecialItemType;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.serverpackets.MultiSellList;
 
 public class MultisellData implements IXmlReader
@@ -52,7 +54,6 @@ public class MultisellData implements IXmlReader
 	private static final Logger LOGGER = Logger.getLogger(MultisellData.class.getName());
 	
 	public static final int PAGE_SIZE = 40;
-	private static final FileFilter NUMERIC_FILTER = new NumericNameFilter();
 	
 	private final Map<Integer, MultisellListHolder> _multisells = new ConcurrentHashMap<>();
 	
@@ -75,7 +76,7 @@ public class MultisellData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		final EnchantItemGroup magicWeaponGroup = EnchantItemGroupsData.getInstance().getItemGroup("MAGE_WEAPON_GROUP");
 		final int magicWeaponGroupMax = magicWeaponGroup != null ? magicWeaponGroup.getMaximumEnchant() : -2;
@@ -88,10 +89,10 @@ public class MultisellData implements IXmlReader
 		
 		try
 		{
-			forEach(doc, "list", listNode ->
+			forEach(document, "list", listNode ->
 			{
 				final StatSet set = new StatSet(parseAttributes(listNode));
-				final int listId = Integer.parseInt(f.getName().substring(0, f.getName().length() - 4));
+				final int listId = Integer.parseInt(file.getName().substring(0, file.getName().length() - 4));
 				final List<MultisellEntryHolder> entries = new ArrayList<>(listNode.getChildNodes().getLength());
 				final AtomicInteger entryCounter = new AtomicInteger();
 				
@@ -221,14 +222,14 @@ public class MultisellData implements IXmlReader
 		}
 		catch (Exception e)
 		{
-			LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Error in file " + f, e);
+			LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Error in file " + file, e);
 		}
 	}
 	
 	@Override
-	public FileFilter getCurrentFileFilter()
+	public boolean isValidXmlFile(File file)
 	{
-		return NUMERIC_FILTER;
+		return (file != null) && file.isFile() && file.getName().toLowerCase().matches("\\d+\\.xml");
 	}
 	
 	/**

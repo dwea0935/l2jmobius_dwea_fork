@@ -56,7 +56,7 @@ public class Q00629_CleanUpTheSwampOfScreams extends Quest
 	
 	public Q00629_CleanUpTheSwampOfScreams()
 	{
-		super(629);
+		super(629, "Clean up the Swamp of Screams");
 		addStartNpc(PIERCE);
 		addTalkId(PIERCE);
 		addKillId(MOBS_DROP_CHANCES.keySet());
@@ -121,14 +121,13 @@ public class Q00629_CleanUpTheSwampOfScreams extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, -1, 2, npc);
 		if (qs != null)
 		{
 			giveItemRandomly(qs.getPlayer(), npc, TALON_OF_STAKATO, 1, 0, MOBS_DROP_CHANCES.get(npc.getId()), true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

@@ -17,14 +17,14 @@
 package quests.Q00225_TestOfTheSearcher;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Test Of The Searcher (225)
@@ -187,7 +187,7 @@ public class Q00225_TestOfTheSearcher extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isStarted() && npc.isScriptValue(0) && hasQuestItems(attacker, LEIRYNNS_1ST_ORDER))
@@ -195,14 +195,13 @@ public class Q00225_TestOfTheSearcher extends Quest
 			npc.setScriptValue(1);
 			addAttackPlayerDesire(addSpawn(NEER_BODYGUARD, npc, true, 200000), attacker);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -297,7 +296,6 @@ public class Q00225_TestOfTheSearcher extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -309,11 +307,11 @@ public class Q00225_TestOfTheSearcher extends Quest
 		{
 			if (npc.getId() == MASTER_LUTHER)
 			{
-				if ((player.getClassId() == ClassId.ROGUE) || (player.getClassId() == ClassId.ELVEN_SCOUT) || (player.getClassId() == ClassId.ASSASSIN) || (player.getClassId() == ClassId.SCAVENGER))
+				if ((player.getPlayerClass() == PlayerClass.ROGUE) || (player.getPlayerClass() == PlayerClass.ELVEN_SCOUT) || (player.getPlayerClass() == PlayerClass.ASSASSIN) || (player.getPlayerClass() == PlayerClass.SCAVENGER))
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
-						if (player.getClassId() == ClassId.SCAVENGER)
+						if (player.getPlayerClass() == PlayerClass.SCAVENGER)
 						{
 							htmltext = "30690-04.htm";
 						}

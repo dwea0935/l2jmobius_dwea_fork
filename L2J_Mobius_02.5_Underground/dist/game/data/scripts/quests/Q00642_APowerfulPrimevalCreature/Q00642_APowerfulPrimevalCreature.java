@@ -19,11 +19,11 @@ package quests.Q00642_APowerfulPrimevalCreature;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 
 /**
  * A Powerful Primeval Creature (642)
@@ -120,12 +120,12 @@ public class Q00642_APowerfulPrimevalCreature extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, -1, 3, npc);
 		if (qs == null)
 		{
-			return null;
+			return;
 		}
 		
 		final int npcId = npc.getId();
@@ -137,7 +137,6 @@ public class Q00642_APowerfulPrimevalCreature extends Quest
 		{
 			giveItemRandomly(qs.getPlayer(), npc, DINOSAUR_EGG, 1, 0, 1, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

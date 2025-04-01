@@ -242,6 +242,8 @@ import org.l2jmobius.gameserver.network.clientpackets.relics.RequestRelicsSummon
 import org.l2jmobius.gameserver.network.clientpackets.relics.RequestRelicsUpgrade;
 import org.l2jmobius.gameserver.network.clientpackets.sayune.RequestFlyMove;
 import org.l2jmobius.gameserver.network.clientpackets.sayune.RequestFlyMoveStart;
+import org.l2jmobius.gameserver.network.clientpackets.secretshop.ExRequestFestivalBmGame;
+import org.l2jmobius.gameserver.network.clientpackets.secretshop.ExRequestFestivalBmInfo;
 import org.l2jmobius.gameserver.network.clientpackets.settings.ExInteractModify;
 import org.l2jmobius.gameserver.network.clientpackets.settings.ExSaveItemAnnounceSetting;
 import org.l2jmobius.gameserver.network.clientpackets.settings.RequestKeyMapping;
@@ -654,8 +656,8 @@ public enum ExClientPackets
 	EX_AUTOPLAY_SETTING(0x176, ExAutoPlaySetting::new, ConnectionState.IN_GAME),
 	EX_OLYMPIAD_MATCH_MAKING(0x177, OlympiadMatchMaking::new, ConnectionState.IN_GAME),
 	EX_OLYMPIAD_MATCH_MAKING_CANCEL(0x178, OlympiadMatchMakingCancel::new, ConnectionState.IN_GAME),
-	EX_FESTIVAL_BM_INFO(0x179, null, ConnectionState.IN_GAME),
-	EX_FESTIVAL_BM_GAME(0x17A, null, ConnectionState.IN_GAME),
+	EX_FESTIVAL_BM_INFO(0x179, ExRequestFestivalBmInfo::new, ConnectionState.IN_GAME),
+	EX_FESTIVAL_BM_GAME(0x17A, ExRequestFestivalBmGame::new, ConnectionState.IN_GAME),
 	EX_GACHA_SHOP_INFO(0x17B, null, ConnectionState.IN_GAME),
 	EX_GACHA_SHOP_GACHA_GROUP(0x17C, null, ConnectionState.IN_GAME),
 	EX_GACHA_SHOP_GACHA_ITEM(0x17D, null, ConnectionState.IN_GAME),

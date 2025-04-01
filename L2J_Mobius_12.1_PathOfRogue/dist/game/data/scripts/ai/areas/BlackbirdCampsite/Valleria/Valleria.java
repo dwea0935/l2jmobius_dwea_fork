@@ -20,9 +20,9 @@
  */
 package ai.areas.BlackbirdCampsite.Valleria;
 
-import org.l2jmobius.gameserver.enums.Faction;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.quest.Faction;
 
 import ai.AbstractNpcAI;
 

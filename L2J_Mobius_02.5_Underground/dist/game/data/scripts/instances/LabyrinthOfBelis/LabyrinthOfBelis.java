@@ -16,9 +16,7 @@
  */
 package instances.LabyrinthOfBelis;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Attackable;
@@ -30,12 +28,14 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
 import instances.AbstractInstance;
@@ -148,7 +148,7 @@ public class LabyrinthOfBelis extends AbstractInstance
 							npc.setScriptValue(1);
 							npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.DON_T_COME_BACK_HERE);
 							npc.setTarget(generator);
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, INFILTRATION_OFFICER_ROOM_3_INSIDE);
+							npc.getAI().setIntention(Intention.MOVE_TO, INFILTRATION_OFFICER_ROOM_3_INSIDE);
 							getTimers().addTimer("GENERATOR_EFFECT", 300, generator, null);
 							getTimers().addRepeatingTimer("MESSAGE", 7000, npc, null);
 							getTimers().addRepeatingTimer("ATTACKERS", 12500, npc, player);
@@ -213,7 +213,7 @@ public class LabyrinthOfBelis extends AbstractInstance
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		// TODO: Replace me with effect zone when support for instances are done.
 		if (creature.isPlayer())
@@ -225,11 +225,10 @@ public class LabyrinthOfBelis extends AbstractInstance
 				getTimers().addRepeatingTimer("DEBUFF", 1500, world.getNpc(ELECTRICITY_GENERATOR), player);
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		// TODO: Replace me with effect zone when support for instances are done.
 		if (creature.isPlayer())
@@ -241,7 +240,6 @@ public class LabyrinthOfBelis extends AbstractInstance
 				getTimers().cancelTimer("DEBUFF", world.getNpc(ELECTRICITY_GENERATOR), player);
 			}
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	@Override
@@ -354,7 +352,7 @@ public class LabyrinthOfBelis extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -421,7 +419,6 @@ public class LabyrinthOfBelis extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@RegisterEvent(EventType.ON_CREATURE_DEATH)
@@ -439,13 +436,12 @@ public class LabyrinthOfBelis extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Attackable officer = npc.asAttackable();
 		officer.setRunning();
 		officer.setCanReturnToSpawnPoint(false);
 		getTimers().addRepeatingTimer("MESSAGE", 6000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -496,7 +492,7 @@ public class LabyrinthOfBelis extends AbstractInstance
 						showOnScreenMsg(player, (getRandomBoolean() ? NpcStringId.IF_TERAIN_DIES_THE_MISSION_WILL_FAIL : NpcStringId.BEHIND_YOU_THE_ENEMY_IS_AMBUSHING_YOU), ExShowScreenMessage.TOP_CENTER, 4500);
 						final Attackable mob = addSpawn((getRandomBoolean() ? OPERATIVE : HANDYMAN), SPAWN_ATTACKERS, false, 0, true, world.getId()).asAttackable();
 						mob.setRunning();
-						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, ATTACKER_SPOT);
+						mob.getAI().setIntention(Intention.MOVE_TO, ATTACKER_SPOT);
 						mob.broadcastSay(ChatType.NPC_GENERAL, (getRandomBoolean() ? NpcStringId.KILL_THE_GUY_MESSING_WITH_THE_ELECTRIC_DEVICE : NpcStringId.FOCUS_ON_ATTACKING_THE_GUY_IN_THE_ROOM));
 						mob.addDamageHate(npc, 0, 9999);
 						mob.reduceCurrentHp(1, npc, null); // TODO: Find better way for attack
@@ -516,7 +512,7 @@ public class LabyrinthOfBelis extends AbstractInstance
 						world.openCloseDoor(DOOR_ID_ROOM_2_1, true);
 						
 						final Npc officer = world.getNpc(INFILTRATION_OFFICER);
-						officer.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, INFILTRATION_OFFICER_ROOM_2);
+						officer.getAI().setIntention(Intention.MOVE_TO, INFILTRATION_OFFICER_ROOM_2);
 						officer.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.ALL_RIGHT_LET_S_MOVE_OUT);
 					}
 					break;
@@ -526,7 +522,7 @@ public class LabyrinthOfBelis extends AbstractInstance
 					world.openCloseDoor(DOOR_ID_ROOM_3_1, true);
 					
 					final Npc officer = world.getNpc(INFILTRATION_OFFICER);
-					officer.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, INFILTRATION_OFFICER_ROOM_3);
+					officer.getAI().setIntention(Intention.MOVE_TO, INFILTRATION_OFFICER_ROOM_3);
 					officer.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.COME_ON_ONTO_THE_NEXT_PLACE);
 					break;
 				}
@@ -549,7 +545,7 @@ public class LabyrinthOfBelis extends AbstractInstance
 				case "MOVE_TO_ROOM_4":
 				{
 					npc.setRunning();
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, INFILTRATION_OFFICER_ROOM_4);
+					npc.getAI().setIntention(Intention.MOVE_TO, INFILTRATION_OFFICER_ROOM_4);
 					npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.DEVICE_DESTROYED_LET_S_GO_ONTO_THE_NEXT);
 					break;
 				}
@@ -560,7 +556,7 @@ public class LabyrinthOfBelis extends AbstractInstance
 						world.setStatus(9);
 						
 						final Npc officer = world.getNpc(INFILTRATION_OFFICER);
-						officer.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, NEMERTESS_SPAWN);
+						officer.getAI().setIntention(Intention.MOVE_TO, NEMERTESS_SPAWN);
 					}
 					break;
 				}

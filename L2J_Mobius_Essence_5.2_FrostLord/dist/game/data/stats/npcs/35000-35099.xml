@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="35010" level="50" type="Defender" name="Mercenary">
 		<parameters>
@@ -454,7 +454,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>MALE</sex>
-		<equipment rhand="150" /> <!-- Elemental Sword -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -542,7 +541,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>MALE</sex>
-		<equipment rhand="288" /> <!-- Carnage Bow -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -587,7 +585,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="325" /> <!-- Horn of Glory -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -678,7 +675,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>MALE</sex>
-		<equipment rhand="150" /> <!-- Elemental Sword -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -766,7 +762,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>MALE</sex>
-		<equipment rhand="288" /> <!-- Carnage Bow -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -811,7 +806,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="325" /> <!-- Horn of Glory -->
 		<acquire exp="883" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2444.46819" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
@@ -1081,7 +1075,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="6579" /> <!-- Arcana Mace -->
 		<acquire exp="810" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="1933.24044" hpRegen="6.5" mp="1036.8" mpRegen="2.4" />
@@ -1305,7 +1298,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="6579" /> <!-- Arcana Mace -->
 		<acquire exp="810" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="1933.24044" hpRegen="6.5" mp="1036.8" mpRegen="2.4" />
@@ -2248,14 +2240,13 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>MALE</sex>
-		<equipment rhand="2500" lhand="6377" /> <!-- Dark Legion's Edge / Imperial Crusader Shield -->
 		<acquire exp="980" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2676.65854" hpRegen="8.5" mp="1507.8" mpRegen="3" />
 			<attack physical="794.70901" magical="542.68324" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="319.24623" magical="233.61053" />
 			<speed>
-				<walk ground="36.48" />
+				<walk ground="36" />
 				<run ground="195" />
 			</speed>
 			<hitTime>600</hitTime>
@@ -2297,7 +2288,6 @@
 		</parameters>
 		<race>MERCENARY</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="8687" /> <!-- Cabrio's Hand -->
 		<acquire exp="920" sp="1" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2540.15331" hpRegen="8.5" mp="1410" mpRegen="3" />
@@ -2571,7 +2561,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="6579" /> <!-- Arcana Mace -->
 		<acquire exp="336" sp="0" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="1828.68266" hpRegen="6.5" mp="977.4" mpRegen="2.4" />
@@ -3160,7 +3149,6 @@
 		</parameters>
 		<race>CASTLE_GUARD</race>
 		<sex>MALE</sex>
-		<equipment rhand="6579" /> <!-- Arcana Mace -->
 		<acquire exp="336" sp="0" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="1828.68266" hpRegen="6.5" mp="977.4" mpRegen="2.4" />

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="23820" level="60" type="Monster" name="Ketra Elite Soldier">
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
@@ -368,7 +368,6 @@
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
 		<race>DEMONIC</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="946" lhand="945" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="24988.4592620721" hpRegen="7.5" mp="1188.8" mpRegen="2.7" />
 			<attack physical="582.81759" magical="397.98887" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -971,7 +970,7 @@
 		</skillList>
 		<collision>
 			<radius normal="35" />
-			<height normal="46.377" />
+			<height normal="46.3765" />
 		</collision>
 	</npc>
 	<npc id="23850" level="70" type="Monster" name="Hell Assassin">
@@ -2242,7 +2241,6 @@
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
 		<race>DEMONIC</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="946" lhand="945" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="27848.3717733753" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />
 			<attack physical="688.86373" magical="470.40463" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />

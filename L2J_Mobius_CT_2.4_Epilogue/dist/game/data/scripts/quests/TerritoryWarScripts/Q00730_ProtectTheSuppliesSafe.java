@@ -24,7 +24,7 @@ public class Q00730_ProtectTheSuppliesSafe extends TerritoryWarSuperClass
 {
 	public Q00730_ProtectTheSuppliesSafe()
 	{
-		super(730);
+		super(730, "Protect the Supplies Safe");
 		NPC_IDS = new int[]
 		{
 			36591,

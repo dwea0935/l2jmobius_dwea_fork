@@ -20,7 +20,7 @@
  */
 package ai.others.OrcFortress;
 
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -44,7 +44,7 @@ public class GregSentry extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final FortSiege siege = FortManager.getInstance().getFortById(FortManager.ORC_FORTRESS).getSiege();
 		if ((siege != null) && (siege.getFlagCount() < FLAG_MAX_COUNT))
@@ -61,7 +61,6 @@ public class GregSentry extends AbstractNpcAI
 				siege.addFlagCount(1);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

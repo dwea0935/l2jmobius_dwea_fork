@@ -16,20 +16,20 @@
  */
 package quests.Q10320_LetsGoToTheCentralSquare;
 
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerCreate;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerCreate;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowHtml;
 
 /**
@@ -124,7 +124,7 @@ public class Q10320_LetsGoToTheCentralSquare extends Quest
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -139,7 +139,6 @@ public class Q10320_LetsGoToTheCentralSquare extends Quest
 				player.getVariables().remove(MOVIE_VAR);
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@RegisterEvent(EventType.ON_PLAYER_CREATE)

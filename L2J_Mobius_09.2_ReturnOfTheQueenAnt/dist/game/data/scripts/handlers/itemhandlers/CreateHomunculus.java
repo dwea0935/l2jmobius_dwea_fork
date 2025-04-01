@@ -32,6 +32,7 @@ import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.homunculus.Homunculus;
 import org.l2jmobius.gameserver.model.homunculus.HomunculusTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -104,7 +105,7 @@ public class CreateHomunculus implements IItemHandler
 			return false;
 		}
 		
-		player.destroyItem("CreateHomunculus", item, player, true);
+		player.destroyItem(ItemProcessType.FEE, item, player, true);
 		
 		final Homunculus homunculus = new Homunculus(template, player.getHomunculusList().size(), 1, 0, 0, 0, 0, 0, 0, false);
 		if (player.getHomunculusList().add(homunculus))

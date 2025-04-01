@@ -21,7 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets.worldexchange;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.WorldExchangeManager;
+import org.l2jmobius.gameserver.managers.WorldExchangeManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 

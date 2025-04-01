@@ -70,7 +70,7 @@
 		<abnormalTime>-1</abnormalTime>
 		<abnormalVisualEffect>AVE_BROOCH</abnormalVisualEffect>
 		<blockActionUseSkill>true</blockActionUseSkill>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<stayAfterDeath>true</stayAfterDeath>
 	</skill>

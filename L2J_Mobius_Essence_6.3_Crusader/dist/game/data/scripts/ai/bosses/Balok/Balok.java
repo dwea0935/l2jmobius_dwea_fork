@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.bosses.Balok;
 
@@ -28,11 +32,10 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
-import org.l2jmobius.gameserver.enums.MailType;
-import org.l2jmobius.gameserver.instancemanager.BattleWithBalokManager;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.BattleWithBalokManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.World;
@@ -42,7 +45,8 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
 import org.l2jmobius.gameserver.model.spawns.SpawnTemplate;
@@ -50,6 +54,7 @@ import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.MailType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.balok.BalrogWarBossInfo;
@@ -352,7 +357,7 @@ public class Balok extends AbstractNpcAI
 			reward = 730; // Scroll: Enchant A-grade Armor
 			BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_RECEIVES_SCROLL_ENCHANT_ARMOR, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
 		}
-		player.addItem("Balok Last Hit Reward", reward, 1, player, true);
+		player.addItem(ItemProcessType.REWARD, reward, 1, player, true);
 	}
 	
 	private void lastHitRewardBalok(Npc npc, Player player)
@@ -364,7 +369,7 @@ public class Balok extends AbstractNpcAI
 		}
 		if (reward > 0)
 		{
-			player.addItem("Balok Last Hit Reward", reward, 1, player, true);
+			player.addItem(ItemProcessType.REWARD, reward, 1, player, true);
 		}
 		BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_RECEIVES_SCROLL_ENCHANT_WEAPON, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
 	}
@@ -441,7 +446,7 @@ public class Balok extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		if (NORMAL_MOBS.contains(npc.getId()))
 		{
@@ -543,8 +548,6 @@ public class Balok extends AbstractNpcAI
 		{
 			bypassRandomStage();
 		}
-		
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	public void finishAndReward()
@@ -617,7 +620,7 @@ public class Balok extends AbstractNpcAI
 			final int charId = ranker.getKey();
 			final Message mail = new Message(charId, "Battle with Balok Ranker Special Reward", "A special Reward given to rankers who contributed greatly in the balok Battle.", MailType.BALOK_RANKING_REWARD);
 			final Mail attachement = mail.createAttachments();
-			attachement.addItem("Battle with Balok", 91690, 100, null, null); // Special HP Recovery Potion
+			attachement.addItem(ItemProcessType.REWARD, 91690, 100, null, null); // Special HP Recovery Potion
 			MailManager.getInstance().sendMessage(mail);
 		}
 	}

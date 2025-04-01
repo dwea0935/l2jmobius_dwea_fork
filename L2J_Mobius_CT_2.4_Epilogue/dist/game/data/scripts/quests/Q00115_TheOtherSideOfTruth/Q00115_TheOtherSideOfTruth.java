@@ -16,10 +16,10 @@
  */
 package quests.Q00115_TheOtherSideOfTruth;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -47,7 +47,7 @@ public class Q00115_TheOtherSideOfTruth extends Quest
 	
 	public Q00115_TheOtherSideOfTruth()
 	{
-		super(115);
+		super(115, "The Other Side of Truth");
 		addStartNpc(RAFFORTY);
 		addTalkId(RAFFORTY, MISA, KIER, ICE_SCULPTURE1, ICE_SCULPTURE2, ICE_SCULPTURE3, ICE_SCULPTURE4);
 		registerQuestItems(MISAS_LETTER, RAFFORTYS_LETTER, PIECE_OF_TABLET, REPORT_PIECE);

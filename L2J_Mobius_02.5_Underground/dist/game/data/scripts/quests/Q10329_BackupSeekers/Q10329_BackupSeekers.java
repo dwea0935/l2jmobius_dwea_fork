@@ -16,7 +16,6 @@
  */
 package quests.Q10329_BackupSeekers;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -24,9 +23,10 @@ import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExRotation;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q10328_RequestToSealTheEvilFragment.Q10328_RequestToSealTheEvilFragment;
 
@@ -230,7 +230,7 @@ public class Q10329_BackupSeekers extends Quest
 		final Player owner = npc.getSummoner().asPlayer();
 		if (owner != null)
 		{
-			npc.setHeading(Util.calculateHeadingFrom(npc, owner));
+			npc.setHeading(LocationUtil.calculateHeadingFrom(npc, owner));
 			npc.broadcastPacket(new ExRotation(npc.getObjectId(), npc.getHeading()));
 			npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.HEY_KID_HURRY_UP_AND_FOLLOW_ME);
 			startQuestTimer("CHECK_PLAYER", 1200, npc, owner);

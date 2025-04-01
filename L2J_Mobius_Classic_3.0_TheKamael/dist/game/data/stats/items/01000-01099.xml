@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="1000" name="Fist010" type="Armor">
 		<set name="icon" val="icon.item_normal07" />
@@ -629,7 +629,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2031" level="1" /> <!-- Healing Potion -->
+			<skill id="2031" level="1" /> <!-- HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="1061" name="Major Healing Potion" type="EtcItem">
@@ -653,7 +653,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2032" level="1" /> <!-- Greater Healing Potion -->
+			<skill id="2032" level="1" /> <!-- High-grade HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="1067" name="Recommend" type="EtcItem">
@@ -747,7 +747,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="2031" level="1" /> <!-- Healing Potion -->
+			<skill id="2031" level="1" /> <!-- HP Replenishing Potion -->
 		</skills>
 	</item>
 	<item id="1076" name="Carlon's Letter" type="EtcItem">

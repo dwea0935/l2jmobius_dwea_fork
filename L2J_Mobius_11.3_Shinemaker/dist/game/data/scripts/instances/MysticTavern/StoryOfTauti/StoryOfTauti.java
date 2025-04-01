@@ -20,13 +20,10 @@
  */
 package instances.MysticTavern.StoryOfTauti;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -34,15 +31,18 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyNpc;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.ScriptZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.OnEventTrigger;
@@ -140,7 +140,7 @@ public class StoryOfTauti extends AbstractInstance
 						final Npc deton = world.getNpc(DETON);
 						deton.setTarget(player);
 						deton.setRunning();
-						deton.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+						deton.getAI().setIntention(Intention.FOLLOW, player);
 					}
 					else
 					{
@@ -159,7 +159,7 @@ public class StoryOfTauti extends AbstractInstance
 					{
 						deton.setTarget(pl);
 						deton.setRunning();
-						deton.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, pl);
+						deton.getAI().setIntention(Intention.FOLLOW, pl);
 					}
 				});
 				startQuestTimer("msg_1", 7000, deton, null);
@@ -188,7 +188,7 @@ public class StoryOfTauti extends AbstractInstance
 			{
 				final Npc deton = world.getNpc(DETON);
 				deton.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.THIS_I_M_SURE_I_VE_SEEN_THIS_BEFORE_YES_THAT_MEANS_THE_STAKATOS);
-				deton.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, DETON_MOVE);
+				deton.getAI().setIntention(Intention.MOVE_TO, DETON_MOVE);
 				startQuestTimer("msg_5", 7000, deton, null);
 				break;
 			}
@@ -322,7 +322,7 @@ public class StoryOfTauti extends AbstractInstance
 				deton.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.I_LL_LEAVE_THOSE_MONSTERS_TO_YOU_I_LL_GO_CHECK_OUT_SOMETHING_OVER_THERE_IT_S_VERY_IMPORTANT);
 				deton.setTarget(null);
 				deton.stopMove(null);
-				deton.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, DETON_MOVE_1);
+				deton.getAI().setIntention(Intention.MOVE_TO, DETON_MOVE_1);
 				startQuestTimer("delete_daton", 3500, deton, null);
 				break;
 			}
@@ -364,7 +364,7 @@ public class StoryOfTauti extends AbstractInstance
 				deton.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.DO_SOMETHING_ABOUT_THESE_MONSTERS_SHOW_ME_YOUR_STRENGTH_I_LL_BE_WAITING_OVER_THERE);
 				deton.setTarget(null);
 				deton.stopMove(null);
-				deton.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, DETON_MOVE_1);
+				deton.getAI().setIntention(Intention.MOVE_TO, DETON_MOVE_1);
 				startQuestTimer("delete_daton", 5000, deton, null);
 				break;
 			}
@@ -518,7 +518,7 @@ public class StoryOfTauti extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -566,7 +566,7 @@ public class StoryOfTauti extends AbstractInstance
 					final Npc archangel = world.getNpc(SEAL_ARCHANGEL);
 					if (archangel == null)
 					{
-						return null;
+						return;
 					}
 					if (world.isStatus(9) && archangel.isScriptValue(0))
 					{
@@ -589,7 +589,7 @@ public class StoryOfTauti extends AbstractInstance
 						world.spawnGroup("last_deton");
 						final Npc deton = world.getNpc(DETON);
 						deton.setRunning();
-						deton.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, DETON_MOVE_3);
+						deton.getAI().setIntention(Intention.MOVE_TO, DETON_MOVE_3);
 						startQuestTimer("msg_12", 6000, deton, null);
 						deton.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.NICE_NICE_I_SEE_THAT_EVERYONE_S_FIGHTING_HARD_FOR_ME);
 						world.setStatus(11);
@@ -633,11 +633,10 @@ public class StoryOfTauti extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -658,7 +657,7 @@ public class StoryOfTauti extends AbstractInstance
 							{
 								deton.setTarget(pl);
 								deton.setRunning();
-								deton.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, pl);
+								deton.getAI().setIntention(Intention.FOLLOW, pl);
 							}
 						});
 						deton.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.ANYWAY_THE_STAKATOS_WILL_NOT_COME_OUT_ANYMORE_WHY_WELL);
@@ -684,7 +683,7 @@ public class StoryOfTauti extends AbstractInstance
 					final Npc deton = world.getNpc(DETON);
 					world.broadcastPacket(new ExShowScreenMessage(NpcStringId.LET_S_GO_DOWN_THIS_WAY_I_LL_BE_RIGHT_BEHIND_YOU, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
 					deton.setRunning();
-					deton.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, DETON_MOVE_2);
+					deton.getAI().setIntention(Intention.MOVE_TO, DETON_MOVE_2);
 					startQuestTimer("msg_11", 3000, deton, null);
 					break;
 				}
@@ -696,11 +695,10 @@ public class StoryOfTauti extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		final Instance world = creature.getInstanceWorld();
 		final Player player = creature.asPlayer();
@@ -788,11 +786,10 @@ public class StoryOfTauti extends AbstractInstance
 				}
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -908,11 +905,10 @@ public class StoryOfTauti extends AbstractInstance
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -940,7 +936,6 @@ public class StoryOfTauti extends AbstractInstance
 				}
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override

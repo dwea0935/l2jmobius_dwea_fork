@@ -59,6 +59,7 @@ public class RequestPledgeMemberPowerInfo extends ClientPacket
 		{
 			return;
 		}
+		
 		player.sendPacket(new PledgeReceivePowerInfo(member));
 	}
 }

@@ -5502,7 +5502,6 @@
 		<castRange>40</castRange>
 		<castRange>80</castRange>
 		<coolTime>500</coolTime>
-		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-400</value>
 			<value level="2">-405</value>

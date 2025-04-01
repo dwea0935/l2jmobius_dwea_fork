@@ -16,18 +16,18 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.FlyType;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.FlyType;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 
@@ -91,7 +91,7 @@ public class TeleportToNpc extends AbstractEffect
 	{
 		if (effected.isInsideRadius2D(location, 900))
 		{
-			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			effected.getAI().setIntention(Intention.IDLE);
 			effected.broadcastPacket(new FlyToLocation(effected, location, FlyType.DUMMY));
 			effected.abortAttack();
 			effected.abortCast();

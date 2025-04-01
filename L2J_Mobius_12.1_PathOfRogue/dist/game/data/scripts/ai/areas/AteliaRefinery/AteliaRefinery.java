@@ -123,7 +123,7 @@ public class AteliaRefinery extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		int chance = 1;
 		if (getRandom(10000) < chance)
@@ -138,7 +138,6 @@ public class AteliaRefinery extends AbstractNpcAI
 		{
 			addSpawn(SPIRA, npc, false, 300000);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

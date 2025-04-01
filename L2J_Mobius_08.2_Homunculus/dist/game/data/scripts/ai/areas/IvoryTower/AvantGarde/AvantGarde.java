@@ -20,11 +20,11 @@ import java.util.List;
 
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.RequestAcquireSkill;
 import org.l2jmobius.gameserver.network.serverpackets.ExAcquirableSkillListByClass;
@@ -51,13 +51,12 @@ public class AvantGarde extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAcquireSkill(Npc npc, Player player, Skill skill, AcquireSkillType type)
+	public void onAcquireSkill(Npc npc, Player player, Skill skill, AcquireSkillType type)
 	{
 		if (type == AcquireSkillType.TRANSFORM)
 		{
 			showTransformSkillList(player);
 		}
-		return null;
 	}
 	
 	@Override

@@ -16,17 +16,17 @@
  */
 package quests.Q00082_SagaOfTheSagittarius;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * Saga of the Sagittarius (82)
  * @author Emperorc
  */
-public class Q00082_SagaOfTheSagittarius extends SagasSuperClass
+public class Q00082_SagaOfTheSagittarius extends AbstractSagaQuest
 {
 	public Q00082_SagaOfTheSagittarius()
 	{
-		super(82);
+		super(82, "Saga of the Sagittarius");
 		_npc = new int[]
 		{
 			30702,

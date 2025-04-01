@@ -3,7 +3,6 @@
 	<npc id="25300" level="75" type="Monster" name="Hekaton's Scout" title="Raid Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="288" /> <!-- Carnage Bow -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="35053.4822151596" hpRegen="91.4930863014358" mp="1641" mpRegen="3" />
 			<attack physical="2848.82203115447" magical="1105.91356508692" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -38,7 +37,6 @@
 	<npc id="25301" level="75" type="Monster" name="Hekaton's Servant" title="Raid Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="79" /> <!-- Damascus Sword -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="26159.31508594" hpRegen="91.4930863014358" mp="1641" mpRegen="3" />
 			<attack physical="2848.82203115447" magical="1105.91356508692" random="5" critical="8" accuracy="0" attackSpeed="253" type="DAGGER" range="40" distance="80" width="120" />
@@ -81,7 +79,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="80" /> <!-- rhand: Tallum Blade -->
 		<acquire exp="1083327457" sp="668726" raidPoints="2032" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="0" hpRegen="5000" mp="1812" mpRegen="3" />
@@ -109,7 +106,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="213" /> <!-- Branch of the Mother Tree -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="36487.662943211" hpRegen="95.1367199926651" mp="1777.4" mpRegen="3" />
 			<attack physical="3970.90812329385" magical="2222.63213776311" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -149,7 +145,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="79" lhand="6919" /> <!-- Damascus Sword / Monster Only (Shield of Ketra Orc) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="54459.1984227031" hpRegen="95.1367199926651" mp="1777.4" mpRegen="3" />
 			<attack physical="5956.51109771821" magical="5001.14110989056" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -347,7 +342,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="6716" /> <!-- Monster Only (Silenos Shaman) -->
 		<acquire exp="1670060147" sp="400814" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="1982158.55449171" hpRegen="5000" mp="1674.8" mpRegen="3" />
@@ -391,7 +385,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="142" lhand="6918" /> <!-- Keshanberk / Monster Only (Shield of Silenos) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="52318.6301718799" hpRegen="91.4930863014358" mp="1641" mpRegen="3" />
 			<attack physical="5697.64406230895" magical="4423.65426034769" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -427,7 +420,6 @@
 	<npc id="25311" level="75" type="Monster" name="Shadith's Sentinel" title="Raid Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="2504" /> <!-- Meteor Shower -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="26159.31508594" hpRegen="91.4930863014358" mp="1641" mpRegen="3" />
 			<attack physical="2848.82203115447" magical="1105.91356508692" random="5" critical="8" accuracy="0" attackSpeed="253" type="DAGGER" range="40" distance="80" width="120" />
@@ -470,7 +462,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="2500" /> <!-- rhand: Dark Legion's Edge -->
 		<acquire exp="1083327457" sp="668726" raidPoints="2032" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="0" hpRegen="5000" mp="1812" mpRegen="3" />
@@ -498,7 +489,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="6716" /> <!-- Monster Only (Silenos Shaman) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="54459.1984227031" hpRegen="95.1367199926651" mp="1777.4" mpRegen="3" />
 			<attack physical="2978.25554885911" magical="1250.28527747264" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -535,7 +525,6 @@
 	<npc id="25314" level="75" type="Monster" name="Mos' Escort" title="Raid Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="142" /> <!-- Keshanberk -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="27229.5992113515" hpRegen="95.1367199926651" mp="1777.4" mpRegen="3" />
 			<attack physical="2978.25554885911" magical="1250.28527747264" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -577,7 +566,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="2500" /> <!-- rhand: Dark Legion's Edge -->
 		<acquire exp="1083327457" sp="668726" raidPoints="2132" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
 			<vitals hp="0" hpRegen="5000" mp="1917" mpRegen="3" />
@@ -864,7 +852,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<equipment rhand="6723" /> <!-- Monster Only (Vampire Warrior) -->
 		<acquire exp="111003597" sp="26640" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="2313414.24835734" hpRegen="2500" mp="1219.8" mpRegen="2.7" />
@@ -907,7 +894,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="99" /> <!-- Apprentice's Spellbook -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="40576.3311754788" hpRegen="110.823040573561" mp="1188.8" mpRegen="2.7" />
 			<attack physical="4841.23256010037" magical="4311.34525530238" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -947,7 +933,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="178" /> <!-- Bone Staff -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="60561.6883216102" hpRegen="110.823040573561" mp="1188.8" mpRegen="2.7" />
 			<attack physical="7262.03039091033" magical="9700.95124104716" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -993,7 +978,6 @@
 		</parameters>
 		<race>DIVINE</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="6717" /> <!-- Monster Only (Einhasad Warrior) -->
 		<acquire exp="226669890" sp="54400" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="2464348.07019994" hpRegen="2500" mp="1345.8" mpRegen="2.7" />
@@ -1037,7 +1021,6 @@
 		</parameters>
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="6718" /> <!-- Monster Only (Einhasad Shaman) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="64776.0484751577" hpRegen="116.468584127042" mp="1314" mpRegen="2.7" />
 			<attack physical="8357.00898150475" magical="11094.0736231147" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -1073,7 +1056,6 @@
 	<npc id="25327" level="69" type="Monster" name="Barakiel's Acolyte" title="Raid Minion">
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="6718" /> <!-- Monster Only (Einhasad Shaman) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="32388.0242375788" hpRegen="116.468584127042" mp="1314" mpRegen="2.7" />
 			<attack physical="4178.50449075237" magical="2773.51840577869" random="20" critical="1" accuracy="9" attackSpeed="253" type="BLUNT" range="40" distance="80" width="120" />
@@ -1160,7 +1142,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="946" /> <!-- Skeleton Dagger -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="44029.6855209057" hpRegen="117.68436242886" mp="1345.8" mpRegen="2.7" />
 			<attack physical="5746.2059869401" magical="5101.31544776437" random="5" critical="8" accuracy="0" attackSpeed="253" type="DAGGER" range="40" distance="80" width="120" />
@@ -1201,7 +1182,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="946" /> <!-- Skeleton Dagger -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="44029.6855209057" hpRegen="117.68436242886" mp="1345.8" mpRegen="2.7" />
 			<attack physical="5746.2059869401" magical="5101.31544776437" random="5" critical="8" accuracy="0" attackSpeed="253" type="DAGGER" range="40" distance="80" width="120" />
@@ -1242,7 +1222,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="946" /> <!-- Skeleton Dagger -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="44029.6855209057" hpRegen="117.68436242886" mp="1345.8" mpRegen="2.7" />
 			<attack physical="5746.2059869401" magical="5101.31544776437" random="5" critical="8" accuracy="0" attackSpeed="253" type="DAGGER" range="40" distance="80" width="120" />
@@ -1282,7 +1261,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<equipment rhand="234" /> <!-- Demon's Dagger -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="65715.9485386652" hpRegen="117.68436242886" mp="1345.8" mpRegen="2.7" />
 			<attack physical="8619.52446852187" magical="11478.4619401797" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -2660,7 +2638,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="291" /> <!-- Trident -->
 		<acquire exp="538022" sp="129" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="120990.77916972" hpRegen="17.5347470979605" mp="231.96" mpRegen="1.5" />
@@ -2699,7 +2676,6 @@
 	<npc id="25363" level="22" type="Monster" name="Sharuk's Tracker" title="Raid Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="2" /> <!-- Long Sword -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="3123.59239397728" hpRegen="17.1576881427546" mp="218.52" mpRegen="1.5" />
 			<attack physical="115.593111188517" magical="14.544467728838" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -2734,7 +2710,6 @@
 	<npc id="25364" level="22" type="Monster" name="Sharuk's Sniper" title="Raid Minion">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="2507" /> <!-- Lizardspear -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="4185.61380792955" hpRegen="17.1576881427546" mp="218.52" mpRegen="1.5" />
 			<attack physical="115.593111188517" magical="14.544467728838" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -2869,7 +2844,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment lhand="2" /> <!-- Long Sword -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="9168358.71748168" hpRegen="2782.41061841141" mp="4047.6" mpRegen="6" />
 			<attack physical="41848.312" magical="12177.6875" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -4499,7 +4473,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="88" /> <!-- Morning Star -->
 		<acquire exp="5476117" sp="1314" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="492534.314672503" hpRegen="77.1817182682516" mp="447.96" mpRegen="1.8" />

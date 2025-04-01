@@ -248,7 +248,7 @@
 			</effect>
 			<effect name="DefenceCriticalDamage" fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2020">
 				<amount>
-					<value fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2020">{-1 - ((subIndex - 1} * 0.5)}</value>
+					<value fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2020">{1 + ((subIndex - 1) * 0.5)}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
@@ -457,7 +457,7 @@
 			</effect>
 			<effect name="DefenceCriticalDamage" fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2020">
 				<amount>
-					<value fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2020">{-1 - ((subIndex - 1} * 0.5)}</value>
+					<value fromLevel="3" toLevel="4" fromSubLevel="2001" toSubLevel="2020">{1 + ((subIndex - 1) * 0.5)}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
@@ -1043,7 +1043,7 @@
 			<effect name="DefenceCriticalDamage">
 				<amount>
 					<value fromLevel="1" toLevel="1">25</value>
-					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2020">{-0.7 - 0.3 * subIndex}</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2020">{0.7 + 0.3 * subIndex}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
@@ -1418,7 +1418,7 @@
 			<effect name="DefenceCriticalDamage">
 				<amount>
 					<value fromLevel="1" toLevel="1">20</value>
-					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2020">{-0.7 - 0.3 * subIndex}</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2020">{0.7 + 0.3 * subIndex}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
@@ -1487,14 +1487,14 @@
 			<effect name="PhysicalAttack">
 				<amount>
 					<value fromLevel="1" toLevel="1">-30</value>
-					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2020">{-0.7 - 0.3 * subIndex}</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2020">{0.7 + 0.3 * subIndex}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="MagicalAttack">
 				<amount>
 					<value fromLevel="1" toLevel="1">-30</value>
-					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2020">{-0.7 - 0.3 * subIndex}</value>
+					<value fromLevel="1" toLevel="1" fromSubLevel="2001" toSubLevel="2020">{0.7 + 0.3 * subIndex}</value>
 				</amount>
 				<mode>PER</mode>
 			</effect>

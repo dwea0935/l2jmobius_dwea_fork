@@ -25,11 +25,12 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -137,12 +138,12 @@ public class GardenOfAuthority extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		final Player player = creature.asPlayer();
 		if (player == null)
 		{
-			return super.onEnterZone(creature, zone);
+			return;
 		}
 		
 		if (creature.isPlayer() && (_inProgress))
@@ -160,8 +161,6 @@ public class GardenOfAuthority extends AbstractNpcAI
 				player.teleToLocation(-51348, 83629, -5089);
 			}
 		}
-		
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
@@ -171,7 +170,7 @@ public class GardenOfAuthority extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		_inProgress = false;
 		lastHitRewardMonsters(killer);
@@ -181,8 +180,6 @@ public class GardenOfAuthority extends AbstractNpcAI
 		{
 			ZONE_GENERAL.broadcastPacket(new OnEventTrigger(triggerId, false));
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void sendEarthquake()
@@ -239,7 +236,7 @@ public class GardenOfAuthority extends AbstractNpcAI
 			reward = 730; // Scroll: Enchant A-grade Armor.
 			ZONE_GENERAL.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_HAS_OBTAINED_SCROLL_ENCHANT_ARMOR, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
 		}
-		player.addItem("Last Hit Reward", reward, 1, player, true);
+		player.addItem(ItemProcessType.QUEST, reward, 1, player, true);
 	}
 	
 	private void handleEffects()
@@ -275,7 +272,7 @@ public class GardenOfAuthority extends AbstractNpcAI
 			}
 		}
 		
-		if (!player.destroyItemByItemId("Teleport", Inventory.ADENA_ID, requiredMoney, player, true))
+		if (!player.destroyItemByItemId(ItemProcessType.FEE, Inventory.ADENA_ID, requiredMoney, player, true))
 		{
 			player.sendPacket(SystemMessageId.NOT_ENOUGH_MONEY_TO_USE_THE_FUNCTION);
 			return;

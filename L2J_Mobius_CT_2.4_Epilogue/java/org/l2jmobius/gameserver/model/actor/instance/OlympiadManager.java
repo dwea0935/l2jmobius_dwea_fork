@@ -21,18 +21,19 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.ExHeroList;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Olympiad NPCs Instance
@@ -80,8 +81,21 @@ public class OlympiadManager extends Npc
 		}
 		else if (command.startsWith("OlympiadNoble"))
 		{
-			if (!player.isNoble() || (player.getClassId().level() < 3))
+			if (player.getClassIndex() != 0)
 			{
+				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
+				html.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "noble_desc5.htm");
+				html.replace("%objectId%", String.valueOf(getObjectId()));
+				player.sendPacket(html);
+				return;
+			}
+			
+			if (!player.isNoble() || (player.getPlayerClass().level() < 3))
+			{
+				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
+				html.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "noble_desc6.htm");
+				html.replace("%objectId%", String.valueOf(getObjectId()));
+				player.sendPacket(html);
 				return;
 			}
 			
@@ -182,7 +196,7 @@ public class OlympiadManager extends Npc
 					if (passes > 0)
 					{
 						player.getVariables().remove(Olympiad.UNCLAIMED_OLYMPIAD_PASSES_VAR);
-						player.addItem("Olympiad", GATE_PASS, passes * Config.OLYMPIAD_GP_PER_POINT, player, true);
+						player.addItem(ItemProcessType.REWARD, GATE_PASS, passes * Config.OLYMPIAD_GP_PER_POINT, player, true);
 					}
 					break;
 				}
@@ -197,7 +211,7 @@ public class OlympiadManager extends Npc
 		{
 			final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 			final String[] params = command.split(" ");
-			if (!Util.isDigit(params[1]))
+			if (!StringUtil.isNumeric(params[1]))
 			{
 				LOGGER.warning("Olympiad Buffer Warning: npcId = " + this + " has invalid buffGroup set in the bypass for the buff selected: " + params[1]);
 				return;

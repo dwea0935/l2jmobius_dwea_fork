@@ -15,12 +15,10 @@
 		<attributeValue>20</attributeValue>
 		<castRange>-1</castRange>
 		<coolTime>500</coolTime>
-		<coolTime>500</coolTime>
 		<effectPoint>0</effectPoint>
 		<hitTime>1000</hitTime>
 		<hpConsume>1000</hpConsume>
 		<magicCriticalRate>5</magicCriticalRate>
-		<reuseDelay>10000</reuseDelay>
 		<reuseDelay>10000</reuseDelay>
 		<effects>
 			<effect name="PhysicalAttack">

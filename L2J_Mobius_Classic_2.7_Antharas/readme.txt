@@ -1,80 +1,37 @@
-L2J-Mobius Classic Antharas
+Lineage 2 Classic - Antharas
+https://eu.4game.com/lineage2classic/play/antharas/
 
-JDK: https://www.mediafire.com/file/lb0by9xcvbzapi7/bellsoft-jdk21.0.2%252B14-windows-amd64.msi
-XAMPP: https://www.mediafire.com/file/0m05e3p7wdal224/xampp-windows-x64-8.0.30-0-VS16-installer.exe
-Eclipse: https://www.mediafire.com/file/ef5eub52bx4iixc/eclipse-java-2024-06-R-win32-x86_64.zip
-
-
-Saviors: https://eu.4game.com/lineage2classic/play/saviors/
--Classic packet compatibility
--Parsed item data from client
--Proper Daily Mission rewards
--Zone changes to match starting locations
--Parsed recipes from client
--Parsed skill names from client
--Parsed NPC names from client
--Temporary NPC info from Interlude retail files
--Temporary spawns from Interlude retail files
--Further manual spawn fixes
--Skilltrees info from L2Wiki
--Parsed NPC droplists from L2Wiki
--Further manual NPC corrections from L2Wiki
--Retail NPC dialogs
--Retail NPC buylists
--Basic Tutorial quest
--Added 156 quest scripts
--Village Master AI scripts
--Fixed skill levels to match retail
--Added new class mounts
--Fisherman NPC updates
--Fixed fishing to match retail
--Added new fishing zone locations
--Quest Fishing Specialist's Request
--Olympiad NPC updates
--Dimensional Merchant updates
--Classic gatekeeper teleports
--Admin menu teleport and shop cleanups
--Blacksmith NPC updates
--New Race Track arena zone
--Giran Luxury Shop updates
--Grandboss scripts and stats
--Whisper of Dreams quests
--Moon Knight quest
--Item augmentation support
--Retail Henna list
--Floran Agricultural Area clan halls
--Maille Lizardmen Barracks clan halls
--Augmentation chances from L2Wiki
--Working Runes system
--Added new Savior skills
--Classic 3rd class quests
--Dungeon of Abyss
--Attendance rewards
--Various retail Classic events
--Classic Olympiad shedule
--Ruin area herb drops
-
-Zaken: https://eu.4game.com/lineage2classic/play/zaken/
--Parsed new system messages and npc strings from client.
--Parsed new skills from client
--Parsed new items from client
--Parsed new NPCs from L2Wiki
--Parsed recipes from client
--Added raidbosses according to map
--Giants Cave
--Zaken boss AI
--Newbie quest changes
-
-Antharas: https://eu.4game.com/lineage2classic/play/antharas/
--Parsed new system messages and npc strings from client.
--Parsed new skills from client
--Parsed new items from client
--Parsed new NPCs from L2Wiki and client
--Clan Arena
--New Agathion item support
-
-Customs:
--Newbie Helper NPC location info
--Newbie Helper buff support until 40 level
--Test Server Helper NPCs
--Fake players engine
+- The update introduces a new epic boss, Antharas, in the Lineage 2 Classic world, along with other features such as Instance Epics, Clan Arena and new zones like Forgotten Island, Catacombs and Necropolis.
+- Antharas Epic Boss:
+    - A Command Channel of 90-300 characters is required to challenge Antharas.
+    - Each member of the Command Channel must have a Portal Stone to enter.
+    - The battle with Antharas becomes increasingly challenging with each stage, featuring more AoE skills and a faster HP regeneration rate.
+    - Possible rewards include Antharas Earring, Top A-grade Weapon, A-grade Armor/Accessories and 3-7 Cloth Pieces.
+- Instance Epics:
+    - Antharas and Baium instances are about 7 times easier than normal epic raids.
+    - No items are required to enter and the bosses' HP is about 5 times lower.
+    - The zones' cooldown resets every Wednesday at 6:30 server time.
+    - Instead of loot, players receive a reward box from an NPC after completing the instance raid.
+- Clan Arena:
+    - A new content designed for clans, where only Command Channels consisting of members from the same Lv. 3+ clan can enter.
+    - The zone cooldown resets every Wednesday at 6:30 server time.
+    - There are 20 stages to complete, but only 4 can be finished per week, with a 20-minute time limit.
+    - Players can prolong the time by paying 1,000,000 adena to the Arena NPC, with each prolongation being random (1-3 minutes).
+    - After each boss is killed, 40 boxes spawn for 1 minute, with rewards depending on the characters' level.
+    - Clans can learn a new clan passive skill by completing stages of Clan Arena, providing EXP/SP and HP/MP/CP Recovery bonuses.
+- Classes:
+    - No new skills are added, but most skills receive new levels to be learned on Lv. 81-85.
+    - Dances and songs now last 5 minutes and consume more MP.
+    - Some dances and songs have been reworked to give different effects.
+    - Summoners can level up their 1st class nuke.
+    - Kiss of Eva is a self-buff that improves M.Skill Damage.
+    - All prophecies last 10 minutes.
+- Forgotten Island:
+    - A new zone accessible via NPC Gatekeeper in Aden, designed for players Lv. 79-82.
+    - The zone features both solo and group hunting locations.
+    - Every 30 minutes, several chests spawn across the island and nearby monsters start attacking them.
+    - Players can destroy the chests to get a chance at an A-grade weapon, with the type depending on the day of the week.
+- Catacombs and Necropolis:
+    - Ordinary hunting zones with no special events or mammons, designed for players Lv. 65-75.
+    - The zones are open and consist of small and large rooms for solo and group hunting.
+    - Most monsters are non-aggro, making it challenging to pull the whole underground area.

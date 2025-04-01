@@ -12,7 +12,7 @@
 		<!-- Received P. Skill Critical Rate -0.5% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-0.5</amount>
+				<amount>0.5</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -21,7 +21,7 @@
 		<!-- Received P. Skill Critical Rate -0.5% -->
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-0.5</amount>
+				<amount>0.5</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -105,11 +105,11 @@
 	<option id="94907" name="Received P. Skill Critical Rate -5%, received P. Skill Critical Damage -5%, P./ M. Def. +8">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-5</amount>
+				<amount>5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-5</amount>
+				<amount>5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="PhysicalDefence">

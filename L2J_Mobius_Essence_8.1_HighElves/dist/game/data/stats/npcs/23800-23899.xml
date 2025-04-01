@@ -379,7 +379,6 @@
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
 		<race>DEMONIC</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="946" lhand="945" />
 		<acquire exp="3828" sp="38" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="27487.3051882794" hpRegen="7.5" mp="1188.8" mpRegen="2.7" />
@@ -2311,7 +2310,6 @@
 		<!-- AUTO GENERATED NPC TODO: FIX IT -->
 		<race>DEMONIC</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="946" lhand="945" />
 		<acquire exp="4697" sp="47" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="30633.2089507128" hpRegen="7.5" mp="1345.8" mpRegen="2.7" />

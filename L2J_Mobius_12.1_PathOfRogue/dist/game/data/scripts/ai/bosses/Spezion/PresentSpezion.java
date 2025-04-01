@@ -35,10 +35,9 @@ public class PresentSpezion extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setDisplayEffect(2);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

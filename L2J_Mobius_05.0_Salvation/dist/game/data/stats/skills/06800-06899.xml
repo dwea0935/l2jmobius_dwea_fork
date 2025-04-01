@@ -1942,7 +1942,7 @@
 		<effectPoint>100</effectPoint>
 		<effectRange>1200</effectRange>
 		<hitTime>100</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>-5</magicCriticalRate>
 		<reuseDelay>2000</reuseDelay>

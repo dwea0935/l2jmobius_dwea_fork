@@ -26,7 +26,7 @@ import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.MissionLevel;
 import org.l2jmobius.gameserver.model.MissionLevelHolder;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.MissionLevelPlayerDataHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.MissionLevelPlayerDataHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;

@@ -20,10 +20,8 @@
  */
 package quests.Q00421_LittleWingsBigAdventure;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -32,9 +30,11 @@ import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 /**
  * iCond is an internal variable, used because cond isn't developped on that quest (only 3 states) :
@@ -55,7 +55,7 @@ public class Q00421_LittleWingsBigAdventure extends Quest
 	
 	public Q00421_LittleWingsBigAdventure()
 	{
-		super(421);
+		super(421, "Little Wing's Big Adventure");
 		registerQuestItems(FAIRY_LEAF);
 		addStartNpc(CRONOS);
 		addTalkId(CRONOS, MIMYU);
@@ -252,7 +252,7 @@ public class Q00421_LittleWingsBigAdventure extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		// Minions scream no matter current quest state.
 		if (npc.asMonster().hasMinions())
@@ -270,7 +270,7 @@ public class Q00421_LittleWingsBigAdventure extends Quest
 		final QuestState st = getQuestState(attacker, false);
 		if ((st == null) || !st.isCond(2))
 		{
-			return null;
+			return;
 		}
 		
 		// A pet was the attacker, and the objectId is the good one.
@@ -300,12 +300,10 @@ public class Q00421_LittleWingsBigAdventure extends Quest
 				}
 			}
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		final Creature originalKiller = isPet ? killer.getSummon() : killer;
 		
@@ -325,9 +323,7 @@ public class Q00421_LittleWingsBigAdventure extends Quest
 			final Attackable newNpc = addSpawn(27189, npc.getX(), npc.getY(), npc.getZ(), getRandom(65536), true, 300000).asAttackable();
 			newNpc.setRunning();
 			newNpc.addDamageHate(originalKiller, 0, 999);
-			newNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, originalKiller);
+			newNpc.getAI().setIntention(Intention.ATTACK, originalKiller);
 		}
-		
-		return null;
 	}
 }

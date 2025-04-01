@@ -32,7 +32,7 @@
 		<effectPoint>780</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
 		<hitTime>1500</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>5000</reuseDelay>
@@ -802,7 +802,7 @@
 		<abnormalTime>600</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>540000</reuseDelay>
@@ -827,7 +827,7 @@
 		<abnormalTime>600</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>540000</reuseDelay>

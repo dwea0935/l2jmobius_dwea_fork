@@ -22,19 +22,19 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ShortcutType;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.ShortcutType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.AbnormalStatusUpdate;
-import org.l2jmobius.gameserver.network.serverpackets.ShortCutInit;
-import org.l2jmobius.gameserver.network.serverpackets.ShortCutRegister;
+import org.l2jmobius.gameserver.network.serverpackets.ShortcutInit;
+import org.l2jmobius.gameserver.network.serverpackets.ShortcutRegister;
 
 /**
  * @author Mobius
@@ -69,17 +69,17 @@ public class ReplaceSkillBySkill extends AbstractEffect
 		final Skill addedSkill = SkillData.getInstance().getSkill(_replacementSkill.getSkillId(), _replacementSkill.getSkillLevel() < 1 ? knownSkill.getLevel() : _replacementSkill.getSkillLevel(), knownSkill.getSubLevel());
 		player.addSkill(addedSkill, false);
 		player.addReplacedSkill(_existingSkill.getSkillId());
-		for (Shortcut shortcut : player.getAllShortCuts())
+		for (Shortcut shortcut : player.getAllShortcuts())
 		{
 			if ((shortcut.getType() == ShortcutType.SKILL) && (shortcut.getId() == knownSkill.getId()) && (shortcut.getLevel() == knownSkill.getLevel()))
 			{
 				final int slot = shortcut.getSlot();
 				final int page = shortcut.getPage();
 				final int characterType = shortcut.getCharacterType();
-				player.deleteShortCut(slot, page);
+				player.deleteShortcut(slot, page);
 				final Shortcut newShortcut = new Shortcut(slot, page, ShortcutType.SKILL, addedSkill.getId(), addedSkill.getLevel(), addedSkill.getSubLevel(), characterType);
-				player.registerShortCut(newShortcut);
-				player.sendPacket(new ShortCutRegister(newShortcut, player));
+				player.registerShortcut(newShortcut);
+				player.sendPacket(new ShortcutRegister(newShortcut, player));
 			}
 		}
 		
@@ -114,7 +114,7 @@ public class ReplaceSkillBySkill extends AbstractEffect
 		
 		player.removeSkill(knownSkill, false);
 		player.sendSkillList();
-		ThreadPool.schedule(() -> player.sendPacket(new ShortCutInit(player)), 1100);
+		ThreadPool.schedule(() -> player.sendPacket(new ShortcutInit(player)), 1100);
 	}
 	
 	@Override
@@ -130,17 +130,17 @@ public class ReplaceSkillBySkill extends AbstractEffect
 		final Skill addedSkill = SkillData.getInstance().getSkill(_existingSkill.getSkillId(), _existingSkill.getSkillLevel() < 1 ? knownSkill.getLevel() : _existingSkill.getSkillLevel(), knownSkill.getSubLevel());
 		player.addSkill(addedSkill, false);
 		player.removeReplacedSkill(_existingSkill.getSkillId());
-		for (Shortcut shortcut : player.getAllShortCuts())
+		for (Shortcut shortcut : player.getAllShortcuts())
 		{
 			if ((shortcut.getType() == ShortcutType.SKILL) && (shortcut.getId() == knownSkill.getId()) && (shortcut.getLevel() == knownSkill.getLevel()))
 			{
 				final int slot = shortcut.getSlot();
 				final int page = shortcut.getPage();
 				final int characterType = shortcut.getCharacterType();
-				player.deleteShortCut(slot, page);
+				player.deleteShortcut(slot, page);
 				final Shortcut newShortcut = new Shortcut(slot, page, ShortcutType.SKILL, addedSkill.getId(), addedSkill.getLevel(), addedSkill.getSubLevel(), characterType);
-				player.registerShortCut(newShortcut);
-				player.sendPacket(new ShortCutRegister(newShortcut, player));
+				player.registerShortcut(newShortcut);
+				player.sendPacket(new ShortcutRegister(newShortcut, player));
 			}
 		}
 		
@@ -175,6 +175,6 @@ public class ReplaceSkillBySkill extends AbstractEffect
 		
 		player.removeSkill(knownSkill, false);
 		player.sendSkillList();
-		ThreadPool.schedule(() -> player.sendPacket(new ShortCutInit(player)), 1100);
+		ThreadPool.schedule(() -> player.sendPacket(new ShortcutInit(player)), 1100);
 	}
 }

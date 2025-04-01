@@ -24,17 +24,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.QuestType;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.NpcLogListHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.quest.NpcLogListHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.network.enums.Movie;
 
 /**
  * Devil's Treasure, Tauti (833)
@@ -120,7 +120,7 @@ public class Q00833_DevilsTreasureTauti extends Quest
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final Player player = creature.asPlayer();
 		if (player != null)
@@ -132,11 +132,10 @@ public class Q00833_DevilsTreasureTauti extends Quest
 				qs.startQuest();
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Party party = killer.getParty();
 		if (party != null)
@@ -147,7 +146,6 @@ public class Q00833_DevilsTreasureTauti extends Quest
 		{
 			onKill(npc, killer);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void onKill(Npc npc, Player killer)

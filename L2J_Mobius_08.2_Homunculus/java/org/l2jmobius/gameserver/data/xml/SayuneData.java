@@ -51,9 +51,9 @@ public class SayuneData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -88,20 +88,25 @@ public class SayuneData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Retrieves a specific Sayune map entry by its unique ID.
+	 * @param id the unique identifier of the Sayune map to retrieve
+	 * @return the {@code SayuneEntry} associated with the specified ID, or {@code null} if no map entry exists for this ID
+	 */
 	public SayuneEntry getMap(int id)
 	{
 		return _maps.get(id);
 	}
 	
+	/**
+	 * Retrieves a collection of all available Sayune map entries.
+	 * @return a collection of {@code SayuneEntry} objects representing all maps stored in this data structure
+	 */
 	public Collection<SayuneEntry> getMaps()
 	{
 		return _maps.values();
 	}
 	
-	/**
-	 * Gets the single instance of SayuneData.
-	 * @return single instance of SayuneData
-	 */
 	public static SayuneData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

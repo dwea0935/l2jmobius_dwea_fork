@@ -34,11 +34,9 @@
 		<affectScope>SINGLE</affectScope>
 		<castRange>600</castRange>
 		<coolTime>500</coolTime>
-		<coolTime>500</coolTime>
 		<effectPoint>-100</effectPoint>
 		<hitTime>2000</hitTime>
 		<isDebuff>true</isDebuff>
-		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<itemConsumeCount>2</itemConsumeCount>
 		<itemConsumeId>49758</itemConsumeId>

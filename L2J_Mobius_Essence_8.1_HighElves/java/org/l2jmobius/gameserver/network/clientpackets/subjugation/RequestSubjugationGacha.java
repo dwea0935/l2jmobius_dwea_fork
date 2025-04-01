@@ -27,7 +27,12 @@ import java.util.Map;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.SubjugationGacha;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PurgePlayerHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerPurgeHolder;
+import org.l2jmobius.gameserver.model.events.EventDispatcher;
+import org.l2jmobius.gameserver.model.events.EventType;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemPurgeReward;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.subjugation.ExSubjugationGacha;
 import org.l2jmobius.gameserver.network.serverpackets.subjugation.ExSubjugationGachaUI;
@@ -61,13 +66,13 @@ public class RequestSubjugationGacha extends ClientPacket
 			return;
 		}
 		
-		final PurgePlayerHolder playerKeys = player.getPurgePoints().get(_category);
+		final PlayerPurgeHolder playerKeys = player.getPurgePoints().get(_category);
 		final Map<Integer, Double> subjugationData = SubjugationGacha.getInstance().getSubjugation(_category);
 		if ((playerKeys != null) && (playerKeys.getKeys() >= _amount) && (player.getInventory().getAdena() > (20000L * _amount)))
 		{
-			player.getInventory().reduceAdena("Purge Gacha", 20000L * _amount, player, null);
+			player.getInventory().reduceAdena(ItemProcessType.FEE, 20000L * _amount, player, null);
 			final int curKeys = playerKeys.getKeys() - _amount;
-			player.getPurgePoints().put(_category, new PurgePlayerHolder(playerKeys.getPoints(), curKeys, 0));
+			player.getPurgePoints().put(_category, new PlayerPurgeHolder(playerKeys.getPoints(), curKeys, 0));
 			Map<Integer, Integer> rewards = new HashMap<>();
 			for (int i = 0; i < _amount; i++)
 			{
@@ -81,7 +86,13 @@ public class RequestSubjugationGacha extends ClientPacket
 					{
 						final int itemId = subjugationData.keySet().stream().mapToInt(it -> it).toArray()[index];
 						rewards.put(itemId, rewards.getOrDefault(itemId, 0) + 1);
-						player.addItem("Purge Gacha", itemId, 1, player, true);
+						final Item item = player.addItem(ItemProcessType.REWARD, itemId, 1, player, true);
+						
+						// Notify to scripts.
+						if (EventDispatcher.getInstance().hasListener(EventType.ON_ITEM_PURGE_REWARD))
+						{
+							EventDispatcher.getInstance().notifyEventAsync(new OnItemPurgeReward(player, item));
+						}
 						break;
 					}
 					rate += itemChance;

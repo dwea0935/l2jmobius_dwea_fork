@@ -22,8 +22,8 @@ package ai.areas.PrimevalIsle;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -43,13 +43,12 @@ public class BurningBuff extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (!attacker.isAffectedBySkill(BURNING))
 		{
 			BURNING.getSkill().applyEffects(attacker, attacker);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	public static void main(String[] args)

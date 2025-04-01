@@ -29,7 +29,7 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.AffectScope;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Fan point blank affect scope implementation. Gathers objects in a certain angle of circular area around yourself without taking target into account.
@@ -41,7 +41,7 @@ public class FanPB implements IAffectScopeHandler
 	public void forEachAffected(Creature creature, WorldObject target, Skill skill, Consumer<? super WorldObject> action)
 	{
 		final IAffectObjectHandler affectObject = AffectObjectHandler.getInstance().getHandler(skill.getAffectObject());
-		final double headingAngle = Util.convertHeadingToDegree(creature.getHeading());
+		final double headingAngle = LocationUtil.convertHeadingToDegree(creature.getHeading());
 		final int fanStartAngle = skill.getFanRange()[1];
 		final int fanRadius = skill.getFanRange()[2];
 		final int fanAngle = skill.getFanRange()[3];
@@ -60,7 +60,7 @@ public class FanPB implements IAffectScopeHandler
 			{
 				return false;
 			}
-			if (Math.abs(Util.calculateAngleFrom(creature, c) - (headingAngle + fanStartAngle)) > fanHalfAngle)
+			if (Math.abs(LocationUtil.calculateAngleFrom(creature, c) - (headingAngle + fanStartAngle)) > fanHalfAngle)
 			{
 				return false;
 			}

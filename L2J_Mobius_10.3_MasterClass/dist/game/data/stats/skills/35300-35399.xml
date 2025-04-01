@@ -4558,7 +4558,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<deleteAbnormalOnLeave>true</deleteAbnormalOnLeave>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicLevel>130</magicLevel>
 		<effects>
@@ -4641,7 +4641,7 @@
 		<basicProperty>NONE</basicProperty>
 		<canBeDispelled>false</canBeDispelled>
 		<deleteAbnormalOnLeave>true</deleteAbnormalOnLeave>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicLevel>130</magicLevel>
 		<effects>

@@ -19,12 +19,12 @@ package quests.Q10736_ASpecialPower;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.NpcLogListHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.quest.NpcLogListHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -57,7 +57,7 @@ public class Q10736_ASpecialPower extends Quest
 		addTalkId(KATALIN);
 		
 		addCondRace(Race.ERTHEIA, "");
-		addCondClassId(ClassId.ERTHEIA_FIGHTER, "");
+		addCondClassId(PlayerClass.ERTHEIA_FIGHTER, "");
 		addCondLevel(MIN_LEVEL, MAX_LEVEL, "33943-00.htm");
 		addCondCompletedQuest(Q10734_DoOrDie.class.getSimpleName(), "33943-00.htm");
 	}

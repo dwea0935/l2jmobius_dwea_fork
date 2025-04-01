@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.Aden.Gallias;
 
@@ -22,13 +26,14 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.SubClassHolder;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSubChange;
-import org.l2jmobius.gameserver.model.holders.SubClassHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSubChange;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
@@ -170,7 +175,7 @@ public class Gallias extends AbstractNpcAI
 				}
 				else
 				{
-					final int subId = player.getClassId().getId();
+					final int subId = player.getPlayerClass().getId();
 					final int currentCount = player.getVariables().getInt(SUB_CERTIFICATE_COUNT_VAR + subId, 0);
 					if (currentCount < SUB_SKILL_LEVELS.length)
 					{
@@ -213,11 +218,11 @@ public class Gallias extends AbstractNpcAI
 				{
 					htmltext = null; // TODO: Unknown html
 					takeItems(player, SUB_CERTIFICATE, -1);
-					player.getWarehouse().destroyItemByItemId("Quest", SUB_CERTIFICATE, -1, player, npc);
+					player.getWarehouse().destroyItemByItemId(ItemProcessType.QUEST, SUB_CERTIFICATE, -1, player, npc);
 					takeItems(player, Inventory.ADENA_ID, Config.FEE_DELETE_SUBCLASS_SKILLS);
 					for (SubClassHolder subclass : player.getSubClasses().values())
 					{
-						player.getVariables().remove(SUB_CERTIFICATE_COUNT_VAR + subclass.getClassId());
+						player.getVariables().remove(SUB_CERTIFICATE_COUNT_VAR + subclass.getId());
 					}
 					
 					final PlayerVariables vars = player.getVariables();
@@ -323,7 +328,7 @@ public class Gallias extends AbstractNpcAI
 				{
 					htmltext = null; // TODO: Unknown html
 					takeItems(player, DUAL_CERTIFICATE, -1);
-					player.getWarehouse().destroyItemByItemId("Quest", DUAL_CERTIFICATE, -1, player, npc);
+					player.getWarehouse().destroyItemByItemId(ItemProcessType.QUEST, DUAL_CERTIFICATE, -1, player, npc);
 					takeItems(player, Inventory.ADENA_ID, Config.FEE_DELETE_DUALCLASS_SKILLS);
 					player.getVariables().remove(DUAL_CERTIFICATE_COUNT_VAR);
 					

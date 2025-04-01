@@ -26,11 +26,11 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
@@ -91,7 +91,7 @@ public class KelbimFortressKelbimFirst extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance world = (attacker == null) || (npc == null) ? null : attacker.getInstanceWorld();
 		if ((npc == null) || (world == null) || (world.getTemplateId() != KelbimFortressManager.INSTANCE_TEMPLATE_ID))
@@ -102,31 +102,30 @@ public class KelbimFortressKelbimFirst extends AbstractNpcAI
 		{
 			world.getParameters().set(KelbimFortressManager.TASK_KELBIM_CHECK_STATUS, ThreadPool.scheduleAtFixedRate(() -> thinkAction(world, npc), 2_000, 2_000));
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final Instance world = (player == null) || (npc == null) ? null : player.getInstanceWorld();
 		if ((npc == null) || (world == null) || (world.getTemplateId() != KelbimFortressManager.INSTANCE_TEMPLATE_ID))
 		{
-			return super.onSpellFinished(npc, player, skill);
+			return;
 		}
-		else if (!world.getParameters().contains(KelbimFortressManager.TASK_KELBIM_CHECK_STATUS))
+		
+		if (!world.getParameters().contains(KelbimFortressManager.TASK_KELBIM_CHECK_STATUS))
 		{
 			world.getParameters().set(KelbimFortressManager.TASK_KELBIM_CHECK_STATUS, ThreadPool.scheduleAtFixedRate(() -> thinkAction(world, npc), 2_000, 2_000));
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = (killer == null) || (npc == null) ? null : killer.getInstanceWorld();
 		if ((npc == null) || (world == null) || (world.getTemplateId() != KelbimFortressManager.INSTANCE_TEMPLATE_ID))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		if (!npc.getVariables().getBoolean("PHASE_CHECK", false) && getRandomBoolean())
@@ -139,7 +138,6 @@ public class KelbimFortressKelbimFirst extends AbstractNpcAI
 		{
 			world.setStatus(KelbimFortressManager.KELBIM_DEAD);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

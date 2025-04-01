@@ -16,13 +16,14 @@
  */
 package quests.Q00283_TheFewTheProudTheBrave;
 
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
-import quests.Q00261_CollectorsDream.Q00261_CollectorsDream;
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * The Few, The Proud, The Brave (283)
@@ -40,10 +41,11 @@ public class Q00283_TheFewTheProudTheBrave extends Quest
 	private static final int CLAW_PRICE = 45;
 	private static final int BONUS = 2187;
 	private static final int MIN_LEVEL = 15;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00283_TheFewTheProudTheBrave()
 	{
-		super(283);
+		super(283, "The Few, The Proud, The Brave");
 		addKillId(CRIMSON_SPIDER);
 		addStartNpc(PERWAN);
 		addTalkId(PERWAN);
@@ -80,7 +82,26 @@ public class Q00283_TheFewTheProudTheBrave extends Quest
 					final long claws = getQuestItemsCount(player, CRIMSON_SPIDER_CLAW);
 					giveAdena(player, (claws * CLAW_PRICE) + ((claws >= 10) ? BONUS : 0), true);
 					takeItems(player, CRIMSON_SPIDER_CLAW, -1);
-					Q00261_CollectorsDream.giveNewbieReward(player);
+					
+					// Newbie Guide.
+					final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+					if (newbieGuide != null)
+					{
+						final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+						if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, 100000);
+							showOnScreenMsg(player, "Last duty complete. \\n Go find the Newbie Guide.", 2, 5000);
+						}
+						else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 100000000) / 10000000) != 1)
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 10000000);
+							showOnScreenMsg(player, "Last duty complete. \\n Go find the Newbie Guide.", 2, 5000);
+						}
+					}
+					
 					htmltext = event;
 				}
 				else
@@ -100,14 +121,13 @@ public class Q00283_TheFewTheProudTheBrave extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, -1, 3, npc);
 		if (qs != null)
 		{
 			giveItemRandomly(killer, npc, CRIMSON_SPIDER_CLAW, 1, 0, 0.6, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

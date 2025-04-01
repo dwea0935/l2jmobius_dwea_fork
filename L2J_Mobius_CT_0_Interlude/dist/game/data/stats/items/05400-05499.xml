@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="5400" type="EtcItem" name="Recipe: Sealed Gloves of Black Ore(60%)">
 		<!-- For Dwarves only. The recipe for the Sealed Gloves of Black Ore. Requires Create Item - Skill Level 7. The success rate is 60%. -->
@@ -488,7 +488,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5432" type="EtcItem" name="Recipe: Sealed Majestic Circlet (60%)">
+	<item id="5432" type="EtcItem" name="Recipe: Sealed Majestic Circlet(60%)">
 		<!-- For Dwarves only. The recipe for the Sealed Majestic Circlet. Requires Create Item - Skill Level 8. The success rate is 60%. -->
 		<set name="icon" val="icon.etc_recipe_violet_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -504,7 +504,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5433" type="EtcItem" name="Recipe: Sealed Majestic Circlet (100%)">
+	<item id="5433" type="EtcItem" name="Recipe: Sealed Majestic Circlet(100%)">
 		<!-- For Dwarves only. The recipe for the Sealed Majestic Circlet. Requires Create Item - Skill Level 8. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_violet_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -964,7 +964,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5462" type="EtcItem" name="Recipe: Branch of the Mother Tree(60%)">
+	<item id="5462" type="EtcItem" name="Recipe: Branch of The Mother Tree(60%)">
 		<!-- For Dwarves only. The recipe for a Branch of The Mother Tree. Requires Create Item - Skill Level 8. The success rate is 60%. -->
 		<set name="icon" val="icon.etc_recipe_violet_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -980,7 +980,7 @@
 			<add order="0" stat="pDef" val="49" />
 		</for>
 	</item>
-	<item id="5463" type="EtcItem" name="Recipe: Branch of the Mother Tree(100%)">
+	<item id="5463" type="EtcItem" name="Recipe: Branch of The Mother Tree(100%)">
 		<!-- For Dwarves only. The recipe for a Branch of The Mother Tree. Requires Create Item - Skill Level 8. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_violet_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1310,7 +1310,7 @@
 		<set name="price" val="33800" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="5487" type="EtcItem" name="Sealed Robe of Nightmare Fabric">
+	<item id="5487" type="EtcItem" name="Sealed Nightmare Robe Fabric">
 		<!-- An essential ingredient needed by a Dwarf to make a Sealed Nightmare Robe. It can be sold at a regular store. -->
 		<set name="icon" val="icon.etc_leather_gray_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -1420,7 +1420,7 @@
 		<set name="price" val="8530" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="5498" type="EtcItem" name="Sealed Boots of Underworld Lining">
+	<item id="5498" type="EtcItem" name="Sealed Boots of the Underworld Lining">
 		<!-- An essential ingredient needed by a Dwarf to make Sealed Boots of The Underworld. It can be sold at a regular store. -->
 		<set name="icon" val="icon.etc_piece_of_cloth_black_i00" />
 		<set name="etcitem_type" val="MATERIAL" />

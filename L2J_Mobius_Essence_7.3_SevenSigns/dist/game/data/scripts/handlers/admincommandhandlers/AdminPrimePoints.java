@@ -25,8 +25,7 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.FormatUtil;
 
 /**
  * Admin Prime Points manage admin commands.
@@ -63,7 +62,7 @@ public class AdminPrimePoints implements IAdminCommandHandler
 				catch (Exception e)
 				{
 					showMenuHtml(activeChar);
-					BuilderUtil.sendSysMessage(activeChar, "Invalid Value!");
+					activeChar.sendSysMessage("Invalid Value!");
 					return false;
 				}
 				
@@ -73,7 +72,7 @@ public class AdminPrimePoints implements IAdminCommandHandler
 					{
 						target.setPrimePoints(value);
 						target.sendMessage("Admin set your Prime Point(s) to " + value + "!");
-						BuilderUtil.sendSysMessage(activeChar, "You set " + value + " Prime Point(s) to player " + target.getName());
+						activeChar.sendSysMessage("You set " + value + " Prime Point(s) to player " + target.getName());
 						break;
 					}
 					case "increase":
@@ -92,7 +91,7 @@ public class AdminPrimePoints implements IAdminCommandHandler
 						}
 						target.setPrimePoints(primeCount);
 						target.sendMessage("Admin increase your Prime Point(s) by " + value + "!");
-						BuilderUtil.sendSysMessage(activeChar, "You increased Prime Point(s) of " + target.getName() + " by " + value);
+						activeChar.sendSysMessage("You increased Prime Point(s) of " + target.getName() + " by " + value);
 						break;
 					}
 					case "decrease":
@@ -107,7 +106,7 @@ public class AdminPrimePoints implements IAdminCommandHandler
 						final int primeCount = Math.max(target.getPrimePoints() - value, 0);
 						target.setPrimePoints(primeCount);
 						target.sendMessage("Admin decreased your Prime Point(s) by " + value + "!");
-						BuilderUtil.sendSysMessage(activeChar, "You decreased Prime Point(s) of " + target.getName() + " by " + value);
+						activeChar.sendSysMessage("You decreased Prime Point(s) of " + target.getName() + " by " + value);
 						break;
 					}
 					case "rewardOnline":
@@ -124,12 +123,12 @@ public class AdminPrimePoints implements IAdminCommandHandler
 						if (range <= 0)
 						{
 							final int count = increaseForAll(World.getInstance().getPlayers(), value);
-							BuilderUtil.sendSysMessage(activeChar, "You increased Prime Point(s) of all online players (" + count + ") by " + value + ".");
+							activeChar.sendSysMessage("You increased Prime Point(s) of all online players (" + count + ") by " + value + ".");
 						}
 						else if (range > 0)
 						{
 							final int count = increaseForAll(World.getInstance().getVisibleObjectsInRange(activeChar, Player.class, range), value);
-							BuilderUtil.sendSysMessage(activeChar, "You increased Prime Point(s) of all players (" + count + ") in range " + range + " by " + value + ".");
+							activeChar.sendSysMessage("You increased Prime Point(s) of all players (" + count + ") in range " + range + " by " + value + ".");
 						}
 						break;
 					}
@@ -178,7 +177,7 @@ public class AdminPrimePoints implements IAdminCommandHandler
 		final Player target = getTarget(activeChar);
 		final int points = target.getPrimePoints();
 		html.setHtml(HtmCache.getInstance().getHtm(activeChar, "data/html/admin/primepoints.htm"));
-		html.replace("%points%", Util.formatAdena(points));
+		html.replace("%points%", FormatUtil.formatAdena(points));
 		html.replace("%targetName%", target.getName());
 		activeChar.sendPacket(html);
 	}

@@ -25,9 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
@@ -36,6 +34,8 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.TamedBeast;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q00020_BringUpWithLove.Q00020_BringUpWithLove;
@@ -406,7 +406,7 @@ public class FeedableBeasts extends AbstractNpcAI
 		}
 		
 		// if this is finally a trained mob, then despawn any other trained mobs that the player might have and initialize the Tamed Beast.
-		if (CommonUtil.contains(TAMED_BEASTS, nextNpcId))
+		if (ArrayUtil.contains(TAMED_BEASTS, nextNpcId))
 		{
 			if ((player.getTrainedBeasts() != null) && !player.getTrainedBeasts().isEmpty())
 			{
@@ -451,7 +451,7 @@ public class FeedableBeasts extends AbstractNpcAI
 			
 			nextNpc.setRunning();
 			nextNpc.addDamageHate(player, 0, 99999);
-			nextNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+			nextNpc.getAI().setIntention(Intention.ATTACK, player);
 		}
 	}
 	
@@ -477,20 +477,20 @@ public class FeedableBeasts extends AbstractNpcAI
 			
 			nextNpc.setRunning();
 			nextNpc.addDamageHate(player, 0, 99999);
-			nextNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+			nextNpc.getAI().setIntention(Intention.ATTACK, player);
 		}
 		
 		return super.onEvent(event, npc, player);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		// this behavior is only run when the target of skill is the passed npc (chest)
 		// i.e. when the player is attempting to open the chest using a skill
 		if (!targets.contains(npc))
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
 		
 		// Gather some values on local variables
@@ -498,9 +498,9 @@ public class FeedableBeasts extends AbstractNpcAI
 		final int skillId = skill.getId();
 		
 		// Check if the npc and skills used are valid for this script. Exit if invalid.
-		if (!CommonUtil.contains(FEEDABLE_BEASTS, npcId) || ((skillId != SKILL_GOLDEN_SPICE) && (skillId != SKILL_CRYSTAL_SPICE)))
+		if (!ArrayUtil.contains(FEEDABLE_BEASTS, npcId) || ((skillId != SKILL_GOLDEN_SPICE) && (skillId != SKILL_CRYSTAL_SPICE)))
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
 		
 		// First gather some values on local variables
@@ -515,7 +515,7 @@ public class FeedableBeasts extends AbstractNpcAI
 		// If the mob is at 0th level (when it still listens to all feeders) lock it to the first feeder!
 		if ((growthLevel == 0) && FEED_INFO.containsKey(objectId))
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
 		
 		FEED_INFO.put(objectId, caster.getObjectId());
@@ -539,7 +539,7 @@ public class FeedableBeasts extends AbstractNpcAI
 			// Do nothing if this mob doesn't eat the specified food (food gets consumed but has no effect).
 			if (GROWTH_CAPABLE_MONSTERS.get(npcId).getMob(food, 0, 0) == null)
 			{
-				return super.onSkillSee(npc, caster, skill, targets, isSummon);
+				return;
 			}
 			
 			// Rare random talk...
@@ -552,7 +552,7 @@ public class FeedableBeasts extends AbstractNpcAI
 			{
 				// check if this is the same player as the one who raised it from growth 0.
 				// if no, then do not allow a chance to raise the pet (food gets consumed but has no effect).
-				return super.onSkillSee(npc, caster, skill, targets, isSummon);
+				return;
 			}
 			
 			// Polymorph the mob, with a certain chance, given its current growth level
@@ -561,16 +561,13 @@ public class FeedableBeasts extends AbstractNpcAI
 				spawnNext(npc, growthLevel, caster, food);
 			}
 		}
-		
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		// Remove the feedinfo of the mob that got killed, if any
 		FEED_INFO.remove(npc.getObjectId());
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

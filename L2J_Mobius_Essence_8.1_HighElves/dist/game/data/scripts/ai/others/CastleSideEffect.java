@@ -20,7 +20,7 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
@@ -54,7 +54,7 @@ public class CastleSideEffect extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature character, ZoneType zone)
+	public void onEnterZone(Creature character, ZoneType zone)
 	{
 		if (character.isPlayer())
 		{
@@ -63,7 +63,6 @@ public class CastleSideEffect extends AbstractNpcAI
 				character.sendPacket(new ExCastleState(castle));
 			}
 		}
-		return super.onEnterZone(character, zone);
 	}
 	
 	public static void main(String[] args)

@@ -3800,7 +3800,6 @@
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<acquire exp="148539" sp="134" />
-		<equipment rhand="88" />
 		<mpReward value="3" type="PER" ticks="5" affects="PARTY" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="176235" hpRegen="11.4" mp="25848" mpRegen="30" />

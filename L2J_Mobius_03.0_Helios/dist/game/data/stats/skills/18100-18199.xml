@@ -14,7 +14,6 @@
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>3000</reuseDelay>
-		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="SpModify">
 				<sp>100000</sp>
@@ -35,7 +34,6 @@
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>3000</reuseDelay>
-		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="SpModify">
 				<sp>1000000</sp>
@@ -55,7 +53,6 @@
 		<itemConsumeId>40053</itemConsumeId> <!-- Scroll: 10,000,000 SP -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
-		<reuseDelay>3000</reuseDelay>
 		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="SpModify">

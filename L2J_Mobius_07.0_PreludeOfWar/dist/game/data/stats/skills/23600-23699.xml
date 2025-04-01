@@ -465,7 +465,6 @@
 		<magicLevel>1</magicLevel>
 		<mpConsume>10</mpConsume>
 		<nextAction>ATTACK</nextAction>
-		<nextAction>ATTACK</nextAction>
 		<reuseDelay>10000</reuseDelay>
 		<trait>KNOCKDOWN</trait>
 		<conditions>
@@ -594,7 +593,6 @@
 		<hitTime>3000</hitTime>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic>
-		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<mpConsume>11</mpConsume>
@@ -900,7 +898,6 @@
 		<affectRange>600</affectRange>
 		<basicProperty>PHYSICAL</basicProperty>
 		<castRange>600</castRange>
-		<coolTime>500</coolTime>
 		<coolTime>500</coolTime>
 		<effectPoint>-700</effectPoint>
 		<effectRange>800</effectRange>

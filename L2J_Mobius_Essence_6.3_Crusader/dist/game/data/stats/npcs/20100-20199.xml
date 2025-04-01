@@ -2293,7 +2293,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="4" /> <!-- Club -->
 		<acquire exp="82" sp="4" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="71.9513211373933" hpRegen="2" mp="62.08" mpRegen="0.9" />
@@ -2888,7 +2887,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="98" /> <!-- Halberd -->
 		<acquire exp="1481" sp="61" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="1063.54199060681" hpRegen="5.5" mp="504.8" mpRegen="2.1" />

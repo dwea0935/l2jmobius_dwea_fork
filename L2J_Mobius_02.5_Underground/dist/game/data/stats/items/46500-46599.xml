@@ -319,7 +319,7 @@
 		<set name="time" val="10080" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18531" level="1" /> <!-- Rare Accessory Pack -->
+			<skill id="18531" level="1" /> <!-- Rare Accessory Box -->
 		</skills>
 	</item>
 	<item id="46536" name="Expertise Rune Pack" additionalName="Event" type="EtcItem">

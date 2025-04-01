@@ -47,7 +47,6 @@ public class DoorData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(DoorData.class.getName());
 	
-	// Info holders
 	private final Map<String, Set<Integer>> _groups = new HashMap<>();
 	private final Map<Integer, Door> _doors = new HashMap<>();
 	private final Map<Integer, StatSet> _templates = new HashMap<>();
@@ -66,9 +65,9 @@ public class DoorData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "door", doorNode -> spawnDoor(parseDoor(doorNode))));
+		forEach(document, "list", listNode -> forEach(listNode, "door", doorNode -> spawnDoor(parseDoor(doorNode))));
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _doors.size() + " doors.");
 	}
 	
@@ -110,42 +109,47 @@ public class DoorData implements IXmlReader
 	}
 	
 	/**
-	 * @param set
+	 * Applies collision data to the specified {@link StatSet} if the required nodes are present.<br>
+	 * This method checks for specific node coordinates in the {@link StatSet} and calculates the collision radius based on the difference between the initial and final node positions. It also sets a default height if one is not provided.
+	 * @param set the {@link StatSet} containing node and height data. Required keys include "nodeX_0", "nodeY_0", "nodeX_1", and "nodeY_1". If present, a "height" key is used for collision height, defaulting to 150 if not specified.
 	 */
 	private void applyCollisions(StatSet set)
 	{
-		// Insert Collision data
+		// Insert Collision data if all necessary nodes are present.
 		if (set.contains("nodeX_0") && set.contains("nodeY_0") && set.contains("nodeX_1") && set.contains("nodeY_1"))
 		{
+			// Default height for collision, using 150 if not provided.
 			final int height = set.getInt("height", 150);
 			final int nodeX = set.getInt("nodeX_0");
 			final int nodeY = set.getInt("nodeY_0");
 			final int posX = set.getInt("nodeX_1");
 			final int posY = set.getInt("nodeY_1");
-			int collisionRadius; // (max) radius for movement checks
-			collisionRadius = Math.min(Math.abs(nodeX - posX), Math.abs(nodeY - posY));
+			
+			// Calculate collision radius based on node distances, with a minimum radius of 20.
+			int collisionRadius = Math.min(Math.abs(nodeX - posX), Math.abs(nodeY - posY));
 			if (collisionRadius < 20)
 			{
 				collisionRadius = 20;
 			}
 			
+			// Set the calculated collision data in the StatSet.
 			set.set("collision_radius", collisionRadius);
 			set.set("collision_height", height);
 		}
 	}
 	
 	/**
-	 * Spawns the door, adds the group name and registers it to templates, regions and doors also inserts collisions data
-	 * @param set
-	 * @return
+	 * Spawns a door based on the provided configuration in the {@link StatSet}, registers it to the templates and doors collections, and sets up its group if specified. This method initializes the door's template and instance, adds it to relevant tracking collections, and returns the created door.
+	 * @param set the {@link StatSet} containing configuration data for the door, including position, dimensions, and other properties.
+	 * @return the spawned {@link Door} instance with properties from the provided {@link StatSet}.
 	 */
 	public Door spawnDoor(StatSet set)
 	{
-		// Create door template + door instance
+		// Create door template and instance.
 		final DoorTemplate template = new DoorTemplate(set);
 		final Door door = spawnDoor(template, null);
 		
-		// Register the door
+		// Register the door with the templates and doors collections.
 		_templates.put(door.getId(), set);
 		_doors.put(door.getId(), door);
 		
@@ -153,29 +157,29 @@ public class DoorData implements IXmlReader
 	}
 	
 	/**
-	 * Spawns the door, adds the group name and registers it to templates
-	 * @param template
-	 * @param instance
-	 * @return a new door instance based on provided template
+	 * Spawns a door based on the provided {@link DoorTemplate} and associates it with the specified {@link Instance} if provided. The door is positioned in the world at the template's specified coordinates, and its group is registered if defined.
+	 * @param template the {@link DoorTemplate} containing the configuration details for the door, including position and group name.
+	 * @param instance an optional {@link Instance} in which the door will exist, or {@code null} if no specific instance is needed.
+	 * @return a new {@link Door} instance configured based on the provided template and associated with the given instance if specified.
 	 */
 	public Door spawnDoor(DoorTemplate template, Instance instance)
 	{
 		final Door door = new Door(template);
 		door.setCurrentHp(door.getMaxHp());
 		
-		// Set instance world if provided
+		// Set instance world if provided.
 		if (instance != null)
 		{
 			door.setInstance(instance);
 		}
 		
-		// Spawn the door on the world
+		// Spawn the door in the world at specified coordinates.
 		door.spawnMe(template.getX(), template.getY(), template.getZ());
 		
-		// Register door's group
+		// Register door's group if available.
 		if (template.getGroupName() != null)
 		{
-			_groups.computeIfAbsent(door.getGroupName(), key -> new HashSet<>()).add(door.getId());
+			_groups.computeIfAbsent(door.getGroupName(), _ -> new HashSet<>()).add(door.getId());
 		}
 		return door;
 	}

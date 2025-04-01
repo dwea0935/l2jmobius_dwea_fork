@@ -25,14 +25,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
@@ -82,7 +83,7 @@ public class ExRequestClassChange extends ClientPacket
 		
 		// Check if class id is valid.
 		boolean canChange = false;
-		for (ClassId cId : player.getClassId().getNextClassIds())
+		for (PlayerClass cId : player.getPlayerClass().getNextClasses())
 		{
 			if (cId.getId() == _classId)
 			{
@@ -91,9 +92,9 @@ public class ExRequestClassChange extends ClientPacket
 			}
 		}
 		if (!canChange //
-			&& (_classId != 170) && (player.getClassId().getId() != 133)) // Female Soul Hound fix.
+			&& (_classId != 170) && (player.getPlayerClass().getId() != 133)) // Female Soul Hound fix.
 		{
-			PacketLogger.warning(player + " tried to change class from " + player.getClassId() + " to " + ClassId.getClassId(_classId) + "!");
+			PacketLogger.warning(player + " tried to change class from " + player.getPlayerClass() + " to " + PlayerClass.getPlayerClass(_classId) + "!");
 			return;
 		}
 		
@@ -120,10 +121,10 @@ public class ExRequestClassChange extends ClientPacket
 		// Change class.
 		if (canChange)
 		{
-			player.setClassId(_classId);
+			player.setPlayerClass(_classId);
 			if (player.isSubClassActive())
 			{
-				player.getSubClasses().get(player.getClassIndex()).setClassId(player.getActiveClass());
+				player.getSubClasses().get(player.getClassIndex()).setPlayerClass(player.getActiveClass());
 			}
 			else
 			{
@@ -140,24 +141,24 @@ public class ExRequestClassChange extends ClientPacket
 				
 				if (Config.DISABLE_TUTORIAL && !player.getVariables().getBoolean(AWAKE_POWER_REWARDED_VAR, false))
 				{
-					player.addItem("awake", VITALITY_MAINTAINING_RUNE, 1, player, true);
-					player.addItem("awake", CHAOS_POMANDER, 2, player, true);
+					player.addItem(ItemProcessType.REWARD, VITALITY_MAINTAINING_RUNE, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, CHAOS_POMANDER, 2, player, true);
 					if (player.isInCategory(CategoryType.SHINE_MAKER_ALL_CLASS))
 					{
 						player.getVariables().set(AWAKE_POWER_REWARDED_VAR, true);
-						player.addItem("awake", AWAKE_POWER_SHINE, 1, player, true);
+						player.addItem(ItemProcessType.REWARD, AWAKE_POWER_SHINE, 1, player, true);
 					}
 					else if (player.getRace() == Race.ERTHEIA)
 					{
-						if (player.getClassId() == ClassId.EVISCERATOR)
+						if (player.getPlayerClass() == PlayerClass.EVISCERATOR)
 						{
 							player.getVariables().set(AWAKE_POWER_REWARDED_VAR, true);
-							player.addItem("awake", AWAKE_POWER_EVIS, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, AWAKE_POWER_EVIS, 1, player, true);
 						}
-						if (player.getClassId() == ClassId.SAYHA_SEER)
+						if (player.getPlayerClass() == PlayerClass.SAYHA_SEER)
 						{
 							player.getVariables().set(AWAKE_POWER_REWARDED_VAR, true);
-							player.addItem("awake", AWAKE_POWER_SAYHA, 1, player, true);
+							player.addItem(ItemProcessType.REWARD, AWAKE_POWER_SAYHA, 1, player, true);
 						}
 					}
 					else
@@ -167,7 +168,7 @@ public class ExRequestClassChange extends ClientPacket
 							if (player.isInCategory(ent.getKey()))
 							{
 								player.getVariables().set(AWAKE_POWER_REWARDED_VAR, true);
-								player.addItem("awake", ent.getValue().intValue(), 1, player, true);
+								player.addItem(ItemProcessType.REWARD, ent.getValue().intValue(), 1, player, true);
 								break;
 							}
 						}

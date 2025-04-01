@@ -16,19 +16,19 @@
  */
 package ai.bosses.Freya.IceQueensCastle;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 
 import instances.AbstractInstance;
 import quests.Q10285_MeetingSirra.Q10285_MeetingSirra;
@@ -75,7 +75,7 @@ public class IceQueensCastle extends AbstractInstance
 					if ((mob.getId() == ARCHERY_KNIGHT) && !mob.isDead() && !mob.isDecayed())
 					{
 						npc.setRunning();
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, mob);
+						npc.getAI().setIntention(Intention.ATTACK, mob);
 						npc.asAttackable().addDamageHate(mob, 0, 999999);
 					}
 				});
@@ -86,7 +86,7 @@ public class IceQueensCastle extends AbstractInstance
 			{
 				if (npc != null)
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, FREYA_LOC);
+					npc.getAI().setIntention(Intention.MOVE_TO, FREYA_LOC);
 				}
 				break;
 			}
@@ -131,15 +131,14 @@ public class IceQueensCastle extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("TIMER_MOVING", 60000, npc, null);
 		startQuestTimer("TIMER_BLIZZARD", 180000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer() && npc.isScriptValue(0))
 		{
@@ -150,17 +149,16 @@ public class IceQueensCastle extends AbstractInstance
 				if ((mob.getId() == ARCHERY_KNIGHT) && !mob.isDead() && !mob.isDecayed())
 				{
 					npc.setRunning();
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, mob);
+					npc.getAI().setIntention(Intention.ATTACK, mob);
 					npc.asAttackable().addDamageHate(mob, 0, 999999);
 				}
 			});
 			startQuestTimer("ATTACK_KNIGHT", 5000, npc, null);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if ((world != null) && (skill == ETHERNAL_BLIZZARD.getSkill()))
@@ -171,7 +169,6 @@ public class IceQueensCastle extends AbstractInstance
 				startQuestTimer("TIMER_SCENE_21", 1000, npc, playerInside);
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	public static void main(String[] args)

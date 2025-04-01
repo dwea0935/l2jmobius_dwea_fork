@@ -20,13 +20,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.TryMixCubeResultType;
-import org.l2jmobius.gameserver.enums.TryMixCubeType;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.AlchemyResult;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
@@ -34,11 +32,14 @@ import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.TryMixCubeResultType;
+import org.l2jmobius.gameserver.network.enums.TryMixCubeType;
+import org.l2jmobius.gameserver.network.holders.AlchemyResult;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.ServerClose;
 import org.l2jmobius.gameserver.network.serverpackets.alchemy.ExTryMixCube;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 /**
  * @author Sdw
@@ -198,7 +199,7 @@ public class RequestAlchemyTryMixCube extends ClientPacket
 					elcyumCrystals = item.getCount();
 				}
 				
-				player.getInventory().destroyItem("Alchemy", itemInstance, item.getCount(), player, null);
+				player.getInventory().destroyItem(ItemProcessType.FEE, itemInstance, item.getCount(), player, null);
 				iu.addItem(itemInstance);
 			}
 			
@@ -212,7 +213,7 @@ public class RequestAlchemyTryMixCube extends ClientPacket
 				player.broadcastPacket(new MagicSkillUse(player, CommonSkill.ALCHEMY_CUBE_RANDOM_SUCCESS.getId(), TEMPEST_STONE_AMOUNT, 500, 1500));
 				
 				// Give Tempest Stone to the player
-				final Item tempestStonesInstance = player.addItem("Alchemy", Inventory.TEMPEST_STONE_ID, TEMPEST_STONE_AMOUNT, null, true);
+				final Item tempestStonesInstance = player.addItem(ItemProcessType.REWARD, Inventory.TEMPEST_STONE_ID, TEMPEST_STONE_AMOUNT, null, true);
 				iu.addItem(tempestStonesInstance);
 				
 				// Add the alchemy result entry to the packet
@@ -226,7 +227,7 @@ public class RequestAlchemyTryMixCube extends ClientPacket
 				airStonesCount *= Math.min(elcyumCrystals, 2);
 			}
 			
-			final Item airStonesInstance = player.addItem("Alchemy", Inventory.AIR_STONE_ID, airStonesCount, null, true);
+			final Item airStonesInstance = player.addItem(ItemProcessType.REWARD, Inventory.AIR_STONE_ID, airStonesCount, null, true);
 			iu.addItem(airStonesInstance);
 			
 			// Add the Air Stones

@@ -17,15 +17,15 @@
 package quests.Q00061_LawEnforcement;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Law Enforcement (61)
@@ -51,7 +51,7 @@ public class Q00061_LawEnforcement extends Quest
 		addTalkId(LIANE, PANTHEON, KEKROPUS, EINDBURGH);
 		addCondMinLevel(MIN_LEVEL, "32222-03.htm");
 		addCondRace(Race.KAMAEL, "32222-02.htm");
-		addCondClassId(ClassId.INSPECTOR, "32222-03.htm");
+		addCondClassId(PlayerClass.INSPECTOR, "32222-03.htm");
 	}
 	
 	@Override
@@ -114,15 +114,15 @@ public class Q00061_LawEnforcement extends Quest
 				{
 					if ((player.getLevel() >= MIN_LEVEL))
 					{
-						final ClassId newClassId = player.getClassId().getNextClassIds().stream().findFirst().orElse(null);
+						final PlayerClass newClassId = player.getPlayerClass().getNextClasses().stream().findFirst().orElse(null);
 						if (newClassId != null)
 						{
-							final ClassId currentClassId = player.getClassId();
+							final PlayerClass currentClassId = player.getPlayerClass();
 							if (!newClassId.childOf(currentClassId))
 							{
-								Util.handleIllegalPlayerAction(player, "Player " + player.getName() + " tried to cheat class transfer for Judicator!", Config.DEFAULT_PUNISH);
+								PunishmentManager.handleIllegalPlayerAction(player, "Player " + player.getName() + " tried to cheat class transfer for Judicator!", Config.DEFAULT_PUNISH);
 							}
-							player.setClassId(JUDICATOR);
+							player.setPlayerClass(JUDICATOR);
 							player.broadcastUserInfo();
 							giveAdena(player, 26000, true);
 							qs.exitQuest(false, true);

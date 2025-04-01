@@ -16,13 +16,13 @@
  */
 package handlers.skillconditionhandlers;
 
-import org.l2jmobius.gameserver.enums.SkillConditionAffectType;
-import org.l2jmobius.gameserver.enums.SkillConditionAlignment;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.skill.ISkillCondition;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillConditionAffectType;
+import org.l2jmobius.gameserver.model.skill.enums.SkillConditionAlignment;
 
 /**
  * @author Sdw

@@ -731,7 +731,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<skills>
-			<skill id="18098" level="1" /> <!-- Scroll: 1,000 SP -->
+			<skill id="18098" level="1" /> <!-- SP Scroll -->
 		</skills>
 	</item>
 	<item id="40050" name="Scroll: 10,000 SP" type="EtcItem">
@@ -746,7 +746,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<skills>
-			<skill id="18099" level="1" /> <!-- Scroll: 10,000 SP -->
+			<skill id="18099" level="1" /> <!-- SP Scroll -->
 		</skills>
 	</item>
 	<item id="40051" name="Scroll: 100,000 SP" type="EtcItem">
@@ -761,7 +761,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<skills>
-			<skill id="18100" level="1" /> <!-- Scroll: 100,000 SP -->
+			<skill id="18100" level="1" /> <!-- SP Scroll -->
 		</skills>
 	</item>
 	<item id="40052" name="Scroll: 1,000,000 SP" type="EtcItem">
@@ -776,7 +776,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<skills>
-			<skill id="18101" level="1" /> <!-- Scroll: 1,000,000 SP -->
+			<skill id="18101" level="1" /> <!-- SP Scroll -->
 		</skills>
 	</item>
 	<item id="40053" name="Scroll: 10,000,000 SP" type="EtcItem">
@@ -791,7 +791,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="commissionItemType" val="SCROLL_OTHER" />
 		<skills>
-			<skill id="18102" level="1" /> <!-- Scroll: 10,000,000 SP -->
+			<skill id="18102" level="1" /> <!-- SP Scroll -->
 		</skills>
 	</item>
 	<item id="40054" name="Growth Rune Pack" type="EtcItem">
@@ -841,7 +841,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17898" level="1" /> <!-- Mysterious Wind Scroll -->
+			<skill id="17898" level="1" /> <!-- Wondrous Wind Scroll -->
 		</skills>
 	</item>
 	<item id="40057" name="Magic Broom" type="Weapon">

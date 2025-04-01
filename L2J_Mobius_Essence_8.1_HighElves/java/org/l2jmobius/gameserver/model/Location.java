@@ -22,46 +22,71 @@ package org.l2jmobius.gameserver.model;
 
 import java.util.Objects;
 
-import org.l2jmobius.commons.util.Point2D;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import org.l2jmobius.gameserver.model.interfaces.IPositionable;
 
 /**
- * A datatype used to retain a 3D (x/y/z/heading) point. It got the capability to be set and cleaned.
+ * Represents a 3D coordinate (x, y, z) with an optional heading.
  */
-public class Location extends Point2D implements IPositionable
+public class Location implements IPositionable
 {
+	protected volatile int _x;
+	protected volatile int _y;
 	protected volatile int _z;
 	protected volatile int _heading;
 	
+	/**
+	 * Constructs a Location at a specified x, y and z coordinate, with a default heading of 0.
+	 * @param x the x coordinate
+	 * @param y the y coordinate
+	 * @param z the z coordinate
+	 */
 	public Location(int x, int y, int z)
 	{
-		super(x, y);
+		_x = x;
+		_y = y;
 		_z = z;
 		_heading = 0;
 	}
 	
+	/**
+	 * Constructs a Location at a specified x, y, z coordinate and heading.
+	 * @param x the x coordinate
+	 * @param y the y coordinate
+	 * @param z the z coordinate
+	 * @param heading the heading (direction)
+	 */
 	public Location(int x, int y, int z, int heading)
 	{
-		super(x, y);
+		_x = x;
+		_y = y;
 		_z = z;
 		_heading = heading;
 	}
 	
+	/**
+	 * Constructs a Location based on the position and heading of a WorldObject.
+	 * @param obj the WorldObject to derive the location from.
+	 */
 	public Location(WorldObject obj)
 	{
 		this(obj.getX(), obj.getY(), obj.getZ(), obj.getHeading());
 	}
 	
+	/**
+	 * Constructs a Location from a {@link StatSet}, retrieving values for x, y, z and heading.
+	 * @param set a StatSet containing x, y, z and heading properties.
+	 */
 	public Location(StatSet set)
 	{
-		super(set.getInt("x", 0), set.getInt("y", 0));
+		_x = set.getInt("x", 0);
+		_y = set.getInt("y", 0);
 		_z = set.getInt("z", 0);
 		_heading = set.getInt("heading", 0);
 	}
 	
 	/**
-	 * Get the x coordinate.
+	 * Retrieves the x coordinate.
 	 * @return the x coordinate
 	 */
 	@Override
@@ -71,7 +96,7 @@ public class Location extends Point2D implements IPositionable
 	}
 	
 	/**
-	 * Get the y coordinate.
+	 * Retrieves the y coordinate.
 	 * @return the y coordinate
 	 */
 	@Override
@@ -81,7 +106,7 @@ public class Location extends Point2D implements IPositionable
 	}
 	
 	/**
-	 * Get the z coordinate.
+	 * Retrieves the z coordinate.
 	 * @return the z coordinate
 	 */
 	@Override
@@ -91,10 +116,10 @@ public class Location extends Point2D implements IPositionable
 	}
 	
 	/**
-	 * Set the x, y, z coordinates.
-	 * @param x the x coordinate
-	 * @param y the y coordinate
-	 * @param z the z coordinate
+	 * Sets the x, y and z coordinates of this Location.
+	 * @param x the new x coordinate
+	 * @param y the new y coordinate
+	 * @param z the new z coordinate
 	 */
 	@Override
 	public void setXYZ(int x, int y, int z)
@@ -105,8 +130,8 @@ public class Location extends Point2D implements IPositionable
 	}
 	
 	/**
-	 * Set the x, y, z coordinates.
-	 * @param loc The location.
+	 * Updates the x, y and z coordinates of this Location based on another {@link ILocational}.
+	 * @param loc the source ILocational to copy coordinates from.
 	 */
 	@Override
 	public void setXYZ(ILocational loc)
@@ -115,8 +140,8 @@ public class Location extends Point2D implements IPositionable
 	}
 	
 	/**
-	 * Get the heading.
-	 * @return the heading
+	 * Retrieves the heading (direction) of this Location.
+	 * @return the heading of this location.
 	 */
 	@Override
 	public int getHeading()
@@ -125,8 +150,8 @@ public class Location extends Point2D implements IPositionable
 	}
 	
 	/**
-	 * Set the heading.
-	 * @param heading the heading
+	 * Sets the heading (direction) for this Location.
+	 * @param heading the new the heading for this location.
 	 */
 	@Override
 	public void setHeading(int heading)
@@ -134,12 +159,20 @@ public class Location extends Point2D implements IPositionable
 		_heading = heading;
 	}
 	
+	/**
+	 * Provides the current Location instance, as this class implements {@link IPositionable}.
+	 * @return the current Location instance
+	 */
 	@Override
 	public IPositionable getLocation()
 	{
 		return this;
 	}
 	
+	/**
+	 * Sets this Location's coordinates and heading to match another Location's.
+	 * @param loc the source Location to copy from.
+	 */
 	@Override
 	public void setLocation(Location loc)
 	{
@@ -149,25 +182,32 @@ public class Location extends Point2D implements IPositionable
 		_heading = loc.getHeading();
 	}
 	
-	@Override
-	public void clean()
-	{
-		super.clean();
-		_z = 0;
-	}
-	
+	/**
+	 * Creates a shallow copy of this Location.
+	 * @return a new Location instance with the same x, y, z and heading values.
+	 */
 	@Override
 	public Location clone()
 	{
-		return new Location(_x, _y, _z);
+		return new Location(_x, _y, _z, _heading);
 	}
 	
+	/**
+	 * Computes a hash code based on this Location's coordinates and heading.
+	 * @return the hash code for this Location.
+	 */
 	@Override
 	public int hashCode()
 	{
-		return (31 * super.hashCode()) + Objects.hash(_z);
+		return (31 * Objects.hash(_x, _y)) + Objects.hash(_z);
 	}
 	
+	/**
+	 * Checks equality between this Location and another object.<br>
+	 * Two Locations are considered equal if they have the same x, y, z coordinates and heading.
+	 * @param obj the object to compare
+	 * @return {@code true} if the given object is a Location with the same x, y, z and heading values; otherwise, {@code false}
+	 */
 	@Override
 	public boolean equals(Object obj)
 	{
@@ -179,6 +219,10 @@ public class Location extends Point2D implements IPositionable
 		return false;
 	}
 	
+	/**
+	 * Provides a string representation of this Location.
+	 * @return a formatted string containing the class name, x, y, z coordinates and heading.
+	 */
 	@Override
 	public String toString()
 	{

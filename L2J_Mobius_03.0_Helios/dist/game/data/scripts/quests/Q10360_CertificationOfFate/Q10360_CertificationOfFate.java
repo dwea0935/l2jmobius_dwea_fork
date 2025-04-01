@@ -17,28 +17,28 @@
 package quests.Q10360_CertificationOfFate;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPressTutorialMark;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPressTutorialMark;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowUsm;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowQuestionMark;
-import org.l2jmobius.gameserver.util.Util;
 
 import quests.Q10331_StartOfFate.Q10331_StartOfFate;
 
@@ -227,15 +227,15 @@ public class Q10360_CertificationOfFate extends Quest
 						return null;
 					}
 					
-					final ClassId newClassId = ClassId.getClassId(Integer.parseInt(event.replace("classChange;", "")));
-					final ClassId currentClassId = player.getClassId();
+					final PlayerClass newClassId = PlayerClass.getPlayerClass(Integer.parseInt(event.replace("classChange;", "")));
+					final PlayerClass currentClassId = player.getPlayerClass();
 					if (currentClassId.childOf(newClassId) || (qs.getCond() < 8))
 					{
-						Util.handleIllegalPlayerAction(player, "Player " + player.getName() + " tried to cheat the 2nd class transfer!", Config.DEFAULT_PUNISH);
+						PunishmentManager.handleIllegalPlayerAction(player, "Player " + player.getName() + " tried to cheat the 2nd class transfer!", Config.DEFAULT_PUNISH);
 						return null;
 					}
 					player.setBaseClass(newClassId);
-					player.setClassId(newClassId.getId());
+					player.setPlayerClass(newClassId.getId());
 					player.store(false);
 					player.broadcastUserInfo();
 					player.sendSkillList();
@@ -247,7 +247,7 @@ public class Q10360_CertificationOfFate extends Quest
 					addExpAndSp(player, 2700000, 648);
 					MultisellData.getInstance().separateAndSend(718, player, npc, false);
 					qs.exitQuest(false, true);
-					htmltext = "transfer_complete_" + player.getClassId().toString().toLowerCase() + ".html";
+					htmltext = "transfer_complete_" + player.getPlayerClass().toString().toLowerCase() + ".html";
 				}
 				break;
 			}
@@ -332,7 +332,7 @@ public class Q10360_CertificationOfFate extends Quest
 						}
 						else if ((qs.getCond() >= 8) && (qs.getCond() <= 15))
 						{
-							htmltext = isRightMaster(npc, player) ? ("class_select_" + player.getClassId().toString().toLowerCase() + ".html") : (npc.getId() + "-06.html");
+							htmltext = isRightMaster(npc, player) ? ("class_select_" + player.getPlayerClass().toString().toLowerCase() + ".html") : (npc.getId() + "-06.html");
 						}
 						break;
 					}
@@ -411,7 +411,7 @@ public class Q10360_CertificationOfFate extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isStarted())
@@ -449,7 +449,6 @@ public class Q10360_CertificationOfFate extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private boolean isRightMaster(Npc npc, Player player)

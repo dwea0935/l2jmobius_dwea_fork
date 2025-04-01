@@ -648,7 +648,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="7554" type="EtcItem" name="Scroll of Escape: Talking Island Village">
+	<item id="7554" type="EtcItem" name="Scroll of Escape to Talking Island">
 		<!-- A magical scroll that relocates you to Talking Island. -->
 		<set name="icon" val="icon.etc_scroll_of_return_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -660,7 +660,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-1" /> <!-- Scroll of Escape to Talking Island -->
 	</item>
-	<item id="7555" type="EtcItem" name="Scroll of Escape: Elven Village">
+	<item id="7555" type="EtcItem" name="Scroll of Escape to Elven Village">
 		<!-- A magical scroll that relocates you to Elven Village. -->
 		<set name="icon" val="icon.etc_scroll_of_return_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -672,7 +672,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-2" /> <!-- Scroll of Escape to Talking Island -->
 	</item>
-	<item id="7556" type="EtcItem" name="Scroll of Escape: Dark Elven Village">
+	<item id="7556" type="EtcItem" name="Scroll of Escape to Dark Elf Village">
 		<!-- A magical scroll that relocates you to Dark Elf Village. -->
 		<set name="icon" val="icon.etc_scroll_of_return_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -684,7 +684,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-3" /> <!-- Scroll of Escape to Talking Island -->
 	</item>
-	<item id="7557" type="EtcItem" name="Scroll of Escape: Orc Village">
+	<item id="7557" type="EtcItem" name="Scroll of Escape to Orc Village">
 		<!-- A magical scroll that relocates you to Orc Village. -->
 		<set name="icon" val="icon.etc_scroll_of_return_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -696,7 +696,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-4" /> <!-- Scroll of Escape to Talking Island -->
 	</item>
-	<item id="7558" type="EtcItem" name="Scroll of Escape: Dwarven Village">
+	<item id="7558" type="EtcItem" name="Scroll of Escape to Dwarven Village">
 		<!-- A magical scroll that relocates you to Dwarven Village. -->
 		<set name="icon" val="icon.etc_scroll_of_return_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -708,7 +708,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-5" /> <!-- Scroll of Escape to Talking Island -->
 	</item>
-	<item id="7559" type="EtcItem" name="Scroll of Escape: Town of Giran">
+	<item id="7559" type="EtcItem" name="Scroll of Escape to Giran Castle Town">
 		<!-- A magical scroll that relocates you to Giran Castle Town. -->
 		<set name="icon" val="icon.etc_scroll_of_return_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -762,7 +762,7 @@
 		<set name="material" val="PAPER" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="7563" type="EtcItem" name="Galladucci's Order (Document)">
+	<item id="7563" type="EtcItem" name="Galladucci's Orders (Document)">
 		<!-- A document describing Galladucci's orders. Take it to Trader Gentler at his magic shop. -->
 		<set name="icon" val="icon.etc_piece_of_paper_white_i00" />
 		<set name="immediate_effect" val="true" />
@@ -774,7 +774,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="7564" type="EtcItem" name="Galladucci's Order (Document)">
+	<item id="7564" type="EtcItem" name="Galladucci's Orders (Document)">
 		<!-- A document describing Galladucci's orders. Take it to Jeweler Sandra at her shop. -->
 		<set name="icon" val="icon.etc_piece_of_paper_white_i00" />
 		<set name="immediate_effect" val="true" />
@@ -786,7 +786,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="7565" type="EtcItem" name="Galladucci's Order (Document)">
+	<item id="7565" type="EtcItem" name="Galladucci's Orders (Document)">
 		<!-- A document describing Galladucci's orders. Take it to Priest Dustin at his shop. -->
 		<set name="icon" val="icon.etc_piece_of_paper_white_i00" />
 		<set name="immediate_effect" val="true" />

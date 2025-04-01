@@ -23,8 +23,7 @@ package ai.bosses.Balok;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.Movie;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -32,11 +31,12 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -99,12 +99,19 @@ public class BalokWarzone extends AbstractInstance
 		super(TEMPLATE_ID);
 		addStartNpc(ENTRANCE_PORTAL);
 		addTalkId(ENTRANCE_PORTAL);
+		addSpawnId(ENTRANCE_PORTAL);
 		addInstanceCreatedId(TEMPLATE_ID);
 		addAttackId(BALOK);
 		addSkillSeeId(BALOK);
 		addKillId(BALOK, MINION);
 		addSpellFinishedId(BALOK);
 		addCreatureSeeId(INVISIBLE_NPC_1);
+	}
+	
+	@Override
+	public void onSpawn(Npc npc)
+	{
+		npc.setDisplayEffect(1);
 	}
 	
 	@Override
@@ -163,9 +170,9 @@ public class BalokWarzone extends AbstractInstance
 				{
 					if (npc.getId() == MINION)
 					{
-						if (npc.calculateDistanceSq2D(_balok) > 113125)
+						if (npc.calculateDistance2D(_balok) > 335)
 						{
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(_balok.getX() + 100, _balok.getY() + 50, _balok.getZ(), _balok.getHeading()));
+							npc.getAI().setIntention(Intention.MOVE_TO, new Location(_balok.getX() + 100, _balok.getY() + 50, _balok.getZ(), _balok.getHeading()));
 							getTimers().addTimer("stage_last_minion_walk", 2000, npc, player);
 						}
 						else
@@ -198,7 +205,7 @@ public class BalokWarzone extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world) && (npc.getId() == BALOK))
@@ -240,22 +247,20 @@ public class BalokWarzone extends AbstractInstance
 				getTimers().addTimer("stage_spawn_apostols", 2000, npc, attacker);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world) && (world != null) && (skill.getId() == DARKNESS_DRAIN.getSkillId()) && !_currentMinion.isDead())
 		{
 			_balok.setCurrentHp(_balok.getCurrentHp() + _currentMinion.getMaxHp());
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (npc == _balok)
@@ -291,11 +296,10 @@ public class BalokWarzone extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, player, isPet);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world) && creature.isPlayer() && npc.isScriptValue(0))
@@ -303,11 +307,10 @@ public class BalokWarzone extends AbstractInstance
 			npc.setScriptValue(1);
 			getTimers().addTimer("stage_1_start", 60000, npc, null);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		if (!npc.isDead() && caster.isBehind(npc))
 		{
@@ -319,7 +322,6 @@ public class BalokWarzone extends AbstractInstance
 			npc.setTarget(caster);
 			npc.doCast(REAR_DESTROY.getSkill());
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	public static void main(String[] args)

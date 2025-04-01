@@ -16,11 +16,11 @@
  */
 package ai.areas.FairySettlement.LargeCocoon;
 
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
 import org.l2jmobius.gameserver.model.quest.Quest;
 
 import ai.AbstractNpcAI;
@@ -142,7 +142,7 @@ public class LargeCocoon extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (getRandom(3) < 1)
 		{
@@ -268,8 +268,6 @@ public class LargeCocoon extends AbstractNpcAI
 				break;
 			}
 		}
-		
-		return super.onSpawn(npc);
 	}
 	
 	public void onCreatureAttacked(OnCreatureAttacked event)

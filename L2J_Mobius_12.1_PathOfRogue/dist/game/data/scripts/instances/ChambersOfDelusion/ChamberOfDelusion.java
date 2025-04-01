@@ -26,18 +26,18 @@ import java.util.stream.IntStream;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -182,7 +182,7 @@ public class ChamberOfDelusion extends AbstractInstance
 		String htmltext = null;
 		
 		final Instance world = npc.getInstanceWorld();
-		if ((player != null) && (world != null) && CommonUtil.contains(ROOM_GATEKEEPERS, npc.getId()))
+		if ((player != null) && (world != null) && ArrayUtil.contains(ROOM_GATEKEEPERS, npc.getId()))
 		{
 			switch (event)
 			{
@@ -249,13 +249,12 @@ public class ChamberOfDelusion extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
-		if (!npc.isDead() && CommonUtil.contains(BOX, npc.getId()) && ((skill.getId() == FAIL_SKILL.getSkillId()) || (skill.getId() == SUCCESS_SKILL.getSkillId())))
+		if (!npc.isDead() && ArrayUtil.contains(BOX, npc.getId()) && ((skill.getId() == FAIL_SKILL.getSkillId()) || (skill.getId() == SUCCESS_SKILL.getSkillId())))
 		{
 			npc.doDie(player);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
@@ -280,7 +279,7 @@ public class ChamberOfDelusion extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet, Skill skill)
 	{
 		if (!npc.isBusy() && (npc.getCurrentHp() < (npc.getMaxHp() / 10)))
 		{
@@ -311,11 +310,10 @@ public class ChamberOfDelusion extends AbstractInstance
 				npc.broadcastEvent("SCE_DREAM_FIRE_IN_THE_HOLE", 2000, null);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isPet, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final Instance world = player.getInstanceWorld();
 		if (world != null)
@@ -335,7 +333,6 @@ public class ChamberOfDelusion extends AbstractInstance
 			}
 			world.spawnGroup("boxes");
 		}
-		return super.onKill(npc, player, isPet);
 	}
 	
 	private boolean isBigChamber(Instance world)

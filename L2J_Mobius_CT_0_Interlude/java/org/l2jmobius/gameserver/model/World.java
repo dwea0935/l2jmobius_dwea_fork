@@ -31,9 +31,9 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.ai.CreatureAI;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -349,9 +349,9 @@ public class World
 					if (ai != null)
 					{
 						ai.describeStateToPlayer(object.asPlayer());
-						if (wo.isMonster() && (ai.getIntention() == CtrlIntention.AI_INTENTION_IDLE))
+						if (wo.isMonster() && (ai.getIntention() == Intention.IDLE))
 						{
-							ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+							ai.setIntention(Intention.ACTIVE);
 						}
 					}
 				}
@@ -366,9 +366,9 @@ public class World
 					if (ai != null)
 					{
 						ai.describeStateToPlayer(wo.asPlayer());
-						if (object.isMonster() && (ai.getIntention() == CtrlIntention.AI_INTENTION_IDLE))
+						if (object.isMonster() && (ai.getIntention() == Intention.IDLE))
 						{
-							ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+							ai.setIntention(Intention.ACTIVE);
 						}
 					}
 				}
@@ -434,7 +434,7 @@ public class World
 					final CreatureAI ai = objectCreature.getAI();
 					if (ai != null)
 					{
-						ai.notifyEvent(CtrlEvent.EVT_FORGET_OBJECT, wo);
+						ai.notifyAction(Action.FORGET_OBJECT, wo);
 					}
 					
 					if (objectCreature.getTarget() == wo)
@@ -454,7 +454,7 @@ public class World
 					final CreatureAI ai = woCreature.getAI();
 					if (ai != null)
 					{
-						ai.notifyEvent(CtrlEvent.EVT_FORGET_OBJECT, object);
+						ai.notifyAction(Action.FORGET_OBJECT, object);
 					}
 					
 					if (woCreature.getTarget() == object)
@@ -507,7 +507,7 @@ public class World
 					final CreatureAI ai = objectCreature.getAI();
 					if (ai != null)
 					{
-						ai.notifyEvent(CtrlEvent.EVT_FORGET_OBJECT, wo);
+						ai.notifyAction(Action.FORGET_OBJECT, wo);
 					}
 					
 					if (objectCreature.getTarget() == wo)
@@ -527,7 +527,7 @@ public class World
 					final CreatureAI ai = woCreature.getAI();
 					if (ai != null)
 					{
-						ai.notifyEvent(CtrlEvent.EVT_FORGET_OBJECT, object);
+						ai.notifyAction(Action.FORGET_OBJECT, object);
 					}
 					
 					if (woCreature.getTarget() == object)
@@ -574,9 +574,9 @@ public class World
 						if (ai != null)
 						{
 							ai.describeStateToPlayer(object.asPlayer());
-							if (wo.isMonster() && (ai.getIntention() == CtrlIntention.AI_INTENTION_IDLE))
+							if (wo.isMonster() && (ai.getIntention() == Intention.IDLE))
 							{
-								ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+								ai.setIntention(Intention.ACTIVE);
 							}
 						}
 					}
@@ -591,9 +591,9 @@ public class World
 						if (ai != null)
 						{
 							ai.describeStateToPlayer(wo.asPlayer());
-							if (object.isMonster() && (ai.getIntention() == CtrlIntention.AI_INTENTION_IDLE))
+							if (object.isMonster() && (ai.getIntention() == Intention.IDLE))
 							{
-								ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+								ai.setIntention(Intention.ACTIVE);
 							}
 						}
 					}

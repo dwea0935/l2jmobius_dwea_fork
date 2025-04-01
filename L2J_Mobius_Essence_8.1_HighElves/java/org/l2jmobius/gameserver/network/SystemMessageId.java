@@ -20819,7 +20819,7 @@ public class SystemMessageId
 		
 		File file;
 		Node node;
-		Document doc;
+		Document document;
 		NamedNodeMap nnmb;
 		SystemMessageId smId;
 		String text;
@@ -20833,8 +20833,8 @@ public class SystemMessageId
 			
 			try
 			{
-				doc = factory.newDocumentBuilder().parse(file);
-				for (Node na = doc.getFirstChild(); na != null; na = na.getNextSibling())
+				document = factory.newDocumentBuilder().parse(file);
+				for (Node na = document.getFirstChild(); na != null; na = na.getNextSibling())
 				{
 					if ("list".equals(na.getNodeName()))
 					{

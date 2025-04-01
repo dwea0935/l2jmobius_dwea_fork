@@ -20,18 +20,18 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import java.util.Optional;
-
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.FakePlayerData;
-import org.l2jmobius.gameserver.enums.PartyDistributionType;
 import org.l2jmobius.gameserver.model.BlockList;
 import org.l2jmobius.gameserver.model.ClientSettings;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
+import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.PartyRequest;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.groups.PartyDistributionType;
+import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.AskJoinParty;
@@ -101,7 +101,34 @@ public class RequestJoinParty extends ClientPacket
 			return;
 		}
 		
-		final Player target = World.getInstance().getPlayer(checkIfConquestName(_name));
+		final Player target;
+		if (requestor.isInsideZone(ZoneId.CONQUEST))
+		{
+			final WorldObject requestorTarget = requestor.getTarget();
+			if ((requestorTarget != null) && requestorTarget.isPlayer())
+			{
+				target = requestorTarget.asPlayer();
+			}
+			else // The Conquest name contains a character at start.
+			{
+				target = World.getInstance().getPlayers().stream().filter(player ->
+				{
+					final String conquestName = player.getConquestName();
+					return (conquestName != null) && _name.equalsIgnoreCase(conquestName.substring(1));
+				}).findFirst().orElse(null);
+			}
+			
+			if ((target == null) || !target.isInsideZone(ZoneId.CONQUEST))
+			{
+				requestor.sendPacket(SystemMessageId.THE_TARGET_CANNOT_BE_INVITED);
+				return;
+			}
+		}
+		else
+		{
+			target = World.getInstance().getPlayer(_name);
+		}
+		
 		if (target == null)
 		{
 			requestor.sendPacket(SystemMessageId.SELECT_A_PLAYER_YOU_WANT_TO_INVITE_TO_YOUR_PARTY);
@@ -292,16 +319,5 @@ public class RequestJoinParty extends ClientPacket
 			condition = false;
 		}
 		return condition;
-	}
-	
-	private String checkIfConquestName(String name)
-	{
-		// The Conquest name contains a character at start.
-		final Optional<Player> conquestNamedPlayer = World.getInstance().getPlayers().stream().filter(player ->
-		{
-			final String conquestName = player.getConquestName();
-			return (conquestName != null) && name.equalsIgnoreCase(conquestName.substring(1));
-		}).findFirst();
-		return conquestNamedPlayer.isPresent() ? conquestNamedPlayer.get().getName() : name;
 	}
 }

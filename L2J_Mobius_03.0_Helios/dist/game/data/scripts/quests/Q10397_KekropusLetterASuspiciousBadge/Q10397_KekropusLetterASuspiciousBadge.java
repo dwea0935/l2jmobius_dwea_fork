@@ -130,7 +130,7 @@ public class Q10397_KekropusLetterASuspiciousBadge extends LetterQuest
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -141,6 +141,5 @@ public class Q10397_KekropusLetterASuspiciousBadge extends LetterQuest
 				showOnScreenMsg(player, NpcStringId.SEA_OF_SPORES_IS_A_GOOD_HUNTING_ZONE_FOR_LV_52_OR_ABOVE, ExShowScreenMessage.TOP_CENTER, 6000);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="22223" name="Solid Scroll: Enchant Weapon (A-grade)" type="EtcItem">
 		<!-- When enchanted, P. Atk. +4 for A-grade one-handed swords, one-handed blunts, daggers, and spears. P. Atk. +5 for two-handed swords, two-handed blunts, dual swords, and two-handed fist weapons. P. Atk. +8 for bows. M. Atk. +3 for all weapons. Starting at +4, P. Atk./ M. Atk. bonus double. Enchanting is safe. If enchanting is failed, items are not broken into crystals and remain enchanted to prior level. Cannot be applied to items enchanted to +7 or higher. -->
@@ -12,7 +12,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="22361" level="1" /> <!-- Solid Scroll -->
+			<skill id="22361" level="1" /> <!-- Solid Scroll: Enchant Weapon (A-grade) -->
 		</skills>
 	</item>
 	<item id="22224" name="Solid Scroll: Enchant Armor (A-grade)" type="EtcItem">
@@ -27,7 +27,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="22362" level="1" /> <!-- Solid Scroll -->
+			<skill id="22362" level="1" /> <!-- Solid Scroll: Enchant Armor (A-grade) -->
 		</skills>
 	</item>
 </list>

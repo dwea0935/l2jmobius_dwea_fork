@@ -18,7 +18,7 @@ package org.l2jmobius.gameserver.model;
 
 import java.lang.ref.WeakReference;
 
-import org.l2jmobius.gameserver.enums.AttackType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttackType;
 
 /**
  * @author UnAfraid

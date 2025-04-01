@@ -20,6 +20,7 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -54,7 +55,7 @@ public class ConditionItem extends Condition
 	{
 		if (_take)
 		{
-			player.destroyItemByItemId("InstanceConditionDestroy", _itemId, _count, null, true);
+			player.destroyItemByItemId(ItemProcessType.FEE, _itemId, _count, null, true);
 		}
 	}
 }

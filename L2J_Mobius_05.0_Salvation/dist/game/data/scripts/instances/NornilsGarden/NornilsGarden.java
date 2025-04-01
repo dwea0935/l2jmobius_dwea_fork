@@ -20,16 +20,16 @@
  */
 package instances.NornilsGarden;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -143,11 +143,11 @@ public class NornilsGarden extends AbstractInstance
 					{
 						World.getInstance().forEachVisibleObjectInRange(npc, Player.class, 1500, knownChar ->
 						{
-							if (CommonUtil.contains(ATTACABLE_MONSTERS, npc.getId()) && !npc.isInCombat())
+							if (ArrayUtil.contains(ATTACABLE_MONSTERS, npc.getId()) && !npc.isInCombat())
 							{
 								npc.setRunning();
 								npc.asAttackable().addDamageHate(knownChar, 0, 99999);
-								npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, knownChar);
+								npc.getAI().setIntention(Intention.ATTACK, knownChar);
 							}
 						});
 						startQuestTimer("check_agrro", 1000, npc, null);
@@ -164,7 +164,7 @@ public class NornilsGarden extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -199,11 +199,10 @@ public class NornilsGarden extends AbstractInstance
 				npc.doCast(DARK_BREATH.getSkill());
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		switch (world.getStatus())
@@ -276,7 +275,6 @@ public class NornilsGarden extends AbstractInstance
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -286,7 +284,7 @@ public class NornilsGarden extends AbstractInstance
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayable())
 		{
@@ -297,19 +295,17 @@ public class NornilsGarden extends AbstractInstance
 				npc.setScriptValue(1);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
-		if (isInInstance(world) && (CommonUtil.contains(ATTACABLE_MONSTERS, npc.getId())))
+		if (isInInstance(world) && (ArrayUtil.contains(ATTACABLE_MONSTERS, npc.getId())))
 		{
 			npc.asAttackable().setCanReturnToSpawnPoint(false);
 			startQuestTimer("check_agrro", 1000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

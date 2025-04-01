@@ -1645,7 +1645,7 @@
 		<castRange>900</castRange>
 		<effectPoint>1</effectPoint>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>
@@ -1784,7 +1784,7 @@
 		<abnormalTime>1800</abnormalTime>
 		<abnormalType>REGULAR_DISH</abnormalType>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>

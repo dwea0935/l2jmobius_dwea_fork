@@ -16,7 +16,7 @@
  */
 package handlers.playeractions;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.handler.IPlayerActionHandler;
 import org.l2jmobius.gameserver.model.ActionDataHolder;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -50,7 +50,7 @@ public class PetMove implements IPlayerActionHandler
 		else if ((player.getTarget() != null) && (pet != player.getTarget()) && !pet.isMovementDisabled())
 		{
 			pet.setFollowStatus(false);
-			pet.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, player.getTarget().getLocation());
+			pet.getAI().setIntention(Intention.MOVE_TO, player.getTarget().getLocation());
 		}
 	}
 }

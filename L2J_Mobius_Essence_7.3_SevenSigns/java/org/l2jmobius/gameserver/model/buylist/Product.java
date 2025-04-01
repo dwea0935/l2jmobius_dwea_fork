@@ -27,7 +27,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.type.EtcItemType;
-import org.l2jmobius.gameserver.taskmanager.BuyListTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.BuyListTaskManager;
 
 /**
  * @author NosBit

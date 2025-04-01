@@ -30,15 +30,14 @@ import java.util.concurrent.ScheduledFuture;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.geoengine.pathfinding.AbstractNodeLoc;
+import org.l2jmobius.gameserver.geoengine.pathfinding.GeoLocation;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExServerPrimitive;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author Mobius
@@ -61,7 +60,7 @@ public class AdminDebug implements IAdminCommandHandler
 	private static final Map<Player, ScheduledFuture<?>> PLAYER_MOVE_TASKS = new ConcurrentHashMap<>();
 	private static final Map<Player, Location> PLAYER_MOVE_LOCATIONS = new ConcurrentHashMap<>();
 	private static final Map<Player, Location> PLAYER_MOVE_TO_LOCATIONS = new ConcurrentHashMap<>();
-	private static final Map<Player, List<AbstractNodeLoc>> PLAYER_MOVE_PATHS = new ConcurrentHashMap<>();
+	private static final Map<Player, List<GeoLocation>> PLAYER_MOVE_PATHS = new ConcurrentHashMap<>();
 	private static final int DEBUG_MOVE_DELAY = 100;
 	
 	@Override
@@ -155,7 +154,7 @@ public class AdminDebug implements IAdminCommandHandler
 			}
 		}
 		
-		BuilderUtil.sendSysMessage(activeChar, "Usage: //debug <parameter> <value>");
+		activeChar.sendSysMessage("Usage: //debug <parameter> <value>");
 		return false;
 	}
 	
@@ -218,7 +217,7 @@ public class AdminDebug implements IAdminCommandHandler
 		Config.DEBUG_EX_CLIENT_PACKETS = enabled;
 		Config.DEBUG_SERVER_PACKETS = enabled;
 		Config.DEBUG_UNKNOWN_PACKETS = enabled;
-		BuilderUtil.sendSysMessage(player, "Packet debugging on console is " + (enabled ? "enabled." : "disabled."));
+		player.sendSysMessage("Packet debugging on console is " + (enabled ? "enabled." : "disabled."));
 	}
 	
 	private static synchronized void setDoorDebugging(Player player, boolean enabled)
@@ -234,7 +233,7 @@ public class AdminDebug implements IAdminCommandHandler
 				{
 					if (player.isOnline())
 					{
-						if (Util.calculateDistance(player, PLAYER_DOOR_LOCATIONS.get(player), false, false) > 15)
+						if (LocationUtil.calculateDistance(player, PLAYER_DOOR_LOCATIONS.get(player), false, false) > 15)
 						{
 							PLAYER_DOOR_LOCATIONS.put(player, new Location(player));
 							AdminCommandHandler.getInstance().useAdminCommand(player, "admin_showdoors", false);
@@ -259,7 +258,7 @@ public class AdminDebug implements IAdminCommandHandler
 			PLAYER_DOOR_LOCATIONS.remove(player);
 			ThreadPool.schedule(() -> AdminCommandHandler.getInstance().useAdminCommand(player, "admin_showdoors off", false), DEBUG_DOOR_DELAY + 100);
 		}
-		BuilderUtil.sendSysMessage(player, "Door debugging is " + (enabled ? "enabled." : "disabled."));
+		player.sendSysMessage("Door debugging is " + (enabled ? "enabled." : "disabled."));
 	}
 	
 	private static synchronized void setGeodataDebugging(Player player, boolean enabled)
@@ -275,7 +274,7 @@ public class AdminDebug implements IAdminCommandHandler
 				{
 					if (player.isOnline())
 					{
-						if (!PLAYER_MOVE_PATHS.containsKey(player) && (Util.calculateDistance(player, PLAYER_GEO_LOCATIONS.get(player), false, false) > 15))
+						if (!PLAYER_MOVE_PATHS.containsKey(player) && (LocationUtil.calculateDistance(player, PLAYER_GEO_LOCATIONS.get(player), false, false) > 15))
 						{
 							PLAYER_GEO_LOCATIONS.put(player, new Location(player));
 							AdminCommandHandler.getInstance().useAdminCommand(player, "admin_geogrid", false);
@@ -300,7 +299,7 @@ public class AdminDebug implements IAdminCommandHandler
 			PLAYER_GEO_LOCATIONS.remove(player);
 			ThreadPool.schedule(() -> AdminCommandHandler.getInstance().useAdminCommand(player, "admin_geogrid off", false), DEBUG_GEO_DELAY + 100);
 		}
-		BuilderUtil.sendSysMessage(player, "Geodata debugging is " + (enabled ? "enabled." : "disabled."));
+		player.sendSysMessage("Geodata debugging is " + (enabled ? "enabled." : "disabled."));
 	}
 	
 	private static synchronized void setMovementDebugging(Player player, boolean enabled)
@@ -312,7 +311,7 @@ public class AdminDebug implements IAdminCommandHandler
 			{
 				if (player.isMoving())
 				{
-					BuilderUtil.sendSysMessage(player, "Cannot start debugging while moving.");
+					player.sendSysMessage("Cannot start debugging while moving.");
 					return;
 				}
 				
@@ -321,7 +320,7 @@ public class AdminDebug implements IAdminCommandHandler
 				{
 					if (player.isOnline())
 					{
-						if (Util.calculateDistance(player, PLAYER_MOVE_LOCATIONS.get(player), false, false) > 15)
+						if (LocationUtil.calculateDistance(player, PLAYER_MOVE_LOCATIONS.get(player), false, false) > 15)
 						{
 							drawMoveLine(player);
 						}
@@ -349,7 +348,7 @@ public class AdminDebug implements IAdminCommandHandler
 			PLAYER_MOVE_LOCATIONS.remove(player);
 			ThreadPool.schedule(() -> clearMoveLine(player), DEBUG_GEO_DELAY + 100);
 		}
-		BuilderUtil.sendSysMessage(player, "Movement debugging is " + (enabled ? "enabled." : "disabled."));
+		player.sendSysMessage("Movement debugging is " + (enabled ? "enabled." : "disabled."));
 	}
 	
 	private static void drawMoveLine(Player player)
@@ -360,18 +359,18 @@ public class AdminDebug implements IAdminCommandHandler
 			return;
 		}
 		
-		final List<AbstractNodeLoc> path = player.getGeoPath();
+		final List<GeoLocation> path = player.getGeoPath();
 		if (path != null)
 		{
-			final List<AbstractNodeLoc> prevPath = PLAYER_MOVE_PATHS.get(player);
+			final List<GeoLocation> prevPath = PLAYER_MOVE_PATHS.get(player);
 			if ((prevPath == null) || !prevPath.equals(path))
 			{
 				final ExServerPrimitive exsp = new ExServerPrimitive("DebugMove", player.getX(), player.getY(), -16000);
 				exsp.addLine(Color.GREEN, player.getX(), player.getY(), player.getZ(), player.getXdestination(), player.getYdestination(), player.getZdestination());
 				for (int i = 0; i < (path.size() - 1); i++)
 				{
-					final AbstractNodeLoc current = path.get(i);
-					final AbstractNodeLoc next = path.get(i + 1);
+					final GeoLocation current = path.get(i);
+					final GeoLocation next = path.get(i + 1);
 					exsp.addLine(Color.BLUE, current.getX(), current.getY(), current.getZ(), next.getX(), next.getY(), next.getZ());
 				}
 				player.sendPacket(exsp);
@@ -379,7 +378,7 @@ public class AdminDebug implements IAdminCommandHandler
 				PLAYER_MOVE_PATHS.put(player, path);
 			}
 		}
-		else if (!PLAYER_MOVE_TO_LOCATIONS.containsKey(player) || (Util.calculateDistance(new Location(player.getXdestination(), player.getYdestination(), player.getZdestination()), PLAYER_MOVE_TO_LOCATIONS.get(player), false, false) > 15))
+		else if (!PLAYER_MOVE_TO_LOCATIONS.containsKey(player) || (LocationUtil.calculateDistance(new Location(player.getXdestination(), player.getYdestination(), player.getZdestination()), PLAYER_MOVE_TO_LOCATIONS.get(player), false, false) > 15))
 		{
 			final ExServerPrimitive exsp = new ExServerPrimitive("DebugMove", player.getX(), player.getY(), -16000);
 			exsp.addLine(Color.GREEN, player.getX(), player.getY(), player.getZ(), player.getXdestination(), player.getYdestination(), player.getZdestination());

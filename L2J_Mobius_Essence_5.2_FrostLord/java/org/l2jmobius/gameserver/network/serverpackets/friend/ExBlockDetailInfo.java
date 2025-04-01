@@ -100,7 +100,7 @@ public class ExBlockDetailInfo extends ServerPacket
 			_isOnline = _friend.isOnlineInt() == 1;
 			_friendObjectId = _friend.getObjectId();
 			_level = _friend.getLevel();
-			_classId = _friend.getClassId().getId();
+			_classId = _friend.getPlayerClass().getId();
 			
 			_clanId = _friend.getClanId();
 			_clanCrestId = _friend.getClanCrestId();

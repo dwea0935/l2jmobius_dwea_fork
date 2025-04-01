@@ -37,7 +37,7 @@ public class Q10271_TheEnvelopingDarkness extends Quest
 	
 	public Q10271_TheEnvelopingDarkness()
 	{
-		super(10271);
+		super(10271, "The Enveloping Darkness");
 		addStartNpc(ORBYU);
 		addTalkId(ORBYU, EL, MEDIBAL_CORPSE);
 		registerQuestItems(MEDIBAL_DOCUMENT);

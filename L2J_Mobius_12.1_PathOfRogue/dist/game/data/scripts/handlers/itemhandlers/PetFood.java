@@ -21,12 +21,13 @@ import java.util.Set;
 
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ItemSkillType;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
-import org.l2jmobius.gameserver.model.holders.ItemSkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ItemSkillType;
+import org.l2jmobius.gameserver.model.item.holders.ItemSkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -63,7 +64,7 @@ public class PetFood implements IItemHandler
 			if (activeChar.isPet())
 			{
 				final Pet pet = activeChar.asPet();
-				if (pet.destroyItem("Consume", item.getObjectId(), 1, null, false))
+				if (pet.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false))
 				{
 					pet.broadcastPacket(new MagicSkillUse(pet, pet, skillId, skillLevel, 0, 0));
 					skill.applyEffects(pet, pet);
@@ -81,7 +82,7 @@ public class PetFood implements IItemHandler
 				if (player.isMounted())
 				{
 					final Set<Integer> foodIds = PetDataTable.getInstance().getPetData(player.getMountNpcId()).getFood();
-					if (foodIds.contains(item.getId()) && player.destroyItem("Consume", item.getObjectId(), 1, null, false))
+					if (foodIds.contains(item.getId()) && player.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false))
 					{
 						player.broadcastPacket(new MagicSkillUse(player, player, skillId, skillLevel, 0, 0));
 						skill.applyEffects(player, player);

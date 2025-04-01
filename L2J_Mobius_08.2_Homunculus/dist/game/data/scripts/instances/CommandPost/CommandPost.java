@@ -22,13 +22,13 @@ package instances.CommandPost;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.zone.type.ScriptZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -383,7 +383,7 @@ public class CommandPost extends AbstractInstance
 			if (target != null)
 			{
 				npc.setRunning();
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+				npc.getAI().setIntention(Intention.ATTACK, target);
 				npc.asAttackable().addDamageHate(target, 1, 999);
 			}
 		}
@@ -391,7 +391,7 @@ public class CommandPost extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -452,7 +452,6 @@ public class CommandPost extends AbstractInstance
 			}
 			startQuestTimer("check_status", 3000, null, player);
 		}
-		return super.onKill(npc, player, isPet);
 	}
 	
 	public static void main(String[] args)

@@ -17,16 +17,15 @@
 package quests.Q00409_PathOfTheElvenOracle;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Path of the Elven Oracle (409)
@@ -57,7 +56,7 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 	
 	public Q00409_PathOfTheElvenOracle()
 	{
-		super(409);
+		super(409, "Path of the Elven Oracle");
 		addStartNpc(PRIEST_MANUEL);
 		addTalkId(PRIEST_MANUEL, ALLANA, PERRIN);
 		addKillId(TAMIL, LIZARDMAN_WARRIOR, LIZARDMAN_SCOUT, LIZARDMAN_SOLDIER);
@@ -79,7 +78,7 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 		{
 			case "ACCEPT":
 			{
-				if (player.getClassId() == ClassId.ELVEN_MAGE)
+				if (player.getPlayerClass() == PlayerClass.ELVEN_MAGE)
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
@@ -100,7 +99,7 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 						htmltext = "30293-03.htm";
 					}
 				}
-				else if (player.getClassId() == ClassId.ORACLE)
+				else if (player.getPlayerClass() == PlayerClass.ORACLE)
 				{
 					htmltext = "30293-02a.htm";
 				}
@@ -155,7 +154,7 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (getQuestState(attacker, false) != null)
 		{
@@ -167,22 +166,22 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 					{
 						case LIZARDMAN_WARRIOR:
 						{
-							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.THE_SACRED_FLAME_IS_OURS));
+							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "The sacred flame is ours!"));
 							break;
 						}
 						case LIZARDMAN_SCOUT:
 						{
-							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.THE_SACRED_FLAME_IS_OURS));
+							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "The sacred flame is ours!"));
 							break;
 						}
 						case LIZARDMAN_SOLDIER:
 						{
-							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.THE_SACRED_FLAME_IS_OURS));
+							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "The sacred flame is ours!"));
 							break;
 						}
 						case TAMIL:
 						{
-							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.AS_YOU_WISH_MASTER));
+							npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "As you wish, master!"));
 							break;
 						}
 					}
@@ -201,14 +200,13 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && npc.isScriptValue(1) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && npc.isScriptValue(1) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -216,7 +214,7 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 				{
 					if (!hasQuestItems(killer, LIZARD_CAPTAIN_ORDER))
 					{
-						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.ARRGHH_WE_SHALL_NEVER_SURRENDER));
+						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, "Arrghh...we shall never.. surrender... "));
 						giveItems(killer, LIZARD_CAPTAIN_ORDER, 1);
 						qs.setCond(3, true);
 					}
@@ -243,7 +241,6 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

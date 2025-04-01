@@ -20,9 +20,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.prison;
 
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.model.zone.type.ScriptZone;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -59,7 +60,7 @@ public class RequestPrisonUserDonation extends ClientPacket
 		
 		if (PRISON_ZONE_3.isCharacterInZone(player))
 		{
-			if (!player.reduceAdena("Prison Donation", PRISON_ZONE_3_DONATION, player, true))
+			if (!player.reduceAdena(ItemProcessType.FEE, PRISON_ZONE_3_DONATION, player, true))
 			{
 				player.sendPacket(new ExPrisonUserDonation(false));
 			}
@@ -73,7 +74,7 @@ public class RequestPrisonUserDonation extends ClientPacket
 		}
 		else if (PRISON_ZONE_2.isCharacterInZone(player))
 		{
-			if (!player.reduceAdena("Prison Donation", PRISON_ZONE_2_DONATION, player, true))
+			if (!player.reduceAdena(ItemProcessType.FEE, PRISON_ZONE_2_DONATION, player, true))
 			{
 				player.sendPacket(new ExPrisonUserDonation(false));
 			}
@@ -87,7 +88,7 @@ public class RequestPrisonUserDonation extends ClientPacket
 		}
 		else if (PRISON_ZONE_1.isCharacterInZone(player))
 		{
-			if (!player.reduceAdena("Prison Donation", PRISON_ZONE_1_DONATION, player, true))
+			if (!player.reduceAdena(ItemProcessType.FEE, PRISON_ZONE_1_DONATION, player, true))
 			{
 				player.sendPacket(new ExPrisonUserDonation(false));
 			}

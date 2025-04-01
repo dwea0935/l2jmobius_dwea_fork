@@ -19,10 +19,10 @@ package quests.Q00611_AllianceWithVarkaSilenos;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -157,7 +157,7 @@ public class Q00611_AllianceWithVarkaSilenos extends Quest
 	
 	public Q00611_AllianceWithVarkaSilenos()
 	{
-		super(611);
+		super(611, "Alliance with Varka Silenos");
 		addStartNpc(NARAN_ASHANUK);
 		addTalkId(NARAN_ASHANUK);
 		addKillId(MOBS.keySet());
@@ -286,7 +286,7 @@ public class Q00611_AllianceWithVarkaSilenos extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player member = getRandomPartyMemberState(killer, State.STARTED);
 		if (member != null)
@@ -296,10 +296,9 @@ public class Q00611_AllianceWithVarkaSilenos extends Quest
 			if ((qs.getCond() >= info.getMinCond()) && (qs.getCond() < 6) && canGetItem(qs, info.getItemId()) && (getRandom(1000) < info.getChance()))
 			{
 				giveItems(member, info.getItemId(), 1);
-				playSound(member, QuestSound.ITEMSOUND_QUEST_MIDDLE);
+				playSound(member, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

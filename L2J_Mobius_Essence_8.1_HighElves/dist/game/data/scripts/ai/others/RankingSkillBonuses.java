@@ -21,15 +21,15 @@
 package ai.others;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.network.serverpackets.ranking.ExRankingBuffZoneNpcInfo;
 
 import ai.AbstractNpcAI;
@@ -50,6 +50,7 @@ public class RankingSkillBonuses extends AbstractNpcAI
 	private static final Skill DWARF_LEVEL_RANKING_1ST_CLASS = SkillData.getInstance().getSkill(60010, 1);
 	private static final Skill KAMAEL_LEVEL_RANKING_1ST_CLASS = SkillData.getInstance().getSkill(60011, 1);
 	private static final Skill SYLPH_LEVEL_RANKING_1ST_CLASS = SkillData.getInstance().getSkill(46033, 1);
+	private static final Skill HIGH_ELF_LEVEL_RANKING_1ST_CLASS = SkillData.getInstance().getSkill(46034, 1);
 	private static final Skill SERVER_RANKING_BENEFIT_1 = SkillData.getInstance().getSkill(60012, 1);
 	private static final Skill SERVER_RANKING_BENEFIT_2 = SkillData.getInstance().getSkill(60013, 1);
 	private static final Skill SERVER_RANKING_BENEFIT_3 = SkillData.getInstance().getSkill(60014, 1);
@@ -131,7 +132,7 @@ public class RankingSkillBonuses extends AbstractNpcAI
 		
 		// Apply race rank effects.
 		final int raceRank = RankManager.getInstance().getPlayerRaceRank(player);
-		if ((raceRank > 0) && (raceRank <= 10))
+		if (raceRank == 1)
 		{
 			switch (player.getRace())
 			{
@@ -141,7 +142,6 @@ public class RankingSkillBonuses extends AbstractNpcAI
 					break;
 				}
 				case ELF:
-				case HIGH_ELF: // Proper skill?
 				{
 					ELF_LEVEL_RANKING_1ST_CLASS.applyEffects(player, player);
 					break;
@@ -169,6 +169,11 @@ public class RankingSkillBonuses extends AbstractNpcAI
 				case SYLPH:
 				{
 					SYLPH_LEVEL_RANKING_1ST_CLASS.applyEffects(player, player);
+					break;
+				}
+				case HIGH_ELF:
+				{
+					HIGH_ELF_LEVEL_RANKING_1ST_CLASS.applyEffects(player, player);
 					break;
 				}
 			}

@@ -51,7 +51,7 @@ public class Q00378_GrandFeast extends Quest
 	
 	public Q00378_GrandFeast()
 	{
-		super(378);
+		super(378, "Magnificent Feast");
 		addStartNpc(RANSPO);
 		addTalkId(RANSPO);
 	}

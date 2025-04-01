@@ -24,6 +24,7 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
@@ -61,12 +62,12 @@ public class DecreaseWaitingTime extends AbstractEffect
 		final long waitTime = 0; // 86400 = 24 Hours
 		if (creationTime == 0)
 		{
-			player.getInventory().addItem("DecreaseWaitingTime effect refund", item.getId(), 1, player, player);
+			player.getInventory().addItem(ItemProcessType.REFUND, item.getId(), 1, player, player);
 			player.sendMessage("You don't have any Homunculus in progress.");
 		}
 		else if (((currentTime / 1000) - (creationTime / 1000)) >= waitTime)
 		{
-			player.getInventory().addItem("DecreaseWaitingTime effect refund", item.getId(), 1, player, player);
+			player.getInventory().addItem(ItemProcessType.REFUND, item.getId(), 1, player, player);
 			player.sendMessage("You cannot decrease the waiting time anymore.");
 		}
 		else if (((currentTime / 1000) - (creationTime / 1000)) < waitTime)

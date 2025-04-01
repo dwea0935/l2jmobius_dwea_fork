@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -35,8 +35,8 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureTeleported;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureTeleported;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceTemplate;
 import org.l2jmobius.gameserver.model.spawns.NpcSpawnTemplate;
@@ -165,12 +165,12 @@ public class ValakasTemple extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = (killer == null) || (npc == null) ? null : killer.getInstanceWorld();
 		if ((npc == null) || (world == null) || (world.getTemplateId() != VALAKAS_TEMPLE_INSTANCE_ID))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		switch (npc.getId())
@@ -234,7 +234,6 @@ public class ValakasTemple extends AbstractInstance
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

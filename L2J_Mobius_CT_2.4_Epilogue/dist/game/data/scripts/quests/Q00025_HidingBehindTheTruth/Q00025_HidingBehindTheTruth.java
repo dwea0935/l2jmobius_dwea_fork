@@ -18,17 +18,16 @@ package quests.Q00025_HidingBehindTheTruth;
 
 import java.util.HashMap;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.interfaces.IPositionable;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00024_InhabitantsOfTheForestOfTheDead.Q00024_InhabitantsOfTheForestOfTheDead;
@@ -69,7 +68,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 	
 	public Q00025_HidingBehindTheTruth()
 	{
-		super(25);
+		super(25, "Hiding Behind the Truth");
 		addStartNpc(PRIEST_BENEDICT);
 		addTalkId(HIGH_PRIEST_AGRIPEL, PRIEST_BENEDICT, MYSTERIOUS_WIZARD, TOMBSTONE, MAID_OF_LIDIA, BROKEN_BOOKSHELF2, BROKEN_BOOKSHELF3, BROKEN_BOOKSHELF4, COFFIN);
 		registerQuestItems(GEMSTONE_KEY, CONTRACT, TOTEM_DOLL3, TOTEM_DOLL2, LIDAS_DRESS);
@@ -288,7 +287,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 							triyol.setScriptValue(player.getObjectId());
 							startQuestTimer("SAY_TRIYOL", 500, triyol, player);
 							startQuestTimer("DESPAWN_TRIYOL", 120000, triyol, player);
-							triyol.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+							triyol.getAI().setIntention(Intention.ATTACK, player);
 							htmltext = event;
 							qs.setCond(7);
 						}
@@ -322,7 +321,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 			}
 			case "SAY_TRIYOL":
 			{
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.GENERAL, npc.getId(), NpcStringId.THAT_BOX_WAS_SEALED_BY_MY_MASTER_S1_DON_T_TOUCH_IT).addStringParameter(player.getName()));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.GENERAL, npc.getId(), "That box was sealed by my master, " + player.getName() + "! Don't touch it!"));
 				break;
 			}
 			case "DESPAWN_TRIYOL":
@@ -428,7 +427,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.getCurrentHp() <= (0.30 * npc.getMaxHp()))
 		{
@@ -437,7 +436,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 			{
 				giveItems(attacker, TOTEM_DOLL3, 1);
 				qs.setCond(8, true);
-				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.GENERAL, npc.getId(), NpcStringId.YOU_VE_ENDED_MY_IMMORTAL_LIFE_YOU_RE_PROTECTED_BY_THE_FEUDAL_LORD_AREN_T_YOU));
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.GENERAL, npc.getId(), "You've ended my immortal life! You're protected by the feudal lord, aren't you?"));
 				
 				final Npc brokenDesk = npc.getVariables().getObject("Q00025", Npc.class);
 				if (brokenDesk != null)
@@ -447,7 +446,6 @@ public class Q00025_HidingBehindTheTruth extends Quest
 				npc.deleteMe();
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override

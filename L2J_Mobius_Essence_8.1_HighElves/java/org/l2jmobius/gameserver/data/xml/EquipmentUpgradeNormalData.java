@@ -33,12 +33,12 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.EquipmentUpgradeNormalHolder;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.EquipmentUpgradeNormalHolder;
-import org.l2jmobius.gameserver.model.holders.ItemEnchantHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemEnchantHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.serverpackets.equipmentupgradenormal.ExUpgradeSystemNormalResult;
 
 /**
@@ -47,9 +47,10 @@ import org.l2jmobius.gameserver.network.serverpackets.equipmentupgradenormal.ExU
 public class EquipmentUpgradeNormalData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(EquipmentUpgradeNormalData.class.getName());
-	private static final Map<Integer, EquipmentUpgradeNormalHolder> _upgrades = new HashMap<>();
-	private static final Set<ItemHolder> _discount = new HashSet<>();
-	private static int _commission;
+	
+	private final Map<Integer, EquipmentUpgradeNormalHolder> _upgrades = new HashMap<>();
+	private final Set<ItemHolder> _discount = new HashSet<>();
+	private int _commission;
 	
 	protected EquipmentUpgradeNormalData()
 	{
@@ -72,10 +73,12 @@ public class EquipmentUpgradeNormalData implements IXmlReader
 		_discount.clear();
 		_upgrades.clear();
 		parseDatapackFile("data/EquipmentUpgradeNormalData.xml");
+		
 		if (!_upgrades.isEmpty())
 		{
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _upgrades.size() + " upgrade-normal equipment data. Adena commission is " + _commission + ".");
 		}
+		
 		if (!_discount.isEmpty())
 		{
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _discount.size() + " upgrade-normal discount data.");
@@ -83,20 +86,20 @@ public class EquipmentUpgradeNormalData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "params", paramNode -> _commission = new StatSet(parseAttributes(paramNode)).getInt("commission")));
+		forEach(document, "list", listNode -> forEach(listNode, "params", paramNode -> _commission = new StatSet(parseAttributes(paramNode)).getInt("commission")));
 		if (_commission < 0)
 		{
 			LOGGER.warning(getClass().getSimpleName() + ": Commission in file EquipmentUpgradeNormalData.xml not set or less than 0! Setting up default value - 100!");
 			_commission = 100;
 		}
-		forEach(doc, "list", listNode -> forEach(listNode, "discount", discountNode -> forEach(discountNode, "item", itemNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "discount", discountNode -> forEach(discountNode, "item", itemNode ->
 		{
 			final StatSet successSet = new StatSet(parseAttributes(itemNode));
 			_discount.add(new ItemHolder(successSet.getInt("id"), successSet.getLong("count")));
 		})));
-		forEach(doc, "list", listNode -> forEach(listNode, "upgrade", upgradeNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "upgrade", upgradeNode ->
 		{
 			final AtomicReference<ItemEnchantHolder> initialItem = new AtomicReference<>();
 			final AtomicReference<List<ItemEnchantHolder>> materialItems = new AtomicReference<>(new ArrayList<>());
@@ -157,16 +160,29 @@ public class EquipmentUpgradeNormalData implements IXmlReader
 		}));
 	}
 	
+	/**
+	 * Retrieves the {@link EquipmentUpgradeNormalHolder} associated with the specified upgrade ID.
+	 * @param id the unique identifier of the upgrade to retrieve
+	 * @return the {@link EquipmentUpgradeNormalHolder} for the specified ID, or {@code null} if no upgrade exists with that ID
+	 */
 	public EquipmentUpgradeNormalHolder getUpgrade(int id)
 	{
 		return _upgrades.get(id);
 	}
 	
+	/**
+	 * Returns a set of items that are available at a discount.
+	 * @return a {@link Set} of {@link ItemHolder} objects representing items with a discount
+	 */
 	public Set<ItemHolder> getDiscount()
 	{
 		return _discount;
 	}
 	
+	/**
+	 * Retrieves the commission rate applied to upgrades.
+	 * @return the commission rate as an integer
+	 */
 	public int getCommission()
 	{
 		return _commission;

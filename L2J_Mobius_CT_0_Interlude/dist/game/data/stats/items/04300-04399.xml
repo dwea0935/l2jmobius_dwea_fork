@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="4300" type="EtcItem" name="Operation Document - 2/10">
 		<!-- This document was found in the cargo of the Trade Guild. The document contains various information regarding Innadril. How could this have happened...? -->
@@ -120,7 +120,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="4310" type="EtcItem" name="Iason Heine's Bill">
+	<item id="4310" type="EtcItem" name="Bill of Iason Heine">
 		<!-- The bill's face value is 1,000 adena. If you take it to Roman of the Blacksmith Guild in Innadril, you can use it to purchase various ingredients. -->
 		<set name="icon" val="icon.etc_paper_black_i00" />
 		<set name="immediate_effect" val="true" />
@@ -504,7 +504,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="4342" type="EtcItem" name="Water Crystal">
+	<item id="4342" type="EtcItem" name="Crystal of Water">
 		<!-- A lump of crystal that contains the energy of water. You should find the Stone Statue of Water and dedicate it to the statue. -->
 		<set name="icon" val="icon.etc_gem_blue_i00" />
 		<set name="immediate_effect" val="true" />
@@ -516,7 +516,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="4343" type="EtcItem" name="Fire Crystal">
+	<item id="4343" type="EtcItem" name="Crystal of Fire">
 		<!-- A lump of crystal that contains the energy of fire. You should find the Stone Statue of Fire and dedicate it to the statue. -->
 		<set name="icon" val="icon.etc_gem_red_i00" />
 		<set name="immediate_effect" val="true" />
@@ -528,7 +528,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="4344" type="EtcItem" name="Wind Crystal">
+	<item id="4344" type="EtcItem" name="Crystal of Wind">
 		<!-- A lump of crystal that contains the energy of wind. You should find the Stone Statue of Wind and dedicate it to the statue. -->
 		<set name="icon" val="icon.etc_gem_green_i00" />
 		<set name="immediate_effect" val="true" />
@@ -540,7 +540,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="4345" type="EtcItem" name="Earth Crystal">
+	<item id="4345" type="EtcItem" name="Crystal of Earth">
 		<!-- A lump of crystal that contains the energy of earth. You should find the Stone Statue of Earth and dedicate it to the statue. -->
 		<set name="icon" val="icon.etc_gem_yellow_i00" />
 		<set name="immediate_effect" val="true" />
@@ -552,7 +552,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="4346" type="EtcItem" name="Dark Crystal">
+	<item id="4346" type="EtcItem" name="Crystal of Darkness">
 		<!-- A lump of crystal that contains the energy of darkness You should find the Stone Statue of Darkness and dedicate it to the statue. -->
 		<set name="icon" val="icon.etc_gem_clear_i00" />
 		<set name="immediate_effect" val="true" />
@@ -603,7 +603,7 @@
 		<set name="price" val="1700" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="4351" type="EtcItem" name="Ancient Statue of Goddess: Prototype">
+	<item id="4351" type="EtcItem" name="Ancient Statue of Goddess - Prototype">
 		<!-- A statue created by Berona, an ancient sculptor. - Prototype -->
 		<set name="icon" val="icon.etc_statue_of_einhasad_gold_i00" />
 		<set name="immediate_effect" val="true" />
@@ -612,7 +612,7 @@
 		<set name="price" val="17000" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="4352" type="EtcItem" name="Ancient Statue of Goddess: Original">
+	<item id="4352" type="EtcItem" name="Ancient Statue of Goddess - Original">
 		<!-- A statue created by Berona, a sculptor in ancient times. - Original -->
 		<set name="icon" val="icon.etc_statue_of_einhasad_gold_i00" />
 		<set name="immediate_effect" val="true" />
@@ -621,7 +621,7 @@
 		<set name="price" val="3400" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="4353" type="EtcItem" name="Ancient Statue of Goddess: Replica">
+	<item id="4353" type="EtcItem" name="Ancient Statue of Goddess - Replica">
 		<!-- Replicated statues that have been created by present day sculptors who imitated Berona's works. -->
 		<set name="icon" val="icon.etc_statue_of_einhasad_gold_i00" />
 		<set name="immediate_effect" val="true" />
@@ -630,7 +630,7 @@
 		<set name="price" val="850" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="4354" type="EtcItem" name="Ancient Statue of Goddess: Forgery">
+	<item id="4354" type="EtcItem" name="Ancient Statue of Goddess - Forgery">
 		<!-- Forgeries that have been created in imitation of the ancient sculptor Berona's works. -->
 		<set name="icon" val="icon.etc_statue_of_einhasad_gold_i00" />
 		<set name="immediate_effect" val="true" />

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="38400" name="Expertise Rune Pack" additionalName="C-grade" type="EtcItem">
 		<!-- Wrapped Pack containing Expertise Rune (C-grade) (2-hour). -->
@@ -879,13 +879,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17611" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
@@ -901,14 +901,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17611" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17567" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17567" level="1" /> <!-- Enchant Attribute Attack -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -923,14 +923,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17611" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17568" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17568" level="1" /> <!-- Enchant Attribute Defense -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -947,13 +947,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17611" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -970,12 +970,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17611" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17611" level="1" /> <!-- Release Agathion's Seal - Capricorn -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -990,13 +990,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17612" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
@@ -1012,14 +1012,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17612" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17567" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17567" level="1" /> <!-- Enchant Attribute Attack -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1034,14 +1034,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17612" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17568" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17568" level="1" /> <!-- Enchant Attribute Defense -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1058,13 +1058,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17612" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1081,12 +1081,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17612" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17612" level="1" /> <!-- Release Agathion's Seal - Libra -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1101,13 +1101,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17613" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
@@ -1123,14 +1123,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17613" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17567" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17567" level="1" /> <!-- Enchant Attribute Attack -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1145,14 +1145,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17613" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17568" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17568" level="1" /> <!-- Enchant Attribute Defense -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1169,13 +1169,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17613" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1192,12 +1192,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17613" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17613" level="1" /> <!-- Release Agathion's Seal - Aries -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1212,13 +1212,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17614" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
@@ -1234,14 +1234,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17614" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17567" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17567" level="1" /> <!-- Enchant Attribute Attack -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1256,14 +1256,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17614" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17568" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17568" level="1" /> <!-- Enchant Attribute Defense -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1280,13 +1280,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17614" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1303,12 +1303,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17614" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17614" level="1" /> <!-- Release Agathion's Seal - Taurus -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1323,13 +1323,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17615" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
@@ -1345,14 +1345,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17615" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17567" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17567" level="1" /> <!-- Enchant Attribute Attack -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1367,14 +1367,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17615" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17568" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17568" level="1" /> <!-- Enchant Attribute Defense -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1391,13 +1391,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17615" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1405,7 +1405,6 @@
 	<item id="38473" name="Agathion - Faint Leo" type="Armor">
 		<!-- Summons Leo. <Active Skill>. 1. Agathion Teleport: Town of Aden/Town of Rune/Town of Giran/Heine. (Cooldown is 30min.) -->
 		<set name="icon" val="icon.agathion_magmeld_teleport" />
-		<set name="default_action" val="EQUIP" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
@@ -1415,12 +1414,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17615" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17615" level="1" /> <!-- Release Agathion's Seal - Leo -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1435,13 +1434,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17616" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
@@ -1457,14 +1456,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17616" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17567" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17567" level="1" /> <!-- Enchant Attribute Attack -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1479,14 +1478,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17616" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17568" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17568" level="1" /> <!-- Enchant Attribute Defense -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1503,13 +1502,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17616" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1526,12 +1525,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17616" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17616" level="1" /> <!-- Release Agathion's Seal - Gemini -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1546,13 +1545,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17617" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
@@ -1568,14 +1567,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17617" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17567" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17567" level="1" /> <!-- Enchant Attribute Attack -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1590,14 +1589,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17617" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17568" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17568" level="1" /> <!-- Enchant Attribute Defense -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1614,13 +1613,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17617" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1637,12 +1636,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17617" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17617" level="1" /> <!-- Release Agathion's Seal - Scorpio -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1657,13 +1656,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17618" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
@@ -1679,14 +1678,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17618" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17567" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17567" level="1" /> <!-- Enchant Attribute Attack -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1701,14 +1700,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17618" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17568" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17568" level="1" /> <!-- Enchant Attribute Defense -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1725,13 +1724,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17618" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1748,12 +1747,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17618" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17618" level="1" /> <!-- Release Agathion's Seal - Aquarius -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1768,13 +1767,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17619" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17619" level="1" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
@@ -1790,14 +1789,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17619" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17619" level="1" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17567" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17567" level="1" /> <!-- Enchant Attribute Attack -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1812,14 +1811,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17619" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17619" level="1" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17568" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17568" level="1" /> <!-- Enchant Attribute Defense -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1836,13 +1835,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17619" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17619" level="1" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1859,12 +1858,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17619" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17619" level="1" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1879,13 +1878,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17620" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17620" level="1" /> <!-- Release Agathion's Seal - Sagittarius -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
@@ -1901,14 +1900,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17620" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17620" level="1" /> <!-- Release Agathion's Seal - Sagittarius -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17567" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17567" level="1" /> <!-- Enchant Attribute Attack -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1923,14 +1922,14 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17620" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17620" level="1" /> <!-- Release Agathion's Seal - Sagittarius -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
-			<skill id="17568" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
+			<skill id="17568" level="1" /> <!-- Enchant Attribute Defense -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1938,7 +1937,6 @@
 	<item id="38497" name="Agathion - Sagittarius" type="Armor">
 		<!-- Summons Sagittarius. <Active Skill>. 1. Agathion Teleport: Town of Aden/Town of Rune/Town of Giran/Heine. (Cooldown is 30min.). <Item Skill>. 1. Balanced Power: STR/INT/CON/DEX/WIT/MEN increases by 1. -->
 		<set name="icon" val="icon.agathion_magmeld_teleport" />
-		<set name="default_action" val="EQUIP" />
 		<set name="default_action" val="EQUIP" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
@@ -1948,13 +1946,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17620" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17620" level="1" /> <!-- Release Agathion's Seal - Sagittarius -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1971,12 +1969,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17620" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17620" level="1" /> <!-- Release Agathion's Seal - Sagittarius -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->
 		</skills>
@@ -1991,13 +1989,13 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="SILVER" />
 		<skills>
-			<skill id="17621" level="1" /> <!-- Release Agathion's Seal -->
+			<skill id="17621" level="1" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="17547" level="1" /> <!-- Agathion Teleport: Town of Aden -->
 			<skill id="17548" level="1" /> <!-- Agathion Teleport: Town of Rune -->
 			<skill id="17549" level="1" /> <!-- Agathion Teleport: Town of Giran -->
-			<skill id="17550" level="1" /> <!-- Agathion Teleport: Town of Heine -->
+			<skill id="17550" level="1" /> <!-- Agathion Teleport: Heine -->
 			<skill id="17551" level="1" /> <!-- Balanced Power -->
-			<skill id="17622" level="1" /> <!-- Agathion Cute Trick -->
+			<skill id="17622" level="1" /> <!-- Agathion Cute Trick - Virgo -->
 			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
 			<skill id="9606" level="1" /> <!-- Sealing Agathion -->
 			<skill id="9606" level="1" type="ON_UNEQUIP" /> <!-- Sealing Agathion -->

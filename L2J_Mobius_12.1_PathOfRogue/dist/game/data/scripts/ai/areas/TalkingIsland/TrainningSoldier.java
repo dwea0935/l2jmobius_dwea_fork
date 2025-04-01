@@ -63,11 +63,10 @@ public class TrainningSoldier extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomAnimation(false);
 		getTimers().addTimer("START_ATTACK_" + npc.getObjectId(), null, 5000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

@@ -16,17 +16,17 @@
  */
 package quests.Q00097_SagaOfTheShillienTemplar;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * Saga of the Shillien Templar (97)
  * @author Emperorc
  */
-public class Q00097_SagaOfTheShillienTemplar extends SagasSuperClass
+public class Q00097_SagaOfTheShillienTemplar extends AbstractSagaQuest
 {
 	public Q00097_SagaOfTheShillienTemplar()
 	{
-		super(97);
+		super(97, "Saga of the Shillien Templar");
 		_npc = new int[]
 		{
 			31580,

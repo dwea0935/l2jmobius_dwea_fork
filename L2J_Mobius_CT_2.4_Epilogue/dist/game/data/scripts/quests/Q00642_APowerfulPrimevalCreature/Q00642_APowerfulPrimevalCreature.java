@@ -56,7 +56,7 @@ public class Q00642_APowerfulPrimevalCreature extends Quest
 	
 	public Q00642_APowerfulPrimevalCreature()
 	{
-		super(642);
+		super(642, "A Powerful Primeval Creature");
 		addStartNpc(DINN);
 		addTalkId(DINN);
 		addKillId(ANCIENT_EGG);
@@ -119,12 +119,12 @@ public class Q00642_APowerfulPrimevalCreature extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, -1, 3, npc);
 		if (qs == null)
 		{
-			return null;
+			return;
 		}
 		
 		final int npcId = npc.getId();
@@ -136,7 +136,6 @@ public class Q00642_APowerfulPrimevalCreature extends Quest
 		{
 			giveItemRandomly(qs.getPlayer(), npc, DINOSAUR_EGG, 1, 0, 1, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

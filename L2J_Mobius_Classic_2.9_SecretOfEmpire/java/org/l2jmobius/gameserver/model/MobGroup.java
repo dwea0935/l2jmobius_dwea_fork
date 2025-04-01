@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.ControllableMobAI;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -152,7 +152,7 @@ public class MobGroup
 				spawn.setXYZ(x + (signX * randX), y + (signY * randY), z);
 				spawn.stopRespawn();
 				
-				SpawnTable.getInstance().addNewSpawn(spawn, false);
+				SpawnTable.getInstance().addSpawn(spawn);
 				getMobs().add((ControllableMob) spawn.doGroupSpawn());
 			}
 		}
@@ -228,7 +228,7 @@ public class MobGroup
 				mobInst.deleteMe();
 			}
 			
-			SpawnTable.getInstance().deleteSpawn(mobInst.getSpawn(), false);
+			SpawnTable.getInstance().removeSpawn(mobInst.getSpawn());
 		}
 		
 		getMobs().clear();
@@ -250,7 +250,7 @@ public class MobGroup
 				mobInst.reduceCurrentHp(mobInst.getMaxHp() + 1, player, null);
 			}
 			
-			SpawnTable.getInstance().deleteSpawn(mobInst.getSpawn(), false);
+			SpawnTable.getInstance().removeSpawn(mobInst.getSpawn());
 		}
 		
 		getMobs().clear();
@@ -269,7 +269,7 @@ public class MobGroup
 			
 			final ControllableMobAI ai = (ControllableMobAI) mobInst.getAI();
 			ai.setAlternateAI(ControllableMobAI.AI_NORMAL);
-			ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			ai.setIntention(Intention.ACTIVE);
 		}
 	}
 	
@@ -399,7 +399,7 @@ public class MobGroup
 			
 			final ControllableMobAI ai = (ControllableMobAI) mobInst.getAI();
 			ai.forceAttackGroup(otherGrp);
-			ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			ai.setIntention(Intention.ACTIVE);
 		}
 	}
 }

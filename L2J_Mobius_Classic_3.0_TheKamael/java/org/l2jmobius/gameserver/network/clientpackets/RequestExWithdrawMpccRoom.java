@@ -16,9 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.enums.MatchingRoomType;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.matching.MatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingRoom;
+import org.l2jmobius.gameserver.model.groups.matching.MatchingRoomType;
 
 /**
  * @author Sdw

@@ -160,13 +160,13 @@ public class Q20283_FreePrisonersInLangkLizardmenTemple2 extends Quest
 						else
 						{
 							final int currentCount = questState.getCount();
-							if (currentCount != data.getGoal().getCount())
+							if (currentCount < data.getGoal().getCount())
 							{
 								questState.setCount(currentCount + 1);
 							}
 						}
 						
-						if (questState.getCount() == data.getGoal().getCount())
+						if (questState.getCount() >= data.getGoal().getCount())
 						{
 							questState.setCond(QuestCondType.DONE);
 							player.sendPacket(new ExQuestNotification(questState));
@@ -189,7 +189,7 @@ public class Q20283_FreePrisonersInLangkLizardmenTemple2 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && !questState.isCompleted())
@@ -199,6 +199,5 @@ public class Q20283_FreePrisonersInLangkLizardmenTemple2 extends Quest
 				addSpawn(MYSTERIOUS_BOX, npc, true, 0, true);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

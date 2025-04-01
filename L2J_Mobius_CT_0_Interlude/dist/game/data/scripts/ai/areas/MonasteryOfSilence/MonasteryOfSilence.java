@@ -23,11 +23,9 @@ package ai.areas.MonasteryOfSilence;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
@@ -37,8 +35,10 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -79,9 +79,9 @@ public class MonasteryOfSilence extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
-		if (CommonUtil.contains(mobs1, npc.getId()) && !npc.isInCombat() && (npc.getTarget() == null))
+		if (ArrayUtil.contains(mobs1, npc.getId()) && !npc.isInCombat() && (npc.getTarget() == null))
 		{
 			if (player.getActiveWeaponInstance() != null)
 			{
@@ -100,23 +100,22 @@ public class MonasteryOfSilence extends AbstractNpcAI
 					{
 						npc.setRunning();
 						npc.asAttackable().addDamageHate(player, 0, 999);
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+						npc.getAI().setIntention(Intention.ATTACK, player);
 						break;
 					}
 				}
 			}
-			else if (npc.asAttackable().getMostHated() == null)
-			{
-				return null;
-			}
+			// else if (npc.asAttackable().getMostHated() == null)
+			// {
+			// return;
+			// }
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
-		if (CommonUtil.contains(mobs2, npc.getId()))
+		if (ArrayUtil.contains(mobs2, npc.getId()))
 		{
 			if (skill.hasEffectType(EffectType.AGGRESSION) && !targets.isEmpty())
 			{
@@ -126,26 +125,25 @@ public class MonasteryOfSilence extends AbstractNpcAI
 					{
 						npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.GENERAL, npc.getId(), text[Rnd.get(2) + 1].replace("name", caster.getName())));
 						npc.asAttackable().addDamageHate(caster, 0, 999);
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, caster);
+						npc.getAI().setIntention(Intention.ATTACK, caster);
 						break;
 					}
 				}
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		if (CommonUtil.contains(mobs1, npc.getId()))
+		if (ArrayUtil.contains(mobs1, npc.getId()))
 		{
 			final List<Playable> result = new LinkedList<>();
 			for (WorldObject obj : World.getInstance().getVisibleObjects(npc, WorldObject.class))
 			{
 				if ((obj instanceof Player) || (obj instanceof Pet))
 				{
-					if (Util.checkIfInRange(npc.getAggroRange(), npc, obj, true) && !obj.asCreature().isDead())
+					if (LocationUtil.checkIfInRange(npc.getAggroRange(), npc, obj, true) && !obj.asCreature().isDead())
 					{
 						result.add(obj.asPlayable());
 					}
@@ -175,7 +173,7 @@ public class MonasteryOfSilence extends AbstractNpcAI
 							{
 								npc.setRunning();
 								npc.asAttackable().addDamageHate(target, 0, 999);
-								npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+								npc.getAI().setIntention(Intention.ATTACK, target);
 								break;
 							}
 						}
@@ -183,19 +181,17 @@ public class MonasteryOfSilence extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
-		if (CommonUtil.contains(mobs1, npc.getId()) && (skill.getId() == 4589))
+		if (ArrayUtil.contains(mobs1, npc.getId()) && (skill.getId() == 4589))
 		{
 			npc.setRunning();
 			npc.asAttackable().addDamageHate(player, 0, 999);
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+			npc.getAI().setIntention(Intention.ATTACK, player);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	public static void main(String[] args)

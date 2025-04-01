@@ -26,10 +26,11 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.CompoundRequest;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemCompound;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemCompound;
 import org.l2jmobius.gameserver.model.item.combination.CombinationItem;
 import org.l2jmobius.gameserver.model.item.combination.CombinationItemReward;
 import org.l2jmobius.gameserver.model.item.combination.CombinationItemType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -124,7 +125,7 @@ public class RequestNewEnchantTry extends ClientPacket
 		
 		// Add item (early).
 		final int itemId = rewardItem.getId();
-		final Item item = itemId == 0 ? null : player.addItem("Compound-Result", itemId, rewardItem.getCount(), rewardItem.getEnchantLevel(), null, true);
+		final Item item = itemId == 0 ? null : player.addItem(ItemProcessType.REWARD, itemId, rewardItem.getCount(), rewardItem.getEnchantLevel(), null, true);
 		
 		// Send success or fail.
 		if (success)
@@ -141,7 +142,7 @@ public class RequestNewEnchantTry extends ClientPacket
 		}
 		
 		// Take required items.
-		if (player.destroyItem("Compound-Item-One", itemOne, 1, null, true) && player.destroyItem("Compound-Item-Two", itemTwo, 1, null, true) && ((combinationItem.getCommission() <= 0) || player.reduceAdena("Compound-Commission", combinationItem.getCommission(), player, true)))
+		if (player.destroyItem(ItemProcessType.FEE, itemOne, 1, null, true) && player.destroyItem(ItemProcessType.FEE, itemTwo, 1, null, true) && ((combinationItem.getCommission() <= 0) || player.reduceAdena(ItemProcessType.FEE, combinationItem.getCommission(), player, true)))
 		{
 			final InventoryUpdate iu = new InventoryUpdate();
 			if (item != null)

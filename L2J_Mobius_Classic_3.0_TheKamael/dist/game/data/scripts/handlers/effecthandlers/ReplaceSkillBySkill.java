@@ -21,17 +21,17 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ShortcutType;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.ShortcutType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.AbnormalStatusUpdate;
 
 /**
@@ -67,7 +67,7 @@ public class ReplaceSkillBySkill extends AbstractEffect
 		final Skill addedSkill = SkillData.getInstance().getSkill(_replacementSkill.getSkillId(), _replacementSkill.getSkillLevel() < 1 ? knownSkill.getLevel() : _replacementSkill.getSkillLevel(), knownSkill.getSubLevel());
 		player.addSkill(addedSkill, false);
 		player.addReplacedSkill(_existingSkill.getSkillId(), _replacementSkill.getSkillId());
-		for (Shortcut shortcut : player.getAllShortCuts())
+		for (Shortcut shortcut : player.getAllShortcuts())
 		{
 			if (shortcut.isAutoUse() && (shortcut.getType() == ShortcutType.SKILL) && (shortcut.getId() == knownSkill.getId()))
 			{
@@ -139,7 +139,7 @@ public class ReplaceSkillBySkill extends AbstractEffect
 		final Skill addedSkill = SkillData.getInstance().getSkill(existingSkillId, knownSkill.getLevel(), knownSkill.getSubLevel());
 		player.addSkill(addedSkill, knownSkill.getLevel() != _existingSkill.getSkillLevel());
 		player.removeReplacedSkill(existingSkillId);
-		for (Shortcut shortcut : player.getAllShortCuts())
+		for (Shortcut shortcut : player.getAllShortcuts())
 		{
 			if (shortcut.isAutoUse() && (shortcut.getType() == ShortcutType.SKILL) && (shortcut.getId() == addedSkill.getId()))
 			{

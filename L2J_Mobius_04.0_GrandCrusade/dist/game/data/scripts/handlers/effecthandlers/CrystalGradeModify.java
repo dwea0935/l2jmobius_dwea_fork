@@ -33,7 +33,7 @@ public class CrystalGradeModify extends AbstractEffect
 	
 	public CrystalGradeModify(StatSet params)
 	{
-		_amount = params.getInt("_amount", 0);
+		_amount = params.getInt("amount", 0);
 	}
 	
 	@Override

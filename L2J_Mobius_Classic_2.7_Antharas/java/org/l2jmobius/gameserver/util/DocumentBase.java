@@ -34,13 +34,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.CastleSide;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.PlayerState;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerState;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.conditions.ConditionCategoryType;
 import org.l2jmobius.gameserver.model.conditions.ConditionChangeWeapon;
@@ -137,6 +135,7 @@ import org.l2jmobius.gameserver.model.conditions.ConditionWithSkill;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.type.ArmorType;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
+import org.l2jmobius.gameserver.model.siege.CastleSide;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Stat;
@@ -159,23 +158,23 @@ public abstract class DocumentBase
 	
 	public Document parse()
 	{
-		Document doc = null;
+		Document document = null;
 		try
 		{
 			final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			factory.setValidating(false);
 			factory.setIgnoringComments(true);
-			doc = factory.newDocumentBuilder().parse(_file);
-			parseDocument(doc);
+			document = factory.newDocumentBuilder().parse(_file);
+			parseDocument(document);
 		}
 		catch (Exception e)
 		{
 			LOGGER.log(Level.SEVERE, "Error loading file " + _file, e);
 		}
-		return doc;
+		return document;
 	}
 	
-	protected abstract void parseDocument(Document doc);
+	protected abstract void parseDocument(Document document);
 	
 	protected abstract StatSet getStatSet();
 	
@@ -1149,9 +1148,9 @@ public abstract class DocumentBase
 					{
 						final int old = mask;
 						final String item = st.nextToken().trim();
-						if (ItemData.SLOTS.containsKey(item))
+						if (ItemTemplate.SLOTS.containsKey(item))
 						{
-							mask |= ItemData.SLOTS.get(item);
+							mask |= ItemTemplate.SLOTS.get(item);
 						}
 						
 						if (old == mask)

@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
@@ -33,20 +35,20 @@ import org.l2jmobius.gameserver.data.xml.InitialShortcutData;
 import org.l2jmobius.gameserver.data.xml.PlayerTemplateData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
 import org.l2jmobius.gameserver.model.actor.templates.PlayerTemplate;
 import org.l2jmobius.gameserver.model.events.Containers;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerCreate;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerCreate;
 import org.l2jmobius.gameserver.model.item.PlayerItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.Disconnection;
@@ -55,7 +57,6 @@ import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.CharCreateFail;
 import org.l2jmobius.gameserver.network.serverpackets.CharCreateOk;
 import org.l2jmobius.gameserver.network.serverpackets.CharSelectionInfo;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Mobius
@@ -122,7 +123,7 @@ public class CharacterCreate extends ClientPacket
 		}
 		
 		// Last Verified: May 30, 2009 - Gracia Final
-		if (!Util.isAlphaNumeric(_name) || !isValidName(_name))
+		if (!StringUtil.isAlphaNumeric(_name) || !isValidName(_name))
 		{
 			client.sendPacket(new CharCreateFail(CharCreateFail.REASON_INCORRECT_NAME));
 			return;
@@ -175,7 +176,7 @@ public class CharacterCreate extends ClientPacket
 				return;
 			}
 			
-			final ClassId requestedClassId = ClassId.getClassId(_classId);
+			final PlayerClass requestedClassId = PlayerClass.getPlayerClass(_classId);
 			if (requestedClassId == null)
 			{
 				PacketLogger.warning("Character Creation Failure (Missing classId): " + _name + " classId: " + _classId + " Message generated: Your character creation has failed.");
@@ -289,7 +290,7 @@ public class CharacterCreate extends ClientPacket
 		}
 		
 		// Set level of Balthus Knight
-		final ClassId requestedClassId = ClassId.getClassId(_classId);
+		final PlayerClass requestedClassId = PlayerClass.getPlayerClass(_classId);
 		if (CategoryData.getInstance().isInCategory(CategoryType.ALLOWED_BALTHUS_CLASSES, requestedClassId.getId()))
 		{
 			newChar.setExp(ExperienceData.getInstance().getExpForLevel(Config.BALTHUS_KNIGHTS_LEVEL));
@@ -318,7 +319,7 @@ public class CharacterCreate extends ClientPacket
 		
 		if (Config.STARTING_ADENA > 0)
 		{
-			newChar.addAdena("Init", Config.STARTING_ADENA, null, false);
+			newChar.addAdena(ItemProcessType.REWARD, Config.STARTING_ADENA, null, false);
 		}
 		
 		final PlayerTemplate template = newChar.getTemplate();
@@ -351,12 +352,12 @@ public class CharacterCreate extends ClientPacket
 			newChar.getStat().addSp(Config.STARTING_SP);
 		}
 		
-		final List<PlayerItemTemplate> initialItems = InitialEquipmentData.getInstance().getEquipmentList(newChar.getClassId());
+		final List<PlayerItemTemplate> initialItems = InitialEquipmentData.getInstance().getEquipmentList(newChar.getPlayerClass());
 		if (initialItems != null)
 		{
 			for (PlayerItemTemplate ie : initialItems)
 			{
-				final Item item = newChar.getInventory().addItem("Init", ie.getId(), ie.getCount(), newChar, null);
+				final Item item = newChar.getInventory().addItem(ItemProcessType.REWARD, ie.getId(), ie.getCount(), newChar, null);
 				if (item == null)
 				{
 					PacketLogger.warning("Could not create item during char creation: itemId " + ie.getId() + ", amount " + ie.getCount() + ".");
@@ -370,7 +371,7 @@ public class CharacterCreate extends ClientPacket
 			}
 		}
 		
-		for (SkillLearn skill : SkillTreeData.getInstance().getAvailableSkills(newChar, newChar.getClassId(), false, false, true))
+		for (SkillLearn skill : SkillTreeData.getInstance().getAvailableSkills(newChar, newChar.getPlayerClass(), false, false, true))
 		{
 			newChar.addSkill(SkillData.getInstance().getSkill(skill.getSkillId(), skill.getSkillLevel()), true);
 		}

@@ -16,12 +16,12 @@
  */
 package quests.Q00451_LuciensAltar;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.QuestType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
 
 /**
@@ -49,7 +49,7 @@ public class Q00451_LuciensAltar extends Quest
 	
 	public Q00451_LuciensAltar()
 	{
-		super(451);
+		super(451, "Lucien's Altar");
 		addStartNpc(DAICHIR);
 		addTalkId(ALTARS);
 		addTalkId(DAICHIR);

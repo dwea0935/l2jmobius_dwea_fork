@@ -17,7 +17,7 @@
 		<set name="is_event_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="29440" level="1" /> <!-- Freya's Ice Rose -->
+			<skill id="29440" level="1" /> <!-- Freya's Ice Rose - Event -->
 		</skills>
 	</item>
 	<item id="60001" name="Lovely Chocolate Box" type="EtcItem">
@@ -171,7 +171,7 @@
 		<set name="reuse_delay" val="5" />
 		<set name="etcitem_type" val="SCROLL" />
 		<skills>
-			<skill id="29441" level="1" /> <!-- Glowing Dragon's Attribute Potion -->
+			<skill id="29441" level="1" /> <!-- Lucky Gift Coupon (1-hour) -->
 		</skills>
 	</item>
 	<item id="60010" name="Pantheon's Protection Box" type="EtcItem">
@@ -330,7 +330,7 @@
 		<set name="material" val="PAPER" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="29444" level="1" /> <!-- Spellbook: Create Mysterious Soulshots -->
+			<skill id="29444" level="1" /> <!-- Spellbook: Create Mysterious Spiritshots -->
 		</skills>
 	</item>
 	<item id="60017" name="Shiny Vault" type="EtcItem">
@@ -505,7 +505,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="handler" val="Appearance" />
 		<skills>
-			<skill id="29447" level="1" /> <!-- Zaken Outfit Appearance Stone -->
+			<skill id="29447" level="1" /> <!-- Appearance Stone: Zaken Outfit -->
 		</skills>
 	</item>
 	<item id="60028" name="Lilith Outfit Appearance Stone" type="EtcItem">
@@ -519,7 +519,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="handler" val="Appearance" />
 		<skills>
-			<skill id="29448" level="1" /> <!-- Lilith Outfit Appearance Stone -->
+			<skill id="29448" level="1" /> <!-- Appearance Stone: Lilith Outfit -->
 		</skills>
 	</item>
 	<item id="60029" name="Admiral Outfit Appearance Stone" type="EtcItem">
@@ -533,7 +533,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="handler" val="Appearance" />
 		<skills>
-			<skill id="29449" level="1" /> <!-- Admiral Outfit Appearance Stone -->
+			<skill id="29449" level="1" /> <!-- Appearance Stone: Admiral Outfit -->
 		</skills>
 	</item>
 	<item id="60030" name="Skeleton Outfit Appearance Stone" type="EtcItem">
@@ -547,7 +547,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="handler" val="Appearance" />
 		<skills>
-			<skill id="29450" level="1" /> <!-- Skeleton Outfit Appearance Stone -->
+			<skill id="29450" level="1" /> <!-- Appearance Stone: Skeleton Outfit -->
 		</skills>
 	</item>
 	<item id="60031" name="Demon Outfit Appearance Stone" type="EtcItem">
@@ -561,7 +561,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="handler" val="Appearance" />
 		<skills>
-			<skill id="29451" level="1" /> <!-- Demon Outfit Appearance Stone -->
+			<skill id="29451" level="1" /> <!-- Appearance Stone: Demon Outfit -->
 		</skills>
 	</item>
 	<item id="60032" name="Nymph Outfit Appearance Stone" type="EtcItem">
@@ -575,7 +575,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="handler" val="Appearance" />
 		<skills>
-			<skill id="29452" level="1" /> <!-- Nymph Outfit Appearance Stone -->
+			<skill id="29452" level="1" /> <!-- Appearance Stone: Nymph Outfit -->
 		</skills>
 	</item>
 	<item id="60033" name="Jester Outfit Appearance Stone" type="EtcItem">
@@ -589,7 +589,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="handler" val="Appearance" />
 		<skills>
-			<skill id="29453" level="1" /> <!-- Jester Outfit Appearance Stone -->
+			<skill id="29453" level="1" /> <!-- Appearance Stone: Jester Outfit -->
 		</skills>
 	</item>
 	<item id="60034" name="Dragon Berserker Outfit Appearance Stone" type="EtcItem">
@@ -603,7 +603,7 @@
 		<set name="etcitem_type" val="SHAPE_SHIFTING_AM_FIXED" />
 		<set name="handler" val="Appearance" />
 		<skills>
-			<skill id="29454" level="1" /> <!-- Dragon Berserker Outfit Appearance Stone -->
+			<skill id="29454" level="1" /> <!-- Appearance Stone: Dragon Berserker Outfit -->
 		</skills>
 	</item>
 	<item id="60035" name="Watermelon Hat" additionalName="14-day" type="Armor">
@@ -670,7 +670,7 @@
 			<player MaximumVitalityPoints="140000" />
 		</cond>
 		<skills>
-			<skill id="39343" level="1" /> <!-- Red Libra Specialty - Vitality Tonic -->
+			<skill id="39343" level="1" /> <!-- Orc's Special Medium Vitality Tonic -->
 		</skills>
 	</item>
 	<item id="60041" name="Dragon's Relic" type="EtcItem">
@@ -1754,7 +1754,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="29463" level="1" /> <!-- Heir's Radiance Lv. 8 -->
-			<skill id="29466" level="1" /> <!-- Heir's Radiance PvP/PvE Lv. 1 -->
+			<skill id="29466" level="1" /> <!-- Heir's Radiance - PvP/ PvE Lv. 1 -->
 		</skills>
 	</item>
 	<item id="60097" name="Heir's Radiance Lv. 9" additionalName="PvE/PvP" type="Armor">
@@ -1769,7 +1769,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="29464" level="1" /> <!-- Heir's Radiance Lv. 9 -->
-			<skill id="29467" level="1" /> <!-- Heir's Radiance PvP/PvE Lv. 2 -->
+			<skill id="29467" level="1" /> <!-- Heir's Radiance - PvP/ PvE Lv. 2 -->
 		</skills>
 	</item>
 	<item id="60098" name="Heir's Radiance Lv. 10" additionalName="PvE/PvP" type="Armor">
@@ -1784,7 +1784,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="29465" level="1" /> <!-- Heir's Radiance Lv. 10 -->
-			<skill id="29468" level="1" /> <!-- Heir's Radiance PvP/PvE Lv. 3 -->
+			<skill id="29468" level="1" /> <!-- Heir's Radiance - PvP/ PvE Lv. 3 -->
 		</skills>
 	</item>
 	<item id="60099" name="+8 Artifact Pack - P. Atk. (Attack)" type="EtcItem">

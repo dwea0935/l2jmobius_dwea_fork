@@ -67,7 +67,7 @@ public class KrateisCubeManager extends Folk
 			}
 			
 			final int id = Integer.parseInt(command.substring(9, 10).trim());
-			final KrateiArena arena = org.l2jmobius.gameserver.instancemanager.games.KrateisCubeManager.getInstance().getArenaId(id);
+			final KrateiArena arena = org.l2jmobius.gameserver.managers.games.KrateisCubeManager.getInstance().getArenaId(id);
 			if (arena != null)
 			{
 				if ((player.getLevel() < arena.getMinLevel()) || (player.getLevel() > arena.getMaxLevel()))
@@ -82,7 +82,7 @@ public class KrateisCubeManager extends Folk
 				return;
 			}
 			
-			if (org.l2jmobius.gameserver.instancemanager.games.KrateisCubeManager.getInstance().isRegisterTime())
+			if (org.l2jmobius.gameserver.managers.games.KrateisCubeManager.getInstance().isRegisterTime())
 			{
 				if (arena.addRegisterPlayer(player))
 				{
@@ -111,7 +111,7 @@ public class KrateisCubeManager extends Folk
 		}
 		else if (command.startsWith("Cancel"))
 		{
-			for (KrateiArena arena : org.l2jmobius.gameserver.instancemanager.games.KrateisCubeManager.getInstance().getArenas().values())
+			for (KrateiArena arena : org.l2jmobius.gameserver.managers.games.KrateisCubeManager.getInstance().getArenas().values())
 			{
 				if ((arena != null) && arena.removePlayer(player))
 				{

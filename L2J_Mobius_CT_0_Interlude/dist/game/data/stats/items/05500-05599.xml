@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="5500" type="EtcItem" name="Sealed Red Flame Boots Lining">
 		<!-- An essential ingredient needed by a Dwarf to make Sealed Red Flame Boots. It can be sold at a regular store. -->
@@ -100,7 +100,7 @@
 		<set name="price" val="8530" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="5510" type="EtcItem" name="Sealed Gloves of Underworld Design">
+	<item id="5510" type="EtcItem" name="Sealed Gloves of the Underworld Design">
 		<!-- An essential ingredient needed by a Dwarf to make Sealed Gloves of The Underworld. It can be sold at a regular store. -->
 		<set name="icon" val="icon.etc_pouch_brown_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -430,7 +430,7 @@
 		<set name="price" val="59308" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="5543" type="EtcItem" name="Dasparion's Staff Head">
+	<item id="5543" type="EtcItem" name="Dasparion's Staff Edge">
 		<!-- An essential ingredient needed by a Dwarf to make a Dasparion's Staff. It can be sold at a regular store. -->
 		<set name="icon" val="icon.etc_squares_silver_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -440,7 +440,7 @@
 		<set name="price" val="58754" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="5544" type="EtcItem" name="Branch of the Mother Tree Head">
+	<item id="5544" type="EtcItem" name="Branch of The Mother Tree Head">
 		<!-- An essential ingredient needed by a Dwarf to make a Branch of The Mother Tree. It can be sold at a regular store. -->
 		<set name="icon" val="icon.etc_squares_silver_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -510,7 +510,7 @@
 		<set name="price" val="15000" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="5551" type="EtcItem" name="Reorin's Mold">
+	<item id="5551" type="EtcItem" name="Leolin's Mold">
 		<!-- Material used by a Dwarf to make an item. It can be sold at a regular store. -->
 		<set name="icon" val="icon.etc_blacksmiths_frame_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -964,7 +964,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2166-2" /> <!-- CP Gauge Potion -->
 	</item>
-	<item id="5593" type="EtcItem" name="SP Scroll (Low-Grade)">
+	<item id="5593" type="EtcItem" name="SP Scroll: Low Grade">
 		<!-- Recharges SP by 500. -->
 		<set name="icon" val="icon.etc_sp_scroll1_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -977,7 +977,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2167-1" /> <!-- Scroll of SP -->
 	</item>
-	<item id="5594" type="EtcItem" name="SP Scroll (Medium-Grade)">
+	<item id="5594" type="EtcItem" name="SP Scroll: Medium Grade">
 		<!-- Recharges SP by 5000. -->
 		<set name="icon" val="icon.etc_sp_scroll2_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
@@ -990,7 +990,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2167-2" /> <!-- Scroll of SP -->
 	</item>
-	<item id="5595" type="EtcItem" name="SP Scroll (High Grade)">
+	<item id="5595" type="EtcItem" name="SP Scroll: High Grade">
 		<!-- Recharges SP by 100000. -->
 		<set name="icon" val="icon.etc_sp_scroll3_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />

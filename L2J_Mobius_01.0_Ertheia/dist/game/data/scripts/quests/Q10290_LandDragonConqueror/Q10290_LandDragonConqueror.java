@@ -23,7 +23,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Land Dragon Conqueror (10290)
@@ -71,16 +71,16 @@ public class Q10290_LandDragonConqueror extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		if (!player.isInParty())
 		{
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
 		
 		final Function<Player, Boolean> rewardCheck = p ->
 		{
-			if (Util.checkIfInRange(8000, npc, p, false))
+			if (LocationUtil.checkIfInRange(8000, npc, p, false))
 			{
 				final QuestState qs = getQuestState(p, false);
 				if ((qs != null) && qs.isCond(1) && hasQuestItems(player, SHABBY_NECKLACE))
@@ -102,7 +102,6 @@ public class Q10290_LandDragonConqueror extends Quest
 		{
 			player.getParty().forEachMember(rewardCheck);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

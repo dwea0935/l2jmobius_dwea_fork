@@ -129,7 +129,7 @@ public class Q10408_KekropusLetterTheSwampOfScreams extends LetterQuest
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -140,7 +140,6 @@ public class Q10408_KekropusLetterTheSwampOfScreams extends LetterQuest
 				showOnScreenMsg(player, NpcStringId.SWAMP_OF_SCREAMS_IA_A_GOOD_HUNTING_ZONE_FOR_LV_65_OR_ABOVE, ExShowScreenMessage.TOP_CENTER, 6000);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override

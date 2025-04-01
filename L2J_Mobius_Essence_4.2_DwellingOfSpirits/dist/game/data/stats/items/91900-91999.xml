@@ -289,7 +289,7 @@
 			<player levelRange="1;75" />
 		</cond>
 		<skills>
-			<skill id="50149" level="1" /> <!-- Sayha's Blessing -->
+			<skill id="50149" level="1" /> <!-- Sayha's Blessing (Event) -->
 		</skills>
 	</item>
 	<item id="91911" name="Sayha's Effect Scroll" additionalName="Event" type="EtcItem">
@@ -544,7 +544,7 @@
 		<set name="etcitem_type" val="SOULSHOT" />
 		<set name="commissionItemType" val="SOULSHOT" />
 		<skills>
-			<skill id="2154" level="1" /> <!-- Soulshot (S-grade) -->
+			<skill id="2154" level="1" /> <!-- S-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="91928" name="Spiritshot" type="EtcItem">
@@ -563,7 +563,7 @@
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<set name="etcitem_type" val="SOULSHOT" />
 		<skills>
-			<skill id="2159" level="1" /> <!-- Spiritshot (S-grade) -->
+			<skill id="2159" level="1" /> <!-- S-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="91929" name="Blessed Soulshot" type="EtcItem">
@@ -582,7 +582,7 @@
 		<set name="etcitem_type" val="SOULSHOT" />
 		<set name="commissionItemType" val="SOULSHOT" />
 		<skills>
-			<skill id="8920" level="1" /> <!-- Blessed Soulshot (S-grade) -->
+			<skill id="8920" level="1" /> <!-- Blessed S-grade Soulshot -->
 		</skills>
 	</item>
 	<item id="91930" name="Blessed Spiritshot" type="EtcItem">
@@ -601,7 +601,7 @@
 		<set name="etcitem_type" val="SOULSHOT" />
 		<set name="commissionItemType" val="SPIRITSHOT" />
 		<skills>
-			<skill id="2164" level="1" /> <!-- Blessed Spiritshot (S-grade) -->
+			<skill id="2164" level="1" /> <!-- Blessed S-grade Spiritshot -->
 		</skills>
 	</item>
 	<item id="91931" name="Adventurer's Mark Lv. 5" type="EtcItem">
@@ -635,7 +635,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_tradable" val="false" />
 		<skills>
-			<skill id="50183" level="1" /> <!-- Activates 2 jewel slots. -->
+			<skill id="50183" level="1" /> <!-- Adventurer's Brooch -->
 		</skills>
 	</item>
 	<item id="91933" name="Adventurer's Agathion Bracelet" type="Armor">
@@ -650,7 +650,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_tradable" val="false" />
 		<skills>
-			<skill id="50184" level="1" /> <!-- Expand Agathion Slots -->
+			<skill id="50184" level="1" /> <!-- Adventurer's Agathion Bracelet -->
 		</skills>
 	</item>
 	<item id="91934" name="Adventurer's Bracelet" type="Armor">
@@ -684,7 +684,7 @@
 		<set name="enchant_enabled" val="true" />
 		<skills>
 			<skill id="50185" level="1" /> <!-- Summon Agathion Griffin -->
-			<skill id="50186" level="1" /> <!-- Adventurer's Agathion Griffin -->
+			<skill id="50186" level="1" /> <!-- Agathion: Adventurer's Agathion Griffin -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -700,7 +700,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<skills>
-			<skill id="50187" level="1" /> <!-- Adventurer's Rough Jewel -->
+			<skill id="50187" level="1" /> <!-- Jewel: Adventurer's Rough Jewel -->
 		</skills>
 	</item>
 	<item id="91937" name="Adventurer's Talisman" type="Armor">
@@ -718,7 +718,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant_limit" val="1" />
 		<skills>
-			<skill id="50188" level="1" type="ON_ENCHANT" type_value="0" /> <!-- Adventurer's Talisman Lv1 -->
+			<skill id="50188" level="1" type="ON_ENCHANT" type_value="0" /> <!-- Adventurer's Talisman -->
 			<skill id="50188" level="2" type="ON_ENCHANT" type_value="1" /> <!-- Adventurer's Talisman Lv2 -->
 		</skills>
 	</item>
@@ -742,7 +742,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="50158" level="1" /> <!-- Ancient Pirates' Tomb's Prolongating Stone -->
+			<skill id="50158" level="1" /> <!-- Ancient Pirates' Tomb's Prolongation Stone -->
 		</skills>
 	</item>
 	<item id="91940" name="Heavenly Rift's Prolongating Stone" type="EtcItem">
@@ -984,7 +984,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="1" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="1" /> <!-- Scroll of Escape: Tower of Insolence (1st Floor) -->
 		</skills>
 	</item>
 	<item id="91955" name="Scroll of Escape: Tower of Insolence (2nd Floor)" type="EtcItem">
@@ -1005,7 +1005,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="2" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="2" /> <!-- Scroll of Escape: Tower of Insolence (2nd Floor) -->
 		</skills>
 	</item>
 	<item id="91956" name="Scroll of Escape: Tower of Insolence (3rd Floor)" type="EtcItem">
@@ -1026,7 +1026,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="3" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="3" /> <!-- Scroll of Escape: Tower of Insolence (3rd Floor) -->
 		</skills>
 	</item>
 	<item id="91957" name="Scroll of Escape: Tower of Insolence (4th Floor)" type="EtcItem">
@@ -1047,7 +1047,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="4" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="4" /> <!-- Scroll of Escape: Tower of Insolence (4th Floor) -->
 		</skills>
 	</item>
 	<item id="91958" name="Scroll of Escape: Tower of Insolence (5th Floor)" type="EtcItem">
@@ -1068,7 +1068,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="5" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="5" /> <!-- Scroll of Escape: Tower of Insolence (5th Floor) -->
 		</skills>
 	</item>
 	<item id="91959" name="Scroll of Escape: Tower of Insolence (6th Floor)" type="EtcItem">
@@ -1089,7 +1089,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="6" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="6" /> <!-- Scroll of Escape: Tower of Insolence (6th Floor) -->
 		</skills>
 	</item>
 	<item id="91960" name="Scroll of Escape: Tower of Insolence (7th Floor)" type="EtcItem">
@@ -1110,7 +1110,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="7" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="7" /> <!-- Scroll of Escape: Tower of Insolence (7th Floor) -->
 		</skills>
 	</item>
 	<item id="91961" name="Scroll of Escape: Tower of Insolence (8th Floor)" type="EtcItem">
@@ -1131,7 +1131,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="8" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="8" /> <!-- Scroll of Escape: Tower of Insolence (8th Floor) -->
 		</skills>
 	</item>
 	<item id="91962" name="Scroll of Escape: Tower of Insolence (9th Floor)" type="EtcItem">
@@ -1152,7 +1152,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="9" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="9" /> <!-- Scroll of Escape: Tower of Insolence (9th Floor) -->
 		</skills>
 	</item>
 	<item id="91963" name="Scroll of Escape: Tower of Insolence (10th Floor)" type="EtcItem">
@@ -1173,7 +1173,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="10" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="10" /> <!-- Scroll of Escape: Tower of Insolence (10th Floor) -->
 		</skills>
 	</item>
 	<item id="91964" name="Scroll of Escape: Tower of Insolence (11th Floor)" type="EtcItem">
@@ -1194,7 +1194,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="50169" level="11" /> <!-- Scroll of Escape: Tower of Insolence (12th Floor) -->
+			<skill id="50169" level="11" /> <!-- Scroll of Escape: Tower of Insolence (11th Floor) -->
 		</skills>
 	</item>
 	<item id="91965" name="Scroll of Escape: Tower of Insolence (12th Floor)" type="EtcItem">
@@ -1327,7 +1327,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="50170" level="1" /> <!-- Special Dragon's Miracle Potion Lv. 1 - Event -->
+			<skill id="50170" level="1" /> <!-- Special Dragon's Miracle Potion -->
 		</skills>
 	</item>
 	<item id="91974" name="HP Potion" additionalName="Event" type="EtcItem">
@@ -1361,7 +1361,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="40141" level="1" /> <!-- Combat Scroll (Event) -->
+			<skill id="40141" level="1" /> <!-- Combat Scroll -->
 		</skills>
 	</item>
 	<item id="91976" name="Unidentified Rock" type="EtcItem">
@@ -1501,7 +1501,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="50177" level="1" /> <!-- Primeval Isle's Prolongating Stone -->
+			<skill id="50177" level="1" /> <!-- Primeval Isle's Prolongation Stone -->
 		</skills>
 	</item>
 	<item id="91984" name="Ancient Pirates' Tomb's Prolongating Stone" additionalName="Event" type="EtcItem">
@@ -1517,7 +1517,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="50178" level="1" /> <!-- Ancient Pirates' Tomb's Prolongating Stone -->
+			<skill id="50178" level="1" /> <!-- Ancient Pirates' Tomb's Prolongation Stone -->
 		</skills>
 	</item>
 	<item id="91985" name="Heavenly Rift's Prolongating Stone" additionalName="Event" type="EtcItem">

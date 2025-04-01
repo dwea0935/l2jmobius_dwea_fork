@@ -21,6 +21,7 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -52,20 +53,17 @@ public class TargetMe extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (effected.isPlayable())
+		if ((effected != null) && effected.isPlayer())
 		{
-			if (effected.getTarget() != effector)
+			final Player targetPlayer = effected.asPlayer();
+			if (targetPlayer.getTarget() == effector)
 			{
-				// If effector is null, then its not a player, but NPC. If it is not null, then it should check if the skill is pvp skill.
-				final Player player = effector.asPlayer();
-				if ((player == null) || player.checkPvpSkill(effected, skill))
-				{
-					// Target is different.
-					effected.setTarget(player);
-				}
+				targetPlayer.getAI().setIntention(Intention.ATTACK, effector);
 			}
-			
-			effected.asPlayable().setLockedTarget(effector);
+			else
+			{
+				targetPlayer.setTarget(effector);
+			}
 		}
 	}
 	

@@ -20,7 +20,7 @@ import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.residences.ClanHall;
 
 import ai.AbstractNpcAI;
@@ -74,7 +74,7 @@ public class ClanHallDoorManager extends AbstractNpcAI
 				}
 				case "manageDoors":
 				{
-					if (isOwningClan(player, npc) && st.hasMoreTokens() && player.hasClanPrivilege(ClanPrivilege.CH_OPEN_DOOR))
+					if (isOwningClan(player, npc) && st.hasMoreTokens() && player.hasAccess(ClanAccess.HALL_OPEN_DOOR))
 					{
 						final boolean open = st.nextToken().equals("1");
 						clanHall.openCloseDoors(open);

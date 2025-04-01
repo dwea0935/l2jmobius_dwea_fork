@@ -16,12 +16,12 @@
  */
 package org.l2jmobius.gameserver.model.instancezone.conditions;
 
-import org.l2jmobius.gameserver.enums.ResidenceType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.instancezone.InstanceTemplate;
+import org.l2jmobius.gameserver.model.residences.ResidenceType;
 
 /**
  * Instance residence condition

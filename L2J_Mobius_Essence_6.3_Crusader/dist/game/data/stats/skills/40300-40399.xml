@@ -720,7 +720,7 @@
 		<abnormalType>SAYHA_GRACE</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<basicProperty>NONE</basicProperty>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<itemConsumeCount>1</itemConsumeCount>
@@ -810,7 +810,7 @@
 		</abnormalLevel>
 		<abnormalTime>1200</abnormalTime>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>

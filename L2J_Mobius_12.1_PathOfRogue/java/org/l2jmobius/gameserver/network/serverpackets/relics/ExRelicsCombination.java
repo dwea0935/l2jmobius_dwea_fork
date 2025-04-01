@@ -29,7 +29,8 @@ import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.RelicData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PlayerRelicData;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerRelicData;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.variables.AccountVariables;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -325,7 +326,7 @@ public class ExRelicsCombination extends ServerPacket
 		
 		_player.sendPacket(new ExRelicsList(_player)); // Update confirmed relic list relics count.
 		_player.sendMessage("You obtained through compounding: " + arraySize + " relics.");
-		_player.destroyItemByItemId("RelicsCompound", feeItemId, feeItemCount * arraySize, _player, true);
+		_player.destroyItemByItemId(ItemProcessType.FEE, feeItemId, feeItemCount * arraySize, _player, true);
 		// Send summary of compounds
 		_player.sendMessage("Relics compound summary: " + relicsSuccededCount + " succeded and " + relicsFailedCount + " failed.");
 		if (relicsFailedCount > relicsSuccededCount)
@@ -334,9 +335,8 @@ public class ExRelicsCombination extends ServerPacket
 			if (_relicsUsedGrade >= 3)
 			{
 				// Add failure items obtained here
-				_player.addItem("RelicsCompoundFail", shardId, shardCount * relicsFailedCount, _player, true);
+				_player.addItem(ItemProcessType.FEE, shardId, shardCount * relicsFailedCount, _player, true);
 			}
 		}
-		
 	}
 }

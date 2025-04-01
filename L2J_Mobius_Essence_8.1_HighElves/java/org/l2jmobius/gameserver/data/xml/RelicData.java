@@ -32,8 +32,8 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.RelicDataHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.RelicDataHolder;
 
 /**
  * @author CostyKiller
@@ -73,9 +73,9 @@ public class RelicData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -94,8 +94,8 @@ public class RelicData implements IXmlReader
 						
 						final int relicId = parseInteger(attrs, "id");
 						final int grade = parseInteger(attrs, "grade");
-						final int skillId = parseInteger(attrs, "skillId");
 						int enchantLevel = 0;
+						int skillId = 0;
 						int skillLevel = 0;
 						for (Node b = d.getFirstChild(); b != null; b = b.getNextSibling())
 						{
@@ -103,6 +103,7 @@ public class RelicData implements IXmlReader
 							if ("relicStat".equalsIgnoreCase(b.getNodeName()))
 							{
 								enchantLevel = parseInteger(attrs, "enchantLevel");
+								skillId = parseInteger(attrs, "skillId");
 								skillLevel = parseInteger(attrs, "skillLevel");
 							}
 						}
@@ -114,21 +115,40 @@ public class RelicData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Retrieves the relic data associated with a specified relic ID.
+	 * @param id the unique ID of the relic to retrieve
+	 * @return the {@code RelicDataHolder} containing the details of the relic, or {@code null} if no relic is associated with the specified ID
+	 */
 	public RelicDataHolder getRelic(int id)
 	{
 		return RELICS.get(id);
 	}
 	
+	/**
+	 * Retrieves the skill ID associated with a specified relic ID.
+	 * @param id the unique ID of the relic to retrieve the skill ID for
+	 * @return the skill ID of the relic, or {@code 0} if no relic is associated with the specified ID
+	 */
 	public int getRelicSkillId(int id)
 	{
 		return RELICS.get(id).getSkillId();
 	}
 	
+	/**
+	 * Retrieves the skill level associated with a specified relic ID.
+	 * @param id the unique ID of the relic to retrieve the skill level for
+	 * @return the skill level of the relic, or {@code 0} if no relic is associated with the specified ID
+	 */
 	public int getRelicSkillLevel(int id)
 	{
 		return RELICS.get(id).getSkillLevel();
 	}
 	
+	/**
+	 * Retrieves a collection of all available relic data.
+	 * @return a collection of {@code RelicDataHolder} objects representing all relics
+	 */
 	public Collection<RelicDataHolder> getRelics()
 	{
 		return RELICS.values();

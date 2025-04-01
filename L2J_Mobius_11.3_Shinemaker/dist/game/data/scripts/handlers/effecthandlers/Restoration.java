@@ -25,6 +25,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -70,7 +71,7 @@ public class Restoration extends AbstractEffect
 		
 		if (effected.isPlayer())
 		{
-			final Item newItem = effected.asPlayer().addItem("Skill", _itemId, _itemCount, effector, true);
+			final Item newItem = effected.asPlayer().addItem(ItemProcessType.REWARD, _itemId, _itemCount, effector, true);
 			if (_itemEnchantmentLevel > 0)
 			{
 				newItem.setEnchantLevel(_itemEnchantmentLevel);
@@ -79,7 +80,7 @@ public class Restoration extends AbstractEffect
 		else if (effected.isPet())
 		{
 			final Player target = effected.asPlayer();
-			final Item newItem = effected.getInventory().addItem("Skill", _itemId, _itemCount, target, effector);
+			final Item newItem = effected.getInventory().addItem(ItemProcessType.REWARD, _itemId, _itemCount, target, effector);
 			if (_itemEnchantmentLevel > 0)
 			{
 				newItem.setEnchantLevel(_itemEnchantmentLevel);

@@ -22,9 +22,9 @@ package ai.areas.DwellingOfSpiritsResidence;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -53,7 +53,7 @@ public class ResidenceOfKingProcella extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -62,7 +62,6 @@ public class ResidenceOfKingProcella extends AbstractNpcAI
 			startQuestTimer("SPAWN_STORM", 5000, npc, null);
 			world.setParameter("stormCount", 0);
 		}
-		return null;
 	}
 	
 	@Override
@@ -154,12 +153,12 @@ public class ResidenceOfKingProcella extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world == null)
 		{
-			return null;
+			return;
 		}
 		
 		if (npc.getId() == PROCELLA)
@@ -172,8 +171,6 @@ public class ResidenceOfKingProcella extends AbstractNpcAI
 		{
 			startQuestTimer("HIDE_PROCELLA", 1000, world.getNpc(PROCELLA), null);
 		}
-		
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -266,7 +266,7 @@
 		<set name="price" val="82400" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="8723" type="EtcItem" name="Life Stone - Level 46">
+	<item id="8723" type="EtcItem" name="Life Stone: level 46">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 46 and above. -->
 		<set name="icon" val="icon.etc_mineral_general_i00" />
 		<set name="immediate_effect" val="true" />
@@ -277,7 +277,7 @@
 			<player level="46" />
 		</cond>
 	</item>
-	<item id="8724" type="EtcItem" name="Life Stone - Level 49">
+	<item id="8724" type="EtcItem" name="Life Stone: level 49">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 49 and above. -->
 		<set name="icon" val="icon.etc_mineral_general_i00" />
 		<set name="immediate_effect" val="true" />
@@ -288,7 +288,7 @@
 			<player level="49" />
 		</cond>
 	</item>
-	<item id="8725" type="EtcItem" name="Life Stone - Level 52">
+	<item id="8725" type="EtcItem" name="Life Stone: level 52">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 52 and above. -->
 		<set name="icon" val="icon.etc_mineral_general_i00" />
 		<set name="immediate_effect" val="true" />
@@ -299,7 +299,7 @@
 			<player level="52" />
 		</cond>
 	</item>
-	<item id="8726" type="EtcItem" name="Life Stone - Level 55">
+	<item id="8726" type="EtcItem" name="Life Stone: level 55">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 55 and above. -->
 		<set name="icon" val="icon.etc_mineral_general_i00" />
 		<set name="immediate_effect" val="true" />
@@ -310,7 +310,7 @@
 			<player level="55" />
 		</cond>
 	</item>
-	<item id="8727" type="EtcItem" name="Life Stone - Level 58">
+	<item id="8727" type="EtcItem" name="Life Stone: level 58">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 58 and above. -->
 		<set name="icon" val="icon.etc_mineral_general_i01" />
 		<set name="immediate_effect" val="true" />
@@ -321,7 +321,7 @@
 			<player level="58" />
 		</cond>
 	</item>
-	<item id="8728" type="EtcItem" name="Life Stone - Level 61">
+	<item id="8728" type="EtcItem" name="Life Stone: level 61">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 61 and above. -->
 		<set name="icon" val="icon.etc_mineral_general_i01" />
 		<set name="immediate_effect" val="true" />
@@ -332,7 +332,7 @@
 			<player level="61" />
 		</cond>
 	</item>
-	<item id="8729" type="EtcItem" name="Life Stone - Level 64">
+	<item id="8729" type="EtcItem" name="Life Stone: level 64">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 64 and above. -->
 		<set name="icon" val="icon.etc_mineral_general_i02" />
 		<set name="immediate_effect" val="true" />
@@ -343,7 +343,7 @@
 			<player level="64" />
 		</cond>
 	</item>
-	<item id="8730" type="EtcItem" name="Life Stone - Level 67">
+	<item id="8730" type="EtcItem" name="Life Stone: level 67">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 67 and above. -->
 		<set name="icon" val="icon.etc_mineral_general_i02" />
 		<set name="immediate_effect" val="true" />
@@ -354,7 +354,7 @@
 			<player level="67" />
 		</cond>
 	</item>
-	<item id="8731" type="EtcItem" name="Life Stone - Level 70">
+	<item id="8731" type="EtcItem" name="Life Stone: level 70">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 70 and above. -->
 		<set name="icon" val="icon.etc_mineral_general_i02" />
 		<set name="immediate_effect" val="true" />
@@ -365,7 +365,7 @@
 			<player level="70" />
 		</cond>
 	</item>
-	<item id="8732" type="EtcItem" name="Life Stone - Level 76">
+	<item id="8732" type="EtcItem" name="Life Stone: level 76">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 76 and above. -->
 		<set name="icon" val="icon.etc_mineral_general_i03" />
 		<set name="immediate_effect" val="true" />
@@ -376,7 +376,7 @@
 			<player level="76" />
 		</cond>
 	</item>
-	<item id="8733" type="EtcItem" name="Mid-Grade Life Stone - Level 46">
+	<item id="8733" type="EtcItem" name="Mid-Grade Life Stone: level 46">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 46 and above. -->
 		<set name="icon" val="icon.etc_mineral_special_i00" />
 		<set name="immediate_effect" val="true" />
@@ -387,7 +387,7 @@
 			<player level="46" />
 		</cond>
 	</item>
-	<item id="8734" type="EtcItem" name="Mid-Grade Life Stone - Level 49">
+	<item id="8734" type="EtcItem" name="Mid-Grade Life Stone: level 49">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 49 and above. -->
 		<set name="icon" val="icon.etc_mineral_special_i00" />
 		<set name="immediate_effect" val="true" />
@@ -398,7 +398,7 @@
 			<player level="49" />
 		</cond>
 	</item>
-	<item id="8735" type="EtcItem" name="Mid-Grade Life Stone - Level 52">
+	<item id="8735" type="EtcItem" name="Mid-Grade Life Stone: level 52">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 52 and above. -->
 		<set name="icon" val="icon.etc_mineral_special_i00" />
 		<set name="immediate_effect" val="true" />
@@ -409,7 +409,7 @@
 			<player level="52" />
 		</cond>
 	</item>
-	<item id="8736" type="EtcItem" name="Mid-Grade Life Stone - Level 55">
+	<item id="8736" type="EtcItem" name="Mid-Grade Life Stone: level 55">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 55 and above. -->
 		<set name="icon" val="icon.etc_mineral_special_i00" />
 		<set name="immediate_effect" val="true" />
@@ -420,7 +420,7 @@
 			<player level="55" />
 		</cond>
 	</item>
-	<item id="8737" type="EtcItem" name="Mid-Grade Life Stone - Level 58">
+	<item id="8737" type="EtcItem" name="Mid-Grade Life Stone: level 58">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 58 and above. -->
 		<set name="icon" val="icon.etc_mineral_special_i01" />
 		<set name="immediate_effect" val="true" />
@@ -431,7 +431,7 @@
 			<player level="58" />
 		</cond>
 	</item>
-	<item id="8738" type="EtcItem" name="Mid-Grade Life Stone - Level 61">
+	<item id="8738" type="EtcItem" name="Mid-Grade Life Stone: level 61">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 61 and above. -->
 		<set name="icon" val="icon.etc_mineral_special_i01" />
 		<set name="immediate_effect" val="true" />
@@ -442,7 +442,7 @@
 			<player level="61" />
 		</cond>
 	</item>
-	<item id="8739" type="EtcItem" name="Mid-Grade Life Stone - Level 64">
+	<item id="8739" type="EtcItem" name="Mid-Grade Life Stone: level 64">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 64 and above. -->
 		<set name="icon" val="icon.etc_mineral_special_i02" />
 		<set name="immediate_effect" val="true" />
@@ -453,7 +453,7 @@
 			<player level="64" />
 		</cond>
 	</item>
-	<item id="8740" type="EtcItem" name="Mid-Grade Life Stone - Level 67">
+	<item id="8740" type="EtcItem" name="Mid-Grade Life Stone: level 67">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 67 and above. -->
 		<set name="icon" val="icon.etc_mineral_special_i02" />
 		<set name="immediate_effect" val="true" />
@@ -464,7 +464,7 @@
 			<player level="67" />
 		</cond>
 	</item>
-	<item id="8741" type="EtcItem" name="Mid-Grade Life Stone - Level 70">
+	<item id="8741" type="EtcItem" name="Mid-Grade Life Stone: level 70">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 70 and above. -->
 		<set name="icon" val="icon.etc_mineral_special_i02" />
 		<set name="immediate_effect" val="true" />
@@ -475,7 +475,7 @@
 			<player level="70" />
 		</cond>
 	</item>
-	<item id="8742" type="EtcItem" name="Mid-Grade Life Stone - Level 76">
+	<item id="8742" type="EtcItem" name="Mid-Grade Life Stone: level 76">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 76 and above. -->
 		<set name="icon" val="icon.etc_mineral_special_i03" />
 		<set name="immediate_effect" val="true" />
@@ -486,7 +486,7 @@
 			<player level="76" />
 		</cond>
 	</item>
-	<item id="8743" type="EtcItem" name="High-Grade Life Stone - Level 46">
+	<item id="8743" type="EtcItem" name="High-Grade Life Stone: level 46">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 46 and above. -->
 		<set name="icon" val="icon.etc_mineral_rare_i00" />
 		<set name="immediate_effect" val="true" />
@@ -497,7 +497,7 @@
 			<player level="46" />
 		</cond>
 	</item>
-	<item id="8744" type="EtcItem" name="High-Grade Life Stone - Level 49">
+	<item id="8744" type="EtcItem" name="High-Grade Life Stone: level 49">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 49 and above. -->
 		<set name="icon" val="icon.etc_mineral_rare_i00" />
 		<set name="immediate_effect" val="true" />
@@ -508,7 +508,7 @@
 			<player level="49" />
 		</cond>
 	</item>
-	<item id="8745" type="EtcItem" name="High-Grade Life Stone - Level 52">
+	<item id="8745" type="EtcItem" name="High-Grade Life Stone: level 52">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 52 and above. -->
 		<set name="icon" val="icon.etc_mineral_rare_i00" />
 		<set name="immediate_effect" val="true" />
@@ -519,7 +519,7 @@
 			<player level="52" />
 		</cond>
 	</item>
-	<item id="8746" type="EtcItem" name="High-Grade Life Stone - Level 55">
+	<item id="8746" type="EtcItem" name="High-Grade Life Stone: level 55">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 55 and above. -->
 		<set name="icon" val="icon.etc_mineral_rare_i00" />
 		<set name="immediate_effect" val="true" />
@@ -530,7 +530,7 @@
 			<player level="55" />
 		</cond>
 	</item>
-	<item id="8747" type="EtcItem" name="High-Grade Life Stone - Level 58">
+	<item id="8747" type="EtcItem" name="High-Grade Life Stone: level 58">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 58 and above. -->
 		<set name="icon" val="icon.etc_mineral_rare_i01" />
 		<set name="immediate_effect" val="true" />
@@ -541,7 +541,7 @@
 			<player level="58" />
 		</cond>
 	</item>
-	<item id="8748" type="EtcItem" name="High-Grade Life Stone - Level 61">
+	<item id="8748" type="EtcItem" name="High-Grade Life Stone: level 61">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 61 and above. -->
 		<set name="icon" val="icon.etc_mineral_rare_i01" />
 		<set name="immediate_effect" val="true" />
@@ -552,7 +552,7 @@
 			<player level="61" />
 		</cond>
 	</item>
-	<item id="8749" type="EtcItem" name="High-Grade Life Stone - Level 64">
+	<item id="8749" type="EtcItem" name="High-Grade Life Stone: level 64">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 64 and above. -->
 		<set name="icon" val="icon.etc_mineral_rare_i02" />
 		<set name="immediate_effect" val="true" />
@@ -563,7 +563,7 @@
 			<player level="64" />
 		</cond>
 	</item>
-	<item id="8750" type="EtcItem" name="High-Grade Life Stone - Level 67">
+	<item id="8750" type="EtcItem" name="High-Grade Life Stone: level 67">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 67 and above. -->
 		<set name="icon" val="icon.etc_mineral_rare_i02" />
 		<set name="immediate_effect" val="true" />
@@ -574,7 +574,7 @@
 			<player level="67" />
 		</cond>
 	</item>
-	<item id="8751" type="EtcItem" name="High-Grade Life Stone - Level 70">
+	<item id="8751" type="EtcItem" name="High-Grade Life Stone: level 70">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 70 and above. -->
 		<set name="icon" val="icon.etc_mineral_rare_i02" />
 		<set name="immediate_effect" val="true" />
@@ -585,7 +585,7 @@
 			<player level="70" />
 		</cond>
 	</item>
-	<item id="8752" type="EtcItem" name="High-Grade Life Stone - Level 76">
+	<item id="8752" type="EtcItem" name="High-Grade Life Stone: level 76">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 76 and above. -->
 		<set name="icon" val="icon.etc_mineral_rare_i03" />
 		<set name="immediate_effect" val="true" />
@@ -596,7 +596,7 @@
 			<player level="76" />
 		</cond>
 	</item>
-	<item id="8753" type="EtcItem" name="Top-Grade Life Stone - Level 46">
+	<item id="8753" type="EtcItem" name="Top-Grade Life Stone: level 46">
 		<!-- The highest-grade mineral available that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 46 and above. -->
 		<set name="icon" val="icon.etc_mineral_unique_i00" />
 		<set name="immediate_effect" val="true" />
@@ -607,7 +607,7 @@
 			<player level="46" />
 		</cond>
 	</item>
-	<item id="8754" type="EtcItem" name="Top-Grade Life Stone - Level 49">
+	<item id="8754" type="EtcItem" name="Top-Grade Life Stone: level 49">
 		<!-- The highest-grade mineral available that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 49 and above. -->
 		<set name="icon" val="icon.etc_mineral_unique_i00" />
 		<set name="immediate_effect" val="true" />
@@ -618,7 +618,7 @@
 			<player level="49" />
 		</cond>
 	</item>
-	<item id="8755" type="EtcItem" name="Top-Grade Life Stone - Level 52">
+	<item id="8755" type="EtcItem" name="Top-Grade Life Stone: level 52">
 		<!-- The highest-grade mineral available that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 52 and above. -->
 		<set name="icon" val="icon.etc_mineral_unique_i00" />
 		<set name="immediate_effect" val="true" />
@@ -629,7 +629,7 @@
 			<player level="52" />
 		</cond>
 	</item>
-	<item id="8756" type="EtcItem" name="Top-Grade Life Stone - Level 55">
+	<item id="8756" type="EtcItem" name="Top-Grade Life Stone: level 55">
 		<!-- The highest-grade mineral available that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 55 and above. -->
 		<set name="icon" val="icon.etc_mineral_unique_i00" />
 		<set name="immediate_effect" val="true" />
@@ -640,7 +640,7 @@
 			<player level="55" />
 		</cond>
 	</item>
-	<item id="8757" type="EtcItem" name="Top-Grade Life Stone - Level 58">
+	<item id="8757" type="EtcItem" name="Top-Grade Life Stone: level 58">
 		<!-- The highest-grade mineral available that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 58 and above. -->
 		<set name="icon" val="icon.etc_mineral_unique_i01" />
 		<set name="immediate_effect" val="true" />
@@ -651,7 +651,7 @@
 			<player level="58" />
 		</cond>
 	</item>
-	<item id="8758" type="EtcItem" name="Top-Grade Life Stone - Level 61">
+	<item id="8758" type="EtcItem" name="Top-Grade Life Stone: level 61">
 		<!-- The highest-grade mineral available that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 61 and above. -->
 		<set name="icon" val="icon.etc_mineral_unique_i01" />
 		<set name="immediate_effect" val="true" />
@@ -662,7 +662,7 @@
 			<player level="61" />
 		</cond>
 	</item>
-	<item id="8759" type="EtcItem" name="Top-Grade Life Stone - Level 64">
+	<item id="8759" type="EtcItem" name="Top-Grade Life Stone: level 64">
 		<!-- The highest-grade mineral available that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 64 and above. -->
 		<set name="icon" val="icon.etc_mineral_unique_i02" />
 		<set name="immediate_effect" val="true" />
@@ -673,7 +673,7 @@
 			<player level="64" />
 		</cond>
 	</item>
-	<item id="8760" type="EtcItem" name="Top-Grade Life Stone - Level 67">
+	<item id="8760" type="EtcItem" name="Top-Grade Life Stone: level 67">
 		<!-- The highest-grade mineral available that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 67 and above. -->
 		<set name="icon" val="icon.etc_mineral_unique_i02" />
 		<set name="immediate_effect" val="true" />
@@ -684,7 +684,7 @@
 			<player level="67" />
 		</cond>
 	</item>
-	<item id="8761" type="EtcItem" name="Top-Grade Life Stone - Level 70">
+	<item id="8761" type="EtcItem" name="Top-Grade Life Stone: level 70">
 		<!-- The highest-grade mineral available that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 70 and above. -->
 		<set name="icon" val="icon.etc_mineral_unique_i02" />
 		<set name="immediate_effect" val="true" />
@@ -695,7 +695,7 @@
 			<player level="70" />
 		</cond>
 	</item>
-	<item id="8762" type="EtcItem" name="Top-Grade Life Stone - Level 76">
+	<item id="8762" type="EtcItem" name="Top-Grade Life Stone: level 76">
 		<!-- The highest-grade mineral available that has been petrified by a creature's physical or magical damage. Key component used in weapon Augmentation by characters level 76 and above. -->
 		<set name="icon" val="icon.etc_mineral_unique_i03" />
 		<set name="immediate_effect" val="true" />

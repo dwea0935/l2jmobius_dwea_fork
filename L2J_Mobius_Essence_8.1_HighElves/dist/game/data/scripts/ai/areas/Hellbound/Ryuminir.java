@@ -104,7 +104,7 @@ public class Ryuminir extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc != null)
 		{
@@ -121,8 +121,6 @@ public class Ryuminir extends AbstractNpcAI
 		{
 			_deleteTask.cancel(true);
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public void deleteMe(Npc npc)

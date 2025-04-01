@@ -1297,7 +1297,6 @@
 		<hitTime>1000</hitTime>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic>
-		<isMagic>1</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>5</reuseDelay>
 		<trait>AIRBIND</trait>
@@ -1348,7 +1347,6 @@
 		<operateType>A2</operateType>
 		<targetType>ENEMY</targetType>
 		<abnormalLevel>1</abnormalLevel>
-		<abnormalTime>5</abnormalTime>
 		<abnormalTime>5</abnormalTime>
 		<abnormalType>STUN</abnormalType>
 		<abnormalVisualEffect>STUN</abnormalVisualEffect>

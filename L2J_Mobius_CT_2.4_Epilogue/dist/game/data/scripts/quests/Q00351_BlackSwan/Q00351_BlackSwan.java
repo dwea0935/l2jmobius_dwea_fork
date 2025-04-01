@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q00345_MethodToRaiseTheDead.Q00345_MethodToRaiseTheDead;
 
@@ -61,7 +61,7 @@ public class Q00351_BlackSwan extends Quest
 	
 	public Q00351_BlackSwan()
 	{
-		super(351);
+		super(351, "Black Swan");
 		addStartNpc(GOSTA, ROMAN);
 		addTalkId(GOSTA, IASON_HEINE, ROMAN);
 		addKillId(TASABA_LIZARDMAN1, TASABA_LIZARDMAN_SHAMAN1, TASABA_LIZARDMAN2, TASABA_LIZARDMAN_SHAMAN2);
@@ -142,12 +142,12 @@ public class Q00351_BlackSwan extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, -1, 3, npc);
-		if ((qs == null) || !Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs == null) || !LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
-			return null;
+			return;
 		}
 		
 		final int random = getRandom(20);
@@ -171,8 +171,6 @@ public class Q00351_BlackSwan extends Quest
 		{
 			giveItemRandomly(qs.getPlayer(), npc, BARREL_OF_LEAGUE, 1, 0, 1, true);
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

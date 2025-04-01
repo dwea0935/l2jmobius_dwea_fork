@@ -26,12 +26,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -79,7 +79,7 @@ public class PhysicalDamage extends AbstractEffect
 		}
 		else
 		{
-			_abnormals = Collections.<AbnormalType> emptySet();
+			_abnormals = Collections.emptySet();
 		}
 		_abnormalDamageMod = params.getDouble("damageModifier", 1);
 		_abnormalPowerMod = params.getDouble("powerModifier", 1);
@@ -190,16 +190,17 @@ public class PhysicalDamage extends AbstractEffect
 			final double weaponMod = effector.getAttackType().isRanged() ? 70 : 77;
 			final double rangedBonus = effector.getAttackType().isRanged() ? attack + power : 0;
 			final double critMod = critical ? Formulas.calcCritDamage(effector, effected, skill) : 1;
+			final double critPSkillAdd = critical ? Formulas.calcCritDamageAdd(effector, effected, skill) : 0;
 			double ssmod = 1;
 			if (skill.useSoulShot())
 			{
 				if (effector.isChargedShot(ShotType.SOULSHOTS))
 				{
-					ssmod = 2 * effector.getStat().getValue(Stat.SHOTS_BONUS); // 2.04 for dual weapon?
+					ssmod = Math.max(1, (2 + (effector.getStat().getValue(Stat.SHOTS_BONUS) / 100))); // 2.04 for dual weapon?
 				}
 				else if (effector.isChargedShot(ShotType.BLESSED_SOULSHOTS))
 				{
-					ssmod = 4 * effector.getStat().getValue(Stat.SHOTS_BONUS);
+					ssmod = Math.max(1, (4 + (effector.getStat().getValue(Stat.SHOTS_BONUS) / 100)));
 				}
 			}
 			
@@ -216,8 +217,10 @@ public class PhysicalDamage extends AbstractEffect
 			{
 				damage *= _raceModifier;
 			}
+			
+			damage += critPSkillAdd;
 		}
 		
-		effector.doAttack(damage, effected, skill, false, false, critical, false);
+		effector.doAttack(Math.max(1, damage), effected, skill, false, false, critical, false);
 	}
 }

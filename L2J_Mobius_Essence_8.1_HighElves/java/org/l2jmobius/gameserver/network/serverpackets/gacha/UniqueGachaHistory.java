@@ -23,7 +23,7 @@ package org.l2jmobius.gameserver.network.serverpackets.gacha;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.holders.GachaItemTimeStampHolder;
+import org.l2jmobius.gameserver.model.item.holders.GachaItemTimeStampHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;

@@ -19,13 +19,13 @@ package quests.Q00372_LegacyOfInsolence;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Legacy Of Insolence (372)
@@ -443,7 +443,7 @@ public class Q00372_LegacyOfInsolence extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final ItemChanceHolder item = MONSTER_REWARDS.get(npc.getId());
 		if (npc.getId() == HALLATES_INSPECTOR)
@@ -457,10 +457,10 @@ public class Q00372_LegacyOfInsolence extends Quest
 					playSound(qs.getPlayer(), QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 			}
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
-		if (Util.checkIfInRange(1500, npc, killer, true) && (getRandom(1000) < item.getChance()))
+		if (LocationUtil.checkIfInRange(1500, npc, killer, true) && (getRandom(1000) < item.getChance()))
 		{
 			Player rewardedPlayer = null;
 			if (!killer.isInParty())
@@ -489,14 +489,12 @@ public class Q00372_LegacyOfInsolence extends Quest
 				}
 			}
 			
-			if ((rewardedPlayer != null) && Util.checkIfInRange(1500, npc, rewardedPlayer, true))
+			if ((rewardedPlayer != null) && LocationUtil.checkIfInRange(1500, npc, rewardedPlayer, true))
 			{
 				giveItems(rewardedPlayer, item.getId(), item.getCount());
 				playSound(rewardedPlayer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

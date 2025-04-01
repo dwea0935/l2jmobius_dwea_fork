@@ -26,7 +26,7 @@ public abstract class Event extends Quest
 {
 	public Event()
 	{
-		super(-1);
+		super(-1, "");
 	}
 	
 	public abstract boolean eventStart(Player eventMaker);

@@ -29,11 +29,11 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.EnchantItemExpHolder;
+import org.l2jmobius.gameserver.data.holders.EnchantStarHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.EnchantItemExpHolder;
-import org.l2jmobius.gameserver.model.holders.EnchantStarHolder;
-import org.l2jmobius.gameserver.model.holders.SkillEnchantHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillEnchantHolder;
 
 /**
  * @author Serenitty
@@ -63,9 +63,9 @@ public class SkillEnchantData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode ->
+		forEach(document, "list", listNode ->
 		{
 			forEach(listNode, "skills", skills -> forEach(skills, "skill", skill ->
 			{

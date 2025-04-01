@@ -96,7 +96,7 @@
 		<coolTime>3000</coolTime>
 		<effectPoint>0</effectPoint>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<magicCriticalRate>5</magicCriticalRate>
 		<reuseDelay>300000</reuseDelay>
@@ -597,7 +597,19 @@
 		<!-- Double-click to obtain 10 homunculus evolution points. -->
 		<icon>icon.skill0000</icon>
 		<operateType>A1</operateType>
-		<reuseDelay>1000</reuseDelay>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<hitCancelTime>0</hitCancelTime>
+		<isMagic>4</isMagic>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>83065</itemConsumeId> <!-- Homunculus Evolution Points - 10 -->
+		<magicCriticalRate>5</magicCriticalRate>
+		<magicLevel>1</magicLevel>
+		<effects>
+			<effect name="AddHomunculusEvolutionPoints">
+				<amount>10</amount>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="39869" toLevel="1" name="Sleep Cannonball Shot">
 		<!-- Puts Beast Ravager at the Beast Farm to sleep. Consumes 1 Sleep Cannonball. -->

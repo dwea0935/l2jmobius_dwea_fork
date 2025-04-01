@@ -29,7 +29,7 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 import instances.PaganTemple.PaganTempleManager;
@@ -58,7 +58,7 @@ public class PaganTempleMonsterGuard extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (!npc.isDead() && (npc.getCurrentHpPercent() <= 80) && !npc.getVariables().getBoolean("GUARD_SPAWNED", false))
 		{
@@ -74,27 +74,26 @@ public class PaganTempleMonsterGuard extends AbstractNpcAI
 			npc.getVariables().set("GUARD_SPAWNED", true);
 			for (int index = 0; index < 3; index++)
 			{
-				final Npc guard = addSpawn(npc, TRIOL_PRIEST_GUARD_01, npc.getX()/* + (Rnd.nextBoolean() ? Rnd.get(20, 50) : Rnd.get(-50, -20)) */, npc.getY()/* + (Rnd.nextBoolean() ? Rnd.get(20, 50) : Rnd.get(-50, -20)) */, npc.getZ(), Util.calculateHeadingFrom(npc.getX(), npc.getY()), true, 0L, false, npc.getInstanceId());
+				final Npc guard = addSpawn(npc, TRIOL_PRIEST_GUARD_01, npc.getX()/* + (Rnd.nextBoolean() ? Rnd.get(20, 50) : Rnd.get(-50, -20)) */, npc.getY()/* + (Rnd.nextBoolean() ? Rnd.get(20, 50) : Rnd.get(-50, -20)) */, npc.getZ(), LocationUtil.calculateHeadingFrom(npc.getX(), npc.getY()), true, 0L, false, npc.getInstanceId());
 				// npc.addSummonedNpc(guard);
 				addAttackPlayerDesire(guard, aggroPlayers.get(Rnd.get(aggroPlayers.size())));
 			}
 			for (int index = 0; index < 2; index++)
 			{
-				final Npc guard = addSpawn(npc, TRIOL_PRIEST_GUARD_WARRIOR_02, npc.getX()/* + (Rnd.nextBoolean() ? Rnd.get(20, 50) : Rnd.get(-50, -20)) */, npc.getY()/* + (Rnd.nextBoolean() ? Rnd.get(20, 50) : Rnd.get(-50, -20)) */, npc.getZ(), Util.calculateHeadingFrom(npc.getX(), npc.getY()), true, 0L, false, npc.getInstanceId());
+				final Npc guard = addSpawn(npc, TRIOL_PRIEST_GUARD_WARRIOR_02, npc.getX()/* + (Rnd.nextBoolean() ? Rnd.get(20, 50) : Rnd.get(-50, -20)) */, npc.getY()/* + (Rnd.nextBoolean() ? Rnd.get(20, 50) : Rnd.get(-50, -20)) */, npc.getZ(), LocationUtil.calculateHeadingFrom(npc.getX(), npc.getY()), true, 0L, false, npc.getInstanceId());
 				// npc.addSummonedNpc(guard);
 				addAttackPlayerDesire(guard, aggroPlayers.get(Rnd.get(aggroPlayers.size())));
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = (killer == null) || (npc == null) ? null : killer.getInstanceWorld();
 		if ((npc == null) || (world == null) || (world.getTemplateId() != PaganTempleManager.INSTANCE_TEMPLATE_ID))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		if ((npc.getId() == TRIOL_PRIEST) || (npc.getId() == TRIOL_HIGH_PRIEST))
@@ -119,8 +118,6 @@ public class PaganTempleMonsterGuard extends AbstractNpcAI
 				}
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

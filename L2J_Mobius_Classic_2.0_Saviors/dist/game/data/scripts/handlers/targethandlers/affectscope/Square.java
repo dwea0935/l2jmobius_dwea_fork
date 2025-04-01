@@ -30,7 +30,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.AffectScope;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Square affect scope implementation (actually more like a rectangle).
@@ -50,7 +50,7 @@ public class Square implements IAffectScopeHandler
 		
 		final int rectX = creature.getX();
 		final int rectY = creature.getY() - (squareWidth / 2);
-		final double heading = Math.toRadians(squareStartAngle + Util.convertHeadingToDegree(creature.getHeading()));
+		final double heading = Math.toRadians(squareStartAngle + LocationUtil.convertHeadingToDegree(creature.getHeading()));
 		final double cos = Math.cos(-heading);
 		final double sin = Math.sin(-heading);
 		

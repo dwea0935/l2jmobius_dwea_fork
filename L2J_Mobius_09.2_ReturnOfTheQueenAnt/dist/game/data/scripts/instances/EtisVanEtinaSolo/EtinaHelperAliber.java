@@ -20,9 +20,7 @@
  */
 package instances.EtisVanEtinaSolo;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -33,13 +31,15 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyNpc;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttacked;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -138,7 +138,7 @@ public class EtinaHelperAliber extends AbstractNpcAI
 							{
 								npc.setTarget(getRandomEntry(World.getInstance().getVisibleObjectsInRange(npc, Monster.class, 2500)));
 							}
-							if ((target != null) && !target.isInvul() && target.isTargetable() && GeoEngine.getInstance().canSeeTarget(npc, target) && !CommonUtil.contains(NOT_ATK_NPCS, target.getId()) && !CommonUtil.contains(ETINA_HELPERS, target.getId()))
+							if ((target != null) && !target.isInvul() && target.isTargetable() && GeoEngine.getInstance().canSeeTarget(npc, target) && !ArrayUtil.contains(NOT_ATK_NPCS, target.getId()) && !ArrayUtil.contains(ETINA_HELPERS, target.getId()))
 							{
 								npc.setInvul(true);
 								npc.setRunning();
@@ -160,7 +160,7 @@ public class EtinaHelperAliber extends AbstractNpcAI
 						aliber.setRunning();
 						aliber.setInvul(true);
 						aliber.setCanReturnToSpawnPoint(false);
-						if (aliber.getLocation().isIn2DRadius(SKILL_CAST_LOCATIONS[0], 10) && !destroyed && !aliber.isMoving())
+						if ((aliber.calculateDistance2D(SKILL_CAST_LOCATIONS[0]) < 10) && !destroyed && !aliber.isMoving())
 						{
 							aliber.broadcastPacket(new MagicSkillUse(aliber, aliber, BARRICADE_DESTRUCTION.getSkillId(), 1, 500, 0));
 							aliber.broadcastPacket(new ExShowScreenMessage(NpcStringId.ALIBER_IS_CASTING_A_SPELL_TO_DESTROY_THE_BARRICADE, ExShowScreenMessage.TOP_CENTER, 7000, true));
@@ -176,13 +176,13 @@ public class EtinaHelperAliber extends AbstractNpcAI
 						}
 						else
 						{
-							aliber.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, SKILL_CAST_LOCATIONS[0]);
+							aliber.getAI().setIntention(Intention.MOVE_TO, SKILL_CAST_LOCATIONS[0]);
 						}
 					}
 					else if (!instance.getNpcsOfGroup("BARRICADES_2").isEmpty() && (instance.getAliveNpcCount(CORRIDOR_MOBS_1) == 0) && instance.getNpcsOfGroup("BARRICADES_1").isEmpty())
 					{
 						aliber.setRunning();
-						if (aliber.getLocation().isIn2DRadius(SKILL_CAST_LOCATIONS[1], 10) && !destroyed && !aliber.isMoving())
+						if ((aliber.calculateDistance2D(SKILL_CAST_LOCATIONS[1]) < 10) && !destroyed && !aliber.isMoving())
 						{
 							aliber.broadcastPacket(new MagicSkillUse(aliber, aliber, BARRICADE_DESTRUCTION.getSkillId(), 1, 500, 0));
 							aliber.broadcastPacket(new ExShowScreenMessage(NpcStringId.ALIBER_IS_CASTING_A_SPELL_TO_DESTROY_THE_BARRICADE, ExShowScreenMessage.TOP_CENTER, 7000, true));
@@ -198,13 +198,13 @@ public class EtinaHelperAliber extends AbstractNpcAI
 						}
 						else
 						{
-							aliber.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, SKILL_CAST_LOCATIONS[1]);
+							aliber.getAI().setIntention(Intention.MOVE_TO, SKILL_CAST_LOCATIONS[1]);
 						}
 					}
 					else if (!instance.getNpcsOfGroup("BARRICADES_3").isEmpty() && (instance.getAliveNpcCount(CORRIDOR_MOBS_2) == 0) && instance.getNpcsOfGroup("BARRICADES_2").isEmpty())
 					{
 						aliber.setRunning();
-						if (aliber.getLocation().isIn2DRadius(SKILL_CAST_LOCATIONS[2], 10) && !destroyed && !aliber.isMoving())
+						if ((aliber.calculateDistance2D(SKILL_CAST_LOCATIONS[2]) < 10) && !destroyed && !aliber.isMoving())
 						{
 							aliber.broadcastPacket(new MagicSkillUse(aliber, aliber, BARRICADE_DESTRUCTION.getSkillId(), 1, 500, 0));
 							aliber.broadcastPacket(new ExShowScreenMessage(NpcStringId.ALIBER_IS_CASTING_A_SPELL_TO_DESTROY_THE_BARRICADE, ExShowScreenMessage.TOP_CENTER, 7000, true));
@@ -220,13 +220,13 @@ public class EtinaHelperAliber extends AbstractNpcAI
 						}
 						else
 						{
-							aliber.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, SKILL_CAST_LOCATIONS[2]);
+							aliber.getAI().setIntention(Intention.MOVE_TO, SKILL_CAST_LOCATIONS[2]);
 						}
 					}
 					else if (!instance.getNpcsOfGroup("BARRICADES_4").isEmpty() && (instance.getAliveNpcCount(CORRIDOR_MOBS_3) == 0) && instance.getNpcsOfGroup("BARRICADES_3").isEmpty())
 					{
 						aliber.setRunning();
-						if (aliber.getLocation().isIn2DRadius(SKILL_CAST_LOCATIONS[3], 10) && !destroyed && !aliber.isMoving())
+						if ((aliber.calculateDistance2D(SKILL_CAST_LOCATIONS[3]) < 10) && !destroyed && !aliber.isMoving())
 						{
 							aliber.broadcastPacket(new MagicSkillUse(aliber, aliber, BARRICADE_DESTRUCTION.getSkillId(), 1, 500, 0));
 							aliber.broadcastPacket(new ExShowScreenMessage(NpcStringId.ALIBER_IS_CASTING_A_SPELL_TO_DESTROY_THE_BARRICADE, ExShowScreenMessage.TOP_CENTER, 7000, true));
@@ -242,7 +242,7 @@ public class EtinaHelperAliber extends AbstractNpcAI
 						}
 						else
 						{
-							aliber.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, SKILL_CAST_LOCATIONS[3]);
+							aliber.getAI().setIntention(Intention.MOVE_TO, SKILL_CAST_LOCATIONS[3]);
 						}
 					}
 					break;
@@ -257,7 +257,7 @@ public class EtinaHelperAliber extends AbstractNpcAI
 		if ((npc != null) && !npc.isInCombat())
 		{
 			final Instance instance = npc.getInstanceWorld();
-			if ((instance != null) && !event.getAttacker().isPlayable() && (getRandom(50) < 5) && !CommonUtil.contains(ETINA_HELPERS, event.getAttacker().getId()))
+			if ((instance != null) && !event.getAttacker().isPlayable() && (getRandom(50) < 5) && !ArrayUtil.contains(ETINA_HELPERS, event.getAttacker().getId()))
 			{
 				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.RAGE_AGAINST_ALL_THAT_STANDS_IN_OUR_WAY);
 			}
@@ -277,13 +277,12 @@ public class EtinaHelperAliber extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
 			npc.getVariables().set("PLAYER_OBJECT", creature.asPlayer());
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public static void main(String[] args)

@@ -797,7 +797,7 @@
 		<table name="#mAtkSpd">1.04 1.08 1.12 1.16 1.08 1 1 1 1 1</table>
 		<table name="#MpConsumeRate">1 0.96 0.96 0.96 0.92 0.92 0.92 0.88 0.88 0.84</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="600" />
+		<set name="abnormalTime" val="3600" />
 		<set name="abnormalType" val="SPA_DISEASE_D" />
 		<set name="abnormalVisualEffect" val="DOT_POISON" />
 		<set name="castRange" val="3600" />

@@ -30,7 +30,7 @@ import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayableExpChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayableExpChanged;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.stats.Stat;
@@ -96,9 +96,15 @@ public class PlayableStat extends CreatureStat
 		if ((getLevel() > oldLevel) && playable.isPlayer())
 		{
 			final Player player = playable.asPlayer();
-			if (SkillTreeData.getInstance().hasAvailableSkills(player, player.getClassId()))
+			if (SkillTreeData.getInstance().hasAvailableSkills(player, player.getPlayerClass()))
 			{
 				player.sendPacket(ExNewSkillToLearnByLevelUp.STATIC_PACKET);
+			}
+			
+			// Send quest list.
+			if (!Config.DISABLE_TUTORIAL)
+			{
+				player.sendQuestList();
 			}
 		}
 		

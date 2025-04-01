@@ -16,10 +16,10 @@
  */
 package handlers.bypasshandlers;
 
-import org.l2jmobius.gameserver.enums.HtmlActionScope;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.enums.HtmlActionScope;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialCloseHtml;
 
 /**

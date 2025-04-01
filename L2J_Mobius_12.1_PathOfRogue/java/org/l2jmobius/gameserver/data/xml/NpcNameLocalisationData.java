@@ -79,9 +79,9 @@ public class NpcNameLocalisationData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "localisation", localisationNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "localisation", localisationNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(localisationNode));
 			NPC_NAME_LOCALISATIONS.get(_lang).put(set.getInt("id"), new String[]
@@ -93,9 +93,10 @@ public class NpcNameLocalisationData implements IXmlReader
 	}
 	
 	/**
-	 * @param lang
-	 * @param id
-	 * @return a String Array[] that contains NPC name and title or Null if is does not exist.
+	 * Retrieves the localization data for a specified NPC in a given language.
+	 * @param lang the language code for localization (e.g., "en", "fr").
+	 * @param id the unique identifier of the NPC.
+	 * @return a {@code String[]} array containing the NPC's name and title, or {@code null} if the localization data does not exist for the given language and ID.
 	 */
 	public String[] getLocalisation(String lang, int id)
 	{
@@ -107,6 +108,11 @@ public class NpcNameLocalisationData implements IXmlReader
 		return null;
 	}
 	
+	/**
+	 * Checks if localization data exists for a specified NPC ID across all available languages.
+	 * @param id the unique identifier of the NPC.
+	 * @return {@code true} if localization data exists for the specified NPC ID in any language, {@code false} otherwise.
+	 */
 	public boolean hasLocalisation(int id)
 	{
 		for (Map<Integer, String[]> data : NPC_NAME_LOCALISATIONS.values())

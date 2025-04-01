@@ -21,7 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.commons.network.ReadablePacket;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -42,7 +42,7 @@ public abstract class ClientPacket extends ReadablePacket<GameClient>
 		catch (Exception e)
 		{
 			PacketLogger.warning("Client: " + getClient() + " - Failed reading: " + getClass().getSimpleName() + " ; " + e.getMessage());
-			PacketLogger.warning(CommonUtil.getStackTrace(e));
+			PacketLogger.warning(TraceUtil.getStackTrace(e));
 		}
 		return false;
 	}
@@ -59,7 +59,7 @@ public abstract class ClientPacket extends ReadablePacket<GameClient>
 		catch (Exception e)
 		{
 			PacketLogger.warning("Client: " + getClient() + " - Failed running: " + getClass().getSimpleName() + " ; " + e.getMessage());
-			PacketLogger.warning(CommonUtil.getStackTrace(e));
+			PacketLogger.warning(TraceUtil.getStackTrace(e));
 			
 			// In case of EnterWorld error kick player from game.
 			if (this instanceof EnterWorld)

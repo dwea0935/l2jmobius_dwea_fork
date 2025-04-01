@@ -10,7 +10,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17709" level="8" /> <!-- Pearl -->
+			<skill id="17709" level="8" /> <!-- Greater Pearl -->
 		</skills>
 	</item>
 	<item id="48801" name="Greater Pearl" additionalName="Lv. 4" type="Armor">
@@ -23,7 +23,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17709" level="9" /> <!-- Pearl -->
+			<skill id="17709" level="9" /> <!-- Greater Pearl -->
 		</skills>
 	</item>
 	<item id="48802" name="Greater Pearl" additionalName="Lv. 5" type="Armor">
@@ -36,7 +36,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="17709" level="10" /> <!-- Pearl -->
+			<skill id="17709" level="10" /> <!-- Greater Pearl -->
 		</skills>
 	</item>
 	<item id="48803" name="Greater Vital Stone" additionalName="Lv. 2" type="Armor">
@@ -49,7 +49,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18568" level="7" /> <!-- Vital Stone -->
+			<skill id="18568" level="7" /> <!-- Greater Vital Stone -->
 			<skill id="27439" level="4" /> <!-- Vital Stone - Vital Wind -->
 		</skills>
 	</item>
@@ -63,7 +63,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18568" level="8" /> <!-- Vital Stone -->
+			<skill id="18568" level="8" /> <!-- Greater Vital Stone -->
 			<skill id="27439" level="4" /> <!-- Vital Stone - Vital Wind -->
 		</skills>
 	</item>
@@ -78,7 +78,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18568" level="9" /> <!-- Vital Stone -->
+			<skill id="18568" level="9" /> <!-- Greater Vital Stone -->
 			<skill id="27439" level="4" /> <!-- Vital Stone - Vital Wind -->
 		</skills>
 	</item>
@@ -93,7 +93,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18568" level="10" /> <!-- Vital Stone -->
+			<skill id="18568" level="10" /> <!-- Greater Vital Stone -->
 			<skill id="27439" level="5" /> <!-- Vital Stone - Vital Wind -->
 		</skills>
 	</item>
@@ -107,8 +107,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="7" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="7" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Cancel Debuffs -->
 		</skills>
 	</item>
 	<item id="48808" name="Greater Garnet" additionalName="Lv. 3" type="Armor">
@@ -121,8 +121,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="8" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="8" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Cancel Debuffs -->
 		</skills>
 	</item>
 	<item id="48809" name="Greater Garnet" additionalName="Lv. 4" type="Armor">
@@ -135,8 +135,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="9" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="9" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Cancel Debuffs -->
 		</skills>
 	</item>
 	<item id="48810" name="Greater Garnet" additionalName="Lv. 5" type="Armor">
@@ -149,8 +149,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18566" level="10" /> <!-- Garnet -->
-			<skill id="18567" level="2" /> <!-- Garnet - Purge -->
+			<skill id="18566" level="10" /> <!-- Greater Garnet -->
+			<skill id="18567" level="2" /> <!-- Greater Garnet - Cancel Debuffs -->
 		</skills>
 	</item>
 	<item id="48811" name="Greater Tanzanite" additionalName="Lv. 2" type="Armor">
@@ -163,7 +163,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18815" level="7" /> <!-- Tanzanite -->
+			<skill id="18815" level="7" /> <!-- Greater Tanzanite -->
 			<skill id="18565" level="7" /> <!-- Greater Tanzanite - Barrier -->
 		</skills>
 	</item>
@@ -177,7 +177,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18815" level="8" /> <!-- Tanzanite -->
+			<skill id="18815" level="8" /> <!-- Greater Tanzanite -->
 			<skill id="18565" level="8" /> <!-- Greater Tanzanite - Barrier -->
 		</skills>
 	</item>
@@ -191,7 +191,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18815" level="9" /> <!-- Tanzanite -->
+			<skill id="18815" level="9" /> <!-- Greater Tanzanite -->
 			<skill id="18565" level="9" /> <!-- Greater Tanzanite - Barrier -->
 		</skills>
 	</item>
@@ -205,7 +205,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18815" level="10" /> <!-- Tanzanite -->
+			<skill id="18815" level="10" /> <!-- Greater Tanzanite -->
 			<skill id="18565" level="10" /> <!-- Greater Tanzanite - Barrier -->
 		</skills>
 	</item>
@@ -219,7 +219,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18713" level="7" /> <!-- Red Cat's Eye -->
+			<skill id="18713" level="7" /> <!-- Greater Red Cat's Eye -->
 		</skills>
 	</item>
 	<item id="48816" name="Greater Red Cat's Eye" additionalName="Lv. 3" type="Armor">
@@ -232,7 +232,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18713" level="8" /> <!-- Red Cat's Eye -->
+			<skill id="18713" level="8" /> <!-- Greater Red Cat's Eye -->
 		</skills>
 	</item>
 	<item id="48817" name="Greater Red Cat's Eye" additionalName="Lv. 4" type="Armor">
@@ -245,7 +245,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18713" level="9" /> <!-- Red Cat's Eye -->
+			<skill id="18713" level="9" /> <!-- Greater Red Cat's Eye -->
 		</skills>
 	</item>
 	<item id="48818" name="Greater Red Cat's Eye" additionalName="Lv. 5" type="Armor">
@@ -258,7 +258,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18713" level="10" /> <!-- Red Cat's Eye -->
+			<skill id="18713" level="10" /> <!-- Greater Red Cat's Eye -->
 		</skills>
 	</item>
 	<item id="48819" name="Greater Blue Cat's Eye" additionalName="Lv. 2" type="Armor">
@@ -271,7 +271,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18714" level="7" /> <!-- Blue Cat's Eye -->
+			<skill id="18714" level="7" /> <!-- Greater Blue Cat's Eye -->
 		</skills>
 	</item>
 	<item id="48820" name="Greater Blue Cat's Eye" additionalName="Lv. 3" type="Armor">
@@ -284,7 +284,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18714" level="8" /> <!-- Blue Cat's Eye -->
+			<skill id="18714" level="8" /> <!-- Greater Blue Cat's Eye -->
 		</skills>
 	</item>
 	<item id="48821" name="Greater Blue Cat's Eye" additionalName="Lv. 4" type="Armor">
@@ -297,7 +297,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18714" level="9" /> <!-- Blue Cat's Eye -->
+			<skill id="18714" level="9" /> <!-- Greater Blue Cat's Eye -->
 		</skills>
 	</item>
 	<item id="48822" name="Greater Blue Cat's Eye" additionalName="Lv. 5" type="Armor">
@@ -310,7 +310,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="material" val="FISH" />
 		<skills>
-			<skill id="18714" level="10" /> <!-- Blue Cat's Eye -->
+			<skill id="18714" level="10" /> <!-- Greater Blue Cat's Eye -->
 		</skills>
 	</item>
 	<item id="48823" name="Freya's Ice Staff" additionalName="Event" type="Weapon">
@@ -582,7 +582,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="commissionItemType" val="BRACELET" />
 		<skills>
-			<skill id="35214" level="3" /> <!-- Lucien's Bracelet - Attack -->
+			<skill id="35214" level="3" /> <!-- Lucien's Bracelet - Attack Enchant Effects -->
 		</skills>
 	</item>
 	<item id="48843" name="Lucien's Bracelet" additionalName="Magic" type="Armor">
@@ -600,7 +600,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="commissionItemType" val="BRACELET" />
 		<skills>
-			<skill id="35215" level="3" /> <!-- Lucien's Bracelet - Magic -->
+			<skill id="35215" level="3" /> <!-- Lucien's Bracelet - Magic Enchant Effects -->
 		</skills>
 	</item>
 	<item id="48844" name="Lucien's Bracelet" additionalName="Defense" type="Armor">
@@ -618,7 +618,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="commissionItemType" val="BRACELET" />
 		<skills>
-			<skill id="35216" level="3" /> <!-- Lucien's Bracelet - Defense -->
+			<skill id="35216" level="3" /> <!-- Lucien's Bracelet - Defense Enchant Effects -->
 		</skills>
 	</item>
 	<item id="48845" name="Blessed Scroll: Enchant Lucien's Bracelet" type="EtcItem">
@@ -678,7 +678,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="LIQUID" />
 		<skills>
-			<skill id="39355" level="1" /> <!-- Freya's Ice Rose -->
+			<skill id="39355" level="1" /> <!-- Freya's Ice Rose - Event -->
 		</skills>
 	</item>
 	<item id="48849" name="Chronicle Token" additionalName="30-day" type="EtcItem">
@@ -813,7 +813,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="reuse_delay" val="300000" />
 		<skills>
-			<skill id="39356" level="1" /> <!-- Glowing Dragon's Attribute Potion -->
+			<skill id="39356" level="1" /> <!-- Shining Dragon Attribute Tonic (XP) -->
 		</skills>
 	</item>
 	<item id="48858" name="Mysterious Ancient Herb" type="EtcItem">

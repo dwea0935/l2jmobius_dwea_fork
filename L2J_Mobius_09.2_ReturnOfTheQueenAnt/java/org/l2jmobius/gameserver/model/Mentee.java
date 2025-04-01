@@ -88,9 +88,9 @@ public class Mentee
 	
 	public int getClassId()
 	{
-		if (isOnline() && (getPlayer().getClassId().getId() != _classId))
+		if (isOnline() && (getPlayer().getPlayerClass().getId() != _classId))
 		{
-			_classId = getPlayer().getClassId().getId();
+			_classId = getPlayer().getPlayerClass().getId();
 		}
 		return _classId;
 	}

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="21000" level="54" type="Monster" name="Soul of Ruins" element="FIRE">
 		<!-- L2wiki: https://l2wiki.com/classic/Soul_of_Ruins -->
@@ -2168,7 +2168,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="98" /> <!-- rhand: Halberd -->
 		<acquire exp="3235" sp="134" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="934.704377634099" hpRegen="4.5" mp="447.96" mpRegen="1.8" />
@@ -2388,7 +2387,7 @@
 			<attack physical="261.69549" magical="178.7041" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="186.63569" magical="136.5719" />
 			<speed>
-				<walk ground="70" />
+				<walk ground="80" />
 				<run ground="174" />
 			</speed>
 			<hitTime>410</hitTime>
@@ -2494,7 +2493,7 @@
 			<attack physical="290.44588" magical="198.33688" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="195.66302" magical="143.17771" />
 			<speed>
-				<walk ground="25" />
+				<walk ground="15" />
 				<run ground="174" />
 			</speed>
 			<hitTime>100</hitTime>
@@ -4735,7 +4734,6 @@
 		</parameters>
 		<race>DRAGON</race>
 		<sex>MALE</sex>
-		<equipment rhand="3939" /> <!-- rhand: Lady's Fan -->
 		<acquire exp="3878958" sp="116369" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="5371.25325" hpRegen="17" mp="2614.5" mpRegen="6" />
@@ -4887,7 +4885,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="1472" /> <!-- rhand: Dreadbane -->
 		<acquire exp="31444" sp="3317" /> <!-- Need confirm retail values -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="5307.6525" hpRegen="17" mp="2563.2" mpRegen="6" />

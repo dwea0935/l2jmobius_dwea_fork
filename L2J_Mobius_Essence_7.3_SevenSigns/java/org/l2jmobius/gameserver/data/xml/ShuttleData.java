@@ -69,13 +69,13 @@ public class ShuttleData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		NamedNodeMap attrs;
 		StatSet set;
 		Node att;
 		ShuttleDataHolder data;
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -159,6 +159,10 @@ public class ShuttleData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Initializes all shuttles based on the data stored in the `_shuttles` map.<br>
+	 * For each `ShuttleDataHolder`, this method creates a `Shuttle` instance, sets its location, heading, and speed properties and registers and starts its engine.
+	 */
 	private void init()
 	{
 		for (ShuttleDataHolder data : _shuttles.values())
@@ -176,6 +180,11 @@ public class ShuttleData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Retrieves a `Shuttle` instance by its unique object ID or shuttle ID.
+	 * @param id the ID to search for, which can be either the shuttle's object ID or its specific shuttle ID
+	 * @return the `Shuttle` instance that matches the specified ID, or {@code null} if no such shuttle exists
+	 */
 	public Shuttle getShuttle(int id)
 	{
 		for (Shuttle shuttle : _shuttleInstances.values())

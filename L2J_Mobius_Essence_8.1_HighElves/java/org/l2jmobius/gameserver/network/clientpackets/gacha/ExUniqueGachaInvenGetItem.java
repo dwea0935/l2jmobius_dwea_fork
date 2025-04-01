@@ -23,9 +23,9 @@ package org.l2jmobius.gameserver.network.clientpackets.gacha;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.instancemanager.events.UniqueGachaManager;
+import org.l2jmobius.gameserver.managers.events.UniqueGachaManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.gacha.UniqueGachaInvenGetItem;
 

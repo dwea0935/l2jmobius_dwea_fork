@@ -16,10 +16,8 @@
  */
 package ai.bosses.Octavis;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -27,14 +25,16 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.ScriptZone;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowUsm;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import instances.AbstractInstance;
 
@@ -362,7 +362,7 @@ public class OctavisWarzone extends AbstractInstance
 					final Npc beast = addSpawn((!isExtremeMode(world) ? BEASTS_MINIONS[0] : BEASTS_MINIONS[1]), getRandomEntry(BEASTS_MINIONS_LOC), false, 0, false, world.getId());
 					beast.setRunning();
 					beast.asAttackable().setCanReturnToSpawnPoint(false);
-					addMoveToDesire(beast, Util.getRandomPosition(BEASTS_RANDOM_POINT, 500, 500), 23);
+					addMoveToDesire(beast, LocationUtil.getRandomLocation(BEASTS_RANDOM_POINT, 500, 500), 23);
 				}
 				
 				getTimers().addTimer("BEASTS_MINIONS_SPAWN", 30000 + (getRandom(10) * 1000), npc, null);
@@ -373,7 +373,7 @@ public class OctavisWarzone extends AbstractInstance
 				final Creature mostHated = npc.asAttackable().getMostHated();
 				if ((mostHated != null) && mostHated.isPlayer() && (npc.calculateDistance3D(npc) < 5000))
 				{
-					World.getInstance().getVisibleObjectsInRange(npc, Attackable.class, 4000, obj -> CommonUtil.contains(BEASTS_MINIONS, obj.getId()) || CommonUtil.contains(GLADIATORS, obj.getId())).forEach(minion -> addAttackPlayerDesire(minion, mostHated.asPlayer(), 23));
+					World.getInstance().getVisibleObjectsInRange(npc, Attackable.class, 4000, obj -> ArrayUtil.contains(BEASTS_MINIONS, obj.getId()) || ArrayUtil.contains(GLADIATORS, obj.getId())).forEach(minion -> addAttackPlayerDesire(minion, mostHated.asPlayer(), 23));
 				}
 				getTimers().addTimer("MINION_CALL", 5000 + (getRandom(5) * 1000), npc, null);
 				break;
@@ -405,13 +405,13 @@ public class OctavisWarzone extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
 		{
 			final int hpPer = npc.getCurrentHpPercent();
-			if (CommonUtil.contains(OCTAVIS_STAGE_1, npc.getId()))
+			if (ArrayUtil.contains(OCTAVIS_STAGE_1, npc.getId()))
 			{
 				if (hpPer >= 90)
 				{
@@ -438,7 +438,7 @@ public class OctavisWarzone extends AbstractInstance
 					npc.setDisplayEffect(5);
 				}
 			}
-			else if (CommonUtil.contains(OCTAVIS_STAGE_2, npc.getId()))
+			else if (ArrayUtil.contains(OCTAVIS_STAGE_2, npc.getId()))
 			{
 				final StatSet npcVars = npc.getVariables();
 				if (npcVars.getBoolean("START_TIMERS", true))
@@ -470,16 +470,15 @@ public class OctavisWarzone extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
 		{
-			if (CommonUtil.contains(OCTAVIS_STAGE_1, npc.getId()))
+			if (ArrayUtil.contains(OCTAVIS_STAGE_1, npc.getId()))
 			{
 				getTimers().cancelTimer("FOLLOW_BEASTS", npc, null);
 				world.getAliveNpcs(BEASTS).forEach(beast ->
@@ -490,7 +489,7 @@ public class OctavisWarzone extends AbstractInstance
 				});
 				getTimers().addTimer("END_STAGE_1", 1000, null, killer);
 			}
-			else if (CommonUtil.contains(OCTAVIS_STAGE_2, npc.getId()))
+			else if (ArrayUtil.contains(OCTAVIS_STAGE_2, npc.getId()))
 			{
 				// Cancel timers
 				getTimers().cancelTimer("BEASTS_MINIONS_SPAWN", npc, null);
@@ -507,13 +506,12 @@ public class OctavisWarzone extends AbstractInstance
 				}
 				getTimers().addTimer("END_STAGE_2", 3000, null, killer);
 			}
-			else if (CommonUtil.contains(OCTAVIS_STAGE_3, npc.getId()))
+			else if (ArrayUtil.contains(OCTAVIS_STAGE_3, npc.getId()))
 			{
 				world.finishInstance();
 				getTimers().addTimer("END_STAGE_3", 2000, null, killer);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -526,7 +524,7 @@ public class OctavisWarzone extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -535,7 +533,6 @@ public class OctavisWarzone extends AbstractInstance
 			world.openCloseDoor(npc.getParameters().getInt("My_DoorName", -1), true);
 			getTimers().addTimer("GLADIATOR_MOVING", 3000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -549,17 +546,16 @@ public class OctavisWarzone extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if (skill.getId() == STAGE_2_SKILL_3.getSkillId())
 		{
 			npc.setDisplayEffect(6);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world) && creature.isPlayer() && npc.isScriptValue(0))
@@ -569,18 +565,16 @@ public class OctavisWarzone extends AbstractInstance
 			getTimers().addTimer("SECOND_DOOR_OPEN", 3000, npc, null);
 			getTimers().addTimer("CLOSE_DOORS", 60000, npc, null);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		final Instance world = creature.getInstanceWorld();
 		if (creature.isPlayer() && isInInstance(world) && world.getParameters().getBoolean("TELEPORT_ACTIVE", false))
 		{
 			creature.teleToLocation(BATTLE_LOC);
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	private boolean isExtremeMode(Instance instance)

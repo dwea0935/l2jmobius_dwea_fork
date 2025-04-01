@@ -29,21 +29,24 @@ import org.l2jmobius.gameserver.data.xml.EnchantChallengePointData.EnchantChalle
 import org.l2jmobius.gameserver.data.xml.EnchantChallengePointData.EnchantChallengePointsOptionInfo;
 import org.l2jmobius.gameserver.data.xml.EnchantItemData;
 import org.l2jmobius.gameserver.data.xml.ItemCrystallizationData;
-import org.l2jmobius.gameserver.enums.ItemSkillType;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
+import org.l2jmobius.gameserver.managers.events.BlackCouponManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.EnchantItemRequest;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantResultType;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantScroll;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantSupportItem;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.enums.ItemSkillType;
 import org.l2jmobius.gameserver.network.serverpackets.ExItemAnnounce;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
@@ -51,7 +54,6 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.enchant.EnchantResult;
 import org.l2jmobius.gameserver.network.serverpackets.enchant.challengepoint.ExEnchantChallengePointInfo;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
 
 public class RequestEnchantItem extends ClientPacket
 {
@@ -137,27 +139,27 @@ public class RequestEnchantItem extends ClientPacket
 		// Fast auto-enchant cheat check.
 		// if ((request.getTimestamp() == 0) || ((System.currentTimeMillis() - request.getTimestamp()) < 600))
 		// {
-		// Util.handleIllegalPlayerAction(player, player + " use autoenchant program ", Config.DEFAULT_PUNISH);
+		// PunishmentManager.handleIllegalPlayerAction(player, player + " use autoenchant program ", Config.DEFAULT_PUNISH);
 		// player.removeRequest(request.getClass());
 		// player.sendPacket(new EnchantResult(EnchantResult.ERROR, null, null, 0));
 		// return;
 		// }
 		
 		// Attempting to destroy scroll.
-		if (player.getInventory().destroyItem("Enchant", scroll.getObjectId(), 1, player, item) == null)
+		if (player.getInventory().destroyItem(ItemProcessType.FEE, scroll.getObjectId(), 1, player, item) == null)
 		{
 			player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
-			Util.handleIllegalPlayerAction(player, player + " tried to enchant with a scroll he doesn't have", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to enchant with a scroll he doesn't have", Config.DEFAULT_PUNISH);
 			player.removeRequest(request.getClass());
 			player.sendPacket(new EnchantResult(EnchantResult.ERROR, null, null, 0));
 			return;
 		}
 		
 		// Attempting to destroy support if exists.
-		if ((support != null) && (player.getInventory().destroyItem("Enchant", support.getObjectId(), 1, player, item) == null))
+		if ((support != null) && (player.getInventory().destroyItem(ItemProcessType.FEE, support.getObjectId(), 1, player, item) == null))
 		{
 			player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
-			Util.handleIllegalPlayerAction(player, player + " tried to enchant with a support item he doesn't have", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to enchant with a support item he doesn't have", Config.DEFAULT_PUNISH);
 			player.removeRequest(request.getClass());
 			player.sendPacket(new EnchantResult(EnchantResult.ERROR, null, null, 0));
 			return;
@@ -218,11 +220,13 @@ public class RequestEnchantItem extends ClientPacket
 						
 						if (supportTemplate != null)
 						{
-							item.setEnchantLevel(Math.min(item.getEnchantLevel() + Rnd.get(supportTemplate.getRandomEnchantMin(), supportTemplate.getRandomEnchantMax()), supportTemplate.getMaxEnchantLevel()));
+							final int randomSupportValue = Rnd.get(1, 100) >= supportTemplate.getRandomEnchantChance() ? supportTemplate.getRandomEnchantMin() : Rnd.get(supportTemplate.getRandomEnchantMin(), supportTemplate.getRandomEnchantMax());
+							item.setEnchantLevel(Math.min(item.getEnchantLevel() + randomSupportValue, supportTemplate.getMaxEnchantLevel()));
 						}
 						if (supportTemplate == null)
 						{
-							item.setEnchantLevel(Math.min(item.getEnchantLevel() + Rnd.get(scrollTemplate.getRandomEnchantMin(), scrollTemplate.getRandomEnchantMax()), scrollTemplate.getMaxEnchantLevel()));
+							final int randomScrollValue = Rnd.get(1, 100) >= scrollTemplate.getRandomEnchantChance() ? scrollTemplate.getRandomEnchantMin() : Rnd.get(scrollTemplate.getRandomEnchantMin(), scrollTemplate.getRandomEnchantMax());
+							item.setEnchantLevel(Math.min(item.getEnchantLevel() + randomScrollValue, scrollTemplate.getMaxEnchantLevel()));
 						}
 						else
 						{
@@ -462,11 +466,13 @@ public class RequestEnchantItem extends ClientPacket
 							// add challenge point
 							EnchantChallengePointData.getInstance().handleFailure(player, item);
 							player.sendPacket(new ExEnchantChallengePointInfo(player));
+							
 							// Enchant failed, destroy item.
-							if (player.getInventory().destroyItem("Enchant", item, player, null) == null)
+							BlackCouponManager.getInstance().createNewRecord(player.getObjectId(), item.getId(), (short) item.getEnchantLevel());
+							if (player.getInventory().destroyItem(ItemProcessType.FEE, item, player, null) == null)
 							{
 								// Unable to destroy item, cheater?
-								Util.handleIllegalPlayerAction(player, "Unable to delete item on enchant failure from " + player + ", possible cheater !", Config.DEFAULT_PUNISH);
+								PunishmentManager.handleIllegalPlayerAction(player, "Unable to delete item on enchant failure from " + player + ", possible cheater !", Config.DEFAULT_PUNISH);
 								player.removeRequest(request.getClass());
 								player.sendPacket(new EnchantResult(EnchantResult.ERROR, null, null, 0));
 								if (Config.LOG_ITEM_ENCHANTS)
@@ -507,7 +513,7 @@ public class RequestEnchantItem extends ClientPacket
 							final int crystalId = item.getTemplate().getCrystalItemId();
 							if (count > 0)
 							{
-								crystals = player.getInventory().addItem("Enchant", crystalId, count, player, item);
+								crystals = player.getInventory().addItem(ItemProcessType.COMPENSATE, crystalId, count, player, item);
 								final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1_X_S2);
 								sm.addItemName(crystals);
 								sm.addLong(count);
@@ -528,7 +534,7 @@ public class RequestEnchantItem extends ClientPacket
 								final ItemChanceHolder destroyReward = ItemCrystallizationData.getInstance().getItemOnDestroy(player, item);
 								if ((destroyReward != null) && (Rnd.get(100) < destroyReward.getChance()))
 								{
-									player.addItem("Enchant", destroyReward, player, true);
+									player.addItem(ItemProcessType.COMPENSATE, destroyReward, player, true);
 									player.sendPacket(new EnchantResult(EnchantResult.FAIL, new ItemHolder(crystalId, count), destroyReward, 0));
 								}
 								else

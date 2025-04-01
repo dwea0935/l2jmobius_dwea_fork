@@ -52,13 +52,11 @@
 		<operateType>A1</operateType>
 		<targetType>SELF</targetType>
 		<affectScope>SINGLE</affectScope>
-		<affectScope>SINGLE</affectScope>
 		<hitTime>1000</hitTime>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>39514</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
-		<magicLevel>1</magicLevel>
 		<magicLevel>1</magicLevel>
 		<cond msgId="113" addName="1">
 			<and>
@@ -87,7 +85,6 @@
 		<itemConsumeId>39515</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
-		<magicLevel>1</magicLevel>
 		<cond msgId="113" addName="1">
 			<and>
 				<player canEscape="true" />
@@ -115,7 +112,6 @@
 		<itemConsumeId>39516</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
-		<magicLevel>1</magicLevel>
 		<cond msgId="113" addName="1">
 			<and>
 				<player canEscape="true" />
@@ -142,7 +138,6 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>39517</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
-		<magicLevel>1</magicLevel>
 		<magicLevel>1</magicLevel>
 		<cond msgId="113" addName="1">
 			<and>

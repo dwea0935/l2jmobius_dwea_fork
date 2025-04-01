@@ -47,7 +47,7 @@ public class DummyIfrit extends AbstractNpcAI
 		final Instance world = npc.getInstanceWorld();
 		if ((world == null) || (world.getTemplateId() != ValakasTemple.VALAKAS_TEMPLE_INSTANCE_ID))
 		{
-			return super.onSpawn(npc);
+			return null;
 		}
 		
 		if (world.getStatus() == ValakasTemple.GOTO_DUMMY_IFRIT)
@@ -66,12 +66,12 @@ public class DummyIfrit extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if ((world == null) || (world.getTemplateId() != ValakasTemple.VALAKAS_TEMPLE_INSTANCE_ID))
 		{
-			return super.onSpawn(npc);
+			return;
 		}
 		
 		if (world.getStatus() == ValakasTemple.GOTO_DUMMY_IFRIT)
@@ -84,17 +84,15 @@ public class DummyIfrit extends AbstractNpcAI
 			npc.setImmobilized(false);
 			npc.setUndying(true);
 		}
-		
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if ((world == null) || (world.getTemplateId() != ValakasTemple.VALAKAS_TEMPLE_INSTANCE_ID))
 		{
-			return super.onAttack(npc, attacker, damage, isSummon);
+			return;
 		}
 		
 		if (npc.isUndying() && (npc.getCurrentHpPercent() <= 50))
@@ -106,8 +104,6 @@ public class DummyIfrit extends AbstractNpcAI
 				blazzingDragon.addAttackerToAttackByList(attacker);
 			}
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	public static void main(String[] args)

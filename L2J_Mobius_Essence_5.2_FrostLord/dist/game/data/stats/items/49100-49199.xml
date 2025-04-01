@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="49100" name="Teleport Stone: Floran Village" additionalName="Sealed" type="EtcItem">
 		<!-- Can be used to teleport to Floran. Cooldown: 60 min. -->
@@ -135,7 +135,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="32013" level="1" /> <!-- Wind Dye Pack -->
+			<skill id="32013" level="1" /> <!-- Windy Dye Pack -->
 		</skills>
 	</item>
 	<item id="49112" name="C-grade Staff Pack" type="EtcItem">
@@ -146,7 +146,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="32014" level="1" /> <!-- Staff Chest -->
+			<skill id="32014" level="1" /> <!-- Staff Pack -->
 		</skills>
 	</item>
 	<item id="49113" name="C-grade Fist Weapon Pack" type="EtcItem">
@@ -157,7 +157,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="32015" level="1" /> <!-- Fist Weapon Chest -->
+			<skill id="32015" level="1" /> <!-- Fist Weapon Pack -->
 		</skills>
 	</item>
 	<item id="49114" name="C-grade Spear Pack" type="EtcItem">
@@ -168,7 +168,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="32016" level="1" /> <!-- Spear Chest -->
+			<skill id="32016" level="1" /> <!-- Spear Weapon Pack -->
 		</skills>
 	</item>
 	<item id="49115" name="C-grade Blunt Weapon Pack" type="EtcItem">
@@ -179,7 +179,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="32017" level="1" /> <!-- Blunt Weapon Chest -->
+			<skill id="32017" level="1" /> <!-- Blunt Weapon Pack -->
 		</skills>
 	</item>
 	<item id="49116" name="C-grade Dagger Pack" type="EtcItem">
@@ -190,7 +190,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="32018" level="1" /> <!-- Dagger Chest -->
+			<skill id="32018" level="1" /> <!-- Dagger Pack -->
 		</skills>
 	</item>
 	<item id="49117" name="C-grade One-handed Sword Pack" type="EtcItem">
@@ -201,7 +201,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="32019" level="1" /> <!-- One-Handed Sword Chest -->
+			<skill id="32019" level="1" /> <!-- One-handed Sword Pack -->
 		</skills>
 	</item>
 	<item id="49118" name="C-grade Bow Pack" type="EtcItem">
@@ -212,7 +212,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="32020" level="1" /> <!-- Bow Chest -->
+			<skill id="32020" level="1" /> <!-- Bow Pack -->
 		</skills>
 	</item>
 	<item id="49119" name="Halloween Outfit" additionalName="15-day" type="Armor">

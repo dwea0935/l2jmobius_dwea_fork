@@ -337,7 +337,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3628" name="Delivery Receipt" type="EtcItem">
-		<!-- Confirmation document received when delivering item. It is signed by Sentry Irene. -->
+		<!-- A document that confirms delivery. Signed by Sentinel Irene. -->
 		<set name="icon" val="icon.etc_piece_of_paper_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -349,7 +349,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3629" name="Delivery Receipt" type="EtcItem">
-		<!-- Confirmation document received when delivering item. It is signed by Sentinel Trionell -->
+		<!-- A document that confirms delivery. Signed by Sentinel Trionell -->
 		<set name="icon" val="icon.etc_piece_of_paper_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -445,7 +445,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3637" name="Delivery Receipt" type="EtcItem">
-		<!-- Confirmation document received when delivering item. It is signed by Summoner Belthus. -->
+		<!-- A delivery confirmation document signed by Summoner Belthus. -->
 		<set name="icon" val="icon.etc_piece_of_paper_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -469,7 +469,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3639" name="Delivery Receipt" type="EtcItem">
-		<!-- Confirmation document received when delivering item. It is signed by Summoner Celestiel. -->
+		<!-- A delivery confirmation document signed by Summoner Celestiel. -->
 		<set name="icon" val="icon.etc_piece_of_paper_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

@@ -16,19 +16,20 @@
  */
 package ai.bosses.Kimerian;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import instances.AbstractInstance;
 
@@ -106,10 +107,14 @@ public class KimerianCommon extends AbstractInstance
 						}
 						else if (!npc.isInCombat() || !npc.isAttackingNow() || (npc.getTarget() == null))
 						{
-							final Creature monster = pc.getTarget().asCreature();
-							if ((monster != null) && monster.isMonster() && pc.isInCombat())
+							final WorldObject target = pc.getTarget();
+							if (target != null)
 							{
-								addAttackDesire(npc, monster);
+								final Creature monster = target.asCreature();
+								if ((monster != null) && monster.isMonster() && pc.isInCombat())
+								{
+									addAttackDesire(npc, monster);
+								}
 							}
 						}
 					}
@@ -202,7 +207,7 @@ public class KimerianCommon extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance) && (npc.getId() == KIMERIAN) && (npc.getCurrentHpPercent() <= 50) && npc.getVariables().getBoolean("CAN_ACTIVATE_INVUL", true))
@@ -214,7 +219,7 @@ public class KimerianCommon extends AbstractInstance
 			
 			for (int i = 0; i < 5; i++)
 			{
-				final Npc ghost = addSpawn(KIMERIAN_GHOST, npc.getX(), npc.getY(), npc.getZ(), Util.calculateHeadingFrom(npc, player), false, 0, false, instance.getId());
+				final Npc ghost = addSpawn(KIMERIAN_GHOST, npc.getX(), npc.getY(), npc.getZ(), LocationUtil.calculateHeadingFrom(npc, player), false, 0, false, instance.getId());
 				addAttackPlayerDesire(ghost, player, 23);
 			}
 			
@@ -229,11 +234,10 @@ public class KimerianCommon extends AbstractInstance
 				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.FOOLISH_INSIGNIFICANT_CREATURES_HOW_DARE_YOU_CHALLENGE_ME);
 			});
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -255,7 +259,7 @@ public class KimerianCommon extends AbstractInstance
 				{
 					instance.finishInstance(5);
 					final Npc kimerian = addSpawn(KIMERIAN_DEAD, npc.getX(), npc.getY(), npc.getZ(), 0, false, 0, false, instance.getId());
-					final Location loc = Util.getRandomPosition(kimerian, 500, 500);
+					final Location loc = LocationUtil.getRandomLocation(kimerian, 500, 500);
 					kimerian.setInvisible(true);
 					playSound(killer, "RM01_S");
 					getTimers().addTimer("KIMERIAN_VISIBLE", 4000, t -> kimerian.setInvisible(false));
@@ -276,7 +280,6 @@ public class KimerianCommon extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public void onCreatureKill(OnCreatureDeath event)
@@ -290,7 +293,7 @@ public class KimerianCommon extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -305,7 +308,6 @@ public class KimerianCommon extends AbstractInstance
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -334,7 +336,7 @@ public class KimerianCommon extends AbstractInstance
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final StatSet npcParams = npc.getParameters();
 		final StatSet npcVars = npc.getVariables();
@@ -409,7 +411,6 @@ public class KimerianCommon extends AbstractInstance
 				}
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	private void spawnHollow(Npc npc, Player player, boolean isHollow)
@@ -420,7 +421,7 @@ public class KimerianCommon extends AbstractInstance
 		{
 			if (isHollow)
 			{
-				final Npc kimerian = addSpawn(KIMERIAN_HOLLOW, npc.getX(), npc.getY(), npc.getZ(), Util.calculateHeadingFrom(npc, player), false, 0, false, instance.getId());
+				final Npc kimerian = addSpawn(KIMERIAN_HOLLOW, npc.getX(), npc.getY(), npc.getZ(), LocationUtil.calculateHeadingFrom(npc, player), false, 0, false, instance.getId());
 				kimerian.setTargetable(false);
 				kimerian.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.HOW_RIDICULOUS_YOU_THINK_YOU_CAN_FIND_ME);
 				getTimers().addTimer("KIMERIAN_HOLLOW_SAY_2", 3000, n -> kimerian.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.THEN_TRY_HA_HA_HA));
@@ -429,7 +430,7 @@ public class KimerianCommon extends AbstractInstance
 			}
 			else
 			{
-				final Npc kimerian = addSpawn(KIMERIAN_HOLLOW_2, npc.getX(), npc.getY(), npc.getZ(), Util.calculateHeadingFrom(npc, player), false, 0, false, instance.getId());
+				final Npc kimerian = addSpawn(KIMERIAN_HOLLOW_2, npc.getX(), npc.getY(), npc.getZ(), LocationUtil.calculateHeadingFrom(npc, player), false, 0, false, instance.getId());
 				kimerian.setTargetable(false);
 				kimerian.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.YOU_RE_STILL_TRYING);
 				getTimers().addTimer("KIMERIAN_HOLLOW_SAY_2", 3000, n -> kimerian.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.HA_HA_HA_HA));

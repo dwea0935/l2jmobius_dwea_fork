@@ -28,7 +28,7 @@ public class Q00070_SagaOfThePhoenixKnight extends AbstractSagaQuest
 {
 	public Q00070_SagaOfThePhoenixKnight()
 	{
-		super(70);
+		super(70, "Saga of the Phoenix Knight");
 		_npc = new int[]
 		{
 			30849,

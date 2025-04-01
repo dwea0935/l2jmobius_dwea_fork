@@ -562,7 +562,6 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
 			<skill id="21364" level="1" /> <!-- Talisman - Abundance -->
@@ -576,10 +575,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="2" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="2001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26449" name="Talisman - Abundance" additionalName="Morale" type="Armor">
@@ -590,10 +588,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="3" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="3001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26450" name="Talisman - Abundance" additionalName="Physique" type="Armor">
@@ -604,10 +601,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="4" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="4001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26451" name="Talisman - Abundance" additionalName="Hunter" type="Armor">
@@ -618,12 +614,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="5" /> <!-- Talisman - Abundance -->
-			<skill id="21365" level="1" type="ON_EQUIP" /> <!-- Talisman - Hunter -->
-			<skill id="21373" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Hunter -->
+			<skill id="21364" level="1" subLevel="5001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26452" name="Talisman - Abundance" additionalName="Slaughterer" type="Armor">
@@ -634,12 +627,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="6" /> <!-- Talisman - Abundance -->
-			<skill id="21370" level="1" type="ON_EQUIP" /> <!-- Talisman - Slaughterer -->
-			<skill id="21374" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Slaughterer -->
+			<skill id="21364" level="1" subLevel="6001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26453" name="Talisman - Abundance" additionalName="Conquerer" type="Armor">
@@ -650,12 +640,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="7" /> <!-- Talisman - Abundance -->
-			<skill id="21371" level="1" type="ON_EQUIP" /> <!-- Talisman - Conquerer -->
-			<skill id="21375" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Conquerer -->
+			<skill id="21364" level="1" subLevel="7001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26454" name="Talisman - Abundance" additionalName="Outlaw" type="Armor">
@@ -666,12 +653,9 @@
 		<set name="bodypart" val="deco1" />
 		<set name="weight" val="150" />
 		<set name="is_freightable" val="true" />
-		<set name="is_freightable" val="true" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="8" /> <!-- Talisman - Abundance -->
-			<skill id="21372" level="1" type="ON_EQUIP" /> <!-- Talisman - Outlaw -->
-			<skill id="21376" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Outlaw -->
+			<skill id="21364" level="1" subLevel="8001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="26455" name="Talisman - Abundance Lv. 1 (High-grade)" type="Armor">
@@ -683,7 +667,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="9" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="9001" /> <!-- Talisman - Abundance -->
 			<skill id="21477" level="1" /> <!-- Power of Abundance -->
 		</skills>
 	</item>
@@ -696,7 +680,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="10" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="9002" /> <!-- Talisman - Abundance -->
 			<skill id="21477" level="2" /> <!-- Power of Abundance -->
 		</skills>
 	</item>
@@ -709,7 +693,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="11" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="9003" /> <!-- Talisman - Abundance -->
 			<skill id="21477" level="3" /> <!-- Power of Abundance -->
 		</skills>
 	</item>
@@ -722,7 +706,7 @@
 		<set name="weight" val="150" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="12" /> <!-- Talisman - Abundance -->
+			<skill id="21364" level="1" subLevel="9004" /> <!-- Talisman - Abundance -->
 			<skill id="21477" level="4" /> <!-- Power of Abundance -->
 		</skills>
 	</item>

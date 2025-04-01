@@ -22,7 +22,6 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
  * @author KenM
- * @author UnAfraid
  */
 public class ExPCCafePointInfo extends ServerPacket
 {
@@ -48,7 +47,7 @@ public class ExPCCafePointInfo extends ServerPacket
 		_points = points;
 		_mAddPoint = pointsToAdd;
 		_mPeriodType = 1;
-		_remainTime = 0; // No idea why but retail sends 42..
+		_remainTime = 0; // No idea why but retail sends 42.
 		_pointType = pointsToAdd < 0 ? 2 : 1; // When using points is 3
 		_time = time;
 	}

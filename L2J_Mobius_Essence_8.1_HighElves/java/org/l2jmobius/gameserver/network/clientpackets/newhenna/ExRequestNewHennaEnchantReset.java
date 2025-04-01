@@ -22,8 +22,9 @@ package org.l2jmobius.gameserver.network.clientpackets.newhenna;
 
 import org.l2jmobius.gameserver.data.xml.HennaPatternPotentialData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.henna.DyePotentialFee;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -63,7 +64,7 @@ public class ExRequestNewHennaEnchantReset extends ClientPacket
 		
 		if (dailyReset <= 9)
 		{
-			if (player.destroyItemByItemId("Reset fee", enchant.getId(), enchant.getCount(), player, true))
+			if (player.destroyItemByItemId(ItemProcessType.FEE, enchant.getId(), enchant.getCount(), player, true))
 			{
 				final DyePotentialFee newFee = HennaPatternPotentialData.getInstance().getFee(1 /* daily step */);
 				player.setDyePotentialDailyCount(newFee.getDailyCount());

@@ -16,10 +16,10 @@
  */
 package quests.Q00702_ATrapForRevenge;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -54,7 +54,7 @@ public class Q00702_ATrapForRevenge extends Quest
 	
 	public Q00702_ATrapForRevenge()
 	{
-		super(702);
+		super(702, "A Trap for Revenge");
 		addStartNpc(PLENOS);
 		addTalkId(PLENOS, LEKON, TENIUS);
 		addKillId(MONSTERS);
@@ -264,13 +264,14 @@ public class Q00702_ATrapForRevenge extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 2);
 		if (partyMember == null)
 		{
-			return null;
+			return;
 		}
+		
 		final int chance = getRandom(1000);
 		switch (npc.getId())
 		{
@@ -370,7 +371,6 @@ public class Q00702_ATrapForRevenge extends Quest
 			}
 		}
 		playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
-		return null;
 	}
 	
 	@Override

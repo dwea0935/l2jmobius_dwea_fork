@@ -13,7 +13,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="8458" level="1" /> <!-- Bracelet Weight Gauge Add -->
-			<skill id="8260" level="1" /> <!-- Release Agathion's Seal - Teddy Girl -->
+			<skill id="8260" level="1" /> <!-- Agathion Summon - Teddy Girl -->
 			<skill id="5959" level="1" /> <!-- Agathion Cute Trick - Teddy Girl -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -31,7 +31,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="8458" level="1" /> <!-- Bracelet Weight Gauge Add -->
-			<skill id="8259" level="1" /> <!-- Release Agathion's Seal - Teddy Boy -->
+			<skill id="8259" level="1" /> <!-- Agathion Summon - Teddy Boy -->
 			<skill id="5958" level="1" /> <!-- Agathion Cute Trick - Teddy Boy -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -49,7 +49,7 @@
 		<set name="is_sellable" val="false" />
 		<skills>
 			<skill id="8458" level="1" /> <!-- Bracelet Weight Gauge Add -->
-			<skill id="8260" level="1" /> <!-- Release Agathion's Seal - Teddy Girl -->
+			<skill id="8260" level="1" /> <!-- Agathion Summon - Teddy Girl -->
 			<skill id="5959" level="1" /> <!-- Agathion Cute Trick - Teddy Girl -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>

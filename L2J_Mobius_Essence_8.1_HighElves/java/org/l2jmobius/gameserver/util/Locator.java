@@ -272,7 +272,7 @@ public class Locator
 			}
 			return urls;
 		}
-		final File[] matches = location.listFiles((FilenameFilter) (dir, name) ->
+		final File[] matches = location.listFiles((FilenameFilter) (_, name) ->
 		{
 			for (String extension : extensions)
 			{

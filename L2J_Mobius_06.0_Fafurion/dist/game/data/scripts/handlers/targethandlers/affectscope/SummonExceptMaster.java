@@ -29,7 +29,7 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.AffectScope;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author Nik, Mobius
@@ -42,7 +42,6 @@ public class SummonExceptMaster implements IAffectScopeHandler
 		final IAffectObjectHandler affectObject = AffectObjectHandler.getInstance().getHandler(skill.getAffectObject());
 		final int affectRange = skill.getAffectRange();
 		final int affectLimit = skill.getAffectLimit();
-		
 		if (target.isPlayable())
 		{
 			int count = 0;
@@ -54,7 +53,7 @@ public class SummonExceptMaster implements IAffectScopeHandler
 					continue;
 				}
 				
-				if ((affectRange > 0) && !Util.checkIfInRange(affectRange, c, target, true))
+				if ((affectRange > 0) && !LocationUtil.checkIfInRange(affectRange, c, target, true))
 				{
 					continue;
 				}

@@ -16,17 +16,16 @@
  */
 package instances.SSQSanctumOfTheLordsOfDawn;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 
 import instances.AbstractInstance;
@@ -95,17 +94,17 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 				{
 					case GUARDS_OF_THE_DAWN:
 					{
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.INTRUDER_PROTECT_THE_PRIESTS_OF_DAWN);
+						npc.broadcastSay(ChatType.NPC_GENERAL, "Intruder! Protect the Priests of Dawn!");
 						break;
 					}
 					case GUARDS_OF_THE_DAWN_2:
 					{
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.HOW_DARE_YOU_INTRUDE_WITH_THAT_TRANSFORMATION_GET_LOST);
+						npc.broadcastSay(ChatType.NPC_GENERAL, "How dare you intrude with that transformation! Get lost!");
 						break;
 					}
 					case GUARDS_OF_THE_DAWN_3:
 					{
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.WHO_ARE_YOU_A_NEW_FACE_LIKE_YOU_CAN_T_APPROACH_THIS_PLACE);
+						npc.broadcastSay(ChatType.NPC_GENERAL, "Who are you?! A new face like you can't approach this place!");
 						break;
 					}
 				}
@@ -259,12 +258,11 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		npc.disableCoreAI(true); // disable core AI
 		npc.broadcastPacket(new MagicSkillUse(npc, player, GUARD_SKILL.getSkillId(), 1, 2000, 1));
 		startQuestTimer("teleportPlayer", 2000, npc, player);
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

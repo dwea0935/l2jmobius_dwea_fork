@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * For the Sake of the Territory - Oren (720)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00720_ForTheSakeOfTheTerritoryOren extends TerritoryWarSuperClass
 {
 	public Q00720_ForTheSakeOfTheTerritoryOren()
 	{
-		super(720);
+		super(720, "For the Sake of the Territory - Oren");
 		CATAPULT_ID = 36502;
 		TERRITORY_ID = 84;
 		LEADER_IDS = new int[]
@@ -42,9 +40,9 @@ public class Q00720_ForTheSakeOfTheTerritoryOren extends TerritoryWarSuperClass
 			36529,
 			36530
 		};
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.THE_CATAPULT_OF_OREN_HAS_BEEN_DESTROYED
+			"The catapult of Oren has been destroyed!"
 		};
 		registerKillIds();
 	}

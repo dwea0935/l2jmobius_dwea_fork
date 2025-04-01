@@ -12,7 +12,6 @@
 		<itemConsumeId>33608</itemConsumeId>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
-		<magicLevel>1</magicLevel>
 		<reuseDelay>3000</reuseDelay>
 		<conditions>
 			<condition name="OpEncumbered">

@@ -20,11 +20,11 @@
  */
 package ai.areas.OrbisTemple;
 
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -63,7 +63,7 @@ public class OrbisTempleStatues extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		switch (npc.getId())
 		{
@@ -94,7 +94,6 @@ public class OrbisTempleStatues extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isPet);
 	}
 	
 	@Override
@@ -107,7 +106,7 @@ public class OrbisTempleStatues extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomWalking(false);
 		if (npc.getId() < ANCIENT_HERO)
@@ -119,17 +118,15 @@ public class OrbisTempleStatues extends AbstractNpcAI
 			npc.stopSkillEffects(SkillFinishType.SILENT, DESPAWN_SKILL.getSkillId());
 			SkillCaster.triggerCast(npc, npc, SPAWN_SKILL.getSkill());
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.isMonster())
 		{
 			SkillCaster.triggerCast(killer, npc, DESPAWN_SKILL.getSkill());
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

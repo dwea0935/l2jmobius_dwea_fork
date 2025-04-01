@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="3200" type="EtcItem" name="Black Willow Leaf">
 		<!-- A leaf obtained by slaying the black willow lurker. Take this to the Blight Treant. -->
@@ -864,7 +864,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3272" type="EtcItem" name="Nikola's List">
+	<item id="3272" type="EtcItem" name="Nikolas' List">
 		<!-- 20 stakato shells, 10 toad lord sacs, 10 spider thorns and 10 D-grade crystals. -->
 		<set name="icon" val="icon.etc_piece_of_paper_gray_i00" />
 		<set name="immediate_effect" val="true" />
@@ -900,7 +900,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3275" type="EtcItem" name="Marsh Spider's Thorn">
+	<item id="3275" type="EtcItem" name="Spider Thorn">
 		<!-- A thorn removed from the shell of a swamp spider. A key ingredient in making the titan's key. -->
 		<set name="icon" val="icon.etc_horn_i00" />
 		<set name="immediate_effect" val="true" />

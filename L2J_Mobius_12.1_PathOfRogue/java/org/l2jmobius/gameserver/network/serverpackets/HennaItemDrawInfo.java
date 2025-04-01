@@ -49,7 +49,7 @@ public class HennaItemDrawInfo extends ServerPacket
 		buffer.writeInt(_henna.getDyeItemId()); // item id of dye
 		buffer.writeLong(_henna.getWearCount()); // total amount of dye require
 		buffer.writeLong(_henna.getWearFee()); // total amount of Adena require to draw symbol
-		buffer.writeInt(_henna.isAllowedClass(_player.getClassId())); // able to draw or not 0 is false and 1 is true
+		buffer.writeInt(_henna.isAllowedClass(_player.getPlayerClass())); // able to draw or not 0 is false and 1 is true
 		buffer.writeLong(_player.getAdena());
 		buffer.writeInt(_player.getINT()); // current INT
 		buffer.writeShort(_player.getINT() + _player.getHennaValue(BaseStat.INT)); // equip INT

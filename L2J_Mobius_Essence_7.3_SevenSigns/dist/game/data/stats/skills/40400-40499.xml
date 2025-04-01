@@ -887,7 +887,7 @@
 		<abnormalTime>1200</abnormalTime>
 		<abnormalType>BR_EVENT_BUF6</abnormalType>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<reuseDelay>60000</reuseDelay>
 		<stayAfterDeath>true</stayAfterDeath>
@@ -918,7 +918,7 @@
 		<abnormalTime>1200</abnormalTime>
 		<abnormalType>MAGIC_LAMP_RATE</abnormalType>
 		<affectScope>SINGLE</affectScope>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<reuseDelay>60000</reuseDelay>
 		<stayAfterDeath>true</stayAfterDeath>

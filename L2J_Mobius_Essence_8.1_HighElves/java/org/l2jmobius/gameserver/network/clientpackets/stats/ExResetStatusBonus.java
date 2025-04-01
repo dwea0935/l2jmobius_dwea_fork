@@ -21,6 +21,7 @@
 package org.l2jmobius.gameserver.network.clientpackets.stats;
 
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -90,7 +91,7 @@ public class ExResetStatusBonus extends ClientPacket
 			return;
 		}
 		
-		if (player.reduceAdena("ExResetStatusBonus", adenaCost, player, true) && player.destroyItemByItemId("ExResetStatusBonus", Inventory.LCOIN_ID, lcoinCost, player, true))
+		if (player.reduceAdena(ItemProcessType.FEE, adenaCost, player, true) && player.destroyItemByItemId(ItemProcessType.FEE, Inventory.LCOIN_ID, lcoinCost, player, true))
 		{
 			player.getVariables().remove(PlayerVariables.STAT_POINTS);
 			player.getVariables().remove(PlayerVariables.STAT_STR);

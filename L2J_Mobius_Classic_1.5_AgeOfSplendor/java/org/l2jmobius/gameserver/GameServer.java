@@ -25,10 +25,8 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.lang.management.ManagementFactory;
 import java.net.InetSocketAddress;
 import java.time.Duration;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -38,8 +36,8 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.enums.ServerMode;
 import org.l2jmobius.commons.network.ConnectionManager;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.DeadLockDetector;
-import org.l2jmobius.commons.util.PropertiesParser;
+import org.l2jmobius.commons.util.ConfigReader;
+import org.l2jmobius.commons.util.DeadlockWatcher;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.BotReportTable;
 import org.l2jmobius.gameserver.data.SchemeBufferTable;
@@ -71,7 +69,6 @@ import org.l2jmobius.gameserver.data.xml.EnchantItemHPBonusData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemOptionsData;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
-import org.l2jmobius.gameserver.data.xml.FakePlayerData;
 import org.l2jmobius.gameserver.data.xml.FenceData;
 import org.l2jmobius.gameserver.data.xml.FishingData;
 import org.l2jmobius.gameserver.data.xml.HennaData;
@@ -110,48 +107,48 @@ import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.ConditionHandler;
 import org.l2jmobius.gameserver.handler.EffectHandler;
 import org.l2jmobius.gameserver.handler.SkillConditionHandler;
-import org.l2jmobius.gameserver.instancemanager.AirShipManager;
-import org.l2jmobius.gameserver.instancemanager.AntiFeedManager;
-import org.l2jmobius.gameserver.instancemanager.BoatManager;
-import org.l2jmobius.gameserver.instancemanager.CaptchaManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
-import org.l2jmobius.gameserver.instancemanager.ClanEntryManager;
-import org.l2jmobius.gameserver.instancemanager.ClanHallAuctionManager;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
-import org.l2jmobius.gameserver.instancemanager.CustomMailManager;
-import org.l2jmobius.gameserver.instancemanager.DBSpawnManager;
-import org.l2jmobius.gameserver.instancemanager.DailyTaskManager;
-import org.l2jmobius.gameserver.instancemanager.FakePlayerChatManager;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.ItemAuctionManager;
-import org.l2jmobius.gameserver.instancemanager.ItemCommissionManager;
-import org.l2jmobius.gameserver.instancemanager.ItemsOnGroundManager;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
-import org.l2jmobius.gameserver.instancemanager.MatchingRoomManager;
-import org.l2jmobius.gameserver.instancemanager.MentorManager;
-import org.l2jmobius.gameserver.instancemanager.PcCafePointsManager;
-import org.l2jmobius.gameserver.instancemanager.PetitionManager;
-import org.l2jmobius.gameserver.instancemanager.PrecautionaryRestartManager;
-import org.l2jmobius.gameserver.instancemanager.PremiumManager;
-import org.l2jmobius.gameserver.instancemanager.PunishmentManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
-import org.l2jmobius.gameserver.instancemanager.SellBuffsManager;
-import org.l2jmobius.gameserver.instancemanager.ServerRestartManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeGuardManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
-import org.l2jmobius.gameserver.instancemanager.events.EventDropManager;
-import org.l2jmobius.gameserver.instancemanager.games.MonsterRaceManager;
+import org.l2jmobius.gameserver.managers.AirShipManager;
+import org.l2jmobius.gameserver.managers.AntiFeedManager;
+import org.l2jmobius.gameserver.managers.BoatManager;
+import org.l2jmobius.gameserver.managers.CaptchaManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManorManager;
+import org.l2jmobius.gameserver.managers.ClanEntryManager;
+import org.l2jmobius.gameserver.managers.ClanHallAuctionManager;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.CustomMailManager;
+import org.l2jmobius.gameserver.managers.DBSpawnManager;
+import org.l2jmobius.gameserver.managers.DailyResetManager;
+import org.l2jmobius.gameserver.managers.FakePlayerChatManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.ItemAuctionManager;
+import org.l2jmobius.gameserver.managers.ItemCommissionManager;
+import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
+import org.l2jmobius.gameserver.managers.MatchingRoomManager;
+import org.l2jmobius.gameserver.managers.MentorManager;
+import org.l2jmobius.gameserver.managers.PcCafePointsManager;
+import org.l2jmobius.gameserver.managers.PetitionManager;
+import org.l2jmobius.gameserver.managers.PrecautionaryRestartManager;
+import org.l2jmobius.gameserver.managers.PremiumManager;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.SellBuffsManager;
+import org.l2jmobius.gameserver.managers.ServerRestartManager;
+import org.l2jmobius.gameserver.managers.SiegeGuardManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
+import org.l2jmobius.gameserver.managers.events.EventDropManager;
+import org.l2jmobius.gameserver.managers.games.MonsterRaceManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.OnServerStart;
+import org.l2jmobius.gameserver.model.events.holders.OnServerStart;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 import org.l2jmobius.gameserver.model.vip.VipManager;
@@ -160,9 +157,9 @@ import org.l2jmobius.gameserver.network.GamePacketHandler;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.scripting.ScriptEngineManager;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
-import org.l2jmobius.gameserver.taskmanager.ItemsAutoDestroyTaskManager;
-import org.l2jmobius.gameserver.taskmanager.TaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.ItemsAutoDestroyTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.PersistentTaskManager;
 import org.l2jmobius.gameserver.ui.Gui;
 import org.l2jmobius.gameserver.util.Broadcast;
 
@@ -170,26 +167,12 @@ public class GameServer
 {
 	private static final Logger LOGGER = Logger.getLogger(GameServer.class.getName());
 	
-	private final DeadLockDetector _deadDetectThread;
-	private static GameServer INSTANCE;
-	public static final Calendar dateTimeServerStarted = Calendar.getInstance();
-	
-	public long getUsedMemoryMB()
-	{
-		return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1048576;
-	}
-	
-	public DeadLockDetector getDeadLockDetectorThread()
-	{
-		return _deadDetectThread;
-	}
+	private static final long START_TIME = System.currentTimeMillis();
 	
 	public GameServer() throws Exception
 	{
-		final long serverLoadStart = System.currentTimeMillis();
-		
 		// GUI
-		final PropertiesParser interfaceConfig = new PropertiesParser(Config.INTERFACE_CONFIG_FILE);
+		final ConfigReader interfaceConfig = new ConfigReader(Config.INTERFACE_CONFIG_FILE);
 		Config.ENABLE_GUI = interfaceConfig.getBoolean("EnableGUI", true);
 		if (Config.ENABLE_GUI && !GraphicsEnvironment.isHeadless())
 		{
@@ -241,7 +224,6 @@ public class GameServer
 		CategoryData.getInstance();
 		DynamicExpRateData.getInstance();
 		SecondaryAuthData.getInstance();
-		CombinationItemsData.getInstance();
 		SayuneData.getInstance();
 		ClanRewardData.getInstance();
 		
@@ -266,6 +248,7 @@ public class GameServer
 		EnchantItemHPBonusData.getInstance();
 		BuyListData.getInstance();
 		MultisellData.getInstance();
+		CombinationItemsData.getInstance();
 		RecipeData.getInstance();
 		ArmorSetData.getInstance();
 		FishingData.getInstance();
@@ -315,7 +298,6 @@ public class GameServer
 		
 		printSection("NPCs");
 		NpcData.getInstance();
-		FakePlayerData.getInstance();
 		FakePlayerChatManager.getInstance();
 		SpawnData.getInstance();
 		WalkingManager.getInstance();
@@ -395,8 +377,8 @@ public class GameServer
 			ItemsAutoDestroyTaskManager.getInstance();
 		}
 		MonsterRaceManager.getInstance();
-		TaskManager.getInstance();
-		DailyTaskManager.getInstance();
+		PersistentTaskManager.getInstance();
+		DailyResetManager.getInstance();
 		AntiFeedManager.getInstance().registerEvent(AntiFeedManager.GAME_ID);
 		if (Config.ENABLE_OFFLINE_PLAY_COMMAND)
 		{
@@ -417,7 +399,7 @@ public class GameServer
 		PunishmentManager.getInstance();
 		
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
-		LOGGER.info("IdManager: Free ObjectID's remaining: " + IdManager.getInstance().size());
+		LOGGER.info("IdManager: Free ObjectID's remaining: " + IdManager.getInstance().getAvailableIdCount());
 		
 		if ((Config.OFFLINE_TRADE_ENABLE || Config.OFFLINE_CRAFT_ENABLE) && Config.RESTORE_OFFLINERS)
 		{
@@ -431,9 +413,9 @@ public class GameServer
 		{
 			PrecautionaryRestartManager.getInstance();
 		}
-		if (Config.DEADLOCK_DETECTOR)
+		if (Config.DEADLOCK_WATCHER)
 		{
-			_deadDetectThread = new DeadLockDetector(Duration.ofSeconds(Config.DEADLOCK_CHECK_INTERVAL), () ->
+			final DeadlockWatcher deadlockWatcher = new DeadlockWatcher(Duration.ofSeconds(Config.DEADLOCK_CHECK_INTERVAL), () ->
 			{
 				if (Config.RESTART_ON_DEADLOCK)
 				{
@@ -441,48 +423,21 @@ public class GameServer
 					Shutdown.getInstance().startShutdown(null, 60, true);
 				}
 			});
-			_deadDetectThread.setDaemon(true);
-			_deadDetectThread.start();
-		}
-		else
-		{
-			_deadDetectThread = null;
+			deadlockWatcher.setDaemon(true);
+			deadlockWatcher.start();
 		}
 		
 		System.gc();
 		final long totalMem = Runtime.getRuntime().maxMemory() / 1048576;
 		LOGGER.info(getClass().getSimpleName() + ": Started, using " + getUsedMemoryMB() + " of " + totalMem + " MB total memory.");
 		LOGGER.info(getClass().getSimpleName() + ": Maximum number of connected players is " + Config.MAXIMUM_ONLINE_USERS + ".");
-		LOGGER.info(getClass().getSimpleName() + ": Server loaded in " + ((System.currentTimeMillis() - serverLoadStart) / 1000) + " seconds.");
+		LOGGER.info(getClass().getSimpleName() + ": Server loaded in " + ((System.currentTimeMillis() - START_TIME) / 1000) + " seconds.");
 		
 		new ConnectionManager<>(new InetSocketAddress(Config.PORT_GAME), GameClient::new, new GamePacketHandler());
 		
 		LoginServerThread.getInstance().start();
 		
 		Toolkit.getDefaultToolkit().beep();
-	}
-	
-	public long getStartedTime()
-	{
-		return ManagementFactory.getRuntimeMXBean().getStartTime();
-	}
-	
-	public String getUptime()
-	{
-		final long uptime = ManagementFactory.getRuntimeMXBean().getUptime() / 1000;
-		final long hours = uptime / 3600;
-		final long mins = (uptime - (hours * 3600)) / 60;
-		final long secs = ((uptime - (hours * 3600)) - (mins * 60));
-		if (hours > 0)
-		{
-			return hours + "hrs " + mins + "mins " + secs + "secs";
-		}
-		return mins + "mins " + secs + "secs";
-	}
-	
-	public static void main(String[] args) throws Exception
-	{
-		INSTANCE = new GameServer();
 	}
 	
 	private void printSection(String section)
@@ -495,8 +450,18 @@ public class GameServer
 		LOGGER.info(s);
 	}
 	
-	public static GameServer getInstance()
+	public long getUsedMemoryMB()
 	{
-		return INSTANCE;
+		return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1048576;
+	}
+	
+	public static long getStartTime()
+	{
+		return START_TIME;
+	}
+	
+	public static void main(String[] args) throws Exception
+	{
+		new GameServer();
 	}
 }

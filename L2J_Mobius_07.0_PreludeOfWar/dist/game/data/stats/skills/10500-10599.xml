@@ -3351,7 +3351,6 @@
 		</mpConsume>
 		<reuseDelay>120000</reuseDelay>
 		<trait>PARALYZE</trait>
-		<trait>PARALYZE</trait>
 		<effects>
 			<effect name="Speed">
 				<amount>-23</amount>
@@ -8070,7 +8069,6 @@
 			<value level="9">92</value>
 		</mpConsume>
 		<reuseDelay>4000</reuseDelay>
-		<trait>SHOCK</trait>
 		<trait>SHOCK</trait>
 		<effects>
 			<effect name="TargetCancel" />

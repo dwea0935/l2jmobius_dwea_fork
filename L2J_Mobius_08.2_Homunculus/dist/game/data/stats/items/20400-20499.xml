@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20400" name="Laborer Hat" additionalName="Blessed Soul (7-day)" type="Armor">
 		<!-- Hat that was worn by Reipung. -->
@@ -103,9 +103,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21000" level="1" /> <!-- Release Agathion's Seal - Majo -->
+			<skill id="21000" level="1" /> <!-- Summon Agathion Majo -->
 			<skill id="23000" level="1" /> <!-- Majo Agathion Cute Trick -->
-			<skill id="23004" level="1" /> <!-- Majo Agathion Special Skill: Mysterious Power -->
+			<skill id="23004" level="1" /> <!-- Agathion Majo's Special Skill: Mysterious Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -166,7 +166,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21003" level="1" /> <!-- Release Agathion's Seal - Plaipitak -->
+			<skill id="21003" level="1" /> <!-- Summon Agathion Plaipitak -->
 			<skill id="23003" level="1" /> <!-- Plaipitak Agathion Cute Trick -->
 			<skill id="23007" level="1" /> <!-- Plaipitak Agathion Special Skill: Mysterious Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
@@ -187,9 +187,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21003" level="1" /> <!-- Release Agathion's Seal - Plaipitak -->
+			<skill id="21003" level="1" /> <!-- Summon Agathion Plaipitak -->
 			<skill id="23003" level="1" /> <!-- Plaipitak Agathion Cute Trick -->
-			<skill id="23009" level="1" /> <!-- Plaipitak Agathion Special Skill: Blessed Resurrection -->
+			<skill id="23009" level="1" /> <!-- Agathion Plaipitak's Special Skill: Blessed Resurrection Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -208,9 +208,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21003" level="1" /> <!-- Release Agathion's Seal - Plaipitak -->
+			<skill id="21003" level="1" /> <!-- Summon Agathion Plaipitak -->
 			<skill id="23003" level="1" /> <!-- Plaipitak Agathion Cute Trick -->
-			<skill id="23008" level="1" /> <!-- Plaipitak Agathion Special Skill: Blessed Escape -->
+			<skill id="23008" level="1" /> <!-- Agathion Plaipitak's Special Skill: Blessed Escape Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -229,8 +229,8 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21008" level="1" /> <!-- Release Agathion's Seal - Baby Panda -->
-			<skill id="23013" level="1" /> <!-- Baby Panda Agathion Special Skill: Mysterious Power -->
+			<skill id="21008" level="1" /> <!-- Summon Agathion Baby Panda -->
+			<skill id="23013" level="1" /> <!-- Agathion Baby Panda's Special Skill: Mysterious Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -249,8 +249,8 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21009" level="1" /> <!-- Release Agathion's Seal - Bamboo Panda -->
-			<skill id="23014" level="1" /> <!-- Bamboo Panda Agathion Special Skill: Blessed Resurrection -->
+			<skill id="21009" level="1" /> <!-- Summon Agathion Bamboo Panda -->
+			<skill id="23014" level="1" /> <!-- Agathion Bamboo Panda's Special Skill: Blessed Resurrection Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -269,8 +269,8 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21010" level="1" /> <!-- Release Agathion's Seal - Sexy Panda -->
-			<skill id="23015" level="1" /> <!-- Sexy Panda Agathion Special Skill: Blessed Escape -->
+			<skill id="21010" level="1" /> <!-- Summon Agathion Sexy Panda -->
+			<skill id="23015" level="1" /> <!-- Agathion Sexy Panda's Special Skill: Blessed Escape Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
 	</item>
@@ -587,7 +587,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21067" level="1" /> <!-- Blessed Escape -->
+			<skill id="21067" level="1" /> <!-- Blessed Escape Power -->
 		</skills>
 	</item>
 	<item id="20431" name="Daisy Hairpin" additionalName="Dark Resistance (7-day)" type="Armor">
@@ -939,7 +939,7 @@
 		<set name="time" val="10080" />
 		<skills>
 			<skill id="839" level="1" type="ON_UNEQUIP" /> <!-- Dismount -->
-			<skill id="21051" level="1" /> <!-- Ride Steam Beetle -->
+			<skill id="21051" level="1" /> <!-- Mount Steam Beetle -->
 		</skills>
 	</item>
 	<item id="20450" name="Agathion - Majo Pack (7-day)" type="EtcItem">
@@ -1767,7 +1767,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21085" level="1" /> <!-- Release Agathion's Seal - Pomona -->
+			<skill id="21085" level="1" /> <!-- Summon Agathion Pomona -->
 			<skill id="23067" level="1" /> <!-- Agathion Cute Trick - Pomona -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -1787,7 +1787,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21085" level="1" /> <!-- Release Agathion's Seal - Pomona -->
+			<skill id="21085" level="1" /> <!-- Summon Agathion Pomona -->
 			<skill id="23068" level="1" /> <!-- Pomona Agathion Special Skill: Mental Shield -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>

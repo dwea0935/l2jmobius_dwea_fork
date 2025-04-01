@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,21 +33,20 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.AttributeType;
-import org.l2jmobius.gameserver.enums.ItemGrade;
-import org.l2jmobius.gameserver.enums.ItemSkillType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.ExtractableProduct;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.AttributeType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.commission.CommissionItemType;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
-import org.l2jmobius.gameserver.model.holders.ItemSkillHolder;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 import org.l2jmobius.gameserver.model.item.enchant.attribute.AttributeHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemGrade;
+import org.l2jmobius.gameserver.model.item.enums.ItemSkillType;
+import org.l2jmobius.gameserver.model.item.holders.ItemSkillHolder;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
 import org.l2jmobius.gameserver.model.item.type.EtcItemType;
@@ -68,7 +68,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
  * <li>Weapon</li>
  * </ul>
  */
-public abstract class ItemTemplate extends ListenersContainer implements IIdentifiable
+public abstract class ItemTemplate extends ListenersContainer
 {
 	protected static final Logger LOGGER = Logger.getLogger(ItemTemplate.class.getName());
 	
@@ -124,6 +124,52 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 	
 	public static final int SLOT_MULTI_ALLWEAPON = SLOT_LR_HAND | SLOT_R_HAND;
 	
+	public static final Map<String, Long> SLOTS = new HashMap<>();
+	static
+	{
+		SLOTS.put("shirt", (long) SLOT_UNDERWEAR);
+		SLOTS.put("lbracelet", (long) SLOT_L_BRACELET);
+		SLOTS.put("rbracelet", (long) SLOT_R_BRACELET);
+		SLOTS.put("talisman", (long) SLOT_DECO);
+		SLOTS.put("chest", (long) SLOT_CHEST);
+		SLOTS.put("fullarmor", (long) SLOT_FULL_ARMOR);
+		SLOTS.put("head", (long) SLOT_HEAD);
+		SLOTS.put("hair", (long) SLOT_HAIR);
+		SLOTS.put("hairall", (long) SLOT_HAIRALL);
+		SLOTS.put("underwear", (long) SLOT_UNDERWEAR);
+		SLOTS.put("back", (long) SLOT_BACK);
+		SLOTS.put("neck", (long) SLOT_NECK);
+		SLOTS.put("legs", (long) SLOT_LEGS);
+		SLOTS.put("feet", (long) SLOT_FEET);
+		SLOTS.put("gloves", (long) SLOT_GLOVES);
+		SLOTS.put("chest,legs", (long) SLOT_CHEST | SLOT_LEGS);
+		SLOTS.put("belt", (long) SLOT_BELT);
+		SLOTS.put("rhand", (long) SLOT_R_HAND);
+		SLOTS.put("lhand", (long) SLOT_L_HAND);
+		SLOTS.put("lrhand", (long) SLOT_LR_HAND);
+		SLOTS.put("rear;lear", (long) SLOT_R_EAR | SLOT_L_EAR);
+		SLOTS.put("rfinger;lfinger", (long) SLOT_R_FINGER | SLOT_L_FINGER);
+		SLOTS.put("wolf", (long) SLOT_WOLF);
+		SLOTS.put("greatwolf", (long) SLOT_GREATWOLF);
+		SLOTS.put("hatchling", (long) SLOT_HATCHLING);
+		SLOTS.put("strider", (long) SLOT_STRIDER);
+		SLOTS.put("babypet", (long) SLOT_BABYPET);
+		SLOTS.put("brooch", (long) SLOT_BROOCH);
+		SLOTS.put("brooch_jewel", (long) SLOT_BROOCH_JEWEL);
+		SLOTS.put("agathion", SLOT_AGATHION);
+		SLOTS.put("artifactbook", SLOT_ARTIFACT_BOOK);
+		SLOTS.put("artifact", SLOT_ARTIFACT);
+		SLOTS.put("none", (long) SLOT_NONE);
+		
+		// Retail compatibility.
+		SLOTS.put("onepiece", (long) SLOT_FULL_ARMOR);
+		SLOTS.put("hair2", (long) SLOT_HAIR2);
+		SLOTS.put("dhair", (long) SLOT_HAIRALL);
+		SLOTS.put("alldress", (long) SLOT_ALLDRESS);
+		SLOTS.put("deco1", (long) SLOT_DECO);
+		SLOTS.put("waist", (long) SLOT_BELT);
+	}
+	
 	private int _itemId;
 	private int _displayId;
 	private String _name;
@@ -150,6 +196,7 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 	private int _ensoulNormalSlots;
 	private int _ensoulSpecialSlots;
 	private boolean _elementable;
+	private boolean _questUsableItem;
 	private boolean _questItem;
 	private boolean _freightable;
 	private boolean _allowSelfResurrection;
@@ -179,6 +226,7 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 	
 	private boolean _isAppearanceable;
 	private boolean _isBlessed;
+	private boolean _isSealed;
 	
 	private int _artifactSlot;
 	
@@ -204,7 +252,7 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 		_duration = set.getInt("duration", -1);
 		_time = set.getInt("time", -1);
 		_autoDestroyTime = set.getInt("auto_destroy_time", -1) * 1000;
-		_bodyPart = ItemData.SLOTS.get(set.getString("bodypart", "none"));
+		_bodyPart = SLOTS.get(set.getString("bodypart", "none"));
 		_referencePrice = set.getInt("price", 0);
 		_crystalType = set.getEnum("crystal_type", CrystalType.class, CrystalType.NONE);
 		_crystalCount = set.getInt("crystal_count", 0);
@@ -213,7 +261,8 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 		_dropable = set.getBoolean("is_dropable", true);
 		_destroyable = set.getBoolean("is_destroyable", true);
 		_tradeable = set.getBoolean("is_tradable", true);
-		_questItem = set.getBoolean("is_questitem", false);
+		_questUsableItem = set.getBoolean("is_questusable", false);
+		_questItem = _questUsableItem || set.getBoolean("is_questitem", false);
 		if (Config.CUSTOM_DEPOSITABLE_ENABLED)
 		{
 			_depositable = !_questItem || Config.CUSTOM_DEPOSITABLE_QUEST_ITEMS;
@@ -250,6 +299,7 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 		_pvpItem = ((_itemId >= 10667) && (_itemId <= 10835)) || ((_itemId >= 12852) && (_itemId <= 12977)) || ((_itemId >= 14363) && (_itemId <= 14525)) || (_itemId == 14528) || (_itemId == 14529) || (_itemId == 14558) || ((_itemId >= 15913) && (_itemId <= 16024)) || ((_itemId >= 16134) && (_itemId <= 16147)) || (_itemId == 16149) || (_itemId == 16151) || (_itemId == 16153) || (_itemId == 16155) || (_itemId == 16157) || (_itemId == 16159) || ((_itemId >= 16168) && (_itemId <= 16176)) || ((_itemId >= 16179) && (_itemId <= 16220));
 		
 		// Sealed item checks.
+		_isSealed = set.getBoolean("is_sealed", false);
 		if ((_additionalName != null) && _additionalName.equals("Sealed"))
 		{
 			if (_tradeable)
@@ -264,6 +314,7 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 			{
 				LOGGER.warning("Found sellable [Sealed] item " + _itemId);
 			}
+			_isSealed = true;
 		}
 	}
 	
@@ -347,7 +398,6 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 	 * Returns the ID of the item
 	 * @return int
 	 */
-	@Override
 	public int getId()
 	{
 		return _itemId;
@@ -967,6 +1017,11 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 		return (_preConditions != null) && !_preConditions.isEmpty();
 	}
 	
+	public boolean isQuestUsableItem()
+	{
+		return _questUsableItem;
+	}
+	
 	public boolean isQuestItem()
 	{
 		return _questItem;
@@ -1011,6 +1066,14 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 	public boolean isBlessed()
 	{
 		return _isBlessed;
+	}
+	
+	/**
+	 * @return {@code true} if the item is Sealed, {@code false} otherwise.
+	 */
+	public boolean isSealed()
+	{
+		return _isSealed;
 	}
 	
 	public int getArtifactSlot()
@@ -1120,11 +1183,6 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 	@Override
 	public String toString()
 	{
-		final StringBuilder sb = new StringBuilder();
-		sb.append(_name);
-		sb.append("(");
-		sb.append(_itemId);
-		sb.append(")");
-		return sb.toString();
+		return StringUtil.concat(_name, "(", String.valueOf(_itemId), ")");
 	}
 }

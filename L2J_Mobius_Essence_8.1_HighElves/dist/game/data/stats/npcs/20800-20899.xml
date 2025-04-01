@@ -65,7 +65,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="302" /> <!-- Body Slasher -->
 		<acquire exp="5265" sp="47" attributeExp="770" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="3845.9432" hpRegen="10.2" mp="2361" mpRegen="3.6" />
@@ -122,7 +121,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<equipment rhand="192" /> <!-- Crystal Staff -->
 		<acquire exp="5317" sp="49" attributeExp="858" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="3902.7736" hpRegen="10.2" mp="2411.1" mpRegen="3.6" />

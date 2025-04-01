@@ -16,13 +16,13 @@
  */
 package ai.areas.TalkingIsland;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -47,7 +47,7 @@ public class Marsha extends AbstractNpcAI
 		{
 			if (getRandomBoolean())
 			{
-				final Location randomLoc = Util.getRandomPosition(npc.getSpawn().getLocation(), 0, 500);
+				final Location randomLoc = LocationUtil.getRandomLocation(npc.getSpawn().getLocation(), 0, 500);
 				addMoveToDesire(npc, GeoEngine.getInstance().getValidLocation(npc.getLocation().getX(), npc.getLocation().getY(), npc.getLocation().getZ(), randomLoc.getX(), randomLoc.getY(), randomLoc.getZ(), npc.getInstanceWorld()), 23);
 			}
 			startQuestTimer("NPC_MOVE", (10 + getRandom(5)) * 1000, npc, null);
@@ -69,11 +69,10 @@ public class Marsha extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("NPC_MOVE", (10 + getRandom(5)) * 1000, npc, null);
 		startQuestTimer("NPC_SHOUT", (10 + getRandom(5)) * 1000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

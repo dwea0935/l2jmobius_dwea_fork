@@ -20,12 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Coin Of Magic (336)
@@ -152,7 +152,7 @@ public class Q00336_CoinsOfMagic extends Quest
 	
 	public Q00336_CoinsOfMagic()
 	{
-		super(336);
+		super(336, "Coins of Magic");
 		addStartNpc(WAREHOUSE_KEEPER_SORINT);
 		addTalkId(PANO, COLLOB, RAPIN, HAGGER, STAN, RESEARCHER_LORAIN, BLACKSMITH_DUNING, MAGISTER_PAGE, UNION_PRESIDENT_BERNARD, HEAD_BLACKSMITH_FERRIS);
 		addKillId(HEADLESS_KNIGHT, OEL_MAHUM, SHACKLE, ROYAL_CAVE_SERVANT, MALRUK_SUCCUBUS_TUREN, ROYAL_CAVE_SERVANT_HOLD, SHACKLE_HOLD, HEADLESS_KNIGHT_HOLD, H_MALRUK_SUCCUBUS_TUREN, BYFOOT, BYFOOT_SIGEL, TARLK_BUGBEAR_BOSS, OEL_MAHUM_WARRIOR, OEL_MAHUM_WITCH_DOCTOR, TIMAK_ORC, TIMAK_ORC_ARCHER, TIMAK_ORC_SOLDIER, TIMAK_ORC_SHAMAN, LAKIN, HARIT_LIZARDMAN_SHAMAN, HARIT_LIZARDM_MATRIARCH, HATAR_HANISHEE, DOOM_KNIGHT, PUNISHMENT_OF_UNDEAD, VANOR_SILENOS_SHAMAN, HUNGRY_CORPSE, NIHIL_INVADER, DARK_GUARD, BLOODY_GHOST, FLOAT_OF_GRAVE, DOOM_SERVANT, DOOM_ARCHER, KUKABURO, KUKABURO_A, KUKABURO_B, ANTELOPE, ANTELOPE_A, ANTELOPE_B, BANDERSNATCH, BANDERSNATCH_A, BANDERSNATCH_B, BUFFALO, BUFFALO_A, BUFFALO_B, BRILLIANT_CLAW, BRILLIANT_CLAW_1, BRILLIANT_WISDOM, BRILLIANT_VENGEANCE, BRILLIANT_VENGEANCE_1, BRILLIANT_ANGUISH, BRILLIANT_ANGUISH_1);
@@ -1085,7 +1085,7 @@ public class Q00336_CoinsOfMagic extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -1099,9 +1099,10 @@ public class Q00336_CoinsOfMagic extends Quest
 					qs.setCond(3);
 					qs.showQuestionMark(336);
 				}
-				return super.onKill(npc, killer, isSummon);
+				return;
 			}
 		}
+		
 		final QuestState qs = getRandomPlayerFromParty(killer, npc, 3);
 		if (qs != null)
 		{
@@ -1333,7 +1334,6 @@ public class Q00336_CoinsOfMagic extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	/**
@@ -1795,7 +1795,7 @@ public class Q00336_CoinsOfMagic extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = getQuestState(pm, false);
-				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
+				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
 				{
 					candidates.add(qss);
 				}
@@ -1819,7 +1819,7 @@ public class Q00336_CoinsOfMagic extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = getQuestState(pm, false);
-				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && !hasQuestItems(player, Q_KALDIS_GOLD_DRAGON) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
+				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && !hasQuestItems(player, Q_KALDIS_GOLD_DRAGON) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
 				{
 					candidates.add(qss);
 				}

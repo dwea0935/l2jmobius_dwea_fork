@@ -58,12 +58,11 @@ public class Handermonkey extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRunning();
 		cancelQuestTimer("NPC_MOVE", npc, null);
 		startQuestTimer("NPC_MOVE", 5000, npc, null, true);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

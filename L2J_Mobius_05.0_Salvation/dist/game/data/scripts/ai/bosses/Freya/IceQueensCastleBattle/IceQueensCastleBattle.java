@@ -20,10 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.MountType;
-import org.l2jmobius.gameserver.enums.Movie;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -31,24 +28,27 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyNpc;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.variables.NpcVariables;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExChangeClientEffectInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.OnEventTrigger;
-import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
 
 import instances.AbstractInstance;
 import quests.Q10286_ReunionWithSirra.Q10286_ReunionWithSirra;
@@ -386,7 +386,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							if (!freya.isInCombat())
 							{
 								freya.setRunning();
-								freya.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MIDDLE_POINT);
+								freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
 							}
 						}
 						break;
@@ -669,7 +669,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 										final Attackable breath = addSpawn(BREATH, npc.getLocation(), true, 0, false, world.getId()).asAttackable();
 										breath.setRunning();
 										breath.addDamageHate(mob.getMostHated(), 0, 999);
-										breath.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, mob.getMostHated());
+										breath.getAI().setIntention(Intention.ATTACK, mob.getMostHated());
 										startQuestTimer("BLIZZARD", 20000, breath, null);
 									}
 									break;
@@ -729,7 +729,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -748,7 +748,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						{
 							manageScreenMsg(world, NpcStringId.FREYA_HAS_STARTED_TO_MOVE);
 							freya.setRunning();
-							freya.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MIDDLE_POINT);
+							freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
 						}
 					}
 					
@@ -822,7 +822,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						if (!freya.isInCombat())
 						{
 							freya.setRunning();
-							freya.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MIDDLE_POINT);
+							freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
 						}
 					}
 					
@@ -1016,11 +1016,10 @@ public class IceQueensCastleBattle extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -1038,7 +1037,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							{
 								breath.setRunning();
 								breath.addDamageHate(player, 0, 999);
-								breath.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+								breath.getAI().setIntention(Intention.ATTACK, player);
 							}
 							else
 							{
@@ -1060,11 +1059,10 @@ public class IceQueensCastleBattle extends AbstractInstance
 				}
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -1122,7 +1120,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						{
 							manageScreenMsg(world, NpcStringId.FREYA_HAS_STARTED_TO_MOVE);
 							freya.setRunning();
-							freya.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MIDDLE_POINT);
+							freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
 						}
 					}
 					
@@ -1152,7 +1150,6 @@ public class IceQueensCastleBattle extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -1180,7 +1177,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 		{
 			mob.asAttackable().addDamageHate(target, 0, 999);
 			mob.setRunning();
-			mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+			mob.getAI().setIntention(Intention.ATTACK, target);
 		}
 		else
 		{

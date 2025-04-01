@@ -17,8 +17,8 @@
 		<skills>
 			<skill id="17619" level="2" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27358" level="5" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>
@@ -40,8 +40,8 @@
 		<skills>
 			<skill id="17619" level="2" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27358" level="6" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>
@@ -63,8 +63,8 @@
 		<skills>
 			<skill id="17619" level="2" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27358" level="7" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>
@@ -86,8 +86,8 @@
 		<skills>
 			<skill id="17619" level="2" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27358" level="8" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>
@@ -109,8 +109,8 @@
 		<skills>
 			<skill id="17619" level="2" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27358" level="9" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>
@@ -132,8 +132,8 @@
 		<skills>
 			<skill id="17619" level="2" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27358" level="10" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>
@@ -155,8 +155,8 @@
 		<skills>
 			<skill id="17619" level="2" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27358" level="11" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>
@@ -178,8 +178,8 @@
 		<skills>
 			<skill id="17619" level="2" /> <!-- Release Agathion's Seal - Pisces -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27358" level="12" /> <!-- Slippery Scale -->
 			<skill id="17631" level="1" /> <!-- Agathion Cute Trick - Pisces -->
 		</skills>
@@ -199,9 +199,9 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27359" level="1" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -221,10 +221,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="2" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -244,10 +244,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="3" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -267,10 +267,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="4" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -290,10 +290,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="5" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -313,10 +313,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="6" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -336,10 +336,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="7" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -359,10 +359,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="8" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -382,10 +382,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="9" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -405,10 +405,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="10" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -428,10 +428,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="11" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -451,10 +451,10 @@
 		<set name="material" val="SILVER" />
 		<set name="enchant_enabled" val="true" />
 		<skills>
-			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Sagittarius -->
+			<skill id="17620" level="2" /> <!-- Release Agathion's Seal - Saggitarius -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27359" level="12" /> <!-- Archer's Call -->
 			<skill id="17632" level="1" /> <!-- Agathion Cute Trick - Sagittarius -->
 		</skills>
@@ -476,7 +476,7 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
 			<skill id="27360" level="1" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -498,8 +498,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="1" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="1" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="2" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -521,8 +521,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="1" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="1" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="3" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -544,8 +544,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="2" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="2" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="4" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -567,8 +567,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="2" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="2" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="5" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -590,8 +590,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="3" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="3" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="6" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -613,8 +613,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="3" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="3" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="7" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -636,8 +636,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="4" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="4" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="8" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -659,8 +659,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="4" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="4" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="9" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -682,8 +682,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="5" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="5" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="10" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -705,8 +705,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="5" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="5" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="11" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -728,8 +728,8 @@
 		<skills>
 			<skill id="17621" level="2" /> <!-- Release Agathion's Seal - Cancer -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
-			<skill id="26117" level="6" /> <!-- Zodiac Agathion Attribute Enchant -->
-			<skill id="26116" level="6" /> <!-- Zodiac Agathion Stat Boost -->
+			<skill id="26117" level="6" /> <!-- Starlight Agathion Attribute Buff -->
+			<skill id="26116" level="6" /> <!-- Starlight Agathion Buffing Skill -->
 			<skill id="27360" level="12" /> <!-- Exoskeletal Shield -->
 			<skill id="17633" level="1" /> <!-- Agathion Cute Trick - Cancer -->
 		</skills>
@@ -987,9 +987,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="5" /> <!-- Talisman - Abundance -->
-			<skill id="21365" level="1" type="ON_EQUIP" /> <!-- Talisman - Hunter -->
-			<skill id="21373" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Hunter -->
+			<skill id="21364" level="1" subLevel="5001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24352" name="Talisman of Slaughterer" additionalName="Abundance / 3-day" type="Armor">
@@ -1005,9 +1003,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="6" /> <!-- Talisman - Abundance -->
-			<skill id="21370" level="1" type="ON_EQUIP" /> <!-- Talisman - Slaughterer -->
-			<skill id="21374" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Slaughterer -->
+			<skill id="21364" level="1" subLevel="6001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24353" name="Talisman of Conquerer" additionalName="Abundance / 3-day" type="Armor">
@@ -1023,9 +1019,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="7" /> <!-- Talisman - Abundance -->
-			<skill id="21371" level="1" type="ON_EQUIP" /> <!-- Talisman - Conquerer -->
-			<skill id="21375" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Conquerer -->
+			<skill id="21364" level="1" subLevel="7001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24354" name="Talisman of Outlaw" additionalName="Abundance / 3-day" type="Armor">
@@ -1041,9 +1035,7 @@
 		<set name="useSkillDisTime" val="1" />
 		<set name="material" val="GOLD" />
 		<skills>
-			<skill id="21364" level="8" /> <!-- Talisman - Abundance -->
-			<skill id="21372" level="1" type="ON_EQUIP" /> <!-- Talisman - Outlaw -->
-			<skill id="21376" level="1" type="ON_UNEQUIP" /> <!-- Unequip Talisman - Outlaw -->
+			<skill id="21364" level="1" subLevel="8001" /> <!-- Talisman - Abundance -->
 		</skills>
 	</item>
 	<item id="24355" name="PA - Art of Seduction" type="EtcItem">
@@ -1062,7 +1054,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="material" val="LIQUID" />
 		<skills>
-			<skill id="17290" level="1" /> <!-- Art of Seduction -->
+			<skill id="17290" level="1" /> <!-- PA - Enhanced Rosy Seduction -->
 		</skills>
 	</item>
 	<item id="24356" name="Draco's Hat: Warrior" additionalName="7-day" type="Armor">
@@ -1079,7 +1071,7 @@
 		<set name="time" val="10080" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="9515" level="1" /> <!-- Draco's Hat: Warrior -->
+			<skill id="9515" level="1" /> <!-- Draco's Warrior Hat -->
 			<skill id="9526" level="1" /> <!-- Draco's Wizard Hat - Blessed Resurrection -->
 		</skills>
 	</item>
@@ -1255,7 +1247,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26217" level="1" /> <!-- Sayha's Rune: Growth -->
+			<skill id="26217" level="1" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24369" name="Sayha's Rune - Growth" additionalName="Lv. 2" type="EtcItem">
@@ -1270,7 +1262,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26217" level="2" /> <!-- Sayha's Rune: Growth -->
+			<skill id="26217" level="2" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24370" name="Sayha's Rune - Growth" additionalName="Lv. 3" type="EtcItem">
@@ -1285,7 +1277,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26217" level="3" /> <!-- Sayha's Rune: Growth -->
+			<skill id="26217" level="3" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24371" name="Sayha's Rune - Growth" additionalName="Lv. 4" type="EtcItem">
@@ -1300,7 +1292,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26217" level="4" /> <!-- Sayha's Rune: Growth -->
+			<skill id="26217" level="4" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24372" name="Sayha's Rune - Skill" additionalName="Lv. 1" type="EtcItem">
@@ -1315,7 +1307,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="1" /> <!-- Sayha's Rune: Skill -->
+			<skill id="26218" level="1" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24373" name="Sayha's Rune - Skill" additionalName="Lv. 2" type="EtcItem">
@@ -1330,7 +1322,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="2" /> <!-- Sayha's Rune: Skill -->
+			<skill id="26218" level="2" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24374" name="Sayha's Rune - Skill" additionalName="Lv. 3" type="EtcItem">
@@ -1345,7 +1337,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="3" /> <!-- Sayha's Rune: Skill -->
+			<skill id="26218" level="3" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24375" name="Sayha's Rune - Skill" additionalName="Lv. 4" type="EtcItem">
@@ -1360,7 +1352,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="4" /> <!-- Sayha's Rune: Skill -->
+			<skill id="26218" level="4" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24376" name="Sayha's Rune - Luck" additionalName="Lv. 1" type="EtcItem">
@@ -1375,7 +1367,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="1" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26218" level="1" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24377" name="Sayha's Rune - Luck" additionalName="Lv. 2" type="EtcItem">
@@ -1390,7 +1382,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="2" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26218" level="2" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24378" name="Sayha's Rune - Luck" additionalName="Lv. 3" type="EtcItem">
@@ -1405,7 +1397,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="3" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26218" level="3" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24379" name="Sayha's Rune - Luck" additionalName="Lv. 4" type="EtcItem">
@@ -1420,7 +1412,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26218" level="4" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26218" level="4" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24380" name="Sayha's Rune" additionalName="Lv. 1" type="EtcItem">
@@ -1435,9 +1427,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="time" val="10" />
 		<skills>
-			<skill id="26216" level="1" /> <!-- Sayha's Rune -->
-			<skill id="26217" level="1" /> <!-- Sayha's Rune: Skill -->
-			<skill id="26218" level="1" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26216" level="1" /> <!-- Wondrous Casket -->
+			<skill id="26217" level="1" /> <!-- Sayha's Rune -->
+			<skill id="26218" level="1" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24381" name="Sayha's Rune" additionalName="Lv. 2" type="EtcItem">
@@ -1453,8 +1445,8 @@
 		<set name="time" val="10" />
 		<skills>
 			<skill id="26216" level="2" /> <!-- Sayha's Rune -->
-			<skill id="26217" level="2" /> <!-- Sayha's Rune: Skill -->
-			<skill id="26218" level="2" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26217" level="2" /> <!-- Sayha's Rune -->
+			<skill id="26218" level="2" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24382" name="Sayha's Rune" additionalName="Lv. 3" type="EtcItem">
@@ -1470,8 +1462,8 @@
 		<set name="time" val="10" />
 		<skills>
 			<skill id="26216" level="3" /> <!-- Sayha's Rune -->
-			<skill id="26217" level="3" /> <!-- Sayha's Rune: Skill -->
-			<skill id="26218" level="3" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26217" level="3" /> <!-- Sayha's Rune -->
+			<skill id="26218" level="3" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24383" name="Sayha's Rune" additionalName="Lv. 4" type="EtcItem">
@@ -1487,8 +1479,8 @@
 		<set name="time" val="10" />
 		<skills>
 			<skill id="26216" level="4" /> <!-- Sayha's Rune -->
-			<skill id="26217" level="4" /> <!-- Sayha's Rune: Skill -->
-			<skill id="26218" level="4" /> <!-- Sayha's Rune: Luck -->
+			<skill id="26217" level="4" /> <!-- Sayha's Rune -->
+			<skill id="26218" level="4" /> <!-- Sayha's Rune -->
 		</skills>
 	</item>
 	<item id="24384" name="Package: Sayha's Rune - Growth Lv. 1" type="EtcItem">

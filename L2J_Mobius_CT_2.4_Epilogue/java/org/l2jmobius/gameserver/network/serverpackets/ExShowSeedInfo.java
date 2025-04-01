@@ -19,7 +19,7 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
+import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.model.Seed;
 import org.l2jmobius.gameserver.model.SeedProduction;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -54,6 +54,7 @@ public class ExShowSeedInfo extends ServerPacket
 			buffer.writeInt(0);
 			return;
 		}
+		
 		buffer.writeInt(_seeds.size());
 		for (SeedProduction seed : _seeds)
 		{

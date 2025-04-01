@@ -522,7 +522,7 @@
 	<item id="100326" name="First Lv. 94 Achievement Reward - Name Background" additionalName="Sealed" type="EtcItem">
 		<!-- A reward for being the first to reach Lv. 94. When used, your name in the chat window will be shown in a special background. -->
 		<set name="icon" val="icon.color_name_i00" />
-		<set name="default_action" val="NONE" />
+		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="is_tradable" val="false" />
@@ -531,6 +531,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
+		<set name="handler" val="ChatBackground" />
 	</item>
 	<item id="100327" name="Elegia Breastplate" type="Armor">
 		<set name="icon" val="icon.armor_t97_u_i00" />
@@ -541,7 +542,6 @@
 		<set name="crystal_type" val="A" />
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="7700" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
@@ -564,7 +564,6 @@
 		<set name="crystal_type" val="A" />
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="3320" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
@@ -636,7 +635,6 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="4300" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<stats>
@@ -658,7 +656,6 @@
 		<set name="crystal_type" val="A" />
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1480" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
@@ -730,7 +727,6 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="1750" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<stats>
@@ -753,7 +749,6 @@
 		<set name="crystal_type" val="A" />
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="850" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
@@ -827,7 +822,6 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="540" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />
 		<stats>
@@ -848,7 +842,6 @@
 		<set name="crystal_type" val="A" />
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
-		<set name="enchant_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_sellable" val="false" />
 		<set name="is_freightable" val="true" />

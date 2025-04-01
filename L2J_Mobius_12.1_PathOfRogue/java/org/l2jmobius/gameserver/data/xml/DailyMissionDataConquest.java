@@ -32,11 +32,11 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.model.DailyMissionDataHolder;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.holders.player.DailyMissionDataHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author Sdw, Mobius
@@ -72,12 +72,14 @@ public class DailyMissionDataConquest implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "reward", rewardNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "reward", rewardNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(rewardNode));
 			final List<ItemHolder> items = new ArrayList<>(1);
+			
+			// Process items.
 			forEach(rewardNode, "items", itemsNode -> forEach(itemsNode, "item", itemNode ->
 			{
 				final int itemId = parseInteger(itemNode.getAttributes(), "id");
@@ -87,15 +89,16 @@ public class DailyMissionDataConquest implements IXmlReader
 			
 			set.set("items", items);
 			
-			final List<ClassId> classRestriction = new ArrayList<>(1);
-			forEach(rewardNode, "classId", classRestrictionNode -> classRestriction.add(ClassId.getClassId(Integer.parseInt(classRestrictionNode.getTextContent()))));
+			// Process class restrictions.
+			final List<PlayerClass> classRestriction = new ArrayList<>(1);
+			forEach(rewardNode, "classId", classRestrictionNode -> classRestriction.add(PlayerClass.getPlayerClass(Integer.parseInt(classRestrictionNode.getTextContent()))));
 			set.set("classRestriction", classRestriction);
 			
-			// Initial values in case handler doesn't exists
+			// Initial values in case handler doesn't exist.
 			set.set("handler", "");
 			set.set("params", StatSet.EMPTY_STATSET);
 			
-			// Parse handler and parameters
+			// Parse handler and parameters.
 			forEach(rewardNode, "handler", handlerNode ->
 			{
 				set.set("handler", parseString(handlerNode.getAttributes(), "name"));
@@ -106,7 +109,7 @@ public class DailyMissionDataConquest implements IXmlReader
 			});
 			
 			final DailyMissionDataHolder holder = new DailyMissionDataHolder(set);
-			_dailyMissionRewards.computeIfAbsent(holder.getId(), k -> new ArrayList<>()).add(holder);
+			_dailyMissionRewards.computeIfAbsent(holder.getId(), _ -> new ArrayList<>()).add(holder);
 		}));
 	}
 	
@@ -138,10 +141,6 @@ public class DailyMissionDataConquest implements IXmlReader
 		return _isAvailable;
 	}
 	
-	/**
-	 * Gets the single instance of DailyMissionData.
-	 * @return single instance of DailyMissionData
-	 */
 	public static DailyMissionDataConquest getInstance()
 	{
 		return SingletonHolder.INSTANCE;

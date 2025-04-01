@@ -23,10 +23,8 @@ package vehicles;
 import java.util.concurrent.Future;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.AirShipManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.AirShipManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -34,12 +32,15 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.AirShip;
 import org.l2jmobius.gameserver.model.actor.instance.ControllableAirShip;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.ScriptZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 import ai.AbstractNpcAI;
@@ -138,7 +139,7 @@ public abstract class AirShipController extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.ANOTHER_AIRSHIP_HAS_BEEN_SUMMONED_TO_THE_WHARF_PLEASE_TRY_AGAIN_LATER);
 				return null;
 			}
-			if (!player.hasClanPrivilege(ClanPrivilege.CL_USE_FUNCTIONS))
+			if (!player.hasAccess(ClanAccess.ACCESS_AIRSHIP))
 			{
 				player.sendPacket(SystemMessageId.THE_AIRSHIP_SUMMON_LICENSE_REGISTRATION_CAN_ONLY_BE_DONE_BY_THE_CLAN_LEADER);
 				return null;
@@ -154,7 +155,7 @@ public abstract class AirShipController extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.YOUR_CLAN_S_AIRSHIP_IS_ALREADY_BEING_USED_BY_ANOTHER_CLAN_MEMBER);
 				return null;
 			}
-			if (!player.destroyItemByItemId("AirShipSummon", STARSTONE, SUMMON_COST, npc, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, STARSTONE, SUMMON_COST, npc, true))
 			{
 				player.sendPacket(SM_NEED_MORE);
 				return null;
@@ -266,7 +267,7 @@ public abstract class AirShipController extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.THE_AIRSHIP_SUMMON_LICENSE_HAS_ALREADY_BEEN_ACQUIRED);
 				return null;
 			}
-			if (!player.destroyItemByItemId("AirShipLicense", LICENSE, 1, npc, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, LICENSE, 1, npc, true))
 			{
 				player.sendPacket(SM_NEED_MORE);
 				return null;
@@ -283,7 +284,7 @@ public abstract class AirShipController extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if ((creature instanceof ControllableAirShip) && (_dockedShip == null))
 		{
@@ -306,11 +307,10 @@ public abstract class AirShipController extends AbstractNpcAI
 				_departSchedule = ThreadPool.schedule(_departTask, DEPART_INTERVAL);
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if ((creature instanceof ControllableAirShip) && creature.equals(_dockedShip))
 		{
@@ -324,7 +324,6 @@ public abstract class AirShipController extends AbstractNpcAI
 			_dockedShip = null;
 			_isBusy = false;
 		}
-		return null;
 	}
 	
 	@Override

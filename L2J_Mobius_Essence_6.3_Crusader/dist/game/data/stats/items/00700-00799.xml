@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="701" name="Fungus Juice" type="EtcItem">
 		<!-- The juice of a fungus. -->
@@ -385,7 +385,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_WEAPON" />
 		<skills>
-			<skill id="2006" level="1" /> <!-- Scroll: Enchant Weapon (A-grade) -->
+			<skill id="2006" level="1" /> <!-- Scroll: Enchant A-grade Weapon -->
 		</skills>
 	</item>
 	<item id="730" name="Scroll: Enchant A-grade Armor" type="EtcItem">
@@ -401,7 +401,7 @@
 		<set name="handler" val="EnchantScrolls" />
 		<set name="commissionItemType" val="SCROLL_ENCHANT_ARMOR" />
 		<skills>
-			<skill id="2007" level="1" /> <!-- Scroll: Enchant Armor (A-grade) -->
+			<skill id="2007" level="1" /> <!-- Scroll: Enchant A-grade Armor -->
 		</skills>
 	</item>
 	<item id="734" name="Wind Walk Potion" type="EtcItem">

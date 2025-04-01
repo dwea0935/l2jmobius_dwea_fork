@@ -74,7 +74,7 @@ public class PledgeApplicantInfo
 	{
 		if (isOnline() && (getPlayer().getBaseClass() != _classId))
 		{
-			_classId = getPlayer().getClassId().getId();
+			_classId = getPlayer().getPlayerClass().getId();
 		}
 		return _classId;
 	}

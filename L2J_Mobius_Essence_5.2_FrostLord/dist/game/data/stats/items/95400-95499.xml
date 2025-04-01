@@ -528,15 +528,15 @@
 		<skills>
 			<skill id="50515" level="1" /> <!-- Anakim's Divine Pistols -->
 			<skill id="50500" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Anakim's Divine Pistols -->
-			<skill id="50500" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +1 Anakim's Divine Pistols -->
-			<skill id="50500" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +1 Anakim's Divine Pistols -->
-			<skill id="50500" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +1 Anakim's Divine Pistols -->
-			<skill id="50500" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +1 Anakim's Divine Pistols -->
-			<skill id="50500" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +1 Anakim's Divine Pistols -->
-			<skill id="50500" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +1 Anakim's Divine Pistols -->
-			<skill id="50500" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +1 Anakim's Divine Pistols -->
-			<skill id="50500" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +1 Anakim's Divine Pistols -->
-			<skill id="50500" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +1 Anakim's Divine Pistols -->
+			<skill id="50500" level="2" type="ON_ENCHANT" type_value="2" /> <!-- +2 Anakim's Divine Pistols -->
+			<skill id="50500" level="3" type="ON_ENCHANT" type_value="3" /> <!-- +3 Anakim's Divine Pistols -->
+			<skill id="50500" level="4" type="ON_ENCHANT" type_value="4" /> <!-- +4 Anakim's Divine Pistols -->
+			<skill id="50500" level="5" type="ON_ENCHANT" type_value="5" /> <!-- +5 Anakim's Divine Pistols -->
+			<skill id="50500" level="6" type="ON_ENCHANT" type_value="6" /> <!-- +6 Anakim's Divine Pistols -->
+			<skill id="50500" level="7" type="ON_ENCHANT" type_value="7" /> <!-- +7 Anakim's Divine Pistols -->
+			<skill id="50500" level="8" type="ON_ENCHANT" type_value="8" /> <!-- +8 Anakim's Divine Pistols -->
+			<skill id="50500" level="9" type="ON_ENCHANT" type_value="9" /> <!-- +9 Anakim's Divine Pistols -->
+			<skill id="50500" level="10" type="ON_ENCHANT" type_value="10" /> <!-- +10 Anakim's Divine Pistols -->
 			<skill id="50497" level="1" type="ON_BLESSING" /> <!-- Weapon Blessing Effect -->
 			<skill id="50412" level="1" type="ON_BLESSING" type_value="5" /> <!-- +5 Boss' Weapon Blessing Effect -->
 			<skill id="50413" level="1" type="ON_BLESSING" type_value="6" /> <!-- +6 Boss' Weapon Blessing Effect -->

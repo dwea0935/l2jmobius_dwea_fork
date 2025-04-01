@@ -3189,7 +3189,7 @@
 		<abnormalTime>1200</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>3000</reuseDelay>
@@ -3208,7 +3208,7 @@
 		<abnormalTime>1200</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>3000</reuseDelay>
@@ -3227,7 +3227,7 @@
 		<abnormalTime>1200</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>3000</reuseDelay>
@@ -3246,7 +3246,7 @@
 		<abnormalTime>1200</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>3000</reuseDelay>
@@ -3265,7 +3265,7 @@
 		<abnormalTime>1200</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>3000</reuseDelay>
@@ -3284,7 +3284,7 @@
 		<abnormalTime>1200</abnormalTime>
 		<affectScope>SINGLE</affectScope>
 		<hitTime>4000</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>1</magicLevel>
 		<reuseDelay>3000</reuseDelay>

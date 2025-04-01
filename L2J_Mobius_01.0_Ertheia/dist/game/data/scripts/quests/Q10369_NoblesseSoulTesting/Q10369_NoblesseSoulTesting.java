@@ -18,22 +18,22 @@ package quests.Q10369_NoblesseSoulTesting;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.EvasHiddenSpace.EvasHiddenSpace;
 
@@ -439,7 +439,7 @@ public class Q10369_NoblesseSoulTesting extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(killer);
 		final QuestState qs = getQuestState(partyMember, false);
@@ -458,7 +458,7 @@ public class Q10369_NoblesseSoulTesting extends Quest
 				}
 				case 8:
 				{
-					if (CommonUtil.contains(HOT_SPRINGS, npc.getId()))
+					if (ArrayUtil.contains(HOT_SPRINGS, npc.getId()))
 					{
 						giveItems(partyMember, DURABLE_LEATHER, 1);
 						if (getQuestItemsCount(killer, DURABLE_LEATHER) >= 10)
@@ -477,7 +477,7 @@ public class Q10369_NoblesseSoulTesting extends Quest
 				}
 				case 12:
 				{
-					if (CommonUtil.contains(ISLE_OF_PRAYER, npc.getId()))
+					if (ArrayUtil.contains(ISLE_OF_PRAYER, npc.getId()))
 					{
 						giveItems(partyMember, HARD_FOSSIL_CONTAINING_WATER_ENERGY, 1);
 						if (getQuestItemsCount(killer, HARD_FOSSIL_CONTAINING_WATER_ENERGY) >= 10)
@@ -494,11 +494,10 @@ public class Q10369_NoblesseSoulTesting extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
@@ -526,11 +525,10 @@ public class Q10369_NoblesseSoulTesting extends Quest
 				}
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -572,11 +570,10 @@ public class Q10369_NoblesseSoulTesting extends Quest
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player player, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player player, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		if (player != null)
 		{
@@ -597,7 +594,7 @@ public class Q10369_NoblesseSoulTesting extends Quest
 				}
 				case FLAME_FLOWER:
 				{
-					if ((skill == TROWEL_SKILL.getSkill()) && (CommonUtil.contains(targets, npc)))
+					if ((skill == TROWEL_SKILL.getSkill()) && (ArrayUtil.contains(targets, npc)))
 					{
 						final QuestState qs = getQuestState(player, false);
 						if ((qs != null) && qs.isStarted() && qs.isCond(10))
@@ -619,7 +616,7 @@ public class Q10369_NoblesseSoulTesting extends Quest
 				}
 				case HELPING_TREE_SUMMON_DEVICE:
 				{
-					if ((skill == HELPING_SEED_SKILL.getSkill()) && (CommonUtil.contains(targets, npc)))
+					if ((skill == HELPING_SEED_SKILL.getSkill()) && (ArrayUtil.contains(targets, npc)))
 					{
 						final QuestState qs = getQuestState(player, false);
 						if ((qs != null) && qs.isStarted() && qs.isCond(16))
@@ -640,7 +637,6 @@ public class Q10369_NoblesseSoulTesting extends Quest
 				}
 			}
 		}
-		return super.onSkillSee(npc, player, skill, targets, isSummon);
 	}
 	
 	@Override

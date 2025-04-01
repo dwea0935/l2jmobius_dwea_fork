@@ -36,7 +36,8 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
 import org.l2jmobius.gameserver.model.spawns.SpawnTemplate;
@@ -297,7 +298,7 @@ public class BattleWithKeber extends LongTimeEvent
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final int type = getFieldType(npc.getId());
 		final boolean eventIsPending = (getQuestTimer("KEBER_EVENT_START", null, null) != null) && getQuestTimer("KEBER_EVENT_START", null, null).isActive();
@@ -308,7 +309,7 @@ public class BattleWithKeber extends LongTimeEvent
 			{
 				npc.getSpawn().stopRespawn();
 				npc.deleteMe();
-				return super.onSpawn(npc);
+				return;
 			}
 			
 			final int eliteMonsterId = ELITE_MINIONS.get(type);
@@ -318,8 +319,9 @@ public class BattleWithKeber extends LongTimeEvent
 			if (nearbyMonstersCount >= maxSpawnMonsters)
 			{
 				npc.deleteMe();
-				return super.onSpawn(npc);
+				return;
 			}
+			
 			final int killedCount = MINION_KILL_COUNTER.get(type);
 			if (killedCount >= (ELITE_MONSTER_COUNT + BRAINWASHED_MONSTER_COUNT))
 			{
@@ -338,11 +340,10 @@ public class BattleWithKeber extends LongTimeEvent
 			Broadcast.toKnownPlayers(npc, new ExShowScreenMessage(BROADCAST_MESSAGES.get(npc.getId()), ExShowScreenMessage.TOP_CENTER, 5000));
 			World.getInstance().getVisibleObjects(npc, Player.class).stream().findAny().ifPresent(player -> addAttackPlayerDesire(npc, player));
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (NORMAL_MINIONS.contains(npc.getId()) || ELITE_MINIONS.contains(npc.getId()))
 		{
@@ -370,7 +371,7 @@ public class BattleWithKeber extends LongTimeEvent
 					}
 					else
 					{
-						killer.addItem(_eventName, drop.getId(), drop.getCount(), null, true);
+						killer.addItem(ItemProcessType.REWARD, drop.getId(), drop.getCount(), null, true);
 					}
 				}
 			}
@@ -389,7 +390,6 @@ public class BattleWithKeber extends LongTimeEvent
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private long getMsTimeForEventStage(int type)

@@ -37,7 +37,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2704" level="1" /> <!-- Giran Wizard Captain -->
+			<skill id="2704" level="1" /> <!-- Giran's Head Wizard -->
 		</skills>
 	</item>
 	<item id="13602" name="Transformation Scroll: Giran Centurion Mercenary" type="EtcItem">
@@ -57,7 +57,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2705" level="1" /> <!-- Giran Kamael Guard Captain -->
+			<skill id="2705" level="1" /> <!-- Giran's Kamael Guard Captain -->
 		</skills>
 	</item>
 	<item id="13603" name="Transformation Scroll: Giran Knight Captain Mercenary" type="EtcItem">
@@ -237,7 +237,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2714" level="1" /> <!-- Oren Royal Guard Captain -->
+			<skill id="2714" level="1" /> <!-- Oren Chief Guard -->
 		</skills>
 	</item>
 	<item id="13612" name="Transformation Scroll: Oren Archer Mercenary" type="EtcItem">
@@ -277,7 +277,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2716" level="1" /> <!-- Oren Wizard Captain -->
+			<skill id="2716" level="1" /> <!-- Oren's Head Wizard -->
 		</skills>
 	</item>
 	<item id="13614" name="Transformation Scroll: Oren Centurion Mercenary" type="EtcItem">
@@ -297,7 +297,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2717" level="1" /> <!-- Oren Kamael Guard Captain -->
+			<skill id="2717" level="1" /> <!-- Oren's Kamael Guard Captain -->
 		</skills>
 	</item>
 	<item id="13615" name="Transformation Scroll: Oren Knight Captain Mercenary" type="EtcItem">
@@ -477,7 +477,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2726" level="1" /> <!-- Aden Royal Guard Captain -->
+			<skill id="2726" level="1" /> <!-- Aden Chief Guard -->
 		</skills>
 	</item>
 	<item id="13624" name="Transformation Scroll: Aden Archer Mercenary" type="EtcItem">
@@ -517,7 +517,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2728" level="1" /> <!-- Aden Wizard Captain -->
+			<skill id="2728" level="1" /> <!-- Aden's Head Wizard -->
 		</skills>
 	</item>
 	<item id="13626" name="Transformation Scroll: Aden Centurion Mercenary" type="EtcItem">
@@ -537,7 +537,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2729" level="1" /> <!-- Aden Kamael Guard Captain -->
+			<skill id="2729" level="1" /> <!-- Aden's Kamael Guard Captain -->
 		</skills>
 	</item>
 	<item id="13627" name="Transformation Scroll: Aden Knight Captain Mercenary" type="EtcItem">
@@ -717,7 +717,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2738" level="1" /> <!-- Innadril Royal Guard Captain -->
+			<skill id="2738" level="1" /> <!-- Innadril Chief Guard -->
 		</skills>
 	</item>
 	<item id="13636" name="Transformation Scroll: Innadril Archer Mercenary" type="EtcItem">
@@ -757,7 +757,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2740" level="1" /> <!-- Innadril Wizard Captain -->
+			<skill id="2740" level="1" /> <!-- Innadril's Head Wizard -->
 		</skills>
 	</item>
 	<item id="13638" name="Transformation Scroll: Innadril Centurion Mercenary" type="EtcItem">
@@ -777,7 +777,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2741" level="1" /> <!-- Innadril Kamael Guard Captain -->
+			<skill id="2741" level="1" /> <!-- Innadril's Kamael Guard Captain -->
 		</skills>
 	</item>
 	<item id="13639" name="Transformation Scroll: Innadril Knight Captain Mercenary" type="EtcItem">
@@ -957,7 +957,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2750" level="1" /> <!-- Goddard Royal Guard Captain -->
+			<skill id="2750" level="1" /> <!-- Goddard Chief Guard -->
 		</skills>
 	</item>
 	<item id="13648" name="Transformation Scroll: Goddard Archer Mercenary" type="EtcItem">
@@ -997,7 +997,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2752" level="1" /> <!-- Goddard Wizard Captain -->
+			<skill id="2752" level="1" /> <!-- Goddard's Head Wizard -->
 		</skills>
 	</item>
 	<item id="13650" name="Transformation Scroll: Goddard Centurion Mercenary" type="EtcItem">
@@ -1017,7 +1017,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2753" level="1" /> <!-- Goddard Kamael Gauard Captain -->
+			<skill id="2753" level="1" /> <!-- Goddard's Kamael Guard Captain -->
 		</skills>
 	</item>
 	<item id="13651" name="Transformation Scroll: Goddard Knight Captain Mercenary" type="EtcItem">
@@ -1197,7 +1197,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2762" level="1" /> <!-- Rune Royal Guard Captain -->
+			<skill id="2762" level="1" /> <!-- Rune Chief Guard -->
 		</skills>
 	</item>
 	<item id="13660" name="Transformation Scroll: Rune Archer Mercenary" type="EtcItem">
@@ -1237,7 +1237,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2764" level="1" /> <!-- Rune Wizard Captain -->
+			<skill id="2764" level="1" /> <!-- Rune's Head Wizard -->
 		</skills>
 	</item>
 	<item id="13662" name="Transformation Scroll: Rune Centurion Mercenary" type="EtcItem">
@@ -1257,7 +1257,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2765" level="1" /> <!-- Rune Kamael Guard Captain -->
+			<skill id="2765" level="1" /> <!-- Rune's Kamael Guard Captain -->
 		</skills>
 	</item>
 	<item id="13663" name="Transformation Scroll: Rune Knight Captain Mercenary" type="EtcItem">
@@ -1437,7 +1437,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2774" level="1" /> <!-- Schuttgart Royal Guard Captain -->
+			<skill id="2774" level="1" /> <!-- Schuttgart Chief Guard -->
 		</skills>
 	</item>
 	<item id="13672" name="Transformation Scroll: Schuttgart Archer Mercenary" type="EtcItem">
@@ -1477,7 +1477,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2776" level="1" /> <!-- Schuttgart Wizard Captain -->
+			<skill id="2776" level="1" /> <!-- Schuttgart Head Wizard -->
 		</skills>
 	</item>
 	<item id="13674" name="Transformation Scroll: Schuttgart Centurion Mercenary" type="EtcItem">
@@ -1497,7 +1497,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="2777" level="1" /> <!-- Schuttgart Kamael Guard Captain -->
+			<skill id="2777" level="1" /> <!-- Schuttgart's Kamael Guard Captain -->
 		</skills>
 	</item>
 	<item id="13675" name="Transformation Scroll: Schuttgart Knight Captain Mercenary" type="EtcItem">
@@ -1869,7 +1869,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2921" level="1" /> <!-- Gludio Supply Box - magic pin -->
+			<skill id="2921" level="1" /> <!-- Gludio Supply Box - Magic Pin -->
 		</skills>
 	</item>
 	<item id="13696" name="Dion Supply Box - Magic Pin" additionalName="Grade B/C" type="EtcItem">
@@ -1885,7 +1885,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2922" level="1" /> <!-- Dion supply box - magic pin -->
+			<skill id="2922" level="1" /> <!-- Dion Supply Box - Magic Pin -->
 		</skills>
 	</item>
 	<item id="13697" name="Giran Supply Box - Magic Pin" additionalName="Grade B/C" type="EtcItem">
@@ -1901,7 +1901,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2923" level="1" /> <!-- Giran supply box - magic pin -->
+			<skill id="2923" level="1" /> <!-- Giran Supply Box - Magic Pin -->
 		</skills>
 	</item>
 	<item id="13698" name="Oren Supply Box - Magic Pin" additionalName="Grade B/C" type="EtcItem">
@@ -1917,7 +1917,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2924" level="1" /> <!-- Oren supply box - magic pin -->
+			<skill id="2924" level="1" /> <!-- Oren Supply Box - Magic Pin -->
 		</skills>
 	</item>
 	<item id="13699" name="Aden Supply Box - Magic Pin" additionalName="Grade B/C" type="EtcItem">
@@ -1933,7 +1933,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="2925" level="1" /> <!-- Aden supply box - magic pin -->
+			<skill id="2925" level="1" /> <!-- Aden Supply Box - Magic Pin -->
 		</skills>
 	</item>
 </list>

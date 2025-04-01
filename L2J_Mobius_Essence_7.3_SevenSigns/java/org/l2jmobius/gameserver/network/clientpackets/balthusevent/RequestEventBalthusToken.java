@@ -20,8 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.balthusevent;
 
-import org.l2jmobius.gameserver.instancemanager.events.BalthusEventManager;
+import org.l2jmobius.gameserver.managers.events.BalthusEventManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
@@ -49,7 +50,7 @@ public class RequestEventBalthusToken extends ClientPacket
 		final int count = player.getVariables().getInt(PlayerVariables.BALTHUS_REWARD, 0);
 		if (count != 0)
 		{
-			if (player.addItem("Balthus Consolation Item", BalthusEventManager.getInstance().getConsolation().getId(), count, player, true) != null)
+			if (player.addItem(ItemProcessType.COMPENSATE, BalthusEventManager.getInstance().getConsolation().getId(), count, player, true) != null)
 			{
 				player.getVariables().set(PlayerVariables.BALTHUS_REWARD, 0);
 				player.sendPacket(new ExBalthusEvent(player));

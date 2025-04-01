@@ -134,13 +134,12 @@ public class Q10306_TheCorruptedLeader extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && (qs.isCond(1)))
 		{
 			qs.setCond(2, true);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 }

@@ -73,6 +73,6 @@ public class DispelCaster extends AbstractEffect
 		}
 		
 		// The effectlist should already check if it has buff with this abnormal type or not.
-		effector.getEffectList().stopEffects(info -> !info.getSkill().isIrreplacableBuff() && _dispelAbnormals.contains(info.getSkill().getAbnormalType()), true, true);
+		effector.getEffectList().stopEffects(info -> !info.getSkill().isIrreplaceableBuff() && _dispelAbnormals.contains(info.getSkill().getAbnormalType()), true, true);
 	}
 }

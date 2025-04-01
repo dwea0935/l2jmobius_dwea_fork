@@ -16,16 +16,15 @@
  */
 package quests.Q00715_PathToBecomingALordGoddard;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 /**
@@ -43,7 +42,7 @@ public class Q00715_PathToBecomingALordGoddard extends Quest
 	
 	public Q00715_PathToBecomingALordGoddard()
 	{
-		super(715);
+		super(715, "Path to Becoming a Lord - Goddard");
 		addStartNpc(ALFRED);
 		addKillId(WATER_SPIRIT_ASHUTAR, FIRE_SPIRIT_NASTRON);
 		addTalkId(ALFRED);
@@ -80,8 +79,7 @@ public class Q00715_PathToBecomingALordGoddard extends Quest
 			{
 				if (castle.getOwner().getLeader().getPlayer() != null)
 				{
-					final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), NpcStringId.S1_HAS_BECOME_THE_LORD_OF_THE_TOWN_OF_GODDARD_MAY_THERE_BE_GLORY_IN_THE_TERRITORY_OF_GODDARD);
-					packet.addStringParameter(player.getName());
+					final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), player.getName() + " has become the lord of the Town of Goddard. May there be glory in the territory of Goddard!");
 					npc.broadcastPacket(packet);
 					qs.exitQuest(true, true);
 				}
@@ -92,12 +90,12 @@ public class Q00715_PathToBecomingALordGoddard extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = killer.getQuestState(getName());
 		if (qs == null)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		if (qs.isCond(2) && (npc.getId() == FIRE_SPIRIT_NASTRON))
@@ -117,7 +115,6 @@ public class Q00715_PathToBecomingALordGoddard extends Quest
 		{
 			qs.setCond(8);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

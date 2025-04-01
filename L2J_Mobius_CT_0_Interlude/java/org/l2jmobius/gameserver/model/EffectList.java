@@ -33,7 +33,6 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
@@ -44,6 +43,7 @@ import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.EffectScope;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.network.serverpackets.AbnormalStatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.ExOlympiadSpelledInfo;
 import org.l2jmobius.gameserver.network.serverpackets.PartySpelled;
@@ -1364,17 +1364,12 @@ public class EffectList
 	 */
 	private void updateEffectIcons()
 	{
-		if (_owner == null)
+		if ((_owner == null) || !_owner.isPlayable())
 		{
 			return;
 		}
 		
 		updateEffectFlags();
-		
-		if (!_owner.isPlayable())
-		{
-			return;
-		}
 		
 		if (_updateEffectIconTask == null)
 		{
@@ -1382,7 +1377,6 @@ public class EffectList
 			{
 				AbnormalStatusUpdate asu = null;
 				PartySpelled ps = null;
-				PartySpelled psSummon = null;
 				ExOlympiadSpelledInfo os = null;
 				boolean isSummon = false;
 				
@@ -1412,7 +1406,6 @@ public class EffectList
 				{
 					isSummon = true;
 					ps = new PartySpelled(_owner);
-					psSummon = new PartySpelled(_owner);
 				}
 				
 				// Buffs.
@@ -1426,7 +1419,7 @@ public class EffectList
 						}
 						else
 						{
-							addIcon(info, asu, ps, psSummon, os, isSummon);
+							addIcon(info, asu, ps, os, isSummon);
 						}
 					}
 				}
@@ -1436,7 +1429,7 @@ public class EffectList
 				{
 					for (BuffInfo info : _dances)
 					{
-						addIcon(info, asu, ps, psSummon, os, isSummon);
+						addIcon(info, asu, ps, os, isSummon);
 					}
 				}
 				
@@ -1445,7 +1438,7 @@ public class EffectList
 				{
 					for (BuffInfo info : _toggles)
 					{
-						addIcon(info, asu, ps, psSummon, os, isSummon);
+						addIcon(info, asu, ps, os, isSummon);
 					}
 				}
 				
@@ -1454,7 +1447,7 @@ public class EffectList
 				{
 					for (BuffInfo info : _debuffs)
 					{
-						addIcon(info, asu, ps, psSummon, os, isSummon);
+						addIcon(info, asu, ps, os, isSummon);
 					}
 				}
 				
@@ -1470,15 +1463,7 @@ public class EffectList
 						final Player summonOwner = _owner.asSummon().getOwner();
 						if (summonOwner != null)
 						{
-							if (summonOwner.isInParty())
-							{
-								summonOwner.getParty().broadcastToPartyMembers(summonOwner, psSummon); // send to all member except summonOwner
-								summonOwner.sendPacket(ps); // now send to summonOwner
-							}
-							else
-							{
-								summonOwner.sendPacket(ps);
-							}
+							summonOwner.sendPacket(ps);
 						}
 					}
 					else if (_owner.isPlayer() && _owner.isInParty())
@@ -1507,7 +1492,7 @@ public class EffectList
 		}
 	}
 	
-	private void addIcon(BuffInfo info, AbnormalStatusUpdate asu, PartySpelled ps, PartySpelled psSummon, ExOlympiadSpelledInfo os, boolean isSummon)
+	private void addIcon(BuffInfo info, AbnormalStatusUpdate asu, PartySpelled ps, ExOlympiadSpelledInfo os, boolean isSummon)
 	{
 		// Avoid null and not in use buffs.
 		if ((info == null) || !info.isInUse())
@@ -1524,11 +1509,6 @@ public class EffectList
 		if ((ps != null) && (isSummon || !skill.isToggle()))
 		{
 			ps.addSkill(info);
-		}
-		
-		if ((psSummon != null) && !skill.isToggle())
-		{
-			psSummon.addSkill(info);
 		}
 		
 		if (os != null)

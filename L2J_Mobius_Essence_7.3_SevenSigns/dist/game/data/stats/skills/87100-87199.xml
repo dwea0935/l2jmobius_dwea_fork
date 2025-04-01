@@ -766,7 +766,7 @@
 	        <abnormalTime>-1</abnormalTime>
 	        <affectScope>SINGLE</affectScope>
 	        <canBeDispelled>false</canBeDispelled>
-	        <irreplacableBuff>true</irreplacableBuff>
+	        <irreplaceableBuff>true</irreplaceableBuff>
 	        <isMagic>4</isMagic>
 	        <isTriggeredSkill>true</isTriggeredSkill>
 	        <magicCriticalRate>5</magicCriticalRate>
@@ -781,7 +781,7 @@
 	        <abnormalTime>-1</abnormalTime>
 	        <affectScope>SINGLE</affectScope>
 	        <canBeDispelled>false</canBeDispelled>
-	        <irreplacableBuff>true</irreplacableBuff>
+	        <irreplaceableBuff>true</irreplaceableBuff>
 	        <isMagic>4</isMagic>
 	        <isTriggeredSkill>true</isTriggeredSkill>
 	        <magicCriticalRate>5</magicCriticalRate>
@@ -800,7 +800,7 @@
 	        <abnormalLevel>1</abnormalLevel>
 	        <abnormalTime>-1</abnormalTime>
 	        <canBeDispelled>false</canBeDispelled>
-	        <irreplacableBuff>true</irreplacableBuff>
+	        <irreplaceableBuff>true</irreplaceableBuff>
 	        <isMagic>4</isMagic>
 	        <isTriggeredSkill>true</isTriggeredSkill>
 	        <magicCriticalRate>5</magicCriticalRate>
@@ -886,7 +886,7 @@
 	        <abnormalTime>-1</abnormalTime>
 	        <affectScope>SINGLE</affectScope>
 	        <canBeDispelled>false</canBeDispelled>
-	        <irreplacableBuff>true</irreplacableBuff>
+	        <irreplaceableBuff>true</irreplaceableBuff>
 	        <isMagic>4</isMagic>
 	        <isTriggeredSkill>true</isTriggeredSkill>
 	        <magicCriticalRate>5</magicCriticalRate>
@@ -903,7 +903,7 @@
 		<abnormalType>DANCE_MASTERY</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<canBeDispelled>false</canBeDispelled>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>4</isMagic>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -1890,7 +1890,7 @@
 				<mode>DIFF</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalRate">
-				<amount>-5</amount>
+				<amount>5</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="Speed">

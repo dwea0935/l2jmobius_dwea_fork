@@ -37,12 +37,11 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.ArmorSet;
-import org.l2jmobius.gameserver.model.holders.ArmorsetSkillHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.holders.ArmorsetSkillHolder;
 import org.l2jmobius.gameserver.model.stats.BaseStat;
 
 /**
- * Loads armor set bonuses.
  * @author godson, Luno, UnAfraid
  */
 public class ArmorSetData implements IXmlReader
@@ -83,9 +82,9 @@ public class ArmorSetData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -113,11 +112,11 @@ public class ArmorSetData implements IXmlReader
 										final ItemTemplate item = ItemData.getInstance().getTemplate(itemId);
 										if (item == null)
 										{
-											LOGGER.warning("Attempting to register non existing required item: " + itemId + " to a set: " + f.getName());
+											LOGGER.warning("Attempting to register non existing required item: " + itemId + " to a set: " + file.getName());
 										}
 										else if (!requiredItems.add(itemId))
 										{
-											LOGGER.warning("Attempting to register duplicate required item " + item + " to a set: " + f.getName());
+											LOGGER.warning("Attempting to register duplicate required item " + item + " to a set: " + file.getName());
 										}
 									});
 									break;
@@ -131,11 +130,11 @@ public class ArmorSetData implements IXmlReader
 										final ItemTemplate item = ItemData.getInstance().getTemplate(itemId);
 										if (item == null)
 										{
-											LOGGER.warning("Attempting to register non existing optional item: " + itemId + " to a set: " + f.getName());
+											LOGGER.warning("Attempting to register non existing optional item: " + itemId + " to a set: " + file.getName());
 										}
 										else if (!optionalItems.add(itemId))
 										{
-											LOGGER.warning("Attempting to register duplicate optional item " + item + " to a set: " + f.getName());
+											LOGGER.warning("Attempting to register duplicate optional item " + item + " to a set: " + file.getName());
 										}
 									});
 									break;
@@ -169,10 +168,10 @@ public class ArmorSetData implements IXmlReader
 						final ArmorSet set = new ArmorSet(id, minimumPieces, isVisual, requiredItems, optionalItems, skills, stats);
 						if (_armorSetMap.putIfAbsent(id, set) != null)
 						{
-							LOGGER.warning("Duplicate set entry with id: " + id + " in file: " + f.getName());
+							LOGGER.warning("Duplicate set entry with id: " + id + " in file: " + file.getName());
 						}
 						
-						Stream.concat(Arrays.stream(set.getRequiredItems()).boxed(), Arrays.stream(set.getOptionalItems()).boxed()).forEach(itemHolder -> _armorSetItems.computeIfAbsent(itemHolder, key -> new ArrayList<>()).add(set));
+						Stream.concat(Arrays.stream(set.getRequiredItems()).boxed(), Arrays.stream(set.getOptionalItems()).boxed()).forEach(itemHolder -> _armorSetItems.computeIfAbsent(itemHolder, _ -> new ArrayList<>()).add(set));
 					}
 				}
 			}
@@ -180,8 +179,9 @@ public class ArmorSetData implements IXmlReader
 	}
 	
 	/**
-	 * @param setId the set id that is attached to a set
-	 * @return the armor set associated to the given item id
+	 * Retrieves the armor set associated with the specified set ID.
+	 * @param setId the ID of the armor set
+	 * @return the armor set associated with the specified ID, or {@code null} if not found
 	 */
 	public ArmorSet getSet(int setId)
 	{
@@ -193,8 +193,9 @@ public class ArmorSetData implements IXmlReader
 	}
 	
 	/**
-	 * @param itemId the item id that is attached to a set
-	 * @return the armor set associated to the given item id
+	 * Retrieves a list of armor sets associated with the specified item ID.
+	 * @param itemId the ID of the item
+	 * @return a list of armor sets associated with the specified item ID, or an empty list if none exist
 	 */
 	public List<ArmorSet> getSets(int itemId)
 	{
@@ -209,10 +210,6 @@ public class ArmorSetData implements IXmlReader
 		return Collections.emptyList();
 	}
 	
-	/**
-	 * Gets the single instance of ArmorSetsData
-	 * @return single instance of ArmorSetsData
-	 */
 	public static ArmorSetData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

@@ -24,10 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.MentorManager;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
-import org.l2jmobius.gameserver.instancemanager.SharedTeleportManager;
+import org.l2jmobius.gameserver.managers.MentorManager;
+import org.l2jmobius.gameserver.managers.RankManager;
+import org.l2jmobius.gameserver.managers.SharedTeleportManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -35,6 +34,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 /**
  * @author Mobius

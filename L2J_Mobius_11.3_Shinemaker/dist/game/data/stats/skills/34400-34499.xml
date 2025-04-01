@@ -14,7 +14,7 @@
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<canBeDispelled>false</canBeDispelled>
 		<hitTime>0</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>3</isMagic>
 		<isSharedWithSummon>false</isSharedWithSummon>
 		<magicCriticalRate>5</magicCriticalRate>
@@ -379,7 +379,7 @@
 		<coolTime>200</coolTime>
 		<effectPoint>-689</effectPoint>
 		<hitTime>2700</hitTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic>
 		<lvlBonusRate>20</lvlBonusRate>
@@ -812,9 +812,7 @@
 		<targetType>ENEMY</targetType>
 		<affectScope>SINGLE</affectScope>
 		<attributeType>DARK</attributeType>
-		<attributeType>DARK</attributeType>
 		<attributeValue>100</attributeValue>
-		<attributeValue>500</attributeValue>
 		<castRange>40</castRange>
 		<coolTime>300</coolTime>
 		<effectPoint>-712</effectPoint>
@@ -867,9 +865,7 @@
 		<targetType>ENEMY</targetType>
 		<affectScope>SINGLE</affectScope>
 		<attributeType>DARK</attributeType>
-		<attributeType>DARK</attributeType>
 		<attributeValue>100</attributeValue>
-		<attributeValue>500</attributeValue>
 		<castRange>40</castRange>
 		<coolTime>300</coolTime>
 		<effectPoint>-712</effectPoint>
@@ -894,8 +890,6 @@
 		<targetType>ENEMY</targetType>
 		<affectScope>SINGLE</affectScope>
 		<attributeType>DARK</attributeType>
-		<attributeType>DARK</attributeType>
-		<attributeValue>100</attributeValue>
 		<attributeValue>1000</attributeValue>
 		<castRange>1100</castRange>
 		<coolTime>300</coolTime>
@@ -1003,7 +997,7 @@
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>0</effectPoint>
 		<hitCancelTime>0</hitCancelTime>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>-1</magicLevel>

@@ -21,10 +21,10 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.commons.time.TimeUtil;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -36,7 +36,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.type.BossZone;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 
@@ -56,12 +56,12 @@ public class Orfen extends AbstractNpcAI
 		new Location(53248, 24576, -5262)
 	};
 	
-	private static final NpcStringId[] TEXT =
+	private static final String[] TEXT =
 	{
-		NpcStringId.S1_STOP_KIDDING_YOURSELF_ABOUT_YOUR_OWN_POWERLESSNESS,
-		NpcStringId.S1_I_LL_MAKE_YOU_FEEL_WHAT_TRUE_FEAR_IS,
-		NpcStringId.YOU_RE_REALLY_STUPID_TO_HAVE_CHALLENGED_ME_S1_GET_READY,
-		NpcStringId.S1_DO_YOU_THINK_THAT_S_GOING_TO_WORK
+		"$s1. Stop kidding yourself about your own powerlessness!",
+		"$s1. I'll make you feel what true fear is!",
+		"You're really stupid to have challenged me. $s1! Get ready!",
+		"$s1. Do you think that's going to work?!"
 	};
 	
 	private static final int ORFEN = 29014;
@@ -138,7 +138,7 @@ public class Orfen extends AbstractNpcAI
 	public void setSpawnPoint(Npc npc, int index)
 	{
 		npc.asAttackable().clearAggroList();
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null, null);
+		npc.getAI().setIntention(Intention.IDLE, null, null);
 		final Spawn spawn = npc.getSpawn();
 		spawn.setLocation(POS[index]);
 		npc.teleToLocation(POS[index], false);
@@ -211,7 +211,7 @@ public class Orfen extends AbstractNpcAI
 				{
 					mob.teleToLocation(npc.getLocation());
 					npc.asAttackable().clearAggroList();
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null, null);
+					npc.getAI().setIntention(Intention.IDLE, null, null);
 				}
 			}
 		}
@@ -236,31 +236,30 @@ public class Orfen extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (npc.getId() == ORFEN)
 		{
 			final Creature originalCaster = isSummon ? caster.getSummon() : caster;
 			if ((skill.getEffectPoint() > 0) && (getRandom(5) == 0) && npc.isInsideRadius2D(originalCaster, 1000))
 			{
-				final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), TEXT[getRandom(4)]);
-				packet.addStringParameter(caster.getName());
+				final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), TEXT[getRandom(4)].replace("$s1", caster.getName()));
 				npc.broadcastPacket(packet);
 				originalCaster.teleToLocation(npc.getLocation());
 				npc.setTarget(originalCaster);
 				npc.doCast(SkillData.getInstance().getSkill(4064, 1));
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
+	public void onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
 	{
 		if ((caller == null) || (npc == null) || npc.isCastingNow())
 		{
-			return super.onFactionCall(npc, caller, attacker, isSummon);
+			return;
 		}
+		
 		final int npcId = npc.getId();
 		final int callerId = caller.getId();
 		if ((npcId == RAIKEL_LEOS) && (getRandom(20) == 0))
@@ -277,16 +276,15 @@ public class Orfen extends AbstractNpcAI
 			}
 			if ((callerId != RIBA_IREN) && (caller.getCurrentHp() < (caller.getMaxHp() / 2.0)) && (getRandom(10) < chance))
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null, null);
+				npc.getAI().setIntention(Intention.IDLE, null, null);
 				npc.setTarget(caller);
 				npc.doCast(SkillData.getInstance().getSkill(4516, 1));
 			}
 		}
-		return super.onFactionCall(npc, caller, attacker, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final int npcId = npc.getId();
 		if (npcId == ORFEN)
@@ -298,8 +296,7 @@ public class Orfen extends AbstractNpcAI
 			}
 			else if (npc.isInsideRadius2D(attacker, 1000) && !npc.isInsideRadius2D(attacker, 300) && (getRandom(10) == 0))
 			{
-				final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npcId, TEXT[getRandom(3)]);
-				packet.addStringParameter(attacker.getName());
+				final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npcId, TEXT[getRandom(3)].replace("$s1", attacker.getName()));
 				npc.broadcastPacket(packet);
 				attacker.teleToLocation(npc.getLocation());
 				npc.setTarget(attacker);
@@ -311,11 +308,10 @@ public class Orfen extends AbstractNpcAI
 			npc.setTarget(attacker);
 			npc.doCast(SkillData.getInstance().getSkill(4516, 1));
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == ORFEN)
 		{
@@ -325,6 +321,11 @@ public class Orfen extends AbstractNpcAI
 			final long baseIntervalMillis = Config.ORFEN_SPAWN_INTERVAL * 3600000;
 			final long randomRangeMillis = Config.ORFEN_SPAWN_RANDOM * 3600000;
 			final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
+			
+			// Next respawn time.
+			final long nextRespawnTime = System.currentTimeMillis() + respawnTime;
+			LOGGER.info("Orfen will respawn at: " + TimeUtil.getDateTimeString(nextRespawnTime));
+			
 			startQuestTimer("orfen_unlock", respawnTime, null, null);
 			// also save the respawn time so that the info is maintained past reboots
 			final StatSet info = GrandBossManager.getInstance().getStatSet(ORFEN);
@@ -340,7 +341,6 @@ public class Orfen extends AbstractNpcAI
 			MINIONS.remove(npc);
 			startQuestTimer("spawn_minion", 360000, npc, null);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

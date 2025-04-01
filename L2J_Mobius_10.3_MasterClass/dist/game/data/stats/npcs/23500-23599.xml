@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="23500" level="99" type="Monster" name="Flame Crow">
 		<parameters>
@@ -3320,7 +3320,6 @@
 	</npc>
 	<npc id="23589" level="101" type="Monster" name="Fortress Spy">
 		<race>HUMANOID</race>
-		<equipment rhand="17421" />
 		<acquire exp="6075" sp="6" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="109188.4" hpRegen="11.4" mp="24308" mpRegen="30" />

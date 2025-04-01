@@ -20,8 +20,7 @@
  */
 package instances.ChamberOfProphecies;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -33,6 +32,7 @@ import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowUsm;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -279,9 +279,9 @@ public class ChamberOfProphecies extends AbstractInstance
 				if (npc.isScriptValue(0) && world.getAliveNpcs(Monster.class).isEmpty())
 				{
 					npc.setTarget(player);
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+					npc.getAI().setIntention(Intention.FOLLOW, player);
 				}
-				else if (npc.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK)
+				else if (npc.getAI().getIntention() != Intention.ATTACK)
 				{
 					World.getInstance().forEachVisibleObjectInRange(npc, Monster.class, 3000, monster ->
 					{
@@ -322,7 +322,7 @@ public class ChamberOfProphecies extends AbstractInstance
 			{
 				npc.setTarget(player);
 				npc.setRunning();
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+				npc.getAI().setIntention(Intention.FOLLOW, player);
 				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.THAT_GUY_KAIN_HAS_A_SMARMY_FACE));
 				player.sendPacket(new PlaySound(3, "Npcdialog1.apple_quest_7", 0, 0, 0, 0, 0));
 				break;
@@ -397,7 +397,7 @@ public class ChamberOfProphecies extends AbstractInstance
 			{
 				if ((npc != null) && (npc.getId() == HELPER_FERIN))
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, player);
+					npc.getAI().setIntention(Intention.IDLE, player);
 				}
 				cancelQuestTimer("BROADCAST_TEXT", npc, player);
 				break;
@@ -416,7 +416,7 @@ public class ChamberOfProphecies extends AbstractInstance
 				cancelQuestTimer("ATTACK2", npc, player);
 				if (npc != null)
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE, player);
+					npc.getAI().setIntention(Intention.ACTIVE, player);
 				}
 				startQuestTimer("CLOSE", 15000, null, player);
 				break;
@@ -509,7 +509,7 @@ public class ChamberOfProphecies extends AbstractInstance
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
@@ -534,7 +534,6 @@ public class ChamberOfProphecies extends AbstractInstance
 				}
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public static void main(String[] args)

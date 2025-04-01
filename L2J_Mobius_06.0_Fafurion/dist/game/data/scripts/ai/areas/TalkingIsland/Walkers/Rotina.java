@@ -16,11 +16,11 @@
  */
 package ai.areas.TalkingIsland.Walkers;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -64,13 +64,12 @@ public class Rotina extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRHandId(WEAPON);
 		followNpc(npc, MEI, 115, MIN_DISTANCE, MAX_DISTANCE);
 		getTimers().addTimer("NPC_SHOUT", (10 + getRandom(5)) * 1000, npc, null);
 		getTimers().addRepeatingTimer("WALK_AROUND_MEI", 1000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

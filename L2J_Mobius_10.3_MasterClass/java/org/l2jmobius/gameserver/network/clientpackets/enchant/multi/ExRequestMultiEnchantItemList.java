@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.clientpackets.enchant.multi;
 
@@ -24,23 +28,24 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.EnchantItemData;
 import org.l2jmobius.gameserver.data.xml.ItemCrystallizationData;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.EnchantItemRequest;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantResultType;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantScroll;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
-import org.l2jmobius.gameserver.network.serverpackets.ShortCutInit;
+import org.l2jmobius.gameserver.network.serverpackets.ShortcutInit;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.enchant.EnchantResult;
 import org.l2jmobius.gameserver.network.serverpackets.enchant.multi.ExResultMultiEnchantItemList;
 import org.l2jmobius.gameserver.network.serverpackets.enchant.multi.ExResultSetMultiEnchantItemList;
 import org.l2jmobius.gameserver.network.serverpackets.enchant.single.ChangedEnchantTargetItemProbabilityList;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Index
@@ -145,7 +150,7 @@ public class ExRequestMultiEnchantItemList extends ClientPacket
 				return;
 			}
 			
-			if (player.getInventory().destroyItemByItemId("Enchant", scroll.getId(), 1, player, enchantItem) == null)
+			if (player.getInventory().destroyItemByItemId(ItemProcessType.FEE, scroll.getId(), 1, player, enchantItem) == null)
 			{
 				player.removeRequest(request.getClass());
 				return;
@@ -246,10 +251,10 @@ public class ExRequestMultiEnchantItemList extends ClientPacket
 						else
 						{
 							// Enchant failed, destroy item.
-							if (player.getInventory().destroyItem("Enchant", enchantItem, player, null) == null)
+							if (player.getInventory().destroyItem(ItemProcessType.DESTROY, enchantItem, player, null) == null)
 							{
 								// Unable to destroy item, cheater?
-								Util.handleIllegalPlayerAction(player, "Unable to delete item on enchant failure from " + player + ", possible cheater !", Config.DEFAULT_PUNISH);
+								PunishmentManager.handleIllegalPlayerAction(player, "Unable to delete item on enchant failure from " + player + ", possible cheater !", Config.DEFAULT_PUNISH);
 								player.removeRequest(request.getClass());
 								_result.put(i, "ERROR");
 								if (Config.LOG_ITEM_ENCHANTS)
@@ -279,7 +284,7 @@ public class ExRequestMultiEnchantItemList extends ClientPacket
 							final int crystalId = enchantItem.getTemplate().getCrystalItemId();
 							if (count > 0)
 							{
-								crystals = player.getInventory().addItem("Enchant", crystalId, count, player, enchantItem);
+								crystals = player.getInventory().addItem(ItemProcessType.COMPENSATE, crystalId, count, player, enchantItem);
 								final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1_X_S2);
 								sm.addItemName(crystals);
 								sm.addLong(count);
@@ -310,7 +315,7 @@ public class ExRequestMultiEnchantItemList extends ClientPacket
 							if ((destroyReward != null) && (Rnd.get(100) < destroyReward.getChance()))
 							{
 								_failureReward.put(_failureReward.size() + 1, destroyReward);
-								player.addItem("Enchant", destroyReward.getId(), destroyReward.getCount(), null, true);
+								player.addItem(ItemProcessType.COMPENSATE, destroyReward.getId(), destroyReward.getCount(), null, true);
 								player.sendPacket(new EnchantResult(EnchantResult.FAIL, destroyReward, null, 0));
 							}
 							
@@ -351,7 +356,7 @@ public class ExRequestMultiEnchantItemList extends ClientPacket
 			else
 			{
 				player.sendPacket(new ExResultMultiEnchantItemList(player, true));
-				player.sendPacket(new ShortCutInit(player));
+				player.sendPacket(new ShortcutInit(player));
 				return;
 			}
 		}
@@ -373,7 +378,7 @@ public class ExRequestMultiEnchantItemList extends ClientPacket
 		}
 		
 		player.sendPacket(new ExResultMultiEnchantItemList(player, _successEnchant, _failureEnchant));
-		player.sendPacket(new ShortCutInit(player));
+		player.sendPacket(new ShortcutInit(player));
 	}
 	
 	public int getMultiEnchantingSlotByObjectId(EnchantItemRequest request, int objectId)

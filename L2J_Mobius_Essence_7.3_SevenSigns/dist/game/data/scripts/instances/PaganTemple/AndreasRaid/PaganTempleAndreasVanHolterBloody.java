@@ -29,10 +29,10 @@ import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.impl.instance.OnInstanceStatusChange;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.instance.OnInstanceStatusChange;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 import instances.PaganTemple.PaganTempleManager;
@@ -83,7 +83,7 @@ public class PaganTempleAndreasVanHolterBloody extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance world = (attacker == null) || (npc == null) ? null : attacker.getInstanceWorld();
 		if ((npc == null) || (world == null) || (world.getTemplateId() != PaganTempleManager.INSTANCE_TEMPLATE_ID))
@@ -94,35 +94,33 @@ public class PaganTempleAndreasVanHolterBloody extends AbstractNpcAI
 		{
 			world.getParameters().set(PaganTempleManager.VARIABLE_ANDREAS_BOSS_THINK_TASK, ThreadPool.scheduleAtFixedRate(() -> thinkAction(world, npc), 2_000, 2_000));
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final Instance world = (player == null) || (npc == null) ? null : player.getInstanceWorld();
 		if ((npc == null) || (world == null) || (world.getTemplateId() != PaganTempleManager.INSTANCE_TEMPLATE_ID))
 		{
-			return super.onSpellFinished(npc, player, skill);
+			return;
 		}
-		else if (!world.getParameters().contains(PaganTempleManager.VARIABLE_ANDREAS_BOSS_THINK_TASK))
+		
+		if (!world.getParameters().contains(PaganTempleManager.VARIABLE_ANDREAS_BOSS_THINK_TASK))
 		{
 			world.getParameters().set(PaganTempleManager.VARIABLE_ANDREAS_BOSS_THINK_TASK, ThreadPool.scheduleAtFixedRate(() -> thinkAction(world, npc), 2_000, 2_000));
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Instance world = (killer == null) || (npc == null) ? null : killer.getInstanceWorld();
 		if ((npc == null) || (world == null) || (world.getTemplateId() != PaganTempleManager.INSTANCE_TEMPLATE_ID))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		world.setStatus(PaganTempleManager.ANDREAS_DEAD);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

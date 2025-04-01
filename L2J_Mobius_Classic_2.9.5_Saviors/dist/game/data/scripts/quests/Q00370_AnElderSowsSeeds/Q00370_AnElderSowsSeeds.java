@@ -126,7 +126,7 @@ public class Q00370_AnElderSowsSeeds extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final int npcId = npc.getId();
 		if (MOBS1.containsKey(npcId))
@@ -148,7 +148,6 @@ public class Q00370_AnElderSowsSeeds extends Quest
 				giveItemRandomly(qs.getPlayer(), npc, SPELLBOOK_PAGE, 1, 0, MOBS2.get(npcId), true);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

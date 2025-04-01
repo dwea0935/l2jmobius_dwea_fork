@@ -26,7 +26,7 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -47,11 +47,10 @@ public class ClanFlag extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		getTimers().addTimer("END_OF_LIFE", 1800000, npc, null);
 		getTimers().addTimer("SKILL_CAST", 1000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	@Override

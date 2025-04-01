@@ -28,7 +28,7 @@ public class Q00080_SagaOfTheWindRider extends AbstractSagaQuest
 {
 	public Q00080_SagaOfTheWindRider()
 	{
-		super(80);
+		super(80, "Saga of the Wind Rider");
 		_npc = new int[]
 		{
 			31603,

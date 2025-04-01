@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="49100" name="Teleport: Floran" type="EtcItem">
 		<!-- Can be used to teleport to Floran. Cooldown: 60 min. -->
@@ -135,7 +135,7 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="immediate_effect" val="true" />
 		<skills>
-			<skill id="32013" level="1" /> <!-- Wind Dye Pack -->
+			<skill id="32013" level="1" /> <!-- Windy Dye Pack -->
 		</skills>
 	</item>
 	<item id="49112" name="Staff Chest" additionalName="Grade C" type="EtcItem">
@@ -168,7 +168,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="32016" level="1" /> <!-- Spear Chest -->
+			<skill id="32016" level="1" /> <!-- Spear Weapon Pack -->
 		</skills>
 	</item>
 	<item id="49115" name="Blunt Weapon Chest" additionalName="Grade C" type="EtcItem">
@@ -179,7 +179,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<skills>
-			<skill id="32017" level="1" /> <!-- Blunt Weapon Chest -->
+			<skill id="32017" level="1" /> <!-- Blunt Weapon Pack -->
 		</skills>
 	</item>
 	<item id="49116" name="Dagger Chest" additionalName="Grade C" type="EtcItem">

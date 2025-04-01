@@ -17,33 +17,33 @@
 package quests.Q10752_WindsOfFateAPromise;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.HtmlActionScope;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerBypass;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPressTutorialMark;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerBypass;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPressTutorialMark;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.HtmlActionScope;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialCloseHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowQuestionMark;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 import quests.Q10751_WindsOfFateEncounters.Q10751_WindsOfFateEncounters;
 
@@ -216,14 +216,14 @@ public class Q10752_WindsOfFateAPromise extends Quest
 			}
 			case "33942-12.html":
 			{
-				final ClassId newClass = ClassId.STRATOMANCER;
-				if (qs.isCond(10) && newClass.childOf(player.getClassId()))
+				final PlayerClass newClass = PlayerClass.STRATOMANCER;
+				if (qs.isCond(10) && newClass.childOf(player.getPlayerClass()))
 				{
 					if (!player.isSubClassActive())
 					{
 						player.setBaseClass(newClass);
 					}
-					player.setClassId(newClass.getId());
+					player.setPlayerClass(newClass.getId());
 					player.broadcastUserInfo();
 					player.sendSkillList();
 					player.sendPacket(new SocialAction(player.getObjectId(), 24));
@@ -239,14 +239,14 @@ public class Q10752_WindsOfFateAPromise extends Quest
 			}
 			case "33943-10.html":
 			{
-				final ClassId newClass = ClassId.RIPPER;
-				if (qs.isCond(11) && newClass.childOf(player.getClassId()))
+				final PlayerClass newClass = PlayerClass.RIPPER;
+				if (qs.isCond(11) && newClass.childOf(player.getPlayerClass()))
 				{
 					if (!player.isSubClassActive())
 					{
 						player.setBaseClass(newClass);
 					}
-					player.setClassId(newClass.getId());
+					player.setPlayerClass(newClass.getId());
 					player.broadcastUserInfo();
 					player.sendSkillList();
 					player.sendPacket(new SocialAction(player.getObjectId(), 24));

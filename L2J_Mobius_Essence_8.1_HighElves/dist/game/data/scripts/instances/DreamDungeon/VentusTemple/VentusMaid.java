@@ -72,17 +72,17 @@ public class VentusMaid extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (((creature == null) || !creature.isPlayer() || (npc == null)))
 		{
-			return super.onCreatureSee(npc, creature);
+			return;
 		}
 		
 		final Instance instance = creature.getInstanceWorld();
 		if ((instance == null) || (instance.getTemplateId() != VentusTemple.INSTANCE_ID))
 		{
-			return super.onCreatureSee(npc, creature);
+			return;
 		}
 		
 		if (instance.getStatus() == VentusTemple.GO_TO_VENTUS_ROOM)
@@ -90,8 +90,6 @@ public class VentusMaid extends AbstractNpcAI
 			npc.setUndying(true);
 			instance.setStatus(VentusTemple.SAVE_VENTUS_MAID_IN_VENTUS_ROOM);
 		}
-		
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public static void main(String[] args)

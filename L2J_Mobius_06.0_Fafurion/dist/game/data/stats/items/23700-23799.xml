@@ -1151,7 +1151,6 @@
 		<set name="is_stackable" val="true" />
 		<set name="etcitem_type" val="ENCHT_ATTR_INC_PROP_ENCHT_WP" />
 		<set name="immediate_effect" val="true" />
-		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<skills>
 			<skill id="22947" level="1" /> <!-- Improved Lucky Enchant Stone: Weapon (R-grade) -->

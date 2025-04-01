@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="25100" level="55" type="Monster" name="Spirit of the Sea of Spores" title="Raid Fighter">
 		<parameters>
@@ -903,7 +903,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="273" /> <!-- Compound Bow -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="12518.7694823552" hpRegen="43.4767816366365" mp="463.32" mpRegen="1.8" />
 			<attack physical="822.67619300665" magical="239.880400057452" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -2436,7 +2435,6 @@
 	<npc id="25142" level="80" type="Monster" name="Hekaton Chires" title="Raid Fighter">
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="3937" /> <!-- Monster Only (Lesser Giant) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="90576" hpRegen="17" mp="71253" mpRegen="10" />
 			<attack physical="3633" magical="6279" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -2690,7 +2688,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment lhand="73" /> <!-- Shamshir -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="64816.3054176643" hpRegen="1" mp="3015.6" mpRegen="6" />
 			<attack physical="1809.34202064" magical="981.225735" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -3721,7 +3718,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="124" /> <!-- Elemental Sword -->
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="104387.308038203" hpRegen="1" mp="3349.6" mpRegen="6" />
 			<attack physical="4372.85376" magical="1756.026816" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -4421,7 +4417,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="4028" /> <!-- Giant Cannon -->
 		<acquire exp="34637834" sp="8313" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="1326600.14984958" hpRegen="72.9643823396131" mp="1036.8" mpRegen="2.4" />
@@ -4464,7 +4459,6 @@
 		</parameters>
 		<race>GIANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="3938" /> <!-- Monster Only (Lesser Giant Wizard's Weapon) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="23070.2557526169" hpRegen="71.371053660127" mp="1007" mpRegen="2.4" />
 			<attack physical="1996.68410988141" magical="872.03634502851" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -4625,7 +4619,6 @@
 	<npc id="25184" level="58" type="Monster" name="Devil Blader of Chaos" title="Raid Fighter">
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="1472" /> <!-- Dreadbane -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="16728.062067113" hpRegen="69.6906910362243" mp="977.4" mpRegen="2.4" />
 			<attack physical="1426.0444120344" magical="460.012771989048" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -4668,7 +4661,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="225" /> <!-- Mithril Dagger -->
 		<acquire exp="5476116" sp="1314" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="208348.705363847" hpRegen="26.794392073316" mp="402.6" mpRegen="1.8" />
@@ -4710,7 +4702,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="272" /> <!-- Forest Bow -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="7052.86747194841" hpRegen="25.6128307622386" mp="387.72" mpRegen="1.8" />
 			<attack physical="303.485602119585" magical="48.1624477605241" random="5" critical="8" accuracy="0" attackSpeed="253" type="BOW" range="1100" distance="10" width="0" />
@@ -4746,7 +4737,6 @@
 	<npc id="25187" level="34" type="Monster" name="Hellena's Soldier" title="Raid Fighter">
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="16" /> <!-- Great Spear -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="5263.33393428986" hpRegen="25.6128307622386" mp="387.72" mpRegen="1.8" />
 			<attack physical="303.485602119585" magical="48.1624477605241" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
@@ -4841,7 +4831,7 @@
 			<attack physical="151.742801059792" magical="12.040611940131" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="398.8458" magical="194.58" />
 			<speed>
-				<walk ground="25" />
+				<walk ground="48" />
 				<run ground="170" />
 			</speed>
 			<hitTime>340</hitTime>
@@ -4882,7 +4872,7 @@
 			<attack physical="374.810708687992" magical="79.6018953075482" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="193.846425" magical="189.14" />
 			<speed>
-				<walk ground="25" />
+				<walk ground="48" />
 				<run ground="170" />
 			</speed>
 			<hitTime>340</hitTime>
@@ -4921,7 +4911,7 @@
 			<attack physical="562.230118784958" magical="179.112100596385" random="10" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="193.846425" magical="189.14" />
 			<speed>
-				<walk ground="40" />
+				<walk ground="80" />
 				<run ground="170" />
 			</speed>
 			<hitTime>610</hitTime>
@@ -5138,7 +5128,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="181" /> <!-- Mace of Miracle -->
 		<acquire exp="5139653" sp="1233" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="2300759.52593767" hpRegen="3500" mp="1410" mpRegen="3" />

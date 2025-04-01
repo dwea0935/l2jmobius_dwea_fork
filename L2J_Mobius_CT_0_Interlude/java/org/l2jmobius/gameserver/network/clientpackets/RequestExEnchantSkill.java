@@ -23,20 +23,21 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.sql.EnchantSkillTreesTable;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.IllegalActionPunishmentType;
-import org.l2jmobius.gameserver.enums.ShortcutType;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.EnchantSkillLearn;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
+import org.l2jmobius.gameserver.model.actor.enums.player.ShortcutType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.model.actor.instance.Folk;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.ShortCutRegister;
+import org.l2jmobius.gameserver.network.serverpackets.ShortcutRegister;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Format chdd c: (id) 0xD0 h: (subid) 0x06 d: skill id d: skill level
@@ -86,7 +87,7 @@ public class RequestExEnchantSkill extends ClientPacket
 			return;
 		}
 		
-		if (player.getClassId().getId() < 88)
+		if (player.getPlayerClass().getId() < 88)
 		{
 			return;
 		}
@@ -106,7 +107,7 @@ public class RequestExEnchantSkill extends ClientPacket
 		for (EnchantSkillLearn s : EnchantSkillTreesTable.getInstance().getAvailableEnchantSkills(player))
 		{
 			final Skill sk = SkillData.getInstance().getSkill(s.getId(), s.getLevel());
-			if ((sk == null) || (sk != skill) || !trainer.getTemplate().canTeach(player.getClassId()))
+			if ((sk == null) || (sk != skill) || !trainer.getTemplate().canTeach(player.getPlayerClass()))
 			{
 				continue;
 			}
@@ -121,7 +122,7 @@ public class RequestExEnchantSkill extends ClientPacket
 		if ((counts == 0) && !Config.ALT_GAME_SKILL_LEARN)
 		{
 			player.sendMessage("You are trying to learn skill that you can't...");
-			Util.handleIllegalPlayerAction(player, player + " tried to learn skill that he can't!!!", IllegalActionPunishmentType.KICK);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to learn skill that he can't!!!", IllegalActionPunishmentType.KICK);
 			return;
 		}
 		
@@ -141,7 +142,7 @@ public class RequestExEnchantSkill extends ClientPacket
 						return;
 					}
 					// ok
-					player.destroyItem("Skill Enchant", spb, 1, trainer, true);
+					player.destroyItem(ItemProcessType.FEE, spb, 1, trainer, true);
 				}
 			}
 			else
@@ -171,14 +172,6 @@ public class RequestExEnchantSkill extends ClientPacket
 			su.addAttribute(StatusUpdate.SP, (int) player.getSp());
 			player.sendPacket(su);
 			
-			final SystemMessage ep = new SystemMessage(SystemMessageId.YOUR_EXPERIENCE_HAS_DECREASED_BY_S1);
-			ep.addInt(requiredExp);
-			player.sendPacket(ep);
-			
-			final SystemMessage sp = new SystemMessage(SystemMessageId.YOUR_SP_HAS_DECREASED_BY_S1);
-			sp.addInt(requiredSp);
-			player.sendPacket(sp);
-			
 			final SystemMessage sm = new SystemMessage(SystemMessageId.SKILL_ENCHANT_WAS_SUCCESSFUL_S1_HAS_BEEN_ENCHANTED);
 			sm.addSkillName(_skillId);
 			player.sendPacket(sm);
@@ -191,9 +184,7 @@ public class RequestExEnchantSkill extends ClientPacket
 				player.addSkill(SkillData.getInstance().getSkill(_skillId, _skillLevel), true);
 				player.sendSkillList();
 			}
-			final SystemMessage sm = new SystemMessage(SystemMessageId.SKILL_ENCHANT_FAILED_THE_SKILL_WILL_BE_INITIALIZED);
-			sm.addSkillName(_skillId);
-			player.sendPacket(sm);
+			player.sendPacket(SystemMessageId.SKILL_ENCHANT_FAILED_THE_SKILL_WILL_BE_INITIALIZED);
 			
 			if (Config.LOG_SKILL_ENCHANTS)
 			{
@@ -206,13 +197,13 @@ public class RequestExEnchantSkill extends ClientPacket
 		player.sendSkillList();
 		
 		// Update all the shortcuts to this skill.
-		for (Shortcut sc : player.getAllShortCuts())
+		for (Shortcut sc : player.getAllShortcuts())
 		{
 			if ((sc.getId() == _skillId) && (sc.getType() == ShortcutType.SKILL))
 			{
 				final Shortcut newsc = new Shortcut(sc.getSlot(), sc.getPage(), sc.getType(), sc.getId(), _skillLevel);
-				player.sendPacket(new ShortCutRegister(newsc));
-				player.registerShortCut(newsc);
+				player.sendPacket(new ShortcutRegister(newsc));
+				player.registerShortcut(newsc);
 			}
 		}
 	}

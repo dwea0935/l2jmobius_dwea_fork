@@ -27,7 +27,7 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSkillUse;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSkillUse;
 import org.l2jmobius.gameserver.model.events.listeners.FunctionEventListener;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -58,16 +58,16 @@ public class BlockSkill extends AbstractEffect
 				_skillIds.add(id);
 			}
 		}
+		
+		if (_magicTypes.isEmpty() && _skillIds.isEmpty())
+		{
+			throw new IllegalArgumentException(getClass().getSimpleName() + " magicTypes and skillIds are empty.");
+		}
 	}
 	
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill, Item item)
 	{
-		if (_magicTypes.isEmpty() && _skillIds.isEmpty())
-		{
-			return;
-		}
-		
 		effected.addListener(new FunctionEventListener(effected, EventType.ON_CREATURE_SKILL_USE, (OnCreatureSkillUse event) -> onSkillUseEvent(event), this));
 	}
 	

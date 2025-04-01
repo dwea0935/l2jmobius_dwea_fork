@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
-	<item id="4100" type="EtcItem" name="Sealed Zubei's Gauntlets Part">
+	<item id="4100" type="EtcItem" name="Zubei's Gauntlets Part">
 		<!-- Main ingredient definitely required for a Dwarf to make Zubei's Gauntlet. Can also be sold at ordinary shops. -->
 		<set name="icon" val="icon.etc_plate_silver_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -190,7 +190,7 @@
 		<set name="price" val="48308" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="4119" type="EtcItem" name="Demon's Dagger Edge">
+	<item id="4119" type="EtcItem" name="Demon Dagger Edge">
 		<!-- Main ingredient definitely required for a Dwarf to make a Demon Dagger. Can also be sold at ordinary shops. -->
 		<set name="icon" val="icon.etc_sword_body_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
@@ -220,7 +220,7 @@
 		<set name="price" val="45923" />
 		<set name="is_stackable" val="true" />
 	</item>
-	<item id="4122" type="EtcItem" name="Recipe: Maestro Holder (100%)">
+	<item id="4122" type="EtcItem" name="Recipe: Maestro Holder">
 		<!-- For Dwarves only. The recipe for the Maestro Holder. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_yellow_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -233,7 +233,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4123" type="EtcItem" name="Recipe: Maestro Anvil Lock (100%)">
+	<item id="4123" type="EtcItem" name="Recipe: Maestro Anvil Lock">
 		<!-- For Dwarves only. The recipe for the Maestro Anvil Lock. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_yellow_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -246,7 +246,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4124" type="EtcItem" name="Recipe: Craftsman Mold (100%)">
+	<item id="4124" type="EtcItem" name="Recipe: Craftsman Mold">
 		<!-- For Dwarves only. The recipe for a Craftsman Mold. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_yellow_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -259,7 +259,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4125" type="EtcItem" name="Recipe: Maestro Mold (100%)">
+	<item id="4125" type="EtcItem" name="Recipe: Maestro Mold">
 		<!-- For Dwarves only. The recipe for the Maestro Mold. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_yellow_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -272,7 +272,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4126" type="EtcItem" name="Recipe: Adamantite Earrings (100%)">
+	<item id="4126" type="EtcItem" name="Recipe: Adamantite Earrings">
 		<!-- For Dwarves only. The recipe for Adamantite Earrings. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -285,7 +285,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4127" type="EtcItem" name="Recipe: Adamantite Ring (100%)">
+	<item id="4127" type="EtcItem" name="Recipe: Adamantite Ring">
 		<!-- For Dwarves only. The recipe for an Adamantite Ring. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -298,7 +298,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4128" type="EtcItem" name="Recipe: Adamantite Necklace (100%)">
+	<item id="4128" type="EtcItem" name="Recipe: Adamantite Necklace">
 		<!-- For Dwarves only. The recipe for an Adamantite Necklace. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -311,7 +311,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4129" type="EtcItem" name="Recipe: Earrings of Black Ore (100%)">
+	<item id="4129" type="EtcItem" name="Recipe: Earrings of Black Ore">
 		<!-- For Dwarves only. The recipe for Earrings of Black Ore. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -324,7 +324,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4130" type="EtcItem" name="Recipe: Ring of Black Ore (100%)">
+	<item id="4130" type="EtcItem" name="Recipe: Ring of Black Ore">
 		<!-- For Dwarves only. The recipe for a Ring of Black Ore. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -337,7 +337,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4131" type="EtcItem" name="Recipe: Necklace of Black Ore (100%)">
+	<item id="4131" type="EtcItem" name="Recipe: Necklace of Black Ore">
 		<!-- For Dwarves only. The recipe for a Necklace of Black Ore. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -350,7 +350,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4132" type="EtcItem" name="Recipe: Composite Shield (100%)">
+	<item id="4132" type="EtcItem" name="Recipe: Composite Shield">
 		<!-- For Dwarves only. The recipe for a Composite Shield. Requires Create Item - Skill Level 5. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_yellow_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -363,7 +363,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4133" type="EtcItem" name="Recipe: Zubei's Breastplate (100%)">
+	<item id="4133" type="EtcItem" name="Recipe: Zubei's Breastplate">
 		<!-- For Dwarves only. The recipe for a Zubei's Breastplate. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -376,7 +376,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4134" type="EtcItem" name="Recipe: Zubei's Gaiters (100%)">
+	<item id="4134" type="EtcItem" name="Recipe: Zubei's Gaiters">
 		<!-- For Dwarves only. The recipe for Zubei's Gaiters. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -389,7 +389,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4135" type="EtcItem" name="Recipe: Implosion Boots (100%)">
+	<item id="4135" type="EtcItem" name="Recipe: Implosion Boots">
 		<!-- For Dwarves only. The recipe for Boots of implosion. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -402,7 +402,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4136" type="EtcItem" name="Recipe: Boots of Silence (100%)">
+	<item id="4136" type="EtcItem" name="Recipe: Boots of Silence">
 		<!-- For Dwarves only. The recipe for Boots of Silence. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -415,7 +415,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4137" type="EtcItem" name="Recipe: Guardian's Boots (100%)">
+	<item id="4137" type="EtcItem" name="Recipe: Guardian's Boots">
 		<!-- For Dwarves only. The recipe for the Guardian's Boots. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -428,7 +428,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4138" type="EtcItem" name="Recipe: Paradia Boots (100%)">
+	<item id="4138" type="EtcItem" name="Recipe: Paradia Boots">
 		<!-- For Dwarves only. The recipe for Paradia Boots. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -441,7 +441,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4139" type="EtcItem" name="Recipe: Elemental Boots (100%)">
+	<item id="4139" type="EtcItem" name="Recipe: Elemental Boots">
 		<!-- For Dwarves only. The recipe for Elemental Boots. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -454,7 +454,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4140" type="EtcItem" name="Recipe: Boots of Grace (100%)">
+	<item id="4140" type="EtcItem" name="Recipe: Boots of Grace">
 		<!-- For Dwarves only. The recipe for Boots of Grace. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -467,7 +467,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4141" type="EtcItem" name="Recipe: Avadon Breastplate (100%)">
+	<item id="4141" type="EtcItem" name="Recipe: Avadon Breastplate">
 		<!-- For Dwarves only. The recipe for an Avadon Breastplate. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -480,7 +480,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4142" type="EtcItem" name="Recipe: Avadon Gaiters (100%)">
+	<item id="4142" type="EtcItem" name="Recipe: Avadon Gaiters">
 		<!-- For Dwarves only. The recipe for Avadon Gaiters. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -493,7 +493,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4143" type="EtcItem" name="Recipe: Zubei's Leather Shirt (100%)">
+	<item id="4143" type="EtcItem" name="Recipe: Zubei's Leather Shirt">
 		<!-- For Dwarves only. The recipe for a Zubei's Leather Shirt. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -506,7 +506,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4144" type="EtcItem" name="Recipe: Zubei's Leather Gaiters (100%)">
+	<item id="4144" type="EtcItem" name="Recipe: Zubei's Leather Gaiters">
 		<!-- For Dwarves only. The recipe for Zubei's Leather Gaiters. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -519,7 +519,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4145" type="EtcItem" name="Recipe: Avadon Leather Armor (100%)">
+	<item id="4145" type="EtcItem" name="Recipe: Avadon Leather Armor">
 		<!-- For Dwarves only. The recipe for Avadon Leather Armor. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -532,7 +532,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4146" type="EtcItem" name="Recipe: Tunic of Zubei (100%)">
+	<item id="4146" type="EtcItem" name="Recipe: Tunic of Zubei">
 		<!-- For Dwarves only. The recipe for a Tunic of Zubei. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -545,7 +545,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4147" type="EtcItem" name="Recipe: Stockings of Zubei (100%)">
+	<item id="4147" type="EtcItem" name="Recipe: Stockings of Zubei">
 		<!-- For Dwarves only. The recipe for Stockings of Zubei. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -558,7 +558,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4148" type="EtcItem" name="Recipe: Avadon Robe (100%)">
+	<item id="4148" type="EtcItem" name="Recipe: Avadon Robe">
 		<!-- For Dwarves only. The recipe for an Avadon Robe. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -571,7 +571,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4149" type="EtcItem" name="Recipe: Avadon Circlet (100%)">
+	<item id="4149" type="EtcItem" name="Recipe: Avadon Circlet">
 		<!-- For Dwarves only. The recipe for an Avadon Circlet. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -584,7 +584,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4150" type="EtcItem" name="Recipe: Sealed Avadon Gloves (100%)">
+	<item id="4150" type="EtcItem" name="Recipe: Avadon Gloves">
 		<!-- For Dwarves only. The recipe for the Sealed Avadon Gloves. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -597,7 +597,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4151" type="EtcItem" name="Recipe: Chain Gloves of Silence (100%)">
+	<item id="4151" type="EtcItem" name="Recipe: Chain Gloves of Silence">
 		<!-- For Dwarves only. The recipe for Chain Gloves of Silence. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -610,7 +610,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4152" type="EtcItem" name="Recipe: Guardian's Gloves (100%)">
+	<item id="4152" type="EtcItem" name="Recipe: Guardian's Gloves">
 		<!-- For Dwarves only. The recipe for the Guardian's Gloves. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -623,7 +623,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4153" type="EtcItem" name="Recipe: Gloves of Blessing (100%)">
+	<item id="4153" type="EtcItem" name="Recipe: Gloves of Blessing">
 		<!-- For Dwarves only. The recipe for Gloves of Blessing. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -636,7 +636,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4154" type="EtcItem" name="Recipe: Doom Shield (100%)">
+	<item id="4154" type="EtcItem" name="Recipe: Doom Shield">
 		<!-- For Dwarves only. The recipe for a Doom Shield. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -649,7 +649,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4155" type="EtcItem" name="Recipe: Blue Wolf Breastplate (100%)">
+	<item id="4155" type="EtcItem" name="Recipe: Blue Wolf Breastplate">
 		<!-- For Dwarves only. The recipe for a Blue Wolf Breastplate. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -662,7 +662,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4156" type="EtcItem" name="Recipe: Boots of Blessing (100%)">
+	<item id="4156" type="EtcItem" name="Recipe: Boots of Blessing">
 		<!-- For Dwarves only. The recipe for Boots of Blessing. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -675,7 +675,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4157" type="EtcItem" name="Recipe: Blue Wolf Gaiters (100%)">
+	<item id="4157" type="EtcItem" name="Recipe: Blue Wolf Gaiters">
 		<!-- For Dwarves only. The recipe for the Blue Wolf Gaiters. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -688,7 +688,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4158" type="EtcItem" name="Recipe: Doom Plate Armor (100%)">
+	<item id="4158" type="EtcItem" name="Recipe: Doom Plate Armor">
 		<!-- For Dwarves only. The recipe for a Doom Plate Armor. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -701,7 +701,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4159" type="EtcItem" name="Recipe: Blue Wolf Leather Armor (100%)">
+	<item id="4159" type="EtcItem" name="Recipe: Blue Wolf Leather Armor">
 		<!-- For Dwarves only. The recipe for a Blue Wolf Leather Armor. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -714,7 +714,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4160" type="EtcItem" name="Recipe: Leather Armor of Doom (100%)">
+	<item id="4160" type="EtcItem" name="Recipe: Leather Armor of Doom">
 		<!-- For Dwarves only. The recipe for a Leather Armor of Doom. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -727,7 +727,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4161" type="EtcItem" name="Recipe: Blue Wolf Tunic (100%)">
+	<item id="4161" type="EtcItem" name="Recipe: Blue Wolf Tunic">
 		<!-- For Dwarves only. The recipe for a Blue Wolf Tunic. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -740,7 +740,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4162" type="EtcItem" name="Recipe: Tunic of Doom (100%)">
+	<item id="4162" type="EtcItem" name="Recipe: Tunic of Doom">
 		<!-- For Dwarves only. The recipe for a Tunic of Doom. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -753,7 +753,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4163" type="EtcItem" name="Recipe: Blue Wolf Stockings (100%)">
+	<item id="4163" type="EtcItem" name="Recipe: Blue Wolf Stockings">
 		<!-- For Dwarves only. The recipe for Blue Wolf Stockings. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -766,7 +766,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4164" type="EtcItem" name="Recipe: Stockings of Doom (100%)">
+	<item id="4164" type="EtcItem" name="Recipe: Stockings of Doom">
 		<!-- For Dwarves only. The recipe for Stockings of Doom. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -779,7 +779,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4165" type="EtcItem" name="Recipe: Blue Wolf Helmet (100%)">
+	<item id="4165" type="EtcItem" name="Recipe: Blue Wolf Helmet">
 		<!-- For Dwarves only. The recipe for a Blue Wolf Helmet. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -792,7 +792,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4166" type="EtcItem" name="Recipe: Doom Helmet (100%)">
+	<item id="4166" type="EtcItem" name="Recipe: Doom Helmet">
 		<!-- For Dwarves only. The recipe for a Doom Helmet. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -805,7 +805,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4167" type="EtcItem" name="Recipe: Sealed Blue Wolf Boots (100%)">
+	<item id="4167" type="EtcItem" name="Recipe: Blue Wolf Boots">
 		<!-- For Dwarves only. The recipe for a sealed Blue Wolf Boots. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -818,7 +818,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4168" type="EtcItem" name="Recipe: Sealed Doom Gloves (100%)">
+	<item id="4168" type="EtcItem" name="Recipe: Doom Gloves">
 		<!-- For Dwarves only. The recipe for a Sealed Doom Gloves. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -831,7 +831,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4169" type="EtcItem" name="Recipe: Elemental Gloves (100%)">
+	<item id="4169" type="EtcItem" name="Recipe: Elemental Gloves">
 		<!-- For Dwarves only. The recipe for Elemental Gloves. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -844,7 +844,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4170" type="EtcItem" name="Recipe: Gloves of Grace (100%)">
+	<item id="4170" type="EtcItem" name="Recipe: Gloves of Grace">
 		<!-- For Dwarves only. The recipe for Gloves of Grace. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -857,7 +857,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4171" type="EtcItem" name="Recipe: Implosion Gauntlets (100%)">
+	<item id="4171" type="EtcItem" name="Recipe: Implosion Gauntlets">
 		<!-- For Dwarves only. The recipe for Implosion Gauntlets. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -870,7 +870,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4172" type="EtcItem" name="Recipe: Paradia Gloves (100%)">
+	<item id="4172" type="EtcItem" name="Recipe: Paradia Gloves">
 		<!-- For Dwarves only. The recipe for Paradia Gloves. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -883,7 +883,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4173" type="EtcItem" name="Recipe: Sealed Blue Wolf Gloves (100%)">
+	<item id="4173" type="EtcItem" name="Recipe: Blue Wolf Gloves">
 		<!-- For Dwarves only. The recipe for Blue Wolf Gloves. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -896,7 +896,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4174" type="EtcItem" name="Recipe: Sealed Zubei's Boots (100%)">
+	<item id="4174" type="EtcItem" name="Recipe: Zubei's Boots">
 		<!-- For Dwarves only. The recipe for the Sealed Zubei's Boots. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -909,7 +909,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4175" type="EtcItem" name="Recipe: Sealed Avadon Boots (100%)">
+	<item id="4175" type="EtcItem" name="Recipe: Avadon Boots">
 		<!-- For Dwarves only. The recipe for the Sealed Avadon Boots. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -922,7 +922,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4176" type="EtcItem" name="Recipe: Sealed Doom Boots (100%)">
+	<item id="4176" type="EtcItem" name="Recipe: Doom Boots">
 		<!-- For Dwarves only. The recipe for the sealed Doom Boots. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -935,7 +935,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4177" type="EtcItem" name="Recipe: Sealed Zubei's Gauntlets (100%)">
+	<item id="4177" type="EtcItem" name="Recipe: Zubei's Gauntlets">
 		<!-- For Dwarves only. The recipe for a sealed Zubei's Gauntlets. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -961,7 +961,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4179" type="EtcItem" name="Recipe: Zubei's Helmet (100%)">
+	<item id="4179" type="EtcItem" name="Recipe: Zubei's Helmet">
 		<!-- For Dwarves only. The recipe for a Zubei's Helmet. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -974,7 +974,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4180" type="EtcItem" name="Recipe: Silver Arrow (100%)">
+	<item id="4180" type="EtcItem" name="Recipe: Silver Arrow">
 		<!-- For Dwarves only. The recipe for a Silver Arrow. Requires Create Item - Skill Level 4. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -987,7 +987,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4181" type="EtcItem" name="Recipe: Pata (100%)">
+	<item id="4181" type="EtcItem" name="Recipe: Pata">
 		<!-- For Dwarves only. The recipe for a Pata. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_yellow_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1000,7 +1000,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4182" type="EtcItem" name="Recipe: Great Sword (100%)">
+	<item id="4182" type="EtcItem" name="Recipe: Great Sword">
 		<!-- For Dwarves only. The recipe for a Great Sword. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1013,7 +1013,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4183" type="EtcItem" name="Recipe: Heavy War Axe (100%)">
+	<item id="4183" type="EtcItem" name="Recipe: Heavy War Axe">
 		<!-- For Dwarves only. The recipe for a Heavy War Axe. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1026,7 +1026,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4184" type="EtcItem" name="Recipe: Sprite's Staff (100%)">
+	<item id="4184" type="EtcItem" name="Recipe: Sprite's Staff">
 		<!-- For Dwarves only. The recipe for a Sprite's Staff. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1039,7 +1039,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4185" type="EtcItem" name="Recipe: Keshanberk (100%)">
+	<item id="4185" type="EtcItem" name="Recipe: Keshanberk">
 		<!-- For Dwarves only. The recipe for a Kshanberk. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1052,7 +1052,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4186" type="EtcItem" name="Recipe: Sword of Valhalla (100%)">
+	<item id="4186" type="EtcItem" name="Recipe: Sword of Valhalla">
 		<!-- For Dwarves only. The recipe for a Sword of Valhalla. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1065,7 +1065,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4187" type="EtcItem" name="Recipe: Kris (100%)">
+	<item id="4187" type="EtcItem" name="Recipe: Kris">
 		<!-- For Dwarves only. The recipe for a Kris. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1078,7 +1078,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4188" type="EtcItem" name="Recipe: Hell Knife (100%)">
+	<item id="4188" type="EtcItem" name="Recipe: Hell Knife">
 		<!-- For Dwarves only. The recipe for a Hell Knife. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1091,7 +1091,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4189" type="EtcItem" name="Recipe: Arthro Nail (100%)">
+	<item id="4189" type="EtcItem" name="Recipe: Arthro Nail">
 		<!-- For Dwarves only. The recipe for an Arthro Nail. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1104,7 +1104,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4190" type="EtcItem" name="Recipe: Dark Elven Long Bow (100%)">
+	<item id="4190" type="EtcItem" name="Recipe: Dark Elven Long Bow">
 		<!-- For Dwarves only. The recipe for a Dark Elven Long Bow. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1117,7 +1117,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4191" type="EtcItem" name="Recipe: Great Axe (100%)">
+	<item id="4191" type="EtcItem" name="Recipe: Great Axe">
 		<!-- For Dwarves only. The recipe for a Great Axe. Requires Create Item - Skill Level 6. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1130,7 +1130,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4192" type="EtcItem" name="Recipe: Sword of Damascus (100%)">
+	<item id="4192" type="EtcItem" name="Recipe: Sword of Damascus">
 		<!-- For Dwarves only. The recipe for a Sword of Damascus. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1143,7 +1143,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4193" type="EtcItem" name="Recipe: Lance (100%)">
+	<item id="4193" type="EtcItem" name="Recipe: Lance">
 		<!-- For Dwarves only. The recipe for a Lance. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1156,7 +1156,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4194" type="EtcItem" name="Recipe: Deadman's Glory (100%)">
+	<item id="4194" type="EtcItem" name="Recipe: Deadman's Glory">
 		<!-- For Dwarves only. The recipe for the Deadman's Glory. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1169,7 +1169,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4195" type="EtcItem" name="Recipe: Art of Battle Axe (100%)">
+	<item id="4195" type="EtcItem" name="Recipe: Art of Battle Axe">
 		<!-- For Dwarves only. The recipe for an Art of Battle Axe. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1182,7 +1182,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4196" type="EtcItem" name="Recipe: Staff of Evil Spirits (100%)">
+	<item id="4196" type="EtcItem" name="Recipe: Staff of Evil Spirits">
 		<!-- For Dwarves only. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1195,7 +1195,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4197" type="EtcItem" name="Recipe: Demon's Dagger (100%)">
+	<item id="4197" type="EtcItem" name="Recipe: Demon Dagger">
 		<!-- For Dwarves only. The recipe for a Demon Dagger. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1208,7 +1208,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4198" type="EtcItem" name="Recipe: Bellion Cestus (100%)">
+	<item id="4198" type="EtcItem" name="Recipe: Bellion Cestus">
 		<!-- For Dwarves only. The recipe for a Bellion Cestus. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />
@@ -1221,7 +1221,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
-	<item id="4199" type="EtcItem" name="Recipe: Bow of Peril (100%)">
+	<item id="4199" type="EtcItem" name="Recipe: Bow of Peril">
 		<!-- For Dwarves only. The recipe for a Bow of Peril. Requires Create Item - Skill Level 7. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_red_i00" />
 		<set name="default_action" val="RECIPE" />

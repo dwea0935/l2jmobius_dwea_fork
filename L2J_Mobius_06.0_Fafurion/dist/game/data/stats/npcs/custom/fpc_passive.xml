@@ -17,7 +17,8 @@
 				<run ground="141" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" randomAnimation="false" randomWalk="false" undying="true" attackable="false" />
+		<status talkable="false" randomAnimation="false" randomWalk="false" undying="true" attackable="false" />
+		<fakePlayer classId="188" hair="1" hairColor="1" face="0" equipRHand="17294" equipHead="37215" equipGloves="37216" equipChest="37213" equipLegs="37214" equipFeet="37217" equipCloak="40200" />
 		<collision>
 			<radius normal="6.5" />
 			<height normal="19.2" />

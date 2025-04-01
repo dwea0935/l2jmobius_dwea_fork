@@ -20,39 +20,39 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttacked;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerCallToChangeClass;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerCallToChangeClass;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.OnEventTrigger;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowHtml;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 import org.l2jmobius.gameserver.network.serverpackets.awakening.ExCallToChangeClass;
-import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 
@@ -206,7 +206,7 @@ public class MemoryOfDisaster extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if (isInInstance(instance))
@@ -280,7 +280,7 @@ public class MemoryOfDisaster extends AbstractInstance
 					{
 						case "AWAKENING_GUIDE":
 						{
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, AWAKENING_GUIDE_MOVE_1);
+							npc.getAI().setIntention(Intention.MOVE_TO, AWAKENING_GUIDE_MOVE_1);
 							npc.setRunning();
 							break;
 						}
@@ -338,11 +338,10 @@ public class MemoryOfDisaster extends AbstractInstance
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (isInInstance(world))
@@ -421,7 +420,6 @@ public class MemoryOfDisaster extends AbstractInstance
 				}
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
@@ -663,7 +661,7 @@ public class MemoryOfDisaster extends AbstractInstance
 	@Override
 	public void onMoveFinished(Npc npc)
 	{
-		if (CommonUtil.contains(DWARVES, npc.getId()))
+		if (ArrayUtil.contains(DWARVES, npc.getId()))
 		{
 			if ((npc.getX() == DWARVES_MOVE_1.getX()) && (npc.getY() == DWARVES_MOVE_1.getY()))
 			{
@@ -740,7 +738,7 @@ public class MemoryOfDisaster extends AbstractInstance
 		{
 			final Npc npc = event.getTarget().asNpc();
 			final Npc attacker = event.getAttacker().asNpc();
-			if (CommonUtil.contains(DWARVES, npc.getId()))
+			if (ArrayUtil.contains(DWARVES, npc.getId()))
 			{
 				final int attackCount = npc.getVariables().getInt("attackCount", 0) + 1;
 				if (attackCount == 10)
@@ -878,7 +876,7 @@ public class MemoryOfDisaster extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		switch (npc.getId())
 		{
@@ -961,7 +959,6 @@ public class MemoryOfDisaster extends AbstractInstance
 				break;
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
@@ -992,9 +989,9 @@ public class MemoryOfDisaster extends AbstractInstance
 		}
 		
 		final Player player = event.getPlayer();
-		if ((player.getLevel() > 84) && player.isInCategory(CategoryType.FOURTH_CLASS_GROUP) && !player.isSubClassActive() && (player.getClassId() != ClassId.JUDICATOR) && (player.getRace() != Race.ERTHEIA))
+		if ((player.getLevel() > 84) && player.isInCategory(CategoryType.FOURTH_CLASS_GROUP) && !player.isSubClassActive() && (player.getPlayerClass() != PlayerClass.JUDICATOR) && (player.getRace() != Race.ERTHEIA))
 		{
-			for (ClassId newClass : player.getClassId().getNextClassIds())
+			for (PlayerClass newClass : player.getPlayerClass().getNextClasses())
 			{
 				player.sendPacket(new ExCallToChangeClass(newClass.getId(), false));
 				showOnScreenMsg(player, NpcStringId.FREE_THE_GIANT_FROM_HIS_IMPRISONMENT_AND_AWAKEN_YOUR_TRUE_POWER, ExShowScreenMessage.TOP_CENTER, 5000);
@@ -1012,9 +1009,9 @@ public class MemoryOfDisaster extends AbstractInstance
 		}
 		
 		final Player player = event.getPlayer();
-		if ((player.getLevel() > 84) && player.isInCategory(CategoryType.FOURTH_CLASS_GROUP) && !player.isSubClassActive() && (player.getClassId() != ClassId.JUDICATOR) && (player.getRace() != Race.ERTHEIA))
+		if ((player.getLevel() > 84) && player.isInCategory(CategoryType.FOURTH_CLASS_GROUP) && !player.isSubClassActive() && (player.getPlayerClass() != PlayerClass.JUDICATOR) && (player.getRace() != Race.ERTHEIA))
 		{
-			for (ClassId newClass : player.getClassId().getNextClassIds())
+			for (PlayerClass newClass : player.getPlayerClass().getNextClasses())
 			{
 				player.sendPacket(new ExCallToChangeClass(newClass.getId(), false));
 				showOnScreenMsg(player, NpcStringId.FREE_THE_GIANT_FROM_HIS_IMPRISONMENT_AND_AWAKEN_YOUR_TRUE_POWER, ExShowScreenMessage.TOP_CENTER, 5000);

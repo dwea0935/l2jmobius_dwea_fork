@@ -22,6 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets.randomcraft;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerRandomCraft;
@@ -73,7 +74,7 @@ public class ExRequestRandomCraftLockSlot extends ClientPacket
 				Item lcoin = player.getInventory().getItemByItemId(Inventory.LCOIN_ID);
 				if ((lcoin != null) && (lcoin.getCount() >= price))
 				{
-					player.destroyItem("RandomCraft Lock Slot", lcoin, price, player, true);
+					player.destroyItem(ItemProcessType.FEE, lcoin, price, player, true);
 					rc.getRewards().get(_id).lock();
 					player.sendPacket(new ExCraftRandomLockSlot());
 					player.sendPacket(new ExCraftRandomInfo(player));

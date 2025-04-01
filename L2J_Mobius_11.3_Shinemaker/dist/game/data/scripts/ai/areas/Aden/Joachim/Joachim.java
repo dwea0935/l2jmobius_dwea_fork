@@ -29,21 +29,22 @@ import java.util.Map.Entry;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.SubclassInfoType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.SubclassInfoType;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMenuSelect;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMenuSelect;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.ExSubjobInfo;
@@ -75,17 +76,17 @@ public class Joachim extends AbstractNpcAI
 		POWER_ITEMS.put(CategoryType.SIXTH_EOLH_GROUP, 32271); // Laksis Power
 	}
 	// Misc
-	private static final List<ClassId> DUAL_CLASS_LIST = new ArrayList<>();
+	private static final List<PlayerClass> DUAL_CLASS_LIST = new ArrayList<>();
 	static
 	{
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.SIGEL_PHOENIX_KNIGHT, ClassId.SIGEL_HELL_KNIGHT, ClassId.SIGEL_EVA_TEMPLAR, ClassId.SIGEL_SHILLIEN_TEMPLAR));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.TYRR_DUELIST, ClassId.TYRR_DREADNOUGHT, ClassId.TYRR_TITAN, ClassId.TYRR_GRAND_KHAVATARI, ClassId.TYRR_DOOMBRINGER));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.OTHELL_ADVENTURER, ClassId.OTHELL_WIND_RIDER, ClassId.OTHELL_GHOST_HUNTER, ClassId.OTHELL_FORTUNE_SEEKER));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.YUL_SAGITTARIUS, ClassId.YUL_MOONLIGHT_SENTINEL, ClassId.YUL_GHOST_SENTINEL, ClassId.YUL_TRICKSTER));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.FEOH_ARCHMAGE, ClassId.FEOH_SOULTAKER, ClassId.FEOH_MYSTIC_MUSE, ClassId.FEOH_STORM_SCREAMER, ClassId.FEOH_SOUL_HOUND));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.ISS_HIEROPHANT, ClassId.ISS_SWORD_MUSE, ClassId.ISS_SPECTRAL_DANCER, ClassId.ISS_DOOMCRYER));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.WYNN_ARCANA_LORD, ClassId.WYNN_ELEMENTAL_MASTER, ClassId.WYNN_SPECTRAL_MASTER));
-		DUAL_CLASS_LIST.addAll(Arrays.asList(ClassId.AEORE_CARDINAL, ClassId.AEORE_EVA_SAINT, ClassId.AEORE_SHILLIEN_SAINT));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.SIGEL_PHOENIX_KNIGHT, PlayerClass.SIGEL_HELL_KNIGHT, PlayerClass.SIGEL_EVA_TEMPLAR, PlayerClass.SIGEL_SHILLIEN_TEMPLAR));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.TYRR_DUELIST, PlayerClass.TYRR_DREADNOUGHT, PlayerClass.TYRR_TITAN, PlayerClass.TYRR_GRAND_KHAVATARI, PlayerClass.TYRR_DOOMBRINGER));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.OTHELL_ADVENTURER, PlayerClass.OTHELL_WIND_RIDER, PlayerClass.OTHELL_GHOST_HUNTER, PlayerClass.OTHELL_FORTUNE_SEEKER));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.YUL_SAGITTARIUS, PlayerClass.YUL_MOONLIGHT_SENTINEL, PlayerClass.YUL_GHOST_SENTINEL, PlayerClass.YUL_TRICKSTER));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.FEOH_ARCHMAGE, PlayerClass.FEOH_SOULTAKER, PlayerClass.FEOH_MYSTIC_MUSE, PlayerClass.FEOH_STORM_SCREAMER, PlayerClass.FEOH_SOUL_HOUND));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.ISS_HIEROPHANT, PlayerClass.ISS_SWORD_MUSE, PlayerClass.ISS_SPECTRAL_DANCER, PlayerClass.ISS_DOOMCRYER));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.WYNN_ARCANA_LORD, PlayerClass.WYNN_ELEMENTAL_MASTER, PlayerClass.WYNN_SPECTRAL_MASTER));
+		DUAL_CLASS_LIST.addAll(Arrays.asList(PlayerClass.AEORE_CARDINAL, PlayerClass.AEORE_EVA_SAINT, PlayerClass.AEORE_SHILLIEN_SAINT));
 	}
 	private static final int REAWAKEN_PRICE = 300000000;
 	
@@ -144,7 +145,7 @@ public class Joachim extends AbstractNpcAI
 				
 				final StringBuilder sb = new StringBuilder();
 				final NpcHtmlMessage html = getNpcHtmlMessage(player, npc, "selectClass.html");
-				for (ClassId dualClasses : getDualClasses(player, cType))
+				for (PlayerClass dualClasses : getDualClasses(player, cType))
 				{
 					if (dualClasses != null)
 					{
@@ -202,7 +203,7 @@ public class Joachim extends AbstractNpcAI
 				
 				final StringBuilder sb = new StringBuilder();
 				final NpcHtmlMessage html = getNpcHtmlMessage(player, npc, "selectReawakenClass.html");
-				for (ClassId dualClasses : getDualClasses(player, cType))
+				for (PlayerClass dualClasses : getDualClasses(player, cType))
 				{
 					if (dualClasses != null)
 					{
@@ -230,12 +231,12 @@ public class Joachim extends AbstractNpcAI
 		return html;
 	}
 	
-	private List<ClassId> getDualClasses(Player player, CategoryType cType)
+	private List<PlayerClass> getDualClasses(Player player, CategoryType cType)
 	{
-		final List<ClassId> tempList = new ArrayList<>();
+		final List<PlayerClass> tempList = new ArrayList<>();
 		final int baseClassId = player.getBaseClass();
-		final int dualClassId = player.getClassId().getId();
-		for (ClassId temp : DUAL_CLASS_LIST)
+		final int dualClassId = player.getPlayerClass().getId();
+		for (PlayerClass temp : DUAL_CLASS_LIST)
 		{
 			if ((temp.getId() != baseClassId) && (temp.getId() != dualClassId) && ((cType == null) || CategoryData.getInstance().isInCategory(cType, temp.getId())))
 			{
@@ -265,7 +266,7 @@ public class Joachim extends AbstractNpcAI
 				}
 				
 				// Validating classId
-				if (!getDualClasses(player, null).contains(ClassId.getClassId(classId)))
+				if (!getDualClasses(player, null).contains(PlayerClass.getPlayerClass(classId)))
 				{
 					break;
 				}
@@ -293,8 +294,8 @@ public class Joachim extends AbstractNpcAI
 					}
 					
 					// Item rewards
-					player.addItem("subclass", CHAOS_POMANDER_DUAL_CLASS, 2, player, true);
-					player.addItem("subclass", PAULINAS_RGRADE_EQUIPMENT_SET, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, CHAOS_POMANDER_DUAL_CLASS, 2, player, true);
+					player.addItem(ItemProcessType.REWARD, PAULINAS_RGRADE_EQUIPMENT_SET, 1, player, true);
 					giveItems(player, getPowerItemId(player), 1);
 				}
 				break;
@@ -308,7 +309,7 @@ public class Joachim extends AbstractNpcAI
 				}
 				
 				// Validating classId
-				if (!getDualClasses(player, null).contains(ClassId.getClassId(classId)))
+				if (!getDualClasses(player, null).contains(PlayerClass.getPlayerClass(classId)))
 				{
 					break;
 				}
@@ -320,7 +321,7 @@ public class Joachim extends AbstractNpcAI
 					break;
 				}
 				
-				player.reduceAdena((getClass().getSimpleName() + "_Reawaken"), REAWAKEN_PRICE, npc, true);
+				player.reduceAdena(ItemProcessType.FEE, REAWAKEN_PRICE, npc, true);
 				final int level = player.getLevel();
 				
 				final int classIndex = player.getClassIndex();

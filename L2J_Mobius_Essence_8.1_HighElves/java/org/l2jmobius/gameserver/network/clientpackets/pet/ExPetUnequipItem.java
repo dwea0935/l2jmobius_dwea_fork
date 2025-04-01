@@ -20,13 +20,14 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.pet;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.NextAction;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -177,21 +178,21 @@ public class ExPetUnequipItem extends ClientPacket
 			if (player.isCastingNow())
 			{
 				// Create and Bind the next action to the AI.
-				player.getAI().setNextAction(new NextAction(CtrlEvent.EVT_FINISH_CASTING, CtrlIntention.AI_INTENTION_CAST, () ->
+				player.getAI().setNextAction(new NextAction(Action.FINISH_CASTING, Intention.CAST, () ->
 				{
-					pet.transferItem("UnequipFromPet", item.getObjectId(), 1, player.getInventory(), player, null);
+					pet.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), 1, player.getInventory(), player, null);
 					sendInfos(pet, player);
 				}));
 			}
 			else if (player.isAttackingNow())
 			{
 				// Equip or unEquip.
-				pet.transferItem("UnequipFromPet", item.getObjectId(), 1, player.getInventory(), player, null);
+				pet.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), 1, player.getInventory(), player, null);
 				sendInfos(pet, player);
 			}
 			else
 			{
-				pet.transferItem("UnequipFromPet", item.getObjectId(), 1, player.getInventory(), player, null);
+				pet.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), 1, player.getInventory(), player, null);
 				sendInfos(pet, player);
 			}
 		}

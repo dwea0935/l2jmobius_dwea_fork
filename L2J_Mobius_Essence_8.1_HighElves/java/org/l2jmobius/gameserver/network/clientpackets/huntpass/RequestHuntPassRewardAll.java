@@ -20,14 +20,17 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.huntpass;
 
+import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.HuntPassData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.HuntPass;
+import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.request.RewardRequest;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -55,6 +58,23 @@ public class RequestHuntPassRewardAll extends ClientPacket
 		if (player == null)
 		{
 			return;
+		}
+		
+		if (!Config.OFFLINE_DISCONNECT_SAME_ACCOUNT || !Config.OFFLINE_PLAY_DISCONNECT_SAME_ACCOUNT)
+		{
+			int sameAccountPlayers = 0;
+			for (Player worldPlayer : World.getInstance().getPlayers())
+			{
+				if (worldPlayer.getAccountName().equals(player.getAccountName()))
+				{
+					sameAccountPlayers++;
+				}
+			}
+			if (sameAccountPlayers > 1)
+			{
+				player.sendMessage("Hunting rewards are shared across the account and cannot be received if more than one character is online simultaneously.");
+				return;
+			}
 		}
 		
 		if (player.hasRequest(RewardRequest.class))
@@ -127,6 +147,8 @@ public class RequestHuntPassRewardAll extends ClientPacket
 			huntPass.setRewardAlert(false);
 		}
 		
+		huntPass.store();
+		
 		player.sendPacket(new HuntPassInfo(player, _huntPassType));
 		player.sendPacket(new HuntPassSayhasSupportInfo(player));
 		player.sendPacket(new HuntPassSimpleInfo(player));
@@ -147,7 +169,7 @@ public class RequestHuntPassRewardAll extends ClientPacket
 		}
 		else
 		{
-			player.addItem("HuntPassReward", reward, player, true);
+			player.addItem(ItemProcessType.REWARD, reward, player, true);
 		}
 	}
 	

@@ -1,34 +1,41 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.ShortcutType;
-import org.l2jmobius.gameserver.model.ShortCuts;
-import org.l2jmobius.gameserver.model.Shortcut;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.ShortcutType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
+import org.l2jmobius.gameserver.model.actor.holders.player.Shortcuts;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
-import org.l2jmobius.gameserver.network.serverpackets.ShortCutRegister;
+import org.l2jmobius.gameserver.network.serverpackets.ShortcutRegister;
 import org.l2jmobius.gameserver.network.serverpackets.autoplay.ExActivateAutoShortcut;
-import org.l2jmobius.gameserver.taskmanager.AutoUseTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AutoUseTaskManager;
 
-public class RequestShortCutReg extends ClientPacket
+/**
+ * @author Mobius
+ */
+public class RequestShortcutReg extends ClientPacket
 {
 	private ShortcutType _type;
 	private int _id;
@@ -45,8 +52,8 @@ public class RequestShortCutReg extends ClientPacket
 		final int typeId = readInt();
 		_type = ShortcutType.values()[(typeId < 1) || (typeId > 6) ? 0 : typeId];
 		final int position = readInt();
-		_slot = position % ShortCuts.MAX_SHORTCUTS_PER_BAR;
-		_page = position / ShortCuts.MAX_SHORTCUTS_PER_BAR;
+		_slot = position % Shortcuts.MAX_SHORTCUTS_PER_BAR;
+		_page = position / Shortcuts.MAX_SHORTCUTS_PER_BAR;
 		_active = readByte() == 1; // 228
 		_id = readInt();
 		_level = readShort();
@@ -102,8 +109,8 @@ public class RequestShortCutReg extends ClientPacket
 		}
 		
 		// Delete the shortcut.
-		final Shortcut oldShortcut = player.getShortCut(_slot, _page);
-		player.deleteShortCut(_slot, _page);
+		final Shortcut oldShortcut = player.getShortcut(_slot, _page);
+		player.deleteShortcut(_slot, _page);
 		if (oldShortcut != null)
 		{
 			boolean removed = true;
@@ -111,7 +118,7 @@ public class RequestShortCutReg extends ClientPacket
 			if (oldShortcut.isAutoUse())
 			{
 				player.removeAutoShortcut(_slot, _page);
-				for (Shortcut shortcut : player.getAllShortCuts())
+				for (Shortcut shortcut : player.getAllShortcuts())
 				{
 					if ((oldShortcut.getId() == shortcut.getId()) && (oldShortcut.getType() == shortcut.getType()))
 					{
@@ -155,8 +162,8 @@ public class RequestShortCutReg extends ClientPacket
 		
 		final Shortcut sc = new Shortcut(_slot, _page, _type, _id, _level, _subLevel, _characterType);
 		sc.setAutoUse(_active);
-		player.registerShortCut(sc);
-		player.sendPacket(new ShortCutRegister(sc, player));
+		player.registerShortcut(sc);
+		player.sendPacket(new ShortcutRegister(sc, player));
 		player.sendPacket(new ExActivateAutoShortcut(sc, _active));
 		player.sendSkillList();
 		
@@ -164,7 +171,7 @@ public class RequestShortCutReg extends ClientPacket
 		if (!player.getAutoUseSettings().isAutoSkill(_id) && !player.getAutoUseSettings().getAutoSupplyItems().contains(_id))
 		{
 			final List<Integer> positions = player.getVariables().getIntegerList(PlayerVariables.AUTO_USE_SHORTCUTS);
-			final Integer position = _slot + (_page * ShortCuts.MAX_SHORTCUTS_PER_BAR);
+			final Integer position = _slot + (_page * Shortcuts.MAX_SHORTCUTS_PER_BAR);
 			if (!positions.contains(position))
 			{
 				return;
@@ -176,7 +183,7 @@ public class RequestShortCutReg extends ClientPacket
 		}
 		
 		// Activate if any other similar shortcut is activated.
-		for (Shortcut shortcut : player.getAllShortCuts())
+		for (Shortcut shortcut : player.getAllShortcuts())
 		{
 			if (!shortcut.isAutoUse() || (shortcut.getId() != _id) || (shortcut.getType() != _type))
 			{

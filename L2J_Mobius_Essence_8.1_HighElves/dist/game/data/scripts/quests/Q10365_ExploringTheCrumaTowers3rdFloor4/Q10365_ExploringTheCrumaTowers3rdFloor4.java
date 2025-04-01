@@ -43,11 +43,10 @@ public class Q10365_ExploringTheCrumaTowers3rdFloor4 extends Quest
 	private static final int QUEST_ID = 10365;
 	private static final int[] MONSTERS =
 	{
-		22205, // CATHEROK
-		22203, // RICENSEO
-		22204, // KRATOR
-		22202, // MORDEO
-		22200, // PORTA
+		22203, // Ricenseo
+		22727, // Snerio
+		22725, // Mutated Protector / Keeper
+		22728, // Giant Soldier
 	};
 	
 	public Q10365_ExploringTheCrumaTowers3rdFloor4()
@@ -173,7 +172,7 @@ public class Q10365_ExploringTheCrumaTowers3rdFloor4 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState questState = getQuestState(killer, false);
 		if ((questState != null) && questState.isCond(QuestCondType.STARTED))
@@ -192,19 +191,17 @@ public class Q10365_ExploringTheCrumaTowers3rdFloor4 extends Quest
 			else
 			{
 				final int currentCount = questState.getCount();
-				if (currentCount != data.getGoal().getCount())
+				if (currentCount < data.getGoal().getCount())
 				{
 					questState.setCount(currentCount + 1);
 				}
 			}
 			
-			if (questState.getCount() == data.getGoal().getCount())
+			if (questState.getCount() >= data.getGoal().getCount())
 			{
 				questState.setCond(QuestCondType.DONE);
 				killer.sendPacket(new ExQuestNotification(questState));
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 }

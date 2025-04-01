@@ -16,8 +16,6 @@
  */
 package quests.TerritoryWarScripts;
 
-import org.l2jmobius.gameserver.network.NpcStringId;
-
 /**
  * For the Sake of the Territory - Aden (721)
  * @author Gigiikun
@@ -26,7 +24,7 @@ public class Q00721_ForTheSakeOfTheTerritoryAden extends TerritoryWarSuperClass
 {
 	public Q00721_ForTheSakeOfTheTerritoryAden()
 	{
-		super(721);
+		super(721, "For the Sake of the Territory - Aden");
 		CATAPULT_ID = 36503;
 		TERRITORY_ID = 85;
 		LEADER_IDS = new int[]
@@ -42,9 +40,9 @@ public class Q00721_ForTheSakeOfTheTerritoryAden extends TerritoryWarSuperClass
 			36535,
 			36536
 		};
-		npcString = new NpcStringId[]
+		npcString = new String[]
 		{
-			NpcStringId.THE_CATAPULT_OF_ADEN_HAS_BEEN_DESTROYED
+			"The catapult of Aden has been destroyed!"
 		};
 		registerKillIds();
 	}

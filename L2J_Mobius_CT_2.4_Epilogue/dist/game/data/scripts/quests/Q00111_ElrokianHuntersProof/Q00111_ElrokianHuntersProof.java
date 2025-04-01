@@ -19,11 +19,11 @@ package quests.Q00111_ElrokianHuntersProof;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -77,7 +77,7 @@ public class Q00111_ElrokianHuntersProof extends Quest
 	
 	public Q00111_ElrokianHuntersProof()
 	{
-		super(111);
+		super(111, "Elrokian Hunter's Proof");
 		addStartNpc(MARQUEZ);
 		addTalkId(MARQUEZ, MUSHIKA, ASAMAH, KIRIKACHIN);
 		addKillId(MOBS_DROP_CHANCES.keySet());
@@ -215,7 +215,7 @@ public class Q00111_ElrokianHuntersProof extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs != null)
@@ -233,7 +233,6 @@ public class Q00111_ElrokianHuntersProof extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

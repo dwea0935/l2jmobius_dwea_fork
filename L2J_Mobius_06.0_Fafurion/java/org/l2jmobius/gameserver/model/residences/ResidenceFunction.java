@@ -23,6 +23,7 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.ResidenceFunctionsData;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
 import org.l2jmobius.gameserver.network.serverpackets.AgitDecoInfo;
@@ -168,7 +169,7 @@ public class ResidenceFunction
 			return false;
 		}
 		
-		if (wh.destroyItem("FunctionFee", item, template.getCost().getCount(), null, this) != null)
+		if (wh.destroyItem(ItemProcessType.FEE, item, template.getCost().getCount(), null, this) != null)
 		{
 			_expiration = System.currentTimeMillis() + (template.getDuration().getSeconds() * 1000);
 			init();

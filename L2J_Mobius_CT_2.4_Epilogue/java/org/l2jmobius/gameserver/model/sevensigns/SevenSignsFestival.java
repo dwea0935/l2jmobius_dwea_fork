@@ -34,26 +34,26 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.PartyMessageType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.FestivalMonster;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.groups.PartyMessageType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -1205,7 +1205,7 @@ public class SevenSignsFestival
 			final Item bloodOfferings = player.getInventory().getItemByItemId(FESTIVAL_OFFERING_ID);
 			if (bloodOfferings != null)
 			{
-				player.destroyItem("SevenSigns", bloodOfferings, null, false);
+				player.destroyItem(ItemProcessType.FEE, bloodOfferings, null, false);
 			}
 		}
 		
@@ -1654,7 +1654,7 @@ public class SevenSignsFestival
 	 * Primarily used for Festival Guide and Witch related speech.
 	 * @param npcString
 	 */
-	public void sendMessageToAll(NpcStringId npcString)
+	public void sendMessageToAll(String npcString)
 	{
 		if ((_dawnChatGuide == null) || (_duskChatGuide == null))
 		{
@@ -1669,14 +1669,9 @@ public class SevenSignsFestival
 	 * @param npcString
 	 * @param npc
 	 */
-	public void sendMessageToAll(NpcStringId npcString, Npc npc)
+	public void sendMessageToAll(String npcString, Npc npc)
 	{
 		final CreatureSay cs = new CreatureSay(npc, ChatType.NPC_SHOUT, npcString);
-		if (npcString.getParamCount() == 1)
-		{
-			cs.addStringParameter(String.valueOf(getMinsToNextFestival()));
-		}
-		
 		npc.broadcastPacket(cs);
 	}
 	
@@ -1756,7 +1751,7 @@ public class SevenSignsFestival
 				}
 				else if (getMinsToNextFestival() == 2)
 				{
-					sendMessageToAll(NpcStringId.THE_MAIN_EVENT_WILL_START_IN_2_MINUTES_PLEASE_REGISTER_NOW);
+					sendMessageToAll("The main event will start in 2 minutes. Please register now.");
 				}
 				
 				// Stand by until the allowed signup period has elapsed.
@@ -1832,7 +1827,7 @@ public class SevenSignsFestival
 				// Prevent future signups while festival is in progress.
 				_festivalInitialized = true;
 				setNextFestivalStart(Config.ALT_FESTIVAL_CYCLE_LENGTH);
-				sendMessageToAll(NpcStringId.THE_MAIN_EVENT_IS_NOW_STARTING);
+				sendMessageToAll("The main event is now starting.");
 				
 				// Stand by for a short length of time before starting the festival.
 				try
@@ -1854,7 +1849,7 @@ public class SevenSignsFestival
 				for (DarknessFestival festivalInst : _festivalInstances.values())
 				{
 					festivalInst.festivalStart();
-					festivalInst.sendMessageToParticipants(NpcStringId.THE_MAIN_EVENT_IS_NOW_STARTING);
+					festivalInst.sendMessageToParticipants("The main event is now starting.");
 				}
 				
 				// After a short time period, move all idle spawns to the center of the arena.
@@ -1892,7 +1887,7 @@ public class SevenSignsFestival
 					final long end = (Config.ALT_FESTIVAL_LENGTH - Config.ALT_FESTIVAL_SECOND_SPAWN) / 60000;
 					if (end == 2)
 					{
-						festivalInst.sendMessageToParticipants(NpcStringId.THE_FESTIVAL_OF_DARKNESS_WILL_END_IN_TWO_MINUTES);
+						festivalInst.sendMessageToParticipants("The Festival of Darkness will end in two minutes.");
 					}
 					else
 					{
@@ -1965,7 +1960,7 @@ public class SevenSignsFestival
 				
 				// Allow signups for the next festival cycle.
 				_festivalInitialized = false;
-				sendMessageToAll(NpcStringId.THAT_WILL_DO_I_LL_MOVE_YOU_TO_THE_OUTSIDE_SOON);
+				sendMessageToAll("That will do! I'll move you to the outside soon.");
 			}
 			catch (Exception e)
 			{
@@ -2073,7 +2068,7 @@ public class SevenSignsFestival
 							y -= Rnd.get(FESTIVAL_MAX_OFFSET_Y);
 						}
 						
-						participant.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+						participant.getAI().setIntention(Intention.IDLE);
 						participant.teleToLocation(new Location(x, y, _startLocation._z), true);
 						
 						// Remove all buffs from all participants on entry. Works like the skill Cancel.
@@ -2083,7 +2078,7 @@ public class SevenSignsFestival
 						final Item bloodOfferings = participant.getInventory().getItemByItemId(FESTIVAL_OFFERING_ID);
 						if (bloodOfferings != null)
 						{
-							participant.destroyItem("SevenSigns", bloodOfferings, null, true);
+							participant.destroyItem(ItemProcessType.FEE, bloodOfferings, null, true);
 						}
 					}
 				}
@@ -2105,7 +2100,7 @@ public class SevenSignsFestival
 				// Needed as doSpawn() is required to be called also for the Npc it returns.
 				npcSpawn.startRespawn();
 				
-				SpawnTable.getInstance().addNewSpawn(npcSpawn, false);
+				SpawnTable.getInstance().addSpawn(npcSpawn);
 				_witchInst = npcSpawn.doSpawn();
 			}
 			catch (Exception e)
@@ -2122,7 +2117,7 @@ public class SevenSignsFestival
 			_witchInst.broadcastPacket(msu);
 			
 			// Send a message to all participants from the witch.
-			sendMessageToParticipants(NpcStringId.THE_MAIN_EVENT_WILL_START_IN_2_MINUTES_PLEASE_REGISTER_NOW);
+			sendMessageToParticipants("The main event will start in 2 minutes. Please register now.");
 		}
 		
 		protected void festivalStart()
@@ -2140,8 +2135,8 @@ public class SevenSignsFestival
 				}
 				
 				// Only move monsters that are idle or doing their usual functions.
-				final CtrlIntention currIntention = festivalMob.getAI().getIntention();
-				if ((currIntention != CtrlIntention.AI_INTENTION_IDLE) && (currIntention != CtrlIntention.AI_INTENTION_ACTIVE))
+				final Intention currIntention = festivalMob.getAI().getIntention();
+				if ((currIntention != Intention.IDLE) && (currIntention != Intention.ACTIVE))
 				{
 					continue;
 				}
@@ -2164,7 +2159,7 @@ public class SevenSignsFestival
 				}
 				
 				festivalMob.setRunning();
-				festivalMob.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(x, y, _startLocation._z, Rnd.get(65536)));
+				festivalMob.getAI().setIntention(Intention.MOVE_TO, new Location(x, y, _startLocation._z, Rnd.get(65536)));
 			}
 		}
 		
@@ -2227,7 +2222,7 @@ public class SevenSignsFestival
 					// Needed as doSpawn() is required to be called also for the Npc it returns.
 					npcSpawn.startRespawn();
 					
-					SpawnTable.getInstance().addNewSpawn(npcSpawn, false);
+					SpawnTable.getInstance().addSpawn(npcSpawn);
 					final FestivalMonster festivalMob = (FestivalMonster) npcSpawn.doSpawn();
 					
 					// Set the offering bonus to 2x or 5x the amount per kill,
@@ -2265,19 +2260,11 @@ public class SevenSignsFestival
 			return true;
 		}
 		
-		public void sendMessageToParticipants(NpcStringId npcStringId)
+		public void sendMessageToParticipants(String text)
 		{
 			if ((_participants != null) && !_participants.isEmpty())
 			{
-				_witchInst.broadcastPacket(new CreatureSay(_witchInst, ChatType.NPC_GENERAL, npcStringId));
-			}
-		}
-		
-		public void sendMessageToParticipants(String npcString)
-		{
-			if ((_participants != null) && !_participants.isEmpty())
-			{
-				_witchInst.broadcastPacket(new CreatureSay(_witchInst, ChatType.NPC_GENERAL, "Festival Witch", npcString));
+				_witchInst.broadcastPacket(new CreatureSay(_witchInst, ChatType.NPC_GENERAL, text));
 			}
 		}
 		
@@ -2324,7 +2311,7 @@ public class SevenSignsFestival
 			{
 				_witchInst.getSpawn().stopRespawn();
 				_witchInst.deleteMe();
-				SpawnTable.getInstance().deleteSpawn(_witchInst.getSpawn(), false);
+				SpawnTable.getInstance().removeSpawn(_witchInst.getSpawn());
 			}
 			
 			for (FestivalMonster monsterInst : _npcInsts)
@@ -2333,7 +2320,7 @@ public class SevenSignsFestival
 				{
 					monsterInst.getSpawn().stopRespawn();
 					monsterInst.deleteMe();
-					SpawnTable.getInstance().deleteSpawn(monsterInst.getSpawn(), false);
+					SpawnTable.getInstance().removeSpawn(monsterInst.getSpawn());
 				}
 			}
 		}
@@ -2348,7 +2335,7 @@ public class SevenSignsFestival
 					_originalLocations.remove(participant.getObjectId());
 				}
 				
-				participant.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				participant.getAI().setIntention(Intention.IDLE);
 				participant.teleToLocation(new Location(origPosition._x, origPosition._y, origPosition._z), true);
 				participant.sendMessage("You have been removed from the festival arena.");
 			}

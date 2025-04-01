@@ -60,7 +60,7 @@
 			<player flyMounted="false" />
 		</cond>
 		<skills>
-			<skill id="40374" level="1" /> <!-- Aden Scroll Lv. 1 -->
+			<skill id="40374" level="1" /> <!-- Elmoreden Tower's Scroll of Blessing -->
 		</skills>
 	</item>
 	<item id="96003" name="Random Craft: Spirit Ore (1000 pcs.)" additionalName="Sealed" type="EtcItem">

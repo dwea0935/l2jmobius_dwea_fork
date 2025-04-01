@@ -3835,7 +3835,6 @@
 		<targetType>SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>1200</abnormalTime>
-		<abnormalTime>1200</abnormalTime>
 		<abnormalType>NATURES_BLESSING</abnormalType>
 		<affectScope>SINGLE</affectScope>
 		<castRange>-1</castRange>
@@ -4086,7 +4085,6 @@
 		<operateType>A2</operateType>
 		<targetType>SELF</targetType>
 		<abnormalLevel>2</abnormalLevel>
-		<abnormalTime>1200</abnormalTime>
 		<abnormalTime>1200</abnormalTime>
 		<abnormalType>NATURES_BLESSING</abnormalType>
 		<affectScope>SINGLE</affectScope>

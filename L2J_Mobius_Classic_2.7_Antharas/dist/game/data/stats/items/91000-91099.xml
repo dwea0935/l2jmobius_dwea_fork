@@ -59,7 +59,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="time" val="1440" />
 		<skills>
-			<skill id="51025" level="1" /> <!-- Expand Agathion Slots -->
+			<skill id="51025" level="1" /> <!-- Expand Primary and Secondary Agathion Slots -->
 		</skills>
 	</item>
 	<item id="91004" name="Agathion - Sin Eater" type="Armor">

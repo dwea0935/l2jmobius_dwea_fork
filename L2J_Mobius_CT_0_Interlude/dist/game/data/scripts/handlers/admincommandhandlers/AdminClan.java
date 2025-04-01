@@ -18,11 +18,12 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -30,8 +31,6 @@ import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author UnAfraid, Zoey76
@@ -137,7 +136,7 @@ public class AdminClan implements IAdminCommandHandler
 				if (st.hasMoreElements())
 				{
 					final String token = st.nextToken();
-					if (!Util.isDigit(token))
+					if (!StringUtil.isNumeric(token))
 					{
 						break;
 					}
@@ -155,7 +154,7 @@ public class AdminClan implements IAdminCommandHandler
 					}
 					
 					clan.setNewLeader(member);
-					BuilderUtil.sendSysMessage(activeChar, "Task have been forcely executed.");
+					activeChar.sendSysMessage("Task have been forcely executed.");
 					break;
 				}
 			}
@@ -176,7 +175,7 @@ public class AdminClan implements IAdminCommandHandler
 		{
 			val = st.nextToken();
 			// From the HTML we receive player's object Id.
-			if (Util.isDigit(val))
+			if (StringUtil.isNumeric(val))
 			{
 				player = World.getInstance().getPlayer(Integer.parseInt(val));
 				if (player == null)

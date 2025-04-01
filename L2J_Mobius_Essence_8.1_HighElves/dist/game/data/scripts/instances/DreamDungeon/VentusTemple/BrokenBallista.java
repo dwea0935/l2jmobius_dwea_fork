@@ -40,20 +40,18 @@ public class BrokenBallista extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance instance = npc == null ? null : npc.getInstanceWorld();
 		if ((instance == null) || (instance.getTemplateId() != VentusTemple.INSTANCE_ID))
 		{
-			return super.onSpawn(npc);
+			return;
 		}
 		
 		if ((instance.getStatus() == VentusTemple.SHOOT_FROM_BALLISTA) && (npc != null))
 		{
 			npc.setRandomAnimation(true);
 		}
-		
-		return super.onSpawn(npc);
 	}
 	
 	@Override

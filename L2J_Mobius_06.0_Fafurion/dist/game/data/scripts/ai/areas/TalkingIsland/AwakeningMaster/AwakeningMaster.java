@@ -21,25 +21,26 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.UserInfoType;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerChangeToAwakenedClass;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerChangeToAwakenedClass;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.UserInfoType;
 import org.l2jmobius.gameserver.network.serverpackets.ExChangeToAwakenedClass;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowUsm;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
@@ -180,13 +181,13 @@ public class AwakeningMaster extends AbstractNpcAI
 					}
 					
 					// Fix for Female Soulhounds
-					if (player.getClassId() == ClassId.FEMALE_SOUL_HOUND)
+					if (player.getPlayerClass() == PlayerClass.FEMALE_SOUL_HOUND)
 					{
-						player.sendPacket(new ExChangeToAwakenedClass(ClassId.FEOH_SOUL_HOUND.getId()));
+						player.sendPacket(new ExChangeToAwakenedClass(PlayerClass.FEOH_SOUL_HOUND.getId()));
 					}
 					else
 					{
-						for (ClassId newClass : player.getClassId().getNextClassIds())
+						for (PlayerClass newClass : player.getPlayerClass().getNextClasses())
 						{
 							player.sendPacket(new ExChangeToAwakenedClass(newClass.getId()));
 						}
@@ -296,29 +297,29 @@ public class AwakeningMaster extends AbstractNpcAI
 			return;
 		}
 		
-		if (!player.destroyItem("Awakening", item, player, true))
+		if (!player.destroyItem(ItemProcessType.FEE, item, player, true))
 		{
 			return;
 		}
 		
 		// Fix for Female Soulhounds
 		int newClassId = -1;
-		if (player.getClassId() == ClassId.FEMALE_SOUL_HOUND)
+		if (player.getPlayerClass() == PlayerClass.FEMALE_SOUL_HOUND)
 		{
-			newClassId = ClassId.FEOH_SOUL_HOUND.getId();
+			newClassId = PlayerClass.FEOH_SOUL_HOUND.getId();
 		}
 		else
 		{
-			for (ClassId newClass : player.getClassId().getNextClassIds())
+			for (PlayerClass newClass : player.getPlayerClass().getNextClasses())
 			{
 				newClassId = newClass.getId();
 			}
 		}
 		
-		player.setClassId(newClassId);
+		player.setPlayerClass(newClassId);
 		if (player.isDualClassActive())
 		{
-			player.getSubClasses().get(player.getClassIndex()).setClassId(player.getActiveClass());
+			player.getSubClasses().get(player.getClassIndex()).setPlayerClass(player.getActiveClass());
 		}
 		else
 		{

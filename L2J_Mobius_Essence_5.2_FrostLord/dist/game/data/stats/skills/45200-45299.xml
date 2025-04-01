@@ -158,7 +158,6 @@
 		<targetType>ENEMY</targetType>
 		<affectLimit>5-12</affectLimit>
 		<affectObject>NOT_FRIEND</affectObject>
-		<affectObject>NOT_FRIEND</affectObject>
 		<affectRange>300</affectRange>
 		<affectScope>RANGE</affectScope>
 		<castRange>700</castRange>
@@ -288,7 +287,6 @@
 		<affectRange>300</affectRange>
 		<affectScope>RANGE</affectScope>
 		<castRange>40</castRange>
-		<coolTime>500</coolTime>
 		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-35</value>
@@ -442,7 +440,6 @@
 		<affectRange>300</affectRange>
 		<affectScope>RANGE</affectScope>
 		<castRange>40</castRange>
-		<coolTime>500</coolTime>
 		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-225</value>
@@ -667,7 +664,6 @@
 		<affectRange>300</affectRange>
 		<affectScope>RANGE</affectScope>
 		<castRange>40</castRange>
-		<coolTime>500</coolTime>
 		<coolTime>500</coolTime>
 		<effectPoint>
 			<value level="1">-245</value>
@@ -2834,7 +2830,6 @@
 		<castRange>700</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>-400</effectPoint>
-		<effectRange>400</effectRange>
 		<effectRange>400</effectRange>
 		<hitTime>0</hitTime>
 		<isDebuff>true</isDebuff>
@@ -8925,7 +8920,6 @@
 			<value level="14">-465</value>
 			<value level="15">-470</value>
 		</effectPoint>
-		<effectRange>400</effectRange>
 		<effectRange>400</effectRange>
 		<hitTime>1000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>

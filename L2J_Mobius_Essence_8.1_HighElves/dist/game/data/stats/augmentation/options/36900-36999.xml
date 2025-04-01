@@ -580,7 +580,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -589,7 +589,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -598,7 +598,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -607,7 +607,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -616,7 +616,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -625,7 +625,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -634,7 +634,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -643,7 +643,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -652,7 +652,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -661,7 +661,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -670,7 +670,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -679,7 +679,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -688,7 +688,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -697,7 +697,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -706,7 +706,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -715,7 +715,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -724,7 +724,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -733,7 +733,7 @@
 		<!-- Received P. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -742,7 +742,7 @@
 		<!-- Received P. Skill Critical Rate -2% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-2</amount>
+				<amount>2</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -751,7 +751,7 @@
 		<!-- Received P. Skill Critical Rate -2% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-2</amount>
+				<amount>2</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -760,7 +760,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -769,7 +769,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -778,7 +778,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -787,7 +787,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -796,7 +796,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -805,7 +805,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -814,7 +814,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -823,7 +823,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -832,7 +832,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -841,7 +841,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -850,7 +850,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -859,7 +859,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -868,7 +868,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -877,7 +877,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -886,7 +886,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -895,7 +895,7 @@
 		<!-- Received M. Skill Critical Rate -1% -->
 		<effects>
 			<effect name="DefenceMagicCriticalRate">
-				<amount>-1</amount>
+				<amount>1</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>

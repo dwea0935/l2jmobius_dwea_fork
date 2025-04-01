@@ -58,7 +58,6 @@
 		<mpConsume>80</mpConsume>
 		<nextAction>ATTACK</nextAction>
 		<reuseDelay>1000</reuseDelay>
-		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage">
 				<power>15000</power>
@@ -83,7 +82,6 @@
 		<operateType>A1</operateType>
 		<targetType>ENEMY</targetType>
 		<affectScope>SINGLE</affectScope>
-		<castRange>250</castRange>
 		<castRange>250</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>-100</effectPoint>

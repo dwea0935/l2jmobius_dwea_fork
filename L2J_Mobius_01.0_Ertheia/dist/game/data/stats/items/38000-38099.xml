@@ -1634,7 +1634,7 @@
 		<set name="time" val="7200" />
 		<set name="material" val="PAPER" />
 		<skills>
-			<skill id="17117" level="2" /> <!-- Growth Rune -->
+			<skill id="17117" level="2" /> <!-- Emperor's Rune -->
 		</skills>
 	</item>
 	<item id="38097" name="Emperor's Rune Pack (2-hour)" type="EtcItem">

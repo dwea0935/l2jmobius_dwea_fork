@@ -43,12 +43,12 @@
 			<item id="6662" min="1" max="1" chance="1.818182" /> <!-- Ring of Core -->
 			<item id="94385" min="1" max="1" chance="1.818182" /> <!-- Improved Scroll: Enchant Rare Accessories -->
 			<item id="94383" min="1" max="1" chance="1.818182" /> <!-- Scroll: Enchant Rare Accessories -->
-			<item id="94853" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <STR +4> - 3rd Class -->
-			<item id="94856" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <INT +4> - 3rd Class -->
-			<item id="94855" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <DEX +4> - 3rd Class -->
-			<item id="94858" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <WIT +4> - 3rd Class -->
-			<item id="94854" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <CON +4> - 3rd Class -->
-			<item id="94857" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye <MEN +4> - 3rd Class -->
+			<item id="94853" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (STR +4) - 3rd Class -->
+			<item id="94856" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (INT +4) - 3rd Class -->
+			<item id="94855" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (DEX +4) - 3rd Class -->
+			<item id="94858" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (WIT +4) - 3rd Class -->
+			<item id="94854" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (CON +4) - 3rd Class -->
+			<item id="94857" min="1" max="1" chance="1.818182" /> <!-- Legendary Dye (MEN +4) - 3rd Class -->
 			<item id="93739" min="1" max="1" chance="1.818182" /> <!-- Package: Giran Seal (1000 pcs.) - Sealed -->
 			<item id="93448" min="1" max="1" chance="1.818182" /> <!-- A-grade Weapon Coupon - Sealed -->
 			<item id="93449" min="1" max="1" chance="1.818182" /> <!-- A-grade Armor Coupon - Sealed -->
@@ -568,12 +568,12 @@
 			<item id="94385" min="1" max="1" chance="1.612903" /> <!-- Improved Scroll: Enchant Rare Accessories -->
 			<item id="94383" min="1" max="1" chance="1.612903" /> <!-- Scroll: Enchant Rare Accessories -->
 			<item id="93739" min="1" max="1" chance="1.612903" /> <!-- Package: Giran Seal (1000 pcs.) - Sealed -->
-			<item id="94853" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <STR +4> - 3rd Class -->
-			<item id="94856" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <INT +4> - 3rd Class -->
-			<item id="94855" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <DEX +4> - 3rd Class -->
-			<item id="94858" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <WIT +4> - 3rd Class -->
-			<item id="94854" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <CON +4> - 3rd Class -->
-			<item id="94857" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye <MEN +4> - 3rd Class -->
+			<item id="94853" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (STR +4) - 3rd Class -->
+			<item id="94856" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (INT +4) - 3rd Class -->
+			<item id="94855" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (DEX +4) - 3rd Class -->
+			<item id="94858" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (WIT +4) - 3rd Class -->
+			<item id="94854" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (CON +4) - 3rd Class -->
+			<item id="94857" min="1" max="1" chance="1.612903" /> <!-- Legendary Dye (MEN +4) - 3rd Class -->
 			<item id="94156" min="1" max="1" chance="1.612903" /> <!-- Package: Baium Doll Lv. 1 - Sealed -->
 			<item id="94513" min="1" max="1" chance="1.612903" /> <!-- Package: Frintezza Doll Lv. 1 - Sealed -->
 			<item id="94651" min="1" max="1" chance="1.612903" /> <!-- Package: Zaken Doll Lv. 1 - Sealed -->
@@ -618,7 +618,7 @@
 			<stat type="pDef">110</stat>
 		</stats>
 		<skills>
-			<skill id="50541" level="1" /> <!-- A-grade: Helmet of Protection -->
+			<skill id="50541" level="1" /> <!-- Helmet of Protection -->
 			<skill id="50542" level="1" type="ON_ENCHANT" type_value="0" /> <!-- Helmet of Protection -->
 			<skill id="50542" level="2" type="ON_ENCHANT" type_value="1" /> <!-- Helmet of Protection -->
 			<skill id="50543" level="1" type="ON_ENCHANT" type_value="1" /> <!-- +1 Helmet of Protection -->

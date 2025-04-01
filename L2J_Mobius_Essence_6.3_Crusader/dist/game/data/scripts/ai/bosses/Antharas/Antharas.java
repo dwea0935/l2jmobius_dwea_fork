@@ -25,30 +25,31 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.enums.MountType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 import ai.AbstractNpcAI;
 
@@ -220,26 +221,26 @@ public class Antharas extends AbstractNpcAI
 						{
 							if (!npc.isAffectedBySkill(ANTH_REGEN_4.getSkillId()))
 							{
-								npc.getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, ANTH_REGEN_4.getSkill(), npc);
+								npc.getAI().setIntention(Intention.CAST, ANTH_REGEN_4.getSkill(), npc);
 							}
 						}
 						else if (npc.getCurrentHp() < (npc.getMaxHp() * 0.5))
 						{
 							if (!npc.isAffectedBySkill(ANTH_REGEN_3.getSkillId()))
 							{
-								npc.getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, ANTH_REGEN_3.getSkill(), npc);
+								npc.getAI().setIntention(Intention.CAST, ANTH_REGEN_3.getSkill(), npc);
 							}
 						}
 						else if (npc.getCurrentHp() < (npc.getMaxHp() * 0.75))
 						{
 							if (!npc.isAffectedBySkill(ANTH_REGEN_2.getSkillId()))
 							{
-								npc.getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, ANTH_REGEN_2.getSkill(), npc);
+								npc.getAI().setIntention(Intention.CAST, ANTH_REGEN_2.getSkill(), npc);
 							}
 						}
 						else if (!npc.isAffectedBySkill(ANTH_REGEN_1.getSkillId()))
 						{
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, ANTH_REGEN_1.getSkill(), npc);
+							npc.getAI().setIntention(Intention.CAST, ANTH_REGEN_1.getSkill(), npc);
 						}
 						startQuestTimer("SET_REGEN", 60000, npc, null);
 					}
@@ -286,13 +287,13 @@ public class Antharas extends AbstractNpcAI
 								continue;
 							}
 							
-							if ((Util.calculateDistance(newLoc, egg, true, false) > 100) && !egg.isMoving())
+							if ((LocationUtil.calculateDistance(newLoc, egg, true, false) > 100) && !egg.isMoving())
 							{
 								egg.stopMove(null);
 								newLoc = GeoEngine.getInstance().getValidLocation(egg.getX(), egg.getY(), egg.getZ(), newLoc.getX(), newLoc.getY(), newLoc.getZ(), _antharas.getInstanceWorld());
 								if ((newLoc != null) && GeoEngine.getInstance().canSeeTarget(egg, _antharas))
 								{
-									egg.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, newLoc);
+									egg.getAI().setIntention(Intention.MOVE_TO, newLoc);
 								}
 								else
 								{
@@ -480,7 +481,7 @@ public class Antharas extends AbstractNpcAI
 			if (UNCLAIMED_REWARDS.contains(player.getObjectId()) && (_claimedRewardsCount.getAndIncrement() < 200))
 			{
 				UNCLAIMED_REWARDS.remove(player.getObjectId());
-				player.addItem("Antharas stage " + _rewardsStage, 96350, _rewardsStage == 1 ? 1 : _rewardsStage == 2 ? 5 : 10, player, true);
+				player.addItem(ItemProcessType.REWARD, 96350, _rewardsStage == 1 ? 1 : _rewardsStage == 2 ? 5 : 10, player, true);
 			}
 			return null;
 		}
@@ -489,14 +490,14 @@ public class Antharas extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (isAntharasId(npc.getId()))
 		{
 			final Player player = attacker.asPlayer();
 			if (player == null)
 			{
-				return super.onAttack(npc, attacker, damage, isSummon, skill);
+				return;
 			}
 			
 			if ((player.getMountType() == MountType.STRIDER) && !attacker.isAffectedBySkill(ANTH_ANTI_STRIDER.getSkillId()) && SkillCaster.checkUseConditions(npc, ANTH_ANTI_STRIDER.getSkill()))
@@ -526,11 +527,10 @@ public class Antharas extends AbstractNpcAI
 			}
 			manageSkills(npc);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player killerPlayer = killer.asPlayer();
 		if (killerPlayer != null)
@@ -590,11 +590,10 @@ public class Antharas extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (isAntharasId(npc.getId()))
 		{
@@ -612,14 +611,12 @@ public class Antharas extends AbstractNpcAI
 		{
 			npc.setRandomAnimation(false);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		startQuestTimer("MANAGE_SKILL", 1000, npc, null);
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
@@ -678,7 +675,7 @@ public class Antharas extends AbstractNpcAI
 		}
 		else
 		{
-			final int i1 = CommonUtil.min(_attackerHate1, _attackerHate2, _attackerHate3);
+			final int i1 = MathUtil.min(_attackerHate1, _attackerHate2, _attackerHate3);
 			if (_attackerHate1 == i1)
 			{
 				_attackerHate1 = damage + getRandom(3000);
@@ -928,7 +925,7 @@ public class Antharas extends AbstractNpcAI
 				}
 				else
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, skillToCast.getSkill(), npc);
+					npc.getAI().setIntention(Intention.CAST, skillToCast.getSkill(), npc);
 				}
 			}
 		}

@@ -39,7 +39,7 @@ public class SkillList implements IBypassHandler
 		{
 			return false;
 		}
-		Folk.showSkillList(player, target.asNpc(), player.getClassId());
+		Folk.showSkillList(player, target.asNpc(), player.getPlayerClass());
 		return true;
 	}
 	

@@ -1157,15 +1157,15 @@
 	<option id="90599" name="All received Critical Damage -4%">
 		<effects>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-4.0</amount>
+				<amount>4.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-4.0</amount>
+				<amount>4.0</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceCriticalDamage">
-				<amount>-4.0</amount>
+				<amount>4.0</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>

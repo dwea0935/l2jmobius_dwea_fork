@@ -38,7 +38,7 @@ public class PledgeShowMemberListAdd extends ServerPacket
 	{
 		_name = player.getName();
 		_level = player.getLevel();
-		_classId = player.getClassId().getId();
+		_classId = player.getPlayerClass().getId();
 		_isOnline = (player.isOnline() ? player.getObjectId() : 0);
 		_pledgeType = player.getPledgeType();
 	}

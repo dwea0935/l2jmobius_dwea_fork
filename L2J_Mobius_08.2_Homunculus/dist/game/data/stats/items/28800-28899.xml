@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="28800" name="Libra Agathion Charm" additionalName="Stage 8" type="Armor">
 		<!-- Activates the power of Agathion Libra. Can be upgraded up to Lv. +12 through compounding with Starlight Jar. Also can be enchanted to +10 by using Book of Growth. Active skill: Scale of Life Lv. 8. Enables various additional skills when upgraded. Equipping it in the main slot summons the agathion and activates its active and unique skills. Equipping in an additional slot activates only unique abilities. Note!. 1. Compounding the charm resets its enchant value. 2. If Agathion Capricorn is also equipped, only secondary skills will be active. -->
@@ -37,7 +37,6 @@
 	<item id="28802" name="Libra Agathion Charm" additionalName="Stage 10" type="Armor">
 		<!-- Activates the power of Agathion Libra. Can be upgraded up to Lv. +12 through compounding with Starlight Jar. Also can be enchanted to +10 by using Book of Growth. Active skill: Scale of Life Lv. 10. Enables various additional skills when upgraded. Equipping it in the main slot summons the agathion and activates its active and unique skills. Equipping in an additional slot activates only unique abilities. Note!. 1. Compounding the charm resets its enchant value. 2. If Agathion Capricorn is also equipped, only secondary skills will be active. -->
 		<set name="icon" val="BranchIcon.icon.g_bm_lib_agathion_charm" />
-		<set name="default_action" val="EQUIP" />
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="agathion" />
 		<set name="immediate_effect" val="true" />

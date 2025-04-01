@@ -51,7 +51,7 @@ public class ExUserWatcherTargetList extends ServerPacket
 			{
 				online = true;
 				level = target.getLevel();
-				classId = target.getClassId().getId();
+				classId = target.getPlayerClass().getId();
 			}
 			else
 			{

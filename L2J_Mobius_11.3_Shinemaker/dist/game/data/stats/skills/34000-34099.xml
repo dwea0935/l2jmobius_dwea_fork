@@ -544,7 +544,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>120</magicLevel>
 		<stayAfterDeath>true</stayAfterDeath>
@@ -612,7 +612,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>120</magicLevel>
 		<stayAfterDeath>true</stayAfterDeath>
@@ -680,7 +680,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>120</magicLevel>
 		<stayAfterDeath>true</stayAfterDeath>
@@ -746,7 +746,7 @@
 		<basicProperty>NONE</basicProperty>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<effectPoint>0</effectPoint>
-		<irreplacableBuff>true</irreplacableBuff>
+		<irreplaceableBuff>true</irreplaceableBuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>120</magicLevel>
 		<stayAfterDeath>true</stayAfterDeath>
@@ -956,15 +956,15 @@
 		<reuseDelay>0</reuseDelay>
 		<effects>
 			<effect name="DefenceCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -988,15 +988,15 @@
 		<reuseDelay>0</reuseDelay>
 		<effects>
 			<effect name="DefenceCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -1020,15 +1020,15 @@
 		<reuseDelay>0</reuseDelay>
 		<effects>
 			<effect name="DefenceCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -1052,15 +1052,15 @@
 		<reuseDelay>0</reuseDelay>
 		<effects>
 			<effect name="DefenceCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -1084,15 +1084,15 @@
 		<reuseDelay>0</reuseDelay>
 		<effects>
 			<effect name="DefenceCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -1116,15 +1116,15 @@
 		<reuseDelay>0</reuseDelay>
 		<effects>
 			<effect name="DefenceCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -1148,15 +1148,15 @@
 		<reuseDelay>0</reuseDelay>
 		<effects>
 			<effect name="DefenceCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-50</amount>
+				<amount>50</amount>
 				<mode>PER</mode>
 			</effect>
 		</effects>
@@ -1180,15 +1180,15 @@
 		<reuseDelay>0</reuseDelay>
 		<effects>
 			<effect name="DefenceCriticalDamage">
-				<amount>-90</amount>
+				<amount>90</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-90</amount>
+				<amount>90</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-90</amount>
+				<amount>90</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="RealDamageResist">
@@ -1216,15 +1216,15 @@
 		<reuseDelay>0</reuseDelay>
 		<effects>
 			<effect name="DefenceCriticalDamage">
-				<amount>-70</amount>
+				<amount>70</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefenceMagicCriticalDamage">
-				<amount>-70</amount>
+				<amount>70</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="DefencePhysicalSkillCriticalDamage">
-				<amount>-70</amount>
+				<amount>70</amount>
 				<mode>PER</mode>
 			</effect>
 			<effect name="RealDamageResist">

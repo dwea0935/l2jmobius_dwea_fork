@@ -24,13 +24,13 @@ import java.util.Collection;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.data.holders.RelicCollectionDataHolder;
+import org.l2jmobius.gameserver.data.holders.RelicDataHolder;
 import org.l2jmobius.gameserver.data.xml.OptionData;
 import org.l2jmobius.gameserver.data.xml.RelicCollectionData;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.PlayerRelicCollectionData;
-import org.l2jmobius.gameserver.model.holders.PlayerRelicData;
-import org.l2jmobius.gameserver.model.holders.RelicCollectionDataHolder;
-import org.l2jmobius.gameserver.model.holders.RelicDataHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerRelicCollectionData;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerRelicData;
 import org.l2jmobius.gameserver.model.options.Options;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;

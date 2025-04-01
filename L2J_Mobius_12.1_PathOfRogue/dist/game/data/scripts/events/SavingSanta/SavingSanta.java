@@ -26,30 +26,31 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Christmas Event: Saving Santa<br>
@@ -167,25 +168,23 @@ public class SavingSanta extends LongTimeEvent
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		_specialTrees.add(npc);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		if (_isWaitingForPlayerSkill && (skill.getId() > 21013) && (skill.getId() < 21017))
 		{
 			caster.broadcastPacket(new MagicSkillUse(caster, caster, 23019, skill.getId() - 21013, 3000, 1));
 			SkillData.getInstance().getSkill(23019, skill.getId() - 21013).applyEffects(caster, caster);
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		// Turkey's Choice
 		// Level 1: Scissors
@@ -258,11 +257,11 @@ public class SavingSanta extends LongTimeEvent
 						if (getRandom(100) > 90)
 						{
 							_isJackPot = true;
-							pl.addItem("SavingSantaPresent", BR_XMAS_PRESENT_JACKPOT, 1, pl, true);
+							pl.addItem(ItemProcessType.REWARD, BR_XMAS_PRESENT_JACKPOT, 1, pl, true);
 						}
 						else
 						{
-							pl.addItem("SavingSantaPresent", BR_XMAS_PRESENT_NORMAL, 1, pl, true);
+							pl.addItem(ItemProcessType.REWARD, BR_XMAS_PRESENT_NORMAL, 1, pl, true);
 						}
 						
 						ThreadPool.schedule(new SledAnimation(holidaySled), 7000);
@@ -273,7 +272,6 @@ public class SavingSanta extends LongTimeEvent
 				}
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	private static class SledAnimation implements Runnable
@@ -290,7 +288,7 @@ public class SavingSanta extends LongTimeEvent
 		{
 			try
 			{
-				_sled.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				_sled.getAI().setIntention(Intention.IDLE);
 				_sled.broadcastPacket(new SocialAction(_sled.getObjectId(), 1));
 			}
 			catch (Exception e)
@@ -346,7 +344,7 @@ public class SavingSanta extends LongTimeEvent
 						}
 						final int locx = (int) (pl.getX() + (Math.pow(-1, getRandom(1, 2)) * 50));
 						final int locy = (int) (pl.getY() + (Math.pow(-1, getRandom(1, 2)) * 50));
-						final int heading = Util.calculateHeadingFrom(locx, locy, pl.getX(), pl.getY());
+						final int heading = LocationUtil.calculateHeadingFrom(locx, locy, pl.getX(), pl.getY());
 						final Npc santa = addSpawn(HOLIDAY_SANTA_ID, locx, locy, pl.getZ(), heading, false, 30000);
 						_rewardedPlayers.put(pl.getAccountName(), System.currentTimeMillis());
 						player.getVariables().set("LAST_SANTA_REWARD", System.currentTimeMillis());
@@ -429,14 +427,14 @@ public class SavingSanta extends LongTimeEvent
 			{
 				// Take a look at the inventory. Perhaps there might be a big present~
 				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NPC_STRINGS[25]));
-				player.addItem("SavingSantaPresent", BR_XMAS_PRESENT_JACKPOT, 1, player, true);
+				player.addItem(ItemProcessType.REWARD, BR_XMAS_PRESENT_JACKPOT, 1, player, true);
 				_isJackPot = false;
 			}
 			else
 			{
 				// Take a look at the inventory. I hope you like the gift I gave you.
 				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NPC_STRINGS[24]));
-				player.addItem("SavingSantaPresent", BR_XMAS_PRESENT_NORMAL, 1, player, true);
+				player.addItem(ItemProcessType.REWARD, BR_XMAS_PRESENT_NORMAL, 1, player, true);
 			}
 		}
 		else if (event.equalsIgnoreCase("SantaBlessings") && SANTAS_HELPER_AUTOBUFF)
@@ -470,7 +468,7 @@ public class SavingSanta extends LongTimeEvent
 						{
 							for (Player playerx : World.getInstance().getVisibleObjects(santaHelper, Player.class))
 							{
-								if (playerx.getClassId().isMage())
+								if (playerx.getPlayerClass().isMage())
 								{
 									for (int buffId : SANTA_MAGE_BUFFS)
 									{
@@ -571,9 +569,9 @@ public class SavingSanta extends LongTimeEvent
 				
 				for (ItemHolder item : TREE_REQUIRED_ITEMS)
 				{
-					player.destroyItemByItemId(event, item.getId(), item.getCount(), player, true);
+					player.destroyItemByItemId(ItemProcessType.FEE, item.getId(), item.getCount(), player, true);
 				}
-				player.addItem(event, X_MAS_TREE1, 1, player, true);
+				player.addItem(ItemProcessType.BUY, X_MAS_TREE1, 1, player, true);
 			}
 			else if (event.equalsIgnoreCase("SpecialTree"))
 			{
@@ -612,8 +610,8 @@ public class SavingSanta extends LongTimeEvent
 					player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 					return null;
 				}
-				player.destroyItemByItemId(event, X_MAS_TREE1, 10, player, true);
-				player.addItem(event, X_MAS_TREE2, 1, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, X_MAS_TREE1, 10, player, true);
+				player.addItem(ItemProcessType.BUY, X_MAS_TREE2, 1, player, true);
 			}
 			else if (event.equalsIgnoreCase("SantaHat"))
 			{
@@ -650,8 +648,8 @@ public class SavingSanta extends LongTimeEvent
 					player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 					return null;
 				}
-				player.destroyItemByItemId(event, X_MAS_TREE1, 10, player, true);
-				player.addItem(event, SANTAS_HAT_ID, 1, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, X_MAS_TREE1, 10, player, true);
+				player.addItem(ItemProcessType.BUY, SANTAS_HAT_ID, 1, player, true);
 			}
 			else if (event.equalsIgnoreCase("SavingSantaHat"))
 			{
@@ -690,8 +688,8 @@ public class SavingSanta extends LongTimeEvent
 				{
 					return null;
 				}
-				player.reduceAdena(event, 50000, player, true);
-				player.addItem(event, BR_XMAS_GAWIBAWIBO_CAP, 1, player, true);
+				player.reduceAdena(ItemProcessType.FEE, 50000, player, true);
+				player.addItem(ItemProcessType.BUY, BR_XMAS_GAWIBAWIBO_CAP, 1, player, true);
 			}
 			else if (event.equalsIgnoreCase("HolidayFestival"))
 			{
@@ -718,14 +716,14 @@ public class SavingSanta extends LongTimeEvent
 				final int itemId = Integer.parseInt(event.split("weapon_")[1]) - 1;
 				if (player.getInventory().getInventoryItemCount(BR_XMAS_WPN_TICKET_JACKPOT, -1) > 0)
 				{
-					player.destroyItemByItemId(event, BR_XMAS_WPN_TICKET_JACKPOT, 1, player, true);
-					player.addItem(event, WEAPON_REWARDS[itemId], 1, player, true).setEnchantLevel(10);
+					player.destroyItemByItemId(ItemProcessType.FEE, BR_XMAS_WPN_TICKET_JACKPOT, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, WEAPON_REWARDS[itemId], 1, player, true).setEnchantLevel(10);
 					player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 				}
 				else if ((player.getInventory().getInventoryItemCount(BR_XMAS_WPN_TICKET_NORMAL, -1) > 0) /* || (player.getLevel() < 20) */)
 				{
-					player.destroyItemByItemId(event, BR_XMAS_WPN_TICKET_NORMAL, 1, player, true);
-					player.addItem(event, WEAPON_REWARDS[itemId], 1, player, true).setEnchantLevel(getRandom(4, 16));
+					player.destroyItemByItemId(ItemProcessType.FEE, BR_XMAS_WPN_TICKET_NORMAL, 1, player, true);
+					player.addItem(ItemProcessType.REWARD, WEAPON_REWARDS[itemId], 1, player, true).setEnchantLevel(getRandom(4, 16));
 				}
 			}
 		}
@@ -770,7 +768,7 @@ public class SavingSanta extends LongTimeEvent
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		// FIXME: Increase Thomas D. Turkey aggro rage.
 		if (npc.getId() == THOMAS_D_TURKEY_ID)
@@ -778,7 +776,6 @@ public class SavingSanta extends LongTimeEvent
 			// I guess you came to rescue Santa. But you picked the wrong person.
 			npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NPC_STRINGS[8]));
 		}
-		return null;
 	}
 	
 	public static void main(String[] args)

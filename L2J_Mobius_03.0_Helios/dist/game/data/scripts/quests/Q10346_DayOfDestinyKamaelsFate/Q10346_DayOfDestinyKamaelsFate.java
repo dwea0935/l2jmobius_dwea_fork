@@ -16,10 +16,10 @@
  */
 package quests.Q10346_DayOfDestinyKamaelsFate;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -70,7 +70,7 @@ public class Q10346_DayOfDestinyKamaelsFate extends ThirdClassTransferQuest
 			case "32221-05.htm":
 			{
 				qs.startQuest();
-				qs.set("STARTED_CLASS", player.getClassId().getId());
+				qs.set("STARTED_CLASS", player.getPlayerClass().getId());
 				htmltext = event;
 				break;
 			}

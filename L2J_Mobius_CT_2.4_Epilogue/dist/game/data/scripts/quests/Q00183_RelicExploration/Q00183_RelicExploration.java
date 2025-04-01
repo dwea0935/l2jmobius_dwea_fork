@@ -16,7 +16,7 @@
  */
 package quests.Q00183_RelicExploration;
 
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -41,7 +41,7 @@ public class Q00183_RelicExploration extends Quest
 	
 	public Q00183_RelicExploration()
 	{
-		super(183);
+		super(183, "Relic Exploration");
 		addStartNpc(HEAD_BLACKSMITH_KUSTO);
 		addTalkId(HEAD_BLACKSMITH_KUSTO, RESEARCHER_LORAIN, MAESTRO_NIKOLA);
 	}

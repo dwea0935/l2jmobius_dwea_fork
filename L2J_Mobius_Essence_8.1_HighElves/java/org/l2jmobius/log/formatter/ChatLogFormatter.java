@@ -29,19 +29,20 @@ import org.l2jmobius.commons.util.StringUtil;
 
 public class ChatLogFormatter extends Formatter
 {
-	private final SimpleDateFormat dateFmt = new SimpleDateFormat("dd MMM H:mm:ss");
+	private final SimpleDateFormat _dateFormat = new SimpleDateFormat("dd MMM H:mm:ss");
 	
 	@Override
 	public String format(LogRecord record)
 	{
 		final Object[] params = record.getParameters();
-		final StringBuilder output = StringUtil.startAppend(30 + record.getMessage().length() + (params != null ? 10 * params.length : 0), "[", dateFmt.format(new Date(record.getMillis())), "] ");
+		final StringBuilder output = new StringBuilder(30 + record.getMessage().length() + (params != null ? 10 * params.length : 0));
+		StringUtil.append(output, "[", _dateFormat.format(new Date(record.getMillis())), "] ");
 		
 		if (params != null)
 		{
 			for (Object p : params)
 			{
-				StringUtil.append(output, String.valueOf(p), " ");
+				StringUtil.append(output, p, " ");
 			}
 		}
 		

@@ -17,7 +17,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="92802" name="Art of Battle Axe Blade" type="EtcItem">
-		<!-- Key material for Dwarves to make Art of Battle Axe. -->
+		<!-- Key material for Dwarves to make Battle Art Axe. -->
 		<set name="icon" val="icon.etc_sword_body_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="material" val="LIQUID" />
@@ -785,7 +785,7 @@
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="92898" name="Sword of Ipos Blade" type="EtcItem">
-		<!-- Key material for Dwarves to make Sword of Ipos. -->
+		<!-- Key material for Dwarves to make Ipos' Sword. -->
 		<set name="icon" val="icon.etc_sword_body_i00" />
 		<set name="etcitem_type" val="MATERIAL" />
 		<set name="material" val="LIQUID" />

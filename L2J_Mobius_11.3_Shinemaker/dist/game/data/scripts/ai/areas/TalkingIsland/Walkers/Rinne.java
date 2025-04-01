@@ -16,11 +16,11 @@
  */
 package ai.areas.TalkingIsland.Walkers;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -73,12 +73,11 @@ public class Rinne extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		getTimers().addTimer("TID_LEFTWALK", (5000 + getRandom(5)) * 1000, npc, null);
 		getTimers().addTimer("NPC_SHOUT", (10 + getRandom(5)) * 1000, npc, null);
 		getTimers().addTimer("NPC_FOLLOW", 100, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

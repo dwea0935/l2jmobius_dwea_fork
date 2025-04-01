@@ -26,15 +26,15 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.FenceState;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldRegion;
+import org.l2jmobius.gameserver.model.actor.enums.creature.FenceState;
 import org.l2jmobius.gameserver.model.actor.instance.Fence;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 
 /**
- * @author HoridoJoho / FBIagent
+ * @author HorridoJoho
  */
 public class FenceData implements IXmlReader
 {
@@ -63,14 +63,9 @@ public class FenceData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "fence", this::spawnFence));
-	}
-	
-	public int getLoadedElementsCount()
-	{
-		return _fences.size();
+		forEach(document, "list", listNode -> forEach(listNode, "fence", this::spawnFence));
 	}
 	
 	private void spawnFence(Node fenceNode)
@@ -79,11 +74,36 @@ public class FenceData implements IXmlReader
 		spawnFence(set.getInt("x"), set.getInt("y"), set.getInt("z"), set.getString("name"), set.getInt("width"), set.getInt("length"), set.getInt("height"), 0, set.getEnum("state", FenceState.class, FenceState.CLOSED));
 	}
 	
+	/**
+	 * Spawns a fence at the specified coordinates with the given dimensions and state, without a name.
+	 * @param x the x-coordinate where the fence will be spawned.
+	 * @param y the y-coordinate where the fence will be spawned.
+	 * @param z the z-coordinate where the fence will be spawned.
+	 * @param width the width of the fence.
+	 * @param length the length of the fence.
+	 * @param height the height of the fence.
+	 * @param instanceId the instance ID for the fence, or 0 for the default instance.
+	 * @param state the {@link FenceState} for the fence.
+	 * @return the spawned {@link Fence} object.
+	 */
 	public Fence spawnFence(int x, int y, int z, int width, int length, int height, int instanceId, FenceState state)
 	{
 		return spawnFence(x, y, z, null, width, length, height, instanceId, state);
 	}
 	
+	/**
+	 * Spawns a fence at the specified coordinates with the given name, dimensions, and state.
+	 * @param x the x-coordinate where the fence will be spawned.
+	 * @param y the y-coordinate where the fence will be spawned.
+	 * @param z the z-coordinate where the fence will be spawned.
+	 * @param name the name of the fence, or {@code null} if it should be unnamed.
+	 * @param width the width of the fence.
+	 * @param length the length of the fence.
+	 * @param height the height of the fence.
+	 * @param instanceId the instance ID for the fence, or 0 for the default instance.
+	 * @param state the {@link FenceState} for the fence.
+	 * @return the spawned {@link Fence} object.
+	 */
 	public Fence spawnFence(int x, int y, int z, String name, int width, int length, int height, int instanceId, FenceState state)
 	{
 		final Fence fence = new Fence(x, y, name, width, length, height, state);
@@ -97,26 +117,63 @@ public class FenceData implements IXmlReader
 		return fence;
 	}
 	
+	/**
+	 * Adds the specified fence to the internal collection of fences.
+	 * @param fence the {@link Fence} to add.
+	 */
 	private void addFence(Fence fence)
 	{
 		_fences.put(fence.getObjectId(), fence);
 	}
 	
+	/**
+	 * Removes the specified fence from the internal collection of fences.
+	 * @param fence the {@link Fence} to remove.
+	 */
 	public void removeFence(Fence fence)
 	{
 		_fences.remove(fence.getObjectId());
 	}
 	
+	/**
+	 * Retrieves all currently spawned fences.
+	 * @return a map of all spawned fences, keyed by their object ID.
+	 */
 	public Map<Integer, Fence> getFences()
 	{
 		return _fences;
 	}
 	
+	/**
+	 * Retrieves a specific fence by its object ID.
+	 * @param objectId the object ID of the fence.
+	 * @return the {@link Fence} with the specified object ID, or {@code null} if no such fence exists.
+	 */
 	public Fence getFence(int objectId)
 	{
 		return _fences.get(objectId);
 	}
 	
+	/**
+	 * Gets the total number of loaded fences.
+	 * @return the count of loaded fences.
+	 */
+	public int getLoadedElementsCount()
+	{
+		return _fences.size();
+	}
+	
+	/**
+	 * Checks if there is a fence with geodata enabled between two sets of coordinates within a specified instance.
+	 * @param x the x-coordinate of the starting point.
+	 * @param y the y-coordinate of the starting point.
+	 * @param z the z-coordinate of the starting point.
+	 * @param tx the x-coordinate of the ending point.
+	 * @param ty the y-coordinate of the ending point.
+	 * @param tz the z-coordinate of the ending point.
+	 * @param instance the instance in which to check for fences.
+	 * @return {@code true} if there is a fence between the coordinates, {@code false} otherwise.
+	 */
 	public boolean checkIfFenceBetween(int x, int y, int z, int tx, int ty, int tz, Instance instance)
 	{
 		final WorldRegion region = World.getInstance().getRegion(x, y);
@@ -173,6 +230,22 @@ public class FenceData implements IXmlReader
 		return false;
 	}
 	
+	/**
+	 * Determines if a line segment crosses a section of another line segment, restricted by boundaries.
+	 * @param x1 the x-coordinate of the first point of the first line.
+	 * @param y1 the y-coordinate of the first point of the first line.
+	 * @param x2 the x-coordinate of the second point of the first line.
+	 * @param y2 the y-coordinate of the second point of the first line.
+	 * @param x3 the x-coordinate of the first point of the second line.
+	 * @param y3 the y-coordinate of the first point of the second line.
+	 * @param x4 the x-coordinate of the second point of the second line.
+	 * @param y4 the y-coordinate of the second point of the second line.
+	 * @param xMin the minimum x-boundary for the segment.
+	 * @param yMin the minimum y-boundary for the segment.
+	 * @param xMax the maximum x-boundary for the segment.
+	 * @param yMax the maximum y-boundary for the segment.
+	 * @return {@code true} if the line segments cross within the specified boundaries, {@code false} otherwise.
+	 */
 	private boolean crossLinePart(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double xMin, double yMin, double xMax, double yMax)
 	{
 		final double[] result = intersection(x1, y1, x2, y2, x3, y3, x4, y4);
@@ -195,6 +268,18 @@ public class FenceData implements IXmlReader
 		return false;
 	}
 	
+	/**
+	 * Calculates the intersection point of two line segments.
+	 * @param x1 the x-coordinate of the first point of the first line.
+	 * @param y1 the y-coordinate of the first point of the first line.
+	 * @param x2 the x-coordinate of the second point of the first line.
+	 * @param y2 the y-coordinate of the second point of the first line.
+	 * @param x3 the x-coordinate of the first point of the second line.
+	 * @param y3 the y-coordinate of the first point of the second line.
+	 * @param x4 the x-coordinate of the second point of the second line.
+	 * @param y4 the y-coordinate of the second point of the second line.
+	 * @return an array containing the x and y coordinates of the intersection point, or {@code null} if there is no intersection.
+	 */
 	private double[] intersection(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
 	{
 		final double d = ((x1 - x2) * (y3 - y4)) - ((y1 - y2) * (x3 - x4));

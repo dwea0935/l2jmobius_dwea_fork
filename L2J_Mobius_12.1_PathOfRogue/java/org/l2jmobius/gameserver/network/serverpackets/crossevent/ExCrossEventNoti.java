@@ -21,7 +21,7 @@
 package org.l2jmobius.gameserver.network.serverpackets.crossevent;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.events.CrossEventManager;
+import org.l2jmobius.gameserver.managers.events.CrossEventManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;

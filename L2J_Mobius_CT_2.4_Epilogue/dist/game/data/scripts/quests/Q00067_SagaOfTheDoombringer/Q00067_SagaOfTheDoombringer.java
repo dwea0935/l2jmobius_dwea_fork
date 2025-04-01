@@ -28,7 +28,7 @@ public class Q00067_SagaOfTheDoombringer extends AbstractSagaQuest
 {
 	public Q00067_SagaOfTheDoombringer()
 	{
-		super(67);
+		super(67, "Saga of the Doombringer");
 		_npc = new int[]
 		{
 			32138,

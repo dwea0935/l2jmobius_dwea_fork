@@ -20,50 +20,33 @@
  */
 package org.l2jmobius.gameserver.data.xml;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
-import org.w3c.dom.Document;
-
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.data.sql.CharInfoTable;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.FakePlayerHolder;
 
 /**
  * @author Mobius
  */
-public class FakePlayerData implements IXmlReader
+public class FakePlayerData
 {
 	private static final Logger LOGGER = Logger.getLogger(FakePlayerData.class.getName());
 	
-	private final Map<Integer, FakePlayerHolder> _fakePlayerInfos = new HashMap<>();
-	private final Map<String, String> _fakePlayerNames = new HashMap<>();
-	private final Map<String, Integer> _fakePlayerIds = new HashMap<>();
-	private final Set<String> _talkableFakePlayerNames = new HashSet<>();
+	private final Map<String, String> _fakePlayerNames = new ConcurrentHashMap<>();
+	private final Map<String, Integer> _fakePlayerIds = new ConcurrentHashMap<>();
+	private final Set<String> _talkableFakePlayerNames = ConcurrentHashMap.newKeySet();
 	
 	protected FakePlayerData()
 	{
-		load();
 	}
 	
-	@Override
-	public void load()
+	public void report()
 	{
 		if (Config.FAKE_PLAYERS_ENABLED)
 		{
-			_fakePlayerInfos.clear();
-			_fakePlayerNames.clear();
-			_fakePlayerIds.clear();
-			_talkableFakePlayerNames.clear();
-			parseDatapackFile("data/FakePlayerVisualData.xml");
-			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _fakePlayerInfos.size() + " templates.");
+			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _fakePlayerIds.size() + " templates.");
 		}
 		else
 		{
@@ -71,50 +54,63 @@ public class FakePlayerData implements IXmlReader
 		}
 	}
 	
-	@Override
-	public void parseDocument(Document doc, File f)
+	/**
+	 * Adds a mapping between a fake player name and its corresponding NPC ID.
+	 * @param name the name of the fake player
+	 * @param npcId the NPC ID to associate with the fake player
+	 */
+	public void addFakePlayerId(String name, int npcId)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "fakePlayer", fakePlayerNode ->
-		{
-			final StatSet set = new StatSet(parseAttributes(fakePlayerNode));
-			final int npcId = set.getInt("npcId");
-			final NpcTemplate template = NpcData.getInstance().getTemplate(npcId);
-			final String name = template.getName();
-			if (CharInfoTable.getInstance().getIdByName(name) > 0)
-			{
-				LOGGER.info(getClass().getSimpleName() + ": Could not create fake player template " + npcId + ", player name already exists.");
-			}
-			else
-			{
-				_fakePlayerIds.put(name, npcId); // name - npcId
-				_fakePlayerNames.put(name.toLowerCase(), name); // name to lowercase - name
-				_fakePlayerInfos.put(npcId, new FakePlayerHolder(set));
-				if (template.isFakePlayerTalkable())
-				{
-					_talkableFakePlayerNames.add(name.toLowerCase());
-				}
-			}
-		}));
+		_fakePlayerIds.put(name, npcId);
 	}
 	
+	/**
+	 * Retrieves the NPC ID associated with the given fake player name.
+	 * @param name the name of the fake player
+	 * @return the NPC ID corresponding to the given name, or {@code null} if no match is found
+	 */
 	public int getNpcIdByName(String name)
 	{
 		return _fakePlayerIds.get(name);
 	}
 	
+	/**
+	 * Adds a mapping between a lowercase version of a fake player name and its properly formatted name.
+	 * @param lowercaseName the lowercase version of the fake player name
+	 * @param name the properly formatted name of the fake player
+	 */
+	public void addFakePlayerName(String lowercaseName, String name)
+	{
+		_fakePlayerNames.put(lowercaseName, name);
+	}
+	
+	/**
+	 * Retrieves the properly formatted name of a fake player, given a case-insensitive name lookup.
+	 * @param name the name of the fake player (case-insensitive)
+	 * @return the correctly formatted name of the fake player, or {@code null} if no match is found
+	 */
 	public String getProperName(String name)
 	{
 		return _fakePlayerNames.get(name.toLowerCase());
 	}
 	
+	/**
+	 * Adds a fake player name to the set of talkable fake player names.
+	 * @param lowercaseName the lowercase version of the fake player name
+	 */
+	public void addTalkableFakePlayerName(String lowercaseName)
+	{
+		_talkableFakePlayerNames.add(lowercaseName);
+	}
+	
+	/**
+	 * Checks if a fake player with the given name is marked as talkable.
+	 * @param name the name of the fake player (case-insensitive)
+	 * @return {@code true} if the fake player with the given name is talkable, {@code false} otherwise
+	 */
 	public boolean isTalkable(String name)
 	{
 		return _talkableFakePlayerNames.contains(name.toLowerCase());
-	}
-	
-	public FakePlayerHolder getInfo(int npcId)
-	{
-		return _fakePlayerInfos.get(npcId);
 	}
 	
 	public static FakePlayerData getInstance()

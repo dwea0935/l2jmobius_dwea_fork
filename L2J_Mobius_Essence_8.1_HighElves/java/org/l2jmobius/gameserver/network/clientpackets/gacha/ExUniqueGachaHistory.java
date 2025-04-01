@@ -22,9 +22,9 @@ package org.l2jmobius.gameserver.network.clientpackets.gacha;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.instancemanager.events.UniqueGachaManager;
+import org.l2jmobius.gameserver.managers.events.UniqueGachaManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.GachaItemTimeStampHolder;
+import org.l2jmobius.gameserver.model.item.holders.GachaItemTimeStampHolder;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.gacha.UniqueGachaHistory;
 

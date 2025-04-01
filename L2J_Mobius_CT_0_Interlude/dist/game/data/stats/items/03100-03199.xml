@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="3100" type="EtcItem" name="Spellbook: Guidance">
 		<!-- Spellbook needed to learn Guidance. Used by Prophets and Shillien Elders. -->
@@ -891,7 +891,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3179" type="EtcItem" name="Marsh Spider's Fluids">
+	<item id="3179" type="EtcItem" name="Marsh Spider Fluids">
 		<!-- The bottled fluids of a marsh spider. Collect 10 of these and take them back to Master Ixia. -->
 		<set name="icon" val="icon.etc_lesser_potion_scarlet_i00" />
 		<set name="immediate_effect" val="true" />
@@ -1071,7 +1071,7 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
 	</item>
-	<item id="3194" type="EtcItem" name="Grandis' Skull">
+	<item id="3194" type="EtcItem" name="Grandis's Skull">
 		<!-- The skull of a Grandis. Collect ten of these and take them back to the bloody pixy. -->
 		<set name="icon" val="icon.etc_ashes_red_i00" />
 		<set name="immediate_effect" val="true" />

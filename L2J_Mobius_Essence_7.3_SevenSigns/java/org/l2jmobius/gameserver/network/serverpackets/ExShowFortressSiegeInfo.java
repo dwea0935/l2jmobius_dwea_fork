@@ -19,14 +19,13 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
 import org.l2jmobius.gameserver.model.FortSiegeSpawn;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * TODO: Rewrite!!!
  * @author KenM
  */
 public class ExShowFortressSiegeInfo extends ServerPacket
@@ -89,7 +88,7 @@ public class ExShowFortressSiegeInfo extends ServerPacket
 				{
 					switch (_csize2)
 					{
-						// TODO: once control room supported, update buffer.writeInt(0x0x) to support 5th room
+						// TODO: once control room supported, update writeInt(0x0x) to support 5th room
 						case 0:
 						{
 							buffer.writeInt(5);

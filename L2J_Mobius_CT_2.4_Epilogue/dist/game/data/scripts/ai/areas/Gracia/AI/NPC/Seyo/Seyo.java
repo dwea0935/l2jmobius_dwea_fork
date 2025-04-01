@@ -16,10 +16,9 @@
  */
 package ai.areas.Gracia.AI.NPC.Seyo;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -34,13 +33,13 @@ public class Seyo extends AbstractNpcAI
 	// Item
 	private static final int STONE_FRAGMENT = 15486; // Spirit Stone Fragment
 	// Misc
-	private static final NpcStringId[] TEXT =
+	private static final String[] TEXT =
 	{
-		NpcStringId.NO_ONE_ELSE_DON_T_WORRY_I_DON_T_BITE_HAHA,
-		NpcStringId.OK_MASTER_OF_LUCK_THAT_S_YOU_HAHA_WELL_ANYONE_CAN_COME_AFTER_ALL,
-		NpcStringId.SHEDDING_BLOOD_IS_A_GIVEN_ON_THE_BATTLEFIELD_AT_LEAST_IT_S_SAFE_HERE,
-		NpcStringId.OK_WHO_S_NEXT_IT_ALL_DEPENDS_ON_YOUR_FATE_AND_LUCK_RIGHT_AT_LEAST_COME_AND_TAKE_A_LOOK,
-		NpcStringId.THERE_WAS_SOMEONE_WHO_WON_10_000_FROM_ME_A_WARRIOR_SHOULDN_T_JUST_BE_GOOD_AT_FIGHTING_RIGHT_YOU_VE_GOTTA_BE_GOOD_IN_EVERYTHING
+		"No one else? Don't worry~ I don't bite. Haha~!",
+		"OK~ Master of luck? That's you? Haha~! Well, anyone can come after all.",
+		"Shedding blood is a given on the battlefield. At least it's safe here.",
+		"OK~ Who's next? It all depends on your fate and luck, right? At least come and take a look.",
+		"There was someone who won 10,000 from me. A warrior shouldn't just be good at fighting, right? You've gotta be good in everything."
 	};
 	
 	public Seyo()
@@ -86,11 +85,11 @@ public class Seyo extends AbstractNpcAI
 					if (getRandom(100) == 0)
 					{
 						giveItems(player, STONE_FRAGMENT, 100);
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.AMAZING_S1_TOOK_100_OF_THESE_SOUL_STONE_FRAGMENTS_WHAT_A_COMPLETE_SWINDLER, player.getName());
+						npc.broadcastSay(ChatType.NPC_GENERAL, "Amazing. " + player.getName() + " took 100 of these soul stone fragments. What a complete swindler.");
 					}
 					else
 					{
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.HMM_HEY_DID_YOU_GIVE_S1_SOMETHING_BUT_IT_WAS_JUST_1_HAHA, player.getName());
+						npc.broadcastSay(ChatType.NPC_GENERAL, "Hmm? Hey, did you give " + player.getName() + " something? But it was just 1. Haha.");
 					}
 					startQuestTimer("TRICKERY_TIMER", 5000, npc, null);
 				}
@@ -113,18 +112,18 @@ public class Seyo extends AbstractNpcAI
 					final int chance = getRandom(100);
 					if (chance < 20)
 					{
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.AHEM_S1_HAS_NO_LUCK_AT_ALL_TRY_PRAYING, player.getName());
+						npc.broadcastSay(ChatType.NPC_GENERAL, "Ahem~! " + player.getName() + " has no luck at all. Try praying.");
 					}
 					else if (chance < 80)
 					{
 						giveItems(player, STONE_FRAGMENT, 1);
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.IT_S_BETTER_THAN_LOSING_IT_ALL_RIGHT_OR_DOES_THIS_FEEL_WORSE);
+						npc.broadcastSay(ChatType.NPC_GENERAL, "It's better than losing it all, right? Or does this feel worse?");
 					}
 					else
 					{
 						final int itemCount = getRandom(10, 16);
 						giveItems(player, STONE_FRAGMENT, itemCount);
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.S1_PULLED_ONE_WITH_S2_DIGITS_LUCKY_NOT_BAD, player.getName(), String.valueOf(itemCount));
+						npc.broadcastSay(ChatType.NPC_GENERAL, player.getName() + " pulled one with " + itemCount + " digits. Lucky~ Not bad~");
 					}
 					startQuestTimer("TRICKERY_TIMER", 5000, npc, null);
 				}
@@ -148,17 +147,17 @@ public class Seyo extends AbstractNpcAI
 					if (chance == 0)
 					{
 						giveItems(player, STONE_FRAGMENT, 10000);
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.AH_IT_S_OVER_WHAT_KIND_OF_GUY_IS_THAT_DAMN_FINE_YOU_S1_TAKE_IT_AND_GET_OUTTA_HERE, player.getName());
+						npc.broadcastSay(ChatType.NPC_GENERAL, "Ah... It's over. What kind of guy is that? Damn... Fine, you " + player.getName() + ", take it and get outta here.");
 					}
 					else if (chance < 10)
 					{
 						giveItems(player, STONE_FRAGMENT, 1);
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.YOU_DON_T_FEEL_BAD_RIGHT_ARE_YOU_SAD_BUT_DON_T_CRY);
+						npc.broadcastSay(ChatType.NPC_GENERAL, "You don't feel bad, right? Are you sad? But don't cry~");
 					}
 					else
 					{
 						giveItems(player, STONE_FRAGMENT, getRandom(1, 100));
-						npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.A_BIG_PIECE_IS_MADE_UP_OF_LITTLE_PIECES_SO_HERE_S_A_LITTLE_PIECE);
+						npc.broadcastSay(ChatType.NPC_GENERAL, "A big piece is made up of little pieces. So here's a little piece~");
 					}
 					startQuestTimer("TRICKERY_TIMER", 5000, npc, null);
 				}

@@ -1,37 +1,41 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.others.BalthusKnights.Monsters.BalthusAntharas;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q10555_ChargeAtAntharas.Q10555_ChargeAtAntharas;
@@ -83,7 +87,7 @@ public final class BalthusAntharas extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		if ((skill != null) && (caster != null) && (skill.getId() == AntharasBreathSkill.getSkillId()) && (npc != null) && !npc.isDead() && !npc.isDecayed())
 		{
@@ -105,11 +109,10 @@ public final class BalthusAntharas extends AbstractNpcAI
 				getTimers().addTimer("p_BomberTask1", 5000L, null, null);
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		
@@ -126,7 +129,6 @@ public final class BalthusAntharas extends AbstractNpcAI
 				getTimers().addTimer("p_Wave3Task1", 2000L, null, instance.getFirstPlayer());
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -274,7 +276,7 @@ public final class BalthusAntharas extends AbstractNpcAI
 					final QuestState qs = instance.getFirstPlayer().getQuestState(Q10555_ChargeAtAntharas.class.getSimpleName());
 					if ((qs != null) && qs.isStarted())
 					{
-						switch (instance.getFirstPlayer().getClassId())
+						switch (instance.getFirstPlayer().getPlayerClass())
 						{
 							case SIGEL_KNIGHT:
 							{
@@ -413,11 +415,11 @@ public final class BalthusAntharas extends AbstractNpcAI
 				{
 					instance.getAliveNpcs(HATCHLING_BOMBER).forEach(bomber -> World.getInstance().forEachVisibleObject(bomber, Npc.class, character ->
 					{
-						if ((character != null) && (!character.isDead()) && (CommonUtil.contains(BOMBER_TARGETS, character.getId()) || character.isPlayable()))
+						if ((character != null) && (!character.isDead()) && (ArrayUtil.contains(BOMBER_TARGETS, character.getId()) || character.isPlayable()))
 						{
 							bomber.setRunning();
 							bomber.asAttackable().addDamageHate(character, 0, 100);
-							bomber.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, character, null);
+							bomber.getAI().setIntention(Intention.ATTACK, character, null);
 						}
 					}));
 					getTimers().addTimer("p_BomberTask3", 14000L, null, null);
@@ -456,7 +458,7 @@ public final class BalthusAntharas extends AbstractNpcAI
 						getTimers().cancelTimersOf(herphah);
 						herphah.abortCast();
 						herphah.setTarget(null);
-						herphah.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+						herphah.getAI().setIntention(Intention.IDLE);
 						herphah.setTalkable(true);
 						instance.setStatus(5);
 						final QuestState qs = instance.getFirstPlayer().getQuestState(Q10555_ChargeAtAntharas.class.getSimpleName());

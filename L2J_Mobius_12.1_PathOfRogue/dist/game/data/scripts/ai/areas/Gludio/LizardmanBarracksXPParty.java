@@ -21,9 +21,9 @@
 package ai.areas.Gludio;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 
 import ai.AbstractNpcAI;
 
@@ -53,7 +53,7 @@ public class LizardmanBarracksXPParty extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Party party = killer.getParty();
 		if (party != null)
@@ -69,8 +69,6 @@ public class LizardmanBarracksXPParty extends AbstractNpcAI
 				}
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private double calculateBonusPercentage(int level)

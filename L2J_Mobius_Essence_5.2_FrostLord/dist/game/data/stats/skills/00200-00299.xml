@@ -9392,6 +9392,26 @@
 			<value level="26">90</value>
 		</magicLevel>
 		<effects>
+			<effect name="TriggerSkillByHpPercent">
+				<skillId>45103</skillId>
+				<skillLevel>1</skillLevel>
+				<percentFrom>0</percentFrom>
+				<percentTo>60</percentTo>
+			</effect>
+			<effect name="TriggerSkillByHpPercent">
+				<skillId>45102</skillId>
+				<skillLevel>1</skillLevel>
+				<percentFrom>61</percentFrom>
+				<percentTo>100</percentTo>
+				<isAffectedBySkillId>45101</isAffectedBySkillId> <!-- Final Frenzy-->
+			</effect>
+			<effect name="TriggerSkillByHpPercent">
+				<skillId>45102</skillId>
+				<skillLevel>1</skillLevel>
+				<percentFrom>61</percentFrom>
+				<percentTo>100</percentTo>
+				<isAffectedBySkillId>45103</isAffectedBySkillId> <!-- Final Fortress -->
+			</effect>
 			<effect name="PhysicalDefence">
 				<amount>
 					<value level="1">120</value>

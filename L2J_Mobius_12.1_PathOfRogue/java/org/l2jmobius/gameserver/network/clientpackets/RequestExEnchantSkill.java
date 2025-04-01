@@ -24,14 +24,15 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
+import org.l2jmobius.gameserver.data.holders.EnchantSkillHolder;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.SkillEnchantType;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.EnchantSkillHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillEnchantType;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillInfo;
@@ -163,7 +164,7 @@ public class RequestExEnchantSkill extends ClientPacket
 		// Consume all ingredients
 		for (ItemHolder holder : enchantSkillHolder.getRequiredItems(_type))
 		{
-			if (!player.destroyItemByItemId("Skill enchanting", holder.getId(), holder.getCount(), player, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, holder.getId(), holder.getCount(), player, true))
 			{
 				return;
 			}
@@ -286,6 +287,6 @@ public class RequestExEnchantSkill extends ClientPacket
 		skill = player.getKnownSkill(_skillId);
 		player.sendPacket(new ExEnchantSkillInfo(skill.getId(), skill.getLevel(), skill.getSubLevel(), skill.getSubLevel()));
 		player.sendPacket(new ExEnchantSkillInfoDetail(_type, skill.getId(), skill.getLevel(), Math.min(skill.getSubLevel() + 1, EnchantSkillGroupsData.MAX_ENCHANT_LEVEL), player));
-		player.updateShortCuts(skill.getId(), skill.getLevel(), skill.getSubLevel());
+		player.updateShortcuts(skill.getId(), skill.getLevel(), skill.getSubLevel());
 	}
 }

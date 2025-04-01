@@ -28,7 +28,7 @@ import org.w3c.dom.Node;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.alchemy.AlchemyCraftData;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 /**
  * @author Sdw
@@ -53,12 +53,12 @@ public class AlchemyData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		StatSet set;
 		Node att;
 		NamedNodeMap attrs;
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -122,10 +122,6 @@ public class AlchemyData implements IXmlReader
 		return _alchemy.get(SkillData.getSkillHashCode(skillId, skillLevel));
 	}
 	
-	/**
-	 * Gets the single instance of AlchemyData.
-	 * @return single instance of AlchemyData
-	 */
 	public static AlchemyData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

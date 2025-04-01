@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.BeeHive;
 
@@ -24,7 +28,8 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -75,39 +80,37 @@ public class BeeHive extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (!isSummon)
 		{
-			return super.onAttack(npc, attacker, damage, isSummon);
+			return;
 		}
 		
 		final Pet pet = attacker.getPet();
 		if ((pet == null) || (pet.getCurrentFed() == 0) || pet.isDead() || pet.isAffectedBySkill(SKILLS[0]) || pet.isAffectedBySkill(SKILLS[1]))
 		{
-			return super.onAttack(npc, attacker, damage, isSummon);
+			return;
 		}
 		
 		if ((npc.getId() == PET_70_MONSTER) || (npc.getId() == PET_80_MONSTER))
 		{
 			pet.doCast(getRandomEntry(SKILLS).getSkill());
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (killer.hasPet() && ((npc.getId() == PET_70_MONSTER) || (npc.getId() == PET_80_MONSTER)))
 		{
 			if (getRandom(1000) < 1)
 			{
-				killer.addItem("Bee hive special monster", LOW_PET_XP_CRYSTAL, 1, killer, true);
+				killer.addItem(ItemProcessType.QUEST, LOW_PET_XP_CRYSTAL, 1, killer, true);
 			}
 			else if (getRandom(100) < 1)
 			{
-				killer.addItem("Bee hive special monster", TAG_PET_BOX, 1, killer, true);
+				killer.addItem(ItemProcessType.QUEST, TAG_PET_BOX, 1, killer, true);
 			}
 		}
 		else if (getRandomBoolean())
@@ -117,7 +120,7 @@ public class BeeHive extends AbstractNpcAI
 			{
 				if (monster.getScriptValue() == killer.getObjectId())
 				{
-					return super.onKill(npc, killer, isSummon);
+					return;
 				}
 			}
 			
@@ -138,8 +141,6 @@ public class BeeHive extends AbstractNpcAI
 				addAttackPlayerDesire(spawn, killer.hasPet() ? killer.getPet() : killer);
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

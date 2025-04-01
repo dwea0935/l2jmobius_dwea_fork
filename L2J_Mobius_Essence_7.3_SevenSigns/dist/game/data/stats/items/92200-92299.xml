@@ -1487,7 +1487,6 @@
 		<set name="is_sellable" val="false" />
 		<set name="ensoulNormalSlots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant_enabled" val="true" />
 		<stats>
 			<stat type="pDef">46</stat>
 		</stats>

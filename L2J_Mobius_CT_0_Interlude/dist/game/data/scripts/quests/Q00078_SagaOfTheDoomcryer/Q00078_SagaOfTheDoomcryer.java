@@ -16,17 +16,17 @@
  */
 package quests.Q00078_SagaOfTheDoomcryer;
 
-import quests.SagasSuperClass;
+import quests.AbstractSagaQuest;
 
 /**
  * Saga of the Doomcryer (78)
  * @author Emperorc
  */
-public class Q00078_SagaOfTheDoomcryer extends SagasSuperClass
+public class Q00078_SagaOfTheDoomcryer extends AbstractSagaQuest
 {
 	public Q00078_SagaOfTheDoomcryer()
 	{
-		super(78);
+		super(78, "Saga of the Doomcryer");
 		_npc = new int[]
 		{
 			31336,

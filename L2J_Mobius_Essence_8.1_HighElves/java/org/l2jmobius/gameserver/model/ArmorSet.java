@@ -21,12 +21,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.holders.ArmorsetSkillHolder;
+import org.l2jmobius.gameserver.model.item.holders.ArmorsetSkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.stats.BaseStat;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * @author UnAfraid
@@ -157,7 +157,7 @@ public class ArmorSet
 	 */
 	public boolean containOptionalItem(int shieldId)
 	{
-		return CommonUtil.contains(_optionalItems, shieldId);
+		return ArrayUtil.contains(_optionalItems, shieldId);
 	}
 	
 	/**
@@ -177,7 +177,7 @@ public class ArmorSet
 		for (int armorSlot : ARMORSET_SLOTS)
 		{
 			final Item itemPart = inv.getPaperdollItem(armorSlot);
-			if ((itemPart != null) && CommonUtil.contains(_requiredItems, itemPart.getId()) && (enchantLevel > itemPart.getEnchantLevel()))
+			if ((itemPart != null) && ArrayUtil.contains(_requiredItems, itemPart.getId()) && (enchantLevel > itemPart.getEnchantLevel()))
 			{
 				enchantLevel = itemPart.getEnchantLevel();
 			}
@@ -206,7 +206,7 @@ public class ArmorSet
 				for (int artifactSlot : ARTIFACT_1_SLOTS)
 				{
 					final Item itemPart = inv.getPaperdollItem(artifactSlot);
-					if ((itemPart != null) && CommonUtil.contains(_requiredItems, itemPart.getId()))
+					if ((itemPart != null) && ArrayUtil.contains(_requiredItems, itemPart.getId()))
 					{
 						slotMask += artifactSlot;
 					}
@@ -218,7 +218,7 @@ public class ArmorSet
 				for (int artifactSlot : ARTIFACT_2_SLOTS)
 				{
 					final Item itemPart = inv.getPaperdollItem(artifactSlot);
-					if ((itemPart != null) && CommonUtil.contains(_requiredItems, itemPart.getId()))
+					if ((itemPart != null) && ArrayUtil.contains(_requiredItems, itemPart.getId()))
 					{
 						slotMask += artifactSlot;
 					}
@@ -230,7 +230,7 @@ public class ArmorSet
 				for (int artifactSlot : ARTIFACT_3_SLOTS)
 				{
 					final Item itemPart = inv.getPaperdollItem(artifactSlot);
-					if ((itemPart != null) && CommonUtil.contains(_requiredItems, itemPart.getId()))
+					if ((itemPart != null) && ArrayUtil.contains(_requiredItems, itemPart.getId()))
 					{
 						slotMask += artifactSlot;
 					}
@@ -245,7 +245,7 @@ public class ArmorSet
 	{
 		for (Item item : playable.getInventory().getPaperdollItems())
 		{
-			if (CommonUtil.contains(_optionalItems, idProvider.apply(item)))
+			if (ArrayUtil.contains(_optionalItems, idProvider.apply(item)))
 			{
 				return true;
 			}
@@ -260,11 +260,11 @@ public class ArmorSet
 	 */
 	public long getPieceCount(Playable playable, Function<Item, Integer> idProvider)
 	{
-		return playable.getInventory().getPaperdollItemCount(item -> CommonUtil.contains(_requiredItems, idProvider.apply(item)));
+		return playable.getInventory().getPaperdollItemCount(item -> ArrayUtil.contains(_requiredItems, idProvider.apply(item)));
 	}
 	
 	public long getPieceCount(Playable playable)
 	{
-		return playable.getInventory().getPaperdollItemCount(item -> CommonUtil.contains(_requiredItems, item.getId()));
+		return playable.getInventory().getPaperdollItemCount(item -> ArrayUtil.contains(_requiredItems, item.getId()));
 	}
 }

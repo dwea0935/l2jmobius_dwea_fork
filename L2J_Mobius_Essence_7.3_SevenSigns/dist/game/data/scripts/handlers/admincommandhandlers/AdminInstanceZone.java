@@ -25,11 +25,10 @@ import java.util.Map.Entry;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 import org.l2jmobius.gameserver.util.GMAudit;
 
 public class AdminInstanceZone implements IAdminCommandHandler
@@ -44,7 +43,7 @@ public class AdminInstanceZone implements IAdminCommandHandler
 	public boolean useAdminCommand(String command, Player activeChar)
 	{
 		final String target = (activeChar.getTarget() != null) ? activeChar.getTarget().getName() : "no-target";
-		GMAudit.auditGMAction(activeChar.getName(), command, target, "");
+		GMAudit.logAction(activeChar.getName(), command, target, "");
 		if (command.startsWith("admin_instancezone_clear"))
 		{
 			try
@@ -55,15 +54,15 @@ public class AdminInstanceZone implements IAdminCommandHandler
 				final int instanceId = Integer.parseInt(st.nextToken());
 				final String name = InstanceManager.getInstance().getInstanceName(instanceId);
 				InstanceManager.getInstance().deleteInstanceTime(player, instanceId);
-				BuilderUtil.sendSysMessage(activeChar, "Instance zone " + name + " cleared for player " + player.getName());
+				activeChar.sendSysMessage("Instance zone " + name + " cleared for player " + player.getName());
 				player.sendMessage("Admin cleared instance zone " + name + " for you");
 				display(activeChar, activeChar); // for refreshing instance window
 				return true;
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Failed clearing instance time: " + e.getMessage());
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //instancezone_clear <playername> [instanceId]");
+				activeChar.sendSysMessage("Failed clearing instance time: " + e.getMessage());
+				activeChar.sendSysMessage("Usage: //instancezone_clear <playername> [instanceId]");
 				return false;
 			}
 		}
@@ -91,8 +90,8 @@ public class AdminInstanceZone implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "The player " + playername + " is not online");
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //instancezone [playername]");
+					activeChar.sendSysMessage("The player " + playername + " is not online");
+					activeChar.sendSysMessage("Usage: //instancezone [playername]");
 					return false;
 				}
 			}

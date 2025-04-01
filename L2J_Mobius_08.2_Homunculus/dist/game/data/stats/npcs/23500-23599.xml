@@ -3486,7 +3486,6 @@
 	</npc>
 	<npc id="23589" level="101" type="Monster" name="Fortress Spy">
 		<race>HUMANOID</race>
-		<equipment rhand="17421" />
 		<acquire exp="60751240" sp="60798" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="436754" hpRegen="11.4" mp="24308" mpRegen="30" />

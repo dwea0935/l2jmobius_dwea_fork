@@ -20,8 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets.dethrone;
 
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
 import org.l2jmobius.gameserver.network.serverpackets.dethrone.ExDethroneConnectCastle;
@@ -52,8 +53,8 @@ public class RequestExDethroneConnectCastle extends ClientPacket
 			player.sendMessage("Conquest connection is active.");
 			
 			// Take items and connect to conquest.
-			player.destroyItemByItemId("ConquestConnectionFee", 3031, 500000, player, true); // 500k Spirit Ore
-			player.destroyItemByItemId("ConquestConnectionFee", 81981, 1, player, true); // 1 Dimensional Chain
+			player.destroyItemByItemId(ItemProcessType.FEE, 3031, 500000, player, true); // 500k Spirit Ore
+			player.destroyItemByItemId(ItemProcessType.FEE, 81981, 1, player, true); // 1 Dimensional Chain
 			GlobalVariablesManager.getInstance().set("CONQUEST_CONNECTED", true);
 			
 			final long serverPoints = GlobalVariablesManager.getInstance().getLong("CONQUEST_SERVER_POINTS", 0L);

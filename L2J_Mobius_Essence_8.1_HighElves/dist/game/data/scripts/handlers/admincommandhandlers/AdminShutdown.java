@@ -23,14 +23,13 @@ package handlers.admincommandhandlers;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.Shutdown;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * This class handles following admin commands: - server_shutdown [sec] = shows menu or shuts down server in sec seconds
@@ -52,13 +51,13 @@ public class AdminShutdown implements IAdminCommandHandler
 			try
 			{
 				final String val = command.substring(22);
-				if (Util.isDigit(val))
+				if (StringUtil.isNumeric(val))
 				{
 					serverShutdown(activeChar, Integer.parseInt(val), false);
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //server_shutdown <seconds>");
+					activeChar.sendSysMessage("Usage: //server_shutdown <seconds>");
 					sendHtmlForm(activeChar);
 				}
 			}
@@ -72,13 +71,13 @@ public class AdminShutdown implements IAdminCommandHandler
 			try
 			{
 				final String val = command.substring(21);
-				if (Util.isDigit(val))
+				if (StringUtil.isNumeric(val))
 				{
 					serverShutdown(activeChar, Integer.parseInt(val), true);
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //server_restart <seconds>");
+					activeChar.sendSysMessage("Usage: //server_restart <seconds>");
 					sendHtmlForm(activeChar);
 				}
 			}

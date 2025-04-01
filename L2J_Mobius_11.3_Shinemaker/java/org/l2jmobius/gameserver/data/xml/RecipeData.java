@@ -30,11 +30,11 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.StatusUpdateType;
+import org.l2jmobius.gameserver.data.holders.RecipeHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.RecipeHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.network.enums.StatusUpdateType;
 
 /**
  * @author Nik
@@ -59,12 +59,12 @@ public class RecipeData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		StatSet set;
 		Node att;
 		NamedNodeMap attrs;
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -147,9 +147,9 @@ public class RecipeData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the recipe by recipe item id.
-	 * @param itemId the recipe's item id
-	 * @return {@code RecipeHolder} for the given recipe item id {@code null} if there is no recipe data connected with this recipe item id.
+	 * Retrieves the recipe associated with a specific recipe item ID.
+	 * @param itemId the ID of the recipe item to search for
+	 * @return the {@code RecipeHolder} containing the recipe details for the specified recipe item ID, or {@code null} if there is no recipe data associated with this item ID
 	 */
 	public RecipeHolder getRecipeByRecipeItemId(int itemId)
 	{
@@ -157,26 +157,20 @@ public class RecipeData implements IXmlReader
 	}
 	
 	/**
-	 * @param recipeId the id of the recipe, NOT the recipe item id.
-	 * @return {@code RecipeHolder} containing all the info necessary for crafting a recipe or {@code null} if there is no data for this recipeId.
+	 * Retrieves the recipe associated with a specific recipe ID.
+	 * @param recipeId the ID of the recipe (not the recipe item ID) to search for
+	 * @return the {@code RecipeHolder} containing all necessary information for crafting the recipe, or {@code null} if there is no data associated with this recipe ID
 	 */
 	public RecipeHolder getRecipe(int recipeId)
 	{
 		return _recipes.get(recipeId);
 	}
 	
-	/**
-	 * Gets the single instance of RecipeData.
-	 * @return single instance of RecipeData
-	 */
 	public static RecipeData getInstance()
 	{
 		return SingletonHolder.INSTANCE;
 	}
 	
-	/**
-	 * The Class SingletonHolder.
-	 */
 	private static class SingletonHolder
 	{
 		protected static final RecipeData INSTANCE = new RecipeData();

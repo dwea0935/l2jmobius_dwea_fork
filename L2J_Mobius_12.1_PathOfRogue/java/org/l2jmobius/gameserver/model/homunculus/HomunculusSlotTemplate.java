@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.model.homunculus;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 
 public class HomunculusSlotTemplate
 {

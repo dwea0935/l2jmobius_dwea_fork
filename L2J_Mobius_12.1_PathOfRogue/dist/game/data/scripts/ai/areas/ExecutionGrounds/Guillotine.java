@@ -29,17 +29,17 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.instancemanager.DBSpawnManager;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.DBSpawnManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.type.ArenaZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -167,7 +167,7 @@ public class Guillotine extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.getId() == MAIN_BOSS_ID)
 		{
@@ -182,20 +182,18 @@ public class Guillotine extends AbstractNpcAI
 					npc.stopSkillEffects(LIMIT_BARRIER.getSkill());
 					npc.setInvul(false);
 				}
-				return null;
+				return;
 			}
 			
 			if ((ARENA_ZONE != null) && !ARENA_ZONE.isInsideZone(attacker))
 			{
 				// If the player is not in the arena, teleports to Dion. Protection Boss.
 				attacker.teleToLocation(new Location(15804, 142347, -2680), false);
-				return null;
+				return;
 			}
 		}
 		
 		handleSlaveLogic(npc);
-		
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	private void handleSlaveLogic(Npc npc)
@@ -501,7 +499,7 @@ public class Guillotine extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == MAIN_BOSS_ID)
 		{
@@ -526,7 +524,6 @@ public class Guillotine extends AbstractNpcAI
 			_spawningClonesTemp75 = false;
 			_spawningClonesTemp42 = false;
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

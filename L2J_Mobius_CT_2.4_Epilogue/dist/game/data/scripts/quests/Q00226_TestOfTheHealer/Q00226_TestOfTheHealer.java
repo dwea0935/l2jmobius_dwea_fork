@@ -17,15 +17,15 @@
 package quests.Q00226_TestOfTheHealer;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Test Of The Healer(226)
@@ -75,7 +75,7 @@ public class Q00226_TestOfTheHealer extends Quest
 	
 	public Q00226_TestOfTheHealer()
 	{
-		super(226);
+		super(226, "Test of the Healer");
 		addStartNpc(PRIEST_BANDELLOS);
 		addTalkId(PRIEST_BANDELLOS, MASTER_SORIUS, ALLANA, PERRIN, FATHER_GUPU, ORPHAN_GIRL, WINDY_SHAORING, MYSTERIOUS_DARK_ELF, PIPER_LONGBOW, SLEIN_SHINING_BLADE, CAIN_FLYING_KNIFE, SAINT_KRISTINA, DAURIN_HAMMERCRUSH);
 		addKillId(LERO_LIZARDMAN_AGENT, LERO_LIZARDMAN_LEADER, LERO_LIZARDMAN_ASSASSIN, LERO_LIZARDMAN_SNIPER, LERO_LIZARDMAN_WIZARD, LERO_LIZARDMAN_LORD, TATOMA);
@@ -104,15 +104,15 @@ public class Q00226_TestOfTheHealer extends Quest
 					giveItems(player, REPORT_OF_PERRIN, 1);
 					if (player.getVariables().getInt("2ND_CLASS_DIAMOND_REWARD", 0) == 0)
 					{
-						if (player.getClassId() == ClassId.CLERIC)
+						if (player.getPlayerClass() == PlayerClass.CLERIC)
 						{
 							giveItems(player, DIMENSIONAL_DIAMOND, 60);
 						}
-						else if (player.getClassId() == ClassId.KNIGHT)
+						else if (player.getPlayerClass() == PlayerClass.KNIGHT)
 						{
 							giveItems(player, DIMENSIONAL_DIAMOND, 104);
 						}
-						else if (player.getClassId() == ClassId.ORACLE)
+						else if (player.getPlayerClass() == PlayerClass.ORACLE)
 						{
 							giveItems(player, DIMENSIONAL_DIAMOND, 45);
 						}
@@ -250,10 +250,10 @@ public class Q00226_TestOfTheHealer extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -305,7 +305,6 @@ public class Q00226_TestOfTheHealer extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

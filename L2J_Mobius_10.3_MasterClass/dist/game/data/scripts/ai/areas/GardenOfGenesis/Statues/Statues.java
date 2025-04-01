@@ -19,7 +19,7 @@ package ai.areas.GardenOfGenesis.Statues;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -111,12 +111,11 @@ public class Statues extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Npc buffNpc = addSpawn(BUFF_NPC, npc, false, 5000);
 		buffNpc.setInvul(true);
 		addSkillCastDesire(buffNpc, buffNpc, REWARD_BUFF, 23);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

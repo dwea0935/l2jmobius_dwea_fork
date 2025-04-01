@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets.enchant.single;
 
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
-import org.l2jmobius.gameserver.network.serverpackets.ShortCutInit;
+import org.l2jmobius.gameserver.network.serverpackets.ShortcutInit;
 
 /**
  * @author Mobius
@@ -43,6 +43,6 @@ public class ExRequestViewEnchantResult extends ClientPacket
 			return;
 		}
 		
-		player.sendPacket(new ShortCutInit(player));
+		player.sendPacket(new ShortcutInit(player));
 	}
 }

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.serverpackets.subjugation;
 
@@ -22,7 +26,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.holders.PurgePlayerHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.PlayerPurgeHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -32,9 +36,9 @@ import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
  */
 public class ExSubjugationList extends ServerPacket
 {
-	private final List<Entry<Integer, PurgePlayerHolder>> _playerHolder;
+	private final List<Entry<Integer, PlayerPurgeHolder>> _playerHolder;
 	
-	public ExSubjugationList(Map<Integer, PurgePlayerHolder> playerHolder)
+	public ExSubjugationList(Map<Integer, PlayerPurgeHolder> playerHolder)
 	{
 		_playerHolder = playerHolder.entrySet().stream().filter(it -> it.getValue() != null).collect(Collectors.toList());
 	}
@@ -44,12 +48,12 @@ public class ExSubjugationList extends ServerPacket
 	{
 		ServerPackets.EX_SUBJUGATION_LIST.writeId(this, buffer);
 		buffer.writeInt(_playerHolder.size());
-		for (Entry<Integer, PurgePlayerHolder> integerPurgePlayerHolderEntry : _playerHolder)
+		for (Entry<Integer, PlayerPurgeHolder> integerPlayerPurgeHolderEntry : _playerHolder)
 		{
-			buffer.writeInt(integerPurgePlayerHolderEntry.getKey());
-			buffer.writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getPoints() : 0);
-			buffer.writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getKeys() : 0);
-			buffer.writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getRemainingKeys() : 40);
+			buffer.writeInt(integerPlayerPurgeHolderEntry.getKey());
+			buffer.writeInt(integerPlayerPurgeHolderEntry.getValue() != null ? integerPlayerPurgeHolderEntry.getValue().getPoints() : 0);
+			buffer.writeInt(integerPlayerPurgeHolderEntry.getValue() != null ? integerPlayerPurgeHolderEntry.getValue().getKeys() : 0);
+			buffer.writeInt(integerPlayerPurgeHolderEntry.getValue() != null ? integerPlayerPurgeHolderEntry.getValue().getRemainingKeys() : 40);
 		}
 	}
 }

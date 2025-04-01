@@ -1813,7 +1813,6 @@
 		<effectPoint>0</effectPoint>
 		<hitTime>0</hitTime>
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>76</magicLevel>
 		<effects>

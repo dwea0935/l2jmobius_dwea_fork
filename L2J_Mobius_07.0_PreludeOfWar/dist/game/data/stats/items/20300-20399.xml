@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20300" name="Agathion - Blue Sumo Wrestler" additionalName="Wild Magic (7-day)" type="Armor">
 		<!-- Bracelet that summons Agathion - Blue Sumo Wrestler. Cooldown is 1 hour. -->
@@ -15,7 +15,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21044" level="1" /> <!-- Release Agathion's Seal - Blue Sumo Wrestler Agathion -->
+			<skill id="21044" level="1" /> <!-- Summon Agathion - Blue Sumo Wrestler -->
 			<skill id="23058" level="1" /> <!-- Blue Sumo Wrestler Agathion Special Skill: Wild Magic Ability -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -35,7 +35,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21045" level="1" /> <!-- Release Agathion's Seal - Great Sumo Match -->
+			<skill id="21045" level="1" /> <!-- Summon Agathion - Great Sumo Match -->
 			<skill id="23051" level="1" /> <!-- Great Sumo Match Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -55,7 +55,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21045" level="1" /> <!-- Release Agathion's Seal - Great Sumo Match -->
+			<skill id="21045" level="1" /> <!-- Summon Agathion - Great Sumo Match -->
 			<skill id="23059" level="1" /> <!-- Great Sumo Match Agathion Special Skill: Mysterious Power -->
 			<skill id="23060" level="1" /> <!-- Great Sumo Match Agathion Special Skill: Firecracker's Power -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
@@ -76,7 +76,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21046" level="1" /> <!-- Release Agathion's Seal - Button-eyed Bear Doll -->
+			<skill id="21046" level="1" /> <!-- Summon Agathion - Button-eyed Bear Doll -->
 			<skill id="23052" level="1" /> <!-- Button-eyed Bear Doll Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -96,7 +96,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21046" level="1" /> <!-- Release Agathion's Seal - Button-eyed Bear Doll -->
+			<skill id="21046" level="1" /> <!-- Summon Agathion - Button-eyed Bear Doll -->
 			<skill id="23061" level="1" /> <!-- Button-eyed Bear Doll Agathion Special Skill: Ability of Blessed Escape -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -116,7 +116,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21046" level="1" /> <!-- Release Agathion's Seal - Button-eyed Bear Doll -->
+			<skill id="21046" level="1" /> <!-- Summon Agathion - Button-eyed Bear Doll -->
 			<skill id="23062" level="1" /> <!-- Button-eyed Bear Doll Agathion Special Skill: Ability of Blessed Resurrection -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -136,7 +136,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21046" level="1" /> <!-- Release Agathion's Seal - Button-eyed Bear Doll -->
+			<skill id="21046" level="1" /> <!-- Summon Agathion - Button-eyed Bear Doll -->
 			<skill id="23063" level="1" /> <!-- Button-eyed Bear Doll Agathion Special Skill: Ability of Vitality Recovery -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -156,7 +156,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21047" level="1" /> <!-- Release Agathion's Seal - God of Fortune -->
+			<skill id="21047" level="1" /> <!-- Summon Agathion - God of Fortune -->
 			<skill id="23053" level="1" /> <!-- God of Fortune Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -176,7 +176,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21047" level="1" /> <!-- Release Agathion's Seal - God of Fortune -->
+			<skill id="21047" level="1" /> <!-- Summon Agathion - God of Fortune -->
 			<skill id="23064" level="1" /> <!-- God of Fortune Agathion Special Skill: Vitality Recovery Ability -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -196,7 +196,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21048" level="1" /> <!-- Release Agathion's Seal - Dryad -->
+			<skill id="21048" level="1" /> <!-- Summon Agathion - Dryad -->
 			<skill id="23054" level="1" /> <!-- Agathion Cute Trick - Dryad -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -216,7 +216,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21049" level="1" /> <!-- Release Agathion's Seal - Wonboso -->
+			<skill id="21049" level="1" /> <!-- Summon Agathion - Wonboso -->
 			<skill id="23055" level="1" /> <!-- Wonboso Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -236,7 +236,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21049" level="1" /> <!-- Release Agathion's Seal - Wonboso -->
+			<skill id="21049" level="1" /> <!-- Summon Agathion - Wonboso -->
 			<skill id="23065" level="1" /> <!-- Wonboso Agathion Special Skill: Wind Walk Ability -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -256,7 +256,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<skills>
-			<skill id="21050" level="1" /> <!-- Release Agathion's Seal - Daewoonso -->
+			<skill id="21050" level="1" /> <!-- Summon Agathion - Daewoonso -->
 			<skill id="23056" level="1" /> <!-- Daewoonso Agathion Cute Trick -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>
@@ -276,7 +276,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="time" val="10080" />
 		<skills>
-			<skill id="21050" level="1" /> <!-- Release Agathion's Seal - Daewoonso -->
+			<skill id="21050" level="1" /> <!-- Summon Agathion - Daewoonso -->
 			<skill id="23066" level="1" /> <!-- Daewoonso Agathion Special Skill: New Year's Gift Ability -->
 			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Seal Agathion -->
 		</skills>

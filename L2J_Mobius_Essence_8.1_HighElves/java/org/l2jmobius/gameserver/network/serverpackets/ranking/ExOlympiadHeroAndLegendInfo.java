@@ -23,8 +23,9 @@ package org.l2jmobius.gameserver.network.serverpackets.ranking;
 import java.util.Collection;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.RankManager;
-import org.l2jmobius.gameserver.instancemanager.RankManager.HeroInfo;
+import org.l2jmobius.gameserver.managers.RankManager;
+import org.l2jmobius.gameserver.managers.RankManager.HeroInfo;
+import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -50,12 +51,18 @@ public class ExOlympiadHeroAndLegendInfo extends ServerPacket
 			return;
 		}
 		
+		boolean wroteCount = false;
 		for (HeroInfo hero : _heroes)
 		{
 			if (hero.isTopHero)
 			{
 				buffer.writeByte(1); // ?? shows 78 on JP
 				buffer.writeByte(1); // ?? shows 0 on JP
+			}
+			else if (!wroteCount)
+			{
+				wroteCount = true;
+				buffer.writeInt(Hero.getInstance().getHeroes().size() - 1);
 			}
 			
 			buffer.writeSizedString(hero.charName);

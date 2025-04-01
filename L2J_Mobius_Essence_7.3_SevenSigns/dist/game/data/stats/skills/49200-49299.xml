@@ -6,7 +6,9 @@
 		<operateType>A1</operateType>
 	</skill>
 	<skill id="49201" toLevel="3" name="STR +1">
-		<!-- STR +1 -->
+		<!-- Level 1: STR +1 -->
+		<!-- Level 2: STR +2 -->
+		<!-- Level 3: STR +3 -->
 		<icon>icon.statbonus_str</icon>
 		<operateType>P</operateType>
 		<effects>
@@ -21,7 +23,9 @@
 		</effects>
 	</skill>
 	<skill id="49202" toLevel="3" name="DEX +1">
-		<!-- DEX +1 -->
+		<!-- Level 1: DEX +1 -->
+		<!-- Level 2: DEX +2 -->
+		<!-- Level 3: DEX +3 -->
 		<icon>icon.statbonus_dex</icon>
 		<operateType>P</operateType>
 		<effects>
@@ -36,7 +40,9 @@
 		</effects>
 	</skill>
 	<skill id="49203" toLevel="3" name="CON +1">
-		<!-- CON +1 -->
+		<!-- Level 1: CON +1 -->
+		<!-- Level 2: CON +2 -->
+		<!-- Level 3: CON +3 -->
 		<icon>icon.statbonus_con</icon>
 		<operateType>P</operateType>
 		<effects>
@@ -51,7 +57,9 @@
 		</effects>
 	</skill>
 	<skill id="49204" toLevel="3" name="INT +1">
-		<!-- INT +1 -->
+		<!-- Level 1: INT +1 -->
+		<!-- Level 2: INT +2 -->
+		<!-- Level 3: INT +3 -->
 		<icon>icon.statbonus_int</icon>
 		<operateType>P</operateType>
 		<effects>
@@ -66,7 +74,9 @@
 		</effects>
 	</skill>
 	<skill id="49205" toLevel="3" name="WIT +1">
-		<!-- WIT +1 -->
+		<!-- Level 1: WIT +1 -->
+		<!-- Level 2: WIT +2 -->
+		<!-- Level 3: WIT +3 -->
 		<icon>icon.statbonus_wit</icon>
 		<operateType>P</operateType>
 		<effects>
@@ -81,7 +91,9 @@
 		</effects>
 	</skill>
 	<skill id="49206" toLevel="3" name="MEN +1">
-		<!-- MEN +1 -->
+		<!-- Level 1: MEN +1 -->
+		<!-- Level 2: MEN +2 -->
+		<!-- Level 3: MEN +3 -->
 		<icon>icon.statbonus_men</icon>
 		<operateType>P</operateType>
 		<effects>
@@ -96,7 +108,11 @@
 		</effects>
 	</skill>
 	<skill id="49207" toLevel="5" name="Steel Skin">
-		<!-- <Stats increase with level>. Required level: 40. Stats change depending on level. P. Def. +20. M. Def. +15 -->
+		<!-- Level 1: <Stats increase with level>. Required level: 40. Stats change depending on level. P. Def. +20. M. Def. +15 -->
+		<!-- Level 2: <Stats increase with level>. Required level: 40. Stats change depending on level. P. Def. +25. M. Def. +20 -->
+		<!-- Level 3: <Stats increase with level>. Required level: 40. Stats change depending on level. P. Def. +35. M. Def. +30 -->
+		<!-- Level 4: <Stats increase with level>. Required level: 40. Stats change depending on level. P. Def. +45. M. Def. +40 -->
+		<!-- Level 5: <Stats increase with level>. Required level: 40. Stats change depending on level. P. Def. +55. M. Def. +50 -->
 		<icon>icon.skill10017</icon>
 		<operateType>P</operateType>
 		<effects>
@@ -123,7 +139,9 @@
 		</effects>
 	</skill>
 	<skill id="49208" toLevel="3" name="Physical Training">
-		<!-- HP Recovery Potions' Effect +50%. Received damage -5% -->
+		<!-- Level 1: HP Recovery Potions' Effect +50%. Received damage -5% -->
+		<!-- Level 2: HP Recovery Potions' Effect +75%. Received damage -10% -->
+		<!-- Level 3: HP Recovery Potions' Effect +100%. Received damage -15% -->
 		<icon>icon.skill11534</icon>
 		<operateType>P</operateType>
 		<effects>

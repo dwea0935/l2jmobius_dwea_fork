@@ -28,8 +28,8 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.RelicCouponHolder;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.holders.RelicCouponHolder;
 
 /**
  * @author Liamxroy
@@ -37,6 +37,7 @@ import org.l2jmobius.gameserver.model.holders.RelicCouponHolder;
 public class RelicCouponData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(RelicCouponData.class.getName());
+	
 	private static final Map<Integer, RelicCouponHolder> RELIC_COUPONS = new HashMap<>();
 	
 	protected RelicCouponData()
@@ -57,23 +58,33 @@ public class RelicCouponData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "coupon", couponNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "coupon", couponNode ->
 		{
+			// Initialize a StatSet with attributes from the coupon element.
 			final StatSet set = new StatSet(parseAttributes(couponNode));
+			
+			// Retrieve the itemId and check if the item exists.
 			final int itemId = set.getInt("itemId");
 			if (ItemData.getInstance().getTemplate(itemId) == null)
 			{
 				LOGGER.info(getClass().getSimpleName() + ": Could not find coupon with item id " + itemId + ".");
-				return;
+				return; // Skip processing if item does not exist.
 			}
 			
+			// Retrieve relicId with a default of 0 if not specified.
 			final int relicId = set.getInt("relicId", 0);
+			// Store the RelicCouponHolder in the RELIC_COUPONS map.
 			RELIC_COUPONS.put(itemId, new RelicCouponHolder(itemId, relicId));
 		}));
 	}
 	
+	/**
+	 * Retrieves the relic coupon information associated with a specified coupon item ID.
+	 * @param itemId the ID of the coupon item to look up
+	 * @return the {@code RelicCouponHolder} containing relic information for the given coupon item ID, or {@code null} if no relic coupon is associated with this item ID
+	 */
 	public RelicCouponHolder getRelicIdFromCouponId(int itemId)
 	{
 		return RELIC_COUPONS.get(itemId);

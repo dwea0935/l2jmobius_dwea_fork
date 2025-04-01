@@ -20,10 +20,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -33,11 +32,12 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 
 import ai.AbstractNpcAI;
@@ -148,7 +148,7 @@ public class Orfen extends AbstractNpcAI
 	{
 		cancelQuestTimer("DISTANCE_CHECK", npc, null);
 		npc.asAttackable().clearAggroList();
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null, null);
+		npc.getAI().setIntention(Intention.IDLE, null, null);
 		final Spawn spawn = npc.getSpawn();
 		spawn.setLocation(POS[index]);
 		npc.teleToLocation(POS[index], false);
@@ -228,7 +228,7 @@ public class Orfen extends AbstractNpcAI
 					{
 						mob.teleToLocation(npc.getLocation());
 						npc.asAttackable().clearAggroList();
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null, null);
+						npc.getAI().setIntention(Intention.IDLE, null, null);
 					}
 				}
 				break;
@@ -258,7 +258,7 @@ public class Orfen extends AbstractNpcAI
 				else if (npc.calculateDistance2D(npc.getSpawn()) > 10000)
 				{
 					npc.asAttackable().clearAggroList();
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, npc.getSpawn().getLocation());
+					npc.getAI().setIntention(Intention.MOVE_TO, npc.getSpawn().getLocation());
 				}
 				break;
 			}
@@ -267,7 +267,7 @@ public class Orfen extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, WorldObject[] targets, boolean isSummon)
 	{
 		if (npc.getId() == ORFEN)
 		{
@@ -280,16 +280,16 @@ public class Orfen extends AbstractNpcAI
 				npc.doCast(PARALYSIS.getSkill());
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
+	public void onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
 	{
 		if ((caller == null) || (npc == null) || npc.isCastingNow(SkillCaster::isAnyNormalType))
 		{
-			return super.onFactionCall(npc, caller, attacker, isSummon);
+			return;
 		}
+		
 		final int npcId = npc.getId();
 		final int callerId = caller.getId();
 		if ((npcId == RAIKEL_LEOS) && (getRandom(20) == 0))
@@ -306,16 +306,15 @@ public class Orfen extends AbstractNpcAI
 			}
 			if ((callerId != RIBA_IREN) && (caller.getCurrentHp() < (caller.getMaxHp() / 2.0)) && (getRandom(10) < chance))
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null, null);
+				npc.getAI().setIntention(Intention.IDLE, null, null);
 				npc.setTarget(caller);
 				npc.doCast(ORFEN_HEAL.getSkill());
 			}
 		}
-		return super.onFactionCall(npc, caller, attacker, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final int npcId = npc.getId();
 		if (npcId == ORFEN)
@@ -341,11 +340,10 @@ public class Orfen extends AbstractNpcAI
 				npc.doCast(ORFEN_HEAL.getSkill());
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == ORFEN)
 		{
@@ -374,7 +372,6 @@ public class Orfen extends AbstractNpcAI
 			_minions.remove(npc);
 			startQuestTimer("spawn_minion", 360000, npc, null);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

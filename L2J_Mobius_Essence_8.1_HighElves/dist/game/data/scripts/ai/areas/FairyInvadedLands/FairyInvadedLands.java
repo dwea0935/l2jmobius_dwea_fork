@@ -145,7 +145,7 @@ public class FairyInvadedLands extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int count = KILL_COUNTER.incrementAndGet();
 		killer.sendMessage("Killer count: " + count + " /500");
@@ -164,8 +164,6 @@ public class FairyInvadedLands extends AbstractNpcAI
 			Broadcast.toAllOnlinePlayers(new ExShowScreenMessage(NpcStringId.S1_DEFEATS_GUARDIAN_OF_THE_INVADED_LANDS, 2, 10000, true, killer.getName()));
 			startQuestTimer("despawn_lyansus", 1000, null, null);
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private int[] generateSpawnHours()

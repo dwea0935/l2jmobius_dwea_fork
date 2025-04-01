@@ -110,7 +110,6 @@
 		<magicLevel>1</magicLevel>
 		<reuseDelay>60000</reuseDelay>
 		<stayAfterDeath>true</stayAfterDeath>
-		<stayAfterDeath>true</stayAfterDeath>
 		<effects>
 			<effect name="PhysicalAttack">
 				<amount>100</amount>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="20800" level="76" type="Monster" name="Eva's Watchman" element="WATER">
 		<parameters>
@@ -100,7 +100,6 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<equipment rhand="302" /> <!-- Body Slasher -->
 		<acquire exp="5265" sp="3425" attributeExp="770" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="3496.312" hpRegen="10.2" mp="2361" mpRegen="3.6" />
@@ -186,7 +185,6 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<equipment rhand="192" /> <!-- Crystal Staff -->
 		<acquire exp="5318" sp="4334" attributeExp="858" />
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="3547.976" hpRegen="10.2" mp="2411.1" mpRegen="3.6" />
@@ -3428,7 +3426,6 @@
 		</parameters>
 		<race>DIVINE</race>
 		<sex>MALE</sex>
-		<equipment rhand="288" /> <!-- rhand: Carnage Bow -->
 		<acquire exp="10680" sp="1018" /> <!-- Need confirm retail values -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
 			<vitals hp="2421.39403210377" hpRegen="7.5" mp="1251" mpRegen="2.7" />

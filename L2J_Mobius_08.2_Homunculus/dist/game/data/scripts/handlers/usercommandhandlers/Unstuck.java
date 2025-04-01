@@ -20,9 +20,8 @@
  */
 package handlers.usercommandhandlers;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
-
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.handler.IUserCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -96,7 +95,7 @@ public class Unstuck implements IUserCommandHandler
 			if (skillCaster == null)
 			{
 				player.sendPacket(ActionFailed.get(SkillCastingType.NORMAL));
-				player.getAI().setIntention(AI_INTENTION_ACTIVE);
+				player.getAI().setIntention(Intention.ACTIVE);
 				return false;
 			}
 			

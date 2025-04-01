@@ -17,7 +17,6 @@
 package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -32,13 +31,11 @@ import org.w3c.dom.NamedNodeMap;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.commons.util.file.filter.NumericNameFilter;
 import org.l2jmobius.gameserver.model.buylist.Product;
 import org.l2jmobius.gameserver.model.buylist.ProductList;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 
 /**
- * Loads buy lists for NPCs.
  * @author NosBit
  */
 public class BuyListData implements IXmlReader
@@ -46,7 +43,6 @@ public class BuyListData implements IXmlReader
 	private static final Logger LOGGER = Logger.getLogger(BuyListData.class.getName());
 	
 	private final Map<Integer, ProductList> _buyLists = new ConcurrentHashMap<>();
-	private static final FileFilter NUMERIC_FILTER = new NumericNameFilter();
 	
 	protected BuyListData()
 	{
@@ -56,8 +52,10 @@ public class BuyListData implements IXmlReader
 	@Override
 	public synchronized void load()
 	{
+		// Clear existing buy lists and load from XML.
 		_buyLists.clear();
 		parseDatapackDirectory("data/buylists", false);
+		
 		if (Config.CUSTOM_BUYLIST_LOAD)
 		{
 			parseDatapackDirectory("data/buylists/custom", false);
@@ -65,6 +63,7 @@ public class BuyListData implements IXmlReader
 		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _buyLists.size() + " buyLists.");
 		
+		// Load additional buy list data from the database.
 		try (Connection con = DatabaseFactory.getConnection();
 			Statement statement = con.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT * FROM `buylists`"))
@@ -75,6 +74,7 @@ public class BuyListData implements IXmlReader
 				final int itemId = rs.getInt("item_id");
 				final long count = rs.getLong("count");
 				final long nextRestockTime = rs.getLong("next_restock_time");
+				
 				final ProductList buyList = getBuyList(buyListId);
 				if (buyList == null)
 				{
@@ -87,6 +87,8 @@ public class BuyListData implements IXmlReader
 					LOGGER.warning("ItemId found in database but not loaded from xml! BuyListId: " + buyListId + " ItemId: " + itemId);
 					continue;
 				}
+				
+				// Update product count and restock time if below maximum.
 				if (count < product.getMaxCount())
 				{
 					product.setCount(count);
@@ -101,12 +103,12 @@ public class BuyListData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		try
 		{
-			final int buyListId = Integer.parseInt(f.getName().replaceAll(".xml", ""));
-			forEach(doc, "list", list ->
+			final int buyListId = Integer.parseInt(file.getName().replaceAll(".xml", ""));
+			forEach(document, "list", list ->
 			{
 				final int defaultBaseTax = parseInteger(list.getAttributes(), "baseTax", 0);
 				final ProductList buyList = new ProductList(buyListId);
@@ -138,7 +140,7 @@ public class BuyListData implements IXmlReader
 							}
 							else
 							{
-								LOGGER.warning("Item not found. BuyList:" + buyListId + " ItemID:" + itemId + " File:" + f);
+								LOGGER.warning("Item not found. BuyList:" + buyListId + " ItemID:" + itemId + " File:" + file);
 							}
 							break;
 						}
@@ -154,14 +156,14 @@ public class BuyListData implements IXmlReader
 		}
 		catch (Exception e)
 		{
-			LOGGER.log(Level.WARNING, "Failed to load buyList data from xml File:" + f.getName(), e);
+			LOGGER.log(Level.WARNING, "Failed to load buyList data from xml File:" + file.getName(), e);
 		}
 	}
 	
 	@Override
-	public FileFilter getCurrentFileFilter()
+	public boolean isValidXmlFile(File file)
 	{
-		return NUMERIC_FILTER;
+		return (file != null) && file.isFile() && file.getName().toLowerCase().matches("\\d+\\.xml");
 	}
 	
 	public ProductList getBuyList(int listId)

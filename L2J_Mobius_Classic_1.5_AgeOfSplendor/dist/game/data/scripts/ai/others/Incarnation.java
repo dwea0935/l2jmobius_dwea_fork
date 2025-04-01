@@ -16,7 +16,7 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -25,9 +25,9 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttack;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSkillFinishCast;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSpawn;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttack;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSkillFinishCast;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSpawn;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 
 import ai.AbstractNpcAI;
@@ -65,7 +65,7 @@ public class Incarnation extends AbstractNpcAI
 		
 		// Attack target of summoner
 		npc.setRunning();
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+		npc.getAI().setIntention(Intention.ATTACK, target);
 	}
 	
 	public static void main(String[] args)

@@ -35,7 +35,7 @@ public class ActionData implements IXmlReader
 	private static final Logger LOGGER = Logger.getLogger(ActionData.class.getName());
 	
 	private final Map<Integer, ActionDataHolder> _actionData = new HashMap<>();
-	private final Map<Integer, Integer> _actionSkillsData = new HashMap<>(); // skillId, actionId
+	private final Map<Integer, Integer> _actionSkillsData = new HashMap<>();
 	
 	protected ActionData()
 	{
@@ -61,9 +61,9 @@ public class ActionData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "action", actionNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "action", actionNode ->
 		{
 			final ActionDataHolder holder = new ActionDataHolder(new StatSet(parseAttributes(actionNode)));
 			_actionData.put(holder.getId(), holder);
@@ -71,8 +71,9 @@ public class ActionData implements IXmlReader
 	}
 	
 	/**
-	 * @param id
-	 * @return the ActionDataHolder for specified id
+	 * Retrieves the action data associated with the specified action ID.
+	 * @param id the unique identifier of the action
+	 * @return the {@link ActionDataHolder} associated with the given ID, or {@code null} if not found
 	 */
 	public ActionDataHolder getActionData(int id)
 	{
@@ -80,23 +81,24 @@ public class ActionData implements IXmlReader
 	}
 	
 	/**
-	 * @param skillId
-	 * @return the actionId corresponding to the skillId or -1 if no actionId is found for the specified skill.
+	 * Retrieves the action ID associated with a specific skill ID.
+	 * @param skillId the unique identifier of the skill
+	 * @return the action ID associated with the specified skill ID, or {@code -1} if not found
 	 */
 	public int getSkillActionId(int skillId)
 	{
 		return _actionSkillsData.getOrDefault(skillId, -1);
 	}
 	
+	/**
+	 * Retrieves a list of all action IDs.
+	 * @return an array of all action IDs available in the action data
+	 */
 	public int[] getActionIdList()
 	{
 		return _actionData.keySet().stream().mapToInt(Number::intValue).toArray();
 	}
 	
-	/**
-	 * Gets the single instance of ActionData.
-	 * @return single instance of ActionData
-	 */
 	public static ActionData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

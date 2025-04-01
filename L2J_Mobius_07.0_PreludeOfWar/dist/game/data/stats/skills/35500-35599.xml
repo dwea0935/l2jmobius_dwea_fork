@@ -787,7 +787,6 @@
 		<coolTime>300</coolTime>
 		<effectPoint>-100</effectPoint>
 		<isDebuff>true</isDebuff>
-		<isDebuff>true</isDebuff>
 		<reuseDelay>300000</reuseDelay>
 		<trait>HOLD</trait>
 		<conditions>
@@ -862,7 +861,6 @@
 		<castRange>900</castRange>
 		<coolTime>300</coolTime>
 		<effectPoint>-100</effectPoint>
-		<isDebuff>true</isDebuff>
 		<isDebuff>true</isDebuff>
 		<reuseDelay>300000</reuseDelay>
 		<trait>HOLD</trait>

@@ -20,17 +20,22 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import java.util.Collection;
+
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSkillFinishCast;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSkillFinishCast;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSkillUse;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * @author Mobius
@@ -40,12 +45,14 @@ public class AssistOwnerCast extends AbstractEffect
 	private final int _summonId;
 	private final int _castSkillId;
 	private final SkillHolder _skill;
+	private final boolean _onFinishCast;
 	
 	public AssistOwnerCast(StatSet params)
 	{
 		_summonId = params.getInt("summonId"); // Npc id
 		_castSkillId = params.getInt("castSkillId");
 		_skill = new SkillHolder(params.getInt("skillId", 0), params.getInt("skillLevel", 0));
+		_onFinishCast = params.getBoolean("onFinishCast", false);
 	}
 	
 	@Override
@@ -56,24 +63,33 @@ public class AssistOwnerCast extends AbstractEffect
 			return;
 		}
 		
-		effected.addListener(new ConsumerEventListener(effected, EventType.ON_CREATURE_SKILL_FINISH_CAST, (OnCreatureSkillFinishCast event) -> onSkillUseEvent(event), this));
+		if (_onFinishCast)
+		{
+			effected.addListener(new ConsumerEventListener(effected, EventType.ON_CREATURE_SKILL_FINISH_CAST, (OnCreatureSkillFinishCast event) -> onSkillUseEvent(event), this));
+		}
+		else
+		{
+			effected.addListener(new ConsumerEventListener(effected, EventType.ON_CREATURE_SKILL_USE, (OnCreatureSkillUse event) -> onSkillUseEvent(event), this));
+		}
 	}
 	
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		effected.removeListenerIf(EventType.ON_CREATURE_SKILL_FINISH_CAST, listener -> listener.getOwner() == this);
+		if (_onFinishCast)
+		{
+			effected.removeListenerIf(EventType.ON_CREATURE_SKILL_FINISH_CAST, listener -> listener.getOwner() == this);
+		}
+		else
+		{
+			effected.removeListenerIf(EventType.ON_CREATURE_SKILL_USE, listener -> listener.getOwner() == this);
+		}
 	}
 	
 	private void onSkillUseEvent(OnCreatureSkillFinishCast event)
 	{
-		if (_castSkillId != event.getSkill().getId())
-		{
-			return;
-		}
-		
 		final Creature caster = event.getCaster();
-		if (!caster.isPlayer())
+		if (((caster.getSummonedNpcCount() == 0) && (caster.getServitors() == null)) || (_castSkillId != event.getSkill().getId()) || !caster.isPlayer())
 		{
 			return;
 		}
@@ -84,24 +100,61 @@ public class AssistOwnerCast extends AbstractEffect
 			return;
 		}
 		
-		caster.getSummonedNpcs().forEach(summon ->
+		processSummonActions(caster, target, _skill.getSkill());
+	}
+	
+	private void onSkillUseEvent(OnCreatureSkillUse event)
+	{
+		final Creature caster = event.getCaster();
+		if (((caster.getSummonedNpcCount() == 0) && (caster.getServitors() == null)) || (_castSkillId != event.getSkill().getId()) || !caster.isPlayer())
 		{
-			if (_summonId != summon.getId())
+			return;
+		}
+		
+		final WorldObject target = caster.getTarget();
+		if ((target == null) || !target.isCreature())
+		{
+			return;
+		}
+		
+		processSummonActions(caster, target, _skill.getSkill());
+	}
+	
+	private void processSummonActions(Creature caster, WorldObject target, Skill skill)
+	{
+		final Collection<Summon> servitors = caster.getServitors().values();
+		if (!servitors.isEmpty())
+		{
+			servitors.forEach(servitor ->
 			{
-				return;
-			}
-			
-			if (summon.isDisabled())
+				if ((_summonId == servitor.getId()) && !servitor.isDisabled())
+				{
+					servitor.setTarget(target);
+					if (_skill.getSkill().isBad())
+					{
+						servitor.getAI().setIntention(Intention.ATTACK, target);
+					}
+					servitor.doCast(skill);
+				}
+			});
+		}
+		
+		final Collection<Npc> summonedNpcs = caster.getSummonedNpcs();
+		if (!summonedNpcs.isEmpty())
+		{
+			summonedNpcs.forEach(summon ->
 			{
-				return;
-			}
-			
-			if (_skill.getSkill().isBad())
-			{
-				summon.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
-			}
-			summon.setTarget(target);
-			summon.doCast(_skill.getSkill());
-		});
+				if ((_summonId == summon.getId()) && !summon.isDisabled())
+				{
+					summon.setTarget(target);
+					if (_skill.getSkill().isBad())
+					{
+						summon.getAI().setIntention(Intention.ATTACK, target);
+						summon.doAutoAttack((Creature) target);
+					}
+					summon.doCast(skill);
+				}
+			});
+		}
 	}
 }

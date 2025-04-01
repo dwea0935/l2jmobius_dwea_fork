@@ -22,13 +22,13 @@ package instances.QueenAntLair;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillCaster;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
@@ -76,6 +76,7 @@ public class QueenAntLair extends AbstractInstance
 						if (!member.isInsideRadius3D(npc, 1000))
 						{
 							player.sendMessage("Player " + member.getName() + " must go closer to Jio.");
+							break;
 						}
 						enterInstance(member, npc, TEMPLATE_ID);
 					}
@@ -90,6 +91,7 @@ public class QueenAntLair extends AbstractInstance
 					if (!player.isInsideRadius3D(npc, 1000))
 					{
 						player.sendMessage("You must go closer to Jio.");
+						break;
 					}
 					enterInstance(player, npc, TEMPLATE_ID);
 				}
@@ -184,12 +186,12 @@ public class QueenAntLair extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world == null)
 		{
-			return null;
+			return;
 		}
 		
 		if (npc.getId() == QUEEN)
@@ -264,17 +266,15 @@ public class QueenAntLair extends AbstractInstance
 				}
 			}
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Instance world = npc.getInstanceWorld();
 		if (world == null)
 		{
-			return null;
+			return;
 		}
 		
 		if (npc.getId() == QUEEN)
@@ -296,8 +296,6 @@ public class QueenAntLair extends AbstractInstance
 			}
 			world.finishInstance();
 		}
-		
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

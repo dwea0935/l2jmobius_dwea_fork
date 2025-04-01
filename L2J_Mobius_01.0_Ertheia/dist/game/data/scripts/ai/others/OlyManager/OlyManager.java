@@ -27,15 +27,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.handler.BypassHandler;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.olympiad.CompetitionType;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameManager;
@@ -205,11 +205,11 @@ public class OlyManager extends AbstractNpcAI implements IBypassHandler
 			case "showEquipmentReward":
 			{
 				int multisellId = -1;
-				if (player.getClassId() == ClassId.SAYHA_SEER)
+				if (player.getPlayerClass() == PlayerClass.SAYHA_SEER)
 				{
 					multisellId = 926;
 				}
-				else if (player.getClassId() == ClassId.EVISCERATOR)
+				else if (player.getPlayerClass() == PlayerClass.EVISCERATOR)
 				{
 					multisellId = 925;
 				}

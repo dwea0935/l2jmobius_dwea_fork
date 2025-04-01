@@ -20,17 +20,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.NpcLogListHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.quest.NpcLogListHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q10416_InSearchOfTheEyeOfArgos.Q10416_InSearchOfTheEyeOfArgos;
 
@@ -168,7 +168,7 @@ public class Q10417_DaimonTheWhiteEyed extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int npcHolder = npc.getId();
 		if (killer.isInParty())
@@ -184,7 +184,7 @@ public class Q10417_DaimonTheWhiteEyed extends Quest
 					int mobCount = qsPartyMember.getInt("KillCount_MOBS");
 					if (mobCount < 100)
 					{
-						if (CommonUtil.contains(MONSTER_TO_KILL, npcHolder))
+						if (ArrayUtil.contains(MONSTER_TO_KILL, npcHolder))
 						{
 							mobCount++;
 							qsPartyMember.set("KillCount_MOBS", mobCount);
@@ -218,7 +218,7 @@ public class Q10417_DaimonTheWhiteEyed extends Quest
 				int mobCount = qs.getInt("KillCount_MOBS");
 				if (mobCount < 100)
 				{
-					if (CommonUtil.contains(MONSTER_TO_KILL, npcHolder))
+					if (ArrayUtil.contains(MONSTER_TO_KILL, npcHolder))
 					{
 						mobCount++;
 						qs.set("KillCount_MOBS", mobCount);
@@ -241,8 +241,6 @@ public class Q10417_DaimonTheWhiteEyed extends Quest
 				}
 			}
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
