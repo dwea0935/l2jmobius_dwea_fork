@@ -372,6 +372,8 @@
 															<xs:element maxOccurs="unbounded" name="param">
 																<xs:complexType>
 																	<xs:attribute name="chance" type="xs:string" use="optional" />
+																	<xs:attribute name="affectPlayers" type="xs:boolean" use="optional" />
+																	<xs:attribute name="range" type="xs:int" use="optional" />
 																	<xs:attribute name="power" type="xs:string" use="optional" />
 																	<xs:attribute name="criticalChance" type="xs:unsignedByte" use="optional" />
 																	<xs:attribute name="charge" type="xs:string" use="optional" />
@@ -741,6 +743,8 @@
 																	<xs:attribute name="isCritical" type="xs:boolean" use="optional" />
 																	<xs:attribute name="minDamage" type="xs:unsignedByte" use="optional" />
 																	<xs:attribute name="chance" type="xs:string" use="optional" />
+																	<xs:attribute name="affectPlayers" type="xs:boolean" use="optional" />
+																	<xs:attribute name="range" type="xs:int" use="optional" />
 																	<xs:attribute name="skillId" type="xs:unsignedShort" use="optional" />
 																	<xs:attribute name="skillLevel" type="xs:string" use="optional" />
 																	<xs:attribute name="targetType" type="xs:string" use="optional" />

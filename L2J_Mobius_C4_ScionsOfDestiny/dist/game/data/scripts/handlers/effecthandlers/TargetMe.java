@@ -31,7 +31,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Target Me effect implementation.
- * @author -Nemesiss-, Mobius
+ * @author -Nemesiss-, Mobius, Bazookarpm
  */
 public class TargetMe extends AbstractEffect
 {
@@ -53,17 +53,18 @@ public class TargetMe extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((effected != null) && effected.isPlayer())
+		if (effected.isPlayable())
 		{
-			final Player targetPlayer = effected.asPlayer();
-			if (targetPlayer.getTarget() == effector)
+			final Player player = effector.asPlayer();
+			if ((player == null) || player.checkPvpSkill(effected, skill))
 			{
-				targetPlayer.getAI().setIntention(Intention.ATTACK, effector);
+				effected.asPlayable().setLockedTarget(effector);
+				effected.getAI().setIntention(Intention.ATTACK, effector);
 			}
-			else
-			{
-				targetPlayer.setTarget(effector);
-			}
+		}
+		else if (effected.isAttackable())
+		{
+			effected.getAI().setIntention(Intention.ATTACK, effector);
 		}
 	}
 	

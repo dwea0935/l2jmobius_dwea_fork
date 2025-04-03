@@ -1339,7 +1339,7 @@
 				<param chance="60" />
 			</effect>
 			<effect name="GetAgro">
-				<param chance="60" />
+				<param chance="60" affectPlayers="true" range="500" />
 			</effect>
 		</for>
 		<enchant2for>
@@ -1347,7 +1347,7 @@
 				<param chance="60" />
 			</effect>
 			<effect name="GetAgro">
-				<param chance="60" />
+				<param chance="60" affectPlayers="true" range="500" />
 			</effect>
 		</enchant2for>
 	</skill>
@@ -1921,7 +1921,7 @@
 				<param chance="60" />
 			</effect>
 			<effect name="GetAgro">
-				<param chance="60" />
+				<param chance="60" affectPlayers="true" range="500" />
 			</effect>
 		</for>
 		<enchant2for>
@@ -1929,7 +1929,7 @@
 				<param chance="60" />
 			</effect>
 			<effect name="GetAgro">
-				<param chance="60" />
+				<param chance="60" affectPlayers="true" range="500" />
 			</effect>
 		</enchant2for>
 	</skill>
