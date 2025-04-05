@@ -116,7 +116,7 @@ public class SignsPriest extends Npc
 						break;
 					}
 					player.getInventory().addItem(ItemProcessType.REWARD, SevenSigns.RECORD_SEVEN_SIGNS_ID, 1, player, this);
-					sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
+					sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1);
 					sm.addItemName(SevenSigns.RECORD_SEVEN_SIGNS_ID);
 					player.sendPacket(sm);
 					

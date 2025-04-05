@@ -221,7 +221,7 @@ public class Q00350_EnhanceYourWeapon extends Quest
 			}
 			
 			// Send system message.
-			final SystemMessage sms = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
+			final SystemMessage sms = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1);
 			sms.addItemName(giveId);
 			player.sendPacket(sms);
 			

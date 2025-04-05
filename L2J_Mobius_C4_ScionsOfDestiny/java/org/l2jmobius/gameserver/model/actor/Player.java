@@ -3117,12 +3117,12 @@ public class Player extends Playable
 						sendPacket(sm);
 					}
 				}
-				else if ((process == ItemProcessType.SWEEP) || (process == ItemProcessType.QUEST))
-				{
-					final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
-					sm.addItemName(itemId);
-					sendPacket(sm);
-				}
+				// else if ((process == ItemProcessType.SWEEP) || (process == ItemProcessType.QUEST))
+				// {
+				// final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1);
+				// sm.addItemName(itemId);
+				// sendPacket(sm);
+				// }
 				else
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1);

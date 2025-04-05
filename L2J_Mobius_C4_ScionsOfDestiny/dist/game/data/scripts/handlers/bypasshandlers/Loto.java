@@ -226,7 +226,7 @@ public class Loto implements IBypassHandler
 			}
 			LotteryManager.getInstance().increasePrize(price);
 			
-			sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
+			sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1);
 			sm.addItemName(4442);
 			player.sendPacket(sm);
 			

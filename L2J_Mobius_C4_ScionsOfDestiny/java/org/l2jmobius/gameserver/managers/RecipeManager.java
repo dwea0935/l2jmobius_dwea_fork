@@ -682,7 +682,7 @@ public class RecipeManager
 			}
 			else
 			{
-				sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
+				sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1);
 				sm.addItemName(itemId);
 			}
 			_target.sendPacket(sm);

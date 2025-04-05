@@ -2345,7 +2345,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 			}
 			else
 			{
-				final SystemMessage smsg = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
+				final SystemMessage smsg = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1);
 				smsg.addItemName(item);
 				player.sendPacket(smsg);
 			}

@@ -387,7 +387,7 @@ public class MultiSellChoose extends ClientPacket
 							}
 							else
 							{
-								sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
+								sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1);
 								sm.addItemName(e.getItemId());
 							}
 							player.sendPacket(sm);
