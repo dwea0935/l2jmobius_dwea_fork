@@ -32,7 +32,7 @@ public class AuthRequest extends BaseWritablePacket
 		writeByte(id);
 		writeByte(acceptAlternate ? 0x01 : 0x00);
 		writeByte(reserveHost ? 0x01 : 0x00);
-		writeString(subnets.isEmpty() ? "127.0.0.1" : subnets.get(0));
+		writeString(hosts.isEmpty() ? "127.0.0.1" : hosts.get(2));
 		writeString(hosts.isEmpty() ? "127.0.0.1" : hosts.get(0));
 		writeShort(port);
 		writeInt(maxplayer);
