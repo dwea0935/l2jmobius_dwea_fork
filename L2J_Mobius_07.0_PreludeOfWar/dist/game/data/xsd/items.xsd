@@ -130,6 +130,7 @@
 					<xs:enumeration value="use_condition" />
 					<xs:enumeration value="useSkillDisTime" />
 					<xs:enumeration value="useWeaponSkillsOnly" />
+					<xs:enumeration value="is_dragon_weapon" />
 					<xs:enumeration value="weapon_type" />
 					<xs:enumeration value="weight" />
 					<xs:enumeration value="commissionItemType" />
