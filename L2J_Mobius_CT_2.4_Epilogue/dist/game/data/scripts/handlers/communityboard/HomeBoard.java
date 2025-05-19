@@ -82,7 +82,8 @@ public class HomeBoard implements IParseBoardHandler
 		Config.COMMUNITYBOARD_ENABLE_TELEPORTS ? "_bbsteleport" : null,
 		Config.COMMUNITYBOARD_ENABLE_BUFFS ? "_bbsbuff" : null,
 		Config.COMMUNITYBOARD_ENABLE_HEAL ? "_bbsheal" : null,
-		Config.COMMUNITYBOARD_ENABLE_DELEVEL ? "_bbsdelevel" : null
+		Config.COMMUNITYBOARD_ENABLE_DELEVEL ? "_bbsdelevel" : null,
+		Config.COMMUNITYBOARD_ENABLE_CLEANSE ? "_bbscleanse" : null
 	};
 	
 	private static final BiPredicate<String, Player> COMBAT_CHECK = (command, player) ->
@@ -265,6 +266,27 @@ public class HomeBoard implements IParseBoardHandler
 				player.sendMessage("You used heal!");
 			}
 			
+			returnHtml = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/Custom/" + page + ".html");
+		}
+		else if (command.startsWith("_bbscleanse"))
+		{
+			final String page = command.replace("_bbscleanse;", "");
+			if (player.getInventory().getInventoryItemCount(Config.COMMUNITYBOARD_CURRENCY, -1) < Config.COMMUNITYBOARD_CLEANSE_PRICE)
+			{
+				player.sendMessage("Not enough currency!");
+			}
+			else
+			{
+				player.destroyItemByItemId(ItemProcessType.FEE, Config.COMMUNITYBOARD_CURRENCY, Config.COMMUNITYBOARD_CLEANSE_PRICE, player, true);
+				player.stopAllEffects();
+				if (player.hasSummon())
+				{
+					player.getSummon().stopAllEffects();
+				}
+				player.updateUserInfo();
+				player.sendMessage("You used cleanse!");
+				}
+
 			returnHtml = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/Custom/" + page + ".html");
 		}
 		else if (command.equals("_bbsdelevel"))
