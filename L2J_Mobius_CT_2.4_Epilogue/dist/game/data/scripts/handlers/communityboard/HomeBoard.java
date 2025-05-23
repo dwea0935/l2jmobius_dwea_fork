@@ -83,7 +83,8 @@ public class HomeBoard implements IParseBoardHandler
 		Config.COMMUNITYBOARD_ENABLE_BUFFS ? "_bbsbuff" : null,
 		Config.COMMUNITYBOARD_ENABLE_HEAL ? "_bbsheal" : null,
 		Config.COMMUNITYBOARD_ENABLE_DELEVEL ? "_bbsdelevel" : null,
-		Config.COMMUNITYBOARD_ENABLE_CLEANSE ? "_bbscleanse" : null
+		Config.COMMUNITYBOARD_ENABLE_CLEANSE ? "_bbscleanse" : null,
+		Config.PREMIUM_SYSTEM_ENABLED && Config.COMMUNITY_PREMIUM_SYSTEM_ENABLED ? "_bbspremiumbuff" : null
 	};
 	
 	private static final BiPredicate<String, Player> COMBAT_CHECK = (command, player) ->
@@ -317,6 +318,7 @@ public class HomeBoard implements IParseBoardHandler
 			final String fullBypass = command.replace("_bbspremium;", "");
 			final String[] buypassOptions = fullBypass.split(",");
 			final int premiumDays = Integer.parseInt(buypassOptions[0]);
+			//now coin ID is split into two different currencies: COMMUNITY_PREMIUM_COIN_ID is by default Coin of Luck(ID 4037), and COMMUNITY_PREMIUM_USE_COIN_ID by default is Adena (ID 57)
 			if ((premiumDays < 1) || (premiumDays > 30) || (player.getInventory().getInventoryItemCount(Config.COMMUNITY_PREMIUM_COIN_ID, -1) < (Config.COMMUNITY_PREMIUM_PRICE_PER_DAY * premiumDays)))
 			{
 				player.sendMessage("Not enough currency!");
@@ -333,7 +335,69 @@ public class HomeBoard implements IParseBoardHandler
 				returnHtml = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/Custom/premium/thankyou.html");
 			}
 		}
-		
+		else if (command.startsWith("_bbspremiumbuff"))
+		{
+			final String fullBypass = command.replace("_bbspremiumbuff;", "");
+			final String[] buypassOptions = fullBypass.split(";");
+    
+			// Last element is the page name, everything else is a buff entry
+			final int buffCount = buypassOptions.length - 1;
+			final String page = buypassOptions[buffCount];
+
+			// Check premium status
+			if (!PremiumManager.getInstance().hasPremiumStatus(player.getObjectId()))
+			{
+				player.sendMessage("Only premium users can use this service.");
+				return false;
+			}
+
+			// Check if the player has enough currency
+			int totalCost = Config.COMMUNITY_PREMIUM_PRICE_PER_USE * buffCount;
+			if (player.getInventory().getInventoryItemCount(Config.COMMUNITY_PREMIUM_USE_COIN_ID, -1) < totalCost)
+			{
+				player.sendMessage("Not enough currency!");
+				return false;
+			}
+
+			// Deduct cost
+			player.destroyItemByItemId(ItemProcessType.FEE, Config.COMMUNITY_PREMIUM_USE_COIN_ID, totalCost, player, true);
+
+			// Determine buff targets
+			final Summon pet = player.getSummon();
+			final List<Creature> targets = new ArrayList<>();
+			targets.add(player);
+			if (pet != null)
+			{
+				targets.add(pet);
+			}
+
+			// Apply each buff
+			for (int i = 0; i < buffCount; i++)
+			{
+				final String[] parts = buypassOptions[i].split(",");
+				final int skillId = Integer.parseInt(parts[0]);
+				final int skillLevel = Integer.parseInt(parts[1]);
+
+				if (!Config.COMMUNITY_AVAILABLE_BUFFS.contains(skillId))
+				{
+					continue;
+				}
+
+				final Skill skill = SkillData.getInstance().getSkill(skillId, skillLevel);
+				for (Creature target : targets)
+				{
+					skill.applyEffects(player, target);
+
+					if (Config.COMMUNITYBOARD_CAST_ANIMATIONS)
+					{
+						player.sendPacket(new MagicSkillUse(player, target, skillId, skillLevel, skill.getHitTime(), skill.getReuseDelay()));
+					}
+				}
+			}
+
+			// Show HTML page again
+			returnHtml = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/Custom/" + page + ".html");
+		}
 		if (returnHtml != null)
 		{
 			if (Config.CUSTOM_CB_ENABLED)

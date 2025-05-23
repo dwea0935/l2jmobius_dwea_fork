@@ -1187,6 +1187,8 @@ public class Config
 	public static boolean COMMUNITYBOARD_CAST_ANIMATIONS;
 	public static boolean COMMUNITY_PREMIUM_SYSTEM_ENABLED;
 	public static int COMMUNITY_PREMIUM_COIN_ID;
+	public static int COMMUNITY_PREMIUM_USE_COIN_ID;
+	public static int COMMUNITY_PREMIUM_PRICE_PER_USE;
 	public static int COMMUNITY_PREMIUM_PRICE_PER_DAY;
 	public static Set<Integer> COMMUNITY_AVAILABLE_BUFFS;
 	public static Map<String, Location> COMMUNITY_AVAILABLE_TELEPORTS;
@@ -3004,8 +3006,10 @@ public class Config
 			COMMUNITYBOARD_KARMA_DISABLED = communityBoardConfig.getBoolean("CommunityKarmaDisabled", true);
 			COMMUNITYBOARD_CAST_ANIMATIONS = communityBoardConfig.getBoolean("CommunityCastAnimations", false);
 			COMMUNITY_PREMIUM_SYSTEM_ENABLED = communityBoardConfig.getBoolean("CommunityPremiumSystem", false);
-			COMMUNITY_PREMIUM_COIN_ID = communityBoardConfig.getInt("CommunityPremiumBuyCoinId", 57);
-			COMMUNITY_PREMIUM_PRICE_PER_DAY = communityBoardConfig.getInt("CommunityPremiumPricePerDay", 1000000);
+			COMMUNITY_PREMIUM_COIN_ID = communityBoardConfig.getInt("CommunityPremiumBuyCoinId", 4037);
+			COMMUNITY_PREMIUM_USE_COIN_ID = communityBoardConfig.getInt("CommunityPremiumUseCoinId", 57);
+			COMMUNITY_PREMIUM_PRICE_PER_USE = communityBoardConfig.getInt("CommunityPremiumPricePerUse", 1000);
+			COMMUNITY_PREMIUM_PRICE_PER_DAY = communityBoardConfig.getInt("CommunityPremiumPricePerDay", 1);
 			final String[] allowedBuffs = communityBoardConfig.getString("CommunityAvailableBuffs", "").split(",");
 			COMMUNITY_AVAILABLE_BUFFS = new HashSet<>(allowedBuffs.length);
 			for (String s : allowedBuffs)
