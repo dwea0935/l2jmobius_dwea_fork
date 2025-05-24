@@ -345,7 +345,7 @@ public class HomeBoard implements IParseBoardHandler
 			final String page = buypassOptions[buffCount];
 
 			// Check premium status
-			if (!PremiumManager.getInstance().hasPremiumStatus(player.getObjectId()))
+			if (!PremiumManager.getInstance().hasPremiumStatus(player))
 			{
 				player.sendMessage("Only premium users can use this service.");
 				return false;

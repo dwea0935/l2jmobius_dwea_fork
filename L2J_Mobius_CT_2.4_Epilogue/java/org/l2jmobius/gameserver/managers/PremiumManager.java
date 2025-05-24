@@ -154,6 +154,17 @@ public class PremiumManager
 		return _premiumData.getOrDefault(accountName.toLowerCase(), 0L);
 	}
 	
+	public boolean hasPremiumStatus(Player player)
+	{
+		if (player == null)
+		{
+			return false;
+		}
+		final long expiration = getPremiumExpiration(player.getAccountName());
+		return expiration > System.currentTimeMillis();
+	}
+
+	
 	public void addPremiumTime(String accountName, int timeValue, TimeUnit timeUnit)
 	{
 		final long addTime = timeUnit.toMillis(timeValue);
