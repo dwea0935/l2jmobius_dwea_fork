@@ -20,7 +20,6 @@
  */
 package quests.Q00103_SpiritOfCraftsman;
 
-import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
@@ -29,7 +28,6 @@ import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.mechanics.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.LocationUtil;
 
 public class Q00103_SpiritOfCraftsman extends Quest
 {
@@ -258,15 +256,18 @@ public class Q00103_SpiritOfCraftsman extends Quest
 			return;
 		}
 		
+		// The helper picks the party member that gets the drop, so every step below has to address that same player.
+		final Player player = qs.getPlayer();
+		
 		switch (npc.getId())
 		{
 			case 20015:
 			case 20020:
 			{
-				if (hasQuestItems(killer, PRESERVING_OIL) && (getRandom(10) < 5) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, killer, true))
+				if (hasQuestItems(player, PRESERVING_OIL) && (getRandom(10) < 5))
 				{
-					giveItems(killer, ZOMBIE_HEAD, 1);
-					takeItems(killer, PRESERVING_OIL, -1);
+					giveItems(player, ZOMBIE_HEAD, 1);
+					takeItems(player, PRESERVING_OIL, -1);
 					qs.setCond(7, true);
 				}
 				break;
@@ -275,7 +276,7 @@ public class Q00103_SpiritOfCraftsman extends Quest
 			case 20518:
 			case 20455:
 			{
-				if (hasQuestItems(killer, CECKTINON_VOUCHER_2) && giveItemRandomly(qs.getPlayer(), npc, BONE_FRAGMENT, 1, 10, 1, true))
+				if (hasQuestItems(player, CECKTINON_VOUCHER_2) && giveItemRandomly(player, npc, BONE_FRAGMENT, 1, 10, 1, true))
 				{
 					qs.setCond(4, true);
 				}
