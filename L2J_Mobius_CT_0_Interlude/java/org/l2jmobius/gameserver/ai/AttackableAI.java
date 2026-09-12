@@ -795,6 +795,26 @@ public class AttackableAI extends CreatureAI
 	}
 	
 	/**
+	 * A territory spawn keeps a single location that every npc of the group shares, and Spawn.initializeNpc re-rolls
+	 * it on each respawn, so it names the sibling that spawned last rather than this npc and cannot anchor a distance check.<br>
+	 * Zone membership is the only stable test for those, the same one shouldPromoteIdleToActive already uses.
+	 * @param npc the npc to test
+	 * @param spawn the spawn the npc belongs to
+	 * @return {@code true} if the npc has strayed outside the area it is meant to hold
+	 */
+	private static boolean hasStrayedFromSpawn(Attackable npc, Spawn spawn)
+	{
+		final NpcSpawnTerritory territory = spawn.getSpawnTerritory();
+		if (territory != null)
+		{
+			return !territory.isInsideZone(npc.getX(), npc.getY());
+		}
+		
+		final int range = spawn.getChaseRange() > 0 ? Math.max(NpcConfig.MAX_DRIFT_RANGE, spawn.getChaseRange()) : npc.isRaid() ? NpcConfig.AGGRO_DISTANCE_CHECK_RAID_RANGE : NpcConfig.AGGRO_DISTANCE_CHECK_RANGE;
+		return npc.calculateDistance2D(spawn.getLocation()) > range;
+	}
+	
+	/**
 	 * Manage AI attack thinks of a Attackable (called by onActionThink).<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
@@ -816,7 +836,7 @@ public class AttackableAI extends CreatureAI
 		if ((npc.isMonster() && !npc.isWalker() && !(npc instanceof GrandBoss)) && (npc.isRaid() ? NpcConfig.AGGRO_DISTANCE_CHECK_RAIDS : NpcConfig.AGGRO_DISTANCE_CHECK_ENABLED))
 		{
 			final Spawn spawn = npc.getSpawn();
-			if ((spawn != null) && (npc.calculateDistance2D(spawn.getLocation()) > (spawn.getChaseRange() > 0 ? Math.max(NpcConfig.MAX_DRIFT_RANGE, spawn.getChaseRange()) : npc.isRaid() ? NpcConfig.AGGRO_DISTANCE_CHECK_RAID_RANGE : NpcConfig.AGGRO_DISTANCE_CHECK_RANGE)))
+			if ((spawn != null) && hasStrayedFromSpawn(npc, spawn))
 			{
 				if (NpcConfig.AGGRO_DISTANCE_CHECK_INSTANCES || !npc.isInInstance())
 				{
