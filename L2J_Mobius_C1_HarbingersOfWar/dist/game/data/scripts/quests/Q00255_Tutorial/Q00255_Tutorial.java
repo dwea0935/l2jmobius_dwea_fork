@@ -492,7 +492,7 @@ public class Q00255_Tutorial extends Quest
 								case 38:
 								case 44:
 								case 49:
-								case 52:
+								case 53:
 								{
 									playSound(player, "ItemSound.quest_tutorial");
 									qs.set("lvl", "19");
