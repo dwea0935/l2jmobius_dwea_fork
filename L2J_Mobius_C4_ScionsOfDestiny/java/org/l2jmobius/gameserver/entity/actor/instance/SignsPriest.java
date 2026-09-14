@@ -210,6 +210,21 @@ public class SignsPriest extends Npc
 				case 4: // Join a Cabal - SevenSigns 4 [0]1 x
 				{
 					final int newSeal = Integer.parseInt(command.substring(15));
+					
+					// The join dialog refuses characters without a class transfer, a direct bypass has to refuse them as well.
+					if (player.getPlayerClass().level() == 0)
+					{
+						if (this instanceof DawnPriest)
+						{
+							showChatWindow(player, 33, "dawn_firstclass", false);
+						}
+						else
+						{
+							showChatWindow(player, 33, "dusk_firstclass", false);
+						}
+						return;
+					}
+					
 					if (player.getPlayerClass().level() >= 1)
 					{
 						// even if in htmls is said that ally can have castle too, but it is not
