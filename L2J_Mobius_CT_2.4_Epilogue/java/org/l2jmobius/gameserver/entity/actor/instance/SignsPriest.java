@@ -307,12 +307,6 @@ public class SignsPriest extends Npc
 				case 21:
 				{
 					final int contribStoneId = Integer.parseInt(command.substring(14, 18));
-					final Item contribBlueStones = player.getInventory().getItemByItemId(SevenSigns.SEAL_STONE_BLUE_ID);
-					final Item contribGreenStones = player.getInventory().getItemByItemId(SevenSigns.SEAL_STONE_GREEN_ID);
-					final Item contribRedStones = player.getInventory().getItemByItemId(SevenSigns.SEAL_STONE_RED_ID);
-					final long contribBlueStoneCount = contribBlueStones == null ? 0 : contribBlueStones.getCount();
-					final long contribGreenStoneCount = contribGreenStones == null ? 0 : contribGreenStones.getCount();
-					final long contribRedStoneCount = contribRedStones == null ? 0 : contribRedStones.getCount();
 					long score = SevenSigns.getInstance().getPlayerContribScore(player.getObjectId());
 					long contributionCount = 0;
 					boolean contribStonesFound = false;
@@ -341,29 +335,17 @@ public class SignsPriest extends Npc
 					{
 						case SevenSigns.SEAL_STONE_BLUE_ID:
 						{
-							blueContrib = (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.BLUE_CONTRIB_POINTS;
-							if (blueContrib > contribBlueStoneCount)
-							{
-								blueContrib = contributionCount;
-							}
+							blueContrib = Math.min(contributionCount, (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.BLUE_CONTRIB_POINTS);
 							break;
 						}
 						case SevenSigns.SEAL_STONE_GREEN_ID:
 						{
-							greenContrib = (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.GREEN_CONTRIB_POINTS;
-							if (greenContrib > contribGreenStoneCount)
-							{
-								greenContrib = contributionCount;
-							}
+							greenContrib = Math.min(contributionCount, (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.GREEN_CONTRIB_POINTS);
 							break;
 						}
 						case SevenSigns.SEAL_STONE_RED_ID:
 						{
-							redContrib = (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.RED_CONTRIB_POINTS;
-							if (redContrib > contribRedStoneCount)
-							{
-								redContrib = contributionCount;
-							}
+							redContrib = Math.min(contributionCount, (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.RED_CONTRIB_POINTS);
 							break;
 						}
 					}
@@ -395,7 +377,12 @@ public class SignsPriest extends Npc
 						player.sendPacket(msg);
 					}
 					
-					if (!contribStonesFound)
+					if ((contributionCount > 0) && ((redContrib + greenContrib + blueContrib) <= 0))
+					{
+						// A requested amount that does not fit under the contribution limit.
+						player.sendPacket(SystemMessageId.CONTRIBUTION_LEVEL_HAS_EXCEEDED_THE_LIMIT_YOU_MAY_NOT_CONTINUE);
+					}
+					else if (!contribStonesFound)
 					{
 						if (this instanceof DawnPriest)
 						{
@@ -436,7 +423,7 @@ public class SignsPriest extends Npc
 					final long redStoneCount = redStones == null ? 0 : redStones.getCount();
 					long contribScore = SevenSigns.getInstance().getPlayerContribScore(player.getObjectId());
 					boolean stonesFound = false;
-					if (contribScore == FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB)
+					if (contribScore >= FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB)
 					{
 						player.sendPacket(SystemMessageId.CONTRIBUTION_LEVEL_HAS_EXCEEDED_THE_LIMIT_YOU_MAY_NOT_CONTINUE);
 					}
@@ -526,7 +513,12 @@ public class SignsPriest extends Npc
 									player.sendPacket(msg);
 								}
 								
-								if (!stonesFound)
+								if (!stonesFound && ((redStoneCount + greenStoneCount + blueStoneCount) > 0))
+								{
+									// Stones are carried, but none fit under the contribution limit.
+									player.sendPacket(SystemMessageId.CONTRIBUTION_LEVEL_HAS_EXCEEDED_THE_LIMIT_YOU_MAY_NOT_CONTINUE);
+								}
+								else if (!stonesFound)
 								{
 									if (this instanceof DawnPriest)
 									{
