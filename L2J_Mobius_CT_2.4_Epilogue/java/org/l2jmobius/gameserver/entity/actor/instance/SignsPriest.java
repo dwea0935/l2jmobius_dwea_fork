@@ -225,6 +225,33 @@ public class SignsPriest extends Npc
 						return;
 					}
 					
+					// A crafted join has to match what the priest offers, its own side and one of the three seals.
+					if ((newSeal < SevenSigns.SEAL_AVARICE) || (newSeal > SevenSigns.SEAL_STRIFE) || (cabal != ((this instanceof DawnPriest) ? SevenSigns.CABAL_DAWN : SevenSigns.CABAL_DUSK)))
+					{
+						return;
+					}
+					
+					// Joining is only offered during the competition period.
+					if (!SevenSigns.getInstance().isCompetitionPeriod())
+					{
+						showChatWindow(player);
+						return;
+					}
+					
+					// A member rejoining would switch sides and keep the contribution score.
+					if (SevenSigns.getInstance().getPlayerCabal(player.getObjectId()) != SevenSigns.CABAL_NULL)
+					{
+						if (this instanceof DawnPriest)
+						{
+							showChatWindow(player, 33, "dawn_member", false);
+						}
+						else
+						{
+							showChatWindow(player, 33, "dusk_member", false);
+						}
+						return;
+					}
+					
 					if (player.getPlayerClass().level() >= 1)
 					{
 						// even if in htmls is said that ally can have castle too, but it is not
