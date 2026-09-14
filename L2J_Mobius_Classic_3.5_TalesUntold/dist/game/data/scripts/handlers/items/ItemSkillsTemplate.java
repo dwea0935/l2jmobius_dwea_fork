@@ -145,11 +145,6 @@ public class ItemSkillsTemplate implements IItemHandler
 						continue;
 					}
 				}
-				
-				if (itemSkill.getReuseDelay() > 0)
-				{
-					playable.addTimeStamp(itemSkill, itemSkill.getReuseDelay());
-				}
 			}
 		}
 		

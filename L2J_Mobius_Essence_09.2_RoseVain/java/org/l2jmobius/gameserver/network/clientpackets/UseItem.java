@@ -362,7 +362,7 @@ public class UseItem extends ClientPacket
 			else if (handler.onItemUse(player, item, _ctrlPressed))
 			{
 				// Item reuse time should be added if the item is successfully used.
-				// Skill reuse delay is done at handlers.itemhandlers.ItemSkillsTemplate.
+				// Skill reuse delay is added by SkillCaster when the cast actually starts.
 				if (reuseDelay > 0)
 				{
 					player.addTimeStampItem(item, reuseDelay);
