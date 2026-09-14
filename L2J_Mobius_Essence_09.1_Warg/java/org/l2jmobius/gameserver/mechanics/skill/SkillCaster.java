@@ -836,7 +836,8 @@ public class SkillCaster implements Runnable
 						}
 						
 						// Players which are 9 levels above a Raid Boss and cast a skill nearby, are silenced with the Raid Curse skill.
-						if (!NpcConfig.RAID_DISABLE_CURSE && attackable.isRaid() && attackable.giveRaidCurse() && attackable.isInCombat() && ((player.getLevel() - attackable.getLevel()) > 8))
+						// Static skills (recipe books, potions and other item skills) are not casting.
+						if (!NpcConfig.RAID_DISABLE_CURSE && !skill.isStatic() && attackable.isRaid() && attackable.giveRaidCurse() && attackable.isInCombat() && ((player.getLevel() - attackable.getLevel()) > 8))
 						{
 							final CommonSkill curse = skill.hasNegativeEffect() ? CommonSkill.RAID_CURSE2 : CommonSkill.RAID_CURSE;
 							curse.getSkill().applyEffects(attackable, player);

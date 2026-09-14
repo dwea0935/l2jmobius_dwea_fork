@@ -6510,7 +6510,8 @@ public abstract class Creature extends WorldObject
 						}
 						
 						// Players which are 9 levels above a Raid Boss and cast a skill nearby, are silenced with the Raid Curse skill.
-						if (!NpcConfig.RAID_DISABLE_CURSE && attackable.isRaid() && attackable.giveRaidCurse() && attackable.isInCombat() && ((player.getLevel() - attackable.getLevel()) > 8))
+						// Static skills (recipe books, potions and other item skills) are not casting.
+						if (!NpcConfig.RAID_DISABLE_CURSE && !skill.isStatic() && attackable.isRaid() && attackable.giveRaidCurse() && attackable.isInCombat() && ((player.getLevel() - attackable.getLevel()) > 8))
 						{
 							player.abortAttack();
 							player.abortCast();
