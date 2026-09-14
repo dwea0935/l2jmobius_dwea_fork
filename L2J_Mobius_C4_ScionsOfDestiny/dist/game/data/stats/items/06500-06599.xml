@@ -874,7 +874,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="15000000" />
-		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
@@ -890,7 +890,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1800000" />
-		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
@@ -906,7 +906,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7000000" />
-		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
@@ -922,7 +922,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="750000" />
-		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
@@ -938,7 +938,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3000000" />
-		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
@@ -954,7 +954,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="350000" />
-		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
@@ -970,7 +970,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="900000" />
-		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
@@ -986,7 +986,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="100000" />
-		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
@@ -1002,7 +1002,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="30000000" />
-		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
@@ -1018,7 +1018,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4500000" />
-		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
 		<skills>
