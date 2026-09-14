@@ -23,18 +23,24 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.data.xml.RecipeData;
+import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.entity.item.ItemTemplate;
 import org.l2jmobius.gameserver.entity.item.WarehouseItem;
+import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.entity.item.recipe.RecipeList;
 import org.l2jmobius.gameserver.entity.item.type.CrystalType;
 import org.l2jmobius.gameserver.entity.item.type.EtcItemType;
 import org.l2jmobius.gameserver.entity.item.type.MaterialType;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillLearn;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -578,10 +584,23 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 	 */
 	private List<WarehouseItem> createSpellbookList(Collection<Item> items)
 	{
+		// Books are the items required to learn class skills.
+		final Set<Integer> bookIds = new HashSet<>();
+		for (PlayerClass playerClass : PlayerClass.values())
+		{
+			for (SkillLearn skillLearn : SkillTreeData.getInstance().getCompleteClassSkillTree(playerClass).values())
+			{
+				for (ItemHolder requiredItem : skillLearn.getRequiredItems())
+				{
+					bookIds.add(requiredItem.getId());
+				}
+			}
+		}
+		
 		final List<WarehouseItem> list = new ArrayList<>();
 		for (Item item : items)
 		{
-			if (((item.isEtcItem() && (!item.getItemName().toUpperCase().startsWith("AMULET"))) || (item.getTemplate().getType2() == ItemTemplate.TYPE2_MONEY)) && (list.size() < MAX_SORT_LIST_ITEMS))
+			if (((item.isEtcItem() && bookIds.contains(item.getId()) && (!item.getItemName().toUpperCase().startsWith("AMULET"))) || (item.getTemplate().getType2() == ItemTemplate.TYPE2_MONEY)) && (list.size() < MAX_SORT_LIST_ITEMS))
 			{
 				list.add(new WarehouseItem(item));
 			}
