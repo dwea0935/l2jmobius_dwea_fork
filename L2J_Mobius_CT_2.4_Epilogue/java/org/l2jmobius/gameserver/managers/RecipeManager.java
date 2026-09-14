@@ -48,6 +48,7 @@ import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.mechanics.stats.Stat;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
+import org.l2jmobius.gameserver.network.serverpackets.ItemList;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeBookItemList;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeItemMakeInfo;
@@ -395,10 +396,10 @@ public class RecipeManager
 			_items = listItems(true); // This line actually takes materials from inventory.
 			if (_items != null)
 			{
-				if (Rnd.get(100) < _recipeList.getSuccessRate())
+				final boolean success = Rnd.get(100) < _recipeList.getSuccessRate();
+				if (success)
 				{
 					rewardPlayer();
-					updateMakeInfo(true);
 				}
 				else
 				{
@@ -419,9 +420,11 @@ public class RecipeManager
 					{
 						_target.sendPacket(SystemMessageId.YOU_FAILED_AT_MIXING_THE_ITEM);
 					}
-					
-					updateMakeInfo(false);
 				}
+				
+				// Craft window counts come from the client inventory, so it is sent directly, sendItemList is delayed.
+				_target.sendPacket(new ItemList(_target, false));
+				updateMakeInfo(success);
 			}
 			
 			// update load and mana bar of craft window
@@ -429,7 +432,6 @@ public class RecipeManager
 			updateCurLoad();
 			_activeMakers.remove(_player.getObjectId());
 			_player.setCrafting(false);
-			_target.sendItemList(false);
 		}
 		
 		private void updateMakeInfo(boolean success)
