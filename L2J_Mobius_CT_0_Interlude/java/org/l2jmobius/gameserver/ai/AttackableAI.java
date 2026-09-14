@@ -360,6 +360,30 @@ public class AttackableAI extends CreatureAI
 	}
 	
 	@Override
+	public void notifyActionReadyToAct()
+	{
+		// A landed attack keeps the fight alive, the timeout is only for targets that cannot be reached.
+		if (getIntention() == Intention.ATTACK)
+		{
+			_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeTaskManager.getInstance().getGameTicks();
+		}
+		
+		super.notifyActionReadyToAct();
+	}
+	
+	@Override
+	public void notifyActionFinishCasting()
+	{
+		// A finished cast keeps the fight alive, the timeout is only for targets that cannot be reached.
+		if (getIntention() == Intention.ATTACK)
+		{
+			_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeTaskManager.getInstance().getGameTicks();
+		}
+		
+		super.notifyActionFinishCasting();
+	}
+	
+	@Override
 	public synchronized void setIntentionCast(Skill skill, WorldObject target)
 	{
 		if (target != null)
