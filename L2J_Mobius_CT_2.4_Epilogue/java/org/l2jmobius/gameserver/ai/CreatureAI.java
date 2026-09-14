@@ -22,6 +22,7 @@ package org.l2jmobius.gameserver.ai;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
@@ -330,7 +331,21 @@ public class CreatureAI extends AbstractAI
 			
 			final int gameTime = GameTimeTaskManager.getInstance().getGameTicks();
 			final int bowAttackEndTime = _actor.getBowAttackEndTime();
+			final long currentTime = System.nanoTime();
+			final long attackEndTime = _actor.getAttackEndTime();
+			
+			// Wait for the current attack to finish, so its pending hit does not land during the cast.
+			long delay = 0;
 			if (bowAttackEndTime > gameTime)
+			{
+				delay = (bowAttackEndTime - gameTime) * GameTimeTaskManager.MILLIS_IN_TICK;
+			}
+			else if (attackEndTime > currentTime)
+			{
+				delay = TimeUnit.NANOSECONDS.toMillis(attackEndTime - currentTime);
+			}
+			
+			if (delay > 0)
 			{
 				ThreadPool.schedule(() ->
 				{
@@ -339,7 +354,7 @@ public class CreatureAI extends AbstractAI
 						_actor.abortAttack();
 					}
 					changeIntentionToCast(skill, target);
-				}, (bowAttackEndTime - gameTime) * GameTimeTaskManager.MILLIS_IN_TICK);
+				}, delay);
 			}
 			else
 			{
