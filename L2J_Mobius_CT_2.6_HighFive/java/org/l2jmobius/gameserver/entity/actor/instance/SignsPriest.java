@@ -168,7 +168,7 @@ public class SignsPriest extends Npc
 							break;
 						}
 					}
-					else if ((cabal == SevenSigns.CABAL_DAWN) && FeatureConfig.ALT_GAME_CASTLE_DAWN) // dawn
+					else if ((cabal == SevenSigns.CABAL_DAWN) && FeatureConfig.ALT_GAME_CASTLE_DAWN && (player.getPlayerClass().level() >= 2)) // dawn
 					{
 						// clans without castle need to pay participation fee
 						final Clan clan = player.getClan();
@@ -221,7 +221,8 @@ public class SignsPriest extends Npc
 						}
 						
 						// If the player is trying to join the Lords of Dawn, check if they are carrying a Lord's certificate. If not then try to take the required amount of adena instead.
-						if (FeatureConfig.ALT_GAME_CASTLE_DAWN && (cabal == SevenSigns.CABAL_DAWN))
+						// The fee only applies after the second class transfer, the castle restriction on Dusk still applies after the first (C3 retail).
+						if (FeatureConfig.ALT_GAME_CASTLE_DAWN && (cabal == SevenSigns.CABAL_DAWN) && (player.getPlayerClass().level() >= 2))
 						{
 							boolean allowJoinDawn = false;
 							if ((clan != null) && (clan.getCastleId() > 0))
