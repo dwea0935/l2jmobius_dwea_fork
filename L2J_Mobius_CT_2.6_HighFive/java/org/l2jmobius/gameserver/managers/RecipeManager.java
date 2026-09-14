@@ -124,7 +124,7 @@ public class RecipeManager
 	public void requestMakeItem(Player player, int recipeListId)
 	{
 		// Check if player is trying to operate a private store or private workshop while engaged in combat.
-		if (player.isInCombat() || player.isInDuel())
+		if ((player.isInCombat() && !PlayerConfig.CRAFTING_IN_COMBAT) || player.isInDuel())
 		{
 			player.sendPacket(SystemMessageId.WHILE_YOU_ARE_ENGAGED_IN_COMBAT_YOU_CANNOT_OPERATE_A_PRIVATE_STORE_OR_PRIVATE_WORKSHOP);
 			return;

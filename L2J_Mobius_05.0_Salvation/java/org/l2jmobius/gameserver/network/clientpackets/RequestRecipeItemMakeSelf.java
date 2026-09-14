@@ -84,6 +84,12 @@ public class RequestRecipeItemMakeSelf extends ClientPacket
 			return;
 		}
 		
+		if ((player.isInCombat() && !PlayerConfig.CRAFTING_IN_COMBAT) || player.isInDuel())
+		{
+			player.sendPacket(SystemMessageId.WHILE_YOU_ARE_ENGAGED_IN_COMBAT_YOU_CANNOT_OPERATE_A_PRIVATE_STORE_OR_PRIVATE_WORKSHOP);
+			return;
+		}
+		
 		if (player.getPrivateStoreType() == PrivateStoreType.MANUFACTURE)
 		{
 			player.sendPacket(SystemMessageId.YOU_MAY_NOT_ALTER_YOUR_RECIPE_BOOK_WHILE_ENGAGED_IN_MANUFACTURING);

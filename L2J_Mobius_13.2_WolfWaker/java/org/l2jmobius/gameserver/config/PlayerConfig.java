@@ -182,6 +182,7 @@ public class PlayerConfig
 	public static int CASTLE_ZONE_FAME_AQUIRE_POINTS;
 	public static boolean FAME_FOR_DEAD_PLAYERS;
 	public static boolean IS_CRAFTING_ENABLED;
+	public static boolean CRAFTING_IN_COMBAT;
 	public static int DWARF_RECIPE_LIMIT;
 	public static int COMMON_RECIPE_LIMIT;
 	public static boolean ALT_CLAN_LEADER_INSTANT_ACTIVATION;
@@ -477,6 +478,7 @@ public class PlayerConfig
 		CASTLE_ZONE_FAME_AQUIRE_POINTS = config.getInt("CastleZoneFameAquirePoints", 125);
 		FAME_FOR_DEAD_PLAYERS = config.getBoolean("FameForDeadPlayers", true);
 		IS_CRAFTING_ENABLED = config.getBoolean("CraftingEnabled", true);
+		CRAFTING_IN_COMBAT = config.getBoolean("CraftingInCombat", false);
 		DWARF_RECIPE_LIMIT = config.getInt("DwarfRecipeLimit", 50);
 		COMMON_RECIPE_LIMIT = config.getInt("CommonRecipeLimit", 50);
 		ALT_CLAN_LEADER_INSTANT_ACTIVATION = config.getBoolean("AltClanLeaderInstantActivation", false);

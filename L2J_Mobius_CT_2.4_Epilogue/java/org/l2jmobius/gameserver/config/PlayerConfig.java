@@ -173,6 +173,7 @@ public class PlayerConfig
 	public static int CASTLE_ZONE_FAME_AQUIRE_POINTS;
 	public static boolean FAME_FOR_DEAD_PLAYERS;
 	public static boolean IS_CRAFTING_ENABLED;
+	public static boolean CRAFTING_IN_COMBAT;
 	public static boolean CRAFT_MASTERWORK;
 	public static double CRAFT_MASTERWORK_CHANCE_RATE;
 	public static int DWARF_RECIPE_LIMIT;
@@ -457,6 +458,7 @@ public class PlayerConfig
 		CASTLE_ZONE_FAME_AQUIRE_POINTS = config.getInt("CastleZoneFameAquirePoints", 125);
 		FAME_FOR_DEAD_PLAYERS = config.getBoolean("FameForDeadPlayers", true);
 		IS_CRAFTING_ENABLED = config.getBoolean("CraftingEnabled", true);
+		CRAFTING_IN_COMBAT = config.getBoolean("CraftingInCombat", false);
 		CRAFT_MASTERWORK = config.getBoolean("CraftMasterwork", true);
 		CRAFT_MASTERWORK_CHANCE_RATE = config.getDouble("CraftMasterworkChanceRate", 1);
 		DWARF_RECIPE_LIMIT = config.getInt("DwarfRecipeLimit", 50);
