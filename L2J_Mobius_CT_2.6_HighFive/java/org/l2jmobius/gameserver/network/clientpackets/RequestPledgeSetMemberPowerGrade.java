@@ -20,6 +20,7 @@ import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.entity.clan.ClanAccess;
 import org.l2jmobius.gameserver.entity.clan.ClanMember;
+import org.l2jmobius.gameserver.network.serverpackets.PledgeReceivePowerInfo;
 
 /**
  * Format: (ch) Sd
@@ -76,6 +77,16 @@ public class RequestPledgeSetMemberPowerGrade extends ClientPacket
 		}
 		
 		member.setPowerGrade(_powerGrade);
+		
+		// An online member keeps the privileges of the old rank until refreshed.
+		final Player memberPlayer = member.getPlayer();
+		if (memberPlayer != null)
+		{
+			memberPlayer.setClanPrivileges(clan.getRankPrivs(_powerGrade).clone());
+			memberPlayer.updateUserInfo();
+		}
+		
 		clan.broadcastClanStatus();
+		player.sendPacket(new PledgeReceivePowerInfo(member));
 	}
 }
