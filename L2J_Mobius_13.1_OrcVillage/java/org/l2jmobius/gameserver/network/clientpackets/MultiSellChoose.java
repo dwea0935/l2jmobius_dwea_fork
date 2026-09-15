@@ -117,9 +117,9 @@ public class MultiSellChoose extends ClientPacket
 			return;
 		}
 		
+		// Ignore the flood click only, the open list must stay valid for the next exchange.
 		if (!getClient().getFloodProtectors().canUseMultiSell())
 		{
-			player.setMultiSell(null);
 			return;
 		}
 		
