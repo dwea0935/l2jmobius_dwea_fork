@@ -423,6 +423,8 @@ public class RecipeManager
 				}
 				
 				// Craft window counts come from the client inventory, so it is sent directly, sendItemList is delayed.
+				// The pending item added update goes first, otherwise it arrives after the list and duplicates the item.
+				_target.flushInventoryUpdate();
 				_target.sendPacket(new ItemList(_target, false));
 				updateMakeInfo(success);
 			}
