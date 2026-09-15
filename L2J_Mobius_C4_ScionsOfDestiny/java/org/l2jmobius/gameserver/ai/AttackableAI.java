@@ -828,14 +828,16 @@ public class AttackableAI extends CreatureAI
 	 */
 	private static boolean hasStrayedFromSpawn(Attackable npc, Spawn spawn)
 	{
+		final int range = spawn.getChaseRange() > 0 ? Math.max(NpcConfig.MAX_DRIFT_RANGE, spawn.getChaseRange()) : npc.isRaid() ? NpcConfig.AGGRO_DISTANCE_CHECK_RAID_RANGE : NpcConfig.AGGRO_DISTANCE_CHECK_RANGE;
+		final boolean outOfRange = npc.calculateDistance2D(spawn.getLocation()) > range;
 		final NpcSpawnTerritory territory = spawn.getSpawnTerritory();
 		if (territory != null)
 		{
-			return !territory.isInsideZone(npc.getX(), npc.getY());
+			// Leaving the territory alone is not straying, the chase range still applies.
+			return outOfRange && !territory.isInsideZone(npc.getX(), npc.getY());
 		}
 		
-		final int range = spawn.getChaseRange() > 0 ? Math.max(NpcConfig.MAX_DRIFT_RANGE, spawn.getChaseRange()) : npc.isRaid() ? NpcConfig.AGGRO_DISTANCE_CHECK_RAID_RANGE : NpcConfig.AGGRO_DISTANCE_CHECK_RANGE;
-		return npc.calculateDistance2D(spawn.getLocation()) > range;
+		return outOfRange;
 	}
 	
 	/**
