@@ -544,7 +544,11 @@ public class EffectList
 		}
 		
 		// Removes the buff from the given effect list.
-		buffs.remove(info);
+		// Already removed means already stopped, stopping again would strip a newer buff of the same skill.
+		if (!buffs.remove(info))
+		{
+			return;
+		}
 		
 		// Stop the buff effects.
 		info.stopAllEffects(type, broadcast);
@@ -556,7 +560,7 @@ public class EffectList
 		}
 		else // Removes the buff from the stack.
 		{
-			_stackedEffects.remove(info.getSkill().getAbnormalType());
+			_stackedEffects.remove(info.getSkill().getAbnormalType(), info);
 		}
 		
 		// If it's an herb that ends, check if there are hidden buffs.
@@ -972,7 +976,7 @@ public class EffectList
 		final BuffInfo old = _stackedEffects.remove(abnormalType);
 		if (old != null)
 		{
-			stopSkillEffects(removeType, old.getSkill());
+			remove(removeType, old);
 			return true;
 		}
 		

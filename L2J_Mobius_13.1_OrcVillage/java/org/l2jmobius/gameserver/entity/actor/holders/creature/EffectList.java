@@ -851,7 +851,11 @@ public class EffectList
 		if (!_actives.isEmpty())
 		{
 			// Removes the buff from the given effect list.
-			_actives.remove(info);
+			// Already removed means already stopped, stopping again would strip a newer buff of the same skill.
+			if (!_actives.remove(info))
+			{
+				return;
+			}
 			
 			// Remove short buff.
 			if (info == _shortBuff)

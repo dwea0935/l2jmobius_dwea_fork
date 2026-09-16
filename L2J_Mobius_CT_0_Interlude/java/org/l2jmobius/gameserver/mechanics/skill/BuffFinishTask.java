@@ -50,7 +50,9 @@ public class BuffFinishTask
 				final Creature effected = info.getEffected();
 				if ((effected != null) && (entry.getValue().incrementAndGet() > info.getAbnormalTime()))
 				{
-					ThreadPool.execute(() -> effected.getEffectList().stopSkillEffects(SkillFinishType.NORMAL, info.getSkill().getId()));
+					// Stop this exact buff once, a newer buff of the same skill must not be affected.
+					ThreadPool.execute(() -> effected.getEffectList().remove(SkillFinishType.NORMAL, info));
+					removeBuffInfo(info);
 				}
 			}
 		}
