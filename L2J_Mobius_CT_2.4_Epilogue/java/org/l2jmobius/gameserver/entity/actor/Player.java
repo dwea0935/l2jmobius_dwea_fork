@@ -3354,15 +3354,24 @@ public class Player extends Playable
 		
 		if (count > 0)
 		{
-			if (!_inventory.reduceAdena(process, count, this, reference))
+			// The destroyed item is kept, spending the whole stack clears the inventory adena instance.
+			final Item adenaItem = _inventory.destroyItemByItemId(process, Inventory.ADENA_ID, count, this, reference);
+			if (adenaItem == null)
 			{
 				return false;
 			}
 			
 			// Send update packet.
-			final Item adenaItem = _inventory.getAdenaInstance();
 			final InventoryUpdate iu = new InventoryUpdate();
-			iu.addItem(adenaItem);
+			if (adenaItem.getCount() > 0)
+			{
+				iu.addModifiedItem(adenaItem);
+			}
+			else
+			{
+				iu.addRemovedItem(adenaItem);
+			}
+			
 			sendInventoryUpdate(iu);
 			
 			if (sendMessage)
