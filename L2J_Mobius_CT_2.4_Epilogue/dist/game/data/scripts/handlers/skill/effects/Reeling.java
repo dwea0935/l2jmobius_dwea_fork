@@ -102,7 +102,7 @@ public class Reeling extends AbstractEffect
 		int dmg = (int) ((fishingRod.getFishingRodDamage() + player.calcStat(Stat.FISHING_EXPERTISE, 1, null, null) + _power) * gradeBonus * ss);
 		
 		// Penalty 5% less damage dealt
-		if (player.getSkillLevel(1315) <= (skill.getLevel() - 2)) // 1315 - Fish Expertise
+		if (player.getSkillLevel(1315) < (skill.getLevel() - 2)) // 1315 - Fish Expertise
 		{
 			player.sendPacket(SystemMessageId.DUE_TO_YOUR_REELING_AND_OR_PUMPING_SKILL_BEING_THREE_OR_MORE_LEVELS_HIGHER_THAN_YOUR_FISHING_SKILL_A_50_DAMAGE_PENALTY_WILL_BE_APPLIED);
 			pen = (int) (dmg * 0.05);
