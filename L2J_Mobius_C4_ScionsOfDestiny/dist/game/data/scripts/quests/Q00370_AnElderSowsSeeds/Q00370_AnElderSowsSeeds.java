@@ -56,7 +56,6 @@ public class Q00370_AnElderSowsSeeds extends Quest
 	public Q00370_AnElderSowsSeeds()
 	{
 		super(370, "An Elder Sows Seeds");
-		registerQuestItems(SPELLBOOK_PAGE, CHAPTER_OF_FIRE, CHAPTER_OF_WATER, CHAPTER_OF_WIND, CHAPTER_OF_EARTH);
 		addStartNpc(CASIAN);
 		addTalkId(CASIAN);
 		addKillId(20082, 20084, 20086, 20089, 20090);
