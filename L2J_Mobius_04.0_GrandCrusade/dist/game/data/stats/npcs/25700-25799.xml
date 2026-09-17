@@ -2265,7 +2265,7 @@
 			<height normal="16" />
 		</collision>
 	</npc>
-	<npc id="25735" level="90" type="RaidBoss" name="Fairy Warrior" title="Faithful Servant">
+	<npc id="25735" level="90" type="Monster" name="Fairy Warrior" title="Faithful Servant">
 		<!-- TODO: Must be confirmed -->
 		<parameters>
 			<param name="IsAggressive" value="1" />
@@ -2275,7 +2275,6 @@
 		</parameters>
 		<race>FAIRY</race>
 		<sex>MALE</sex>
-		<equipment rhand="67" lhand="633" /> <!-- Orcish Sword / Zubei's Shield -->
 		<acquire exp="2690115" sp="83882" />
 		<mpReward value="77" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -2304,8 +2303,6 @@
 			<skill id="4414" level="2" /> <!-- Standard Type -->
 			<skill id="4415" level="3" /> <!-- One-handed Sword -->
 			<skill id="4416" level="13" /> <!-- Humanoids -->
-			<skill id="4494" level="1" /> <!-- Raid Boss -->
-			<skill id="4790" level="1" /> <!-- Raid Boss - Level 23 -->
 			<skill id="5465" level="1" /> <!-- Earth Attack -->
 			<skill id="14040" level="1" /> <!-- Power Strike -->
 			<skill id="14765" level="2" /> <!-- Blood Siphon Resistance -->
@@ -2332,7 +2329,6 @@
 		</parameters>
 		<race>FAIRY</race>
 		<sex>MALE</sex>
-		<equipment rhand="7" /> <!-- Apprentice's Rod -->
 		<mpReward value="78" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="28001" hpRegen="8.5" mp="2023" mpRegen="3" />
@@ -2386,7 +2382,6 @@
 		</parameters>
 		<race>FAIRY</race>
 		<sex>MALE</sex>
-		<equipment rhand="123" /> <!-- Saber -->
 		<mpReward value="77" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="28001" hpRegen="8.5" mp="2023" mpRegen="3" />
@@ -2429,7 +2424,7 @@
 			<height normal="27" />
 		</collision>
 	</npc>
-	<npc id="25738" level="90" type="RaidBoss" name="Satyr Wizard" title="Faithful Servant">
+	<npc id="25738" level="90" type="Monster" name="Satyr Wizard" title="Faithful Servant">
 		<!-- TODO: Must be confirmed -->
 		<parameters>
 			<param name="IsAggressive" value="1" />
@@ -2440,7 +2435,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="291" /> <!-- Trident -->
 		<acquire exp="2690115" sp="83882" />
 		<mpReward value="78" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -2468,7 +2462,6 @@
 			<skill id="4414" level="2" /> <!-- Standard Type -->
 			<skill id="4415" level="3" /> <!-- One-handed Sword -->
 			<skill id="4416" level="6" /> <!-- Humanoids -->
-			<skill id="4494" level="1" /> <!-- Raid Boss -->
 			<skill id="4743" level="2" /> <!-- BOSS Strike -->
 			<skill id="5463" level="1" /> <!-- Water Attack -->
 			<skill id="4929" level="1" /> <!-- Raid Boss - Level 23 -->
@@ -2499,7 +2492,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="2" /> <!-- Long Sword -->
 		<mpReward value="78" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="28001" hpRegen="8.5" mp="3035" mpRegen="3" />
@@ -2554,7 +2546,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>FEMALE</sex>
-		<equipment rhand="2507" /> <!-- Lizardspear -->
 		<mpReward value="77" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="28001" hpRegen="8.5" mp="2023" mpRegen="3" />
@@ -2598,7 +2589,7 @@
 			<height normal="28" />
 		</collision>
 	</npc>
-	<npc id="25741" level="90" type="RaidBoss" name="Treekin Defender" title="Faithful Servant">
+	<npc id="25741" level="90" type="Monster" name="Treekin Defender" title="Faithful Servant">
 		<!-- TODO: Must be confirmed -->
 		<parameters>
 			<param name="IsAggressive" value="1" />
@@ -2609,7 +2600,6 @@
 		</parameters>
 		<race>PLANT</race>
 		<sex>MALE</sex>
-		<equipment rhand="216" /> <!-- Dirk -->
 		<acquire exp="16200" sp="60367" />
 		<mpReward value="77" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -2638,7 +2628,6 @@
 			<skill id="4414" level="2" /> <!-- Standard Type -->
 			<skill id="4415" level="3" /> <!-- Daggers -->
 			<skill id="4416" level="5" /> <!-- Humanoids -->
-			<skill id="4494" level="1" /> <!-- Raid Boss -->
 			<skill id="5465" level="1" /> <!-- Earth Attack -->
 			<skill id="4927" level="1" /> <!-- Raid Boss - Level 21 -->
 			<skill id="14053" level="1" /> <!-- Mace Downward Strike -->
@@ -2719,7 +2708,6 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>MALE</sex>
-		<equipment rhand="179" /> <!-- Mace of Prayer -->
 		<mpReward value="77" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
 			<vitals hp="28001" hpRegen="8.5" mp="2023" mpRegen="3" />
@@ -2763,7 +2751,7 @@
 			<height normal="26.8" />
 		</collision>
 	</npc>
-	<npc id="25744" level="91" type="RaidBoss" name="Double Nightmare" title="Faithful Servant">
+	<npc id="25744" level="91" type="Monster" name="Double Nightmare" title="Faithful Servant">
 		<!-- TODO: Must be confirmed -->
 		<parameters>
 			<param name="IsAggressive" value="1" />
@@ -2774,7 +2762,6 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<equipment rhand="150" /> <!-- Elemental Sword -->
 		<acquire sp="147445" exp="1589295" />
 		<mpReward value="82" type="DIFF" ticks="10" affects="SOLO" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
@@ -2805,7 +2792,6 @@
 			<skill id="4414" level="2" /> <!-- Standard Type -->
 			<skill id="4415" level="4" /> <!-- One-handed Sword -->
 			<skill id="4416" level="6" /> <!-- Undead -->
-			<skill id="4494" level="1" /> <!-- Raid Boss -->
 			<skill id="5467" level="1" /> <!-- Strong against the dark elemental. -->
 			<skill id="4853" level="1" /> <!-- Raid Boss - Level 25 -->
 			<skill id="14059" level="1" /> <!-- Sneer Attack -->

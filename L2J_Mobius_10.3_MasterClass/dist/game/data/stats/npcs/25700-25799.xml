@@ -2136,7 +2136,7 @@
 			<height normal="16" />
 		</collision>
 	</npc>
-	<npc id="25735" level="90" type="RaidBoss" name="Fairy Warrior" title="Faithful Servant">
+	<npc id="25735" level="90" type="Monster" name="Fairy Warrior" title="Faithful Servant">
 		<!-- TODO: Must be confirmed -->
 		<parameters>
 			<param name="IsAggressive" value="1" />
@@ -2294,7 +2294,7 @@
 			<height normal="27" />
 		</collision>
 	</npc>
-	<npc id="25738" level="90" type="RaidBoss" name="Satyr Wizard" title="Faithful Servant">
+	<npc id="25738" level="90" type="Monster" name="Satyr Wizard" title="Faithful Servant">
 		<!-- TODO: Must be confirmed -->
 		<parameters>
 			<param name="IsAggressive" value="1" />
@@ -2457,7 +2457,7 @@
 			<height normal="28" />
 		</collision>
 	</npc>
-	<npc id="25741" level="90" type="RaidBoss" name="Treekin Defender" title="Faithful Servant">
+	<npc id="25741" level="90" type="Monster" name="Treekin Defender" title="Faithful Servant">
 		<!-- TODO: Must be confirmed -->
 		<parameters>
 			<param name="IsAggressive" value="1" />
@@ -2617,7 +2617,7 @@
 			<height normal="26.8" />
 		</collision>
 	</npc>
-	<npc id="25744" level="91" type="RaidBoss" name="Double Nightmare" title="Faithful Servant">
+	<npc id="25744" level="91" type="Monster" name="Double Nightmare" title="Faithful Servant">
 		<!-- TODO: Must be confirmed -->
 		<parameters>
 			<param name="IsAggressive" value="1" />
