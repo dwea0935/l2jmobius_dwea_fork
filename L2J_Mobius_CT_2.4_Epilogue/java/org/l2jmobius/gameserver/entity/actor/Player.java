@@ -12301,7 +12301,8 @@ public class Player extends Playable
 		_fish = fish.get(Rnd.get(fish.size())).clone();
 		fish.clear();
 		sendPacket(SystemMessageId.YOU_CAST_YOUR_LINE_AND_START_TO_FISH);
-		if (!GameTimeTaskManager.getInstance().isNight() && _lure.isNightLure())
+		// Night lures only catch at night, ordinary lures only during the day.
+		if (GameTimeTaskManager.getInstance().isNight() != _lure.isNightLure())
 		{
 			_fish.setFishGroup(-1);
 		}
@@ -12675,7 +12676,8 @@ public class Player extends Playable
 	
 	public void startFishCombat(boolean isNoob, boolean isUpperGrade)
 	{
-		_fishCombat = new Fishing(this, _fish, isNoob, isUpperGrade, _lure.getId());
+		// Every night lure fights like a night catch, the fish turns deceptive and reverses reeling and pumping.
+		_fishCombat = new Fishing(this, _fish, isNoob, isUpperGrade || _lure.isNightLure(), _lure.getId());
 	}
 	
 	public void endFishing(boolean win)
