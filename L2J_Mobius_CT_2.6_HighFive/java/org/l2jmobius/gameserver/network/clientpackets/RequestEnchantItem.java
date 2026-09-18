@@ -205,6 +205,12 @@ public class RequestEnchantItem extends ClientPacket
 						item.setEnchantLevel(item.getEnchantLevel() + 1);
 						iu.addModifiedItem(item);
 						item.updateDatabase();
+						
+						if (item.isEquipped())
+						{
+							// The client keeps the old enchant on an equipped item, so the full list is sent as well.
+							player.sendItemList(false);
+						}
 					}
 					
 					player.sendPacket(new EnchantResult(0, 0, 0));
