@@ -3709,6 +3709,7 @@ public class Player extends Playable
 	 */
 	public boolean destroyItem(ItemProcessType process, Item item, long count, WorldObject reference, boolean sendMessage)
 	{
+		final boolean wasEquipped = item.isEquipped();
 		final Item destoyedItem = _inventory.destroyItem(process, item, count, this, reference);
 		if (destoyedItem == null)
 		{
@@ -3724,6 +3725,12 @@ public class Player extends Playable
 		final InventoryUpdate playerIU = new InventoryUpdate();
 		playerIU.addItem(destoyedItem);
 		sendInventoryUpdate(playerIU);
+		
+		if (wasEquipped && (destoyedItem.getCount() == 0))
+		{
+			// The client leaves the item in the paperdoll when the last one is used up, so the full list is sent as well.
+			sendItemList(false);
+		}
 		
 		// Update current load as well.
 		final StatusUpdate su = new StatusUpdate(this);
