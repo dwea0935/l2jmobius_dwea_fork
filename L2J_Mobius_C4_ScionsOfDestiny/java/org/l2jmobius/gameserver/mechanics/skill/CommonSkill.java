@@ -45,7 +45,9 @@ public enum CommonSkill
 	LUCKY(194, 1),
 	EXPERTISE(239, 1),
 	CRYSTALLIZE(248, 1),
-	CREATE_COMMON(1320, 1);
+	CREATE_COMMON(1320, 1),
+	PUMPING(1313, 1),
+	REELING(1314, 1);
 	
 	private final SkillHolder _holder;
 	

@@ -8399,6 +8399,22 @@ public class Player extends Playable
 			return false;
 		}
 		
+		// Pumping and reeling are refused here, so that no reuse delay is applied when there is no fish to fight.
+		if ((_fishCombat == null) && skill.hasEffectType(EffectType.FISHING))
+		{
+			if (skill.getId() == CommonSkill.PUMPING.getId())
+			{
+				sendPacket(SystemMessageId.PUMPING_SKILL_IS_AVAILABLE_ONLY_WHILE_FISHING);
+			}
+			else
+			{
+				sendPacket(SystemMessageId.REELING_SKILL_IS_AVAILABLE_ONLY_WHILE_FISHING);
+			}
+			
+			sendPacket(ActionFailed.STATIC_PACKET);
+			return false;
+		}
+		
 		if (_observerMode)
 		{
 			sendPacket(SystemMessageId.OBSERVERS_CANNOT_PARTICIPATE);

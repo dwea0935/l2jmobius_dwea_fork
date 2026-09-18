@@ -51,6 +51,8 @@ public enum CommonSkill
 	EXPERTISE(239, 1),
 	CRYSTALLIZE(248, 1),
 	CREATE_COMMON(1320, 1),
+	PUMPING(1313, 1),
+	REELING(1314, 1),
 	DIVINE_INSPIRATION(1405, 1);
 	
 	private final SkillHolder _holder;
