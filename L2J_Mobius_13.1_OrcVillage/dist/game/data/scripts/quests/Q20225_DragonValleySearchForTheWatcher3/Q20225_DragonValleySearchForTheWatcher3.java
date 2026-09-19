@@ -47,6 +47,9 @@ public class Q20225_DragonValleySearchForTheWatcher3 extends Quest
 	private static final int KARION_SKULL = 83067;
 	private static final int UNDEAD_BONES = 83068;
 	
+	// Location, the teleport list has no entry for this quest location.
+	private static final Location HIDDEN_VALLEY = new Location(756, 137457, -2120);
+	
 	public Q20225_DragonValleySearchForTheWatcher3()
 	{
 		super(QUEST_ID);
@@ -80,17 +83,16 @@ public class Q20225_DragonValleySearchForTheWatcher3 extends Quest
 				final NewQuestLocation questLocation = getQuestData().getLocation();
 				if (questState == null)
 				{
-					final Location location = TeleportListData.getInstance().getTeleport(questLocation.getStartLocationId()).getLocation();
-					teleportToQuestLocation(player, location);
-					sendAcceptDialog(player);
+					if (questLocation.getStartLocationId() > 0)
+					{
+						final Location location = TeleportListData.getInstance().getTeleport(questLocation.getStartLocationId()).getLocation();
+						teleportToQuestLocation(player, location);
+						sendAcceptDialog(player);
+					}
 				}
 				else if (questState.isCond(QuestCondType.STARTED))
 				{
-					if (questLocation.getQuestLocationId() > 0)
-					{
-						final Location location = TeleportListData.getInstance().getTeleport(questLocation.getQuestLocationId()).getLocation();
-						teleportToQuestLocation(player, location);
-					}
+					teleportToQuestLocation(player, HIDDEN_VALLEY);
 				}
 				else if (questState.isCond(QuestCondType.DONE) && !questState.isCompleted())
 				{
