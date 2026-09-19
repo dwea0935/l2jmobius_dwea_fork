@@ -6153,11 +6153,9 @@
 		<targetType>ONE</targetType>
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>5</abnormalTime>
-		<abnormalType>HOLY_ATTACK</abnormalType>
 		<castRange>600</castRange>
 		<effectPoint>100</effectPoint>
 		<effectRange>1100</effectRange>
-		<element>0</element> <!-- Fire -->
 		<hitTime>4000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>66</magicLevel>
@@ -6165,9 +6163,6 @@
 		<mpInitialConsume>50</mpInitialConsume>
 		<reuseDelay>3600000</reuseDelay>
 		<effects>
-			<effect name="Buff">
-				<add stat="firePower">20</add>
-			</effect>
 			<effect name="ElementSeed">
 				<element>FIRE</element>
 			</effect>
@@ -6180,11 +6175,9 @@
 		<targetType>ONE</targetType>
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>5</abnormalTime>
-		<abnormalType>HOLY_ATTACK</abnormalType>
 		<castRange>600</castRange>
 		<effectPoint>100</effectPoint>
 		<effectRange>1100</effectRange>
-		<element>1</element> <!-- Water -->
 		<hitTime>4000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>66</magicLevel>
@@ -6192,9 +6185,6 @@
 		<mpInitialConsume>50</mpInitialConsume>
 		<reuseDelay>3600000</reuseDelay>
 		<effects>
-			<effect name="Buff">
-				<add stat="waterPower">20</add>
-			</effect>
 			<effect name="ElementSeed">
 				<element>WATER</element>
 			</effect>
@@ -6207,11 +6197,9 @@
 		<targetType>ONE</targetType>
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>5</abnormalTime>
-		<abnormalType>HOLY_ATTACK</abnormalType>
 		<castRange>600</castRange>
 		<effectPoint>100</effectPoint>
 		<effectRange>1100</effectRange>
-		<element>2</element> <!-- Wind -->
 		<hitTime>4000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>66</magicLevel>
@@ -6219,9 +6207,6 @@
 		<mpInitialConsume>50</mpInitialConsume>
 		<reuseDelay>3600000</reuseDelay>
 		<effects>
-			<effect name="Buff">
-				<add stat="windPower">20</add>
-			</effect>
 			<effect name="ElementSeed">
 				<element>WIND</element>
 			</effect>
