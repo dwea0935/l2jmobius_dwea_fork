@@ -804,7 +804,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1668" type="EtcItem" name="Spellbook: Summon Mew the Cat">
 		<!-- Spellbook required for Summon Mew the Cat magic. Used by Human Wizards. -->
@@ -813,7 +812,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1669" type="EtcItem" name="Spellbook: Summon Unicorn Boxer">
 		<!-- Spellbook required for Summon Unicorn Boxer magic. Used by Elven Wizards. -->
@@ -822,7 +820,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1670" type="EtcItem" name="Spellbook: Summon Unicorn Mirage">
 		<!-- Spellbook required for Summon Unicorn Mirage magic. Used by Elven Wizards. -->
@@ -831,7 +828,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1671" type="EtcItem" name="Spellbook: Summon Silhouette">
 		<!-- Spellbook required for Summon Silhouette magic. Used by Dark Wizards. -->
@@ -840,7 +836,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1672" type="EtcItem" name="__">
 		<set name="icon" val="icon.item_normal06" />

@@ -171,7 +171,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5014" type="EtcItem" name="Spellbook: Elemental Symphony">
 		<!-- Spellbook required for Elemental Symphony magic. -->
@@ -180,7 +179,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5015" type="EtcItem" name="Spellbook: Elemental Storm">
 		<!-- Spellbook required for Elemental Storm magic. Used by Spellhowlers. -->
@@ -189,7 +187,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5016" type="EtcItem" name="Seed: Dark Coda">
 		<!-- Planted onto a monster in the Gludio area, this seed becomes the dark coda. For best results it should be planted onto a monster whose level is between 5 and 15, by a character within the same range of levels. -->

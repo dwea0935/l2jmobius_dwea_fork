@@ -838,7 +838,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3941" type="EtcItem" name="Spellbook: Mass Resurrection">
 		<!-- Spellbook required for Mass Resurrection magic. Used by Bishops. -->
@@ -847,7 +846,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3942" type="EtcItem" name="Spellbook: Party Return">
 		<!-- Spellbook required for Party Return magic. Used by Elven Elders. -->
@@ -856,7 +854,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3943" type="EtcItem" name="Amulet: Heart of Paagrio">
 		<!-- Spellbook required for Heart Of Paagrio magic. Used by Overlords. -->
@@ -865,7 +862,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3944" type="EtcItem" name="Spellbook: Decrease Weight">
 		<!-- Spellbook required for Decrease Weight magic. Used by Elven Oracles. -->
@@ -874,7 +870,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="2450" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3945" type="EtcItem" name="Boat Ticket">
 		<!-- Ship ticket: From Talking Island – To Giran -->

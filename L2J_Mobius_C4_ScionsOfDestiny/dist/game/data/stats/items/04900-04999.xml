@@ -184,7 +184,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4907" type="EtcItem" name="Spellbook: Solar Flare">
 		<!-- Spellbook required for Solar Flare magic. Used by Spellsingers. -->
@@ -193,7 +192,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4908" type="EtcItem" name="Spellbook: Shadow Spark">
 		<!-- Spellbook required for Shadow Spark magic. Used by Dark Wizards. -->
@@ -202,7 +200,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4909" type="EtcItem" name="Spellbook: Shadow Flare">
 		<!-- Spellbook required for Shadow Flare magic. Used by Spellhowlers. -->
@@ -211,7 +208,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4910" type="EtcItem" name="Spellbook: Vampiric Rage">
 		<!-- Spellbook required for Vampiric Rage magic. Used by Shillien Oracles. -->
@@ -220,7 +216,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4911" type="EtcItem" name="Spellbook: Curse Disease">
 		<!-- Spellbook required for Curse Disease magic. Used by Necromancers. -->
@@ -229,7 +224,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4912" type="EtcItem" name="Spellbook: Benediction">
 		<!-- Spellbook required for Benediction magic. Used by Bishops. -->
@@ -238,7 +232,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="8700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4913" type="EtcItem" name="Spellbook: Word of Fear">
 		<!-- Spellbook required for Word of Fear magic. Used by Prophets. -->
@@ -247,7 +240,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4914" type="EtcItem" name="Spellbook: Serenade of Eva">
 		<!-- Spellbook required for Serenade of Eva magic. Used by Elven Elders. -->
@@ -256,7 +248,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4915" type="EtcItem" name="Blueprint: Summon Wild Hog Cannon">
 		<!-- A blueprint required for the Summon Wild Hog Cannon technique. Used by Warsmiths. -->
@@ -265,7 +256,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4916" type="EtcItem" name="Spellbook: Energy Bolt">
 		<!-- Spellbook required for Energy Bolt magic. Used by Human Wizards and Elven Wizards. -->
@@ -274,7 +264,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4917" type="EtcItem" name="Spellbook: Aura Bolt">
 		<!-- Spellbook required for Aura Bolt magic. Used by Spellsingers. -->
@@ -283,7 +272,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4918" type="EtcItem" name="Spellbook: Summon Kai the Cat">
 		<!-- Spellbook required for Summon Kai the Cat magic. Used by Warlocks. -->
@@ -292,7 +280,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4919" type="EtcItem" name="Spellbook: Summon Unicorn Merrow">
 		<!-- Spellbook required for Summon Unicorn Merrow magic. Used by Elemental Summoners. -->
@@ -301,7 +288,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4920" type="EtcItem" name="Spellbook: Summon Soulless">
 		<!-- Spellbook required for Summon Soulless magic. Used by Phantom Summoners. -->
@@ -310,7 +296,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4921" type="EtcItem" name="Blueprint: Summon Big Boom">
 		<!-- A blueprint for learning the Summon Big Boom technique. Used by Warsmiths. -->
@@ -319,7 +304,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4922" type="EtcItem" name="Spellbook: Summon Binding Cubic">
 		<!-- Spellbook required for Summon Binding Cubic magic. Used by Warlocks. -->
@@ -328,7 +312,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4923" type="EtcItem" name="Spellbook: Summon Aqua Cubic">
 		<!-- Spellbook required for Summon Aqua Cubic magic. Used by Elemental Summoners. -->
@@ -337,7 +320,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4924" type="EtcItem" name="Spellbook: Summon Spark Cubic">
 		<!-- Spellbook required for Summon Spark Cubic magic. Used by Phantom Summoners. -->
@@ -346,7 +328,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4925" type="EtcItem" name="Amulet: Speed of Paagrio">
 		<!-- Amulet required for the Speed of Paagrio spell. Used by Overlords. -->
@@ -355,7 +336,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4926" type="EtcItem" name="Amulet: Soul Guard">
 		<!-- Amulet required for the Soul Guard spell. Used by Overlords. -->
@@ -364,7 +344,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4927" type="EtcItem" name="Amulet: Chant of Revenge">
 		<!-- Amulet required for the Chant of Revenge spell. Used by Warcryers. -->
@@ -373,7 +352,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4928" type="EtcItem" name="Spellbook: Seed of Fire">
 		<!-- Spellbook required for Seed of Fire magic. Used by Sorcerers and Sorceresses. -->
@@ -382,7 +360,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4929" type="EtcItem" name="Spellbook: Seed of Water">
 		<!-- Spellbook required for Seed of Water magic. Used by Spellsingers. -->
@@ -391,7 +368,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4930" type="EtcItem" name="Spellbook: Seed of Wind">
 		<!-- Spellbook required for Seed of Wind magic. Used by Spellhowlers. -->
@@ -400,7 +376,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4931" type="EtcItem" name="Spellbook: Aura Symphony">
 		<!-- Spellbook required for Aura Symphony magic. Used by Sorcerers and Sorceresses, Spellsingers and Spellhowlers. -->
@@ -409,7 +384,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4932" type="EtcItem" name="Spellbook: Inferno">
 		<!-- Spellbook required for Inferno magic. Used by Sorcerers and Sorceresses. -->
@@ -418,7 +392,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4933" type="EtcItem" name="Spellbook: Blizzard">
 		<!-- Spellbook required for Blizzard magic. Used by Spellsingers. -->
@@ -427,7 +400,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4934" type="EtcItem" name="Spellbook: Demon Wind">
 		<!-- Spellbook required for Demon Wind magic. Used by Spellhowlers. -->
@@ -436,7 +408,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4935" type="EtcItem" name="Spellbook: Elemental Symphony">
 		<!-- Spellbook required for Elemental Symphony magic. -->
@@ -445,7 +416,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4936" type="EtcItem" name="Recipe: Avadon Shield (60%)">
 		<!-- For Dwarves only. The recipe for an avadon shield. Requires Create Item Skill Level 6. The success rate is 60%. -->

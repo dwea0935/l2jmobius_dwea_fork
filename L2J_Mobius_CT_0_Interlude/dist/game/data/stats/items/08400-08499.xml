@@ -7,7 +7,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8401" type="EtcItem" name="Spellbook: Major Heal">
 		<!-- Spellbook needed to learn Major Heal. Used by Bishops and Elven Elders. -->
@@ -16,7 +15,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8402" type="EtcItem" name="Spellbook: Major Group Heal">
 		<!-- Spellbook needed to learn Major Group Heal. Used by Bishops. -->
@@ -25,7 +23,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8403" type="EtcItem" name="Small Nimble Green Fish - Upper Grade">
 		<!-- Double-click to randomly transform an item. The transformed item can be used to make other items. -->

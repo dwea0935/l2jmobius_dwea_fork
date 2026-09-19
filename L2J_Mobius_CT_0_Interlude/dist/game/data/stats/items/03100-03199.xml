@@ -7,7 +7,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3101" type="EtcItem" name="Spellbook: Death Whisper">
 		<!-- Spellbook needed to learn Death Whisper. Used by Prophets and Shillien Elders. -->
@@ -16,7 +15,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3102" type="EtcItem" name="Spellbook: Bless Shield">
 		<!-- Spellbook needed to learn Bless Shield. Used by Prophets and Elven Elders. -->
@@ -25,7 +23,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3103" type="EtcItem" name="Amulet: Pa'agrio's Wisdom">
 		<!-- Amulet required for the Pa'agrio's Wisdom spell. Used by Overlords. -->
@@ -34,7 +31,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3104" type="EtcItem" name="Amulet: Pa'agrio's Glory">
 		<!-- Amulet required for the Pa'agrio's Glory spell. Used by Overlords. -->
@@ -43,7 +39,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3105" type="EtcItem" name="Amulet: Seal of Winter">
 		<!-- Amulet required for the Seal of Winter spell. Used by Overlords. -->
@@ -52,7 +47,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3106" type="EtcItem" name="Amulet: Seal of Flame">
 		<!-- Amulet required for the Seal of Flame spell. Used by Overlords. -->
@@ -61,7 +55,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3107" type="EtcItem" name="Amulet: Seal of Gloom">
 		<!-- Amulet required for the Seal of Gloom spell. Used by Overlords. -->
@@ -70,7 +63,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3108" type="EtcItem" name="Amulet: Seal of Mirage">
 		<!-- Amulet required for the Seal of Mirage spell. Used by Overlords. -->
@@ -79,7 +71,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3109" type="EtcItem" name="Amulet: Seal of Silence">
 		<!-- Amulet required for the Seal of Silence spell. Used by Overlords. -->
@@ -88,7 +79,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3110" type="EtcItem" name="Amulet: Seal of Scourge">
 		<!-- Amulet required for the Seal of Scourge spell. Used by Overlords. -->
@@ -97,7 +87,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3111" type="EtcItem" name="Amulet: Seal of Suspension">
 		<!-- Amulet required for the Seal of Suspension spell. Used by Overlords. -->
@@ -106,7 +95,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3112" type="EtcItem" name="Amulet: Pa'agrio's Vision">
 		<!-- Amulet required for the Pa'agrio's Vision spell. Used by Overlords. -->
@@ -115,7 +103,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3113" type="EtcItem" name="Amulet: Pa'agrio's Protection">
 		<!-- Amulet required for the Pa'agrio's Protection spell. Used by Overlords. -->
@@ -124,7 +111,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3114" type="EtcItem" name="Amulet: Steal Essence">
 		<!-- Amulet required for the Steal Essence spell. Used by Warcryers and Overlords. -->
@@ -133,7 +119,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3115" type="EtcItem" name="Amulet: Freezing Flame">
 		<!-- Amulet required for the Freezing Flame spell. Used by Warcryers. -->
@@ -142,7 +127,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3116" type="EtcItem" name="Amulet: Chant of Fury">
 		<!-- Amulet required for the Chant of Fury spell. Used by Warcryers. -->
@@ -151,7 +135,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3117" type="EtcItem" name="Amulet: Chant of Evasion">
 		<!-- Amulet required for the Chant of Evasion spell. Used by Warcryers. -->
@@ -160,7 +143,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3118" type="EtcItem" name="Amulet: Chant of Rage">
 		<!-- Amulet required for the Chant of Rage spell. Used by Warcryers. -->
@@ -169,7 +151,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3119" type="EtcItem" name="Mark of Guildsman">
 		<!-- A mark given to those who have passed the Trial of the Guildsman. An occupation change related item. -->

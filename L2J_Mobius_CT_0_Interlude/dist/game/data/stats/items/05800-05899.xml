@@ -169,7 +169,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5810" type="EtcItem" name="Spellbook: Rain of Fire">
 		<!-- Spellbook needed to learn Rain of Fire. Used by Sorcerers/sses. -->
@@ -178,7 +177,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5811" type="EtcItem" name="Spellbook: Mass Slow">
 		<!-- Spellbook needed to learn Mass Slow. Used by Necromancers. -->
@@ -187,7 +185,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5812" type="EtcItem" name="Spellbook: Servitor Empowerment">
 		<!-- Spellbook needed to learn Servitor Empowerment. Used by Warlocks, Elemental Summoners and Phantom Summoners. -->
@@ -196,7 +193,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="5400" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5813" type="EtcItem" name="Spellbook: Servitor Cure">
 		<!-- Spellbook needed to learn Servitor Cure. Used by Warlocks, Elemental Summoners and Phantom Summoners. -->
@@ -205,7 +201,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5814" type="EtcItem" name="Spellbook: Servitor Blessing">
 		<!-- Spellbook needed to learn Servitor Blessing. Used by Warlocks, Elemental Summoners and Phantom Summoners. -->
@@ -214,7 +209,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5815" type="EtcItem" name="Spellbook: Wild Magic">
 		<!-- Spellbook needed to learn Wild. Used by Elven Elders and Shillien Elders. -->
@@ -223,7 +217,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5816" type="EtcItem" name="Spellbook: Advanced Block">
 		<!-- Spellbook needed to learn Advanced Block. Used by Elven Elders. -->
@@ -232,7 +225,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="5817" type="Weapon" name="Chrono Campana">
 		<!-- Chronicle III Souvenir!!! -->

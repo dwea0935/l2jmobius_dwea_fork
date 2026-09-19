@@ -559,7 +559,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1550" />
-		<set name="is_stackable" val="true" />
 		<set name="handler" val="Recipes" />
 	</item>
 	<item id="3039" type="EtcItem" name="Spellbook: Summon Storm Cubic">
@@ -569,7 +568,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3040" type="EtcItem" name="Spellbook: Summon Vampiric Cubic">
 		<!-- Spellbook required for Summon Vampiric Cubic magic. Used by Shillien Knights. -->
@@ -578,7 +576,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3041" type="EtcItem" name="Spellbook: Summon Phantom Cubic">
 		<!-- Spellbook required for Summon Phantom Cubic magic. Used by Shillien Knights and Phantom Summoners. -->
@@ -587,7 +584,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3042" type="EtcItem" name="Spellbook: Life Scavenge">
 		<!-- Spellbook required for Life Scavenge magic. Used by Dark Avengers. -->
@@ -596,7 +592,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3043" type="EtcItem" name="Spellbook: Holy Strike">
 		<!-- Spellbook required for Holy Strike magic. Used by Paladins. -->
@@ -605,7 +600,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3044" type="EtcItem" name="Spellbook: Horror">
 		<!-- Spellbook required for Horror magic. Used by Dark Avengers. -->
@@ -614,7 +608,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3045" type="EtcItem" name="Spellbook: Summon Life Cubic">
 		<!-- Spellbook required for Summon Life Cubic magic. Used by Temple Knights and Elemental Summoners. -->
@@ -623,7 +616,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3046" type="EtcItem" name="Spellbook: Sacrifice">
 		<!-- Spellbook required for Sacrifice magic. Used by Paladins. -->
@@ -632,7 +624,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="5400" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3047" type="EtcItem" name="Spellbook: Iron Will">
 		<!-- Spellbook required for Iron Will magic. Used by Paladins and Dark Avengers. -->
@@ -641,7 +632,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3048" type="EtcItem" name="Spellbook: Reflect Damage">
 		<!-- Spellbook required for Reflect Damage magic. Used by Dark Avengers. -->
@@ -650,7 +640,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3049" type="EtcItem" name="Spellbook: Corpse Plague">
 		<!-- Spellbook required for Corpse Plague magic. Used by Dark Avengers and Shillien Knights. -->
@@ -659,7 +648,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3050" type="EtcItem" name="Spellbook: Hex">
 		<!-- Spellbook required for Hex magic. Used by Shillien Knights, Bladedancers, Abyss Walkers, and Phantom Rangers. -->
@@ -668,7 +656,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3051" type="EtcItem" name="Spellbook: Spirit Barrier">
 		<!-- Spellbook required for Spirit Barrier magic. Used by Temple Knights, Swordsingers, Plainswalkers, and Silver Rangers. -->
@@ -677,7 +664,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3052" type="EtcItem" name="Spellbook: Hamstring">
 		<!-- Spellbook required for Hamstring magic. Used by Dark Avengers. -->
@@ -686,7 +672,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3053" type="EtcItem" name="Spellbook: Holy Blessing">
 		<!-- Spellbook required for Holy Blessing magic. Used by Paladins. -->
@@ -695,7 +680,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3054" type="EtcItem" name="Spellbook: Summon Viper Cubic">
 		<!-- Spellbook required for Summon Viper Cubic magic. Used by Shillien Knights. -->
@@ -704,7 +688,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3055" type="EtcItem" name="Spellbook: Lightening Strike">
 		<!-- Spellbook required for Lightning Strike magic. Used by Shillien Knights. -->
@@ -713,7 +696,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3056" type="EtcItem" name="Spellbook: Summon Dark Panther">
 		<!-- Spellbook required for Summon Dark Panther magic. Used by Dark Avengers. -->
@@ -722,7 +704,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3057" type="EtcItem" name="Spellbook: Summon Reanimated Man">
 		<!-- Spellbook required for Summon Reanimated Man magic. Used by Necromancers. -->
@@ -731,7 +712,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3058" type="EtcItem" name="Spellbook: Summon Corrupted Man">
 		<!-- Spellbook required for Summon Corrupted Man magic. Used by Necromancers. -->
@@ -740,7 +720,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3059" type="EtcItem" name="Spellbook: Corpse Burst">
 		<!-- Spellbook required for Corpse Burst magic. Used by Necromancers. -->
@@ -749,7 +728,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3060" type="EtcItem" name="Spellbook: Forget">
 		<!-- Spellbook required for Forget magic. Used by Necromancers. -->
@@ -758,7 +736,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3061" type="EtcItem" name="Spellbook: Curse Discord">
 		<!-- Spellbook required for Curse Discord magic. Used by Necromancers. -->
@@ -767,7 +744,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3062" type="EtcItem" name="Spellbook: Curse Fear">
 		<!-- Spellbook required for Curse Fear magic. Used by Necromancers. -->
@@ -776,7 +752,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3063" type="EtcItem" name="Spellbook: Anchor">
 		<!-- Spellbook required for Anchor magic. Used by Necromancers. -->
@@ -785,7 +760,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3064" type="EtcItem" name="Spellbook: Silence">
 		<!-- Spellbook required for Silence magic. Used by Necromancers and Spellhowlers. -->
@@ -794,7 +768,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3065" type="EtcItem" name="Spellbook: Death Spike">
 		<!-- Spellbook required for Death Spike magic. Used by Necromancers and Spellhowlers. -->
@@ -803,7 +776,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3066" type="EtcItem" name="Spellbook: Curse Death Link">
 		<!-- Spellbook required for Curse Death Link magic. Used by Necromancers and Spellhowlers. -->
@@ -812,7 +784,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="5400" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3067" type="EtcItem" name="Spellbook: Vampiric Claw">
 		<!-- Spellbook required for Vampiric Claw magic. Used by Necromancers and Spellhowlers. -->
@@ -821,7 +792,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3068" type="EtcItem" name="Spellbook: Vitalize">
 		<!-- Spellbook required for Vitalize magic. Used by Bishops and Elven Elders. -->
@@ -830,7 +800,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3069" type="EtcItem" name="Spellbook: Repose">
 		<!-- Spellbook required for Repose magic. Used by Bishops. -->
@@ -839,7 +808,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3070" type="EtcItem" name="Spellbook: Hold Undead">
 		<!-- Spellbook required for Hold Undead magic. Used by Bishops. -->
@@ -848,7 +816,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3071" type="EtcItem" name="Spellbook: Requiem">
 		<!-- Spellbook required for Requiem magic. Used by Bishops. -->
@@ -857,7 +824,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3072" type="EtcItem" name="Spellbook: Purify">
 		<!-- Spellbook required for Purify magic. Used by Bishops and Shillien Elders. -->
@@ -866,7 +832,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3073" type="EtcItem" name="Spellbook: Might Of Heaven">
 		<!-- Spellbook required for Might of Heaven magic. Used by Bishops and Elven Elders. -->
@@ -875,7 +840,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3074" type="EtcItem" name="Spellbook: Surrender to Wind">
 		<!-- Spellbook required for Surrender to Wind magic. Used by Sorcerers and Spellhowlers. -->
@@ -884,7 +848,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3075" type="EtcItem" name="Spellbook: Blazing Circle">
 		<!-- Spellbook required for Blazing Circle magic. Used by Sorcerers and Sorceresses. -->
@@ -893,7 +856,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3076" type="EtcItem" name="Spellbook: Prominence">
 		<!-- Spellbook required for Prominence magic. Used by Sorcerers and Sorceresses. -->
@@ -902,7 +864,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3077" type="EtcItem" name="Spellbook: Blazing Skin">
 		<!-- Spellbook required for Blazing Skin magic. Used by Sorcerers and Sorceresses. -->
@@ -911,7 +872,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3078" type="EtcItem" name="Spellbook: Decay">
 		<!-- Spellbook required for Decay magic. Used by Sorcerers and Sorceresses. -->
@@ -920,7 +880,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3079" type="EtcItem" name="Spellbook: Cancel">
 		<!-- Spellbook required for Cancel magic. Used by Sorcerers and Sorceresses. -->
@@ -929,7 +888,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3080" type="EtcItem" name="Spellbook: Sleeping Cloud">
 		<!-- Spellbook required for Sleeping Cloud magic. Used by Sorcerers, Sorceresses and Spellsingers. -->
@@ -938,7 +896,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3081" type="EtcItem" name="Spellbook: Aura Flare">
 		<!-- Spellbook required for Aura Flare magic. Used by Sorcerers, Sorceresses and Spellsingers. -->
@@ -947,7 +904,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3082" type="EtcItem" name="Spellbook: Surrender to Water">
 		<!-- Spellbook required for Surrender to Water magic. Used by Spellsingers. -->
@@ -956,7 +912,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3083" type="EtcItem" name="Spellbook: Frost Wall">
 		<!-- Spellbook required for Frost Wall magic. Used by Spellsingers. -->
@@ -965,7 +920,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="5400" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3084" type="EtcItem" name="Spellbook: Freezing Shackle">
 		<!-- Spellbook required for Freezing Shackle magic. Used by Spellsingers. -->
@@ -974,7 +928,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3085" type="EtcItem" name="Spellbook: Hydro Blast">
 		<!-- Spellbook required for Hydro Blast magic. Used by Spellsingers. -->
@@ -983,7 +936,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3086" type="EtcItem" name="Spellbook: Frost Bolt">
 		<!-- Spellbook required for Frost Bolt magic. Used by Spellsingers. -->
@@ -992,7 +944,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3087" type="EtcItem" name="Spellbook: Ice Dagger">
 		<!-- Spellbook required for Ice Dagger magic. Used by Spellsingers. -->
@@ -1001,7 +952,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3088" type="EtcItem" name="Spellbook: Freezing Skin">
 		<!-- Spellbook required for Freezing Skin magic. Used by Spellsingers. -->
@@ -1010,7 +960,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3089" type="EtcItem" name="Spellbook: Tempest">
 		<!-- Spellbook required for Tempest magic. Used by Spellhowlers. -->
@@ -1019,7 +968,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3090" type="EtcItem" name="Spellbook: Hurricane">
 		<!-- Spellbook required for Hurricane magic. Used by Spellhowlers. -->
@@ -1028,7 +976,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3091" type="EtcItem" name="Spellbook: Servitor Magic Shield">
 		<!-- Spellbook required for Servitor Magic Shield magic. Used by Warlocks, Elemental Summoners and Phantom Summoners. -->
@@ -1037,7 +984,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3092" type="EtcItem" name="Spellbook: Servitor Physical Shield">
 		<!-- Spellbook required for Servitor Physical Shield magic. Used by Warlocks, Elemental Summoners and Phantom Summoners. -->
@@ -1046,7 +992,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3093" type="EtcItem" name="Spellbook: Servitor Haste">
 		<!-- Spellbook required for Servitor Haste magic. Used by Warlocks, Elemental Summoners and Phantom Summoners. -->
@@ -1055,7 +1000,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3094" type="EtcItem" name="Spellbook: Invigor">
 		<!-- Spellbook required for Invigor magic. Used by Prophets. -->
@@ -1064,7 +1008,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3095" type="EtcItem" name="Spellbook: Magic Barrier">
 		<!-- Spellbook required for Magic Barrier magic. Used by Prophets. -->
@@ -1073,7 +1016,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3096" type="EtcItem" name="Spellbook: Bless the Body">
 		<!-- Spellbook required for Bless the Body magic. Used by Prophets. -->
@@ -1082,7 +1024,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3097" type="EtcItem" name="Spellbook: Bless the Soul">
 		<!-- Spellbook required for Bless the Soul magic. Used by Prophets. -->
@@ -1091,7 +1032,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3098" type="EtcItem" name="Spellbook: Return">
 		<!-- Spellbook required for Return magic. Used by Prophets and Elven Elders. -->
@@ -1100,7 +1040,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="3099" type="EtcItem" name="Spellbook: Haste">
 		<!-- Spellbook required for Haste magic. Used by Prophets. -->
@@ -1109,6 +1048,5 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 </list>

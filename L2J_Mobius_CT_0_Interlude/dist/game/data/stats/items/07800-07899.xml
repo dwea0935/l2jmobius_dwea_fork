@@ -832,7 +832,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="11600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="7836" type="Armor" name="Santa's Hat">
 		<!-- A Santa Claus hat that was created to celebrate the holiday. This hat can be worn only during the end of year holiday season. It uses 2 hair accessory slots. -->

@@ -7,7 +7,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="40000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8901" type="EtcItem" name="Ancient Spellbook: Raging Waves">
 		<!-- Ancient Spellbook needed to learn Raging Waves. Used by Mystic Muses. -->
@@ -16,7 +15,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="120000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8902" type="EtcItem" name="Ancient Spellbook: Day of Doom">
 		<!-- Ancient Spellbook needed to learn Day of Doom. Can be used by a Soultaker. -->
@@ -25,7 +23,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="40000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8903" type="EtcItem" name="Ancient Spellbook: Gehenna">
 		<!-- Ancient Spellbook needed to learn Gehenna. Can be used by a Soultaker. -->
@@ -34,7 +31,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="40000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8904" type="EtcItem" name="Ancient Spellbook: Anti-Summoning Field">
 		<!-- Ancient Spellbook needed to learn Anti-Summoning Field. Can be used by an Arcana Lord, Elemental Master, and Spectral Master. -->
@@ -43,7 +39,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="40000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8905" type="EtcItem" name="Ancient Spellbook: Purification Field">
 		<!-- Ancient Spellbook needed to learn Purification Field. Used by a Cardinal. -->
@@ -52,7 +47,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="40000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8906" type="EtcItem" name="Ancient Spellbook: Miracle">
 		<!-- Ancient Spellbook needed to learn Miracle. Used by a Cardinal. -->
@@ -61,7 +55,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="40000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8907" type="EtcItem" name="Ancient Spellbook: Flames of Invincibility">
 		<!-- Ancient Spellbook needed to learn Flames of Invincibility. Used by a Dominator. -->
@@ -70,7 +63,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="40000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8908" type="EtcItem" name="Ancient Spellbook: Mass Recharge">
 		<!-- Ancient Spellbook needed to learn Mass Recharge. Can be used by an Eva's Saint and Shillien Saint. -->
@@ -79,7 +71,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="40000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8909" type="EtcItem" name="Blueprint: Summon Swoop Cannon">
 		<!-- Blueprint needed to learn the Summon Swoop Cannon technique. Can be used by a Warsmith. -->
@@ -88,7 +79,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="9600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8910" type="Armor" name="Black Feather Mask">
 		<!-- Hair accessory containing a dark feather. It uses 2 hair accessory slots. This is an event item which cannot be exchanged or dropped. -->
@@ -674,7 +664,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="8100" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8946" type="EtcItem" name="Spellbook: Invocation">
 		<!-- Spellbook needed to learn Invocation. Can be used by an Elder, Shillien Elder, and Bishop. -->
@@ -683,7 +672,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8947" type="Armor" name="L2day - Rabbit Ears">
 		<!-- Hair accessory in the shape of Rabbit Ears. -->

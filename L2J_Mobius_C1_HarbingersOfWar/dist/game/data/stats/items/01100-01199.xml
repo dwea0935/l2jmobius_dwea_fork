@@ -678,7 +678,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="50" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1151" type="EtcItem" name="Spellbook: Self Heal">
 		<!-- Spellbook required for Self Heal magic. -->
@@ -687,7 +686,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="50" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1152" type="EtcItem" name="Spellbook: Heal">
 		<!-- Spellbook required for Heal magic. Used by Human Mystics, Elven Mystics and Dark Mystics. -->
@@ -696,7 +694,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="100" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1153" type="EtcItem" name="Jenna's Letter">
 		<!-- A letter from Sentry Jenna to Master Harant. -->

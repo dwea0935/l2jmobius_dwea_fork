@@ -816,7 +816,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="8700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6351" type="EtcItem" name="Amulet: Ritual Of Paagrio">
 		<!-- Amulet required for the Ritual of Paagrio spell. Used by Overlords. -->
@@ -825,7 +824,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="8200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6352" type="EtcItem" name="Spellbook: Prayer">
 		<!-- A spellbook used to learn Prayer. Used by Bishops. -->
@@ -834,7 +832,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="8700" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6353" type="EtcItem" name="Blue Gemstone">
 		<!-- A gemstone obtained from gremlins. Take it to a newbie helper. -->
@@ -1638,7 +1635,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6396" type="EtcItem" name="Amulet: Chant of Eagle">
 		<!-- Amulet required for the Chant of Eagle spell. Used by Warcryers. -->
@@ -1647,7 +1643,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6397" type="EtcItem" name="Amulet: Chant of Vampire">
 		<!-- Amulet required for the Chant of Vampire spell. Used by Warcryers. -->
@@ -1656,7 +1651,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6398" type="EtcItem" name="Spellbook: Body of Avatar">
 		<!-- Spellbook that is needed to learn the Body of Avatar magic. Used by Bishops. -->
@@ -1665,7 +1659,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="4600" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6399" type="EtcItem" name="Badge of Rabbit">
 		<!-- The badge that indicates that its bearer's event collector grade is “rabbit.” Without this badge, one cannot prove one's grade. -->

@@ -926,7 +926,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8381" type="EtcItem" name="Spellbook: Mass Curse Fear">
 		<!-- Spellbook needed to learn Mass Curse Fear. Used by Necromancers. -->
@@ -935,7 +934,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8382" type="EtcItem" name="Spellbook: Mass Curse Gloom">
 		<!-- Spellbook needed to learn Mass Curse Gloom. Used by Necromancers. -->
@@ -944,7 +942,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8383" type="EtcItem" name="Spellbook: Mass Surrender to Fire">
 		<!-- Spellbook needed to learn Mass Surrender to Fire. Used by Warlocks. -->
@@ -953,7 +950,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8384" type="EtcItem" name="Spellbook: Mass Surrender to Water">
 		<!-- Spellbook needed to learn Mass Surrender to Water. Used by Elemental Summoners. -->
@@ -962,7 +958,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8385" type="EtcItem" name="Spellbook: Mass Surrender to Wind">
 		<!-- Spellbook needed to learn Mass Surrender to Wind. Used by Phantom Summoners. -->
@@ -971,7 +966,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8386" type="EtcItem" name="Spellbook - Arcane Disruption">
 		<!-- Spellbook needed to learn Arcane Disruption. Used by Warlocks. -->
@@ -980,7 +974,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8387" type="EtcItem" name="Spellbook - Summon Cursed Bones">
 		<!-- Spellbook needed to learn Summon Cursed Bones. Used by Necromancers. -->
@@ -989,7 +982,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="7200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8388" type="EtcItem" name="Spellbook: Greater Might">
 		<!-- Spellbook needed to learn Great Might. Used by Prophets. -->
@@ -998,7 +990,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8389" type="EtcItem" name="Spellbook: Greater Shield">
 		<!-- Spellbook needed to learn Greater Shield. Used by Prophets. -->
@@ -1007,7 +998,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8390" type="EtcItem" name="Amulet: War Chant">
 		<!-- Warcryers need this in order to use War Chant. -->
@@ -1016,7 +1006,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8391" type="EtcItem" name="Amulet: Earth Chant">
 		<!-- Warcryers need this in order to use Earth Chant. -->
@@ -1025,7 +1014,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8392" type="EtcItem" name="Spellbook: Holy Resistance">
 		<!-- Spellbook needed to learn Holy Resistance. Used by Prophets and Shillien Elders. -->
@@ -1034,7 +1022,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8393" type="EtcItem" name="Spellbook: Unholy Resistance">
 		<!-- Spellbook needed to learn Unholy Resistance. Used by Prophets and Elven Elders. -->
@@ -1043,7 +1030,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8394" type="EtcItem" name="Spellbook: Trance">
 		<!-- Spellbook needed to learn Trance. Used by Bishops and Elven Elders. -->
@@ -1052,7 +1038,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8395" type="EtcItem" name="Spellbook: Erase">
 		<!-- Spellbook needed to learn Erase. Used by Bishops, Prophets, Elven Elders and Shillien Elders. -->
@@ -1061,7 +1046,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8396" type="EtcItem" name="Spellbook: Magical Backfire">
 		<!-- Spellbook needed to learn Magical Backfire. Used by Bishops. -->
@@ -1070,7 +1054,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8397" type="EtcItem" name="Spellbook: Clarity">
 		<!-- Spellbook needed to learn Clarity. Used by Elven Elders. -->
@@ -1079,7 +1062,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8398" type="EtcItem" name="Spellbook: Mana Burn">
 		<!-- Spellbook needed to learn Mana Burn. Used by Bishops, Prophets, Elven Elders and Shillien Elders. -->
@@ -1088,7 +1070,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8399" type="EtcItem" name="Spellbook: Mana Storm">
 		<!-- Spellbook needed to learn Mana Storm. Used by Bishops. -->
@@ -1097,6 +1078,5 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6750" />
-		<set name="is_stackable" val="true" />
 	</item>
 </list>

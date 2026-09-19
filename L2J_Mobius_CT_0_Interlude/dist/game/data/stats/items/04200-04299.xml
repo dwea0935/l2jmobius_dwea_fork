@@ -7,7 +7,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4201" type="EtcItem" name="Spellbook: Resist Shock">
 		<!-- Spellbook needed to learn Resist Shock. Used by Elven Elders. -->
@@ -16,7 +15,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4202" type="Weapon" name="Chrono Cithara">
 		<!-- Chronicle I Souvenir!!! -->
@@ -44,7 +42,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4204" type="EtcItem" name="Amulet: Pa'agrio's Tact">
 		<!-- Amulet required for the Pa'agrio's Tact spell. Used by Overlords. -->
@@ -53,7 +50,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4205" type="EtcItem" name="Amulet: Pa'agrio's Rage">
 		<!-- Amulet required for the Pa'agrio's Rage spell. Used by Overlords. -->
@@ -62,7 +58,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4206" type="EtcItem" name="Spellbook: Transfer Pain">
 		<!-- Spellbook needed to learn Transfer Pain. Used by Necromancers, Warlocks, Elemental Summoners and Phantom Summoners. -->
@@ -71,7 +66,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4207" type="EtcItem" name="Spellbook: Mana Regeneration">
 		<!-- Spellbook needed to learn Mana Regeneration. Used by Spellsingers. -->
@@ -80,7 +74,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3200" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4208" type="EtcItem" name="Spellbook: Curse Gloom">
 		<!-- Spellbook needed to learn Curse Gloom. Used by Necromancers. -->
@@ -89,7 +82,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="3850" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="4209" type="EtcItem" name="Change of Heart - Piece 1">
 		<!-- Used only during the Change of Heart event. Complete a heart and take it to Sprockets the Cat to claim your prize. -->

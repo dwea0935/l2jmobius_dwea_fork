@@ -7,7 +7,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1401" type="EtcItem" name="Spellbook: Acumen">
 		<!-- Spellbook needed to learn Acumen. Used by Clerics. -->
@@ -16,7 +15,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1402" type="EtcItem" name="Spellbook: Agility">
 		<!-- Spellbook needed to learn Agility. Used by Elven Oracles. -->
@@ -25,7 +23,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1403" type="EtcItem" name="Spellbook: Summon Kat the Cat">
 		<!-- Spellbook needed to learn Summon Kat the Cat. Used by Human Wizards. -->
@@ -34,7 +31,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1404" type="EtcItem" name="Spellbook: Servitor Recharge">
 		<!-- Spellbook needed to learn Servitor Recharge. Used by Human Wizards, Elven Wizards, and Dark Wizards. -->
@@ -43,7 +39,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1405" type="EtcItem" name="Spellbook: Servitor Heal">
 		<!-- Spellbook needed to learn Servitor Heal. Used by Human Wizards, Elven Wizards, and Dark Wizards. -->
@@ -52,7 +47,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1406" type="EtcItem" name="Spellbook: Servitor Wind Walk">
 		<!-- Spellbook needed to learn Servitor Wind Walk. Used by Human Wizards. -->
@@ -61,7 +55,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="2450" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1407" type="EtcItem" name="Spellbook: Servitor Magic Boost">
 		<!-- Spellbook needed to learn Bright Servitor. Used by Elven Wizards. -->
@@ -70,7 +63,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="2450" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1408" type="EtcItem" name="Spellbook: Mighty Servitor">
 		<!-- Spellbook needed to learn Mighty Servitor. Used by Dark Wizards. -->
@@ -79,7 +71,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="2450" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1409" type="EtcItem" name="Spellbook: Slow">
 		<!-- Spellbook needed to learn Slow. Used by Human Wizards and Dark Wizards. -->
@@ -88,7 +79,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="2450" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1410" type="EtcItem" name="Spellbook: Poisonous Cloud">
 		<!-- Spellbook needed to learn Poisonous Cloud. Used by Human Wizards and Dark Wizards. -->
@@ -97,7 +87,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1411" type="EtcItem" name="Spellbook: Aura Burn">
 		<!-- Spellbook needed to learn Aura Burn. Used by Human Wizards, Elven Wizards and Dark Wizards. -->
@@ -106,7 +95,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1412" type="EtcItem" name="Spellbook: Resist Aqua">
 		<!-- Spellbook needed to learn Resist Aqua. Used by Prophets and Elven Wizards. -->
@@ -115,7 +103,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="2450" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1413" type="EtcItem" name="Spellbook: Resist Wind">
 		<!-- Spellbook needed to learn Resist Wind. Used by Prophets and Shillien Oracles. -->
@@ -124,7 +111,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="2450" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1414" type="EtcItem" name="Spellbook: Resist Fire">
 		<!-- Spellbook needed to learn Resist Fire. Used by Clerics. -->
@@ -133,7 +119,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1415" type="EtcItem" name="Spellbook: Dryad Root">
 		<!-- Spellbook needed to learn Dryad Root. Used by Clerics, Elven Oracles and Shillien Oracles. -->
@@ -142,7 +127,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1416" type="EtcItem" name="Spellbook: Curse of Chaos">
 		<!-- Spellbook needed to learn Curse of Chaos. Used by Human Wizards and Dark Wizards. -->
@@ -151,7 +135,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="2450" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1417" type="EtcItem" name="Spellbook: Surrender To Earth">
 		<!-- Spellbook needed to learn Surrender To Earth. Used by Elven Wizards. -->
@@ -160,7 +143,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1418" type="EtcItem" name="Spellbook: Surrender To Poison">
 		<!-- Spellbook needed to learn Surrender To Poison. Used by Dark Wizards. -->
@@ -169,7 +151,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1419" type="EtcItem" name="Blood Mark">
 		<!-- An item needed to upgrade a clan to level three. -->

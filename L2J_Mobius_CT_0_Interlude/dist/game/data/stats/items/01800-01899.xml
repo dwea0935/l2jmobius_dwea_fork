@@ -683,7 +683,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1857" type="EtcItem" name="Keltir Fang">
 		<!-- A fang taken by killing keltirs. Collect 4 and take them to any of the Masters. -->

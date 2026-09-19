@@ -193,7 +193,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="6250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8617" type="EtcItem" name="Spellbook: Word of Invitation">
 		<!-- Spellbook needed to learn Word of Invitation. Used by Sorcerers, Spellsingers and Spellhowlers. -->
@@ -202,7 +201,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="5000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8618" type="EtcItem" name="Ancient Book - Divine Inspiration (Modern Language Version)">
 		<!-- Restores forgotten abilities. The book was re-published after being translated into the modern language. (Can only be used by characters level 52 or higher.) -->
@@ -210,7 +208,6 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8619" type="EtcItem" name="Ancient Book - Divine Inspiration (Original Language Version)">
 		<!-- Restores forgotten abilities. This book was published by ancient scholars for research purposes. It contains more information than the modern language version. (Can only be used by characters level 61 or higher.) -->
@@ -219,7 +216,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="500000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8620" type="EtcItem" name="Ancient Book - Divine Inspiration (Manuscript)">
 		<!-- Restores forgotten abilities. This book is a hand-written copy of the original. It is almost the same as the original version. (Can only be used by characters level 76 or higher.) -->
@@ -228,7 +224,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1000000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8621" type="EtcItem" name="Ancient Book - Divine Inspiration (Original Version)">
 		<!-- Restores forgotten abilities. Those who lack the requisite knowledge cannot understand its contents. (Can only be used by characters level 76 or higher.) This item cannot be exchanged or dropped. -->
@@ -237,7 +232,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="5000000" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="8622" type="EtcItem" name="Elixir of Life (No Grade)">
 		<!-- Regenerates HP. Can only be used by characters below level 19 upon themselves. Re-use delay is 5 minutes. -->

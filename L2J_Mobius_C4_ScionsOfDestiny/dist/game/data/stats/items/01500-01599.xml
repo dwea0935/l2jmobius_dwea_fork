@@ -158,7 +158,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1150" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1513" type="EtcItem" name="Spellbook: Charm">
 		<!-- Spellbook required for Charm magic. Used by Elven Knights and Elven Scouts. -->
@@ -167,7 +166,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1514" type="EtcItem" name="Spellbook: Resurrection">
 		<!-- Spellbook required for Resurrection magic. Used by Clerics, Elven Oracles, and Shillien Oracles. -->
@@ -176,7 +174,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1515" type="EtcItem" name="Spellbook: Kiss of Eva">
 		<!-- Spellbook required for Kiss of Eva magic. Used by Clerics, Elven Oracles and Shillien Oracles. -->
@@ -185,7 +182,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1516" type="EtcItem" name="Spellbook: Corpse Life Drain">
 		<!-- Spellbook required for Corpse Life Drain magic. Used by Human Wizards and Dark Wizards. -->
@@ -194,7 +190,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1517" type="EtcItem" name="Spellbook: Body To Mind">
 		<!-- Spellbook required for Body To Mind magic. Used by Human Wizards and Dark Wizards. -->
@@ -203,7 +198,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1518" type="EtcItem" name="Amulet: Flame Chant">
 		<!-- Amulet required for the Flame Chant spell. Used by Orc Shamans. -->
@@ -212,7 +206,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1519" type="EtcItem" name="Amulet: Power Of Paagrio">
 		<!-- Amulet required for the Power of Paagrio spell. Used by Orc Shamans. -->
@@ -221,7 +214,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1520" type="EtcItem" name="Amulet: Blessing Of Paagrio">
 		<!-- Amulet required for the Blessing of Paagrio spell. Used by Orc Shamans. -->
@@ -230,7 +222,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="10" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1521" type="EtcItem" name="Amulet: Chant of Fire">
 		<!-- Amulet required for the Chant of Fire spell. Used by Orc Shamans. -->
@@ -239,7 +230,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1522" type="EtcItem" name="Amulet: Chant of Battle">
 		<!-- Amulet required for the Chant of Battle spell. Used by Orc Mystics. -->
@@ -248,7 +238,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="500" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1523" type="EtcItem" name="Amulet: Chant of Shielding">
 		<!-- Amulet required for the Chant of Shielding spell. Used by Orc Shamans. -->
@@ -257,7 +246,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1524" type="EtcItem" name="Amulet: Soul Shield">
 		<!-- Amulet required for the Soul Shield spell. Used by Orc Mystics. -->
@@ -266,7 +254,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="100" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1525" type="EtcItem" name="Amulet: Life Drain">
 		<!-- Amulet required for the Life Drain spell. Used by Orc Mystics. -->
@@ -275,7 +262,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="100" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1526" type="EtcItem" name="Amulet: Fear">
 		<!-- Amulet required for the Fear spell. Used by Orc Mystics. -->
@@ -284,7 +270,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="500" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1527" type="EtcItem" name="Amulet: Venom">
 		<!-- Amulet required for the Venom spell. Used by Orc Mystics. -->
@@ -293,7 +278,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="100" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1528" type="EtcItem" name="Amulet: Seal of Chaos">
 		<!-- Amulet required for the Seal of Chaos spell. Used by Orc Shamans. -->
@@ -302,7 +286,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1529" type="EtcItem" name="Amulet: Dreaming Spirit">
 		<!-- Amulet required for the Spirit Dream spell. Used by Orc Mystics. -->
@@ -311,7 +294,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="100" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1530" type="EtcItem" name="Amulet: Seal of Slow">
 		<!-- Amulet required for the Seal of Slow spell. Used by Orc Shamans. -->
@@ -320,7 +302,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="2450" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1531" type="EtcItem" name="Amulet: Chill Flame">
 		<!-- Amulet required for the Chill Flame spell. Used by Orc Mystics. -->
@@ -329,7 +310,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="100" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1532" type="EtcItem" name="Amulet: Blaze Quake">
 		<!-- Amulet required for the Blaze Quake spell. Used by Orc Shamans. -->
@@ -338,7 +318,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1533" type="EtcItem" name="Amulet: Aura Sink">
 		<!-- Amulet required for the Aura Sink spell. Used by Orc Shamans. -->
@@ -347,7 +326,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1534" type="EtcItem" name="Amulet: Madness">
 		<!-- Amulet required for the Madness spell. Used by Orc Shamans. -->
@@ -356,7 +334,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1535" type="EtcItem" name="Amulet: Frost Flame">
 		<!-- An amulet that is needed for the Frost Flame spell. Used by Orc Shamans. -->
@@ -365,7 +342,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1536" type="EtcItem" name="Amulet: Seal of Binding">
 		<!-- Amulet required for the Seal of Binding spell. Used by Orc Shamans. -->
@@ -374,7 +350,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1537" type="EtcItem" name="Amulet: Seal of Poison">
 		<!-- Amulet required for the Seal of Poison spell. Used by Orc Shamans. -->
@@ -383,7 +358,6 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="800" />
-		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1538" type="EtcItem" name="Blessed Scroll of Escape">
 		<!-- A magical scroll that relocates you to the nearest village -->
