@@ -142,9 +142,10 @@ public class Q10567_MarkOfTrust3 extends Quest
 						if (itemCount < data.getGoal().getCount())
 						{
 							giveItems(player, data.getGoal().getItemId(), 1);
-							final int newItemCount = (int) getQuestItemsCount(player, data.getGoal().getItemId());
-							questState.setCount(newItemCount);
 						}
+						
+						// The mark may already be owned from Mark of Trust - 2, so the count follows the marks held.
+						questState.setCount((int) getQuestItemsCount(player, data.getGoal().getItemId()));
 					}
 					else
 					{
