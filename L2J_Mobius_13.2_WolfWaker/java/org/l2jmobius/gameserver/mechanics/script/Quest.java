@@ -5805,7 +5805,9 @@ public class Quest implements IEventTimerEvent<String>, IEventTimerCancel<String
 				iu.addModifiedItem(itm);
 			}
 			
-			player.sendInventoryUpdate(iu);
+			// Sent on its own, the removal of the same item would replace the unequip and leave it shown as equipped.
+			player.flushInventoryUpdate();
+			player.sendPacket(iu);
 			player.broadcastUserInfo();
 		}
 		

@@ -15922,6 +15922,21 @@ public class Player extends Playable
 		}, 100);
 	}
 	
+	/**
+	 * Sends the pending inventory update now instead of waiting for the scheduled task.
+	 */
+	public void flushInventoryUpdate()
+	{
+		if (_inventoryUpdateTask != null)
+		{
+			_inventoryUpdateTask.cancel(false);
+			_inventoryUpdateTask = null;
+		}
+		
+		sendPacket(_inventoryUpdate);
+		updateAdenaAndWeight();
+	}
+	
 	public void sendItemList()
 	{
 		if (_itemListTask != null)
