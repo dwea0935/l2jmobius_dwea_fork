@@ -20,6 +20,9 @@
  */
 package quests.Q00220_TestimonyOfGlory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
@@ -107,9 +110,9 @@ public class Q00220_TestimonyOfGlory extends Quest
 	private static final int DIMENSIONAL_DIAMOND = 7562;
 	
 	// Checks & Instances
-	private static boolean _sonsOfVoltar = false;
-	private static boolean _enkuOrcOverlords = false;
-	private static boolean _makumBugbearThugs = false;
+	private static final List<Npc> _sonsOfVoltar = new ArrayList<>(2);
+	private static final List<Npc> _enkuOrcOverlords = new ArrayList<>(4);
+	private static final List<Npc> _makumBugbearThugs = new ArrayList<>(2);
 	
 	public Q00220_TestimonyOfGlory()
 	{
@@ -276,14 +279,11 @@ public class Q00220_TestimonyOfGlory extends Quest
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				takeItems(player, MANAKIA_LETTER_1, 1);
 				giveItems(player, GLOVE_OF_VOLTAR, 1);
-				if (!_sonsOfVoltar)
+				if (!isGroupAlive(_sonsOfVoltar))
 				{
-					addSpawn(PASHIKA_SON_OF_VOLTAR, 80117, 120039, -2259, 0, false, 200000);
-					addSpawn(VULTUS_SON_OF_VOLTAR, 80058, 120038, -2259, 0, false, 200000);
-					_sonsOfVoltar = true;
-					
-					// Resets Sons Of Voltar
-					startQuestTimer("voltar_sons_cleanup", 201000, null, player, false);
+					_sonsOfVoltar.clear();
+					_sonsOfVoltar.add(addSpawn(PASHIKA_SON_OF_VOLTAR, 80117, 120039, -2259, 0, false, 200000));
+					_sonsOfVoltar.add(addSpawn(VULTUS_SON_OF_VOLTAR, 80058, 120038, -2259, 0, false, 200000));
 				}
 				break;
 			}
@@ -292,16 +292,13 @@ public class Q00220_TestimonyOfGlory extends Quest
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				takeItems(player, MANAKIA_LETTER_2, 1);
 				giveItems(player, GLOVE_OF_KEPRA, 1);
-				if (!_enkuOrcOverlords)
+				if (!isGroupAlive(_enkuOrcOverlords))
 				{
-					addSpawn(ENKU_ORC_OVERLORD, 19894, 189743, -3074, 0, false, 200000);
-					addSpawn(ENKU_ORC_OVERLORD, 19869, 189800, -3059, 0, false, 200000);
-					addSpawn(ENKU_ORC_OVERLORD, 19818, 189818, -3047, 0, false, 200000);
-					addSpawn(ENKU_ORC_OVERLORD, 19753, 189837, -3027, 0, false, 200000);
-					_enkuOrcOverlords = true;
-					
-					// Resets Enku Orc Overlords
-					startQuestTimer("enku_orcs_cleanup", 201000, null, player, false);
+					_enkuOrcOverlords.clear();
+					_enkuOrcOverlords.add(addSpawn(ENKU_ORC_OVERLORD, 19894, 189743, -3074, 0, false, 200000));
+					_enkuOrcOverlords.add(addSpawn(ENKU_ORC_OVERLORD, 19869, 189800, -3059, 0, false, 200000));
+					_enkuOrcOverlords.add(addSpawn(ENKU_ORC_OVERLORD, 19818, 189818, -3047, 0, false, 200000));
+					_enkuOrcOverlords.add(addSpawn(ENKU_ORC_OVERLORD, 19753, 189837, -3027, 0, false, 200000));
 				}
 				break;
 			}
@@ -310,14 +307,11 @@ public class Q00220_TestimonyOfGlory extends Quest
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				takeItems(player, KASMAN_LETTER_2, 1);
 				giveItems(player, GLOVE_OF_BURAI, 1);
-				if (!_makumBugbearThugs)
+				if (!isGroupAlive(_makumBugbearThugs))
 				{
-					addSpawn(MAKUM_BUGBEAR_THUG, -94292, 110781, -3701, 0, false, 200000);
-					addSpawn(MAKUM_BUGBEAR_THUG, -94293, 110861, -3701, 0, false, 200000);
-					_makumBugbearThugs = true;
-					
-					// Resets Makum Bugbear Thugs
-					startQuestTimer("makum_bugbears_cleanup", 201000, null, player, false);
+					_makumBugbearThugs.clear();
+					_makumBugbearThugs.add(addSpawn(MAKUM_BUGBEAR_THUG, -94292, 110781, -3701, 0, false, 200000));
+					_makumBugbearThugs.add(addSpawn(MAKUM_BUGBEAR_THUG, -94293, 110861, -3701, 0, false, 200000));
 				}
 				break;
 			}
@@ -348,21 +342,6 @@ public class Q00220_TestimonyOfGlory extends Quest
 				takeItems(player, SCEPTER_BOX, 1);
 				giveItems(player, TANAPI_ORDER, 1);
 				break;
-			}
-			case "voltar_sons_cleanup":
-			{
-				_sonsOfVoltar = false;
-				return null;
-			}
-			case "enku_orcs_cleanup":
-			{
-				_enkuOrcOverlords = false;
-				return null;
-			}
-			case "makum_bugbears_cleanup":
-			{
-				_makumBugbearThugs = false;
-				return null;
 			}
 		}
 		
@@ -520,14 +499,11 @@ public class Q00220_TestimonyOfGlory extends Quest
 							else if (hasQuestItems(player, GLOVE_OF_VOLTAR))
 							{
 								htmltext = "30615-05.htm";
-								if (!_sonsOfVoltar)
+								if (!isGroupAlive(_sonsOfVoltar))
 								{
-									addSpawn(PASHIKA_SON_OF_VOLTAR, 80117, 120039, -2259, 0, false, 200000);
-									addSpawn(VULTUS_SON_OF_VOLTAR, 80058, 120038, -2259, 0, false, 200000);
-									_sonsOfVoltar = true;
-									
-									// Resets Sons Of Voltar
-									startQuestTimer("voltar_sons_cleanup", 201000, null, player, false);
+									_sonsOfVoltar.clear();
+									_sonsOfVoltar.add(addSpawn(PASHIKA_SON_OF_VOLTAR, 80117, 120039, -2259, 0, false, 200000));
+									_sonsOfVoltar.add(addSpawn(VULTUS_SON_OF_VOLTAR, 80058, 120038, -2259, 0, false, 200000));
 								}
 							}
 							else if (hasQuestItems(player, PASHIKA_HEAD, VULTUS_HEAD))
@@ -574,16 +550,13 @@ public class Q00220_TestimonyOfGlory extends Quest
 							{
 								htmltext = "30616-05.htm";
 								
-								if (!_enkuOrcOverlords)
+								if (!isGroupAlive(_enkuOrcOverlords))
 								{
-									addSpawn(ENKU_ORC_OVERLORD, 19894, 189743, -3074, 0, false, 200000);
-									addSpawn(ENKU_ORC_OVERLORD, 19869, 189800, -3059, 0, false, 200000);
-									addSpawn(ENKU_ORC_OVERLORD, 19818, 189818, -3047, 0, false, 200000);
-									addSpawn(ENKU_ORC_OVERLORD, 19753, 189837, -3027, 0, false, 200000);
-									_enkuOrcOverlords = true;
-									
-									// Resets Enku Orc Overlords
-									startQuestTimer("enku_orcs_cleanup", 201000, null, player, false);
+									_enkuOrcOverlords.clear();
+									_enkuOrcOverlords.add(addSpawn(ENKU_ORC_OVERLORD, 19894, 189743, -3074, 0, false, 200000));
+									_enkuOrcOverlords.add(addSpawn(ENKU_ORC_OVERLORD, 19869, 189800, -3059, 0, false, 200000));
+									_enkuOrcOverlords.add(addSpawn(ENKU_ORC_OVERLORD, 19818, 189818, -3047, 0, false, 200000));
+									_enkuOrcOverlords.add(addSpawn(ENKU_ORC_OVERLORD, 19753, 189837, -3027, 0, false, 200000));
 								}
 							}
 							else if (getQuestItemsCount(player, ENKU_OVERLORD_HEAD) >= 4)
@@ -629,14 +602,11 @@ public class Q00220_TestimonyOfGlory extends Quest
 							{
 								htmltext = "30617-04.htm";
 								
-								if (!_makumBugbearThugs)
+								if (!isGroupAlive(_makumBugbearThugs))
 								{
-									addSpawn(MAKUM_BUGBEAR_THUG, -94292, 110781, -3701, 0, false, 200000);
-									addSpawn(MAKUM_BUGBEAR_THUG, -94293, 110861, -3701, 0, false, 200000);
-									_makumBugbearThugs = true;
-									
-									// Resets Makum Bugbear Thugs
-									startQuestTimer("makum_bugbears_cleanup", 201000, null, player, false);
+									_makumBugbearThugs.clear();
+									_makumBugbearThugs.add(addSpawn(MAKUM_BUGBEAR_THUG, -94292, 110781, -3701, 0, false, 200000));
+									_makumBugbearThugs.add(addSpawn(MAKUM_BUGBEAR_THUG, -94293, 110861, -3701, 0, false, 200000));
 								}
 							}
 							else if (getQuestItemsCount(player, MAKUM_BUGBEAR_HEAD) == 2)
@@ -833,6 +803,23 @@ public class Q00220_TestimonyOfGlory extends Quest
 				break;
 			}
 		}
+	}
+	
+	/**
+	 * @param group the monsters spawned for a quest step
+	 * @return {@code true} while any of them is still alive, a new group is spawned only after the previous one is gone
+	 */
+	private static boolean isGroupAlive(List<Npc> group)
+	{
+		for (Npc npc : group)
+		{
+			if (!npc.isDead() && npc.isSpawned())
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	@Override
