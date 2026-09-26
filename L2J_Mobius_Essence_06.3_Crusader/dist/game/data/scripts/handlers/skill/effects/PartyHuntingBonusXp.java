@@ -34,11 +34,11 @@ import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.util.StatSet;
 
 /**
- * Party Bonus XP effect.<br>
+ * Party Hunting Bonus XP effect.<br>
  * When the creature carrying it dies, the party members near the killer receive a share of its XP as bonus.
  * @author Mobius
  */
-public class PartyBonusXp extends AbstractEffect
+public class PartyHuntingBonusXp extends AbstractEffect
 {
 	private static final int NO_BONUS_LEVELS_BELOW = 10;
 	private static final int NO_BONUS_LEVELS_ABOVE = 5;
@@ -47,7 +47,7 @@ public class PartyBonusXp extends AbstractEffect
 	
 	private final int _maxPartySize;
 	
-	public PartyBonusXp(StatSet params)
+	public PartyHuntingBonusXp(StatSet params)
 	{
 		// Largest party that is rewarded, 0 rewards any party size.
 		_maxPartySize = params.getInt("max", 0);

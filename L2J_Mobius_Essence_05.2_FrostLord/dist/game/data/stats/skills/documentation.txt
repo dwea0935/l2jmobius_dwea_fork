@@ -235,7 +235,7 @@ OpenChest: Opens a treasure chest.
 OpenCommonRecipeBook: Shows the common recipe book window.
 OpenDoor: Unlocks doors at a given chance.
 OpenDwarfRecipeBook: Shows the dwarven craft recipe book window.
-PartyBonusXp: When the creature dies, the party members near the killer receive a share of its XP as bonus. (l2jmobius)
+PartyHuntingBonusXp: When the creature dies, the party members near the killer receive a share of its XP as bonus. (l2jmobius)
 Passive: Disables skills and movement of npc.
 PhysicalAbnormalResist: Physical mesmerizing stat.
 PhysicalAttack: Physical attack stat.

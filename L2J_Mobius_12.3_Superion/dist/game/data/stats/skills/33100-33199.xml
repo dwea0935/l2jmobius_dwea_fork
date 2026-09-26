@@ -41,7 +41,7 @@
 		<affectRange>1500</affectRange>
 		<affectScope>PARTY</affectScope>
 		<effects>
-			<effect name="PartyBonusXp">
+			<effect name="PartyHuntingBonusXp">
 				<max>
 					<value level="1">0</value>
 					<value level="2">3</value>

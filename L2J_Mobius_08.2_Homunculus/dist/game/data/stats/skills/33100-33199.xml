@@ -27,7 +27,7 @@
 		<icon>icon.skill11757</icon>
 		<operateType>P</operateType>
 		<effects>
-			<effect name="PartyBonusXp" />
+			<effect name="PartyHuntingBonusXp" />
 		</effects>
 	</skill>
 	<skill id="33105" toLevel="2" name="Tauti Push">
