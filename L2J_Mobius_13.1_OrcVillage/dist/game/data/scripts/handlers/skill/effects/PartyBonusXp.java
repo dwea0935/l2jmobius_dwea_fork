@@ -18,59 +18,74 @@
  * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
  * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package ai.others;
+package handlers.skill.effects;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.data.xml.NpcData;
+import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
-import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.entity.groups.Party;
-import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.mechanics.events.listeners.ConsumerEventListener;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
- * Party Bonus XP AI.<br>
- * Every monster that carries the Party Bonus passive gives the party members near the killer extra XP.
+ * Party Bonus XP effect.<br>
+ * When the creature carrying it dies, the party members near the killer receive a share of its XP as bonus.
  * @author Mobius
  */
-public class PartyBonusXp extends Script
+public class PartyBonusXp extends AbstractEffect
 {
-	// Skill
-	private static final int PARTY_BONUS = 33104;
-	
-	// Misc
-	private static final int BONUS_RADIUS = 1500;
-	private static final double MAX_BONUS_PERCENTAGE = 0.25;
 	private static final int NO_BONUS_LEVELS_BELOW = 10;
 	private static final int NO_BONUS_LEVELS_ABOVE = 5;
-	private static final int SMALL_PARTY_SKILL_LEVEL = 2;
-	private static final int SMALL_PARTY_MAX_MEMBERS = 3;
+	private static final double MAX_BONUS_PERCENTAGE = 0.25;
+	private static final int BONUS_RADIUS = 1500;
 	
-	private PartyBonusXp()
+	private final int _maxPartySize;
+	
+	public PartyBonusXp(StatSet params)
 	{
-		for (NpcTemplate template : NpcData.getInstance().getTemplates(npcTemplate -> npcTemplate.getSkills().containsKey(PARTY_BONUS)))
-		{
-			addKillId(template.getId());
-		}
+		// Largest party that is rewarded, 0 rewards any party size.
+		_maxPartySize = params.getInt("max", 0);
 	}
 	
 	@Override
-	public void onKill(Npc npc, Player killer, boolean isSummon)
+	public void onStart(Creature effector, Creature effected, Skill skill, Item item)
 	{
+		effected.addListener(new ConsumerEventListener(effected, EventType.ON_CREATURE_DEATH, (OnCreatureDeath event) -> onDeath(event), this));
+	}
+	
+	@Override
+	public void onExit(Creature effector, Creature effected, Skill skill)
+	{
+		effected.removeListenerIf(EventType.ON_CREATURE_DEATH, listener -> listener.getOwner() == this);
+	}
+	
+	private void onDeath(OnCreatureDeath event)
+	{
+		if ((event.getAttacker() == null) || !event.getTarget().isNpc())
+		{
+			return;
+		}
+		
+		// A summon kill counts for its owner.
+		final Player killer = event.getAttacker().asPlayer();
+		if (killer == null)
+		{
+			return;
+		}
+		
 		final Party party = killer.getParty();
-		if (party == null)
+		if ((party == null) || ((_maxPartySize > 0) && (party.getMemberCount() > _maxPartySize)))
 		{
 			return;
 		}
 		
-		// Level 2 only rewards parties of 2 or 3 characters.
-		final Skill partyBonus = npc.getTemplate().getSkills().get(PARTY_BONUS);
-		if ((partyBonus.getLevel() == SMALL_PARTY_SKILL_LEVEL) && (party.getMemberCount() > SMALL_PARTY_MAX_MEMBERS))
-		{
-			return;
-		}
-		
+		final Npc npc = event.getTarget().asNpc();
 		final int npcLevel = npc.getLevel();
 		for (Player member : party.getMembers())
 		{
@@ -85,8 +100,8 @@ public class PartyBonusXp extends Script
 	}
 	
 	/**
-	 * @param levelsBelow how many levels the member is below the monster, negative when the member is above it
-	 * @return the share of the monster XP given as bonus, full at the monster level and lower by a tenth for each level below it
+	 * @param levelsBelow how many levels the member is below the creature, negative when the member is above it
+	 * @return the share of the creature XP given as bonus, full at the creature level and lower by a tenth for each level below it
 	 */
 	private static double getBonusPercentage(int levelsBelow)
 	{
@@ -100,11 +115,6 @@ public class PartyBonusXp extends Script
 			return MAX_BONUS_PERCENTAGE;
 		}
 		
-		return MAX_BONUS_PERCENTAGE * (NO_BONUS_LEVELS_BELOW - levelsBelow) / NO_BONUS_LEVELS_BELOW;
-	}
-	
-	public static void main(String[] args)
-	{
-		new PartyBonusXp();
+		return (MAX_BONUS_PERCENTAGE * (NO_BONUS_LEVELS_BELOW - levelsBelow)) / NO_BONUS_LEVELS_BELOW;
 	}
 }

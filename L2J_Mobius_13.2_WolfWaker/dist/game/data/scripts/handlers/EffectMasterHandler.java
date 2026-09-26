@@ -286,6 +286,7 @@ public class EffectMasterHandler
 		EffectHandler.getInstance().registerHandler("OpenCommonRecipeBook", OpenCommonRecipeBook::new);
 		EffectHandler.getInstance().registerHandler("OpenDoor", OpenDoor::new);
 		EffectHandler.getInstance().registerHandler("OpenDwarfRecipeBook", OpenDwarfRecipeBook::new);
+		EffectHandler.getInstance().registerHandler("PartyBonusXp", PartyBonusXp::new);
 		EffectHandler.getInstance().registerHandler("Passive", Passive::new);
 		EffectHandler.getInstance().registerHandler("PerfectionDamage", PerfectionDamage::new);
 		EffectHandler.getInstance().registerHandler("PerfectionPower", PerfectionPower::new);
