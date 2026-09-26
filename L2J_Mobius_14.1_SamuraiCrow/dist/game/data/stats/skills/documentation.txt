@@ -17,6 +17,7 @@ AddMaxMagicCriticalRate: Stat that overrides the default config MAX_MCRIT_RATE. 
 AddMaxPhysicalCriticalRate: Stat that overrides the default config MAX_PCRIT_RATE. (l2jmobius)
 AddMaxPhysicalSkillCriticalRate: Stat that overrides the default config MAX_PSKILLCRIT_RATE. (l2jmobius)
 AddPcCafePoints: Increase PcCafe points permanently. (l2jmobius)
+AddRelicCompoundPoints: Increase Relic compound points permanently.
 AddSkillBySkill: Add skill when other skill already exists. (l2jmobius)
 AddTeleportBookmarkSlot: Instant effect that increases the amount of My Teleport slots.
 AdditionalPotionCp: Increases the amount of CP heal gained from potions or elixirs. (l2jmobius)
