@@ -28,8 +28,12 @@ import org.l2jmobius.gameserver.mechanics.script.Quest;
 import org.l2jmobius.gameserver.mechanics.script.QuestSound;
 import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.mechanics.script.State;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.stats.Stat;
+import org.l2jmobius.gameserver.mechanics.stats.functions.FuncSet;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 public class Q00227_TestOfTheReformer extends Quest
 {
@@ -91,7 +95,20 @@ public class Q00227_TestOfTheReformer extends Quest
 	private static boolean _krudelLizardman = false;
 	
 	// Allowed skills when attacking Crimson Werewolf
-	// private static final int[] ALLOWED_SKILLS = { 1031, 1069, 1164, 1168, 1147, 1177, 1184, 1201, 1206 };
+	private static final int[] ALLOWED_SKILLS =
+	{
+		1031, // Disrupt Undead
+		1069, // Sleep
+		1147, // Vampiric Touch
+		1164, // Curse: Weakness
+		1168, // Curse: Poison
+		1177, // Wind Strike
+		1184, // Ice Bolt
+		1201, // Dryad Root
+		1206, // Wind Shackle
+		4192, // BOSS HP Drain
+	};
+	private static final int DISRUPT_UNDEAD = 1031;
 	
 	public Q00227_TestOfTheReformer()
 	{
@@ -151,7 +168,9 @@ public class Q00227_TestOfTheReformer extends Quest
 				
 				if (!_crimsonWerewolf)
 				{
-					addSpawn(CRIMSON_WEREWOLF, -9382, -89852, -2333, 0, false, 299000);
+					// It may only be hunted with low level spells, so it never resists magic whatever magic success formula is configured.
+					final Npc werewolf = addSpawn(CRIMSON_WEREWOLF, -9382, -89852, -2333, 0, false, 299000);
+					werewolf.addStatFunc(new FuncSet(Stat.MAGIC_SUCCESS_RES, 0x100, werewolf, 0, null));
 					_crimsonWerewolf = true;
 					
 					// Resets Crimson Werewolf
@@ -465,8 +484,16 @@ public class Q00227_TestOfTheReformer extends Quest
 	}
 	
 	@Override
-	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet, Skill skill)
 	{
+		// Crimson Werewolf leaves as soon as a player hits it with anything but the allowed skills.
+		if ((npc.getId() == CRIMSON_WEREWOLF) && !isPet && !npc.isScriptValue(1) && ((skill == null) || !ArrayUtil.contains(ALLOWED_SKILLS, skill.getId())))
+		{
+			npc.setScriptValue(1);
+			startQuestTimer("werewolf_despawn", 1000, npc, attacker, false);
+			return;
+		}
+		
 		final QuestState st = getQuestState(attacker, false);
 		if (st == null)
 		{
@@ -478,22 +505,10 @@ public class Q00227_TestOfTheReformer extends Quest
 		{
 			case NAMELESS_REVENANT:
 			{
-				// TODO: if (((cond == 1) || (cond == 2)) && (skill != null) && (skill.getId() == 1031))
+				// Only a kill right after Disrupt Undead counts, any other hit clears it.
 				if ((cond == 1) || (cond == 2))
 				{
-					npc.setScriptValue(1);
-				}
-				break;
-			}
-			case CRIMSON_WEREWOLF:
-			{
-				// TODO: if ((cond == 12) && !npc.isScriptValue(1) && ((skill == null) || !ArraysUtil.contains(ALLOWED_SKILLS, skill.getId())))
-				if ((cond == 12) && !npc.isScriptValue(1))
-				{
-					npc.setScriptValue(1);
-					
-					// TODO: Proper skill check.
-					// startQuestTimer("werewolf_despawn", 1000, npc, attacker, false);
+					npc.setScriptValue(((skill != null) && (skill.getId() == DISRUPT_UNDEAD)) ? 1 : 2);
 				}
 				break;
 			}
@@ -563,9 +578,6 @@ public class Q00227_TestOfTheReformer extends Quest
 			{
 				if (cond == 12)
 				{
-					// TODO: Remove message when proper skill check is done.
-					npc.broadcastSay(ChatType.GENERAL, "Cowardly guy!");
-					
 					st.setCond(13, true);
 					cancelQuestTimer("werewolf_cleanup", null, player);
 					_crimsonWerewolf = false;
