@@ -12,11 +12,6 @@
 		<npc id="20099" x="46203" y="247705" z="-6361" heading="0" respawnDelay="100" /> <!-- Skeleton -->
 		<npc id="20099" x="46404" y="247705" z="-6361" heading="0" respawnDelay="100" /> <!-- Skeleton -->
 		<npc id="20099" x="46606" y="248061" z="-6361" heading="0" respawnDelay="100" /> <!-- Skeleton -->
-		<npc id="20100" x="41792" y="246646" z="-6461" heading="10992" respawnDelay="60" /> <!-- Skeleton Archer -->
-		<npc id="20100" x="42445" y="245582" z="-6462" heading="56984" respawnDelay="60" /> <!-- Skeleton Archer -->
-		<npc id="20100" x="42492" y="245216" z="-6462" heading="54994" respawnDelay="60" /> <!-- Skeleton Archer -->
-		<npc id="20100" x="42698" y="247710" z="-6456" heading="13353" respawnDelay="60" /> <!-- Skeleton Archer -->
-		<npc id="20100" x="43261" y="245177" z="-6462" heading="23491" respawnDelay="60" /> <!-- Skeleton Archer -->
 		<npc id="20102" x="43173" y="247599" z="-6513" heading="0" respawnDelay="100" /> <!-- Skeleton Marksman -->
 		<npc id="20102" x="44157" y="245236" z="-6458" heading="59332" respawnDelay="100" /> <!-- Skeleton Marksman -->
 		<npc id="20104" x="44127" y="245781" z="-6513" heading="0" respawnDelay="100" /> <!-- Skeleton Lord -->
@@ -45,7 +40,6 @@
 		<npc id="20115" x="45550" y="246114" z="-6663" heading="0" respawnDelay="100" /> <!-- Undine Noble -->
 		<npc id="20115" x="46786" y="246075" z="-6662" heading="0" respawnDelay="100" /> <!-- Undine Noble -->
 		<npc id="20115" x="46988" y="246431" z="-6662" heading="0" respawnDelay="100" /> <!-- Undine Noble -->
-		<npc id="20117" x="44379" y="246593" z="-6512" heading="32221" respawnDelay="100" /> <!-- Dre Vanul -->
 		<npc id="20117" x="45449" y="245936" z="-6663" heading="0" respawnDelay="100" /> <!-- Dre Vanul -->
 		<npc id="20117" x="45619" y="246693" z="-6612" heading="56380" respawnDelay="100" /> <!-- Dre Vanul -->
 		<npc id="20117" x="46685" y="246253" z="-6662" heading="0" respawnDelay="100" /> <!-- Dre Vanul -->
@@ -65,12 +59,8 @@
 		<npc id="20362" x="47950" y="247035" z="-6677" heading="0" respawnDelay="100" /> <!-- Tunath Orc Warrior -->
 		<npc id="20378" x="42568" y="246887" z="-6513" heading="0" respawnDelay="100" /> <!-- Stone Giant -->
 		<npc id="20378" x="42971" y="247243" z="-6513" heading="0" respawnDelay="100" /> <!-- Stone Giant -->
-		<npc id="20404" x="41565" y="246289" z="-6513" heading="0" respawnDelay="100" /> <!-- Silent Horror -->
-		<npc id="20404" x="41665" y="246111" z="-6513" heading="0" respawnDelay="100" /> <!-- Silent Horror -->
 		<npc id="20404" x="42568" y="247243" z="-6513" heading="0" respawnDelay="100" /> <!-- Silent Horror -->
-		<npc id="20404" x="42708" y="245579" z="-6513" heading="0" respawnDelay="100" /> <!-- Silent Horror -->
 		<npc id="20404" x="43071" y="247065" z="-6513" heading="0" respawnDelay="100" /> <!-- Silent Horror -->
-		<npc id="20404" x="43110" y="245579" z="-6513" heading="0" respawnDelay="100" /> <!-- Silent Horror -->
 		<npc id="20404" x="43765" y="244320" z="-6545" heading="0" respawnDelay="100" /> <!-- Silent Horror -->
 		<npc id="20404" x="44126" y="245069" z="-6513" heading="0" respawnDelay="100" /> <!-- Silent Horror -->
 		<npc id="20404" x="44429" y="245959" z="-6513" heading="0" respawnDelay="100" /> <!-- Silent Horror -->
@@ -78,8 +68,6 @@
 		<npc id="20450" x="44970" y="248843" z="-6405" heading="0" respawnDelay="100" /> <!-- Relic Werewolf -->
 		<npc id="20450" x="47318" y="248774" z="-6361" heading="0" respawnDelay="100" /> <!-- Relic Werewolf -->
 		<npc id="20450" x="47419" y="249308" z="-6361" heading="0" respawnDelay="100" /> <!-- Relic Werewolf -->
-		<npc id="20461" x="41464" y="246823" z="-6513" heading="0" respawnDelay="100" /> <!-- Dungeon Spider -->
-		<npc id="20461" x="43502" y="244631" z="-6497" heading="0" respawnDelay="100" /> <!-- Dungeon Spider -->
 		<npc id="20462" x="45588" y="244352" z="-6509" heading="31069" respawnDelay="100" /> <!-- Cave Blade Spider -->
 		<npc id="20462" x="45793" y="244383" z="-6557" heading="0" respawnDelay="100" /> <!-- Cave Blade Spider -->
 		<npc id="20462" x="45952" y="244326" z="-6509" heading="964" respawnDelay="100" /> <!-- Cave Blade Spider -->
@@ -95,5 +83,37 @@
 			<node x="47688" y="246327" />
 		</territory>
 		<npc id="20118" count="2" respawnDelay="100" /> <!-- Dre Vanul Scout -->
+	</spawn>
+	<spawn zone="gludio29_2125_07">
+		<territory minZ="-6513" maxZ="-6303">
+			<node x="41355" y="245943" />
+			<node x="41961" y="245933" />
+			<node x="41960" y="246827" />
+			<node x="41343" y="246823" />
+		</territory>
+		<npc id="20022" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Misery Skeleton -->
+		<npc id="20461" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Dungeon Spider -->
+		<npc id="20404" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Silent Horror -->
+	</spawn>
+	<spawn zone="gludio29_2125_08">
+		<territory minZ="-6513" maxZ="-6303">
+			<node x="42399" y="245063" />
+			<node x="43387" y="245045" />
+			<node x="43386" y="245617" />
+			<node x="42395" y="245624" />
+		</territory>
+		<npc id="20022" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Misery Skeleton -->
+		<npc id="20461" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Dungeon Spider -->
+		<npc id="20404" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Silent Horror -->
+	</spawn>
+	<spawn zone="gludio29_2125_10">
+		<territory minZ="-6558" maxZ="-6358">
+			<node x="43886" y="246439" />
+			<node x="44439" y="246439" />
+			<node x="44441" y="246703" />
+			<node x="43892" y="246704" />
+		</territory>
+		<npc id="20100" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Skeleton Archer -->
+		<npc id="20022" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Misery Skeleton -->
 	</spawn>
 </list>
