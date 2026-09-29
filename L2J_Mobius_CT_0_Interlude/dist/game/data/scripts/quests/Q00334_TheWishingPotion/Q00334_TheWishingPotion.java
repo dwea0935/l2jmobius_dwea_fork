@@ -114,6 +114,9 @@ public class Q00334_TheWishingPotion extends Quest
 		{
 			addKillId(element[2]);
 		}
+		
+		// Monsters summoned by the Wishing Potion, handled after the drop list.
+		addKillId(GRIMA, SUCCUBUS_OF_SEDUCTION, SANCHES, BONAPARTERIUS, RAMSEBALIUS, GREAT_DEMON_KING);
 	}
 	
 	@Override
