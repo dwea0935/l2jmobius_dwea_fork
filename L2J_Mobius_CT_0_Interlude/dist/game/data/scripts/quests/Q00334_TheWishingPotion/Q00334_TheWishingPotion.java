@@ -109,7 +109,7 @@ public class Q00334_TheWishingPotion extends Quest
 		super(334, "The Wishing Potion");
 		addStartNpc(ALCHEMIST_MATILD);
 		addTalkId(ALCHEMIST_MATILD, TORAI, WISDOM_CHEST, RUPINA);
-		registerQuestItems(ALCHEMY_TEXT_ID, SECRET_BOOK_ID, AMBER_SCALE_ID, WIND_SOULSTONE_ID, GLASS_EYE_ID, HORROR_ECTOPLASM_ID, SILENOS_HORN_ID, ANT_SOLDIER_APHID_ID, TYRANTS_CHITIN_ID, BUGBEAR_BLOOD_ID);
+		registerQuestItems(ALCHEMY_TEXT_ID, SECRET_BOOK_ID, POTION_RECIPE_1_ID, POTION_RECIPE_2_ID, AMBER_SCALE_ID, WIND_SOULSTONE_ID, GLASS_EYE_ID, HORROR_ECTOPLASM_ID, SILENOS_HORN_ID, ANT_SOLDIER_APHID_ID, TYRANTS_CHITIN_ID, BUGBEAR_BLOOD_ID);
 		for (int[] element : DROPLIST_COND)
 		{
 			addKillId(element[2]);
@@ -350,6 +350,8 @@ public class Q00334_TheWishingPotion extends Quest
 					}
 					else if (getQuestItemsCount(player, 3467) == 0)
 					{
+						// A repeat after an abort starts from a new quest state, which has to be started before the condition applies.
+						st.setState(State.STARTED);
 						st.setCond(3);
 						if (getQuestItemsCount(player, POTION_RECIPE_1_ID) == 0)
 						{
