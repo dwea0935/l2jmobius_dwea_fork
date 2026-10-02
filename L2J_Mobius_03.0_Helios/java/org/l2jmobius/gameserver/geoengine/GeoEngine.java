@@ -588,26 +588,26 @@ public class GeoEngine
 				{
 					if ((nswe & Cell.NSWE_NORTH_EAST) == Cell.NSWE_NORTH_EAST)
 					{
-						final int northGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX, previousY - 1, Cell.NSWE_EAST);
-						final int eastGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX + 1, previousY, Cell.NSWE_NORTH);
+						final int northGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX, previousY - 1, Cell.NSWE_NORTH);
+						final int eastGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX + 1, previousY, Cell.NSWE_EAST);
 						canSeeThrough = (northGeoZ <= maxHeight) && (eastGeoZ <= maxHeight) && (northGeoZ <= getNearestZ(previousX, previousY - 1, beeCurrentZ)) && (eastGeoZ <= getNearestZ(previousX + 1, previousY, beeCurrentZ));
 					}
 					else if ((nswe & Cell.NSWE_NORTH_WEST) == Cell.NSWE_NORTH_WEST)
 					{
-						final int northGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX, previousY - 1, Cell.NSWE_WEST);
-						final int westGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX - 1, previousY, Cell.NSWE_NORTH);
+						final int northGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX, previousY - 1, Cell.NSWE_NORTH);
+						final int westGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX - 1, previousY, Cell.NSWE_WEST);
 						canSeeThrough = (northGeoZ <= maxHeight) && (westGeoZ <= maxHeight) && (northGeoZ <= getNearestZ(previousX, previousY - 1, beeCurrentZ)) && (westGeoZ <= getNearestZ(previousX - 1, previousY, beeCurrentZ));
 					}
 					else if ((nswe & Cell.NSWE_SOUTH_EAST) == Cell.NSWE_SOUTH_EAST)
 					{
-						final int southGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX, previousY + 1, Cell.NSWE_EAST);
-						final int eastGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX + 1, previousY, Cell.NSWE_SOUTH);
+						final int southGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX, previousY + 1, Cell.NSWE_SOUTH);
+						final int eastGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX + 1, previousY, Cell.NSWE_EAST);
 						canSeeThrough = (southGeoZ <= maxHeight) && (eastGeoZ <= maxHeight) && (southGeoZ <= getNearestZ(previousX, previousY + 1, beeCurrentZ)) && (eastGeoZ <= getNearestZ(previousX + 1, previousY, beeCurrentZ));
 					}
 					else if ((nswe & Cell.NSWE_SOUTH_WEST) == Cell.NSWE_SOUTH_WEST)
 					{
-						final int southGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX, previousY + 1, Cell.NSWE_WEST);
-						final int westGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX - 1, previousY, Cell.NSWE_SOUTH);
+						final int southGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX, previousY + 1, Cell.NSWE_SOUTH);
+						final int westGeoZ = getLosGeoZ(previousX, previousY, previousGeoZ, previousX - 1, previousY, Cell.NSWE_WEST);
 						canSeeThrough = (southGeoZ <= maxHeight) && (westGeoZ <= maxHeight) && (southGeoZ <= getNearestZ(previousX, previousY + 1, beeCurrentZ)) && (westGeoZ <= getNearestZ(previousX - 1, previousY, beeCurrentZ));
 					}
 					else
