@@ -401,9 +401,13 @@ public class UserInfo extends AbstractMaskPacket<UserInfoType>
 			}
 		}
 		
-		if (player.isInSiege())
+		if (player.getSiegeState() != 0)
 		{
 			relation |= 0x80; // In siege
+			if (player.getSiegeState() == 1)
+			{
+				relation |= 0x100; // Attacker
+			}
 		}
 		
 		return relation;
