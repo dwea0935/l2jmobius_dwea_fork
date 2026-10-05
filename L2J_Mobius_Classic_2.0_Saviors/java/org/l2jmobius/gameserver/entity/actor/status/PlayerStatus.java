@@ -175,7 +175,8 @@ public class PlayerStatus extends PlayableStatus
 				tDmg = Math.min((int) summon.getCurrentHp() - 1, tDmg);
 				if (tDmg > 0)
 				{
-					summon.reduceCurrentHp(tDmg, attacker, null);
+					// The share is already final, the damage taken modifiers of reduceCurrentHp would push it past the cap and kill the servitor.
+					summon.getStatus().reduceHp(tDmg, attacker);
 					amount -= tDmg;
 					fullValue = (int) amount; // Reduce the announced value here as player will get a message about summon damage.
 				}
