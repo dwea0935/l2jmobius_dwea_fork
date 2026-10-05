@@ -74,22 +74,18 @@ public class SummonStatus extends PlayableStatus
 						}
 					}
 					
+					int casterHpDamage = transferDmg;
 					if (attacker.isPlayable() && (caster.getCurrentCp() > 0))
 					{
-						if (caster.getCurrentCp() > transferDmg)
-						{
-							caster.getStatus().reduceCp(transferDmg);
-						}
-						else
-						{
-							transferDmg = (int) (transferDmg - caster.getCurrentCp());
-							caster.getStatus().reduceCp((int) caster.getCurrentCp());
-						}
+						final int cpDamage = (int) Math.min(caster.getCurrentCp(), transferDmg);
+						caster.getStatus().reduceCp(cpDamage);
+						casterHpDamage -= cpDamage;
 					}
 					
 					if (membersInRange > 0)
 					{
-						caster.reduceCurrentHp(transferDmg / membersInRange, attacker, null);
+						// CP was taken above and the share is capped, so the rest goes straight to HP without the damage taken modifiers.
+						caster.getStatus().reduceHp(casterHpDamage / membersInRange, attacker, null, true, false, false, true);
 						value -= transferDmg;
 					}
 				}
@@ -101,20 +97,16 @@ public class SummonStatus extends PlayableStatus
 			transferDmg = Math.min((int) caster.getCurrentHp() - 1, transferDmg);
 			if (transferDmg > 0)
 			{
+				int casterHpDamage = transferDmg;
 				if (attacker.isPlayable() && (caster.getCurrentCp() > 0))
 				{
-					if (caster.getCurrentCp() > transferDmg)
-					{
-						caster.getStatus().reduceCp(transferDmg);
-					}
-					else
-					{
-						transferDmg = (int) (transferDmg - caster.getCurrentCp());
-						caster.getStatus().reduceCp((int) caster.getCurrentCp());
-					}
+					final int cpDamage = (int) Math.min(caster.getCurrentCp(), transferDmg);
+					caster.getStatus().reduceCp(cpDamage);
+					casterHpDamage -= cpDamage;
 				}
 				
-				caster.reduceCurrentHp(transferDmg, attacker, null);
+				// CP was taken above and the share is capped, so the rest goes straight to HP without the damage taken modifiers.
+				caster.getStatus().reduceHp(casterHpDamage, attacker, null, true, false, false, true);
 				value -= transferDmg;
 			}
 		}

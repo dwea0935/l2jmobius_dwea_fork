@@ -220,22 +220,18 @@ public class PlayerStatus extends PlayableStatus
 						}
 					}
 					
+					int casterHpDamage = transferDmg;
 					if ((attacker.isPlayable() || attacker.isFakePlayer()) && (caster.getCurrentCp() > 0))
 					{
-						if (caster.getCurrentCp() > transferDmg)
-						{
-							caster.getStatus().reduceCp(transferDmg);
-						}
-						else
-						{
-							transferDmg = (int) (transferDmg - caster.getCurrentCp());
-							caster.getStatus().reduceCp((int) caster.getCurrentCp());
-						}
+						final int cpDamage = (int) Math.min(caster.getCurrentCp(), transferDmg);
+						caster.getStatus().reduceCp(cpDamage);
+						casterHpDamage -= cpDamage;
 					}
 					
 					if (membersInRange > 0)
 					{
-						caster.reduceCurrentHp(transferDmg / membersInRange, attacker, null);
+						// CP was taken above and the share is capped, so the rest goes straight to HP without the damage taken modifiers.
+						caster.getStatus().reduceHp(casterHpDamage / membersInRange, attacker, true, false, false, true);
 						amount -= transferDmg;
 						fullValue = (int) amount;
 					}
