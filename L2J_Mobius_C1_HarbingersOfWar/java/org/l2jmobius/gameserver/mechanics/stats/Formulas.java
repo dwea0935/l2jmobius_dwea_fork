@@ -152,11 +152,15 @@ public class Formulas
 		std[Stat.POWER_ATTACK_SPEED.ordinal()] = new Calculator();
 		std[Stat.POWER_ATTACK_SPEED.ordinal()].addFunc(FuncPAtkSpeed.getInstance());
 		
-		std[Stat.MAGIC_ATTACK_SPEED.ordinal()] = new Calculator();
-		std[Stat.MAGIC_ATTACK_SPEED.ordinal()].addFunc(FuncMAtkSpeed.getInstance());
-		
-		std[Stat.MOVE_SPEED.ordinal()] = new Calculator();
-		std[Stat.MOVE_SPEED.ordinal()].addFunc(FuncMoveSpeed.getInstance());
+		// NPC casting and movement speeds are used as defined, unless the WIT and DEX bonuses are enabled for them.
+		if (!NpcConfig.NPC_SPEEDS_WITHOUT_STAT_BONUS)
+		{
+			std[Stat.MAGIC_ATTACK_SPEED.ordinal()] = new Calculator();
+			std[Stat.MAGIC_ATTACK_SPEED.ordinal()].addFunc(FuncMAtkSpeed.getInstance());
+			
+			std[Stat.MOVE_SPEED.ordinal()] = new Calculator();
+			std[Stat.MOVE_SPEED.ordinal()].addFunc(FuncMoveSpeed.getInstance());
+		}
 		
 		return std;
 	}

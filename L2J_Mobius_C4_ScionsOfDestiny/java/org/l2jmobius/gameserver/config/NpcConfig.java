@@ -48,6 +48,7 @@ public class NpcConfig
 	public static boolean ATTACKABLES_CAMP_PLAYER_CORPSES;
 	public static boolean SHOW_CREST_WITHOUT_QUEST;
 	public static boolean ENABLE_RANDOM_ENCHANT_EFFECT;
+	public static boolean NPC_SPEEDS_WITHOUT_STAT_BONUS;
 	public static int DECAY_TIME_TASK;
 	public static int DEFAULT_CORPSE_TIME;
 	public static int SPOILED_CORPSE_EXTEND_TIME;
@@ -93,6 +94,7 @@ public class NpcConfig
 		ATTACKABLES_CAMP_PLAYER_CORPSES = config.getBoolean("AttackablesCampPlayerCorpses", false);
 		SHOW_CREST_WITHOUT_QUEST = config.getBoolean("ShowCrestWithoutQuest", false);
 		ENABLE_RANDOM_ENCHANT_EFFECT = config.getBoolean("EnableRandomEnchantEffect", false);
+		NPC_SPEEDS_WITHOUT_STAT_BONUS = config.getBoolean("NpcSpeedsWithoutStatBonus", true);
 		DECAY_TIME_TASK = config.getInt("DecayTimeTask", 5000);
 		DEFAULT_CORPSE_TIME = config.getInt("DefaultCorpseTime", 7);
 		SPOILED_CORPSE_EXTEND_TIME = config.getInt("SpoiledCorpseExtendTime", 10);

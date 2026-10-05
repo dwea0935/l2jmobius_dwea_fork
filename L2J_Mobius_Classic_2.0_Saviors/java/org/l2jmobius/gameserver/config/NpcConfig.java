@@ -48,6 +48,7 @@ public class NpcConfig
 	public static boolean ATTACKABLES_CAMP_PLAYER_CORPSES;
 	public static boolean SHOW_CREST_WITHOUT_QUEST;
 	public static boolean ENABLE_RANDOM_ENCHANT_EFFECT;
+	public static boolean NPC_SPEEDS_WITHOUT_STAT_BONUS;
 	public static int MIN_NPC_LEVEL_DMG_PENALTY;
 	public static float[] NPC_DMG_PENALTY;
 	public static float[] NPC_CRIT_DMG_PENALTY;
@@ -98,6 +99,7 @@ public class NpcConfig
 		ATTACKABLES_CAMP_PLAYER_CORPSES = config.getBoolean("AttackablesCampPlayerCorpses", false);
 		SHOW_CREST_WITHOUT_QUEST = config.getBoolean("ShowCrestWithoutQuest", false);
 		ENABLE_RANDOM_ENCHANT_EFFECT = config.getBoolean("EnableRandomEnchantEffect", false);
+		NPC_SPEEDS_WITHOUT_STAT_BONUS = config.getBoolean("NpcSpeedsWithoutStatBonus", true);
 		MIN_NPC_LEVEL_DMG_PENALTY = config.getInt("MinNPCLevelForDmgPenalty", 78);
 		
 		String[] split = config.getString("DmgPenaltyForLvLDifferences", "0.7, 0.6, 0.6, 0.55").split(",");

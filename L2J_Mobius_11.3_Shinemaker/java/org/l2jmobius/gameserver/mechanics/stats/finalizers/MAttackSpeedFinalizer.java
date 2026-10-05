@@ -18,6 +18,7 @@ package org.l2jmobius.gameserver.mechanics.stats.finalizers;
 
 import java.util.OptionalDouble;
 
+import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.custom.ChampionMonstersConfig;
 import org.l2jmobius.gameserver.entity.actor.Creature;
@@ -48,7 +49,8 @@ public class MAttackSpeedFinalizer implements IStatFunction
 		}
 		
 		final double chaBonus = creature.isPlayer() ? BaseStat.CHA.calcBonus(creature) : 1;
-		final double witBonus = creature.getWIT() > 0 ? BaseStat.WIT.calcBonus(creature) : 1;
+		// NPC casting speed is used as defined, unless the WIT bonus is enabled for them.
+		final double witBonus = ((creature.getWIT() > 0) && (!creature.isNpc() || !NpcConfig.NPC_SPEEDS_WITHOUT_STAT_BONUS)) ? BaseStat.WIT.calcBonus(creature) : 1;
 		baseValue *= witBonus * chaBonus;
 		return validateValue(creature, defaultValue(creature, stat, baseValue), 1, creature.isPlayable() ? PlayerConfig.MAX_MATK_SPEED : Double.MAX_VALUE);
 	}
