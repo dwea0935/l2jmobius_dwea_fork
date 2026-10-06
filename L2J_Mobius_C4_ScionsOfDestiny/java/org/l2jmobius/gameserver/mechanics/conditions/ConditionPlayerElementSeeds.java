@@ -47,13 +47,11 @@ public class ConditionPlayerElementSeeds extends Condition
 			return false;
 		}
 		
+		// Every seed counts, two seeds of the same element are two forces.
 		int count = 0;
 		for (Element element : Element.values())
 		{
-			if (player.getElementSeedCount(element) >= 1)
-			{
-				count++;
-			}
+			count += player.getElementSeedCount(element);
 		}
 		
 		return count >= _value;

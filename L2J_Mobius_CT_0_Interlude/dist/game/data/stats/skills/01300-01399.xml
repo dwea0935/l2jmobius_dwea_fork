@@ -1155,79 +1155,49 @@
 	<skill id="1326" levels="1" name="Harmony of Noblesse">
 		<!-- Borrows power from the four energy forces to launch a devastating elemental attack over an area. Power 250. -->
 		<icon>icon.skill1326</icon>
-		<operateType>A2</operateType>
-		<targetType>SELF</targetType>
-		<abnormalLevel>2</abnormalLevel>
-		<abnormalTime>15</abnormalTime>
-		<abnormalType>PD_UP_SPECIAL</abnormalType>
-		<abnormalVisualEffect>ULTIMATE_DEFENCE</abnormalVisualEffect>
-		<effectPoint>659</effectPoint>
-		<hitTime>1000</hitTime>
-		<hpConsume>200</hpConsume>
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectLimit>5-12</affectLimit>
+		<affectRange>100</affectRange>
+		<castRange>700</castRange>
+		<effectPoint>-3000</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>7000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<itemConsumeCount>5</itemConsumeCount>
-		<itemConsumeId>3031</itemConsumeId> <!-- Spirit Ore -->
-		<magicLevel>1</magicLevel>
-		<mpConsume>80</mpConsume>
-		<mpInitialConsume>20</mpInitialConsume>
+		<magicLevel>75</magicLevel>
+		<mpConsume>40</mpConsume>
+		<mpInitialConsume>10</mpInitialConsume>
+		<power>250</power>
 		<reuseDelay>3600000</reuseDelay>
 		<conditions msgId="113" addName="1">
-			<and>
-				<player cp="50" />
-				<player SiegeZone="126" />
-			</and>
+			<player elementSeeds="4" />
 		</conditions>
 		<effects>
-			<effect name="Buff">
-				<add stat="pDef">3000</add>
-				<mul stat="runSpd">1.25</mul>
-				<sub stat="cancelVuln">80</sub>
-				<mul stat="maxCp">0.8</mul>
-				<mul stat="maxRecoverableCp">0.6</mul>
-				<mul stat="maxRecoverableHp">0.7</mul>
-			</effect>
-			<effect name="DefenceTrait">
-				<BOW>80</BOW>
-			</effect>
+			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="1327" levels="1" name="Symphony of Noblesse">
 		<!-- Borrows power from eight energy forces to launch a devastating elemental attack over an area. Power 400. -->
 		<icon>icon.skill1327</icon>
-		<operateType>A2</operateType>
-		<targetType>SELF</targetType>
-		<abnormalLevel>2</abnormalLevel>
-		<abnormalTime>15</abnormalTime>
-		<abnormalType>PD_UP_SPECIAL</abnormalType>
-		<abnormalVisualEffect>ULTIMATE_DEFENCE</abnormalVisualEffect>
-		<effectPoint>659</effectPoint>
-		<hitTime>1000</hitTime>
-		<hpConsume>200</hpConsume>
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectLimit>5-12</affectLimit>
+		<affectRange>200</affectRange>
+		<castRange>700</castRange>
+		<effectPoint>-4800</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>7000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<itemConsumeCount>5</itemConsumeCount>
-		<itemConsumeId>3031</itemConsumeId> <!-- Spirit Ore -->
-		<magicLevel>1</magicLevel>
-		<mpConsume>80</mpConsume>
-		<mpInitialConsume>20</mpInitialConsume>
+		<magicLevel>75</magicLevel>
+		<mpConsume>64</mpConsume>
+		<mpInitialConsume>16</mpInitialConsume>
+		<power>400</power>
 		<reuseDelay>3600000</reuseDelay>
 		<conditions msgId="113" addName="1">
-			<and>
-				<player cp="50" />
-				<player SiegeZone="126" />
-			</and>
+			<player elementSeeds="8" />
 		</conditions>
 		<effects>
-			<effect name="Buff">
-				<add stat="mDef">4500</add>
-				<mul stat="runSpd">1.25</mul>
-				<sub stat="cancelVuln">80</sub>
-				<mul stat="maxCp">0.8</mul>
-				<mul stat="maxRecoverableCp">0.6</mul>
-				<mul stat="maxRecoverableHp">0.7</mul>
-			</effect>
-			<effect name="DefenceTrait">
-				<BOW>80</BOW>
-			</effect>
+			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="1328" levels="8" name="Mass Summon Storm Cubic">
