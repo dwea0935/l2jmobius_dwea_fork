@@ -150,8 +150,21 @@ public class KnockBack extends AbstractEffect
 	}
 	
 	@Override
+	public boolean canStart(Creature effector, Creature effected, Skill skill)
+	{
+		// Raids are immune, checked here so that the effect flag is not applied to them either.
+		return (effected != null) && !effected.isRaid();
+	}
+	
+	@Override
 	public void continuousInstant(Creature effector, Creature effected, Skill skill, Item item)
 	{
+		// Raids are immune to the knock down, this runs before canStart is consulted.
+		if (effected.isRaid())
+		{
+			return;
+		}
+		
 		effected.startParalyze();
 		
 		if (_knockDown)

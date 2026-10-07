@@ -16,9 +16,11 @@
  */
 package handlers.skill.effects;
 
+import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
 import org.l2jmobius.gameserver.mechanics.effects.EffectFlag;
 import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.util.StatSet;
 
 /**
@@ -36,6 +38,13 @@ public class BlockControl extends AbstractEffect
 	public long getEffectFlags()
 	{
 		return EffectFlag.BLOCK_CONTROL.getMask();
+	}
+	
+	@Override
+	public boolean canStart(Creature effector, Creature effected, Skill skill)
+	{
+		// Raids are immune, checked here so that the effect flag is not applied to them either.
+		return (effected != null) && !effected.isRaid();
 	}
 	
 	@Override

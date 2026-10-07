@@ -47,7 +47,7 @@ public class Passive extends AbstractEffect
 	@Override
 	public boolean canStart(Creature effector, Creature effected, Skill skill)
 	{
-		return effected.isAttackable();
+		return effected.isAttackable() && !effected.isRaid();
 	}
 	
 	@Override

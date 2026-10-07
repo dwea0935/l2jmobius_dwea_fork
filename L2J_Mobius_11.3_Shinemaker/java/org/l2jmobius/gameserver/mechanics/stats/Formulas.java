@@ -747,7 +747,10 @@ public class Formulas
 		}
 		
 		final int activateRate = skill.getActivateRate();
-		if ((activateRate == -1) || (activateRate > 99))
+		final double traitMod = calcGeneralTraitBonus(attacker, target, skill.getTraitType(), false);
+		
+		// A target invulnerable to the trait falls through to the resist below, even for effects that always land.
+		if ((traitMod > 0) && ((activateRate == -1) || (activateRate > 99)))
 		{
 			return true;
 		}
@@ -761,7 +764,6 @@ public class Formulas
 		final double targetBasicProperty = getAbnormalResist(skill.getBasicProperty(), target);
 		final double baseMod = ((((((magicLevel - target.getLevel()) + 3) * skill.getLvlBonusRate()) + activateRate) + 30.0) - targetBasicProperty);
 		final double elementMod = calcAttributeBonus(attacker, target, skill);
-		final double traitMod = calcGeneralTraitBonus(attacker, target, skill.getTraitType(), false);
 		final double basicPropertyResist = getBasicPropertyResistBonus(skill.getBasicProperty(), target);
 		final double buffDebuffMod = skill.isDebuff() ? target.getStat().getValue(Stat.RESIST_ABNORMAL_DEBUFF, 1) : 1;
 		final double rate = baseMod * elementMod * traitMod * buffDebuffMod;
