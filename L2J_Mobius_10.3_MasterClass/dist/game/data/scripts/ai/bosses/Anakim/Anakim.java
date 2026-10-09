@@ -22,9 +22,9 @@ package ai.bosses.Anakim;
 
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.config.GrandBossConfig;
 import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.entity.Location;
 import org.l2jmobius.gameserver.entity.WorldObject;
@@ -33,24 +33,20 @@ import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.entity.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.entity.groups.Party;
 import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.mechanics.script.QuestTimer;
 import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.mechanics.skill.AbnormalType;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
-import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 import org.l2jmobius.gameserver.util.StatSet;
 
 /**
- * Anakim AI
- * @author LasTravel, NviX
- * @URL http://boards.lineage2.com/showpost.php?p=3386784&postcount=6<br>
- * @video http://www.youtube.com/watch?v=LecymFTJQzQ
+ * Anakim Manager AI - version 2023
+ * @author Notorion
  */
 public class Anakim extends Script
 {
@@ -63,25 +59,49 @@ public class Anakim extends Script
 	private static final int ANAKIM = 29348;
 	private static final int EXIST_CUBIC = 31109;
 	private static final int ANAKIM_CUBIC = 31101;
+	
+	// General Configs
+	private static final int MIN_LEVEL_TO_ATTACK = 110;
+	
+	// Minions
 	// @formatter:off
-    private static final int[] ANAKIM_MINIONS = {29349, 29350, 29351};
-    // @formatter:on
+	private static final int[] ANAKIM_MINIONS = {29349, 29350, 29351};
+	// @formatter:on
 	private static final int[] ALL_MOBS =
 	{
 		ANAKIM,
 		ANAKIM_MINIONS[0],
 		ANAKIM_MINIONS[1],
-		ANAKIM_MINIONS[2],
+		ANAKIM_MINIONS[2]
 	};
 	
-	// Misc
-	private static final Location ENTER_ANAKIM_LOC = new Location(184569, -12134, -5499);
+	// Locations
+	private static final Location ENTER_ANAKIM_LOC = new Location(185078, -12375, -5488);
+	private static final Location SPAWN_LOC = new Location(185076, -13295, -5488, 16384);
+	private static final Location KICK_LOC = new Location(183505, -15903, -2712);
+	
 	private static final ZoneType BOSS_ZONE = ZoneManager.getInstance().getZoneById(12003);
 	
-	// Vars
+	// Barrier Skills
+	private static final SkillHolder BARRIER_INITIAL = new SkillHolder(29518, 1);
+	private static final SkillHolder BARRIER_TIMED = new SkillHolder(29515, 1);
+	
+	// Barrier Configuration
+	private static final int HITS_TO_BREAK_INITIAL = 2000; // Hits to break immunity
+	private static final int HITS_TO_BREAK_TIMED = 2000; // Hits to break timed barrier
+	private static final long TIME_VULNERABLE = 3 * 60000; // Vulnerable duration (3 min)
+	private static final long TIME_BARRIER_LIMIT = 10 * 60000; // Max barrier duration (10 min)
+	private static final long TIME_RESET_INACTIVITY = 10 * 60000; // Reset if inactive
+	
+	// Variables
 	private static long _lastAction;
 	private static Npc _anakimBoss;
-	private static GrandBoss _anakimTemp;
+	
+	// Barrier Controls
+	private boolean _isInitialBarrier = false;
+	private boolean _isTimedBarrier = false;
+	private final Map<Npc, Integer> _hitCounter = new ConcurrentHashMap<>();
+	private long _lastHitTime = 0;
 	
 	public Anakim()
 	{
@@ -92,29 +112,53 @@ public class Anakim extends Script
 		addKillId(ALL_MOBS);
 		addSkillSeeId(ALL_MOBS);
 		
-		// Unlock
 		final StatSet info = GrandBossManager.getInstance().getStatSet(ANAKIM);
-		final int status = GrandBossManager.getInstance().getStatus(ANAKIM);
-		if (status == DEAD)
+		if (GrandBossManager.getInstance().getStatus(ANAKIM) == DEAD)
 		{
-			final long time = info.getLong("respawn_time") - System.currentTimeMillis();
-			if (time > 0)
+			long respawnTime = info.getLong("respawn_time");
+			if (respawnTime == 0)
 			{
-				startQuestTimer("unlock_anakim", time, null, null);
+				respawnTime = getNextRespawnTime();
+				info.set("respawn_time", respawnTime);
+				GrandBossManager.getInstance().setStatSet(ANAKIM, info);
+			}
+			
+			final long delay = respawnTime - System.currentTimeMillis();
+			if (delay > 0)
+			{
+				startQuestTimer("unlock_anakim", delay, null, null);
 			}
 			else
 			{
-				_anakimTemp = (GrandBoss) addSpawn(ANAKIM, -126920, -234182, -15563, 0, false, 0);
-				GrandBossManager.getInstance().addBoss(_anakimTemp);
-				GrandBossManager.getInstance().setStatus(ANAKIM, ALIVE);
+				spawnAnakim();
 			}
 		}
 		else
 		{
-			_anakimTemp = (GrandBoss) addSpawn(ANAKIM, -126920, -234182, -15563, 0, false, 0);
-			GrandBossManager.getInstance().addBoss(_anakimTemp);
-			GrandBossManager.getInstance().setStatus(ANAKIM, ALIVE);
+			spawnAnakim();
 		}
+	}
+	
+	private void spawnAnakim()
+	{
+		GrandBossManager.getInstance().setStatus(ANAKIM, ALIVE);
+		
+		if ((_anakimBoss != null) && !_anakimBoss.isDead())
+		{
+			return;
+		}
+		
+		_anakimBoss = addSpawn(ANAKIM, SPAWN_LOC, false, 0);
+		GrandBossManager.getInstance().addBoss((GrandBoss) _anakimBoss);
+		
+		// Immobilize Boss
+		_anakimBoss.setRandomWalking(false);
+		_anakimBoss.setRandomAnimation(false);
+		
+		applyInitialBarrier(_anakimBoss);
+		
+		_lastAction = System.currentTimeMillis();
+		startQuestTimer("check_activity_task", 60000, null, null);
 	}
 	
 	@Override
@@ -124,67 +168,55 @@ public class Anakim extends Script
 		{
 			case "unlock_anakim":
 			{
-				_anakimTemp = (GrandBoss) addSpawn(ANAKIM, -126920, -234182, -15563, 0, false, 0);
-				GrandBossManager.getInstance().addBoss(_anakimTemp);
-				GrandBossManager.getInstance().setStatus(ANAKIM, ALIVE);
+				spawnAnakim();
 				break;
 			}
 			case "check_activity_task":
 			{
-				if ((_lastAction + 900000) < System.currentTimeMillis())
+				// Reset logic
+				if ((_lastAction + TIME_RESET_INACTIVITY) < System.currentTimeMillis())
 				{
-					GrandBossManager.getInstance().setStatus(ANAKIM, ALIVE);
-					for (Creature creature : BOSS_ZONE.getCharactersInside())
+					if ((_anakimBoss != null) && !_anakimBoss.isDead())
 					{
-						if (creature != null)
+						if ((GrandBossManager.getInstance().getStatus(ANAKIM) == FIGHTING) || (_anakimBoss.getCurrentHp() < _anakimBoss.getMaxHp()))
 						{
-							if (creature.isNpc())
-							{
-								creature.deleteMe();
-							}
-							else if (creature.isPlayer())
-							{
-								creature.teleToLocation(MapRegionData.getInstance().getTeleToLocation(creature, TeleportWhereType.TOWN));
-							}
+							resetAnakim(_anakimBoss);
 						}
 					}
-					
-					startQuestTimer("end_anakim", 2000, null, null);
 				}
 				else
 				{
+					// Minions gather around an idle boss while players are near.
+					if ((_anakimBoss != null) && !_anakimBoss.isDead() && (GrandBossManager.getInstance().getStatus(ANAKIM) != FIGHTING) && (BOSS_ZONE != null) && !BOSS_ZONE.getPlayersInside().isEmpty())
+					{
+						manageMinions(_anakimBoss);
+					}
+					
 					startQuestTimer("check_activity_task", 60000, null, null);
+				}
+				break;
+			}
+			case "END_VULNERABILITY":
+			{
+				if ((npc != null) && !npc.isDead())
+				{
+					applyTimedBarrier(npc);
+				}
+				break;
+			}
+			case "END_TIMED_BARRIER":
+			{
+				if ((npc != null) && !npc.isDead() && _isTimedBarrier)
+				{
+					applyTimedBarrier(npc);
 				}
 				break;
 			}
 			case "cancel_timers":
 			{
-				QuestTimer activityTimer = getQuestTimer("check_activity_task", null, null);
-				if (activityTimer != null)
-				{
-					activityTimer.cancel();
-				}
-				
-				QuestTimer forceEnd = getQuestTimer("end_anakim", null, null);
-				if (forceEnd != null)
-				{
-					forceEnd.cancel();
-				}
-				break;
-			}
-			case "end_anakim":
-			{
-				notifyEvent("cancel_timers", null, null);
-				if (_anakimBoss != null)
-				{
-					_anakimBoss.deleteMe();
-				}
-				
-				BOSS_ZONE.oustAllPlayers();
-				if (GrandBossManager.getInstance().getStatus(ANAKIM) != DEAD)
-				{
-					GrandBossManager.getInstance().setStatus(ANAKIM, ALIVE);
-				}
+				cancelQuestTimer("check_activity_task", null, null);
+				cancelQuestTimers("END_VULNERABILITY");
+				cancelQuestTimers("END_TIMED_BARRIER");
 				break;
 			}
 			case "exist":
@@ -197,74 +229,69 @@ public class Anakim extends Script
 		return super.onEvent(event, npc, player);
 	}
 	
+	private void manageMinions(Npc boss)
+	{
+		if (BOSS_ZONE == null)
+		{
+			return;
+		}
+		
+		for (Creature c : BOSS_ZONE.getCharactersInside())
+		{
+			if ((c != null) && c.isNpc() && !c.isDead())
+			{
+				if (ArrayUtil.contains(ANAKIM_MINIONS, c.getId()))
+				{
+					// Pull back minions that wandered off.
+					if (boss.calculateDistance3D(c) > 500)
+					{
+						c.teleToLocation(boss.getX() + getRandom(-200, 200), boss.getY() + getRandom(-200, 200), boss.getZ());
+					}
+				}
+			}
+		}
+	}
+	
+	private void resetAnakim(Npc npc)
+	{
+		if (GrandBossManager.getInstance().getStatus(ANAKIM) != ALIVE)
+		{
+			GrandBossManager.getInstance().setStatus(ANAKIM, ALIVE);
+		}
+		
+		npc.setCurrentHp(npc.getMaxHp());
+		npc.setCurrentMp(npc.getMaxMp());
+		npc.teleToLocation(SPAWN_LOC, true);
+		npc.stopAllEffects();
+		
+		if (npc.isAttackable())
+		{
+			npc.asAttackable().clearAggroList();
+		}
+		
+		if (BOSS_ZONE != null)
+		{
+			for (Creature c : BOSS_ZONE.getCharactersInside())
+			{
+				if ((c != null) && c.isPlayer())
+				{
+					c.teleToLocation(MapRegionData.getInstance().getTeleToLocation(c, TeleportWhereType.TOWN));
+				}
+			}
+		}
+		
+		applyInitialBarrier(npc);
+		_lastAction = System.currentTimeMillis();
+		startQuestTimer("check_activity_task", 60000, null, null);
+	}
+	
 	@Override
 	public String onTalk(Npc npc, Player player)
 	{
 		if (npc.getId() == ANAKIM_CUBIC)
 		{
-			final int _anakimStatus = GrandBossManager.getInstance().getStatus(ANAKIM);
-			if (_anakimStatus > ALIVE)
-			{
-				return "31101-01.html";
-			}
-			
-			if (!player.isInParty())
-			{
-				final NpcHtmlMessage packet = new NpcHtmlMessage(npc.getObjectId());
-				packet.setHtml(getHtm(player, "31101-02.html"));
-				packet.replace("%min%", Integer.toString(GrandBossConfig.ANAKIM_MIN_PLAYERS));
-				player.sendPacket(packet);
-				return null;
-			}
-			
-			final Party party = player.getParty();
-			final boolean isInCC = party.isInCommandChannel();
-			final boolean isPartyLeader = (isInCC) ? party.getCommandChannel().isLeader(player) : party.isLeader(player);
-			if (!isPartyLeader)
-			{
-				return "31101-03.html";
-			}
-			
-			final List<Player> members = (isInCC) ? party.getCommandChannel().getMembers() : party.getMembers();
-			
-			if ((members.size() < GrandBossConfig.ANAKIM_MIN_PLAYERS) || (members.size() > GrandBossConfig.ANAKIM_MAX_PLAYERS))
-			{
-				final NpcHtmlMessage packet = new NpcHtmlMessage(npc.getObjectId());
-				packet.setHtml(getHtm(player, "31101-02.html"));
-				packet.replace("%min%", Integer.toString(GrandBossConfig.ANAKIM_MIN_PLAYERS));
-				player.sendPacket(packet);
-				return null;
-			}
-			
-			for (Player member : members)
-			{
-				if (member.getLevel() < GrandBossConfig.ANAKIM_MIN_PLAYER_LEVEL)
-				{
-					final NpcHtmlMessage packet = new NpcHtmlMessage(npc.getObjectId());
-					packet.setHtml(getHtm(player, "31101-04.html"));
-					packet.replace("%minLevel%", Integer.toString(GrandBossConfig.ANAKIM_MIN_PLAYER_LEVEL));
-					player.sendPacket(packet);
-					return null;
-				}
-			}
-			
-			for (Player member : members)
-			{
-				if (member.isInsideRadius3D(npc, 1000) && (npc.getId() == ANAKIM_CUBIC))
-				{
-					member.teleToLocation(ENTER_ANAKIM_LOC, true);
-				}
-			}
-			
-			if ((_anakimStatus == ALIVE) && (npc.getId() == ANAKIM_CUBIC))
-			{
-				GrandBossManager.getInstance().setStatus(ANAKIM, FIGHTING);
-				
-				// Spawn the rb
-				_anakimBoss = addSpawn(ANAKIM, 185080, -12613, -5499, 16550, false, 0);
-				GrandBossManager.getInstance().addBoss((GrandBoss) _anakimBoss);
-				startQuestTimer("end_anakim", 60 * 60000, null, null); // 1h
-			}
+			player.teleToLocation(ENTER_ANAKIM_LOC, true);
+			return null;
 		}
 		
 		return super.onTalk(npc, player);
@@ -280,20 +307,72 @@ public class Anakim extends Script
 	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		_lastAction = System.currentTimeMillis();
-		if (npc.isMinion() || npc.isRaid())// Anakim and minions
+		
+		// Level Check
+		if (attacker.getLevel() < MIN_LEVEL_TO_ATTACK)
 		{
-			// Anti BUGGERS
-			if (!BOSS_ZONE.isInsideZone(attacker)) // Character attacking out of zone
+			attacker.teleToLocation(KICK_LOC, true);
+			return;
+		}
+		
+		if (npc.getId() == ANAKIM)
+		{
+			if (GrandBossManager.getInstance().getStatus(ANAKIM) != FIGHTING)
+			{
+				GrandBossManager.getInstance().setStatus(ANAKIM, FIGHTING);
+			}
+			
+			// Wake up Minions
+			if (BOSS_ZONE != null)
+			{
+				for (Creature c : BOSS_ZONE.getCharactersInside())
+				{
+					if ((c != null) && c.isNpc() && !c.isDead())
+					{
+						if (ArrayUtil.contains(ANAKIM_MINIONS, c.getId()))
+						{
+							c.asAttackable().addDamageHate(attacker, 0, 999);
+							c.getAI().setIntentionAttack(attacker);
+						}
+					}
+				}
+			}
+			
+			if (_isInitialBarrier || _isTimedBarrier)
+			{
+				if ((System.currentTimeMillis() - _lastHitTime) > 60000)
+				{
+					_hitCounter.put(npc, 0);
+				}
+				
+				_lastHitTime = System.currentTimeMillis();
+				
+				final int hits = _hitCounter.merge(npc, 1, Integer::sum);
+				if (hits >= (_isInitialBarrier ? HITS_TO_BREAK_INITIAL : HITS_TO_BREAK_TIMED))
+				{
+					enterVulnerableState(npc);
+				}
+			}
+		}
+		
+		// Anti-Kite
+		if (npc.isMinion() || npc.isRaid())
+		{
+			if ((BOSS_ZONE != null) && !BOSS_ZONE.isInsideZone(attacker))
 			{
 				attacker.doDie(null);
 			}
 			
-			if (!BOSS_ZONE.isInsideZone(npc)) // Npc moved out of the zone
+			if ((BOSS_ZONE != null) && !BOSS_ZONE.isInsideZone(npc))
 			{
 				final Spawn spawn = npc.getSpawn();
 				if (spawn != null)
 				{
 					npc.teleToLocation(spawn.getX(), spawn.getY(), spawn.getZ());
+				}
+				else
+				{
+					npc.teleToLocation(SPAWN_LOC, true);
 				}
 			}
 		}
@@ -305,16 +384,20 @@ public class Anakim extends Script
 		if (npc.getId() == ANAKIM)
 		{
 			notifyEvent("cancel_timers", null, null);
-			addSpawn(EXIST_CUBIC, 185082, -12606, -5499, 6133, false, 900000); // 15min
+			
+			// The exit cubic appears where the boss died.
+			addSpawn(EXIST_CUBIC, npc.getLocation(), false, 900000);
 			
 			GrandBossManager.getInstance().setStatus(ANAKIM, DEAD);
-			final long respawnTime = getRespawnTime();
+			
+			final long respawnTime = getNextRespawnTime();
 			final StatSet info = GrandBossManager.getInstance().getStatSet(ANAKIM);
-			info.set("respawn_time", System.currentTimeMillis() + respawnTime);
+			info.set("respawn_time", respawnTime);
 			GrandBossManager.getInstance().setStatSet(ANAKIM, info);
 			
-			startQuestTimer("unlock_anakim", respawnTime, null, null);
-			startQuestTimer("end_anakim", 900000, null, null);
+			startQuestTimer("unlock_anakim", respawnTime - System.currentTimeMillis(), null, null);
+			
+			_anakimBoss = null;
 		}
 	}
 	
@@ -325,52 +408,101 @@ public class Anakim extends Script
 		{
 			if (skill.getAbnormalType() == AbnormalType.HP_RECOVER)
 			{
-				if (!npc.isCastingNow() && (npc.getTarget() != npc) && (npc.getTarget() != caster) && (npc.getTarget() != _anakimBoss)) // Don't call minions if are healing Anakim
+				if (!npc.isCastingNow())
 				{
-					npc.asAttackable().clearAggroList();
-					npc.setTarget(caster);
-					npc.asAttackable().addDamageHate(caster, 500, 99999);
-					npc.getAI().setIntentionAttack(caster);
+					final WorldObject target = npc.getTarget();
+					if ((target != npc) && (target != caster) && (target != _anakimBoss))
+					{
+						npc.asAttackable().clearAggroList();
+						npc.setTarget(caster);
+						npc.asAttackable().addDamageHate(caster, 500, 99999);
+						npc.getAI().setIntentionAttack(caster);
+					}
 				}
 			}
 		}
 	}
 	
-	private int getRespawnTime()
+	private void applyInitialBarrier(Npc npc)
 	{
-		return (int) calcReuseFromDays(0, 21, Calendar.TUESDAY, 0, 16, Calendar.SATURDAY);
+		cleanBarriers(npc);
+		_isInitialBarrier = true;
+		_isTimedBarrier = false;
+		_hitCounter.put(npc, 0);
+		
+		npc.setInvul(true);
+		final Skill barrier = BARRIER_INITIAL.getSkill();
+		if (barrier != null)
+		{
+			barrier.applyEffects(npc, npc);
+		}
+		
+		cancelQuestTimer("END_VULNERABILITY", npc, null);
+		cancelQuestTimer("END_TIMED_BARRIER", npc, null);
 	}
 	
-	private long calcReuseFromDays(int day1Minute, int day1Hour, int day1Day, int day2Minute, int day2Hour, int day2Day)
+	private void applyTimedBarrier(Npc npc)
 	{
-		Calendar now = Calendar.getInstance();
-		Calendar day1 = (Calendar) now.clone();
-		day1.set(Calendar.MINUTE, day1Minute);
-		day1.set(Calendar.HOUR_OF_DAY, day1Hour);
-		day1.set(Calendar.DAY_OF_WEEK, day1Day);
+		cleanBarriers(npc);
+		_isInitialBarrier = false;
+		_isTimedBarrier = true;
+		_hitCounter.put(npc, 0);
 		
-		Calendar day2 = (Calendar) day1.clone();
-		day2.set(Calendar.MINUTE, day2Minute);
-		day2.set(Calendar.HOUR_OF_DAY, day2Hour);
-		day2.set(Calendar.DAY_OF_WEEK, day2Day);
-		
-		if (now.after(day1))
+		npc.setInvul(true);
+		final Skill barrier = BARRIER_TIMED.getSkill();
+		if (barrier != null)
 		{
-			day1.add(Calendar.WEEK_OF_MONTH, 1);
+			barrier.applyEffects(npc, npc);
 		}
 		
-		if (now.after(day2))
+		startQuestTimer("END_TIMED_BARRIER", TIME_BARRIER_LIMIT, npc, null);
+	}
+	
+	private void enterVulnerableState(Npc npc)
+	{
+		cleanBarriers(npc);
+		_isInitialBarrier = false;
+		_isTimedBarrier = false;
+		_hitCounter.put(npc, 0);
+		
+		npc.setInvul(false);
+		startQuestTimer("END_VULNERABILITY", TIME_VULNERABLE, npc, null);
+	}
+	
+	private void cleanBarriers(Npc npc)
+	{
+		final Skill initialSkill = BARRIER_INITIAL.getSkill();
+		if (initialSkill != null)
 		{
-			day2.add(Calendar.WEEK_OF_MONTH, 1);
+			npc.stopSkillEffects(initialSkill);
 		}
 		
-		Calendar reenter = day1;
-		if (day2.before(day1))
+		final Skill timedSkill = BARRIER_TIMED.getSkill();
+		if (timedSkill != null)
 		{
-			reenter = day2;
+			npc.stopSkillEffects(timedSkill);
 		}
 		
-		return reenter.getTimeInMillis() - System.currentTimeMillis();
+		npc.setInvul(false);
+	}
+	
+	// Respawns every Friday at 20:00.
+	private long getNextRespawnTime()
+	{
+		// Set to Friday 20:00
+		final Calendar nextSpawn = Calendar.getInstance();
+		nextSpawn.set(Calendar.HOUR_OF_DAY, 20);
+		nextSpawn.set(Calendar.MINUTE, 0);
+		nextSpawn.set(Calendar.SECOND, 0);
+		nextSpawn.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+		
+		// If Friday 20:00 already passed this week, move to next week
+		if (nextSpawn.getTimeInMillis() < System.currentTimeMillis())
+		{
+			nextSpawn.add(Calendar.WEEK_OF_YEAR, 1);
+		}
+		
+		return nextSpawn.getTimeInMillis();
 	}
 	
 	public static void main(String[] args)

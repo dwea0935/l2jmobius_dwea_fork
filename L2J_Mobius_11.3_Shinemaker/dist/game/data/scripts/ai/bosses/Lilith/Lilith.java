@@ -113,8 +113,7 @@ public class Lilith extends Script
 		addSkillSeeId(ALL_MOBS);
 		
 		final StatSet info = GrandBossManager.getInstance().getStatSet(LILITH);
-		final int status = GrandBossManager.getInstance().getStatus(LILITH);
-		if (status == DEAD)
+		if (GrandBossManager.getInstance().getStatus(LILITH) == DEAD)
 		{
 			long respawnTime = info.getLong("respawn_time");
 			if (respawnTime == 0)
@@ -128,7 +127,6 @@ public class Lilith extends Script
 			if (delay > 0)
 			{
 				startQuestTimer("unlock_lilith", delay, null, null);
-				// System.out.println("GrandBossManager: Lilith spawn scheduled in " + (delay / 60000) + " minutes.");
 			}
 			else
 			{
@@ -180,9 +178,7 @@ public class Lilith extends Script
 				{
 					if ((_lilithBoss != null) && !_lilithBoss.isDead())
 					{
-						final boolean isFighting = GrandBossManager.getInstance().getStatus(LILITH) == FIGHTING;
-						final boolean isDamaged = _lilithBoss.getCurrentHp() < _lilithBoss.getMaxHp();
-						if (isFighting || isDamaged)
+						if ((GrandBossManager.getInstance().getStatus(LILITH) == FIGHTING) || (_lilithBoss.getCurrentHp() < _lilithBoss.getMaxHp()))
 						{
 							resetLilith(_lilithBoss);
 						}
@@ -190,11 +186,8 @@ public class Lilith extends Script
 				}
 				else
 				{
-					// Minion Logic
-					final boolean isBossAlive = ((_lilithBoss != null) && !_lilithBoss.isDead());
-					final boolean isNotFighting = GrandBossManager.getInstance().getStatus(LILITH) != FIGHTING;
-					final boolean hasPlayers = ((BOSS_ZONE != null) && !BOSS_ZONE.getPlayersInside().isEmpty());
-					if (isBossAlive && isNotFighting && hasPlayers)
+					// Minions gather around an idle boss while players are near.
+					if ((_lilithBoss != null) && !_lilithBoss.isDead() && (GrandBossManager.getInstance().getStatus(LILITH) != FIGHTING) && (BOSS_ZONE != null) && !BOSS_ZONE.getPlayersInside().isEmpty())
 					{
 						manageMinions(_lilithBoss);
 					}
@@ -232,6 +225,7 @@ public class Lilith extends Script
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -249,9 +243,7 @@ public class Lilith extends Script
 				if (ArrayUtil.contains(LILITH_MINIONS, c.getId()))
 				{
 					// Blink Effect
-					int x = boss.getX() + getRandom(-150, 150);
-					int y = boss.getY() + getRandom(-150, 150);
-					c.teleToLocation(x, y, boss.getZ());
+					c.teleToLocation(boss.getX() + getRandom(-150, 150), boss.getY() + getRandom(-150, 150), boss.getZ());
 				}
 			}
 		}
@@ -349,11 +341,11 @@ public class Lilith extends Script
 				{
 					_hitCounter.put(npc, 0);
 				}
+				
 				_lastHitTime = System.currentTimeMillis();
 				
 				final int hits = _hitCounter.merge(npc, 1, Integer::sum);
-				final int required = _isInitialBarrier ? HITS_TO_BREAK_INITIAL : HITS_TO_BREAK_TIMED;
-				if (hits >= required)
+				if (hits >= (_isInitialBarrier ? HITS_TO_BREAK_INITIAL : HITS_TO_BREAK_TIMED))
 				{
 					enterVulnerableState(npc);
 				}
@@ -367,6 +359,7 @@ public class Lilith extends Script
 			{
 				attacker.doDie(null);
 			}
+			
 			if ((BOSS_ZONE != null) && !BOSS_ZONE.isInsideZone(npc))
 			{
 				final Spawn spawn = npc.getSpawn();
@@ -389,7 +382,7 @@ public class Lilith extends Script
 		{
 			notifyEvent("cancel_timers", null, null);
 			
-			// Fix: Spawn Cubic at Boss location
+			// The exit cubic appears where the boss died.
 			addSpawn(EXIST_CUBIC, npc.getLocation(), false, 900000);
 			
 			GrandBossManager.getInstance().setStatus(LILITH, DEAD);
@@ -412,12 +405,16 @@ public class Lilith extends Script
 		{
 			if (skill.getAbnormalType() == AbnormalType.HP_RECOVER)
 			{
-				if (!npc.isCastingNow() && (npc.getTarget() != npc) && (npc.getTarget() != caster) && (npc.getTarget() != _lilithBoss))
+				if (!npc.isCastingNow())
 				{
-					npc.asAttackable().clearAggroList();
-					npc.setTarget(caster);
-					npc.asAttackable().addDamageHate(caster, 500, 99999);
-					npc.getAI().setIntentionAttack(caster);
+					final WorldObject target = npc.getTarget();
+					if ((target != npc) && (target != caster) && (target != _lilithBoss))
+					{
+						npc.asAttackable().clearAggroList();
+						npc.setTarget(caster);
+						npc.asAttackable().addDamageHate(caster, 500, 99999);
+						npc.getAI().setIntentionAttack(caster);
+					}
 				}
 			}
 		}
@@ -431,9 +428,10 @@ public class Lilith extends Script
 		_hitCounter.put(npc, 0);
 		
 		npc.setInvul(true);
-		if (BARRIER_INITIAL.getSkill() != null)
+		final Skill barrier = BARRIER_INITIAL.getSkill();
+		if (barrier != null)
 		{
-			BARRIER_INITIAL.getSkill().applyEffects(npc, npc);
+			barrier.applyEffects(npc, npc);
 		}
 		
 		cancelQuestTimer("END_VULNERABILITY", npc, null);
@@ -448,9 +446,10 @@ public class Lilith extends Script
 		_hitCounter.put(npc, 0);
 		
 		npc.setInvul(true);
-		if (BARRIER_TIMED.getSkill() != null)
+		final Skill barrier = BARRIER_TIMED.getSkill();
+		if (barrier != null)
 		{
-			BARRIER_TIMED.getSkill().applyEffects(npc, npc);
+			barrier.applyEffects(npc, npc);
 		}
 		
 		startQuestTimer("END_TIMED_BARRIER", TIME_BARRIER_LIMIT, npc, null);
@@ -469,26 +468,26 @@ public class Lilith extends Script
 	
 	private void cleanBarriers(Npc npc)
 	{
-		if (BARRIER_INITIAL.getSkill() != null)
+		final Skill initialSkill = BARRIER_INITIAL.getSkill();
+		if (initialSkill != null)
 		{
-			npc.stopSkillEffects(BARRIER_INITIAL.getSkill());
+			npc.stopSkillEffects(initialSkill);
 		}
 		
-		if (BARRIER_TIMED.getSkill() != null)
+		final Skill timedSkill = BARRIER_TIMED.getSkill();
+		if (timedSkill != null)
 		{
-			npc.stopSkillEffects(BARRIER_TIMED.getSkill());
+			npc.stopSkillEffects(timedSkill);
 		}
 		
 		npc.setInvul(false);
 	}
 	
-	// NEW SCHEDULE: Saturday 20:00
+	// Respawns every Saturday at 20:00.
 	private long getNextRespawnTime()
 	{
-		final Calendar now = Calendar.getInstance();
-		
 		// Set to Saturday 20:00
-		final Calendar nextSpawn = (Calendar) now.clone();
+		final Calendar nextSpawn = Calendar.getInstance();
 		nextSpawn.set(Calendar.HOUR_OF_DAY, 20);
 		nextSpawn.set(Calendar.MINUTE, 0);
 		nextSpawn.set(Calendar.SECOND, 0);
