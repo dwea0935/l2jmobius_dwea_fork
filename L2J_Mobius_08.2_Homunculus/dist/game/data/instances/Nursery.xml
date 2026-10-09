@@ -65,11 +65,57 @@
 					<node x="-186690" y="147058" />
 				</banned_territory>
 			</territories>
-			<npc id="23033" count="10" respawnTime="60sec" /> <!-- Failed Creation -->
-			<npc id="23034" count="10" respawnTime="60sec" /> <!-- Failed Creation -->
-			<npc id="23035" count="10" respawnTime="60sec" /> <!-- Failed Creation -->
-			<npc id="23036" count="10" respawnTime="60sec" /> <!-- Failed Creation -->
-			<npc id="23037" count="10" respawnTime="60sec" /> <!-- Failed Creation -->
+			<!-- Fixed spawn points around the ring, five monster types in each of ten sectors. -->
+			<npc id="23033" x="-184392" y="147984" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23034" x="-184258" y="148197" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23035" x="-184461" y="148346" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23036" x="-184384" y="148586" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23037" x="-184618" y="148680" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23033" x="-184603" y="148931" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23034" x="-184853" y="148964" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23035" x="-184901" y="149211" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23036" x="-185151" y="149180" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23037" x="-185259" y="149408" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23033" x="-185493" y="149316" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23034" x="-185655" y="149509" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23035" x="-185859" y="149362" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23036" x="-186063" y="149509" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23037" x="-186225" y="149316" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23033" x="-186459" y="149408" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23034" x="-186567" y="149180" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23035" x="-186817" y="149211" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23036" x="-186865" y="148964" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23037" x="-187115" y="148931" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23033" x="-187100" y="148680" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23034" x="-187334" y="148586" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23035" x="-187257" y="148346" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23036" x="-187460" y="148197" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23037" x="-187326" y="147984" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23033" x="-187486" y="147790" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23034" x="-187303" y="147617" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23035" x="-187409" y="147388" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23036" x="-187189" y="147266" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23037" x="-187235" y="147019" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23033" x="-186992" y="146955" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23034" x="-186975" y="146704" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23035" x="-186723" y="146703" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23036" x="-186644" y="146464" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23037" x="-186400" y="146525" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23033" x="-186264" y="146313" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23034" x="-186043" y="146434" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23035" x="-185859" y="146262" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23036" x="-185675" y="146434" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23037" x="-185454" y="146313" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23033" x="-185318" y="146525" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23034" x="-185074" y="146464" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23035" x="-184995" y="146703" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23036" x="-184743" y="146704" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23037" x="-184726" y="146955" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23033" x="-184483" y="147019" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23034" x="-184529" y="147266" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23035" x="-184309" y="147388" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23036" x="-184415" y="147617" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
+			<npc id="23037" x="-184232" y="147790" z="-15304" heading="-1" respawnTime="60sec" /> <!-- Failed Creation -->
 		</group>
 	</spawnlist>
 </instance>
