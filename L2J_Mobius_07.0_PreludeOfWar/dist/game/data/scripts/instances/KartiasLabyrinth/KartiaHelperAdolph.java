@@ -20,6 +20,8 @@
  */
 package instances.KartiasLabyrinth;
 
+import java.util.List;
+
 import org.l2jmobius.gameserver.entity.Location;
 import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.WorldObject;
@@ -42,7 +44,7 @@ import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Kartia Helper Adolph AI.
- * @author flanagak
+ * @author flanagak, Notorion
  */
 public class KartiaHelperAdolph extends Script
 {
@@ -106,33 +108,67 @@ public class KartiaHelperAdolph extends Script
 		{
 			final StatSet npcVars = npc.getVariables();
 			final Player plr = npcVars.getObject("PLAYER_OBJECT", Player.class);
-			if (plr != null)
+			if ((plr == null) || plr.isAlikeDead() || !plr.isOnline())
 			{
-				final double distance = npc.calculateDistance2D(plr);
-				if (distance > 300)
+				return;
+			}
+			
+			if (npc.calculateDistance3D(plr) > ((instance.getParameters().getInt("ROOM", 1) == 1) ? 600 : 2000))
+			{
+				npc.abortAttack();
+				npc.abortCast();
+				npc.setTarget(null);
+				npc.teleToLocation(plr.getLocation());
+				return;
+			}
+			
+			// Keep fighting a live target, otherwise engage the closest monster.
+			Monster targetMonster = null;
+			final WorldObject currentTarget = npc.getTarget();
+			if (npc.isInCombat() && (currentTarget != null) && currentTarget.isMonster() && !currentTarget.asMonster().isDead())
+			{
+				targetMonster = currentTarget.asMonster();
+			}
+			else
+			{
+				double closestDistance = Double.MAX_VALUE;
+				for (Monster monster : World.getVisibleObjectsInRange(npc, Monster.class, 300))
 				{
-					final Location loc = new Location(plr.getX(), plr.getY(), plr.getZ() + 50);
-					final Location randLoc = new Location(loc.getX() + getRandom(-100, 100), loc.getY() + getRandom(-100, 100), loc.getZ());
-					if (distance > 600)
+					final double distance = npc.calculateDistance3D(monster);
+					if ((distance < closestDistance) && canAttack(npc, monster))
 					{
-						npc.teleToLocation(loc);
+						closestDistance = distance;
+						targetMonster = monster;
 					}
-					else
-					{
-						npc.setRunning();
-					}
-					
-					addMoveToDesire(npc, randLoc, 23);
 				}
-				else if (!npc.isInCombat() || (npc.getTarget() == null))
+			}
+			
+			if (targetMonster != null)
+			{
+				npc.setTarget(targetMonster);
+				addAttackDesire(npc, targetMonster);
+				return;
+			}
+			
+			// Walk in front of the player and pick a random monster once there.
+			final double angle = (plr.getHeading() / 65535.0) * 2 * Math.PI;
+			final Location frontLoc = new Location(plr.getX() + (int) (Math.cos(angle) * 150), plr.getY() + (int) (Math.sin(angle) * 150), plr.getZ());
+			if (npc.calculateDistance2D(frontLoc) > 50)
+			{
+				npc.setRunning();
+				npc.getAI().setIntentionActive();
+				addMoveToDesire(npc, frontLoc, 23);
+			}
+			else
+			{
+				final List<Monster> monsterList = World.getVisibleObjectsInRange(npc, Monster.class, 350);
+				if (!monsterList.isEmpty())
 				{
-					final Monster monster = World.getRandomVisibleObjectInRange(npc, Monster.class, 500);
-					if (monster != null)
+					final Monster monster = getRandomEntry(monsterList);
+					if (canAttack(npc, monster))
 					{
-						if (monster.isTargetable() && GeoEngine.getInstance().canSeeTarget(npc, monster) && !ArrayUtil.contains(MIRRORS, monster.getId()) && !ArrayUtil.contains(KARTIA_FRIENDS, monster.getId()))
-						{
-							addAttackDesire(npc, monster);
-						}
+						npc.setTarget(monster);
+						addAttackDesire(npc, monster);
 					}
 				}
 			}
@@ -147,6 +183,12 @@ public class KartiaHelperAdolph extends Script
 				}
 			}
 		}
+	}
+	
+	private boolean canAttack(Npc npc, Monster monster)
+	{
+		final int monsterId = monster.getId();
+		return monster.isTargetable() && !monster.isDead() && !ArrayUtil.contains(MIRRORS, monsterId) && !ArrayUtil.contains(KARTIA_FRIENDS, monsterId) && GeoEngine.getInstance().canSeeTarget(npc, monster);
 	}
 	
 	public void useRandomSkill(Npc npc)

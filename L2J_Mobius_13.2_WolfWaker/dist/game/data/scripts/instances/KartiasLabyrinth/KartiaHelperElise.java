@@ -46,7 +46,7 @@ import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Kartia Helper Elise AI. Healer
- * @author flanagak
+ * @author flanagak, Notorion
  */
 public class KartiaHelperElise extends Script
 {
@@ -131,27 +131,21 @@ public class KartiaHelperElise extends Script
 				healFriends(npc);
 			}
 			
-			if (adolph != null)
+			// Stay behind Adolph unless busy healing.
+			if ((adolph != null) && !npc.isCastingNow())
 			{
-				final double distance = npc.calculateDistance2D(adolph);
-				if (distance > 300)
+				final double angle = ((adolph.getHeading() / 65535.0) * 2 * Math.PI) - ((3 * Math.PI) / 4);
+				final Location rearLoc = new Location(adolph.getX() + (int) (Math.cos(angle) * 100), adolph.getY() + (int) (Math.sin(angle) * 100), adolph.getZ());
+				if (npc.calculateDistance3D(adolph) > 2000)
 				{
-					final Location loc = new Location(adolph.getX(), adolph.getY(), adolph.getZ() + 50);
-					final Location randLoc = new Location(loc.getX() + getRandom(-100, 100), loc.getY() + getRandom(-100, 100), loc.getZ());
-					if (distance > 600)
-					{
-						npc.teleToLocation(loc);
-					}
-					else
-					{
-						npc.setRunning();
-					}
-					
-					addMoveToDesire(npc, randLoc, 23);
+					npc.teleToLocation(rearLoc);
+				}
+				else if (npc.calculateDistance2D(rearLoc) > 80)
+				{
+					npc.setRunning();
+					npc.getAI().setIntentionMoveTo(rearLoc);
 				}
 			}
-			
-			npc.setTarget(npc);
 		}
 	}
 	
@@ -245,6 +239,15 @@ public class KartiaHelperElise extends Script
 		final int status = event.getStatus();
 		if (status == 1)
 		{
+			// Helpers follow Adolph even before they have seen him.
+			for (Npc adolph : instance.getAliveNpcs(KARTIA_ADOLPH))
+			{
+				for (Npc elise : instance.getAliveNpcs(KARTIA_ELISE))
+				{
+					elise.getVariables().set("ADOLPH_OBJECT", adolph);
+				}
+			}
+			
 			instance.getAliveNpcs(KARTIA_ELISE).forEach(elise -> getTimers().addRepeatingTimer("CHECK_ACTION", 3000, elise, null));
 		}
 	}

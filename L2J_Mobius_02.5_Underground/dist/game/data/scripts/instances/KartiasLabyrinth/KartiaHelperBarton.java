@@ -41,7 +41,7 @@ import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Kartia Helper Barton AI. Tyrr Warrior
- * @author flanagak
+ * @author flanagak, Notorion
  */
 public class KartiaHelperBarton extends Script
 {
@@ -103,35 +103,47 @@ public class KartiaHelperBarton extends Script
 		if ((instance != null) && event.equals("CHECK_ACTION"))
 		{
 			final FriendlyNpc adolph = npc.getVariables().getObject("ADOLPH_OBJECT", FriendlyNpc.class);
-			if (adolph != null)
+			if (adolph == null)
 			{
-				final double distance = npc.calculateDistance2D(adolph);
-				if (distance > 300)
+				return;
+			}
+			
+			// Keep fighting a live target.
+			final WorldObject target = npc.getTarget();
+			final boolean inCombat = npc.isInCombat();
+			if (inCombat && (target != null) && target.isMonster() && !target.asMonster().isDead())
+			{
+				return;
+			}
+			
+			// Out of combat, follow Adolph on his right flank first.
+			final double distance = npc.calculateDistance2D(adolph);
+			if (!inCombat && ((distance > 600) || ((target == null) && (distance > 150))))
+			{
+				final double angle = ((adolph.getHeading() / 65535.0) * 2 * Math.PI) + (Math.PI / 2);
+				final Location flankLoc = new Location(adolph.getX() + (int) (Math.cos(angle) * 100), adolph.getY() + (int) (Math.sin(angle) * 100), adolph.getZ());
+				if (distance > 600)
 				{
-					final Location loc = new Location(adolph.getX(), adolph.getY(), adolph.getZ() + 50);
-					final Location randLoc = new Location(loc.getX() + getRandom(-100, 100), loc.getY() + getRandom(-100, 100), loc.getZ());
-					if (distance > 600)
-					{
-						npc.teleToLocation(loc);
-					}
-					else
-					{
-						npc.setRunning();
-					}
-					
-					addMoveToDesire(npc, randLoc, 23);
+					npc.teleToLocation(flankLoc);
 				}
-				else if (!npc.isInCombat() || (npc.getTarget() == null))
+				else if (npc.calculateDistance2D(flankLoc) > 50)
 				{
-					final WorldObject target = adolph.getTarget();
-					if ((target != null) && target.isMonster())
-					{
-						final Monster monster = target.asMonster();
-						if ((monster != null) && adolph.isInCombat() && !ArrayUtil.contains(KARTIA_FRIENDS, monster.getId()))
-						{
-							addAttackDesire(npc, monster);
-						}
-					}
+					npc.setRunning();
+					npc.getAI().setIntentionActive();
+					addMoveToDesire(npc, flankLoc, 23);
+				}
+				return;
+			}
+			
+			// Otherwise attack what Adolph attacks.
+			final WorldObject adolphTarget = adolph.getTarget();
+			if ((adolphTarget != null) && adolphTarget.isMonster())
+			{
+				final Monster monster = adolphTarget.asMonster();
+				if (!monster.isDead() && !ArrayUtil.contains(KARTIA_FRIENDS, monster.getId()))
+				{
+					npc.setTarget(monster);
+					addAttackDesire(npc, monster);
 				}
 			}
 		}
@@ -150,6 +162,15 @@ public class KartiaHelperBarton extends Script
 		final int status = event.getStatus();
 		if (status == 1)
 		{
+			// Helpers follow Adolph even before they have seen him.
+			for (Npc adolph : instance.getAliveNpcs(KARTIA_ADOLPH))
+			{
+				for (Npc barton : instance.getAliveNpcs(KARTIA_BARTON))
+				{
+					barton.getVariables().set("ADOLPH_OBJECT", adolph);
+				}
+			}
+			
 			instance.getAliveNpcs(KARTIA_BARTON).forEach(barton -> getTimers().addRepeatingTimer("CHECK_ACTION", 3000, barton, null));
 			instance.getAliveNpcs(KARTIA_BARTON).forEach(barton -> getTimers().addRepeatingTimer("USE_SKILL", 6000, barton, null));
 		}

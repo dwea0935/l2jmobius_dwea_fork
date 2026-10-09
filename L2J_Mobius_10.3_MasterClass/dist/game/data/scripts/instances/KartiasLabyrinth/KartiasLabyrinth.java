@@ -41,7 +41,7 @@ import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Kartia Labyrinth instance zone.
- * @author flanagak
+ * @author flanagak, Notorion
  */
 public class KartiasLabyrinth extends InstanceScript
 {
@@ -77,6 +77,27 @@ public class KartiasLabyrinth extends InstanceScript
 		33612,
 		33623,
 		33634,
+	};
+	private static final int[] COMBAT_HELPERS =
+	{
+		33609, // Adolph (Kartia 85)
+		33620, // Adolph (Kartia 90)
+		33631, // Adolph (Kartia 95)
+		33611, // Barton (Kartia 85)
+		33622, // Barton (Kartia 90)
+		33633, // Barton (Kartia 95)
+		33613, // Hayuk (Kartia 85)
+		33624, // Hayuk (Kartia 90)
+		33635, // Hayuk (Kartia 95)
+		33615, // Eliyah (Kartia 85)
+		33626, // Eliyah (Kartia 90)
+		33637, // Eliyah (Kartia 95)
+		33617, // Elise (Kartia 85)
+		33628, // Elise (Kartia 90)
+		33639, // Elise (Kartia 95)
+		33618, // Eliyah's Guardian Spirit (Kartia 85)
+		33629, // Eliyah's Guardian Spirit (Kartia 90)
+		33640, // Eliyah's Guardian Spirit (Kartia 95)
 	};
 	private static final int[] MONSTERS =
 	{
@@ -134,16 +155,17 @@ public class KartiasLabyrinth extends InstanceScript
 	private static final SkillHolder MIRROR_SKILL_1 = new SkillHolder(15401, 1);
 	private static final SkillHolder MIRROR_SKILL_2 = new SkillHolder(14065, 1);
 	private static final SkillHolder BOSS_STONE = new SkillHolder(15155, 1);
+	private static final SkillHolder DIMENSIONAL_POISON = new SkillHolder(15010, 1);
 	private static final SkillHolder PRISONER_HOLD = new SkillHolder(14988, 1);
 	private static final SkillHolder PRISONER_CLEANSE = new SkillHolder(14992, 1);
 	
 	// Zones
 	private static final int KARTIA_85_DETECT_1 = 12020;
-	private static final int KARTIA_85_DETECT_2 = 12021;
+	private static final int KARTIA_85_TELEPORT_1 = 12022;
 	private static final int KARTIA_90_DETECT_1 = 12025;
-	private static final int KARTIA_90_DETECT_2 = 12026;
+	private static final int KARTIA_90_TELEPORT_1 = 12027;
 	private static final int KARTIA_95_DETECT_1 = 12030;
-	private static final int KARTIA_95_DETECT_2 = 12031;
+	private static final int KARTIA_95_TELEPORT_1 = 12032;
 	
 	// Misc
 	private static final int TEMPLATE_ID_SOLO_85 = 205;
@@ -191,11 +213,13 @@ public class KartiasLabyrinth extends InstanceScript
 		addMoveFinishedId(PRISONERS);
 		addRouteFinishedId(MONSTERS);
 		addCreatureSeeId(MONSTERS);
-		addEnterZoneId(KARTIA_85_DETECT_1, KARTIA_85_DETECT_2);
-		addEnterZoneId(KARTIA_90_DETECT_1, KARTIA_90_DETECT_2);
-		addEnterZoneId(KARTIA_95_DETECT_1, KARTIA_95_DETECT_2);
+		addEnterZoneId(KARTIA_85_DETECT_1, KARTIA_85_TELEPORT_1);
+		addEnterZoneId(KARTIA_90_DETECT_1, KARTIA_90_TELEPORT_1);
+		addEnterZoneId(KARTIA_95_DETECT_1, KARTIA_95_TELEPORT_1);
 		addInstanceCreatedId(TEMPLATE_ID_SOLO_85, TEMPLATE_ID_SOLO_90, TEMPLATE_ID_SOLO_95, TEMPLATE_ID_GROUP_85, TEMPLATE_ID_GROUP_90, TEMPLATE_ID_GROUP_95);
+		addInstanceDestroyId(TEMPLATE_ID_SOLO_85, TEMPLATE_ID_SOLO_90, TEMPLATE_ID_SOLO_95, TEMPLATE_ID_GROUP_85, TEMPLATE_ID_GROUP_90, TEMPLATE_ID_GROUP_95);
 		setCreatureKillId(this::onCreatureKill, MONSTERS);
+		setCreatureKillId(this::onCreatureKill, MIRRORS);
 		setCreatureKillId(this::onBossKill, BOSSES);
 	}
 	
@@ -294,6 +318,14 @@ public class KartiasLabyrinth extends InstanceScript
 					manageProgressInInstance(instance);
 					break;
 				}
+				case "TELEPORT_HELPERS_ROOM_2":
+				{
+					npc.setImmobilized(false);
+					npc.disableCoreAI(false);
+					npc.teleToLocation(instance.getTemplateParameters().getLocation("teleportZone2_loc"));
+					npc.getAI().setIntentionActive();
+					break;
+				}
 				case "MOVE_TO_MIDDLE":
 				{
 					if (npc != null)
@@ -327,22 +359,33 @@ public class KartiasLabyrinth extends InstanceScript
 					}
 					break;
 				}
-				case "START_3RD_ROOM":
-				{
-					instance.openCloseDoor(instance.getTemplateParameters().getInt("thirdDoorId"), false);
-					instance.getAliveNpcs(MONSTERS).forEach(n -> n.doDie(null));
-					getTimers().addTimer("CALL_PROGRESS", 1000, n -> manageProgressInInstance(instance));
-					instance.getParameters().set("TELEPORT_3_ENABLED", true);
-					break;
-				}
 				case "MIRROR_DESPAWN":
 				{
 					showOnScreenMsg(instance, NpcStringId.THE_LIFE_PLUNDERER_HAS_DISAPPEARED, ExShowScreenMessage.TOP_CENTER, 5000, true);
+					instance.getParameters().set("MIRROR_DEAD", true);
 					manageProgressInInstance(instance);
 					break;
 				}
 			}
 		}
+	}
+	
+	private void applyPoison(Instance instance)
+	{
+		if (!instance.getParameters().getBoolean("CONTINUE_AFTER_KILL", false))
+		{
+			return;
+		}
+		
+		for (Player member : instance.getPlayers())
+		{
+			if (!member.isDead())
+			{
+				DIMENSIONAL_POISON.getSkill().applyEffects(member, member);
+			}
+		}
+		
+		getTimers().addTimer("APPLY_POISON" + instance.getId(), 2000, n -> applyPoison(instance));
 	}
 	
 	@Override
@@ -357,8 +400,17 @@ public class KartiasLabyrinth extends InstanceScript
 		
 		if (!isSoloKartia(instance))
 		{
-			getTimers().addTimer("CALL_PROGRESS", 2500, n -> manageProgressInInstance(instance));
+			getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 2500, n -> manageProgressInInstance(instance));
 		}
+	}
+	
+	@Override
+	public void onInstanceDestroy(Instance instance)
+	{
+		// Timers without an npc or player are shared by every Kartia instance, so their names carry the instance id.
+		cancelWaveTimers(instance);
+		getTimers().cancelTimers("APPLY_POISON" + instance.getId());
+		getTimers().cancelTimers("START_3RD_ROOM" + instance.getId());
 	}
 	
 	public void onCreatureKill(OnCreatureDeath event)
@@ -370,14 +422,37 @@ public class KartiasLabyrinth extends InstanceScript
 			final StatSet param = instance.getParameters();
 			if (param.getBoolean("BOSS_KILL_OPEN_DOOR", false) && ArrayUtil.contains(MINI_BOSSES, npc.getId()))
 			{
-				instance.setParameter("BOSS_KILL_OPEN_DOOR", true);
+				instance.setParameter("BOSS_KILL_OPEN_DOOR", false);
 				instance.openCloseDoor(instance.getTemplateParameters().getInt("thirdDoorId"), true);
 				instance.setStatus(3); // Used for notify helper's AI
+				getTimers().addTimer("START_3RD_ROOM" + instance.getId(), 15000, n -> startThirdRoom(instance));
 			}
-			else if (param.getBoolean("CONTINUE_AFTER_KILL", false) && (instance.getAliveNpcCount(MINI_BOSSES) == 0))
+			else if (param.getBoolean("CONTINUE_AFTER_KILL", false) && ArrayUtil.contains(MINI_BOSSES, npc.getId()))
 			{
 				param.set("CONTINUE_AFTER_KILL", false);
-				getTimers().addTimer("CALL_PROGRESS", 5000, n -> manageProgressInInstance(instance));
+				for (Player member : instance.getPlayers())
+				{
+					member.stopSkillEffects(DIMENSIONAL_POISON.getSkill());
+				}
+				
+				getTimers().addTimer("PRISONERS_ESCAPE" + instance.getId(), 2000, n -> instance.getAliveNpcs(PRISONERS).forEach(prisoner ->
+				{
+					param.set("SURVIVOR_COUNT", param.getInt("SURVIVOR_COUNT", 0) + 1);
+					prisoner.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.I_AM_SAFE_THANKS_TO_YOU_I_WILL_BEGIN_SUPPORTING_AS_SOON_AS_PREPARATIONS_ARE_COMPLETE);
+					prisoner.setTargetable(false);
+					PRISONER_CLEANSE.getSkill().applyEffects(prisoner, prisoner);
+					final Location loc = instance.getTemplateParameters().getLocation("prisonerEscapeLoc");
+					addMoveToDesire(prisoner, loc, 23);
+				}));
+				
+				instance.getAliveNpcs(BOZ_ENERGY).forEach(Npc::deleteMe);
+				getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 3000, n -> manageProgressInInstance(instance));
+			}
+			else if (ArrayUtil.contains(MIRRORS, npc.getId()) && !param.getBoolean("MIRROR_DEAD", false))
+			{
+				param.set("MIRROR_DEAD", true);
+				getTimers().cancelTimer("MIRROR_DESPAWN", npc, null);
+				manageProgressInInstance(instance);
 			}
 		}
 	}
@@ -386,14 +461,45 @@ public class KartiasLabyrinth extends InstanceScript
 	{
 		if ((instance != null) && (instance.getAliveNpcCount(MONSTERS) == 0))
 		{
-			getTimers().cancelTimers("NEXT_WAVE_DELAY");
-			getTimers().cancelTimers("MONITOR_WAVE");
-			getTimers().addTimer("CALL_PROGRESS", 5000, n -> manageProgressInInstance(instance));
+			getTimers().cancelTimers("NEXT_WAVE_DELAY" + instance.getId());
+			getTimers().cancelTimers("MONITOR_WAVE" + instance.getId());
+			getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 5000, n -> manageProgressInInstance(instance));
 		}
 		else
 		{
-			getTimers().addTimer("MONITOR_WAVE", WAVE_MONITOR_DELAY, n -> manageWaves(instance));
+			getTimers().addTimer("MONITOR_WAVE" + instance.getId(), WAVE_MONITOR_DELAY, n -> manageWaves(instance));
 		}
+	}
+	
+	private void cancelWaveTimers(Instance instance)
+	{
+		getTimers().cancelTimers("NEXT_WAVE_DELAY" + instance.getId());
+		getTimers().cancelTimers("MONITOR_WAVE" + instance.getId());
+		getTimers().cancelTimers("CALL_PROGRESS" + instance.getId());
+	}
+	
+	private void startThirdRoom(Instance instance)
+	{
+		final StatSet templateParams = instance.getTemplateParameters();
+		instance.openCloseDoor(templateParams.getInt("thirdDoorId"), false);
+		
+		// Players still standing in the doorway would be shut out of the last room.
+		final Location doorway = templateParams.getLocation("bossEscapeLoc2");
+		for (Player member : instance.getPlayers())
+		{
+			if (member.calculateDistance2D(doorway) < 400)
+			{
+				member.teleToLocation(templateParams.getLocation("teleportZone3_loc"));
+			}
+		}
+		
+		final StatSet param = instance.getParameters();
+		param.set("ROOM", 3);
+		param.set("STAGE", 1);
+		param.set("WAVE", 1);
+		instance.getAliveNpcs(MONSTERS).forEach(n -> n.doDie(null));
+		getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 1000, n -> manageProgressInInstance(instance));
+		param.set("TELEPORT_3_ENABLED", true);
 	}
 	
 	public void onBossKill(OnCreatureDeath event)
@@ -440,11 +546,14 @@ public class KartiasLabyrinth extends InstanceScript
 		{
 			if (ArrayUtil.contains(MINI_BOSSES, npc.getId()))
 			{
-				if (npc.isScriptValue(0) && (npc.getCurrentHpPercent() < 50) && instance.getParameters().getBoolean("BOSS_CAN_ESCAPE", false))
+				// Script value 0 is idle, 1 is engaged and 2 or more is fleeing.
+				if ((npc.getScriptValue() < 2) && (npc.getCurrentHpPercent() < 15) && instance.getParameters().getBoolean("BOSS_KILL_OPEN_DOOR", false))
 				{
-					instance.setParameter("BOSS_CAN_ESCAPE", false);
-					npc.setScriptValue(1);
+					npc.setScriptValue(2);
+					instance.openCloseDoor(instance.getTemplateParameters().getInt("thirdDoorId"), true);
+					npc.asAttackable().setCanReturnToSpawnPoint(false);
 					npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.NOT_BAD_FOR_A_BUNCH_OF_HUMANS_I_M_LEAVING);
+					enforceWatchmanLeash(npc, instance.getTemplateParameters().getLocation("bossEscapeLoc1"), 2);
 				}
 			}
 			else
@@ -453,11 +562,12 @@ public class KartiasLabyrinth extends InstanceScript
 				if (npc.isScriptValue(0) && (npc.getCurrentHpPercent() < 10))
 				{
 					npc.setScriptValue(1);
+					instance.getParameters().set("MIRROR_DEAD", true);
 					showOnScreenMsg(instance, NpcStringId.YOU_FEEL_THE_BURNING_BLOOD_EFFECT, ExShowScreenMessage.TOP_CENTER, 5000, true);
 					MIRROR_SKILL_1.getSkill().applyEffects(attacker, attacker);
 					MIRROR_SKILL_2.getSkill().applyEffects(attacker, attacker);
 					manageProgressInInstance(instance);
-					getTimers().addTimer("SUICIDE", 5000, n -> npc.doDie(null));
+					getTimers().addTimer("SUICIDE", null, 5000, npc, null, n -> npc.doDie(null));
 					getTimers().cancelTimer("MIRROR_DESPAWN", npc, null);
 				}
 			}
@@ -472,6 +582,16 @@ public class KartiasLabyrinth extends InstanceScript
 		{
 			switch (zone.getId())
 			{
+				case KARTIA_85_TELEPORT_1:
+				case KARTIA_90_TELEPORT_1:
+				case KARTIA_95_TELEPORT_1:
+				{
+					if (!instance.getParameters().getBoolean("MIRROR_DEAD", false))
+					{
+						creature.teleToLocation(instance.getTemplateParameters().getLocation("teleportZone1_loc"), instance);
+					}
+					break;
+				}
 				case KARTIA_85_DETECT_1:
 				case KARTIA_90_DETECT_1:
 				case KARTIA_95_DETECT_1:
@@ -479,22 +599,11 @@ public class KartiasLabyrinth extends InstanceScript
 					if (instance.getParameters().getBoolean("SECOND_ROOM_OPENED", true))
 					{
 						instance.getParameters().set("SECOND_ROOM_OPENED", false);
-						getTimers().addTimer("CLOSE_SECOND_DOORS", 20000, n ->
+						getTimers().addTimer("CLOSE_SECOND_DOORS" + instance.getId(), 20000, n ->
 						{
 							instance.openCloseDoor(instance.getTemplateParameters().getInt("secondDoorId"), false);
 							instance.getParameters().set("TELEPORT_2_ENABLED", true);
 						});
-					}
-					break;
-				}
-				case KARTIA_85_DETECT_2:
-				case KARTIA_90_DETECT_2:
-				case KARTIA_95_DETECT_2:
-				{
-					if (instance.getParameters().getBoolean("LAST_ROOM_OPENED", true))
-					{
-						instance.getParameters().set("LAST_ROOM_OPENED", false);
-						getTimers().addTimer("START_3RD_ROOM", 10000, null, creature.asPlayer());
 					}
 					break;
 				}
@@ -517,6 +626,31 @@ public class KartiasLabyrinth extends InstanceScript
 			else
 			{
 				npc.deleteMe();
+			}
+		}
+		else if ((instance != null) && ArrayUtil.contains(MINI_BOSSES, npc.getId()) && instance.getParameters().getBoolean("BOSS_KILL_OPEN_DOOR", false))
+		{
+			final StatSet templateParams = instance.getTemplateParameters();
+			if (npc.isScriptValue(2) && (npc.calculateDistance2D(templateParams.getLocation("bossEscapeLoc1")) < 150))
+			{
+				npc.setScriptValue(3);
+				enforceWatchmanLeash(npc, templateParams.getLocation("bossEscapeLoc2"), 3);
+			}
+			else if (npc.isScriptValue(3) && (npc.calculateDistance2D(templateParams.getLocation("bossEscapeLoc2")) < 150))
+			{
+				npc.setScriptValue(4);
+				instance.setParameter("BOSS_KILL_OPEN_DOOR", false);
+				instance.getParameters().set("WATCHMAN_ESCAPED", true);
+				for (Npc monster : instance.getAliveNpcs(MONSTERS))
+				{
+					if ((monster != npc) && (monster.calculateDistance2D(npc) < 400))
+					{
+						monster.deleteMe();
+					}
+				}
+				
+				getTimers().addTimer("WATCHMAN_DISAPPEAR", null, 2000, npc, null, n -> npc.deleteMe());
+				getTimers().addTimer("START_3RD_ROOM" + instance.getId(), 17000, n -> startThirdRoom(instance));
 			}
 		}
 		
@@ -564,6 +698,9 @@ public class KartiasLabyrinth extends InstanceScript
 	
 	private void manageProgressInInstance(Instance instance)
 	{
+		// Each step replaces the timers of the previous one, so a wave can not advance twice.
+		cancelWaveTimers(instance);
+		
 		final StatSet param = instance.getParameters();
 		final int room = param.getInt("ROOM", 1);
 		final int stage = param.getInt("STAGE", 1);
@@ -581,16 +718,16 @@ public class KartiasLabyrinth extends InstanceScript
 							showOnScreenMsg(instance, NpcStringId.STAGE_S1, ExShowScreenMessage.TOP_CENTER, 5000, true, Integer.toString(stage));
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE1_WAVE1"));
 							param.set("WAVE", 2);
-							getTimers().addTimer("NEXT_WAVE_DELAY", WAVE_DEALY, n -> manageProgressInInstance(instance));
-							getTimers().addTimer("MONITOR_WAVE", WAVE_MONITOR_DELAY, n -> manageWaves(instance));
+							getTimers().addTimer("NEXT_WAVE_DELAY" + instance.getId(), WAVE_DEALY, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("MONITOR_WAVE" + instance.getId(), WAVE_MONITOR_DELAY, n -> manageWaves(instance));
 							break;
 						}
 						case 2:
 						{
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE1_WAVE2"));
 							param.set("WAVE", 3);
-							getTimers().addTimer("NEXT_WAVE_DELAY", WAVE_DEALY, n -> manageProgressInInstance(instance));
-							getTimers().addTimer("MONITOR_WAVE", WAVE_MONITOR_DELAY, n -> manageWaves(instance));
+							getTimers().addTimer("NEXT_WAVE_DELAY" + instance.getId(), WAVE_DEALY, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("MONITOR_WAVE" + instance.getId(), WAVE_MONITOR_DELAY, n -> manageWaves(instance));
 							break;
 						}
 						case 3:
@@ -598,7 +735,7 @@ public class KartiasLabyrinth extends InstanceScript
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE1_WAVE3"));
 							param.set("WAVE", 1);
 							param.set("STAGE", 2);
-							getTimers().addTimer("CALL_PROGRESS", 8000, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 8000, n -> manageProgressInInstance(instance));
 							break;
 						}
 					}
@@ -613,16 +750,16 @@ public class KartiasLabyrinth extends InstanceScript
 							showOnScreenMsg(instance, NpcStringId.STAGE_S1, ExShowScreenMessage.TOP_CENTER, 5000, true, Integer.toString(stage));
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE2_WAVE1"));
 							param.set("WAVE", 2);
-							getTimers().addTimer("NEXT_WAVE_DELAY", WAVE_DEALY, n -> manageProgressInInstance(instance));
-							getTimers().addTimer("MONITOR_WAVE", WAVE_MONITOR_DELAY, n -> manageWaves(instance));
+							getTimers().addTimer("NEXT_WAVE_DELAY" + instance.getId(), WAVE_DEALY, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("MONITOR_WAVE" + instance.getId(), WAVE_MONITOR_DELAY, n -> manageWaves(instance));
 							break;
 						}
 						case 2:
 						{
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE2_WAVE2"));
 							param.set("WAVE", 3);
-							getTimers().addTimer("NEXT_WAVE_DELAY", WAVE_DEALY, n -> manageProgressInInstance(instance));
-							getTimers().addTimer("MONITOR_WAVE", WAVE_MONITOR_DELAY, n -> manageWaves(instance));
+							getTimers().addTimer("NEXT_WAVE_DELAY" + instance.getId(), WAVE_DEALY, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("MONITOR_WAVE" + instance.getId(), WAVE_MONITOR_DELAY, n -> manageWaves(instance));
 							break;
 						}
 						case 3:
@@ -630,7 +767,7 @@ public class KartiasLabyrinth extends InstanceScript
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE2_WAVE3"));
 							param.set("WAVE", 1);
 							param.set("STAGE", 3);
-							getTimers().addTimer("CALL_PROGRESS", 8000, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 8000, n -> manageProgressInInstance(instance));
 							break;
 						}
 					}
@@ -645,16 +782,16 @@ public class KartiasLabyrinth extends InstanceScript
 							showOnScreenMsg(instance, NpcStringId.STAGE_S1, ExShowScreenMessage.TOP_CENTER, 5000, true, Integer.toString(stage));
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE3_WAVE1"));
 							param.set("WAVE", 2);
-							getTimers().addTimer("NEXT_WAVE_DELAY", WAVE_DEALY, n -> manageProgressInInstance(instance));
-							getTimers().addTimer("MONITOR_WAVE", WAVE_MONITOR_DELAY, n -> manageWaves(instance));
+							getTimers().addTimer("NEXT_WAVE_DELAY" + instance.getId(), WAVE_DEALY, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("MONITOR_WAVE" + instance.getId(), WAVE_MONITOR_DELAY, n -> manageWaves(instance));
 							break;
 						}
 						case 2:
 						{
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE3_WAVE2"));
 							param.set("WAVE", 3);
-							getTimers().addTimer("NEXT_WAVE_DELAY", WAVE_DEALY, n -> manageProgressInInstance(instance));
-							getTimers().addTimer("MONITOR_WAVE", WAVE_MONITOR_DELAY, n -> manageWaves(instance));
+							getTimers().addTimer("NEXT_WAVE_DELAY" + instance.getId(), WAVE_DEALY, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("MONITOR_WAVE" + instance.getId(), WAVE_MONITOR_DELAY, n -> manageWaves(instance));
 							break;
 						}
 						case 3:
@@ -662,24 +799,17 @@ public class KartiasLabyrinth extends InstanceScript
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE3_WAVE3"));
 							if (isSoloKartia(instance))
 							{
+								// The prisoners escape once the watchman of this wave dies.
 								param.set("WAVE", 4);
-								getTimers().addTimer("PRISONERS_ESCAPE", 5000, n -> instance.getAliveNpcs(PRISONERS).forEach(prisoner ->
-								{
-									param.set("SURVIVOR_COUNT", param.getInt("SURVIVOR_COUNT", 0) + 1);
-									prisoner.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.I_AM_SAFE_THANKS_TO_YOU_I_WILL_BEGIN_SUPPORTING_AS_SOON_AS_PREPARATIONS_ARE_COMPLETE);
-									prisoner.setTargetable(false);
-									PRISONER_CLEANSE.getSkill().applyEffects(prisoner, prisoner);
-									final Location loc = instance.getTemplateParameters().getLocation("prisonerEscapeLoc");
-									addMoveToDesire(prisoner, loc, 23);
-								}));
+								param.set("CONTINUE_AFTER_KILL", true);
+								getTimers().addTimer("APPLY_POISON" + instance.getId(), 2000, n -> applyPoison(instance));
 							}
 							else
 							{
 								param.set("STAGE", 4);
 								param.set("WAVE", 1);
+								getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 8000, n -> manageProgressInInstance(instance));
 							}
-							
-							getTimers().addTimer("CALL_PROGRESS", 8000, n -> manageProgressInInstance(instance));
 							break;
 						}
 						case 4:
@@ -705,16 +835,16 @@ public class KartiasLabyrinth extends InstanceScript
 							showOnScreenMsg(instance, NpcStringId.STAGE_S1, ExShowScreenMessage.TOP_CENTER, 5000, true, Integer.toString(stage));
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE4_WAVE1"));
 							param.set("WAVE", 2);
-							getTimers().addTimer("NEXT_WAVE_DELAY", WAVE_DEALY, n -> manageProgressInInstance(instance));
-							getTimers().addTimer("MONITOR_WAVE", WAVE_MONITOR_DELAY, n -> manageWaves(instance));
+							getTimers().addTimer("NEXT_WAVE_DELAY" + instance.getId(), WAVE_DEALY, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("MONITOR_WAVE" + instance.getId(), WAVE_MONITOR_DELAY, n -> manageWaves(instance));
 							break;
 						}
 						case 2:
 						{
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE4_WAVE2"));
 							param.set("WAVE", 3);
-							getTimers().addTimer("NEXT_WAVE_DELAY", WAVE_DEALY, n -> manageProgressInInstance(instance));
-							getTimers().addTimer("MONITOR_WAVE", WAVE_MONITOR_DELAY, n -> manageWaves(instance));
+							getTimers().addTimer("NEXT_WAVE_DELAY" + instance.getId(), WAVE_DEALY, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("MONITOR_WAVE" + instance.getId(), WAVE_MONITOR_DELAY, n -> manageWaves(instance));
 							break;
 						}
 						case 3:
@@ -722,7 +852,7 @@ public class KartiasLabyrinth extends InstanceScript
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE4_WAVE3"));
 							param.set("WAVE", 1);
 							param.set("STAGE", 5);
-							getTimers().addTimer("CALL_PROGRESS", 8000, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 8000, n -> manageProgressInInstance(instance));
 							break;
 						}
 					}
@@ -737,26 +867,29 @@ public class KartiasLabyrinth extends InstanceScript
 							showOnScreenMsg(instance, NpcStringId.STAGE_S1, ExShowScreenMessage.TOP_CENTER, 5000, true, Integer.toString(stage));
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE5_WAVE1"));
 							param.set("WAVE", 2);
-							getTimers().addTimer("NEXT_WAVE_DELAY", WAVE_DEALY, n -> manageProgressInInstance(instance));
-							getTimers().addTimer("MONITOR_WAVE", WAVE_MONITOR_DELAY, n -> manageWaves(instance));
+							getTimers().addTimer("NEXT_WAVE_DELAY" + instance.getId(), WAVE_DEALY, n -> manageProgressInInstance(instance));
+							getTimers().addTimer("MONITOR_WAVE" + instance.getId(), WAVE_MONITOR_DELAY, n -> manageWaves(instance));
 							break;
 						}
 						case 2:
 						{
 							moveMonsters(instance.spawnGroup("ROOM1_STAGE5_WAVE2"));
+							
+							// The prisoners escape once the watchman of this wave dies.
+							param.set("WAVE", 3);
+							param.set("CONTINUE_AFTER_KILL", true);
+							getTimers().addTimer("APPLY_POISON" + instance.getId(), 2000, n -> applyPoison(instance));
+							break;
+						}
+						case 3:
+						{
+							showOnScreenMsg(instance, NpcStringId.THE_LIFE_PLUNDERER_S_TRUE_FORM_IS_REVEALED, ExShowScreenMessage.TOP_CENTER, 5000, true);
+							instance.spawnGroup("ROOM1_STAGE5_WAVE3");
+							instance.getAliveNpcs(BOZ_ENERGY).forEach(Npc::deleteMe);
+							instance.getAliveNpcs(MIRRORS).forEach(npc -> getTimers().addTimer("MIRROR_DESPAWN", 180000, npc, null));
 							param.set("ROOM", 2);
 							param.set("STAGE", 1);
 							param.set("WAVE", 1);
-							param.set("CONTINUE_AFTER_KILL", true);
-							getTimers().addTimer("PRISONERS_ESCAPE", 5000, n -> instance.getAliveNpcs(PRISONERS).forEach(prisoner ->
-							{
-								param.set("SURVIVOR_COUNT", param.getInt("SURVIVOR_COUNT", 0) + 1);
-								prisoner.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.I_AM_SAFE_THANKS_TO_YOU_I_WILL_BEGIN_SUPPORTING_AS_SOON_AS_PREPARATIONS_ARE_COMPLETE);
-								prisoner.setTargetable(false);
-								PRISONER_CLEANSE.getSkill().applyEffects(prisoner, prisoner);
-								final Location loc = instance.getTemplateParameters().getLocation("prisonerEscapeLoc");
-								addMoveToDesire(prisoner, loc, 23);
-							}));
 							break;
 						}
 					}
@@ -766,15 +899,30 @@ public class KartiasLabyrinth extends InstanceScript
 		}
 		else if (room == 2)
 		{
-			instance.setParameter("BOSS_CAN_ESCAPE", false);
+			// Mirror death and despawn can both land here.
+			if (param.getBoolean("ROOM2_STARTED", false))
+			{
+				return;
+			}
+			
+			param.set("ROOM2_STARTED", true);
 			instance.setParameter("BOSS_KILL_OPEN_DOOR", true);
 			instance.spawnGroup("ROOM2_STAGE1_WAVE1");
 			instance.openCloseDoor(instance.getTemplateParameters().getInt("secondDoorId"), true);
 			instance.setStatus(2); // Used for notify helper's AI
 			instance.getAliveNpcs(BOZ_ENERGY).forEach(npc -> npc.deleteMe());
-			param.set("ROOM", 3);
-			param.set("STAGE", 1);
-			param.set("WAVE", 1);
+			
+			// Helpers hold still and join the players in the second room.
+			for (Npc helper : instance.getAliveNpcs(COMBAT_HELPERS))
+			{
+				helper.abortAttack();
+				helper.abortCast();
+				helper.setTarget(null);
+				helper.getAI().setIntentionIdle();
+				helper.setImmobilized(true);
+				helper.disableCoreAI(true);
+				getTimers().addTimer("TELEPORT_HELPERS_ROOM_2", 8000, helper, null);
+			}
 		}
 		else if (room == 3)
 		{
@@ -785,10 +933,10 @@ public class KartiasLabyrinth extends InstanceScript
 					showOnScreenMsg(instance, NpcStringId.STAGE_S1, ExShowScreenMessage.TOP_CENTER, 5000, true, Integer.toString(stage));
 					moveMonsters(instance.spawnGroup("ROOM3_STAGE1_WAVE1"));
 					param.set("STAGE", 2);
-					getTimers().addTimer("CALL_PROGRESS", 36000, n -> manageProgressInInstance(instance));
+					getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 36000, n -> manageProgressInInstance(instance));
 					
 					final Location survivorLoc = instance.getTemplateParameters().getLocation("middlePointRoom3");
-					final int survivorCount = param.getInt("SURVIVOR_COUNT");
+					final int survivorCount = param.getInt("SURVIVOR_COUNT", 0);
 					for (int i = 0; i < survivorCount; i++)
 					{
 						final Location loc = new Location(survivorLoc.getX() + getRandom(-200, 200), survivorLoc.getY() + getRandom(-200, 200), survivorLoc.getZ(), 47595);
@@ -801,7 +949,7 @@ public class KartiasLabyrinth extends InstanceScript
 					showOnScreenMsg(instance, NpcStringId.STAGE_S1, ExShowScreenMessage.TOP_CENTER, 5000, true, Integer.toString(stage));
 					moveMonsters(instance.spawnGroup("ROOM3_STAGE2_WAVE1"));
 					param.set("STAGE", 3);
-					getTimers().addTimer("CALL_PROGRESS", 36000, n -> manageProgressInInstance(instance));
+					getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 36000, n -> manageProgressInInstance(instance));
 					break;
 				}
 				case 3:
@@ -811,6 +959,7 @@ public class KartiasLabyrinth extends InstanceScript
 					
 					if (isSoloKartia(instance))
 					{
+						spawnEscapedWatchman(instance);
 						instance.getAliveNpcs(BOSSES).forEach(npc ->
 						{
 							npc.stopSkillEffects(BOSS_STONE.getSkill());
@@ -824,7 +973,7 @@ public class KartiasLabyrinth extends InstanceScript
 					else
 					{
 						param.set("STAGE", 4);
-						getTimers().addTimer("CALL_PROGRESS", 36000, n -> manageProgressInInstance(instance));
+						getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 36000, n -> manageProgressInInstance(instance));
 					}
 					break;
 				}
@@ -833,13 +982,14 @@ public class KartiasLabyrinth extends InstanceScript
 					showOnScreenMsg(instance, NpcStringId.STAGE_S1, ExShowScreenMessage.TOP_CENTER, 5000, true, Integer.toString(stage));
 					moveMonsters(instance.spawnGroup("ROOM3_STAGE4_WAVE1"));
 					param.set("STAGE", 5);
-					getTimers().addTimer("CALL_PROGRESS", 36000, n -> manageProgressInInstance(instance));
+					getTimers().addTimer("CALL_PROGRESS" + instance.getId(), 36000, n -> manageProgressInInstance(instance));
 					break;
 				}
 				case 5:
 				{
 					showOnScreenMsg(instance, NpcStringId.STAGE_S1, ExShowScreenMessage.TOP_CENTER, 5000, true, Integer.toString(stage));
 					moveMonsters(instance.spawnGroup("ROOM3_STAGE4_WAVE1"));
+					spawnEscapedWatchman(instance);
 					instance.getAliveNpcs(BOSSES).forEach(npc ->
 					{
 						npc.stopSkillEffects(BOSS_STONE.getSkill());
@@ -884,7 +1034,7 @@ public class KartiasLabyrinth extends InstanceScript
 	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		final Instance world = npc.getInstanceWorld();
-		if ((world != null) && (creature.isPlayer() || creature.getInstanceType().isType(InstanceType.FriendlyNpc)) && npc.isScriptValue(1))
+		if ((world != null) && (creature.isPlayer() || creature.getInstanceType().isType(InstanceType.FriendlyNpc)) && npc.isScriptValue(0))
 		{
 			final double distance = npc.calculateDistance2D(creature);
 			if ((distance < 450) && !ArrayUtil.contains(PRISONERS, creature.getId()))
@@ -934,6 +1084,56 @@ public class KartiasLabyrinth extends InstanceScript
 		}
 		
 		return "";
+	}
+	
+	private void enforceWatchmanLeash(Npc npc, Location destination, int fleeState)
+	{
+		if (!npc.isSpawned() || npc.isDead() || !npc.isScriptValue(fleeState) || (npc.calculateDistance2D(destination) < 150))
+		{
+			return;
+		}
+		
+		npc.abortAttack();
+		npc.abortCast();
+		npc.setTarget(null);
+		npc.asAttackable().clearAggroList();
+		npc.getAI().setIntentionMoveTo(destination);
+		if (isSoloKartia(npc.getInstanceWorld()))
+		{
+			npc.setWalking();
+		}
+		else
+		{
+			npc.setRunning();
+		}
+		
+		addMoveToDesire(npc, destination, 99999999);
+		getTimers().addTimer("WATCHMAN_LEASH", null, 500, npc, null, n -> enforceWatchmanLeash(npc, destination, fleeState));
+	}
+	
+	private void spawnEscapedWatchman(Instance instance)
+	{
+		final StatSet param = instance.getParameters();
+		if (!param.getBoolean("WATCHMAN_ESCAPED", false))
+		{
+			return;
+		}
+		
+		param.set("WATCHMAN_ESCAPED", false);
+		
+		// The watchman returns from deep inside the last room. MINI_BOSSES follows the template id order.
+		final Location middle = instance.getTemplateParameters().getLocation("middlePointRoom3");
+		final Npc watchman = addSpawn(MINI_BOSSES[instance.getTemplateId() - TEMPLATE_ID_SOLO_85], middle.getX(), middle.getY() - 1000, middle.getZ(), 16383, false, 0, false, instance.getId());
+		watchman.setRunning();
+		watchman.asAttackable().setCanReturnToSpawnPoint(false);
+		addMoveToDesire(watchman, new Location(middle.getX() + getRandom(-200, 200), middle.getY() + getRandom(-200, 200), middle.getZ()), 23);
+		for (Player member : instance.getPlayers())
+		{
+			if (!member.isDead())
+			{
+				watchman.asAttackable().addDamageHate(member, 0, 1000);
+			}
+		}
 	}
 	
 	private boolean isSoloKartia(Instance instance)

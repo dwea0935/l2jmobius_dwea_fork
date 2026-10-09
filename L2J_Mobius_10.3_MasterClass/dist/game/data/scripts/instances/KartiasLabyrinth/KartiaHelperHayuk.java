@@ -41,7 +41,7 @@ import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Kartia Helper Hayuk AI. Archer
- * @author flanagak
+ * @author flanagak, Notorion
  */
 public class KartiaHelperHayuk extends Script
 {
@@ -80,6 +80,8 @@ public class KartiaHelperHayuk extends Script
 		33640, // Eliyah's Guardian Spirit (Kartia 95)
 	};
 	
+	private static final int ARCHER_ATTACK_RANGE = 220;
+	
 	// Misc
 	private static final int[] KARTIA_SOLO_INSTANCES =
 	{
@@ -103,35 +105,59 @@ public class KartiaHelperHayuk extends Script
 		if ((instance != null) && event.equals("CHECK_ACTION"))
 		{
 			final FriendlyNpc adolph = npc.getVariables().getObject("ADOLPH_OBJECT", FriendlyNpc.class);
-			if (adolph != null)
+			if (adolph == null)
 			{
-				final double distance = npc.calculateDistance2D(adolph);
-				if (distance > 300)
+				return;
+			}
+			
+			// Hayuk never strays more than 500 from Adolph.
+			final double distance = npc.calculateDistance3D(adolph);
+			final double angle = ((adolph.getHeading() / 65535.0) * 2 * Math.PI) + (Math.PI / 2);
+			final Location flankLoc = new Location(adolph.getX() + (int) (Math.cos(angle) * 100), adolph.getY() + (int) (Math.sin(angle) * 100), adolph.getZ());
+			if (distance > 500)
+			{
+				npc.abortAttack();
+				npc.abortCast();
+				npc.setTarget(null);
+				npc.teleToLocation(flankLoc);
+				return;
+			}
+			
+			// Keep shooting a live target from where he stands, unless it drifts away from Adolph.
+			final WorldObject target = npc.getTarget();
+			final boolean inCombat = npc.isInCombat();
+			if (inCombat && (target != null) && target.isMonster() && !target.asMonster().isDead())
+			{
+				if (target.calculateDistance3D(adolph) > 500)
 				{
-					final Location loc = new Location(adolph.getX(), adolph.getY(), adolph.getZ() + 50);
-					final Location randLoc = new Location(loc.getX() + getRandom(-100, 100), loc.getY() + getRandom(-100, 100), loc.getZ());
-					if (distance > 600)
-					{
-						npc.teleToLocation(loc);
-					}
-					else
-					{
-						npc.setRunning();
-					}
-					
-					addMoveToDesire(npc, randLoc, 23);
+					npc.abortAttack();
+					npc.abortCast();
+					npc.setTarget(null);
 				}
-				else if (!npc.isInCombat() || (npc.getTarget() == null))
+				return;
+			}
+			
+			// Out of combat, follow Adolph on his right flank first.
+			if (!inCombat && (target == null) && (distance > 150))
+			{
+				if (npc.calculateDistance2D(flankLoc) > 50)
 				{
-					final WorldObject target = adolph.getTarget();
-					if ((target != null) && target.isMonster())
-					{
-						final Monster monster = target.asMonster();
-						if ((monster != null) && adolph.isInCombat() && !ArrayUtil.contains(KARTIA_FRIENDS, monster.getId()))
-						{
-							addAttackDesire(npc, monster);
-						}
-					}
+					npc.setRunning();
+					npc.getAI().setIntentionActive();
+					addMoveToDesire(npc, flankLoc, 23);
+				}
+				return;
+			}
+			
+			// Otherwise shoot what Adolph attacks once it is in bow range.
+			final WorldObject adolphTarget = adolph.getTarget();
+			if ((adolphTarget != null) && adolphTarget.isMonster())
+			{
+				final Monster monster = adolphTarget.asMonster();
+				if (!monster.isDead() && !ArrayUtil.contains(KARTIA_FRIENDS, monster.getId()) && (monster.calculateDistance3D(adolph) <= 500) && (npc.calculateDistance2D(monster) <= ARCHER_ATTACK_RANGE))
+				{
+					npc.setTarget(monster);
+					addAttackDesire(npc, monster);
 				}
 			}
 		}
@@ -153,7 +179,16 @@ public class KartiaHelperHayuk extends Script
 		final int status = event.getStatus();
 		if (status == 1)
 		{
-			instance.getAliveNpcs(KARTIA_HAYUK).forEach(hayuk -> getTimers().addRepeatingTimer("CHECK_ACTION", 3000, hayuk, null));
+			// Helpers follow Adolph even before they have seen him.
+			for (Npc adolph : instance.getAliveNpcs(KARTIA_ADOLPH))
+			{
+				for (Npc hayuk : instance.getAliveNpcs(KARTIA_HAYUK))
+				{
+					hayuk.getVariables().set("ADOLPH_OBJECT", adolph);
+				}
+			}
+			
+			instance.getAliveNpcs(KARTIA_HAYUK).forEach(hayuk -> getTimers().addRepeatingTimer("CHECK_ACTION", 1000, hayuk, null));
 			instance.getAliveNpcs(KARTIA_HAYUK).forEach(hayuk -> getTimers().addRepeatingTimer("USE_SKILL", 6000, hayuk, null));
 		}
 	}
@@ -231,8 +266,14 @@ public class KartiaHelperHayuk extends Script
 			final Instance instance = npc.getInstanceWorld();
 			if ((instance != null) && !npc.isInCombat() && !event.getAttacker().isPlayable() && !ArrayUtil.contains(KARTIA_FRIENDS, event.getAttacker().getId()))
 			{
-				npc.setTarget(event.getAttacker());
-				addAttackDesire(npc, npc.getTarget().asCreature());
+				// Counter only attackers in bow range that stay close to Adolph.
+				final Creature attacker = event.getAttacker();
+				final FriendlyNpc adolph = npc.getVariables().getObject("ADOLPH_OBJECT", FriendlyNpc.class);
+				if (((adolph == null) || (attacker.calculateDistance3D(adolph) <= 500)) && (npc.calculateDistance2D(attacker) <= ARCHER_ATTACK_RANGE))
+				{
+					npc.setTarget(attacker);
+					addAttackDesire(npc, attacker);
+				}
 			}
 		}
 	}

@@ -252,6 +252,9 @@
 			<npc id="19237" x="-111320" y="-11025" z="-11680" heading="32944" /> <!-- Kartia Dimensional Watchman -->
 			<npc id="18830" x="-109315" y="-10455" z="-11920" heading="32970" /> <!-- Boz' Energy -->
 		</group>
+		<group name="ROOM1_STAGE5_WAVE3" spawnByDefault="false">
+			<npc id="33800" x="-110311" y="-10438" z="-11920" heading="27292" /> <!-- Life Plunderer -->
+		</group>
 		<group name="ROOM2_STAGE1_WAVE1" spawnByDefault="false">
 			<npc id="19235" x="-111688" y="-12693" z="-11568" heading="0" /> <!-- Kartia Guard -->
 			<npc id="19235" x="-111132" y="-12253" z="-11568" heading="20675" /> <!-- Kartia Guard -->
