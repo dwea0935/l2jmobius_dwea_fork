@@ -139,6 +139,12 @@ public class TriggerSkillBySkillDamage extends AbstractEffect
 				}
 			}
 			
+			// A missing id or level pair, or a scale past the last level, leaves no skill to trigger.
+			if (triggerSkill == null)
+			{
+				return;
+			}
+			
 			SkillCaster.triggerCast(event.getAttacker(), target.asCreature(), triggerSkill);
 		}
 	}

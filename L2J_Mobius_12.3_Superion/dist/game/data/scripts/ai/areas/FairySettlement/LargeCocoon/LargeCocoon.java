@@ -62,10 +62,7 @@ public class LargeCocoon extends Script
 		{
 			case "attack":
 			{
-				final OnCreatureAttacked attackEvent = new OnCreatureAttacked();
-				attackEvent.setAttacker(player);
-				attackEvent.setTarget(npc);
-				attackEvent.setSkill(null);
+				final OnCreatureAttacked attackEvent = new OnCreatureAttacked(player, npc, null);
 				onCreatureAttacked(attackEvent);
 				break;
 			}
