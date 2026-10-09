@@ -988,6 +988,20 @@ public abstract class Inventory extends ItemContainer
 			final List<ArmorSet> armorSets = ArmorSetData.getInstance().getSets(idProvider.apply(item));
 			for (ArmorSet armorSet : armorSets)
 			{
+				// A capped tier gives way to the next one once more pieces are worn.
+				final long pieceCount = armorSet.getPieceCount(playable, idProvider);
+				for (ArmorsetSkillHolder holder : armorSet.getSkills())
+				{
+					if ((holder.getMaximumPieces() > 0) && (pieceCount > holder.getMaximumPieces()) && (playable.getSkillLevel(holder.getSkillId()) == holder.getSkillLevel()))
+					{
+						final Skill itemSkill = holder.getSkill();
+						if ((itemSkill != null) && (playable.removeSkill(itemSkill, itemSkill.isPassive()) != null))
+						{
+							update = true;
+						}
+					}
+				}
+				
 				if (applySkills(playable, item, armorSet, idProvider))
 				{
 					update = true;

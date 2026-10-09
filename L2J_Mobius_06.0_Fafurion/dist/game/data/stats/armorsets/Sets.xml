@@ -7613,9 +7613,9 @@
 			<skill id="27717" level="4" minimumPieces="4" /> <!-- Greater Jewel's Blessing -->
 			<skill id="27717" level="5" minimumPieces="5" /> <!-- Greater Jewel's Blessing -->
 			<skill id="27717" level="6" minimumPieces="6" /> <!-- Greater Jewel's Blessing -->
-			<skill id="27721" level="1" minimumPieces="3" /> <!-- Lv.1 La Vie En Rose's Energy -->
-			<skill id="27722" level="1" minimumPieces="4" /> <!-- Lv.2 La Vie En Rose's Energy -->
-			<skill id="27723" level="1" minimumPieces="5" /> <!-- Lv.3 La Vie En Rose's Energy -->
+			<skill id="27721" level="1" minimumPieces="3" maximumPieces="3" /> <!-- Lv.1 La Vie En Rose's Energy -->
+			<skill id="27722" level="1" minimumPieces="4" maximumPieces="4" /> <!-- Lv.2 La Vie En Rose's Energy -->
+			<skill id="27723" level="1" minimumPieces="5" maximumPieces="5" /> <!-- Lv.3 La Vie En Rose's Energy -->
 			<skill id="27724" level="1" minimumPieces="6" /> <!-- Lv.4 La Vie En Rose's Energy -->
 		</skills>
 	</set>

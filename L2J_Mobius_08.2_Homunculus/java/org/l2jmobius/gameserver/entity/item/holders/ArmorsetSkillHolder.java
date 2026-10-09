@@ -29,15 +29,17 @@ import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 public class ArmorsetSkillHolder extends SkillHolder
 {
 	private final int _minimumPieces;
+	private final int _maximumPieces;
 	private final int _minEnchant;
 	private final int _artifactSlotMask;
 	private final int _artifactBookSlot;
 	private final boolean _isOptional;
 	
-	public ArmorsetSkillHolder(int skillId, int skillLevel, int minimumPieces, int minEnchant, boolean isOptional, int artifactSlotMask, int artifactBookSlot)
+	public ArmorsetSkillHolder(int skillId, int skillLevel, int minimumPieces, int maximumPieces, int minEnchant, boolean isOptional, int artifactSlotMask, int artifactBookSlot)
 	{
 		super(skillId, skillLevel);
 		_minimumPieces = minimumPieces;
+		_maximumPieces = maximumPieces;
 		_minEnchant = minEnchant;
 		_isOptional = isOptional;
 		_artifactSlotMask = artifactSlotMask;
@@ -47,6 +49,11 @@ public class ArmorsetSkillHolder extends SkillHolder
 	public int getMinimumPieces()
 	{
 		return _minimumPieces;
+	}
+	
+	public int getMaximumPieces()
+	{
+		return _maximumPieces;
 	}
 	
 	public int getMinEnchant()
@@ -68,7 +75,14 @@ public class ArmorsetSkillHolder extends SkillHolder
 		}
 		
 		// Player doesn't have enough items equipped to use this skill
-		if (_minimumPieces > armorSet.getPieceCount(player, idProvider))
+		final long pieceCount = armorSet.getPieceCount(player, idProvider);
+		if (_minimumPieces > pieceCount)
+		{
+			return false;
+		}
+		
+		// Player has more items equipped than this skill tier allows
+		if ((_maximumPieces > 0) && (pieceCount > _maximumPieces))
 		{
 			return false;
 		}

@@ -147,9 +147,10 @@ public class ArmorSetData implements IXmlReader
 										final int skillId = parseInteger(attrs, "id");
 										final int skillLevel = parseInteger(attrs, "level");
 										final int minPieces = parseInteger(attrs, "minimumPieces", minimumPieces);
+										final int maxPieces = parseInteger(attrs, "maximumPieces", 0);
 										final int minEnchant = parseInteger(attrs, "minimumEnchant", 0);
 										final boolean isOptional = parseBoolean(attrs, "optional", false);
-										skills.add(new ArmorsetSkillHolder(skillId, skillLevel, minPieces, minEnchant, isOptional));
+										skills.add(new ArmorsetSkillHolder(skillId, skillLevel, minPieces, maxPieces, minEnchant, isOptional));
 									});
 									break;
 								}
