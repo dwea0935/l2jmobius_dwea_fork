@@ -23,13 +23,12 @@ package ai.areas.EnchantedValley.Celestiel;
 import org.l2jmobius.gameserver.entity.Location;
 import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
-import org.l2jmobius.gameserver.mechanics.script.Faction;
 import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 
 /**
  * Celestiel AI
- * @author Gigi
+ * @author Gigi, Notorion
  * @date 2017-06-13 - [20:09:34]
  */
 public class Celestiel extends Script
@@ -38,8 +37,8 @@ public class Celestiel extends Script
 	private static final int CELESTIEL = 34234;
 	
 	// Teleports
-	private static final Location SOUTH_LOCATION = new Location(110815, 59655, -3720);
-	private static final Location NORTH_LOCATION = new Location(124040, 43970, -3720);
+	private static final Location SOUTH_LOCATION = new Location(116506, 60779, -4232);
+	private static final Location NORTH_LOCATION = new Location(121479, 40228, -3728);
 	
 	private static final String[] CELESTIEL_VOICE =
 	{
@@ -60,35 +59,18 @@ public class Celestiel extends Script
 		switch (event)
 		{
 			case "34234-1.html":
-			case "34234-2.html":
-			case "34234-3.html":
-			case "34234-4.html":
 			{
 				htmltext = event;
 				break;
 			}
 			case "south":
 			{
-				if (player.getFactionLevel(Faction.MOTHER_TREE_GUARDIANS) < 2)
-				{
-					htmltext = "34234-5.html";
-				}
-				else
-				{
-					player.teleToLocation(SOUTH_LOCATION);
-				}
+				player.teleToLocation(SOUTH_LOCATION);
 				break;
 			}
 			case "north":
 			{
-				if (player.getFactionLevel(Faction.MOTHER_TREE_GUARDIANS) < 2)
-				{
-					htmltext = "34234-5.html";
-				}
-				else
-				{
-					player.teleToLocation(NORTH_LOCATION);
-				}
+				player.teleToLocation(NORTH_LOCATION);
 				break;
 			}
 		}
