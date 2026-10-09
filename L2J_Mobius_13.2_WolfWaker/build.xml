@@ -45,15 +45,20 @@
 	</pathconvert>
 
 	<target name="checkRequirements" description="Check Requirements.">
-		<fail message="Ant 1.8.2 is required. But your version is ${ant.version} and if you are using Eclipse probably is outdated.">
+		<fail message="Ant 1.9.10 is required. But your version is ${ant.version} and if you are using Eclipse probably is outdated.">
 			<condition>
 				<not>
-					<antversion atleast="1.8.2" />
+					<antversion atleast="1.9.10" />
 				</not>
 			</condition>
 		</fail>
-		<available classname="java.util.stream.Stream" property="JDK25.present" />
-		<fail unless="JDK25.present" message="Java 25 is required. But your version is Java ${ant.java.version} and probably JDK is not installed." />
+		<condition property="JDK27.present">
+			<and>
+				<javaversion atleast="27" />
+				<available classname="com.sun.tools.javac.Main" />
+			</and>
+		</condition>
+		<fail unless="JDK27.present" message="Java 27 is required. But your version is Java ${ant.java.version} and probably JDK is not installed." />
 	</target>
 
 	<target name="init" depends="checkRequirements" description="Create the output directories.">
@@ -62,7 +67,7 @@
 	</target>
 
 	<target name="compile" depends="init" description="Compile the source.">
-		<javac srcdir="${src}" classpathref="classpath" destdir="${build.bin}" compiler="modern" debug="true" debuglevel="lines,vars,source" includeantruntime="false" source="25" target="25" encoding="UTF-8" />
+		<javac srcdir="${src}" classpathref="classpath" destdir="${build.bin}" compiler="modern" debug="true" debuglevel="lines,vars,source" includeantruntime="false" source="27" target="27" encoding="UTF-8" />
 	</target>
 
 	<target name="jar" depends="compile" description="Create the jar files.">
