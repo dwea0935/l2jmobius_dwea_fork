@@ -210,15 +210,15 @@
 		<affectScope>POINT_BLANK</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<castRange>40</castRange>
-		<coolTime>500</coolTime>
+		<coolTime>0</coolTime>
 		<effectPoint>-100</effectPoint>
-		<hitTime>5000</hitTime>
+		<hitTime>1000</hitTime>
 		<isDebuff>true</isDebuff>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>100</magicLevel>
 		<mpConsume>100</mpConsume>
-		<nextAction>ATTACK</nextAction>
 		<reuseDelay>5000</reuseDelay>
+		<staticReuse>true</staticReuse>
 		<trait>KNOCKBACK</trait>
 		<effects>
 			<effect name="PhysicalDamage">
@@ -240,14 +240,14 @@
 		<affectRange>200</affectRange>
 		<affectScope>POINT_BLANK</affectScope>
 		<castRange>40</castRange>
-		<coolTime>500</coolTime>
+		<coolTime>0</coolTime>
 		<effectPoint>-100</effectPoint>
-		<hitTime>5000</hitTime>
+		<hitTime>800</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>115</magicLevel>
 		<mpConsume>100</mpConsume>
-		<nextAction>ATTACK</nextAction>
 		<reuseDelay>1000</reuseDelay>
+		<staticReuse>true</staticReuse>
 		<effects>
 			<effect name="PhysicalDamage">
 				<power>60000</power>
@@ -261,8 +261,10 @@
 		<targetType>TARGET</targetType>
 		<affectRange>200</affectRange>
 		<affectScope>SINGLE</affectScope>
+		<castRange>40</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>-100</effectPoint>
+		<effectRange>400</effectRange>
 		<hitTime>1000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>115</magicLevel>
@@ -280,8 +282,10 @@
 		<targetType>TARGET</targetType>
 		<affectRange>200</affectRange>
 		<affectScope>SINGLE</affectScope>
+		<castRange>40</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>-100</effectPoint>
+		<effectRange>400</effectRange>
 		<hitTime>1000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>115</magicLevel>
@@ -299,8 +303,10 @@
 		<targetType>TARGET</targetType>
 		<affectRange>200</affectRange>
 		<affectScope>SINGLE</affectScope>
+		<castRange>40</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>-100</effectPoint>
+		<effectRange>400</effectRange>
 		<hitTime>1000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>115</magicLevel>
@@ -387,6 +393,7 @@
 		<effectRange>900</effectRange>
 		<hitTime>1500</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<nextAction>CAST</nextAction>
 		<effects>
 			<effect name="MagicalDamage">
 				<power>500</power>
@@ -417,8 +424,10 @@
 		<targetType>TARGET</targetType>
 		<affectRange>200</affectRange>
 		<affectScope>SINGLE</affectScope>
+		<castRange>40</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>-100</effectPoint>
+		<effectRange>400</effectRange>
 		<hitTime>1000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>115</magicLevel>
@@ -589,22 +598,70 @@
 	<skill id="29626" toLevel="1" name="Chain Strike">
 		<!-- Strikes with a chain pulling the target to you. Inflicted status: Pull. -->
 		<icon>icon.skill10262</icon>
-		<operateType>A1</operateType>
+		<operateType>A2</operateType>
+		<targetType>ENEMY</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>1</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<activateRate>80</activateRate>
+		<affectScope>SINGLE</affectScope>
+		<basicProperty>PHYSICAL</basicProperty>
 		<castRange>600</castRange>
 		<coolTime>500</coolTime>
 		<effectPoint>-100</effectPoint>
+		<effectRange>1100</effectRange>
 		<hitTime>1000</hitTime>
 		<isDebuff>true</isDebuff>
+		<magicLevel>115</magicLevel>
+		<nextAction>ATTACK</nextAction>
 		<reuseDelay>15000</reuseDelay>
+		<trait>PULL</trait>
+		<effects>
+			<effect name="PullBack">
+				<speed>800</speed>
+				<delay>800</delay>
+				<type>THROW_HORIZONTAL</type>
+			</effect>
+			<effect name="BlockActions">
+				<allowedSkills>10279;10517;10025;10776;11770;1904;11264;11093;13314;1912;7002;18721;18722;28203;30516;35190</allowedSkills>
+			</effect>
+			<effect name="GetAgro" />
+		</effects>
 	</skill>
 	<skill id="29627" toLevel="1" name="Knight Frenzy">
 		<!-- Increases P. Def., M. Def., Speed, and Atk. Spd. -->
 		<icon>icon.skill10025</icon>
-		<operateType>A1</operateType>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>60</abnormalTime>
+		<abnormalType>POSSESSION</abnormalType>
+		<affectScope>SINGLE</affectScope>
+		<basicProperty>NONE</basicProperty>
 		<coolTime>500</coolTime>
-		<effectPoint>-100</effectPoint>
+		<effectPoint>100</effectPoint>
 		<hitTime>1500</hitTime>
+		<magicLevel>115</magicLevel>
 		<reuseDelay>60000</reuseDelay>
+		<staticReuse>true</staticReuse>
+		<effects>
+			<effect name="Speed">
+				<amount>30</amount>
+				<mode>DIFF</mode>
+			</effect>
+			<effect name="MagicalDefence">
+				<amount>50</amount>
+				<mode>PER</mode>
+			</effect>
+			<effect name="PhysicalDefence">
+				<amount>50</amount>
+				<mode>PER</mode>
+			</effect>
+			<effect name="PhysicalAttackSpeed">
+				<amount>20</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="29628" toLevel="1" name="Double Lariat">
 		<icon>icon.skill10262</icon>
@@ -1391,16 +1448,17 @@
 		<affectScope>RANGE</affectScope>
 		<basicProperty>NONE</basicProperty>
 		<castRange>800</castRange>
-		<coolTime>580</coolTime>
+		<coolTime>0</coolTime>
 		<effectPoint>-100</effectPoint>
 		<effectRange>1800</effectRange>
-		<hitTime>5000</hitTime>
+		<hitTime>1000</hitTime>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic>
 		<magicCriticalRate>10</magicCriticalRate>
 		<magicLevel>100</magicLevel>
 		<mpConsume>100</mpConsume>
-		<reuseDelay>30000</reuseDelay>
+		<reuseDelay>1000</reuseDelay>
+		<staticReuse>true</staticReuse>
 		<effects>
 			<effect name="MagicalDamage">
 				<power>200000</power>
@@ -1429,11 +1487,12 @@
 		<attributeValue>200</attributeValue>
 		<basicProperty>NONE</basicProperty>
 		<effectPoint>-100</effectPoint>
-		<hitTime>5000</hitTime>
+		<hitTime>1000</hitTime>
 		<magicCriticalRate>5</magicCriticalRate>
 		<magicLevel>100</magicLevel>
 		<mpConsume>100</mpConsume>
 		<reuseDelay>5000</reuseDelay>
+		<staticReuse>true</staticReuse>
 		<effects>
 			<effect name="MagicalDamage">
 				<power>60000</power>

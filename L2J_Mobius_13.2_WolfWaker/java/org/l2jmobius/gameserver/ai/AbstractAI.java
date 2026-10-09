@@ -356,30 +356,34 @@ public abstract class AbstractAI
 		// Warg.
 		if (_actor.isPlayer() && _actor.asPlayer().isWarg())
 		{
-			if (isAutoAttacking)
+			final int transformId = _actor.getTransformationId();
+			if ((transformId == 0) || (transformId == 182) || (transformId == 183) || (transformId == 184))
 			{
-				switch (_actor.getAffectedSkillLevel(31454 /* Werewolf's Awakening */))
+				if (isAutoAttacking)
 				{
-					case 1:
+					switch (_actor.getAffectedSkillLevel(31454 /* Werewolf's Awakening */))
 					{
-						_actor.transform(182, false);
-						break;
-					}
-					case 2:
-					{
-						_actor.transform(183, false);
-						break;
-					}
-					case 3:
-					{
-						_actor.transform(184, false);
-						break;
+						case 1:
+						{
+							_actor.transform(182, false);
+							break;
+						}
+						case 2:
+						{
+							_actor.transform(183, false);
+							break;
+						}
+						case 3:
+						{
+							_actor.transform(184, false);
+							break;
+						}
 					}
 				}
-			}
-			else
-			{
-				_actor.stopTransformation(false);
+				else if (transformId != 0)
+				{
+					_actor.stopTransformation(false);
+				}
 			}
 		}
 		

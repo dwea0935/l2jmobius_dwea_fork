@@ -320,10 +320,13 @@ public class KartiasLabyrinth extends InstanceScript
 				}
 				case "TELEPORT_HELPERS_ROOM_2":
 				{
-					npc.setImmobilized(false);
-					npc.disableCoreAI(false);
-					npc.teleToLocation(instance.getTemplateParameters().getLocation("teleportZone2_loc"));
-					npc.getAI().setIntentionActive();
+					if (npc != null)
+					{
+						npc.setImmobilized(false);
+						npc.disableCoreAI(false);
+						npc.teleToLocation(instance.getTemplateParameters().getLocation("teleportZone2_loc"));
+						npc.getAI().setIntentionActive();
+					}
 					break;
 				}
 				case "MOVE_TO_MIDDLE":
@@ -459,7 +462,7 @@ public class KartiasLabyrinth extends InstanceScript
 	
 	private void manageWaves(Instance instance)
 	{
-		if ((instance != null) && (instance.getAliveNpcCount(MONSTERS) == 0))
+		if (instance.getAliveNpcCount(MONSTERS) == 0)
 		{
 			getTimers().cancelTimers("NEXT_WAVE_DELAY" + instance.getId());
 			getTimers().cancelTimers("MONITOR_WAVE" + instance.getId());

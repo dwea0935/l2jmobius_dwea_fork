@@ -36,9 +36,10 @@ import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
- * @author CostyKiller, Tanatos
+ * @author CostyKiller, Tanatos, Notorion
  */
 public class LurinSecretWorkshop extends InstanceScript
 {
@@ -56,7 +57,7 @@ public class LurinSecretWorkshop extends InstanceScript
 	};
 	
 	// Additional Monsters Spawn Chance
-	private static final int ADDITIONAL_MONSTER_SPAWN_CHANCE = 7;
+	private static final int ADDITIONAL_MONSTER_SPAWN_CHANCE = 20;
 	
 	// Additional Monsters
 	private static final int[] ADDITIONAL_MONSTERS =
@@ -64,7 +65,7 @@ public class LurinSecretWorkshop extends InstanceScript
 		8302, // Golem's Copy
 		8303, // Golem's Copy
 		8304, // Golem's Copy
-		8304, // Golem's Copy
+		8305, // Golem's Copy
 	};
 	
 	// Monsters 105
@@ -119,7 +120,6 @@ public class LurinSecretWorkshop extends InstanceScript
 	private static final int SPAWNING_MONSTERS = 1;
 	private static final int FIGHTING_MONSTERS = 2;
 	private static final int FIGHTING_BOSS = 3;
-	private int _instanceLevel = 0;
 	
 	public LurinSecretWorkshop()
 	{
@@ -183,7 +183,8 @@ public class LurinSecretWorkshop extends InstanceScript
 					return null;
 				}
 				
-				world.finishInstance();
+				teleportPlayerOut(player, world);
+				world.destroy();
 				break;
 			}
 			case "startInstance":
@@ -194,22 +195,24 @@ public class LurinSecretWorkshop extends InstanceScript
 					return null;
 				}
 				
+				final int instanceLevel;
 				if (player.getLevel() <= 109)
 				{
-					_instanceLevel = 105;
+					instanceLevel = 105;
 				}
 				else if ((player.getLevel() >= 110) && (player.getLevel() <= 114))
 				{
-					_instanceLevel = 110;
+					instanceLevel = 110;
 				}
 				else if ((player.getLevel() >= 115) && (player.getLevel() <= 119))
 				{
-					_instanceLevel = 115;
+					instanceLevel = 115;
 				}
-				else if (player.getLevel() >= 120)
+				else
 				{
-					_instanceLevel = 120;
+					instanceLevel = 120;
 				}
+				world.getParameters().set("INSTANCE_LEVEL", instanceLevel);
 				
 				// Dispell transform or mount
 				if (player.isTransformed())
@@ -224,7 +227,7 @@ public class LurinSecretWorkshop extends InstanceScript
 				
 				player.doCast(TRANSFORM_SKILL.getSkill());
 				world.setStatus(SPAWNING_MONSTERS);
-				startQuestTimer("check_status", 1000, null, player);
+				startQuestTimer("check_status", 10000, null, player); // 10s delay after transformation to spawn monsters
 				break;
 			}
 			case "check_status":
@@ -235,69 +238,52 @@ public class LurinSecretWorkshop extends InstanceScript
 					return null;
 				}
 				
-				switch (world.getStatus())
+				if (world.getStatus() == SPAWNING_MONSTERS)
 				{
-					case SPAWNING_MONSTERS:
+					final StatSet params = world.getParameters();
+					if (!params.getBoolean("MONSTERS_SPAWNED", false))
 					{
-						if (!world.getParameters().getBoolean("MONSTERS_SPAWNED", false))
+						world.setStatus(FIGHTING_MONSTERS);
+						params.set("MONSTERS_SPAWNED", true);
+						player.sendPacket(new ExSendUIEvent(player, false, false, 600, 0, NpcStringId.TIME_LEFT));
+						startQuestTimer("spawn_copy", 180 * 1000, null, player); // Copy Golem appears in 3 minutes.
+						startQuestTimer("spawn_boss", 420 * 1000, null, player); // Boss Lurin appears in 7 minutes.
+						startQuestTimer("end_fight", 600 * 1000, null, player); // End fight timer (10 minutes).
+						switch (params.getInt("INSTANCE_LEVEL", 105))
 						{
-							world.setStatus(FIGHTING_MONSTERS);
-							world.getParameters().set("MONSTERS_SPAWNED", true);
-							player.sendPacket(new ExSendUIEvent(player, false, false, 600, 0, NpcStringId.TIME_LEFT));
-							startQuestTimer("spawn_copy", 180 * 1000, null, player); // Copy Golem appears in 3 minutes.
-							startQuestTimer("spawn_boss", 420 * 1000, null, player); // Boss Lurin appears in 7 minutes.
-							startQuestTimer("end_fight", 600 * 1000, null, player); // End fight timer.
-							startQuestTimer("check_status", 1000, null, player);
-							switch (_instanceLevel)
+							case 105:
 							{
-								case 105:
-								{
-									world.spawnGroup("MONSTERS_105_GROUP_1");
-									world.spawnGroup("MONSTERS_105_GROUP_2");
-									world.spawnGroup("MONSTERS_105_GROUP_3");
-									world.spawnGroup("MONSTERS_105_GROUP_4");
-									break;
-								}
-								case 110:
-								{
-									world.spawnGroup("MONSTERS_110_GROUP_1");
-									world.spawnGroup("MONSTERS_110_GROUP_2");
-									world.spawnGroup("MONSTERS_110_GROUP_3");
-									world.spawnGroup("MONSTERS_110_GROUP_4");
-									break;
-								}
-								case 115:
-								{
-									world.spawnGroup("MONSTERS_115_GROUP_1");
-									world.spawnGroup("MONSTERS_115_GROUP_2");
-									world.spawnGroup("MONSTERS_115_GROUP_3");
-									world.spawnGroup("MONSTERS_115_GROUP_4");
-									break;
-								}
-								case 120:
-								{
-									world.spawnGroup("MONSTERS_120_GROUP_1");
-									world.spawnGroup("MONSTERS_120_GROUP_2");
-									world.spawnGroup("MONSTERS_120_GROUP_3");
-									world.spawnGroup("MONSTERS_120_GROUP_4");
-									break;
-								}
+								world.spawnGroup("MONSTERS_105_GROUP_1");
+								world.spawnGroup("MONSTERS_105_GROUP_2");
+								world.spawnGroup("MONSTERS_105_GROUP_3");
+								world.spawnGroup("MONSTERS_105_GROUP_4");
+								break;
+							}
+							case 110:
+							{
+								world.spawnGroup("MONSTERS_110_GROUP_1");
+								world.spawnGroup("MONSTERS_110_GROUP_2");
+								world.spawnGroup("MONSTERS_110_GROUP_3");
+								world.spawnGroup("MONSTERS_110_GROUP_4");
+								break;
+							}
+							case 115:
+							{
+								world.spawnGroup("MONSTERS_115_GROUP_1");
+								world.spawnGroup("MONSTERS_115_GROUP_2");
+								world.spawnGroup("MONSTERS_115_GROUP_3");
+								world.spawnGroup("MONSTERS_115_GROUP_4");
+								break;
+							}
+							case 120:
+							{
+								world.spawnGroup("MONSTERS_120_GROUP_1");
+								world.spawnGroup("MONSTERS_120_GROUP_2");
+								world.spawnGroup("MONSTERS_120_GROUP_3");
+								world.spawnGroup("MONSTERS_120_GROUP_4");
+								break;
 							}
 						}
-						break;
-					}
-					case FIGHTING_BOSS:
-					{
-						if (world.getAliveNpcCount(BOSSES) == 0)
-						{
-							world.despawnGroup("GRIMNIR_DOOR");
-							world.finishInstance(5);
-						}
-						else
-						{
-							startQuestTimer("check_status", 1000, null, player);
-						}
-						break;
 					}
 				}
 				break;
@@ -312,7 +298,7 @@ public class LurinSecretWorkshop extends InstanceScript
 				
 				if (getRandom(100) < ADDITIONAL_MONSTER_SPAWN_CHANCE)
 				{
-					switch (_instanceLevel)
+					switch (world.getParameters().getInt("INSTANCE_LEVEL", 105))
 					{
 						case 105:
 						{
@@ -348,7 +334,7 @@ public class LurinSecretWorkshop extends InstanceScript
 					return null;
 				}
 				
-				switch (_instanceLevel)
+				switch (world.getParameters().getInt("INSTANCE_LEVEL", 105))
 				{
 					case 105:
 					{
@@ -384,7 +370,7 @@ public class LurinSecretWorkshop extends InstanceScript
 					return null;
 				}
 				
-				switch (_instanceLevel)
+				switch (world.getParameters().getInt("INSTANCE_LEVEL", 105))
 				{
 					case 105:
 					{
@@ -392,6 +378,8 @@ public class LurinSecretWorkshop extends InstanceScript
 						world.despawnGroup("MONSTERS_105_GROUP_2");
 						world.despawnGroup("MONSTERS_105_GROUP_3");
 						world.despawnGroup("MONSTERS_105_GROUP_4");
+						world.despawnGroup("BOSS_105");
+						world.despawnGroup("ADDITIONAL_MONSTER_105");
 						break;
 					}
 					case 110:
@@ -400,6 +388,8 @@ public class LurinSecretWorkshop extends InstanceScript
 						world.despawnGroup("MONSTERS_110_GROUP_2");
 						world.despawnGroup("MONSTERS_110_GROUP_3");
 						world.despawnGroup("MONSTERS_110_GROUP_4");
+						world.despawnGroup("BOSS_110");
+						world.despawnGroup("ADDITIONAL_MONSTER_110");
 						break;
 					}
 					case 115:
@@ -408,6 +398,8 @@ public class LurinSecretWorkshop extends InstanceScript
 						world.despawnGroup("MONSTERS_115_GROUP_2");
 						world.despawnGroup("MONSTERS_115_GROUP_3");
 						world.despawnGroup("MONSTERS_115_GROUP_4");
+						world.despawnGroup("BOSS_115");
+						world.despawnGroup("ADDITIONAL_MONSTER_115");
 						break;
 					}
 					case 120:
@@ -416,12 +408,16 @@ public class LurinSecretWorkshop extends InstanceScript
 						world.despawnGroup("MONSTERS_120_GROUP_2");
 						world.despawnGroup("MONSTERS_120_GROUP_3");
 						world.despawnGroup("MONSTERS_120_GROUP_4");
+						world.despawnGroup("BOSS_120");
+						world.despawnGroup("ADDITIONAL_MONSTER_120");
 						break;
 					}
 				}
 				
+				world.getParameters().set("FIGHT_ENDED", true);
 				world.spawnGroup("GRIMNIR_CENTER");
 				world.despawnGroup("GRIMNIR_DOOR");
+				world.finishInstance(5);
 				if (player.isTransformed())
 				{
 					player.untransform();
@@ -485,12 +481,13 @@ public class LurinSecretWorkshop extends InstanceScript
 		final Instance world = npc.getInstanceWorld();
 		if (world != null)
 		{
-			if (world.getStatus() == FIGHTING_BOSS)
+			final int status = world.getStatus();
+			if (world.getParameters().getBoolean("FIGHT_ENDED", false))
 			{
 				return "8310-exit.html";
 			}
 			
-			if (world.getStatus() == FIGHTING_MONSTERS)
+			if ((status == FIGHTING_MONSTERS) || (status == FIGHTING_BOSS))
 			{
 				// Dispell transform or mount
 				if (player.isTransformed())

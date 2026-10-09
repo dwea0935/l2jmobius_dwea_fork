@@ -8,9 +8,9 @@
 		<sex>MALE</sex>
 		<acquire exp="415041" sp="374" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
-			<vitals hp="556031" hpRegen="12.9" mp="25074" mpRegen="30" />
-			<attack physical="1066143" magical="97169" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="80" distance="80" width="120" />
-			<defence physical="334773" magical="165198" />
+			<vitals hp="961934" hpRegen="12.9" mp="25074" mpRegen="30" />
+			<attack physical="172000" magical="17500" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="80" distance="80" width="120" />
+			<defence physical="5600" magical="2350" />
 			<speed>
 				<walk ground="25" />
 				<run ground="150" />
@@ -49,9 +49,9 @@
 		<sex>MALE</sex>
 		<acquire exp="592368" sp="533" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
-			<vitals hp="874926" hpRegen="13.4" mp="25848" mpRegen="30" />
-			<attack physical="1599215" magical="145753" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
-			<defence physical="753240" magical="364523" />
+			<vitals hp="1513622" hpRegen="13.4" mp="25848" mpRegen="30" />
+			<attack physical="205000" magical="21000" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<defence physical="6800" magical="2900" />
 			<speed>
 				<walk ground="25" />
 				<run ground="150" />
@@ -92,7 +92,7 @@
 		<sex>MALE</sex>
 		<acquire exp="604118" sp="544" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
-			<vitals hp="807473.98844" hpRegen="1" mp="25074" mpRegen="1" />
+			<vitals hp="1396930" hpRegen="1" mp="25074" mpRegen="1" />
 			<attack physical="129440" magical="12670" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="4142" magical="1677" />
 			<speed>
@@ -107,6 +107,7 @@
 		</stats>
 		<status attackable="true" />
 		<ai type="FIGHTER" aggroRange="900" clanHelpRange="600" isAggressive="true">
+			<skill minChance="25" maxChance="50" />
 			<clanList>
 				<clan>LURIN</clan>
 			</clanList>
@@ -131,7 +132,7 @@
 			<skill id="14621" level="1" /> <!-- Pull Resistance -->
 			<skill id="14804" level="10" /> <!-- Damage Reflection Resistance -->
 			<skill id="29621" level="1" /> <!-- Steel Bomber -->
-			<skill id="29622" level="1" /> <!-- Tocket Firing -->
+			<skill id="29622" level="1" /> <!-- Rocket Firing -->
 			<skill id="29623" level="1" /> <!-- Double Lariat -->
 		</skillList>
 	</npc>
@@ -145,9 +146,9 @@
 		<sex>MALE</sex>
 		<acquire exp="759098" sp="683" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
-			<vitals hp="684487.19026" hpRegen="12.4" mp="25074" mpRegen="30" />
-			<attack physical="147799" magical="13056" random="5" critical="8" accuracy="0" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
-			<defence physical="88256" magical="33026" />
+			<vitals hp="1629764" hpRegen="12.4" mp="25074" mpRegen="30" />
+			<attack physical="147799" magical="14500" random="5" critical="8" accuracy="0" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<defence physical="4950" magical="2100" />
 			<speed>
 				<walk ground="25" />
 				<run ground="180" />
@@ -160,6 +161,7 @@
 		</stats>
 		<status attackable="true" />
 		<ai type="FIGHTER" aggroRange="900" clanHelpRange="600" isAggressive="true">
+			<skill minChance="25" maxChance="50" />
 			<clanList>
 				<clan>LURIN</clan>
 			</clanList>
@@ -184,7 +186,7 @@
 			<skill id="14621" level="1" /> <!-- Pull Resistance -->
 			<skill id="14804" level="10" /> <!-- Damage Reflection Resistance -->
 			<skill id="29621" level="1" /> <!-- Steel Bomber -->
-			<skill id="29622" level="1" /> <!-- Tocket Firing -->
+			<skill id="29622" level="1" /> <!-- Rocket Firing -->
 			<skill id="29623" level="1" /> <!-- Double Lariat -->
 		</skillList>
 	</npc>
@@ -198,9 +200,9 @@
 		<sex>MALE</sex>
 		<acquire exp="1245124" sp="1121" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
-			<vitals hp="1668093" hpRegen="12.9" mp="25848" mpRegen="30" />
-			<attack physical="1066143" magical="97169" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="80" distance="80" width="120" />
-			<defence physical="334773" magical="165198" />
+			<vitals hp="2885796" hpRegen="12.9" mp="25848" mpRegen="30" />
+			<attack physical="175000" magical="18000" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="80" distance="80" width="120" />
+			<defence physical="5900" magical="2550" />
 			<speed>
 				<walk ground="25" />
 				<run ground="180" />
@@ -213,6 +215,7 @@
 		</stats>
 		<status attackable="true" />
 		<ai type="FIGHTER" aggroRange="900" clanHelpRange="600" isAggressive="true">
+			<skill minChance="25" maxChance="50" />
 			<clanList>
 				<clan>LURIN</clan>
 			</clanList>
@@ -237,7 +240,7 @@
 			<skill id="14621" level="1" /> <!-- Pull Resistance -->
 			<skill id="14804" level="10" /> <!-- Damage Reflection Resistance -->
 			<skill id="29621" level="1" /> <!-- Steel Bomber -->
-			<skill id="29622" level="1" /> <!-- Tocket Firing -->
+			<skill id="29622" level="1" /> <!-- Rocket Firing -->
 			<skill id="29623" level="1" /> <!-- Double Lariat -->
 		</skillList>
 	</npc>
@@ -251,9 +254,9 @@
 		<sex>MALE</sex>
 		<acquire exp="1777105" sp="1599" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
-			<vitals hp="2624778" hpRegen="13.4" mp="25848" mpRegen="30" />
-			<attack physical="1599215" magical="145753" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
-			<defence physical="753240" magical="364523" />
+			<vitals hp="4540869" hpRegen="13.4" mp="25848" mpRegen="30" />
+			<attack physical="215000" magical="22500" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<defence physical="7200" magical="3150" />
 			<speed>
 				<walk ground="25" />
 				<run ground="180" />
@@ -266,6 +269,7 @@
 		</stats>
 		<status attackable="true" />
 		<ai type="FIGHTER" aggroRange="900" clanHelpRange="600" isAggressive="true">
+			<skill minChance="25" maxChance="50" />
 			<clanList>
 				<clan>LURIN</clan>
 			</clanList>
@@ -290,7 +294,7 @@
 			<skill id="14621" level="1" /> <!-- Pull Resistance -->
 			<skill id="14804" level="10" /> <!-- Damage Reflection Resistance -->
 			<skill id="29621" level="1" /> <!-- Steel Bomber -->
-			<skill id="29622" level="1" /> <!-- Tocket Firing -->
+			<skill id="29622" level="1" /> <!-- Rocket Firing -->
 			<skill id="29623" level="1" /> <!-- Double Lariat -->
 		</skillList>
 	</npc>
@@ -298,12 +302,14 @@
 		<parameters>
 			<skill name="Skill01_ID" id="29624" level="1" />
 			<skill name="Skill02_ID" id="29625" level="1" />
+			<skill name="Skill03_ID" id="29626" level="1" />
+			<skill name="Skill04_ID" id="29627" level="1" />
 		</parameters>
 		<race>DWARF</race>
 		<sex>MALE</sex>
 		<acquire exp="604118" sp="544" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
-			<vitals hp="807473.98844" hpRegen="1" mp="25074" mpRegen="1" />
+			<vitals hp="1396930" hpRegen="1" mp="25074" mpRegen="1" />
 			<attack physical="129440" magical="12670" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="4142" magical="1677" />
 			<speed>
@@ -318,6 +324,7 @@
 		</stats>
 		<status attackable="true" />
 		<ai type="FIGHTER" aggroRange="900" clanHelpRange="600" isAggressive="true">
+			<skill minChance="25" maxChance="50" />
 			<clanList>
 				<clan>LURIN</clan>
 			</clanList>
@@ -343,20 +350,24 @@
 			<skill id="14804" level="10" /> <!-- Damage Reflection Resistance -->
 			<skill id="29624" level="1" /> <!-- Shield Stun -->
 			<skill id="29625" level="1" /> <!-- Aggression Aura -->
+			<skill id="29626" level="1" /> <!-- Chain Strike -->
+			<skill id="29627" level="1" /> <!-- Knight Frenzy -->
 		</skillList>
 	</npc>
 	<npc id="8307" level="110" type="Monster" name="Lurin" title="Archlord">
 		<parameters>
 			<skill name="Skill01_ID" id="29624" level="1" />
 			<skill name="Skill02_ID" id="29625" level="1" />
+			<skill name="Skill03_ID" id="29626" level="1" />
+			<skill name="Skill04_ID" id="29627" level="1" />
 		</parameters>
 		<race>DWARF</race>
 		<sex>MALE</sex>
 		<acquire exp="759098" sp="683" />
 		<stats str="164" int="188" dex="55" wit="78" con="111" men="149">
-			<vitals hp="684487.19026" hpRegen="12.4" mp="25074" mpRegen="30" />
-			<attack physical="147799" magical="13056" random="5" critical="8" accuracy="0" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
-			<defence physical="88256" magical="33026" />
+			<vitals hp="1629764" hpRegen="12.4" mp="25074" mpRegen="30" />
+			<attack physical="147799" magical="14500" random="5" critical="8" accuracy="0" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<defence physical="4950" magical="2100" />
 			<speed>
 				<walk ground="30" />
 				<run ground="180" />
@@ -369,6 +380,7 @@
 		</stats>
 		<status attackable="true" />
 		<ai type="FIGHTER" aggroRange="900" clanHelpRange="600" isAggressive="true">
+			<skill minChance="25" maxChance="50" />
 			<clanList>
 				<clan>LURIN</clan>
 			</clanList>
@@ -394,20 +406,24 @@
 			<skill id="14804" level="10" /> <!-- Damage Reflection Resistance -->
 			<skill id="29624" level="1" /> <!-- Shield Stun -->
 			<skill id="29625" level="1" /> <!-- Aggression Aura -->
+			<skill id="29626" level="1" /> <!-- Chain Strike -->
+			<skill id="29627" level="1" /> <!-- Knight Frenzy -->
 		</skillList>
 	</npc>
 	<npc id="8308" level="115" type="Monster" name="Lurin" title="Archlord">
 		<parameters>
 			<skill name="Skill01_ID" id="29624" level="1" />
 			<skill name="Skill02_ID" id="29625" level="1" />
+			<skill name="Skill03_ID" id="29626" level="1" />
+			<skill name="Skill04_ID" id="29627" level="1" />
 		</parameters>
 		<race>DWARF</race>
 		<sex>MALE</sex>
 		<acquire exp="1245124" sp="1121" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
-			<vitals hp="1668093" hpRegen="12.9" mp="25848" mpRegen="30" />
-			<attack physical="1066143" magical="97169" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="80" distance="80" width="120" />
-			<defence physical="334773" magical="165198" />
+			<vitals hp="2885796" hpRegen="12.9" mp="25848" mpRegen="30" />
+			<attack physical="175000" magical="18000" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="80" distance="80" width="120" />
+			<defence physical="5900" magical="2550" />
 			<speed>
 				<walk ground="30" />
 				<run ground="180" />
@@ -420,6 +436,7 @@
 		</stats>
 		<status attackable="true" />
 		<ai type="FIGHTER" aggroRange="900" clanHelpRange="600" isAggressive="true">
+			<skill minChance="25" maxChance="50" />
 			<clanList>
 				<clan>LURIN</clan>
 			</clanList>
@@ -445,20 +462,24 @@
 			<skill id="14804" level="10" /> <!-- Damage Reflection Resistance -->
 			<skill id="29624" level="1" /> <!-- Shield Stun -->
 			<skill id="29625" level="1" /> <!-- Aggression Aura -->
+			<skill id="29626" level="1" /> <!-- Chain Strike -->
+			<skill id="29627" level="1" /> <!-- Knight Frenzy -->
 		</skillList>
 	</npc>
 	<npc id="8309" level="120" type="Monster" name="Lurin" title="Archlord">
 		<parameters>
 			<skill name="Skill01_ID" id="29624" level="1" />
 			<skill name="Skill02_ID" id="29625" level="1" />
+			<skill name="Skill03_ID" id="29626" level="1" />
+			<skill name="Skill04_ID" id="29627" level="1" />
 		</parameters>
 		<race>DWARF</race>
 		<sex>MALE</sex>
 		<acquire exp="1777105" sp="1599" />
 		<stats str="88" int="79" dex="55" wit="78" con="82" men="78">
-			<vitals hp="2624778" hpRegen="13.4" mp="25848" mpRegen="30" />
-			<attack physical="1599215" magical="145753" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
-			<defence physical="753240" magical="364523" />
+			<vitals hp="4540869" hpRegen="13.4" mp="25848" mpRegen="30" />
+			<attack physical="215000" magical="22500" random="10" critical="4" accuracy="5" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
+			<defence physical="7200" magical="3150" />
 			<speed>
 				<walk ground="30" />
 				<run ground="180" />
@@ -471,6 +492,7 @@
 		</stats>
 		<status attackable="true" />
 		<ai type="FIGHTER" aggroRange="900" clanHelpRange="600" isAggressive="true">
+			<skill minChance="25" maxChance="50" />
 			<clanList>
 				<clan>LURIN</clan>
 			</clanList>
@@ -496,6 +518,8 @@
 			<skill id="14804" level="10" /> <!-- Damage Reflection Resistance -->
 			<skill id="29624" level="1" /> <!-- Shield Stun -->
 			<skill id="29625" level="1" /> <!-- Aggression Aura -->
+			<skill id="29626" level="1" /> <!-- Chain Strike -->
+			<skill id="29627" level="1" /> <!-- Knight Frenzy -->
 		</skillList>
 	</npc>
 	<npc id="8310" level="99" type="Folk" name="Grimnir" title="Black Anvil Guild">
