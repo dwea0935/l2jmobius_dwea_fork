@@ -166,6 +166,13 @@ public class HtmCache
 	
 	public String getHtm(Player player, String path)
 	{
+		// Some page names come from client bypasses, a parent segment would leave the html folders.
+		if (path.contains(".."))
+		{
+			LOGGER.warning("HtmCache: Refused path " + path + " requested by " + player + ".");
+			return null;
+		}
+		
 		final String prefix = player != null ? player.getHtmlPrefix() : "";
 		String newPath = prefix + path;
 		String content = HTML_CACHE.get(newPath);
