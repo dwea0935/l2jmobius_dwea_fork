@@ -38,6 +38,8 @@ import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
  */
 public class DecayTaskManager implements Runnable
 {
+	public static final int PLAYER_DEATH_DISCONNECT_TIME = 3600; // 1 hour
+	
 	private static final Map<Creature, Long> DECAY_SCHEDULES = new ConcurrentHashMap<>();
 	private static boolean _working = false;
 	
@@ -116,7 +118,7 @@ public class DecayTaskManager implements Runnable
 			}
 			else if (PlayerConfig.DISCONNECT_AFTER_DEATH)
 			{
-				delay = 3600; // 1 hour
+				delay = PLAYER_DEATH_DISCONNECT_TIME;
 			}
 		}
 		

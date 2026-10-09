@@ -384,6 +384,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ExCharInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExDamagePopUp;
 import org.l2jmobius.gameserver.network.serverpackets.ExDieInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExDuelUpdateUserInfo;
+import org.l2jmobius.gameserver.network.serverpackets.ExFieldDieLimitTime;
 import org.l2jmobius.gameserver.network.serverpackets.ExGetBookMarkInfoPacket;
 import org.l2jmobius.gameserver.network.serverpackets.ExGetOnAirShip;
 import org.l2jmobius.gameserver.network.serverpackets.ExItemScore;
@@ -5865,6 +5866,7 @@ public class Player extends Playable
 		else if (PlayerConfig.DISCONNECT_AFTER_DEATH)
 		{
 			DecayTaskManager.getInstance().add(this);
+			sendPacket(new ExFieldDieLimitTime(DecayTaskManager.PLAYER_DEATH_DISCONNECT_TIME));
 		}
 		
 		return true;
@@ -11962,6 +11964,10 @@ public class Player extends Playable
 		
 		// Stop decay task.
 		DecayTaskManager.getInstance().cancel(this);
+		if (PlayerConfig.DISCONNECT_AFTER_DEATH)
+		{
+			sendPacket(new ExFieldDieLimitTime(0));
+		}
 		
 		applyKarmaPenalty();
 		
