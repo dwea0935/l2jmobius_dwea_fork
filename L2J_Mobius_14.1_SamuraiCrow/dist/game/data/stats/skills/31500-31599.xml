@@ -50,6 +50,10 @@
 		<!-- The Warg's keen sense of smell lets him find hidden enemies. Cancels their Hide effects. Requires a fist weapon. -->
 		<icon>icon.s_cyclone_claw_upgrade</icon>
 		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<affectScope>POINT_BLANK</affectScope>
+		<affectRange>300</affectRange>
+		<affectObject>NOT_FRIEND</affectObject>
 		<coolTime>500</coolTime>
 		<hitTime>1200</hitTime>
 		<isDebuff>true</isDebuff>
@@ -62,22 +66,35 @@
 				</weaponType>
 			</condition>
 		</conditions>
+		<effects>
+			<effect name="Detection" />
+			<effect name="DispelBySlot">
+				<dispel>HIDE,9</dispel>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="31508" toLevel="3" name="Warg's Tough Skin">
 		<!-- Level 1: The wolf's hide becomes even thicker. For 15 sec., creates a barrier that absorbs 100,000 damage. Requires a fist weapon. Consumes 15 Soulstones. -->
 		<!-- Level 2: The wolf's hide becomes even thicker. For 15 sec., creates a barrier that absorbs 100,000 damage. Received damage limit: 50,000. Requires a fist weapon. Consumes 15 Soulstones. -->
 		<!-- Level 3: The wolf's hide becomes even thicker. For 15 sec., creates a barrier that absorbs 100,000 damage. Received damage limit: 25,000. Requires a fist weapon. Consumes 15 Soulstones. -->
 		<icon>icon.s_wild_evolution</icon>
-		<operateType>A1</operateType>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>BARRIER</abnormalType>
+		<abnormalVisualEffect>B_S_Y_BARRIER2_AVE</abnormalVisualEffect>
 		<coolTime>500</coolTime>
 		<effectPoint>379</effectPoint>
 		<hitTime>1500</hitTime>
+		<itemConsumeCount>15</itemConsumeCount>
+		<itemConsumeId>1785</itemConsumeId> <!-- Soulstone -->
 		<mpConsume>
 			<value level="1">123</value>
 			<value level="2">135</value>
 			<value level="3">147</value>
 		</mpConsume>
 		<reuseDelay>120000</reuseDelay>
+		<staticReuse>true</staticReuse>
 		<conditions>
 			<condition name="EquipWeapon">
 				<weaponType>
@@ -85,6 +102,18 @@
 				</weaponType>
 			</condition>
 		</conditions>
+		<effects>
+			<effect name="AbsorbDamage">
+				<damage>100000</damage>
+			</effect>
+			<effect name="GetDamageLimit">
+				<amount>
+					<value level="1">0</value>
+					<value level="2">50000</value>
+					<value level="3">25000</value>
+				</amount>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="31509" toLevel="6" name="Exalted - Attack">
 		<!-- Level 1: P. Atk. +2%, M. Atk. +3% -->

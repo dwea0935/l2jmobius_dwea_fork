@@ -2289,9 +2289,9 @@
 																</xs:complexType>
 															</xs:element>
 															<xs:element name="blockedActions" type="xs:byte" />
-															<xs:element name="skillId1" type="xs:unsignedShort" />
-															<xs:element name="skillId3" type="xs:unsignedShort" />
-															<xs:element name="skillId2" type="xs:unsignedShort" />
+															<xs:element name="skillId1" type="xs:unsignedInt" />
+															<xs:element name="skillId3" type="xs:unsignedInt" />
+															<xs:element name="skillId2" type="xs:unsignedInt" />
 															<xs:element name="singleInstance" type="xs:boolean" />
 															<xs:element name="party">
 																<xs:complexType>
@@ -2572,9 +2572,9 @@
 																</xs:complexType>
 															</xs:element>
 															<xs:element name="abnormalPower" type="xs:unsignedByte" />
-															<xs:element name="skillId4" type="xs:unsignedShort" />
-															<xs:element name="skillId5" type="xs:unsignedShort" />
-															<xs:element name="skillId6" type="xs:unsignedShort" />
+															<xs:element name="skillId4" type="xs:unsignedInt" />
+															<xs:element name="skillId5" type="xs:unsignedInt" />
+															<xs:element name="skillId6" type="xs:unsignedInt" />
 															<xs:element name="skillLevel1" type="xs:unsignedByte" />
 															<xs:element name="ids" type="xs:string" />
 															<xs:element name="skillIds" type="xs:string" />
@@ -2616,9 +2616,9 @@
 																</xs:complexType>
 															</xs:element>
 															<xs:element name="accuracyMode" type="xs:string" />
-															<xs:element name="skillId7" type="xs:unsignedShort" />
-															<xs:element name="skillId8" type="xs:unsignedShort" />
-															<xs:element name="skillId9" type="xs:unsignedByte" />
+															<xs:element name="skillId7" type="xs:unsignedInt" />
+															<xs:element name="skillId8" type="xs:unsignedInt" />
+															<xs:element name="skillId9" type="xs:unsignedInt" />
 															<xs:element name="skillId10" type="xs:unsignedShort" />
 															<xs:element name="skillId11" type="xs:unsignedShort" />
 															<xs:element name="skillId12" type="xs:unsignedShort" />

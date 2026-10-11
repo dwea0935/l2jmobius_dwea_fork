@@ -4757,7 +4757,7 @@
 		<icon>icon.s_double_claw</icon>
 		<operateType>A1</operateType>
 	</skill>
-	<skill id="31486" toLevel="1" name="Moon Agility">
+	<skill id="31486" toLevel="2" name="Moon Agility">
 		<!-- Level 1: Swiftly moves for 300 units forward. -->
 		<!-- Level 2: Swiftly moves for 600 units forward. -->
 		<!-- Level 2 - SubLevel 1001 (+10 Range): Swiftly moves for 600 units forward. -->
@@ -4788,18 +4788,33 @@
 		<effectPoint>687</effectPoint>
 		<hitTime>500</hitTime>
 		<isMagic>1</isMagic>
-		<mpConsume>5</mpConsume>
+		<magicLevel>
+			<value level="1">1</value>
+			<value level="2">85</value>
+		</magicLevel>
+		<mpConsume>
+			<value level="1">5</value>
+			<value level="2">38</value>
+		</mpConsume>
 		<reuseDelay>15000</reuseDelay>
 		<conditions>
 			<condition name="OpBlink">
 				<direction>FRONT</direction>
-				<range>300</range>
+				<range>
+					<value level="1">300</value>
+					<value level="2">600</value>
+					<value fromLevel="2" toLevel="2" fromSubLevel="1001" toSubLevel="1020">{base + (10 * subIndex)}</value>
+				</range>
 			</condition>
 		</conditions>
 		<effects>
 			<effect name="Blink">
 				<angle>180</angle> <!-- Teleport to Front -->
-				<range>300</range>
+				<range>
+					<value level="1">300</value>
+					<value level="2">600</value>
+					<value fromLevel="2" toLevel="2" fromSubLevel="1001" toSubLevel="1020">{base + (10 * subIndex)}</value>
+				</range>
 			</effect>
 		</effects>
 	</skill>

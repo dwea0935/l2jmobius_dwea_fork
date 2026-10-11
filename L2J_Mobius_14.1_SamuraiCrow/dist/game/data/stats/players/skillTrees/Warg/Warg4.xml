@@ -2,7 +2,18 @@
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../xsd/skillTrees.xsd">
 	<skillTree type="classSkillTree" classId="259" parentClassId="258">
 		<!-- Actives -->
-		<skill skillName="Instinct Dash" skillId="31476" skillLevel="2" getLevel="85" />
+		<skill skillName="Instinct Dash" skillId="31476" skillLevel="2" getLevel="85" levelUpSp="0" />
+		<skill skillName="Moon Agility" skillId="31486" skillLevel="2" getLevel="85" levelUpSp="0" />
+		<skill skillName="Wolf Sense" skillId="31507" skillLevel="1" getLevel="85" levelUpSp="0" />
+		<skill skillName="Warg's Tough Skin" skillId="31508" skillLevel="1" getLevel="85">
+			<item id="81887,39738" count="16" /> <!-- Rune Stone -->
+		</skill>
+		<skill skillName="Warg's Tough Skin" skillId="31508" skillLevel="2" getLevel="85" levelUpSp="87688">
+			<item id="81887,39738" count="32" /> <!-- Rune Stone -->
+		</skill>
+		<skill skillName="Warg's Tough Skin" skillId="31508" skillLevel="3" getLevel="85" levelUpSp="436393">
+			<item id="81887,39738" count="64" /> <!-- Rune Stone -->
+		</skill>
 		<skill skillName="Warg's Red Alert" skillId="31472" skillLevel="2" getLevel="85" />
 		<skill skillName="Warg's Red Alert" skillId="31472" skillLevel="3" getLevel="102" levelUpSp="25372" />
 		<skill skillName="Warg's Red Alert" skillId="31472" skillLevel="4" getLevel="107" levelUpSp="126271" />
