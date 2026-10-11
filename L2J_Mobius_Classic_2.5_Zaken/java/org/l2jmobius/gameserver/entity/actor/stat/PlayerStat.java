@@ -640,6 +640,11 @@ public class PlayerStat extends PlayableStat
 		}
 		
 		setVitalityPoints(points);
+		
+		if (points == MIN_VITALITY_POINTS)
+		{
+			getActiveChar().sendPacket(SystemMessageId.YOUR_VITALITY_IS_FULLY_EXHAUSTED);
+		}
 	}
 	
 	public double getExpBonusMultiplier()
