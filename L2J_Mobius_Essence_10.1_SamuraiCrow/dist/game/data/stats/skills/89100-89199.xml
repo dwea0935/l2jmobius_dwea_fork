@@ -369,6 +369,8 @@
 	<skill id="89105" toLevel="6" name="Pursuit">
 		<icon>icon.s_crow_pursuit</icon>
 		<operateType>A1</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
 		<castRange>400</castRange>
 		<coolTime>100</coolTime>
 		<effectPoint>
@@ -393,6 +395,8 @@
 	<skill id="89106" toLevel="6" name="Pursuit">
 		<icon>icon.s_crow_pursuit</icon>
 		<operateType>A1</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
 		<effectPoint>
 			<value level="1">-200</value>
 			<value level="2">-400</value>
@@ -426,6 +430,8 @@
 	</skill>
 	<skill id="89108" toLevel="1" name="Retaliation Scheme">
 		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
 	</skill>
 	<skill id="89113" toLevel="6" name="Pursuit">
 		<!-- Level 1: <Rush skill>. Charges to the target and attacks them. Power 580. Applies <font color="FFFFFF">Rush Jump</font> on the caster. Ignores Shield Defense. Ignores 10% of the target's defense. <font color="FFFFFF">Rush Jump</font> (duration: 4 sec.). P. Atk. +300. Atk. Spd. +120. Speed +20. P. Accuracy +10 -->
@@ -501,6 +507,8 @@
 	<skill id="89114" toLevel="6" name="Pursuit">
 		<icon>icon.s_crow_pursuit</icon>
 		<operateType>A1</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
 		<effectPoint>
 			<value level="1">-200</value>
 			<value level="2">-400</value>
@@ -925,8 +933,13 @@
 		<!-- Level 25: Attacks the target twice. Power 9630. Ignores Shield Defense. Ignores 15% of the target's defense. When using the skill, triggers <font color="F05650">Transcendent Battojutsu</font> with a certain chance. The skill can only be used in transcendent instance zones. -->
 		<icon>icon.s_crow_slash</icon>
 		<operateType>A1</operateType>
+		<basicProperty>PHYSICAL</basicProperty>
+		<isMagic>0</isMagic>
 		<castRange>250</castRange>
+		<effectRange>400</effectRange>
+		<hitTime>750</hitTime>
 		<coolTime>250</coolTime>
+		<reuseDelay>1000</reuseDelay>
 		<effectPoint>
 			<value level="1">-100</value>
 			<value level="2">-200</value>
@@ -954,7 +967,6 @@
 			<value level="24">-940</value>
 			<value level="25">-950</value>
 		</effectPoint>
-		<hitTime>750</hitTime>
 		<mpConsume>
 			<value level="1">10</value>
 			<value level="2">20</value>
@@ -982,7 +994,84 @@
 			<value level="24">61</value>
 			<value level="25">62</value>
 		</mpConsume>
-		<reuseDelay>1000</reuseDelay>
+		<affectRange>300</affectRange>
+		<affectLimit>5-12</affectLimit>
+		<targetType>ENEMY</targetType>
+		<affectScope>RANGE</affectScope>
+		<affectObject>NOT_FRIEND</affectObject>
+		<conditions>
+			<condition name="EquipWeapon">
+				<weaponType>
+					<item>SWORD</item>
+				</weaponType>
+			</condition>
+		</conditions>
+		<effects>
+			<effect name="PhysicalDamage">
+				<power>
+					<value level="1">400</value>
+					<value level="2">474</value>
+					<value level="3">562</value>
+					<value level="4">985</value>
+					<value level="5">1540</value>
+					<value level="6">2080</value>
+					<value level="7">3030</value>
+					<value level="8">4380</value>
+					<value level="9">4700</value>
+					<value level="10">5020</value>
+					<value level="11">5800</value>
+					<value level="12">6201</value>
+					<value level="13">6602</value>
+					<value level="14">7004</value>
+					<value level="15">7407</value>
+					<value level="16">7809</value>
+					<value level="17">8002</value>
+					<value level="18">8205</value>
+					<value level="19">8410</value>
+					<value level="20">8630</value>
+					<value level="21">8830</value>
+					<value level="22">9030</value>
+					<value level="23">9230</value>
+					<value level="24">9430</value>
+					<value level="25">9630</value>
+				</power>
+				<criticalChance>15</criticalChance>
+				<ignoreShieldDefence>true</ignoreShieldDefence>
+				<pDefMod>0.85</pDefMod>
+				<repeatCount>2</repeatCount>
+			</effect>
+			<effect name="CallSkill">
+				<skillId>89212</skillId> <!-- Transcendent Battojutsu -->
+				<skillLevel>
+					<value level="1">1</value>
+					<value level="2">2</value>
+					<value level="3">3</value>
+					<value level="4">4</value>
+					<value level="5">5</value>
+					<value level="6">6</value>
+					<value level="7">7</value>
+					<value level="8">8</value>
+					<value level="9">9</value>
+					<value level="10">10</value>
+					<value level="11">11</value>
+					<value level="12">12</value>
+					<value level="13">13</value>
+					<value level="14">14</value>
+					<value level="15">15</value>
+					<value level="16">16</value>
+					<value level="17">17</value>
+					<value level="18">18</value>
+					<value level="19">19</value>
+					<value level="20">20</value>
+					<value level="21">21</value>
+					<value level="22">22</value>
+					<value level="23">23</value>
+					<value level="24">24</value>
+					<value level="25">25</value>
+				</skillLevel>
+				<chance>10</chance>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="89125" toLevel="12" name="Maneuver">
 		<!-- Level 1: <Rush skill>. Attacks the enemy. Power 6200. Ignores Shield Defense. Ignores 10% of the target's defense. <font color="B39E7B">On using the skill,</font> applies <font color="FFFFFF">Rush Jump</font> on the caster (duration: 4 sec.). P. Atk. +300. Atk. Spd. +120. Speed +20. P. Accuracy +10 -->
@@ -1088,6 +1177,8 @@
 	<skill id="89126" toLevel="12" name="Maneuver">
 		<icon>icon.s_crow_dash</icon>
 		<operateType>A1</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
 		<castRange>700</castRange>
 		<effectPoint>
 			<value level="1">-760</value>
@@ -1177,6 +1268,12 @@
 				</weaponType>
 			</condition>
 		</conditions>
+		<selfEffects>
+			<effect name="CallSkill">
+				<skillId>89200</skillId> <!-- Rush Jump -->
+				<skillLevel>1</skillLevel>
+			</effect>
+		</selfEffects>
 		<effects>
 			<effect name="PhysicalDamage">
 				<power>
@@ -1202,6 +1299,8 @@
 	<skill id="89128" toLevel="12" name="Clever Maneuver">
 		<icon>icon.s_crow_rush</icon>
 		<operateType>A1</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
 		<castRange>700</castRange>
 		<effectPoint>
 			<value level="1">-760</value>
@@ -1221,6 +1320,8 @@
 	<skill id="89129" toLevel="12" name="Clever Melee Maneuver">
 		<icon>icon.s_crow_rush</icon>
 		<operateType>A2</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
 		<castRange>700</castRange>
 		<coolTime>200</coolTime>
 		<effectPoint>
@@ -1253,10 +1354,46 @@
 			<value level="12">95</value>
 		</mpConsume>
 		<reuseDelay>3000</reuseDelay>
+		<conditions>
+			<condition name="EquipWeapon">
+				<weaponType>
+					<item>SWORD</item>
+				</weaponType>
+			</condition>
+		</conditions>
+		<selfEffects>
+			<effect name="CallSkill">
+				<skillId>89133</skillId> <!-- Close Fight -->
+				<skillLevel>1</skillLevel>
+			</effect>
+		</selfEffects>
+		<effects>
+			<effect name="PhysicalDamage">
+				<power>
+					<value level="1">6200</value>
+					<value level="2">6600</value>
+					<value level="3">6940</value>
+					<value level="4">7600</value>
+					<value level="5">7900</value>
+					<value level="6">8300</value>
+					<value level="7">8500</value>
+					<value level="8">8700</value>
+					<value level="9">8900</value>
+					<value level="10">9100</value>
+					<value level="11">9300</value>
+					<value level="12">9500</value>
+				</power>
+				<ignoreShieldDefence>true</ignoreShieldDefence>
+				<pDefMod>0.9</pDefMod>
+				<criticalChance>15</criticalChance>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="89130" toLevel="12" name="Clever Maneuver">
 		<icon>icon.s_crow_rush</icon>
 		<operateType>A1</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
 		<castRange>700</castRange>
 		<effectPoint>
 			<value level="1">-760</value>
@@ -1276,6 +1413,8 @@
 	<skill id="89131" toLevel="12" name="Clever Ranged Maneuver">
 		<icon>icon.s_crow_rush</icon>
 		<operateType>A2</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
 		<castRange>700</castRange>
 		<coolTime>200</coolTime>
 		<effectPoint>
@@ -1308,10 +1447,46 @@
 			<value level="12">95</value>
 		</mpConsume>
 		<reuseDelay>3000</reuseDelay>
+		<conditions>
+			<condition name="EquipWeapon">
+				<weaponType>
+					<item>SWORD</item>
+				</weaponType>
+			</condition>
+		</conditions>
+		<selfEffects>
+			<effect name="CallSkill">
+				<skillId>89134</skillId> <!-- Furious Chase -->
+				<skillLevel>1</skillLevel>
+			</effect>
+		</selfEffects>
+		<effects>
+			<effect name="PhysicalDamage">
+				<power>
+					<value level="1">6200</value>
+					<value level="2">6600</value>
+					<value level="3">6940</value>
+					<value level="4">7600</value>
+					<value level="5">7900</value>
+					<value level="6">8300</value>
+					<value level="7">8500</value>
+					<value level="8">8700</value>
+					<value level="9">8900</value>
+					<value level="10">9100</value>
+					<value level="11">9300</value>
+					<value level="12">9500</value>
+				</power>
+				<ignoreShieldDefence>true</ignoreShieldDefence>
+				<pDefMod>0.9</pDefMod>
+				<criticalChance>15</criticalChance>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="89132" toLevel="12" name="Clever Maneuver">
 		<icon>icon.s_crow_rush</icon>
 		<operateType>A1</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
 		<castRange>700</castRange>
 		<effectPoint>
 			<value level="1">-760</value>
@@ -1329,14 +1504,56 @@
 		</effectPoint>
 	</skill>
 	<skill id="89133" toLevel="1" name="Close Fight">
-		<!-- Atk. Spd. +90. Speed +30. Fist Weapon Resistance +5%. When hit, removes the following P./ M. Def.-decreasing debuffs. Removal rate: 30%. - Murder Attempt. - Hellfire. - Elemental Dust. - Claw Mark. - Piercing Claw. - Defense Crush. - Bone Prison. - Mass Armor Crush. - Armor Crush. - Shocking Burst -->
+		<!-- Atk. Spd. +90. Speed +30. Fist Weapon Resistance +10%. When hit, removes P./ M. Def.-decreasing debuffs. Removal rate: 50%. -->
 		<icon>icon.s_crow_rush</icon>
-		<operateType>A1</operateType>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>4</abnormalTime>
+		<effects>
+			<effect name="PhysicalAttackSpeed">
+				<amount>90</amount>
+				<mode>DIFF</mode>
+			</effect>
+			<effect name="Speed">
+				<amount>30</amount>
+				<mode>DIFF</mode>
+			</effect>
+			<effect name="DefenceTrait">
+				<FIST>10</FIST>
+			</effect>
+			<effect name="TriggerSkillByDamageReceived">
+				<attackerType>Creature</attackerType>
+				<skillId>89158</skillId> <!-- Debuff removal -->
+				<skillLevel>1</skillLevel>
+				<chance>50</chance>
+				<targetType>SELF</targetType>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="89134" toLevel="1" name="Furious Chase">
 		<!-- Atk. Spd. +180. Speed +60. P. Accuracy +20 -->
 		<icon>icon.s_crow_rush</icon>
-		<operateType>A1</operateType>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>4</abnormalTime>
+		<effects>
+			<effect name="PhysicalAttackSpeed">
+				<amount>180</amount>
+				<mode>DIFF</mode>
+			</effect>
+			<effect name="Speed">
+				<amount>60</amount>
+				<mode>DIFF</mode>
+			</effect>
+			<effect name="Accuracy">
+				<amount>20</amount>
+				<mode>DIFF</mode>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="89135" toLevel="1" name="Take Life">
 		<!-- You are knocked down. -->
@@ -2209,8 +2426,24 @@
 	</skill>
 	<skill id="89152" toLevel="4" name="Weapon Break">
 		<icon>icon.s_crow_shredding_weapon</icon>
-		<operateType>A1</operateType>
+		<operateType>A2</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
+		<abnormalLevel>
+			<value level="1">1</value>
+			<value level="2">2</value>
+			<value level="3">3</value>
+			<value level="4">4</value>
+		</abnormalLevel>
+		<abnormalTime>5</abnormalTime>
+		<abnormalType>DISARM</abnormalType>
+		<abnormalVisualEffect>DISARMORED</abnormalVisualEffect>
+		<basicProperty>NONE</basicProperty>
 		<effectPoint>-990</effectPoint>
+		<isDebuff>true</isDebuff>
+		<effects>
+			<effect name="Disarm" />
+		</effects>
 	</skill>
 	<skill id="89154" toLevel="1" name="Fall to the Ground">
 		<!-- Crushing to the ground. -->
@@ -2345,6 +2578,15 @@
 	<skill id="89158" toLevel="1" name="Debuff removal">
 		<icon>icon.skill0003</icon>
 		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<effects>
+			<effect name="DispelByCategory">
+				<slot>DEBUFF</slot>
+				<rate>100</rate>
+				<max>1</max>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="89159" toLevel="4" name="Thousand Wounds">
 		<!-- Level 1: Attacks the enemies twice. Power 6240. Ignores Shield Defense. Ignores 15% of the target's defense. PvP: Attacks up to 8 targets. PvE: Attacks up to 8 targets. -->
@@ -2885,6 +3127,9 @@
 		<reuseDelay>40000</reuseDelay>
 		<staticReuse>true</staticReuse>
 		<effects>
+			<effect name="ReuseSkillById">
+				<skillId>89172</skillId> <!-- Perception: Battojutsu -->
+			</effect>
 			<effect name="ResistAbnormalByCategory">
 				<amount>-40</amount>
 				<slot>DEBUFF</slot>
@@ -3043,6 +3288,8 @@
 	<skill id="89173" toLevel="1" name="Oni">
 		<icon>icon.skill0003</icon>
 		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
 	</skill>
 	<skill id="89177" toLevel="4" name="Slashing of Strow Dummy">
 		<!-- Level 1: P. Atk. +200 -->
@@ -3892,12 +4139,15 @@
 		</effects>
 	</skill>
 	<skill id="89196" toLevel="1" name="Samurai Standard Skills">
-		<operateType>A2</operateType>
+		<icon>icon.skill0000</icon>
+		<operateType>P</operateType>
 	</skill>
 	<skill id="89197" toLevel="1" name="Disastrous Shriek - Link Display">
 		<!-- Display when using enhanced Disastrous Shriek. -->
 		<icon>icon.s_crow_reverse_strike</icon>
 		<operateType>A1</operateType>
+		<targetType>ENEMY</targetType>
+		<affectScope>SINGLE</affectScope>
 		<effectPoint>-1000</effectPoint>
 	</skill>
 	<skill id="89198" toLevel="8" name="Disastrous Shriek">

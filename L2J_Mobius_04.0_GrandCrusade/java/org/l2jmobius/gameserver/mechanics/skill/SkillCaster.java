@@ -1335,9 +1335,28 @@ public class SkillCaster implements Runnable
 				}
 				else
 				{
-					x = target.getX();
-					y = target.getY();
-					z = target.getZ();
+					final double dx = creature.getX() - target.getX();
+					final double dy = creature.getY() - target.getY();
+					final double distance = Math.hypot(dx, dy);
+					double offset = creature.getCollisionRadius() + 10;
+					if (target.isCreature())
+					{
+						offset += target.asCreature().getCollisionRadius();
+					}
+					
+					if (distance > offset)
+					{
+						final double ratio = offset / distance;
+						x = target.getX() + (int) (dx * ratio);
+						y = target.getY() + (int) (dy * ratio);
+						z = target.getZ();
+					}
+					else
+					{
+						x = creature.getX();
+						y = creature.getY();
+						z = creature.getZ();
+					}
 				}
 				break;
 			}
