@@ -398,6 +398,12 @@ public class GameClient extends Client<org.l2jmobius.commons.network.Connection<
 				ps.execute();
 			}
 			
+			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_summons WHERE ownerId=?"))
+			{
+				ps.setInt(1, objectId);
+				ps.execute();
+			}
+			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM pets WHERE item_obj_id IN (SELECT object_id FROM items WHERE items.owner_id=?)"))
 			{
 				ps.setInt(1, objectId);
