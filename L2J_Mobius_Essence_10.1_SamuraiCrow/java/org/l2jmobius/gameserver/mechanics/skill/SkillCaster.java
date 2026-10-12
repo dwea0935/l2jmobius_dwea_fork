@@ -277,14 +277,16 @@ public class SkillCaster implements Runnable
 			reuseDelay = (int) (reuseDelay * ClassBalanceConfig.SKILL_REUSE_MULTIPLIERS[caster.asPlayer().getPlayerClass().getId()]);
 		}
 		
-		if (caster.hasAbnormalType(AbnormalType.TIME_DISTORTION))
+		final boolean timeDistortion = caster.hasAbnormalType(AbnormalType.TIME_DISTORTION);
+		if (timeDistortion)
 		{
 			reuseDelay += 30000;
 		}
-		else if (reuseDelay > 10)
+		
+		if (reuseDelay > 10)
 		{
-			// Skill mastery doesn't affect static skills / A2 and item skills on reuse.
-			if (Formulas.calcSkillMastery(caster, _skill) && !_skill.isStatic() && (_skill.getReferenceItemId() == 0) && (_skill.getOperateType() == SkillOperateType.A1))
+			// Skill mastery doesn't affect static skills / A2 and item skills on reuse, nor the Time Distortion penalty.
+			if (!timeDistortion && Formulas.calcSkillMastery(caster, _skill) && !_skill.isStatic() && (_skill.getReferenceItemId() == 0) && (_skill.getOperateType() == SkillOperateType.A1))
 			{
 				reuseDelay = 100;
 				caster.sendPacket(SystemMessageId.A_SKILL_IS_READY_TO_BE_USED_AGAIN);
