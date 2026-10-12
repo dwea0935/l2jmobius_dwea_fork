@@ -21,6 +21,7 @@
 package handlers.skill.effects;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.entity.actor.Playable;
 import org.l2jmobius.gameserver.entity.actor.Player;
@@ -124,7 +125,7 @@ public class ReplaceSkillBySkill extends AbstractEffect
 		if (playable.isPlayer())
 		{
 			final Player player = effected.asPlayer();
-			player.addSkill(addedSkill, knownSkill.getLevel() != _existingSkill.getSkillLevel());
+			player.addSkill(addedSkill, (knownSkill.getLevel() != _existingSkill.getSkillLevel()) && (addedSkill != null) && SkillTreeData.getInstance().isSkillAllowed(player, addedSkill));
 			player.removeReplacedSkill(existingSkillId);
 		}
 		else // Not player.

@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.enums.player.ShortcutType;
@@ -169,7 +170,7 @@ public class ReplaceSkillBySkill extends AbstractEffect
 		}
 		
 		final Skill addedSkill = SkillData.getInstance().getSkill(existingSkillId, knownSkill.getLevel(), knownSkill.getSubLevel());
-		player.addSkill(addedSkill, knownSkill.getLevel() != _existingSkill.getSkillLevel());
+		player.addSkill(addedSkill, (knownSkill.getLevel() != _existingSkill.getSkillLevel()) && (addedSkill != null) && SkillTreeData.getInstance().isSkillAllowed(player, addedSkill));
 		player.removeReplacedSkill(existingSkillId);
 		for (Shortcut shortcut : player.getAllShortcuts())
 		{
