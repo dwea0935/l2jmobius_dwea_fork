@@ -108,6 +108,7 @@ public class Guardian extends Attackable
 		if (!summoner.isOnline() && !summoner.isOfflinePlay())
 		{
 			deleteMe();
+			return;
 		}
 		
 		if (followSummoner)
@@ -238,7 +239,6 @@ public class Guardian extends Attackable
 	@Override
 	public boolean deleteMe()
 	{
-		getSummoner().asPlayer().removeServitor(getObjectId());
 		stopAttackTask();
 		return super.deleteMe();
 	}
