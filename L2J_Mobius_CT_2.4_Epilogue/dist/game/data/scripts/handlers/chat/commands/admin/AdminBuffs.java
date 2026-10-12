@@ -27,11 +27,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
+import org.l2jmobius.commons.util.StringUtil;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
@@ -122,9 +124,18 @@ public class AdminBuffs implements IAdminCommandHandler
 			command = st.nextToken();
 			if (st.hasMoreTokens())
 			{
-				final String playername = st.nextToken();
-				final Player player = World.getPlayer(playername);
-				if (player != null)
+				final String targetToken = st.nextToken();
+				Creature target = World.getPlayer(targetToken);
+				if ((target == null) && StringUtil.isInteger(targetToken))
+				{
+					final WorldObject object = World.findObject(Integer.parseInt(targetToken));
+					if ((object != null) && object.isCreature())
+					{
+						target = object.asCreature();
+					}
+				}
+				
+				if (target != null)
 				{
 					int page = 0;
 					if (st.hasMoreTokens())
@@ -132,11 +143,11 @@ public class AdminBuffs implements IAdminCommandHandler
 						page = Integer.parseInt(st.nextToken());
 					}
 					
-					showBuffs(activeChar, player, page, command.endsWith("_ps"));
+					showBuffs(activeChar, target, page, command.endsWith("_ps"));
 					return true;
 				}
 				
-				activeChar.sendSysMessage("The player " + playername + " is not online.");
+				activeChar.sendSysMessage("No online player or creature matches " + targetToken + ".");
 				return false;
 			}
 			else if ((activeChar.getTarget() != null) && activeChar.getTarget().isCreature())
@@ -366,7 +377,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		}
 		
 		int row = 0;
-		final String pageLink = "bypass admin_getbuffs" + (passive ? "_ps " : " ") + target.getName();
+		final String pageLink = "bypass admin_getbuffs" + (passive ? "_ps " : " ") + target.getObjectId();
 		final PageResult result = PageBuilder.newBuilder(skills.keySet(), PAGE_LIMIT, pageLink).currentPage(page).style(ButtonsStyle.INSTANCE).bodyHandler((pages, skill, sb) ->
 		{
 			sb.append((row % 2) == 0 ? "<table width=\"295\" bgcolor=\"000000\">" : "<table width=\"295\">");
@@ -588,7 +599,7 @@ public class AdminBuffs implements IAdminCommandHandler
 			final StringBuilder html = new StringBuilder(500 + (blockedAbnormalsSize * 50));
 			html.append("<html><table width=\"100%\"><tr><td width=45><button value=\"Main\" action=\"bypass admin_admin\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td width=180><center><font color=\"LEVEL\">Blocked effects of ");
 			html.append(target.getName());
-			html.append("</font></td><td width=45><button value=\"Back\" action=\"bypass admin_getbuffs" + (target.isPlayer() ? (" " + target.getName()) : "") + "\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr></table><br>");
+			html.append("</font></td><td width=45><button value=\"Back\" action=\"bypass admin_getbuffs " + objId + "\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr></table><br>");
 			if ((blockedAbnormals != null) && !blockedAbnormals.isEmpty())
 			{
 				html.append("<br>Blocked buff slots: ");
