@@ -36,6 +36,7 @@ import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.taskmanagers.CreatureFollowTaskManager;
 
 /**
  * @author Liamxroy
@@ -101,11 +102,6 @@ public class Guardian extends Attackable
 	
 	public void followSummoner(boolean followSummoner)
 	{
-		if (isMoving())
-		{
-			return;
-		}
-		
 		final Player summoner = getSummoner().asPlayer();
 		setTarget(summoner);
 		
@@ -116,15 +112,14 @@ public class Guardian extends Attackable
 		
 		if (followSummoner)
 		{
-			if ((getAI().getIntention() == Intention.IDLE) || (getAI().getIntention() == Intention.ACTIVE))
+			// Already following, re-issuing FOLLOW on every tick would rebuild the follow task.
+			if ((getAI().getIntention() == Intention.FOLLOW) && CreatureFollowTaskManager.getInstance().isFollowing(this))
 			{
-				setRunning();
-				getAI().setIntentionFollow(getSummoner());
+				return;
 			}
-			else
-			{
-				getAI().setIntentionFollow(getSummoner());
-			}
+			
+			setRunning();
+			getAI().setIntentionFollow(getSummoner());
 		}
 		else if (getAI().getIntention() == Intention.FOLLOW)
 		{
