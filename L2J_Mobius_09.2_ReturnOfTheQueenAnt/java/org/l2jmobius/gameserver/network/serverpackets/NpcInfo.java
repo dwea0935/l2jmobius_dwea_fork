@@ -195,7 +195,9 @@ public class NpcInfo extends AbstractMaskPacket<NpcInfoType>
 		}
 		
 		addComponentType(NpcInfoType.PET_EVOLUTION_ID);
-		if (npc.getPvpFlag() > 0)
+		
+		// Summoned pawns must also send 0, otherwise the client keeps their last flag.
+		if ((npc.getPvpFlag() > 0) || (npc.getSummoner() != null))
 		{
 			addComponentType(NpcInfoType.PVP_FLAG);
 		}

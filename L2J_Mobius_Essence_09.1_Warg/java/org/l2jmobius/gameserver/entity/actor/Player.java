@@ -2130,6 +2130,12 @@ public class Player extends Playable
 			sendPacket(rc);
 		}
 		
+		// Summoned pawns are not covered by RelationChanged, repaint their flag here.
+		for (Npc npc : getSummonedNpcs())
+		{
+			npc.broadcastInfo();
+		}
+		
 		World.forEachVisibleObject(this, Player.class, player ->
 		{
 			if (!isVisibleFor(player))

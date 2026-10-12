@@ -95,6 +95,7 @@ public class SummonHallucination extends AbstractEffect
 			final Doppelganger clone = new Doppelganger(npcTemplate, player);
 			clone.fullRestore();
 			clone.setSummoner(player);
+			player.addSummonedNpc(clone);
 			clone.spawnMe(x, y, z);
 			clone.scheduleDespawn(_despawnDelay);
 			clone.startAttackTask(effected);
