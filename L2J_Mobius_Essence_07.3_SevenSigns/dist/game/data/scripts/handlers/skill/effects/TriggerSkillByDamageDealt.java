@@ -144,13 +144,13 @@ public class TriggerSkillByDamageDealt extends AbstractEffect
 		}
 		
 		// When only physical skills are allowed (allowSkillAttack should be set to true).
-		if (_onlyPhysicalSkill && event.getSkill().isMagic())
+		if (_onlyPhysicalSkill && ((event.getSkill() == null) || event.getSkill().isMagic()))
 		{
 			return;
 		}
 		
 		// When only magic skills are allowed (allowSkillAttack should be set to true).
-		if (_onlyMagicSkill && !event.getSkill().isMagic())
+		if (_onlyMagicSkill && ((event.getSkill() == null) || !event.getSkill().isMagic()))
 		{
 			return;
 		}
