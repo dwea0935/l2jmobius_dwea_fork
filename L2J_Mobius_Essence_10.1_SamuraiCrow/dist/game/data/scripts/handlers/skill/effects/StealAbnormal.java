@@ -86,7 +86,9 @@ public class StealAbnormal extends AbstractEffect
 					|| infoToSteal.isAbnormalType(AbnormalType.STAT_SKILL_DEX) //
 					|| infoToSteal.isAbnormalType(AbnormalType.STAT_SKILL_INT) //
 					|| infoToSteal.isAbnormalType(AbnormalType.STAT_SKILL_WIT) //
-					|| infoToSteal.isAbnormalType(AbnormalType.STAT_SKILL_CON))
+					|| infoToSteal.isAbnormalType(AbnormalType.STAT_SKILL_CON) //
+					|| infoToSteal.isAbnormalType(AbnormalType.CHANGEBODY) //
+					|| infoToSteal.isAbnormalType(AbnormalType.BUFF_SPECIAL_CLASS))
 				{
 					continue;
 				}
