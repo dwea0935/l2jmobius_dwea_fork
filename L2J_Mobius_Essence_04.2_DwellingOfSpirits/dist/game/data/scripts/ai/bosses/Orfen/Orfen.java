@@ -147,6 +147,11 @@ public class Orfen extends Script
 	@Override
 	public void onSkillSee(Npc npc, Player caster, Skill skill, Collection<WorldObject> targets, boolean isSummon)
 	{
+		if (npc.isDead())
+		{
+			return;
+		}
+		
 		final Creature originalCaster = isSummon ? caster.getServitors().values().stream().findFirst().orElse(caster.getPet()) : caster;
 		if ((skill.getEffectPoint() > 0) && (getRandom(5) == 0) && npc.isInsideRadius2D(originalCaster, 1000))
 		{
@@ -160,6 +165,11 @@ public class Orfen extends Script
 	@Override
 	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
+		if (npc.isDead())
+		{
+			return;
+		}
+		
 		if (npc.isInsideRadius2D(attacker, 1000) && !npc.isInsideRadius2D(attacker, 300) && (getRandom(10) == 0))
 		{
 			npc.broadcastSay(ChatType.NPC_GENERAL, ORFEN_MESSAGES[getRandom(3)], attacker.getName());

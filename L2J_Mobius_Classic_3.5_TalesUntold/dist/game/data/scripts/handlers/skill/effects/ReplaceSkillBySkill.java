@@ -170,7 +170,7 @@ public class ReplaceSkillBySkill extends AbstractEffect
 		}
 		
 		final Skill addedSkill = SkillData.getInstance().getSkill(existingSkillId, knownSkill.getLevel(), knownSkill.getSubLevel());
-		player.addSkill(addedSkill, (knownSkill.getLevel() != _existingSkill.getSkillLevel()) && (addedSkill != null) && SkillTreeData.getInstance().isSkillAllowed(player, addedSkill));
+		player.addSkill(addedSkill, (knownSkill.getLevel() != _existingSkill.getSkillLevel()) && SkillTreeData.getInstance().isSkillAllowed(player, addedSkill));
 		player.removeReplacedSkill(existingSkillId);
 		for (Shortcut shortcut : player.getAllShortcuts())
 		{

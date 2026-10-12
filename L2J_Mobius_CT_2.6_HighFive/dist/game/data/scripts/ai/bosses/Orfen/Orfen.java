@@ -332,6 +332,11 @@ public class Orfen extends Script
 	@Override
 	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
+		if (npc.isDead())
+		{
+			return;
+		}
+		
 		final Creature originalCaster = isSummon ? caster.getSummon() : caster;
 		if ((skill.getEffectPoint() > 0) && (getRandom(SKILL_SEE_REACTION_CHANCE) == 0) && npc.isInsideRadius2D(originalCaster, TELEPORT_SKILL_MAX_RANGE))
 		{
@@ -387,6 +392,11 @@ public class Orfen extends Script
 	@Override
 	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
+		if (npc.isDead())
+		{
+			return;
+		}
+		
 		final int npcId = npc.getId();
 		if (npcId == ORFEN_NPC_ID)
 		{

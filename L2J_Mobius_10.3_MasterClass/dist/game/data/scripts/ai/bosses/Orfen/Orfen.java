@@ -609,6 +609,11 @@ public class Orfen extends Script
 	@Override
 	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
+		if (npc.isDead())
+		{
+			return;
+		}
+		
 		final int npcId = npc.getId();
 		if (npcId == ORFEN)
 		{
