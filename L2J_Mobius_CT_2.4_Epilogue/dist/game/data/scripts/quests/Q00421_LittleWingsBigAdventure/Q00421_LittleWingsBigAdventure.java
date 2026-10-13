@@ -415,6 +415,8 @@ public class Q00421_LittleWingsBigAdventure extends Quest
 								playSound(attacker, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 								if (qs.getMemoState() == 15)
 								{
+									// All four trees are done, leaves left over from a raised quest item rate would block Mimyu.
+									takeItems(attacker, FAIRY_LEAF, -1);
 									qs.setCond(3);
 								}
 							}
