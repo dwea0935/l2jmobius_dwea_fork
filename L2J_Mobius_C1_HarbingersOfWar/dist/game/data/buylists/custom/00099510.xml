@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/buylist.xsd">
-	<item id="23" price="7960" /> <!-- Wooden Breastplate -->
-	<item id="2386" price="4970" /> <!-- Wooden Gaiters -->
-	<item id="43" price="3980" /> <!-- Wooden Helmet -->
-	<item id="1101" price="20300" /> <!-- Tunic of Devotion -->
-	<item id="1104" price="12700" /> <!-- Stockings of Devotion -->
-	<item id="44" price="10200" /> <!-- Leather Helmet -->
-</list>

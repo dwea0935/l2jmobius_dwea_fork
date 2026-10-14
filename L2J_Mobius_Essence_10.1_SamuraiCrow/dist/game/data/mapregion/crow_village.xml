@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- TODO: Remove "castle" attributes from here, it should be loaded from TaxZones -->
-<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/MapRegion.xsd">
-	<region name="crow_village" town="Crow Village" castle="3" locId="14690" bbs="6">
-		<respawnPoint X="146337" Y="213614" Z="-2178" />
-		<respawnPoint X="152411" Y="208511" Z="-3032" isChaotic="true" />
-		<map X="24" Y="24" />
-	</region>
-</list>

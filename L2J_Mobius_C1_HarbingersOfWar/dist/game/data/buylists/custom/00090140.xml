@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/buylist.xsd">
-	<item id="258" price="409000" /> <!-- Bagh-Nakh -->
-	<item id="259" price="644000" /> <!-- Single-Edged Jamadhr -->
-	<item id="260" price="967000" /> <!-- Triple-Edged Jamadhr -->
-	<item id="261" price="1400000" /> <!-- Bich'Hwa -->
-	<item id="262" price="1800000" /> <!-- Scallop Jamadhr -->
-</list>

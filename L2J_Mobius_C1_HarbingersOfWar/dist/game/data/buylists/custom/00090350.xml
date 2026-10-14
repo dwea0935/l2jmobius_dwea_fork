@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/buylist.xsd">
-	<item id="92" price="8680000" /> <!-- Sprite's Staff -->
-	<item id="207" price="8680000" /> <!-- Staff of Phantom -->
-	<item id="208" price="8680000" /> <!-- Staff of Seal -->
-	<item id="209" price="13100000" /> <!-- Divine Staff -->
-	<item id="210" price="13100000" /> <!-- Staff of Evil Spirit -->
-	<item id="211" price="13100000" /> <!-- Staff of Nobility -->
-</list>

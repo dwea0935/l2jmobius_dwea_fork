@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/buylist.xsd">
-	<item id="17" price="2" /> <!-- Wooden Arrow -->
-	<item id="1341" price="3" /> <!-- Bone Arrow -->
-	<item id="1342" price="5" /> <!-- Fine Steel Arrow -->
-	<item id="1343" price="7" /> <!-- Silver Arrow -->
-	<item id="1344" price="8" /> <!-- Mithril Arrow -->
-	<item id="1345" price="10" /> <!-- Shining Arrow -->
-</list>
