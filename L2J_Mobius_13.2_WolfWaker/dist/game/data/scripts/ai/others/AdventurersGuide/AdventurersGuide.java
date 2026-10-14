@@ -46,7 +46,7 @@ public class AdventurersGuide extends Script
 	
 	// Skills
 	private static final SkillHolder BLESS_PROTECTION = new SkillHolder(5182, 1); // Blessing of Protection
-	private static final SkillHolder FANTASIA = new SkillHolder(32840, 1); // Fantasia Harmony - Adventurer
+	private static final SkillHolder FANTASIA = new SkillHolder(62074, 1); // Fantasia Harmony - Adventurer
 	private static final SkillHolder[] GROUP_BUFFS =
 	{
 		new SkillHolder(62072, 1), // Fever Melody - Adventurer
