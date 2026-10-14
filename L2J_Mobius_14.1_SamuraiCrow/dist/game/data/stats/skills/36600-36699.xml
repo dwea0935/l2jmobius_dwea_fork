@@ -712,6 +712,44 @@
 		<!-- Max HP +15%, Critical Rate for basic attacks and P./ M. skills +5%, Critical Damage for basic attacks and P./ M. skills +10%, Atk. Spd./ Casting Spd. +15%. -->
 		<icon>icon.skill6319</icon>
 		<operateType>P</operateType>
+		<effects>
+			<effect name="MaxHp">
+				<amount>15</amount>
+				<mode>PER</mode>
+			</effect>
+			<effect name="CriticalRate">
+				<amount>5</amount>
+				<mode>PER</mode>
+			</effect>
+			<effect name="PhysicalSkillCriticalRate">
+				<amount>5</amount>
+				<mode>PER</mode>
+			</effect>
+			<effect name="MagicCriticalRate">
+				<amount>5</amount>
+				<mode>PER</mode>
+			</effect>
+			<effect name="CriticalDamage">
+				<amount>10</amount>
+				<mode>PER</mode>
+			</effect>
+			<effect name="PhysicalSkillCriticalDamage">
+				<amount>10</amount>
+				<mode>PER</mode>
+			</effect>
+			<effect name="MagicCriticalDamage">
+				<amount>10</amount>
+				<mode>PER</mode>
+			</effect>
+			<effect name="PhysicalAttackSpeed">
+				<amount>15</amount>
+				<mode>PER</mode>
+			</effect>
+			<effect name="MagicalAttackSpeed">
+				<amount>15</amount>
+				<mode>PER</mode>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="36616" toLevel="3" name="Dragon Slayer">
 		<!-- Level 1: PvP damage +30%, Max HP/ MP/ CP +30%, Atk. Spd./ Casting Spd. +30%, Critical Rate for basic attacks and P. skills +30%, M. Skill Critical Rate +10%, Critical Damage for basic attacks and P./ M. skills +30%, Perfection trigger rate +50, Soulshot/ Spiritshot damage +15%, damage to dragons +100%. -->
