@@ -1012,7 +1012,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 		switch (npcId)
 		{
 			case PAKO_THE_CAT:
-				if ((st.getInt("Almors") == 2) && isPet && (npc.getCurrentHp() == npc.getMaxHp()))
+				if ((st.getInt("Almors") == 2) && isPet && ((npc.getCurrentHp() + damage) >= npc.getMaxHp()))
 				{
 					st.set("Almors", "3");
 					playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -1048,7 +1048,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 				break;
 			
 			case UNICORN_RACER:
-				if ((st.getInt("Camoniell") == 2) && isPet && (npc.getCurrentHp() == npc.getMaxHp()))
+				if ((st.getInt("Camoniell") == 2) && isPet && ((npc.getCurrentHp() + damage) >= npc.getMaxHp()))
 				{
 					st.set("Camoniell", "3");
 					playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -1082,7 +1082,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 				break;
 			
 			case SHADOW_TUREN:
-				if ((st.getInt("Belthus") == 2) && isPet && (npc.getCurrentHp() == npc.getMaxHp()))
+				if ((st.getInt("Belthus") == 2) && isPet && ((npc.getCurrentHp() + damage) >= npc.getMaxHp()))
 				{
 					st.set("Belthus", "3");
 					playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -1116,7 +1116,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 				break;
 			
 			case MIMI_THE_CAT:
-				if ((st.getInt("Basilla") == 2) && isPet && (npc.getCurrentHp() == npc.getMaxHp()))
+				if ((st.getInt("Basilla") == 2) && isPet && ((npc.getCurrentHp() + damage) >= npc.getMaxHp()))
 				{
 					st.set("Basilla", "3");
 					playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -1150,7 +1150,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 				break;
 			
 			case UNICORN_PHANTASM:
-				if ((st.getInt("Celestiel") == 2) && isPet && (npc.getCurrentHp() == npc.getMaxHp()))
+				if ((st.getInt("Celestiel") == 2) && isPet && ((npc.getCurrentHp() + damage) >= npc.getMaxHp()))
 				{
 					st.set("Celestiel", "3");
 					playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -1184,7 +1184,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 				break;
 			
 			case SILHOUETTE_TILFO:
-				if ((st.getInt("Brynthea") == 2) && isPet && (npc.getCurrentHp() == npc.getMaxHp()))
+				if ((st.getInt("Brynthea") == 2) && isPet && ((npc.getCurrentHp() + damage) >= npc.getMaxHp()))
 				{
 					st.set("Brynthea", "3");
 					playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
