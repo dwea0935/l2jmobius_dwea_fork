@@ -818,7 +818,7 @@ public class Party extends AbstractPlayerGroup
 		
 		player.sendPacket(new PartySmallWindowAll(player, this));
 		
-		final SystemMessage msg = new SystemMessage(SystemMessageId.C1_JOINED_THE_PARTY);
+		final SystemMessage msg = new SystemMessage(SystemMessageId.C1_HAS_JOINED_THE_PARTY);
 		msg.addString(player.getName());
 		broadcastToPartyMembers(player, msg);
 		

@@ -207,6 +207,16 @@ public class Instance
 	}
 	
 	/**
+	 * Checks if the player is allowed in this instance.
+	 * @param objectId
+	 * @return true if player exists in instance
+	 */
+	public boolean isPlayerAllowed(int objectId)
+	{
+		return containsPlayer(objectId);
+	}
+	
+	/**
 	 * Adds the specified player to the instance
 	 * @param objectId Players object ID
 	 */
