@@ -45,4 +45,9 @@ public interface IBlock
 	int getNextLowerZ(int geoX, int geoY, int worldZ);
 	
 	int getNextHigherZ(int geoX, int geoY, int worldZ);
+	
+	default int getNearestZAndNswe(int geoX, int geoY, int worldZ)
+	{
+		return (getNearestZ(geoX, geoY, worldZ) << 4) | (getNearestNswe(geoX, geoY, worldZ) & Cell.NSWE_ALL);
+	}
 }

@@ -20,6 +20,7 @@
  */
 package org.l2jmobius.gameserver.geoengine.geodata.regions;
 
+import org.l2jmobius.gameserver.geoengine.geodata.Cell;
 import org.l2jmobius.gameserver.geoengine.geodata.IRegion;
 
 /**
@@ -46,6 +47,12 @@ public class NullRegion implements IRegion
 	}
 	
 	@Override
+	public short getNearestNswe(int geoX, int geoY, int worldZ)
+	{
+		return Cell.NSWE_ALL;
+	}
+	
+	@Override
 	public int getNearestZ(int geoX, int geoY, int worldZ)
 	{
 		return worldZ;
@@ -61,6 +68,12 @@ public class NullRegion implements IRegion
 	public int getNextHigherZ(int geoX, int geoY, int worldZ)
 	{
 		return worldZ;
+	}
+	
+	@Override
+	public int getNearestZAndNswe(int geoX, int geoY, int worldZ)
+	{
+		return (worldZ << 4) | Cell.NSWE_ALL;
 	}
 	
 	@Override

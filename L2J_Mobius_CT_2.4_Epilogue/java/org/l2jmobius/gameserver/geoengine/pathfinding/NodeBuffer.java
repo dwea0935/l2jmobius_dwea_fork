@@ -111,6 +111,13 @@ public class NodeBuffer
 		return _mapSize;
 	}
 	
+	private final java.util.concurrent.atomic.AtomicBoolean _inUse = new java.util.concurrent.atomic.AtomicBoolean();
+	
+	public boolean tryAcquire()
+	{
+		return _inUse.compareAndSet(false, true);
+	}
+	
 	/**
 	 * Runs A* from start to target in geo-cell space.<br>
 	 * Returns the path as a list of {@link GeoLocation} waypoints (in forward order, start exclusive, target inclusive), collapsing colinear runs into endpoints.
@@ -179,6 +186,7 @@ public class NodeBuffer
 		
 		_touchedCount = 0;
 		_heapSize = 0;
+		_inUse.set(false);
 	}
 	
 	private int cellIdx(int gx, int gy)
@@ -210,7 +218,7 @@ public class NodeBuffer
 	
 	/**
 	 * Lazily initialises a cell on first contact and records it in the touched ledger.<br>
-	 * The NSWE bitmask and nearest Z are queried from the geo engine exactly once per cell per pathfind.
+	 * Both the 4-bit NSWE bitmask and nearest Z are fetched in a single fused off-heap lookup via {@link GeoEngine#getNearestZAndNswe(int, int, int)}.
 	 * @param idx the cell index
 	 * @param gx the geo X coordinate of the cell
 	 * @param gy the geo Y coordinate of the cell
@@ -223,30 +231,9 @@ public class NodeBuffer
 			return;
 		}
 		
-		final GeoEngine geo = GeoEngine.getInstance();
-		byte nswe = 0;
-		if (geo.checkNearestNswe(gx, gy, refZ, Cell.NSWE_NORTH))
-		{
-			nswe |= Cell.NSWE_NORTH;
-		}
-		
-		if (geo.checkNearestNswe(gx, gy, refZ, Cell.NSWE_EAST))
-		{
-			nswe |= Cell.NSWE_EAST;
-		}
-		
-		if (geo.checkNearestNswe(gx, gy, refZ, Cell.NSWE_SOUTH))
-		{
-			nswe |= Cell.NSWE_SOUTH;
-		}
-		
-		if (geo.checkNearestNswe(gx, gy, refZ, Cell.NSWE_WEST))
-		{
-			nswe |= Cell.NSWE_WEST;
-		}
-		
-		_nswe[idx] = nswe;
-		_z[idx] = (short) geo.getNearestZ(gx, gy, refZ);
+		final int packed = GeoEngine.getInstance().getNearestZAndNswe(gx, gy, refZ);
+		_nswe[idx] = (byte) (packed & Cell.NSWE_ALL);
+		_z[idx] = (short) (packed >> 4);
 		_flags[idx] = FLAG_TOUCHED;
 		_parent[idx] = -1;
 		_gCost[idx] = Integer.MAX_VALUE;

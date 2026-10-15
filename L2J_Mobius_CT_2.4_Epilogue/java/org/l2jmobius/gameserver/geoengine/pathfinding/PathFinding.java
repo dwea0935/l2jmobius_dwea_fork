@@ -40,9 +40,14 @@ public class PathFinding
 {
 	private static final Logger LOGGER = Logger.getLogger(PathFinding.class.getName());
 	
-	private final int[] _sizeClasses;
-	private final ThreadLocal<NodeBuffer[]> _tlBuffers;
+	/** Power-of-two stripe count per size class, bounded regardless of Virtual Thread count. */
+	private static final int STRIPE_COUNT = Integer.highestOneBit(Math.max(16, Runtime.getRuntime().availableProcessors() * 4) - 1) << 1;
+	private static final int STRIPE_MASK = STRIPE_COUNT - 1;
 	
+	private final int[] _sizeClasses;
+	private final java.util.concurrent.atomic.AtomicReferenceArray<NodeBuffer>[] _stripedPools;
+	
+	@SuppressWarnings("unchecked")
 	protected PathFinding()
 	{
 		try
@@ -62,7 +67,11 @@ public class PathFinding
 			
 			Arrays.sort(parsed);
 			_sizeClasses = parsed;
-			_tlBuffers = ThreadLocal.withInitial(() -> new NodeBuffer[_sizeClasses.length]);
+			_stripedPools = new java.util.concurrent.atomic.AtomicReferenceArray[_sizeClasses.length];
+			for (int i = 0; i < _sizeClasses.length; i++)
+			{
+				_stripedPools[i] = new java.util.concurrent.atomic.AtomicReferenceArray<>(STRIPE_COUNT);
+			}
 		}
 		catch (Exception e)
 		{
@@ -268,25 +277,42 @@ public class PathFinding
 	}
 	
 	/**
-	 * Returns a per-thread buffer whose map size is at least {@code size}. Lazily allocates one buffer per size class per thread; never blocks.
+	 * Leases a buffer whose map size is at least {@code size} from the bounded lock-free striped pool.<br>
+	 * Safe for both Platform Threads and Java 21–27 Virtual Threads with zero {@link ThreadLocal} memory accumulation.
 	 * @param size the minimum map size required
 	 * @return a usable buffer, or {@code null} when {@code size} exceeds the largest configured class
 	 */
 	private NodeBuffer alloc(int size)
 	{
-		final NodeBuffer[] perThread = _tlBuffers.get();
+		final int baseStripe = ((int) Thread.currentThread().threadId() * 0x9E3779B9) >>> 24;
 		for (int i = 0; i < _sizeClasses.length; i++)
 		{
 			if (_sizeClasses[i] >= size)
 			{
-				NodeBuffer buffer = perThread[i];
-				if (buffer == null)
+				final java.util.concurrent.atomic.AtomicReferenceArray<NodeBuffer> pool = _stripedPools[i];
+				final int classSize = _sizeClasses[i];
+				for (int probe = 0; probe < STRIPE_COUNT; probe++)
 				{
-					buffer = new NodeBuffer(_sizeClasses[i]);
-					perThread[i] = buffer;
+					final int slot = (baseStripe + probe) & STRIPE_MASK;
+					NodeBuffer buffer = pool.get(slot);
+					if (buffer == null)
+					{
+						final NodeBuffer candidate = new NodeBuffer(classSize);
+						if (pool.compareAndSet(slot, null, candidate))
+						{
+							buffer = candidate;
+						}
+						else
+						{
+							buffer = pool.get(slot);
+						}
+					}
+					
+					if ((buffer != null) && buffer.tryAcquire())
+					{
+						return buffer;
+					}
 				}
-				
-				return buffer;
 			}
 		}
 		

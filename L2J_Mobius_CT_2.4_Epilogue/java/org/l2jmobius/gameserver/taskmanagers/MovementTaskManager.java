@@ -37,18 +37,42 @@ public class MovementTaskManager
 {
 	protected static final Logger LOGGER = Logger.getLogger(MovementTaskManager.class.getName());
 	
-	private static final Set<Set<Creature>> POOLS_CREATURE = ConcurrentHashMap.newKeySet();
-	private static final Set<Set<Creature>> POOLS_PLAYER = ConcurrentHashMap.newKeySet();
-	private static final int POOL_SIZE_CREATURE = 1000;
-	private static final int POOL_SIZE_PLAYER = 500;
+	// Power-of-two shard counts for deterministic lock-free routing via Fibonacci hashing.
+	private static final int PLAYER_SHARD_COUNT = 4;
+	private static final int PLAYER_SHARD_MASK = PLAYER_SHARD_COUNT - 1;
+	private static final int CREATURE_SHARD_COUNT = 8;
+	private static final int CREATURE_SHARD_MASK = CREATURE_SHARD_COUNT - 1;
+	
+	private static final int POOL_SIZE_CREATURE = 512;
+	private static final int POOL_SIZE_PLAYER = 256;
 	private static final int TASK_DELAY_CREATURE = 100;
 	private static final int TASK_DELAY_PLAYER = 50;
 	
+	@SuppressWarnings("unchecked")
+	private static final Set<Creature>[] PLAYER_SHARDS = new Set[PLAYER_SHARD_COUNT];
+	@SuppressWarnings("unchecked")
+	private static final Set<Creature>[] CREATURE_SHARDS = new Set[CREATURE_SHARD_COUNT];
+	
 	protected MovementTaskManager()
 	{
+		for (int i = 0; i < PLAYER_SHARD_COUNT; i++)
+		{
+			final Set<Creature> shard = ConcurrentHashMap.newKeySet(POOL_SIZE_PLAYER);
+			PLAYER_SHARDS[i] = shard;
+			final int initialDelay = TASK_DELAY_PLAYER + ((i * TASK_DELAY_PLAYER) / PLAYER_SHARD_COUNT);
+			ThreadPool.schedulePriorityTaskAtFixedRate(new Movement(shard), initialDelay, TASK_DELAY_PLAYER);
+		}
+		
+		for (int i = 0; i < CREATURE_SHARD_COUNT; i++)
+		{
+			final Set<Creature> shard = ConcurrentHashMap.newKeySet(POOL_SIZE_CREATURE);
+			CREATURE_SHARDS[i] = shard;
+			final int initialDelay = TASK_DELAY_CREATURE + ((i * TASK_DELAY_CREATURE) / CREATURE_SHARD_COUNT);
+			ThreadPool.scheduleAtFixedRate(new Movement(shard), initialDelay, TASK_DELAY_CREATURE);
+		}
 	}
 	
-	private class Movement implements Runnable
+	private static class Movement implements Runnable
 	{
 		private final Set<Creature> _creatures;
 		
@@ -94,58 +118,19 @@ public class MovementTaskManager
 	}
 	
 	/**
-	 * Add a Creature to moving objects of MovementTaskManager.
-	 * @param creature The Creature to add to moving objects of MovementTaskManager.
+	 * Registers a {@link Creature} for periodic position updates using lock-free $O(1)$ deterministic Fibonacci hashing on {@code objectId}.
+	 * @param creature The Creature to add to moving objects of MovementTaskManager
 	 */
-	public synchronized void registerMovingObject(Creature creature)
+	public void registerMovingObject(Creature creature)
 	{
+		final int hash = creature.getObjectId() * 0x9E3779B9;
 		if (creature.isPlayer())
 		{
-			for (Set<Creature> pool : POOLS_PLAYER)
-			{
-				if (pool.contains(creature))
-				{
-					return;
-				}
-			}
-			
-			for (Set<Creature> pool : POOLS_PLAYER)
-			{
-				if (pool.size() < POOL_SIZE_PLAYER)
-				{
-					pool.add(creature);
-					return;
-				}
-			}
-			
-			final Set<Creature> pool = ConcurrentHashMap.newKeySet(POOL_SIZE_PLAYER);
-			pool.add(creature);
-			ThreadPool.schedulePriorityTaskAtFixedRate(new Movement(pool), TASK_DELAY_PLAYER, TASK_DELAY_PLAYER);
-			POOLS_PLAYER.add(pool);
+			PLAYER_SHARDS[(hash >>> 30) & PLAYER_SHARD_MASK].add(creature);
 		}
 		else
 		{
-			for (Set<Creature> pool : POOLS_CREATURE)
-			{
-				if (pool.contains(creature))
-				{
-					return;
-				}
-			}
-			
-			for (Set<Creature> pool : POOLS_CREATURE)
-			{
-				if (pool.size() < POOL_SIZE_CREATURE)
-				{
-					pool.add(creature);
-					return;
-				}
-			}
-			
-			final Set<Creature> pool = ConcurrentHashMap.newKeySet(POOL_SIZE_CREATURE);
-			pool.add(creature);
-			ThreadPool.scheduleAtFixedRate(new Movement(pool), TASK_DELAY_CREATURE, TASK_DELAY_CREATURE);
-			POOLS_CREATURE.add(pool);
+			CREATURE_SHARDS[(hash >>> 29) & CREATURE_SHARD_MASK].add(creature);
 		}
 	}
 	

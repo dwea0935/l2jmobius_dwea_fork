@@ -37,6 +37,11 @@ public class FlatBlock implements IBlock
 		_height = bb.getShort();
 	}
 	
+	public FlatBlock(short height)
+	{
+		_height = height;
+	}
+	
 	@Override
 	public boolean checkNearestNswe(int geoX, int geoY, int worldZ, int nswe)
 	{
@@ -77,6 +82,12 @@ public class FlatBlock implements IBlock
 	public int getNextHigherZ(int geoX, int geoY, int worldZ)
 	{
 		return _height >= worldZ ? _height : worldZ;
+	}
+	
+	@Override
+	public int getNearestZAndNswe(int geoX, int geoY, int worldZ)
+	{
+		return (_height << 4) | Cell.NSWE_ALL;
 	}
 	
 	public short getHeight()

@@ -21,12 +21,16 @@
 package org.l2jmobius.gameserver.geoengine;
 
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+import java.lang.foreign.Arena;
+import java.lang.foreign.MemorySegment;
+import java.nio.channels.FileChannel;
 import java.nio.channels.FileChannel.MapMode;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,13 +56,13 @@ import org.l2jmobius.gameserver.util.GeoUtils;
  * <p>
  * Key functionalities include:
  * <ul>
- * <li>Loading geodata files for specific regions.</li>
+ * <li>Loading geodata files for specific regions via Project Panama FFM {@link MemorySegment} and Java 27 Virtual Threads.</li>
  * <li>Converting between world and geodata coordinates.</li>
  * <li>Validating movement paths and detecting obstacles.</li>
  * <li>Checking line-of-sight (LOS) between two positions.</li>
  * <li>Retrieving terrain height and handling elevation-related calculations.</li>
  * </ul>
- * @author -Nemesiss-, HorridoJoho, Mobius
+ * @author -Nemesiss-, HorridoJoho, Mobius, dwea
  */
 public class GeoEngine
 {
@@ -92,8 +96,9 @@ public class GeoEngine
 			REGIONS.set(i, NullRegion.INSTANCE);
 		}
 		
-		int loadedRegions = 0;
-		try
+		final AtomicInteger loadedCount = new AtomicInteger();
+		final long startTime = System.nanoTime();
+		try (ExecutorService loaderPool = Executors.newVirtualThreadPerTaskExecutor())
 		{
 			for (int regionX = World.TILE_X_MIN; regionX <= World.TILE_X_MAX; regionX++)
 			{
@@ -102,16 +107,20 @@ public class GeoEngine
 					final Path geoFilePath = GeoEngineConfig.GEODATA_PATH.resolve(String.format(FILE_NAME_FORMAT, regionX, regionY));
 					if (Files.exists(geoFilePath))
 					{
-						try
+						final int rx = regionX;
+						final int ry = regionY;
+						loaderPool.submit(() ->
 						{
-							// LOGGER.info(getClass().getSimpleName() + ": Loading " + geoFilePath.getFileName() + "...");
-							loadRegion(geoFilePath, regionX, regionY);
-							loadedRegions++;
-						}
-						catch (Exception e)
-						{
-							LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Failed to load " + geoFilePath.getFileName() + "!", e);
-						}
+							try
+							{
+								loadRegion(geoFilePath, rx, ry);
+								loadedCount.incrementAndGet();
+							}
+							catch (Exception e)
+							{
+								LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Failed to load " + geoFilePath.getFileName() + "!", e);
+							}
+						});
 					}
 				}
 			}
@@ -122,7 +131,9 @@ public class GeoEngine
 			System.exit(1);
 		}
 		
-		LOGGER.info(getClass().getSimpleName() + ": Loaded " + loadedRegions + " regions.");
+		final int loadedRegions = loadedCount.get();
+		final long elapsedMs = (System.nanoTime() - startTime) / 1_000_000L;
+		LOGGER.info(getClass().getSimpleName() + ": Loaded " + loadedRegions + " off-heap FFM regions in " + elapsedMs + " ms.");
 		
 		// Avoid wrong configuration when no files are loaded.
 		if ((loadedRegions == 0) && (GeoEngineConfig.PATHFINDING > 0))
@@ -133,7 +144,7 @@ public class GeoEngine
 	}
 	
 	/**
-	 * Loads geodata for a specific region from the provided file path.
+	 * Loads geodata for a specific region from the provided file path into an off-heap {@link MemorySegment}.
 	 * @param filePath The path to the geodata file
 	 * @param regionX The X coordinate of the region
 	 * @param regionY The Y coordinate of the region
@@ -142,9 +153,10 @@ public class GeoEngine
 	private void loadRegion(Path filePath, int regionX, int regionY) throws IOException
 	{
 		final int regionOffset = (regionX * GEO_REGIONS_Y) + regionY;
-		try (RandomAccessFile randomAccessFile = new RandomAccessFile(filePath.toFile(), "r"))
+		try (FileChannel channel = FileChannel.open(filePath, StandardOpenOption.READ))
 		{
-			REGIONS.set(regionOffset, new Region(randomAccessFile.getChannel().map(MapMode.READ_ONLY, 0, randomAccessFile.length()).order(ByteOrder.LITTLE_ENDIAN)));
+			final MemorySegment segment = channel.map(MapMode.READ_ONLY, 0, channel.size(), Arena.ofAuto());
+			REGIONS.set(regionOffset, new Region(segment));
 		}
 	}
 	
@@ -167,11 +179,14 @@ public class GeoEngine
 		try
 		{
 			final IRegion region = REGIONS.get(regionOffset);
-			if (region instanceof Region)
+			if (region instanceof Region existingRegion)
 			{
-				final ByteBuffer buffer = ByteBuffer.wrap(Files.readAllBytes(geoFilePath)).order(ByteOrder.LITTLE_ENDIAN);
-				((Region) region).load(buffer);
-				LOGGER.info(getClass().getSimpleName() + ": Reloaded region " + regionX + "_" + regionY + " from bytes.");
+				try (FileChannel channel = FileChannel.open(geoFilePath, StandardOpenOption.READ))
+				{
+					final MemorySegment segment = channel.map(MapMode.READ_ONLY, 0, channel.size(), Arena.ofAuto());
+					existingRegion.load(segment);
+				}
+				LOGGER.info(getClass().getSimpleName() + ": Reloaded off-heap region " + regionX + "_" + regionY + ".");
 				return true;
 			}
 			
@@ -207,7 +222,7 @@ public class GeoEngine
 	 */
 	public IRegion getRegion(int geoX, int geoY)
 	{
-		return REGIONS.get(((geoX / IRegion.REGION_CELLS_X) * GEO_REGIONS_Y) + (geoY / IRegion.REGION_CELLS_Y));
+		return REGIONS.get(((geoX >> 11) << 5) + (geoY >> 11));
 	}
 	
 	/**
@@ -328,6 +343,30 @@ public class GeoEngine
 	public int getNextHigherZ(int geoX, int geoY, int worldZ)
 	{
 		return getRegion(geoX, geoY).getNextHigherZ(geoX, geoY, worldZ);
+	}
+	
+	/**
+	 * Retrieves the 4-bit NSWE bitmask at the specified geodata coordinates and height in a single lookup.
+	 * @param geoX The geodata X coordinate
+	 * @param geoY The geodata Y coordinate
+	 * @param worldZ The world Z coordinate
+	 * @return the 4-bit NSWE bitmask
+	 */
+	public short getNearestNswe(int geoX, int geoY, int worldZ)
+	{
+		return getRegion(geoX, geoY).getNearestNswe(geoX, geoY, worldZ);
+	}
+	
+	/**
+	 * Retrieves both the nearest Z coordinate and the 4-bit NSWE mask packed into a single 32-bit int {@code (nearestZ << 4) | (nswe & 0x0F)}.
+	 * @param geoX The geodata X coordinate
+	 * @param geoY The geodata Y coordinate
+	 * @param worldZ The world Z coordinate
+	 * @return packed Z and NSWE value
+	 */
+	public int getNearestZAndNswe(int geoX, int geoY, int worldZ)
+	{
+		return getRegion(geoX, geoY).getNearestZAndNswe(geoX, geoY, worldZ);
 	}
 	
 	/**
@@ -893,7 +932,7 @@ public class GeoEngine
 		final IRegion region = getRegion(geoX, geoY);
 		if (region != null)
 		{
-			return region.hasGeo() && !region.checkNearestNswe(geoX, geoY, geoZ, Cell.NSWE_NORTH) && !region.checkNearestNswe(geoX, geoY, geoZ, Cell.NSWE_SOUTH) && !region.checkNearestNswe(geoX, geoY, geoZ, Cell.NSWE_EAST) && !region.checkNearestNswe(geoX, geoY, geoZ, Cell.NSWE_WEST);
+			return region.hasGeo() && ((region.getNearestNswe(geoX, geoY, geoZ) & Cell.NSWE_ALL) == 0);
 		}
 		
 		return true;

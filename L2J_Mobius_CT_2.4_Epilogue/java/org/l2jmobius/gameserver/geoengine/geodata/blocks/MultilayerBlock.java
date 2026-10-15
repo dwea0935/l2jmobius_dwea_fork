@@ -31,6 +31,7 @@ import org.l2jmobius.gameserver.geoengine.geodata.IBlock;
 public class MultilayerBlock implements IBlock
 {
 	private final byte[] _data;
+	private final short[] _cellOffsets = new short[IBlock.BLOCK_CELLS];
 	
 	/**
 	 * Initializes a new instance of this block reading the specified buffer.
@@ -42,6 +43,7 @@ public class MultilayerBlock implements IBlock
 		
 		for (int blockCellOffset = 0; blockCellOffset < IBlock.BLOCK_CELLS; blockCellOffset++)
 		{
+			_cellOffsets[blockCellOffset] = (short) (bb.position() - start);
 			final byte nLayers = bb.get();
 			if ((nLayers <= 0) || (nLayers > 125))
 			{
@@ -54,6 +56,22 @@ public class MultilayerBlock implements IBlock
 		_data = new byte[bb.position() - start];
 		bb.position(start);
 		bb.get(_data);
+	}
+	
+	/**
+	 * Initializes a new instance of this block from raw multilayer byte data with O(1) cell offset indexing.
+	 * @param data the raw multilayer block bytes
+	 */
+	public MultilayerBlock(byte[] data)
+	{
+		_data = data;
+		int offset = 0;
+		for (int blockCellOffset = 0; blockCellOffset < IBlock.BLOCK_CELLS; blockCellOffset++)
+		{
+			_cellOffsets[blockCellOffset] = (short) offset;
+			final int nLayers = data[offset] & 0xFF;
+			offset += 1 + (nLayers << 1);
+		}
 	}
 	
 	private short getNearestLayer(int geoX, int geoY, int worldZ)
@@ -88,18 +106,7 @@ public class MultilayerBlock implements IBlock
 	
 	private int getCellDataOffset(int geoX, int geoY)
 	{
-		final int cellLocalOffset = ((geoX % IBlock.BLOCK_CELLS_X) * IBlock.BLOCK_CELLS_Y) + (geoY % IBlock.BLOCK_CELLS_Y);
-		int cellDataOffset = 0;
-		
-		// Move index to cell, we need to parse on each request, OR we parse on creation and save indexes.
-		for (int i = 0; i < cellLocalOffset; i++)
-		{
-			cellDataOffset += 1 + (_data[cellDataOffset] * 2);
-		}
-		
-		// Now the index points to the cell we need.
-		
-		return cellDataOffset;
+		return _cellOffsets[((geoX & 7) << 3) | (geoY & 7)] & 0xFFFF;
 	}
 	
 	private short extractLayerData(int dataOffset)
@@ -203,28 +210,7 @@ public class MultilayerBlock implements IBlock
 	@Override
 	public short getNearestNswe(int geoX, int geoY, int worldZ)
 	{
-		short nswe = 0;
-		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_NORTH))
-		{
-			nswe = (short) (nswe | Cell.NSWE_NORTH);
-		}
-		
-		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_EAST))
-		{
-			nswe = (short) (nswe | Cell.NSWE_EAST);
-		}
-		
-		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_SOUTH))
-		{
-			nswe = (short) (nswe | Cell.NSWE_SOUTH);
-		}
-		
-		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_WEST))
-		{
-			nswe = (short) (nswe | Cell.NSWE_WEST);
-		}
-		
-		return nswe;
+		return (short) getNearestNSWE(geoX, geoY, worldZ);
 	}
 	
 	private int extractLayerNswe(short layer)
@@ -251,6 +237,15 @@ public class MultilayerBlock implements IBlock
 		}
 		
 		return nearestZ;
+	}
+	
+	@Override
+	public int getNearestZAndNswe(int geoX, int geoY, int worldZ)
+	{
+		final short nearestLayer = getNearestLayer(geoX, geoY, worldZ);
+		final int nearestZ = extractLayerHeight(nearestLayer);
+		final int resolvedZ = ((nearestZ - worldZ) > 1000) ? getNextLowerZ(geoX, geoY, worldZ) : nearestZ;
+		return (resolvedZ << 4) | (nearestLayer & Cell.NSWE_ALL);
 	}
 	
 	@Override

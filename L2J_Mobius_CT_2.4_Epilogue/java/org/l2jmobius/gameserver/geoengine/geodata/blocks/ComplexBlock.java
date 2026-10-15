@@ -41,9 +41,14 @@ public class ComplexBlock implements IBlock
 		}
 	}
 	
+	public ComplexBlock(short[] data)
+	{
+		_data = data;
+	}
+	
 	private short getCellData(int geoX, int geoY)
 	{
-		return _data[((geoX % IBlock.BLOCK_CELLS_X) * IBlock.BLOCK_CELLS_Y) + (geoY % IBlock.BLOCK_CELLS_Y)];
+		return _data[((geoX & 7) << 3) | (geoY & 7)];
 	}
 	
 	private byte getCellNSWE(int geoX, int geoY)
@@ -72,7 +77,7 @@ public class ComplexBlock implements IBlock
 			final short encodedHeight = (short) (currentHeight << 1); // Shift left by 1 bit.
 			final short newNswe = (short) (currentNswe | nswe); // Add NSWE.
 			final short newCombinedData = (short) (encodedHeight | newNswe); // Combine height and NSWE.
-			_data[((geoX % IBlock.BLOCK_CELLS_X) * IBlock.BLOCK_CELLS_Y) + (geoY % IBlock.BLOCK_CELLS_Y)] = (short) (newCombinedData & 0xffff);
+			_data[((geoX & 7) << 3) | (geoY & 7)] = (short) (newCombinedData & 0xffff);
 		}
 	}
 	
@@ -86,35 +91,14 @@ public class ComplexBlock implements IBlock
 			final short encodedHeight = (short) (currentHeight << 1); // Shift left by 1 bit.
 			final short newNswe = (short) (currentNswe & ~nswe); // Subtract NSWE.
 			final short newCombinedData = (short) (encodedHeight | newNswe); // Combine height and NSWE.
-			_data[((geoX % IBlock.BLOCK_CELLS_X) * IBlock.BLOCK_CELLS_Y) + (geoY % IBlock.BLOCK_CELLS_Y)] = (short) (newCombinedData & 0xffff);
+			_data[((geoX & 7) << 3) | (geoY & 7)] = (short) (newCombinedData & 0xffff);
 		}
 	}
 	
 	@Override
 	public short getNearestNswe(int geoX, int geoY, int worldZ)
 	{
-		short nswe = 0;
-		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_NORTH))
-		{
-			nswe = (short) (nswe | Cell.NSWE_NORTH);
-		}
-		
-		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_EAST))
-		{
-			nswe = (short) (nswe | Cell.NSWE_EAST);
-		}
-		
-		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_SOUTH))
-		{
-			nswe = (short) (nswe | Cell.NSWE_SOUTH);
-		}
-		
-		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_WEST))
-		{
-			nswe = (short) (nswe | Cell.NSWE_WEST);
-		}
-		
-		return nswe;
+		return (short) (getCellData(geoX, geoY) & Cell.NSWE_ALL);
 	}
 	
 	@Override
@@ -135,6 +119,14 @@ public class ComplexBlock implements IBlock
 	{
 		final int cellHeight = getCellHeight(geoX, geoY);
 		return cellHeight >= worldZ ? cellHeight : worldZ;
+	}
+	
+	@Override
+	public int getNearestZAndNswe(int geoX, int geoY, int worldZ)
+	{
+		final short cellData = getCellData(geoX, geoY);
+		final int cellHeight = (short) (cellData & 0x0FFF0) >> 1;
+		return (cellHeight << 4) | (cellData & Cell.NSWE_ALL);
 	}
 	
 	public short[] getData()

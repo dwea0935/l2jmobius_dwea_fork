@@ -51,6 +51,33 @@ public interface IRegion
 	
 	int getNextHigherZ(int geoX, int geoY, int worldZ);
 	
+	default short getNearestNswe(int geoX, int geoY, int worldZ)
+	{
+		short nswe = 0;
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_NORTH))
+		{
+			nswe |= Cell.NSWE_NORTH;
+		}
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_EAST))
+		{
+			nswe |= Cell.NSWE_EAST;
+		}
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_SOUTH))
+		{
+			nswe |= Cell.NSWE_SOUTH;
+		}
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_WEST))
+		{
+			nswe |= Cell.NSWE_WEST;
+		}
+		return nswe;
+	}
+	
+	default int getNearestZAndNswe(int geoX, int geoY, int worldZ)
+	{
+		return (getNearestZ(geoX, geoY, worldZ) << 4) | (getNearestNswe(geoX, geoY, worldZ) & Cell.NSWE_ALL);
+	}
+	
 	boolean hasGeo();
 	
 	boolean saveToFile(String fileName);
