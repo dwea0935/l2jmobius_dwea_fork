@@ -88,6 +88,11 @@ public class PlayerConfig
 	public static boolean LIFE_CRYSTAL_NEEDED;
 	public static boolean ES_SP_BOOK_NEEDED;
 	public static boolean DIVINE_SP_BOOK_NEEDED;
+	public static boolean SKILL_QUEUE_ENABLED;
+	public static int SKILL_QUEUE_DEFAULT_WINDOW;
+	public static boolean SKILL_QUEUE_RECAST_ENABLED;
+	public static int SKILL_QUEUE_MIN_WINDOW;
+	public static int SKILL_QUEUE_MAX_WINDOW;
 	public static boolean ALT_GAME_SKILL_LEARN;
 	public static boolean ALT_GAME_SUBCLASS_WITHOUT_QUESTS;
 	public static boolean ALT_GAME_SUBCLASS_EVERYWHERE;
@@ -312,6 +317,11 @@ public class PlayerConfig
 			}
 		}
 		AUTO_LEARN_SKILLS = config.getBoolean("AutoLearnSkills", false);
+		SKILL_QUEUE_ENABLED = config.getBoolean("SkillQueueEnabled", true);
+		SKILL_QUEUE_DEFAULT_WINDOW = config.getInt("SkillQueueDefaultWindow", 250);
+		SKILL_QUEUE_RECAST_ENABLED = config.getBoolean("SkillQueueRecastEnabled", true);
+		SKILL_QUEUE_MIN_WINDOW = config.getInt("SkillQueueMinWindow", 50);
+		SKILL_QUEUE_MAX_WINDOW = config.getInt("SkillQueueMaxWindow", 500);
 		AUTO_LEARN_SKILLS_WITHOUT_ITEMS = config.getBoolean("AutoLearnSkillsWithoutItems", false);
 		AUTO_LEARN_FS_SKILLS = config.getBoolean("AutoLearnForgottenScrollSkills", false);
 		SHOW_EFFECT_MESSAGES_ON_LOGIN = config.getBoolean("ShowEffectMessagesOnLogin", false);

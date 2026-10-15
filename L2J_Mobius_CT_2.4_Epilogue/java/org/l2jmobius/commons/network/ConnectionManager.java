@@ -141,6 +141,15 @@ public class ConnectionManager<T extends Client<Connection<T>>>
 			try
 			{
 				channel.setOption(StandardSocketOptions.TCP_NODELAY, !_config.useNagle);
+				if (_config.socketSendBufferSize > 0)
+				{
+					channel.setOption(StandardSocketOptions.SO_SNDBUF, _config.socketSendBufferSize);
+				}
+				if (_config.socketReceiveBufferSize > 0)
+				{
+					channel.setOption(StandardSocketOptions.SO_RCVBUF, _config.socketReceiveBufferSize);
+				}
+				channel.setOption(StandardSocketOptions.SO_KEEPALIVE, true);
 				
 				final Connection<T> connection = new Connection<>(channel, _readHandler, _writeHandler, _config);
 				final T client = _clientFactory.apply(connection);

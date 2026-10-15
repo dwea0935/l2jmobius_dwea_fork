@@ -134,7 +134,7 @@ def package_jars(manifest_cp):
         include_patterns=["*"],
         exclude_patterns=[
             "*databaseinstaller*",
-            "*loginserver*",
+            "*org/l2jmobius/loginserver*",
             "*accountmanager*",
             "*registerserver*",
         ],
@@ -194,6 +194,39 @@ def assemble_distribution(jars):
     print(f"[+] Release archive created ({zip_size_mb:.2f} MB) in {elapsed:.2f}s!")
 
 
+def verify_datapack_scripts(jars):
+    print("[*] Verifying datapack scripts with javac (Java 27)...")
+    start = time.time()
+    built_jars = glob.glob(os.path.join(DIST_DIR, "libs", "*.jar"))
+    all_jars = sorted(set(os.path.abspath(j) for j in (jars + built_jars)))
+    cp = ":".join(all_jars)
+
+    scripts = []
+    scripts_dir = os.path.join(DATAPACK_DIR, "game", "data", "scripts")
+    for root, _, files in os.walk(scripts_dir):
+        for f in files:
+            if f.endswith(".java"):
+                scripts.append(os.path.join(root, f))
+
+    if not scripts:
+        print("[!] No scripts found to verify.")
+        return
+
+    tmp_out = os.path.join(BUILD_DIR, "tmp_scripts")
+    os.makedirs(tmp_out, exist_ok=True)
+    cmd = ["javac", "-cp", cp, "--release", "27", "-d", tmp_out] + scripts
+    res = subprocess.run(cmd, capture_output=True, text=True)
+    shutil.rmtree(tmp_out, ignore_errors=True)
+
+    if res.returncode != 0:
+        print("[ERROR] Datapack scripts compilation failed:")
+        print(res.stderr[:3000])
+        sys.exit(1)
+
+    elapsed = time.time() - start
+    print(f"[+] All {len(scripts)} datapack scripts verified with 0 errors in {elapsed:.2f}s!")
+
+
 def main():
     start_total = time.time()
     print("=" * 60)
@@ -207,6 +240,9 @@ def main():
     compile_sources(jars)
     package_jars(manifest_cp)
     assemble_distribution(jars)
+
+    if "--verify-scripts" in sys.argv or "-v" in sys.argv:
+        verify_datapack_scripts(jars)
 
     elapsed_total = time.time() - start_total
     print("=" * 60)

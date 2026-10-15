@@ -304,6 +304,7 @@ public class PlayerAI extends PlayableAI
 		// Set the Intention of this AbstractAI to MOVE_TO.
 		clearSavedIntention();
 		_intention = Intention.MOVE_TO;
+		_actor.asPlayer().setPendingReuseSkill(null, false, false);
 		
 		// Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast).
 		clientStopAutoAttack();

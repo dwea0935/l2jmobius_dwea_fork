@@ -32,17 +32,31 @@ public class RequestNetPing extends ClientPacket
 	@Override
 	protected void readImpl()
 	{
+		if (remaining() >= 4)
+		{
+			readInt();
+		}
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final Player player = getPlayer();
-		if (player == null)
+		final org.l2jmobius.gameserver.network.GameClient client = getClient();
+		if (client == null)
 		{
 			return;
 		}
 		
-		player.sendPacket(new NetPing(GameTimeTaskManager.getInstance().getGameTime()));
+		final long lastSend = client.getLastPingSendTime();
+		if (lastSend > 0)
+		{
+			final int rtt = (int) (System.currentTimeMillis() - lastSend);
+			if ((rtt > 0) && (rtt < 10000))
+			{
+				client.setPing(rtt);
+			}
+		}
+		
+		client.sendNetPing(GameTimeTaskManager.getInstance().getGameTime());
 	}
 }

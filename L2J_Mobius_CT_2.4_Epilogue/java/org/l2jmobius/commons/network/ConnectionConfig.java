@@ -47,6 +47,8 @@ public class ConnectionConfig
 	public long shutdownWaitTime;
 	public int threadPoolSize;
 	public boolean useNagle;
+	public int socketSendBufferSize;
+	public int socketReceiveBufferSize;
 	public boolean dropPackets;
 	public int dropPacketThreshold;
 	public int threadPriority;
@@ -68,6 +70,9 @@ public class ConnectionConfig
 		// Read configuration properties.
 		final ConfigReader networkConfig = new ConfigReader("config/Network.ini");
 		shutdownWaitTime = networkConfig.getInt("ShutdownWaitTime", 5) * 1000L;
+		useNagle = networkConfig.getBoolean("UseNagle", false);
+		socketSendBufferSize = networkConfig.getInt("SocketSendBufferSize", 131072);
+		socketReceiveBufferSize = networkConfig.getInt("SocketReceiveBufferSize", 131072);
 		
 		// Configure thread pool based on processor count.
 		final int processors = Runtime.getRuntime().availableProcessors();

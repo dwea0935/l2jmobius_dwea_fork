@@ -148,15 +148,28 @@ The following 9 files have been modified and verified:
    * Restores instanced players and invokes `Party.checkPartyReconnect(player)`.
    * Validates instance permissions and teleports ejected players to Town.
    * Enforced Instance 0 `ZoneId.NO_RESTART` safety net.
-9. **[`InstanceScript.java`](file:///c:/personal/personal/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/mechanics/script/InstanceScript.java):**
-   * Added `getResumeLocation(Player, InstanceWorld)` hook in `enterInstance()`.
-   * Added `setReenterPenalty(InstanceWorld)` for early lockout triggers.
+10. **[`ThreadPool.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/commons/threads/ThreadPool.java):**
+    * Added `VIRTUAL_POOL` backed by `Executors.newVirtualThreadPerTaskExecutor()` (Loom).
+    * Added `ThreadPool.executeVirtual(Runnable)` for non-blocking I/O tasks.
+11. **[`ConnectionConfig.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/commons/network/ConnectionConfig.java) & [`ConnectionManager.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/commons/network/ConnectionManager.java):**
+    * Enforced `TCP_NODELAY = true` and configurable `UseNagle = False`.
+    * Added socket OS buffer sizing (`SocketSendBufferSize = 131072`, `SocketReceiveBufferSize = 131072`) and `SO_KEEPALIVE`.
+12. **[`GameClient.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/network/GameClient.java) & [`RequestNetPing.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/network/clientpackets/RequestNetPing.java):**
+    * Added lightweight round-trip latency tracking (RTT) cached as in-memory primitive (`getPing()`), incurring zero OS syscall overhead.
+13. **[`Player.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/entity/actor/Player.java) & [`PlayerConfig.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/config/PlayerConfig.java):**
+    * Implemented **Server-Side Input Buffering & Action Lag Tolerance**:
+      - Recast Chaining: enables buffering consecutive casts of the same skill while casting (eliminates 150-250ms dead-air gap between spells for mages/fighters).
+      - Cast-Time-Aware Reuse: checks remaining cooldown against remaining cast time plus queue window.
+      - Stand-Alone Cooldown Tolerance: buffers off-cooldown skills pressed within tolerance window and schedules execution via `ThreadPool.schedule()` the exact millisecond reuse expires.
+      - 1-Slot Buffer: latest-input-wins; flushes on movement or ESC.
+14. **[`SkillQueue.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/dist/game/data/scripts/handlers/chat/commands/voiced/SkillQueue.java):**
+    * Added player voiced commands `.queue` and `.latency` supporting `.queue auto`, `.queue <ms>`, `.queue default`, `.queue off`. Persisted in `character_variables`.
 
 ---
 
 ## 5. Next Steps: Crystal Caverns Restructuring Plan
 
-With the infrastructure pipeline completed, the next phase is restructuring the 4 dungeon scripts under `dist/game/data/scripts/instances/CrystalCaverns`:
+With the core infrastructure pipeline, Java 27 runtime, and netcode input buffering completed and verified, the next phase is restructuring the 4 dungeon scripts under `dist/game/data/scripts/instances/CrystalCaverns`:
 
 ```
 Crystal Caverns Restructuring Roadmap
@@ -182,16 +195,19 @@ Crystal Caverns Restructuring Roadmap
 
 ---
 
-## 6. How to Resume This Session on Another Computer
+## 6. How to Resume This Session at Work Tomorrow
 
-When you pull this branch on your home machine, you can resume work with full context by providing this file to Antigravity:
+When you pull this branch on your work machine, you can resume work with full context:
 
 ### Step 1: Git Fetch & Switch
 ```bash
 git fetch origin
-git checkout feature/instance-infrastructure-pipeline
+git checkout master
+# or to inspect the specific netcode branch:
+git checkout feature/netcode-skill-queue-lag-tolerance
 ```
 
-### Step 2: Prompting Antigravity / Agent
+### Step 2: Prompting Antigravity / AI Agent at Work
 Provide the following prompt to the assistant on your other machine:
-> *"I have pulled the latest branch `feature/instance-infrastructure-pipeline` which includes `PROJECT_MASTER_CONTEXT_AND_ROADMAP.md`. Please read this file in full. The Core Instance Infrastructure Pipeline is already implemented and verified in the Java engine layer. We are now ready to begin Phase 2: Restructuring the Crystal Caverns dungeon scripts (starting with Emerald Square and Steam Corridor golem feeding). Please review the roadmap and propose the implementation plan for Emerald Square."*
+> *"I have pulled the latest master branch which includes `PROJECT_MASTER_CONTEXT_AND_ROADMAP.md` and `SKILL_QUEUE_AND_LAG_TOLERANCE.md`. Both the Core Instance Infrastructure Pipeline and the Netcode Input Buffering & Action Lag Tolerance Engine are fully implemented, verified, and compiling cleanly on Java 27 (OpenJDK 27). We are now ready to begin Phase 2: Restructuring the Crystal Caverns dungeon scripts (starting with Emerald Square and Steam Corridor golem feeding). Please review the roadmap and propose the implementation plan for Emerald Square."*
+

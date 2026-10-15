@@ -814,6 +814,9 @@ public class Player extends Playable
 	
 	/** Skills queued because a skill is already in progress */
 	private SkillUseHolder _queuedSkill;
+	/** Skills buffered because reuse delay is about to expire */
+	private SkillUseHolder _pendingReuseSkill;
+	private volatile int _customSkillQueueWindow = -1;
 	
 	private int _cursedWeaponEquippedId = 0;
 	private boolean _combatFlagEquippedId = false;
@@ -9010,19 +9013,34 @@ public class Player extends Playable
 		
 		// ************************************* Check Casting in Progress *******************************************
 		
-		// If a skill is currently being used, queue this one if this is not the same.
+		final int queueWindow = getSkillQueueWindow();
+		
+		// If a skill is currently being used, queue this one if queue window > 0.
 		if (isCastingNow())
 		{
-			// Check if new skill different from current skill in progress.
-			if ((_currentSkill != null) && (skill.getId() == _currentSkill.getSkillId()))
+			if (queueWindow <= 0)
 			{
 				sendPacket(ActionFailed.STATIC_PACKET);
 				return false;
 			}
-			else if (isSkillDisabled(skill))
+			
+			// Recast check: if the player is recasting the same skill, verify recast queue is allowed.
+			if ((_currentSkill != null) && (skill.getId() == _currentSkill.getSkillId()) && !PlayerConfig.SKILL_QUEUE_RECAST_ENABLED)
 			{
 				sendPacket(ActionFailed.STATIC_PACKET);
 				return false;
+			}
+			
+			// Check if skill is on reuse, with remaining-cast-time-aware tolerance.
+			if (isSkillDisabled(skill))
+			{
+				final long remainingReuse = getSkillRemainingReuseTime(skill.getReuseHashCode());
+				final long remainingCast = getRemainingCastTime();
+				if ((remainingReuse > 0) && (remainingReuse > (remainingCast + queueWindow)))
+				{
+					sendPacket(ActionFailed.STATIC_PACKET);
+					return false;
+				}
 			}
 			
 			// Create a new SkillUseHolder object and queue it in the player _queuedSkill.
@@ -9040,6 +9058,10 @@ public class Player extends Playable
 		if (_queuedSkill != null)
 		{
 			setQueuedSkill(null, false, false);
+		}
+		if (_pendingReuseSkill != null)
+		{
+			setPendingReuseSkill(null, false, false);
 		}
 		
 		if (!checkUseMagicConditions(skill, forceUse, dontMove))
@@ -9252,6 +9274,20 @@ public class Player extends Playable
 		// Check if this skill is enabled (ex : reuse time).
 		if (isSkillDisabled(skill))
 		{
+			final int queueWindow = getSkillQueueWindow();
+			if (queueWindow > 0)
+			{
+				final long remainingTimeMs = getSkillRemainingReuseTime(skill.getReuseHashCode());
+				if ((remainingTimeMs > 0) && (remainingTimeMs <= queueWindow))
+				{
+					// Buffer the skill and schedule execution the exact millisecond reuse expires.
+					setPendingReuseSkill(skill, forceUse, dontMove);
+					ThreadPool.schedule(() -> executePendingReuseSkill(skill, forceUse, dontMove), remainingTimeMs);
+					sendPacket(ActionFailed.STATIC_PACKET);
+					return false;
+				}
+			}
+			
 			final SystemMessage sm;
 			if (hasSkillReuse(skill.getReuseHashCode()))
 			{
@@ -12884,6 +12920,99 @@ public class Player extends Playable
 		}
 		
 		_queuedSkill = new SkillUseHolder(queuedSkill, ctrlPressed, shiftPressed);
+	}
+	
+	public int getSkillQueueWindow()
+	{
+		if (!PlayerConfig.SKILL_QUEUE_ENABLED)
+		{
+			return 0;
+		}
+		
+		if (_customSkillQueueWindow == -1)
+		{
+			final String val = getVariables().getString(PlayerVariables.SKILL_QUEUE_WINDOW, null);
+			if (val != null)
+			{
+				try
+				{
+					_customSkillQueueWindow = Integer.parseInt(val);
+				}
+				catch (NumberFormatException e)
+				{
+					_customSkillQueueWindow = -1;
+				}
+			}
+		}
+		
+		if (_customSkillQueueWindow == -2)
+		{
+			final int ping = getClient() != null ? getClient().getPing() : 0;
+			return Math.clamp(ping + 60, PlayerConfig.SKILL_QUEUE_MIN_WINDOW, PlayerConfig.SKILL_QUEUE_MAX_WINDOW);
+		}
+		else if (_customSkillQueueWindow >= 0)
+		{
+			return _customSkillQueueWindow;
+		}
+		
+		return PlayerConfig.SKILL_QUEUE_DEFAULT_WINDOW;
+	}
+	
+	public int getCustomSkillQueueWindow()
+	{
+		return _customSkillQueueWindow;
+	}
+	
+	public void setCustomSkillQueueWindow(int window)
+	{
+		_customSkillQueueWindow = window;
+		if (window == -1)
+		{
+			getVariables().remove(PlayerVariables.SKILL_QUEUE_WINDOW);
+		}
+		else
+		{
+			getVariables().set(PlayerVariables.SKILL_QUEUE_WINDOW, window);
+		}
+	}
+	
+	public SkillUseHolder getPendingReuseSkill()
+	{
+		return _pendingReuseSkill;
+	}
+	
+	public void setPendingReuseSkill(Skill skill, boolean ctrlPressed, boolean shiftPressed)
+	{
+		if (skill == null)
+		{
+			_pendingReuseSkill = null;
+			return;
+		}
+		_pendingReuseSkill = new SkillUseHolder(skill, ctrlPressed, shiftPressed);
+	}
+	
+	public void executePendingReuseSkill(Skill skill, boolean ctrlPressed, boolean shiftPressed)
+	{
+		if (!isOnline() || isDead() || isAlikeDead())
+		{
+			_pendingReuseSkill = null;
+			return;
+		}
+		
+		if ((_pendingReuseSkill == null) || (_pendingReuseSkill.getSkillId() != skill.getId()))
+		{
+			return;
+		}
+		
+		_pendingReuseSkill = null;
+		
+		if (isCastingNow())
+		{
+			setQueuedSkill(skill, ctrlPressed, shiftPressed);
+			return;
+		}
+		
+		useMagic(skill, ctrlPressed, shiftPressed);
 	}
 	
 	/**

@@ -71,6 +71,8 @@ public class GameClient extends Client<org.l2jmobius.commons.network.Connection<
 	private boolean _protocolOk;
 	private int _protocolVersion;
 	private int[][] _trace;
+	private volatile int _ping = 0;
+	private volatile long _lastPingSendTime = 0;
 	
 	public GameClient(org.l2jmobius.commons.network.Connection<GameClient> connection)
 	{
@@ -683,5 +685,31 @@ public class GameClient extends Client<org.l2jmobius.commons.network.Connection<
 		{
 			return "[Character read failed due to disconnect]";
 		}
+	}
+	
+	public int getPing()
+	{
+		return _ping;
+	}
+	
+	public void setPing(int ping)
+	{
+		_ping = Math.max(0, ping);
+	}
+	
+	public long getLastPingSendTime()
+	{
+		return _lastPingSendTime;
+	}
+	
+	public void setLastPingSendTime(long time)
+	{
+		_lastPingSendTime = time;
+	}
+	
+	public void sendNetPing(int pingId)
+	{
+		_lastPingSendTime = System.currentTimeMillis();
+		sendPacket(new org.l2jmobius.gameserver.network.serverpackets.NetPing(pingId));
 	}
 }

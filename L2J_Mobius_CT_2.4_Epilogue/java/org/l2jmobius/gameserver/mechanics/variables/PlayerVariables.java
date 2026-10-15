@@ -60,6 +60,7 @@ public class PlayerVariables extends AbstractVariables
 	public static final String AUTO_USE_SKILLS = "AUTO_USE_SKILLS";
 	public static final String AUTO_USE_ITEMS = "AUTO_USE_ITEMS";
 	public static final String AUTO_USE_POTION = "AUTO_USE_POTION";
+	public static final String SKILL_QUEUE_WINDOW = "SKILL_QUEUE_WINDOW";
 	
 	// Private variables.
 	private final AtomicBoolean _scheduledSave = new AtomicBoolean(false);

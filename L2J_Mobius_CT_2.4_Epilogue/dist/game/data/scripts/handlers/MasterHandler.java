@@ -23,6 +23,7 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.custom.AutoPlayConfig;
 import org.l2jmobius.gameserver.config.custom.AutoPotionsConfig;
 import org.l2jmobius.gameserver.config.custom.BankingConfig;
@@ -223,6 +224,7 @@ import handlers.chat.commands.voiced.Offline;
 import handlers.chat.commands.voiced.OfflinePlay;
 import handlers.chat.commands.voiced.Online;
 import handlers.chat.commands.voiced.Premium;
+import handlers.chat.commands.voiced.SkillQueue;
 import handlers.chat.commands.voiced.Wedding;
 import handlers.items.BeastSoulShot;
 import handlers.items.BeastSpice;
@@ -560,6 +562,7 @@ public class MasterHandler
 			OnlineInfoConfig.ENABLE_ONLINE_COMMAND ? Online.class : null,
 			PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED ? Premium.class : null,
 			AutoPotionsConfig.AUTO_POTIONS_ENABLED ? AutoPotion.class : null,
+			PlayerConfig.SKILL_QUEUE_ENABLED ? SkillQueue.class : null,
 		},
 		{
 			// Target Handlers

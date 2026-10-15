@@ -294,6 +294,7 @@ public abstract class Creature extends WorldObject
 	/** Future Skill Cast */
 	protected Future<?> _skillCast;
 	protected Future<?> _skillCast2;
+	protected volatile long _castEndTime;
 	
 	private final Map<Integer, RelationCache> _knownRelations = new ConcurrentHashMap<>();
 	
@@ -2143,6 +2144,11 @@ public abstract class Creature extends WorldObject
 		// launch the magic in skillTime milliseconds
 		if (skillTime > 0)
 		{
+			if (!simultaneously)
+			{
+				_castEndTime = System.currentTimeMillis() + skillTime;
+			}
+			
 			// Send a Server->Client packet SetupGauge with the color of the gauge and the casting time.
 			if (isPlayer() && !simultaneously)
 			{
@@ -4194,6 +4200,16 @@ public abstract class Creature extends WorldObject
 		_isCastingSimultaneouslyNow = value;
 	}
 	
+	public long getCastEndTime()
+	{
+		return _castEndTime;
+	}
+	
+	public long getRemainingCastTime()
+	{
+		return Math.max(0, _castEndTime - System.currentTimeMillis());
+	}
+	
 	/**
 	 * @return True if the cast of the Creature can be aborted.
 	 */
@@ -4280,11 +4296,15 @@ public abstract class Creature extends WorldObject
 			
 			setCastingNow(false);
 			setCastingSimultaneouslyNow(false);
+			_castEndTime = 0;
 			
 			// safeguard for cannot be interrupt any more
 			_castInterruptTime = 0;
 			if (isPlayer())
 			{
+				final Player player = asPlayer();
+				player.setQueuedSkill(null, false, false);
+				player.setPendingReuseSkill(null, false, false);
 				getAI().notifyActionFinishCasting(); // setting back previous intention
 			}
 			
@@ -6126,6 +6146,7 @@ public abstract class Creature extends WorldObject
 		// Stop casting
 		setCastingNow(false);
 		setCastingSimultaneouslyNow(false);
+		_castEndTime = 0;
 		
 		final Skill skill = mut.getSkill();
 		final WorldObject target = !mut.getTargets().isEmpty() ? mut.getTargets().get(0) : null;
