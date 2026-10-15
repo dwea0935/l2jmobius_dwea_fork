@@ -21,6 +21,8 @@
 package org.l2jmobius.commons.threads;
 
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ScheduledFuture;
@@ -58,6 +60,7 @@ public class ThreadPool
 	private static ScheduledThreadPoolExecutor HIGH_PRIORITY_SCHEDULED_POOL;
 	private static ScheduledThreadPoolExecutor SCHEDULED_POOL;
 	private static ThreadPoolExecutor INSTANT_POOL;
+	private static ExecutorService VIRTUAL_POOL;
 	
 	/**
 	 * Initializes thread pool executors and starts maintenance tasks.
@@ -87,12 +90,16 @@ public class ThreadPool
 		INSTANT_POOL.setRejectedExecutionHandler(new RejectedExecutionHandlerImpl());
 		INSTANT_POOL.prestartAllCoreThreads();
 		
+		// Configure Java Virtual Thread Executor (Project Loom).
+		VIRTUAL_POOL = Executors.newVirtualThreadPerTaskExecutor();
+		
 		// Schedule the purge task.
 		scheduleAtFixedRate(ThreadPool::purge, PURGE_INTERVAL_MS, PURGE_INTERVAL_MS);
 		
 		// Log thread pool configuration.
 		LOGGER.info(StringUtil.concat("...scheduled pool executor with ", String.valueOf(ThreadConfig.SCHEDULED_THREAD_POOL_SIZE), " total threads."));
 		LOGGER.info(StringUtil.concat("...instant pool executor with ", String.valueOf(ThreadConfig.INSTANT_THREAD_POOL_SIZE), " total threads."));
+		LOGGER.info("...virtual thread executor initialized for asynchronous and I/O tasks.");
 	}
 	
 	/**
@@ -190,6 +197,24 @@ public class ThreadPool
 	}
 	
 	/**
+	 * Executes the given task using a lightweight Java virtual thread (Project Loom).<br>
+	 * Ideal for asynchronous I/O, database persistence, and event dispatching without thread exhaustion.
+	 * @param runnable the task to execute
+	 */
+	public static void executeVirtual(Runnable runnable)
+	{
+		try
+		{
+			VIRTUAL_POOL.execute(new RunnableWrapper(runnable));
+		}
+		catch (Exception e)
+		{
+			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to execute virtual task ", runnable.getClass().getSimpleName(), ": ", e.getMessage(), System.lineSeparator(), TraceUtil.getStackTrace(e)));
+			execute(runnable);
+		}
+	}
+	
+	/**
 	 * Validates delay value to ensure it falls within acceptable bounds.
 	 * @param delay the delay to validate
 	 * @return a valid delay value between MIN_DELAY_MS and ONE_HUNDRED_YEARS_MS
@@ -223,6 +248,10 @@ public class ThreadPool
 			LOGGER.info("ThreadPool: Shutting down all thread pools.");
 			SCHEDULED_POOL.shutdownNow();
 			INSTANT_POOL.shutdownNow();
+			if (VIRTUAL_POOL != null)
+			{
+				VIRTUAL_POOL.shutdownNow();
+			}
 			if (HIGH_PRIORITY_SCHEDULED_POOL != null)
 			{
 				HIGH_PRIORITY_SCHEDULED_POOL.shutdownNow();

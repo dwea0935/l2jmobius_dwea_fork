@@ -163,7 +163,7 @@ public class EventDispatcher
 			throw new NullPointerException("Event cannot be null!");
 		}
 		
-		ThreadPool.execute(() -> notifyEventToSingleContainer(event, container, null));
+		ThreadPool.executeVirtual(() -> notifyEventToSingleContainer(event, container, null));
 	}
 	
 	/**
@@ -178,7 +178,7 @@ public class EventDispatcher
 			throw new NullPointerException("Event cannot be null!");
 		}
 		
-		ThreadPool.execute(() -> notifyEventToMultipleContainers(event, containers, null));
+		ThreadPool.executeVirtual(() -> notifyEventToMultipleContainers(event, containers, null));
 	}
 	
 	/**

@@ -395,7 +395,7 @@ public class Instance
 		if (!offlinePlayers.isEmpty() && (_exitLocation != null))
 		{
 			final Location exitLoc = _exitLocation;
-			ThreadPool.execute(() ->
+			ThreadPool.executeVirtual(() ->
 			{
 				try (Connection con = DatabaseFactory.getConnection();
 					PreparedStatement ps = con.prepareStatement("UPDATE characters SET x = ?, y = ?, z = ? WHERE charId = ?"))
