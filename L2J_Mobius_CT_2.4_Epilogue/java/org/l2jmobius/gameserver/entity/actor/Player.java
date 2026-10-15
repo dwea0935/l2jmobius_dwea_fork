@@ -12063,7 +12063,15 @@ public class Player extends Playable
 		{
 			try
 			{
-				leaveParty();
+				if ((getInstanceId() > 0) && GeneralConfig.RESTORE_PLAYER_INSTANCE)
+				{
+					_party.onPlayerDisconnect(this);
+					_party = null;
+				}
+				else
+				{
+					leaveParty();
+				}
 			}
 			catch (Exception e)
 			{

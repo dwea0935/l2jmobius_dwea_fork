@@ -110,6 +110,7 @@ public class GeneralConfig
 	public static int WEAR_PRICE;
 	public static int INSTANCE_FINISH_TIME;
 	public static boolean RESTORE_PLAYER_INSTANCE;
+	public static int INSTANCE_DISCONNECT_GRACE_PERIOD;
 	public static boolean ALLOW_SUMMON_IN_INSTANCE;
 	public static int EJECT_DEAD_PLAYER_TIME;
 	public static boolean ALLOW_LOTTERY;
@@ -277,6 +278,7 @@ public class GeneralConfig
 		WEAR_PRICE = config.getInt("WearPrice", 10);
 		INSTANCE_FINISH_TIME = config.getInt("DefaultFinishTime", 300) * 1000;
 		RESTORE_PLAYER_INSTANCE = config.getBoolean("RestorePlayerInstance", false);
+		INSTANCE_DISCONNECT_GRACE_PERIOD = config.getInt("InstanceDisconnectGracePeriod", 300) * 1000;
 		ALLOW_SUMMON_IN_INSTANCE = config.getBoolean("AllowSummonInInstance", false);
 		EJECT_DEAD_PLAYER_TIME = config.getInt("EjectDeadPlayerTime", 60) * 1000;
 		ALLOW_LOTTERY = config.getBoolean("AllowLottery", true);

@@ -43,7 +43,7 @@ public class PartySmallWindowAll extends ServerPacket
 		ServerPackets.PARTY_SMALL_WINDOW_ALL.writeId(this, buffer);
 		buffer.writeInt(_party.getLeaderObjectId());
 		buffer.writeInt(_party.getDistributionType().getId());
-		buffer.writeInt(_party.getMemberCount() - 1);
+		buffer.writeInt(_party.getMembers().size() - 1);
 		for (Player member : _party.getMembers())
 		{
 			if ((member != null) && (member != _exclude))

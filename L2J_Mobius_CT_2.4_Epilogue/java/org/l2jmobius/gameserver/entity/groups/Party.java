@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
@@ -29,6 +30,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.config.custom.ClassBalanceConfig;
@@ -38,11 +40,13 @@ import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.Summon;
 import org.l2jmobius.gameserver.entity.groups.matching.PartyMatchRoomList;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
 import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.managers.DuelManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.managers.PcCafePointsManager;
 import org.l2jmobius.gameserver.mechanics.sevensigns.DimensionalRift;
@@ -80,7 +84,10 @@ public class Party extends AbstractPlayerGroup
 	
 	private static final Duration PARTY_POSITION_BROADCAST_INTERVAL = Duration.ofSeconds(12);
 	
+	private static final Map<Integer, Party> DISCONNECTED_PLAYERS = new ConcurrentHashMap<>();
+	
 	private final List<Player> _members = new CopyOnWriteArrayList<>();
+	private final Map<Integer, DisconnectedMember> _disconnectedMembers = new ConcurrentHashMap<>();
 	private boolean _pendingInvitation = false;
 	private long _pendingInviteTimeout;
 	private int _partyLvl = 0;
@@ -92,6 +99,46 @@ public class Party extends AbstractPlayerGroup
 	protected PartyMemberPosition _positionPacket;
 	private boolean _disbanding = false;
 	private Object _ucState = null;
+	
+	/**
+	 * Represents a party member whose connection dropped inside an instance.<br>
+	 * Holds their reserved party slot until reconnect or grace period expiry.
+	 */
+	public static class DisconnectedMember
+	{
+		private final int _objectId;
+		private final String _name;
+		private final int _instanceId;
+		private final Future<?> _timeoutTask;
+		
+		public DisconnectedMember(Player player, Future<?> timeoutTask)
+		{
+			_objectId = player.getObjectId();
+			_name = player.getName();
+			_instanceId = player.getInstanceId();
+			_timeoutTask = timeoutTask;
+		}
+		
+		public int getObjectId()
+		{
+			return _objectId;
+		}
+		
+		public String getName()
+		{
+			return _name;
+		}
+		
+		public int getInstanceId()
+		{
+			return _instanceId;
+		}
+		
+		public Future<?> getTimeoutTask()
+		{
+			return _timeoutTask;
+		}
+	}
 	
 	/**
 	 * Construct a new Party object with a single member - the leader.
@@ -163,9 +210,9 @@ public class Party extends AbstractPlayerGroup
 	 */
 	private Player getCheckedNextLooter(int itemId, Creature target)
 	{
-		for (int i = 0; i < getMemberCount(); i++)
+		for (int i = 0; i < _members.size(); i++)
 		{
-			if (++_itemLastLoot >= getMemberCount())
+			if (++_itemLastLoot >= _members.size())
 			{
 				_itemLastLoot = 0;
 			}
@@ -372,12 +419,75 @@ public class Party extends AbstractPlayerGroup
 	
 	/**
 	 * Removes a party member using its name.
-	 * @param name player the player to be removed from the party.
+	 * @param name the player name to be removed from the party.
 	 * @param type the message type {@link PartyMessageType}.
 	 */
 	public void removePartyMember(String name, PartyMessageType type)
 	{
-		removePartyMember(getPlayerByName(name), type);
+		final Player player = getPlayerByName(name);
+		if (player != null)
+		{
+			removePartyMember(player, type);
+			return;
+		}
+		
+		for (DisconnectedMember member : _disconnectedMembers.values())
+		{
+			if (member.getName().equalsIgnoreCase(name))
+			{
+				removeDisconnectedMember(member.getObjectId(), type);
+				return;
+			}
+		}
+	}
+	
+	/**
+	 * Removes a disconnected member whose slot is reserved.
+	 * @param charId the object ID of the disconnected player
+	 * @param type the message type {@link PartyMessageType}
+	 */
+	public synchronized void removeDisconnectedMember(int charId, PartyMessageType type)
+	{
+		final DisconnectedMember member = _disconnectedMembers.remove(charId);
+		DISCONNECTED_PLAYERS.remove(charId);
+		if (member == null)
+		{
+			return;
+		}
+		
+		final Future<?> task = member.getTimeoutTask();
+		if ((task != null) && !task.isDone())
+		{
+			task.cancel(false);
+		}
+		
+		final int instanceId = member.getInstanceId();
+		if (instanceId > 0)
+		{
+			final Instance instance = InstanceManager.getInstance().getInstance(instanceId);
+			if (instance != null)
+			{
+				instance.removePlayer(charId);
+			}
+		}
+		
+		if (type == PartyMessageType.EXPELLED)
+		{
+			final SystemMessage msg = new SystemMessage(SystemMessageId.C1_WAS_EXPELLED_FROM_THE_PARTY);
+			msg.addString(member.getName());
+			broadcastPacket(msg);
+		}
+		else
+		{
+			final SystemMessage msg = new SystemMessage(SystemMessageId.C1_HAS_LEFT_THE_PARTY);
+			msg.addString(member.getName());
+			broadcastPacket(msg);
+		}
+		
+		if ((_members.size() <= 1) && _disconnectedMembers.isEmpty())
+		{
+			disbandParty();
+		}
 	}
 	
 	/**
@@ -390,7 +500,8 @@ public class Party extends AbstractPlayerGroup
 		if (_members.contains(player))
 		{
 			final boolean isLeader = isLeader(player);
-			if (!_disbanding && ((_members.size() == 2) || (isLeader && !PlayerConfig.ALT_LEAVE_PARTY_LEADER && (type != PartyMessageType.DISCONNECTED))))
+			final int totalCount = _members.size() + _disconnectedMembers.size();
+			if (!_disbanding && ((totalCount <= 2) && _disconnectedMembers.isEmpty() && (isLeader && !PlayerConfig.ALT_LEAVE_PARTY_LEADER && (type != PartyMessageType.DISCONNECTED))))
 			{
 				disbandParty();
 				return;
@@ -469,7 +580,7 @@ public class Party extends AbstractPlayerGroup
 				broadcastPacket(msg);
 				broadcastToPartyMembersNewLeader();
 			}
-			else if (_members.size() == 1)
+			else if ((_members.size() == 1) && _disconnectedMembers.isEmpty())
 			{
 				if (isInCommandChannel())
 				{
@@ -502,6 +613,10 @@ public class Party extends AbstractPlayerGroup
 				
 				_members.clear();
 			}
+			else if (_members.isEmpty())
+			{
+				disbandParty();
+			}
 		}
 	}
 	
@@ -519,6 +634,227 @@ public class Party extends AbstractPlayerGroup
 				removePartyMember(member, PartyMessageType.NONE);
 			}
 		}
+		for (DisconnectedMember member : _disconnectedMembers.values())
+		{
+			final Future<?> task = member.getTimeoutTask();
+			if ((task != null) && !task.isDone())
+			{
+				task.cancel(false);
+			}
+			DISCONNECTED_PLAYERS.remove(member.getObjectId());
+		}
+		_disconnectedMembers.clear();
+	}
+	
+	/**
+	 * Handles a player disconnecting from the game while in an instanced zone.<br>
+	 * Keeps party slot reserved for the duration of the grace period.
+	 * @param player the disconnecting player
+	 */
+	public synchronized void onPlayerDisconnect(Player player)
+	{
+		if (!_members.contains(player))
+		{
+			return;
+		}
+		
+		final boolean isLeader = isLeader(player);
+		
+		_members.remove(player);
+		recalculatePartyLevel();
+		
+		if (player.isFestivalParticipant())
+		{
+			SevenSignsFestival.getInstance().updateParticipants(player, this);
+		}
+		
+		if (player.isInDuel())
+		{
+			DuelManager.getInstance().onRemoveFromParty(player);
+		}
+		
+		try
+		{
+			if (player.isChanneling() && (player.getSkillChannelizer().hasChannelized()))
+			{
+				player.abortCast();
+			}
+			else if (player.isChannelized())
+			{
+				player.getSkillChannelized().abortChannelization();
+			}
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, "onPlayerDisconnect: ", e);
+		}
+		
+		broadcastPacket(new PartySmallWindowDelete(player));
+		if (player.hasSummon())
+		{
+			broadcastPacket(new ExPartyPetWindowDelete(player.getSummon()));
+		}
+		
+		if (isInDimensionalRift())
+		{
+			_dr.partyMemberExited(player);
+		}
+		
+		// If leader disconnected and other online members exist, hand over leadership
+		if (isLeader && !_members.isEmpty())
+		{
+			final Player newLeader = _members.get(0);
+			final SystemMessage msg = new SystemMessage(SystemMessageId.C1_HAS_BECOME_THE_PARTY_LEADER);
+			msg.addString(newLeader.getName());
+			broadcastPacket(msg);
+			broadcastToPartyMembersNewLeader();
+			if (isInCommandChannel() && _commandChannel.isLeader(player))
+			{
+				_commandChannel.setLeader(newLeader);
+				final SystemMessage ccMsg = new SystemMessage(SystemMessageId.COMMAND_CHANNEL_AUTHORITY_HAS_BEEN_TRANSFERRED_TO_C1);
+				ccMsg.addString(_commandChannel.getLeader().getName());
+				_commandChannel.broadcastPacket(ccMsg);
+			}
+		}
+		
+		final SystemMessage msg = new SystemMessage(SystemMessageId.C1_HAS_LEFT_THE_PARTY);
+		msg.addString(player.getName());
+		broadcastPacket(msg);
+		
+		final int charId = player.getObjectId();
+		final String name = player.getName();
+		final Future<?> timeoutTask = ThreadPool.schedule(() -> onDisconnectTimeout(charId, name), GeneralConfig.INSTANCE_DISCONNECT_GRACE_PERIOD);
+		_disconnectedMembers.put(charId, new DisconnectedMember(player, timeoutTask));
+		DISCONNECTED_PLAYERS.put(charId, this);
+	}
+	
+	/**
+	 * Callback when a disconnected member's grace period expires without reconnection.
+	 * @param charId the object ID of the timed-out player
+	 * @param name the character name
+	 */
+	private synchronized void onDisconnectTimeout(int charId, String name)
+	{
+		final DisconnectedMember member = _disconnectedMembers.remove(charId);
+		DISCONNECTED_PLAYERS.remove(charId);
+		if (member == null)
+		{
+			return;
+		}
+		
+		final int instanceId = member.getInstanceId();
+		if (instanceId > 0)
+		{
+			final Instance instance = InstanceManager.getInstance().getInstance(instanceId);
+			if (instance != null)
+			{
+				instance.removePlayer(charId);
+			}
+		}
+		
+		final SystemMessage msg = new SystemMessage(SystemMessageId.C1_HAS_LEFT_THE_PARTY);
+		msg.addString(name);
+		broadcastPacket(msg);
+		
+		if ((_members.size() <= 1) && _disconnectedMembers.isEmpty())
+		{
+			disbandParty();
+		}
+	}
+	
+	/**
+	 * Checks and reconnects a player to their party if they held a reserved slot.
+	 * @param player the player who entered world
+	 */
+	public static void checkPartyReconnect(Player player)
+	{
+		if (player == null)
+		{
+			return;
+		}
+		
+		final Party party = DISCONNECTED_PLAYERS.get(player.getObjectId());
+		if (party != null)
+		{
+			party.reconnectPartyMember(player);
+		}
+	}
+	
+	/**
+	 * Restores a reconnecting player back into active party membership.
+	 * @param player the reconnecting player
+	 */
+	public synchronized void reconnectPartyMember(Player player)
+	{
+		if (player == null)
+		{
+			return;
+		}
+		
+		final DisconnectedMember member = _disconnectedMembers.remove(player.getObjectId());
+		DISCONNECTED_PLAYERS.remove(player.getObjectId());
+		
+		if (member != null)
+		{
+			final Future<?> task = member.getTimeoutTask();
+			if ((task != null) && !task.isDone())
+			{
+				task.cancel(false);
+			}
+		}
+		
+		if (_members.contains(player))
+		{
+			return;
+		}
+		
+		_members.add(player);
+		player.setParty(this);
+		
+		if (player.getLevel() > _partyLvl)
+		{
+			_partyLvl = player.getLevel();
+		}
+		
+		player.sendPacket(new PartySmallWindowAll(player, this));
+		
+		final SystemMessage msg = new SystemMessage(SystemMessageId.C1_JOINED_THE_PARTY);
+		msg.addString(player.getName());
+		broadcastToPartyMembers(player, msg);
+		
+		for (Player p : _members)
+		{
+			if (p != player)
+			{
+				p.sendPacket(new PartySmallWindowAdd(player, this));
+			}
+		}
+		
+		if (player.hasSummon())
+		{
+			broadcastPacket(new ExPartyPetWindowAdd(player.getSummon()));
+		}
+		
+		for (Player p : _members)
+		{
+			if (p != null)
+			{
+				p.updateEffectIcons(true);
+				final Summon summon = p.getSummon();
+				p.broadcastUserInfo();
+				if (summon != null)
+				{
+					summon.updateEffectIcons();
+				}
+			}
+		}
+		
+		if (isInCommandChannel())
+		{
+			player.sendPacket(ExOpenMPCC.STATIC_PACKET);
+		}
+		
+		player.sendMessage("You have rejoined your dungeon party.");
 	}
 	
 	/**
@@ -1050,6 +1386,27 @@ public class Party extends AbstractPlayerGroup
 	public List<Player> getMembers()
 	{
 		return _members;
+	}
+	
+	@Override
+	public int getMemberCount()
+	{
+		return _members.size() + _disconnectedMembers.size();
+	}
+	
+	public int getOnlineMemberCount()
+	{
+		return _members.size();
+	}
+	
+	public Map<Integer, DisconnectedMember> getDisconnectedMembers()
+	{
+		return _disconnectedMembers;
+	}
+	
+	public boolean hasDisconnectedMember(int objectId)
+	{
+		return _disconnectedMembers.containsKey(objectId);
 	}
 	
 	public Object getUCState()

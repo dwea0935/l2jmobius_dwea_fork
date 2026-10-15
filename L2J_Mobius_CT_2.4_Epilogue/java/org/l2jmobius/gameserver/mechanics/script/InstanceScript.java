@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.holders.InstanceReenterTimeHolder;
+import org.l2jmobius.gameserver.entity.Location;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.Summon;
 import org.l2jmobius.gameserver.entity.instancezone.Instance;
@@ -88,7 +89,12 @@ public abstract class InstanceScript extends Script
 				handleRemoveBuffs(player, existingWorld);
 			}
 			
-			if (!instance.getEnterLocs().isEmpty())
+			final Location resumeLoc = getResumeLocation(player, existingWorld);
+			if (resumeLoc != null)
+			{
+				teleportPlayer(player, resumeLoc, existingWorld.getInstanceId(), false);
+			}
+			else if (!instance.getEnterLocs().isEmpty())
 			{
 				teleportPlayer(player, instance.getEnterLocs().stream().findAny().get(), existingWorld.getInstanceId(), false);
 			}
@@ -239,6 +245,28 @@ public abstract class InstanceScript extends Script
 	protected boolean checkConditions(Player player)
 	{
 		return true;
+	}
+	
+	/**
+	 * Gets the resume location for a player re-entering an instance.<br>
+	 * Override this in dungeon scripts to implement stage-based checkpoints.
+	 * @param player the player re-entering
+	 * @param world the instance world
+	 * @return the resume location, or {@code null} to use default enter location
+	 */
+	protected Location getResumeLocation(Player player, InstanceWorld world)
+	{
+		return null;
+	}
+	
+	/**
+	 * Applies the instance re-entry lockout penalty to all players in the instance world.<br>
+	 * Can be called immediately upon boss death to prevent lockouts being bypassed.
+	 * @param world the instance world
+	 */
+	protected void setReenterPenalty(InstanceWorld world)
+	{
+		handleReenterTime(world);
 	}
 	
 	/**

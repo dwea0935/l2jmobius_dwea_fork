@@ -18,6 +18,8 @@ package org.l2jmobius.gameserver.entity.instancezone;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,6 +36,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.holders.InstanceReenterTimeHolder;
@@ -357,6 +360,7 @@ public class Instance
 	
 	public void removePlayers()
 	{
+		final List<Integer> offlinePlayers = new ArrayList<>();
 		for (Integer objectId : _players)
 		{
 			final Player player = World.getPlayer(objectId);
@@ -372,6 +376,35 @@ public class Instance
 					player.teleToLocation(TeleportWhereType.TOWN);
 				}
 			}
+			else if (player == null)
+			{
+				offlinePlayers.add(objectId);
+			}
+		}
+		
+		if (!offlinePlayers.isEmpty() && (_exitLocation != null))
+		{
+			final Location exitLoc = _exitLocation;
+			ThreadPool.execute(() ->
+			{
+				try (Connection con = DatabaseFactory.getConnection();
+					PreparedStatement ps = con.prepareStatement("UPDATE characters SET x = ?, y = ?, z = ? WHERE charId = ?"))
+				{
+					for (int charId : offlinePlayers)
+					{
+						ps.setInt(1, exitLoc.getX());
+						ps.setInt(2, exitLoc.getY());
+						ps.setInt(3, exitLoc.getZ());
+						ps.setInt(4, charId);
+						ps.addBatch();
+					}
+					ps.executeBatch();
+				}
+				catch (Exception e)
+				{
+					LOGGER.log(Level.SEVERE, "Failed to evacuate offline players for instance " + _id, e);
+				}
+			});
 		}
 		
 		_players.clear();

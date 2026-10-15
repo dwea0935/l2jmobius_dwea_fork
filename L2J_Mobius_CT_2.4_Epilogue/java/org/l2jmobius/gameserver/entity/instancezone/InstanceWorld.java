@@ -19,9 +19,12 @@ package org.l2jmobius.gameserver.entity.instancezone;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ScheduledFuture;
 
+import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.entity.actor.Npc;
@@ -41,6 +44,7 @@ public class InstanceWorld
 	private Instance _instance;
 	private final Set<Integer> _allowed = ConcurrentHashMap.newKeySet();
 	private final StatSet _parameters = new StatSet();
+	private final Map<String, ScheduledFuture<?>> _instanceTimers = new ConcurrentHashMap<>();
 	
 	/**
 	 * Sets the instance.
@@ -390,11 +394,90 @@ public class InstanceWorld
 	}
 	
 	/**
+	 * Schedules an isolated timer tied exclusively to this instance world.
+	 * Any existing timer with the same name in this world is automatically replaced.
+	 * @param name the unique timer identifier within this instance
+	 * @param delayMs delay in milliseconds before execution
+	 * @param task the runnable action to execute
+	 */
+	public synchronized void scheduleTimer(String name, long delayMs, Runnable task)
+	{
+		cancelTimer(name);
+		final ScheduledFuture<?> future = ThreadPool.schedule(() ->
+		{
+			try
+			{
+				task.run();
+			}
+			finally
+			{
+				_instanceTimers.remove(name);
+			}
+		}, delayMs);
+		
+		_instanceTimers.put(name, future);
+	}
+	
+	/**
+	 * Schedules a recurring isolated timer tied exclusively to this instance world.
+	 * @param name the unique timer identifier within this instance
+	 * @param initialDelayMs delay in milliseconds before first execution
+	 * @param periodMs period in milliseconds between successive executions
+	 * @param task the runnable action to execute
+	 */
+	public synchronized void scheduleAtFixedRate(String name, long initialDelayMs, long periodMs, Runnable task)
+	{
+		cancelTimer(name);
+		final ScheduledFuture<?> future = ThreadPool.scheduleAtFixedRate(task, initialDelayMs, periodMs);
+		_instanceTimers.put(name, future);
+	}
+	
+	/**
+	 * Cancels an active timer with the specified name in this instance world.
+	 * @param name timer name to cancel
+	 */
+	public synchronized void cancelTimer(String name)
+	{
+		final ScheduledFuture<?> future = _instanceTimers.remove(name);
+		if ((future != null) && !future.isDone() && !future.isCancelled())
+		{
+			future.cancel(false);
+		}
+	}
+	
+	/**
+	 * Cancels all active timers and recurring tasks scheduled in this instance world.
+	 */
+	public synchronized void cancelAllTimers()
+	{
+		for (ScheduledFuture<?> future : _instanceTimers.values())
+		{
+			if ((future != null) && !future.isDone() && !future.isCancelled())
+			{
+				future.cancel(false);
+			}
+		}
+		_instanceTimers.clear();
+	}
+	
+	/**
+	 * Checks if an active timer with the specified name exists in this instance world.
+	 * @param name timer name
+	 * @return true if timer is active
+	 */
+	public boolean hasTimer(String name)
+	{
+		final ScheduledFuture<?> future = _instanceTimers.get(name);
+		return (future != null) && !future.isDone() && !future.isCancelled();
+	}
+	
+	/**
 	 * Destroy current instance world.<br>
 	 * <b><font color=red>Use this method to destroy instance world properly.</font></b>
 	 */
 	public void destroy()
 	{
+		cancelAllTimers();
 		_instance.setEmptyDestroyTime(0);
 		_instance.setDuration(1000);
 	}

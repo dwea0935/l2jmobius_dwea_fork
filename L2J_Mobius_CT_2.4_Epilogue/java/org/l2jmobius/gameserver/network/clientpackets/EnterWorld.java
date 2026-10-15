@@ -51,6 +51,8 @@ import org.l2jmobius.gameserver.entity.actor.enums.player.IllegalActionPunishmen
 import org.l2jmobius.gameserver.entity.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.entity.actor.holders.player.Couple;
 import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
 import org.l2jmobius.gameserver.entity.item.ItemTemplate;
 import org.l2jmobius.gameserver.entity.item.enums.BodyPart;
 import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
@@ -183,7 +185,28 @@ public class EnterWorld extends ClientPacket
 		// Restore to instanced area if enabled.
 		if (GeneralConfig.RESTORE_PLAYER_INSTANCE)
 		{
-			player.setInstanceId(InstanceManager.getInstance().getPlayer(player.getObjectId()));
+			final int instanceId = InstanceManager.getInstance().getPlayer(player.getObjectId());
+			if (instanceId > 0)
+			{
+				final Instance instance = InstanceManager.getInstance().getInstance(instanceId);
+				if ((instance != null) && instance.isPlayerAllowed(player.getObjectId()))
+				{
+					player.setInstanceId(instanceId);
+					Party.checkPartyReconnect(player);
+				}
+				else
+				{
+					if (instance != null)
+					{
+						instance.removePlayer(player.getObjectId());
+					}
+					player.setInstanceId(0);
+					if (player.isInsideZone(ZoneId.NO_RESTART))
+					{
+						player.teleToLocation(TeleportWhereType.TOWN);
+					}
+				}
+			}
 		}
 		else
 		{
@@ -572,6 +595,12 @@ public class EnterWorld extends ClientPacket
 		// Attacker or spectator logging in to a siege zone.
 		// Actually should be checked for inside castle only?
 		if (!player.isGM() && player.isInsideZone(ZoneId.SIEGE) && (!player.isInSiege() || (player.getSiegeState() < 2)))
+		{
+			player.teleToLocation(TeleportWhereType.TOWN);
+		}
+		
+		// Evacuate player from instance geometry if logging in to Instance 0 inside a no-restart zone.
+		if (!player.isGM() && (player.getInstanceId() == 0) && player.isInsideZone(ZoneId.NO_RESTART))
 		{
 			player.teleToLocation(TeleportWhereType.TOWN);
 		}
