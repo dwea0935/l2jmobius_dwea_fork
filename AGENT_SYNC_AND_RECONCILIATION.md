@@ -86,7 +86,7 @@ docker exec l2-db mariadb -uroot l2jmobiusepilogue -e "UPDATE characters SET acc
    - Updated the embedded `Lineage2Ver413` RSA-1024 modulus (`0x2F500`, `VA 0x10930300`) and exponent (`0x2F604`, `VA 0x10930404`) from `75b4d6de...` (`0000001d`) to NCSoft's official retail `97df3984...` (`00000035`) key so all 45 pristine `.dat` files inflate cleanly.
 2. **`system/Engine.dll` (`6,885,120` bytes, `2009-09-28`):**
    - Patched GameGuard check at file offset `0x0039B750` (`VA 0x2039C350`: `55 8b ec 6a ff` → `33 c0 fe c0 c3`, returning `1`).
-   - Updated protocol string at file offset `0x004A3AE0` (`VA 0x204A46E0`) from `$Revision: 148 $` to `$Revision: 152 $`.
+   - Restored native protocol string at file offset `0x004A3AE0` (`VA 0x204A46E0`) to `$Revision: 148 $` (per Option C reconciliation below so the `2009-09-28` client truthfully announces Protocol `148`; verified only the 5 bytes at `0x39B750` differ from pristine `L2 Epilogue Clean/system/Engine.dll`).
 3. **`system/d3ddrv.dll`, `system/windrv.dll`, `system/dsetup.dll` & `launch-l2.sh`:**
    - Silenced the AGP popup in `d3ddrv.dll` (`0xC24A4`: `74 22` → `90 90`), applied all 5 dynamic window resize / borderless patches to `windrv.dll` (`+0x70` offsets: `0x1101F`, `0x111B1`, `0x0D4AA`, `0x0D529`, `0x0E8D5`), rebased `dsetup.dll` to `0x12000000`, and installed 32-bit DXVK (`d3d9.dll` + `dxgi.dll`) into both `syswow64` and `system32`.
 4. **`system/interface.xdat` & `system/interface.u` (`2009-09-28`):**
@@ -102,7 +102,7 @@ docker exec l2-db mariadb -uroot l2jmobiusepilogue -e "UPDATE characters SET acc
   - Disassembling `InventoryUpdatePacket` (`VA 0x203c0940`) and `ItemListPacket` (`VA 0x203c1060`) in the unpacked `2009-09-28` `Engine.dll` showed that per-item deserialization uses `'hh'` (`iWorkType`, `itemType1`) followed by `'dddQhhhdhhhhdhhhhhhhhd'` (`0x204984e0` — ending right after `int time`, **70 bytes** per item body).
   - `L2J_Mobius_CT_2.4_Epilogue` appended **3 extra `short`s (6 bytes)** at the end of `AbstractItemPacket.writeItem` (`for (int op : item.getEnchantOptions()) buffer.writeShort(op);`), which was a late mini-patch addition (`optiondata_client` IDs for special items like *Olf's T-Shirt*, **not** the normal `+N` item enchant level, which is written earlier via `buffer.writeShort(item.getEnchant())` at line 51).
   - Whenever `InventoryUpdate` contained **2+ items** (e.g., turning in a newbie quest item and receiving reward items within the 100ms batch in `Player.sendInventoryUpdate`), item #1's trailing 6 bytes (`0x0000, 0x0000, 0x0000`) shifted the packet stream so item #2 read `0` as `iWorkType`, triggering the assertion in `NConsoleWnd::UpdateInventoryItem`.
-- **Full Audit & 23 Updated Server Classes (Compiled into `build/dist/libs/GameServer.jar`):**
+- **Full Audit & 23 Updated Server Classes (Compiled into `build/dist/libs/GameServer.jar` in commit `d35432adcb8`):**
   1. **`AbstractItemPacket.java` & `ItemInfo.java`:** Omitted the trailing 3× `short` `EnchantOptions` loop in `writeItem` (fixing `InventoryUpdate`, `ItemList`, and `GMViewItemList`) and added `default: _change = 2;` (`MODIFIED`) in `ItemInfo(Item)` so `iWorkType` can never be `0`. Normal item `+N` enchanting (`item.getEnchant()`), weapon glows (`_player.getEnchantEffect()`), Life Stone augmentations (`item.getAugmentationBonus()`), elemental attributes, and server-side `EnchantOptions` stat skills remain 100% intact.
   2. **All Other Item Packet Handlers Audited Against `Engine.dll` (`0x20433000` Dispatch Table):**
      - Removed trailing 3× `short` `EnchantOptions` / `Enchant effect` fields from: `BuyList.java`, `ExBuySellList.java` (`_buyList`, `_sellList`, `_refundList`), `WareHouseDepositList.java`, `WareHouseWithdrawalList.java`, `SortedWareHouseWithdrawalList.java`, `TradeStart.java`, `TradeOwnAdd.java`, `TradeOtherAdd.java`, `PetItemList.java`, `PetInventoryUpdate.java`, `PrivateStoreManageListSell.java`, `PrivateStoreListSell.java`, `PrivateStoreManageListBuy.java`, `PrivateStoreListBuy.java`, `ExReplyPostItemList.java`, `ExReplyReceivedPost.java`, `ExReplySentPost.java`, and `ExRpItemLink.java`.
@@ -123,3 +123,27 @@ docker exec l2-db mariadb -uroot l2jmobiusepilogue -e "UPDATE characters SET acc
   - `l2.exe` (`VA 0x10925180`) checks `FirstRun >= 2` in `Option.ini` (`OptionWnd` sets `FirstRun=2` on save; `launch-l2.sh` was writing `FirstRun=False` which parses as `0`, triggering `SetInitialConfiguration` hardware defaults).
   - `windrv.dll`'s `UWindowsViewport::ResizeViewport` at `VA 0x1110e012` and `VA 0x1110e03c` executes `or eax, 0x00c40000` (`WS_CAPTION | WS_THICKFRAME`) unconditionally when windowed without checking `UseWindowFrame` (`[edi+0xc4]`).
   - `launch-l2.sh` line 1009 placed `IsL2Console` under `[L2WaterEffect]` instead of `[URL]`.
+
+---
+
+### 3.5 Option C Reconciliation (Client Agent ↔ Server Agent ↔ Expert Agent): Dual-Protocol (`148` + `152`) Support
+Following the 3rd Agent's protocol-differentiation audit, the user selected **Option C**:
+> *"Restore `$Revision: 148 $` in `Engine.dll` AND branch on `client.getProtocolVersion() >= 152` in the item packets so both 148 (2009) and 152 (2010) clients are supported simultaneously."*
+
+#### A. Completed by Client Agent (Done & Pushed)
+1. **Restored `$Revision: 148 $` in `Engine.dll` (`0x004A3AE0` / `VA 0x204A46E0`):**
+   - Both `/home/dwea/Projects/L2/Client Lineage 2 Gracia Epilogue/system/Engine.dll` and `/home/dwea/Projects/L2/l2jmobius_dwea_fork/client/system/Engine.dll` have been restored to the exact ASCII string `b"$Revision: 148 $\x00"` at file offset `0x4A3AE0`.
+   - Verified via full 6,885,120-byte comparison against pristine `/home/dwea/Projects/L2/L2 Epilogue Clean/system/Engine.dll`: **only** the 5-byte GameGuard check bypass at `0x0039B750` (`33 c0 fe c0 c3`) differs.
+   - Our `2009-09-28` client now truthfully announces `ProtocolVersion = 148` on connect (matching `PosCode : LS1(148)`), allowing `GameClient.getProtocolVersion()` on the server to distinguish `148` (`2009-09-28`) clients from `152` (`2010-07-16`) clients.
+
+#### B. Action Items for Server-Focused Agent (To Complete Option C)
+1. **`Server.ini` Config (`L2J_Mobius_CT_2.4_Epilogue/dist/game/config/Server.ini` & `build/dist/game/config/Server.ini`):**
+   - Set `AllowedProtocolRevisions = 148;152` (removing the unverified `146` revision so only the two supported layouts `148` and `152` are accepted).
+2. **Protocol-Conditional `EnchantOptions` (`client.getProtocolVersion() >= 152`) Across the 21 Item Packet Classes (see commit `d35432adcb8`):**
+   - In `AbstractItemPacket.writeItem` (or via a `GameClient` parameter / `ServerPacket` helper `isProtocol152(client)` checking `client != null && client.getProtocolVersion() >= 152`) and the 20 item/shop/warehouse/trade/pet/store/mail packet classes modified in commit `d35432adcb8`:
+     - When `client.getProtocolVersion() < 152` (Protocol `148`): omit the trailing 3× `short` `EnchantOptions` (`6` bytes) so each item is 70 bytes (`'dddQhhhdhhhhdhhhhhhhhd'`).
+     - When `client.getProtocolVersion() >= 152` (Protocol `152`): write the trailing 3× `short` `EnchantOptions` (`for (int op : item.getEnchantOptions()) buffer.writeShort(op);`, or 3× `buffer.writeShort(0)` in `BuyList` / `ExBuySellList`) so genuine 2010 Protocol `152` clients receive their expected 76-byte item layout.
+   - In `PackageSendableList.java` and `GMViewWarehouseWithdrawList.java`, keep the corrected `Engine.dll` item body (`0x203beec0` / `0x203c12c0`) and conditionally append `for (int op : item.getEnchantOptions()) buffer.writeShort(op);` when `client.getProtocolVersion() >= 152`.
+3. **Protocol-Conditional `ExBrExtraUserInfo` / `ExBrBroadcastEventState` (`0xFE:0xBD` vs `0xFE:0xBE`):**
+   - In `ExBrExtraUserInfo.java`, `Engine.dll` (`2009-09-28`, Protocol `148`) registers `ExBrExtraUserInfo` at `0xFE:0xBE` (`0x2068be28`) with format `'dd'` (no `_lectureMark` byte), and `ExBrBroadcastEventState` at `0xFE:0xBD` (`0x2068be04`). Only write `buffer.writeByte(_lectureMark)` (and swap `0xBD`/`0xBE` if needed) when `client.getProtocolVersion() >= 152`.
+4. **Recompile & Repack `build/dist/libs/GameServer.jar` and Restart `l2-game`.**
