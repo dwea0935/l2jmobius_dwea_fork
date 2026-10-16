@@ -35,7 +35,9 @@ import java.util.regex.Pattern;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.config.custom.AutoPlayConfig;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
@@ -474,6 +476,12 @@ public class AdminEditChar implements IAdminCommandHandler
 				}
 				else
 				{
+					return false;
+				}
+				
+				if (!StringUtil.isAlphaNumeric(val) || !ServerConfig.CHARNAME_TEMPLATE_PATTERN.matcher(val).matches())
+				{
+					activeChar.sendSysMessage("Invalid character name. Only 1-16 English letters and digits (A-Z, a-z, 0-9) are allowed.");
 					return false;
 				}
 				

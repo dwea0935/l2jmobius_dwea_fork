@@ -1132,15 +1132,15 @@ public class VillageMaster extends Folk
 			return;
 		}
 		
-		if (!StringUtil.isAlphaNumeric(clanName) || !isValidName(clanName) || (2 > clanName.length()))
-		{
-			player.sendPacket(SystemMessageId.CLAN_NAME_IS_INVALID);
-			return;
-		}
-		
 		if (clanName.length() > 16)
 		{
 			player.sendPacket(SystemMessageId.CLAN_NAME_S_LENGTH_IS_INCORRECT);
+			return;
+		}
+		
+		if (!StringUtil.isAlphaNumeric(clanName) || !isValidName(clanName) || (2 > clanName.length()))
+		{
+			player.sendPacket(SystemMessageId.CLAN_NAME_IS_INVALID);
 			return;
 		}
 		
@@ -1237,15 +1237,15 @@ public class VillageMaster extends Folk
 			return;
 		}
 		
-		if (!StringUtil.isAlphaNumeric(pledgeName) || !isValidName(pledgeName) || (2 > pledgeName.length()))
-		{
-			player.sendPacket(SystemMessageId.CLAN_NAME_IS_INVALID);
-			return;
-		}
-		
 		if (pledgeName.length() > 16)
 		{
 			player.sendPacket(SystemMessageId.CLAN_NAME_S_LENGTH_IS_INCORRECT);
+			return;
+		}
+		
+		if (!StringUtil.isAlphaNumeric(pledgeName) || !isValidName(pledgeName) || (2 > pledgeName.length()))
+		{
+			player.sendPacket(SystemMessageId.CLAN_NAME_IS_INVALID);
 			return;
 		}
 		

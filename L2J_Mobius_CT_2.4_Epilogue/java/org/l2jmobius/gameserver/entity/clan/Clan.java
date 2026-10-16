@@ -43,6 +43,7 @@ import org.l2jmobius.gameserver.communitybbs.Manager.ForumsBBSManager;
 import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.sql.CrestTable;
@@ -2468,15 +2469,15 @@ public class Clan
 			return;
 		}
 		
-		if (!StringUtil.isAlphaNumeric(allyName))
-		{
-			player.sendPacket(SystemMessageId.INCORRECT_ALLIANCE_NAME_PLEASE_TRY_AGAIN);
-			return;
-		}
-		
 		if ((allyName.length() > 16) || (allyName.length() < 2))
 		{
 			player.sendPacket(SystemMessageId.INCORRECT_LENGTH_FOR_AN_ALLIANCE_NAME);
+			return;
+		}
+		
+		if (!StringUtil.isAlphaNumeric(allyName) || !ServerConfig.CLAN_NAME_TEMPLATE_PATTERN.matcher(allyName).matches())
+		{
+			player.sendPacket(SystemMessageId.INCORRECT_ALLIANCE_NAME_PLEASE_TRY_AGAIN);
 			return;
 		}
 		

@@ -148,36 +148,36 @@ public class ServerConfig
 		Pattern charNamePattern;
 		try
 		{
-			charNamePattern = Pattern.compile(config.getString("CnameTemplate", ".*"));
+			charNamePattern = Pattern.compile(config.getString("CnameTemplate", "[A-Za-z0-9]{1,16}"));
 		}
 		catch (PatternSyntaxException e)
 		{
 			LOGGER.log(Level.WARNING, "Character name pattern is invalid!", e);
-			charNamePattern = Pattern.compile(".*");
+			charNamePattern = Pattern.compile("[A-Za-z0-9]{1,16}");
 		}
 		CHARNAME_TEMPLATE_PATTERN = charNamePattern;
 		
 		Pattern petNamePattern;
 		try
 		{
-			petNamePattern = Pattern.compile(config.getString("PetNameTemplate", ".*"));
+			petNamePattern = Pattern.compile(config.getString("PetNameTemplate", "[A-Za-z0-9]{1,8}"));
 		}
 		catch (PatternSyntaxException e)
 		{
 			LOGGER.log(Level.WARNING, "Pet name pattern is invalid!", e);
-			petNamePattern = Pattern.compile(".*");
+			petNamePattern = Pattern.compile("[A-Za-z0-9]{1,8}");
 		}
 		PET_NAME_TEMPLATE_PATTERN = petNamePattern;
 		
 		Pattern clanNamePattern;
 		try
 		{
-			clanNamePattern = Pattern.compile(config.getString("ClanNameTemplate", ".*"));
+			clanNamePattern = Pattern.compile(config.getString("ClanNameTemplate", "[A-Za-z0-9]{2,16}"));
 		}
 		catch (PatternSyntaxException e)
 		{
 			LOGGER.log(Level.WARNING, "Clan name pattern is invalid!", e);
-			clanNamePattern = Pattern.compile(".*");
+			clanNamePattern = Pattern.compile("[A-Za-z0-9]{2,16}");
 		}
 		
 		CLAN_NAME_TEMPLATE_PATTERN = clanNamePattern;

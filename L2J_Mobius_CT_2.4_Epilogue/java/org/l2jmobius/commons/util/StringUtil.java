@@ -358,9 +358,9 @@ public class StringUtil
 	}
 	
 	/**
-	 * Checks if the given text contains only letters and/or numbers.
+	 * Checks if the given text contains only ASCII English letters (A-Z, a-z) and/or digits (0-9).
 	 * @param text the text to check
-	 * @return {@code true} if {@code text} contains only alphanumeric characters, {@code false} otherwise
+	 * @return {@code true} if {@code text} contains only ASCII alphanumeric characters, {@code false} otherwise
 	 */
 	public static boolean isAlphaNumeric(String text)
 	{
@@ -371,7 +371,8 @@ public class StringUtil
 		
 		for (int i = 0; i < text.length(); i++)
 		{
-			if (!Character.isLetterOrDigit(text.charAt(i)))
+			final char c = text.charAt(i);
+			if (!(((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <= 'z')) || ((c >= '0') && (c <= '9'))))
 			{
 				return false;
 			}

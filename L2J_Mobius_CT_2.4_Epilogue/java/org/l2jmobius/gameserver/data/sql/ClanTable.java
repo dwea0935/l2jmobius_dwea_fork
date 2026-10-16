@@ -37,6 +37,7 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.communitybbs.Manager.ForumsBBSManager;
 import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.entity.clan.ClanMember;
@@ -186,15 +187,15 @@ public class ClanTable
 			return null;
 		}
 		
-		if (!StringUtil.isAlphaNumeric(clanName) || (2 > clanName.length()))
-		{
-			player.sendPacket(SystemMessageId.CLAN_NAME_IS_INVALID);
-			return null;
-		}
-		
 		if (16 < clanName.length())
 		{
 			player.sendPacket(SystemMessageId.CLAN_NAME_S_LENGTH_IS_INCORRECT);
+			return null;
+		}
+		
+		if (!StringUtil.isAlphaNumeric(clanName) || !ServerConfig.CLAN_NAME_TEMPLATE_PATTERN.matcher(clanName).matches() || (2 > clanName.length()))
+		{
+			player.sendPacket(SystemMessageId.CLAN_NAME_IS_INVALID);
 			return null;
 		}
 		
