@@ -46,6 +46,7 @@ public class AdminAdmin implements IAdminCommandHandler
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_admin",
+		"admin_gmw",
 		"admin_admin1",
 		"admin_admin2",
 		"admin_admin3",

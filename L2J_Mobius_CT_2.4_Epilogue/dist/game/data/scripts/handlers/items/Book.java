@@ -46,13 +46,13 @@ public class Book implements IItemHandler
 		final String content = HtmCache.getInstance().getHtm(player, filename);
 		if (content == null)
 		{
-			final NpcHtmlMessage html = new NpcHtmlMessage(0, item.getId());
+			final NpcHtmlMessage html = new NpcHtmlMessage(0);
 			html.setHtml("<html><body>My Text is missing:<br>" + filename + "</body></html>");
 			player.sendPacket(html);
 		}
 		else
 		{
-			final NpcHtmlMessage itemReply = new NpcHtmlMessage(0, item.getId());
+			final NpcHtmlMessage itemReply = new NpcHtmlMessage(0);
 			itemReply.setHtml(content);
 			player.sendPacket(itemReply);
 		}
