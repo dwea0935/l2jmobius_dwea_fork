@@ -45,6 +45,9 @@ public abstract class AbstractEffect
 	protected static final Logger LOGGER = Logger.getLogger(AbstractEffect.class.getName());
 	
 	private final Condition _attachCond;
+	private final Condition _applyCond;
+	private final StatSet _set;
+	private final StatSet _params;
 	private List<FuncTemplate> _funcTemplates;
 	private final String _name;
 	private final int _ticks;
@@ -59,8 +62,35 @@ public abstract class AbstractEffect
 	protected AbstractEffect(Condition attachCond, Condition applyCond, StatSet set, StatSet params)
 	{
 		_attachCond = attachCond;
+		_applyCond = applyCond;
+		_set = set;
+		_params = params;
 		_name = set.getString("name");
 		_ticks = set.getInt("ticks", 0);
+	}
+	
+	/**
+	 * Re-instantiates this effect using the latest class registered in {@link EffectHandler},
+	 * preserving all attached {@link FuncTemplate}s and XML parameters during live hot-reload.
+	 * @return the newly instantiated effect, or {@code this} if instantiation fails
+	 */
+	public AbstractEffect recreateWithCurrentHandler()
+	{
+		final AbstractEffect replacement = createEffect(_attachCond, _applyCond, _set, _params);
+		if (replacement == null)
+		{
+			return this;
+		}
+		
+		if (_funcTemplates != null)
+		{
+			for (FuncTemplate func : _funcTemplates)
+			{
+				replacement.attach(func);
+			}
+		}
+		
+		return replacement;
 	}
 	
 	/**

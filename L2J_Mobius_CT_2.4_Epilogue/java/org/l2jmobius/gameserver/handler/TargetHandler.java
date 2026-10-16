@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.handler;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.mechanics.skill.targets.TargetType;
 
@@ -30,7 +30,7 @@ public class TargetHandler implements IHandler<ITargetTypeHandler, Enum<TargetTy
 	
 	protected TargetHandler()
 	{
-		_datatable = new HashMap<>();
+		_datatable = new ConcurrentHashMap<>();
 	}
 	
 	@Override

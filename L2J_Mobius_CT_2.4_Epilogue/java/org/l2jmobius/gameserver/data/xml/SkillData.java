@@ -61,6 +61,7 @@ public class SkillData
 		}
 		
 		load();
+		_initialized = true;
 	}
 	
 	private void processDirectory(String dirName, List<File> list)
@@ -183,6 +184,35 @@ public class SkillData
 		}
 		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + count + " Skill templates from XML files.");
+	}
+	
+	private static volatile boolean _initialized = false;
+	
+	public static boolean isInitialized()
+	{
+		return _initialized;
+	}
+	
+	/**
+	 * Re-instantiates all live {@link org.l2jmobius.gameserver.mechanics.effects.AbstractEffect} instances
+	 * matching {@code handlerName} across all loaded skills without reparsing XML files.
+	 * @param handlerName the simple class name of the reloaded effect handler
+	 * @return the number of skill effect instances hot-swapped
+	 */
+	public int refreshEffectHandler(String handlerName)
+	{
+		if (_skillsByHash.isEmpty())
+		{
+			return 0;
+		}
+		
+		int replaced = 0;
+		for (Skill skill : _skillsByHash.values())
+		{
+			replaced += skill.replaceEffectsByHandlerName(handlerName);
+		}
+		
+		return replaced;
 	}
 	
 	public void reload()

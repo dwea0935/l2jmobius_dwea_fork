@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.handler;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +44,7 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 	
 	protected AdminCommandHandler()
 	{
-		_datatable = new HashMap<>();
+		_datatable = new ConcurrentHashMap<>();
 	}
 	
 	@Override

@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.handler;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class VoicedCommandHandler implements IHandler<IVoicedCommandHandler, String>
 {
@@ -29,7 +29,7 @@ public class VoicedCommandHandler implements IHandler<IVoicedCommandHandler, Str
 	
 	protected VoicedCommandHandler()
 	{
-		_datatable = new HashMap<>();
+		_datatable = new ConcurrentHashMap<>();
 	}
 	
 	@Override

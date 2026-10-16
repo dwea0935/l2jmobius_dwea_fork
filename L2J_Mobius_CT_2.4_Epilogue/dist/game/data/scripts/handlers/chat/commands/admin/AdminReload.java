@@ -431,14 +431,26 @@ public class AdminReload implements IAdminCommandHandler
 						final String value = st.nextToken();
 						if (!StringUtil.isNumeric(value))
 						{
-							ScriptManager.getInstance().reload(value);
-							AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quest Name:" + value + ".");
+							if (ScriptManager.getInstance().reload(value))
+							{
+								AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Hot-reloaded Quest/Script '" + value + "'.");
+							}
+							else
+							{
+								activeChar.sendSysMessage("Failed to hot-reload '" + value + "'. Previous version remains active.");
+							}
 						}
 						else
 						{
 							final int questId = Integer.parseInt(value);
-							ScriptManager.getInstance().reload(questId);
-							AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quest ID:" + questId + ".");
+							if (ScriptManager.getInstance().reload(questId))
+							{
+								AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Hot-reloaded Quest ID:" + questId + ".");
+							}
+							else
+							{
+								activeChar.sendSysMessage("Quest ID " + questId + " not found.");
+							}
 						}
 					}
 					else
@@ -446,6 +458,37 @@ public class AdminReload implements IAdminCommandHandler
 						ScriptManager.getInstance().reloadAllScripts();
 						activeChar.sendSysMessage("All scripts have been reloaded.");
 						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quests.");
+					}
+					break;
+				}
+				case "script":
+				{
+					if (st.hasMoreElements())
+					{
+						final String target = st.nextToken();
+						final long startNanos = System.nanoTime();
+						try
+						{
+							final java.nio.file.Path reloadedPath = ScriptEngine.getInstance().reloadScriptByNameOrPath(target);
+							if (reloadedPath != null)
+							{
+								final long elapsedMs = (System.nanoTime() - startNanos) / 1_000_000L;
+								AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Hot-reloaded script '" + reloadedPath.getFileName() + "' in " + elapsedMs + " ms (zero-downtime).");
+							}
+							else
+							{
+								activeChar.sendSysMessage("Script '" + target + "' not found under data/scripts.");
+							}
+						}
+						catch (Exception e)
+						{
+							LOGGER.log(Level.WARNING, "Failed to hot-reload script: " + target, e);
+							activeChar.sendSysMessage("Compilation/execution failed for '" + target + "'! Previous live version was preserved untouched.");
+						}
+					}
+					else
+					{
+						activeChar.sendSysMessage("Usage: //reload script <ClassName | relative/path.java>");
 					}
 					break;
 				}
@@ -588,6 +631,7 @@ public class AdminReload implements IAdminCommandHandler
 		new String[]{"Player Template", "admin_reload playertemplate"},
 		new String[]{"Quest", "admin_reload quest $value"},
 		new String[]{"Recipe", "admin_reload recipe"},
+		new String[]{"Script", "admin_reload script $value"},
 		new String[]{"Siege Schedule", "admin_reload siegeschedule"},
 		new String[]{"Skill", "admin_reload skill"},
 		new String[]{"Skill Learn", "admin_reload skilllearn"},

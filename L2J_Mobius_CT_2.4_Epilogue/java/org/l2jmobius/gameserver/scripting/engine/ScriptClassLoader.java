@@ -20,23 +20,37 @@
  */
 package org.l2jmobius.gameserver.scripting.engine;
 
+import java.util.Collections;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * A script class loader that accumulates all compiled classes.
- * @author Mobius
+ * A child-first disposable script class loader that defines newly compiled or modified
+ * script classes (including JEP 181 nestmate inner classes) while reusing unchanged
+ * loaded script classes across hot-reload batches.
+ * @author Mobius, HotReloadEngine
  */
 public class ScriptClassLoader extends ClassLoader
 {
-	private final ConcurrentHashMap<String, ScriptClassData> _compiledClasses = new ConcurrentHashMap<>();
+	private final ConcurrentHashMap<String, ScriptClassData> _compiledClasses;
+	private final ConcurrentHashMap<String, Class<?>> _loadedClasses;
+	private final Set<String> _reloadedTopLevelClasses;
 	
 	public ScriptClassLoader(ClassLoader parent)
 	{
+		this(parent, new ConcurrentHashMap<>(), new ConcurrentHashMap<>(), Collections.emptySet());
+	}
+	
+	public ScriptClassLoader(ClassLoader parent, ConcurrentHashMap<String, ScriptClassData> compiledClasses, ConcurrentHashMap<String, Class<?>> loadedClasses, Set<String> reloadedTopLevelClasses)
+	{
 		super(parent);
+		_compiledClasses = compiledClasses;
+		_loadedClasses = loadedClasses;
+		_reloadedTopLevelClasses = reloadedTopLevelClasses;
 	}
 	
 	/**
-	 * Adds compiled classes to this class loader.
+	 * Adds compiled classes to this class loader's backing store.
 	 * @param compiledClasses the compiled classes to add
 	 */
 	public void addCompiledClasses(Iterable<ScriptClassData> compiledClasses)
@@ -44,6 +58,56 @@ public class ScriptClassLoader extends ClassLoader
 		for (ScriptClassData compiledClass : compiledClasses)
 		{
 			_compiledClasses.put(compiledClass.getJavaName(), compiledClass);
+		}
+	}
+	
+	public static String getTopLevelClassName(String binaryName)
+	{
+		final int dollarIndex = binaryName.indexOf('$');
+		return (dollarIndex != -1) ? binaryName.substring(0, dollarIndex) : binaryName;
+	}
+	
+	@Override
+	protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException
+	{
+		synchronized (getClassLoadingLock(name))
+		{
+			// 1. Check if already defined by this batch class loader.
+			Class<?> c = findLoadedClass(name);
+			if (c == null)
+			{
+				final String topLevelName = getTopLevelClassName(name);
+				if (_reloadedTopLevelClasses.contains(topLevelName) && _compiledClasses.containsKey(name))
+				{
+					// Child-first: define newly compiled or modified script class (and its nestmates) in this loader.
+					c = findClass(name);
+					_loadedClasses.put(name, c);
+				}
+				else
+				{
+					// Reuse previously loaded unchanged script class if available.
+					c = _loadedClasses.get(name);
+					if (c == null)
+					{
+						if (_compiledClasses.containsKey(name))
+						{
+							c = findClass(name);
+							_loadedClasses.put(name, c);
+						}
+						else
+						{
+							c = getParent().loadClass(name);
+						}
+					}
+				}
+			}
+			
+			if (resolve)
+			{
+				resolveClass(c);
+			}
+			
+			return c;
 		}
 	}
 	
@@ -60,3 +124,4 @@ public class ScriptClassLoader extends ClassLoader
 		return super.findClass(name);
 	}
 }
+

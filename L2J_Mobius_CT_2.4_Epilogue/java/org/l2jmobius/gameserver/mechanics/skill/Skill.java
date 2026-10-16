@@ -1499,6 +1499,46 @@ public class Skill
 		effects.add(effect);
 	}
 	
+	/**
+	 * Hot-swaps any attached {@link AbstractEffect} instances matching the given handler name
+	 * with fresh instances created from the newly registered {@link org.l2jmobius.gameserver.handler.EffectHandler} class.
+	 * @param handlerName the simple class name of the reloaded effect handler
+	 * @return the number of effect instances replaced on this skill
+	 */
+	public int replaceEffectsByHandlerName(String handlerName)
+	{
+		if ((_effectLists == null) || _effectLists.isEmpty())
+		{
+			return 0;
+		}
+		
+		int replaced = 0;
+		for (List<AbstractEffect> effects : _effectLists.values())
+		{
+			if ((effects == null) || effects.isEmpty())
+			{
+				continue;
+			}
+			
+			for (int i = 0; i < effects.size(); i++)
+			{
+				final AbstractEffect effect = effects.get(i);
+				if ((effect != null) && effect.getClass().getSimpleName().equals(handlerName))
+				{
+					effects.set(i, effect.recreateWithCurrentHandler());
+					replaced++;
+				}
+			}
+		}
+		
+		if (replaced > 0)
+		{
+			_effectTypes = null;
+		}
+		
+		return replaced;
+	}
+	
 	public void attach(Condition c, boolean itemOrWeapon)
 	{
 		if (itemOrWeapon)
