@@ -340,6 +340,12 @@ public class SystemMessage extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return (_smId != null) && (_smId.getDefaultLocalisation() != null);
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.SYSTEM_MESSAGE.writeId(this, buffer);
@@ -370,6 +376,23 @@ public class SystemMessage extends ServerPacket
 					}
 				}
 			}
+		}
+		
+		// Protocol 148 (2009-09-28 client) systemmsg-e.dat ends at 3092 before 6001;
+		// render Protocol-152-only IDs (e.g. 3094, 3108, 3206, 3207) as formatted text via S1_2.
+		if (!isProtocol152(client) && (_smId != null) && (_smId.getDefaultLocalisation() != null))
+		{
+			final Object[] params = new Object[_paramIndex];
+			for (int i = 0; i < _paramIndex; i++)
+			{
+				params[i] = _params[i].getValue();
+			}
+			
+			buffer.writeInt(SystemMessageId.S1_2.getId());
+			buffer.writeInt(1);
+			buffer.writeInt(TYPE_TEXT);
+			buffer.writeString(_smId.getDefaultLocalisation().getLocalisation(params));
+			return;
 		}
 		
 		buffer.writeInt(_smId.getId());

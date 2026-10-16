@@ -9125,6 +9125,10 @@ public class SystemMessageId
 					final SystemMessageId smId = new SystemMessageId(annotation.id());
 					smId.setName(field.getName());
 					smId.setParamCount(parseMessageParameters(field.getName()));
+					if ((annotation.id() > 3092) && (annotation.id() < 6000) && !annotation.message().isEmpty())
+					{
+						smId.setDefaultLocalisation(new SMLocalisation("en", annotation.message()));
+					}
 					field.set(null, smId);
 					VALUES.put(smId.getId(), smId);
 				}
@@ -9271,6 +9275,7 @@ public class SystemMessageId
 	private final int _id;
 	private String _name;
 	private byte _params;
+	private SMLocalisation _defaultLocalisation;
 	private SMLocalisation[] _localisations;
 	private SystemMessage _staticSystemMessage;
 	
@@ -9283,6 +9288,16 @@ public class SystemMessageId
 	public int getId()
 	{
 		return _id;
+	}
+	
+	public SMLocalisation getDefaultLocalisation()
+	{
+		return _defaultLocalisation;
+	}
+	
+	public void setDefaultLocalisation(SMLocalisation defaultLocalisation)
+	{
+		_defaultLocalisation = defaultLocalisation;
 	}
 	
 	private void setName(String name)

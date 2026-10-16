@@ -151,17 +151,21 @@ public final class AdminBoardManager
 	 */
 	public void endAdminCommand(Player player, String fullCommand, boolean fromBypass)
 	{
+		if (player != null)
+		{
+			final AdminBoardSession s = _sessions.get(player.getObjectId());
+			if ((s != null) && (s.commandDepth > 0))
+			{
+				s.commandDepth--;
+			}
+		}
+		
 		if (!canUseAdminBoard(player))
 		{
 			return;
 		}
 		
 		final AdminBoardSession session = getSession(player);
-		if (session.commandDepth > 0)
-		{
-			session.commandDepth--;
-		}
-		
 		if (fromBypass && session.boardOpen && (session.renderedCount == 0) && shouldRefreshBoardAfter(fullCommand))
 		{
 			refreshCurrentView(player);
@@ -436,16 +440,7 @@ public final class AdminBoardManager
 		}
 		
 		final AdminBoardSession session = getSession(player);
-		if (session.sendingAdminCbHtml)
-		{
-			return false;
-		}
-		
-		final boolean isAdminContent = (session.commandDepth > 0)
-			|| html.contains("bypass admin_")
-			|| html.contains("bypass -h admin_")
-			|| html.contains("link admin/");
-		if (!isAdminContent)
+		if (session.sendingAdminCbHtml || (session.commandDepth <= 0))
 		{
 			return false;
 		}
