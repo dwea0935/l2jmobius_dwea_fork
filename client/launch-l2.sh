@@ -45,7 +45,7 @@ GAMEPAD_MODE="keep"    # keep | enable | disable
 AUTOLOGIN_MODE=""      # enable | disable | ""
 AUTOLOGIN_USER=""
 AUTOLOGIN_PASS=""
-AUTOLOGIN_SLOT="0"
+AUTOLOGIN_SLOT=""      # "" or -1 = stop at Character Select if -login/-pass given without -slot; 0..7 = enter world
 ENABLE_HUD="0"
 CHECK_ONLY="0"
 USE_GUI="1"            # 1 = show PyQt6 visual launcher before starting l2.exe, 0 = launch immediately
@@ -61,7 +61,7 @@ Connection & Account Flags:
   -server, --server <IP>         Set ServerAddr in system/l2.ini (e.g. 127.0.0.1)
   -login,  --login <USER>        Set auto-login account username (enables AutoLogOn)
   -pass,   --pass <PASS>         Set auto-login account password
-  -slot,   --slot <0-6>          Character slot index for auto-login (default: 0)
+  -slot,   --slot <0-6|-1>       Character slot index for auto-login (-1 or omit = stop at Character Select)
   --autologin <USER> <PASS> [SLOT]
                                  Shorthand to set username, password, and optional slot
   --no-autologin                 Disable auto-login in system/l2.ini
@@ -125,10 +125,11 @@ while [[ $# -gt 0 ]]; do
             AUTOLOGIN_MODE="enable"
             AUTOLOGIN_USER="$2"
             AUTOLOGIN_PASS="$3"
-            if [[ $# -ge 4 && "$4" =~ ^[0-7]$ ]]; then
+            if [[ $# -ge 4 && "$4" =~ ^(-1|[0-7])$ ]]; then
                 AUTOLOGIN_SLOT="$4"
                 shift 4
             else
+                AUTOLOGIN_SLOT="-1"
                 shift 3
             fi
             ;;
@@ -483,8 +484,7 @@ if al_mode == "enable":
         text = set_ini_key(text, "AutoLogOn", "L2ID", al_user)
     if al_pass:
         text = set_ini_key(text, "AutoLogOn", "L2Passwd", al_pass)
-    if al_slot != "":
-        text = set_ini_key(text, "AutoLogOn", "L2Slot", al_slot)
+    text = set_ini_key(text, "AutoLogOn", "L2Slot", al_slot if al_slot != "" else "-1")
 elif al_mode == "disable":
     text = set_ini_key(text, "AutoLogOn", "IsL2AutoLogOn", "False")
 
@@ -751,11 +751,13 @@ chk_show_pass = QCheckBox("Show")
 chk_show_pass.toggled.connect(lambda c: ed_pass.setEchoMode(QLineEdit.EchoMode.Normal if c else QLineEdit.EchoMode.Password))
 
 sp_slot = QSpinBox()
-sp_slot.setRange(0, 7)
+sp_slot.setRange(-1, 7)
+sp_slot.setSpecialValueText("None (-1: Stop at Character Select)")
 try:
-    sp_slot.setValue(int(get_val(l2_text, "L2Slot", "0")))
+    raw_slot = get_val(l2_text, "L2Slot", "-1").strip()
+    sp_slot.setValue(int(raw_slot) if raw_slot != "" else -1)
 except ValueError:
-    sp_slot.setValue(0)
+    sp_slot.setValue(-1)
 
 conn_grid.addWidget(QLabel("Server IP (-server):"), 0, 0)
 conn_grid.addWidget(ed_server, 0, 1)
@@ -930,8 +932,9 @@ def build_cli_string():
         parts += [
             "-login", shlex.quote(ed_user.text().strip()),
             "-pass", shlex.quote(ed_pass.text()),
-            "-slot", str(sp_slot.value())
         ]
+        if sp_slot.value() >= 0:
+            parts += ["-slot", str(sp_slot.value())]
     else:
         parts.append("--no-autologin")
     parts.append("--gamepad" if chk_gamepad.isChecked() else "--no-gamepad")

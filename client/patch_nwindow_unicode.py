@@ -79,7 +79,7 @@ for ofs, text in [
     encoded = (text + "\0").encode("utf-16le")
     AUTOLOGIN_DATA_BLOCK[ofs : ofs + len(encoded)] = encoded
 
-# 460-byte PIC code cave at VA 0x102dbe20..0x102dbfec (file offset 0x002DB220..0x002DB3EC)
+# 477-byte PIC code cave at VA 0x102dbe20..0x102dbffd (file offset 0x002DB220..0x002DB3FD)
 AUTOLOGIN_CAVE_BYTES = bytes.fromhex(
     # GetBaseEbx (VA 0x102dbe20): returns runtime VA of BASE (0x104ba9c0) in ebx
     "e800000000"            # call 0x102dbe25
@@ -116,7 +116,8 @@ AUTOLOGIN_CAVE_BYTES = bytes.fromhex(
     "57"                    # push edi
     "31c0"                  # xor eax, eax
     "8945fc"                # mov [ebp - 0x04], eax (bAuto = 0)
-    "8945f8"                # mov [ebp - 0x08], eax (nSlot = 0)
+    "48"                    # dec eax (eax = -1)
+    "8945f8"                # mov [ebp - 0x08], eax (nSlot = -1 default: stop at lobby if empty/omitted)
     "8d4dec"                # lea ecx, [ebp - 0x14] (fstrID)
     "ff93bc1ae2ff"          # call dword ptr [ebx - 0x1de544] (FString::FString)
     "8d4de0"                # lea ecx, [ebp - 0x20] (fstrPwd)
@@ -125,23 +126,30 @@ AUTOLOGIN_CAVE_BYTES = bytes.fromhex(
     "8b38"                  # mov edi, [eax] (*GConfig)
     "8d4dfc"                # lea ecx, [ebp - 0x04] (&bAuto)
     "66b800b4"              # mov ax, 0xb400 (ah = -0x4c = L"IsL2AutoLogOn", al = 0x00 = GetBool)
-    "e895ffffff"            # call CallGConfig (0x102dbe2d)
+    "e894ffffff"            # call CallGConfig (0x102dbe2d)
     "837dfc00"              # cmp dword ptr [ebp - 0x04], 0
-    "7477"                  # je 0x102dbf15 (.cleanup)
+    "0f8492000000"          # je 0x102dbf35 (.cleanup)
+    "8d4dec"                # lea ecx, [ebp - 0x14] (check if L2Slot string is non-empty)
+    "66b80cec"              # mov ax, 0xec0c (ah = -0x14 = L"L2Slot", al = 0x0c = GetString)
+    "e87effffff"            # call CallGConfig (0x102dbe2d)
+    "8d4dec"                # lea ecx, [ebp - 0x14]
+    "ff93b81ae2ff"          # call dword ptr [ebx - 0x1de548] (FString::operator*)
+    "66833800"              # cmp word ptr [eax], 0 (is L2Slot= empty?)
+    "740c"                  # je 0x102dbeca (keep nSlot = -1)
     "8d4df8"                # lea ecx, [ebp - 0x08] (&nSlot)
     "66b804ec"              # mov ax, 0xec04 (ah = -0x14 = L"L2Slot", al = 0x04 = GetInt)
-    "e883ffffff"            # call CallGConfig (0x102dbe2d)
+    "e863ffffff"            # call CallGConfig (0x102dbe2d)
     "8b45f8"                # mov eax, [ebp - 0x08]
     "894318"                # mov [ebx + 0x18], eax (STATE_Slot = nSlot)
     "8d4dec"                # lea ecx, [ebp - 0x14] (&fstrID)
     "66b80cd0"              # mov ax, 0xd00c (ah = -0x30 = L"L2ID", al = 0x0c = GetString)
-    "e871ffffff"            # call CallGConfig (0x102dbe2d)
+    "e851ffffff"            # call CallGConfig (0x102dbe2d)
     "8d4de0"                # lea ecx, [ebp - 0x20] (&fstrPwd)
     "66b80cda"              # mov ax, 0xda0c (ah = -0x26 = L"L2Passwd", al = 0x0c = GetString)
-    "e865ffffff"            # call CallGConfig (0x102dbe2d)
+    "e845ffffff"            # call CallGConfig (0x102dbe2d)
     "8b8ee4010000"          # mov ecx, [esi + 0x1e4] (m_pIDEditBox)
     "85c9"                  # test ecx, ecx
-    "7410"                  # je 0x102dbee2
+    "7410"                  # je 0x102dbf02
     "81c100020000"          # add ecx, 0x200
     "8d45ec"                # lea eax, [ebp - 0x14]
     "50"                    # push eax
@@ -150,17 +158,17 @@ AUTOLOGIN_CAVE_BYTES = bytes.fromhex(
     "ff93b81ae2ff"          # call dword ptr [ebx - 0x1de548] (FString::operator*)
     "89c7"                  # mov edi, eax (pwd_wstr)
     "66833f00"              # cmp word ptr [edi], 0
-    "7422"                  # je 0x102dbf15 (.cleanup)
+    "7422"                  # je 0x102dbf35 (.cleanup)
     "8d4dec"                # lea ecx, [ebp - 0x14]
     "ff93b81ae2ff"          # call dword ptr [ebx - 0x1de548] (FString::operator*)
     "66833800"              # cmp word ptr [eax], 0
-    "7413"                  # je 0x102dbf15 (.cleanup)
+    "7413"                  # je 0x102dbf35 (.cleanup)
     "c6431401"              # mov byte ptr [ebx + 0x14], 1 (STATE_Active = 1)
     "6a00"                  # push 0
     "57"                    # push edi (pwd_wstr)
     "50"                    # push eax (id_wstr)
     "ffb3e83b0000"          # push dword ptr [ebx + 0x3be8] (GConsoleWnd @ 0x104be5a8)
-    "e84be2f3ff"            # call 0x1021a160 (NConsoleWnd::RequestAuthLogin)
+    "e82be2f3ff"            # call 0x1021a160 (NConsoleWnd::RequestAuthLogin)
     "8d4de0"                # lea ecx, [ebp - 0x20]
     "ff93c81ae2ff"          # call dword ptr [ebx - 0x1de538] (FString::~FString)
     "8d4dec"                # lea ecx, [ebp - 0x14]
@@ -170,46 +178,42 @@ AUTOLOGIN_CAVE_BYTES = bytes.fromhex(
     "5d"                    # pop ebp
     "5b"                    # pop ebx
     "c3"                    # ret
-    # Stage2_SkipEula (VA 0x102dbf2d): hooked at 0x1024e924 in NConsoleWnd::AcceptLogin
+    # Stage2_SkipEula (VA 0x102dbf4d): hooked at 0x1024e924 in NConsoleWnd::AcceptLogin
     "53"                    # push ebx
-    "e8edfeffff"            # call GetBaseEbx (0x102dbe20)
+    "e8cdfeffff"            # call GetBaseEbx (0x102dbe20)
     "807b1401"              # cmp byte ptr [ebx + 0x14], 1 (STATE_Active == 1?)
     "5b"                    # pop ebx
-    "7503"                  # jne 0x102dbf3d
+    "7503"                  # jne 0x102dbf5d
     "39db"                  # cmp ebx, ebx (ZF=1 -> jle 0x1024e9fa taken!)
     "c3"                    # ret
     "83c0ff"                # add eax, -1
     "39d8"                  # cmp eax, ebx
     "c3"                    # ret
-    # Stage3_ServerSelect (VA 0x102dbf43): hooked at 0x101274d6 in NCServerSelectWnd::EndServerInfo
+    # Stage3_ServerSelect (VA 0x102dbf63): hooked at 0x101274d6 in NCServerSelectWnd::EndServerInfo
     "8b8238020000"          # mov eax, [edx + 0x238]
     "ffd0"                  # call eax (NCServerSelectWnd::ShowWindow)
     "53"                    # push ebx
-    "e8cffeffff"            # call GetBaseEbx (0x102dbe20)
+    "e8affeffff"            # call GetBaseEbx (0x102dbe20)
     "807b1401"              # cmp byte ptr [ebx + 0x14], 1 (STATE_Active == 1?)
-    "752e"                  # jne 0x102dbf85
+    "7521"                  # jne 0x102dbf98
     "c6431402"              # mov byte ptr [ebx + 0x14], 2 (STATE_Active = 2)
     "8b8ee4010000"          # mov ecx, [esi + 0x1e4] (m_pServerList)
-    "85c9"                  # test ecx, ecx
-    "7419"                  # je 0x102dbf7e
     "83b95002000000"        # cmp dword ptr [ecx + 0x250], 0
-    "7d10"                  # jge 0x102dbf7e
-    "83b91c02000000"        # cmp dword ptr [ecx + 0x21c], 0
-    "7e07"                  # jle 0x102dbf7e
+    "7d07"                  # jge 0x102dbf91
     "83a15002000000"        # and dword ptr [ecx + 0x250], 0 (select row 0)
     "89f1"                  # mov ecx, esi
-    "e83be8e4ff"            # call 0x1012a7c0 (NCServerSelectWnd::OnLoginBtnClick)
+    "e828e8e4ff"            # call 0x1012a7c0 (NCServerSelectWnd::OnLoginBtnClick)
     "5b"                    # pop ebx
     "c3"                    # ret
-    # Stage4a_RecvCharInfo (VA 0x102dbf87): hooked at 0x1024e4bf in NConsoleWnd::ReceiveCharacterInfo
-    "e8b4a1e6ff"            # call 0x10146140 (NCLobbyWnd::ClearCharacterList)
+    # Stage4a_RecvCharInfo (VA 0x102dbf9a): hooked at 0x1024e4bf in NConsoleWnd::ReceiveCharacterInfo
+    "e8a1a1e6ff"            # call 0x10146140 (NCLobbyWnd::ClearCharacterList)
     "53"                    # push ebx
-    "e88efeffff"            # call GetBaseEbx (0x102dbe20)
+    "e87bfeffff"            # call GetBaseEbx (0x102dbe20)
     "807b1402"              # cmp byte ptr [ebx + 0x14], 2 (STATE_Active == 2?)
-    "7514"                  # jne 0x102dbfac
+    "7514"                  # jne 0x102dbfbf
     "8b4508"                # mov eax, [ebp + 8] (numChars)
     "85c0"                  # test eax, eax
-    "7e09"                  # jle 0x102dbfa8
+    "7e09"                  # jle 0x102dbfbb
     "89431c"                # mov [ebx + 0x1c], eax (STATE_TargetChars = numChars)
     "c6431403"              # mov byte ptr [ebx + 0x14], 3 (STATE_Active = 3)
     "5b"                    # pop ebx
@@ -217,28 +221,27 @@ AUTOLOGIN_CAVE_BYTES = bytes.fromhex(
     "c6431400"              # mov byte ptr [ebx + 0x14], 0 (STATE_Active = 0)
     "5b"                    # pop ebx
     "c3"                    # ret
-    # Stage4b_AddCharInfo (VA 0x102dbfae): hooked at 0x1024e406 in NConsoleWnd::AddCharacterInfo
-    "e80daae6ff"            # call 0x101469c0 (NCLobbyWnd::AddCharacter)
+    # Stage4b_AddCharInfo (VA 0x102dbfc1): hooked at 0x1024e406 in NConsoleWnd::AddCharacterInfo
+    "e8faa9e6ff"            # call 0x101469c0 (NCLobbyWnd::AddCharacter)
     "53"                    # push ebx
-    "e867feffff"            # call GetBaseEbx (0x102dbe20)
+    "e854feffff"            # call GetBaseEbx (0x102dbe20)
     "807b1403"              # cmp byte ptr [ebx + 0x14], 3 (STATE_Active == 3?)
-    "752b"                  # jne 0x102dbfea
+    "7529"                  # jne 0x102dbffb
     "8b86e4010000"          # mov eax, [esi + 0x1e4] (addedChars)
     "3b431c"                # cmp eax, [ebx + 0x1c] (STATE_TargetChars)
-    "7c20"                  # jl 0x102dbfea
+    "7c1e"                  # jl 0x102dbffb
     "c6431400"              # mov byte ptr [ebx + 0x14], 0 (consume one-shot auto-login!)
     "8b4b18"                # mov ecx, [ebx + 0x18] (STATE_Slot)
     "85c9"                  # test ecx, ecx
-    "7c04"                  # jl 0x102dbfd9
+    "7c13"                  # jl 0x102dbffb (if L2Slot < 0 or empty, stop at Character Select!)
     "39c1"                  # cmp ecx, eax
-    "7c02"                  # jl 0x102dbfdb
-    "31c9"                  # xor ecx, ecx
+    "7d0f"                  # jge 0x102dbffb (if L2Slot >= numChars, stop at Character Select!)
     "51"                    # push ecx (save slot)
     "56"                    # push esi (NCLobbyWnd*)
-    "e89ea2e6ff"            # call 0x10146280 (NCLobbyWnd::SelectCharacter)
+    "e88da2e6ff"            # call 0x10146280 (NCLobbyWnd::SelectCharacter)
     "59"                    # pop ecx (restore slot)
     "89f2"                  # mov edx, esi (NCLobbyWnd*)
-    "e80696e6ff"            # call 0x101455f0 (NCLobbyWnd::GameStart)
+    "e8f595e6ff"            # call 0x101455f0 (NCLobbyWnd::GameStart)
     "5b"                    # pop ebx
     "c3"                    # ret
 )
@@ -337,31 +340,31 @@ CODE_PATCHES = [
         "offset": 0x0024DD24,
         "rva": 0x0024E924,
         "orig": bytes.fromhex("83c0ff3bc3"),
-        "repl": bytes.fromhex("e804d60800"),
+        "repl": bytes.fromhex("e824d60800"),
     },
     {
         "name": "AutoLogOn Stage 3 Hook in NCServerSelectWnd::EndServerInfo (VA 0x101274d6)",
         "offset": 0x001268D6,
         "rva": 0x001274D6,
         "orig": bytes.fromhex("8b8238020000ffd0"),
-        "repl": bytes.fromhex("e8684a1b00909090"),
+        "repl": bytes.fromhex("e8884a1b00909090"),
     },
     {
         "name": "AutoLogOn Stage 4a Hook in NConsoleWnd::ReceiveCharacterInfo (VA 0x1024e4bf)",
         "offset": 0x0024D8BF,
         "rva": 0x0024E4BF,
         "orig": bytes.fromhex("e87c7cefff"),
-        "repl": bytes.fromhex("e8c3da0800"),
+        "repl": bytes.fromhex("e8d6da0800"),
     },
     {
         "name": "AutoLogOn Stage 4b Hook in NConsoleWnd::AddCharacterInfo (VA 0x1024e406)",
         "offset": 0x0024D806,
         "rva": 0x0024E406,
         "orig": bytes.fromhex("e8b585efff"),
-        "repl": bytes.fromhex("e8a3db0800"),
+        "repl": bytes.fromhex("e8b6db0800"),
     },
     {
-        "name": "AutoLogOn PIC Code Cave in .text slack (VA 0x102dbe20..0x102dbfec)",
+        "name": "AutoLogOn PIC Code Cave in .text slack (VA 0x102dbe20..0x102dbffd)",
         "offset": 0x002DB220,
         "rva": 0x002DBE20,
         "orig": b"\x00" * len(AUTOLOGIN_CAVE_BYTES),
