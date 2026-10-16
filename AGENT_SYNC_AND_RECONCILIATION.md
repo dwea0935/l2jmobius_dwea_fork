@@ -284,7 +284,7 @@ Following the 3rd Agent's protocol-differentiation audit, the user selected **Op
 
 ### 5.2 Client Patch (`patch_nwindow_unicode.py` → `system/nwindow.dll`)
 - **Base Binary:** Clean `2009-09-28` (`Protocol 148`) `NWindow.dll` (`5,425,684` bytes, original SHA-256 `dcd951c811002318f3164f1221f1b8c9d7466c17f3105c0b7ece49cb0e3bbb45`, backed up to `system/backup_encrypted/nwindow.dll.orig`).
-- **Patched Binary:** `5,425,684` bytes (**0-byte size delta**), SHA-256 `1f3f9e613beedb7b2a314651353ae86578f27ef5130d99b3208427a68defe81f`:
+- **Patched Binary:** `5,425,684` bytes (**0-byte size delta**), SHA-256 `239d5d451c9c9db983efc5494e706f1bb8c0acebeb92b4091aaa78c3ba810b3b`:
   1. **`NCEditBox::OnChar` (`VA 0x100d44ee..0x100d450c`, file offset `0x000D38EE`, 30 bytes):**
      - Replaced `mov ecx,[0x102dc384]; cmp [ecx],8; jne; lea edx,[ebx-0x410]; cmp edx,0x3f; ja` with `movzx eax,bx; sub ah,3; cmp eax,0x6f; jbe 0x100d482e; add ax,0x260; cmp ax,0x45f; ja 0x100d482e; nop` (`0fb7c380ec0383f86f0f863103000066056002663d5f040f872303000090`).
      - Unconditionally allows **`U+00A0..U+04FF`** (Latin-1 Supplement, Latin Extended-A/B, IPA, Greek, and full Cyrillic) while keeping `Language=0` (`*-e.dat`), and rejects Combining Diacritical Marks **`U+0300..U+036F`** to prevent "Zalgo" stacking spam.
@@ -300,3 +300,34 @@ Following the 3rd Agent's protocol-differentiation audit, the user selected **Op
 ### 5.3 Server-Side Naming vs Chat/Mail/Title Policy (`360e662efb3`)
 - **Names (Strict English-Only `[A-Za-z0-9]`):** Enforced server-side across character creation (`CnameTemplate`), pet names (`PetNameTemplate`), clan names (`ClanNameTemplate`), sub-pledge names, and alliance names in `game/config/Server.ini` and packet handlers (`360e662efb3`).
 - **Chat, Whisper, Mail, Titles, Community Board, Petitions, HTML Inputs:** Full UTF-16 (`U+00A0..U+04FF` and standard ASCII) supported end-to-end (client UTF-16LE packets ↔ Java `String` ↔ MariaDB `utf8mb4`).
+
+---
+
+## 6. `[AutoLogOn]` 4-Stage One-Shot State Machine (`NWindow.dll`) & Modernized `system/user.ini`
+
+### 6.1 Why `[AutoLogOn]` in `l2.ini` Previously Did Nothing
+- In the retail `2009-09-28` (`Protocol 148`) client binaries (`L2.bin`, `Engine.dll`, `NWindow.dll`), the config keys `IsL2AutoLogOn`, `L2ID`, `L2Passwd`, and `L2Slot` in `l2.ini` (`[AutoLogOn]`) were completely stripped from the retail C++ build (zero references to those strings exist in any `.exe`, `.dll`, or `.u` file).
+- Furthermore, the login flow in Gracia Epilogue is driven by `NWindow.dll`'s C++ `UIStateManager` (`LoginState` → `EulaMsgState` → `ServerListState` → `CharacterSelectState`), not UnrealScript.
+
+### 6.2 4-Stage One-Shot PIC State Machine in `NWindow.dll` (`patch_nwindow_unicode.py`)
+- **ASLR / PE `.reloc` Safety:** Because `NWindow.dll` (`ImageBase = 0x10000000`) is always relocated at runtime by Wine/Windows, the entire 460-byte `.text` code cave (`VA 0x102dbe20..0x102dbfec`, file offset `0x002DB220..0x002DB3EC`) is written as **100% Position-Independent Code (PIC)** using PC-relative `call rel32` and a runtime base resolver `GetBaseEbx` (`call +0; pop ebx; lea ebx, [ebx + (0x104ba9c0 - .Lpic0)]`). All 5 hook sites and the cave have **zero active `.reloc` overlaps** (verified across all `210,170` active `.reloc` entries).
+- **PE `.text` `Misc.VirtualSize` (`file offset 0x00000218`):** Extended from `0x002dae1c` to `0x002db000` (matching `SizeOfRawData = 0x002db000`) so the PE loader maps the `.text` slack cave `0x102dbe20..0x102dc000` as executable.
+- **`.data` Strings & State Block (`VA 0x104ba960..0x104ba9e0`, file offset `0x004B9160..0x004B91E0`, 128 bytes):**
+  - Stores UTF-16LE strings `L"AutoLogOn"`, `L"IsL2AutoLogOn"`, `L"L2ID"`, `L"L2Passwd"`, `L"L2Slot"`, `L"l2.ini"`, and 4 state variables: `STATE_Done` (`0x104ba9d0`), `STATE_Active` (`0x104ba9d4`), `STATE_Slot` (`0x104ba9d8`), and `STATE_TargetChars` (`0x104ba9dc`).
+- **4-Stage Flow:**
+  1. **Stage 1 (`NCAuthWnd::ShowWindow` @ `VA 0x1014336a`, file offset `0x0014276A`):**
+     - Calls `NCAuthWnd::InitKeyCrypt` (`0x10143170`).
+     - Checks `STATE_Done`: if already `1` (e.g., user logged out to login screen or login failed), sets `STATE_Active = 0` and returns immediately so it never loops.
+     - On first launch (`STATE_Done == 0`), sets `STATE_Done = 1` and queries `*GConfig` (`*0x102dc4b4`) for `IsL2AutoLogOn` (`vtable[0x00]` `GetBool`), `L2Slot` (`vtable[0x04]` `GetInt`), `L2ID` (`vtable[0x0c]` `GetString`), and `L2Passwd` (`vtable[0x0c]` `GetString`) in `[AutoLogOn]` of `l2.ini`.
+     - If `IsL2AutoLogOn` is true and both `L2ID` and `L2Passwd` are non-empty, copies `L2ID` into `m_pIDEditBox` (`[esi+0x1e4]+0x200`), sets `STATE_Active = 1`, and calls `NConsoleWnd::RequestAuthLogin(GConsoleWnd, id_wstr, pwd_wstr, 0)` (`0x1021a160`).
+  2. **Stage 2 (`NConsoleWnd::AcceptLogin` @ `VA 0x1024e924`, file offset `0x0024DD24`):**
+     - When `STATE_Active == 1`, sets `ZF = 1` (`cmp ebx, ebx`) so `jle 0x1024e9fa` takes the native EULA-skip branch directly to `ServerListState` + `NConsoleWnd::RequestServerList`.
+  3. **Stage 3 (`NCServerSelectWnd::EndServerInfo` @ `VA 0x101274d6`, file offset `0x001268D6`):**
+     - After `NCServerSelectWnd::ShowWindow` (`vtable[0x238]`), if `STATE_Active == 1`, advances to `STATE_Active = 2`, ensures `m_pServerList` (`[esi+0x1e4]`) has a selected server row (`[ecx+0x250] = 0` if `< 0` and row count `[ecx+0x21c] > 0`), and calls `NCServerSelectWnd::OnLoginBtnClick` (`0x1012a7c0`).
+  4. **Stage 4a (`NConsoleWnd::ReceiveCharacterInfo` @ `VA 0x1024e4bf`) & Stage 4b (`NConsoleWnd::AddCharacterInfo` @ `VA 0x1024e406`):**
+     - In `ReceiveCharacterInfo(int numChars)`, if `STATE_Active == 2` and `numChars > 0`, records `STATE_TargetChars = numChars` and advances to `STATE_Active = 3` (if `numChars <= 0`, resets `STATE_Active = 0` at the empty character lobby so the player can create a character).
+     - In `AddCharacterInfo`, after `NCLobbyWnd::AddCharacter` (`0x101469c0`), when `STATE_Active == 3` and added characters `[esi+0x1e4] >= STATE_TargetChars`, consumes the one-shot state (`STATE_Active = 0` so subsequent manual `Restart` to character lobby never re-triggers auto-enter), clamps `L2Slot` (`STATE_Slot`) to `[0, numChars - 1]`, and calls `NCLobbyWnd::SelectCharacter` (`0x10146280`) followed by `NCLobbyWnd::GameStart` (`0x101455f0`).
+
+### 6.3 Modernized `system/user.ini` Restoration
+- Restored the modernized [`system/user.ini`](file:///home/dwea/Projects/L2/Client%20Lineage%202%20Gracia%20Epilogue/system/user.ini) (`30,784` bytes, translated comments, Hall-Effect/DualSense `DeadZone=0.07`, unbound `JoyZ` L2/R2 trigger axis to stop camera spinning, D-pad bindings `PovUp`/`PovDown`/`PovLeft`/`PovRight`, and `NextTargetMode=0` `3000`-unit target cycling) from commit `8ced22d75e5` to both `Client Lineage 2 Gracia Epilogue/system/user.ini` and `l2jmobius_dwea_fork/client/system/user.ini`.
+
