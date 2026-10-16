@@ -22,20 +22,24 @@ package handlers.chat.commands.admin;
 
 import java.util.StringTokenizer;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.entity.Location;
 import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerAction;
 import org.l2jmobius.gameserver.entity.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.entity.zone.type.NpcSpawnTerritory;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
+import org.l2jmobius.gameserver.managers.ZoneBuildManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
+import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**
- * Small typo fix by Zoey76 24/02/2011
+ * Unified Zone Inspector & Zone Builder handler.
  */
 public class AdminZone implements IAdminCommandHandler
 {
@@ -43,7 +47,12 @@ public class AdminZone implements IAdminCommandHandler
 	{
 		"admin_zone_check",
 		"admin_zone_visual",
-		"admin_zone_visual_clear"
+		"admin_zone_visual_clear",
+		"admin_zone_build",
+		"admin_zone_build_save",
+		"admin_zone_build_delete",
+		"admin_zone_build_toggle",
+		"admin_zone_build_clear"
 	};
 	
 	@Override
@@ -54,12 +63,59 @@ public class AdminZone implements IAdminCommandHandler
 			return false;
 		}
 		
+		if (command.equals("admin_zone_build"))
+		{
+			sendZoneBuilderHtml(activeChar);
+			return true;
+		}
+		else if (command.startsWith("admin_zone_build_toggle"))
+		{
+			if (activeChar.getTeleMode() == 3)
+			{
+				activeChar.setTeleMode(0);
+				activeChar.sendMessage("Draw zone disabled. You can move.");
+			}
+			else
+			{
+				activeChar.setTeleMode(3);
+				activeChar.sendMessage("Draw zone active. Click on point to record.");
+			}
+			
+			sendZoneBuilderHtml(activeChar);
+			return true;
+		}
+		else if (command.startsWith("admin_zone_build_clear"))
+		{
+			ZoneBuildManager.getInstance().clearZone(activeChar);
+			sendZoneBuilderHtml(activeChar);
+			return true;
+		}
+		else if (command.startsWith("admin_zone_build_delete"))
+		{
+			final StringTokenizer st = new StringTokenizer(command);
+			st.nextToken();
+			if (st.hasMoreTokens())
+			{
+				final String nextT = st.nextToken();
+				if (StringUtil.isNumeric(nextT))
+				{
+					final int entry = Integer.parseInt(nextT);
+					ZoneBuildManager.getInstance().deleteEntry(activeChar, entry);
+					sendZoneBuilderHtml(activeChar);
+					return true;
+				}
+			}
+			return false;
+		}
+		else if (command.equals("admin_zone_build_save"))
+		{
+			activeChar.addAction(PlayerAction.ADMIN_SAVE_ZONE);
+			activeChar.sendPacket(new ConfirmDlg("Do you wish to save the zone?"));
+			return true;
+		}
+		
 		final StringTokenizer st = new StringTokenizer(command, " ");
-		final String actualCommand = st.nextToken(); // Get actual command
-		
-		// String val = "";
-		// if (st.countTokens() >= 1) {val = st.nextToken();}
-		
+		final String actualCommand = st.nextToken();
 		if (actualCommand.equalsIgnoreCase("admin_zone_check"))
 		{
 			showHtml(activeChar);
@@ -67,7 +123,6 @@ public class AdminZone implements IAdminCommandHandler
 			getGeoRegionXY(activeChar);
 			activeChar.sendSysMessage("Closest Town: " + MapRegionData.getInstance().getClosestTownName(activeChar));
 			
-			// Prevent exit instance variable deletion.
 			if (!activeChar.isInInstance())
 			{
 				Location loc;
@@ -111,6 +166,15 @@ public class AdminZone implements IAdminCommandHandler
 		}
 		
 		return true;
+	}
+	
+	private void sendZoneBuilderHtml(Player activeChar)
+	{
+		final NpcHtmlMessage html = new NpcHtmlMessage();
+		html.setFile(activeChar, "data/html/admin/zone_builder.htm");
+		html.replace("%paths%", ZoneBuildManager.getInstance().getPathsForHtml(activeChar));
+		html.replace("%movement%", activeChar.getTeleMode() == 3 ? "Disable Draw" : "Enable Draw");
+		activeChar.sendPacket(html);
 	}
 	
 	private void showHtml(Player activeChar)

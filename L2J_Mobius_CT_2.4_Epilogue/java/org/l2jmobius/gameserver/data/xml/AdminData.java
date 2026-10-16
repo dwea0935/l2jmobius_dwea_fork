@@ -151,21 +151,24 @@ public class AdminData implements IXmlReader
 	 */
 	public boolean hasAccess(String adminCommand, AccessLevel accessLevel)
 	{
-		AccessRight accessRight = _adminCommandAccessRights.get(adminCommand);
+		if ((accessLevel == null) || !accessLevel.hasAdminAccess())
+		{
+			return false;
+		}
+		
+		final String baseCommand = adminCommand.contains(" ") ? adminCommand.substring(0, adminCommand.indexOf(' ')) : adminCommand;
+		AccessRight accessRight = _adminCommandAccessRights.get(baseCommand);
 		if (accessRight == null)
 		{
-			// Trying to avoid the spam for next time when the GM would try to use the same command.
-			if ((accessLevel.getLevel() > 0) && (accessLevel.getLevel() == _highestLevel))
+			final org.l2jmobius.gameserver.data.enums.AdminScope scope = org.l2jmobius.gameserver.data.enums.AdminScope.classifyCommand(baseCommand);
+			if (accessLevel.hasScope(scope))
 			{
-				accessRight = new AccessRight(adminCommand, "", true, accessLevel.getLevel());
+				accessRight = new AccessRight(baseCommand, "", false, accessLevel.getLevel());
 				_adminCommandAccessRights.put(accessRight.getCommand(), accessRight);
-				LOGGER.info(getClass().getSimpleName() + ": No rights defined for admin command " + adminCommand + " auto setting accesslevel: " + accessLevel.getLevel() + " !");
+				return true;
 			}
-			else
-			{
-				LOGGER.info(getClass().getSimpleName() + ": No rights defined for admin command " + adminCommand + " !");
-				return false;
-			}
+			
+			return false;
 		}
 		
 		return accessRight.hasAccess(accessLevel);

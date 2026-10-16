@@ -23,6 +23,7 @@ package handlers.chat.commands.admin;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.network.Disconnection;
@@ -33,26 +34,32 @@ public class AdminKick implements IAdminCommandHandler
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_kick",
-		"admin_kick_non_gm"
+		"admin_kick_non_gm",
+		"admin_character_disconnect"
 	};
 	
 	@Override
 	public boolean onCommand(String command, Player activeChar)
 	{
-		if (command.startsWith("admin_kick"))
+		if (command.equals("admin_character_disconnect"))
 		{
-			final StringTokenizer st = new StringTokenizer(command);
-			if (st.countTokens() > 1)
+			final WorldObject target = activeChar.getTarget();
+			if ((target == null) || !target.isPlayer())
 			{
-				st.nextToken();
-				final String player = st.nextToken();
-				final Player plyr = World.getPlayer(player);
-				if (plyr != null)
-				{
-					Disconnection.of(plyr).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
-					activeChar.sendSysMessage("You kicked " + plyr.getName() + " from the game.");
-				}
+				return false;
 			}
+			
+			final Player player = target.asPlayer();
+			if (player == activeChar)
+			{
+				activeChar.sendSysMessage("You cannot logout your own character.");
+			}
+			else
+			{
+				activeChar.sendSysMessage("Character " + player.getName() + " disconnected from server.");
+				Disconnection.of(player).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
+			}
+			return true;
 		}
 		
 		if (command.startsWith("admin_kick_non_gm"))
@@ -68,6 +75,23 @@ public class AdminKick implements IAdminCommandHandler
 			}
 			
 			activeChar.sendSysMessage("Kicked " + counter + " players.");
+			return true;
+		}
+		
+		if (command.startsWith("admin_kick"))
+		{
+			final StringTokenizer st = new StringTokenizer(command);
+			if (st.countTokens() > 1)
+			{
+				st.nextToken();
+				final String player = st.nextToken();
+				final Player plyr = World.getPlayer(player);
+				if (plyr != null)
+				{
+					Disconnection.of(plyr).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
+					activeChar.sendSysMessage("You kicked " + plyr.getName() + " from the game.");
+				}
+			}
 		}
 		
 		return true;

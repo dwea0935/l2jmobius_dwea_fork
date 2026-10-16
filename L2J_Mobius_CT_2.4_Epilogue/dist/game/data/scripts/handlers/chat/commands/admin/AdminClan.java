@@ -31,9 +31,12 @@ import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.GMViewPledgeInfo;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
+import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 /**
+ * Unified Clan & Pledge administration handler.
  * @author UnAfraid, Zoey76
  */
 public class AdminClan implements IAdminCommandHandler
@@ -43,8 +46,12 @@ public class AdminClan implements IAdminCommandHandler
 		"admin_clan_info",
 		"admin_clan_changeleader",
 		"admin_clan_show_pending",
-		"admin_clan_force_pending"
+		"admin_clan_force_pending",
+		"admin_pledge"
 	};
+	
+	private static final int MAX_CLAN_LEVEL = 11;
+	private static final int REP_POINTS_REWARD_LEVEL = 5;
 	
 	@Override
 	public boolean onCommand(String command, Player activeChar)
@@ -161,17 +168,151 @@ public class AdminClan implements IAdminCommandHandler
 					activeChar.sendSysMessage("Task have been forcely executed.");
 					break;
 				}
+				break;
+			}
+			case "admin_pledge":
+			{
+				return handlePledgeCommand(activeChar, st);
 			}
 		}
 		
 		return true;
 	}
 	
-	/**
-	 * @param activeChar
-	 * @param st
-	 * @return
-	 */
+	private boolean handlePledgeCommand(Player activeChar, StringTokenizer st)
+	{
+		final WorldObject target = activeChar.getTarget();
+		final Player player = (target instanceof Player) ? target.asPlayer() : activeChar;
+		final String name = player.getName();
+		final String action = st.hasMoreTokens() ? st.nextToken() : null;
+		if (action == null)
+		{
+			activeChar.sendSysMessage("Not allowed Action on Clan");
+			AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+			return false;
+		}
+		
+		if (!action.equals("create") && !player.isClanLeader())
+		{
+			activeChar.sendPacket(new SystemMessage(SystemMessageId.S1_IS_NOT_A_CLAN_LEADER).addString(name));
+			AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+			return false;
+		}
+		
+		final String parameter = st.hasMoreTokens() ? st.nextToken() : null;
+		switch (action)
+		{
+			case "create":
+			{
+				if ((parameter == null) || parameter.isEmpty())
+				{
+					activeChar.sendSysMessage("Please, enter clan name.");
+					AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+					return false;
+				}
+				
+				final long cet = player.getClanCreateExpiryTime();
+				player.setClanCreateExpiryTime(0);
+				final Clan clan = ClanTable.getInstance().createClan(player, parameter);
+				if (clan != null)
+				{
+					activeChar.sendSysMessage("Clan " + parameter + " created. Leader: " + player.getName());
+					return true;
+				}
+				
+				player.setClanCreateExpiryTime(cet);
+				activeChar.sendSysMessage("There was a problem while creating the clan.");
+				AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+				return false;
+			}
+			case "dismiss":
+			{
+				ClanTable.getInstance().destroyClan(player.getClanId());
+				final Clan clan = player.getClan();
+				if (clan == null)
+				{
+					activeChar.sendSysMessage("Clan disbanded.");
+					return true;
+				}
+				
+				activeChar.sendSysMessage("There was a problem while destroying the clan.");
+				AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+				return false;
+			}
+			case "info":
+			{
+				final Clan clan = (parameter != null) ? ClanTable.getInstance().getClanByName(parameter) : player.getClan();
+				activeChar.sendPacket(new GMViewPledgeInfo(clan, player));
+				return true;
+			}
+			case "setlevel":
+			{
+				if (parameter == null)
+				{
+					activeChar.sendSysMessage("Usage: //pledge <setlevel|rep> <number>");
+					AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+					return false;
+				}
+				
+				final Clan clan = player.getClan();
+				try
+				{
+					final int level = Integer.parseInt(parameter);
+					if ((level >= 0) && (level <= MAX_CLAN_LEVEL))
+					{
+						clan.changeLevel(level);
+						activeChar.sendSysMessage("You set level " + level + " for clan " + clan.getName());
+						return true;
+					}
+				}
+				catch (NumberFormatException ignored)
+				{
+				}
+				
+				activeChar.sendSysMessage("Level incorrect. Usage: //pledge <setlevel|rep> <number>");
+				AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+				return false;
+			}
+			case "rep":
+			{
+				if (parameter == null)
+				{
+					activeChar.sendSysMessage("Usage: //pledge <setlevel|rep> <number>");
+					AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+					return false;
+				}
+				
+				final Clan clan = player.getClan();
+				if (clan.getLevel() < REP_POINTS_REWARD_LEVEL)
+				{
+					activeChar.sendSysMessage("Only clans of level 5 or above may receive reputation points.");
+					AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+					return false;
+				}
+				
+				try
+				{
+					final int points = Integer.parseInt(parameter);
+					clan.addReputationScore(points);
+					activeChar.sendSysMessage("You " + (points > 0 ? "add " : "remove ") + Math.abs(points) + " points " + (points > 0 ? "to " : "from ") + clan.getName() + "'s reputation. Their current score is " + clan.getReputationScore());
+					AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+					return true;
+				}
+				catch (Exception e)
+				{
+					activeChar.sendSysMessage("Usage: //pledge <rep> <number>");
+					return false;
+				}
+			}
+			default:
+			{
+				activeChar.sendSysMessage("Clan action not allowed.");
+				AdminHtml.showAdminHtml(activeChar, "pledge.htm");
+				return false;
+			}
+		}
+	}
+	
 	private Player getPlayer(Player activeChar, StringTokenizer st)
 	{
 		String val;
@@ -179,8 +320,6 @@ public class AdminClan implements IAdminCommandHandler
 		if (st.hasMoreTokens())
 		{
 			val = st.nextToken();
-			
-			// From the HTML we receive player's object Id.
 			if (StringUtil.isNumeric(val))
 			{
 				player = World.getPlayer(Integer.parseInt(val));

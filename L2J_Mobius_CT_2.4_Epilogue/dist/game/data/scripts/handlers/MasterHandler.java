@@ -121,7 +121,6 @@ import handlers.chat.commands.admin.AdminAnnouncements;
 import handlers.chat.commands.admin.AdminAugment;
 import handlers.chat.commands.admin.AdminBuffs;
 import handlers.chat.commands.admin.AdminCHSiege;
-import handlers.chat.commands.admin.AdminCamera;
 import handlers.chat.commands.admin.AdminChangeAccessLevel;
 import handlers.chat.commands.admin.AdminClan;
 import handlers.chat.commands.admin.AdminCreateItem;
@@ -129,7 +128,6 @@ import handlers.chat.commands.admin.AdminCursedWeapons;
 import handlers.chat.commands.admin.AdminDebug;
 import handlers.chat.commands.admin.AdminDelete;
 import handlers.chat.commands.admin.AdminDestroyItems;
-import handlers.chat.commands.admin.AdminDisconnect;
 import handlers.chat.commands.admin.AdminDoorControl;
 import handlers.chat.commands.admin.AdminEditChar;
 import handlers.chat.commands.admin.AdminEffects;
@@ -139,7 +137,6 @@ import handlers.chat.commands.admin.AdminEvents;
 import handlers.chat.commands.admin.AdminExpSp;
 import handlers.chat.commands.admin.AdminFakePlayers;
 import handlers.chat.commands.admin.AdminFence;
-import handlers.chat.commands.admin.AdminFightCalculator;
 import handlers.chat.commands.admin.AdminFortSiege;
 import handlers.chat.commands.admin.AdminGamePoints;
 import handlers.chat.commands.admin.AdminGeodata;
@@ -154,7 +151,6 @@ import handlers.chat.commands.admin.AdminHelp;
 import handlers.chat.commands.admin.AdminHide;
 import handlers.chat.commands.admin.AdminHtml;
 import handlers.chat.commands.admin.AdminInstance;
-import handlers.chat.commands.admin.AdminInstanceZone;
 import handlers.chat.commands.admin.AdminInvul;
 import handlers.chat.commands.admin.AdminKick;
 import handlers.chat.commands.admin.AdminKill;
@@ -166,10 +162,8 @@ import handlers.chat.commands.admin.AdminMenu;
 import handlers.chat.commands.admin.AdminMessages;
 import handlers.chat.commands.admin.AdminOnline;
 import handlers.chat.commands.admin.AdminPForge;
-import handlers.chat.commands.admin.AdminPathNode;
 import handlers.chat.commands.admin.AdminPcCafePoints;
 import handlers.chat.commands.admin.AdminPetition;
-import handlers.chat.commands.admin.AdminPledge;
 import handlers.chat.commands.admin.AdminPremium;
 import handlers.chat.commands.admin.AdminPunishment;
 import handlers.chat.commands.admin.AdminQuest;
@@ -182,22 +176,17 @@ import handlers.chat.commands.admin.AdminScan;
 import handlers.chat.commands.admin.AdminSearch;
 import handlers.chat.commands.admin.AdminServerInfo;
 import handlers.chat.commands.admin.AdminShop;
-import handlers.chat.commands.admin.AdminShowQuests;
 import handlers.chat.commands.admin.AdminShutdown;
 import handlers.chat.commands.admin.AdminSiege;
 import handlers.chat.commands.admin.AdminSkill;
 import handlers.chat.commands.admin.AdminSpawn;
 import handlers.chat.commands.admin.AdminSummon;
-import handlers.chat.commands.admin.AdminSuperHaste;
 import handlers.chat.commands.admin.AdminTarget;
-import handlers.chat.commands.admin.AdminTargetSay;
 import handlers.chat.commands.admin.AdminTeleport;
 import handlers.chat.commands.admin.AdminTerritoryWar;
-import handlers.chat.commands.admin.AdminTest;
 import handlers.chat.commands.admin.AdminTransform;
 import handlers.chat.commands.admin.AdminVitality;
 import handlers.chat.commands.admin.AdminZone;
-import handlers.chat.commands.admin.AdminZoneBuild;
 import handlers.chat.commands.user.ChannelDelete;
 import handlers.chat.commands.user.ChannelInfo;
 import handlers.chat.commands.user.ChannelLeave;
@@ -348,7 +337,6 @@ public class MasterHandler
 			AdminAnnouncements.class,
 			AdminAugment.class,
 			AdminBuffs.class,
-			AdminCamera.class,
 			AdminChangeAccessLevel.class,
 			AdminCHSiege.class,
 			AdminClan.class,
@@ -357,7 +345,6 @@ public class MasterHandler
 			AdminDebug.class,
 			AdminDelete.class,
 			AdminDestroyItems.class,
-			AdminDisconnect.class,
 			AdminDoorControl.class,
 			AdminEditChar.class,
 			AdminEffects.class,
@@ -367,7 +354,6 @@ public class MasterHandler
 			AdminExpSp.class,
 			AdminFakePlayers.class,
 			AdminFence.class,
-			AdminFightCalculator.class,
 			AdminFortSiege.class,
 			AdminGamePoints.class,
 			AdminGeodata.class,
@@ -382,7 +368,6 @@ public class MasterHandler
 			AdminHide.class,
 			AdminHtml.class,
 			AdminInstance.class,
-			AdminInstanceZone.class,
 			AdminInvul.class,
 			AdminKick.class,
 			AdminKill.class,
@@ -393,11 +378,9 @@ public class MasterHandler
 			AdminMenu.class,
 			AdminMessages.class,
 			AdminOnline.class,
-			AdminPathNode.class,
 			AdminPcCafePoints.class,
 			AdminPetition.class,
 			AdminPForge.class,
-			AdminPledge.class,
 			AdminPremium.class,
 			AdminPunishment.class,
 			AdminQuest.class,
@@ -410,22 +393,17 @@ public class MasterHandler
 			AdminSearch.class,
 			AdminServerInfo.class,
 			AdminShop.class,
-			AdminShowQuests.class,
 			AdminShutdown.class,
 			AdminSiege.class,
 			AdminSkill.class,
 			AdminSpawn.class,
 			AdminSummon.class,
-			AdminSuperHaste.class,
 			AdminTarget.class,
-			AdminTargetSay.class,
 			AdminTeleport.class,
 			AdminTerritoryWar.class,
-			AdminTest.class,
 			AdminTransform.class,
 			AdminVitality.class,
 			AdminZone.class,
-			AdminZoneBuild.class,
 		},
 		{
 			// Bypass Handlers

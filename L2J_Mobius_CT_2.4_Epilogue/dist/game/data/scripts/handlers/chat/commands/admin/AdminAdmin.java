@@ -53,27 +53,36 @@ public class AdminAdmin implements IAdminCommandHandler
 		"admin_admin5",
 		"admin_admin6",
 		"admin_admin7",
+		"admin_board",
+		"admin_board_home",
+		"admin_board_support",
+		"admin_board_world",
+		"admin_board_events",
+		"admin_board_economy",
+		"admin_board_server",
+		"admin_board_close",
 		"admin_gmliston",
 		"admin_gmlistoff",
 		"admin_silence",
 		"admin_diet",
 		"admin_tradeoff",
-		"admin_set",
-		"admin_set_mod",
 		"admin_checkolympiad",
 		"admin_saveolymp",
 		"admin_sethero",
 		"admin_givehero",
 		"admin_endolympiad",
 		"admin_setconfig",
-		"admin_config_server",
-		"admin_gmon"
+		"admin_config_server"
 	};
 	
 	@Override
 	public boolean onCommand(String command, Player activeChar)
 	{
-		if (command.startsWith("admin_admin"))
+		if (org.l2jmobius.gameserver.managers.AdminBoardManager.getInstance().handleNavigationCommand(activeChar, command))
+		{
+			return true;
+		}
+		else if (command.startsWith("admin_admin"))
 		{
 			showMainPage(activeChar, command);
 		}

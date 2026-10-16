@@ -32,6 +32,7 @@
 						<xs:attribute name="nameColor" type="xs:hexBinary" use="required" />
 						<xs:attribute name="takeAggro" type="xs:boolean" use="required" />
 						<xs:attribute name="titleColor" type="xs:hexBinary" use="required" />
+						<xs:attribute name="scopes" type="xs:string" use="optional" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

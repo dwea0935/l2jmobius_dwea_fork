@@ -4557,6 +4557,11 @@ public class Player extends Playable
 	{
 		if (_client != null)
 		{
+			if ((packet instanceof org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage npcHtml) && isGM() && org.l2jmobius.gameserver.managers.AdminBoardManager.getInstance().tryInterceptAdminHtml(this, npcHtml))
+			{
+				return;
+			}
+			
 			_client.sendPacket(packet);
 		}
 	}

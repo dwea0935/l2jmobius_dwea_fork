@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../data/xsd/AdminCommands.xsd">
-	<!-- ADMIN ADMIN -->
-	<admin command="admin" description="Open main Admin menu." accessLevel="30" />
-	<admin command="admin1" description="Open main Admin menu." accessLevel="30" />
-	<admin command="admin2" description="Open game panel." accessLevel="30" />
-	<admin command="admin3" description="Open effects panel." accessLevel="30" />
-	<admin command="admin4" description="Open server Managment panel." accessLevel="30" />
-	<admin command="admin5" description="Open mods panel." accessLevel="30" />
-	<admin command="admin6" description="Open character menu." accessLevel="30" />
-	<admin command="admin7" description="Open GM menu." accessLevel="30" />
-	<admin command="gmliston" description="Show GM as online." accessLevel="30" />
-	<admin command="gmlistoff" description="Hide GM from online list." accessLevel="30" />
-	<admin command="silence" description="Silence mode (block PMs)." accessLevel="100" />
-	<admin command="diet" description="Diet mode (no weight limit)." accessLevel="100" />
-	<admin command="tradeoff" description="Disable trade for character." accessLevel="100" />
-	<admin command="set_mod" description="Modify server configuration parameters." accessLevel="100" />
-	<admin command="checkolympiad" description="Check Olympiad period end and next weekly change." accessLevel="100" />
-	<admin command="saveolymp" description="Save Olympiad nobles points." accessLevel="100" />
-	<admin command="sethero" description="Set player as hero." accessLevel="100" />
-	<admin command="givehero" description="Give unclaimed hero status." accessLevel="100" confirmDlg="true" />
-	<admin command="endolympiad" description="End current Olympiad period." accessLevel="100" confirmDlg="true" />
-	<admin command="setconfig" description="Open config server panel." accessLevel="100" />
-	<admin command="config_server" description="Open server config panel." accessLevel="100" />
-	<admin command="gmon" description="Enable GM mode." accessLevel="100" />
+	<!-- ADMIN ADMIN & RBAC COMMUNITY BOARD -->
+	<admin command="admin" description="Open RBAC Admin Community Board." accessLevel="10" />
+	<admin command="admin1" description="Open RBAC Admin Dashboard." accessLevel="10" />
+	<admin command="admin2" description="Open World &amp; Spawns RBAC tab." accessLevel="20" />
+	<admin command="admin3" description="Open Events &amp; FX RBAC tab." accessLevel="40" />
+	<admin command="admin4" description="Open Server &amp; Hot-Reload RBAC tab." accessLevel="70" />
+	<admin command="admin5" description="Open Events &amp; GM RBAC tab." accessLevel="40" />
+	<admin command="admin6" description="Open Player Support RBAC tab." accessLevel="10" />
+	<admin command="admin7" description="Open GM Controls RBAC tab." accessLevel="10" />
+	<admin command="board" description="Open RBAC Admin Community Board." accessLevel="10" />
+	<admin command="board_home" description="Open RBAC Admin Dashboard tab." accessLevel="10" />
+	<admin command="board_support" description="Open RBAC Support &amp; Players tab." accessLevel="10" />
+	<admin command="board_world" description="Open RBAC World &amp; Spawns tab." accessLevel="20" />
+	<admin command="board_events" description="Open RBAC Events &amp; GM tab." accessLevel="10" />
+	<admin command="board_economy" description="Open RBAC Items &amp; Chars tab." accessLevel="70" />
+	<admin command="board_server" description="Open RBAC Server &amp; Reload tab." accessLevel="70" />
+	<admin command="board_close" description="Close Admin Community Board." accessLevel="10" />
+	<admin command="gmliston" description="Show GM as online." accessLevel="10" />
+	<admin command="gmlistoff" description="Hide GM from online list." accessLevel="10" />
+	<admin command="silence" description="Silence mode (block PMs)." accessLevel="10" />
+	<admin command="diet" description="Diet mode (no weight limit)." accessLevel="10" />
+	<admin command="tradeoff" description="Disable trade for character." accessLevel="10" />
+	<admin command="checkolympiad" description="Check Olympiad period end and next weekly change." accessLevel="70" />
+	<admin command="saveolymp" description="Save Olympiad nobles points." accessLevel="70" />
+	<admin command="sethero" description="Set player as hero." accessLevel="70" />
+	<admin command="givehero" description="Give unclaimed hero status." accessLevel="70" confirmDlg="true" />
+	<admin command="endolympiad" description="End current Olympiad period." accessLevel="70" confirmDlg="true" />
+	<admin command="setconfig" description="Open config server panel." accessLevel="70" />
+	<admin command="config_server" description="Open server config panel." accessLevel="70" />
 
 	<!-- ADMIN ANNOUNCEMENTS -->
 	<admin command="announce" description="Send a announcment to all players." accessLevel="30" />
@@ -54,11 +60,6 @@
 	<admin command="areacancel" description="Remove all buffs in that area." accessLevel="100" />
 	<admin command="removereuse" description="Remove reuse of the skills." accessLevel="100" />
 	<admin command="switch_gm_buffs" description="Toggle between GM aura and regular GM buffs." accessLevel="100" />
-
-	<!-- ADMIN CAMERA -->
-	<admin command="cam" description="Triggers a cinematic camera effect." accessLevel="100" />
-	<admin command="camex" description="Executes an extended cinematic camera effect with specific parameters." accessLevel="100" />
-	<admin command="cam3" description="Initiates a third variant of the cinematic camera effect." accessLevel="100" />
 
 	<!-- ADMIN CHANGE ACCESS LEVEL -->
 	<admin command="changelvl" description="Change access level to the target player." accessLevel="100" />
@@ -237,11 +238,6 @@
 	<admin command="add_exp_sp" description="Add EXP and SP to a specified player." accessLevel="100" />
 	<admin command="remove_exp_sp" description="Remove EXP and SP from a specified player." accessLevel="100" />
 
-	<!-- ADMIN FIGHT CALCULATOR -->
-	<admin command="fight_calculator" description="Opens the NPC fight simulation calculator." accessLevel="100" />
-	<admin command="fight_calculator_show" description="Displays detailed combat analysis between two NPCs or player vs target." accessLevel="100" />
-	<admin command="fcs" description="Displays combat analysis." accessLevel="100" />
-
 	<!-- ADMIN FORT SIEGE -->
 	<admin command="fortsiege" description="Show fort siege management interface." accessLevel="100" />
 	<admin command="add_fortattacker" description="Add targeted player's clan to fort siege attackers." accessLevel="100" />
@@ -384,9 +380,6 @@
 
 	<!-- ADMIN ONLINE -->
 	<admin command="online" description="Display a list of all currently online players." accessLevel="100" />
-
-	<!-- ADMIN PATH NODE -->
-	<admin command="path_find" description="Debug movement path." accessLevel="100" />
 
 	<!-- ADMIN PETITION -->
 	<admin command="view_petitions" description="Displays the list of active petitions." accessLevel="30" />
@@ -557,9 +550,6 @@
 	<!-- ADMIN TARGET -->
 	<admin command="target" description="Targets a player by name." accessLevel="100" />
 
-	<!-- ADMIN TARGETSAY -->
-	<admin command="targetsay" description="Makes the targeted player or NPC say the specified text." accessLevel="100" />
-
 	<!-- ADMIN TELEPORT -->
 	<admin command="show_moves" description="Opens admin teleport menu." accessLevel="100" />
 	<admin command="show_moves_other" description="Opens admin teleport other menu." accessLevel="100" />
@@ -588,9 +578,6 @@
 	<admin command="territory_war_start" description="Immediately start Territory War." accessLevel="100" />
 	<admin command="territory_war_end" description="Immediately end Territory War." accessLevel="100" />
 	<admin command="territory_wards_list" description="List all active Territory War wards with teleport options." accessLevel="100" />
-
-	<!-- ADMIN TEST -->
-	<admin command="skill_test" description="Test a skill by ID." accessLevel="100" />
 
 	<!-- ADMIN VITALITY -->
 	<admin command="set_vitality" description="Opens vitality panel." accessLevel="100" />

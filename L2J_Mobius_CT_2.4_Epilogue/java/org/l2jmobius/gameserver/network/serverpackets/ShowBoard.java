@@ -33,7 +33,7 @@ public class ShowBoard extends ServerPacket
 	
 	public ShowBoard(String htmlCode, String id)
 	{
-		_content = id + "\u0008" + htmlCode;
+		_content = id + "\u0008" + (htmlCode != null ? htmlCode : "");
 	}
 	
 	public ShowBoard(List<String> arg)
