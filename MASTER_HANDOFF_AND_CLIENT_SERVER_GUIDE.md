@@ -11,7 +11,7 @@
 
 This document consolidates the complete engineering, reverse-engineering, binary patching, and server architecture work performed across **both autonomous agents** in `/home/dwea/Projects/L2` so any agent on your work machine has 100% of the context immediately:
 
-1. **Client Forensics, Encryption Unlocking & Native Linux Launcher (Agent 2):**
+1. **Client Forensics, Encryption Unlocking & Native Linux Launcher (Agent 2 — full assembly/offset deep-dive in [`CLIENT_MASTER_ARCHITECTURE_AND_GUIDE.md`](CLIENT_MASTER_ARCHITECTURE_AND_GUIDE.md)):**
    - Decrypted all `Lineage2Ver111` (XOR `0xAC`) and `Lineage2Ver413` (RSA + zlib) `.ini` and `.int` files in `system/` to human-editable plain text (backups in `system/backup_encrypted/`).
    - Built [`launch-l2.sh`](launch-l2.sh) with full Wine/Proton/UMU + 32-bit DXVK (Vulkan) support, TrueType font provisioning (`tahoma.ttf`, `times.ttf`, `arial.ttf`), CLI flags (`--server`, `--autologin`, `--res`, `--borderless`, `--windowed`, `--fullscreen`, `--gamepad`, `--hud`, `--check`), and controller (`JOYPAD`) bindings.
    - Binary-patched `system/d3ddrv.dll` (silencing the obsolete 2004 AGP popup) and `system/windrv.dll` (5 in-place x86 patches enabling dynamic `WM_SIZE` window resizing, OS maximize button, XWayland async geometry safety, and `(0,0)` Borderless Windowed mode).
