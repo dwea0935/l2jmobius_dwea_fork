@@ -59,11 +59,6 @@ public class PetItemList extends ServerPacket
 			{
 				buffer.writeShort(item.getElementDefAttr(i));
 			}
-			
-			for (int op : item.getEnchantOptions())
-			{
-				buffer.writeShort(op);
-			}
 		}
 	}
 }

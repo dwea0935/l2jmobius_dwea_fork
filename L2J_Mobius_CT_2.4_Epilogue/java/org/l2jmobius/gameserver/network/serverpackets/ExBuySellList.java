@@ -135,10 +135,6 @@ public class ExBuySellList extends ServerPacket
 			{
 				buffer.writeShort(0);
 			}
-			
-			buffer.writeShort(0); // Enchant effect 1
-			buffer.writeShort(0); // Enchant effect 2
-			buffer.writeShort(0); // Enchant effect 3
 		}
 		
 		if ((_sellList != null) && !_sellList.isEmpty())
@@ -165,10 +161,6 @@ public class ExBuySellList extends ServerPacket
 				{
 					buffer.writeShort(item.getElementDefAttr(i));
 				}
-				
-				buffer.writeShort(0); // Enchant effect 1
-				buffer.writeShort(0); // Enchant effect 2
-				buffer.writeShort(0); // Enchant effect 3
 			}
 		}
 		else
@@ -198,10 +190,6 @@ public class ExBuySellList extends ServerPacket
 				{
 					buffer.writeShort(item.getElementDefAttr(i));
 				}
-				
-				buffer.writeShort(0); // Enchant effect 1
-				buffer.writeShort(0); // Enchant effect 2
-				buffer.writeShort(0); // Enchant effect 3
 			}
 		}
 		else

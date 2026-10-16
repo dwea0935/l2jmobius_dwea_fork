@@ -92,3 +92,31 @@ docker exec l2-db mariadb -uroot l2jmobiusepilogue -e "UPDATE characters SET acc
 4. **`system/interface.xdat` & `system/interface.u` (`2009-09-28`):**
    - Applied the 992×544 `GMWnd` (`Alt+G`) Master Console layout and all 7 UnrealScript bytecode patches (`SerializeExpr` verified).
 
+### 3.3 Server–Client Packet Alignment Audit (`2009-09-28` `Engine.dll` vs `L2J_Mobius_CT_2.4_Epilogue`)
+- **Symptom (`NConsoleWindow.cpp` Line 4212 Assertion on Multi-Item `InventoryUpdate`):**
+  ```text
+  Assertion failed: iWorkType == IUT_ADD || iWorkType == IUT_UPDATE || iWorkType == IUT_DELETE [File:.\Src\NConsoleWindow.cpp] [Line: 4212]
+  History: NConsoleWnd::UpdateInventoryItem <- TEXT("InventoryUpdatePacket") <- UNetworkHandler::Tick
+  ```
+- **Root Cause:**
+  - Disassembling `InventoryUpdatePacket` (`VA 0x203c0940`) and `ItemListPacket` (`VA 0x203c1060`) in the unpacked `2009-09-28` `Engine.dll` showed that per-item deserialization uses `'hh'` (`iWorkType`, `itemType1`) followed by `'dddQhhhdhhhhdhhhhhhhhd'` (`0x204984e0` — ending right after `int time`, **70 bytes** per item body).
+  - `L2J_Mobius_CT_2.4_Epilogue` appended **3 extra `short`s (6 bytes)** at the end of `AbstractItemPacket.writeItem` (`for (int op : item.getEnchantOptions()) buffer.writeShort(op);`), which was a late mini-patch addition (`optiondata_client` IDs for special items like *Olf's T-Shirt*, **not** the normal `+N` item enchant level, which is written earlier via `buffer.writeShort(item.getEnchant())` at line 51).
+  - Whenever `InventoryUpdate` contained **2+ items** (e.g., turning in a newbie quest item and receiving reward items within the 100ms batch in `Player.sendInventoryUpdate`), item #1's trailing 6 bytes (`0x0000, 0x0000, 0x0000`) shifted the packet stream so item #2 read `0` as `iWorkType`, triggering the assertion in `NConsoleWnd::UpdateInventoryItem`.
+- **Full Audit & 23 Updated Server Classes (Compiled into `build/dist/libs/GameServer.jar`):**
+  1. **`AbstractItemPacket.java` & `ItemInfo.java`:** Omitted the trailing 3× `short` `EnchantOptions` loop in `writeItem` (fixing `InventoryUpdate`, `ItemList`, and `GMViewItemList`) and added `default: _change = 2;` (`MODIFIED`) in `ItemInfo(Item)` so `iWorkType` can never be `0`. Normal item `+N` enchanting (`item.getEnchant()`), weapon glows (`_player.getEnchantEffect()`), Life Stone augmentations (`item.getAugmentationBonus()`), elemental attributes, and server-side `EnchantOptions` stat skills remain 100% intact.
+  2. **All Other Item Packet Handlers Audited Against `Engine.dll` (`0x20433000` Dispatch Table):**
+     - Removed trailing 3× `short` `EnchantOptions` / `Enchant effect` fields from: `BuyList.java`, `ExBuySellList.java` (`_buyList`, `_sellList`, `_refundList`), `WareHouseDepositList.java`, `WareHouseWithdrawalList.java`, `SortedWareHouseWithdrawalList.java`, `TradeStart.java`, `TradeOwnAdd.java`, `TradeOtherAdd.java`, `PetItemList.java`, `PetInventoryUpdate.java`, `PrivateStoreManageListSell.java`, `PrivateStoreListSell.java`, `PrivateStoreManageListBuy.java`, `PrivateStoreListBuy.java`, `ExReplyPostItemList.java`, `ExReplyReceivedPost.java`, `ExReplySentPost.java`, and `ExRpItemLink.java`.
+     - Aligned `PackageSendableList.java` (`'h'` + `'ddQhhdhhhdhhhhhhhh'`) and `GMViewWarehouseWithdrawList.java` (`'h'` + `'ddQhh'` + `'dhhhddhhhhhhhhd'` + `'dd'`) with their exact `Engine.dll` handlers (`0x203beec0` and `0x203c12c0`).
+  3. **Swapped Extended Opcode Fix (`ServerPackets.java`):**
+     - In `Engine.dll`'s opcode table (`0x20687f70`), `0xFE:0xBD` (`0x2068be04`) is `ExBrBroadcastEventState` and `0xFE:0xBE` (`0x2068be28`) is `ExBrExtraUserInfo`. Fixed `ServerPackets.java` where those two were swapped (`// BE?` / `// BD?`).
+
+### 3.4 Saved Forensics for Paused Task (Auto-Login & `Option.ini` / `windrv.dll` Settings)
+- **Why `[AutoLogOn]` in `l2.ini` was ignored:** Retail Gracia Epilogue compiled out the internal `[AutoLogOn]` parser (`IsL2AutoLogOn`, `L2ID`, `L2Passwd`, `L2Slot` have zero string references in `l2.exe`, `Engine.dll`, `Core.dll`, or `NWindow.dll`). Login is driven by C++ classes in `NWindow.dll` (`ImageBase = 0x10000000`):
+  - `NCAuthWnd::ShowWindow` (`VA 0x10143300`) & `NCAuthWnd::OnLoginBtnClick` (`VA 0x10144b50` → calls `NConsoleWnd::RequestAuthLogin` at `VA 0x1021a160`).
+  - `NCEulaWnd::ShowWindow` (`VA 0x10140f10`) & `NCEulaWnd::OnOkBtnClick` (`VA 0x10142350` → calls `NCEulaWnd::RequestServerList` at `VA 0x10140ad0`).
+  - `NCServerSelectWnd::EndServerInfo` (`VA 0x10127480`) & `NCServerSelectWnd::OnLoginBtnClick` (`VA 0x1012a7c0` → calls `NConsoleWnd::RequestServerLogin` at `VA 0x10219ab0`).
+  - `NCLobbyWnd::ReceiveCharacterSelectedPacket` / `NCLobbyWnd::GameStart` (`VA 0x101455f0`) and `LobbyMenuWnd` in `interface.u` (`EV_LobbyCharacterSelect = 0xbce` → `StartGame(index)`).
+- **Why `Option.ini` & Borderless Window settings were partially overridden:**
+  - `l2.exe` (`VA 0x10925180`) checks `FirstRun >= 2` in `Option.ini` (`OptionWnd` sets `FirstRun=2` on save; `launch-l2.sh` was writing `FirstRun=False` which parses as `0`, triggering `SetInitialConfiguration` hardware defaults).
+  - `windrv.dll`'s `UWindowsViewport::ResizeViewport` at `VA 0x1110e012` and `VA 0x1110e03c` executes `or eax, 0x00c40000` (`WS_CAPTION | WS_THICKFRAME`) unconditionally when windowed without checking `UseWindowFrame` (`[edi+0xc4]`).
+  - `launch-l2.sh` line 1009 placed `IsL2Console` under `[L2WaterEffect]` instead of `[URL]`.

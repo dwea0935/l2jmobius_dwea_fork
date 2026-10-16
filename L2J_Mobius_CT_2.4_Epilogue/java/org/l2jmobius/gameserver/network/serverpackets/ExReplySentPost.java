@@ -82,11 +82,6 @@ public class ExReplySentPost extends ServerPacket
 				{
 					buffer.writeShort(item.getElementDefAttr(i));
 				}
-				
-				for (int op : item.getEnchantOptions())
-				{
-					buffer.writeShort(op);
-				}
 			}
 			
 			buffer.writeLong(_msg.getReqAdena());

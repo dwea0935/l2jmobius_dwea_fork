@@ -60,10 +60,11 @@ public abstract class AbstractItemPacket extends ServerPacket
 		}
 		
 		buffer.writeInt(item.getTime());
-		for (int op : item.getEnchantOptions())
-		{
-			buffer.writeShort(op);
-		}
+		// Protocol 148 (2009-09-28 client) does not read 3x short EnchantOptions in writeItem
+		// for (int op : item.getEnchantOptions())
+		// {
+		// 	buffer.writeShort(op);
+		// }
 	}
 	
 	protected void writeInventoryBlock(PlayerInventory inventory, WriteBuffer buffer)

@@ -61,11 +61,5 @@ public class ExRpItemLink extends ServerPacket
 		{
 			buffer.writeShort(_item.getElementDefAttr(i));
 		}
-		
-		// Enchant Effects
-		for (int op : _item.getEnchantOptions())
-		{
-			buffer.writeShort(op);
-		}
 	}
 }

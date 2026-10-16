@@ -56,10 +56,5 @@ public class TradeOtherAdd extends ServerPacket
 		{
 			buffer.writeShort(_item.getElementDefAttr(i));
 		}
-		
-		for (int op : _item.getEnchantOptions())
-		{
-			buffer.writeShort(op);
-		}
 	}
 }

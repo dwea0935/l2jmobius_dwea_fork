@@ -776,10 +776,6 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 			
 			buffer.writeInt(item.getMana());
 			buffer.writeInt(item.getTime());
-			for (int op : item.getEnchantOptions())
-			{
-				buffer.writeShort(op);
-			}
 		}
 	}
 }

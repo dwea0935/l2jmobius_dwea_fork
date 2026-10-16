@@ -128,6 +128,11 @@ public class ItemInfo
 				_change = 3;
 				break;
 			}
+			default:
+			{
+				_change = 2;
+				break;
+			}
 		}
 		
 		// Get shadow item mana.

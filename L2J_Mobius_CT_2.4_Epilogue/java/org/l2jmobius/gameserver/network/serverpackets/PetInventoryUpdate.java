@@ -67,11 +67,6 @@ public class PetInventoryUpdate extends AbstractInventoryUpdate
 			{
 				buffer.writeShort(item.getElementDefAttr(i));
 			}
-			
-			for (int op : item.getEnchantOptions())
-			{
-				buffer.writeShort(op);
-			}
 		}
 	}
 }

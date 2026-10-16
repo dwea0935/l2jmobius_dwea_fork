@@ -102,10 +102,6 @@ public class WareHouseWithdrawalList extends ServerPacket
 			
 			// T2
 			buffer.writeInt(item.isTimeLimitedItem() ? (int) (item.getRemainingTime() / 1000) : -1);
-			for (int op : item.getEnchantOptions())
-			{
-				buffer.writeShort(op);
-			}
 		}
 	}
 }

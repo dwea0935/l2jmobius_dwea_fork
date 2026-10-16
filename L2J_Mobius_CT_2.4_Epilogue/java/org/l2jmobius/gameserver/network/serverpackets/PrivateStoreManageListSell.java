@@ -77,11 +77,6 @@ public class PrivateStoreManageListSell extends ServerPacket
 			{
 				buffer.writeShort(item.getElementDefAttr(i));
 			}
-			
-			for (int op : item.getEnchantOptions())
-			{
-				buffer.writeShort(op);
-			}
 		}
 		
 		// section 3
@@ -105,11 +100,6 @@ public class PrivateStoreManageListSell extends ServerPacket
 			for (byte i = 0; i < 6; i++)
 			{
 				buffer.writeShort(item.getElementDefAttr(i));
-			}
-			
-			for (int op : item.getEnchantOptions())
-			{
-				buffer.writeShort(op);
 			}
 		}
 	}

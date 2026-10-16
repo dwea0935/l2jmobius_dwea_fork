@@ -58,8 +58,39 @@ public class GMViewWarehouseWithdrawList extends AbstractItemPacket
 		buffer.writeShort(_items.size());
 		for (Item item : _items)
 		{
-			writeItem(item, buffer);
+			buffer.writeShort(item.getTemplate().getType1());
 			buffer.writeInt(item.getObjectId());
+			buffer.writeInt(item.getId());
+			buffer.writeLong(item.getCount());
+			buffer.writeShort(item.getTemplate().getType2());
+			buffer.writeShort(item.getCustomType1());
+			if (item.getTemplate().getType1() <= 3)
+			{
+				buffer.writeInt(item.getTemplate().getBodyPart().getMask());
+				buffer.writeShort(item.getEnchantLevel());
+				buffer.writeShort(0);
+				buffer.writeShort(item.getCustomType2());
+				buffer.writeInt(item.getObjectId());
+				if (item.isAugmented())
+				{
+					buffer.writeInt(0x0000FFFF & item.getAugmentation().getAugmentationId());
+					buffer.writeInt(item.getAugmentation().getAugmentationId() >> 16);
+				}
+				else
+				{
+					buffer.writeLong(0);
+				}
+				
+				buffer.writeShort(item.getAttackElementType());
+				buffer.writeShort(item.getAttackElementPower());
+				for (byte i = 0; i < 6; i++)
+				{
+					buffer.writeShort(item.getElementDefAttr(i));
+				}
+			}
+			
+			buffer.writeInt(item.getMana());
+			buffer.writeInt(item.isTimeLimitedItem() ? (int) (item.getRemainingTime() / 1000) : -9999);
 		}
 	}
 }

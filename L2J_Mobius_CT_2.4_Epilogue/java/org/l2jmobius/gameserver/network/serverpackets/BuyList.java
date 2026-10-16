@@ -91,10 +91,6 @@ public class BuyList extends ServerPacket
 				{
 					buffer.writeShort(0);
 				}
-				
-				buffer.writeShort(0); // Enchant effect 1
-				buffer.writeShort(0); // Enchant effect 2
-				buffer.writeShort(0); // Enchant effect 3
 			}
 		}
 	}
