@@ -273,3 +273,28 @@ Following the 3rd Agent's protocol-differentiation audit, the user selected **Op
 | **3. Legacy GM Tools** | `SendHomeButton` | `"Send Home"` | `(120, 333)` `103×22` | Confirm dialog → `ExecuteCommand("//sendhome" @ EditBox)` | `AdminSendHome` (`admin_sendhome`) | `TELEPORT` |
 | **Right Workspace** | `texBack` + `HtmlViewer` | *(RBAC HTML View)* | `(232, 34)` `752×500` | `ItemDescWnd` (`#12028`/`#12029`) `itemId=1` | `NpcHtmlMessage(0, 1, html)` (`NPC_ITEM_HTML` cache) | Per-tab / per-command `AdminScope` |
 
+---
+
+## 5. International / Cyrillic / Greek / Slavic Text Input (`NWindow.dll`) & Server Name Policy
+
+### 5.1 Root Cause of Blocked Non-ASCII Keyboard Input When `Language=0`
+- **Wine / `windrv.dll` Unicode Delivery:** `windrv.dll` registers a Unicode window (`RegisterClassExW` / `PeekMessageW` / `DispatchMessageW`) and passes UTF-16 codepoints (`wParam`) in `WM_CHAR` (`0x0102`) directly through `ViewportWndProc` (`0x1110ffc8..0x1111001a`) to `NWindow.dll`.
+- **Font Rendering (`tahoma.ttf`):** All UI text and 3D world overhead text in Gracia Epilogue (`2009-09-28`) render via `Engine.dll`'s `UFontManager` + `UCanvas::DrawTextTTFToCanvas` backed by `C:\windows\Fonts\tahoma.ttf` (configured at the end of `interface.xdat`), which already contains full glyph coverage for Latin-Extended (`U+00A0..U+017E`), Greek (`U+0370..U+03FF`), and Cyrillic (`U+0400..U+04FF`).
+- **`NWindow.dll` `GLanguage == 8` Input Gates:** Both `NCEditBox::OnChar` (`VA 0x100d44ee`) and `NCMultiEditBox::OnChar` (`VA 0x100a3468`) checked `GLanguage == 8` (`*0x102dc384 == 8`, Russian `l2.ini` mode) before accepting non-ASCII characters, and even when `GLanguage == 8`, restricted input to `U+0410..U+044F` (`А..я`), dropping Russian/Belarusian `Ё/ё`, Ukrainian `Є/І/Ї/Ґ`, Serbian/Macedonian `Ђ/Ѓ/Ј/Љ/Њ/Ћ/Ќ/Џ`, Greek, and West/South Slavic Latin-Extended.
+
+### 5.2 Client Patch (`patch_nwindow_unicode.py` → `system/nwindow.dll`)
+- **Base Binary:** Clean `2009-09-28` (`Protocol 148`) `NWindow.dll` (`5,425,684` bytes, original SHA-256 `dcd951c811002318f3164f1221f1b8c9d7466c17f3105c0b7ece49cb0e3bbb45`, backed up to `system/backup_encrypted/nwindow.dll.orig`).
+- **Patched Binary:** `5,425,684` bytes (**0-byte size delta**), SHA-256 `441caed61c6e08b1dd88f7321afd9a026b16d57a760fc18a958de9380aec319e`:
+  1. **`NCEditBox::OnChar` (`VA 0x100d44ee..0x100d450c`, file offset `0x000D38EE`, 30 bytes):**
+     - Replaced `mov ecx,[0x102dc384]; cmp [ecx],8; jne; lea edx,[ebx-0x410]; cmp edx,0x3f; ja` with `movzx eax,bx; sub ah,3; cmp eax,0x6f; jbe 0x100d482e; add ax,0x260; cmp ax,0x45f; ja 0x100d482e; nop` (`0fb7c380ec0383f86f0f863103000066056002663d5f040f872303000090`).
+     - Unconditionally allows **`U+00A0..U+04FF`** (Latin-1 Supplement, Latin Extended-A/B, IPA, Greek, and full Cyrillic) while keeping `Language=0` (`*-e.dat`), and rejects Combining Diacritical Marks **`U+0300..U+036F`** to prevent "Zalgo" stacking spam.
+  2. **`NCMultiEditBox::OnChar` (`VA 0x100a3468..0x100a347e`, file offset `0x000A2868`, 22 bytes):**
+     - Replaced with identical logic on `si` (`0fb7c680ec0383f86f762766056002663d5f04771d90`) for multi-line fields (mail bodies, board memos, petitions).
+  3. **`NWndUtil::GetNativeStrLen` (`VA 0x101d9326..0x101d9331`, file offset `0x001D8726`, 11 bytes):**
+     - Replaced `add ecx,-0x410; cmp ecx,0x3f; ja` with `add ecx,-0x80; cmp ecx,0x47f; ja` (`83c18081f97f0400007708`) so all characters in `U+0080..U+04FF` count as 1 character (instead of 2 CJK columns) toward `EditBox`/`MultiEditBox` length limits.
+  4. **`IsObsceneWord` (`VA 0x10215fbb..0x10215fc6`, file offset `0x002153BB`, 11 bytes):**
+     - NOPed out (`90` × 11) the `GLanguage == 8` gate on Cyrillic uppercase-to-lowercase normalization.
+
+### 5.3 Server-Side Naming vs Chat/Mail/Title Policy (`360e662efb3`)
+- **Names (Strict English-Only `[A-Za-z0-9]`):** Enforced server-side across character creation (`CnameTemplate`), pet names (`PetNameTemplate`), clan names (`ClanNameTemplate`), sub-pledge names, and alliance names in `game/config/Server.ini` and packet handlers (`360e662efb3`).
+- **Chat, Whisper, Mail, Titles, Community Board, Petitions, HTML Inputs:** Full UTF-16 (`U+00A0..U+04FF` and standard ASCII) supported end-to-end (client UTF-16LE packets ↔ Java `String` ↔ MariaDB `utf8mb4`).
