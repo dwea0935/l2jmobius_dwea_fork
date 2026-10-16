@@ -253,42 +253,50 @@ fi
 if [[ ! -f "$BACKUP_DIR/windrv.dll.orig" && -f "$SYSTEM_DIR/windrv.dll" ]]; then
     cp "$SYSTEM_DIR/windrv.dll" "$BACKUP_DIR/windrv.dll.orig"
 fi
+if [[ ! -f "$BACKUP_DIR/dsetup.dll.orig" && -f "$SYSTEM_DIR/dsetup.dll" ]]; then
+    cp "$SYSTEM_DIR/dsetup.dll" "$BACKUP_DIR/dsetup.dll.orig"
+fi
 
-python3 - "$SYSTEM_DIR/d3ddrv.dll" "$SYSTEM_DIR/windrv.dll" <<'PYEOF'
-import sys
+python3 - "$SYSTEM_DIR/d3ddrv.dll" "$SYSTEM_DIR/windrv.dll" "$SYSTEM_DIR/dsetup.dll" <<'PYEOF'
+import sys, os, struct
 
-d3d_path, win_path = sys.argv[1], sys.argv[2]
+d3d_path, win_path, dsetup_path = sys.argv[1], sys.argv[2], sys.argv[3]
 
-# 1. d3ddrv.dll: Silence obsolete 2004 AGP check popup (raw 0xC2494: 74 22 -> 90 90)
+# 1. d3ddrv.dll: Silence obsolete 2004 AGP check popup (raw 0xC24A4 [2009] or 0xC2494 [2010]: 74 22 -> 90 90)
 with open(d3d_path, "rb") as f:
     d3d = bytearray(f.read())
-off = 0xC2494
-if d3d[off:off+2] == b"\x74\x22":
-    d3d[off:off+2] = b"\x90\x90"
-    with open(d3d_path, "wb") as f:
-        f.write(d3d)
-    print("[+] Patched system/d3ddrv.dll: silenced obsolete 2004 AGP check popup")
-elif d3d[off:off+2] == b"\x90\x90":
-    print("[+] Verified system/d3ddrv.dll: 2004 AGP check popup already silenced")
+for off in (0xC24A4, 0xC2494):
+    if d3d[off-8:off] == bytes.fromhex("9c41000000100000"):
+        if d3d[off:off+2] == b"\x74\x22":
+            d3d[off:off+2] = b"\x90\x90"
+            with open(d3d_path, "wb") as f:
+                f.write(d3d)
+            print("[+] Patched system/d3ddrv.dll: silenced obsolete 2004 AGP check popup")
+        elif d3d[off:off+2] == b"\x90\x90":
+            print("[+] Verified system/d3ddrv.dll: 2004 AGP check popup already silenced")
+        break
 
 # 2. windrv.dll: Dynamic Window Resizing, Maximize, XWayland Sync & Borderless (0,0)
 with open(win_path, "rb") as f:
     win = bytearray(f.read())
 
+# Auto-detect 2009-09-28 clean build (+0x70) vs 2010-07-16 build (+0x00)
+w_delta = 0x70 if win[0x1101F-6:0x1101F] == bytes.fromhex("453c00000000") else 0x00
+
 windrv_patches = [
-    # Patch 1a (VA 0x11111baf, raw 0x10faf): Skip broken SIZE_MAXIMIZED cursor-trap & bMaximized=1
-    (0x10FAF, bytes.fromhex("83f802753d"), bytes.fromhex("eb40909090")),
-    # Patch 1b (VA 0x11111d41, raw 0x11141): Force Fullscreen=0 on windowed WM_SIZE & mark [esi+0x234]=4
-    (0x11141, bytes.fromhex("83bec8000000007508837d3c00750233c0"),
-              bytes.fromhex("33c0c78634020000040000009090909090")),
-    # Patch 2  (VA 0x1110e03a, raw 0xd43a): Skip redundant MoveWindow in ResizeViewport when called from WM_SIZE
-    (0x0D43A, bytes.fromhex("8b4e3cf781b8050000000200000f8591000000"),
-              bytes.fromhex("33c087863402000083f80490900f8491000000")),
-    # Patch 3  (VA 0x1110e0b9, raw 0xd4b9): Prevent async XWayland GetClientRect from overwriting SizeX/SizeY
-    (0x0D4B9, bytes.fromhex("8b4540"), bytes.fromhex("eb1c90")),
-    # Patch 4  (VA 0x1110f465, raw 0xe865): Spawn WS_POPUP borderless & framed windows at PosX=0, PosY=0
-    (0x0E865, bytes.fromhex("c745180000008039451c7507c7451c00000080"),
-              bytes.fromhex("c745180000000039451c7507c7451c00000000")),
+    # Patch 1a: Skip broken SIZE_MAXIMIZED cursor-trap & bMaximized=1
+    (0x10FAF + w_delta, bytes.fromhex("83f802753d"), bytes.fromhex("eb40909090")),
+    # Patch 1b: Force Fullscreen=0 on windowed WM_SIZE & mark [esi+0x234]=4
+    (0x11141 + w_delta, bytes.fromhex("83bec8000000007508837d3c00750233c0"),
+                        bytes.fromhex("33c0c78634020000040000009090909090")),
+    # Patch 2: Skip redundant MoveWindow in ResizeViewport when called from WM_SIZE
+    (0x0D43A + w_delta, bytes.fromhex("8b4e3cf781b8050000000200000f8591000000"),
+                        bytes.fromhex("33c087863402000083f80490900f8491000000")),
+    # Patch 3: Prevent async XWayland GetClientRect from overwriting SizeX/SizeY
+    (0x0D4B9 + w_delta, bytes.fromhex("8b4540"), bytes.fromhex("eb1c90")),
+    # Patch 4: Spawn WS_POPUP borderless & framed windows at PosX=0, PosY=0
+    (0x0E865 + w_delta, bytes.fromhex("c745180000008039451c7507c7451c00000080"),
+                        bytes.fromhex("c745180000000039451c7507c7451c00000000")),
 ]
 
 changed = False
@@ -308,19 +316,64 @@ if changed:
     print("[+] Patched system/windrv.dll: enabled dynamic window resize, maximize & borderless (0,0)")
 elif all_verified:
     print("[+] Verified system/windrv.dll: dynamic window resize, maximize & borderless patches active")
+
+
+# 3. dsetup.dll: Rebase ImageBase from 0x00400000 to 0x12000000 (avoiding Wine locale.nls collision)
+#                and fix .idata (RW) + .reloc (R) section permissions so UNetworkHandler login hook works
+if os.path.exists(dsetup_path):
+    with open(dsetup_path, "rb") as f:
+        ds = bytearray(f.read())
+    pe = struct.unpack_from("<I", ds, 0x3c)[0]
+    img_base = struct.unpack_from("<I", ds, pe + 0x34)[0]
+    opt_size = struct.unpack_from("<H", ds, pe + 20)[0]
+    sec_off = pe + 24 + opt_size
+    ds_changed = False
+    if img_base == 0x00400000:
+        new_base = 0x12000000
+        delta = new_base - img_base
+        struct.pack_into("<I", ds, pe + 0x34, new_base)
+        for rva in [0x100e, 0x102b, 0x1034, 0x1049, 0x1057, 0x106f, 0x107b, 0x10a1]:
+            roff = 0x400 + (rva - 0x1000)
+            val = struct.unpack_from("<I", ds, roff)[0]
+            struct.pack_into("<I", ds, roff, val + delta)
+        ds_changed = True
+    if struct.unpack_from("<I", ds, sec_off + 2*40 + 36)[0] != 0xc0000040:
+        struct.pack_into("<I", ds, sec_off + 2*40 + 36, 0xc0000040)
+        ds_changed = True
+    if struct.unpack_from("<I", ds, sec_off + 4*40 + 36)[0] != 0x42000040:
+        struct.pack_into("<I", ds, sec_off + 4*40 + 36, 0x42000040)
+        ds_changed = True
+    if ds_changed:
+        with open(dsetup_path, "wb") as f:
+            f.write(ds)
+        print("[+] Patched system/dsetup.dll: rebased to 0x12000000 & fixed section permissions for Wine wow64")
+    else:
+        print("[+] Verified system/dsetup.dll: Wine wow64 relocation & section permissions active")
 PYEOF
 
 # ------------------------------------------------------------------------------
-# Step 4: Install 32-bit DXVK (D3D9 -> Vulkan) into the prefix
+# Step 4: Install 32-bit DXVK (D3D9 -> Vulkan) into syswow64 & system32
+#         and set Wine Windows Compatibility Version to Windows 7 SP1 (6.1.7601)
 # ------------------------------------------------------------------------------
 DXVK_32_DIR="$PROTON_DIR/files/lib/wine/dxvk/i386-windows"
 SYS32_DIR="$PREFIX_DIR/drive_c/windows/system32"
-mkdir -p "$SYS32_DIR"
+SYSWOW64_DIR="$PREFIX_DIR/drive_c/windows/syswow64"
+mkdir -p "$SYS32_DIR" "$SYSWOW64_DIR"
 
 if [[ "$USE_DXVK" == "1" && -d "$DXVK_32_DIR" ]]; then
     cp -f "$DXVK_32_DIR/d3d9.dll" "$SYS32_DIR/d3d9.dll"
     cp -f "$DXVK_32_DIR/dxgi.dll" "$SYS32_DIR/dxgi.dll"
-    echo "[+] Installed 32-bit DXVK (d3d9.dll + dxgi.dll -> Vulkan) into prefix"
+    cp -f "$DXVK_32_DIR/d3d9.dll" "$SYSWOW64_DIR/d3d9.dll"
+    cp -f "$DXVK_32_DIR/dxgi.dll" "$SYSWOW64_DIR/dxgi.dll"
+    echo "[+] Installed 32-bit DXVK (d3d9.dll + dxgi.dll -> Vulkan) into syswow64 & system32"
+fi
+
+# Ensure Wine reports Windows 7 SP1 (6.1 Build 7601) instead of Vista/Win8/Win10 (6.2/6.3 Build 9200/19045)
+if [[ -f "$PREFIX_DIR/system.reg" ]] && ! grep -q '"CurrentBuildNumber"="7601"' "$PREFIX_DIR/system.reg" 2>/dev/null; then
+    WINEPREFIX="$PREFIX_DIR" winecfg -v win7 >/dev/null 2>&1 || true
+    echo "[+] Set Wine compatibility profile to Windows 7 SP1 (6.1 Build 7601)"
+else
+    echo "[+] Verified Wine compatibility profile: Windows 7 SP1 (6.1 Build 7601)"
 fi
 
 # ------------------------------------------------------------------------------

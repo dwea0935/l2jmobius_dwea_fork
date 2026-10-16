@@ -56,6 +56,7 @@ public class AdminAdmin implements IAdminCommandHandler
 		"admin_admin7",
 		"admin_board",
 		"admin_board_home",
+		"admin_board_refresh",
 		"admin_board_support",
 		"admin_board_world",
 		"admin_board_events",

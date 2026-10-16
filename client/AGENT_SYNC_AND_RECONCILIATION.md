@@ -69,5 +69,26 @@ docker exec l2-db mariadb -uroot l2jmobiusepilogue -e "UPDATE characters SET acc
 - [x] Committed the `build.py` exclude-pattern fix (`org/l2jmobius/gameserver/*`) + `docker/` stack in `l2jmobius_dwea_fork` and pushed to `origin/master`.
 - [x] Restored `Main-Class` / `Class-Path` manifest into `build/dist/libs/GameServer.jar` via `jar ufm` (and verified 0 config drift between `build/dist/game/config/` and `L2J_Mobius_CT_2.4_Epilogue/dist/game/config/`).
 - [x] Re-synced all copies of `AGENT_SYNC_AND_RECONCILIATION.md` and added Milestone 8 (Agent 3 Docker Stack) to `FULL_PROJECT_ENGINEERING_LEDGER.md`.
-- [ ] Optional: Provide `.l2j` geodata files in `game/data/geodata/` when testing off-heap FFM pathfinding locally.
-- [ ] Ready for interactive client login (`./launch-l2.sh --windowed --res 1920x1080 -server 127.0.0.1`).
+- [x] Optional: Provide `.l2j` geodata files in `game/data/geodata/` when testing off-heap FFM pathfinding locally.
+- [x] Verified interactive client login, character creation, and entering the game world (`./launch-l2.sh`).
+
+---
+
+## 3. Client Login Crash Resolution & Clean `2009-09-28` (`L2 Epilogue Clean`) Unification
+
+### 3.1 Root Cause of `00010084 1289` (`FD_CONNECT`) Crash
+- The original `Client Lineage 2 Gracia Epilogue/system/` mixed **2010-07-16 (Protocol 152)** DLLs (`Core.dll`, packed `Engine.dll`, `nwindow.dll`, `window.dll`, `windrv.dll`, where `UObject` vtable offsets shifted by `+4` bytes) with **2009 / early-2010 (Protocol 148)** `l2.exe`, `dsetup.dll`, `fire.dll`, and `unichat.dll`.
+-Replacing the hybrid binaries with the **100% unpacked, version-matched `2009-09-28` build** from `/home/dwea/Projects/L2/L2 Epilogue Clean/system/` (backed up to `system/backup_hybrid_152/`) resolved the vtable and `UNetworkHandler` hook mismatches completely.
+
+### 3.2 Binary & Package Patches Applied to the Unified `2009-09-28` `system/`
+1. **`system/l2.exe` (`434,176` bytes):**
+   - Aliased import `?GL2RunningFirstHandle@@3PAXA` to `?GIsServer@@3HA` and NOPed the 2-byte mutex handle store at file offset `0x25CEE` (`89 01` → `90 90`).
+   - Updated the embedded `Lineage2Ver413` RSA-1024 modulus (`0x2F500`, `VA 0x10930300`) and exponent (`0x2F604`, `VA 0x10930404`) from `75b4d6de...` (`0000001d`) to NCSoft's official retail `97df3984...` (`00000035`) key so all 45 pristine `.dat` files inflate cleanly.
+2. **`system/Engine.dll` (`6,885,120` bytes, `2009-09-28`):**
+   - Patched GameGuard check at file offset `0x0039B750` (`VA 0x2039C350`: `55 8b ec 6a ff` → `33 c0 fe c0 c3`, returning `1`).
+   - Updated protocol string at file offset `0x004A3AE0` (`VA 0x204A46E0`) from `$Revision: 148 $` to `$Revision: 152 $`.
+3. **`system/d3ddrv.dll`, `system/windrv.dll`, `system/dsetup.dll` & `launch-l2.sh`:**
+   - Silenced the AGP popup in `d3ddrv.dll` (`0xC24A4`: `74 22` → `90 90`), applied all 5 dynamic window resize / borderless patches to `windrv.dll` (`+0x70` offsets: `0x1101F`, `0x111B1`, `0x0D4AA`, `0x0D529`, `0x0E8D5`), rebased `dsetup.dll` to `0x12000000`, and installed 32-bit DXVK (`d3d9.dll` + `dxgi.dll`) into both `syswow64` and `system32`.
+4. **`system/interface.xdat` & `system/interface.u` (`2009-09-28`):**
+   - Applied the 992×544 `GMWnd` (`Alt+G`) Master Console layout and all 7 UnrealScript bytecode patches (`SerializeExpr` verified).
+

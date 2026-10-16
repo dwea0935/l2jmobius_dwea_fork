@@ -172,9 +172,25 @@ flowchart TD
 
 ---
 
+### Milestone 9: Client Login Crash (`00010084 1289`) Forensic Resolution & Clean `2009-09-28` (`L2 Epilogue Clean`) Unification
+* **Files:** [`client/system/l2.exe`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/system/l2.exe), [`client/system/Engine.dll`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/system/Engine.dll), [`client/system/Core.dll`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/system/Core.dll), [`client/system/windrv.dll`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/system/windrv.dll), [`client/system/d3ddrv.dll`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/system/d3ddrv.dll), [`client/system/dsetup.dll`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/system/dsetup.dll), [`client/system/interface.xdat`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/system/interface.xdat), [`client/system/interface.u`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/system/interface.u), [`client/launch-l2.sh`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/launch-l2.sh), [`AGENT_SYNC_AND_RECONCILIATION.md`](file:///home/dwea/Projects/L2/AGENT_SYNC_AND_RECONCILIATION.md)
+* **Root Causes Identified:**
+  1. **Hybrid Binary / Vtable Mismatch (`2010-07-16` vs `2009-09-28`):** The original `system/` folder mixed **2010-07-16 (Protocol 152)** DLLs (`Core.dll`, packed `Engine.dll` at `26.1 MB`, `nwindow.dll`, `window.dll`, `windrv.dll`, which added a virtual method to `UObject`/`UConsole` and shifted vtable offsets by `+4` bytes) with **2009 / early-2010 (Protocol 148)** `l2.exe` (`2010-03-23`), `dsetup.dll` (`2009-11-01`), `fire.dll` (`2009-12-10`), and `unichat.dll` (`2010-01-16`, whose `DllMain` returned with `c3` instead of `__stdcall` `c2 0c 00`).
+  2. **`dsetup.dll` Wine WoW64 Base Relocation & Section Permissions:** `dsetup.dll` was linked at `ImageBase = 0x00400000` (colliding with Wine's `locale.nls` mapping) with Read-Only `.idata` (`0x40000040`) and Execute-Only `.reloc` (`0x20000040`), and its backward scan from `?Destroy@UNetworkHandler@@UAEXXZ` (`53 57 8b f9`) could not match the packed `2010-07-16` `Engine.dll`.
+  3. **32-Bit DXVK Placement on 64-Bit Wine Prefix:** 32-bit `l2.exe` under 64-bit Wine wow64 loads `d3d9.dll` and `dxgi.dll` from `drive_c/windows/syswow64` rather than `system32`.
+  4. **`Lineage2Ver413` RSA-1024 Key Mismatch (`FL2GameData::LoadL2DataBin <- FL2GameData::EulaLoad`):** Unpacked `l2.exe` (`VA 0x10906090`) had the `l2encdec` modding RSA-1024 key (`75b4d6de...`, exponent `0x1d`) at `0x2F500` (`VA 0x10930300`), whereas all 45 `.dat` files in the clean NCSoft `L2 Epilogue Clean/system/` build are encrypted with NCSoft's official retail `Lineage2Ver413` RSA-1024 key (`97df3984...`, exponent `0x35`).
+* **Step-by-Step Resolution Applied:**
+  1. Unified `system/` with the **100% unpacked, version-matched `2009-09-28` (`0x4ac07b4f`..`0x4ac07c96`) DLLs, `.u` packages, and `.dat` files** from `/home/dwea/Projects/L2/L2 Epilogue Clean/system/` (preserving backups of the hybrid files in `system/backup_hybrid_152/` and removing `unichat.dll`).
+  2. Patched `l2.exe` (`434,176` bytes) to alias `?GL2RunningFirstHandle@@3PAXA` $\rightarrow$ `?GIsServer@@3HA`, NOPed the 2-byte mutex handle store at `0x25CEE` (`89 01` $\rightarrow$ `90 90`), and updated the `Lineage2Ver413` RSA modulus (`0x2F500`) and exponent (`0x2F604`) from `75b4d6de...` (`0000001d`) to retail `97df3984...` (`00000035`).
+  3. Patched `Engine.dll` (`6,885,120` bytes) at `0x39B750` (`VA 0x2039C350`: `55 8b ec 6a ff` $\rightarrow$ `33 c0 fe c0 c3`) to bypass the GameGuard check and at `0x4A3AE0` (`VA 0x204A46E0`) to report `$Revision: 152 $`.
+  4. Re-applied the AGP check suppression to `d3ddrv.dll` (`0xC24A4`), all 5 dynamic window-resize/borderless patches to `windrv.dll` (`+0x70` offsets: `0x1101F`, `0x111B1`, `0x0D4AA`, `0x0D529`, `0x0E8D5`), and the 992×544 `GMWnd` (`Alt+G`) Master Console + 7 UnrealScript patches to `interface.xdat` and `interface.u`.
+
+---
+
 ## 4. Queued Next Tasks (Ready for Work PC Session)
 
 1. **Task B — The 5-Phase Expansion Gatekeeper & Dynamic 1–75 / 76–85 Progression Engine (`feature/expansion-phase-and-progression-engine`):**
    * Central `ExpansionPhaseManager` singleton (`Phase 1` Baseline/IoP $\rightarrow$ `Phase 2` Crystal Caverns/Baylor $\rightarrow$ `Phase 3` Hellbound/Tully/Naia $\rightarrow$ `Phase 4` Beleth $\rightarrow$ `Phase 5` Gracia Continent/Seeds), two-tier XP/SP/Drop curve (`1–75` accelerated, `76–85` endgame), `.phase` player command, and `//setphase <1-5>` integrated into the `GMWnd` / RBAC Admin Console.
 2. **Task C — Endgame Instance & Hellbound Script Modernization (`feature/endgame-instance-script-refactor`):**
    * Decouple NPC `32370` (`DWARVEN_GHOST`) in `TullyWorkshop.java` and `TowerOfNaia.java`, and migrate `CrystalCaverns.java` and `DarkCloudMansion.java` onto `getResumeLocation(Player, InstanceWorld)` and `world.scheduleTimer(...)`.
+

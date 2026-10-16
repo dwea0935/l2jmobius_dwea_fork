@@ -12,6 +12,7 @@
 	<admin command="admin7" description="Open GM Controls RBAC tab." accessLevel="10" />
 	<admin command="board" description="Open RBAC Admin Community Board." accessLevel="10" />
 	<admin command="board_home" description="Open RBAC Admin Dashboard tab." accessLevel="10" />
+	<admin command="board_refresh" description="Refresh active RBAC Admin Console view." accessLevel="10" />
 	<admin command="board_support" description="Open RBAC Support &amp; Players tab." accessLevel="10" />
 	<admin command="board_world" description="Open RBAC World &amp; Spawns tab." accessLevel="20" />
 	<admin command="board_events" description="Open RBAC Events &amp; GM tab." accessLevel="10" />

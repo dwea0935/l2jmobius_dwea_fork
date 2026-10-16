@@ -2,3 +2,10 @@ build/
 .settings/
 .classpath
 .project
+client/system/*.log
+client/system/*.bak
+client/system/*.orig
+client/system/Running.ini
+client/system/s_info.ini
+client/system/L2CompiledShader.bin
+client/system/backup_*/

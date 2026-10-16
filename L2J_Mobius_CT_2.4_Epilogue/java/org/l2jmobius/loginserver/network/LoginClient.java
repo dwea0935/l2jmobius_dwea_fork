@@ -71,6 +71,7 @@ public class LoginClient extends Client<Connection<LoginClient>>
 	private boolean _joinedGS;
 	private ConnectionState _connectionState = ConnectionState.CONNECTED;
 	
+	private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(LoginClient.class.getName());
 	private Map<Integer, Integer> _charsOnServers;
 	private Map<Integer, long[]> _charsToDelete;
 	
@@ -103,6 +104,7 @@ public class LoginClient extends Client<Connection<LoginClient>>
 	public boolean decrypt(ReadBuffer data, int offset, int size)
 	{
 		final boolean decrypted = _encryption.decrypt(data, offset, size);
+		LOGGER.info("LoginClient decrypt from " + _ip + " (size=" + size + ", valid=" + decrypted + ", state=" + _connectionState + ")");
 		if (!decrypted)
 		{
 			close();
@@ -114,12 +116,14 @@ public class LoginClient extends Client<Connection<LoginClient>>
 	@Override
 	public void onConnected()
 	{
+		LOGGER.info("LoginClient connected from " + _ip + " (sessionId=0x" + Integer.toHexString(_sessionId) + "), sending Init");
 		sendPacket(new Init(this));
 	}
 	
 	@Override
 	public void onDisconnection()
 	{
+		LOGGER.info("LoginClient disconnected from " + _ip + " (state=" + _connectionState + ", account=" + _account + ")");
 		if (!_joinedGS)
 		{
 			LoginController.getInstance().removeAuthedLoginClient(_account);

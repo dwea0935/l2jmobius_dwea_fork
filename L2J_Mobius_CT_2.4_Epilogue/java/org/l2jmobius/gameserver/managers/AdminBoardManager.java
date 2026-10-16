@@ -83,6 +83,7 @@ public final class AdminBoardManager
 		volatile boolean boardOpen = false;
 		volatile boolean useCommunityBoard = false;
 		volatile boolean sendingNativeGmHtml = false;
+		volatile boolean sendingAdminCbHtml = false;
 		volatile int commandDepth = 0;
 		volatile int renderedCount = 0;
 	}
@@ -168,8 +169,8 @@ public final class AdminBoardManager
 	}
 	
 	/**
-	 * Re-sends the active ShowBoard view (either the current adapted sub-page or the active native tab)
-	 * so that BoardWnd.HtmlViewer.SetHtmlBuffData unlocks the client's PageLock and updates the live header.
+	 * Re-sends the active Admin Console view (either the current adapted sub-page or the active native tab)
+	 * so that the live header updates (and BoardWnd.HtmlViewer.SetHtmlBuffData unlocks PageLock when in CB mode).
 	 * @param player the staff member
 	 */
 	public void refreshCurrentView(Player player)
@@ -185,6 +186,7 @@ public final class AdminBoardManager
 			return;
 		}
 		
+		session.useCommunityBoard = !player.getAccessLevel().allowAltG();
 		final String adapted = session.lastAdaptedBody;
 		if ((adapted != null) && !adapted.isEmpty())
 		{
@@ -210,7 +212,9 @@ public final class AdminBoardManager
 	}
 	
 	/**
-	 * Handles native Admin Community Board navigation commands (//admin, //admin1..7, admin_board_*).
+	 * Handles native Admin Console navigation commands (//admin, //admin1..7, //gmw, admin_board_*).
+	 * For GMs with allowAltG() == true, all navigation stays strictly inside Native C++ GMWnd.HtmlViewer
+	 * and auto-closes any open Community Board window so the user is never stuck with 2 overlapping UIs.
 	 * @param player the staff member
 	 * @param command the full admin command
 	 * @return true if handled natively by AdminBoardManager
@@ -224,59 +228,42 @@ public final class AdminBoardManager
 		
 		final AdminBoardSession session = getSession(player);
 		final boolean canUseNativeGmWnd = player.getAccessLevel().allowAltG();
+		session.useCommunityBoard = !canUseNativeGmWnd;
 		final String base = (command.contains(" ") ? command.substring(0, command.indexOf(' ')) : command).toLowerCase(Locale.ROOT);
 		return switch (base)
 		{
-			case "admin_gmw", "admin_admin", "admin_admin1" ->
+			case "admin_gmw", "admin_admin", "admin_admin1", "admin_board" ->
 			{
-				session.useCommunityBoard = !canUseNativeGmWnd;
-				openTab(player, "dashboard");
-				yield true;
-			}
-			case "admin_board" ->
-			{
-				session.useCommunityBoard = true;
+				if (canUseNativeGmWnd)
+				{
+					// Automatically hide BoardWnd (Community) if it was open so two UIs never overlap.
+					player.sendPacket(new ShowBoard());
+				}
 				openTab(player, "dashboard");
 				yield true;
 			}
 			case "admin_board_home" ->
 			{
-				if (!session.boardOpen)
-				{
-					session.useCommunityBoard = !canUseNativeGmWnd;
-				}
 				openTab(player, "dashboard");
 				yield true;
 			}
-			case "admin_admin6" ->
+			case "admin_board_refresh" ->
 			{
-				session.useCommunityBoard = !canUseNativeGmWnd;
+				session.boardOpen = true;
+				refreshCurrentView(player);
+				yield true;
+			}
+			case "admin_admin6", "admin_board_support" ->
+			{
 				openTab(player, "support");
 				yield true;
 			}
-			case "admin_board_support" ->
-			{
-				openTab(player, "support");
-				yield true;
-			}
-			case "admin_admin2" ->
-			{
-				session.useCommunityBoard = !canUseNativeGmWnd;
-				openTab(player, "world");
-				yield true;
-			}
-			case "admin_board_world" ->
+			case "admin_admin2", "admin_board_world" ->
 			{
 				openTab(player, "world");
 				yield true;
 			}
-			case "admin_admin3", "admin_admin5", "admin_admin7" ->
-			{
-				session.useCommunityBoard = !canUseNativeGmWnd;
-				openTab(player, "events");
-				yield true;
-			}
-			case "admin_board_events" ->
+			case "admin_admin3", "admin_admin5", "admin_admin7", "admin_board_events" ->
 			{
 				openTab(player, "events");
 				yield true;
@@ -286,13 +273,7 @@ public final class AdminBoardManager
 				openTab(player, "economy");
 				yield true;
 			}
-			case "admin_admin4" ->
-			{
-				session.useCommunityBoard = !canUseNativeGmWnd;
-				openTab(player, "server");
-				yield true;
-			}
-			case "admin_board_server" ->
+			case "admin_admin4", "admin_board_server" ->
 			{
 				openTab(player, "server");
 				yield true;
@@ -301,10 +282,7 @@ public final class AdminBoardManager
 			{
 				session.boardOpen = false;
 				session.lastAdaptedBody = null;
-				if (session.useCommunityBoard)
-				{
-					player.sendPacket(new ShowBoard());
-				}
+				player.sendPacket(new ShowBoard());
 				yield true;
 			}
 			default -> false;
@@ -324,10 +302,7 @@ public final class AdminBoardManager
 		}
 		
 		final AdminBoardSession session = getSession(player);
-		if (!session.boardOpen && player.getAccessLevel().allowAltG() && !session.useCommunityBoard)
-		{
-			session.useCommunityBoard = false;
-		}
+		session.useCommunityBoard = !player.getAccessLevel().allowAltG();
 		session.activeTab = tab;
 		session.lastAdaptedBody = null;
 		session.boardOpen = true;
@@ -440,11 +415,42 @@ public final class AdminBoardManager
 			return false;
 		}
 		
-		if (!session.boardOpen)
+		session.useCommunityBoard = !player.getAccessLevel().allowAltG();
+		sendAdminHtml(player, html);
+		return true;
+	}
+	
+	/**
+	 * Intercepts direct HtmlUtil.sendCBHtml calls made by legacy admin handlers (e.g. AdminAnnouncements,
+	 * AdminGeodata) during an active admin command so they render inside Native C++ GMWnd.HtmlViewer
+	 * instead of popping open a second Community Board window.
+	 * @param player the GM receiving the CB HTML
+	 * @param html the raw HTML content
+	 * @return true if intercepted and routed to GMWnd.HtmlViewer
+	 */
+	public boolean tryInterceptAdminBoardHtml(Player player, String html)
+	{
+		if (!canUseAdminBoard(player) || (html == null) || html.isEmpty() || !player.getAccessLevel().allowAltG())
 		{
-			session.useCommunityBoard = !player.getAccessLevel().allowAltG();
+			return false;
 		}
 		
+		final AdminBoardSession session = getSession(player);
+		if (session.sendingAdminCbHtml)
+		{
+			return false;
+		}
+		
+		final boolean isAdminContent = (session.commandDepth > 0)
+			|| html.contains("bypass admin_")
+			|| html.contains("bypass -h admin_")
+			|| html.contains("link admin/");
+		if (!isAdminContent)
+		{
+			return false;
+		}
+		
+		session.useCommunityBoard = false;
 		sendAdminHtml(player, html);
 		return true;
 	}
@@ -463,6 +469,7 @@ public final class AdminBoardManager
 		}
 		
 		final AdminBoardSession session = getSession(player);
+		session.useCommunityBoard = !player.getAccessLevel().allowAltG();
 		final String adaptedBody = scrubAndAdaptHtml(player, rawHtml);
 		session.lastAdaptedBody = adaptedBody;
 		session.boardOpen = true;
@@ -478,6 +485,10 @@ public final class AdminBoardManager
 	 */
 	private void sendWrappedBoardHtml(Player player, String workspaceBody, String activeTab)
 	{
+		final AdminBoardSession session = getSession(player);
+		final boolean useNativeGmWnd = player.getAccessLevel().allowAltG();
+		session.useCommunityBoard = !useNativeGmWnd;
+		
 		final StringBuilder sb = new StringBuilder(4096);
 		sb.append("<html><body><center>");
 		appendTopHeaderBar(sb, player, activeTab);
@@ -492,8 +503,7 @@ public final class AdminBoardManager
 		HtmlUtil.buildHtmlActionCache(player, HtmlActionScope.NPC_HTML, 0, finalHtml);
 		HtmlUtil.buildHtmlActionCache(player, HtmlActionScope.NPC_ITEM_HTML, 0, finalHtml);
 		
-		final AdminBoardSession session = getSession(player);
-		if (!session.useCommunityBoard && player.getAccessLevel().allowAltG())
+		if (useNativeGmWnd)
 		{
 			HtmlUtil.buildHtmlActionCache(player, HtmlActionScope.COMM_BOARD_HTML, 0, finalHtml);
 			final NpcHtmlMessage gmPacket = new NpcHtmlMessage(0, 1, finalHtml);
@@ -510,7 +520,15 @@ public final class AdminBoardManager
 		}
 		else
 		{
-			HtmlUtil.sendCBHtml(player, finalHtml, 0);
+			session.sendingAdminCbHtml = true;
+			try
+			{
+				HtmlUtil.sendCBHtml(player, finalHtml, 0);
+			}
+			finally
+			{
+				session.sendingAdminCbHtml = false;
+			}
 		}
 	}
 	
@@ -526,7 +544,7 @@ public final class AdminBoardManager
 		final String invulLabel = gm.isInvul() ? "Invul:ON" : "Invul:OFF";
 		final String silenceLabel = gm.isSilenceMode() ? "MutePM:ON" : "MutePM:OFF";
 		
-		// Row 1: Role Identity + Self GM State Toggles (strictly RBAC filtered) + Viewport Switch
+		// Row 1: Role Identity + Self GM State Toggles (strictly RBAC filtered) + Home / Refresh controls
 		sb.append("<table width=740 border=0 cellpadding=1 cellspacing=0 bgcolor=\"1B1B1B\"><tr>");
 		sb.append("<td width=210 align=left><font color=\"LEVEL\">[RBAC: ").append(access.getName()).append(" Lv.").append(access.getLevel()).append("]</font></td>");
 		sb.append("<td width=72 align=center>").append(AdminData.getInstance().hasAccess("admin_invis", access) ? button(invisLabel, "admin_invis", 70, 20) : "").append("</td>");
@@ -545,12 +563,12 @@ public final class AdminBoardManager
 		if (session.useCommunityBoard)
 		{
 			sb.append("<td width=78 align=center><button value=\"Player CB\" action=\"bypass _bbshome\" width=74 height=20 back=\"").append(BTN_BACK).append("\" fore=\"").append(BTN_FORE).append("\"></td>");
-			sb.append("<td width=76 align=right>").append(access.allowAltG() ? button("To Alt+G", "admin_gmw", 72, 20) : button("Close [X]", "admin_board_close", 72, 20)).append("</td>");
+			sb.append("<td width=76 align=right>").append(button("Close [X]", "admin_board_close", 72, 20)).append("</td>");
 		}
 		else
 		{
-			sb.append("<td width=78 align=center>").append(button("To Alt+B", "admin_board", 74, 20)).append("</td>");
-			sb.append("<td width=76 align=right>").append(button("Refresh", "admin_board_home", 72, 20)).append("</td>");
+			sb.append("<td width=78 align=center>").append(button("Home", "admin_board_home", 74, 20)).append("</td>");
+			sb.append("<td width=76 align=right>").append(button("Refresh", "admin_board_refresh", 72, 20)).append("</td>");
 		}
 		sb.append("</tr></table>");
 		

@@ -137,11 +137,6 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 	@Override
 	public void runImpl(Player player)
 	{
-		if (player != null)
-		{
-			player.clearHtmlActions(getScope());
-		}
-		
 		if (_disabledValidation)
 		{
 			return;
@@ -149,6 +144,7 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 		
 		if (player != null)
 		{
+			player.clearHtmlActions(getScope());
 			HtmlUtil.buildHtmlActionCache(player, getScope(), _npcObjId, _html);
 		}
 	}

@@ -160,7 +160,7 @@ public class HomeBoard implements IParseBoardHandler
 			}
 			if (org.l2jmobius.gameserver.managers.AdminBoardManager.getInstance().canUseAdminBoard(player) && (returnHtml != null))
 			{
-				final String gmBanner = "<center><table width=740 border=0 cellpadding=2 cellspacing=0 bgcolor=\"1B2838\"><tr><td width=520 align=left><font color=\"LEVEL\">[GM Staff Detected: " + player.getAccessLevel().getName() + " Lv." + player.getAccessLevel().getLevel() + "]</font> <font color=\"AAAAAA\">RBAC Console (Alt+G Native / Alt+B)</font></td><td width=220 align=right><button value=\"Open //admin Control Center\" action=\"bypass _bbsadmin;mode;cb\" width=200 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr></table></center>";
+				final String gmBanner = "<center><table width=740 border=0 cellpadding=2 cellspacing=0 bgcolor=\"1B2838\"><tr><td width=520 align=left><font color=\"LEVEL\">[GM Staff Detected: " + player.getAccessLevel().getName() + " Lv." + player.getAccessLevel().getLevel() + "]</font> <font color=\"AAAAAA\">RBAC Console (Alt+G Native / //admin)</font></td><td width=220 align=right><button value=\"Open //admin Control Center\" action=\"bypass admin_gmw\" width=200 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr></table></center>";
 				returnHtml = returnHtml.replaceFirst("(?i)<body[^>]*>", "$0" + gmBanner);
 			}
 		}

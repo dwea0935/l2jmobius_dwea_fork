@@ -415,6 +415,11 @@ public class HtmlUtil
 			return;
 		}
 		
+		if ((fillMultiEdit == null) && player.isGM() && org.l2jmobius.gameserver.managers.AdminBoardManager.getInstance().tryInterceptAdminBoardHtml(player, html))
+		{
+			return;
+		}
+		
 		player.clearHtmlActions(HtmlActionScope.COMM_BOARD_HTML);
 		
 		if (npcObjId > -1)

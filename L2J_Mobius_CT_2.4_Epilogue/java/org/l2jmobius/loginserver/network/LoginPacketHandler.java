@@ -53,6 +53,7 @@ public class LoginPacketHandler implements PacketHandler<LoginClient>
 		}
 		
 		// Check if packet id is within valid range.
+		LOGGER.info("LoginPacketHandler packetId=0x" + Integer.toHexString(packetId) + " from " + client + " (state=" + client.getConnectionState() + ")");
 		if ((packetId < 0) || (packetId >= LoginClientPackets.PACKET_ARRAY.length))
 		{
 			return null;
