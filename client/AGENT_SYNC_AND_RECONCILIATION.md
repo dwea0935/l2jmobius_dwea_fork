@@ -284,7 +284,7 @@ Following the 3rd Agent's protocol-differentiation audit, the user selected **Op
 
 ### 5.2 Client Patch (`patch_nwindow_unicode.py` → `system/nwindow.dll`)
 - **Base Binary:** Clean `2009-09-28` (`Protocol 148`) `NWindow.dll` (`5,425,684` bytes, original SHA-256 `dcd951c811002318f3164f1221f1b8c9d7466c17f3105c0b7ece49cb0e3bbb45`, backed up to `system/backup_encrypted/nwindow.dll.orig`).
-- **Patched Binary:** `5,425,684` bytes (**0-byte size delta**), SHA-256 `441caed61c6e08b1dd88f7321afd9a026b16d57a760fc18a958de9380aec319e`:
+- **Patched Binary:** `5,425,684` bytes (**0-byte size delta**), SHA-256 `1f3f9e613beedb7b2a314651353ae86578f27ef5130d99b3208427a68defe81f`:
   1. **`NCEditBox::OnChar` (`VA 0x100d44ee..0x100d450c`, file offset `0x000D38EE`, 30 bytes):**
      - Replaced `mov ecx,[0x102dc384]; cmp [ecx],8; jne; lea edx,[ebx-0x410]; cmp edx,0x3f; ja` with `movzx eax,bx; sub ah,3; cmp eax,0x6f; jbe 0x100d482e; add ax,0x260; cmp ax,0x45f; ja 0x100d482e; nop` (`0fb7c380ec0383f86f0f863103000066056002663d5f040f872303000090`).
      - Unconditionally allows **`U+00A0..U+04FF`** (Latin-1 Supplement, Latin Extended-A/B, IPA, Greek, and full Cyrillic) while keeping `Language=0` (`*-e.dat`), and rejects Combining Diacritical Marks **`U+0300..U+036F`** to prevent "Zalgo" stacking spam.
@@ -294,6 +294,8 @@ Following the 3rd Agent's protocol-differentiation audit, the user selected **Op
      - Replaced `add ecx,-0x410; cmp ecx,0x3f; ja` with `add ecx,-0x80; cmp ecx,0x47f; ja` (`83c18081f97f0400007708`) so all characters in `U+0080..U+04FF` count as 1 character (instead of 2 CJK columns) toward `EditBox`/`MultiEditBox` length limits.
   4. **`IsObsceneWord` (`VA 0x10215fbb..0x10215fc6`, file offset `0x002153BB`, 11 bytes):**
      - NOPed out (`90` × 11) the `GLanguage == 8` gate on Cyrillic uppercase-to-lowercase normalization.
+  5. **PE `.reloc` Neutralization (3 `IMAGE_REL_BASED_HIGHLOW` entries → `0x0000` `IMAGE_REL_BASED_ABSOLUTE`):**
+     - Because `NWindow.dll` has preferred `ImageBase = 0x10000000` (colliding with `Core.dll`), Windows/Wine always rebases it at load time. The original `mov reg, [0x102dc384]` instructions at `RVA 0x000a346a`, `RVA 0x000d44f0`, and `RVA 0x00215fbd` had `IMAGE_REL_BASED_HIGHLOW` entries in `.reloc` (`file offset 0x004C80C2`: `6a 34`, `0x004CAC1C`: `f0 34`, `0x004E2024`: `bd 3f`) which otherwise added `BaseDelta` into the middle of the patched instructions at runtime. Zeroing those 3 entries (`00 00`) prevents relocation corruption (verified across all `210,170` active `.reloc` entries).
 
 ### 5.3 Server-Side Naming vs Chat/Mail/Title Policy (`360e662efb3`)
 - **Names (Strict English-Only `[A-Za-z0-9]`):** Enforced server-side across character creation (`CnameTemplate`), pet names (`PetNameTemplate`), clan names (`ClanNameTemplate`), sub-pledge names, and alliance names in `game/config/Server.ini` and packet handlers (`360e662efb3`).
