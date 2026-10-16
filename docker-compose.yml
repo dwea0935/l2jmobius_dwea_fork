@@ -1,0 +1,69 @@
+# Local L2J Mobius CT 2.4 Epilogue stack (MariaDB + LoginServer + GameServer)
+# running straight from the compiled dist in l2jmobius_dwea_fork/build/dist.
+#
+# All services use host networking so the dist configs work unmodified:
+#   - Database.ini  -> jdbc:mysql://localhost/l2jmobiusepilogue (root, empty password)
+#   - LoginServer   -> 0.0.0.0:2106 (clients), 127.0.0.1:9014 (gameserver link)
+#   - GameServer    -> 0.0.0.0:7777, advertises 127.0.0.1 to local clients
+#
+# Usage:
+#   docker compose up -d          # start everything (DB is initialised on first run)
+#   docker compose logs -f game   # follow GameServer output
+#   docker compose down           # stop (DB data is kept in the l2db volume)
+#   docker compose down -v        # stop AND wipe the database
+
+x-l2-server: &l2-server
+  image: eclipse-temurin:27-jdk   # JDK (not JRE): datapack scripts are compiled at runtime; jars are class file v71 (Java 27)
+  network_mode: host
+  user: "1000:1000"               # files written into the dist (logs, hexid, saves) stay owned by you
+  restart: on-failure             # GameServer exits with code 2 on //restart -> container restarts it
+  volumes:
+    - ./l2jmobius_dwea_fork/build/dist:/opt/l2
+    - ./docker/run-server.sh:/usr/local/bin/run-server.sh:ro
+  entrypoint: ["/bin/sh", "/usr/local/bin/run-server.sh"]
+
+services:
+  db:
+    image: mariadb:11.8
+    container_name: l2-db
+    network_mode: host
+    restart: unless-stopped
+    command:
+      - --bind-address=127.0.0.1  # only reachable from this machine
+      - --port=3306
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "1"   # matches dist Database.ini (Login = root, Password = empty)
+      MARIADB_DATABASE: l2jmobiusepilogue
+    volumes:
+      - l2db:/var/lib/mysql
+      - ./docker/db-init:/docker-entrypoint-initdb.d:ro
+      - ./l2jmobius_dwea_fork/build/dist/db_installer/sql:/l2sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+      start_period: 30s
+
+  login:
+    <<: *l2-server
+    container_name: l2-login
+    command: ["login"]
+    depends_on:
+      db:
+        condition: service_healthy
+
+  game:
+    <<: *l2-server
+    container_name: l2-game
+    command: ["game"]
+    depends_on:
+      db:
+        condition: service_healthy
+      login:
+        condition: service_started
+
+volumes:
+  l2db:

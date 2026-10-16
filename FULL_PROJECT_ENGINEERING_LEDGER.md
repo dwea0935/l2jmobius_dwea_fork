@@ -160,6 +160,18 @@ flowchart TD
 
 ---
 
+### Milestone 8: Local Dockerized Test Environment & `build.py` Packaging Fixes (Agent 3)
+* **Files:** [`docker-compose.yml`](file:///home/dwea/Projects/L2/docker-compose.yml), [`docker/run-server.sh`](file:///home/dwea/Projects/L2/docker/run-server.sh), [`docker/db-init/01-l2jmobius-schema.sh`](file:///home/dwea/Projects/L2/docker/db-init/01-l2jmobius-schema.sh), [`build.py`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/build.py), [`AGENT_SYNC_AND_RECONCILIATION.md`](file:///home/dwea/Projects/L2/AGENT_SYNC_AND_RECONCILIATION.md)
+* **Key Accomplishments & Findings:**
+  1. **3-Container Host-Networked Docker Stack (`l2-db`, `l2-login`, `l2-game`):**
+     * `l2-db` (`mariadb:11.8` on `127.0.0.1:3306`) automatically initializes `l2jmobiusepilogue` with all **116 SQL tables** (`db_installer/sql/login/*.sql` + `sql/game/*.sql`) on first volume boot via `01-l2jmobius-schema.sh`.
+     * `l2-login` (`0.0.0.0:2106`, GS link `127.0.0.1:9014`) and `l2-game` (`0.0.0.0:7777`, registered as **Server 2: Sieghardt**) run on `eclipse-temurin:27-jdk` with `-Djava.awt.headless=true` and `--enable-native-access=ALL-UNNAMED`.
+  2. **Root-Cause Fix for `LoginServer.jar` Missing `gameserverpackets` (`InitLS`):**
+     * Agent 3 discovered that [`build.py`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/build.py#L125-L127) used `exclude_patterns=["*databaseinstaller*", "*gameserver*"]` when building `LoginServer.jar`. Because Python's `fnmatch` `*` matches `/`, `*gameserver*` inadvertently stripped `org/l2jmobius/loginserver/network/gameserverpackets/**` (18 classes including `InitLS`), crashing the GameServer↔LoginServer handshake.
+     * Fixed `build.py` to anchor the exclusion to `"org/l2jmobius/gameserver/*"`, repacked `LoginServer.jar` (`153 -> 171` entries), and restored the full `META-INF/MANIFEST.MF` (`Main-Class` & `Class-Path`) in `GameServer.jar`.
+
+---
+
 ## 4. Queued Next Tasks (Ready for Work PC Session)
 
 1. **Task B — The 5-Phase Expansion Gatekeeper & Dynamic 1–75 / 76–85 Progression Engine (`feature/expansion-phase-and-progression-engine`):**

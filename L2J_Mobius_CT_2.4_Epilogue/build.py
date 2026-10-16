@@ -122,7 +122,9 @@ def package_jars(manifest_cp):
         main_class="org.l2jmobius.loginserver.LoginServer",
         manifest_cp=manifest_cp,
         include_patterns=["*"],
-        exclude_patterns=["*databaseinstaller*", "*gameserver*"],
+        # NOTE: fnmatch '*' also matches '/', so a bare "*gameserver*" would wrongly drop
+        # org/l2jmobius/loginserver/network/gameserverpackets/** (InitLS, AuthResponse, ...).
+        exclude_patterns=["*databaseinstaller*", "org/l2jmobius/gameserver/*"],
     )
 
     # GameServer.jar
