@@ -53,11 +53,14 @@ public class AdminHelp implements IAdminCommandHandler
 		else if (command.startsWith("admin_commands"))
 		{
 			final int page = Integer.parseInt(command.contains("page") ? command.substring(15).replace("page=", "") : "1");
-			final PageResult result = PageBuilder.newBuilder(AdminData.getInstance().getAdminCommandAccessRights(), 5, "bypass -h admin_commands").currentPage(page).pageHandler(NextPrevPageHandler.INSTANCE).formatter(BypassParserFormatter.INSTANCE).style(ButtonsStyle.INSTANCE).bodyHandler((pages, access, sb) ->
+			final java.util.List<org.l2jmobius.gameserver.data.holders.AccessRight> permittedCommands = AdminData.getInstance().getAdminCommandAccessRights().stream()
+				.filter(access -> access.hasAccess(activeChar.getAccessLevel()))
+				.toList();
+			final PageResult result = PageBuilder.newBuilder(permittedCommands, 8, "bypass -h admin_commands").currentPage(page).pageHandler(NextPrevPageHandler.INSTANCE).formatter(BypassParserFormatter.INSTANCE).style(ButtonsStyle.INSTANCE).bodyHandler((pages, access, sb) ->
 			{
-				sb.append("<tr><td height=40 width=400><font color=\"LEVEL\">//");
+				sb.append("<tr><td height=30 width=220><font color=\"LEVEL\">//");
 				sb.append(access.getCommand().substring(6));
-				sb.append("</font></td><td height=40 width=400>");
+				sb.append("</font></td><td height=30 width=420>");
 				sb.append(access.getDescription());
 				sb.append("</td></tr>");
 			}).build();

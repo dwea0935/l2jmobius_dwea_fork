@@ -192,7 +192,6 @@ public class EnterWorld extends ClientPacket
 				if ((instance != null) && instance.isPlayerAllowed(player.getObjectId()))
 				{
 					player.setInstanceId(instanceId);
-					Party.checkPartyReconnect(player);
 				}
 				else
 				{
@@ -213,7 +212,11 @@ public class EnterWorld extends ClientPacket
 			final int instanceId = InstanceManager.getInstance().getPlayer(player.getObjectId());
 			if (instanceId > 0)
 			{
-				InstanceManager.getInstance().getInstance(instanceId).removePlayer(player.getObjectId());
+				final Instance instance = InstanceManager.getInstance().getInstance(instanceId);
+				if (instance != null)
+				{
+					instance.removePlayer(player.getObjectId());
+				}
 			}
 		}
 		
@@ -269,14 +272,21 @@ public class EnterWorld extends ClientPacket
 				AdminData.getInstance().addGm(player, true);
 			}
 			
-			if (GeneralConfig.GM_GIVE_SPECIAL_SKILLS)
+			if (player.getAccessLevel().hasScope(org.l2jmobius.gameserver.data.enums.AdminScope.EVENT_GM))
 			{
-				SkillTreeData.getInstance().addSkills(player, false);
+				if (GeneralConfig.GM_GIVE_SPECIAL_SKILLS)
+				{
+					SkillTreeData.getInstance().addSkills(player, false);
+				}
+				
+				if (GeneralConfig.GM_GIVE_SPECIAL_AURA_SKILLS)
+				{
+					SkillTreeData.getInstance().addSkills(player, true);
+				}
 			}
-			
-			if (GeneralConfig.GM_GIVE_SPECIAL_AURA_SKILLS)
+			else
 			{
-				SkillTreeData.getInstance().addSkills(player, true);
+				player.updatePvpTitleAndColor(false);
 			}
 		}
 		
@@ -472,6 +482,7 @@ public class EnterWorld extends ClientPacket
 		}
 		
 		player.spawnMe(player.getX(), player.getY(), player.getZ());
+		Party.checkPartyReconnect(player);
 		// player.sendPacket(new ExRotation(player.getObjectId(), player.getHeading()));
 		
 		if (player.isCursedWeaponEquipped())

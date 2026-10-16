@@ -195,17 +195,13 @@ public enum AdminScope
 		
 		return switch (cmd)
 		{
-			// 1. Panel Navigation & Self GM Toggles
+			// 1. Panel Navigation & Non-Combat PM/List Toggles
 			case String s when s.equals("admin") || s.startsWith("admin1") || s.startsWith("admin2")
 				|| s.startsWith("admin3") || s.startsWith("admin4") || s.startsWith("admin5")
 				|| s.startsWith("admin6") || s.startsWith("admin7") || s.startsWith("board")
 				|| s.equals("html") || s.equals("help") || s.equals("commands") || s.equals("instancezones")
 				|| s.equals("gm") || s.startsWith("gmlist")
-				|| s.equals("invul") || s.equals("invis") || s.equals("invis_menu")
-				|| s.equals("vis") || s.equals("invisible") || s.equals("visible")
-				|| s.equals("hide") || s.equals("silence") || s.equals("diet")
-				|| s.equals("tradeoff") || s.equals("gmspeed")
-				|| s.startsWith("superhaste") || s.startsWith("speed") -> PANEL_ACCESS;
+				|| s.equals("silence") || s.equals("tradeoff") -> PANEL_ACCESS;
 			
 			// 2. Chat Moderation & Petitions
 			case String s when s.contains("petition") || s.equals("force_peti")
@@ -218,11 +214,14 @@ public enum AdminScope
 			case String s when s.startsWith("announce") || s.startsWith("autoannounce")
 				|| s.startsWith("critannounce") -> ANNOUNCEMENTS;
 			
-			// 4. Teleport & Movement
+			// 4. Teleport, Field Movement, Invisibility & GM Speed
 			case String s when s.startsWith("tele") || s.startsWith("move_to")
 				|| s.equals("show_moves") || s.equals("show_moves_other")
 				|| s.startsWith("recall") || s.startsWith("go") || s.equals("walk")
-				|| s.startsWith("instant_move") || s.equals("sendhome") -> TELEPORT;
+				|| s.startsWith("instant_move") || s.equals("sendhome")
+				|| s.equals("invis") || s.equals("invis_menu") || s.equals("vis")
+				|| s.equals("invisible") || s.equals("visible") || s.equals("hide")
+				|| s.equals("gmspeed") || s.startsWith("superhaste") || s.startsWith("speed") -> TELEPORT;
 			
 			// 5. Player Support & Inspection
 			case String s when s.equals("current_player") || s.equals("character_info")
@@ -230,22 +229,23 @@ public enum AdminScope
 				|| s.startsWith("find_") || s.equals("strict_find_dualbox") || s.equals("tracert")
 				|| s.equals("partyinfo") || s.equals("summon_info") || s.equals("unsummon") || s.equals("show_pet_inv")
 				|| s.equals("heal") || s.equals("res") || s.equals("res_monster")
-				|| s.startsWith("kill") || s.equals("kick") || s.equals("kick_menu") || s.equals("character_disconnect")
+				|| s.equals("kick") || s.equals("kick_menu") || s.equals("character_disconnect")
 				|| s.equals("repair") || s.equals("restore")
 				|| s.startsWith("instancezone") || s.startsWith("getbuffs")
 				|| s.equals("stopbuff") || s.equals("stopallbuffs")
 				|| s.startsWith("viewblocked") || s.startsWith("viewskill")
 				|| s.equals("removereuse") || s.equals("switch_gm_buffs")
 				|| s.equals("charquestmenu") || s.equals("quest_info")
-				|| s.equals("target") || s.equals("online") -> PLAYER_SUPPORT;
+				|| s.startsWith("debug") || s.equals("target") || s.equals("online") -> PLAYER_SUPPORT;
 			
 			// 6. Punishments & Bans
 			case String s when s.startsWith("punishment") || s.startsWith("jail")
 				|| s.equals("unjail") || s.startsWith("ban_") || s.startsWith("unban_")
 				|| s.equals("kick_non_gm") || s.equals("char_manage") -> PUNISHMENT;
 			
-			// 7. Events, Doors, Fences & World FX
-			case String s when s.startsWith("event") || s.equals("buff") || s.equals("areacancel")
+			// 7. Events, GM Combat States (Invul/Kill/Diet), Doors, Fences & World FX
+			case String s when s.startsWith("event") || s.equals("invul") || s.equals("diet")
+				|| s.startsWith("kill") || s.equals("buff") || s.equals("areacancel")
 				|| s.startsWith("transform") || s.equals("untransform")
 				|| s.startsWith("ride") || s.startsWith("unride")
 				|| s.equals("open") || s.equals("close") || s.equals("openall") || s.equals("closeall") || s.equals("showdoors")
@@ -256,8 +256,8 @@ public enum AdminScope
 				|| s.equals("clearteams") || s.startsWith("setteam")
 				|| s.startsWith("earthquake") || s.startsWith("gmsay") || s.equals("fakechat") -> EVENT_GM;
 			
-			// 8. World Spawns, Bosses, Sieges, Zones & Instances
-			case String s when s.startsWith("spawn") || s.equals("unspawnall") || s.equals("respawnall")
+			// 8. World Spawns, Bosses, Sieges, Zones & Instances (summon delegates items < 1M to create_item [ECONOMY_ITEMS])
+			case String s when s.startsWith("spawn") || s.equals("summon") || s.equals("unspawnall") || s.equals("respawnall")
 				|| s.startsWith("delete") || s.startsWith("list_spawns") || s.startsWith("list_positions")
 				|| s.startsWith("scan") || s.equals("show_spawns") || s.equals("show_npcs") || s.equals("npc_index")
 				|| s.equals("topspawncount") || s.equals("top_spawn_count") || s.equals("instance_spawns")
@@ -298,7 +298,7 @@ public enum AdminScope
 				|| s.startsWith("setlh") || s.startsWith("setlc") || s.startsWith("setll")
 				|| s.startsWith("setlg") || s.startsWith("setlb") || s.startsWith("setlw") || s.startsWith("setls")
 				|| s.startsWith("augment") || s.startsWith("element") || s.startsWith("destroy")
-				|| s.equals("summon") || s.startsWith("pccafe") || s.contains("game_points") || s.equals("gamepoints")
+				|| s.startsWith("pccafe") || s.contains("game_points") || s.equals("gamepoints")
 				|| s.equals("reload_itemmall") || s.startsWith("premium") || s.startsWith("search") -> ECONOMY_ITEMS;
 			
 			// 12. Server Admin, Hot-Reload, Geodata & Diagnostics
@@ -306,7 +306,7 @@ public enum AdminScope
 				|| s.startsWith("script_") || s.equals("show_quests") || s.equals("loadhtml")
 				|| s.startsWith("server") || s.startsWith("login")
 				|| s.equals("setconfig") || s.equals("config_server") || s.equals("set_mod") || s.equals("msg")
-				|| s.startsWith("debug") || s.startsWith("geo")
+				|| s.startsWith("geo")
 				|| s.equals("en") || s.equals("dn") || s.equals("es") || s.equals("ds")
 				|| s.equals("ee") || s.equals("de") || s.equals("ew") || s.equals("dw") || s.equals("ge")
 				|| s.contains("olymp") || s.startsWith("fakeplayer")

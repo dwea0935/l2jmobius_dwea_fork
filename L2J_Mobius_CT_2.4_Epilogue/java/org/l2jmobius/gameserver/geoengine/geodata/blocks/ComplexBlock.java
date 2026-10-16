@@ -71,7 +71,7 @@ public class ComplexBlock implements IBlock
 	public void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
 	{
 		final short currentNswe = getNearestNswe(geoX, geoY, worldZ);
-		if ((currentNswe & nswe) == 0)
+		if ((currentNswe & nswe) != nswe)
 		{
 			final short currentHeight = (short) getCellHeight(geoX, geoY);
 			final short encodedHeight = (short) (currentHeight << 1); // Shift left by 1 bit.

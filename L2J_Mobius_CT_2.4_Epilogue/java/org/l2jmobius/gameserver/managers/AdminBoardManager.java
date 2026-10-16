@@ -71,10 +71,15 @@ public final class AdminBoardManager
 		"<title>.*?</title>",
 		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 	
+	private static final Pattern DUPLICATE_QBOX_EDIT_PATTERN = Pattern.compile(
+		"<edit\\b[^>]*\\bvar\\s*=\\s*\"?qbox\"?[^>]*>",
+		Pattern.CASE_INSENSITIVE);
+	
 	/** Per-GM Community Board session state. */
 	private static final class AdminBoardSession
 	{
 		volatile String activeTab = "dashboard";
+		volatile String lastAdaptedBody = null;
 		volatile boolean boardOpen = false;
 		volatile int commandDepth = 0;
 		volatile int renderedCount = 0;
@@ -133,9 +138,10 @@ public final class AdminBoardManager
 	}
 	
 	/**
-	 * Marks the end of an admin command execution. If the command was triggered via bypass from an open
-	 * Admin Community Board and did not render a new page (e.g., Heal, Invul, Invis, GMSpeed, Kill),
-	 * automatically refreshes the active dashboard so the Target Inspector and GM toggles update live.
+	 * Marks the end of an admin command execution. In the 2009 Gracia Epilogue client (BoardWnd.uc / NWindow.dll),
+	 * clicking any bypass button inside BoardWnd.HtmlViewer sets PageLock = true until SetHtmlBuffData is called
+	 * by a new ShowBoard packet. Therefore, whenever a command is triggered via bypass while the Admin Board is open
+	 * and did not already render a new ShowBoard page, we always refresh the current ShowBoard view.
 	 * @param player the GM executing the command
 	 * @param fullCommand the executed command
 	 * @param fromBypass true if clicked from HTML/CommunityBoard bypass
@@ -153,34 +159,52 @@ public final class AdminBoardManager
 			session.commandDepth--;
 		}
 		
-		if (fromBypass && session.boardOpen && (session.renderedCount == 0) && shouldAutoRefreshAfter(fullCommand))
+		if (fromBypass && session.boardOpen && (session.renderedCount == 0) && shouldRefreshBoardAfter(fullCommand))
+		{
+			refreshCurrentView(player);
+		}
+	}
+	
+	/**
+	 * Re-sends the active ShowBoard view (either the current adapted sub-page or the active native tab)
+	 * so that BoardWnd.HtmlViewer.SetHtmlBuffData unlocks the client's PageLock and updates the live header.
+	 * @param player the staff member
+	 */
+	public void refreshCurrentView(Player player)
+	{
+		if (!canUseAdminBoard(player))
+		{
+			return;
+		}
+		
+		final AdminBoardSession session = getSession(player);
+		if (!session.boardOpen)
+		{
+			return;
+		}
+		
+		final String adapted = session.lastAdaptedBody;
+		if ((adapted != null) && !adapted.isEmpty())
+		{
+			session.renderedCount++;
+			sendWrappedBoardHtml(player, adapted, session.activeTab);
+		}
+		else
 		{
 			openTab(player, session.activeTab);
 		}
 	}
 	
-	private boolean shouldAutoRefreshAfter(String fullCommand)
+	private boolean shouldRefreshBoardAfter(String fullCommand)
 	{
 		if (fullCommand == null)
 		{
-			return false;
+			return true;
 		}
 		
 		final String cmd = (fullCommand.contains(" ") ? fullCommand.substring(0, fullCommand.indexOf(' ')) : fullCommand).toLowerCase(Locale.ROOT);
-		// Do not auto-refresh if the command opens a client-side shop/multisell or hides the board.
-		if (cmd.equals("admin_board_close") || cmd.equals("admin_buy") || cmd.equals("admin_gmshop"))
-		{
-			return false;
-		}
-		
-		return cmd.equals("admin_invul") || cmd.equals("admin_invis") || cmd.equals("admin_invis_menu")
-			|| cmd.equals("admin_vis") || cmd.equals("admin_hide") || cmd.equals("admin_silence")
-			|| cmd.equals("admin_diet") || cmd.equals("admin_tradeoff") || cmd.equals("admin_gmliston")
-			|| cmd.equals("admin_gmlistoff") || cmd.equals("admin_gmspeed") || cmd.equals("admin_superhaste")
-			|| cmd.equals("admin_speed") || cmd.equals("admin_heal") || cmd.equals("admin_res")
-			|| cmd.equals("admin_kill") || cmd.equals("admin_delete") || cmd.equals("admin_fullfood")
-			|| cmd.equals("admin_open") || cmd.equals("admin_close") || cmd.equals("admin_removereuse")
-			|| cmd.equals("admin_stopallbuffs");
+		// Do not re-open the board if the command explicitly closes it.
+		return !cmd.equals("admin_board_close");
 	}
 	
 	/**
@@ -233,6 +257,7 @@ public final class AdminBoardManager
 			{
 				final AdminBoardSession session = getSession(player);
 				session.boardOpen = false;
+				session.lastAdaptedBody = null;
 				player.sendPacket(new ShowBoard());
 				yield true;
 			}
@@ -254,6 +279,7 @@ public final class AdminBoardManager
 		
 		final AdminBoardSession session = getSession(player);
 		session.activeTab = tab;
+		session.lastAdaptedBody = null;
 		session.boardOpen = true;
 		session.renderedCount++;
 		
@@ -377,10 +403,11 @@ public final class AdminBoardManager
 		}
 		
 		final AdminBoardSession session = getSession(player);
+		final String adaptedBody = scrubAndAdaptHtml(player, rawHtml);
+		session.lastAdaptedBody = adaptedBody;
 		session.boardOpen = true;
 		session.renderedCount++;
 		
-		final String adaptedBody = scrubAndAdaptHtml(player, rawHtml);
 		sendWrappedBoardHtml(player, adaptedBody, session.activeTab);
 	}
 	
@@ -417,15 +444,22 @@ public final class AdminBoardManager
 		final String invulLabel = gm.isInvul() ? "Invul:ON" : "Invul:OFF";
 		final String silenceLabel = gm.isSilenceMode() ? "MutePM:ON" : "MutePM:OFF";
 		
-		// Row 1: Role Identity + Self GM State Toggles + Switch to Player CB
+		// Row 1: Role Identity + Self GM State Toggles (strictly RBAC filtered) + Switch to Player CB
 		sb.append("<table width=740 border=0 cellpadding=1 cellspacing=0 bgcolor=\"1B1B1B\"><tr>");
 		sb.append("<td width=210 align=left><font color=\"LEVEL\">[RBAC: ").append(access.getName()).append(" Lv.").append(access.getLevel()).append("]</font></td>");
-		sb.append("<td width=72 align=center>").append(button(invisLabel, "admin_invis", 70, 20)).append("</td>");
-		sb.append("<td width=72 align=center>").append(button(invulLabel, "admin_invul", 70, 20)).append("</td>");
-		sb.append("<td width=76 align=center>").append(button(silenceLabel, "admin_silence", 74, 20)).append("</td>");
-		sb.append("<td width=52 align=center>").append(button("Spd 1x", "admin_gmspeed 0", 50, 20)).append("</td>");
-		sb.append("<td width=52 align=center>").append(button("Spd 2x", "admin_gmspeed 2", 50, 20)).append("</td>");
-		sb.append("<td width=52 align=center>").append(button("Spd 4x", "admin_gmspeed 4", 50, 20)).append("</td>");
+		sb.append("<td width=72 align=center>").append(AdminData.getInstance().hasAccess("admin_invis", access) ? button(invisLabel, "admin_invis", 70, 20) : "").append("</td>");
+		sb.append("<td width=72 align=center>").append(AdminData.getInstance().hasAccess("admin_invul", access) ? button(invulLabel, "admin_invul", 70, 20) : "").append("</td>");
+		sb.append("<td width=76 align=center>").append(AdminData.getInstance().hasAccess("admin_silence", access) ? button(silenceLabel, "admin_silence", 74, 20) : "").append("</td>");
+		if (AdminData.getInstance().hasAccess("admin_gmspeed", access))
+		{
+			sb.append("<td width=52 align=center>").append(button("Spd 1x", "admin_gmspeed 0", 50, 20)).append("</td>");
+			sb.append("<td width=52 align=center>").append(button("Spd 2x", "admin_gmspeed 2", 50, 20)).append("</td>");
+			sb.append("<td width=52 align=center>").append(button("Spd 4x", "admin_gmspeed 4", 50, 20)).append("</td>");
+		}
+		else
+		{
+			sb.append("<td width=52></td><td width=52></td><td width=52></td>");
+		}
 		sb.append("<td width=78 align=center><button value=\"Player CB\" action=\"bypass _bbshome\" width=74 height=20 back=\"").append(BTN_BACK).append("\" fore=\"").append(BTN_FORE).append("\"></td>");
 		sb.append("<td width=76 align=right>").append(button("Close [X]", "admin_board_close", 72, 20)).append("</td>");
 		sb.append("</tr></table>");
@@ -464,6 +498,7 @@ public final class AdminBoardManager
 	
 	/**
 	 * Builds Top Bar 3: Live Target Inspector + Unified QuickBox with RBAC-filtered actions.
+	 * Uses strictly 1-level flat <table> rows for 2009 NWindow.dll compatibility.
 	 */
 	private void appendTargetInspectorAndQuickBox(StringBuilder sb, Player gm)
 	{
@@ -498,67 +533,71 @@ public final class AdminBoardManager
 			.append("<font color=\"00FF00\">HP ").append(curHp).append("/").append(maxHp).append("</font> ")
 			.append("<font color=\"66AAFF\">MP ").append(curMp).append("/").append(maxMp).append("</font></td>");
 		
-		sb.append("<td width=390 align=right>");
 		if (access.hasScope(AdminScope.PLAYER_SUPPORT))
 		{
-			sb.append("<table><tr>");
-			sb.append("<td>").append(button("Inspect", "admin_current_player", 54, 19)).append("</td>");
-			sb.append("<td>").append(button("Heal", "admin_heal", 44, 19)).append("</td>");
-			sb.append("<td>").append(button("Res", "admin_res", 42, 19)).append("</td>");
-			sb.append("<td>").append(button("Kill", "admin_kill", 44, 19)).append("</td>");
+			sb.append("<td width=56 align=center>").append(button("Inspect", "admin_current_player", 54, 19)).append("</td>");
+			sb.append("<td width=46 align=center>").append(button("Heal", "admin_heal", 44, 19)).append("</td>");
+			sb.append("<td width=44 align=center>").append(button("Res", "admin_res", 42, 19)).append("</td>");
+			sb.append("<td width=46 align=center>").append(AdminData.getInstance().hasAccess("admin_kill", access) ? button("Kill", "admin_kill", 44, 19) : "").append("</td>");
 			if (access.hasScope(AdminScope.TELEPORT))
 			{
-				sb.append("<td>").append(button("Goto", "admin_teleportto " + target.getName(), 46, 19)).append("</td>");
-				sb.append("<td>").append(button("Recall", "admin_recall " + target.getName(), 50, 19)).append("</td>");
+				sb.append("<td width=48 align=center>").append(button("Goto", "admin_teleportto " + target.getName(), 46, 19)).append("</td>");
+				sb.append("<td width=52 align=center>").append(button("Recall", "admin_recall " + target.getName(), 50, 19)).append("</td>");
+			}
+			else
+			{
+				sb.append("<td width=48></td><td width=52></td>");
 			}
 			if (access.hasScope(AdminScope.WORLD_SPAWN) && target.isNpc())
 			{
-				sb.append("<td>").append(button("DelNPC", "admin_delete", 54, 19)).append("</td>");
+				sb.append("<td width=56 align=center>").append(button("DelNPC", "admin_delete", 54, 19)).append("</td>");
 			}
 			else if (access.hasScope(AdminScope.PUNISHMENT) && target.isPlayer())
 			{
-				sb.append("<td>").append(button("Punish", "admin_punishment info " + target.getName() + " CHARACTER", 54, 19)).append("</td>");
+				sb.append("<td width=56 align=center>").append(button("Punish", "admin_punishment info " + target.getName() + " CHARACTER", 54, 19)).append("</td>");
 			}
-			sb.append("</tr></table>");
+			else
+			{
+				sb.append("<td width=56></td>");
+			}
 		}
 		else
 		{
-			sb.append("<font color=\"AAAAAA\">Loc: ").append(target.getX()).append(", ").append(target.getY()).append(", ").append(target.getZ()).append("</font>");
+			sb.append("<td width=390 align=right><font color=\"AAAAAA\">Loc: ").append(target.getX()).append(", ").append(target.getY()).append(", ").append(target.getZ()).append("</font></td>");
 		}
-		sb.append("</td></tr></table>");
+		sb.append("</tr></table>");
 		
-		// Unified QuickBox Row (RBAC filtered)
+		// Unified QuickBox Row (RBAC filtered, flat 1-level table)
 		sb.append("<table width=740 border=0 cellpadding=1 cellspacing=0 bgcolor=\"202020\"><tr>");
 		sb.append("<td width=65 align=left><font color=\"LEVEL\">QuickBox:</font></td>");
 		sb.append("<td width=155 align=left><edit var=\"qbox\" width=148 height=14></td>");
-		sb.append("<td width=520 align=left><table><tr>");
 		if (access.hasScope(AdminScope.PLAYER_SUPPORT))
 		{
-			sb.append("<td>").append(button("Find Char", "admin_find_character $qbox", 72, 20)).append("</td>");
+			sb.append("<td width=74 align=center>").append(button("Find Char", "admin_find_character $qbox", 72, 20)).append("</td>");
 		}
 		if (access.hasScope(AdminScope.TELEPORT))
 		{
-			sb.append("<td>").append(button("MoveTo", "admin_move_to $qbox", 62, 20)).append("</td>");
+			sb.append("<td width=64 align=center>").append(button("MoveTo", "admin_move_to $qbox", 62, 20)).append("</td>");
 		}
 		if (access.hasScope(AdminScope.WORLD_SPAWN))
 		{
-			sb.append("<td>").append(button("Spawn", "admin_spawn_monster $qbox", 58, 20)).append("</td>");
-			sb.append("<td>").append(button("Scan", "admin_scan $qbox", 52, 20)).append("</td>");
+			sb.append("<td width=60 align=center>").append(button("Spawn", "admin_spawn_monster $qbox", 58, 20)).append("</td>");
+			sb.append("<td width=54 align=center>").append(button("Scan", "admin_scan $qbox", 52, 20)).append("</td>");
 		}
 		if (access.hasScope(AdminScope.ECONOMY_ITEMS))
 		{
-			sb.append("<td>").append(button("Create Item", "admin_create_item $qbox", 78, 20)).append("</td>");
-			sb.append("<td>").append(button("Search", "admin_search $qbox", 58, 20)).append("</td>");
+			sb.append("<td width=80 align=center>").append(button("Create Item", "admin_create_item $qbox", 78, 20)).append("</td>");
+			sb.append("<td width=60 align=center>").append(button("Search", "admin_search $qbox", 58, 20)).append("</td>");
 		}
 		if (access.hasScope(AdminScope.ANNOUNCEMENTS))
 		{
-			sb.append("<td>").append(button("Announce", "admin_announce $qbox", 68, 20)).append("</td>");
+			sb.append("<td width=70 align=center>").append(button("Announce", "admin_announce $qbox", 68, 20)).append("</td>");
 		}
 		if (access.hasScope(AdminScope.SERVER_ADMIN))
 		{
-			sb.append("<td>").append(button("Reload Script", "admin_reload script $qbox", 84, 20)).append("</td>");
+			sb.append("<td width=86 align=center>").append(button("Reload Script", "admin_reload script $qbox", 84, 20)).append("</td>");
 		}
-		sb.append("</tr></table></td></tr></table>");
+		sb.append("<td width=10></td></tr></table>");
 	}
 	
 	/**
@@ -1006,7 +1045,10 @@ public final class AdminBoardManager
 		// 6. Convert legacy "link admin/..." actions into "bypass admin_html ..." so ShowBoard handles them seamlessly.
 		body = body.replaceAll("(?i)action\\s*=\\s*\"link\\s+admin/([^\"]+)\"", "action=\"bypass admin_html $1\"");
 		
-		// 7. Promote cramped 260/270px legacy tables to comfortable wide-screen widths.
+		// 7. Strip duplicate <edit var="qbox"> inputs in adapted sub-pages so NWindow.dll never collides with Top Bar QuickBox.
+		body = DUPLICATE_QBOX_EDIT_PATTERN.matcher(body).replaceAll("<font color=\"LEVEL\">[Use Top QuickBox]</font>");
+		
+		// 8. Promote cramped 260/270px legacy tables to comfortable wide-screen widths.
 		body = body.replaceAll("(?i)<table\\s+width\\s*=\\s*\"?(?:260|270|280)\"?\\b", "<table width=640");
 		
 		return body.trim();

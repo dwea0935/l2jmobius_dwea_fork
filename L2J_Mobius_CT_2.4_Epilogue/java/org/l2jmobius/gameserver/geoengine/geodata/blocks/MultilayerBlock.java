@@ -156,7 +156,7 @@ public class MultilayerBlock implements IBlock
 		}
 		
 		final short currentNswe = getNearestNswe(geoX, geoY, worldZ);
-		if ((currentNswe & nswe) == 0)
+		if ((currentNswe & nswe) != nswe)
 		{
 			final short encodedHeight = (short) (nearestLayerZ << 1); // Shift left by 1 bit.
 			final short newNswe = (short) (currentNswe | nswe); // Combine NSWE.

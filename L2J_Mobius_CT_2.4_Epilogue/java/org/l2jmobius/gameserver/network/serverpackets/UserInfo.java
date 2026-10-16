@@ -166,7 +166,7 @@ public class UserInfo extends ServerPacket
 		buffer.writeInt(appearance.getHairStyle());
 		buffer.writeInt(appearance.getHairColor());
 		buffer.writeInt(appearance.getFace());
-		buffer.writeInt(_player.isGM()); // builder level
+		buffer.writeInt(_player.isGM() && _player.getAccessLevel().allowAltG()); // builder level (controls client Alt+G GMWnd)
 		
 		String title = _player.getTitle();
 		if (_player.isGM() && _player.isInvisible())

@@ -52,9 +52,10 @@ public class RequestGMCommand extends ClientPacket
 	@Override
 	protected void runImpl()
 	{
-		// Prevent non GM or low level GMs from vieweing player stuff.
+		// Prevent non GM or low level GMs from viewing player stuff.
 		final GameClient client = getClient();
-		if (!client.getPlayer().isGM() || !client.getPlayer().getAccessLevel().allowAltG())
+		final Player activeChar = client.getPlayer();
+		if ((activeChar == null) || !activeChar.isGM() || !activeChar.getAccessLevel().allowAltG() || !activeChar.getAccessLevel().hasScope(org.l2jmobius.gameserver.data.enums.AdminScope.PLAYER_SUPPORT))
 		{
 			return;
 		}

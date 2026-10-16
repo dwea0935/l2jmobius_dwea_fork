@@ -815,8 +815,9 @@ public class Player extends Playable
 	/** Skills queued because a skill is already in progress */
 	private SkillUseHolder _queuedSkill;
 	/** Skills buffered because reuse delay is about to expire */
-	private SkillUseHolder _pendingReuseSkill;
-	private volatile int _customSkillQueueWindow = -1;
+	private volatile SkillUseHolder _pendingReuseSkill;
+	private volatile ScheduledFuture<?> _pendingReuseTask;
+	private volatile int _customSkillQueueWindow = -3;
 	
 	private int _cursedWeaponEquippedId = 0;
 	private boolean _combatFlagEquippedId = false;
@@ -9071,6 +9072,7 @@ public class Player extends Playable
 		
 		if (!checkUseMagicConditions(skill, forceUse, dontMove))
 		{
+			setCurrentSkill(null, false, false);
 			setCastingNow(false);
 			return false;
 		}
@@ -9285,9 +9287,8 @@ public class Player extends Playable
 				final long remainingTimeMs = getSkillRemainingReuseTime(skill.getReuseHashCode());
 				if ((remainingTimeMs > 0) && (remainingTimeMs <= queueWindow))
 				{
-					// Buffer the skill and schedule execution the exact millisecond reuse expires.
-					setPendingReuseSkill(skill, forceUse, dontMove);
-					ThreadPool.schedule(() -> executePendingReuseSkill(skill, forceUse, dontMove), remainingTimeMs);
+					// Buffer the skill and schedule execution the exact millisecond reuse expires (+2ms margin for nanoTime/currentTimeMillis jitter).
+					schedulePendingReuseSkill(skill, forceUse, dontMove, remainingTimeMs + 2);
 					sendPacket(ActionFailed.STATIC_PACKET);
 					return false;
 				}
@@ -12934,7 +12935,7 @@ public class Player extends Playable
 			return 0;
 		}
 		
-		if (_customSkillQueueWindow == -1)
+		if (_customSkillQueueWindow == -3)
 		{
 			final String val = getVariables().getString(PlayerVariables.SKILL_QUEUE_WINDOW, null);
 			if (val != null)
@@ -12947,6 +12948,10 @@ public class Player extends Playable
 				{
 					_customSkillQueueWindow = -1;
 				}
+			}
+			else
+			{
+				_customSkillQueueWindow = -1;
 			}
 		}
 		
@@ -12965,6 +12970,10 @@ public class Player extends Playable
 	
 	public int getCustomSkillQueueWindow()
 	{
+		if (_customSkillQueueWindow == -3)
+		{
+			getSkillQueueWindow();
+		}
 		return _customSkillQueueWindow;
 	}
 	
@@ -12988,6 +12997,13 @@ public class Player extends Playable
 	
 	public void setPendingReuseSkill(Skill skill, boolean ctrlPressed, boolean shiftPressed)
 	{
+		final ScheduledFuture<?> oldTask = _pendingReuseTask;
+		if (oldTask != null)
+		{
+			oldTask.cancel(false);
+			_pendingReuseTask = null;
+		}
+		
 		if (skill == null)
 		{
 			_pendingReuseSkill = null;
@@ -12996,8 +13012,18 @@ public class Player extends Playable
 		_pendingReuseSkill = new SkillUseHolder(skill, ctrlPressed, shiftPressed);
 	}
 	
+	public void schedulePendingReuseSkill(Skill skill, boolean ctrlPressed, boolean shiftPressed, long delayMs)
+	{
+		setPendingReuseSkill(skill, ctrlPressed, shiftPressed);
+		if (skill != null)
+		{
+			_pendingReuseTask = ThreadPool.schedule(() -> executePendingReuseSkill(skill, ctrlPressed, shiftPressed), delayMs);
+		}
+	}
+	
 	public void executePendingReuseSkill(Skill skill, boolean ctrlPressed, boolean shiftPressed)
 	{
+		_pendingReuseTask = null;
 		if (!isOnline() || isDead() || isAlikeDead())
 		{
 			_pendingReuseSkill = null;

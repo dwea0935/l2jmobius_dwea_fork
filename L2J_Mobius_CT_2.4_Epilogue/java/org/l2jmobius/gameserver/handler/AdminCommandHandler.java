@@ -89,15 +89,17 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 		
 		final String command = fullCommand.split(" ")[0];
 		final String commandNoPrefix = command.substring(6);
+		final org.l2jmobius.gameserver.managers.AdminBoardManager boardManager = org.l2jmobius.gameserver.managers.AdminBoardManager.getInstance();
 		if (!AdminData.getInstance().hasAccess(command, player.getAccessLevel()))
 		{
 			player.sendMessage("You do not have the required RBAC role permission (" + org.l2jmobius.gameserver.data.enums.AdminScope.classifyCommand(command).getDisplayName() + ") for this command!");
 			LOGGER.warning(player + " tried to use admin command '" + command + "', without proper RBAC access!");
+			boardManager.refreshCurrentView(player);
 			return;
 		}
 		
 		// Native Admin Community Board navigation commands execute directly without script lookup overhead.
-		if (org.l2jmobius.gameserver.managers.AdminBoardManager.getInstance().handleNavigationCommand(player, fullCommand))
+		if (boardManager.handleNavigationCommand(player, fullCommand))
 		{
 			return;
 		}
@@ -107,6 +109,7 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 		{
 			player.sendMessage("The command '" + commandNoPrefix + "' does not exist!");
 			LOGGER.warning("No handler registered for admin command '" + command + "'");
+			boardManager.refreshCurrentView(player);
 			return;
 		}
 		
@@ -117,6 +120,7 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 			dlg.getSystemMessage().addString("Are you sure you want execute command '" + commandNoPrefix + "' ?");
 			player.addAction(PlayerAction.ADMIN_COMMAND);
 			player.sendPacket(dlg);
+			boardManager.refreshCurrentView(player);
 		}
 		else
 		{
@@ -124,7 +128,6 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 			ThreadPool.execute(() ->
 			{
 				final long begin = System.currentTimeMillis();
-				final org.l2jmobius.gameserver.managers.AdminBoardManager boardManager = org.l2jmobius.gameserver.managers.AdminBoardManager.getInstance();
 				boardManager.beginAdminCommand(player);
 				try
 				{
