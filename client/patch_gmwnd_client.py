@@ -149,26 +149,31 @@ def patch_interface_xdat():
     with open(orig_path, "rb") as f:
         xdat = bytearray(f.read())
 
-    # 1. Verify GMWnd header @ 399160 and GuideWnd @ 404835
-    assert xdat[399160:399167] == b"\x06GMWnd\x00", "GMWnd signature mismatch"
-    assert xdat[404835:404845] == b"\x09GuideWnd\x00", "GuideWnd boundary mismatch"
+    # Guard: Must be clean 2009-09-28 Interface.xdat (1,305,499 bytes)
+    assert len(xdat) == 1305499, f"Expected clean 2009-09-28 interface.xdat.orig (1305499 B), got {len(xdat)} B"
 
-    # 2. Expand GMWnd dimensions at offset 399225 from (350, 355) to (992, 544)
-    w_orig, h_orig = struct.unpack_from("<ii", xdat, 399225)
+    # 1. Verify GMWnd header @ 389560 and GuideWnd @ 395235
+    gm_off = 389560
+    guide_off = 395235
+    assert xdat[gm_off : gm_off + 7] == b"\x06GMWnd\x00", "GMWnd signature mismatch"
+    assert xdat[guide_off : guide_off + 10] == b"\x09GuideWnd\x00", "GuideWnd boundary mismatch"
+
+    # 2. Expand GMWnd dimensions at offset gm_off + 65 (389625) from (350, 355) to (992, 544)
+    w_orig, h_orig = struct.unpack_from("<ii", xdat, gm_off + 65)
     assert (w_orig, h_orig) == (350, 355), f"Unexpected GMWnd size: {(w_orig, h_orig)}"
-    struct.pack_into("<ii", xdat, 399225, 992, 544)
+    struct.pack_into("<ii", xdat, gm_off + 65, 992, 544)
 
     # 3. Locate GMWnd child count right before first child (\x08EditBox\x00)
-    cc_off = xdat.find(b"\x13\x00\x00\x00\x08EditBox\x00", 399160, 400000)
+    cc_off = xdat.find(b"\x13\x00\x00\x00\x08EditBox\x00", gm_off, gm_off + 1000)
     assert cc_off != -1, "Could not locate GMWnd child count before EditBox"
     # 19 original widgets + 3 left-dock GroupBox_DF backgrounds + 2 extra section TextBoxes + texBack + HtmlViewer = 26
     struct.pack_into("<i", xdat, cc_off, 26)
 
-    # 4. Collect all 19 widget parent-name offsets inside [399160..404835]
+    # 4. Collect all 19 widget parent-name offsets inside [gm_off..guide_off]
     widget_offsets = []
-    pos = 399167
+    pos = gm_off + 7
     while True:
-        p = xdat.find(b"\x06GMWnd\x00", pos, 404835)
+        p = xdat.find(b"\x06GMWnd\x00", pos, guide_off)
         if p == -1:
             break
         if xdat[p + 7 : p + 29] == b"\x0aundefined\x00\x0aundefined\x00":
@@ -252,9 +257,9 @@ def patch_interface_xdat():
                 rx, ry = tx - px, ty - py
             struct.pack_into("<ff", xdat, fp, rx, ry)
 
-    # Slice the 19 individual widget records from xdat[cc_off+4 : 404835]
+    # Slice the 19 individual widget records from xdat[cc_off+4 : guide_off]
     children_start = cc_off + 4
-    children_end = 404835
+    children_end = guide_off
     starts = [children_start]
     pos = children_start + 1
     while len(starts) < 19:
@@ -336,10 +341,11 @@ def patch_interface_xdat():
         "txtSecLegacy", "3. Legacy GM Inspector", 14.0, 248.0, 200, 14, b"\xa8\xc4\xe0\xff"
     )
 
-    # 5. Extract ItemDescWnd's 2 children (texBack and HtmlViewer) from orig_xdat [444075..444471]
-    tex_start = xdat.find(b"\x08Texture\x00\x08texBack\x00", 443626, 444471)
-    html_start = xdat.find(b"\x09HtmlCtrl\x00\x0bHtmlViewer\x00", 443626, 444471)
-    npc_start = xdat.find(b"\x0dNPCDialogWnd\x00", 443626, 444500)
+    # 5. Extract ItemDescWnd's 2 children (texBack and HtmlViewer) from clean 2009 orig_xdat [434475..434870]
+    itemdesc_off = xdat.find(b"\x0cItemDescWnd\x00")
+    tex_start = xdat.find(b"\x08Texture\x00\x08texBack\x00", itemdesc_off, itemdesc_off + 1000)
+    html_start = xdat.find(b"\x09HtmlCtrl\x00\x0bHtmlViewer\x00", tex_start, tex_start + 500)
+    npc_start = xdat.find(b"\x0dNPCDialogWnd\x00", html_start, html_start + 500)
     assert tex_start != -1 and html_start != -1 and npc_start != -1
 
     tex_template = bytearray(xdat[tex_start:html_start]).replace(b"\x0cItemDescWnd\x00", b"\x06GMWnd\x00", 1)
@@ -375,13 +381,13 @@ def patch_interface_xdat():
         + txt_sec_legacy
         + html_rec
     )
-    patched_xdat = xdat[:children_start] + all_children + xdat[404835:]
+    patched_xdat = xdat[:children_start] + all_children + xdat[guide_off:]
     with open(out_path, "wb") as f:
         f.write(patched_xdat)
 
     print(
         f"[+] Patched system/interface.xdat ({len(xdat)} -> {len(patched_xdat)} bytes): "
-        "GMWnd v2 (992x544) with 3-section left dock, full Button_DF hover/click feedback, Legacy group + HtmlViewer"
+        "Clean 2009-09-28 base + GMWnd v2 (992x544) with 3-section left dock, Button_DF feedback, Legacy group + HtmlViewer"
     )
 
 
@@ -416,146 +422,120 @@ def patch_interface_u():
     with open(orig_path, "rb") as f:
         raw = f.read()
 
+    # Guard: Must be clean 2009-09-28 Interface.u (4,061,011 bytes)
+    assert len(raw) == 4061011, f"Expected clean 2009-09-28 interface.u.orig (4061011 B), got {len(raw)} B"
+
     hdr = raw[:28]
     data = bytearray(b ^ 0xAC for b in raw[28:])
 
-    # 1. GMFindTreeWnd.ShowSkillList (#13529, off=2542899, sz=88): bSummon = false (0x28) -> true (0x27)
-    off, sz = 2542899, 88
-    code_13529 = bytearray(data[off + 23 : off + sz - 7])
-    assert code_13529[-3:] == b"\x28\x04\x0b"
-    code_13529[-3] = 0x27
-    patch_func_in_place(data, off, sz, bytes(code_13529), 80)
-
-    # 2. GMFindTreeWnd.FindAllSkill (#13526, off=2542436, sz=287):
-    #    Replace record.LVDataList[1].szData = string(cID.ClassID); record.LVDataList[1].TextColor = Gold;
-    #    with    record.LVDataList[1].szData = string(cID.ClassID + 2000000); + 7x EX_Nothing (0x0B)
-    off, sz = 2542436, 287
-    code_13526 = bytearray(data[off + 23 : off + sz - 7])
-    old_s12 = bytes.fromhex("0f36a21026369b00531b395336ff02005f280f36d3031026369b00531b016213")
-    new_s12 = (
-        bytes.fromhex("0f36a21026369b00531b39539236ff02005f281d80841e0016")
-        + (b"\x0b" * 7)
+    # 1. GMFindTreeWnd.ShowSkillList (#10184, off=467201, sz=88): bSummon = false (0x28) -> true (0x27)
+    patch_func_in_place(
+        data,
+        467201,
+        88,
+        bytes.fromhex("070e007a0069671f0016040b19015e0c0600001c95161b52180069671619015e0c0600001ca01619015e0c0600001ce90116142d015e2c27040b"),
+        80,
     )
-    assert len(old_s12) == len(new_s12) == 32
-    assert old_s12 in code_13526
-    code_13526 = code_13526.replace(old_s12, new_s12, 1)
-    # Adjust the 2 forward jump targets (0x0150 -> 0x0147, 0x0168 -> 0x015f) and MemScriptSize (362 -> 353)
-    code_13526 = code_13526.replace(b"\x07\x68\x01", b"\x07\x5f\x01", 1)
-    code_13526 = code_13526.replace(b"\x07\x50\x01", b"\x07\x47\x01", 1)
-    patch_func_in_place(data, off, sz, bytes(code_13526), 353)
 
-    # 3. GMWnd.HandleTargetUpdate (#12137, off=762030, sz=144):
-    #    Place 04 0b (return;) right after m_TargetID = 0 (0f 01 6b34 25) so untargeting does not clear EditBox
-    off, sz = 762030, 144
-    code_12137 = bytearray(data[off + 23 : off + sz - 7])
-    old_seq = bytes.fromhex("0f016b3425190166040800001ccf021f0016040b")
-    new_seq = bytes.fromhex("0f016b3425040b190166040800001ccf021f0016")
-    assert old_seq in code_12137
-    code_12137 = code_12137.replace(old_seq, new_seq, 1)
-    patch_func_in_place(data, off, sz, bytes(code_12137), 154)
+    # 2. GMFindTreeWnd.FindAllSkill (#10231, off=474923, sz=287):
+    #    record.LVDataList[1].szData = string(cID.ClassID + 2000000); + 7x EX_Nothing (0x0B)
+    patch_func_in_place(
+        data,
+        474923,
+        287,
+        bytes.fromhex(
+            "070e007a0078671f0016040b4101591425370159140f00668d01250f37369b005b1c2c021b4203160f005168ee0078671f20001f0028160f00542c1220d4020600081b550716075f011b450100542c160f007f481220d4020c00001b500300542c26160f004868ee007f481f20001f0028160747019b7e004868005168161dffffffff16142d36f9051025369b005b1c270f36a21025369b005b1c007f480f36e7031025369b005b1c0157140f36a21026369b005b1c39539236c10300542c1d80841e00160b0b0b0b0b0b0b1220df012000001b4c017001621d1f2e4c6973744696e64576e640016005b1c160f00542c1220d4020600081b5f0716065e00040b"
+            if False else
+            "070e007a0078671f0016040b4101591425370159140f00668d01250f37369b005b1c2c021b4203160f005168ee0078671f20001f0028160f00542c1220d4020600081b550716075f011b450100542c160f007f481220d4020c00001b500300542c26160f004868ee007f481f20001f0028160747019b7e004868005168161dffffffff16142d36f9051025369b005b1c270f36a21025369b005b1c007f480f36e7031025369b005b1c0157140f36a21026369b005b1c39539236c10300542c1d80841e00160b0b0b0b0b0b0b1220df012000001b4c017001621d1f2e4c69737446696e64576e640016005b1c160f00542c1220d4020600081b5f0716065e00040b"
+        ),
+        353,
+    )
 
-    # 4. GMWnd.OnClickChangeServerButton (#12081, off=752175, sz=94):
+    # 3. GMWnd.HandleShowGMWnd (#12109, off=780057, sz=78):
+    #    Replace m_hGMwnd.SetFocus() with ExecuteCommand("//gmw")
+    patch_func_in_place(
+        data,
+        780057,
+        78,
+        bytes.fromhex("0724001901f6010600041cb7161901f6010600001c95160640001901f6010600001ca0161cfa021f2f2f676d770016040b"),
+        66,
+    )
+
+    # 4. GMWnd.HandleTargetUpdate (#12112, off=780213, sz=144):
+    #    Place 04 0b (return;) right after m_TargetID = 0 so untargeting does not clear EditBox
+    patch_func_in_place(
+        data,
+        780213,
+        144,
+        bytes.fromhex("0f0062281220d8050600041b7a0c160726009a006228014b3816040b074b009600622826160f014b3825040b190165040800001ccf021f00161b5803005d4516078d0082970062282516180f00f22d36d607005d45281616190165041000001ccf0236e403005d45160f014b38006228040b"),
+        154,
+    )
+
+    # 5. GMWnd.OnClickChangeServerButton (#12192, off=792065, sz=94):
     #    ExecuteCommand("//admin"); return; + 49x EX_Nothing (0x0B)
-    off, sz = 752175, 94
-    stmt_admin = bytes.fromhex("1cfb021f2f2f61646d696e0016040b")  # 15 disk bytes, 17 mem bytes
-    code_12081 = stmt_admin + (b"\x0b" * (64 - len(stmt_admin)))
-    patch_func_in_place(data, off, sz, code_12081, 17 + (64 - len(stmt_admin)))
+    off, sz = 792065, 94
+    stmt_admin = bytes.fromhex("1cfa021f2f2f61646d696e0016040b")  # 15 disk bytes, 17 mem bytes
+    code_12192 = stmt_admin + (b"\x0b" * (64 - len(stmt_admin)))
+    patch_func_in_place(data, off, sz, code_12192, 66)
 
-    # 5. GMWnd.OnClickPetitionButton (#12101, off=755055, sz=83):
+    # 6. GMWnd.OnClickPetitionButton (#12173, off=791198, sz=83):
     #    Repurpose obsolete Petition button into "Player Panel":
     #    ExecuteCommand("//gmw player" @ m_hEditBox.GetString()); return; + 20x EX_Nothing (0x0B)
-    off, sz = 755055, 83
+    off, sz = 791198, 83
     stmt_peti = (
-        bytes.fromhex("1cfb02a8")
+        bytes.fromhex("1cfa02a8")
         + b"\x1f//gmw player\x00"
-        + bytes.fromhex("190166040600001cfd01161616040b")
+        + bytes.fromhex("190165040600001cf901161616040b")
     )
-    pad_12101 = 53 - len(stmt_peti)
-    code_12101 = stmt_peti + (b"\x0b" * pad_12101)
-    patch_func_in_place(data, off, sz, code_12101, 59)
+    pad_12173 = 53 - len(stmt_peti)
+    code_12173 = stmt_peti + (b"\x0b" * pad_12173)
+    patch_func_in_place(data, off, sz, code_12173, 59)
 
-    # 6. GMWnd.OnClickForcePetitionButton (#12089, off=753162, sz=90):
+    # 7. GMWnd.OnClickForcePetitionButton (#12191, off=791975, sz=90):
     #    Repurpose obsolete ForcePetition button into "Legacy Tools":
     #    ExecuteCommand("//gmw legacy"); return; + 40x EX_Nothing (0x0B)
-    off, sz = 753162, 90
-    stmt_fpeti = bytes.fromhex("1cfb02") + b"\x1f//gmw legacy\x00" + bytes.fromhex("16040b")
-    pad_12089 = 60 - len(stmt_fpeti)
-    code_12089 = stmt_fpeti + (b"\x0b" * pad_12089)
-    patch_func_in_place(data, off, sz, code_12089, 62)
+    off, sz = 791975, 90
+    stmt_fpeti = bytes.fromhex("1cfa02") + b"\x1f//gmw legacy\x00" + bytes.fromhex("16040b")
+    pad_12191 = 60 - len(stmt_fpeti)
+    code_12191 = stmt_fpeti + (b"\x0b" * pad_12191)
+    patch_func_in_place(data, off, sz, code_12191, 62)
 
-    # 7. GMWnd.HandleShowGMWnd (#12139, off=762244, sz=78):
-    #    Replace m_hGMwnd.SetFocus() (11 disk bytes) with ExecuteCommand("//gmw") (11 disk bytes)
-    off, sz = 762244, 78
-    code_12139 = bytearray(data[off + 22 : off + sz - 7])
-    old_focus = bytes.fromhex("0642001901f9010600001ca01619017e470600001ceb0116040b")
-    new_gmw = bytes.fromhex("0640001901f9010600001ca0161cfb021f2f2f676d770016040b")
-    assert len(old_focus) == len(new_gmw)
-    assert old_focus in code_12139
-    code_12139 = code_12139.replace(old_focus, new_gmw, 1)
-    patch_func_in_place(data, off, sz, bytes(code_12139), 66)
-
-    # 6. ItemDescWnd.OnLoad (#12029, off=743910, sz=125):
+    # 8. ItemDescWnd.OnLoad (#12259, off=800138, sz=125):
     #    OnRegisterEvent(); m_hItemDescWnd = GetWindowHandle("GMWnd"); m_hHtmlViewer = GetHtmlHandle("GMWnd.HtmlViewer"); return;
-    off, sz = 743910, 125
-    stmt_onload = (
-        bytes.fromhex("1b0516")  # OnRegisterEvent(); (3 disk, 6 mem)
-        + bytes.fromhex("0f016c2b1ca81f474d576e640016")  # m_hItemDescWnd = GetWindowHandle("GMWnd"); (14 disk, 19 mem)
-        + bytes.fromhex("0f016c491cc9051f474d576e642e48746d6c5669657765720016")  # m_hHtmlViewer = GetHtmlHandle("GMWnd.HtmlViewer"); (26 disk, 30 mem)
-        + bytes.fromhex("040b")  # return; (2 disk, 2 mem)
+    patch_func_in_place(
+        data,
+        800138,
+        125,
+        bytes.fromhex("1b05160f0153281caa1f474d576e6400160f0178461cd2051f474d576e642e48746d6c5669657765720016040b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"),
+        108,
     )
-    pad_len = 96 - len(stmt_onload)
-    code_12029 = stmt_onload + (b"\x0b" * pad_len)
-    patch_func_in_place(data, off, sz, code_12029, 57 + pad_len)
 
-    # 7. ItemDescWnd.OnEvent (#12028, off=743800, sz=110):
+    # 9. ItemDescWnd.OnEvent (#12269, off=801345, sz=110):
     #    if (!IsBuilderPC()) return;
     #    switch(Event_ID) {
     #      case EV_ItemDescWndShow: m_hItemDescWnd.ShowWindow(); m_hItemDescWnd.SetFocus(); break;
     #      case EV_ItemDescWndLoadHtmlFromString: HandleLoadHtmlFromString(param); break;
     #    }
-    off, sz = 743800, 110
-    stmt_onevent = (
-        bytes.fromhex("070c00811b58041616040b")  # if (!IsBuilderPC()) return; (11 disk, 13 mem? Wait: let's check!)
+    patch_func_in_place(
+        data,
+        801345,
+        110,
+        bytes.fromhex("070d00811b77031616040b0504004d86010a3d001de40c0000190153280600001ca016190153280600001ce901160656000a53001dee0c00001b7f04007772160656000affff040b0b0b0b0b0b0b0b"),
+        95,
     )
-    # Wait: let's compute exact jump offsets for ItemDescWnd.OnEvent using sim_expr!
-    # Prefix: 07 <u16> 81 1b 5804 16 16 04 0b
-    _, prefix_mem = sim_expr(bytes.fromhex("070000811b58041616"), 0, 0)
-    prefix_mem += 2  # + 04 0b (return;)
-    switch_hdr = bytes.fromhex("0504006f8c01")
-    _, sw_mem = sim_expr(switch_hdr, 0, prefix_mem)
-    case1_body = bytes.fromhex("19016c2b0600001ca01619016c2b0600001ceb0116")
-    d, c1_body_mem = 0, 0
-    while d < len(case1_body):
-        d, c1_body_mem = sim_expr(case1_body, d, c1_body_mem)
-    case1_next_off = sw_mem + 8 + c1_body_mem + 3
-
-    case2_body = bytes.fromhex("1b7e04007b6516")
-    _, c2_body_mem = sim_expr(case2_body, 0, 0)
-    case2_next_off = case1_next_off + 8 + c2_body_mem + 3
-    end_switch_off = case2_next_off + 3
-
-    built_onevent = (
-        b"\x07" + struct.pack("<H", prefix_mem) + bytes.fromhex("811b58041616040b")
-        + switch_hdr
-        + b"\x0a" + struct.pack("<H", case1_next_off) + bytes.fromhex("1de40c0000") + case1_body + b"\x06" + struct.pack("<H", end_switch_off)
-        + b"\x0a" + struct.pack("<H", case2_next_off) + bytes.fromhex("1dee0c0000") + case2_body + b"\x06" + struct.pack("<H", end_switch_off)
-        + bytes.fromhex("0affff040b")
-    )
-    pad_12028 = 79 - len(built_onevent)
-    code_12028 = built_onevent + (b"\x0b" * pad_12028)
-    patch_func_in_place(data, off, sz, code_12028, end_switch_off + 2 + pad_12028)
 
     out_raw = hdr + bytes(b ^ 0xAC for b in data)
-    assert len(out_raw) == len(raw), "interface.u file size changed!"
+    assert len(out_raw) == len(raw) == 4061011, "interface.u file size changed!"
     with open(out_path, "wb") as f:
         f.write(out_raw)
 
     print(
-        f"[+] Patched system/interface.u ({len(out_raw)} bytes, 0-byte size delta): "
-        "All 7 UnrealScript functions verified via SerializeExpr!"
+        f"[+] Patched system/interface.u ({len(out_raw)} bytes, 0-byte size delta on clean 2009-09-28 base): "
+        "All 9 UnrealScript functions verified via SerializeExpr!"
     )
 
 
 if __name__ == "__main__":
     patch_interface_xdat()
     patch_interface_u()
+
