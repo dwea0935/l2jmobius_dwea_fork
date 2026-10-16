@@ -213,9 +213,30 @@ We re-engineered the scripting engine into a **True Zero-Downtime Transactional 
 
 ---
 
-## 7. Next Architectural Tasks Handover Blueprint (For Work PC Agent)
+## 7. Java 27 Role-Based Access Control (RBAC) & 2009 Client-Safe Admin Community Board (Completed)
 
-With the core runtime, instance infrastructure, netcode skill queue/lag tolerance, Panama FFM GeoEngine/Movement engines, and Zero-Downtime Hot-Reload Engine complete, the following two architectural tasks are queued next:
+> **Dedicated Architecture Documentation:** See [`ADMIN_COMMUNITY_BOARD_RBAC_ARCHITECTURE.md`](ADMIN_COMMUNITY_BOARD_RBAC_ARCHITECTURE.md) for the deep-dive specification.  
+> **Feature Branch:** `origin/feature/admin-community-board-rbac` (Merged to `origin/master`)
+
+To modernize server administration without crashing the 2009 Gracia Epilogue client (`NWindow.dll` HTML 3.2 engine) and while guaranteeing 100% isolation from regular players, `//admin` and all its sub-interfaces were migrated into a **Wide-Screen (`ShowBoard` / `ALT+B`) Role-Based Access Control (RBAC) Admin Control Center**:
+
+1. **2009 Gracia Epilogue Client `ShowBoard` Crash Fixes ([`ShowBoard.java`](L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/network/serverpackets/ShowBoard.java), [`HtmlUtil.java`](L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/util/HtmlUtil.java)):**
+   * Fixed `ShowBoard(String htmlCode, String id)` so `null` `htmlCode` is converted to `""` instead of concatenating the literal string `"null"` (`"102\u0008null"`) into the client's HTML buffer.
+   * Restored `HtmlUtil.sendCBHtml` packet splitting from `16250` down to the authentic Gracia Epilogue `4090`-char per-packet limit (`101`, `102`, `103` = `12,270` chars max) and populated both `COMM_BOARD_HTML` and `NPC_HTML` bypass validation caches.
+2. **Java 27 Composable RBAC `AdminScope` Engine ([`AdminScope.java`](L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/data/enums/AdminScope.java), [`AccessLevel.java`](L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/data/holders/AccessLevel.java), [`AccessRight.java`](L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/data/holders/AccessRight.java), [`AccessLevels.xml`](L2J_Mobius_CT_2.4_Epilogue/dist/game/config/AccessLevels.xml)):**
+   * Replaced flat integer `accessLevel` checks with 13 composable `AdminScope` capabilities (`PANEL_ACCESS`, `CHAT_MODERATION`, `ANNOUNCEMENTS`, `TELEPORT`, `PLAYER_SUPPORT`, `PUNISHMENT`, `EVENT_GM`, `WORLD_SPAWN`, `CLAN_MANAGEMENT`, `CHAR_EDIT`, `ECONOMY_ITEMS`, `SERVER_ADMIN`, `MASTER_CONTROL`) classified via Java 27 `switch` pattern matching.
+   * Fixed stock `AccessLevels.xml` so all 8 staff roles (`10 Chat Moderator`, `20 Test GM`, `30 General GM`, `40 Support GM`, `50 Event GM`, `60 Head GM`, `70 Admin`, `100 Master`) are functional with strict scope boundaries, while `User (0)` and `Banned (-1)` have `isGM="false"` and `scopes="NONE"` (100% isolated from `//admin` and the Admin Community Board).
+3. **Wide-Screen Admin Control Center & Automatic `NpcHtmlMessage` Interceptor/Scrubber ([`AdminBoardManager.java`](L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/managers/AdminBoardManager.java), [`Player.java`](L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/entity/actor/Player.java), [`RequestBypassToServer.java`](L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/network/clientpackets/RequestBypassToServer.java), [`HomeBoard.java`](L2J_Mobius_CT_2.4_Epilogue/dist/game/data/scripts/handlers/bypass/communityboard/HomeBoard.java)):**
+   * Provides a flat, 2009-client-safe (`<= 2` nested tables) Top Command Deck, RBAC-filtered Navigation Bar, Live Target Inspector, Unified QuickBox (`$qbox`), and 6 native 740px workspaces (including a 1-click **Zero-Downtime Script Hot-Reload Console**).
+   * Automatically intercepts `NpcHtmlMessage` packets during admin command execution, strips nested `<html>`/`<body>`/`<title>` tags, dynamically scrubs unauthorized `<button>` and `<a>` tags based on the GM's `AccessLevel` scopes, and normalizes `bypass -h` to `bypass` so clicking buttons never closes the Community Board.
+4. **Legacy Purge & Handler Consolidation (80 $\rightarrow$ 69 Admin Handlers):**
+   * Purged 5 obsolete/broken 2004-era handlers (`AdminCamera`, `AdminFightCalculator`, `AdminPathNode`, `AdminTargetSay`, `AdminTest`) and consolidated 6 redundant handlers (`AdminDisconnect` $\rightarrow$ `AdminKick`, `AdminSuperHaste` $\rightarrow$ `AdminGmSpeed`, `AdminInstanceZone` $\rightarrow$ `AdminInstance`, `AdminPledge` $\rightarrow$ `AdminClan`, `AdminZoneBuild` $\rightarrow$ `AdminZone`, `AdminShowQuests` $\rightarrow$ `AdminQuest`).
+
+---
+
+## 8. Next Architectural Tasks Handover Blueprint (For Work PC Agent)
+
+With the core runtime, instance infrastructure, netcode skill queue/lag tolerance, Panama FFM GeoEngine/Movement engines, Zero-Downtime Hot-Reload Engine, and RBAC Admin Community Board complete, the following two architectural tasks are queued next:
 
 ### Task B: The 5-Phase Expansion Gatekeeper & Dynamic 1–75 / 76–85 Progression Engine (`feature/expansion-phase-and-progression-engine`)
 * **Objective:** Implement the centralized progression controller described in Section 1 using modern Java 27 **Records**, **Sealed Interfaces**, and **Pattern Matching `switch` expressions**:
@@ -226,7 +247,7 @@ With the core runtime, instance infrastructure, netcode skill queue/lag toleranc
      * **Phase 4:** Beleth's Chamber (Grand Boss Beleth).
      * **Phase 5:** Gracia Continent + Seed of Destruction (Tiat) & Seed of Infinity (Ekimus).
   2. **Two-Tier Dynamic XP/SP/Drop Curve:** Fast-tracked multipliers for levels `1–75` transitioning automatically to hardcore Gracia Epilogue progression for `76–85`.
-  3. **In-Game Voiced & Admin Commands:** `.phase` (or `.stage`) for players to inspect the active server phase, level-bracket rates, and unlock schedule; `//setphase <1-5>` for GMs to hot-advance phases without restarting the server.
+  3. **In-Game Voiced & Admin Commands:** `.phase` (or `.stage`) for players to inspect the active server phase, level-bracket rates, and unlock schedule; `//setphase <1-5>` for GMs to hot-advance phases without restarting the server (wired directly into the new RBAC Admin Community Board!).
 
 ### Task C: Endgame Instance & Hellbound Script Modernization (`feature/endgame-instance-script-refactor`)
 * **Objective:** Migrate the datapack's endgame scripts onto the 5-Pillar Core Instance Infrastructure Pipeline:
@@ -238,7 +259,7 @@ With the core runtime, instance infrastructure, netcode skill queue/lag toleranc
 
 ---
 
-## 8. How to Resume This Session at Work Tomorrow
+## 9. How to Resume This Session at Work Tomorrow
 
 ### Step 1: Git Fetch & Switch
 ```bash
@@ -249,11 +270,9 @@ git checkout master
 # - origin/feature/netcode-skill-queue-lag-tolerance
 # - origin/feature/java27-ffm-geoengine-and-movement
 # - origin/feature/zero-downtime-hot-reload-engine
+# - origin/feature/admin-community-board-rbac
 ```
 
 ### Step 2: Prompting Antigravity / AI Agent at Work
 Provide the following prompt to the assistant on your work machine:
-> *"I have pulled the latest `master` branch. Please read `PROJECT_MASTER_CONTEXT_AND_ROADMAP.md`, `SKILL_QUEUE_AND_LAG_TOLERANCE.md`, `GEOENGINE_AND_MOVEMENT_ARCHITECTURE.md`, and `HOT_RELOAD_ENGINE_ARCHITECTURE.md`. Our core engine now runs on Java 27 with the 5-Pillar Instance Infrastructure Pipeline, the Netcode Skill Queue & Lag Tolerance Engine, the Project Panama FFM Off-Heap GeoEngine & Lock-Free Movement Task Manager, and the Zero-Downtime Transactional Script Hot-Reload Engine. Review Section 7 of `PROJECT_MASTER_CONTEXT_AND_ROADMAP.md` (Tasks B and C) and let's plan our next implementation."*
-
-
-
+> *"I have pulled the latest `master` branch. Please read `PROJECT_MASTER_CONTEXT_AND_ROADMAP.md`, `SKILL_QUEUE_AND_LAG_TOLERANCE.md`, `GEOENGINE_AND_MOVEMENT_ARCHITECTURE.md`, `HOT_RELOAD_ENGINE_ARCHITECTURE.md`, and `ADMIN_COMMUNITY_BOARD_RBAC_ARCHITECTURE.md`. Our core engine now runs on Java 27 with the 5-Pillar Instance Infrastructure Pipeline, the Netcode Skill Queue & Lag Tolerance Engine, the Project Panama FFM Off-Heap GeoEngine & Lock-Free Movement Task Manager, the Zero-Downtime Transactional Script Hot-Reload Engine, and the 2009 Client-Safe RBAC Admin Community Board. Review Section 8 of `PROJECT_MASTER_CONTEXT_AND_ROADMAP.md` (Tasks B and C) and let's plan our next implementation."*

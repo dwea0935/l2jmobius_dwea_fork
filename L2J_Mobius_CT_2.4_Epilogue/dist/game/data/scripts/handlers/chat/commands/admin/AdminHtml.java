@@ -79,7 +79,7 @@ public class AdminHtml implements IAdminCommandHandler
 	 */
 	public static void showAdminHtml(Player activeChar, String path)
 	{
-		showHtml(activeChar, "data/html/admin/" + path, false);
+		org.l2jmobius.gameserver.managers.AdminBoardManager.getInstance().showAdminHtmlFile(activeChar, path);
 	}
 	
 	/**

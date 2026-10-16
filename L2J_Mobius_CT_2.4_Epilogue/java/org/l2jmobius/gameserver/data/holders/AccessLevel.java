@@ -16,6 +16,10 @@
  */
 package org.l2jmobius.gameserver.data.holders;
 
+import java.util.Collections;
+import java.util.Set;
+
+import org.l2jmobius.gameserver.data.enums.AdminScope;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.util.StatSet;
 
@@ -52,6 +56,8 @@ public class AccessLevel
 	private boolean _takeAggro = false;
 	/** Flag to gain exp in party */
 	private boolean _gainExp = false;
+	/** RBAC capability scopes granted to this role. */
+	private final Set<AdminScope> _scopes;
 	
 	public AccessLevel(StatSet set)
 	{
@@ -68,6 +74,7 @@ public class AccessLevel
 		_giveDamage = set.getBoolean("giveDamage", true);
 		_takeAggro = set.getBoolean("takeAggro", true);
 		_gainExp = set.getBoolean("gainExp", true);
+		_scopes = AdminScope.parseScopes(set.getString("scopes", null), _accessLevel);
 	}
 	
 	public AccessLevel()
@@ -85,6 +92,7 @@ public class AccessLevel
 		_giveDamage = true;
 		_takeAggro = true;
 		_gainExp = true;
+		_scopes = Collections.emptySet();
 	}
 	
 	/**
@@ -213,5 +221,49 @@ public class AccessLevel
 		}
 		
 		return (_childsAccessLevel != null) && ((_childsAccessLevel.getLevel() == accessLevel.getLevel()) || _childsAccessLevel.hasChildAccess(accessLevel));
+	}
+	
+	/**
+	 * Returns the unmodifiable set of RBAC capability scopes granted to this access level.
+	 * @return Set of AdminScope
+	 */
+	public Set<AdminScope> getScopes()
+	{
+		return _scopes;
+	}
+	
+	/**
+	 * Checks whether this access level (or any of its child access levels) grants the specified RBAC capability scope.
+	 * @param scope the AdminScope to test
+	 * @return true if granted
+	 */
+	public boolean hasScope(AdminScope scope)
+	{
+		if ((scope == null) || (_accessLevel <= 0))
+		{
+			return false;
+		}
+		
+		if (_scopes.contains(scope))
+		{
+			return true;
+		}
+		
+		if ((_childsAccessLevel == null) && (_child > 0))
+		{
+			_childsAccessLevel = AdminData.getInstance().getAccessLevel(_child);
+		}
+		
+		return (_childsAccessLevel != null) && _childsAccessLevel.hasScope(scope);
+	}
+	
+	/**
+	 * Returns true if this role has any staff/admin panel access (GM flag or non-empty RBAC scopes).
+	 * Regular players (level 0) and banned accounts (-1) always return false.
+	 * @return true if staff member
+	 */
+	public boolean hasAdminAccess()
+	{
+		return (_accessLevel > 0) && (_isGm || !_scopes.isEmpty());
 	}
 }

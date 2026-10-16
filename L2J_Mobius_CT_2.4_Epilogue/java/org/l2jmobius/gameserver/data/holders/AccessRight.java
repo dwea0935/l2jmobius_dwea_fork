@@ -20,6 +20,7 @@
  */
 package org.l2jmobius.gameserver.data.holders;
 
+import org.l2jmobius.gameserver.data.enums.AdminScope;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.util.StatSet;
 
@@ -32,6 +33,7 @@ public class AccessRight
 	private final String _description;
 	private final int _level;
 	private final boolean _confirmDlg;
+	private final AdminScope _scope;
 	
 	/**
 	 * Initializes the access right for an admin command using a StatSet configuration.
@@ -43,6 +45,7 @@ public class AccessRight
 		_description = set.getString("description", "");
 		_confirmDlg = set.getBoolean("confirmDlg", false);
 		_level = set.getInt("accessLevel", 100);
+		_scope = AdminScope.classifyCommand(_command);
 	}
 	
 	/**
@@ -58,6 +61,7 @@ public class AccessRight
 		_description = description;
 		_confirmDlg = confirm;
 		_level = level;
+		_scope = AdminScope.classifyCommand(_command);
 	}
 	
 	/**
@@ -79,6 +83,15 @@ public class AccessRight
 	}
 	
 	/**
+	 * Gets the RBAC capability scope governing this command.
+	 * @return the AdminScope
+	 */
+	public AdminScope getScope()
+	{
+		return _scope;
+	}
+	
+	/**
 	 * Checks whether the admin command requires confirmation before execution.
 	 * @return {@code true} if confirmation is required, {@code false} otherwise
 	 */
@@ -88,32 +101,17 @@ public class AccessRight
 	}
 	
 	/**
-	 * Checks whether the provided access level grants permission to use the admin command.
+	 * Checks whether the provided access level grants permission to use the admin command via RBAC capability scopes.
 	 * @param playerAccessLevel the access level of the player attempting to use the command
-	 * @return {@code true} if the character's access level matches or exceeds the required access level, {@code false} otherwise
+	 * @return {@code true} if permitted
 	 */
 	public boolean hasAccess(AccessLevel playerAccessLevel)
 	{
-		// Check if the required access level is null.
-		final AccessLevel accessLevel = AdminData.getInstance().getAccessLevel(_level);
-		if (accessLevel == null)
+		if ((playerAccessLevel == null) || !playerAccessLevel.hasAdminAccess())
 		{
 			return false;
 		}
 		
-		// Check if the character's access level matches the required access level.
-		if (accessLevel.getLevel() == playerAccessLevel.getLevel())
-		{
-			return true;
-		}
-		
-		// Check if the character's access level has child access to the required access level.
-		if (playerAccessLevel.hasChildAccess(accessLevel))
-		{
-			return true;
-		}
-		
-		// If none of the above conditions are met, return false.
-		return false;
+		return playerAccessLevel.hasScope(_scope);
 	}
 }

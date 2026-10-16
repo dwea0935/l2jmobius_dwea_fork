@@ -92,13 +92,16 @@ public class RequestBypassToServer extends ClientPacket
 			return;
 		}
 		
-		boolean requiresBypassValidation = true;
-		for (String possibleNonHtmlCommand : _possibleNonHtmlCommands)
+		boolean requiresBypassValidation = !(_command.startsWith("admin_") && player.isGM() && player.getAccessLevel().hasAdminAccess());
+		if (requiresBypassValidation)
 		{
-			if (_command.startsWith(possibleNonHtmlCommand))
+			for (String possibleNonHtmlCommand : _possibleNonHtmlCommands)
 			{
-				requiresBypassValidation = false;
-				break;
+				if (_command.startsWith(possibleNonHtmlCommand))
+				{
+					requiresBypassValidation = false;
+					break;
+				}
 			}
 		}
 		

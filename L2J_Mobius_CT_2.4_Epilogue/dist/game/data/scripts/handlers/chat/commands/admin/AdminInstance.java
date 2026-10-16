@@ -16,17 +16,22 @@
  */
 package handlers.chat.commands.admin;
 
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.instancezone.Instance;
 import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**
+ * Unified Instance & InstanceZone lockout administration handler.
  * @author evill33t, GodKratos
  */
 public class AdminInstance implements IAdminCommandHandler
@@ -36,12 +41,66 @@ public class AdminInstance implements IAdminCommandHandler
 		"admin_setinstance",
 		"admin_createinstance",
 		"admin_destroyinstance",
-		"admin_listinstances"
+		"admin_listinstances",
+		"admin_instancezone",
+		"admin_instancezone_clear"
 	};
 	
 	@Override
 	public boolean onCommand(String command, Player activeChar)
 	{
+		if (command.startsWith("admin_instancezone_clear"))
+		{
+			try
+			{
+				final StringTokenizer st = new StringTokenizer(command, " ");
+				st.nextToken();
+				final Player player = World.getPlayer(st.nextToken());
+				final int instanceId = Integer.parseInt(st.nextToken());
+				final String name = InstanceManager.getInstance().getInstanceIdName(instanceId);
+				InstanceManager.getInstance().deleteInstanceTime(player.getObjectId(), instanceId);
+				activeChar.sendSysMessage("Instance zone " + name + " cleared for player " + player.getName());
+				player.sendMessage("Admin cleared instance zone " + name + " for you");
+				displayInstanceZones(player, activeChar);
+				return true;
+			}
+			catch (Exception e)
+			{
+				activeChar.sendSysMessage("Failed clearing instance time: " + e.getMessage());
+				activeChar.sendSysMessage("Usage: //instancezone_clear <playername> [instanceId]");
+				return false;
+			}
+		}
+		else if (command.startsWith("admin_instancezone"))
+		{
+			final StringTokenizer st = new StringTokenizer(command, " ");
+			st.nextToken();
+			if (st.hasMoreTokens())
+			{
+				final String playername = st.nextToken();
+				final Player player = World.getPlayer(playername);
+				if (player != null)
+				{
+					displayInstanceZones(player, activeChar);
+				}
+				else
+				{
+					activeChar.sendSysMessage("The player " + playername + " is not online");
+					activeChar.sendSysMessage("Usage: //instancezone [playername]");
+					return false;
+				}
+			}
+			else if ((activeChar.getTarget() != null) && activeChar.getTarget().isPlayer())
+			{
+				displayInstanceZones(activeChar.getTarget().asPlayer(), activeChar);
+			}
+			else
+			{
+				displayInstanceZones(activeChar, activeChar);
+			}
+			return true;
+		}
+		
 		final StringTokenizer st = new StringTokenizer(command);
 		st.nextToken();
 		
@@ -143,6 +202,31 @@ public class AdminInstance implements IAdminCommandHandler
 		}
 		
 		return true;
+	}
+	
+	private void displayInstanceZones(Player player, Player activeChar)
+	{
+		final Map<Integer, Long> instanceTimes = InstanceManager.getInstance().getAllInstanceTimes(player.getObjectId());
+		final StringBuilder html = new StringBuilder(500 + (instanceTimes.size() * 200));
+		html.append("<html><body><center><font color=\"LEVEL\">Instance Lockouts for " + player.getName() + "</font><br><table><tr><td width=220>Name</td><td width=80>Remaining</td><td width=80>Action</td></tr>");
+		for (Entry<Integer, Long> entry : instanceTimes.entrySet())
+		{
+			int hours = 0;
+			int minutes = 0;
+			final long remainingTime = (entry.getValue() - System.currentTimeMillis()) / 1000;
+			if (remainingTime > 0)
+			{
+				hours = (int) (remainingTime / 3600);
+				minutes = (int) ((remainingTime % 3600) / 60);
+			}
+			
+			html.append("<tr><td>" + InstanceManager.getInstance().getInstanceIdName(entry.getKey()) + "</td><td>" + hours + "h " + minutes + "m</td><td><button value=\"Clear\" action=\"bypass admin_instancezone_clear " + player.getName() + " " + entry.getKey() + "\" width=65 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr>");
+		}
+		html.append("</table></center></body></html>");
+		
+		final NpcHtmlMessage ms = new NpcHtmlMessage();
+		ms.setHtml(html.toString());
+		activeChar.sendPacket(ms);
 	}
 	
 	@Override
