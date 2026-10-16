@@ -82,6 +82,13 @@ public class ExReplySentPost extends ServerPacket
 				{
 					buffer.writeShort(item.getElementDefAttr(i));
 				}
+				if (isProtocol152(client))
+				{
+					for (int op : item.getEnchantOptions())
+					{
+						buffer.writeShort(op);
+					}
+				}
 			}
 			
 			buffer.writeLong(_msg.getReqAdena());

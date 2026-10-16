@@ -91,6 +91,13 @@ public class BuyList extends ServerPacket
 				{
 					buffer.writeShort(0);
 				}
+				
+				if (isProtocol152(client))
+				{
+					buffer.writeShort(0); // Enchant effect 1
+					buffer.writeShort(0); // Enchant effect 2
+					buffer.writeShort(0); // Enchant effect 3
+				}
 			}
 		}
 	}

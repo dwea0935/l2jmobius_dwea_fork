@@ -56,5 +56,12 @@ public class TradeOtherAdd extends ServerPacket
 		{
 			buffer.writeShort(_item.getElementDefAttr(i));
 		}
+		if (isProtocol152(client))
+		{
+			for (int op : _item.getEnchantOptions())
+			{
+				buffer.writeShort(op);
+			}
+		}
 	}
 }

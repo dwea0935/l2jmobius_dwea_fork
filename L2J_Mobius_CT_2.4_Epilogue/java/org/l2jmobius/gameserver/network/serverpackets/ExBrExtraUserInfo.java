@@ -43,9 +43,18 @@ public class ExBrExtraUserInfo extends ServerPacket
 	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
-		ServerPackets.EX_BR_EXTRA_USER_INFO.writeId(this, buffer);
-		buffer.writeInt(_objectId);
-		buffer.writeInt(_abnormalVisualEffectsEvent);
-		buffer.writeByte(_lectureMark);
+		if (isProtocol152(client))
+		{
+			ServerPackets.EX_BR_BROADCAST_EVENT_STATE.writeId(this, buffer); // 0xFE:0xBD in Protocol 152
+			buffer.writeInt(_objectId);
+			buffer.writeInt(_abnormalVisualEffectsEvent);
+			buffer.writeByte(_lectureMark);
+		}
+		else
+		{
+			ServerPackets.EX_BR_EXTRA_USER_INFO.writeId(this, buffer); // 0xFE:0xBE in Protocol 148 ('dd')
+			buffer.writeInt(_objectId);
+			buffer.writeInt(_abnormalVisualEffectsEvent);
+		}
 	}
 }

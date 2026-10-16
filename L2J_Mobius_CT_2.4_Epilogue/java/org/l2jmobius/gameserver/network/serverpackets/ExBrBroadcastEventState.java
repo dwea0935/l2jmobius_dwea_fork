@@ -64,7 +64,14 @@ public class ExBrBroadcastEventState extends ServerPacket
 	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
-		ServerPackets.EX_BR_BROADCAST_EVENT_STATE.writeId(this, buffer);
+		if (isProtocol152(client))
+		{
+			ServerPackets.EX_BR_EXTRA_USER_INFO.writeId(this, buffer); // 0xFE:0xBE in Protocol 152
+		}
+		else
+		{
+			ServerPackets.EX_BR_BROADCAST_EVENT_STATE.writeId(this, buffer); // 0xFE:0xBD in Protocol 148
+		}
 		buffer.writeInt(_eventId);
 		buffer.writeInt(_eventState);
 		buffer.writeInt(_param0);

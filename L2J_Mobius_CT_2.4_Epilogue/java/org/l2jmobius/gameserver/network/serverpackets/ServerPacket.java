@@ -64,9 +64,22 @@ public abstract class ServerPacket extends WritablePacket<GameClient>
 		Inventory.PAPERDOLL_BELT
 	};
 	
+	private static final ThreadLocal<GameClient> WRITING_CLIENT = new ThreadLocal<>();
+	
 	protected int[] getPaperdollOrder()
 	{
 		return PAPERDOLL_ORDER;
+	}
+	
+	protected boolean isProtocol152()
+	{
+		final GameClient c = WRITING_CLIENT.get();
+		return (c != null) && (c.getProtocolVersion() >= 152);
+	}
+	
+	protected boolean isProtocol152(GameClient client)
+	{
+		return (client != null) && (client.getProtocolVersion() >= 152);
 	}
 	
 	@Override
@@ -78,6 +91,7 @@ public abstract class ServerPacket extends WritablePacket<GameClient>
 			return true; // Disconnected client.
 		}
 		
+		WRITING_CLIENT.set(c);
 		try
 		{
 			writeImpl(c, buffer);
@@ -87,6 +101,10 @@ public abstract class ServerPacket extends WritablePacket<GameClient>
 		{
 			PacketLogger.warning("Error writing packet " + this + " to client (" + e.getMessage() + ") " + c + "]]");
 			PacketLogger.warning(TraceUtil.getStackTrace(e));
+		}
+		finally
+		{
+			WRITING_CLIENT.remove();
 		}
 		
 		return false;

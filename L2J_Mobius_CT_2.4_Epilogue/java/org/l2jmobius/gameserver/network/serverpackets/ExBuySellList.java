@@ -135,6 +135,13 @@ public class ExBuySellList extends ServerPacket
 			{
 				buffer.writeShort(0);
 			}
+			
+			if (isProtocol152(client))
+			{
+				buffer.writeShort(0); // Enchant effect 1
+				buffer.writeShort(0); // Enchant effect 2
+				buffer.writeShort(0); // Enchant effect 3
+			}
 		}
 		
 		if ((_sellList != null) && !_sellList.isEmpty())
@@ -160,6 +167,13 @@ public class ExBuySellList extends ServerPacket
 				for (byte i = 0; i < 6; i++)
 				{
 					buffer.writeShort(item.getElementDefAttr(i));
+				}
+				
+				if (isProtocol152(client))
+				{
+					buffer.writeShort(0); // Enchant effect 1
+					buffer.writeShort(0); // Enchant effect 2
+					buffer.writeShort(0); // Enchant effect 3
 				}
 			}
 		}
@@ -189,6 +203,13 @@ public class ExBuySellList extends ServerPacket
 				for (byte i = 0; i < 6; i++)
 				{
 					buffer.writeShort(item.getElementDefAttr(i));
+				}
+				
+				if (isProtocol152(client))
+				{
+					buffer.writeShort(0); // Enchant effect 1
+					buffer.writeShort(0); // Enchant effect 2
+					buffer.writeShort(0); // Enchant effect 3
 				}
 			}
 		}

@@ -91,6 +91,13 @@ public class GMViewWarehouseWithdrawList extends AbstractItemPacket
 			
 			buffer.writeInt(item.getMana());
 			buffer.writeInt(item.isTimeLimitedItem() ? (int) (item.getRemainingTime() / 1000) : -9999);
+			if (isProtocol152(client))
+			{
+				for (int op : item.getEnchantOptions())
+				{
+					buffer.writeShort(op);
+				}
+			}
 		}
 	}
 }
