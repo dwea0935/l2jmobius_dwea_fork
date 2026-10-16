@@ -1,0 +1,18 @@
+# Untouched Retail Asset Directories & Wine Prefix
+.wine_l2_prefix/
+Animations/
+ForceFeedback/
+L2text/
+MAPS/
+music/
+Sounds/
+StaticMeshes/
+SysTextures/
+Textures/
+Voice/
+
+# Transient runtime logs & compiled shader cache
+system/*.bak
+system/*.log
+system/L2CompiledShader.bin
+system/d3ddrv.dll.orig
