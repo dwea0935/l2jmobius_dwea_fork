@@ -1766,13 +1766,7 @@ public class Formulas
 	public static boolean calcSkillMastery(Creature actor, Skill sk)
 	{
 		// Non players are not affected by Skill Mastery.
-		if (!actor.isPlayer())
-		{
-			return false;
-		}
-		
-		// Static Skills are not affected by Skill Mastery.
-		if (sk.isStatic())
+		if ((actor == null) || !actor.isPlayer() || (sk == null) || sk.isPassive() || sk.isToggle() || sk.isStatic() || sk.isTriggeredSkill())
 		{
 			return false;
 		}
@@ -2042,7 +2036,7 @@ public class Formulas
 		}
 		
 		// If the skill is a mastery skill, the effect will last twice the default time.
-		if (calcSkillMastery(caster, skill))
+		if ((time > 0) && calcSkillMastery(caster, skill))
 		{
 			time *= 2;
 		}

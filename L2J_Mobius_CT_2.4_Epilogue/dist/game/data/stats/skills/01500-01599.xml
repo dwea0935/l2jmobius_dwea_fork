@@ -2095,6 +2095,7 @@
 		<!-- Creates chance of activating Great Fury on a party member if Burning Chop is in use. -->
 		<icon>icon.skill1543</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>83</magicLevel>
 		<effects>
 			<effect name="TriggerSkillBySkill">

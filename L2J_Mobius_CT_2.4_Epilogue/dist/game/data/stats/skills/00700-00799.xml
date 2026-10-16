@@ -1530,6 +1530,7 @@
 		<!-- When a short-range weapon is used, attack power increases by 100 and Atk. Spd. increases by 10%. When attacking, the physical skill's power and the Critical rate are increased at a fixed rate. -->
 		<icon>icon.skill0758</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>81</magicLevel>
 		<effects>
 			<effect name="Buff">
@@ -1560,6 +1561,7 @@
 		<!-- When a bow/crossbow is used, accuracy increases by 8 and range increases by 50. When attacking, the physical skill's power and the Critical rate are increased at a fixed rate. -->
 		<icon>icon.skill0759</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>81</magicLevel>
 		<effects>
 			<effect name="Buff">

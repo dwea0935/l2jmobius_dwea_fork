@@ -213,6 +213,7 @@ public class Skill
 	private final int _channelingTickInterval;
 	
 	private final boolean _isPvPOnly;
+	private final boolean _isTriggeredSkill;
 	
 	public Skill(StatSet set)
 	{
@@ -327,6 +328,12 @@ public class Skill
 		_channelingTickInterval = set.getInt("channelingTickInterval", 2) * 1000;
 		_channelingTickInitialDelay = set.getInt("channelingTickInitialDelay", _channelingTickInterval / 1000) * 1000;
 		_isPvPOnly = set.getBoolean("isPvPOnly", false);
+		_isTriggeredSkill = set.getBoolean("isTriggeredSkill", false);
+	}
+	
+	public boolean isTriggeredSkill()
+	{
+		return _isTriggeredSkill;
 	}
 	
 	public TraitType getTraitType()

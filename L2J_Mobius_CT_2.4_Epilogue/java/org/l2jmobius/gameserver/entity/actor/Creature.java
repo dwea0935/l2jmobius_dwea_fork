@@ -7091,7 +7091,7 @@ public abstract class Creature extends WorldObject
 					disableSkill(skill, skill.getReuseDelay());
 				}
 				
-				final List<WorldObject> targets = !ignoreTargetType ? skill.getTargetList(this, false, target) : Collections.singletonList(target);
+				final List<WorldObject> targets = (!ignoreTargetType && (skill.getTargetType() != TargetType.NONE)) ? skill.getTargetList(this, false, target) : Collections.singletonList(target);
 				if (targets.isEmpty())
 				{
 					return;

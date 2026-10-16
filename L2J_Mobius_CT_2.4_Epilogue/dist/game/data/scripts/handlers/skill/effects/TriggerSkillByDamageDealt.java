@@ -88,7 +88,7 @@ public class TriggerSkillByDamageDealt extends AbstractEffect
 		}
 		
 		// Check if there is dependancy on critical.
-		if (_isCritical != event.isCritical())
+		if (_isCritical && !event.isCritical())
 		{
 			return;
 		}

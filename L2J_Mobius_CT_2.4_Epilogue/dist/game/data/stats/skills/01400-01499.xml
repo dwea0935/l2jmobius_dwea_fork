@@ -6678,6 +6678,7 @@
 		<!-- Creates chance to regenerate servitor's HP and MP when attacking. -->
 		<icon>icon.skill1498</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>81</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageDealt">
@@ -6691,6 +6692,7 @@
 				<skillLevel>1</skillLevel> <!-- Mutual Response -->
 				<targetType>SUMMON</targetType>
 				<allowWeapons>ALL</allowWeapons>
+				<allowSkillAttack>true</allowSkillAttack>
 			</effect>
 		</effects>
 	</skill>

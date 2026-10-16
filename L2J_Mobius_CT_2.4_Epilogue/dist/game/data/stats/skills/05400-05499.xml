@@ -317,7 +317,7 @@
 		<effects>
 			<effect name="Buff">
 				<mul stat="physicalMpConsumeRate">0.95</mul>
-				<mul stat="mAtkSpd">0.85</mul>
+				<mul stat="mAtkSpd">1.15</mul>
 			</effect>
 		</effects>
 	</skill>

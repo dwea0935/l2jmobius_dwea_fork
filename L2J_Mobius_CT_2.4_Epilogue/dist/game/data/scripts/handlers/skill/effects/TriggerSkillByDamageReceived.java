@@ -66,11 +66,6 @@ public class TriggerSkillByDamageReceived extends AbstractEffect
 			return;
 		}
 		
-		if ((_targetType == TargetType.ONE) && (event.getAttacker().getTarget() != event.getTarget()))
-		{
-			return;
-		}
-		
 		final ITargetTypeHandler targetHandler = TargetHandler.getInstance().getHandler(_targetType);
 		if (targetHandler == null)
 		{

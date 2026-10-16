@@ -1070,6 +1070,7 @@
 		<table name="#triggeredLevel">2 3 0</table>
 		<icon>#icons</icon>
 		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
 		<abnormalLevel>#abnormalLevels</abnormalLevel>
 		<abnormalTime>20</abnormalTime>
 		<abnormalType>SEED_OF_KNIGHT</abnormalType>
@@ -1103,6 +1104,7 @@
 		<table name="#triggeredLevel">2 3 0</table>
 		<icon>#icons</icon>
 		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
 		<abnormalLevel>#abnormalLevels</abnormalLevel>
 		<abnormalTime>20</abnormalTime>
 		<abnormalType>SEED_OF_KNIGHT</abnormalType>
@@ -1137,6 +1139,7 @@
 		<table name="#waterPower">0 20 20</table>
 		<icon>#icons</icon>
 		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
 		<abnormalLevel>#abnormalLevels</abnormalLevel>
 		<abnormalTime>20</abnormalTime>
 		<abnormalType>SEED_OF_KNIGHT</abnormalType>
@@ -1170,6 +1173,7 @@
 		<table name="#windPower">0 20 20</table>
 		<icon>#icons</icon>
 		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
 		<abnormalLevel>#abnormalLevels</abnormalLevel>
 		<abnormalTime>20</abnormalTime>
 		<abnormalType>SEED_OF_KNIGHT</abnormalType>
@@ -1204,12 +1208,11 @@
 		<castRange>40</castRange>
 		<effectPoint>-671</effectPoint>
 		<effectRange>400</effectRange>
-		<hitTime>1500</hitTime>
 		<isDebuff>true</isDebuff>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<isTriggeredSkill>true</isTriggeredSkill>
 		<lvlBonusRate>2</lvlBonusRate>
 		<magicLevel>81</magicLevel>
-		<mpConsume>43</mpConsume>
-		<nextActionAttack>true</nextActionAttack>
 		<reuseDelay>30000</reuseDelay>
 		<effects>
 			<effect name="Debuff">

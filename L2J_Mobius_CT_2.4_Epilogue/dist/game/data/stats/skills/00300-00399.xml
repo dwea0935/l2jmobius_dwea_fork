@@ -2798,18 +2798,27 @@
 		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
 		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
 		<effects>
+			<effect name="MpConsumePerLevel" ticks="5">
+				<power>0.5</power>
+			</effect>
 			<effect name="DefenceTrait">
 				<SHOCK>30</SHOCK>
 				<PARALYZE>30</PARALYZE>
 			</effect>
 		</effects>
 		<enchant1effects>
+			<effect name="MpConsumePerLevel" ticks="5">
+				<power>0.5</power>
+			</effect>
 			<effect name="DefenceTrait">
 				<SHOCK>#enchTraits</SHOCK>
 				<PARALYZE>30</PARALYZE>
 			</effect>
 		</enchant1effects>
 		<enchant2effects>
+			<effect name="MpConsumePerLevel" ticks="5">
+				<power>0.5</power>
+			</effect>
 			<effect name="DefenceTrait">
 				<SHOCK>30</SHOCK>
 				<PARALYZE>#enchTraits</PARALYZE>
