@@ -141,3 +141,27 @@ When we patched [`NWindow.dll`](file:///home/dwea/Projects/L2/Client%20Lineage%2
 - The original instructions at those 3 sites (`8b 0d [84 c3 2d 10]` = `mov ecx, [GLanguage]`) had **`IMAGE_REL_BASED_HIGHLOW` (`type = 3`)** entries in `.reloc` (`0x004c80c2`, `0x004cac1c`, `0x004e2024`) pointing at `+2` bytes into each instruction.
 - When Wine rebased `NWindow.dll`, the PE loader added `BaseDelta` to the 4 bytes at `0x100d44f0`, corrupting our replacement instructions in memory!
 - **Lesson Learned:** Whenever binary-patching any PE `.exe`/`.dll` that has a `.reloc` table, **always scan `.reloc` for entries overlapping the patched RVA range** and neutralize any superseded `IMAGE_REL_BASED_HIGHLOW` entries to `IMAGE_REL_BASED_ABSOLUTE` (`0x0000`).
+
+---
+
+## 6. Controller (`JOYPAD`) Forensics & Why Switching Targets Opened the GM NPC Menu
+
+Testing a **DualSense (PS5)** controller in-game revealed several quirks in NCSoft's half-finished 2004 DirectInput controller subsystem (`WinDrv.dll` + `Engine.dll` + `interface.u`):
+
+### 6.1 Why Controller Target Cycling (`L1` / `R1`) Opened the GM NPC Inspector Popup
+- **Symptom:** Pressing `L1` (`Joy5` = `NPCTargetPrev`) or `R1` (`Joy6` = `NPCTargetNext`) on a GM character immediately popped open the server's GM NPC Info HTML window (`onActionShift` / `NpcViewMod`) instead of simply selecting the target.
+- **Root Cause (`Engine.dll` @ `VA 0x202a5bf8` + [`Action.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/network/clientpackets/Action.java#L150-L161)):**
+  - Disassembling the `NPCTargetNext` / `NPCTargetPrev` handler in `Engine.dll` (`VA 0x202a5992..0x202a5c2d`) showed that at `0x202a5bf8`, the client pushes **`bShift = 1` (`6a 01`)** when calling `UNetworkHandler::Action(targetObjectId, playerLocation, 1)` (`vtable + 0xE0`).
+  - Why did NCSoft pass `bShift = 1` (`_actionId = 1`) for controller target cycling? Because on normal players, `Action(objectId, ..., 1)` (`Shift+Click`) tells the server: *"Select this target (`obj.onAction(player, false)`), but do NOT run toward or attack it yet!"*
+  - However, in L2JMobius's [`Action.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/network/clientpackets/Action.java#L150-L161), receiving `_actionId == 1` from a GM (`player.isGM()`) unconditionally calls `obj.onActionShift(player)`—which opens the GM Shift-Click NPC stats window even when the GM was only cycling targets (`player.getTarget() != obj`)!
+
+### 6.2 Why the Radial / Cross Shortcut UI Didn't Appear Automatically (`ShortcutWnd` in `interface.u`)
+Extracting the embedded UnrealScript source of `ShortcutWnd` from [`system/interface.u`](file:///home/dwea/Projects/L2/Client%20Lineage%202%20Gracia%20Epilogue/system/interface.u) revealed that NCSoft actually built **two** controller hotbar layouts inside `ShortcutWnd`:
+1. **`ShortcutWnd.ShortcutWndJoypad`:** A 4-button diamond/cross widget with `JoypadLButtonTex` (`L2UI_ch3.Joypad.joypad_L`) and `JoypadRButtonTex` (`L2UI_ch3.Joypad.joypad_R`) that displays 4 slots at a time and dynamically swaps between Center (`Slots 1–4`), Left (`Slots 5–8` while holding `Extend1`), and Right (`Slots 9–12` while holding `Extend2`).
+2. **`ShortcutWnd.ShortcutWndJoypadExpand`:** An expanded 12-slot controller bar showing all 3 groups of 4 (`Left | Center | Right`) with a sliding highlight frame (`joypad2_back_over1/2/3`) that visually jumps between the 3 groups when holding `Extend1` (`Joy7`) or `Extend2` (`Joy8`).
+3. **Why it stays hidden:** Pressing `Extend1`/`Extend2` fires `HandleJoypadLButtonDown` / `HandleJoypadRButtonDown` (`SetJoypadShortcut`), which updates the textures inside `ShortcutWndJoypad` / `ShortcutWndJoypadExpand`, **but never calls `ShowWindow` unless the user first clicks the tiny `JoypadBtn` icon on the main hotbar** (`OnJoypadBtn()` $\rightarrow$ `SetJoypad(true)`)!
+
+### 6.3 Other Unfinished Retail Controller Gaps Identified for Future Polish
+- **`user.ini` Regression on Clean `system/` Restore:** Copying `L2 Epilogue Clean/system/` in `7636477796b` overwrote the modernized `user.ini` with the 2004 defaults (`DeadZone=0.2`, `JoyZ=CameraYaw`, no `JoyPov*` D-Pad bindings).
+- **Target Acquisition Only on `L1`/`R1` (`Joy5`/`Joy6`):** If no target is currently selected, pressing an attack shortcut (`Joy1..Joy4`) does not auto-acquire the nearest hostile target (`NextTarget`), unlike modern action/tab-target MMOs on console.
+- **DualSense Touchpad Curve:** Under Linux (`hid-playstation`), the DualSense touchpad acts as a 1:1 linear relative mouse without acceleration, requiring multiple swipes to drag icons across a `1920×1080` viewport.
