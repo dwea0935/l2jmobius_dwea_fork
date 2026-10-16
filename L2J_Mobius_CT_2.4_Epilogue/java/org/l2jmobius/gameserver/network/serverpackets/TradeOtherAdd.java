@@ -34,6 +34,12 @@ public class TradeOtherAdd extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.TRADE_OTHER_ADD.writeId(this, buffer);

@@ -39,6 +39,12 @@ public class PrivateStoreListSell extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		if (_seller.isSellingBuffs())

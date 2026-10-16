@@ -47,6 +47,12 @@ public class PrivateStoreManageListSell extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.PRIVATE_STORE_SELL_MANAGE_LIST.writeId(this, buffer);

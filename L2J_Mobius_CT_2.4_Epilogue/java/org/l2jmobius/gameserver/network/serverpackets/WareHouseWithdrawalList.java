@@ -62,6 +62,12 @@ public class WareHouseWithdrawalList extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.WAREHOUSE_WITHDRAW_LIST.writeId(this, buffer);

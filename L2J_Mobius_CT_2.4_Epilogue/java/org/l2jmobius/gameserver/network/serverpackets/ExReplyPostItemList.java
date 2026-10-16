@@ -39,6 +39,12 @@ public class ExReplyPostItemList extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.EX_REPLY_POST_ITEM_LIST.writeId(this, buffer);

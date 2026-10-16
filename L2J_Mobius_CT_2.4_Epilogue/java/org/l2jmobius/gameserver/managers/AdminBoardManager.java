@@ -486,7 +486,7 @@ public final class AdminBoardManager
 	private void sendWrappedBoardHtml(Player player, String workspaceBody, String activeTab)
 	{
 		final AdminBoardSession session = getSession(player);
-		final boolean useNativeGmWnd = player.getAccessLevel().allowAltG();
+		final boolean useNativeGmWnd = player.getAccessLevel().allowAltG() && ((player.getClient() == null) || (player.getClient().getProtocolVersion() < 152));
 		session.useCommunityBoard = !useNativeGmWnd;
 		
 		final StringBuilder sb = new StringBuilder(4096);

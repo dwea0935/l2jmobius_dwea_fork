@@ -66,19 +66,39 @@ public abstract class ServerPacket extends WritablePacket<GameClient>
 	
 	private static final ThreadLocal<GameClient> WRITING_CLIENT = new ThreadLocal<>();
 	
+	private volatile boolean _broadcastRequested;
+	
 	protected int[] getPaperdollOrder()
 	{
 		return PAPERDOLL_ORDER;
 	}
 	
+	protected boolean isProtocolSensitive()
+	{
+		return false;
+	}
+	
+	@Override
+	public void sendInBroadcast()
+	{
+		_broadcastRequested = true;
+		if (!isProtocolSensitive())
+		{
+			super.sendInBroadcast();
+		}
+	}
+	
 	protected boolean isProtocol152()
 	{
-		final GameClient c = WRITING_CLIENT.get();
-		return (c != null) && (c.getProtocolVersion() >= 152);
+		return isProtocol152(WRITING_CLIENT.get());
 	}
 	
 	protected boolean isProtocol152(GameClient client)
 	{
+		if (_broadcastRequested && !isProtocolSensitive())
+		{
+			PacketLogger.warning("Protocol-sensitive packet " + getClass().getSimpleName() + " sent via broadcast cache! " + TraceUtil.getStackTrace(new Exception()));
+		}
 		return (client != null) && (client.getProtocolVersion() >= 152);
 	}
 	

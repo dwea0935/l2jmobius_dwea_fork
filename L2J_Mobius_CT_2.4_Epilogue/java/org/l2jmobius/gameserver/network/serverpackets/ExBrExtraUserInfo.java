@@ -41,6 +41,12 @@ public class ExBrExtraUserInfo extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		if (isProtocol152(client))

@@ -147,3 +147,17 @@ Following the 3rd Agent's protocol-differentiation audit, the user selected **Op
 4. **Protocol-Conditional `ExBrExtraUserInfo` / `ExBrBroadcastEventState` (`0xFE:0xBD` vs `0xFE:0xBE`):**
    - Updated `ExBrExtraUserInfo.java` and `ExBrBroadcastEventState.java` to branch on `isProtocol152(client)` so Protocol `148` uses `0xFE:0xBE` (`'dd'`, no `_lectureMark` byte) for `ExBrExtraUserInfo` and `0xFE:0xBD` for `ExBrBroadcastEventState`, while Protocol `152` uses `0xFE:0xBD` (`'ddc'` with `_lectureMark`) and `0xFE:0xBE`.
 5. **Recompiled & Repacked `build/dist/libs/GameServer.jar` (28 updated classes total including `EnterWorld.java` and `Player.java`).**
+
+#### C. Completed Hardening Item — Mixed 148 + 152 Sessions (Broadcast-Cache Opt-Out, Tripwire & `AdminBoardManager` Fallback)
+**Status:** ✅ COMPLETED & PACKED into `build/dist/libs/GameServer.jar`.
+
+**Why this matters:** Players commonly drop only a custom `l2.ini` into a retail **2010-07-16 (Protocol 152)** client instead of using our full `system/` folder, producing **mixed 148 + 152 sessions** on the same server.
+
+**Hardening Applied:**
+1. **Broadcast-Cache Opt-Out Guarantee (`ServerPacket.isProtocolSensitive()`):**
+   - Added `protected boolean isProtocolSensitive() { return false; }` in [`ServerPacket.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/network/serverpackets/ServerPacket.java) and overrode `sendInBroadcast()` so `super.sendInBroadcast()` is skipped whenever `isProtocolSensitive()` is `true` (ensuring per-recipient serialization instead of cached broadcast bytes).
+   - Overrode `isProtocolSensitive()` to return `true` in `AbstractItemPacket.java` (covering `InventoryUpdate`, `ItemList`, `GMViewItemList`, `AbstractInventoryUpdate`, `PetInventoryUpdate`, `PackageSendableList`, and `GMViewWarehouseWithdrawList`), `ExBrExtraUserInfo.java`, `ExBrBroadcastEventState.java`, and all 17 direct `ServerPacket` item/shop/warehouse/trade/pet/store/mail subclasses (`BuyList`, `ExBuySellList`, `ExReplyPostItemList`, `ExReplyReceivedPost`, `ExReplySentPost`, `ExRpItemLink`, `PetItemList`, `PrivateStoreListBuy`, `PrivateStoreListSell`, `PrivateStoreManageListBuy`, `PrivateStoreManageListSell`, `SortedWareHouseWithdrawalList`, `TradeOtherAdd`, `TradeOwnAdd`, `TradeStart`, `WareHouseDepositList`, `WareHouseWithdrawalList`).
+2. **Broadcast Tripwire (`ServerPacket._broadcastRequested`):**
+   - `ServerPacket.sendInBroadcast()` records `_broadcastRequested = true`. If `isProtocol152()` or `isProtocol152(client)` is ever called on a packet instance where `_broadcastRequested && !isProtocolSensitive()`, `PacketLogger.warning(...)` logs a warning with a full stack trace.
+3. **GM Console Fallback for Stock Protocol 152 Clients (`AdminBoardManager.java`):**
+   - Updated [`AdminBoardManager.sendWrappedBoardHtml`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/managers/AdminBoardManager.java#L489) (`player.getClient().getProtocolVersion() < 152`) so GMs on our patched `2009-09-28` (`Protocol 148`) client use the native 992×544 `GMWnd.HtmlViewer`, while GMs on a stock `2010-07-16` (`Protocol 152`) client without our patched `interface.u`/`interface.xdat` automatically fall back to `BoardWnd` (`ShowBoard`).

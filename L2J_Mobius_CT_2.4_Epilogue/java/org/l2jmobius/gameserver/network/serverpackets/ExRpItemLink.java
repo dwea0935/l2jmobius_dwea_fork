@@ -34,6 +34,12 @@ public class ExRpItemLink extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.EX_RP_ITEM_LINK.writeId(this, buffer);

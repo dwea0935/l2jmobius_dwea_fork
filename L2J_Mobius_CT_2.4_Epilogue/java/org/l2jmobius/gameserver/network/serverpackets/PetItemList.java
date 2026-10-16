@@ -37,6 +37,12 @@ public class PetItemList extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.PET_ITEM_LIST.writeId(this, buffer);

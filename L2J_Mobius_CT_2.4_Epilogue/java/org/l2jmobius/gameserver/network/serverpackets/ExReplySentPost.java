@@ -53,6 +53,12 @@ public class ExReplySentPost extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.EX_REPLY_SENT_POST.writeId(this, buffer);

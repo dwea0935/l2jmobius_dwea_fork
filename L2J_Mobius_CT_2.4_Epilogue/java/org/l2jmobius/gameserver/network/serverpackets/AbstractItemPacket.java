@@ -27,6 +27,12 @@ import org.l2jmobius.gameserver.network.holders.TradeItem;
  */
 public abstract class AbstractItemPacket extends ServerPacket
 {
+	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
 	protected void writeItem(TradeItem item, WriteBuffer buffer)
 	{
 		writeItem(new ItemInfo(item), buffer);

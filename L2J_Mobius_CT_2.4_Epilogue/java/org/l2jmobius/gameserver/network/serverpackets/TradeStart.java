@@ -41,6 +41,12 @@ public class TradeStart extends ServerPacket
 	}
 	
 	@Override
+	protected boolean isProtocolSensitive()
+	{
+		return true;
+	}
+	
+	@Override
 	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		if ((_player.getActiveTradeList() == null) || (_player.getActiveTradeList().getPartner() == null))
