@@ -162,6 +162,27 @@ Extracting the embedded UnrealScript source of `ShortcutWnd` from [`system/inter
 3. **Why it stays hidden:** Pressing `Extend1`/`Extend2` fires `HandleJoypadLButtonDown` / `HandleJoypadRButtonDown` (`SetJoypadShortcut`), which updates the textures inside `ShortcutWndJoypad` / `ShortcutWndJoypadExpand`, **but never calls `ShowWindow` unless the user first clicks the tiny `JoypadBtn` icon on the main hotbar** (`OnJoypadBtn()` $\rightarrow$ `SetJoypad(true)`)!
 
 ### 6.3 Other Unfinished Retail Controller Gaps Identified for Future Polish
-- **`user.ini` Regression on Clean `system/` Restore:** Copying `L2 Epilogue Clean/system/` in `7636477796b` overwrote the modernized `user.ini` with the 2004 defaults (`DeadZone=0.2`, `JoyZ=CameraYaw`, no `JoyPov*` D-Pad bindings).
+- **`user.ini` Regression on Clean `system/` Restore:** Copying `L2 Epilogue Clean/system/` in `7636477796b` overwrote the modernized `user.ini` with the 2004 defaults (`DeadZone=0.2`, `JoyZ=CameraYaw`, no `JoyPov*` D-Pad bindings). Restored in `293ec8acd1b` and refined in `1f152ce8abe` so Right Stick camera uses `JoyZ` (`Z`) and `JoyV` (`Rz`) while unbinding `;JoyU=` / `;JoyR=` (which are `-1.0` resting L2/R2 triggers on Sony DualSense PS5 under Linux `hid-playstation` + Wine DirectInput).
 - **Target Acquisition Only on `L1`/`R1` (`Joy5`/`Joy6`):** If no target is currently selected, pressing an attack shortcut (`Joy1..Joy4`) does not auto-acquire the nearest hostile target (`NextTarget`), unlike modern action/tab-target MMOs on console.
 - **DualSense Touchpad Curve:** Under Linux (`hid-playstation`), the DualSense touchpad acts as a 1:1 linear relative mouse without acceleration, requiring multiple swipes to drag icons across a `1920×1080` viewport.
+
+---
+
+## 7. Native Client Geodata Builder (`///buildzone` / `FWorldBuilder`) Forensics (`Engine.dll`)
+
+Disassembling `FWorldBuilder::buildWorldStructure` (`VA 0x2018be10..0x2018df0d`, ordinal `9236`) and its companion `///` builder commands (`VA 0x202b37b4..0x202b45a2`) in [`Engine.dll`](file:///home/dwea/Projects/L2/Client%20Lineage%202%20Gracia%20Epilogue/system/Engine.dll) revealed how NCSoft originally generated Lineage 2 geodata:
+
+1. **Why Lineage 2 Geodata `NSWE` Bits Are Ordered `East=1, West=2, South=4, North=8` (`VA 0x20467b08`):**
+   - In `FWorldBuilder::FindReachable` (`VA 0x2018b825..0x2018b980`), each cell node (`0x3c` bytes) stores 4 directional passability flags at `[node+0x10]`, `[node+0x14]`, `[node+0x18]`, and `[node+0x1c]`, indexed by `edi = 0..3` against the constant `(dx, dy)` table at `VA 0x20467b08`:
+     - `dir[0]` (`[node+0x10]`): `dx = +1, dy =  0` (**East** $\rightarrow$ `bit 0 = 0x01`)
+     - `dir[1]` (`[node+0x14]`): `dx = -1, dy =  0` (**West** $\rightarrow$ `bit 1 = 0x02`)
+     - `dir[2]` (`[node+0x18]`): `dx =  0, dy = +1` (**South** $\rightarrow$ `bit 2 = 0x04`)
+     - `dir[3]` (`[node+0x1c]`): `dx =  0, dy = -1` (**North** $\rightarrow$ `bit 3 = 0x08`)
+   - When read from MSB (`bit 3`) down to LSB (`bit 0`), the 4 bits spell **`N-S-W-E`**, whereas in `FWorldBuilder`'s array order (`0..3`) and in `<MapX>_<MapY>_path.txt` (`(<height>:<d0><d1><d2><d3>)`), they are emitted in **`E-W-S-N`** order (`d0=East, d1=West, d2=South, d3=North`).
+2. **Why In-Game `///buildzone` Only Builds a Local Patch Around the Player Without Writing `<MapX>_<MapY>_path.txt`:**
+   - `FWorldBuilder::buildWorldStructure` has two execution paths controlled by `this->Viewport` (`[ebx+0x04]`, passed as `arg3`):
+     - When `Viewport == NULL` (`[ebx+0x04] == 0`, as called by `UnrealEd`), it spawns a temporary `LineageWarrior.FFighter` scout (`FWorldBuilder::getScout` at `VA 0x201899c0`), runs OpenMP 2-thread `SetInitialPoints` (`VA 0x2018a0d0`) and `FindReachable` (`VA 0x2018b9a0`) across the entire `2048 × 2048` region, and writes **`<MapX>_<MapY>_path.txt`** at `VA 0x2018dd39..0x2018dea9`.
+     - When `Viewport != NULL` (`[ebx+0x04] != 0`, as passed by `///buildzone` at `VA 0x202b384c`: `mov edx, [esi+0xe78]; push edx`), it uses the player's own pawn, restricts the bounding box to `Width × Width` (default `128 × 128` units = `8 × 8` cells) around the player, steps the pawn visually while redrawing the viewport, and skips writing `<MapX>_<MapY>_path.txt` at `VA 0x2018dd39` (`cmp dword ptr [ebx+0x4], 0; jne 0x2018dee0`) so the built cells remain in `[0x206daf58]` for immediate 3D visualization via `///c_rmode geodata`.
+   - Furthermore, at `VA 0x2018bf22` (`mov word ptr [ebp+eax*2-0x5d8], 0`), `FWorldBuilder::buildWorldStructure` strips the last **4 characters** (`.unr`) from `MapName` before formatting `"%S_path.txt"`, so `Map=` must include `.unr` (e.g. `Map=17_25.unr`).
+3. **Why `GeoTestDuringBuild` Defaults to `1` Unless Overridden in `system/Unrealed.ini`:**
+   - At `VA 0x2018c424..0x2018c49e`, `FWorldBuilder::buildWorldStructure` reads `RunWalkbuild`, `GeoTestDuringBuild`, and `RunPostbuild` from `[WorldBuildOptions]` in `Unrealed.ini`, defaulting all three to `1` (`TRUE`) if missing. When `GeoTestDuringBuild=1`, it executes three `2032 × 2032` debug verification passes (`%d_%d_BuildTest_1..3.txt`) and attempts to load `.\GeoData\%d_%d_conv.dat` (`VA 0x203902f0`). Setting `GeoTestDuringBuild=0` in `system/Unrealed.ini` bypasses all three debug test dumps.

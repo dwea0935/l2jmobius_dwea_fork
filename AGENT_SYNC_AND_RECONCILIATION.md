@@ -332,3 +332,59 @@ Following the 3rd Agent's protocol-differentiation audit, the user selected **Op
 - Restored the modernized [`system/user.ini`](file:///home/dwea/Projects/L2/Client%20Lineage%202%20Gracia%20Epilogue/system/user.ini) to both `Client Lineage 2 Gracia Epilogue/system/user.ini` and `l2jmobius_dwea_fork/client/system/user.ini` (translated comments, Hall-Effect/DualSense `DeadZone=0.07`, D-pad bindings `PovUp`/`PovDown`/`PovLeft`/`PovRight`, and `NextTargetMode=0` `3000`-unit target cycling).
 - **DualSense PS5 DirectInput Axis Mapping (`hid-playstation` + Wine DirectInput):** On a Sony DualSense PS5 controller, `JoyU` (`Rx`) and `JoyR` (`Ry`) are the **L2 and R2 analog triggers** (which rest at `-1.0` when unpressed), whereas **`JoyZ` (`Z`) is Right Stick Horizontal** and **`JoyV` (`Rz`) is Right Stick Vertical**. Therefore, `JoyZ` (`CameraYaw Factor=38000 DeadZone=0.07 Direction=1`) and `JoyV` (`CameraPitch Factor=38000 DeadZone=0.07 Direction=1`) are bound to the Right Stick camera while `;JoyU=` and `;JoyR=` remain unbound so unpressed triggers never spin or tilt the camera.
 
+---
+
+## 7. Native Client Geodata Builder (`///buildzone` / `FWorldBuilder`) & L2J Geodata Converter
+
+### 7.1 `Engine.dll` Builder Command Dispatch (`VA 0x202b37b4..0x202b45a2`)
+All `///` builder console commands in [`Engine.dll`](file:///home/dwea/Projects/L2/Client%20Lineage%202%20Gracia%20Epilogue/system/Engine.dll) (`ImageBase = 0x20000000`) require two gates:
+1. `bIsBuilder == 1` (`VA 0x202a898f`, file offset `0x002A7D8F`, already unlocked in `Engine.dll`).
+2. `GIsEditor == 0` (`*0x20446464 == 0`, imported from `Core.dll!?GIsEditor@@3HA`), which is always `0` in the normal game client.
+
+| Command | Handler VA | Callee / Global State | Behavior & Parameters |
+| :--- | :--- | :--- | :--- |
+| `///buildzone [Map=<X>_<Y>.unr] [Width=<INT>] [Post=<INT>]` | `0x202b37b4` | `FWorldBuilder::buildWorldStructure` (`0x2018be10`, ordinal `9236`) | Defaults: `Map=""`, `Width=128` (`0x80`), `Post=0`. Builds world structure geodata cells into `[0x206daf58]` (`32 MB` `FWorldStructure` grid). |
+| `///loadpath FILE=<path>` | `0x202b3891` | `FWorldBuilder::LoadPath` (`0x2018bb20`) | Parses an ASCII `<X>_<Y>_path.txt` file into the `[0x206daf58]` `FWorldStructure` grid and sets `[0x206e3204] = 1`. |
+| `///c_rmode geodata` | `0x202b3c28` | `[0x206daf48]` (`0` $\leftrightarrow$ `1`) | Toggles real-time 3D viewport rendering of the loaded `[0x206daf58]` geodata cells and NSWE passability arrows. |
+| `///c_rmode seamless` | `0x202b3d17` | `[0x206daf44]` (`0` $\leftrightarrow$ `1`) | Toggles seamless map boundary visualization. |
+| `///maploc` | `0x202b3e43` | `GLog->Logf` | Prints current region coordinates (`MapX=%d, MapY=%d`). |
+| `///showborderline` | `0x202b3f4f` | `[0x206e31e4]` (`0` $\leftrightarrow$ `1`) | Toggles region/block border lines in the 3D viewport. |
+| `///showsectors` | `0x202b3f79` | `[0x206e31e8]` (`0` $\leftrightarrow$ `1`) | Toggles sector overlay rendering. |
+| `///linecheck` | `0x202b3fa3` | `[0x206e3208]` (`0` $\leftrightarrow$ `1`) | Toggles interactive line-of-sight / collision raycast debugging. |
+| `///batch File=<path>` | `0x202b4548` | `UGameEngine::StartCommandMacro` (`0x202bf590`) | Reads and executes a macro script of console commands (`;` comments, `{...}` blocks). |
+
+### 7.2 `FWorldBuilder::buildWorldStructure` (`VA 0x2018be10..0x2018df0d`) Internals
+- **Signature:** `int __thiscall FWorldBuilder::buildWorldStructure(FWorldBuilder* this, ULevel* Level, const TCHAR* MapName, UViewport* Viewport, INT Width, INT Post)`
+- **`Unrealed.ini` `[WorldBuildOptions]` Configuration (`VA 0x2018c424..0x2018c49e`):**
+  Queries `GConfig->GetBool(L"WorldBuildOptions", Key, &val, L"Unrealed.ini")`, defaulting all 3 options to `1` (`TRUE`) if `Unrealed.ini` is absent:
+  1. `RunWalkbuild` (`[ebp-0x50]`, default `1`): Enables multi-threaded/pawn walkability flood-fill (`FindReachable`).
+  2. `GeoTestDuringBuild` (`[ebp+0x10]`, default `1`): When `1`, runs three slow `2032 × 2032` debug verification passes (`%d_%d_BuildTest_1_TopMostCells.txt`, `%d_%d_BuildTest_2_WithWalk.txt`, `%d_%d_BuildTest_3_AfterPostprocessing.txt`) and compares against `.\GeoData\%d_%d_conv.dat` (`VA 0x203902f0`). **Setting `GeoTestDuringBuild=0` in `system/Unrealed.ini` skips all 3 debug dump passes and `_conv.dat` comparison.**
+  3. `RunPostbuild` (`[ebp-0x70]`, default `1`): Runs `FWorldBuilder::ComboPostProcessing` (`VA 0x2018a240`, up to 20 passes pruning inconsistent diagonal/cardinal transitions) when `Post != 0` or `GIsEditor != 0`.
+- **Two Execution Paths Controlled by `this->Viewport` (`[ebx+0x04]`):**
+  1. **Full-Map Batch Mode (`this->Viewport == NULL`, `[ebx+0x04] == 0`, used by `UnrealEd` via ordinal `9236`):**
+     - Parses `MapX` (`[ebp+0x48]`) and `MapY` (`[ebp+0x6c]`) from the filename stem of `MapName` and strips the last 4 characters (`.unr` at `VA 0x2018bf22`: `mov word ptr [ebp+eax*2-0x5d8], 0`).
+     - Allocates the `0x2000018`-byte (`32 MB`) `FWorldStructure` grid at `[0x206daf58]` covering `minX = (MapX - 20) << 15`, `minY = (MapY - 18) << 15`, `width = 0x7fff`, `height = 0x7fff`.
+     - Spawns a temporary `LineageWarrior.FFighter` collision probe actor (`FWorldBuilder::getScout` at `VA 0x201899c0`), collects all `APathNode` seed actors in `ULevel`, runs OpenMP 2-thread `SetInitialPoints` (`VA 0x2018a0d0` $\rightarrow$ `0x20189ec0`) across all `2048 × 2048` cells and OpenMP 2-thread `FindReachable` (`VA 0x2018b9a0` $\rightarrow$ `0x2018b760`), and writes **`<MapX>_<MapY>_path.txt`** (`"%S_path.txt"` at `VA 0x2018dd39..0x2018dea9`).
+  2. **In-Game Client Interactive Mode (`this->Viewport != NULL`, `[ebx+0x04] != 0`, passed by `///buildzone` at `VA 0x202b384c`):**
+     - Because `///buildzone` at `VA 0x202b384c` passes `Viewport = [esi+0xe78]` (non-null), `[ebx+0x04]` is non-zero. In this mode, `FWorldBuilder::buildWorldStructure` uses the player's own `APawn`, restricts the bounding box `[ebx+0x14..0x20]` to `[player.X ± Width/2, player.Y ± Width/2]` (default `128 × 128` units = `8 × 8` cells), steps the player pawn visually across the local patch while redrawing the viewport, and **skips writing `<MapName>_path.txt`** at `VA 0x2018dd39` (`cmp dword ptr [ebx+0x4], 0; jne 0x2018dee0`) so the built patch is only held in `[0x206daf58]` for in-game inspection via `///c_rmode geodata`.
+
+### 7.3 `<X>_<Y>_path.txt`, `<X>_<Y>_conv.dat`, and `<X>_<Y>.l2j` Format Specification & Converter (`convert_buildzone_to_l2j.py`)
+1. **`<X>_<Y>_path.txt` Direction & Height Mapping (`VA 0x2018de50..0x2018de7e` & `0x20467b08`):**
+   - Header: 5 lines (`total : %d`, `visited : %d`, `(%d, %d) ~ (%d, %d)`, `cellsize : 16`, `heightunit : 8`) + blank line.
+   - Body: `2048 × 2048 = 4,194,304` lines (`x = 0..2047` outer, `y = 0..2047` inner):
+     `[<x>,<y>]<num_layers>(<height_1>:<d0><d1><d2><d3>)(<height_2>:<d0><d1><d2><d3>)...`
+   - The 4 directional passability flags `d0, d1, d2, d3` (`[node+0x10..0x1c]`) are indexed by the direction table at `VA 0x20467b08`:
+     - `d0` (`dir[0]`): `dx = +1, dy =  0` $\rightarrow$ **East** (`Cell.NSWE_EAST = 1 << 0 = 0x01`)
+     - `d1` (`dir[1]`): `dx = -1, dy =  0` $\rightarrow$ **West** (`Cell.NSWE_WEST = 1 << 1 = 0x02`)
+     - `d2` (`dir[2]`): `dx =  0, dy = +1` $\rightarrow$ **South** (`Cell.NSWE_SOUTH = 1 << 2 = 0x04`)
+     - `d3` (`dir[3]`): `dx =  0, dy = -1` $\rightarrow$ **North** (`Cell.NSWE_NORTH = 1 << 3 = 0x08`)
+     - Combined L2J NSWE byte: `nswe = (d0 << 0) | (d1 << 1) | (d2 << 2) | (d3 << 3)`.
+   - 16-bit Layer Word Encoding (`VA 0x2018da4a..0x2018da58` & [`Region.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/geoengine/geodata/regions/Region.java#L157-L158)):
+     - Encode: `word = (((height & ~7) << 1) & 0xFFF0) | (nswe & 0x0F)` (little-endian `uint16`).
+     - Decode: `height = ((short)(word & 0xFFF0)) >> 1`, `nswe = word & 0x0F`.
+2. **Converter Tool ([`tools/convert_buildzone_to_l2j.py`](file:///home/dwea/Projects/L2/Client%20Lineage%202%20Gracia%20Epilogue/tools/convert_buildzone_to_l2j.py) & [`client/tools/convert_buildzone_to_l2j.py`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/tools/convert_buildzone_to_l2j.py)):**
+   - Converts `<X>_<Y>_path.txt` $\rightarrow$ `<X>_<Y>.l2j` (`TYPE_FLAT=0`, `TYPE_COMPLEX=1`, `TYPE_MULTILAYER=2`).
+   - Converts L2OFF `<X>_<Y>_conv.dat` (18-byte header + `0x0000`/`0x0040`/`>0x0040` blocks) $\rightarrow$ `<X>_<Y>.l2j`.
+   - Converts `<X>_<Y>.l2j` $\rightarrow$ `<X>_<Y>_path.txt` (`--to-path-txt`) so any server `.l2j` region can be loaded into the client with `///loadpath` and rendered in 3D with `///c_rmode geodata`.
+   - Validates `.l2j` files against all [`Region.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/geoengine/geodata/regions/Region.java) off-heap `MemorySegment` invariants (`--verify`).
+
