@@ -644,18 +644,14 @@ public class AdminSkill implements IAdminCommandHandler
 	private void adminAddSkill(Player activeChar, String value)
 	{
 		final WorldObject target = activeChar.getTarget();
-		if ((target == null) || !target.isPlayer())
-		{
-			activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
-			showMainPage(activeChar);
-			return;
-		}
-		
-		final Player player = target.asPlayer();
+		final Player player = ((target != null) && target.isPlayer()) ? target.asPlayer() : activeChar;
 		final StringTokenizer st = new StringTokenizer(value);
 		if ((st.countTokens() != 1) && (st.countTokens() != 2))
 		{
-			showMainPage(activeChar);
+			if ((target != null) && target.isPlayer())
+			{
+				showMainPage(activeChar);
+			}
 		}
 		else
 		{
@@ -683,7 +679,7 @@ public class AdminSkill implements IAdminCommandHandler
 				player.sendSkillList();
 				
 				// Admin info.
-				activeChar.sendSysMessage("You gave the skill " + name + " to " + player.getName() + ".");
+				activeChar.sendSysMessage("You gave the skill " + name + " (" + skill.getId() + " Lv." + skill.getLevel() + ") to " + player.getName() + ".");
 				activeChar.sendSkillList();
 			}
 			else
@@ -691,7 +687,10 @@ public class AdminSkill implements IAdminCommandHandler
 				activeChar.sendSysMessage("Error: there is no such skill.");
 			}
 			
-			showMainPage(activeChar); // Back to start
+			if ((target != null) && target.isPlayer())
+			{
+				showMainPage(activeChar); // Back to start
+			}
 		}
 	}
 	

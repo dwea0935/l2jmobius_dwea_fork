@@ -61,11 +61,16 @@ public class AdminSummon implements IAdminCommandHandler
 		{
 			subCommand = "admin_create_item";
 		}
-		else
+		else if (id < 2000000)
 		{
 			subCommand = "admin_spawn_once";
 			activeChar.sendSysMessage("This is only a temporary spawn.  The mob(s) will NOT respawn.");
 			id -= 1000000;
+		}
+		else
+		{
+			subCommand = "admin_add_skill";
+			id -= 2000000;
 		}
 		
 		if ((id > 0) && (count > 0))

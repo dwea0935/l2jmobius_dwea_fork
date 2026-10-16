@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../data/xsd/AdminCommands.xsd">
 	<!-- ADMIN ADMIN & RBAC COMMUNITY BOARD -->
-	<admin command="admin" description="Open RBAC Admin Community Board." accessLevel="10" />
+	<admin command="admin" description="Open RBAC Admin Console." accessLevel="10" />
+	<admin command="gmw" description="Open RBAC Admin Console in native GMWnd (Alt+G)." accessLevel="10" />
 	<admin command="admin1" description="Open RBAC Admin Dashboard." accessLevel="10" />
 	<admin command="admin2" description="Open World &amp; Spawns RBAC tab." accessLevel="20" />
 	<admin command="admin3" description="Open Events &amp; FX RBAC tab." accessLevel="40" />

@@ -200,7 +200,7 @@ public enum AdminScope
 				|| s.startsWith("admin3") || s.startsWith("admin4") || s.startsWith("admin5")
 				|| s.startsWith("admin6") || s.startsWith("admin7") || s.startsWith("board")
 				|| s.equals("html") || s.equals("help") || s.equals("commands") || s.equals("instancezones")
-				|| s.equals("gm") || s.startsWith("gmlist")
+				|| s.equals("gm") || s.equals("gmw") || s.startsWith("gmlist")
 				|| s.equals("silence") || s.equals("tradeoff") -> PANEL_ACCESS;
 			
 			// 2. Chat Moderation & Petitions

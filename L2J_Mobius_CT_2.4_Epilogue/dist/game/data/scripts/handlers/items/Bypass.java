@@ -40,7 +40,7 @@ public class Bypass implements IItemHandler
 		final int itemId = item.getId();
 		final String filename = "data/html/item/" + itemId + ".htm";
 		final String content = HtmCache.getInstance().getHtm(player, filename);
-		final NpcHtmlMessage html = new NpcHtmlMessage(0, item.getId());
+		final NpcHtmlMessage html = new NpcHtmlMessage(0);
 		if (content == null)
 		{
 			html.setHtml("<html><body>My Text is missing:<br>" + filename + "</body></html>");

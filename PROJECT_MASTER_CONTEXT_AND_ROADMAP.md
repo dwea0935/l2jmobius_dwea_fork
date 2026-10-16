@@ -231,12 +231,15 @@ To modernize server administration without crashing the 2009 Gracia Epilogue cli
    * Automatically intercepts `NpcHtmlMessage` packets during admin command execution, strips nested `<html>`/`<body>`/`<title>` tags, dynamically scrubs unauthorized `<button>` and `<a>` tags based on the GM's `AccessLevel` scopes, and normalizes `bypass -h` to `bypass` so clicking buttons never closes the Community Board.
 4. **Legacy Purge & Handler Consolidation (80 $\rightarrow$ 69 Admin Handlers):**
    * Purged 5 obsolete/broken 2004-era handlers (`AdminCamera`, `AdminFightCalculator`, `AdminPathNode`, `AdminTargetSay`, `AdminTest`) and consolidated 6 redundant handlers (`AdminDisconnect` $\rightarrow$ `AdminKick`, `AdminSuperHaste` $\rightarrow$ `AdminGmSpeed`, `AdminInstanceZone` $\rightarrow$ `AdminInstance`, `AdminPledge` $\rightarrow$ `AdminClan`, `AdminZoneBuild` $\rightarrow$ `AdminZone`, `AdminShowQuests` $\rightarrow$ `AdminQuest`).
+5. **Unified Native C++ `GMWnd` (`Alt+G`) Master Console (`origin/feature/native-gmwnd-console`):**
+   * Expanded the client's native C++ `GMWnd` (`Alt+G`) in `system/interface.xdat` to `992 x 544` px with a 2-column left control dock (`x=10..226`, housing all 6 C++ binary-packet player inspectors and 3 `.dat` search trees) and an embedded right-hand `GMWnd.HtmlViewer` (`744 x 492` px).
+   * Patched 7 UnrealScript functions in `system/interface.u` in-place (0-byte size delta, verified via [`tools/patch_gmwnd_client.py`](tools/patch_gmwnd_client.py)) and updated [`AdminBoardManager.java`](L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/managers/AdminBoardManager.java), [`AdminAdmin.java`](L2J_Mobius_CT_2.4_Epilogue/dist/game/data/scripts/handlers/chat/commands/admin/AdminAdmin.java), [`AdminSummon.java`](L2J_Mobius_CT_2.4_Epilogue/dist/game/data/scripts/handlers/chat/commands/admin/AdminSummon.java), and [`AdminSkill.java`](L2J_Mobius_CT_2.4_Epilogue/dist/game/data/scripts/handlers/chat/commands/admin/AdminSkill.java) so pressing `Alt+G` (`//gmw`) or `//admin` renders the RBAC console directly inside `GMWnd.HtmlViewer` via `NpcHtmlMessage(0, 1, html)` with `[To Alt+B]` / `[To Alt+G]` switching and tri-modal `//summon` (Items `< 1M`, NPCs `1M..2M`, Skills `>= 2M`). See [`MASTER_HANDOFF_AND_CLIENT_SERVER_GUIDE.md`](MASTER_HANDOFF_AND_CLIENT_SERVER_GUIDE.md) for the complete client + server specification.
 
 ---
 
 ## 8. Next Architectural Tasks Handover Blueprint (For Work PC Agent)
 
-With the core runtime, instance infrastructure, netcode skill queue/lag tolerance, Panama FFM GeoEngine/Movement engines, Zero-Downtime Hot-Reload Engine, and RBAC Admin Community Board complete, the following two architectural tasks are queued next:
+With the core runtime, instance infrastructure, netcode skill queue/lag tolerance, Panama FFM GeoEngine/Movement engines, Zero-Downtime Hot-Reload Engine, RBAC Admin Community Board, and Native C++ `GMWnd` Master Console complete, the following two architectural tasks are queued next:
 
 ### Task B: The 5-Phase Expansion Gatekeeper & Dynamic 1–75 / 76–85 Progression Engine (`feature/expansion-phase-and-progression-engine`)
 * **Objective:** Implement the centralized progression controller described in Section 1 using modern Java 27 **Records**, **Sealed Interfaces**, and **Pattern Matching `switch` expressions**:
@@ -247,7 +250,7 @@ With the core runtime, instance infrastructure, netcode skill queue/lag toleranc
      * **Phase 4:** Beleth's Chamber (Grand Boss Beleth).
      * **Phase 5:** Gracia Continent + Seed of Destruction (Tiat) & Seed of Infinity (Ekimus).
   2. **Two-Tier Dynamic XP/SP/Drop Curve:** Fast-tracked multipliers for levels `1–75` transitioning automatically to hardcore Gracia Epilogue progression for `76–85`.
-  3. **In-Game Voiced & Admin Commands:** `.phase` (or `.stage`) for players to inspect the active server phase, level-bracket rates, and unlock schedule; `//setphase <1-5>` for GMs to hot-advance phases without restarting the server (wired directly into the new RBAC Admin Community Board!).
+  3. **In-Game Voiced & Admin Commands:** `.phase` (or `.stage`) for players to inspect the active server phase, level-bracket rates, and unlock schedule; `//setphase <1-5>` for GMs to hot-advance phases without restarting the server (wired directly into the new RBAC Admin Console!).
 
 ### Task C: Endgame Instance & Hellbound Script Modernization (`feature/endgame-instance-script-refactor`)
 * **Objective:** Migrate the datapack's endgame scripts onto the 5-Pillar Core Instance Infrastructure Pipeline:
@@ -271,8 +274,9 @@ git checkout master
 # - origin/feature/java27-ffm-geoengine-and-movement
 # - origin/feature/zero-downtime-hot-reload-engine
 # - origin/feature/admin-community-board-rbac
+# - origin/feature/native-gmwnd-console
 ```
 
 ### Step 2: Prompting Antigravity / AI Agent at Work
 Provide the following prompt to the assistant on your work machine:
-> *"I have pulled the latest `master` branch. Please read `PROJECT_MASTER_CONTEXT_AND_ROADMAP.md`, `SKILL_QUEUE_AND_LAG_TOLERANCE.md`, `GEOENGINE_AND_MOVEMENT_ARCHITECTURE.md`, `HOT_RELOAD_ENGINE_ARCHITECTURE.md`, and `ADMIN_COMMUNITY_BOARD_RBAC_ARCHITECTURE.md`. Our core engine now runs on Java 27 with the 5-Pillar Instance Infrastructure Pipeline, the Netcode Skill Queue & Lag Tolerance Engine, the Project Panama FFM Off-Heap GeoEngine & Lock-Free Movement Task Manager, the Zero-Downtime Transactional Script Hot-Reload Engine, and the 2009 Client-Safe RBAC Admin Community Board. Review Section 8 of `PROJECT_MASTER_CONTEXT_AND_ROADMAP.md` (Tasks B and C) and let's plan our next implementation."*
+> *"I have pulled the latest `master` branch and our Gracia Epilogue client repository. Please read `MASTER_HANDOFF_AND_CLIENT_SERVER_GUIDE.md`, `PROJECT_MASTER_CONTEXT_AND_ROADMAP.md`, `SKILL_QUEUE_AND_LAG_TOLERANCE.md`, `GEOENGINE_AND_MOVEMENT_ARCHITECTURE.md`, `HOT_RELOAD_ENGINE_ARCHITECTURE.md`, and `ADMIN_COMMUNITY_BOARD_RBAC_ARCHITECTURE.md`. Review Section 8 of `PROJECT_MASTER_CONTEXT_AND_ROADMAP.md` (Tasks B and C) and let's plan our next implementation."*
