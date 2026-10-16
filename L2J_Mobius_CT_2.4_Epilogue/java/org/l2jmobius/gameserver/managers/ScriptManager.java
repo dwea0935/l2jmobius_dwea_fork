@@ -20,13 +20,19 @@
  */
 package org.l2jmobius.gameserver.managers;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.DevelopmentConfig;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.mechanics.script.Quest;
 import org.l2jmobius.gameserver.scripting.ScriptEngine;
 
@@ -38,30 +44,247 @@ public class ScriptManager
 	private final Map<String, Quest> _quests = new ConcurrentHashMap<>();
 	/** Map containing all the scripts. */
 	private final Map<String, Quest> _scripts = new ConcurrentHashMap<>();
+	/** Open-world permanent NPCs spawned during script initialization, keyed by normalized script path. */
+	private final Map<Path, List<Npc>> _initSpawns = new ConcurrentHashMap<>();
+	/** Temporary handover buffer of alive init-spawned NPCs during an active transactional hot-reload. */
+	private final Map<Path, List<Npc>> _handoverSpawns = new ConcurrentHashMap<>();
 	
 	protected ScriptManager()
 	{
 	}
 	
-	public void reload(String questFolder)
+	public boolean reload(String questFolder)
 	{
 		final Quest q = getScript(questFolder);
 		if (q != null)
 		{
 			q.reload();
+			return true;
+		}
+		
+		try
+		{
+			return ScriptEngine.getInstance().reloadScriptByNameOrPath(questFolder) != null;
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, "Failed to reload script: " + questFolder, e);
+			return false;
 		}
 	}
 	
 	/**
-	 * Reloads a the quest by ID.
+	 * Reloads a quest by ID.
 	 * @param questId the ID of the quest to be reloaded
+	 * @return {@code true} if the quest was found and reloaded, {@code false} otherwise
 	 */
-	public void reload(int questId)
+	public boolean reload(int questId)
 	{
 		final Quest q = getQuest(questId);
 		if (q != null)
 		{
 			q.reload();
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Prepares a transactional hot-reload after compilation and classloading have succeeded,
+	 * unloading the previous Quest/Script instance (saving its data first) and staging its
+	 * live init-spawned open-world NPCs for zero-disruption adoption by the new instance.
+	 * @param scriptPath the compiled script file path
+	 * @param classSimpleName the simple name of the top-level script class
+	 */
+	public void prepareHotReload(Path scriptPath, String classSimpleName)
+	{
+		if (scriptPath == null)
+		{
+			return;
+		}
+		
+		final Path normalizedPath = scriptPath.toAbsolutePath().normalize();
+		Quest old = getScript(classSimpleName);
+		if (old == null)
+		{
+			for (Quest q : _quests.values())
+			{
+				if ((q.getScriptFile() != null) && q.getScriptFile().toAbsolutePath().normalize().equals(normalizedPath))
+				{
+					old = q;
+					break;
+				}
+			}
+		}
+		if (old == null)
+		{
+			for (Quest s : _scripts.values())
+			{
+				if ((s.getScriptFile() != null) && s.getScriptFile().toAbsolutePath().normalize().equals(normalizedPath))
+				{
+					old = s;
+					break;
+				}
+			}
+		}
+		
+		final List<Npc> previousSpawns = _initSpawns.remove(normalizedPath);
+		if ((previousSpawns != null) && !previousSpawns.isEmpty())
+		{
+			final List<Npc> aliveSpawns = new ArrayList<>(previousSpawns.size());
+			for (Npc npc : previousSpawns)
+			{
+				if ((npc != null) && npc.isSpawned() && !npc.isDead() && !npc.isDecayed())
+				{
+					aliveSpawns.add(npc);
+				}
+			}
+			
+			if (!aliveSpawns.isEmpty())
+			{
+				_handoverSpawns.put(normalizedPath, aliveSpawns);
+			}
+		}
+		
+		if (old != null)
+		{
+			old.unload();
+			LOGGER.info("Hot-reloading " + (old.getId() > 0 ? ("quest " + old.getName() + " (" + old.getId() + ")") : ("script " + old.getClass().getSimpleName())) + " with newly compiled bytecode.");
+		}
+	}
+	
+	/**
+	 * Attempts to adopt an already-spawned live NPC from the previous script instance during
+	 * a hot-reload so that world NPCs and bosses are not duplicated or reset mid-combat.
+	 * @param scriptPath the script currently initializing
+	 * @param npcId the NPC template ID
+	 * @param x the target X coordinate
+	 * @param y the target Y coordinate
+	 * @param z the target Z coordinate
+	 * @param heading the target heading
+	 * @param randomOffset whether random offset was requested
+	 * @return the adopted live {@link Npc}, or {@code null} if a new spawn should be created
+	 */
+	public Npc tryAdoptInitSpawn(Path scriptPath, int npcId, int x, int y, int z, int heading, boolean randomOffset)
+	{
+		if (scriptPath == null)
+		{
+			return null;
+		}
+		
+		final Path normalizedPath = scriptPath.toAbsolutePath().normalize();
+		final List<Npc> handoverList = _handoverSpawns.get(normalizedPath);
+		if ((handoverList == null) || handoverList.isEmpty())
+		{
+			return null;
+		}
+		
+		Npc bestMatch = null;
+		synchronized (handoverList)
+		{
+			int bestIndex = -1;
+			long bestDistSq = Long.MAX_VALUE;
+			for (int i = 0; i < handoverList.size(); i++)
+			{
+				final Npc candidate = handoverList.get(i);
+				if ((candidate == null) || (candidate.getId() != npcId) || !candidate.isSpawned() || candidate.isDead() || candidate.isDecayed())
+				{
+					continue;
+				}
+				
+				final Spawn spawn = candidate.getSpawn();
+				final long refX = (spawn != null) ? spawn.getX() : candidate.getX();
+				final long refY = (spawn != null) ? spawn.getY() : candidate.getY();
+				final long refZ = (spawn != null) ? spawn.getZ() : candidate.getZ();
+				final long dx = refX - x;
+				final long dy = refY - y;
+				final long dz = refZ - z;
+				final long distSq = (dx * dx) + (dy * dy) + (dz * dz);
+				if (distSq < bestDistSq)
+				{
+					bestDistSq = distSq;
+					bestIndex = i;
+					bestMatch = candidate;
+				}
+			}
+			
+			if (bestIndex != -1)
+			{
+				handoverList.remove(bestIndex);
+			}
+		}
+		
+		if (bestMatch != null)
+		{
+			trackInitSpawn(normalizedPath, bestMatch);
+			final Spawn spawn = bestMatch.getSpawn();
+			if (!randomOffset && !bestMatch.isInCombat() && (spawn != null))
+			{
+				if ((spawn.getX() != x) || (spawn.getY() != y) || (spawn.getZ() != z) || ((heading > -1) && (spawn.getHeading() != heading)))
+				{
+					spawn.setXYZ(x, y, z);
+					if (heading > -1)
+					{
+						spawn.setHeading(heading);
+					}
+					bestMatch.teleToLocation(x, y, z, heading > -1 ? heading : bestMatch.getHeading(), 0);
+				}
+			}
+		}
+		
+		return bestMatch;
+	}
+	
+	/**
+	 * Records an open-world permanent NPC spawned during script initialization so it can be
+	 * seamlessly handed over or cleaned up on future hot-reloads.
+	 * @param scriptPath the script path
+	 * @param npc the spawned NPC
+	 */
+	public void trackInitSpawn(Path scriptPath, Npc npc)
+	{
+		if ((scriptPath == null) || (npc == null))
+		{
+			return;
+		}
+		
+		final Path normalizedPath = scriptPath.toAbsolutePath().normalize();
+		_initSpawns.computeIfAbsent(normalizedPath, _ -> new CopyOnWriteArrayList<>()).add(npc);
+	}
+	
+	/**
+	 * Completes a transactional hot-reload, despawning any unclaimed init-spawned NPCs from
+	 * the previous script version that are no longer spawned by the new version (unless in combat).
+	 * @param scriptPath the script path that finished reloading
+	 */
+	public void finishHotReload(Path scriptPath)
+	{
+		if (scriptPath == null)
+		{
+			return;
+		}
+		
+		final Path normalizedPath = scriptPath.toAbsolutePath().normalize();
+		final List<Npc> unclaimed = _handoverSpawns.remove(normalizedPath);
+		if ((unclaimed == null) || unclaimed.isEmpty())
+		{
+			return;
+		}
+		
+		for (Npc npc : unclaimed)
+		{
+			if ((npc != null) && npc.isSpawned() && !npc.isDead() && !npc.isDecayed())
+			{
+				if (!npc.isInCombat())
+				{
+					npc.deleteMe();
+				}
+				else
+				{
+					trackInitSpawn(normalizedPath, npc);
+				}
+			}
 		}
 	}
 	
@@ -185,15 +408,6 @@ public class ScriptManager
 			throw new IllegalArgumentException("Quest argument cannot be null");
 		}
 		
-		// FIXME: unloading the old quest at this point is a tad too late.
-		// the new quest has already initialized itself and read the data, starting
-		// an unpredictable number of tasks with that data. The old quest will now
-		// save data which will never be read.
-		// However, requesting the newQuest to re-read the data is not necessarily a
-		// good option, since the newQuest may have already started timers, spawned NPCs
-		// or taken any other action which it might re-take by re-reading the data.
-		// the current solution properly closes the running tasks of the old quest but
-		// ignores the data; perhaps the least of all evils...
 		final Quest old = _quests.put(quest.getName(), quest);
 		if (old != null)
 		{
@@ -282,3 +496,4 @@ public class ScriptManager
 		protected static final ScriptManager INSTANCE = new ScriptManager();
 	}
 }
+

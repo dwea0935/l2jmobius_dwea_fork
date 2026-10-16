@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.handler;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author nBd
@@ -28,7 +28,7 @@ public class BypassHandler implements IHandler<IBypassHandler, String>
 	
 	protected BypassHandler()
 	{
-		_datatable = new HashMap<>();
+		_datatable = new ConcurrentHashMap<>();
 	}
 	
 	@Override

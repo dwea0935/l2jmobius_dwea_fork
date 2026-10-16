@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.handler;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class UserCommandHandler implements IHandler<IUserCommandHandler, Integer>
 {
@@ -29,7 +29,7 @@ public class UserCommandHandler implements IHandler<IUserCommandHandler, Integer
 	
 	protected UserCommandHandler()
 	{
-		_datatable = new HashMap<>();
+		_datatable = new ConcurrentHashMap<>();
 	}
 	
 	@Override

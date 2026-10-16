@@ -16,9 +16,10 @@
  */
 package org.l2jmobius.gameserver.handler;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
+import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
 import org.l2jmobius.gameserver.scripting.ScriptEngine;
 
@@ -31,17 +32,22 @@ public class EffectHandler implements IHandler<Class<? extends AbstractEffect>, 
 	
 	protected EffectHandler()
 	{
-		_handlers = new HashMap<>();
+		_handlers = new ConcurrentHashMap<>();
 	}
 	
 	@Override
 	public void registerHandler(Class<? extends AbstractEffect> handler)
 	{
-		_handlers.put(handler.getSimpleName(), handler);
+		final String name = handler.getSimpleName();
+		final Class<? extends AbstractEffect> previous = _handlers.put(name, handler);
+		if ((previous != null) && (previous != handler) && SkillData.isInitialized())
+		{
+			SkillData.getInstance().refreshEffectHandler(name);
+		}
 	}
 	
 	@Override
-	public synchronized void removeHandler(Class<? extends AbstractEffect> handler)
+	public void removeHandler(Class<? extends AbstractEffect> handler)
 	{
 		_handlers.remove(handler.getSimpleName());
 	}

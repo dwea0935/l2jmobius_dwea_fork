@@ -348,15 +348,13 @@ public class Quest implements IEventTimerEvent<String>, IEventTimerCancel<String
 	
 	public void reload()
 	{
-		unload();
-		
 		try
 		{
 			ScriptEngine.getInstance().executeScript(_scriptFile);
 		}
 		catch (Exception e)
 		{
-			LOGGER.log(Level.WARNING, "Failed to reload script!", e);
+			LOGGER.log(Level.WARNING, "Failed to reload script " + _scriptFile + " (previous version kept active)!", e);
 		}
 	}
 	
@@ -4264,6 +4262,16 @@ public class Quest implements IEventTimerEvent<String>, IEventTimerCancel<String
 				y += offset;
 			}
 			
+			final Path loadingScript = ((summoner == null) && (instanceId == 0) && (despawnDelay == 0)) ? ScriptEngine.getInstance().getCurrentLoadingScript() : null;
+			if (loadingScript != null)
+			{
+				final Npc adoptedNpc = ScriptManager.getInstance().tryAdoptInitSpawn(loadingScript, npcId, x, y, zValue, heading, randomOffset);
+				if (adoptedNpc != null)
+				{
+					return adoptedNpc;
+				}
+			}
+			
 			final Spawn spawn = new Spawn(npcId);
 			spawn.setInstanceId(instanceId);
 			spawn.setHeading(heading);
@@ -4294,6 +4302,11 @@ public class Quest implements IEventTimerEvent<String>, IEventTimerCancel<String
 			
 			// Fixes invisible NPCs spawned by script.
 			npc.broadcastInfo();
+			
+			if (loadingScript != null)
+			{
+				ScriptManager.getInstance().trackInitSpawn(loadingScript, npc);
+			}
 			
 			return npc;
 		}

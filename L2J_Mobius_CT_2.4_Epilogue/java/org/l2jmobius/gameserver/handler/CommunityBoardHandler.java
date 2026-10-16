@@ -16,7 +16,6 @@
  */
 package org.l2jmobius.gameserver.handler;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
@@ -34,7 +33,7 @@ public class CommunityBoardHandler implements IHandler<IParseBoardHandler, Strin
 {
 	private static final Logger LOG = Logger.getLogger(CommunityBoardHandler.class.getName());
 	/** The registered handlers. */
-	private final Map<String, IParseBoardHandler> _datatable = new HashMap<>();
+	private final Map<String, IParseBoardHandler> _datatable = new ConcurrentHashMap<>();
 	/** The bypasses used by the players. */
 	private final Map<Integer, String> _bypasses = new ConcurrentHashMap<>();
 	

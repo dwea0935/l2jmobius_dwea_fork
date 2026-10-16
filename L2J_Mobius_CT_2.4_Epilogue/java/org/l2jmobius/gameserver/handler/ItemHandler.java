@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.handler;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.entity.item.EtcItem;
 
@@ -34,7 +34,7 @@ public class ItemHandler implements IHandler<IItemHandler, EtcItem>
 	 */
 	protected ItemHandler()
 	{
-		_datatable = new HashMap<>();
+		_datatable = new ConcurrentHashMap<>();
 	}
 	
 	/**

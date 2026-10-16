@@ -203,6 +203,66 @@ public class ScriptEngine implements IXmlReader
 		}
 	}
 	
+	public Path findScriptPath(String nameOrPath)
+	{
+		if ((nameOrPath == null) || nameOrPath.isBlank())
+		{
+			return null;
+		}
+		
+		final String trimmed = nameOrPath.trim();
+		final String withExt = trimmed.endsWith(".java") ? trimmed : (trimmed + ".java");
+		
+		// 1. Check direct or relative path under SCRIPT_FOLDER.
+		final Path directCandidate = SCRIPT_FOLDER.resolve(trimmed).toAbsolutePath().normalize();
+		if (Files.isRegularFile(directCandidate))
+		{
+			return directCandidate;
+		}
+		
+		final Path extCandidate = SCRIPT_FOLDER.resolve(withExt).toAbsolutePath().normalize();
+		if (Files.isRegularFile(extCandidate))
+		{
+			return extCandidate;
+		}
+		
+		// 2. Search SCRIPT_FOLDER for matching file name (case-insensitive).
+		final String targetFileName = Paths.get(withExt).getFileName().toString();
+		try (var stream = Files.walk(SCRIPT_FOLDER))
+		{
+			return stream
+				.filter(Files::isRegularFile)
+				.filter(p -> p.getFileName().toString().equalsIgnoreCase(targetFileName))
+				.findFirst()
+				.map(p -> p.toAbsolutePath().normalize())
+				.orElse(null);
+		}
+		catch (IOException e)
+		{
+			LOGGER.warning(getClass().getSimpleName() + ": Error searching for script " + nameOrPath + ": " + e.getMessage());
+			return null;
+		}
+	}
+	
+	/**
+	 * Surgically compiles and hot-swaps a single script (Quest, AI, Voiced/Admin/Bypass/Item/Target Handler, or Skill Effect)
+	 * by its simple class name or relative path without restarting or reloading unrelated scripts.
+	 * @param nameOrPath the simple class name (e.g. "SkillQueue", "Blink", "TowerOfNaia") or relative path
+	 * @return the resolved {@link Path} that was hot-reloaded, or {@code null} if not found
+	 * @throws Exception if compilation or execution fails (leaving the previous script version intact)
+	 */
+	public Path reloadScriptByNameOrPath(String nameOrPath) throws Exception
+	{
+		final Path resolved = findScriptPath(nameOrPath);
+		if (resolved == null)
+		{
+			return null;
+		}
+		
+		executeScript(resolved);
+		return resolved;
+	}
+	
 	public Path getCurrentLoadingScript()
 	{
 		return SCRIPT_EXECUTOR.getCurrentExecutingScript();
