@@ -443,9 +443,6 @@ public class EnterWorld extends ClientPacket
 		// Send Teleport Bookmark List.
 		player.sendPacket(new ExGetBookMarkInfoPacket(player));
 		
-		// Send Shortcuts
-		player.sendPacket(new ShortcutInit(player));
-		
 		// Send Action list
 		player.sendPacket(ExBasicActionList.STATIC_PACKET);
 		
@@ -554,6 +551,9 @@ public class EnterWorld extends ClientPacket
 		
 		// Send Skill list
 		player.sendSkillList();
+		
+		// Send Shortcuts (must be sent after ItemList, ExBasicActionList, and SkillList)
+		player.sendPacket(new ShortcutInit(player));
 		
 		player.sendPacket(new SkillCoolTime(player));
 		for (Item i : player.getInventory().getItems())

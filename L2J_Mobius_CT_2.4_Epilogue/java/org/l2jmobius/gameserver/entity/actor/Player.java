@@ -2917,14 +2917,21 @@ public class Player extends Playable
 			
 			addSkill(skill, false);
 			skillsForStore.add(skill);
-			
-			if (PlayerConfig.AUTO_LEARN_SKILLS)
-			{
-				updateShortcuts(skill.getId(), skill.getLevel());
-			}
 		}
 		
 		storeSkills(skillsForStore, -1);
+		
+		if (!skillsForStore.isEmpty())
+		{
+			sendSkillList();
+			if (PlayerConfig.AUTO_LEARN_SKILLS)
+			{
+				for (Skill skill : skillsForStore)
+				{
+					updateShortcuts(skill.getId(), skill.getLevel());
+				}
+			}
+		}
 		
 		if (PlayerConfig.AUTO_LEARN_SKILLS && (skillCounter > 0))
 		{
@@ -11087,6 +11094,7 @@ public class Player extends Playable
 			// Clear resurrect xp calculation.
 			setExpBeforeDeath(0);
 			
+			sendSkillList();
 			_shortcuts.restoreMe();
 			sendPacket(new ShortcutInit(this));
 			broadcastPacket(new SocialAction(getObjectId(), SocialAction.LEVEL_UP));
