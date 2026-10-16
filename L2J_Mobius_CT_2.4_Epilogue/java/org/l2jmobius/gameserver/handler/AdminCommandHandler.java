@@ -98,7 +98,7 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 			return;
 		}
 		
-		// Native Admin Community Board navigation commands execute directly without script lookup overhead.
+		// Native GMWnd Admin Console navigation commands execute directly without script lookup overhead.
 		if (boardManager.handleNavigationCommand(player, fullCommand))
 		{
 			return;

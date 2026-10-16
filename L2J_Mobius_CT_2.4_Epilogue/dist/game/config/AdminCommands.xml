@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../data/xsd/AdminCommands.xsd">
-	<!-- ADMIN ADMIN & RBAC COMMUNITY BOARD -->
+	<!-- ADMIN ADMIN & NATIVE GMWND RBAC CONSOLE -->
 	<admin command="admin" description="Open RBAC Admin Console." accessLevel="10" />
 	<admin command="gmw" description="Open RBAC Admin Console in native GMWnd (Alt+G)." accessLevel="10" />
 	<admin command="admin1" description="Open RBAC Admin Dashboard." accessLevel="10" />
@@ -10,15 +10,6 @@
 	<admin command="admin5" description="Open Events &amp; GM RBAC tab." accessLevel="40" />
 	<admin command="admin6" description="Open Player Support RBAC tab." accessLevel="10" />
 	<admin command="admin7" description="Open GM Controls RBAC tab." accessLevel="10" />
-	<admin command="board" description="Open RBAC Admin Community Board." accessLevel="10" />
-	<admin command="board_home" description="Open RBAC Admin Dashboard tab." accessLevel="10" />
-	<admin command="board_refresh" description="Refresh active RBAC Admin Console view." accessLevel="10" />
-	<admin command="board_support" description="Open RBAC Support &amp; Players tab." accessLevel="10" />
-	<admin command="board_world" description="Open RBAC World &amp; Spawns tab." accessLevel="20" />
-	<admin command="board_events" description="Open RBAC Events &amp; GM tab." accessLevel="10" />
-	<admin command="board_economy" description="Open RBAC Items &amp; Chars tab." accessLevel="70" />
-	<admin command="board_server" description="Open RBAC Server &amp; Reload tab." accessLevel="70" />
-	<admin command="board_close" description="Close Admin Community Board." accessLevel="10" />
 	<admin command="gmliston" description="Show GM as online." accessLevel="10" />
 	<admin command="gmlistoff" description="Hide GM from online list." accessLevel="10" />
 	<admin command="silence" description="Silence mode (block PMs)." accessLevel="10" />

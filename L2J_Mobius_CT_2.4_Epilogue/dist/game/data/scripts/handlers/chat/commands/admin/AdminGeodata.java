@@ -36,10 +36,10 @@ import org.l2jmobius.gameserver.geoengine.geodata.IRegion;
 import org.l2jmobius.gameserver.geoengine.geodata.regions.NullRegion;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
+import org.l2jmobius.gameserver.managers.AdminBoardManager;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.GeoUtils;
-import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
  * @author Mobius, -Nemesiss-, HorridoJoho
@@ -549,7 +549,7 @@ public class AdminGeodata implements IAdminCommandHandler
 					}
 				}
 				
-				HtmlUtil.sendCBHtml(activeChar, content);
+				AdminBoardManager.getInstance().sendAdminHtml(activeChar, content);
 				break;
 			}
 			case "admin_ge":
@@ -668,7 +668,7 @@ public class AdminGeodata implements IAdminCommandHandler
 					content = content.replace("cmd_w", "ew " + gx + " " + gy);
 				}
 				
-				HtmlUtil.sendCBHtml(activeChar, content);
+				AdminBoardManager.getInstance().sendAdminHtml(activeChar, content);
 				break;
 			}
 		}

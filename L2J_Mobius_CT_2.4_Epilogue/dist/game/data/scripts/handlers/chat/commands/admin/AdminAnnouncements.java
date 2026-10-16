@@ -25,6 +25,7 @@ import org.l2jmobius.gameserver.data.sql.AnnouncementsTable;
 import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
+import org.l2jmobius.gameserver.managers.AdminBoardManager;
 import org.l2jmobius.gameserver.mechanics.announce.Announcement;
 import org.l2jmobius.gameserver.mechanics.announce.AnnouncementType;
 import org.l2jmobius.gameserver.mechanics.announce.AutoAnnouncement;
@@ -34,7 +35,6 @@ import org.l2jmobius.gameserver.mechanics.html.PageResult;
 import org.l2jmobius.gameserver.mechanics.html.formatters.BypassParserFormatter;
 import org.l2jmobius.gameserver.mechanics.html.pagehandlers.NextPrevPageHandler;
 import org.l2jmobius.gameserver.mechanics.html.styles.ButtonsStyle;
-import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
  * @author UnAfraid
@@ -99,7 +99,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						if (!st.hasMoreTokens())
 						{
 							final String content = HtmCache.getInstance().getHtm(activeChar, "data/html/admin/announces-add.htm");
-							HtmlUtil.sendCBHtml(activeChar, content);
+							AdminBoardManager.getInstance().sendAdminHtml(activeChar, content);
 							break;
 						}
 						
@@ -239,7 +239,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							content = content.replace("%repeat%", announcementRepeat);
 							content = content.replace("%author%", announcementAuthor);
 							content = content.replace("%content%", announcementContent);
-							HtmlUtil.sendCBHtml(activeChar, content);
+							AdminBoardManager.getInstance().sendAdminHtml(activeChar, content);
 							break;
 						}
 						
@@ -488,7 +488,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							content = content.replace("%repeat%", announcementRepeat);
 							content = content.replace("%author%", announcementAuthor);
 							content = content.replace("%content%", announcementContent);
-							HtmlUtil.sendCBHtml(activeChar, content);
+							AdminBoardManager.getInstance().sendAdminHtml(activeChar, content);
 							break;
 						}
 						
@@ -541,7 +541,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						
 						content = content.replace("%pages%", result.getPagerTemplate().toString());
 						content = content.replace("%announcements%", result.getBodyTemplate().toString());
-						HtmlUtil.sendCBHtml(activeChar, content);
+						AdminBoardManager.getInstance().sendAdminHtml(activeChar, content);
 						break;
 					}
 				}

@@ -31,19 +31,27 @@ import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.enums.AdminScope;
 import org.l2jmobius.gameserver.data.holders.AccessLevel;
+import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.network.enums.HtmlActionScope;
+import org.l2jmobius.gameserver.network.serverpackets.GMHennaInfo;
+import org.l2jmobius.gameserver.network.serverpackets.GMViewCharacterInfo;
+import org.l2jmobius.gameserver.network.serverpackets.GMViewItemList;
+import org.l2jmobius.gameserver.network.serverpackets.GMViewPledgeInfo;
+import org.l2jmobius.gameserver.network.serverpackets.GMViewSkillInfo;
+import org.l2jmobius.gameserver.network.serverpackets.GMViewWarehouseWithdrawList;
+import org.l2jmobius.gameserver.network.serverpackets.GmViewQuestInfo;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.network.serverpackets.ShowBoard;
 import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
- * 2009 Gracia Epilogue Client-Safe Wide-Screen Community Board (ShowBoard) Admin Control Center
+ * Native C++ GMWnd (Alt+G) Wide-Screen Admin Control Center (GMWnd.HtmlViewer)
  * with Java 27 Role-Based Access Control (RBAC) and automatic NpcHtmlMessage adaptation/scrubbing.
  */
 public final class AdminBoardManager
@@ -61,7 +69,7 @@ public final class AdminBoardManager
 		"<a\\b[^>]*?\\baction\\s*=\\s*\"bypass\\s+(?:-h\\s+)?(admin_[a-zA-Z0-9_]+)[^\"]*\"[^>]*>.*?</a>",
 		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 	
-	/** Matches legacy 4-button top navigation bars in data/html/admin/*.htm so they don't duplicate the CB header. */
+	/** Matches legacy 4-button top navigation bars in data/html/admin/*.htm so they don't duplicate the console header. */
 	private static final Pattern LEGACY_TOP_NAV_PATTERN = Pattern.compile(
 		"<table[^>]*>\\s*<tr>\\s*<td[^>]*>\\s*<button[^>]*value=\"Main\"[^>]*>.*?</table>(?:\\s*<br1?>)?",
 		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
@@ -75,15 +83,13 @@ public final class AdminBoardManager
 		"<edit\\b[^>]*\\bvar\\s*=\\s*\"?qbox\"?[^>]*>",
 		Pattern.CASE_INSENSITIVE);
 	
-	/** Per-GM Admin Console session state (supports both Native C++ GMWnd.HtmlViewer and BoardWnd). */
+	/** Per-GM Native C++ GMWnd.HtmlViewer Admin Console session state. */
 	private static final class AdminBoardSession
 	{
 		volatile String activeTab = "dashboard";
 		volatile String lastAdaptedBody = null;
-		volatile boolean boardOpen = false;
-		volatile boolean useCommunityBoard = false;
+		volatile boolean consoleOpen = false;
 		volatile boolean sendingNativeGmHtml = false;
-		volatile boolean sendingAdminCbHtml = false;
 		volatile int commandDepth = 0;
 		volatile int renderedCount = 0;
 	}
@@ -96,7 +102,7 @@ public final class AdminBoardManager
 	
 	/**
 	 * Strictly verifies that the player is an authenticated staff member with RBAC permissions.
-	 * Regular players (accessLevel <= 0) NEVER see or access any part of the Admin Board.
+	 * Regular players (accessLevel <= 0) NEVER see or access any part of the Admin Console.
 	 * @param player the player to check
 	 * @return true if authorized staff member
 	 */
@@ -141,13 +147,12 @@ public final class AdminBoardManager
 	}
 	
 	/**
-	 * Marks the end of an admin command execution. In the 2009 Gracia Epilogue client (BoardWnd.uc / NWindow.dll),
-	 * clicking any bypass button inside BoardWnd.HtmlViewer sets PageLock = true until SetHtmlBuffData is called
-	 * by a new ShowBoard packet. Therefore, whenever a command is triggered via bypass while the Admin Board is open
-	 * and did not already render a new ShowBoard page, we always refresh the current ShowBoard view.
+	 * Marks the end of an admin command execution. Whenever a command is triggered via bypass while the
+	 * Admin Console is open and did not already render a new page, we refresh the current view so live
+	 * header toggles and target status update immediately.
 	 * @param player the GM executing the command
 	 * @param fullCommand the executed command
-	 * @param fromBypass true if clicked from HTML/CommunityBoard bypass
+	 * @param fromBypass true if clicked from HTML bypass
 	 */
 	public void endAdminCommand(Player player, String fullCommand, boolean fromBypass)
 	{
@@ -166,7 +171,7 @@ public final class AdminBoardManager
 		}
 		
 		final AdminBoardSession session = getSession(player);
-		if (fromBypass && session.boardOpen && (session.renderedCount == 0) && shouldRefreshBoardAfter(fullCommand))
+		if (fromBypass && session.consoleOpen && (session.renderedCount == 0))
 		{
 			refreshCurrentView(player);
 		}
@@ -174,7 +179,7 @@ public final class AdminBoardManager
 	
 	/**
 	 * Re-sends the active Admin Console view (either the current adapted sub-page or the active native tab)
-	 * so that the live header updates (and BoardWnd.HtmlViewer.SetHtmlBuffData unlocks PageLock when in CB mode).
+	 * so that the live header and Target Inspector update in GMWnd.HtmlViewer.
 	 * @param player the staff member
 	 */
 	public void refreshCurrentView(Player player)
@@ -185,17 +190,16 @@ public final class AdminBoardManager
 		}
 		
 		final AdminBoardSession session = getSession(player);
-		if (!session.boardOpen)
+		if (!session.consoleOpen)
 		{
 			return;
 		}
 		
-		session.useCommunityBoard = !player.getAccessLevel().allowAltG();
 		final String adapted = session.lastAdaptedBody;
 		if ((adapted != null) && !adapted.isEmpty())
 		{
 			session.renderedCount++;
-			sendWrappedBoardHtml(player, adapted, session.activeTab);
+			sendWrappedConsoleHtml(player, adapted, session.activeTab);
 		}
 		else
 		{
@@ -203,22 +207,9 @@ public final class AdminBoardManager
 		}
 	}
 	
-	private boolean shouldRefreshBoardAfter(String fullCommand)
-	{
-		if (fullCommand == null)
-		{
-			return true;
-		}
-		
-		final String cmd = (fullCommand.contains(" ") ? fullCommand.substring(0, fullCommand.indexOf(' ')) : fullCommand).toLowerCase(Locale.ROOT);
-		// Do not re-open the board if the command explicitly closes it.
-		return !cmd.equals("admin_board_close");
-	}
-	
 	/**
-	 * Handles native Admin Console navigation commands (//admin, //admin1..7, //gmw, admin_board_*).
-	 * For GMs with allowAltG() == true, all navigation stays strictly inside Native C++ GMWnd.HtmlViewer
-	 * and auto-closes any open Community Board window so the user is never stuck with 2 overlapping UIs.
+	 * Handles native Admin Console navigation commands (//admin, //admin1..7, //gmw [subcmd]).
+	 * All navigation renders strictly inside Native C++ GMWnd.HtmlViewer.
 	 * @param player the staff member
 	 * @param command the full admin command
 	 * @return true if handled natively by AdminBoardManager
@@ -230,71 +221,174 @@ public final class AdminBoardManager
 			return false;
 		}
 		
-		final AdminBoardSession session = getSession(player);
-		final boolean canUseNativeGmWnd = player.getAccessLevel().allowAltG();
-		session.useCommunityBoard = !canUseNativeGmWnd;
-		final String base = (command.contains(" ") ? command.substring(0, command.indexOf(' ')) : command).toLowerCase(Locale.ROOT);
+		final String trimmed = command.trim();
+		final int spaceIdx = trimmed.indexOf(' ');
+		final String base = (spaceIdx > 0 ? trimmed.substring(0, spaceIdx) : trimmed).toLowerCase(Locale.ROOT);
+		final String args = spaceIdx > 0 ? trimmed.substring(spaceIdx + 1).trim() : "";
+		
 		return switch (base)
 		{
-			case "admin_gmw", "admin_admin", "admin_admin1", "admin_board" ->
+			case "admin_gmw" ->
 			{
-				if (canUseNativeGmWnd)
-				{
-					// Automatically hide BoardWnd (Community) if it was open so two UIs never overlap.
-					player.sendPacket(new ShowBoard());
-				}
-				openTab(player, "dashboard");
+				handleGmwSubCommand(player, args);
 				yield true;
 			}
-			case "admin_board_home" ->
+			case "admin_admin", "admin_admin1" ->
 			{
 				openTab(player, "dashboard");
 				yield true;
 			}
-			case "admin_board_refresh" ->
-			{
-				session.boardOpen = true;
-				refreshCurrentView(player);
-				yield true;
-			}
-			case "admin_admin6", "admin_board_support" ->
+			case "admin_admin6" ->
 			{
 				openTab(player, "support");
 				yield true;
 			}
-			case "admin_admin2", "admin_board_world" ->
+			case "admin_admin2" ->
 			{
 				openTab(player, "world");
 				yield true;
 			}
-			case "admin_admin3", "admin_admin5", "admin_admin7", "admin_board_events" ->
+			case "admin_admin3", "admin_admin5", "admin_admin7" ->
 			{
 				openTab(player, "events");
 				yield true;
 			}
-			case "admin_board_economy" ->
-			{
-				openTab(player, "economy");
-				yield true;
-			}
-			case "admin_admin4", "admin_board_server" ->
+			case "admin_admin4" ->
 			{
 				openTab(player, "server");
-				yield true;
-			}
-			case "admin_board_close" ->
-			{
-				session.boardOpen = false;
-				session.lastAdaptedBody = null;
-				player.sendPacket(new ShowBoard());
 				yield true;
 			}
 			default -> false;
 		};
 	}
 	
+	private void handleGmwSubCommand(Player player, String args)
+	{
+		if (args.isEmpty())
+		{
+			openTab(player, "dashboard");
+			return;
+		}
+		
+		final String[] tokens = args.split("\\s+");
+		final String sub = tokens[0].toLowerCase(Locale.ROOT);
+		switch (sub)
+		{
+			case "home", "dashboard" -> openTab(player, "dashboard");
+			case "refresh" ->
+			{
+				final AdminBoardSession session = getSession(player);
+				session.consoleOpen = true;
+				refreshCurrentView(player);
+			}
+			case "player", "support" ->
+			{
+				if (tokens.length > 1)
+				{
+					final Player targetPlayer = World.getPlayer(tokens[1]);
+					if (targetPlayer != null)
+					{
+						player.setTarget(targetPlayer);
+					}
+				}
+				openTab(player, "support");
+			}
+			case "world", "spawn" -> openTab(player, "world");
+			case "events" -> openTab(player, "events");
+			case "economy", "items" -> openTab(player, "economy");
+			case "server", "reload" -> openTab(player, "server");
+			case "legacy" -> openTab(player, "legacy");
+			case "legacy_view" ->
+			{
+				final String viewType = tokens.length > 1 ? tokens[1].toLowerCase(Locale.ROOT) : "status";
+				final String targetName = tokens.length > 2 ? tokens[2] : null;
+				handleLegacyViewCommand(player, viewType, targetName);
+			}
+			default -> openTab(player, "dashboard");
+		}
+	}
+	
 	/**
-	 * Opens one of the 6 native wide-screen RBAC tabs in the active viewport (Native C++ GMWnd.HtmlViewer or BoardWnd).
+	 * Opens one of the 6 native C++ client inspection windows (GMDetailStatusWnd, GMInventoryWnd,
+	 * GMMagicSkillWnd, GMQuestWnd, GMWarehouseWnd, GMClanWnd) by sending the corresponding GMView* packet.
+	 */
+	private void handleLegacyViewCommand(Player gm, String viewType, String targetName)
+	{
+		if (!gm.getAccessLevel().hasScope(AdminScope.PLAYER_SUPPORT))
+		{
+			gm.sendMessage("You do not have the required RBAC role permission (" + AdminScope.PLAYER_SUPPORT.getDisplayName() + ") for this inspector!");
+			return;
+		}
+		
+		Player targetPlayer = null;
+		Clan targetClan = null;
+		if ((targetName != null) && !targetName.isEmpty())
+		{
+			targetPlayer = World.getPlayer(targetName);
+			targetClan = ClanTable.getInstance().getClanByName(targetName);
+		}
+		else
+		{
+			final WorldObject obj = gm.getTarget();
+			if ((obj != null) && obj.isPlayer())
+			{
+				targetPlayer = obj.asPlayer();
+			}
+			else
+			{
+				targetPlayer = gm;
+			}
+		}
+		
+		if ((targetPlayer == null) && ((targetClan == null) || !"warehouse".equals(viewType)))
+		{
+			gm.sendMessage("Target player not found online.");
+			return;
+		}
+		
+		switch (viewType)
+		{
+			case "status" ->
+			{
+				gm.sendPacket(new GMViewCharacterInfo(targetPlayer));
+				gm.sendPacket(new GMHennaInfo(targetPlayer));
+			}
+			case "items", "inventory" ->
+			{
+				gm.sendPacket(new GMViewItemList(targetPlayer));
+				gm.sendPacket(new GMHennaInfo(targetPlayer));
+			}
+			case "skills" -> gm.sendPacket(new GMViewSkillInfo(targetPlayer));
+			case "quests" -> gm.sendPacket(new GmViewQuestInfo(targetPlayer));
+			case "warehouse" ->
+			{
+				if (targetPlayer != null)
+				{
+					gm.sendPacket(new GMViewWarehouseWithdrawList(targetPlayer));
+				}
+				else if (targetClan != null)
+				{
+					gm.sendPacket(new GMViewWarehouseWithdrawList(targetClan));
+				}
+			}
+			case "clan" ->
+			{
+				if ((targetPlayer != null) && (targetPlayer.getClan() != null))
+				{
+					gm.sendPacket(new GMViewPledgeInfo(targetPlayer.getClan(), targetPlayer));
+				}
+				else
+				{
+					gm.sendMessage("Target player does not belong to a clan.");
+				}
+			}
+		}
+		
+		refreshCurrentView(gm);
+	}
+	
+	/**
+	 * Opens one of the native wide-screen RBAC tabs in GMWnd.HtmlViewer.
 	 * @param player the staff member
 	 * @param tab the tab identifier
 	 */
@@ -305,20 +399,31 @@ public final class AdminBoardManager
 			return;
 		}
 		
+		final AccessLevel access = player.getAccessLevel();
 		final AdminBoardSession session = getSession(player);
-		session.useCommunityBoard = !player.getAccessLevel().allowAltG();
 		session.activeTab = tab;
 		session.lastAdaptedBody = null;
-		session.boardOpen = true;
+		session.consoleOpen = true;
 		session.renderedCount++;
 		
 		final String workspaceHtml = switch (tab)
 		{
-			case "support" -> buildSupportWorkspace(player);
-			case "world" -> buildWorldWorkspace(player);
-			case "events" -> buildEventsWorkspace(player);
-			case "economy" -> buildEconomyWorkspace(player);
-			case "server" -> buildServerWorkspace(player);
+			case "support" -> (access.hasScope(AdminScope.PLAYER_SUPPORT) || access.hasScope(AdminScope.CHAT_MODERATION) || access.hasScope(AdminScope.PUNISHMENT))
+				? buildSupportWorkspace(player)
+				: buildDashboardWorkspace(player);
+			case "world" -> (access.hasScope(AdminScope.TELEPORT) || access.hasScope(AdminScope.WORLD_SPAWN) || access.hasScope(AdminScope.CLAN_MANAGEMENT))
+				? buildWorldWorkspace(player)
+				: buildDashboardWorkspace(player);
+			case "events" -> (access.hasScope(AdminScope.EVENT_GM) || access.hasScope(AdminScope.ANNOUNCEMENTS) || access.hasScope(AdminScope.PANEL_ACCESS))
+				? buildEventsWorkspace(player)
+				: buildDashboardWorkspace(player);
+			case "economy" -> (access.hasScope(AdminScope.ECONOMY_ITEMS) || access.hasScope(AdminScope.CHAR_EDIT))
+				? buildEconomyWorkspace(player)
+				: buildDashboardWorkspace(player);
+			case "server" -> (access.hasScope(AdminScope.SERVER_ADMIN) || access.hasScope(AdminScope.MASTER_CONTROL))
+				? buildServerWorkspace(player)
+				: buildDashboardWorkspace(player);
+			case "legacy" -> buildLegacyWorkspace(player);
 			default ->
 			{
 				session.activeTab = "dashboard";
@@ -326,7 +431,7 @@ public final class AdminBoardManager
 			}
 		};
 		
-		sendWrappedBoardHtml(player, workspaceHtml, session.activeTab);
+		sendWrappedConsoleHtml(player, workspaceHtml, session.activeTab);
 	}
 	
 	/**
@@ -385,8 +490,9 @@ public final class AdminBoardManager
 	}
 	
 	/**
-	 * Intercepts an NpcHtmlMessage destined for a GM if it is an unbound admin panel (npcObjId == 0)
-	 * and automatically promotes it to the RBAC-filtered Native C++ GMWnd.HtmlViewer (or BoardWnd).
+	 * Intercepts an NpcHtmlMessage destined for a GM if it is sent during an active admin command
+	 * execution (commandDepth > 0) and is not bound to a world NPC (npcObjId == 0), routing it to
+	 * the RBAC-filtered Native C++ GMWnd.HtmlViewer.
 	 * @param player the GM receiving the packet
 	 * @param packet the NpcHtmlMessage packet
 	 * @return true if intercepted and rendered to the Admin Console
@@ -398,8 +504,13 @@ public final class AdminBoardManager
 			return false;
 		}
 		
+		if (!player.getAccessLevel().allowAltG() || ((player.getClient() != null) && (player.getClient().getProtocolVersion() >= 152)))
+		{
+			return false;
+		}
+		
 		final AdminBoardSession session = getSession(player);
-		if (session.sendingNativeGmHtml)
+		if (session.sendingNativeGmHtml || (session.commandDepth <= 0))
 		{
 			return false;
 		}
@@ -410,49 +521,13 @@ public final class AdminBoardManager
 			return false;
 		}
 		
-		final boolean isAdminContent = (session.commandDepth > 0)
-			|| html.contains("bypass admin_")
-			|| html.contains("bypass -h admin_")
-			|| html.contains("link admin/");
-		if (!isAdminContent)
-		{
-			return false;
-		}
-		
-		session.useCommunityBoard = !player.getAccessLevel().allowAltG();
-		sendAdminHtml(player, html);
-		return true;
-	}
-	
-	/**
-	 * Intercepts direct HtmlUtil.sendCBHtml calls made by legacy admin handlers (e.g. AdminAnnouncements,
-	 * AdminGeodata) during an active admin command so they render inside Native C++ GMWnd.HtmlViewer
-	 * instead of popping open a second Community Board window.
-	 * @param player the GM receiving the CB HTML
-	 * @param html the raw HTML content
-	 * @return true if intercepted and routed to GMWnd.HtmlViewer
-	 */
-	public boolean tryInterceptAdminBoardHtml(Player player, String html)
-	{
-		if (!canUseAdminBoard(player) || (html == null) || html.isEmpty() || !player.getAccessLevel().allowAltG())
-		{
-			return false;
-		}
-		
-		final AdminBoardSession session = getSession(player);
-		if (session.sendingAdminCbHtml || (session.commandDepth <= 0))
-		{
-			return false;
-		}
-		
-		session.useCommunityBoard = false;
 		sendAdminHtml(player, html);
 		return true;
 	}
 	
 	/**
 	 * Scrubs unauthorized RBAC buttons/links from raw admin HTML, adapts it for the 2009 Epilogue
-	 * client, and sends it inside the wide-screen Admin Console shell.
+	 * client, and sends it inside the wide-screen Native GMWnd.HtmlViewer shell.
 	 * @param player the staff member
 	 * @param rawHtml raw HTML content
 	 */
@@ -464,26 +539,28 @@ public final class AdminBoardManager
 		}
 		
 		final AdminBoardSession session = getSession(player);
-		session.useCommunityBoard = !player.getAccessLevel().allowAltG();
 		final String adaptedBody = scrubAndAdaptHtml(player, rawHtml);
 		session.lastAdaptedBody = adaptedBody;
-		session.boardOpen = true;
+		session.consoleOpen = true;
 		session.renderedCount++;
 		
-		sendWrappedBoardHtml(player, adaptedBody, session.activeTab);
+		sendWrappedConsoleHtml(player, adaptedBody, session.activeTab);
 	}
 	
 	/**
 	 * Wraps workspace inner HTML with the 2009 Gracia Epilogue client-safe flat top Command Deck
-	 * and Live Target Inspector, populates action caches, and transmits either directly to the
-	 * Native C++ GMWnd.HtmlViewer (itemId=1 NpcHtmlMessage, zero PageLock) or via ShowBoard.
+	 * and Live Target Inspector, populates the NPC_ITEM_HTML action cache exclusively, and transmits
+	 * directly to the Native C++ GMWnd.HtmlViewer (itemId=1 NpcHtmlMessage).
 	 */
-	private void sendWrappedBoardHtml(Player player, String workspaceBody, String activeTab)
+	private void sendWrappedConsoleHtml(Player player, String workspaceBody, String activeTab)
 	{
-		final AdminBoardSession session = getSession(player);
-		final boolean useNativeGmWnd = player.getAccessLevel().allowAltG() && ((player.getClient() == null) || (player.getClient().getProtocolVersion() < 152));
-		session.useCommunityBoard = !useNativeGmWnd;
+		if (!player.getAccessLevel().allowAltG() || ((player.getClient() != null) && (player.getClient().getProtocolVersion() >= 152)))
+		{
+			player.sendMessage("Admin console requires the server's client package; use // commands.");
+			return;
+		}
 		
+		final AdminBoardSession session = getSession(player);
 		final StringBuilder sb = new StringBuilder(4096);
 		sb.append("<html><body><center>");
 		appendTopHeaderBar(sb, player, activeTab);
@@ -493,37 +570,19 @@ public final class AdminBoardManager
 		sb.append("<br></center></body></html>");
 		
 		final String finalHtml = sb.toString();
-		player.clearHtmlActions(HtmlActionScope.NPC_HTML);
 		player.clearHtmlActions(HtmlActionScope.NPC_ITEM_HTML);
-		HtmlUtil.buildHtmlActionCache(player, HtmlActionScope.NPC_HTML, 0, finalHtml);
 		HtmlUtil.buildHtmlActionCache(player, HtmlActionScope.NPC_ITEM_HTML, 0, finalHtml);
 		
-		if (useNativeGmWnd)
+		final NpcHtmlMessage gmPacket = new NpcHtmlMessage(0, 1, finalHtml);
+		gmPacket.disableValidation();
+		session.sendingNativeGmHtml = true;
+		try
 		{
-			HtmlUtil.buildHtmlActionCache(player, HtmlActionScope.COMM_BOARD_HTML, 0, finalHtml);
-			final NpcHtmlMessage gmPacket = new NpcHtmlMessage(0, 1, finalHtml);
-			gmPacket.disableValidation();
-			session.sendingNativeGmHtml = true;
-			try
-			{
-				player.sendPacket(gmPacket);
-			}
-			finally
-			{
-				session.sendingNativeGmHtml = false;
-			}
+			player.sendPacket(gmPacket);
 		}
-		else
+		finally
 		{
-			session.sendingAdminCbHtml = true;
-			try
-			{
-				HtmlUtil.sendCBHtml(player, finalHtml, 0);
-			}
-			finally
-			{
-				session.sendingAdminCbHtml = false;
-			}
+			session.sendingNativeGmHtml = false;
 		}
 	}
 	
@@ -534,7 +593,6 @@ public final class AdminBoardManager
 	private void appendTopHeaderBar(StringBuilder sb, Player gm, String activeTab)
 	{
 		final AccessLevel access = gm.getAccessLevel();
-		final AdminBoardSession session = getSession(gm);
 		final String invisLabel = gm.isInvisible() ? "Invis:ON" : "Invis:OFF";
 		final String invulLabel = gm.isInvul() ? "Invul:ON" : "Invul:OFF";
 		final String silenceLabel = gm.isSilenceMode() ? "MutePM:ON" : "MutePM:OFF";
@@ -555,48 +613,41 @@ public final class AdminBoardManager
 		{
 			sb.append("<td width=52></td><td width=52></td><td width=52></td>");
 		}
-		if (session.useCommunityBoard)
-		{
-			sb.append("<td width=78 align=center><button value=\"Player CB\" action=\"bypass _bbshome\" width=74 height=20 back=\"").append(BTN_BACK).append("\" fore=\"").append(BTN_FORE).append("\"></td>");
-			sb.append("<td width=76 align=right>").append(button("Close [X]", "admin_board_close", 72, 20)).append("</td>");
-		}
-		else
-		{
-			sb.append("<td width=78 align=center>").append(button("Home", "admin_board_home", 74, 20)).append("</td>");
-			sb.append("<td width=76 align=right>").append(button("Refresh", "admin_board_refresh", 72, 20)).append("</td>");
-		}
+		sb.append("<td width=78 align=center>").append(button("Home", "admin_gmw home", 74, 20)).append("</td>");
+		sb.append("<td width=76 align=right>").append(button("Refresh", "admin_gmw refresh", 72, 20)).append("</td>");
 		sb.append("</tr></table>");
 		
 		// Row 2: Dynamic RBAC Category Navigation Bar (only renders tabs permitted for this Role!)
 		sb.append("<table width=740 border=0 cellpadding=1 cellspacing=0 bgcolor=\"2B2B2B\"><tr>");
-		appendNavTab(sb, "Dashboard", "admin_board_home", "dashboard".equals(activeTab));
+		appendNavTab(sb, "Dashboard", "admin_gmw home", "dashboard".equals(activeTab), 100);
 		if (access.hasScope(AdminScope.PLAYER_SUPPORT) || access.hasScope(AdminScope.CHAT_MODERATION) || access.hasScope(AdminScope.PUNISHMENT))
 		{
-			appendNavTab(sb, "Support & Players", "admin_board_support", "support".equals(activeTab));
+			appendNavTab(sb, "Support & Players", "admin_gmw support", "support".equals(activeTab), 112);
 		}
 		if (access.hasScope(AdminScope.TELEPORT) || access.hasScope(AdminScope.WORLD_SPAWN) || access.hasScope(AdminScope.CLAN_MANAGEMENT))
 		{
-			appendNavTab(sb, "World & Spawns", "admin_board_world", "world".equals(activeTab));
+			appendNavTab(sb, "World & Spawns", "admin_gmw world", "world".equals(activeTab), 104);
 		}
 		if (access.hasScope(AdminScope.EVENT_GM) || access.hasScope(AdminScope.ANNOUNCEMENTS) || access.hasScope(AdminScope.PANEL_ACCESS))
 		{
-			appendNavTab(sb, "Events & GM", "admin_board_events", "events".equals(activeTab));
+			appendNavTab(sb, "Events & GM", "admin_gmw events", "events".equals(activeTab), 96);
 		}
 		if (access.hasScope(AdminScope.ECONOMY_ITEMS) || access.hasScope(AdminScope.CHAR_EDIT))
 		{
-			appendNavTab(sb, "Items & Chars", "admin_board_economy", "economy".equals(activeTab));
+			appendNavTab(sb, "Items & Chars", "admin_gmw economy", "economy".equals(activeTab), 100);
 		}
 		if (access.hasScope(AdminScope.SERVER_ADMIN) || access.hasScope(AdminScope.MASTER_CONTROL))
 		{
-			appendNavTab(sb, "Server & Reload", "admin_board_server", "server".equals(activeTab));
+			appendNavTab(sb, "Server & Reload", "admin_gmw server", "server".equals(activeTab), 106);
 		}
+		appendNavTab(sb, "Legacy", "admin_gmw legacy", "legacy".equals(activeTab), 80);
 		sb.append("</tr></table>");
 	}
 	
-	private void appendNavTab(StringBuilder sb, String label, String bypassCmd, boolean active)
+	private void appendNavTab(StringBuilder sb, String label, String bypassCmd, boolean active, int width)
 	{
 		final String text = active ? ("[" + label + "]") : label;
-		sb.append("<td align=center>").append(button(text, bypassCmd, 118, 22)).append("</td>");
+		sb.append("<td align=center>").append(button(text, bypassCmd, width, 22)).append("</td>");
 	}
 	
 	/**
@@ -786,7 +837,7 @@ public final class AdminBoardManager
 		{
 			sb.append("<tr><td width=140><font color=\"FF6666\">Server & Engine</font></td>");
 			sb.append("<td width=145>").append(button("Server Diagnostics", "admin_serverinfo", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Hot-Reload Center", "admin_board_server", 135, 22)).append("</td>");
+			sb.append("<td width=145>").append(button("Hot-Reload Center", "admin_gmw server", 135, 22)).append("</td>");
 			sb.append("<td width=145>").append(button("Script Inspector", "admin_show_quests", 135, 22)).append("</td>");
 			sb.append("<td width=145>").append(button("Server Shutdown", "admin_server_shutdown", 135, 22)).append("</td></tr>");
 		}
@@ -1070,8 +1121,49 @@ public final class AdminBoardManager
 	}
 	
 	/**
+	 * Tab 7: Legacy NCSoft Graphical GM Inspectors & Classic L2J HTML Sub-Menus.
+	 */
+	private String buildLegacyWorkspace(Player gm)
+	{
+		final AccessLevel access = gm.getAccessLevel();
+		final StringBuilder sb = new StringBuilder(2048);
+		sb.append("<font color=\"LEVEL\">Legacy NCSoft GM Inspection Windows & Classic HTML Tools</font><br1>");
+		sb.append("<table width=720 border=0 cellpadding=2 cellspacing=2 bgcolor=\"1B1B1B\">");
+		
+		if (access.hasScope(AdminScope.PLAYER_SUPPORT))
+		{
+			sb.append("<tr><td width=140><font color=\"00CCFF\">Native C++ Popups</font></td>");
+			sb.append("<td width=145>").append(button("View Target Status", "admin_gmw legacy_view status", 135, 22)).append("</td>");
+			sb.append("<td width=145>").append(button("View Target Items", "admin_gmw legacy_view items", 135, 22)).append("</td>");
+			sb.append("<td width=145>").append(button("View Target Skills", "admin_gmw legacy_view skills", 135, 22)).append("</td>");
+			sb.append("<td width=145>").append(button("View Target Quests", "admin_gmw legacy_view quests", 135, 22)).append("</td></tr>");
+			
+			sb.append("<tr><td width=140><font color=\"00CCFF\">Storage & Lookup</font></td>");
+			sb.append("<td width=145>").append(button("View Warehouse", "admin_gmw legacy_view warehouse", 135, 22)).append("</td>");
+			sb.append("<td width=145>").append(button("View Target Clan", "admin_gmw legacy_view clan", 135, 22)).append("</td>");
+			sb.append("<td width=145>").append(button("Status ($qbox)", "admin_gmw legacy_view status $qbox", 135, 22)).append("</td>");
+			sb.append("<td width=145>").append(button("Items ($qbox)", "admin_gmw legacy_view items $qbox", 135, 22)).append("</td></tr>");
+		}
+		
+		sb.append("<tr><td width=140><font color=\"AAAAAA\">Classic HTML Menus</font></td>");
+		sb.append("<td width=145>").append(access.hasScope(AdminScope.PLAYER_SUPPORT) ? button("Char Manage HTM", "admin_html charmanage.htm", 135, 22) : "").append("</td>");
+		sb.append("<td width=145>").append(access.hasScope(AdminScope.TELEPORT) ? button("Teleports HTM", "admin_html teleports.htm", 135, 22) : "").append("</td>");
+		sb.append("<td width=145>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("GM Shops HTM", "admin_html gmshops.htm", 135, 22) : "").append("</td>");
+		sb.append("<td width=145>").append(access.hasScope(AdminScope.CHAR_EDIT) ? button("Skills HTM", "admin_html skills.htm", 135, 22) : "").append("</td></tr>");
+		
+		sb.append("<tr><td width=140><font color=\"AAAAAA\">Classic Utilities</font></td>");
+		sb.append("<td width=145>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("Spawns HTM", "admin_html spawns.htm", 135, 22) : "").append("</td>");
+		sb.append("<td width=145>").append(access.hasScope(AdminScope.TELEPORT) ? button("Bookmarks HTM", "admin_bk", 135, 22) : "").append("</td>");
+		sb.append("<td width=145>").append(access.hasScope(AdminScope.SERVER_ADMIN) ? button("Config Server HTM", "admin_config_server", 135, 22) : "").append("</td>");
+		sb.append("<td width=145>").append(access.hasScope(AdminScope.MASTER_CONTROL) ? button("Packet Forge HTM", "admin_forge", 135, 22) : "").append("</td></tr>");
+		
+		sb.append("</table>");
+		return sb.toString();
+	}
+	
+	/**
 	 * Dynamically scrubs unauthorized RBAC buttons/links from raw admin HTML and adapts it for
-	 * safe rendering inside the 2009 Gracia Epilogue Community Board (ShowBoard).
+	 * safe rendering inside the 2009 Gracia Epilogue Native C++ GMWnd.HtmlViewer.
 	 * @param gm the staff member viewing the page
 	 * @param rawHtml the raw HTML from NpcHtmlMessage or data/html/admin/
 	 * @return sanitized, RBAC-filtered inner HTML fragment
@@ -1083,7 +1175,7 @@ public final class AdminBoardManager
 	
 	/**
 	 * Dynamically scrubs unauthorized RBAC buttons/links from raw admin HTML for a given AccessLevel
-	 * and adapts it for safe rendering inside the 2009 Gracia Epilogue Community Board (ShowBoard).
+	 * and adapts it for safe rendering inside the 2009 Gracia Epilogue Native C++ GMWnd.HtmlViewer.
 	 * @param access the staff member's AccessLevel
 	 * @param rawHtml the raw HTML from NpcHtmlMessage or data/html/admin/
 	 * @return sanitized, RBAC-filtered inner HTML fragment
@@ -1142,10 +1234,10 @@ public final class AdminBoardManager
 		linkMatcher.appendTail(linkBuffer);
 		body = linkBuffer.toString();
 		
-		// 5. Normalize "bypass -h " -> "bypass " so clicking buttons in ShowBoard never closes the Community Board window!
+		// 5. Normalize "bypass -h " -> "bypass " so NCHtmlViewer (nwindow.dll VA 0x100ef525 -> 0x100eda50) never closes GMWnd on button click.
 		body = body.replaceAll("(?i)action\\s*=\\s*\"bypass\\s+-h\\s+", "action=\"bypass ");
 		
-		// 6. Convert legacy "link admin/..." actions into "bypass admin_html ..." so ShowBoard handles them seamlessly.
+		// 6. Convert legacy "link admin/..." actions into "bypass admin_html ..." so GMWnd.HtmlViewer handles them seamlessly.
 		body = body.replaceAll("(?i)action\\s*=\\s*\"link\\s+admin/([^\"]+)\"", "action=\"bypass admin_html $1\"");
 		
 		// 7. Strip duplicate <edit var="qbox"> inputs in adapted sub-pages so NWindow.dll never collides with Top Bar QuickBox.

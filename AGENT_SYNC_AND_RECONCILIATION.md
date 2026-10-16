@@ -166,3 +166,110 @@ Following the 3rd Agent's protocol-differentiation audit, the user selected **Op
 5. **Protocol-148 `SystemMessage` Fallback for IDs `3093..3207` (`SystemMessageId.java` & `SystemMessage.java`):**
    - Because the `2009-09-28` (`Protocol 148`) `systemmsg-e.dat` ends at ID `3092` before jumping to `6001`, `SystemMessageId.init()` now attaches a default `SMLocalisation` from `@ClientString(message = ...)` for IDs `3093..5999` (`3094`, `3108` *"You are no longer protected from aggressive monsters."*, `3206`, `3207`).
    - When `!isProtocol152(client)`, `SystemMessage.writeImpl` formats the message with its parameters via `SystemMessageId.S1_2` (`1987: "$s1"`), eliminating `"Invalid System Message format : 3108"` while keeping native IDs on Protocol `152` clients (and marking those `SystemMessage` instances `isProtocolSensitive() == true`).
+
+---
+
+## 4. Admin Console ↔ Community Board Full Decoupling & Native `GMWnd` Admin Panel v2 (User Decision, 2026-10-16 11:08)
+
+**Raised by:** Docker/Ops Agent audit (`c2f6f65db50` baseline → `8a6534aefce` CB admin panel → `master` `9419c4d7b5a`). Full audit with line references: `ADMIN_CB_COUPLING_AUDIT.md (repo root of l2jmobius_dwea_fork)`.
+**Owners:** Server Agent (Phase 1, server side of Phase 2) · Client Agent (client side of Phase 2) · Docker/Ops Agent (deploy + verification).
+
+### 4.1 User Decisions
+1. **Completely decouple the Community Board: rip out every admin interface from it.** The player Community Board (`Alt+B`) must contain zero admin code, banners, buttons, action caches or interception hooks. The `BoardWnd` CB rendering mode of the admin console is **retired** (this supersedes the Protocol-152 `BoardWnd` fallback from `14933860a51` and the `allowAltg="false"` CB path for level-10 Chat Moderators).
+2. **Restore HTML-action validation** for GM `admin_*` bypasses in `RequestBypassToServer` (defense-in-depth), with correctly scoped action caches.
+3. **The native `GMWnd` (`Alt+G`) admin panel becomes the only admin UI**, co-designed by Client + Server Agents:
+   - Legacy NCSoft GM tools (`View Status/Items/Skills/Quests/Warehouse`, `Recall`, `Item/NPC/Skill Search`, etc.) are mainly troubleshooting/inspection tools → group them into a small **"Legacy"** category inside the new board instead of treating them as primary admin controls.
+   - **UX defect:** the native C++ buttons execute their action but give **no visual feedback** (no highlight / pushed / colour change on click). Fix as part of the panel work (client side; likely `interface.xdat` `ButtonCtrl` normal/pushed/highlight texture fields on the re-laid-out `GMWnd` buttons — to be confirmed by the Client Agent).
+   - Evaluate how much of the console should move from `GMWnd.HtmlViewer` (HTML) to true native C++ controls, and propose better features.
+4. **Out of scope now (future milestone):** a full custom Community Board (buffer, GM shop, utilities, etc.) replacing the legacy NCSoft board — the decoupling must leave the CB clean for that.
+
+### 4.2 Phase 1 — Server: remove all admin code from CB / generic paths (no client changes) — **COMPLETED**
+| # | Item | Action | Status |
+| :-- | :-- | :-- | :-- |
+| A1 | `HomeBoard.java` L161-165 GM banner + `bypass admin_gmw` button | Delete. | **DONE** |
+| A2 | `HtmlUtil.sendCBHtml` L415 hook → `tryInterceptAdminBoardHtml` | Delete hook + method; make `AdminAnnouncements` (4 calls) and `AdminGeodata` (2 calls) call `AdminBoardManager.sendAdminHtml(...)` directly. | **DONE** |
+| A3 | `Player.sendPacket` ~L4565 → `tryInterceptAdminHtml` (content sniffing `bypass admin_` / `link admin/`) | Drop sniffing (`commandDepth > 0` only, gated on `allowAltG() && protocolVersion < 152`). | **DONE** |
+| A4 | `AdminBoardManager.sendWrappedConsoleHtml` registers admin actions | Native path clears and populates **only** `HtmlActionScope.NPC_ITEM_HTML` (`itemId=1`), leaving `NPC_HTML` and `COMM_BOARD_HTML` untouched. | **DONE** |
+| A5 | `RequestBypassToServer` ~L95 `admin_*` validation skip for GMs | Removed; GM console buttons/links now validate through `HtmlActionScope.NPC_ITEM_HTML`. | **DONE** |
+| B | CB render mode in `AdminBoardManager`: `useCommunityBoard`, `boardOpen`, `sendingAdminCbHtml`, `Player CB` / `Close [X]` buttons, `new ShowBoard()` on `//gmw`, `sendCBHtml` branch; `admin_board` / `admin_board_close` / `admin_board_*` in `AdminAdmin` + `AdminCommands.xml` + `AdminScope.java` + `server_menu.htm` + `AdminCommandHandler.java` | Deleted all CB rendering code and `admin_board*` aliases (`admin_gmw <home\|refresh\|support\|player\|world\|events\|economy\|server\|legacy\|legacy_view>` is now used everywhere). **Note on `bypass -h` → `bypass` in `scrubAndAdaptHtml`:** Kept for `GMWnd.HtmlViewer` because `NConsoleWnd::BypassToServer` (`nwindow.dll` `VA 0x1021ebf7`) returns `eax = 2` on `-h`, causing `NCHtmlViewer::OnClickButton` (`VA 0x100ef523` → `0x100eda50`) to send close event `0xf0000004` to `GMWnd` itself! | **DONE** |
+| C | `AccessLevels.xml` level 10 `allowAltg="false"`; Protocol-152 fallback | Set level 10 `allowAltg="true"` (`dist/game/config/AccessLevels.xml` + `build/dist/game/config/AccessLevels.xml`). Protocol ≥ 152 GMs receive one-line system notice `"Admin console requires the server's client package; use // commands."` instead of a CB fallback. | **DONE** |
+| Keep | `sendCBHtml` 4090-char split, `ShowBoard` null-guard, `AbstractHtmlPacket` validated-branch cache clear | Generic 2009-client fixes, not admin-specific. | **KEPT** |
+
+**Phase 1 verification (`grep` checks passed):**
+- `grep -rn AdminBoardManager` in `handlers/bypass/communityboard`, `HtmlUtil.java`, and `RequestBypassToServer.java` returns **zero** hits.
+- `AdminBoardManager.java` has **zero** references to `ShowBoard` or `admin_board*`.
+
+### 4.3 Phase 2 — Client + Server: Native `GMWnd` Admin Panel v2 (joint design)
+- Client Agent: `interface.xdat` / `interface.u` layout & controls (button feedback textures, Legacy category, any new native controls), within the zero-size-delta / `SerializeExpr` constraints documented in §4 of `MASTER_HANDOFF_AND_CLIENT_SERVER_GUIDE.md`.
+- Server Agent (**COMPLETED**): Implemented matching server commands / packets / HTML for each native control and `[Legacy]` tab in `AdminBoardManager.java` & `AdminAdmin.java`:
+  - `//gmw player [targetName]` (`admin_gmw player [targetName]`): Resolves `targetName` via `World.getInstance().getPlayer(targetName)` (if provided and online, sets `activeChar.setTarget(target)`) and opens the `Support & Players` (`support`) tab.
+  - `//gmw legacy` (`admin_gmw legacy`): Opens the new `[Legacy]` (`legacy`) tab in `GMWnd.HtmlViewer`, providing 1-click native C++ inspector popup launchers, recall/sendhome shortcuts, `.dat` search instructions, and curated legacy `data/html/admin/*.htm` entry points.
+  - `//gmw legacy_view <status|items|skills|quests|warehouse|clan> [targetName]`: Gated by `AdminScope.PLAYER_SUPPORT`; resolves target (by `targetName`, current `Player` target, or self) and sends `GMViewCharacterInfo`+`GMHennaInfo`, `GMViewItemList`+`GMHennaInfo`, `GMViewSkillInfo`, `GmViewQuestInfo`, `GMViewWarehouseWithdrawList`, or `GMViewPledgeInfo` (which automatically pops open the corresponding native C++ `GM*Wnd` via `EV_GMObserving*`), then re-renders the console so `NPC_ITEM_HTML` stays valid.
+
+### 4.4 Phase 2 Design Spec — Native `GMWnd` (`Alt+G`) Admin Panel v2
+
+#### A. Root Cause & Fix for Native `GMWnd` Button Visual Feedback Defect (Client Agent)
+- **Forensic Root Cause in Stock NCSoft [`interface.xdat.orig`](file:///home/dwea/Projects/L2/Client%20Lineage%202%20Gracia%20Epilogue/system/backup_encrypted/interface.xdat.orig):**
+  Every one of the 17 `Button` widgets inside `GMWnd` (`399160..404835`) was authored by NCSoft with:
+  ```python
+  NormalTex    = "L2UI_CT1.Button.Button_DF_Small"
+  PushedTex    = "L2UI_CT1.Button.Button_DF_Small"  # IDENTICAL to NormalTex -> no pushed bevel!
+  HighlightTex = "undefined"                        # No hover highlight texture!
+  DropTex      = "undefined"
+  NoHighlight  = 1 (\x01\x00\x00\x00)               # Suppresses hover state & 1px click label shift!
+  ```
+- **Client Fix in [`patch_gmwnd_client.py`](file:///home/dwea/Projects/L2/Client%20Lineage%202%20Gracia%20Epilogue/patch_gmwnd_client.py) (`interface.xdat`):**
+  For all 17 `Button` widgets in `GMWnd`, replace the texture quartet and `NoHighlight` flag with the standard interactive Lineage 2 button definition:
+  ```python
+  NormalTex    = "L2UI_CT1.Button.Button_DF"
+  PushedTex    = "L2UI_CT1.Button.Button_DF_Click"
+  HighlightTex = "L2UI_CT1.Button.Button_DF_Over"
+  DropTex      = "undefined"
+  NoHighlight  = -1 (\xff\xff\xff\xff)
+  ```
+  Additionally, `NWindow.dll` supports custom literal English strings on any `Button` (`ButtonName = -9999` / `\xf1\xd8\xff\xff` + literal `ButtonNameText`) and `TextBox` (`sysstring = -9999` + literal `Text`), allowing crisp, descriptive English labels without modifying `sysstring-e.dat`.
+
+#### B. Evaluation: Native C++ Controls vs `GMWnd.HtmlViewer` (`interface.u` / `interface.xdat` Constraints)
+- **What Must & Should Be Native C++ Controls (`GMWnd` Left Dock `x=10..225`):**
+  1. **Persistent Target/Filter `EditBox` (`GMWnd.EditBox`):** Auto-populates on in-game player target (`EV_TargetUpdate`, patched in `GMWnd.HandleTargetUpdate` `#12137` so untargeting never wipes typed input) and remains persistent across HTML page transitions.
+  2. **Primary Console Navigation & Quick-Action Bar (Top Section of Left Dock):**
+     - By repurposing the 2 obsolete retail petition buttons (`PetitionButton` `#12101`, `53` code bytes; `ForcePetitionButton` `#12089`, `60` code bytes) alongside `ChangeServerButton` (`#12081`, `64` code bytes), `InfoButton` (`#12105`), `TeleButton` (`#12131`), and `MoveButton` (`#12129`), the top of the native C++ dock provides instant, zero-latency hardware buttons for:
+       - **`[Admin Home]`** (`ChangeServerButton` → `ExecuteCommand("//admin")`)
+       - **`[Player Panel]`** (`PetitionButton` → `ExecuteCommand("//gmw player" @ m_hEditBox.GetString())`)
+       - **`[Legacy Tools]`** (`ForcePetitionButton` → `ExecuteCommand("//gmw legacy")`)
+       - **`[Target Debug]`** (`InfoButton` → `ExecuteCommand("//debug" @ m_hEditBox.GetString())`)
+       - **`[Teleport To]`** (`TeleButton` → `ExecuteCommand("//teleportto" @ m_hEditBox.GetString())`)
+       - **`[Instant Move]`** (`MoveButton` → `ExecuteCommand("//instant_move")`)
+  3. **Client-Side `.dat` Search Trees (Middle Section of Left Dock):**
+     - **`[Find Item]`** (`ItemListButton`), **`[Find NPC]`** (`NPCListButton`), **`[Find Skill]`** (`SkillListButton`) open `GMFindTreeWnd` using the filter string in `GMWnd.EditBox`. Only native UnrealScript can query the client's local `.dat` tables (`itemname-e.dat`, `npcname-e.dat`, `skillname-e.dat`) with real 32×32 icons and double-click `//summon`.
+  4. **Compact "Legacy NCSoft GM Tools" Category (Bottom Section of Left Dock + Server `[Legacy]` Tab):**
+     - The 6 native graphical player-inspector buttons (`DetailStatusButton`, `InventoryButton`, `MagicSkillButton`, `QuestButton`, `StoreButton`, `ClanButton`) and the 2 modal recall buttons (`RecallButton`, `SendHomeButton`) are visually separated and compacted (`h=22`) into a dedicated **`Legacy GM Inspector`** group at the bottom of the left dock (`y=276..430`), framed by its own `GroupBox_DF` background and `TextBox` section header.
+     - **Discovery from `interface.u` `ScriptText`:** All 6 native graphical inspector popups (`GMDetailStatusWnd`, `GMInventoryWnd`, `GMMagicSkillWnd`, `GMQuestWnd`, `GMWarehouseWnd`, `GMClanWnd`) register `EV_GMObserving*` events and automatically call `m_hOwnerWnd.ShowWindow()` whenever the server sends `GMViewCharacterInfo`, `GMViewItemList`, `GMViewSkillInfo`, `GmViewQuestInfo`, `GMViewWarehouseWithdrawList`, or `GMViewPledgeInfo`. Therefore, the server's new **`[Legacy]`** tab in `GMWnd.HtmlViewer` can ALSO pop open those exact native C++ graphical windows on click via a server command (`//gmw legacy_view <type> [target]`)!
+- **What Should Remain in `GMWnd.HtmlViewer` (`744×492` Right Workspace):**
+  - Dynamic multi-field forms, live server telemetry, paginated player/spawn/skill/item tables, phase progression controls, hot-reload controls, RBAC audit logs, and adapted `data/html/admin/*.htm` pages (`Home | Support & Players | World & Spawns | Events | Economy | Server & Audit | Legacy`). Adding dozens of dynamic `EditBox`/`ComboBox` controls in `interface.u` is impossible without shifting the 14,000-entry Export Table, whereas `GMWnd.HtmlViewer` (`ItemDescWnd` `itemId=1` zero-PageLock route) renders rich tables and forms with zero client size delta.
+
+#### C. Native Control → Command / Packet → RBAC Scope Mapping Table
+
+| Dock Section | Widget ID (`GMWnd.*`) | Button Label (`interface.xdat`) | Pos `(x, y)` & Size `(w, h)` | Client Action (`interface.u`) | Server Handler / Packet | Required `AdminScope` RBAC |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Header / Input** | `TextBox` | `"Target / Search:"` | `(12, 36)` `110×14` | Static label (`sysstring=-9999`) | — | — |
+| **Header / Input** | `EditBox` | *(Input Field)* | `(12, 52)` `211×20` | Auto-fills on player target (`HandleTargetUpdate` `#12137`) | — | — |
+| **1. Primary Console** | `ChangeServerButton` | `"Admin Home"` | `(12, 78)` `103×24` | `ExecuteCommand("//admin")` (`#12081`) | `AdminAdmin` → `AdminBoardManager` (`Home` tab) | Any GM (`isGM() && allowAltG()`) |
+| **1. Primary Console** | `PetitionButton` | `"Player Panel"` | `(120, 78)` `103×24` | `ExecuteCommand("//gmw player" @ EditBox)` (`#12101`) | `AdminAdmin` → `AdminBoardManager` (`Support & Players` tab for target) | `PLAYER_SUPPORT` |
+| **1. Primary Console** | `ForcePetitionButton` | `"Legacy Tools"` | `(12, 105)` `103×24` | `ExecuteCommand("//gmw legacy")` (`#12089`) | `AdminAdmin` → `AdminBoardManager` (`Legacy` tab) | Any GM (`isGM() && allowAltG()`) |
+| **1. Primary Console** | `InfoButton` | `"Target Debug"` | `(120, 105)` `103×24` | `ExecuteCommand("//debug" @ EditBox)` (`#12105`) | `AdminDebug` (`admin_debug`) | `PLAYER_SUPPORT` |
+| **1. Primary Console** | `TeleButton` | `"Teleport To"` | `(12, 132)` `103×24` | `ExecuteCommand("//teleportto" @ EditBox)` (`#12131`) | `AdminTeleport` (`admin_teleportto`) | `TELEPORT` |
+| **1. Primary Console** | `MoveButton` | `"Instant Move"` | `(120, 132)` `103×24` | `ExecuteCommand("//instant_move")` (`#12129`) | `AdminTeleport` (`admin_instant_move`) | `TELEPORT` |
+| **2. `.dat` Search** | `ItemListButton` | `"Search Item"` | `(12, 182)` `103×23` | `GMFindTreeWnd.ShowItemList(EditBox)` (`#12092`) | Double-click sends `//summon <itemId> <count>` | `ECONOMY_ITEMS` |
+| **2. `.dat` Search** | `NPCListButton` | `"Search NPC"` | `(120, 182)` `103×23` | `GMFindTreeWnd.ShowNPCList(EditBox)` (`#12093`) | Double-click sends `//summon <npcId+1000000>` | `WORLD_SPAWN` |
+| **2. `.dat` Search** | `SkillListButton` | `"Search Skill"` | `(12, 208)` `211×23` | `GMFindTreeWnd.ShowSkillList(EditBox)` (`#12090`) | Double-click sends `//summon <skillId+2000000> <lvl>` | `CHAR_EDIT` |
+| **3. Legacy GM Tools** | `DetailStatusButton` | `"View Status"` | `(12, 258)` `103×22` | `RequestGMCommand(1, EditBox)` (`#12109`) | `RequestGMCommand` (`0x81` cmd `1`) → `GMViewCharacterInfo` | `PLAYER_SUPPORT` |
+| **3. Legacy GM Tools** | `InventoryButton` | `"View Items"` | `(120, 258)` `103×22` | `RequestGMCommand(5, EditBox)` (`#12108`) | `RequestGMCommand` (`0x81` cmd `5`) → `GMViewItemList` | `PLAYER_SUPPORT` |
+| **3. Legacy GM Tools** | `MagicSkillButton` | `"View Skills"` | `(12, 283)` `103×22` | `RequestGMCommand(3, EditBox)` (`#12107`) | `RequestGMCommand` (`0x81` cmd `3`) → `GMViewSkillInfo` | `PLAYER_SUPPORT` |
+| **3. Legacy GM Tools** | `QuestButton` | `"View Quests"` | `(120, 283)` `103×22` | `RequestGMCommand(4, EditBox)` (`#12106`) | `RequestGMCommand` (`0x81` cmd `4`) → `GmViewQuestInfo` | `PLAYER_SUPPORT` |
+| **3. Legacy GM Tools** | `StoreButton` | `"Warehouse"` | `(12, 308)` `103×22` | `RequestGMCommand(6, EditBox)` (`#12104`) | `RequestGMCommand` (`0x81` cmd `6`) → `GMViewWarehouseWithdrawList` | `PLAYER_SUPPORT` |
+| **3. Legacy GM Tools** | `ClanButton` | `"View Clan"` | `(120, 308)` `103×22` | `RequestGMCommand(2, EditBox)` (`#12103`) | `RequestGMCommand` (`0x81` cmd `2`) → `GMViewPledgeInfo` | `PLAYER_SUPPORT` |
+| **3. Legacy GM Tools** | `RecallButton` | `"Recall Chr"` | `(12, 333)` `103×22` | Confirm dialog → `ExecuteCommand("//recall" @ EditBox)` | `AdminTeleport` (`admin_recall`) | `TELEPORT` |
+| **3. Legacy GM Tools** | `SendHomeButton` | `"Send Home"` | `(120, 333)` `103×22` | Confirm dialog → `ExecuteCommand("//sendhome" @ EditBox)` | `AdminSendHome` (`admin_sendhome`) | `TELEPORT` |
+| **Right Workspace** | `texBack` + `HtmlViewer` | *(RBAC HTML View)* | `(232, 34)` `752×500` | `ItemDescWnd` (`#12028`/`#12029`) `itemId=1` | `NpcHtmlMessage(0, 1, html)` (`NPC_ITEM_HTML` cache) | Per-tab / per-command `AdminScope` |
+

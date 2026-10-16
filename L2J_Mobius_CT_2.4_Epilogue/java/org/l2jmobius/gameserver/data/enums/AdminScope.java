@@ -27,7 +27,7 @@ import java.util.Set;
  */
 public enum AdminScope
 {
-	PANEL_ACCESS("Panel & Self GM", "Basic access to open the Admin Community Board and toggle self GM states."),
+	PANEL_ACCESS("Panel & Self GM", "Basic access to open the Native GMWnd Admin Console and toggle self GM states."),
 	CHAT_MODERATION("Chat & Petitions", "Handle player petitions, chat bans, and GM chat."),
 	ANNOUNCEMENTS("Announcements", "Broadcast and manage server announcements."),
 	TELEPORT("Teleport & Navigation", "Teleport self, players, or NPCs across the world."),
@@ -198,7 +198,7 @@ public enum AdminScope
 			// 1. Panel Navigation & Non-Combat PM/List Toggles
 			case String s when s.equals("admin") || s.startsWith("admin1") || s.startsWith("admin2")
 				|| s.startsWith("admin3") || s.startsWith("admin4") || s.startsWith("admin5")
-				|| s.startsWith("admin6") || s.startsWith("admin7") || s.startsWith("board")
+				|| s.startsWith("admin6") || s.startsWith("admin7")
 				|| s.equals("html") || s.equals("help") || s.equals("commands") || s.equals("instancezones")
 				|| s.equals("gm") || s.equals("gmw") || s.startsWith("gmlist")
 				|| s.equals("silence") || s.equals("tradeoff") -> PANEL_ACCESS;
