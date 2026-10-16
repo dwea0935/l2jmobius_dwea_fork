@@ -1,8 +1,8 @@
 # Multi-Agent Reconciliation & File Ownership Notice
 
-**Timestamp:** 2026-10-16T05:57:30+02:00  
+**Timestamp:** 2026-10-17T01:17:00+02:00  
 **Active Workspace:** `/home/dwea/Projects/L2`  
-**Status:** **100% RECONCILED, VERIFIED & PUSHED TO `origin/master` (`9ddf57e6c12`)**
+**Status:** **100% RECONCILED, AUDITED & SYNCED ACROSS ALL 4 AGENTS (`1a4b56efd31`)**
 
 ---
 
@@ -387,4 +387,45 @@ All `///` builder console commands in [`Engine.dll`](file:///home/dwea/Projects/
    - Converts L2OFF `<X>_<Y>_conv.dat` (18-byte header + `0x0000`/`0x0040`/`>0x0040` blocks) $\rightarrow$ `<X>_<Y>.l2j`.
    - Converts `<X>_<Y>.l2j` $\rightarrow$ `<X>_<Y>_path.txt` (`--to-path-txt`) so any server `.l2j` region can be loaded into the client with `///loadpath` and rendered in 3D with `///c_rmode geodata`.
    - Validates `.l2j` files against all [`Region.java`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/java/org/l2jmobius/gameserver/geoengine/geodata/regions/Region.java) off-heap `MemorySegment` invariants (`--verify`).
+
+---
+
+## 8. Config Cleanup, Custom CB Buffer, FakePlayers, 196-Region Geodata, 2h Buffs & Full `CT2.4` Player Skills Audit (`4c29c75ef25`..`1a4b56efd31`)
+
+1. **GameServer Config Cleanup, Virtual-Thread XML Loader, Custom Community Board Buffer & FakePlayers (`4c29c75ef25`):**
+   - Purged 13 dead `.ini` config properties and `*Config.java` fields across `GeoEngine.ini`, `Server.ini`, `General.ini`, `NPC.ini`, `Feature.ini`, `ConquerableHallSiege.ini`, and `Pvp.ini`.
+   - Replaced busy-wait spin-loops (`while (!tasks.isEmpty())`) and non-atomic counter increments in `IXmlReader.java`, `ItemData.java`, and `SkillData.java` (`ThreadsForLoading`) with `Executors.newVirtualThreadPerTaskExecutor()` and `AtomicInteger`.
+   - Unlocked all 70 skills used in `data/html/CommunityBoard/Custom/buffer/*.html` inside `CommunityBoard.ini` (`CommunityAvailableBuffs`), fixed `HomeBoard.java` to validate buffs before deducting currency, fixed the `buffer/main-damces` typo in `main-dances.html`, wired `main-presets.html`, fixed the impossible boolean guard `(npcId < 80000) || (npcId > 89999)` in `SpawnData.java:164`, and enabled `FakePlayers`.
+2. **196-Region Off-Heap Geodata & 2-Hour (`7200s`) Buff Durations (`8aa3b62f4d2`, `afd3d5d84b6`):**
+   - Provisioned 196 `.l2j` geodata region files (`1.2 GB`, gitignored via `.gitignore`) in `dist/game/data/geodata/` and `build/dist/game/data/geodata/`.
+   - Enabled `EnableModifySkillDuration = True` with 2-hour (`7200s`) durations for all 110 buffer/song/dance/prophecy/summon support skills in `Player.ini`.
+3. **Gracia Epilogue (`CT2.4`) Player Skills, Channelizer, Momentum Charges & 3rd-Profession Passives/Toggles/Triggers Audit (`ff520e82973`, `e9a8b96d6a2`, `1a4b56efd31`):**
+   - Fixed Duelist / Grand Khavatari max 8 momentum charges (`FocusMaxEnergy.java`, `FocusEnergy.java`, `918`, `919`, `345`, `346`, `5127`, `54`).
+   - Fixed `GROUND` channeling skills (`Volcano` `1419`, `Cyclone` `1420`, `Raging Waves` `1421`, `Gehenna` `1423`) and shot consumption per tick in `SkillChannelizer.java`, restored 7-arrow channeling on `924` (*Seven Arrow*) and `1472`/`1545` (*Soul Sucking*), removed High Five `CallSkill` `23299` from `772` (*Arrow Rain*), uncommented `DamOverTime` on `1467` (*Meteor*) and `1468` (*Star Fall*), and fixed `+Duel` enchant PvE scope against `Door`/`SiegeFlag` targets in `Skill.java`.
+   - Moved Ghost Sentinel's 8 Lv81–82 Forgotten Scroll skills from `2ndClass/PhantomRanger.xml` to `3rdClass/GhostSentinel.xml` (`e9a8b96d6a2`).
+   - Fixed `TriggerSkillByDamageDealt.java:91` (`_isCritical && !event.isCritical()`), `TriggerSkillByDamageReceived.java`, `Creature.makeTriggerCast` + `<targetType>SELF</targetType>` on Tank Lv83 Seed sub-skills `5561`–`5564` (unlocking `762` *Insane Crusher*, `785` *Flame Icon*, `787` *Touch of Eva*, `789` *Spirit of Shilen*), `5426` (*Counter Chance*) `mAtkSpd` (`1.15`), `CreatureStat.getMCriticalHit` precision for `945` (*Magician's Will*), `Formulas.calcEffectAbnormalTime` `Skill Mastery` (`330`/`331`) passive/toggle duration guard, `335` (*Fortitude*) `MpConsumePerLevel`, `767`/`5565` (*Expose Weak Point*), and `1498` (*Mutual Response*) `<allowSkillAttack>true</allowSkillAttack>` (`1a4b56efd31`).
+
+---
+
+## 9. Multi-Agent Roster, Role Separation & Automated Auditor Routines (`2026-10-17`)
+
+To prevent context overload and keep DevOps separate from auditing/documentation governance, the project operates with **4 specialized autonomous agents** communicating via `send_message`:
+
+| Agent # | Role & Title | Conversation ID (`send_message` Recipient) | Primary Ownership & Scope |
+| :---: | :--- | :--- | :--- |
+| **Agent 1** | **Server Core & Datapack Agent** | `6117006f-8ccb-4196-bebe-1ba7b09aea0f` | `l2jmobius_dwea_fork/L2J_Mobius_CT_2.4_Epilogue/` Java 27 core, packet serialization (`148`/`152`), Panama FFM `GeoEngine`, hot-reload engine, RBAC `AdminBoardManager`, datapack XML/scripts, and `build/dist/libs/GameServer.jar` compilation. *(Note: `4a4db620-c2a4-4949-be36-98f66c3f3191` is an archived Oct 14 Ansible session — always use `6117006f-8ccb-4196-bebe-1ba7b09aea0f` for Server Agent!)* |
+| **Agent 2** | **Client & Reverse-Engineering Agent** | `9379ca1e-d28c-4127-8680-c8e529c91ed7` | `Client Lineage 2 Gracia Epilogue/` (mirrored to `l2jmobius_dwea_fork/client/`): x86 PE32 binary patches (`l2.exe`, `Engine.dll`, `NWindow.dll`, `d3ddrv.dll`, `windrv.dll`, `dsetup.dll`), `interface.u`/`interface.xdat` (`patch_gmwnd_client.py`), `patch_nwindow_unicode.py`, `launch-l2.sh`, `user.ini`, and `tools/convert_buildzone_to_l2j.py`. |
+| **Agent 3** | **DevOps, Docker & Infrastructure Agent** | `f996ed99-9472-40bb-9157-05630ba9775b` | Local Docker Compose stack (`docker-compose.yml`, `docker/run-server.sh`, `l2-db`, `l2-login`, `l2-game`), Proxmox LXC Terraform (`terraform/`), Ansible (`ansible/`), container restarts, and live runtime log monitoring. |
+| **Agent 4** | **Project Auditor, Documentation & Context Governance Agent** | `38e33746-e411-44db-8ed9-525f8cf93b55` | Deep cross-cutting code/datapack/client forensic audits, maintaining all master documentation & lessons-learned dossiers across all 4 roots and agent brain directories, running `tools/auditor/l2_auditor.py` routines, and keeping all 4 agents' context synchronized. |
+
+### Automated Auditor CLI & Subroutines ([`tools/auditor/l2_auditor.py`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/tools/auditor/l2_auditor.py))
+Any agent can run the automated audit and sync suite from `/home/dwea/Projects/L2`:
+```bash
+# Run all 5 audit subroutines (Doc Drift, Dist vs Build/Dist Sync, Client Mirror Sync + Binary Signatures, Git vs Ledger Coverage, Agent Context Health):
+python3 /home/dwea/Projects/L2/l2jmobius_dwea_fork/tools/auditor/l2_auditor.py --check
+
+# Automatically synchronize canonical markdown dossiers across all 4 workspace roots + brain artifacts, and sync dist/ <-> build/dist/:
+python3 /home/dwea/Projects/L2/l2jmobius_dwea_fork/tools/auditor/l2_auditor.py --sync
+```
+
 
