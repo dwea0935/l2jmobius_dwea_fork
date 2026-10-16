@@ -339,7 +339,7 @@ def subroutine_git_ledger_audit() -> dict:
     untracked_commits = []
     for line in out.splitlines():
         short_hash, subj = line.split("|", 1)
-        if short_hash[:7] not in combined_docs and not subj.startswith("docs"):
+        if short_hash[:7] not in combined_docs and not subj.startswith(("docs", "chore(audit):")):
             untracked_commits.append({"hash": short_hash, "subject": subj})
 
     srv_status = subprocess.check_output(["git", "-C", SERVER_REPO, "status", "-s"], text=True).strip()

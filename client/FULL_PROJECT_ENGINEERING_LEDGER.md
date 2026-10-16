@@ -234,9 +234,9 @@ flowchart TD
 
 ---
 
-### Milestone 15: Native Client Geodata Builder (`///buildzone`) Disassembly & Converter + Full `CT2.4` Player Skills & 3rd-Prof Passives/Triggers Audit
-* **Commits:** `121c6d69dd6`, `ff520e82973`, `1b35c07a259`, `e9a8b96d6a2`, `1a4b56efd31`
-* **Documentation:** [`LESSONS_LEARNED_AND_FORENSICS.md`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/LESSONS_LEARNED_AND_FORENSICS.md) (§7, §8, §9)
+### Milestone 15: Native Client Geodata Builder (`///buildzone`) Disassembly & Converter + Full `CT2.4` Player Skills & 3rd-Prof Passives/Triggers Audit + 4-Agent Auditor Governance
+* **Commits:** `121c6d69dd6`, `ff520e82973`, `1b35c07a259`, `e9a8b96d6a2`, `1a4b56efd31`, `a0b1b54be95`
+* **Documentation:** [`LESSONS_LEARNED_AND_FORENSICS.md`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/LESSONS_LEARNED_AND_FORENSICS.md) (§7, §8, §9, §10), [`AGENTS.md`](file:///home/dwea/Projects/L2/AGENTS.md)
 * **Key Accomplishments:**
   1. **`Engine.dll` `FWorldBuilder::buildWorldStructure` (`///buildzone`) Disassembly & Bidirectional Converter (`121c6d69dd6`):** Documented all `///` builder commands (`///buildzone`, `///loadpath`, `///c_rmode geodata`), proved why `NSWE` bits map to `East=1, West=2, South=4, North=8` (`VA 0x20467b08`), and built [`client/tools/convert_buildzone_to_l2j.py`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/client/tools/convert_buildzone_to_l2j.py) supporting `<X>_<Y>_path.txt` $\leftrightarrow$ `<X>_<Y>.l2j` and `<X>_<Y>_conv.dat` $\rightarrow$ `<X>_<Y>.l2j`.
   2. **Player Skills, Momentum Charges (8 Max), Channeling Engine & `+Duel` Enchant Door Scope (`ff520e82973`):** Fixed `FocusMaxEnergy.java` and `FocusEnergy.java` to resolve max 8 charges from Epilogue active skills `8` (*Sonic Focus*) and `50` (*Focused Force*) (`918`, `919`, `345`, `346`, `5127`, `54`); guarded `SkillChannelizer.java` `effectRange` check for `GROUND` channeling skills (`Volcano` `1419`, `Cyclone` `1420`, `Raging Waves` `1421`, `Gehenna` `1423`) and restored 7-arrow channeling on `924` (*Seven Arrow*) and `1472`/`1545` (*Soul Sucking*); removed High Five `CallSkill` `23299` from `772` (*Arrow Rain*); uncommented `DamOverTime` on `1467` (*Meteor*) and `1468` (*Star Fall*); and fixed `+Duel` enchant PvE scope against `Door` and `SiegeFlag` targets in `Skill.java`.
@@ -245,6 +245,7 @@ flowchart TD
      * Fixed `TriggerSkillByDamageDealt.java:91` (`if (_isCritical && !event.isCritical()) return;`) so critical hits proc `758` (*Fighter's Will*), `759` (*Archer's Will*), `1498` (*Mutual Response*), Subclass Master Abilities, and PvP Weapons.
      * Added `<targetType>SELF</targetType>` to Tank Lv83 Seed sub-skills `5561`–`5564` and `Creature.makeTriggerCast` fallback so all 4 Tank Seeds (`761`, `784`, `786`, `788`) grow to Stage 4 and unlock all 4 Tank Lv83 Ultimates (`762` *Insane Crusher*, `785` *Flame Icon*, `787` *Touch of Eva*, `789` *Spirit of Shilen*).
      * Fixed `5426` (*Counter Chance*) `mAtkSpd` multiplier (`0.85` $\rightarrow$ `1.15`), `CreatureStat.getMCriticalHit` integer truncation for `945` (*Magician's Will* `+5%` M.Crit), `Formulas.calcEffectAbnormalTime` `Skill Mastery` (`330`/`331`) `-1 -> -2` passive/toggle duration bug, `335` (*Fortitude*) `MpConsumePerLevel`, `767`/`5565` (*Expose Weak Point*), and `1498` (*Mutual Response*) `<allowSkillAttack>true</allowSkillAttack>`.
+  4. **4-Agent Auditor Governance & Automated `l2_auditor.py` Suite (`a0b1b54be95`):** Established Agent 4 (`38e33746-e411-44db-8ed9-525f8cf93b55`) as dedicated Project Auditor, built [`tools/auditor/l2_auditor.py`](file:///home/dwea/Projects/L2/l2jmobius_dwea_fork/tools/auditor/l2_auditor.py) (`--check`, `--sync`, `--json`) and [`AGENTS.md`](file:///home/dwea/Projects/L2/AGENTS.md), and reconciled all shared documentation, `GameServer.jar` manifest, `General.ini` `GMAudit = True`, and spawn XMLs across `dist/` and `build/dist/`.
 
 ---
 
