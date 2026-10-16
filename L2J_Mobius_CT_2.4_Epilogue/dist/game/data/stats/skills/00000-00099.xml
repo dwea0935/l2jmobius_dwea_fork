@@ -5373,6 +5373,7 @@
 		<enchant7 name="magicLevel">#enchMagicLvl</enchant7>
 		<conditions msgId="113" addName="1">
 			<using kind="DUALFIST" />
+			<player Charges="1" />
 		</conditions>
 		<effects>
 			<effect name="EnergyDamage">

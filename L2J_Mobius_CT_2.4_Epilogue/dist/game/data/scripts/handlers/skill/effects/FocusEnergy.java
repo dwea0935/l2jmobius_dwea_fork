@@ -17,6 +17,7 @@
 package handlers.skill.effects;
 
 import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.mechanics.conditions.Condition;
 import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
@@ -51,6 +52,20 @@ public class FocusEnergy extends AbstractEffect
 			return;
 		}
 		
-		effected.asPlayer().increaseCharges(1, _charge);
+		final Player player = effected.asPlayer();
+		int maxCharge = _charge;
+		if (maxCharge >= 7)
+		{
+			final int learnedMax = Math.max(
+				Math.max(player.getSkillLevel(8), player.getSkillLevel(50)),
+				Math.max(player.getSkillLevel(992), player.getSkillLevel(993))
+			);
+			if (learnedMax > 0)
+			{
+				maxCharge = Math.min(maxCharge, learnedMax);
+			}
+		}
+		
+		player.increaseCharges(1, maxCharge);
 	}
 }

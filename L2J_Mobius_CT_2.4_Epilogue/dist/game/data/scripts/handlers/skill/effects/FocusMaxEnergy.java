@@ -45,14 +45,18 @@ public class FocusMaxEnergy extends AbstractEffect
 	{
 		if (effected.isPlayer())
 		{
-			final Skill sonicMastery = effected.getSkills().get(992);
-			final Skill focusMastery = effected.getSkills().get(993);
-			final int maxCharge = (sonicMastery != null) ? sonicMastery.getLevel() : (focusMastery != null) ? focusMastery.getLevel() : 0;
-			if (maxCharge != 0)
+			final Player player = effected.asPlayer();
+			final int maxCharge = Math.max(
+				Math.max(player.getSkillLevel(8), player.getSkillLevel(50)),
+				Math.max(player.getSkillLevel(992), player.getSkillLevel(993))
+			);
+			if (maxCharge > 0)
 			{
-				final Player player = effected.asPlayer();
 				final int count = maxCharge - player.getCharges();
-				player.increaseCharges(count, maxCharge);
+				if (count > 0)
+				{
+					player.increaseCharges(count, maxCharge);
+				}
 			}
 		}
 	}

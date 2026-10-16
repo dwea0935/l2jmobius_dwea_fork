@@ -4552,9 +4552,9 @@
 		<trait>BLEED</trait>
 		<effects>
 			<effect name="MagicalDamage" />
-			<!-- <effect name="DamOverTime" ticks="3">
+			<effect name="DamOverTime" ticks="3">
 				<power>111</power>
-			</effect> --> <!-- Epilogue Modification -->
+			</effect>
 		</effects>
 	</skill>
 	<skill id="1468" levels="1" name="Star Fall">
@@ -4584,9 +4584,9 @@
 		<trait>BLEED</trait>
 		<effects>
 			<effect name="MagicalDamage" />
-			<!-- <effect name="DamOverTime" ticks="3">
+			<effect name="DamOverTime" ticks="3">
 				<power>111</power>
-			</effect> --> <!-- Epilogue Modification -->
+			</effect>
 		</effects>
 	</skill>
 	<skill id="1469" levels="1" name="Leopold" enchantGroup1="6" enchantGroup2="6" enchantGroup3="6" enchantGroup4="6">
@@ -4819,6 +4819,7 @@
 		<operateType>CA1</operateType>
 		<targetType>ONE</targetType>
 		<castRange>900</castRange>
+		<channelingSkillId>1472</channelingSkillId>
 		<channelingTickInterval>2</channelingTickInterval>
 		<effectPoint>-676</effectPoint>
 		<effectRange>1000</effectRange>

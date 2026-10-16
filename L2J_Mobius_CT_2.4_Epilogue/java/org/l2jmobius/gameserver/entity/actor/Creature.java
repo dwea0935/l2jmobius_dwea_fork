@@ -1944,7 +1944,7 @@ public abstract class Creature extends WorldObject
 		
 		// Get the Base Casting Time of the Skills.
 		int skillTime = (skill.getHitTime() + skill.getCoolTime());
-		if (!skill.isChanneling() || (skill.getChannelingSkillId() == 0))
+		if (!skill.isChanneling())
 		{
 			// Calculate the Casting Time of the "Non-Static" Skills (with caster PAtk/MAtkSpd).
 			if (!skill.isStatic())
@@ -2155,7 +2155,7 @@ public abstract class Creature extends WorldObject
 				sendPacket(new SetupGauge(getObjectId(), SetupGauge.BLUE, skillTime));
 			}
 			
-			if (skill.isChanneling() && (skill.getChannelingSkillId() > 0))
+			if (skill.isChanneling() && ((skill.getChannelingSkillId() > 0) || skill.hasEffects(EffectScope.CHANNELING)))
 			{
 				getSkillChannelizer().startChanneling(skill);
 			}
@@ -6079,9 +6079,10 @@ public abstract class Creature extends WorldObject
 			{
 				// Consume Charges.
 				final Player player = asPlayer();
-				if (skill.getChargeConsumeCount() > 0)
+				if ((skill.getChargeConsumeCount() > 0) && !player.decreaseCharges(skill.getChargeConsumeCount()))
 				{
-					player.decreaseCharges(skill.getChargeConsumeCount());
+					abortCast();
+					return;
 				}
 				
 				// Consume Souls if necessary.
@@ -6093,7 +6094,10 @@ public abstract class Creature extends WorldObject
 			}
 			
 			// Launch the magic skill in order to calculate its effects
-			callSkill(mut.getSkill(), mut.getTargets());
+			if (!isChanneling())
+			{
+				callSkill(mut.getSkill(), mut.getTargets());
+			}
 		}
 		catch (NullPointerException e)
 		{

@@ -552,7 +552,7 @@
 		</conditions>
 		<conditions msgId="324">
 			<not>
-				<player Charges="7" /> <!-- Epilogue Modification -->
+				<player Charges="8" /> <!-- Epilogue Modification -->
 			</not>
 		</conditions>
 		<effects>
@@ -575,7 +575,7 @@
 		</conditions>
 		<conditions msgId="324">
 			<not>
-				<player Charges="7" /> <!-- Epilogue Modification -->
+				<player Charges="8" /> <!-- Epilogue Modification -->
 			</not>
 		</conditions>
 		<effects>
@@ -715,6 +715,8 @@
 		<operateType>CA1</operateType>
 		<targetType>ONE</targetType>
 		<castRange>900</castRange>
+		<channelingSkillId>924</channelingSkillId>
+		<channelingTickInterval>2</channelingTickInterval>
 		<effectPoint>-676</effectPoint>
 		<effectRange>1400</effectRange> <!-- Epilogue Modification -->
 		<hitTime>15000</hitTime> <!-- Epilogue Modification -->
@@ -726,9 +728,9 @@
 		<conditions msgId="113" addName="1">
 			<using kind="BOW" />
 		</conditions>
-		<effects>
+		<channelingEffects>
 			<effect name="PhysicalDamage" />
-		</effects>
+		</channelingEffects>
 	</skill>
 	<skill id="925" levels="1" name="Sigil Mastery">
 		<!-- When a Sigil is equipped, increases M. Atk. by 4% and MP recovery bonus by 17%. -->

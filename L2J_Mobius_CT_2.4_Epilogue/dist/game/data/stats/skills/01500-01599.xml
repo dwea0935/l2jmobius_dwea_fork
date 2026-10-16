@@ -2142,6 +2142,7 @@
 		<operateType>CA1</operateType>
 		<targetType>ONE</targetType>
 		<castRange>900</castRange>
+		<channelingSkillId>1545</channelingSkillId>
 		<channelingTickInterval>2</channelingTickInterval>
 		<effectPoint>-676</effectPoint>
 		<effectRange>1000</effectRange>

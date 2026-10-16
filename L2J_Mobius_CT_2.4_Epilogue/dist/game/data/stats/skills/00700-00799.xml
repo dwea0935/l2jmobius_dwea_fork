@@ -1991,10 +1991,6 @@
 		</conditions>
 		<effects>
 			<effect name="PhysicalDamage" />
-			<effect name="CallSkill">
-				<skillId>23299</skillId>
-				<skillLevel>1</skillLevel>
-			</effect>
 		</effects>
 	</skill>
 	<skill id="773" levels="1" name="Ghost Piercing">

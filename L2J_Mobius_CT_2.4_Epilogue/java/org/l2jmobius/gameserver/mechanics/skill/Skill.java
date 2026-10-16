@@ -1358,7 +1358,7 @@ public class Skill
 			
 			applyEffectScope(EffectScope.GENERAL, info, instant, addContinuousEffects);
 			
-			final EffectScope pvpOrPveEffectScope = effector.isPlayable() && effected.isAttackable() ? EffectScope.PVE : effector.isPlayable() && effected.isPlayable() ? EffectScope.PVP : null;
+			final EffectScope pvpOrPveEffectScope = effector.isPlayable() ? (effected.isPlayable() ? EffectScope.PVP : EffectScope.PVE) : null;
 			applyEffectScope(pvpOrPveEffectScope, info, instant, addContinuousEffects);
 			applyEffectScope(EffectScope.CHANNELING, info, instant, addContinuousEffects);
 			if (addContinuousEffects)
@@ -1433,7 +1433,7 @@ public class Skill
 				final BuffInfo info = new BuffInfo(caster, target, this);
 				applyEffectScope(EffectScope.GENERAL, info, true, false);
 				
-				final EffectScope pvpOrPveEffectScope = caster.isPlayable() && target.isAttackable() ? EffectScope.PVE : caster.isPlayable() && target.isPlayable() ? EffectScope.PVP : null;
+				final EffectScope pvpOrPveEffectScope = caster.isPlayable() ? (target.isPlayable() ? EffectScope.PVP : EffectScope.PVE) : null;
 				applyEffectScope(pvpOrPveEffectScope, info, true, false);
 				applyEffectScope(EffectScope.CHANNELING, info, true, false);
 			}

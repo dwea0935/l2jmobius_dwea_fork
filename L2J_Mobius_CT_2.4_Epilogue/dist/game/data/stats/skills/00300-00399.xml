@@ -3523,7 +3523,7 @@
 		</effects>
 		<selfEffects>
 			<effect name="FocusEnergy">
-				<charge>7</charge> <!-- Epilogue Modification -->
+				<charge>8</charge> <!-- Epilogue Modification -->
 			</effect>
 		</selfEffects>
 	</skill>
@@ -3550,7 +3550,7 @@
 		</effects>
 		<selfEffects>
 			<effect name="FocusEnergy">
-				<charge>7</charge> <!-- Epilogue Modification -->
+				<charge>8</charge> <!-- Epilogue Modification -->
 			</effect>
 		</selfEffects>
 	</skill>

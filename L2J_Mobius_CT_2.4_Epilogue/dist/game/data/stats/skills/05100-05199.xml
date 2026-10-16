@@ -485,7 +485,7 @@
 				<mul stat="pAtk">1.2</mul>
 			</effect>
 			<effect name="FocusEnergy">
-				<charge>7</charge>
+				<charge>8</charge>
 			</effect>
 		</effects>
 	</skill>
