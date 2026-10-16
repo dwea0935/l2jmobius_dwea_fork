@@ -1,0 +1,489 @@
+[EnvType]
+EnvType=2
+;Dawn
+[SunColor]
+NUM=5
+Color1=(T=6,R=255,G=122,B=23)
+Color2=(T=8,R=255,G=219,B=151)
+Color3=(T=15,R=255,G=219,B=151)
+Color4=(T=20,R=255,G=174,B=125)
+Color5=(T=24,R=162,G=65,B=0)
+
+[SunScale]
+NUM=5
+Scale1=(T=6,S=2.0)
+Scale2=(T=8,S=0.5)
+Scale3=(T=15,S=0.2)
+Scale4=(T=20,S=0.2)
+Scale5=(T=24,S=2.0)
+
+[MoonColor]
+NUM=5
+Color1=(T=0,R=255,G=180,B=151)
+Color2=(T=2,R=255,G=115,B=21)
+Color3=(T=3,R=255,G=115,B=21)
+Color4=(T=4,R=255,G=218,B=121)
+Color5=(T=6,R=162,G=65,B=0)
+
+[MoonScale]
+NUM=5
+Scale1=(T=0,S=4.5)
+Scale2=(T=2,S=3.5)
+Scale3=(T=3,S=2.5)
+Scale4=(T=4,S=3.5)
+Scale5=(T=6,S=4.5)
+
+[SkyBoxColor]
+NUM=25
+;Night
+COLOR1=(T=0,R=0,G=82,B=91) 
+COLOR2=(T=1,R=0,G=82,B=91) 
+COLOR3=(T=2,R=0,G=82,B=91)
+COLOR4=(T=3,R=0,G=82,B=91)
+COLOR5=(T=4,R=0,G=82,B=91)
+;Dawn
+COLOR6=(T=5,R=0,G=82,B=91)
+COLOR7=(T=6,R=9,G=168,B=160)
+;Morning
+COLOR8=(T=7,R=9,G=168,B=160)
+COLOR9=(T=8,R=9,G=168,B=160)
+COLOR10=(T=9,R=9,G=168,B=160)
+COLOR11=(T=10,R=9,G=168,B=160)
+;Noon
+COLOR12=(T=11,R=3,G=171,B=194)
+COLOR13=(T=12,R=3,G=171,B=194)
+COLOR14=(T=13,R=3,G=171,B=194)
+COLOR15=(T=14,R=3,G=171,B=194)
+COLOR16=(T=15,R=3,G=171,B=194)
+COLOR17=(T=16,R=3,G=171,B=194)
+COLOR18=(T=17,R=3,G=171,B=194)
+;Sunset start
+COLOR19=(T=18,R=9,G=168,B=160)
+COLOR20=(T=19,R=9,G=168,B=160)
+COLOR21=(T=20,R=9,G=168,B=160)
+COLOR22=(T=21,R=9,G=168,B=160)
+;Full sunset
+COLOR23=(T=22,R=11,G=170,B=166)
+COLOR24=(T=23,R=11,G=123,B=136)
+;Night
+COLOR25=(T=24,R=0,G=82,B=91)
+
+[HazeringColor]
+NUM=25
+;Night
+COLOR1=(T=0,R=158,G=182,B=120)
+COLOR2=(T=1,R=158,G=182,B=120)
+COLOR3=(T=2,R=158,G=182,B=120)
+COLOR4=(T=3,R=158,G=182,B=120)
+COLOR5=(T=4,R=158,G=182,B=120)
+;Dawn
+COLOR6=(T=5,R=158,G=182,B=120)
+COLOR7=(T=6,R=255,G=231,B=134)
+;Morning
+COLOR8=(T=7,R=255,G=231,B=134)
+COLOR9=(T=8,R=255,G=231,B=134)
+COLOR10=(T=9,R=255,G=231,B=134)
+COLOR11=(T=10,R=255,G=231,B=134)
+;Noon
+COLOR12=(T=11,R=244,G=255,B=185)
+COLOR13=(T=12,R=244,G=255,B=185)
+COLOR14=(T=13,R=244,G=255,B=185)
+COLOR15=(T=14,R=244,G=255,B=185)
+COLOR16=(T=15,R=244,G=255,B=185)
+COLOR17=(T=16,R=244,G=255,B=185)
+COLOR18=(T=17,R=244,G=255,B=185)
+;Sunset start
+COLOR19=(T=18,R=255,G=231,B=134)
+COLOR20=(T=19,R=255,G=231,B=134)
+COLOR21=(T=20,R=255,G=231,B=134)
+COLOR22=(T=21,R=255,G=231,B=134)
+;Full sunset
+COLOR23=(T=22,R=255,G=245,B=157)
+COLOR24=(T=23,R=255,G=243,B=134)
+;Night
+COLOR25=(T=24,R=158,G=182,B=120)
+
+[CloudColor1]
+NUM=25
+;Night
+COLOR1=(T=0,R=107,G=117,B=180)
+COLOR2=(T=1,R=107,G=117,B=180)
+COLOR3=(T=2,R=107,G=117,B=180)
+COLOR4=(T=3,R=107,G=117,B=180)
+COLOR5=(T=4,R=107,G=117,B=180)
+;Dawn
+COLOR6=(T=5,R=107,G=117,B=180)
+COLOR7=(T=6,R=13,G=96,B=164)
+;Morning
+COLOR8=(T=7,R=13,G=96,B=164)
+COLOR9=(T=8,R=13,G=96,B=164)
+COLOR10=(T=9,R=13,G=96,B=164)
+COLOR11=(T=10,R=13,G=96,B=164)
+;Noon
+COLOR12=(T=11,R=255,G=255,B=255)
+COLOR13=(T=12,R=255,G=255,B=255)
+COLOR14=(T=13,R=255,G=255,B=255)
+COLOR15=(T=14,R=255,G=255,B=255)
+COLOR16=(T=15,R=255,G=255,B=255)
+COLOR17=(T=16,R=255,G=255,B=255)
+COLOR18=(T=17,R=255,G=255,B=255)
+;Sunset start
+COLOR19=(T=18,R=255,G=255,B=255)
+COLOR20=(T=19,R=255,G=255,B=255)
+COLOR21=(T=20,R=255,G=227,B=185)
+COLOR22=(T=21,R=255,G=227,B=185)
+;Full sunset
+COLOR23=(T=22,R=255,G=182,B=142)
+COLOR24=(T=23,R=255,G=148,B=89)
+;Night
+COLOR25=(T=24,R=107,G=117,B=180)
+
+[CloudColor2]
+NUM=25
+;Night
+COLOR1=(T=0,R=200,G=200,B=200)
+COLOR2=(T=1,R=200,G=200,B=200)
+COLOR3=(T=2,R=200,G=200,B=200)
+COLOR4=(T=3,R=200,G=200,B=200)
+COLOR5=(T=4,R=200,G=200,B=200)
+;Dawn
+COLOR6=(T=5,R=200,G=200,B=200)
+COLOR7=(T=6,R=200,G=200,B=200)
+;Morning
+COLOR8=(T=7,R=200,G=200,B=200)
+COLOR9=(T=8,R=200,G=200,B=200)
+COLOR10=(T=9,R=200,G=200,B=200)
+COLOR11=(T=10,R=200,G=200,B=200)
+;Noon
+COLOR12=(T=11,R=200,G=200,B=200)
+COLOR13=(T=12,R=200,G=200,B=200)
+COLOR14=(T=13,R=200,G=200,B=200)
+COLOR15=(T=14,R=200,G=200,B=200)
+COLOR16=(T=15,R=200,G=200,B=200)
+COLOR17=(T=16,R=200,G=200,B=200)
+COLOR18=(T=17,R=200,G=200,B=200)
+;Sunset start
+COLOR19=(T=18,R=200,G=200,B=200)
+COLOR20=(T=19,R=200,G=200,B=200)
+COLOR21=(T=20,R=200,G=200,B=200)
+COLOR22=(T=21,R=200,G=200,B=200) 
+;Full sunset
+COLOR23=(T=22,R=200,G=200,B=200) 
+COLOR24=(T=23,R=200,G=200,B=200) 
+;Night
+COLOR25=(T=24,R=200,G=200,B=200)
+
+[CloudColor3]
+NUM=25
+;Night
+COLOR1=(T=0,R=64,G=64,B=64)
+COLOR2=(T=1,R=90,G=90,B=90)
+COLOR3=(T=2,R=90,G=90,B=90)
+COLOR4=(T=3,R=90,G=90,B=90)
+COLOR5=(T=4,R=90,G=90,B=90)
+;Dawn
+COLOR6=(T=5,R=90,G=90,B=90)
+COLOR7=(T=6,R=90,G=90,B=90)
+;Morning
+COLOR8=(T=7,R=90,G=90,B=90)
+COLOR9=(T=8,R=90,G=90,B=90)
+COLOR10=(T=9,R=90,G=90,B=90)
+COLOR11=(T=10,R=90,G=90,B=90)
+;Noon
+COLOR12=(T=11,R=90,G=90,B=90)
+COLOR13=(T=12,R=90,G=90,B=90)
+COLOR14=(T=13,R=90,G=90,B=90)
+COLOR15=(T=14,R=90,G=90,B=90)
+COLOR16=(T=15,R=90,G=90,B=90)
+COLOR17=(T=16,R=90,G=90,B=90)
+COLOR18=(T=17,R=90,G=90,B=90)
+;Sunset start
+COLOR19=(T=18,R=90,G=90,B=90)
+COLOR20=(T=19,R=90,G=90,B=90)
+COLOR21=(T=20,R=90,G=90,B=90)
+COLOR22=(T=21,R=90,G=90,B=90)
+;Full sunset
+COLOR23=(T=22,R=90,G=90,B=90)
+COLOR24=(T=23,R=90,G=90,B=90)
+;Night
+COLOR25=(T=24,R=64,G=64,B=64)
+
+[TerrainAmbient]
+NUM=25
+;Night
+COLOR1=(T=0,R=51,G=98,B=122)
+COLOR2=(T=1,R=51,G=98,B=122)
+COLOR3=(T=2,R=51,G=98,B=122)
+COLOR4=(T=3,R=51,G=98,B=122)
+COLOR5=(T=4,R=51,G=98,B=122)
+;Dawn
+COLOR6=(T=5,R=51,G=98,B=122)
+;Morning
+COLOR7=(T=6,R=100,G=108,B=132)
+COLOR8=(T=7,R=82,G=89,B=109)
+COLOR9=(T=8,R=82,G=89,B=109)
+COLOR10=(T=9,R=82,G=89,B=109)
+;Noon
+COLOR11=(T=10,R=100,G=100,B=100)
+COLOR12=(T=11,R=120,G=120,B=120)
+COLOR13=(T=12,R=120,G=120,B=120)
+COLOR14=(T=13,R=120,G=120,B=120)
+COLOR15=(T=14,R=120,G=120,B=120)
+COLOR16=(T=15,R=120,G=120,B=120)
+COLOR17=(T=16,R=120,G=120,B=120)
+COLOR18=(T=17,R=100,G=100,B=100)
+;Sunset start
+COLOR19=(T=18,R=122,G=107,B=99)
+COLOR20=(T=19,R=122,G=107,B=99)
+;Evening
+COLOR21=(T=20,R=122,G=107,B=99)
+COLOR22=(T=21,R=122,G=107,B=99)
+COLOR23=(T=22,R=122,G=107,B=99)
+COLOR24=(T=23,R=123,G=96,B=72)
+;Night
+COLOR25=(T=24,R=51,G=98,B=122)
+
+
+[ActorAmbient]
+NUM=25
+;Night
+COLOR1=(T=0,R=75,G=103,B=131)
+COLOR2=(T=1,R=84,G=108,B=131)
+COLOR3=(T=2,R=84,G=108,B=131)
+COLOR4=(T=3,R=84,G=108,B=131)
+COLOR5=(T=4,R=84,G=108,B=131)
+;Dawn
+COLOR6=(T=5,R=64,G=88,B=111)
+;Morning
+COLOR7=(T=6,R=90,G=97,B=120)
+COLOR8=(T=7,R=67,G=71,B=88)
+COLOR9=(T=8,R=67,G=71,B=88)
+COLOR10=(T=9,R=67,G=71,B=88)
+;Noon
+COLOR11=(T=10,R=120,G=120,B=120)
+COLOR12=(T=11,R=150,G=150,B=150)
+COLOR13=(T=12,R=150,G=150,B=150)
+COLOR14=(T=13,R=150,G=150,B=150)
+COLOR15=(T=14,R=150,G=150,B=150)
+COLOR16=(T=15,R=150,G=150,B=150)
+COLOR17=(T=16,R=150,G=150,B=150)
+COLOR18=(T=17,R=120,G=120,B=120)
+;Sunset start
+COLOR19=(T=18,R=120,G=120,B=120)
+COLOR20=(T=19,R=120,G=120,B=120)
+;Evening
+COLOR21=(T=20,R=120,G=120,B=120)
+COLOR22=(T=21,R=120,G=120,B=120)
+COLOR23=(T=22,R=152,G=119,B=88)
+COLOR24=(T=23,R=152,G=119,B=88)
+;Night
+COLOR25=(T=24,R=75,G=103,B=131)
+
+[StaticMeshAmbient]
+NUM=25
+;Night
+COLOR1=(T=0,R=75,G=103,B=131)
+COLOR2=(T=1,R=64,G=88,B=111)
+COLOR3=(T=2,R=64,G=88,B=111)
+COLOR4=(T=3,R=64,G=88,B=111)
+COLOR5=(T=4,R=64,G=88,B=111)
+;Dawn
+COLOR6=(T=5,R=64,G=88,B=111)
+;Morning
+COLOR7=(T=6,R=71,G=77,B=95)
+COLOR8=(T=7,R=67,G=71,B=88)
+COLOR9=(T=8,R=67,G=71,B=88)
+COLOR10=(T=9,R=120,G=120,B=120)
+;Noon
+COLOR11=(T=10,R=120,G=120,B=120)
+COLOR12=(T=11,R=120,G=120,B=120)
+COLOR13=(T=12,R=120,G=120,B=120)
+COLOR14=(T=13,R=120,G=120,B=120)
+COLOR15=(T=14,R=120,G=120,B=120)
+COLOR16=(T=15,R=120,G=120,B=120)
+COLOR17=(T=16,R=120,G=120,B=120)
+COLOR18=(T=17,R=120,G=120,B=120)
+;Sunset start
+COLOR19=(T=18,R=120,G=120,B=120)
+COLOR20=(T=19,R=120,G=120,B=120)
+;Evening
+COLOR21=(T=20,R=120,G=120,B=120)
+COLOR22=(T=21,R=120,G=120,B=120)
+COLOR23=(T=22,R=132,G=118,B=104)
+COLOR24=(T=23,R=132,G=118,B=104)
+;Night
+COLOR25=(T=24,R=75,G=103,B=131)
+
+[BSPAmbient]
+NUM=25
+;Night
+COLOR1=(T=0,R=75,G=103,B=131)
+COLOR2=(T=1,R=64,G=88,B=111)
+COLOR3=(T=2,R=64,G=88,B=111)
+COLOR4=(T=3,R=64,G=88,B=111)
+COLOR5=(T=4,R=64,G=88,B=111)
+;Dawn
+COLOR6=(T=5,R=64,G=88,B=111)
+;Morning
+COLOR7=(T=6,R=71,G=77,B=95)
+COLOR8=(T=7,R=67,G=71,B=88)
+COLOR9=(T=8,R=67,G=71,B=88)
+COLOR10=(T=9,R=120,G=120,B=120)
+;Noon
+COLOR11=(T=10,R=120,G=120,B=120)
+COLOR12=(T=11,R=120,G=120,B=120)
+COLOR13=(T=12,R=120,G=120,B=120)
+COLOR14=(T=13,R=120,G=120,B=120)
+COLOR15=(T=14,R=120,G=120,B=120)
+COLOR16=(T=15,R=120,G=120,B=120)
+COLOR17=(T=16,R=120,G=120,B=120)
+COLOR18=(T=17,R=120,G=120,B=120)
+;Sunset start
+COLOR19=(T=18,R=120,G=120,B=120)
+COLOR20=(T=19,R=120,G=120,B=120)
+;Evening
+COLOR21=(T=20,R=120,G=120,B=120)
+COLOR22=(T=21,R=120,G=120,B=120)
+COLOR23=(T=22,R=132,G=118,B=104)
+COLOR24=(T=23,R=132,G=118,B=104)
+;Night
+COLOR25=(T=24,R=75,G=103,B=131)
+
+[HSVTerrainLight]
+NUM=25
+;Night
+Light1=( T=0, Hue=138, Sat=182, Bri=0 )
+Light2=( T=1, Hue=138, Sat=182, Bri=200)
+Light3=( T=2, Hue=138, Sat=182, Bri=200 )
+Light4=( T=3, Hue=138, Sat=182, Bri=200 )
+Light5=( T=4, Hue=138, Sat=182, Bri=200 )
+;Dawn
+Light6=( T=5, Hue=138, Sat=182, Bri=200)
+;Morning
+Light7=( T=6, Hue=29, Sat=153, Bri=100 )
+Light8=( T=7, Hue=29, Sat=153, Bri=450 )
+Light9=( T=8, Hue=29, Sat=153, Bri=450 )
+Light10=( T=9, Hue=29, Sat=153, Bri=450 )
+;Noon
+Light11=( T=10, Hue=1, Sat=255, Bri=160 )
+Light12=( T=11, Hue=1, Sat=255, Bri=160 )
+Light13=( T=12, Hue=1, Sat=255, Bri=200 )
+Light14=( T=13, Hue=1, Sat=255, Bri=200 )
+Light15=( T=14, Hue=1, Sat=255, Bri=200 )
+Light16=( T=15, Hue=1, Sat=255, Bri=200 )
+Light17=( T=16, Hue=1, Sat=255, Bri=160 )
+Light18=( T=17, Hue=1, Sat=255, Bri=160 )
+;Sunset start
+Light19=( T=18, Hue=1, Sat=255, Bri=160 )
+Light20=( T=19, Hue=1, Sat=255, Bri=160 )
+;Evening
+Light21=( T=20, Hue=1, Sat=255, Bri=160 )
+Light22=( T=21, Hue=24, Sat=100, Bri=350 )
+Light23=( T=22, Hue=24, Sat=100, Bri=350 )
+Light24=( T=23, Hue=24, Sat=100, Bri=350 )
+Light25=( T=24, Hue=138, Sat=182, Bri=0 )
+
+[HSVActorLight]
+NUM=25
+;Night
+Light1=( T=0, Hue=138, Sat=182, Bri=0 )
+Light2=( T=1, Hue=138, Sat=182, Bri=120 )
+Light3=( T=2, Hue=138, Sat=100, Bri=120 )
+Light4=( T=3, Hue=138, Sat=182, Bri=120 )
+Light5=( T=4, Hue=138, Sat=182, Bri=120 )
+;Dawn
+Light6=( T=5, Hue=138, Sat=182, Bri=120 )
+;Light7=( T=6, Hue=138, Sat=182, Bri=0 )
+;Morning
+Light7=( T=6, Hue=29, Sat=153, Bri=100 )
+Light8=( T=7, Hue=29, Sat=153, Bri=140 )
+Light9=( T=8, Hue=29, Sat=153, Bri=160 )
+Light10=( T=9, Hue=29, Sat=153, Bri=160 )
+;Noon
+Light11=( T=10, Hue=1, Sat=255, Bri=160 )
+Light12=( T=11, Hue=1, Sat=255, Bri=160 )
+Light13=( T=12, Hue=1, Sat=255, Bri=160 )
+Light14=( T=13, Hue=1, Sat=255, Bri=160 )
+Light15=( T=14, Hue=1, Sat=255, Bri=160 )
+Light16=( T=15, Hue=1, Sat=255, Bri=160 )
+Light17=( T=16, Hue=1, Sat=255, Bri=160 )
+Light18=( T=17, Hue=1, Sat=255, Bri=160 )
+;Sunset start
+Light19=( T=18, Hue=1, Sat=255, Bri=160 )
+Light20=( T=19, Hue=1, Sat=255, Bri=160 )
+;Evening
+Light21=( T=20, Hue=1, Sat=255, Bri=160 )
+Light22=( T=21, Hue=24, Sat=100, Bri=190 )
+Light23=( T=22, Hue=24, Sat=100, Bri=190 )
+Light24=( T=23, Hue=24, Sat=100, Bri=190 )
+Light25=( T=24, Hue=24, Sat=100, Bri=0 )
+
+[HSVStaticMeshLight]
+NUM=25
+;Night
+Light1=( T=0, Hue=138, Sat=182, Bri=0 )
+Light2=( T=1, Hue=138, Sat=182, Bri=120)
+Light3=( T=2, Hue=138, Sat=100, Bri=120 )
+Light4=( T=3, Hue=138, Sat=182, Bri=120 )
+Light5=( T=4, Hue=138, Sat=182, Bri=120 )
+;Dawn
+Light6=( T=5, Hue=138, Sat=182, Bri=120 )
+;Light7=( T=6, Hue=138, Sat=182, Bri=0 )
+;Morning
+Light7=( T=6, Hue=29, Sat=153, Bri=100 )
+Light8=( T=7, Hue=29, Sat=153, Bri=140 )
+Light9=( T=8, Hue=29, Sat=153, Bri=160 )
+Light10=( T=9, Hue=29, Sat=200, Bri=180)
+;Noon
+Light11=( T=10  Hue=1, Sat=255, Bri=180 )
+Light12=( T=11, Hue=1, Sat=255, Bri=180 )
+Light13=( T=12, Hue=1, Sat=255, Bri=190 )
+Light14=( T=13, Hue=1, Sat=255, Bri=190 )
+Light15=( T=14, Hue=1, Sat=255, Bri=190 )
+Light16=( T=15, Hue=1, Sat=255, Bri=190 )
+Light17=( T=16,  Hue=1, Sat=255, Bri=190 )
+Light18=( T=17, Hue=1, Sat=255, Bri=190 )
+;Sunset start
+Light19=( T=18, Hue=1, Sat=255, Bri=190 )
+Light20=( T=19, Hue=1, Sat=255, Bri=190 )
+;Evening
+Light21=( T=20, Hue=1, Sat=255, Bri=190 )
+Light22=( T=21, Hue=24, Sat=100, Bri=200 )
+Light23=( T=22, Hue=24, Sat=100, Bri=255 )
+Light24=( T=23, Hue=24, Sat=100, Bri=255 )
+Light25=( T=24, Hue=24, Sat=100, Bri=0 )
+
+[HSVBSPLight]
+NUM=25
+;Night
+Light1=( T=0, Hue=138, Sat=182, Bri=0 )
+Light2=( T=1, Hue=138, Sat=182, Bri=120)
+Light3=( T=2, Hue=138, Sat=100, Bri=120 )
+Light4=( T=3, Hue=138, Sat=182, Bri=120 )
+Light5=( T=4, Hue=138, Sat=182, Bri=120 )
+;Dawn
+Light6=( T=5, Hue=138, Sat=182, Bri=120 )
+;Light7=( T=6, Hue=138, Sat=182, Bri=0 )
+;Morning
+Light7=( T=6, Hue=29, Sat=153, Bri=100 )
+Light8=( T=7, Hue=29, Sat=153, Bri=140 )
+Light9=( T=8, Hue=29, Sat=153, Bri=160 )
+Light10=( T=9, Hue=29, Sat=200, Bri=180)
+;Noon
+Light11=( T=10  Hue=1, Sat=255, Bri=180 )
+Light12=( T=11, Hue=1, Sat=255, Bri=180 )
+Light13=( T=12, Hue=1, Sat=255, Bri=190 )
+Light14=( T=13, Hue=1, Sat=255, Bri=190 )
+Light15=( T=14, Hue=1, Sat=255, Bri=190 )
+Light16=( T=15, Hue=1, Sat=255, Bri=190 )
+Light17=( T=16, Hue=1, Sat=255, Bri=190 )
+Light18=( T=17, Hue=1, Sat=255, Bri=190 )
+;Sunset start
+Light19=( T=18, Hue=1, Sat=255, Bri=190 )
+Light20=( T=19, Hue=1, Sat=255, Bri=190 )
+;Evening
+Light21=( T=20, Hue=1, Sat=255, Bri=190 )
+Light22=( T=21, Hue=24, Sat=100, Bri=200 )
+Light23=( T=22, Hue=24, Sat=100, Bri=255 )
+Light24=( T=23, Hue=24, Sat=100, Bri=255 )
+Light25=( T=24, Hue=24, Sat=100, Bri=0 )
