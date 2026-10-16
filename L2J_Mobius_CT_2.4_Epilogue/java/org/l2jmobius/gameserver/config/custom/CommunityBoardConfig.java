@@ -88,18 +88,24 @@ public class CommunityBoardConfig
 		COMMUNITY_PREMIUM_USE_COIN_ID = config.getInt("CommunityPremiumUseCoinId", 57);
 		COMMUNITY_PREMIUM_PRICE_PER_USE = config.getInt("CommunityPremiumPricePerUse", 1000);
 		COMMUNITY_PREMIUM_PRICE_PER_DAY = config.getInt("CommunityPremiumPricePerDay", 1);
-		final String[] allowedBuffs = config.getString("CommunityAvailableBuffs", "").split(",");
+		final String[] allowedBuffs = config.getString("CommunityAvailableBuffs", "264,265,266,267,268,269,270,271,272,273,274,275,276,277,304,305,306,307,308,309,310,311,349,363,364,365,1032,1033,1035,1036,1040,1044,1045,1048,1059,1062,1068,1073,1077,1078,1085,1086,1087,1182,1189,1191,1204,1240,1242,1243,1259,1268,1303,1323,1352,1353,1354,1355,1356,1357,1363,1388,1389,1392,1393,1413,1414,4699,4700,4702,4703").split(",");
 		COMMUNITY_AVAILABLE_BUFFS = new HashSet<>(allowedBuffs.length);
 		for (String s : allowedBuffs)
 		{
-			COMMUNITY_AVAILABLE_BUFFS.add(Integer.parseInt(s));
+			if (!s.isEmpty())
+			{
+				COMMUNITY_AVAILABLE_BUFFS.add(Integer.parseInt(s.trim()));
+			}
 		}
 		final String[] availableTeleports = config.getString("CommunityTeleportList", "").split(";");
 		COMMUNITY_AVAILABLE_TELEPORTS = new HashMap<>(availableTeleports.length);
 		for (String s : availableTeleports)
 		{
-			final String[] splitInfo = s.split(",");
-			COMMUNITY_AVAILABLE_TELEPORTS.put(splitInfo[0], new Location(Integer.parseInt(splitInfo[1]), Integer.parseInt(splitInfo[2]), Integer.parseInt(splitInfo[3])));
+			if (!s.isEmpty())
+			{
+				final String[] splitInfo = s.split(",");
+				COMMUNITY_AVAILABLE_TELEPORTS.put(splitInfo[0], new Location(Integer.parseInt(splitInfo[1]), Integer.parseInt(splitInfo[2]), Integer.parseInt(splitInfo[3])));
+			}
 		}
 	}
 }

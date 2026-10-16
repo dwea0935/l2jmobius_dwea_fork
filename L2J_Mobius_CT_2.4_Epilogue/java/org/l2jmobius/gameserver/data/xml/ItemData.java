@@ -28,11 +28,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.config.ThreadConfig;
-import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.entity.item.Armor;
@@ -95,29 +95,19 @@ public class ItemData
 		_etcItems.clear();
 		_weapons.clear();
 		
-		// If multithreading is enabled, use a thread pool to parse files.
+		// If multithreading is enabled, use a virtual thread pool to parse files.
 		if (ThreadConfig.THREADS_FOR_LOADING)
 		{
-			final Collection<ScheduledFuture<?>> tasks = ConcurrentHashMap.newKeySet();
-			for (File file : _itemFiles)
+			try (ExecutorService loaderPool = Executors.newVirtualThreadPerTaskExecutor())
 			{
-				tasks.add(ThreadPool.schedule(() ->
+				for (File file : _itemFiles)
 				{
-					final DocumentItem document = new DocumentItem(file);
-					document.parse();
-					items.addAll(document.getItemList());
-				}, 0));
-			}
-			
-			// Wait for all scheduled tasks to complete.
-			while (!tasks.isEmpty())
-			{
-				for (ScheduledFuture<?> task : tasks)
-				{
-					if ((task == null) || task.isDone() || task.isCancelled())
+					loaderPool.submit(() ->
 					{
-						tasks.remove(task);
-					}
+						final DocumentItem document = new DocumentItem(file);
+						document.parse();
+						items.addAll(document.getItemList());
+					});
 				}
 			}
 		}

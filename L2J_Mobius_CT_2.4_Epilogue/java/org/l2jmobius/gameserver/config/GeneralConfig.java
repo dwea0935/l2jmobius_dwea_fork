@@ -56,7 +56,6 @@ public class GeneralConfig
 	public static boolean GM_TRADE_RESTRICTED_ITEMS;
 	public static boolean GM_RESTART_FIGHTING;
 	public static boolean GM_ANNOUNCER_NAME;
-	public static boolean GM_CRITANNOUNCER_NAME;
 	public static boolean GM_GIVE_SPECIAL_SKILLS;
 	public static boolean GM_GIVE_SPECIAL_AURA_SKILLS;
 	public static boolean GM_DEBUG_HTML_PATHS;
@@ -101,7 +100,6 @@ public class GeneralConfig
 	public static ChatBroadcastType DEFAULT_GLOBAL_CHAT;
 	public static ChatBroadcastType DEFAULT_TRADE_CHAT;
 	public static int MINIMUM_CHAT_LEVEL;
-	public static boolean ALLOW_WAREHOUSE;
 	public static boolean ALLOW_REFUND;
 	public static boolean ALLOW_MAIL;
 	public static boolean ALLOW_ATTACHMENTS;
@@ -171,7 +169,6 @@ public class GeneralConfig
 	public static boolean JAIL_DISABLE_CHAT;
 	public static boolean JAIL_DISABLE_TRANSACTION;
 	public static boolean CUSTOM_NPC_DATA;
-	public static boolean CUSTOM_TELEPORT_TABLE;
 	public static boolean CUSTOM_SKILLS_LOAD;
 	public static boolean CUSTOM_ITEMS_LOAD;
 	public static boolean CUSTOM_MULTISELL_LOAD;
@@ -214,7 +211,6 @@ public class GeneralConfig
 		GM_TRADE_RESTRICTED_ITEMS = config.getBoolean("GMTradeRestrictedItems", false);
 		GM_RESTART_FIGHTING = config.getBoolean("GMRestartFighting", true);
 		GM_ANNOUNCER_NAME = config.getBoolean("GMShowAnnouncerName", false);
-		GM_CRITANNOUNCER_NAME = config.getBoolean("GMShowCritAnnouncerName", false);
 		GM_GIVE_SPECIAL_SKILLS = config.getBoolean("GMGiveSpecialSkills", false);
 		GM_GIVE_SPECIAL_AURA_SKILLS = config.getBoolean("GMGiveSpecialAuraSkills", false);
 		GM_DEBUG_HTML_PATHS = config.getBoolean("GMDebugHtmlPaths", true);
@@ -269,7 +265,6 @@ public class GeneralConfig
 		DEFAULT_GLOBAL_CHAT = Enum.valueOf(ChatBroadcastType.class, config.getString("GlobalChat", "ON"));
 		DEFAULT_TRADE_CHAT = Enum.valueOf(ChatBroadcastType.class, config.getString("TradeChat", "ON"));
 		MINIMUM_CHAT_LEVEL = config.getInt("MinimumChatLevel", 20);
-		ALLOW_WAREHOUSE = config.getBoolean("AllowWarehouse", true);
 		ALLOW_REFUND = config.getBoolean("AllowRefund", true);
 		ALLOW_MAIL = config.getBoolean("AllowMail", true);
 		ALLOW_ATTACHMENTS = config.getBoolean("AllowAttachments", true);
@@ -355,7 +350,6 @@ public class GeneralConfig
 		JAIL_DISABLE_CHAT = config.getBoolean("JailDisableChat", true);
 		JAIL_DISABLE_TRANSACTION = config.getBoolean("JailDisableTransaction", false);
 		CUSTOM_NPC_DATA = config.getBoolean("CustomNpcData", false);
-		CUSTOM_TELEPORT_TABLE = config.getBoolean("CustomTeleportTable", false);
 		CUSTOM_SKILLS_LOAD = config.getBoolean("CustomSkillsLoad", false);
 		CUSTOM_ITEMS_LOAD = config.getBoolean("CustomItemsLoad", false);
 		CUSTOM_MULTISELL_LOAD = config.getBoolean("CustomMultisellLoad", false);

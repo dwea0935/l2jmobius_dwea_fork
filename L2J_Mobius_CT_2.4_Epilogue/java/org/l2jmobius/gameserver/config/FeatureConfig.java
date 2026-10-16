@@ -140,7 +140,6 @@ public class FeatureConfig
 	public static boolean ALT_SEVENSIGNS_OPEN_NECROPOLIS;
 	public static boolean ALT_GAME_CASTLE_DAWN;
 	public static boolean ALT_GAME_CASTLE_DUSK;
-	public static boolean ALT_GAME_REQUIRE_CLAN_CASTLE;
 	public static int ALT_FESTIVAL_MIN_PLAYER;
 	public static int ALT_MAXIMUM_PLAYER_CONTRIB;
 	public static long ALT_FESTIVAL_MANAGER_START;
@@ -171,7 +170,6 @@ public class FeatureConfig
 	public static int HERO_POINTS;
 	public static int ROYAL_GUARD_COST;
 	public static int KNIGHT_UNIT_COST;
-	public static int KNIGHT_REINFORCE_COST;
 	public static int BALLISTA_POINTS;
 	public static int BLOODALLIANCE_POINTS;
 	public static int BLOODOATH_POINTS;
@@ -321,7 +319,6 @@ public class FeatureConfig
 		ALT_SEVENSIGNS_OPEN_NECROPOLIS = config.getBoolean("AltOpenNecropolis", false);
 		ALT_GAME_CASTLE_DAWN = config.getBoolean("AltCastleForDawn", true);
 		ALT_GAME_CASTLE_DUSK = config.getBoolean("AltCastleForDusk", true);
-		ALT_GAME_REQUIRE_CLAN_CASTLE = config.getBoolean("AltRequireClanCastle", false);
 		ALT_FESTIVAL_MIN_PLAYER = config.getInt("AltFestivalMinPlayer", 5);
 		ALT_MAXIMUM_PLAYER_CONTRIB = config.getInt("AltMaxPlayerContrib", 1000000);
 		ALT_FESTIVAL_MANAGER_START = config.getLong("AltFestivalManagerStart", 120000);
@@ -352,7 +349,6 @@ public class FeatureConfig
 		HERO_POINTS = config.getInt("HeroPoints", 1000);
 		ROYAL_GUARD_COST = config.getInt("CreateRoyalGuardCost", 5000);
 		KNIGHT_UNIT_COST = config.getInt("CreateKnightUnitCost", 10000);
-		KNIGHT_REINFORCE_COST = config.getInt("ReinforceKnightUnitCost", 5000);
 		BALLISTA_POINTS = config.getInt("KillBallistaPoints", 30);
 		BLOODALLIANCE_POINTS = config.getInt("BloodAlliancePoints", 500);
 		BLOODOATH_POINTS = config.getInt("BloodOathPoints", 200);

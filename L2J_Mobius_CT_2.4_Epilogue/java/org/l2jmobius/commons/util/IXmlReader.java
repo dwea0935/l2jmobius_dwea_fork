@@ -25,10 +25,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.logging.Level;
@@ -137,49 +135,12 @@ public interface IXmlReader
 			return false;
 		}
 		
-		// If multithreading is enabled, use a thread pool to parse files.
+		// If multithreading is enabled, use a virtual thread pool to parse files.
 		if (ThreadConfig.THREADS_FOR_LOADING)
 		{
-			final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
-			final List<Future<?>> tasks = new ArrayList<>();
-			
-			final File[] files = directory.listFiles();
-			if (files != null)
+			try (ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor())
 			{
-				for (File file : files)
-				{
-					if (recursive && file.isDirectory())
-					{
-						parseDirectory(file, true);
-					}
-					else if (isValidXmlFile(file))
-					{
-						tasks.add(executorService.schedule(() -> parseFile(file), 0, TimeUnit.MILLISECONDS));
-					}
-				}
-			}
-			
-			for (Future<?> task : tasks)
-			{
-				try
-				{
-					task.get();
-				}
-				catch (Exception e)
-				{
-					LOGGER.warning("Failed to parse file: " + e.getMessage());
-				}
-			}
-			
-			executorService.shutdown();
-			try
-			{
-				executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-			}
-			catch (InterruptedException e)
-			{
-				Thread.currentThread().interrupt();
-				LOGGER.warning("Parsing process was interrupted: " + e.getMessage());
+				parseDirectory(directory, recursive, executorService);
 			}
 		}
 		else // Parse files sequentially if multithreading is not enabled.
@@ -202,6 +163,31 @@ public interface IXmlReader
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * Helper method to recursively submit XML files in a directory to a shared {@link ExecutorService}.
+	 * @param directory the directory to scan for XML files.
+	 * @param recursive if {@code true}, scans subdirectories recursively.
+	 * @param executorService the shared executor service.
+	 */
+	private void parseDirectory(File directory, boolean recursive, ExecutorService executorService)
+	{
+		final File[] files = directory.listFiles();
+		if (files != null)
+		{
+			for (File file : files)
+			{
+				if (recursive && file.isDirectory())
+				{
+					parseDirectory(file, true, executorService);
+				}
+				else if (isValidXmlFile(file))
+				{
+					executorService.submit(() -> parseFile(file));
+				}
+			}
+		}
 	}
 	
 	/**

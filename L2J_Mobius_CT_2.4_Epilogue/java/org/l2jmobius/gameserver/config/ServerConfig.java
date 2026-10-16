@@ -70,7 +70,6 @@ public class ServerConfig
 	private static final String HEXID_FILE = "./config/hexid.txt";
 	
 	// Constants
-	public static String GAMESERVER_HOSTNAME;
 	public static int PORT_GAME;
 	public static int GAME_SERVER_LOGIN_PORT;
 	public static String GAME_SERVER_LOGIN_HOST;
@@ -102,7 +101,6 @@ public class ServerConfig
 	public static boolean PRECAUTIONARY_RESTART_ENABLED;
 	public static boolean PRECAUTIONARY_RESTART_CPU;
 	public static boolean PRECAUTIONARY_RESTART_MEMORY;
-	public static boolean PRECAUTIONARY_RESTART_CHECKS;
 	public static int PRECAUTIONARY_RESTART_PERCENTAGE;
 	public static int PRECAUTIONARY_RESTART_DELAY;
 	public static List<String> GAME_SERVER_SUBNETS;
@@ -117,7 +115,6 @@ public class ServerConfig
 	public static void load()
 	{
 		final ConfigReader config = new ConfigReader(SERVER_CONFIG_FILE);
-		GAMESERVER_HOSTNAME = config.getString("GameserverHostname", "0.0.0.0");
 		PORT_GAME = config.getInt("GameserverPort", 7777);
 		GAME_SERVER_LOGIN_PORT = config.getInt("LoginPort", 9014);
 		GAME_SERVER_LOGIN_HOST = config.getString("LoginHost", "127.0.0.1");
@@ -228,7 +225,6 @@ public class ServerConfig
 		PRECAUTIONARY_RESTART_ENABLED = config.getBoolean("PrecautionaryRestartEnabled", false);
 		PRECAUTIONARY_RESTART_CPU = config.getBoolean("PrecautionaryRestartCpu", true);
 		PRECAUTIONARY_RESTART_MEMORY = config.getBoolean("PrecautionaryRestartMemory", false);
-		PRECAUTIONARY_RESTART_CHECKS = config.getBoolean("PrecautionaryRestartChecks", true);
 		PRECAUTIONARY_RESTART_PERCENTAGE = config.getInt("PrecautionaryRestartPercentage", 95);
 		PRECAUTIONARY_RESTART_DELAY = config.getInt("PrecautionaryRestartDelay", 60) * 1000;
 		

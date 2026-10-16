@@ -57,7 +57,6 @@ public class NpcConfig
 	public static float[] NPC_SKILL_DMG_PENALTY;
 	public static int MIN_NPC_LEVEL_MAGIC_PENALTY;
 	public static float[] NPC_SKILL_CHANCE_PENALTY;
-	public static int DECAY_TIME_TASK;
 	public static int DEFAULT_CORPSE_TIME;
 	public static int SPOILED_CORPSE_EXTEND_TIME;
 	public static int CORPSE_CONSUME_SKILL_ALLOWED_TIME_BEFORE_DECAY;
@@ -70,7 +69,6 @@ public class NpcConfig
 	public static boolean AGGRO_DISTANCE_CHECK_INSTANCES;
 	public static boolean AGGRO_DISTANCE_CHECK_RESTORE_LIFE;
 	public static boolean GUARD_ATTACK_AGGRO_MOB;
-	public static boolean ALLOW_WYVERN_UPGRADER;
 	public static List<Integer> LIST_PET_RENT_NPC;
 	public static double RAID_HP_REGEN_MULTIPLIER;
 	public static double RAID_MP_REGEN_MULTIPLIER;
@@ -140,7 +138,6 @@ public class NpcConfig
 			NPC_SKILL_CHANCE_PENALTY[i++] = Float.parseFloat(value);
 		}
 		
-		DECAY_TIME_TASK = config.getInt("DecayTimeTask", 5000);
 		DEFAULT_CORPSE_TIME = config.getInt("DefaultCorpseTime", 7);
 		SPOILED_CORPSE_EXTEND_TIME = config.getInt("SpoiledCorpseExtendTime", 10);
 		CORPSE_CONSUME_SKILL_ALLOWED_TIME_BEFORE_DECAY = config.getInt("CorpseConsumeSkillAllowedTimeBeforeDecay", 2000);
@@ -153,7 +150,6 @@ public class NpcConfig
 		AGGRO_DISTANCE_CHECK_INSTANCES = config.getBoolean("AggroDistanceCheckInstances", false);
 		AGGRO_DISTANCE_CHECK_RESTORE_LIFE = config.getBoolean("AggroDistanceCheckRestoreLife", true);
 		GUARD_ATTACK_AGGRO_MOB = config.getBoolean("GuardAttackAggroMob", false);
-		ALLOW_WYVERN_UPGRADER = config.getBoolean("AllowWyvernUpgrader", false);
 		
 		split = config.getString("ListPetRentNpc", "30827").split(",");
 		LIST_PET_RENT_NPC = new ArrayList<>(split.length);

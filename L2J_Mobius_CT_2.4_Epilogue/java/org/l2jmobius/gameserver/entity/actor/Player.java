@@ -5684,8 +5684,7 @@ public class Player extends Playable
 						(itemDrop.getTemplate().getType2() == ItemTemplate.TYPE2_QUEST) || // Quest Items
 						(hasSummon() && (_summon.getControlObjectId() == itemDrop.getId())) || // Control Item of active pet
 						(Arrays.binarySearch(PvpConfig.KARMA_LIST_NONDROPPABLE_ITEMS, itemDrop.getId()) >= 0) || // Item listed in the non droppable item list
-						(Arrays.binarySearch(PvpConfig.KARMA_LIST_NONDROPPABLE_PET_ITEMS, itemDrop.getId()) >= 0 // Item listed in the non droppable pet item list
-						))
+						itemDrop.getTemplate().isPetItem()) // Pet Control Item
 					{
 						continue;
 					}

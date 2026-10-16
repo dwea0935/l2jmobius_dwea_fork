@@ -36,7 +36,6 @@ public class GeoEngineConfig
 	
 	// Constants
 	public static Path GEODATA_PATH;
-	public static Path PATHNODE_PATH;
 	public static Path GEOEDIT_PATH;
 	public static int PATHFINDING;
 	public static String PATHFIND_BUFFERS;
@@ -52,7 +51,6 @@ public class GeoEngineConfig
 	{
 		final ConfigReader config = new ConfigReader(GEOENGINE_CONFIG_FILE);
 		GEODATA_PATH = Paths.get(ServerConfig.DATAPACK_ROOT.getPath() + "/" + config.getString("GeoDataPath", "geodata"));
-		PATHNODE_PATH = Paths.get(ServerConfig.DATAPACK_ROOT.getPath() + "/" + config.getString("PathnodePath", "pathnode"));
 		GEOEDIT_PATH = Paths.get(ServerConfig.DATAPACK_ROOT.getPath() + "/" + config.getString("GeoEditPath", "saves"));
 		PATHFINDING = config.getInt("PathFinding", 0);
 		PATHFIND_BUFFERS = config.getString("PathFindBuffers", "100x6;128x6;192x6;256x4;320x4;384x4;500x2");

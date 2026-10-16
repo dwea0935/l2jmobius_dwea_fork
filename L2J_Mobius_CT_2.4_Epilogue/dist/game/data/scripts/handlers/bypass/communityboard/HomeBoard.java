@@ -79,16 +79,16 @@ public class HomeBoard implements IParseBoardHandler
 	
 	private static final String[] CUSTOM_COMMANDS =
 	{
-		PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED && CommunityBoardConfig.COMMUNITY_PREMIUM_SYSTEM_ENABLED ? "_bbspremium" : null,
-		CommunityBoardConfig.COMMUNITYBOARD_ENABLE_MULTISELLS ? "_bbsexcmultisell" : null,
-		CommunityBoardConfig.COMMUNITYBOARD_ENABLE_MULTISELLS ? "_bbsmultisell" : null,
-		CommunityBoardConfig.COMMUNITYBOARD_ENABLE_MULTISELLS ? "_bbssell" : null,
-		CommunityBoardConfig.COMMUNITYBOARD_ENABLE_TELEPORTS ? "_bbsteleport" : null,
-		CommunityBoardConfig.COMMUNITYBOARD_ENABLE_BUFFS ? "_bbsbuff" : null,
-		CommunityBoardConfig.COMMUNITYBOARD_ENABLE_HEAL ? "_bbsheal" : null,
-		CommunityBoardConfig.COMMUNITYBOARD_ENABLE_DELEVEL ? "_bbsdelevel" : null,
-		CommunityBoardConfig.COMMUNITYBOARD_ENABLE_CLEANSE ? "_bbscleanse" : null,
-		PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED && CommunityBoardConfig.COMMUNITY_PREMIUM_SYSTEM_ENABLED ? "_bbspremiumbuff" : null
+		"_bbspremium",
+		"_bbsexcmultisell",
+		"_bbsmultisell",
+		"_bbssell",
+		"_bbsteleport",
+		"_bbsbuff",
+		"_bbsheal",
+		"_bbsdelevel",
+		"_bbscleanse",
+		"_bbspremiumbuff"
 	};
 	
 	private static final BiPredicate<String, Player> COMBAT_CHECK = (command, player) ->
@@ -170,6 +170,12 @@ public class HomeBoard implements IParseBoardHandler
 		}
 		else if (command.startsWith("_bbsmultisell"))
 		{
+			if (!CommunityBoardConfig.COMMUNITYBOARD_ENABLE_MULTISELLS)
+			{
+				player.sendMessage("This function is disabled.");
+				return false;
+			}
+			
 			final String fullBypass = command.replace("_bbsmultisell;", "");
 			final String[] buypassOptions = fullBypass.split(",");
 			final int multisellId = Integer.parseInt(buypassOptions[0]);
@@ -179,6 +185,12 @@ public class HomeBoard implements IParseBoardHandler
 		}
 		else if (command.startsWith("_bbsexcmultisell"))
 		{
+			if (!CommunityBoardConfig.COMMUNITYBOARD_ENABLE_MULTISELLS)
+			{
+				player.sendMessage("This function is disabled.");
+				return false;
+			}
+			
 			final String fullBypass = command.replace("_bbsexcmultisell;", "");
 			final String[] buypassOptions = fullBypass.split(",");
 			final int multisellId = Integer.parseInt(buypassOptions[0]);
@@ -188,6 +200,12 @@ public class HomeBoard implements IParseBoardHandler
 		}
 		else if (command.startsWith("_bbssell"))
 		{
+			if (!CommunityBoardConfig.COMMUNITYBOARD_ENABLE_MULTISELLS)
+			{
+				player.sendMessage("This function is disabled.");
+				return false;
+			}
+			
 			final String page = command.replace("_bbssell;", "");
 			returnHtml = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/Custom/" + page + ".html");
 			ThreadPool.schedule(() ->
@@ -199,6 +217,12 @@ public class HomeBoard implements IParseBoardHandler
 		}
 		else if (command.startsWith("_bbsteleport"))
 		{
+			if (!CommunityBoardConfig.COMMUNITYBOARD_ENABLE_TELEPORTS)
+			{
+				player.sendMessage("This function is disabled.");
+				return false;
+			}
+			
 			final String teleBuypass = command.replace("_bbsteleport;", "");
 			if (player.getInventory().getInventoryItemCount(CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, -1) < CommunityBoardConfig.COMMUNITYBOARD_TELEPORT_PRICE)
 			{
@@ -208,7 +232,10 @@ public class HomeBoard implements IParseBoardHandler
 			{
 				player.disableAllSkills();
 				player.sendPacket(new ShowBoard());
-				player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, CommunityBoardConfig.COMMUNITYBOARD_TELEPORT_PRICE, player, true);
+				if (CommunityBoardConfig.COMMUNITYBOARD_TELEPORT_PRICE > 0)
+				{
+					player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, CommunityBoardConfig.COMMUNITYBOARD_TELEPORT_PRICE, player, true);
+				}
 				player.setIn7sDungeon(false);
 				player.setInstanceId(0);
 				player.teleToLocation(CommunityBoardConfig.COMMUNITY_AVAILABLE_TELEPORTS.get(teleBuypass), 0);
@@ -217,42 +244,71 @@ public class HomeBoard implements IParseBoardHandler
 		}
 		else if (command.startsWith("_bbsbuff"))
 		{
+			if (!CommunityBoardConfig.COMMUNITYBOARD_ENABLE_BUFFS)
+			{
+				player.sendMessage("This function is disabled.");
+				return false;
+			}
+			
 			final String fullBypass = command.replace("_bbsbuff;", "");
 			final String[] buypassOptions = fullBypass.split(";");
 			final int buffCount = buypassOptions.length - 1;
 			final String page = buypassOptions[buffCount];
-			if (player.getInventory().getInventoryItemCount(CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, -1) < (CommunityBoardConfig.COMMUNITYBOARD_BUFF_PRICE * buffCount))
+			
+			final List<Skill> validSkills = new ArrayList<>(buffCount);
+			for (int i = 0; i < buffCount; i++)
 			{
-				player.sendMessage("Not enough currency!");
-			}
-			else
-			{
-				player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, CommunityBoardConfig.COMMUNITYBOARD_BUFF_PRICE * buffCount, player, true);
-				final Summon pet = player.getSummon();
-				final List<Creature> targets = new ArrayList<>(4);
-				targets.add(player);
-				if (pet != null)
+				final String[] parts = buypassOptions[i].split(",");
+				if (parts.length < 2)
 				{
-					targets.add(pet);
+					continue;
 				}
 				
-				for (int i = 0; i < buffCount; i++)
+				final int skillId = Integer.parseInt(parts[0]);
+				final int skillLevel = Integer.parseInt(parts[1]);
+				if (!CommunityBoardConfig.COMMUNITY_AVAILABLE_BUFFS.contains(skillId))
 				{
-					final Skill skill = SkillData.getInstance().getSkill(Integer.parseInt(buypassOptions[i].split(",")[0]), Integer.parseInt(buypassOptions[i].split(",")[1]));
-					if (!CommunityBoardConfig.COMMUNITY_AVAILABLE_BUFFS.contains(skill.getId()))
+					continue;
+				}
+				
+				final Skill skill = SkillData.getInstance().getSkill(skillId, skillLevel);
+				if (skill != null)
+				{
+					validSkills.add(skill);
+				}
+			}
+			
+			final int totalCost = CommunityBoardConfig.COMMUNITYBOARD_BUFF_PRICE * validSkills.size();
+			if (!validSkills.isEmpty())
+			{
+				if (player.getInventory().getInventoryItemCount(CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, -1) < totalCost)
+				{
+					player.sendMessage("Not enough currency!");
+				}
+				else
+				{
+					if (totalCost > 0)
 					{
-						continue;
+						player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, totalCost, player, true);
 					}
 					
-					for (Creature target : targets)
+					final Summon pet = player.getSummon();
+					final List<Creature> targets = new ArrayList<>(2);
+					targets.add(player);
+					if (pet != null)
 					{
-						skill.applyEffects(player, target);
-						if (CommunityBoardConfig.COMMUNITYBOARD_CAST_ANIMATIONS)
+						targets.add(pet);
+					}
+					
+					for (Skill skill : validSkills)
+					{
+						for (Creature target : targets)
 						{
-							player.sendPacket(new MagicSkillUse(player, target, skill.getId(), skill.getLevel(), skill.getHitTime(), skill.getReuseDelay()));
-							
-							// not recommend broadcast
-							// player.broadcastPacket(new MagicSkillUse(player, target, skill.getId(), skill.getLevel(), skill.getHitTime(), skill.getReuseDelay()));
+							skill.applyEffects(player, target);
+							if (CommunityBoardConfig.COMMUNITYBOARD_CAST_ANIMATIONS)
+							{
+								player.sendPacket(new MagicSkillUse(player, target, skill.getId(), skill.getLevel(), skill.getHitTime(), skill.getReuseDelay()));
+							}
 						}
 					}
 				}
@@ -262,14 +318,23 @@ public class HomeBoard implements IParseBoardHandler
 		}
 		else if (command.startsWith("_bbsheal"))
 		{
+			if (!CommunityBoardConfig.COMMUNITYBOARD_ENABLE_HEAL)
+			{
+				player.sendMessage("This function is disabled.");
+				return false;
+			}
+			
 			final String page = command.replace("_bbsheal;", "");
-			if (player.getInventory().getInventoryItemCount(CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, -1) < (CommunityBoardConfig.COMMUNITYBOARD_HEAL_PRICE))
+			if (player.getInventory().getInventoryItemCount(CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, -1) < CommunityBoardConfig.COMMUNITYBOARD_HEAL_PRICE)
 			{
 				player.sendMessage("Not enough currency!");
 			}
 			else
 			{
-				player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, CommunityBoardConfig.COMMUNITYBOARD_HEAL_PRICE, player, true);
+				if (CommunityBoardConfig.COMMUNITYBOARD_HEAL_PRICE > 0)
+				{
+					player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, CommunityBoardConfig.COMMUNITYBOARD_HEAL_PRICE, player, true);
+				}
 				player.setCurrentHp(player.getMaxHp());
 				player.setCurrentMp(player.getMaxMp());
 				player.setCurrentCp(player.getMaxCp());
@@ -288,6 +353,12 @@ public class HomeBoard implements IParseBoardHandler
 		}
 		else if (command.startsWith("_bbscleanse"))
 		{
+			if (!CommunityBoardConfig.COMMUNITYBOARD_ENABLE_CLEANSE)
+			{
+				player.sendMessage("This function is disabled.");
+				return false;
+			}
+			
 			final String page = command.replace("_bbscleanse;", "");
 			if (player.getInventory().getInventoryItemCount(CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, -1) < CommunityBoardConfig.COMMUNITYBOARD_CLEANSE_PRICE)
 			{
@@ -295,7 +366,10 @@ public class HomeBoard implements IParseBoardHandler
 			}
 			else
 			{
-				player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, CommunityBoardConfig.COMMUNITYBOARD_CLEANSE_PRICE, player, true);
+				if (CommunityBoardConfig.COMMUNITYBOARD_CLEANSE_PRICE > 0)
+				{
+					player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, CommunityBoardConfig.COMMUNITYBOARD_CLEANSE_PRICE, player, true);
+				}
 				player.stopAllEffects();
 				if (player.hasSummon())
 				{
@@ -309,6 +383,12 @@ public class HomeBoard implements IParseBoardHandler
 		}
 		else if (command.equals("_bbsdelevel"))
 		{
+			if (!CommunityBoardConfig.COMMUNITYBOARD_ENABLE_DELEVEL)
+			{
+				player.sendMessage("This function is disabled.");
+				return false;
+			}
+			
 			if (player.getInventory().getInventoryItemCount(CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, -1) < CommunityBoardConfig.COMMUNITYBOARD_DELEVEL_PRICE)
 			{
 				player.sendMessage("Not enough currency!");
@@ -319,7 +399,10 @@ public class HomeBoard implements IParseBoardHandler
 			}
 			else
 			{
-				player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, CommunityBoardConfig.COMMUNITYBOARD_DELEVEL_PRICE, player, true);
+				if (CommunityBoardConfig.COMMUNITYBOARD_DELEVEL_PRICE > 0)
+				{
+					player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITYBOARD_CURRENCY, CommunityBoardConfig.COMMUNITYBOARD_DELEVEL_PRICE, player, true);
+				}
 				final int newLevel = player.getLevel() - 1;
 				player.setExp(ExperienceData.getInstance().getExpForLevel(newLevel));
 				player.getStat().setLevel((byte) newLevel);
@@ -330,8 +413,14 @@ public class HomeBoard implements IParseBoardHandler
 				returnHtml = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/Custom/delevel/complete.html");
 			}
 		}
-		else if (command.startsWith("_bbspremium"))
+		else if (command.startsWith("_bbspremium") && !command.startsWith("_bbspremiumbuff"))
 		{
+			if (!PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED || !CommunityBoardConfig.COMMUNITY_PREMIUM_SYSTEM_ENABLED)
+			{
+				player.sendMessage("This function is disabled.");
+				return false;
+			}
+			
 			final String fullBypass = command.replace("_bbspremium;", "");
 			final String[] buypassOptions = fullBypass.split(",");
 			final int premiumDays = Integer.parseInt(buypassOptions[0]);
@@ -355,6 +444,12 @@ public class HomeBoard implements IParseBoardHandler
 		}
 		else if (command.startsWith("_bbspremiumbuff"))
 		{
+			if (!PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED || !CommunityBoardConfig.COMMUNITY_PREMIUM_SYSTEM_ENABLED)
+			{
+				player.sendMessage("This function is disabled.");
+				return false;
+			}
+			
 			final String fullBypass = command.replace("_bbspremiumbuff;", "");
 			final String[] buypassOptions = fullBypass.split(";");
 			
@@ -369,46 +464,65 @@ public class HomeBoard implements IParseBoardHandler
 				return false;
 			}
 			
-			// Check if the player has enough currency
-			final int totalCost = CommunityBoardConfig.COMMUNITY_PREMIUM_PRICE_PER_USE * buffCount;
-			if (player.getInventory().getInventoryItemCount(CommunityBoardConfig.COMMUNITY_PREMIUM_USE_COIN_ID, -1) < totalCost)
-			{
-				player.sendMessage("Not enough currency!");
-				return false;
-			}
-			
-			// Deduct cost
-			player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITY_PREMIUM_USE_COIN_ID, totalCost, player, true);
-			
-			// Determine buff targets
-			final Summon pet = player.getSummon();
-			final List<Creature> targets = new ArrayList<>(4);
-			targets.add(player);
-			if (pet != null)
-			{
-				targets.add(pet);
-			}
-			
-			// Apply each buff
+			final List<Skill> validSkills = new ArrayList<>(buffCount);
 			for (int i = 0; i < buffCount; i++)
 			{
 				final String[] parts = buypassOptions[i].split(",");
+				if (parts.length < 2)
+				{
+					continue;
+				}
+				
 				final int skillId = Integer.parseInt(parts[0]);
 				final int skillLevel = Integer.parseInt(parts[1]);
-				
 				if (!CommunityBoardConfig.COMMUNITY_AVAILABLE_BUFFS.contains(skillId))
 				{
 					continue;
 				}
 				
 				final Skill skill = SkillData.getInstance().getSkill(skillId, skillLevel);
-				for (Creature target : targets)
+				if (skill != null)
 				{
-					skill.applyEffects(player, target);
-					
-					if (CommunityBoardConfig.COMMUNITYBOARD_CAST_ANIMATIONS)
+					validSkills.add(skill);
+				}
+			}
+			
+			// Check if the player has enough currency for valid whitelisted skills
+			final int totalCost = CommunityBoardConfig.COMMUNITY_PREMIUM_PRICE_PER_USE * validSkills.size();
+			if (!validSkills.isEmpty())
+			{
+				if (player.getInventory().getInventoryItemCount(CommunityBoardConfig.COMMUNITY_PREMIUM_USE_COIN_ID, -1) < totalCost)
+				{
+					player.sendMessage("Not enough currency!");
+					return false;
+				}
+				
+				// Deduct cost
+				if (totalCost > 0)
+				{
+					player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITY_PREMIUM_USE_COIN_ID, totalCost, player, true);
+				}
+				
+				// Determine buff targets
+				final Summon pet = player.getSummon();
+				final List<Creature> targets = new ArrayList<>(2);
+				targets.add(player);
+				if (pet != null)
+				{
+					targets.add(pet);
+				}
+				
+				// Apply each validated buff
+				for (Skill skill : validSkills)
+				{
+					for (Creature target : targets)
 					{
-						player.sendPacket(new MagicSkillUse(player, target, skillId, skillLevel, skill.getHitTime(), skill.getReuseDelay()));
+						skill.applyEffects(player, target);
+						
+						if (CommunityBoardConfig.COMMUNITYBOARD_CAST_ANIMATIONS)
+						{
+							player.sendPacket(new MagicSkillUse(player, target, skill.getId(), skill.getLevel(), skill.getHitTime(), skill.getReuseDelay()));
+						}
 					}
 				}
 			}

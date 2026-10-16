@@ -22,16 +22,15 @@ package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.config.ThreadConfig;
-import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.config.GeneralConfig;
@@ -50,7 +49,6 @@ public class SkillData
 	private final Map<Integer, Integer> _maxSkillLevels = new ConcurrentHashMap<>();
 	private final Set<Integer> _enchantable = ConcurrentHashMap.newKeySet();
 	private final List<File> _skillFiles = new ArrayList<>();
-	private static int count = 0;
 	
 	protected SkillData()
 	{
@@ -135,33 +133,23 @@ public class SkillData
 	{
 		if (ThreadConfig.THREADS_FOR_LOADING)
 		{
-			final Collection<ScheduledFuture<?>> jobs = ConcurrentHashMap.newKeySet();
-			for (File file : _skillFiles)
+			try (ExecutorService loaderPool = Executors.newVirtualThreadPerTaskExecutor())
 			{
-				jobs.add(ThreadPool.schedule(() ->
+				for (File file : _skillFiles)
 				{
-					final List<Skill> skills = loadSkills(file);
-					if (skills == null)
+					loaderPool.submit(() ->
 					{
-						return;
-					}
-					
-					for (Skill skill : skills)
-					{
-						allSkills.put(SkillData.getSkillHashCode(skill), skill);
-						count++;
-					}
-				}, 0));
-			}
-			
-			while (!jobs.isEmpty())
-			{
-				for (ScheduledFuture<?> job : jobs)
-				{
-					if ((job == null) || job.isDone() || job.isCancelled())
-					{
-						jobs.remove(job);
-					}
+						final List<Skill> skills = loadSkills(file);
+						if (skills == null)
+						{
+							return;
+						}
+						
+						for (Skill skill : skills)
+						{
+							allSkills.put(SkillData.getSkillHashCode(skill), skill);
+						}
+					});
 				}
 			}
 		}
@@ -178,12 +166,11 @@ public class SkillData
 				for (Skill skill : skills)
 				{
 					allSkills.put(SkillData.getSkillHashCode(skill), skill);
-					count++;
 				}
 			}
 		}
 		
-		LOGGER.info(getClass().getSimpleName() + ": Loaded " + count + " Skill templates from XML files.");
+		LOGGER.info(getClass().getSimpleName() + ": Loaded " + allSkills.size() + " Skill templates from XML files.");
 	}
 	
 	private static volatile boolean _initialized = false;
