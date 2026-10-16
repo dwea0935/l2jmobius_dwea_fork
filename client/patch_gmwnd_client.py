@@ -158,13 +158,13 @@ def patch_interface_xdat():
     assert (w_orig, h_orig) == (350, 355), f"Unexpected GMWnd size: {(w_orig, h_orig)}"
     struct.pack_into("<ii", xdat, 399225, 992, 544)
 
-    # 3. Increment GMWnd child count right before first child (\x08EditBox\x00) from 19 to 21
+    # 3. Locate GMWnd child count right before first child (\x08EditBox\x00)
     cc_off = xdat.find(b"\x13\x00\x00\x00\x08EditBox\x00", 399160, 400000)
     assert cc_off != -1, "Could not locate GMWnd child count before EditBox"
-    struct.pack_into("<i", xdat, cc_off, 21)
+    # 19 original widgets + 3 left-dock GroupBox_DF backgrounds + 2 extra section TextBoxes + texBack + HtmlViewer = 26
+    struct.pack_into("<i", xdat, cc_off, 26)
 
-    # 4. Reposition the 19 existing native C++ controls in GMWnd into a 2-column left dock (x=10..225)
-    #    Collect all 19 widget parent-name offsets inside [399160..404835]
+    # 4. Collect all 19 widget parent-name offsets inside [399160..404835]
     widget_offsets = []
     pos = 399167
     while True:
@@ -176,11 +176,7 @@ def patch_interface_xdat():
         pos = p + 7
     assert len(widget_offsets) == 19, f"Expected 19 widgets, found {len(widget_offsets)}"
 
-    # Desired absolute (x, y, w, h) inside GMWnd for the 19 widgets:
-    #   Widget 0  (EditBox):  x=48, y=40, w=177, h=20
-    #   Widget 18 (TextBox):  x=12, y=43, w=24,  h=14
-    #   Widgets 1..17 (17 Buttons in 2 columns of w=105, h=26, Col1 x=10, Col2 x=120, y=68 + row*30):
-    btn_Order_names = [
+    btn_order_names = [
         "TeleButton",
         "MoveButton",
         "RecallButton",
@@ -199,14 +195,35 @@ def patch_interface_xdat():
         "ForcePetitionButton",
         "ChangeServerButton",
     ]
-    abs_coords = {}
-    for i, bname in enumerate(btn_Order_names):
-        col = i % 2
-        row = i // 2
-        bx = 10.0 if col == 0 else 120.0
-        by = 68.0 + row * 30.0
-        abs_coords[bname] = (bx, by, 105, 26)
 
+    # 3-Section Left Native C++ Dock Layout (x=8..228) per AGENT_SYNC_AND_RECONCILIATION.md §4.4:
+    #   Section 1 (y=34..162): Target / Quick Console
+    #   Section 2 (y=166..240): Client .dat Search (Summon)
+    #   Section 3 (y=244..368): Legacy NCSoft GM Inspector & Recall
+    btn_spec = {
+        # Section 1: Primary Console & Target Quick Actions (w=102, h=24)
+        "ChangeServerButton":  (13.0,  78.0, 102, 24, "Admin Home"),
+        "PetitionButton":      (119.0, 78.0, 102, 24, "Player Panel"),
+        "ForcePetitionButton": (13.0, 105.0, 102, 24, "Legacy Tools"),
+        "InfoButton":          (119.0, 105.0, 102, 24, "Target Debug"),
+        "TeleButton":          (13.0, 132.0, 102, 24, "Teleport To"),
+        "MoveButton":          (119.0, 132.0, 102, 24, "Instant Move"),
+        # Section 2: Client .dat Search Trees (w=102 / 208, h=23)
+        "ItemListButton":      (13.0, 187.0, 102, 23, "Search Item"),
+        "NPCListButton":       (119.0, 187.0, 102, 23, "Search NPC"),
+        "SkillListButton":     (13.0, 212.0, 208, 23, "Search Skill (.dat)"),
+        # Section 3: Compact Legacy NCSoft GM Inspector (w=102, h=22)
+        "DetailStatusButton":  (13.0, 265.0, 102, 22, "View Status"),
+        "InventoryButton":     (119.0, 265.0, 102, 22, "View Items"),
+        "MagicSkillButton":    (13.0, 289.0, 102, 22, "View Skills"),
+        "QuestButton":         (119.0, 289.0, 102, 22, "View Quests"),
+        "StoreButton":         (13.0, 313.0, 102, 22, "Warehouse"),
+        "ClanButton":          (119.0, 313.0, 102, 22, "View Clan"),
+        "RecallButton":        (13.0, 337.0, 102, 22, "Recall Chr"),
+        "SendHomeButton":      (119.0, 337.0, 102, 22, "Send Home"),
+    }
+
+    # Update coordinates and sizes while offsets are still at their original positions
     for idx, p in enumerate(widget_offsets):
         ap = p + 7 + 22  # right after \x06GMWnd\x00\x0aundefined\x00\x0aundefined\x00
         anch_len = xdat[ap + 36]
@@ -217,31 +234,107 @@ def patch_interface_xdat():
             anch_wnd = ""
             fp = ap + 37
 
-        if idx == 0:  # EditBox
-            struct.pack_into("<ii", xdat, ap + 16, 177, 20)
-            struct.pack_into("<ff", xdat, fp, 48.0, 40.0)
-        elif idx == 18:  # TextBox ("Name")
-            struct.pack_into("<ff", xdat, fp, 12.0, 43.0)
+        if idx == 0:  # EditBox (full-width inside Section 1)
+            struct.pack_into("<ii", xdat, ap + 16, 208, 20)
+            struct.pack_into("<ff", xdat, fp, 14.0, 54.0)
+        elif idx == 18:  # TextBox (Section 1 header)
+            struct.pack_into("<ii", xdat, ap + 16, 200, 14)
+            struct.pack_into("<ff", xdat, fp, 14.0, 38.0)
         else:  # Button 1..17
-            bname = btn_Order_names[idx - 1]
-            tx, ty, tw, th = abs_coords[bname]
+            bname = btn_order_names[idx - 1]
+            tx, ty, tw, th, _ = btn_spec[bname]
             struct.pack_into("<ii", xdat, ap + 16, tw, th)
-            # Set RelativePoint=1 (TopLeft), AnchorPoint=1 (TopLeft)
             struct.pack_into("<iii", xdat, ap + 24, 1, 1, 1)
             if anch_wnd == "":
                 rx, ry = tx, ty
             else:
-                px, py, _, _ = abs_coords[anch_wnd]
+                px, py, _, _, _ = btn_spec[anch_wnd]
                 rx, ry = tx - px, ty - py
             struct.pack_into("<ff", xdat, fp, rx, ry)
 
-            # For ChangeServerButton (idx == 17), change label sysstring ID from 1275 to 415 ('Administrator')
-            if idx == 17:
-                next_p = widget_offsets[18]
-                # Search for 1275 (fb 04 00 00) inside ChangeServerButton record
-                lbl_pos = xdat.find(struct.pack("<i", 1275), p, next_p)
-                assert lbl_pos != -1, "Could not find 1275 sysstring ID in ChangeServerButton"
-                struct.pack_into("<i", xdat, lbl_pos, 415)
+    # Slice the 19 individual widget records from xdat[cc_off+4 : 404835]
+    children_start = cc_off + 4
+    children_end = 404835
+    starts = [children_start]
+    pos = children_start + 1
+    while len(starts) < 19:
+        p1 = xdat.find(b"\x07Button\x00", pos, children_end)
+        p2 = xdat.find(b"\x08TextBox\x00", pos, children_end)
+        cands = [c for c in (p1, p2) if c != -1]
+        nxt = min(cands)
+        starts.append(nxt)
+        pos = nxt + 1
+
+    widget_recs = []
+    for i in range(19):
+        s = starts[i]
+        e = starts[i + 1] if i + 1 < 19 else children_end
+        widget_recs.append(bytearray(xdat[s:e]))
+
+    # Upgrade all 17 Button records with standard interactive Button_DF / Button_DF_Click / Button_DF_Over
+    # textures, NoHighlight = -1, and custom literal English labels (ButtonName = -9999)
+    old_btn_tex = (
+        b" L2UI_CT1.Button.Button_DF_Small\x00"
+        b" L2UI_CT1.Button.Button_DF_Small\x00"
+        b"\nundefined\x00"
+        b"\nundefined\x00"
+    )
+    for idx in range(1, 18):
+        bname = btn_order_names[idx - 1]
+        _, _, _, _, label = btn_spec[bname]
+        rec = widget_recs[idx]
+        tpos = rec.find(old_btn_tex)
+        assert tpos != -1, f"Could not find Button_DF_Small texture block in {bname}"
+        tail_pos = tpos + len(old_btn_tex)
+        # Verify original trailing bytes: <int sys_id> + \nundefined\x00 + \x01\x00\x00\x00 (NoHighlight=1)
+        assert rec[tail_pos + 4 : tail_pos + 19] == b"\nundefined\x00\x01\x00\x00\x00", (
+            f"Unexpected Button tail in {bname}"
+        )
+        lbl_bytes = label.encode("latin1") + b"\x00"
+        new_btn_block = (
+            b"\x1aL2UI_CT1.Button.Button_DF\x00"
+            b" L2UI_CT1.Button.Button_DF_Click\x00"
+            b"\x1fL2UI_CT1.Button.Button_DF_Over\x00"
+            b"\nundefined\x00"
+            + struct.pack("<i", -9999)
+            + bytes([len(lbl_bytes)])
+            + lbl_bytes
+            + struct.pack("<i", -1)  # NoHighlight = -1 (enables hover + pushed click feedback!)
+        )
+        widget_recs[idx] = rec[:tpos] + new_btn_block + rec[tail_pos + 19 :]
+
+    # Helper to build a customized TextBox record cloned from Widget 18
+    tb_template = bytes(widget_recs[18])
+
+    def build_textbox(wname: str, text: str, x: float, y: float, w: int, h: int, rgba: bytes) -> bytearray:
+        rec = bytearray(tb_template)
+        # Replace second \x08TextBox\x00 (widget name) with wname
+        wname_b = wname.encode("latin1") + b"\x00"
+        rec = bytearray(b"\x08TextBox\x00" + bytes([len(wname_b)]) + wname_b + rec[18:])
+        t_p = rec.find(b"\x06GMWnd\x00") + 7 + 22
+        struct.pack_into("<ii", rec, t_p + 16, w, h)
+        struct.pack_into("<ff", rec, t_p + 37, x, y)
+        # Replace trailing \nundefined\x00 (Text) and sysstring ID (50 -> -9999) + RGBA color
+        marker = b"\xf1\xd8\xff\xff\xf1\xd8\xff\xff\xf1\xd8\xff\xff\xf1\xd8\xff\xff\nundefined\x00"
+        mpos = rec.find(marker)
+        assert mpos != -1, "Could not locate TextBox text marker"
+        txt_pos = mpos + 16
+        txt_b = text.encode("latin1") + b"\x00"
+        after_txt = bytearray(rec[txt_pos + 11 :])  # after \nundefined\x00
+        # sysstring ID is at offset 23 inside after_txt (12 bytes zeros/ff + 11 bytes \nundefined\x00)
+        struct.pack_into("<i", after_txt, 23, -9999)
+        after_txt[31:35] = rgba
+        return rec[:txt_pos] + bytes([len(txt_b)]) + txt_b + after_txt
+
+    widget_recs[18] = build_textbox(
+        "TextBox", "1. Target & Console", 14.0, 38.0, 200, 14, b"\xff\xd7\x66\xff"
+    )
+    txt_sec_search = build_textbox(
+        "txtSecSearch", "2. Client .dat Search", 14.0, 170.0, 200, 14, b"\xff\xd7\x66\xff"
+    )
+    txt_sec_legacy = build_textbox(
+        "txtSecLegacy", "3. Legacy GM Inspector", 14.0, 248.0, 200, 14, b"\xa8\xc4\xe0\xff"
+    )
 
     # 5. Extract ItemDescWnd's 2 children (texBack and HtmlViewer) from orig_xdat [444075..444471]
     tex_start = xdat.find(b"\x08Texture\x00\x08texBack\x00", 443626, 444471)
@@ -249,31 +342,46 @@ def patch_interface_xdat():
     npc_start = xdat.find(b"\x0dNPCDialogWnd\x00", 443626, 444500)
     assert tex_start != -1 and html_start != -1 and npc_start != -1
 
-    tex_rec = bytearray(xdat[tex_start:html_start])
-    html_rec = bytearray(xdat[html_start:npc_start])
+    tex_template = bytearray(xdat[tex_start:html_start]).replace(b"\x0cItemDescWnd\x00", b"\x06GMWnd\x00", 1)
+    html_rec = bytearray(xdat[html_start:npc_start]).replace(b"\x0cItemDescWnd\x00", b"\x06GMWnd\x00", 1)
 
-    # Replace parent window name \x0cItemDescWnd\x00 with \x06GMWnd\x00
-    tex_rec = tex_rec.replace(b"\x0cItemDescWnd\x00", b"\x06GMWnd\x00", 1)
-    html_rec = html_rec.replace(b"\x0cItemDescWnd\x00", b"\x06GMWnd\x00", 1)
+    def build_groupbox(wname: str, x: float, y: float, w: int, h: int) -> bytearray:
+        rec = bytearray(tex_template)
+        wname_b = wname.encode("latin1") + b"\x00"
+        rec = bytearray(b"\x08Texture\x00" + bytes([len(wname_b)]) + wname_b + rec[18:])
+        t_p = rec.find(b"\x06GMWnd\x00") + 7 + 22
+        struct.pack_into("<ii", rec, t_p + 16, w, h)
+        struct.pack_into("<ff", rec, t_p + 37, x, y)
+        return rec
 
-    # Set texBack size=(752, 500), pos=(232.0, 34.0)
-    t_p = tex_rec.find(b"\x06GMWnd\x00") + 7 + 22
-    struct.pack_into("<ii", tex_rec, t_p + 16, 752, 500)
-    struct.pack_into("<ff", tex_rec, t_p + 37, 232.0, 34.0)
+    tex_dock1 = build_groupbox("texDock1", 8.0, 34.0, 220, 128)
+    tex_dock2 = build_groupbox("texDock2", 8.0, 166.0, 220, 74)
+    tex_dock3 = build_groupbox("texDock3", 8.0, 244.0, 220, 124)
+    tex_back = build_groupbox("texBack", 232.0, 34.0, 752, 500)
 
     # Set HtmlViewer size=(744, 492), pos=(236.0, 38.0)
     h_p = html_rec.find(b"\x06GMWnd\x00") + 7 + 22
     struct.pack_into("<ii", html_rec, h_p + 16, 744, 492)
     struct.pack_into("<ff", html_rec, h_p + 37, 236.0, 38.0)
 
-    # Insert tex_rec + html_rec right before GuideWnd @ 404835
-    patched_xdat = xdat[:404835] + tex_rec + html_rec + xdat[404835:]
+    # Assemble all 26 children of GMWnd (backgrounds first so AlwaysOnBack GroupBoxes sit underneath controls)
+    all_children = (
+        tex_dock1
+        + tex_dock2
+        + tex_dock3
+        + tex_back
+        + b"".join(widget_recs)
+        + txt_sec_search
+        + txt_sec_legacy
+        + html_rec
+    )
+    patched_xdat = xdat[:children_start] + all_children + xdat[404835:]
     with open(out_path, "wb") as f:
         f.write(patched_xdat)
 
     print(
         f"[+] Patched system/interface.xdat ({len(xdat)} -> {len(patched_xdat)} bytes): "
-        "GMWnd expanded to 992x544 with 2-col C++ dock + GMWnd.HtmlViewer (744x492)"
+        "GMWnd v2 (992x544) with 3-section left dock, full Button_DF hover/click feedback, Legacy group + HtmlViewer"
     )
 
 
@@ -353,7 +461,29 @@ def patch_interface_u():
     code_12081 = stmt_admin + (b"\x0b" * (64 - len(stmt_admin)))
     patch_func_in_place(data, off, sz, code_12081, 17 + (64 - len(stmt_admin)))
 
-    # 5. GMWnd.HandleShowGMWnd (#12139, off=762244, sz=78):
+    # 5. GMWnd.OnClickPetitionButton (#12101, off=755055, sz=83):
+    #    Repurpose obsolete Petition button into "Player Panel":
+    #    ExecuteCommand("//gmw player" @ m_hEditBox.GetString()); return; + 20x EX_Nothing (0x0B)
+    off, sz = 755055, 83
+    stmt_peti = (
+        bytes.fromhex("1cfb02a8")
+        + b"\x1f//gmw player\x00"
+        + bytes.fromhex("190166040600001cfd01161616040b")
+    )
+    pad_12101 = 53 - len(stmt_peti)
+    code_12101 = stmt_peti + (b"\x0b" * pad_12101)
+    patch_func_in_place(data, off, sz, code_12101, 59)
+
+    # 6. GMWnd.OnClickForcePetitionButton (#12089, off=753162, sz=90):
+    #    Repurpose obsolete ForcePetition button into "Legacy Tools":
+    #    ExecuteCommand("//gmw legacy"); return; + 40x EX_Nothing (0x0B)
+    off, sz = 753162, 90
+    stmt_fpeti = bytes.fromhex("1cfb02") + b"\x1f//gmw legacy\x00" + bytes.fromhex("16040b")
+    pad_12089 = 60 - len(stmt_fpeti)
+    code_12089 = stmt_fpeti + (b"\x0b" * pad_12089)
+    patch_func_in_place(data, off, sz, code_12089, 62)
+
+    # 7. GMWnd.HandleShowGMWnd (#12139, off=762244, sz=78):
     #    Replace m_hGMwnd.SetFocus() (11 disk bytes) with ExecuteCommand("//gmw") (11 disk bytes)
     off, sz = 762244, 78
     code_12139 = bytearray(data[off + 22 : off + sz - 7])
