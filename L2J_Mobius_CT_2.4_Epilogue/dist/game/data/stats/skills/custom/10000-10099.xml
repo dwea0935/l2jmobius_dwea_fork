@@ -6,7 +6,7 @@
 		<targetType>SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>20</abnormalTime>
-		<abnormalType>MP_RECOVER</abnormalType>
+		<abnormalType>MP_REGEN_UP</abnormalType>
 		<displayId>2288</displayId>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<magicLevel>1</magicLevel>
