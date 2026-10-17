@@ -357,11 +357,16 @@ def patch_interface_xdat():
     tab_entries = bytearray(struct.pack("<i", len(tab_defs)))
     for t_title, t_width in tab_defs:
         lbl_b = t_title.encode("latin1") + b"\x00"
+        # Bind target to GMWnd's parked off-canvas TextBox (\x08TextBox\x00) rather than HtmlViewer
+        # because NCTabControl::AddTabControl sets NW_HIDDEN (0x10000000) on each tab's targetWnd
+        # during InitTabCtrl before any tab is clicked! Using TextBox keeps targetWnd != NULL
+        # (so OnTabClick updates active tab state and fires OnClickButton("TabCtrl0".."TabCtrl6"))
+        # while keeping GMWnd.HtmlViewer 100% visible on the very first open!
         tab_entries += (
             struct.pack("<i", -9999)
             + bytes([len(lbl_b)])
             + lbl_b
-            + b"\x0bHtmlViewer\x00"
+            + b"\x08TextBox\x00"
             + struct.pack("<ii", t_width, 23)
             + b"\x23L2UI_CT1.tab.Tab_DF_Tab_Unselected\x00"
             + b"\x21L2UI_CT1.tab.Tab_DF_Tab_Selected\x00"
