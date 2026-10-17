@@ -444,3 +444,15 @@ python3 /home/dwea/Projects/L2/l2jmobius_dwea_fork/tools/auditor/l2_auditor.py -
 4. **Client UE2.5/DXVK Tuning & Local Docker Java 27 (`Temurin-27+35`) Lilliput + ZGC Optimization:**
    - **Agent 2 (`l2.ini`, `Option.ini`, `launch-l2.sh`):** Set `CacheSizeMegs=512`, `L2MaxPawnResourceLoad=5.0`, `GPUAnimation=True`, `ReduceMouseLag=False`, `UseTripleBuffering=True`, `LevelOfAnisotropy=16`, and `DXVK_STATE_CACHE=1`.
    - **Agent 3 (`docker/run-server.sh`, `docker-compose.yml`):** Enabled `-XX:+UseCompactObjectHeaders` (JEP 519), `-XX:+AlwaysPreTouch`, `-XX:+UseStringDeduplication`, `-XX:+ExplicitGCInvokesConcurrent`, `-XX:SoftMaxHeapSize=3g`, `-XX:ZUncommitDelay=300`, rotating `log/gc.log`, passive `/proc/net/tcp{,6}` `0A` (`TCP_LISTEN`) healthchecks, and MariaDB 11.8 tuning, reducing `l2-game` startup heap by **`-152 MB` (`-7.5%`)** (`1,866 MB`, `9s` boot).
+
+---
+
+## 11. Wave 2 & 3 Autonomous Citizen Lifecycle (`Lv 1 -> 85`), Multi-Stage Profession/Subclass/Noblesse Quests, 4-Archetype Combat Doctrines + UCB1 Toolkit Exploration, `EconomyProgressionAuditor`, Unified `NG–B` Merchant & Mana Potion/Drug Fix (`7d59d9ba0e9`, `b23447f1917`)
+
+1. **Mana Potion (`728`) & Mana Drug (`726`) Restoration Fix (`b23447f1917`):**
+   - Updated `ManaHeal.java`, `ManaHealByLevel.java`, and `Heal.java` (`effected.isInvul() && !effected.isGM()`) so `GMStartupInvulnerable = True` never blocks potion/heal effects on GM accounts; configured Mana Potion (`728`, skill `10001`, `A1`) for instant `+400 MP` (`2000ms` reuse) and Mana Drug (`726`, skill `10000`, `A2`) for a 20-second `2.0x + 15` MP Regeneration buff + `ManaHealOverTime` (`15 MP/s`).
+2. **Community Board Merchant Unification (`b23447f1917`):**
+   - Unified all weapons into **4 Grade multisells** (`50039941..50039944.xml`, deleting `50039001..50039035.xml` and stripping monster/NPC weapons), stripped **Ring of Queen Ant (`6660`)** and unobtainable C1 jewelry from `50039963.xml`, combined all potions/shots/arrows/scrolls into a single **`Consumables`** button (`50039990.xml`), and fixed the C-Grade Armor icon (`icon.armor_t61_ul_i00`) in `merchant/armors.html`.
+3. **Zero-Shortcut Autonomous Citizen Lifecycle (`7d59d9ba0e9`, `b23447f1917`):**
+   - Implemented strict Dwarven Spoiler (`Fortune Seeker`) & Crafter (`Maestro`) role separation and inter-citizen trade (`AutonomousPlayerManager.commissionDwarvenCraft`), multi-stage Profession Quest chains (`3` Path stages at `Lv 20`, `3` separate Trial/Testimony/Test Occupation Marks at `Lv 40`, `6` Resonance Amulets / Tablets of Vision at `Lv 76`), full Subclass (`Q00234 -> Q00235` + real `Lv 40 -> 75` leveling) and 4-Part Noblesse (`Q00241 -> Q00242 -> Q00246 -> Q00247` + *Barakiel `25325`* Raid) campaigns, 4-Archetype Tactical Combat Doctrines + **UCB1 Contextual Toolkit Exploration Memory (`_contextualSkillQ`)**, and `EconomyProgressionAuditor.java` (`log/citizen_economy_audit.jsonl`).
+
