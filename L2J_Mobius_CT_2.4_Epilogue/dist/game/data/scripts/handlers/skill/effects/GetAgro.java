@@ -71,10 +71,18 @@ public class GetAgro extends AbstractEffect
 	{
 		if ((effected != null) && effected.isAttackable())
 		{
-			effected.getAI().setIntentionAttack(effector);
+			final Attackable attackable = effected.asAttackable();
+			final Creature mostHated = attackable.getMostHated();
+			final long currentTopHate = (mostHated != null) ? attackable.getHating(mostHated) : 0L;
+			final long myCurrentHate = attackable.getHating(effector);
+			final long skillAggroPower = Math.max(500L, Math.abs((long) skill.getEffectPoint()));
+			final long neededHateToTopPlusN = Math.max(skillAggroPower, (currentTopHate - myCurrentHate) + skillAggroPower);
+			attackable.addDamageHate(effector, 0, neededHateToTopPlusN);
+			attackable.setTarget(effector);
+			attackable.getAI().setIntentionAttack(effector);
 			
 			// Monsters from the same clan should assist.
-			final NpcTemplate template = effected.asAttackable().getTemplate();
+			final NpcTemplate template = attackable.getTemplate();
 			final Set<Integer> clans = template.getClans();
 			if (clans != null)
 			{

@@ -46,7 +46,7 @@ public class AddHate extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!effected.isAttackable())
+		if ((effected == null) || !effected.isAttackable())
 		{
 			return;
 		}
@@ -54,11 +54,11 @@ public class AddHate extends AbstractEffect
 		final double val = _power;
 		if (val > 0)
 		{
-			effected.asAttackable().addDamageHate(effector, 0, (int) val);
+			effected.asAttackable().addDamageHate(effector, 0, Math.round(val));
 		}
 		else if (val < 0)
 		{
-			effected.asAttackable().reduceHate(effector, (int) -val);
+			effected.asAttackable().reduceHate(effector, Math.round(-val));
 		}
 	}
 }

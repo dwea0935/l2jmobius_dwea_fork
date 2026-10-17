@@ -54,14 +54,13 @@ public class TargetMeProbability extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (effected.isPlayable() && (effected.getTarget() != effector))
+		if ((effected != null) && effected.isPlayable() && (effected.getTarget() != effector))
 		{
-			// If effector is null, then its not a player, but NPC. If it is not null, then it should check if the skill is pvp skill.
-			final Player player = effector.asPlayer();
-			if ((player == null) || player.checkPvpSkill(effected, skill))
+			final Player player = (effector != null) ? effector.asPlayer() : null;
+			if ((player == null) || player.checkPvpSkill(effected, skill) || effected.isAutoAttackable(effector))
 			{
-				// Target is different.
-				effected.setTarget(player);
+				effected.asPlayable().setLockedTarget(null);
+				effected.setTarget(effector);
 			}
 		}
 	}

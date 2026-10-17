@@ -478,16 +478,19 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		sb.append("</tr></table>");
 		
 		// Endgame Class Aspiration Quick-Spawn Bar (948px)
-		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"141C18\"><tr>");
-		sb.append("<td width=148><font color=\"00FFCC\">Aspiration Spawn</font></td>");
-		sb.append("<td width=100 align=center><button value=\"+Spoiler\" action=\"bypass admin_fakeplayer citizen_spawn FORTUNE_SEEKER\" width=94 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=100 align=center><button value=\"+Crafter\" action=\"bypass admin_fakeplayer citizen_spawn MAESTRO\" width=94 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=100 align=center><button value=\"+Duelist\" action=\"bypass admin_fakeplayer citizen_spawn DUELIST\" width=94 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=100 align=center><button value=\"+Dreadngt\" action=\"bypass admin_fakeplayer citizen_spawn DREADNOUGHT\" width=94 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=100 align=center><button value=\"+Archmage\" action=\"bypass admin_fakeplayer citizen_spawn ARCHMAGE\" width=94 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=100 align=center><button value=\"+Sagittar\" action=\"bypass admin_fakeplayer citizen_spawn SAGITTARIUS\" width=94 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=100 align=center><button value=\"+Cardinal\" action=\"bypass admin_fakeplayer citizen_spawn CARDINAL\" width=94 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=100 align=center><button value=\"+Khavatar\" action=\"bypass admin_fakeplayer citizen_spawn GRAND_KHAVATARI\" width=94 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr>");
+		sb.append("<td width=112><font color=\"00FFCC\">Aspiration</font></td>");
+		sb.append("<td width=76 align=center><button value=\"+Spoiler\" action=\"bypass admin_fakeplayer citizen_spawn FORTUNE_SEEKER\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=76 align=center><button value=\"+Crafter\" action=\"bypass admin_fakeplayer citizen_spawn MAESTRO\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=76 align=center><button value=\"+Duelist\" action=\"bypass admin_fakeplayer citizen_spawn DUELIST\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=76 align=center><button value=\"+Dreadngt\" action=\"bypass admin_fakeplayer citizen_spawn DREADNOUGHT\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=76 align=center><button value=\"+Adventurer\" action=\"bypass admin_fakeplayer citizen_spawn ADVENTURER\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=76 align=center><button value=\"+PhoenixKt\" action=\"bypass admin_fakeplayer citizen_spawn PHOENIX_KNIGHT\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=76 align=center><button value=\"+Archmage\" action=\"bypass admin_fakeplayer citizen_spawn ARCHMAGE\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=76 align=center><button value=\"+Sagittar\" action=\"bypass admin_fakeplayer citizen_spawn SAGITTARIUS\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=76 align=center><button value=\"+Cardinal\" action=\"bypass admin_fakeplayer citizen_spawn CARDINAL\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=76 align=center><button value=\"+Dominator\" action=\"bypass admin_fakeplayer citizen_spawn DOMINATOR\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=76 align=center><button value=\"+Khavatar\" action=\"bypass admin_fakeplayer citizen_spawn GRAND_KHAVATARI\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("</tr></table>");
 		
 		// Citizen Economy & Wealth Progression Auditor Bar (948px)

@@ -52,27 +52,29 @@ public class TargetMe extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (effected.isPlayable())
+		if ((effected != null) && effected.isPlayable())
 		{
-			if (effected.getTarget() != effector)
+			final Player player = (effector != null) ? effector.asPlayer() : null;
+			if ((player == null) || player.checkPvpSkill(effected, skill) || effected.isAutoAttackable(effector))
 			{
-				// If effector is null, then its not a player, but NPC. If it is not null, then it should check if the skill is pvp skill.
-				final Player player = effector.asPlayer();
-				if ((player == null) || player.checkPvpSkill(effected, skill))
+				effected.asPlayable().setLockedTarget(null);
+				if (effected.getTarget() != effector)
 				{
-					// Target is different.
-					effected.setTarget(player);
+					effected.setTarget(effector);
+				}
+				effected.asPlayable().setLockedTarget(effector);
+				if (effected.isAttackingNow() || effected.isCastingNow())
+				{
+					effected.getAI().setIntentionAttack(effector);
 				}
 			}
-			
-			effected.asPlayable().setLockedTarget(effector);
 		}
 	}
 	
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		if (effected.isPlayable())
+		if ((effected != null) && effected.isPlayable())
 		{
 			effected.asPlayable().setLockedTarget(null);
 		}

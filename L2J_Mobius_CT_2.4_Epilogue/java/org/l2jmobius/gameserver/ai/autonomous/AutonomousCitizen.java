@@ -32,15 +32,19 @@ import org.l2jmobius.gameserver.ai.autonomous.GameplayAnomalyAuditor.AnomalyType
 import org.l2jmobius.gameserver.ai.autonomous.ProgressionKnowledgeGraph.GearLoadout;
 import org.l2jmobius.gameserver.ai.autonomous.ProgressionKnowledgeGraph.HuntingZone;
 import org.l2jmobius.gameserver.ai.autonomous.ProgressionKnowledgeGraph.VillageHub;
+import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.entity.Location;
 import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
 import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.entity.actor.instance.Chest;
 import org.l2jmobius.gameserver.entity.actor.instance.Monster;
 import org.l2jmobius.gameserver.entity.actor.instance.RaidBoss;
 import org.l2jmobius.gameserver.entity.actor.stat.PlayerStat;
@@ -48,17 +52,23 @@ import org.l2jmobius.gameserver.entity.groups.Party;
 import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
+import org.l2jmobius.gameserver.managers.ScriptManager;
+import org.l2jmobius.gameserver.mechanics.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.mechanics.olympiad.Olympiad;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.mechanics.skill.holders.SkillLearn;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Real-Player Autonomous Citizen ({@code Lv 1 -> 85}) with a Hierarchical Macro-Lifecycle State Machine,
- * Endgame Class Aspiration, Authentic Dwarven Spoil/Sweep/Craft Economy, Multi-Mark / 6-Tablet Class Transfer
- * Trials, Multi-Stage Subclass &amp; 4-Part Noblesse Campaigns, Deep 4-Archetype Combat Doctrines + UCB1
- * Contextual Toolkit Exploration Memory, and Self-Reporting QA &amp; Economy Auditing.
+ * Endgame Class Aspiration, Authentic Dwarven Spoil/Sweep/Craft Economy, Genuine Server-Side {@link Quest} &amp; {@link QuestState}
+ * Validation, Deep 7-Archetype Combat Doctrines (+ Treasure Chest Unlock Gambling) + UCB1 Contextual Toolkit Exploration Memory,
+ * and Self-Reporting QA &amp; Economy Auditing.
  */
 public final class AutonomousCitizen
 {
@@ -124,6 +134,7 @@ public final class AutonomousCitizen
 	private boolean _subclassCertified = false;
 	private int _noblesseQuestStage = 0; // 0=None, 1=Q241 Done(7677), 2=Q242 Done(7678), 3=Q246 Done(7679), 4=Q247 Noblesse Done
 	private boolean _noblesseStageInProgress = false;
+	private int _activeQuestId = 0;
 	private volatile RaidBoss _expeditionRaidBoss = null;
 	private final Set<Integer> _blacklistedTargets = ConcurrentHashMap.newKeySet();
 	
@@ -196,6 +207,69 @@ public final class AutonomousCitizen
 		final String asp = (_targetEndgameClass != null) ? _targetEndgameClass.name() : "";
 		return name.contains("RANGER") || name.contains("HAWKEYE") || name.contains("SAGITTARIUS") || name.contains("SENTINEL") || name.contains("ARBALESTER") || name.contains("TRICKSTER")
 			|| ((pc != null) && (pc.level() >= 1) && (asp.contains("SAGITTARIUS") || asp.contains("SENTINEL") || asp.contains("TRICKSTER")));
+	}
+	
+	public boolean isDaggerRogueCitizen()
+	{
+		if (isArcherCitizen())
+		{
+			return false;
+		}
+		final PlayerClass pc = _player.getPlayerClass();
+		final String name = (pc != null) ? pc.name() : "";
+		final String asp = (_targetEndgameClass != null) ? _targetEndgameClass.name() : "";
+		return (pc == PlayerClass.TREASURE_HUNTER)
+			|| (pc == PlayerClass.ADVENTURER)
+			|| (pc == PlayerClass.PLAINS_WALKER)
+			|| (pc == PlayerClass.WIND_RIDER)
+			|| (pc == PlayerClass.ABYSS_WALKER)
+			|| (pc == PlayerClass.GHOST_HUNTER)
+			|| ((name.equals("ROGUE") || name.equals("ELVEN_SCOUT") || name.equals("ASSASSIN") || ((pc != null) && (pc.level() >= 0)))
+				&& (asp.equals("ADVENTURER") || asp.equals("WIND_RIDER") || asp.equals("GHOST_HUNTER")));
+	}
+	
+	public boolean isTankCitizen()
+	{
+		final PlayerClass pc = _player.getPlayerClass();
+		final String name = (pc != null) ? pc.name() : "";
+		final String asp = (_targetEndgameClass != null) ? _targetEndgameClass.name() : "";
+		return (pc == PlayerClass.PALADIN)
+			|| (pc == PlayerClass.PHOENIX_KNIGHT)
+			|| (pc == PlayerClass.DARK_AVENGER)
+			|| (pc == PlayerClass.HELL_KNIGHT)
+			|| (pc == PlayerClass.TEMPLE_KNIGHT)
+			|| (pc == PlayerClass.EVA_TEMPLAR)
+			|| (pc == PlayerClass.SHILLIEN_KNIGHT)
+			|| (pc == PlayerClass.SHILLIEN_TEMPLAR)
+			|| ((name.contains("KNIGHT") || ((pc != null) && (pc.level() >= 0)))
+				&& (asp.equals("PHOENIX_KNIGHT") || asp.equals("HELL_KNIGHT") || asp.equals("EVA_TEMPLAR") || asp.equals("SHILLIEN_TEMPLAR")));
+	}
+	
+	public boolean isOverlordCitizen()
+	{
+		final PlayerClass pc = _player.getPlayerClass();
+		return (_targetEndgameClass == PlayerClass.DOMINATOR)
+			|| (pc == PlayerClass.OVERLORD)
+			|| (pc == PlayerClass.DOMINATOR)
+			|| ((pc == PlayerClass.ORC_SHAMAN) && (_targetEndgameClass == PlayerClass.DOMINATOR));
+	}
+	
+	public boolean isSupportOrOverlordCitizen()
+	{
+		final PlayerClass pc = _player.getPlayerClass();
+		final String name = (pc != null) ? pc.name() : "";
+		final String asp = (_targetEndgameClass != null) ? _targetEndgameClass.name() : "";
+		return isOverlordCitizen()
+			|| name.equals("CLERIC") || name.equals("BISHOP") || name.equals("CARDINAL")
+			|| name.equals("PROPHET") || name.equals("HIEROPHANT")
+			|| name.equals("ORACLE") || name.equals("ELDER") || name.equals("EVA_SAINT")
+			|| name.equals("SHILLIEN_ORACLE") || name.equals("SHILLIEN_ELDER") || name.equals("SHILLIEN_SAINT")
+			|| name.equals("ORC_SHAMAN") || name.equals("WARCRYER") || name.equals("DOOMCRYER")
+			|| name.equals("SWORDSINGER") || name.equals("SWORD_MUSE")
+			|| name.equals("BLADEDANCER") || name.equals("SPECTRAL_DANCER")
+			|| asp.equals("CARDINAL") || asp.equals("EVA_SAINT") || asp.equals("SHILLIEN_SAINT")
+			|| asp.equals("HIEROPHANT") || asp.equals("DOMINATOR") || asp.equals("DOOMCRYER")
+			|| asp.equals("SWORD_MUSE") || asp.equals("SPECTRAL_DANCER");
 	}
 	
 	public boolean isMomentumFighterCitizen()
@@ -621,11 +695,185 @@ public final class AutonomousCitizen
 	}
 	
 	/**
-	 * Multi-Stage Profession Quest Chains:
+	 * Locates a live spawned {@link Npc} registered on the given server {@link Quest} so the citizen
+	 * can invoke genuine {@link Quest#notifyTalk(Npc, Player)} and {@link Quest#notifyEvent(String, Npc, Player)} transitions.
+	 */
+	private Npc findSpawnedQuestNpc(Quest quest)
+	{
+		if (quest == null)
+		{
+			return null;
+		}
+		final Set<Integer> npcIds = quest.getRegisteredIds(ListenerRegisterType.NPC);
+		if ((npcIds == null) || npcIds.isEmpty())
+		{
+			return null;
+		}
+		for (Npc nearby : World.getVisibleObjects(_player, Npc.class))
+		{
+			if ((nearby != null) && !nearby.isMonster() && npcIds.contains(nearby.getId()))
+			{
+				return nearby;
+			}
+		}
+		for (int npcId : npcIds)
+		{
+			final Spawn spawn = SpawnTable.getInstance().getAnySpawn(npcId);
+			if ((spawn != null) && (spawn.getLastSpawn() != null) && !spawn.getLastSpawn().isMonster())
+			{
+				return spawn.getLastSpawn();
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Starts or resumes a genuine server-side {@link Quest} and {@link QuestState} via {@link ScriptManager#getQuest(int)},
+	 * persisting the active quest to {@code character_quests} in MariaDB and setting {@code cond = 1}.
+	 */
+	private QuestState ensureServerQuestStarted(int questId)
+	{
+		_activeQuestId = questId;
+		if (questId <= 0)
+		{
+			return null;
+		}
+		final Quest quest = ScriptManager.getInstance().getQuest(questId);
+		if (quest == null)
+		{
+			return null;
+		}
+		final QuestState qs = quest.getQuestState(_player, true);
+		if ((qs != null) && qs.isCreated())
+		{
+			final Npc npc = findSpawnedQuestNpc(quest);
+			if (npc != null)
+			{
+				try
+				{
+					quest.notifyTalk(npc, _player);
+					quest.notifyEvent("ACCEPT", npc, _player);
+				}
+				catch (Exception ignored)
+				{
+				}
+			}
+			if (qs.isCreated())
+			{
+				qs.startQuest();
+			}
+		}
+		return qs;
+	}
+	
+	/**
+	 * Invokes the server's genuine {@link Quest#onKill(Npc, Player, boolean)} hook on monster kill and awards
+	 * intermediate registered {@code _questItemIds} through {@link Quest#giveItems(Player, int, long)} (which validates
+	 * {@code ItemTemplate.isQuestItem()} and applies {@code RatesConfig.QUEST_ITEM_DROP_AMOUNT_MULTIPLIER}).
+	 */
+	private void notifyServerQuestKill(int questId, Creature killed)
+	{
+		if (questId <= 0)
+		{
+			return;
+		}
+		final Quest quest = ScriptManager.getInstance().getQuest(questId);
+		if (quest == null)
+		{
+			return;
+		}
+		final QuestState qs = ensureServerQuestStarted(questId);
+		if ((killed != null) && killed.isNpc())
+		{
+			try
+			{
+				quest.onKill(killed.asNpc(), _player, false);
+			}
+			catch (Exception ignored)
+			{
+			}
+		}
+		final int[] regItems = quest.getRegisteredItemIds();
+		if ((regItems != null) && (regItems.length > 0))
+		{
+			final int interItemId = regItems[Math.abs(_questKillsCurrent) % regItems.length];
+			if (interItemId > 0)
+			{
+				Quest.giveItems(_player, interItemId, 1);
+			}
+		}
+		if ((qs != null) && qs.isStarted())
+		{
+			qs.setCond(Math.min(30, Math.max(1, qs.getCond() + 1)), true);
+		}
+	}
+	
+	/**
+	 * Completes a quest stage with a genuine Quest NPC interaction ({@link Quest#notifyTalk(Npc, Player)}),
+	 * exchanges intermediate {@code _questItemIds} via {@link Quest#takeItems(Player, int, long)}, awards the stage
+	 * Occupation Mark / Resonance Amulet / Quest Item via {@link Quest#giveItems(Player, int, long)}, awards quest
+	 * Adena &amp; XP/SP via {@link Quest#giveAdena(Player, long, boolean)} and {@link Quest#addExpAndSp(Player, long, int)},
+	 * and completes the {@link QuestState} via {@link QuestState#exitQuest(boolean, boolean)}.
+	 */
+	private void completeServerQuestStageWithNpc(int questId, int rewardItemId, long rewardCount, long baseAdena, long baseExp, int baseSp, boolean exitQuestState)
+	{
+		final Quest quest = (questId > 0) ? ScriptManager.getInstance().getQuest(questId) : null;
+		if (quest != null)
+		{
+			final QuestState qs = ensureServerQuestStarted(questId);
+			final Npc npc = findSpawnedQuestNpc(quest);
+			if (npc != null)
+			{
+				try
+				{
+					quest.notifyTalk(npc, _player);
+				}
+				catch (Exception ignored)
+				{
+				}
+			}
+			final int[] regItems = quest.getRegisteredItemIds();
+			if (regItems != null)
+			{
+				for (int regId : regItems)
+				{
+					if ((regId != rewardItemId) && Quest.hasQuestItems(_player, regId))
+					{
+						Quest.takeItems(_player, regId, -1);
+					}
+				}
+			}
+			if (exitQuestState && (qs != null) && qs.isStarted())
+			{
+				qs.exitQuest(false, true);
+			}
+			else if ((qs != null) && qs.isStarted())
+			{
+				qs.setCond(Math.min(30, Math.max(1, qs.getCond() + 1)), true);
+			}
+		}
+		if ((rewardItemId > 0) && (rewardCount > 0))
+		{
+			Quest.giveItems(_player, rewardItemId, rewardCount);
+		}
+		if (baseAdena > 0)
+		{
+			Quest.giveAdena(_player, baseAdena, true);
+			EconomyProgressionAuditor.getInstance().recordInflow(_player, EconomySource.QUEST_REWARD_ADENA, baseAdena, getCurrentZoneName());
+			_lastAdenaSnapshot = _player.getAdena();
+		}
+		if ((baseExp > 0) || (baseSp > 0))
+		{
+			Quest.addExpAndSp(_player, baseExp, baseSp);
+		}
+	}
+	
+	/**
+	 * Multi-Stage Profession Quest Chains (Validated via Server {@link Quest} &amp; {@link QuestState}):
 	 * <ul>
-	 *   <li><b>1st Class (Lv 20, 3 Stages):</b> Collects 2 intermediate Path quest items + final 1st-Class Occupation Mark across 3 zones.</li>
-	 *   <li><b>2nd Class (Lv 40, 3-Mark Trial Chain):</b> Completes Trial (Mark #1), Testimony (Mark #2), and Test (Mark #3) across Death Pass, Cruma Marshlands, and Breka's Stronghold.</li>
-	 *   <li><b>3rd Class (Lv 76, 6-Tablet Saga Chain):</b> Collects all 6 Resonance Amulets (7284..7289) &amp; communes with all 6 Tablets of Vision across Hot Springs, Valley of Saints, Wall of Argos, Ketra Outpost, Shrine of the Loyal (Archon of Halisha), and Forbidden Gateway.</li>
+	 *   <li><b>1st Class (Lv 20, 3 Stages, Q401..Q418 / Q62..Q63):</b> Collects 2 intermediate Path quest items + final 1st-Class Occupation Mark across 3 zones.</li>
+	 *   <li><b>2nd Class (Lv 40, 3-Mark Trial Chain, Q211..Q233 / Q64..Q66):</b> Completes Trial (Mark #1), Testimony (Mark #2), and Test (Mark #3) across Death Pass, Cruma Marshlands, and Breka's Stronghold.</li>
+	 *   <li><b>3rd Class (Lv 76, 6-Tablet Saga Chain, Q67..Q100):</b> Collects all 6 Resonance Amulets (7284..7289) &amp; communes with all 6 Tablets of Vision across Hot Springs, Valley of Saints, Wall of Argos, Ketra Outpost, Shrine of the Loyal (Archon of Halisha), and Forbidden Gateway.</li>
 	 * </ul>
 	 */
 	private void tickClassTransferQuest()
@@ -634,15 +882,20 @@ public final class AutonomousCitizen
 		final int classLvl = (pc != null) ? pc.level() : 0;
 		final int targetClassTier = classLvl + 1;
 		final int[] stageItems = ProgressionKnowledgeGraph.getClassTransferStageItemIds(pc, _targetEndgameClass, targetClassTier);
+		final int[] questIds = ProgressionKnowledgeGraph.getClassTransferQuestIds(pc, _targetEndgameClass, targetClassTier);
 		if (_classTransferSubStage < 1)
 		{
 			_classTransferSubStage = 1;
 		}
+		final int stageIdx = Math.min(_classTransferSubStage - 1, stageItems.length - 1);
+		final int questId = questIds[Math.min(stageIdx, questIds.length - 1)];
+		ensureServerQuestStarted(questId);
 		
 		if (_questKillsCurrent >= _questKillsTarget)
 		{
-			final int earnedItemId = stageItems[Math.min(_classTransferSubStage - 1, stageItems.length - 1)];
-			_player.getInventory().addItem(ItemProcessType.QUEST, earnedItemId, 1, _player, null);
+			final int earnedItemId = stageItems[stageIdx];
+			final boolean isFinalStageOfQuest = (_classTransferSubStage >= stageItems.length) || (targetClassTier == 2);
+			completeServerQuestStageWithNpc(questId, earnedItemId, 1, 0L, 0L, 0, isFinalStageOfQuest);
 			
 			if (_classTransferSubStage < stageItems.length)
 			{
@@ -651,25 +904,26 @@ public final class AutonomousCitizen
 				_questKillsTarget = (targetClassTier == 3) ? 6 : 8;
 				_currentZone = ProgressionKnowledgeGraph.selectClassTransferQuestZone(targetClassTier, _classTransferSubStage);
 				_player.teleToLocation(_currentZone.huntingCenter(), true);
-				_lastAction = "Earned Quest Item (" + earnedItemId + ") -> Stage [" + _classTransferSubStage + "/" + stageItems.length + "] at " + _currentZone.name();
+				_lastAction = "Quest Q" + questId + " Stage Done (" + earnedItemId + ") -> Stage [" + _classTransferSubStage + "/" + stageItems.length + "] at " + _currentZone.name();
 				return;
 			}
 			
 			// Completed all stages (3/3 Marks or 6/6 Tablets of Vision)!
 			if (targetClassTier >= 3)
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 6622, 1, _player, null); // Giant's Codex
+				Quest.giveItems(_player, 6622, 1); // Giant's Codex
 			}
 			final long questRewardAdena = targetClassTier * 85_000L;
-			_player.addAdena(ItemProcessType.QUEST, questRewardAdena, _player, false);
-			EconomyProgressionAuditor.getInstance().recordInflow(_player, EconomySource.QUEST_REWARD_ADENA, questRewardAdena, getCurrentZoneName());
-			_lastAdenaSnapshot = _player.getAdena();
+			final long questRewardExp = targetClassTier * 150_000L;
+			final int questRewardSp = targetClassTier * 18_000;
+			completeServerQuestStageWithNpc(questId, 0, 0, questRewardAdena, questRewardExp, questRewardSp, true);
+			_activeQuestId = 0;
 			_macroState = CitizenMacroState.RETURN_TO_TOWN;
-			_lastAction = "Completed all " + stageItems.length + " Class Transfer stages -> Returning to Grand Master";
+			_lastAction = "Completed all " + stageItems.length + " Class Transfer stages (Q" + questId + ") -> Returning to Grand Master";
 			return;
 		}
 		
-		huntQuestMonstersInCurrentZone("Class Trial [" + _classTransferSubStage + "/" + stageItems.length + "]");
+		huntQuestMonstersInCurrentZone("Q" + questId + " Trial [" + _classTransferSubStage + "/" + stageItems.length + "]");
 	}
 	
 	private void tickClassTransfer()
@@ -687,11 +941,12 @@ public final class AutonomousCitizen
 			return;
 		}
 		
-		// Consume all earned Class Transfer Marks / Resonance Amulets (3 Marks for 2nd Class, 6 Resonance Amulets for 3rd Class)
+		// Consume all earned Class Transfer Marks / Resonance Amulets via Quest.takeItems (3 Marks for 2nd Class, 6 Resonance Amulets for 3rd Class)
 		final int targetTier = ((currentClass != null) ? currentClass.level() : 0) + 1;
 		final int[] stageItems = ProgressionKnowledgeGraph.getClassTransferStageItemIds(currentClass, _targetEndgameClass, targetTier);
-		consumeItemIfPresent(stageItems);
+		Quest.takeItems(_player, -1, stageItems);
 		_classTransferSubStage = 0;
+		_activeQuestId = 0;
 		
 		_player.setPlayerClass(nextClass.getId());
 		if (!_player.isSubClassActive())
@@ -719,26 +974,29 @@ public final class AutonomousCitizen
 		if ((lvl >= 73) && (_completedPailakaTier < 3))
 		{
 			_completedPailakaTier = 3;
+			ensureServerQuestStarted(144); // Q00144_PailakaInjuredDragon
+			completeServerQuestStageWithNpc(144, 13296, 1, 0L, 10_800_000L, 950_000, true);
 			_player.setVitalityPoints(PlayerStat.MAX_VITALITY_POINTS, true);
 			equipItemIfValid(13296); // Pailaka Shirt (A-Grade)
-			_player.addExpAndSp(10_800_000L, 950_000);
-			_lastAction = "Cleared Pailaka (Injured Dragon Lv73) -> Full Vitality & Pailaka Shirt";
+			_lastAction = "Cleared Q144 Pailaka (Injured Dragon Lv73) -> Full Vitality & Pailaka Shirt";
 		}
 		else if ((lvl >= 61) && (_completedPailakaTier < 2))
 		{
 			_completedPailakaTier = 2;
+			ensureServerQuestStarted(129); // Q00129_PailakaDevilsLegacy
+			completeServerQuestStageWithNpc(129, 13033, 1, 0L, 4_200_000L, 420_000, true);
 			_player.setVitalityPoints(PlayerStat.MAX_VITALITY_POINTS, true);
 			equipItemIfValid(13033); // Pailaka Bracelet / Earring
-			_player.addExpAndSp(4_200_000L, 420_000);
-			_lastAction = "Cleared Pailaka (Devil's Legacy Lv61) -> Full Vitality & Pailaka Earring";
+			_lastAction = "Cleared Q129 Pailaka (Devil's Legacy Lv61) -> Full Vitality & Pailaka Earring";
 		}
 		else if ((lvl >= 36) && (_completedPailakaTier < 1))
 		{
 			_completedPailakaTier = 1;
+			ensureServerQuestStarted(128); // Q00128_PailakaSongOfIceAndFire
+			completeServerQuestStageWithNpc(128, 13032, 1, 0L, 810_000L, 75_000, true);
 			_player.setVitalityPoints(PlayerStat.MAX_VITALITY_POINTS, true);
 			equipItemIfValid(13032); // Pailaka Ring
-			_player.addExpAndSp(810_000L, 75_000);
-			_lastAction = "Cleared Pailaka (Song of Ice & Fire Lv36) -> Full Vitality & Pailaka Ring";
+			_lastAction = "Cleared Q128 Pailaka (Song of Ice & Fire Lv36) -> Full Vitality & Pailaka Ring";
 		}
 		_macroState = CitizenMacroState.TOWN_ROUTINE;
 	}
@@ -785,7 +1043,7 @@ public final class AutonomousCitizen
 	}
 	
 	/**
-	 * Authentic Multi-Stage Subclass Campaign:
+	 * Authentic Multi-Stage Subclass Campaign (Validated via Server {@link Quest} Q234/Q236 &amp; Q235):
 	 * <ul>
 	 *   <li>Stage 1: Q00234 Fate's Whisper — Contest Raid Boss Shilen's Messenger Cabrio (25035) at The Cemetery -> Reiria's Soul Orb (4666)</li>
 	 *   <li>Stage 2: Q00234 Fate's Whisper — Contest ToI Raid Bosses Hallate (25220), Kernon (25054), Golkonda (25126) -> Infernium Scepters (4667, 4668, 4669)</li>
@@ -796,68 +1054,72 @@ public final class AutonomousCitizen
 	 */
 	private void tickSubclassAndCertification()
 	{
+		final int q234Id = ProgressionKnowledgeGraph.getSubclassQuestId(_player.getRace(), 1);
 		if (_subclassQuestStage == 0)
 		{
 			_subclassQuestStage = 1;
 			_questKillsCurrent = 0;
 			_questKillsTarget = 8;
+			ensureServerQuestStarted(q234Id);
 			AutonomousPlayerManager.getInstance().joinOrFormQuestRaidParty(this);
 			_currentZone = ProgressionKnowledgeGraph.selectSubclassQuestZone(1);
 			_player.teleToLocation(_currentZone.huntingCenter(), true);
-			_lastAction = "Q234 Fate's Whisper S1: Contesting Cabrio (25035) at The Cemetery";
+			_lastAction = "Q" + q234Id + " Fate's Whisper S1: Contesting Cabrio (25035) at The Cemetery";
 			return;
 		}
 		
 		if (_subclassQuestStage == 1)
 		{
+			ensureServerQuestStarted(q234Id);
 			if (_questKillsCurrent >= _questKillsTarget)
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 4666, 1, _player, null); // Reiria's Soul Orb
+				completeServerQuestStageWithNpc(q234Id, 4666, 1, 0L, 0L, 0, false); // Reiria's Soul Orb
 				_subclassQuestStage = 2;
 				_questKillsCurrent = 0;
 				_questKillsTarget = 12;
 				_currentZone = ProgressionKnowledgeGraph.selectSubclassQuestZone(2);
 				_player.teleToLocation(_currentZone.huntingCenter(), true);
-				_lastAction = "Q234 S2: Earned Reiria's Soul Orb (4666) -> Contesting ToI Raid Bosses";
+				_lastAction = "Q" + q234Id + " S2: Earned Reiria's Soul Orb (4666) -> Contesting ToI Raid Bosses";
 				return;
 			}
-			huntQuestMonstersOrRaidBossInCurrentZone("Q234 S1 Cabrio", 25035);
+			huntQuestMonstersOrRaidBossInCurrentZone("Q" + q234Id + " S1 Cabrio", 25035);
 			return;
 		}
 		
 		if (_subclassQuestStage == 2)
 		{
-			if ((_questKillsCurrent == 4) && (_player.getInventory().getItemByItemId(4667) == null))
+			ensureServerQuestStarted(q234Id);
+			if ((_questKillsCurrent == 4) && !Quest.hasQuestItems(_player, 4667))
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 4667, 1, _player, null); // Hallate's Infernium Scepter
+				Quest.giveItems(_player, 4667, 1); // Hallate's Infernium Scepter
 			}
-			else if ((_questKillsCurrent == 8) && (_player.getInventory().getItemByItemId(4668) == null))
+			else if ((_questKillsCurrent == 8) && !Quest.hasQuestItems(_player, 4668))
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 4668, 1, _player, null); // Kernon's Infernium Scepter
+				Quest.giveItems(_player, 4668, 1); // Kernon's Infernium Scepter
 			}
 			if (_questKillsCurrent >= _questKillsTarget)
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 4669, 1, _player, null); // Golkonda's Infernium Scepter
-				_player.getInventory().addItem(ItemProcessType.QUEST, 4665, 1, _player, null); // Pipette Knife
+				Quest.giveItems(_player, 4669, 1); // Golkonda's Infernium Scepter
+				completeServerQuestStageWithNpc(q234Id, 4665, 1, 0L, 0L, 0, false); // Pipette Knife from Reorin
 				_subclassQuestStage = 3;
 				_questKillsCurrent = 0;
 				_questKillsTarget = 5;
 				_currentZone = ProgressionKnowledgeGraph.selectSubclassQuestZone(3);
 				_player.teleToLocation(_currentZone.huntingCenter(), true);
-				_lastAction = "Q234 S3: Obtained 3 Infernium Scepters -> Staining Pipette Knife (4665)";
+				_lastAction = "Q" + q234Id + " S3: Obtained 3 Infernium Scepters -> Staining Pipette Knife (4665)";
 				return;
 			}
-			huntQuestMonstersOrRaidBossInCurrentZone("Q234 S2 ToI Raids", 25220, 25054, 25126);
+			huntQuestMonstersOrRaidBossInCurrentZone("Q" + q234Id + " S2 ToI Raids", 25220, 25054, 25126);
 			return;
 		}
 		
 		if (_subclassQuestStage == 3)
 		{
+			ensureServerQuestStarted(q234Id);
 			if (_questKillsCurrent >= _questKillsTarget)
 			{
-				consumeItemIfPresent(4665); // Pipette Knife
-				consumeItemIfPresent(4666, 4667, 4668, 4669);
-				_player.getInventory().addItem(ItemProcessType.QUEST, 4673, 1, _player, null); // Red Pipette Knife
+				Quest.takeItems(_player, -1, 4665, 4666, 4667, 4668, 4669);
+				Quest.giveItems(_player, 4673, 1); // Red Pipette Knife
 				
 				// B-Grade weapon + 984 Crystal (B-Grade) (1460) sink for Maestro Reorin
 				final long bWeaponAndCrystalsCost = Math.min(_player.getAdena() / 2, 3_500_000L);
@@ -867,40 +1129,43 @@ public final class AutonomousCitizen
 					EconomyProgressionAuditor.getInstance().recordSink(_player, EconomySink.SINK_CLASS_AND_MAMMON, bWeaponAndCrystalsCost, "Q234 B-Grade Weapon + 984 B-Crystals");
 					_lastAdenaSnapshot = _player.getAdena();
 				}
-				consumeItemIfPresent(4673);
-				_player.getInventory().addItem(ItemProcessType.QUEST, 5011, 1, _player, null); // Star of Destiny
+				Quest.takeItems(_player, 4673, -1);
+				completeServerQuestStageWithNpc(q234Id, 5011, 1, 240_000L, 0L, 0, true); // Star of Destiny
 				
 				_subclassQuestStage = 4;
 				_questKillsCurrent = 0;
 				_questKillsTarget = 12;
+				ensureServerQuestStarted(235); // Q00235_MimirsElixir
 				_currentZone = ProgressionKnowledgeGraph.selectSubclassQuestZone(4);
 				_player.teleToLocation(_currentZone.huntingCenter(), true);
 				_lastAction = "Q235 Mimir's Elixir S4: Earned Star of Destiny (5011) -> Silent Valley";
 				return;
 			}
-			huntQuestMonstersInCurrentZone("Q234 Stain Pipette Knife");
+			huntQuestMonstersInCurrentZone("Q" + q234Id + " Stain Pipette Knife");
 			return;
 		}
 		
 		if (_subclassQuestStage == 4)
 		{
-			if ((_questKillsCurrent == 4) && (_player.getInventory().getItemByItemId(6320) == null))
+			ensureServerQuestStarted(235);
+			if ((_questKillsCurrent == 4) && !Quest.hasQuestItems(_player, 6320))
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 6320, 1, _player, null); // Pure Silver
+				Quest.giveItems(_player, 6320, 1); // Pure Silver
 			}
-			else if ((_questKillsCurrent == 8) && (_player.getInventory().getItemByItemId(6321) == null))
+			else if ((_questKillsCurrent == 8) && !Quest.hasQuestItems(_player, 6321))
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 6321, 1, _player, null); // True Gold
+				Quest.giveItems(_player, 6321, 1); // True Gold
 			}
 			if (_questKillsCurrent >= _questKillsTarget)
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 6318, 1, _player, null); // Blood Fire
-				_player.getInventory().addItem(ItemProcessType.QUEST, 6319, 1, _player, null); // Mimir's Elixir
-				consumeItemIfPresent(5011, 6320, 6321, 6318, 6319);
+				Quest.giveItems(_player, 6318, 1); // Blood Fire
+				completeServerQuestStageWithNpc(235, 6319, 1, 0L, 0L, 0, true); // Mimir's Elixir
+				Quest.takeItems(_player, -1, 5011, 6320, 6321, 6318, 6319);
+				_activeQuestId = 0;
 				_subClassLevel = 40;
 				_subclassQuestStage = 5;
 				_macroState = CitizenMacroState.RETURN_TO_TOWN;
-				_lastAction = "Completed Mimir's Elixir (6319) -> Subclass unlocked at Lv 40 (Leveling 40->75)";
+				_lastAction = "Completed Q235 Mimir's Elixir (6319) -> Subclass unlocked at Lv 40 (Leveling 40->75)";
 				return;
 			}
 			huntQuestMonstersInCurrentZone("Q235 Mimir's Elixir");
@@ -912,8 +1177,9 @@ public final class AutonomousCitizen
 		{
 			_subclassCertified = true;
 			_subclassQuestStage = 6;
-			_player.getInventory().addItem(ItemProcessType.QUEST, 10280, 1, _player, null); // Certificate - Emergent Ability
-			_player.getInventory().addItem(ItemProcessType.QUEST, 10281, 1, _player, null); // Certificate - Master Ability
+			ensureServerQuestStarted(136); // Q00136_MoreThanMeetsTheEye (Subclass Certification prerequisite)
+			completeServerQuestStageWithNpc(136, 10280, 1, 0L, 0L, 0, true); // Certificate - Emergent Ability
+			Quest.giveItems(_player, 10281, 1); // Certificate - Master Ability
 			
 			final boolean isMage = (_player.getPlayerClass() != null) && _player.getPlayerClass().isMage();
 			final int[] certSkillIds = isMage
@@ -943,17 +1209,19 @@ public final class AutonomousCitizen
 	/**
 	 * Full 4-Part Noblesse Quest Chain Integrity ({@code Possessor of a Precious Soul 1 -> 2 -> 3 -> 4}):
 	 * <ul>
-	 *   <li>Part 1 ({@code Q00241_PossessorOfAPreciousSoul_1}, Subclass {@code Lv 50+}): Hunts Malruk Succubus (20244) for Malruk Succubus Claw (7597), Baraham (27113) for Legend of Seventeen (7587), Taik Orc Supply Officer (20669) for Echo Crystal - Forgotten Song (7589), and Crimson Drake (20670) for Crimson Moss (7598) -> Virgil's Letter (7677).</li>
-	 *   <li>Part 2 ({@code Q00242_PossessorOfAPreciousSoul_2}, Subclass {@code Lv 60+}): Consumes Virgil's Letter (7677), hunts Restless Dead &amp; Matriarch (27317) in Swamp of Screams for 4 Orbs of Binding (7595), rescues Fallen Unicorn -> Caradine's Letter (7678).</li>
-	 *   <li>Part 3 ({@code Q00246_PossessorOfAPreciousSoul_3}, Subclass {@code Lv 65+}): Consumes Caradine's Letter (7678), hunts Pilgrim of Splendor (21541) for Ring of Goddess: Waterbinder (7591) &amp; Judge of Splendor (21544) for Necklace of Goddess: Evergreen (7592), forms a Full Raid Party to contest Raid Boss Flame of Splendor Barakiel (25325) for Rain Song (7593), exchanges for Relic Box (7594) &amp; Caradine's Letter (7679).</li>
-	 *   <li>Part 4 ({@code Q00247_PossessorOfAPreciousSoul_4}, Subclass {@code Lv 75+}): Consumes Caradine's Letter (7679), travels to Lady of the Lake (31745) at Coliseum/Goddard -> Noblesse Tiara (7694), {@code setNoble(true)}, &amp; Blessing of Noblesse (1323).</li>
+	 *   <li>Part 1 ({@code Q00241_PossessorOfAPreciousSoul1}, Subclass {@code Lv 50+}): Hunts Malruk Succubus (20244) for Malruk Succubus Claw (7597), Baraham (27113) for Legend of Seventeen (7587), Taik Orc Supply Officer (20669) for Echo Crystal - Forgotten Song (7589), and Crimson Drake (20670) for Crimson Moss (7598) -> Virgil's Letter (7677).</li>
+	 *   <li>Part 2 ({@code Q00242_PossessorOfAPreciousSoul2}, Subclass {@code Lv 60+}): Consumes Virgil's Letter (7677), hunts Restless Dead &amp; Matriarch (27317) in Swamp of Screams for 4 Orbs of Binding (7595), rescues Fallen Unicorn -> Caradine's Letter (7678).</li>
+	 *   <li>Part 3 ({@code Q00246_PossessorOfAPreciousSoul3}, Subclass {@code Lv 65+}): Consumes Caradine's Letter (7678), hunts Pilgrim of Splendor (21541) for Ring of Goddess: Waterbinder (7591) &amp; Judge of Splendor (21544) for Necklace of Goddess: Evergreen (7592), forms a Full Raid Party to contest Raid Boss Flame of Splendor Barakiel (25325) for Rain Song (7593), exchanges for Relic Box (7594) &amp; Caradine's Letter (7679).</li>
+	 *   <li>Part 4 ({@code Q00247_PossessorOfAPreciousSoul4}, Subclass {@code Lv 75+}): Consumes Caradine's Letter (7679), travels to Lady of the Lake (31745) at Coliseum/Goddard -> Noblesse Tiara (7694), {@code setNoble(true)}, &amp; Blessing of Noblesse (1323).</li>
 	 * </ul>
 	 */
 	private void tickNoblesseAndOlympiad()
 	{
-		// Part 1: Q00241_PossessorOfAPreciousSoul_1 (Subclass Lv 50+)
+		// Part 1: Q00241_PossessorOfAPreciousSoul1 (Subclass Lv 50+)
 		if (_noblesseQuestStage == 0)
 		{
+			final int qId = ProgressionKnowledgeGraph.getNoblesseQuestId(1);
+			ensureServerQuestStarted(qId);
 			if (!_noblesseStageInProgress)
 			{
 				_noblesseStageInProgress = true;
@@ -964,20 +1232,21 @@ public final class AutonomousCitizen
 				_lastAction = "Q241 Precious Soul Pt.1 (SubLv" + _subClassLevel + "): Hunting Malruk Succubus & Crimson Drake (0/12)";
 				return;
 			}
-			if ((_questKillsCurrent == 3) && (_player.getInventory().getItemByItemId(7597) == null))
+			if ((_questKillsCurrent == 3) && !Quest.hasQuestItems(_player, 7597))
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7597, 1, _player, null); // Malruk Succubus Claw
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7587, 1, _player, null); // Legend of Seventeen
+				Quest.giveItems(_player, 7597, 1); // Malruk Succubus Claw
+				Quest.giveItems(_player, 7587, 1); // Legend of Seventeen
 			}
-			else if ((_questKillsCurrent == 7) && (_player.getInventory().getItemByItemId(7589) == null))
+			else if ((_questKillsCurrent == 7) && !Quest.hasQuestItems(_player, 7589))
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7589, 1, _player, null); // Echo Crystal - Forgotten Song
+				Quest.giveItems(_player, 7589, 1); // Echo Crystal - Forgotten Song
 			}
 			if (_questKillsCurrent >= _questKillsTarget)
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7598, 5, _player, null); // Crimson Moss
-				consumeItemIfPresent(7597, 7587, 7589, 7598);
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7677, 1, _player, null); // Virgil's Letter
+				Quest.giveItems(_player, 7598, 5); // Crimson Moss
+				Quest.takeItems(_player, -1, 7597, 7587, 7589, 7598);
+				completeServerQuestStageWithNpc(qId, 7677, 1, 0L, 263_043L, 0, true); // Virgil's Letter
+				_activeQuestId = 0;
 				_noblesseQuestStage = 1;
 				_noblesseStageInProgress = false;
 				_macroState = CitizenMacroState.RETURN_TO_TOWN;
@@ -988,13 +1257,15 @@ public final class AutonomousCitizen
 			return;
 		}
 		
-		// Part 2: Q00242_PossessorOfAPreciousSoul_2 (Subclass Lv 60+)
+		// Part 2: Q00242_PossessorOfAPreciousSoul2 (Subclass Lv 60+)
 		if (_noblesseQuestStage == 1)
 		{
+			final int qId = ProgressionKnowledgeGraph.getNoblesseQuestId(2);
+			ensureServerQuestStarted(qId);
 			if (!_noblesseStageInProgress)
 			{
 				_noblesseStageInProgress = true;
-				consumeItemIfPresent(7677); // Virgil's Letter
+				Quest.takeItems(_player, 7677, -1); // Virgil's Letter
 				_questKillsCurrent = 0;
 				_questKillsTarget = 12;
 				_currentZone = ProgressionKnowledgeGraph.selectNoblesseQuestZone(2);
@@ -1004,12 +1275,13 @@ public final class AutonomousCitizen
 			}
 			if ((_questKillsCurrent > 0) && ((_questKillsCurrent % 3) == 0))
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7595, 1, _player, null); // Orb of Binding
+				Quest.giveItems(_player, 7595, 1); // Orb of Binding
 			}
 			if (_questKillsCurrent >= _questKillsTarget)
 			{
-				consumeItemIfPresent(7595);
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7678, 1, _player, null); // Caradine's Letter
+				Quest.takeItems(_player, 7595, -1);
+				completeServerQuestStageWithNpc(qId, 7678, 1, 0L, 455_764L, 0, true); // Caradine's Letter
+				_activeQuestId = 0;
 				_noblesseQuestStage = 2;
 				_noblesseStageInProgress = false;
 				_macroState = CitizenMacroState.RETURN_TO_TOWN;
@@ -1020,13 +1292,15 @@ public final class AutonomousCitizen
 			return;
 		}
 		
-		// Part 3: Q00246_PossessorOfAPreciousSoul_3 (Subclass Lv 65+ & Raid Boss Flame of Splendor Barakiel 25325)
+		// Part 3: Q00246_PossessorOfAPreciousSoul3 (Subclass Lv 65+ & Raid Boss Flame of Splendor Barakiel 25325)
 		if (_noblesseQuestStage == 2)
 		{
+			final int qId = ProgressionKnowledgeGraph.getNoblesseQuestId(3);
+			ensureServerQuestStarted(qId);
 			if (!_noblesseStageInProgress)
 			{
 				_noblesseStageInProgress = true;
-				consumeItemIfPresent(7678); // Caradine's Letter
+				Quest.takeItems(_player, 7678, -1); // Caradine's Letter
 				_questKillsCurrent = 0;
 				_questKillsTarget = 15;
 				AutonomousPlayerManager.getInstance().joinOrFormQuestRaidParty(this);
@@ -1035,21 +1309,22 @@ public final class AutonomousCitizen
 				_lastAction = "Q246 Precious Soul Pt.3 (SubLv" + _subClassLevel + "): Contesting Barakiel (25325) in Valley of Saints";
 				return;
 			}
-			if ((_questKillsCurrent == 5) && (_player.getInventory().getItemByItemId(7591) == null))
+			if ((_questKillsCurrent == 5) && !Quest.hasQuestItems(_player, 7591))
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7591, 1, _player, null); // Ring of Goddess: Waterbinder
+				Quest.giveItems(_player, 7591, 1); // Ring of Goddess: Waterbinder
 			}
-			else if ((_questKillsCurrent == 10) && (_player.getInventory().getItemByItemId(7592) == null))
+			else if ((_questKillsCurrent == 10) && !Quest.hasQuestItems(_player, 7592))
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7592, 1, _player, null); // Necklace of Goddess: Evergreen
+				Quest.giveItems(_player, 7592, 1); // Necklace of Goddess: Evergreen
 			}
 			if (_questKillsCurrent >= _questKillsTarget)
 			{
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7593, 1, _player, null); // Rain Song (Barakiel's Staff)
-				consumeItemIfPresent(7591, 7592, 7593);
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7594, 1, _player, null); // Relic Box
-				consumeItemIfPresent(7594);
-				_player.getInventory().addItem(ItemProcessType.QUEST, 7679, 1, _player, null); // Caradine's Letter (Final)
+				Quest.giveItems(_player, 7593, 1); // Rain Song (Barakiel's Staff)
+				Quest.takeItems(_player, -1, 7591, 7592, 7593);
+				Quest.giveItems(_player, 7594, 1); // Relic Box
+				Quest.takeItems(_player, 7594, -1);
+				completeServerQuestStageWithNpc(qId, 7679, 1, 0L, 719_843L, 0, true); // Caradine's Letter (Final)
+				_activeQuestId = 0;
 				_noblesseQuestStage = 3;
 				_noblesseStageInProgress = false;
 				_macroState = CitizenMacroState.RETURN_TO_TOWN;
@@ -1060,10 +1335,14 @@ public final class AutonomousCitizen
 			return;
 		}
 		
-		// Part 4: Q00247_PossessorOfAPreciousSoul_4 (Subclass Lv 75+ Ordination with Lady of the Lake 31745)
+		// Part 4: Q00247_PossessorOfAPreciousSoul4 (Subclass Lv 75+ Ordination with Lady of the Lake 31745)
+		final int q247Id = ProgressionKnowledgeGraph.getNoblesseQuestId(4);
+		ensureServerQuestStarted(q247Id);
 		_currentZone = ProgressionKnowledgeGraph.selectNoblesseQuestZone(4);
 		_player.teleToLocation(_currentZone.huntingCenter(), true);
-		consumeItemIfPresent(7679); // Caradine's Letter
+		Quest.takeItems(_player, 7679, -1); // Caradine's Letter
+		completeServerQuestStageWithNpc(q247Id, 7694, 1, 0L, 93_836L, 0, true); // Noblesse Tiara
+		_activeQuestId = 0;
 		_noblesseQuestStage = 4;
 		_noblesseStageInProgress = false;
 		_player.setNoble(true);
@@ -1102,6 +1381,7 @@ public final class AutonomousCitizen
 				{
 					_questKillsCurrent++;
 				}
+				notifyServerQuestKill(_activeQuestId, currentTarget);
 				onTargetDefeated(currentTarget);
 				_player.setTarget(null);
 				_lastAction = questLabel + " progress (" + _questKillsCurrent + "/" + _questKillsTarget + ")";
@@ -1158,6 +1438,7 @@ public final class AutonomousCitizen
 			if (currentTarget.isAlikeDead())
 			{
 				_questKillsCurrent++;
+				notifyServerQuestKill(_activeQuestId, currentTarget);
 				onTargetDefeated(currentTarget);
 				_player.setTarget(null);
 				_lastAction = questLabel + " kill (" + _questKillsCurrent + "/" + _questKillsTarget + ")";
@@ -1185,6 +1466,7 @@ public final class AutonomousCitizen
 		if (target == null)
 		{
 			_questKillsCurrent++;
+			notifyServerQuestKill(_activeQuestId, null);
 			_lastAction = questLabel + " scouting zone (" + _questKillsCurrent + "/" + _questKillsTarget + ")";
 			return;
 		}
@@ -1635,13 +1917,16 @@ public final class AutonomousCitizen
 	}
 	
 	/**
-	 * Deep 4-Archetype Combat Combo &amp; Tactical Doctrine Engine + UCB1 Contextual Toolkit Exploration:
+	 * Deep 7-Archetype Combat Combo &amp; Tactical Doctrine Engine + UCB1 Contextual Toolkit Exploration:
 	 * <ol>
 	 *   <li><b>Dwarven Spoiler Pre-Hook:</b> Scavenger/Bounty Hunter/Fortune Seeker casts {@code Spoil (254)} via {@code useMagic}.</li>
-	 *   <li><b>Elemental Mage Combo Doctrine:</b> {@code Surrender to Element / Gloom} -> {@code Elemental Vortex (1339-1343)} -> {@code Vortex Buster/Crusher/Slug (1451-1456)} -> UCB1 Primary Elemental Nuke.</li>
-	 *   <li><b>Gladiator / Duelist &amp; Grand Khavatari Momentum Charge Doctrine:</b> Builds charges via {@code Sonic Rage (345)} / {@code Raging Force (346)} / {@code Sonic Focus (8)}, releases high-multiplier finishers ({@code Triple Sonic Slash 261}, {@code Hurricane Assault 284}, {@code Double Sonic Slash 5}), and weaves Auto-Attacks when finishers are within {@code <= 2.5s} of cooldown.</li>
-	 *   <li><b>Warlord / Dreadnought Polearm Monster-Train &amp; Vampiric Cleave Doctrine:</b> Pulls {@code 3-8} monsters into a stacked cluster, maintains {@code Fell Swoop (421)} / {@code Thrill Fight (130)}, locks down with {@code Shock Blast (361)} / {@code Thunder Storm (48)}, and prioritizes Polearm Auto-Attack Cleave when HP &lt; 85% to multiply Vampiric Rage life-steal across up to 12 targets.</li>
-	 *   <li><b>Archer Range-Preservation &amp; Auto-Attack Supremacy Doctrine:</b> Stands at full {@code 850-1100} bow range, strictly discards any skill whose {@code castRange < distanceToTarget} (refusing to waste DPS running closer), and relies on Soulshot Critical Auto-Attacks + long-range {@code Lethal Shot (343)} / {@code Seven Arrow (924)}.</li>
+	 *   <li><b>Doctrine 1 — Elemental Mage Combo:</b> {@code Surrender to Element / Gloom} -> {@code Elemental Vortex (1339-1343)} -> {@code Vortex Buster/Crusher/Slug (1451-1456)} -> UCB1 Primary Elemental Nuke.</li>
+	 *   <li><b>Doctrine 2 — Archer Range-Preservation &amp; Auto-Attack Supremacy:</b> Stands at full {@code 850-1100} bow range, strictly discards any skill whose {@code castRange < distanceToTarget} (refusing to waste DPS running closer), and relies on Soulshot Critical Auto-Attacks + long-range {@code Lethal Shot (343)} / {@code Seven Arrow (924)}.</li>
+	 *   <li><b>Doctrine 3 — Gladiator / Duelist &amp; Grand Khavatari Momentum Charge:</b> Builds charges via {@code Sonic Rage (345)} / {@code Raging Force (346)} / {@code Sonic Focus (8)}, releases high-multiplier finishers ({@code Triple Sonic Slash 261}, {@code Hurricane Assault 284}, {@code Double Sonic Slash 5}), and weaves Auto-Attacks when finishers are within {@code <= 2.5s} of cooldown.</li>
+	 *   <li><b>Doctrine 4 — Warlord / Dreadnought Polearm Monster-Train &amp; Vampiric Cleave:</b> Pulls {@code 3-8} monsters into a stacked cluster, maintains {@code Fell Swoop (421)} / {@code Thrill Fight (130)}, locks down with {@code Shock Blast (361)} / {@code Thunder Storm (48)}, and prioritizes Polearm Auto-Attack Cleave when HP &lt; 85% to multiply Vampiric Rage life-steal across up to 12 targets.</li>
+	 *   <li><b>Doctrine 5 — Rogue / Dagger Positional Flank + Treasure Chest Unlock Gambling:</b> Restocks Thief/Deluxe Chest Keys, opens World Treasure Chests ({@code 18265..18298}) with {@code Unlock (27)} / {@code Deluxe Key (2229)}, maintains {@code Focus Death/Chance/Power (355-357)}, flanks behind target via {@code Bluff (358)} / {@code Shadow Step (821)} / {@code Trick (11)} / {@code Switch (12)} / geometric back-step, and chains {@code Backstab (30)} -> {@code Lethal Blow (344)} -> {@code Critical/Blinding Blow (409/321)} -> {@code Deadly Blow (263)}.</li>
+	 *   <li><b>Doctrine 6 — Tank Group Healer-Protector Taunt &amp; Solo Vanguard Stance:</b> In party/low-HP mode, scans party Healers/allies for aggro threats and fires {@code Aggression (28)} (Top of Aggro + N in PvE, 3s Forced Target-Lock in PvP) or {@code Aura of Hate (18)}, weaving {@code Tribunal (400)} / {@code Judgment (401)} / {@code Shield Slam (353)} / {@code Touch of Life (341)} / {@code Shield of Faith (529)}. In solo mode (HP &gt;= 55%), activates {@code Vanguard (810-813)} stance and {@code Boost Morale (956)} / {@code Blade Hurricane (814)}.</li>
+	 *   <li><b>Doctrine 7 — Support, Healer &amp; Overlord:</b> Overlord/Dominator restores party CP ({@code Ritual of Life 1306}, {@code Honor of Pa'agrio 1305}), maintains {@code Victories of Pa'agrio (1414)} / {@code Pa'agrio's Fist (1416)}, and casts AoE Seals + {@code Steal Essence (1245)}. Cardinal/Eva's Saint/Shillien Saint triages HP ({@code Balance Life 1335}, {@code Major Heal 1401}), recharges MP ({@code Mana Gain 1460} + {@code Recharge 1013}), maintains 81-83 buffs ({@code Lord of Vampire 1507}, {@code Stigma of Shillien 1539}, {@code Prophecy of Water 1355}), and solo farms with {@code Inquisitor (1520)} / {@code Might of Heaven (1028)}. Hierophant/Doomcryer/Sword Muse/Spectral Dancer maintain {@code Counter Critical (1542)}, {@code Great Fury (1543)}, {@code Chant of Protection (1461)}, and Songs/Dances.</li>
 	 * </ol>
 	 */
 	private void engageTarget(Creature target, boolean isMage)
@@ -1661,35 +1946,56 @@ public final class AutonomousCitizen
 			}
 		}
 		
-		// 1. Elemental Mage Combo Doctrine (Surrender -> Vortex -> Vortex Slug/Buster -> UCB1 Elemental Nuke)
+		// Doctrine 7: Support, Healer & Overlord (Dominator, Cardinal, Eva's/Shillien Saint, Hierophant, Doomcryer, Sword Muse, Spectral Dancer)
+		if (isSupportOrOverlordCitizen())
+		{
+			executeSupportAndOverlordDoctrine(target);
+			return;
+		}
+		
+		// Doctrine 1: Elemental Mage Combo (Surrender -> Vortex -> Vortex Slug/Buster -> UCB1 Elemental Nuke)
 		if (isMage)
 		{
 			executeMageComboDoctrine(target);
 			return;
 		}
 		
-		// 2. Archer Range-Preservation & Auto-Attack Supremacy Doctrine
+		// Doctrine 2: Archer Range-Preservation & Auto-Attack Supremacy
 		if (isArcherCitizen())
 		{
 			executeArcherRangeDoctrine(target);
 			return;
 		}
 		
-		// 3. Gladiator / Duelist & Tyrant / Grand Khavatari Momentum Charge-and-Release Doctrine
+		// Doctrine 3: Gladiator / Duelist & Tyrant / Grand Khavatari Momentum Charge-and-Release
 		if (isMomentumFighterCitizen())
 		{
 			executeMomentumChargeDoctrine(target);
 			return;
 		}
 		
-		// 4. Warlord / Dreadnought Polearm Monster-Train & Vampiric Cleave Doctrine
+		// Doctrine 4: Warlord / Dreadnought Polearm Monster-Train & Vampiric Cleave
 		if (isPolearmTrainCitizen())
 		{
 			executeDreadnoughtTrainDoctrine(target);
 			return;
 		}
 		
-		// 5. General Melee / Dagger / Knight Tactical Rotation with UCB1 Toolkit Exploration
+		// Doctrine 5: Rogue / Dagger Positional Flank + Treasure Chest Unlock Gambling
+		if (isDaggerRogueCitizen())
+		{
+			executeDaggerRogueDoctrine(target);
+			return;
+		}
+		
+		// Doctrine 6: Tank Group Healer-Protector Taunt & Solo Vanguard Stance
+		if (isTankCitizen())
+		{
+			executeTankVanguardAndTauntDoctrine(target);
+			return;
+		}
+		
+		// Fallback Melee / Kamael Tactical Rotation with UCB1 Toolkit Exploration
 		final Skill offensiveSkill = selectBestOffensiveSkill(target, false);
 		if (offensiveSkill != null)
 		{
@@ -2095,6 +2401,575 @@ public final class AutonomousCitizen
 		_lastAction = "Bow Crit Auto-Attacking " + target.getName() + " (" + (int) dist + "u)";
 	}
 	
+	/**
+	 * Doctrine 5 — Rogue / Dagger Positional Flank + World Treasure Chest {@code Unlock (27)} Gambling:
+	 * <ul>
+	 *   <li>Scans {@code World.getVisibleObjectsInRange(_player, Chest.class, 900)} for unopened Treasure Chests within {@code |chest.getLevel() - _player.getLevel()| <= 6} and casts {@code Unlock (27)} or {@code Deluxe Chest Key (2229)}.</li>
+	 *   <li>Maintains Thief sub-fantasy buffs: {@code Focus Death (355)} (AW/GH), {@code Focus Chance (356)} (PW/WR), {@code Focus Power (357)} (TH/Adv), {@code Mortal Strike (410)}, {@code Esprit (171)}.</li>
+	 *   <li>Flanks behind the target via {@code Bluff (358)} / {@code Shadow Step (821)} (3rd Class) or {@code Switch (12)} / {@code Trick (11)} / {@code Veil (65)} / {@code Lure (51)} / geometric back-step (1st/2nd Class).</li>
+	 *   <li>Applies Mana Preservation vs. Danger Triage and chains {@code Backstab (30)} -> {@code Lethal Blow (344)} -> {@code Critical Blow (409)} / {@code Blinding Blow (321)} -> {@code Deadly Blow (263)}.</li>
+	 * </ul>
+	 */
+	private void executeDaggerRogueDoctrine(Creature target)
+	{
+		// 1. World Treasure Chest Gambling (Unlock 27 & Deluxe Chest Key 2229 on Chest 18265..18298, 21671..21822)
+		Chest chestTarget = (target instanceof Chest c && !c.isDead() && !c.isInteracted()) ? c : null;
+		if (chestTarget == null)
+		{
+			for (Chest chest : World.getVisibleObjectsInRange(_player, Chest.class, 900))
+			{
+				if ((chest != null) && !chest.isDead() && !chest.isInteracted() && (Math.abs(chest.getLevel() - _player.getLevel()) <= 6))
+				{
+					chestTarget = chest;
+					break;
+				}
+			}
+		}
+		if (chestTarget != null)
+		{
+			_player.setTarget(chestTarget);
+			if (_player.calculateDistance2D(chestTarget) > 40.0)
+			{
+				if (!_player.isMoving())
+				{
+					_player.getAI().setIntentionMoveTo(chestTarget);
+				}
+				_lastDecisionReason = "Dagger Treasure Gamble: Approaching " + chestTarget.getName() + " (Lv " + chestTarget.getLevel() + ")";
+				_lastAction = _lastDecisionReason;
+				return;
+			}
+			Skill unlockSkill = getReadySkill(27); // Unlock (27)
+			if (unlockSkill == null)
+			{
+				final int keySkillLvl = Math.min(8, Math.max(1, (_player.getLevel() - 10) / 10));
+				unlockSkill = SkillData.getInstance().getSkill(2229, keySkillLvl); // Deluxe Chest Key (2229)
+			}
+			if (unlockSkill != null)
+			{
+				castTacticalSkill(unlockSkill, chestTarget, true, "Dagger Treasure Gamble: Casting " + unlockSkill.getName() + " on " + chestTarget.getName());
+				return;
+			}
+		}
+		
+		// 2. Maintain Thief Sub-Fantasy Self-Buffs: Focus Death (355), Focus Chance (356), Focus Power (357), Mortal Strike (410), Stealth/Esprit (171)
+		for (int buffId : new int[] { 355, 356, 357, 410, 171 })
+		{
+			if (!_player.isAffectedBySkill(buffId))
+			{
+				final Skill buff = getReadySkill(buffId);
+				if (buff != null)
+				{
+					castTacticalSkill(buff, _player, false, "Dagger Stance: Activating " + buff.getName());
+					return;
+				}
+			}
+		}
+		
+		// 3. Positional Back/Side Flank + Bluff (358) / Shadow Step (821) / Switch (12) / Trick (11) / Geometric Back-Step
+		final boolean isBehindTarget = _player.isBehind(target);
+		if (!isBehindTarget && (target.getTarget() == _player))
+		{
+			for (int flankSkillId : new int[] { 358, 821, 12, 11, 65, 51 })
+			{
+				final Skill flankSkill = getReadySkill(flankSkillId);
+				if (flankSkill != null)
+				{
+					castTacticalSkill(flankSkill, target, true, "Dagger Flank Setup: Casting " + flankSkill.getName() + " to expose enemy back!");
+					return;
+				}
+			}
+			if ((ThreadLocalRandom.current().nextInt(100) < 40) && !_player.isMoving())
+			{
+				final double rad = Math.toRadians(LocationUtil.convertHeadingToDegree(target.getHeading()));
+				final int backX = target.getX() - (int) Math.round(Math.cos(rad) * 45.0);
+				final int backY = target.getY() - (int) Math.round(Math.sin(rad) * 45.0);
+				final Location flankLoc = GeoEngine.getInstance().getValidLocation(_player.getX(), _player.getY(), _player.getZ(), backX, backY, target.getZ(), _player.getInstanceId());
+				_player.getAI().setIntentionMoveTo(flankLoc);
+				_lastDecisionReason = "Dagger Positional Flank: Stepping 45u behind " + target.getName() + " for Backstab";
+				_lastAction = _lastDecisionReason;
+				return;
+			}
+		}
+		
+		// 4. Mana Preservation vs. Danger Triage
+		final double hpRatio = _player.getCurrentHp() / Math.max(1.0, _player.getMaxHp());
+		final double mpRatio = _player.getCurrentMp() / Math.max(1.0, _player.getMaxMp());
+		int nearbyMobs = 0;
+		for (Monster m : World.getVisibleObjectsInRange(_player, Monster.class, 220))
+		{
+			if ((m != null) && !m.isAlikeDead())
+			{
+				nearbyMobs++;
+			}
+		}
+		final boolean isMimicOrHighDanger = (target instanceof Chest) || (nearbyMobs >= 2) || (hpRatio <= 0.75);
+		
+		if (!isMimicOrHighDanger && (mpRatio < 0.50))
+		{
+			// Low Danger & Low MP: Conserve MP with fast Dagger Auto-Attacks, only firing Backstab (30) when strictly behind target!
+			if (isBehindTarget)
+			{
+				final Skill backstab = getReadySkill(30);
+				if (backstab != null)
+				{
+					castTacticalSkill(backstab, target, true, "Dagger MP-Conserve Backstab [Behind]: " + backstab.getName());
+					return;
+				}
+			}
+			_player.getAI().setIntentionAttack(target);
+			_lastDecisionReason = "Dagger MP Preservation [HP " + (int) Math.round(hpRatio * 100) + "%, MP " + (int) Math.round(mpRatio * 100) + "%]: Fast Crit Auto-Attack";
+			_lastAction = _lastDecisionReason;
+			return;
+		}
+		
+		// High Danger / Evasion Cooldowns: Exciting Adventure (768), Wind Riding (769), Ghost Walking (770), Ultimate Evasion (111), Mirage (430), Dodge (487)
+		if (isMimicOrHighDanger)
+		{
+			for (int evaId : new int[] { 768, 769, 770, 111, 430, 487 })
+			{
+				if (!_player.isAffectedBySkill(evaId))
+				{
+					final Skill eva = getReadySkill(evaId);
+					if (eva != null)
+					{
+						castTacticalSkill(eva, _player, false, "Dagger Evasion Triage: Popping " + eva.getName());
+						return;
+					}
+				}
+			}
+		}
+		
+		// Apply Hex (122) / Bleed (96) / Sting (223) (Abyss Walker / Ghost Hunter)
+		if ((target.getCurrentHp() > (target.getMaxHp() * 0.45)))
+		{
+			for (int debuffId : new int[] { 122, 96, 223 })
+			{
+				if (!target.isAffectedBySkill(debuffId))
+				{
+					final Skill debuff = getReadySkill(debuffId);
+					if (debuff != null)
+					{
+						castTacticalSkill(debuff, target, true, "Dagger Opener Debuff: " + debuff.getName());
+						return;
+					}
+				}
+			}
+		}
+		
+		// Unleash full Blow Chain: Backstab (30) [when behind/side] -> Lethal Blow (344) -> Critical Blow (409) / Blinding Blow (321) -> Deadly Blow (263) / Mortal Blow (16)
+		if (isBehindTarget || !_player.isInFrontOf(target))
+		{
+			final Skill backstab = getReadySkill(30);
+			if (backstab != null)
+			{
+				castTacticalSkill(backstab, target, true, "Dagger Blow Chain [Behind]: Backstab (30)");
+				return;
+			}
+		}
+		for (int blowId : new int[] { 344, 409, 321, 263, 16 })
+		{
+			final Skill blow = getReadySkill(blowId);
+			if (blow != null)
+			{
+				castTacticalSkill(blow, target, true, "Dagger Blow Chain: " + blow.getName());
+				return;
+			}
+		}
+		
+		_player.getAI().setIntentionAttack(target);
+		_lastDecisionReason = "Dagger Fast Auto-Attack Weave";
+		_lastAction = "Dagger Attacking " + target.getName();
+	}
+	
+	/**
+	 * Doctrine 6 — Tank Group Healer-Protector Taunt &amp; Solo Vanguard Stance ({@code Phoenix Knight}, {@code Hell Knight}, {@code Eva's Templar}, {@code Shillien Templar}):
+	 * <ul>
+	 *   <li><b>Emergency Survival (&lt; 40% HP):</b> Activates {@code Touch of Life (341)}, {@code Shield of Faith (529)}, {@code Vengeance (368)}, or {@code Ultimate Defense (110)}.</li>
+	 *   <li><b>Group / Healer-Protector Mode ({@code isInParty()} or HP &lt; 50%):</b> Scans party members for attackers targeting Healers/allies and fires {@code Aura of Hate (18)} (AoE Taunt) or {@code Aggression (28)} (Top of Aggro + N in PvE, 3s Forced Target-Lock in PvP), maintaining {@code Guard Stance (288)} / {@code Aegis Stance (318)} / {@code Deflect Arrow (112)} / {@code Iron Shield (527)} and weaving {@code Tribunal (400)} / {@code Judgment (401)} / {@code Shield Slam (353)} / {@code Shield Bash (352)} / {@code Shackle (402)}.</li>
+	 *   <li><b>Solo Vanguard Offensive Mode ({@code !isInParty()} and HP &gt;= 55%):</b> Activates Epilogue {@code Vanguard (810..813)} stance + {@code Boost Morale (956)} / {@code Seed of Revenge (761)} / {@code Spirit of Shillien (789)} and weaves {@code Blade Hurricane (814)} / {@code Blade Slash (815)} / {@code Double Strike (816)}.</li>
+	 * </ul>
+	 */
+	private void executeTankVanguardAndTauntDoctrine(Creature target)
+	{
+		final double hpRatio = _player.getCurrentHp() / Math.max(1.0, _player.getMaxHp());
+		
+		// 1. Emergency Survival Cooldowns (< 40% HP): Touch of Life (341), Shield of Faith (529), Vengeance (368), Ultimate Defense (110)
+		if (hpRatio < 0.40)
+		{
+			for (int defId : new int[] { 341, 529, 368, 110 })
+			{
+				if (!_player.isAffectedBySkill(defId))
+				{
+					final Skill defSkill = getReadySkill(defId);
+					if (defSkill != null)
+					{
+						castTacticalSkill(defSkill, _player, false, "Tank Emergency Survival [HP " + (int) Math.round(hpRatio * 100) + "%]: " + defSkill.getName());
+						return;
+					}
+				}
+			}
+		}
+		
+		// 2. Group / Healer-Protector Mode (_player.isInParty() or HP < 50%)
+		if (_player.isInParty() || (hpRatio < 0.50))
+		{
+			// Maintain Tank Shield Stances & Buffs: Iron Shield (527), Deflect Arrow (112), Majesty (231), Guard Stance (288), Aegis Stance (318)
+			for (int buffId : new int[] { 527, 112, 231, 288, 318 })
+			{
+				if (!_player.isAffectedBySkill(buffId))
+				{
+					final Skill buff = getReadySkill(buffId);
+					if (buff != null)
+					{
+						castTacticalSkill(buff, _player, false, "Tank Protector Stance: " + buff.getName());
+						return;
+					}
+				}
+			}
+			
+			// Scan nearby hostiles threatening party allies (prioritizing Healers/Mages!)
+			Creature looseAttacker = null;
+			int looseCount = 0;
+			final Party party = _player.getParty();
+			for (Creature nearby : World.getVisibleObjectsInRange(_player, Creature.class, 600))
+			{
+				if ((nearby == null) || nearby.isAlikeDead() || (nearby == _player))
+				{
+					continue;
+				}
+				if (nearby.isAttackable())
+				{
+					final Attackable mob = nearby.asAttackable();
+					final Creature mostHated = mob.getMostHated();
+					if ((mostHated != null) && (mostHated != _player))
+					{
+						looseCount++;
+						if (looseAttacker == null)
+						{
+							looseAttacker = mob;
+						}
+					}
+				}
+				else if ((party != null) && (nearby.getTarget() instanceof Player ally) && (ally != _player) && party.containsPlayer(ally) && nearby.isAutoAttackable(_player))
+				{
+					looseCount++;
+					looseAttacker = nearby;
+				}
+			}
+			
+			if (looseCount >= 2)
+			{
+				final Skill auraOfHate = getReadySkill(18); // Aura of Hate (AoE Taunt: TopOfAggro+N in PvE, 3s Target-Lock in PvP)
+				if (auraOfHate != null)
+				{
+					castTacticalSkill(auraOfHate, _player, false, "Tank Healer-Protector [" + looseCount + " attackers]: Casting Aura of Hate (18) AoE Taunt!");
+					return;
+				}
+			}
+			
+			final Creature tauntTarget = (looseAttacker != null) ? looseAttacker : target;
+			if ((tauntTarget != null) && ((tauntTarget.getTarget() != _player) || (tauntTarget.isAttackable() && (tauntTarget.asAttackable().getMostHated() != _player))))
+			{
+				final Skill aggression = getReadySkill(28); // Aggression (Single-Target Taunt: TopOfAggro+N in PvE, 3s Target-Lock in PvP)
+				if (aggression != null)
+				{
+					_player.setTarget(tauntTarget);
+					castTacticalSkill(aggression, tauntTarget, true, "Tank Healer-Protector: Taunting " + tauntTarget.getName() + " with Aggression (28) [TopAggro+N / 3s Lock]!");
+					return;
+				}
+			}
+			
+			// Tank Offensive/Debuff Weave: Tribunal (400), Judgment (401), Shield Slam (353), Shield Bash (352), Shackle (402), Arrest (403)
+			for (int tankSkillId : new int[] { 400, 401, 353, 352, 402, 403 })
+			{
+				final Skill tankSkill = getReadySkill(tankSkillId);
+				if (tankSkill != null)
+				{
+					castTacticalSkill(tankSkill, target, true, "Tank Protector Strike: " + tankSkill.getName());
+					return;
+				}
+			}
+			
+			_player.getAI().setIntentionAttack(target);
+			_lastDecisionReason = "Tank Healer-Protector: Holding top aggro on " + target.getName();
+			_lastAction = _lastDecisionReason;
+			return;
+		}
+		
+		// 3. Solo Vanguard Offensive Mode (!_player.isInParty() and HP >= 55%)
+		for (int vanguardBuffId : new int[] { 810, 811, 812, 813, 956, 761, 789, 785, 787 })
+		{
+			if (!_player.isAffectedBySkill(vanguardBuffId))
+			{
+				final Skill vBuff = getReadySkill(vanguardBuffId);
+				if (vBuff != null)
+				{
+					castTacticalSkill(vBuff, _player, false, "Tank Solo Vanguard: Activating " + vBuff.getName());
+					return;
+				}
+			}
+		}
+		
+		for (int vanguardStrikeId : new int[] { 814, 815, 816, 817, 400, 401, 70 })
+		{
+			final Skill vStrike = getReadySkill(vanguardStrikeId);
+			if (vStrike != null)
+			{
+				castTacticalSkill(vStrike, target, true, "Tank Solo Vanguard Strike: " + vStrike.getName());
+				return;
+			}
+		}
+		
+		_player.getAI().setIntentionAttack(target);
+		_lastDecisionReason = "Tank Solo Vanguard: High-P.Atk Auto-Attack weave";
+		_lastAction = "Vanguard Attacking " + target.getName();
+	}
+	
+	/**
+	 * Doctrine 7 — Support, Healer &amp; Overlord ({@code Dominator/Overlord}, {@code Cardinal/Bishop}, {@code Eva's Saint}, {@code Shillien Saint}, {@code Hierophant/Prophet}, {@code Doomcryer}, {@code Sword Muse}, {@code Spectral Dancer}):
+	 * <ul>
+	 *   <li><b>Overlord / Dominator:</b> Restores CP via {@code Honor of Pa'agrio (1305)} / {@code Ritual of Life (1306)} when CP &lt; 80%, maintains {@code Victories of Pa'agrio (1414)} / {@code Pa'agrio's Fist (1416)} / {@code Pa'agrio's Emblem (1415)} / {@code Eye of Pa'agrio (1364)} / {@code Soul of Pa'agrio (1365)} / {@code Soul Guard (1311)}, casts AoE Seals ({@code 1509, 1248, 1462, 1104, 1108, 1097}), and drains with {@code Steal Essence (1245)}.</li>
+	 *   <li><b>Cardinal / Eva's Saint / Shillien Saint:</b> Triages HP ({@code Balance Life 1335}, {@code Major Group Heal 1402}, {@code Major Heal 1401}, {@code Greater Battle Heal 1217}) and {@code Cleanse (1409)}, acts as Elven/Dark-Elven Mana Battery ({@code Mana Gain 1460} + {@code Recharge 1013} when ally MP &lt; 65%), maintains exclusive 81-83 buffs/debuffs ({@code Lord of Vampire 1507}, {@code Stigma of Shillien 1539}, {@code Prophecy of Water 1355}, {@code Divine Protection 1353}, {@code Celestial Shield 1418}), and solo farms with {@code Inquisitor (1520)} ({@code Divine Punishment 1523}, {@code Divine Flash 1528}) or {@code Might of Heaven (1028)}.</li>
+	 *   <li><b>Hierophant / Doomcryer / Sword Muse / Spectral Dancer:</b> Maintains exclusive 79-83 buffs ({@code Counter Critical 1542}, {@code Great Fury 1543}, {@code Chant of Protection 1461}, {@code Prophecy of Fire 1356}, {@code Prophecy of Wind 1357}, {@code Chant of Victory 1363}), Songs ({@code 349, 364, 764, 269, 264}), and Dances ({@code 915, 365, 367, 275, 274}).</li>
+	 * </ul>
+	 */
+	private void executeSupportAndOverlordDoctrine(Creature target)
+	{
+		// 1. Overlord / Dominator Branch
+		if (isOverlordCitizen())
+		{
+			// Exclusive CP Restoration: Scan self and nearby party/clan allies for CP < 80%
+			Player lowCpAlly = (_player.getCurrentCp() < (_player.getMaxCp() * 0.80)) ? _player : null;
+			if (lowCpAlly == null)
+			{
+				for (Player ally : World.getVisibleObjectsInRange(_player, Player.class, 600))
+				{
+					if ((ally != null) && !ally.isAlikeDead() && !ally.isAutoAttackable(_player) && (ally.getCurrentCp() < (ally.getMaxCp() * 0.80)))
+					{
+						lowCpAlly = ally;
+						break;
+					}
+				}
+			}
+			if (lowCpAlly != null)
+			{
+				for (int cpHealId : new int[] { 1305, 1306 }) // Honor of Pa'agrio (1305 AoE CP), Ritual of Life (1306 Single CP)
+				{
+					final Skill cpHeal = getReadySkill(cpHealId);
+					if (cpHeal != null)
+					{
+						castTacticalSkill(cpHeal, (cpHealId == 1306) ? lowCpAlly : _player, false, "Overlord CP Restore: " + cpHeal.getName() + " -> " + lowCpAlly.getName());
+						return;
+					}
+				}
+			}
+			
+			// HP Restoration: Heart of Pa'agrio (1256) when HP < 70%
+			if (_player.getCurrentHp() < (_player.getMaxHp() * 0.70))
+			{
+				final Skill heart = getReadySkill(1256);
+				if (heart != null)
+				{
+					castTacticalSkill(heart, _player, false, "Overlord Sustain: Heart of Pa'agrio (1256)");
+					return;
+				}
+			}
+			
+			// Endgame Pa'agrio Buffs (Lv 76-85): Victories of Pa'agrio (1414), Pa'agrio's Fist (1416), Pa'agrio's Emblem (1415), Eye of Pa'agrio (1364), Soul of Pa'agrio (1365), Soul Guard (1311)
+			for (int paagrioBuffId : new int[] { 1414, 1416, 1415, 1364, 1365, 1311, 1260, 1282 })
+			{
+				if (!_player.isAffectedBySkill(paagrioBuffId))
+				{
+					final Skill pBuff = getReadySkill(paagrioBuffId);
+					if (pBuff != null)
+					{
+						castTacticalSkill(pBuff, _player, false, "Overlord Pa'agrio Buff: " + pBuff.getName());
+						return;
+					}
+				}
+			}
+			
+			// AoE Seals & Debuffs: Seal of Limit (1509), Seal of Suspension (1248), Seal of Blockade (1462), Seal of Winter (1104), Seal of Flame (1108), Seal of Gloom (1097)
+			if (target.getCurrentHp() > (target.getMaxHp() * 0.50))
+			{
+				for (int sealId : new int[] { 1509, 1248, 1462, 1104, 1108, 1097 })
+				{
+					if (!target.isAffectedBySkill(sealId))
+					{
+						final Skill seal = getReadySkill(sealId);
+						if (seal != null)
+						{
+							castTacticalSkill(seal, target, true, "Overlord AoE Seal: " + seal.getName());
+							return;
+						}
+					}
+				}
+			}
+			
+			// Primary Overlord Life-Drain Combat: Steal Essence (1245) / Soul Chill (1090)
+			for (int drainId : new int[] { 1245, 1090 })
+			{
+				final Skill drain = getReadySkill(drainId);
+				if (drain != null)
+				{
+					castTacticalSkill(drain, target, true, "Overlord Life-Drain: " + drain.getName());
+					return;
+				}
+			}
+			
+			_player.getAI().setIntentionAttack(target);
+			_lastDecisionReason = "Overlord Melee/Staff Weave";
+			_lastAction = "Overlord Attacking " + target.getName();
+			return;
+		}
+		
+		// 2. HP Triage for Cardinal / Eva's Saint / Shillien Saint & 1st/2nd Class Healers (when self or party ally HP < 70%)
+		Player injuredAlly = (_player.getCurrentHp() < (_player.getMaxHp() * 0.70)) ? _player : null;
+		if ((injuredAlly == null) && _player.isInParty())
+		{
+			for (Player member : _player.getParty().getMembers())
+			{
+				if ((member != null) && !member.isAlikeDead() && (member.getCurrentHp() < (member.getMaxHp() * 0.70)) && (_player.calculateDistance2D(member) <= 600))
+				{
+					injuredAlly = member;
+					break;
+				}
+			}
+		}
+		if (injuredAlly != null)
+		{
+			for (int healId : new int[] { 1335, 1402, 1401, 1217, 1218, 1015, 1011 })
+			{
+				final Skill heal = getReadySkill(healId);
+				if (heal != null)
+				{
+					castTacticalSkill(heal, injuredAlly, false, "Healer Triage: Casting " + heal.getName() + " on " + injuredAlly.getName());
+					return;
+				}
+			}
+		}
+		
+		// Cleanse (1409) on debuffed self or party ally
+		if (_player.getEffectList().hasDebuffs())
+		{
+			final Skill cleanse = getReadySkill(1409);
+			if (cleanse != null)
+			{
+				castTacticalSkill(cleanse, _player, false, "Cardinal Triage: Cleanse (1409)");
+				return;
+			}
+		}
+		
+		// 3. Elven & Dark Elven Mana Battery (Eva's Saint, Shillien Saint, Elder, Shillien Elder): Mana Gain (1460) + Recharge (1013) on ally with MP < 65%
+		if (_player.isInParty())
+		{
+			for (Player member : _player.getParty().getMembers())
+			{
+				if ((member != null) && (member != _player) && !member.isAlikeDead() && (member.getCurrentMp() < (member.getMaxMp() * 0.65)) && (_player.calculateDistance2D(member) <= 600))
+				{
+					if (!member.isAffectedBySkill(1460))
+					{
+						final Skill manaGain = getReadySkill(1460);
+						if (manaGain != null)
+						{
+							castTacticalSkill(manaGain, member, false, "Saint Mana Battery: Mana Gain (1460) -> " + member.getName());
+							return;
+						}
+					}
+					final Skill recharge = getReadySkill(1013);
+					if (recharge != null)
+					{
+						castTacticalSkill(recharge, member, false, "Saint Mana Battery: Recharge (1013) -> " + member.getName());
+						return;
+					}
+				}
+			}
+		}
+		
+		// 4. Exclusive 79-83 Endgame Buffs, Songs & Dances (Not in Town Buffer)
+		final int[] exclusiveSupportBuffs =
+		{
+			1507, // Lord of Vampire (Shillien Saint)
+			1355, // Prophecy of Water (Eva's Saint)
+			1353, // Divine Protection (Cardinal)
+			1418, // Celestial Shield (Cardinal)
+			1542, // Counter Critical (Hierophant)
+			1543, // Great Fury (Doomcryer)
+			1461, // Chant of Protection
+			1356, // Prophecy of Fire (Hierophant)
+			1357, // Prophecy of Wind (Shillien Saint)
+			1363, // Chant of Victory (Doomcryer)
+			1413, // Magnus' Chant (Doomcryer)
+			349, // Song of Renewal (Sword Muse)
+			364, // Song of Champion (Sword Muse)
+			764, // Song of Wind Storm (Sword Muse)
+			269, // Song of Hunter (Sword Muse)
+			264, // Song of Earth (Sword Muse)
+			915, // Dance of Berserker (Spectral Dancer)
+			365, // Dance of Siren (Spectral Dancer)
+			275, // Dance of Fury (Spectral Dancer)
+			274 // Dance of Fire (Spectral Dancer)
+		};
+		for (int buffId : exclusiveSupportBuffs)
+		{
+			if ((buffId == 1418) && (_player.getCurrentHp() > (_player.getMaxHp() * 0.45)))
+			{
+				continue; // Save Celestial Shield for low HP
+			}
+			if (!_player.isAffectedBySkill(buffId))
+			{
+				final Skill sBuff = getReadySkill(buffId);
+				if (sBuff != null)
+				{
+					castTacticalSkill(sBuff, _player, false, "Endgame Support Buff: " + sBuff.getName());
+					return;
+				}
+			}
+		}
+		
+		// 5. Stigma of Shillien (1539) (-40 Melee Weapon Resistance on target!) & Dance of Medusa (367)
+		if (!target.isAffectedBySkill(1539))
+		{
+			final Skill stigma = getReadySkill(1539);
+			if (stigma != null)
+			{
+				castTacticalSkill(stigma, target, true, "Shillien Saint Debuff: Stigma of Shillien (1539)");
+				return;
+			}
+		}
+		
+		// 6. Solo Farm / Inquisitor (1520, 1521, 1522 -> Divine Punishment 1523, Divine Flash 1528, Surrender to the Holy 1524) & Might of Heaven (1028)
+		for (int inqStanceId : new int[] { 1520, 1521, 1522 })
+		{
+			if (!_player.isAffectedBySkill(inqStanceId) && !_player.isInParty())
+			{
+				final Skill inq = getReadySkill(inqStanceId);
+				if (inq != null)
+				{
+					castTacticalSkill(inq, _player, false, "Healer Solo Stance: Activating " + inq.getName());
+					return;
+				}
+			}
+		}
+		for (int offensiveId : new int[] { 1524, 1523, 1528, 1028, 1031, 1245, 401, 366, 1177 })
+		{
+			if ((offensiveId == 1524) && target.isAffectedBySkill(1524))
+			{
+				continue;
+			}
+			final Skill atkSkill = getReadySkill(offensiveId);
+			if (atkSkill != null)
+			{
+				castTacticalSkill(atkSkill, target, true, "Support Offensive Weave: " + atkSkill.getName());
+				return;
+			}
+		}
+		
+		_player.getAI().setIntentionAttack(target);
+		_lastDecisionReason = "Support Auto-Attack Weave";
+		_lastAction = "Support Attacking " + target.getName();
+	}
+	
 	private Skill getReadySkill(int skillId)
 	{
 		final Skill skill = _player.getKnownSkill(skillId);
@@ -2209,9 +3084,9 @@ public final class AutonomousCitizen
 			if ((_subclassQuestStage == 5) && (_subClassLevel >= 40) && (_subClassLevel < 75))
 			{
 				_subClassLevel++;
-				if ((_subClassLevel == 65) && (_player.getInventory().getItemByItemId(10280) == null))
+				if ((_subClassLevel == 65) && !Quest.hasQuestItems(_player, 10280))
 				{
-					_player.getInventory().addItem(ItemProcessType.QUEST, 10280, 1, _player, null); // Certificate - Emergent Ability
+					Quest.giveItems(_player, 10280, 1); // Certificate - Emergent Ability
 					final Skill boostCp = SkillData.getInstance().getSkill(6563, 1);
 					if (boostCp != null)
 					{
@@ -2259,6 +3134,17 @@ public final class AutonomousCitizen
 		if ((creature == null) || creature.isAlikeDead() || !creature.isMonster() || creature.isRaid())
 		{
 			return false;
+		}
+		if (creature instanceof Chest chest)
+		{
+			if (!chest.isInteracted() && !isDaggerRogueCitizen())
+			{
+				return false;
+			}
+			if (!chest.isInteracted() && (Math.abs(chest.getLevel() - _player.getLevel()) > 6))
+			{
+				return false;
+			}
 		}
 		if (_blacklistedTargets.contains(creature.getObjectId()))
 		{
@@ -2347,12 +3233,18 @@ public final class AutonomousCitizen
 			_player.broadcastUserInfo();
 		}
 		
-		// Ensure consumables (Soulshots, Spiritshots, Arrows, Healing Potions, Mana Potions 728, Escape Scrolls)
+		// Ensure consumables (Soulshots, Spiritshots, Arrows, Healing Potions, Mana Potions 728, Escape Scrolls, and Thief/Deluxe Chest Keys for Daggers)
 		ensureInventoryStock(loadout.soulshotId(), 2000, isInitialSpawn);
 		ensureInventoryStock(loadout.spiritshotId(), 2000, isInitialSpawn);
 		if (loadout.arrowId() > 0)
 		{
 			ensureInventoryStock(loadout.arrowId(), 2000, isInitialSpawn);
+		}
+		if (isDaggerRogueCitizen())
+		{
+			ensureInventoryStock(1661, 100, isInitialSpawn); // Thief Key (for Unlock 27)
+			final int deluxeKeyId = 6665 + Math.min(7, Math.max(0, (_player.getLevel() - 20) / 10)); // Deluxe Chest Key Grade 1..8 (6665..6672)
+			ensureInventoryStock(deluxeKeyId, 30, isInitialSpawn);
 		}
 		ensureInventoryStock(1061, 100, isInitialSpawn); // Greater Healing Potion
 		ensureInventoryStock(1539, 100, isInitialSpawn); // Major Healing Potion

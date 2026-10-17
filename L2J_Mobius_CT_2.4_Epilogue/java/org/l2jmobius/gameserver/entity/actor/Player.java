@@ -5090,6 +5090,13 @@ public class Player extends Playable
 	@Override
 	public void setTarget(WorldObject worldObject)
 	{
+		if (isLockedTarget() && (worldObject != null) && (worldObject != getLockedTarget()))
+		{
+			sendPacket(SystemMessageId.FAILED_TO_CHANGE_ATTACK_TARGET);
+			sendPacket(ActionFailed.STATIC_PACKET);
+			return;
+		}
+		
 		WorldObject newTarget = worldObject;
 		if (newTarget != null)
 		{

@@ -398,6 +398,168 @@ public final class ProgressionKnowledgeGraph
 		return stageItems[stageItems.length - 1];
 	}
 	
+	/**
+	 * Maps every 1st-Class Path (Lv 20), 2nd-Class 3-Mark Trial/Testimony/Test (Lv 40), and 3rd-Class 6-Tablet Saga (Lv 76)
+	 * stage to its real server {@link org.l2jmobius.gameserver.mechanics.script.Quest} ID in {@code ScriptManager}.
+	 */
+	public static int[] getClassTransferQuestIds(PlayerClass playerClass, PlayerClass targetEndgameClass, int classTier)
+	{
+		final PlayerClass nextClass = selectNextClassTowards(playerClass, targetEndgameClass);
+		final String nextName = (nextClass != null) ? nextClass.name() : "";
+		final String asp = (targetEndgameClass != null) ? targetEndgameClass.name() : nextName;
+		final Race race = (playerClass != null) ? playerClass.getRace() : Race.HUMAN;
+		
+		if (classTier == 1)
+		{
+			final int q1 = switch (nextName)
+			{
+				case "WARRIOR" -> 401;
+				case "KNIGHT" -> 402;
+				case "ROGUE" -> 403;
+				case "WIZARD" -> 404;
+				case "CLERIC" -> 405;
+				case "ELVEN_KNIGHT" -> 406;
+				case "ELVEN_SCOUT" -> 407;
+				case "ELVEN_WIZARD" -> 408;
+				case "ORACLE" -> 409;
+				case "PALUS_KNIGHT" -> 410;
+				case "ASSASSIN" -> 411;
+				case "DARK_WIZARD" -> 412;
+				case "SHILLIEN_ORACLE" -> 413;
+				case "ORC_RAIDER" -> 414;
+				case "ORC_MONK" -> 415;
+				case "ORC_SHAMAN" -> 416;
+				case "SCAVENGER" -> 417;
+				case "ARTISAN" -> 418;
+				case "TROOPER" -> 62;
+				case "WARDER" -> 63;
+				default -> 401;
+			};
+			return new int[] { q1, q1, q1 };
+		}
+		if (classTier == 2)
+		{
+			if (race == Race.KAMAEL)
+			{
+				final int kq = nextName.contains("BERSERKER") ? 64 : (nextName.contains("ARBALESTER") ? 66 : 65);
+				return new int[] { kq, kq, kq };
+			}
+			final int trialId;
+			if (asp.equals("FORTUNE_SEEKER") || asp.equals("MAESTRO"))
+			{
+				trialId = 216; // TrialOfTheGuildsman
+			}
+			else if (asp.contains("KNIGHT") || asp.contains("TEMPLAR"))
+			{
+				trialId = 212; // TrialOfDuty
+			}
+			else if (asp.equals("ADVENTURER") || asp.equals("WIND_RIDER") || asp.equals("GHOST_HUNTER") || asp.contains("SAGITTARIUS") || asp.contains("SENTINEL"))
+			{
+				trialId = 213; // TrialOfTheSearcher
+			}
+			else if (asp.equals("ARCHMAGE") || asp.equals("SOULTAKER") || asp.equals("ARCANA_LORD") || asp.equals("MYSTIC_MUSE") || asp.equals("ELEMENTAL_MASTER") || asp.equals("STORM_SCREAMER") || asp.equals("SPECTRAL_MASTER"))
+			{
+				trialId = 214; // TrialOfTheScholar
+			}
+			else if (asp.equals("CARDINAL") || asp.equals("HIEROPHANT") || asp.equals("EVA_SAINT") || asp.equals("SHILLIEN_SAINT") || asp.equals("DOMINATOR") || asp.equals("DOOMCRYER"))
+			{
+				trialId = 215; // TrialOfThePilgrim
+			}
+			else
+			{
+				trialId = 211; // TrialOfTheChallenger
+			}
+			
+			final int testimonyId = switch (race)
+			{
+				case ELF -> 218; // TestimonyOfLife
+				case DARK_ELF -> 219; // TestimonyOfFate
+				case ORC -> 220; // TestimonyOfGlory
+				case DWARF -> 221; // TestimonyOfProsperity
+				default -> 217; // TestimonyOfTrust
+			};
+			
+			final int testId = switch (asp)
+			{
+				case "DUELIST", "GRAND_KHAVATARI", "SWORD_MUSE", "SPECTRAL_DANCER" -> 222; // TestOfTheDuelist
+				case "DREADNOUGHT", "TITAN" -> 223; // TestOfTheChampion
+				case "SAGITTARIUS", "MOONLIGHT_SENTINEL", "GHOST_SENTINEL" -> 224; // TestOfSagittarius
+				case "ADVENTURER", "WIND_RIDER", "GHOST_HUNTER", "FORTUNE_SEEKER" -> 225; // TestOfTheSearcher
+				case "PHOENIX_KNIGHT", "EVA_TEMPLAR", "CARDINAL", "EVA_SAINT" -> 226; // TestOfTheHealer
+				case "HIEROPHANT", "SHILLIEN_SAINT" -> 227; // TestOfTheReformer
+				case "ARCHMAGE", "MYSTIC_MUSE", "STORM_SCREAMER" -> 228; // TestOfMagus
+				case "SOULTAKER", "SHILLIEN_TEMPLAR", "HELL_KNIGHT" -> 229; // TestOfWitchcraft
+				case "ARCANA_LORD", "ELEMENTAL_MASTER", "SPECTRAL_MASTER" -> 230; // TestOfTheSummoner
+				case "MAESTRO" -> 231; // TestOfTheMaestro
+				case "DOMINATOR" -> 232; // TestOfTheLord
+				case "DOOMCRYER" -> 233; // TestOfTheWarSpirit
+				default -> 222;
+			};
+			return new int[] { trialId, testimonyId, testId };
+		}
+		
+		// Tier 3: Saga of the 6 Tablets of Vision (Q00067..Q00100)
+		final int sagaId = switch (asp)
+		{
+			case "DOOMBRINGER" -> 67;
+			case "MALE_SOUL_HOUND" -> 68;
+			case "FEMALE_SOUL_HOUND", "TRICKSTER" -> 69;
+			case "PHOENIX_KNIGHT" -> 70;
+			case "EVA_TEMPLAR" -> 71;
+			case "SWORD_MUSE" -> 72;
+			case "DUELIST" -> 73;
+			case "DREADNOUGHT" -> 74;
+			case "TITAN" -> 75;
+			case "GRAND_KHAVATARI" -> 76;
+			case "DOMINATOR" -> 77;
+			case "DOOMCRYER" -> 78;
+			case "ADVENTURER" -> 79;
+			case "WIND_RIDER" -> 80;
+			case "GHOST_HUNTER" -> 81;
+			case "SAGITTARIUS" -> 82;
+			case "MOONLIGHT_SENTINEL" -> 83;
+			case "GHOST_SENTINEL" -> 84;
+			case "CARDINAL" -> 85;
+			case "HIEROPHANT" -> 86;
+			case "EVA_SAINT" -> 87;
+			case "ARCHMAGE" -> 88;
+			case "MYSTIC_MUSE" -> 89;
+			case "STORM_SCREAMER" -> 90;
+			case "ARCANA_LORD" -> 91;
+			case "ELEMENTAL_MASTER" -> 92;
+			case "SPECTRAL_MASTER" -> 93;
+			case "SOULTAKER" -> 94;
+			case "HELL_KNIGHT" -> 95;
+			case "SPECTRAL_DANCER" -> 96;
+			case "SHILLIEN_TEMPLAR" -> 97;
+			case "SHILLIEN_SAINT" -> 98;
+			case "FORTUNE_SEEKER" -> 99;
+			case "MAESTRO" -> 100;
+			default -> 73;
+		};
+		return new int[] { sagaId, sagaId, sagaId, sagaId, sagaId, sagaId };
+	}
+	
+	public static int getSubclassQuestId(Race race, int stage)
+	{
+		if (stage <= 3)
+		{
+			return (race == Race.KAMAEL) ? 236 : 234; // Q00236_SeedsOfChaos or Q00234_FatesWhisper
+		}
+		return 235; // Q00235_MimirsElixir
+	}
+	
+	public static int getNoblesseQuestId(int stage)
+	{
+		return switch (stage)
+		{
+			case 1 -> 241; // Q00241_PossessorOfAPreciousSoul1
+			case 2 -> 242; // Q00242_PossessorOfAPreciousSoul2
+			case 3 -> 246; // Q00246_PossessorOfAPreciousSoul3
+			default -> 247; // Q00247_PossessorOfAPreciousSoul4
+		};
+	}
+	
 	public static PlayerClass selectNextClassTransfer(PlayerClass currentClass)
 	{
 		return selectNextClassTowards(currentClass, null);
