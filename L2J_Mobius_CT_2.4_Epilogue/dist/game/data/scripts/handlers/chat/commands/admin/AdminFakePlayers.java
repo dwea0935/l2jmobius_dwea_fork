@@ -60,7 +60,7 @@ import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 public class AdminFakePlayers implements IAdminCommandHandler
 {
 	private static final Logger LOGGER = Logger.getLogger(AdminFakePlayers.class.getName());
-	private static final int CITIZENS_PER_PAGE = 5;
+	private static final int CITIZENS_PER_PAGE = 8;
 	private static final int BOTS_PER_PAGE = 6;
 	
 	private static final String[] ADMIN_COMMANDS =
@@ -127,7 +127,14 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			case "tab":
 			{
 				final String tabName = (tokens.length > 2) ? tokens[2].toLowerCase(Locale.ROOT) : "citizens";
-				_activeTab.put(activeChar.getObjectId(), "squad".equals(tabName) ? "squad" : "citizens");
+				if ("squad".equals(tabName) || "classes".equals(tabName))
+				{
+					_activeTab.put(activeChar.getObjectId(), tabName);
+				}
+				else
+				{
+					_activeTab.put(activeChar.getObjectId(), "citizens");
+				}
 				showControlPanel(activeChar);
 				break;
 			}
@@ -192,7 +199,8 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			case "cs":
 			case "citizen_spawn":
 			{
-				_activeTab.put(activeChar.getObjectId(), "citizens");
+				final String prevTab = _activeTab.getOrDefault(activeChar.getObjectId(), "citizens");
+				_activeTab.put(activeChar.getObjectId(), "classes".equals(prevTab) ? "classes" : "citizens");
 				final String arg = (tokens.length > 2) ? tokens[2].trim() : "1";
 				if ("RANDOM".equalsIgnoreCase(arg) || "RND".equalsIgnoreCase(arg))
 				{
@@ -648,30 +656,27 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		final List<AutonomousPlayerManager.ColdStorageCitizenSummary> coldCitizens = AutonomousPlayerManager.getInstance().getColdStorageCitizens();
 		final long anomalyCount = GameplayAnomalyAuditor.getInstance().getTotalAnomaliesCount();
 		final String currentTab = _activeTab.getOrDefault(activeChar.getObjectId(), "citizens");
-		final boolean isSquadTab = "squad".equals(currentTab);
 		
 		final StringBuilder sb = new StringBuilder(12288);
 		sb.append("<html><title>FakePlayer Tactical AI</title><body>");
 		
-		// Top Sub-Tab Switcher Bar (948px)
+		// Top 4-Tab Switcher Bar (4 * 237px = 948px; no HTML entities inside button value attributes!)
 		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"161A22\"><tr>");
-		sb.append("<td width=316 align=center><button value=\"Citizens &amp; 4D Game-Theory (").append(citizens.size()).append("/").append(coldCitizens.size()).append(")\" action=\"bypass admin_fakeplayer tab citizens\" width=306 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=316 align=center><button value=\"Tactical Squad &amp; Neural RL (").append(bots.size()).append(")\" action=\"bypass admin_fakeplayer tab squad\" width=306 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=316 align=center><button value=\"QA Anomaly Log (").append(anomalyCount).append(")\" action=\"bypass admin_fakeplayer qa_log\" width=306 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=237 align=center><button value=\"Citizens Roster (").append(citizens.size()).append("/").append(coldCitizens.size()).append(")\" action=\"bypass admin_fakeplayer tab citizens\" width=230 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=237 align=center><button value=\"+Spawn Class (36)\" action=\"bypass admin_fakeplayer tab classes\" width=230 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=237 align=center><button value=\"Tactical Squad (").append(bots.size()).append(")\" action=\"bypass admin_fakeplayer tab squad\" width=230 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=237 align=center><button value=\"QA Anomaly Log (").append(anomalyCount).append(")\" action=\"bypass admin_fakeplayer qa_log\" width=230 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("</tr></table>");
 		
-		if (!isSquadTab)
+		if ("classes".equals(currentTab))
 		{
-			// === SUB-VIEW 1: AUTONOMOUS CITIZENS (Lv 1 -> 85), ALL 36 ENDGAME ASPIRATIONS & ECONOMY ===
+			// === SUB-VIEW 2: ALL 36 ENDGAME CLASS ASPIRATION SPAWNER ===
 			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"1A241E\"><tr>");
-			sb.append("<td width=150><font color=\"00FF99\">Live:</font> <font color=\"LEVEL\">").append(citizens.size()).append("</font> <font color=\"00CCFF\">Cold:</font> <font color=\"LEVEL\">").append(coldCitizens.size()).append("</font></td>");
-			sb.append("<td width=114><button value=\"+Random Class\" action=\"bypass admin_fpc cs RANDOM\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=114><button value=\"Spawn Lv1\" action=\"bypass admin_fpc cs 1\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=114><button value=\"Spawn 5x\" action=\"bypass admin_fpc cs 5\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=114><button value=\"Recall All\" action=\"bypass admin_fakeplayer citizen_recall\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=114><button value=\"Raid Expedit.\" action=\"bypass admin_fakeplayer citizen_raid\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=114><button value=\"Wake Cold (").append(coldCitizens.size()).append(")\" action=\"bypass admin_fpc cw ALL\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=114><button value=\"Hibernate All\" action=\"bypass admin_fpc cd ALL\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=180><font color=\"00FF99\">Live:</font> <font color=\"LEVEL\">").append(citizens.size()).append("</font> <font color=\"00CCFF\">Cold:</font> <font color=\"LEVEL\">").append(coldCitizens.size()).append("</font></td>");
+			sb.append("<td width=192 align=center><button value=\"+Random Class\" action=\"bypass admin_fpc cs RANDOM\" width=184 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=192 align=center><button value=\"Spawn 5x Balanced\" action=\"bypass admin_fpc cs 5\" width=184 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=192 align=center><button value=\"Recall All Here\" action=\"bypass admin_fakeplayer citizen_recall\" width=184 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=192 align=center><button value=\"Back to Roster (").append(citizens.size()).append(")\" action=\"bypass admin_fakeplayer tab citizens\" width=184 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 			sb.append("</tr></table>");
 			
 			// Row 1 of 4: Human Fighter & Mystic (102px + 9 * 94px = 948px)
@@ -726,6 +731,39 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			appendAspBtn(sb, "+Judicator", "JUDICATOR");
 			sb.append("</tr></table>");
 			
+			// Compact 3-Row Preview of Newest Citizens
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"1E2E24\"><tr><td width=688><font color=\"LEVEL\">Recent Spawn Preview (Showing up to 3 of ").append(citizens.size()).append(" Live Citizens)</font></td><td width=260 align=center><button value=\"Open Full Citizens Roster (").append(citizens.size()).append(")\" action=\"bypass admin_fakeplayer tab citizens\" width=248 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr></table>");
+			final int previewStart = Math.max(0, citizens.size() - 3);
+			for (int i = citizens.size() - 1; i >= previewStart; i--)
+			{
+				final AutonomousCitizen citizen = citizens.get(i);
+				final Player cp = (citizen != null) ? citizen.getPlayer() : null;
+				if (cp == null)
+				{
+					continue;
+				}
+				sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"101814\"><tr>");
+				sb.append("<td width=95><font color=\"00FF99\">").append(cp.getName()).append("</font></td>");
+				sb.append("<td width=155><font color=\"00CCFF\">Lv").append(cp.getLevel()).append(" ").append(cp.getPlayerClass()).append("-&gt;").append(citizen.getTargetEndgameClass()).append("</font></td>");
+				sb.append("<td width=190><font color=\"FFCC00\">").append(citizen.getGearTierBadge()).append(" ").append(citizen.getProgressionBadges()).append("</font></td>");
+				sb.append("<td width=508><font color=\"CCCCCC\">").append(truncateText(citizen.getLastAction(), 68)).append("</font></td>");
+				sb.append("</tr></table>");
+			}
+		}
+		else if (!"squad".equals(currentTab))
+		{
+			// === SUB-VIEW 1: AUTONOMOUS CITIZENS ROSTER (8 Citizens per Page, Cold Storage & Economy) ===
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"1A241E\"><tr>");
+			sb.append("<td width=150><font color=\"00FF99\">Live:</font> <font color=\"LEVEL\">").append(citizens.size()).append("</font> <font color=\"00CCFF\">Cold:</font> <font color=\"LEVEL\">").append(coldCitizens.size()).append("</font></td>");
+			sb.append("<td width=114><button value=\"+36 Classes\" action=\"bypass admin_fakeplayer tab classes\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=114><button value=\"+Random Class\" action=\"bypass admin_fpc cs RANDOM\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=114><button value=\"Spawn 5x\" action=\"bypass admin_fpc cs 5\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=114><button value=\"Recall All\" action=\"bypass admin_fakeplayer citizen_recall\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=114><button value=\"Raid Expedit.\" action=\"bypass admin_fakeplayer citizen_raid\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=114><button value=\"Wake Cold (").append(coldCitizens.size()).append(")\" action=\"bypass admin_fpc cw ALL\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=114><button value=\"Hibernate All\" action=\"bypass admin_fpc cd ALL\" width=110 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("</tr></table>");
+			
 			// Citizen Economy & Wealth Progression Auditor Bar (948px)
 			final EconomyProgressionAuditor econ = EconomyProgressionAuditor.getInstance();
 			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"1E1B14\"><tr>");
@@ -735,12 +773,12 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			sb.append("<td width=237><font color=\"AAAAAA\">7S Ancient Adena:</font> <font color=\"00CCFF\">").append(econ.getTotalAncientAdenaGenerated()).append("</font></td>");
 			sb.append("</tr></table>");
 			
-			// Paginated Citizens Table (5 citizens per page)
+			// Paginated Citizens Table (8 citizens per page)
 			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"1E2E24\"><tr><td width=85><font color=\"LEVEL\">Citizen</font></td><td width=135><font color=\"LEVEL\">Class -&gt; Goal</font></td><td width=155><font color=\"LEVEL\">Gear &amp; 4D Phenotype</font></td><td width=115><font color=\"LEVEL\">Macro State</font></td><td width=125><font color=\"LEVEL\">Zone</font></td><td width=193><font color=\"LEVEL\">Last Lifecycle Action</font></td><td width=70 align=center><font color=\"LEVEL\">Goto</font></td><td width=70 align=center><font color=\"LEVEL\">Hibernate</font></td></tr></table>");
 			if (citizens.isEmpty())
 			{
-				sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101814\"><tr><td width=948 align=center><font color=\"888888\">No Live Citizens active. Click [+Random Class], any [+Class] button, or [Wake Cold (").append(coldCitizens.size()).append(")] above!</font></td></tr></table>");
-				final int coldLimit = Math.min(4, coldCitizens.size());
+				sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101814\"><tr><td width=948 align=center><font color=\"888888\">No Live Citizens active. Click [+Random Class], [+36 Classes], or [Wake Cold (").append(coldCitizens.size()).append(")] above!</font></td></tr></table>");
+				final int coldLimit = Math.min(6, coldCitizens.size());
 				for (int i = 0; i < coldLimit; i++)
 				{
 					final AutonomousPlayerManager.ColdStorageCitizenSummary entry = coldCitizens.get(i);
@@ -780,12 +818,12 @@ public class AdminFakePlayers implements IAdminCommandHandler
 					sb.append("</tr></table>");
 				}
 				
-				// Pagination & Refresh Footer Bar (948px)
+				// Pagination & Refresh Footer Bar (948px; no HTML entities inside button value attributes!)
 				sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141E18\"><tr>");
 				sb.append("<td width=160 align=center>");
 				if (currentPage > 1)
 				{
-					sb.append("<button value=\"&lt; Prev Page\" action=\"bypass admin_fpc cp ").append(currentPage - 1).append("\" width=140 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">");
+					sb.append("<button value=\"<< Prev Page\" action=\"bypass admin_fpc cp ").append(currentPage - 1).append("\" width=140 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">");
 				}
 				sb.append("</td>");
 				sb.append("<td width=468 align=center><font color=\"AAAAAA\">Page </font><font color=\"LEVEL\">").append(currentPage).append(" / ").append(totalPages).append("</font><font color=\"AAAAAA\"> (Showing ").append(startIdx + 1).append("-").append(endIdx).append(" of ").append(citizens.size()).append(" Live | ").append(coldCitizens.size()).append(" Cold)</font></td>");
@@ -793,7 +831,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 				sb.append("<td width=160 align=center>");
 				if (currentPage < totalPages)
 				{
-					sb.append("<button value=\"Next Page &gt;\" action=\"bypass admin_fpc cp ").append(currentPage + 1).append("\" width=140 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">");
+					sb.append("<button value=\"Next Page >>\" action=\"bypass admin_fpc cp ").append(currentPage + 1).append("\" width=140 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">");
 				}
 				sb.append("</td></tr></table>");
 			}
