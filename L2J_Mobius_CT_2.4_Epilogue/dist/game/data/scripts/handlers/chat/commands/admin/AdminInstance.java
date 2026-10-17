@@ -21,8 +21,10 @@ import java.util.Map.Entry;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.entity.Location;
 import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.instancezone.Instance;
 import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
@@ -152,12 +154,11 @@ public class AdminInstance implements IAdminCommandHandler
 		else if (command.startsWith("admin_listinstances"))
 		{
 			int counter = 0;
-			final StringBuilder sb = new StringBuilder(1024);
+			final StringBuilder sb = new StringBuilder(2048);
 			sb.append("<html><title>Active Instances</title><body><center>");
 			sb.append("<font color=\"LEVEL\">Active Runtime Instances</font> &nbsp; <font color=\"999999\">(Your Instance ID: ").append(activeChar.getInstanceId()).append(")</font><br1>");
-			sb.append("<button value=\"Return to World (Instance 0)\" action=\"bypass -h admin_setinstance 0\" width=200 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"><br>");
-			sb.append("<table width=900 border=0 cellpadding=3 cellspacing=1 bgcolor=15151E>");
-			sb.append("<tr bgcolor=222230><td width=110><font color=\"D4AF37\">Instance ID</font></td><td width=110><font color=\"D4AF37\">Template ID</font></td><td width=340><font color=\"D4AF37\">Instance Name</font></td><td width=120><font color=\"D4AF37\">Players / NPCs</font></td><td width=220 align=center><font color=\"D4AF37\">Actions</font></td></tr>");
+			sb.append("<button value=\"Return to World (Instance 0)\" action=\"bypass admin_setinstance 0\" width=220 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"><br1>");
+			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=110><font color=\"LEVEL\">Instance ID</font></td><td width=110><font color=\"LEVEL\">Template ID</font></td><td width=388><font color=\"LEVEL\">Instance Name</font></td><td width=140><font color=\"LEVEL\">Players / NPCs</font></td><td width=100 align=center><font color=\"LEVEL\">Enter</font></td><td width=100 align=center><font color=\"LEVEL\">Destroy</font></td></tr></table>");
 			for (Instance instance : InstanceManager.getInstance().getInstances().values())
 			{
 				if (instance.getId() == 0)
@@ -169,22 +170,21 @@ public class AdminInstance implements IAdminCommandHandler
 				final String instName = (templateId > 0) ? InstanceManager.getInstance().getInstanceIdName(templateId) : "Dynamic Instance";
 				counter++;
 				activeChar.sendSysMessage("Id: " + instance.getId() + " Name: " + instName);
-				sb.append("<tr bgcolor=101016>");
-				sb.append("<td><font color=\"LEVEL\">").append(instance.getId()).append("</font></td>");
-				sb.append("<td>").append(templateId).append("</td>");
-				sb.append("<td>").append((instName != null) && !instName.isEmpty() ? instName : "Dynamic Instance").append("</td>");
-				sb.append("<td>").append(instance.getPlayers().size()).append(" / ").append(instance.getNpcs().size()).append("</td>");
-				sb.append("<td align=center><table width=210 border=0 cellpadding=0 cellspacing=0><tr>");
-				sb.append("<td width=105 align=center><button value=\"Enter\" action=\"bypass -h admin_setinstance ").append(instance.getId()).append("\" width=98 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-				sb.append("<td width=105 align=center><button value=\"Destroy\" action=\"bypass -h admin_destroyinstance ").append(instance.getId()).append("\" width=98 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-				sb.append("</tr></table></td></tr>");
+				sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr>");
+				sb.append("<td width=110><font color=\"00FF00\">").append(instance.getId()).append("</font></td>");
+				sb.append("<td width=110>").append(templateId).append("</td>");
+				sb.append("<td width=388>").append((instName != null) && !instName.isEmpty() ? instName : "Dynamic Instance").append("</td>");
+				sb.append("<td width=140>").append(instance.getPlayers().size()).append(" / ").append(instance.getNpcs().size()).append("</td>");
+				sb.append("<td width=100 align=center><button value=\"Enter\" action=\"bypass admin_setinstance ").append(instance.getId()).append("\" width=90 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("<td width=100 align=center><button value=\"Destroy\" action=\"bypass admin_destroyinstance ").append(instance.getId()).append("\" width=90 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("</tr></table>");
 			}
 			if (counter == 0)
 			{
 				activeChar.sendSysMessage("No active instances.");
-				sb.append("<tr bgcolor=101016><td colspan=5 align=center><font color=\"999999\">No active dynamic or template instances running.</font></td></tr>");
+				sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"999999\">No active dynamic or template instances running.</font></td></tr></table>");
 			}
-			sb.append("</table></center></body></html>");
+			sb.append("</center></body></html>");
 			final NpcHtmlMessage html = new NpcHtmlMessage();
 			html.setHtml(sb.toString());
 			activeChar.sendPacket(html);
@@ -194,7 +194,8 @@ public class AdminInstance implements IAdminCommandHandler
 			try
 			{
 				final int val = Integer.parseInt(st.nextToken());
-				if (InstanceManager.getInstance().getInstance(val) == null)
+				final Instance targetInst = InstanceManager.getInstance().getInstance(val);
+				if (targetInst == null)
 				{
 					activeChar.sendSysMessage("Instance " + val + " does not exist.");
 					return false;
@@ -207,12 +208,88 @@ public class AdminInstance implements IAdminCommandHandler
 					return false;
 				}
 				
-				target.setInstanceId(val);
 				if (target.isPlayer())
 				{
 					final Player player = target.asPlayer();
-					player.sendMessage("Admin set your instance to:" + val);
-					player.teleToLocation(player.getLocation());
+					final int oldInstanceId = player.getInstanceId();
+					if ((oldInstanceId > 0) && (oldInstanceId != val))
+					{
+						final Instance oldInst = InstanceManager.getInstance().getInstance(oldInstanceId);
+						if (oldInst != null)
+						{
+							oldInst.removePlayer(player.getObjectId());
+						}
+					}
+					
+					if (val == 0)
+					{
+						Location exitLoc = null;
+						if (oldInstanceId > 0)
+						{
+							final Instance oldInst = InstanceManager.getInstance().getInstance(oldInstanceId);
+							if (oldInst != null)
+							{
+								exitLoc = oldInst.getExitLoc();
+							}
+						}
+						player.setInstanceId(0);
+						player.sendMessage("Returned to main world (Instance 0).");
+						if (exitLoc != null)
+						{
+							player.teleToLocation(exitLoc, 0, 0);
+						}
+						else
+						{
+							player.teleToLocation(player.getLocation(), 0, 0);
+						}
+					}
+					else
+					{
+						targetInst.addPlayer(player.getObjectId());
+						Location targetLoc = null;
+						final var enterLocs = targetInst.getEnterLocs();
+						if ((enterLocs != null) && !enterLocs.isEmpty())
+						{
+							targetLoc = enterLocs.iterator().next();
+						}
+						if (targetLoc == null)
+						{
+							for (int pid : targetInst.getPlayers())
+							{
+								if (pid != player.getObjectId())
+								{
+									final Player insidePlayer = World.getPlayer(pid);
+									if (insidePlayer != null)
+									{
+										targetLoc = insidePlayer.getLocation();
+										break;
+									}
+								}
+							}
+						}
+						if (targetLoc == null)
+						{
+							for (Npc npc : targetInst.getNpcs())
+							{
+								if (npc != null)
+								{
+									targetLoc = npc.getLocation();
+									break;
+								}
+							}
+						}
+						if (targetLoc == null)
+						{
+							targetLoc = player.getLocation();
+						}
+						player.setInstanceId(val);
+						player.sendMessage("Admin teleported you into instance " + val + ".");
+						player.teleToLocation(targetLoc, val, 0);
+					}
+				}
+				else
+				{
+					target.setInstanceId(val);
 				}
 				
 				activeChar.sendSysMessage("Moved " + target.getName() + " to instance " + target.getInstanceId() + ".");
@@ -244,21 +321,35 @@ public class AdminInstance implements IAdminCommandHandler
 	{
 		final Map<Integer, Long> instanceTimes = InstanceManager.getInstance().getAllInstanceTimes(player.getObjectId());
 		final StringBuilder html = new StringBuilder(500 + (instanceTimes.size() * 200));
-		html.append("<html><body><center><font color=\"LEVEL\">Instance Lockouts for " + player.getName() + "</font><br><table><tr><td width=220>Name</td><td width=80>Remaining</td><td width=80>Action</td></tr>");
-		for (Entry<Integer, Long> entry : instanceTimes.entrySet())
+		html.append("<html><title>Instance Lockouts: ").append(player.getName()).append("</title><body><center>");
+		html.append("<font color=\"LEVEL\">Instance Lockouts for ").append(player.getName()).append("</font><br1>");
+		html.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=528><font color=\"LEVEL\">Instance Zone Name (ID)</font></td><td width=220><font color=\"LEVEL\">Remaining Lockout</font></td><td width=200 align=center><font color=\"LEVEL\">Action</font></td></tr></table>");
+		if (instanceTimes.isEmpty())
 		{
-			int hours = 0;
-			int minutes = 0;
-			final long remainingTime = (entry.getValue() - System.currentTimeMillis()) / 1000;
-			if (remainingTime > 0)
-			{
-				hours = (int) (remainingTime / 3600);
-				minutes = (int) ((remainingTime % 3600) / 60);
-			}
-			
-			html.append("<tr><td>" + InstanceManager.getInstance().getInstanceIdName(entry.getKey()) + "</td><td>" + hours + "h " + minutes + "m</td><td><button value=\"Clear\" action=\"bypass admin_instancezone_clear " + player.getName() + " " + entry.getKey() + "\" width=65 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr>");
+			html.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"00FF00\">No active instance re-entry lockouts for ").append(player.getName()).append(".</font></td></tr></table>");
 		}
-		html.append("</table></center></body></html>");
+		else
+		{
+			for (Entry<Integer, Long> entry : instanceTimes.entrySet())
+			{
+				int hours = 0;
+				int minutes = 0;
+				final long remainingTime = (entry.getValue() - System.currentTimeMillis()) / 1000;
+				if (remainingTime > 0)
+				{
+					hours = (int) (remainingTime / 3600);
+					minutes = (int) ((remainingTime % 3600) / 60);
+				}
+				
+				final String instName = InstanceManager.getInstance().getInstanceIdName(entry.getKey());
+				html.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr>");
+				html.append("<td width=528><font color=\"00CCFF\">").append(instName != null ? instName : "Instance").append("</font> <font color=\"888888\">(#").append(entry.getKey()).append(")</font></td>");
+				html.append("<td width=220>").append(hours).append("h ").append(minutes).append("m</td>");
+				html.append("<td width=200 align=center><button value=\"Clear Lockout\" action=\"bypass admin_instancezone_clear ").append(player.getName()).append(" ").append(entry.getKey()).append("\" width=160 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				html.append("</tr></table>");
+			}
+		}
+		html.append("</center></body></html>");
 		
 		final NpcHtmlMessage ms = new NpcHtmlMessage();
 		ms.setHtml(html.toString());

@@ -62,8 +62,12 @@ public class ScriptEngine implements IXmlReader
 	private static final Set<String> EXCLUSIONS = new HashSet<>();
 	private static final Set<String> DELTA_EXCLUSIONS = new HashSet<>();
 	
+	private static final long MODIFIED_CACHE_TTL_MS = 5000L;
+	
 	/** Normalized absolute script path -> last successfully compiled/loaded file modification timestamp (ms). */
 	private final ConcurrentHashMap<Path, Long> _scriptLastModified = new ConcurrentHashMap<>();
+	private volatile int _cachedModifiedCount = 0;
+	private volatile long _lastModifiedCountCheck = 0L;
 	
 	protected ScriptEngine()
 	{
@@ -191,6 +195,7 @@ public class ScriptEngine implements IXmlReader
 			if (Files.isRegularFile(norm))
 			{
 				_scriptLastModified.put(norm, Files.getLastModifiedTime(norm).toMillis());
+				_lastModifiedCountCheck = 0L;
 			}
 		}
 		catch (IOException e)
@@ -238,6 +243,7 @@ public class ScriptEngine implements IXmlReader
 				recordScriptTimestamp(handlerFile);
 			}
 		}
+		_lastModifiedCountCheck = 0L;
 	}
 	
 	public void executeScriptList() throws Exception
@@ -274,6 +280,7 @@ public class ScriptEngine implements IXmlReader
 				_scriptLastModified.remove(scriptPath);
 			}
 		}
+		_lastModifiedCountCheck = 0L;
 	}
 	
 	/**
@@ -306,11 +313,20 @@ public class ScriptEngine implements IXmlReader
 	}
 	
 	/**
-	 * @return the number of new or modified {@code .java} scripts under {@code data/scripts} pending hot-reload
+	 * @return the number of new or modified {@code .java} scripts under {@code data/scripts} pending hot-reload (cached for 5 seconds)
 	 */
 	public int getModifiedScriptCount()
 	{
-		return getModifiedScripts().size();
+		final long now = System.currentTimeMillis();
+		if ((now - _lastModifiedCountCheck) < MODIFIED_CACHE_TTL_MS)
+		{
+			return _cachedModifiedCount;
+		}
+		
+		final int count = getModifiedScripts().size();
+		_cachedModifiedCount = count;
+		_lastModifiedCountCheck = now;
+		return count;
 	}
 	
 	/**
@@ -333,6 +349,8 @@ public class ScriptEngine implements IXmlReader
 		final List<Path> modifiedFiles = getModifiedScripts();
 		if (modifiedFiles.isEmpty())
 		{
+			_cachedModifiedCount = 0;
+			_lastModifiedCountCheck = System.currentTimeMillis();
 			return Collections.emptyList();
 		}
 		
@@ -360,6 +378,7 @@ public class ScriptEngine implements IXmlReader
 				reloaded.add(norm);
 			}
 		}
+		_lastModifiedCountCheck = 0L;
 		
 		if (!invokationErrors.isEmpty())
 		{

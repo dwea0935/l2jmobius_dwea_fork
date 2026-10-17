@@ -127,6 +127,12 @@ public class AdminKill implements IAdminCommandHandler
 	
 	private void kill(Player activeChar, Creature target)
 	{
+		if (target == activeChar)
+		{
+			activeChar.sendSysMessage("Security Policy: You cannot use //kill on your own GM character.");
+			return;
+		}
+		
 		if (target.isPlayer())
 		{
 			if (!target.asPlayer().isGM())

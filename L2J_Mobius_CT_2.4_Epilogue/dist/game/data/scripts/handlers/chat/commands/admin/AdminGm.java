@@ -20,19 +20,16 @@
  */
 package handlers.chat.commands.admin;
 
-import java.util.logging.Logger;
-
-import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
+import org.l2jmobius.gameserver.managers.AdminBoardManager;
 
 /**
- * This class handles following admin commands: - GM = turns GM mode off
+ * This class handles following admin commands: - GM = opens Admin Console (self-demotion disabled by security policy)
  * @version $Revision: 1.2.4.4 $ $Date: 2005/04/11 10:06:06 $
  */
 public class AdminGm implements IAdminCommandHandler
 {
-	private static final Logger LOGGER = Logger.getLogger(AdminGm.class.getName());
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_gm"
@@ -43,10 +40,8 @@ public class AdminGm implements IAdminCommandHandler
 	{
 		if (command.equals("admin_gm") && activeChar.isGM())
 		{
-			AdminData.getInstance().deleteGm(activeChar);
-			activeChar.setAccessLevel(0);
-			activeChar.sendSysMessage("You no longer have GM status.");
-			LOGGER.info("GM: " + activeChar.getName() + "(" + activeChar.getObjectId() + ") turned his GM status off");
+			AdminBoardManager.getInstance().openTab(activeChar, "dashboard");
+			activeChar.sendSysMessage("Admin Console opened. (Security Policy: //gm self-demotion is disabled.)");
 		}
 		
 		return true;

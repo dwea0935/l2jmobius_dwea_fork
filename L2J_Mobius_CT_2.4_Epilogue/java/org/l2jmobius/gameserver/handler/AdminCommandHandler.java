@@ -128,7 +128,7 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 			ThreadPool.execute(() ->
 			{
 				final long begin = System.currentTimeMillis();
-				boardManager.beginAdminCommand(player);
+				boardManager.beginAdminCommand(player, fullCommand);
 				try
 				{
 					if (GeneralConfig.GMAUDIT)

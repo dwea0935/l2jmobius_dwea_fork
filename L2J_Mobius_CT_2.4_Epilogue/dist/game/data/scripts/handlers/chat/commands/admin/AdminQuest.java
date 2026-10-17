@@ -182,19 +182,11 @@ public class AdminQuest implements IAdminCommandHandler
 		}
 		else if (command.startsWith("admin_show_quests"))
 		{
-			if (activeChar.getTarget() == null)
+			final WorldObject targetObj = activeChar.getTarget();
+			final Creature creature = ((targetObj != null) && targetObj.isCreature()) ? targetObj.asCreature() : null;
+			final Set<String> questNames = new TreeSet<>();
+			if ((creature != null) && creature.isNpc())
 			{
-				activeChar.sendSysMessage("Get a target first.");
-			}
-			else if (!activeChar.getTarget().isCreature())
-			{
-				activeChar.sendSysMessage("Invalid Target.");
-			}
-			else
-			{
-				final Creature creature = activeChar.getTarget().asCreature();
-				final StringBuilder sb = new StringBuilder();
-				final Set<String> questNames = new TreeSet<>();
 				for (EventType type : EventType.values())
 				{
 					for (AbstractEventListener listener : creature.getListeners(type))
@@ -202,39 +194,91 @@ public class AdminQuest implements IAdminCommandHandler
 						if (listener.getOwner() instanceof Quest)
 						{
 							final Quest quest = (Quest) listener.getOwner();
-							if (!questNames.add(quest.getName()))
-							{
-								continue;
-							}
-							
-							sb.append("<tr><td colspan=\"4\"><font color=\"LEVEL\"><a action=\"bypass -h admin_quest_info " + quest.getName() + "\">" + quest.getName() + "</a></font></td></tr>");
+							questNames.add(quest.getName());
 						}
 					}
 				}
-				
-				final NpcHtmlMessage msg = new NpcHtmlMessage(0, 1);
-				msg.setFile(activeChar, "data/html/admin/npc-quests.htm");
-				msg.replace("%quests%", sb.toString());
-				msg.replace("%objid%", creature.getObjectId());
-				msg.replace("%questName%", "");
-				activeChar.sendPacket(msg);
 			}
+			
+			final StringBuilder sb = new StringBuilder(2048);
+			sb.append("<html><title>Script Inspector</title><body><center>");
+			if (!questNames.isEmpty() && (creature != null))
+			{
+				sb.append("<font color=\"LEVEL\">NPC Script &amp; Quest Listeners: ").append(creature.getName()).append(" (#").append(creature.getId()).append(")</font><br1>");
+				sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=548><font color=\"LEVEL\">Attached Script / Quest Name</font></td><td width=200 align=center><font color=\"LEVEL\">Inspect</font></td><td width=200 align=center><font color=\"LEVEL\">Hot-Reload</font></td></tr></table>");
+				for (String qName : questNames)
+				{
+					sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr>");
+					sb.append("<td width=548><font color=\"00FF00\">").append(qName).append("</font></td>");
+					sb.append("<td width=200 align=center><button value=\"Inspect Info\" action=\"bypass admin_quest_info ").append(qName).append("\" width=180 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+					sb.append("<td width=200 align=center><button value=\"Hot-Reload\" action=\"bypass admin_quest_reload ").append(qName).append("\" width=180 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+					sb.append("</tr></table>");
+				}
+			}
+			else
+			{
+				final var modifiedList = ScriptEngine.getInstance().getModifiedScripts();
+				final int trackedCount = ScriptEngine.getInstance().getTrackedScriptCount();
+				final int questCount = ScriptManager.getInstance().getQuests().size();
+				sb.append("<font color=\"LEVEL\">Live Script Engine &amp; Delta Hot-Reload Inspector</font><br1>");
+				sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"18281E\"><tr>");
+				sb.append("<td width=240><font color=\"AAAAAA\">Tracked .java Files:</font> <font color=\"00FF00\">").append(trackedCount).append("</font></td>");
+				sb.append("<td width=220><font color=\"AAAAAA\">Active Quests/AIs:</font> <font color=\"00CCFF\">").append(questCount).append("</font></td>");
+				sb.append("<td width=248><font color=\"AAAAAA\">Modified on Disk:</font> ").append(modifiedList.isEmpty() ? "<font color=\"00FF00\">0 (All Synced)</font>" : ("<font color=\"FFCC00\">" + modifiedList.size() + " Pending</font>")).append("</td>");
+				sb.append("<td width=240 align=right><button value=\"Reload All Changed\" action=\"bypass admin_reload changed\" width=220 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("</tr></table><br1>");
+				
+				if ((creature != null) && creature.isNpc())
+				{
+					sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"1B1B1B\"><tr><td width=948><font color=\"FFCC00\">Target NPC ").append(creature.getName()).append(" (#").append(creature.getId()).append(") has 0 attached Quest/AI script listeners.</font></td></tr></table><br1>");
+				}
+				else if ((creature != null) && creature.isPlayer())
+				{
+					sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1B1B1B\"><tr><td width=688><font color=\"00CCFF\">Tip: Target an NPC and click [Script Inspector] to view its AI/Quest listeners, or inspect ").append(creature.getName()).append("'s character quests:</font></td><td width=260 align=right><button value=\"Inspect Player Quests\" action=\"bypass admin_charquestmenu ").append(creature.getName()).append("\" width=240 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr></table><br1>");
+				}
+				
+				sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=728><font color=\"LEVEL\">Modified Script Path (Relative to data/scripts/)</font></td><td width=220 align=center><font color=\"LEVEL\">Action</font></td></tr></table>");
+				if (modifiedList.isEmpty())
+				{
+					sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"00FF00\">All ").append(trackedCount).append(" tracked .java scripts match their last compiled disk timestamps.</font></td></tr></table>");
+				}
+				else
+				{
+					int shown = 0;
+					for (var modPath : modifiedList)
+					{
+						final String rel = ScriptEngine.SCRIPT_FOLDER.toAbsolutePath().normalize().relativize(modPath).toString().replace('\\', '/');
+						final String fileName = modPath.getFileName().toString();
+						sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr>");
+						sb.append("<td width=728><font color=\"FFCC00\">").append(rel).append("</font></td>");
+						sb.append("<td width=220 align=center><button value=\"Reload ").append(fileName).append("\" action=\"bypass admin_reload script ").append(fileName).append("\" width=200 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+						sb.append("</tr></table>");
+						if (++shown >= 15)
+						{
+							break;
+						}
+					}
+				}
+			}
+			sb.append("</center></body></html>");
+			final NpcHtmlMessage msg = new NpcHtmlMessage(0, 1);
+			msg.setHtml(sb.toString());
+			activeChar.sendPacket(msg);
 		}
 		else if (command.startsWith("admin_quest_info "))
 		{
-			final String questName = command.substring("admin_quest_info ".length());
+			final String questName = command.substring("admin_quest_info ".length()).trim();
 			final Quest quest = ScriptManager.getInstance().getScript(questName);
-			String events = "";
-			String npcs = "";
-			String items = "";
-			String timers = "";
-			int counter = 0;
 			if (quest == null)
 			{
 				activeChar.sendSysMessage("Couldn't find quest or script with name " + questName + " !");
 				return false;
 			}
 			
+			String events = "";
+			String npcs = "";
+			String items = "";
+			int counter = 0;
 			final Set<EventType> listenerTypes = new TreeSet<>();
 			for (AbstractEventListener listener : quest.getListeners())
 			{
@@ -243,8 +287,7 @@ public class AdminQuest implements IAdminCommandHandler
 					events += ", " + listener.getType().name();
 					counter++;
 				}
-				
-				if (counter > 10)
+				if (counter > 14)
 				{
 					counter = 0;
 					break;
@@ -256,7 +299,7 @@ public class AdminQuest implements IAdminCommandHandler
 			{
 				npcs += ", " + npcId;
 				counter++;
-				if (counter > 50)
+				if (counter > 40)
 				{
 					counter = 0;
 					break;
@@ -267,7 +310,6 @@ public class AdminQuest implements IAdminCommandHandler
 			{
 				events = listenerTypes.size() + ": " + events.substring(2);
 			}
-			
 			if (!npcs.isEmpty())
 			{
 				npcs = npcIds.size() + ": " + npcs.substring(2);
@@ -285,49 +327,52 @@ public class AdminQuest implements IAdminCommandHandler
 						break;
 					}
 				}
-				
-				items = quest.getRegisteredItemIds().length + ":" + items.substring(2);
+				if (!items.isEmpty())
+				{
+					items = quest.getRegisteredItemIds().length + ": " + items.substring(2);
+				}
 			}
 			
+			final String pkgPath = quest.getClass().getName().contains(".")
+				? quest.getClass().getName().substring(0, quest.getClass().getName().lastIndexOf('.')).replace('.', '/')
+				: "(default)";
+			
+			final StringBuilder sb = new StringBuilder(2048);
+			sb.append("<html><title>Quest Info: ").append(quest.getName()).append("</title><body><center>");
+			sb.append("<font color=\"LEVEL\">Script / Quest Inspector: ").append(quest.getName()).append("</font><br1>");
+			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr>");
+			sb.append("<td width=316 align=center><button value=\"Hot-Reload Script\" action=\"bypass admin_quest_reload ").append(quest.getName()).append("\" width=280 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=316 align=center><button value=\"Refresh Info\" action=\"bypass admin_quest_info ").append(quest.getName()).append("\" width=280 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=316 align=center><button value=\"Unload Script\" action=\"bypass admin_script_unload ").append(quest.getName()).append("\" width=280 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("</tr></table><br1>");
+			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=160><font color=\"LEVEL\">Quest ID / Name:</font></td><td width=788><font color=\"00FF00\">").append(quest.getId()).append(" / ").append(quest.getName()).append("</font></td></tr></table>");
+			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=160><font color=\"LEVEL\">Package Path:</font></td><td width=788><font color=\"00CCFF\">").append(pkgPath).append("</font></td></tr></table>");
+			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=160><font color=\"LEVEL\">Events (").append(listenerTypes.size()).append("):</font></td><td width=788><font color=\"FFFFFF\">").append(events.isEmpty() ? "None" : events).append("</font></td></tr></table>");
+			if (!npcs.isEmpty())
+			{
+				sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=160><font color=\"LEVEL\">Bound NPCs:</font></td><td width=788><font color=\"00FF00\">").append(npcs).append("</font></td></tr></table>");
+			}
+			if (!items.isEmpty())
+			{
+				sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=160><font color=\"LEVEL\">Bound Items:</font></td><td width=788><font color=\"00FF00\">").append(items).append("</font></td></tr></table>");
+			}
+			
+			int timerCount = 0;
 			for (List<QuestTimer> list : quest.getQuestTimers().values())
 			{
 				for (QuestTimer timer : list)
 				{
-					timers += "<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">" + timer.toString() + ":</font> <font color=00FF00>Active: " + timer.isActive() + " Repeatable: " + timer.isRepeating() + " Player: " + timer.getPlayer() + " Npc: " + timer.getNpc() + "</font></td></tr></table></td></tr>";
-					counter++;
-					if (counter > 10)
+					sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"151520\"><tr><td width=948><font color=\"LEVEL\">Timer ").append(timer.toString()).append(":</font> <font color=\"00FF00\">Active=").append(timer.isActive()).append(" Repeat=").append(timer.isRepeating()).append(" Player=").append(timer.getPlayer()).append(" Npc=").append(timer.getNpc()).append("</font></td></tr></table>");
+					if (++timerCount >= 10)
 					{
 						break;
 					}
 				}
 			}
-			
-			final StringBuilder sb = new StringBuilder();
-			sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">ID:</font> <font color=00FF00>" + quest.getId() + "</font></td></tr></table></td></tr>");
-			sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">Name:</font> <font color=00FF00>" + quest.getName() + "</font></td></tr></table></td></tr>");
-			sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">Descr:</font> <font color=00FF00>" + quest.getPath() + "</font></td></tr></table></td></tr>");
-			sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">Path:</font> <font color=00FF00>" + quest.getClass().getName().substring(0, quest.getClass().getName().lastIndexOf('.')).replaceAll("\\.", "/") + "</font></td></tr></table></td></tr>");
-			sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">Events:</font> <font color=00FF00>" + events + "</font></td></tr></table></td></tr>");
-			if (!npcs.isEmpty())
-			{
-				sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">NPCs:</font> <font color=00FF00>" + npcs + "</font></td></tr></table></td></tr>");
-			}
-			
-			if (!items.isEmpty())
-			{
-				sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">Items:</font> <font color=00FF00>" + items + "</font></td></tr></table></td></tr>");
-			}
-			
-			if (!timers.isEmpty())
-			{
-				sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">Timers:</font> <font color=00FF00></font></td></tr></table></td></tr>");
-				sb.append(timers);
-			}
+			sb.append("</center></body></html>");
 			
 			final NpcHtmlMessage msg = new NpcHtmlMessage(0, 1);
-			msg.setFile(activeChar, "data/html/admin/npc-quests.htm");
-			msg.replace("%quests%", sb.toString());
-			msg.replace("%questName%", "<table><tr><td width=\"50\" align=\"left\"><a action=\"bypass -h admin_quest_reload " + quest.getName() + "\">Reload</a></td> <td width=\"150\"  align=\"center\"><a action=\"bypass -h admin_quest_info " + quest.getName() + "\">" + quest.getName() + "</a></td> <td width=\"50\" align=\"right\"><a action=\"bypass -h admin_script_unload " + quest.getName() + "\">Unload</a></td></tr></table>");
+			msg.setHtml(sb.toString());
 			activeChar.sendPacket(msg);
 		}
 		

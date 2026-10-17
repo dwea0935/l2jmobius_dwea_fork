@@ -205,6 +205,11 @@ public class AdminMenu implements IAdminCommandHandler
 				String text;
 				if (plyr != null)
 				{
+					if (plyr == activeChar)
+					{
+						activeChar.sendSysMessage("Security Policy: You cannot kick your own GM character.");
+						return false;
+					}
 					Disconnection.of(plyr).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 					text = "You kicked " + plyr.getName() + " from the game.";
 				}
@@ -252,7 +257,7 @@ public class AdminMenu implements IAdminCommandHandler
 	private void handleKill(Player activeChar, String player)
 	{
 		final WorldObject obj = activeChar.getTarget();
-		Creature target = obj.asCreature();
+		Creature target = (obj != null) ? obj.asCreature() : null;
 		String filename = "main_menu.htm";
 		if (player != null)
 		{
@@ -260,12 +265,16 @@ public class AdminMenu implements IAdminCommandHandler
 			if (plyr != null)
 			{
 				target = plyr;
-				activeChar.sendSysMessage("You killed " + plyr.getName());
 			}
 		}
 		
 		if (target != null)
 		{
+			if (target == activeChar)
+			{
+				activeChar.sendSysMessage("Security Policy: You cannot use //kill on your own GM character.");
+				return;
+			}
 			if (target.isPlayer())
 			{
 				target.reduceCurrentHp(target.getMaxHp() + target.getMaxCp() + 1, activeChar, null);

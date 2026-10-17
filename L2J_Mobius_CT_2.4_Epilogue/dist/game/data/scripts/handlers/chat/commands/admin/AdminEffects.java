@@ -108,7 +108,7 @@ public class AdminEffects implements IAdminCommandHandler
 		final StringTokenizer st = new StringTokenizer(command);
 		st.nextToken();
 		
-		if (command.equals("admin_invis_menu"))
+		if (command.equals("admin_invis_menu") || command.startsWith("admin_invis"))
 		{
 			if (!activeChar.isInvisible())
 			{
@@ -134,23 +134,6 @@ public class AdminEffects implements IAdminCommandHandler
 			}
 			
 			command = "";
-			AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");
-		}
-		else if (command.startsWith("admin_invis"))
-		{
-			activeChar.setInvisible(true);
-			activeChar.broadcastUserInfo();
-			World.forEachVisibleObject(activeChar, Creature.class, target ->
-			{
-				if ((target != null) && (target.getTarget() == activeChar))
-				{
-					target.setTarget(null);
-					target.abortAttack();
-					target.abortCast();
-					target.getAI().setIntentionIdle();
-				}
-			});
-			activeChar.sendSysMessage("Now, you cannot be seen.");
 		}
 		else if (command.startsWith("admin_vis"))
 		{

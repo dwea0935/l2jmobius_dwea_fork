@@ -66,6 +66,8 @@ public class AdminPunishment implements IAdminCommandHandler
 		"admin_unban_hwid",
 		"admin_ban_chat",
 		"admin_unban_chat",
+		"admin_banchat",
+		"admin_unbanchat",
 		"admin_ban_char",
 		"admin_unban_char",
 		"admin_jail",
@@ -281,9 +283,27 @@ public class AdminPunishment implements IAdminCommandHandler
 					}
 					
 					key = findCharId(key); // Swap the name of the character with it's id.
+					if (key.equals(Integer.toString(activeChar.getObjectId())) || name.equalsIgnoreCase(activeChar.getName()))
+					{
+						activeChar.sendSysMessage("Security Policy: You cannot apply punishments (ban/jail/mute) to your own GM character!");
+						break;
+					}
+				}
+				else if (affect == PunishmentAffect.ACCOUNT)
+				{
+					if (name.equalsIgnoreCase(activeChar.getAccountName()))
+					{
+						activeChar.sendSysMessage("Security Policy: You cannot ban or punish your own GM account!");
+						break;
+					}
 				}
 				else if (affect == PunishmentAffect.IP)
 				{
+					if (name.equalsIgnoreCase(activeChar.getIPAddress()))
+					{
+						activeChar.sendSysMessage("Security Policy: You cannot ban your own IP address!");
+						break;
+					}
 					try
 					{
 						final InetAddress addr = InetAddress.getByName(key);
@@ -300,6 +320,15 @@ public class AdminPunishment implements IAdminCommandHandler
 					{
 						activeChar.sendSysMessage("You've entered an incorrect IP address!");
 						activeChar.sendMessage(e.getMessage());
+						break;
+					}
+				}
+				else if (affect == PunishmentAffect.HWID)
+				{
+					final String selfHwid = (activeChar.getClient() == null) || (activeChar.getClient().getHardwareInfo() == null) ? null : activeChar.getClient().getHardwareInfo().getMacAddress();
+					if ((selfHwid != null) && name.equalsIgnoreCase(selfHwid))
+					{
+						activeChar.sendSysMessage("Security Policy: You cannot ban your own HWID!");
 						break;
 					}
 				}
@@ -412,6 +441,7 @@ public class AdminPunishment implements IAdminCommandHandler
 				break;
 			}
 			case "admin_ban_chat":
+			case "admin_banchat":
 			{
 				if (st.hasMoreTokens())
 				{
@@ -420,6 +450,7 @@ public class AdminPunishment implements IAdminCommandHandler
 				break;
 			}
 			case "admin_unban_chat":
+			case "admin_unbanchat":
 			{
 				if (st.hasMoreTokens())
 				{

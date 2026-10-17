@@ -78,7 +78,7 @@ public final class AdminBoardManager
 	
 	/** Matches legacy 4-button top navigation bars in data/html/admin/*.htm so they don't duplicate the console header. */
 	private static final Pattern LEGACY_TOP_NAV_PATTERN = Pattern.compile(
-		"<table[^>]*>\\s*<tr>\\s*<td[^>]*>\\s*<button[^>]*value=\"Main\"[^>]*>.*?</table>(?:\\s*<br1?>)?",
+		"<table[^>]*>\\s*<tr>\\s*<td[^>]*>\\s*<button[^>]*value=\"Main\"[^>]*>.*?</table>(?:\\s*</center>)?(?:\\s*<br1?>)*",
 		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 	
 	/** Matches <title>...</title> blocks inside legacy HTML files. */
@@ -86,9 +86,29 @@ public final class AdminBoardManager
 		"<title>(.*?)</title>",
 		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 	
+	/** Matches <font color="LEVEL">...</font> or <font color="aadd77">...</font> headings inside legacy HTML files. */
+	private static final Pattern HEADING_FONT_PATTERN = Pattern.compile(
+		"<font\\s+color\\s*=\\s*\"?(?:LEVEL|aadd77|FFD700)\"?\\s*>(.*?)</font>",
+		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+	
 	private static final Pattern DUPLICATE_QBOX_EDIT_PATTERN = Pattern.compile(
 		"<edit\\b[^>]*\\bvar\\s*=\\s*\"?qbox\"?[^>]*>",
 		Pattern.CASE_INSENSITIVE);
+	
+	/** Matches any <table ...>...</table> block for button-only grid detection. */
+	private static final Pattern ANY_TABLE_PATTERN = Pattern.compile(
+		"<table\\b([^>]*)>(.*?)</table>",
+		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+	
+	/** Matches consecutive standalone <button ...> tags separated by whitespace, <br>, <br1>, <p>, or stray </td>. */
+	private static final Pattern VERTICAL_BUTTON_RUN_PATTERN = Pattern.compile(
+		"<button\\b[^>]*>(?:\\s*</button>)?(?:\\s*(?:</td>|<br1?>|</?p>)+\\s*<button\\b[^>]*>(?:\\s*</button>)?)+",
+		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+	
+	/** Matches individual <button ...> tags. */
+	private static final Pattern SINGLE_BUTTON_TAG_PATTERN = Pattern.compile(
+		"<button\\b[^>]*>",
+		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 	
 	/** Single entry in the per-GM navigation history stack for 1-level [◄ Back] and clickable breadcrumbs. */
 	private record NavEntry(String tab, String commandOrFile, String rawHtml, String label)
@@ -106,6 +126,7 @@ public final class AdminBoardManager
 		volatile int renderedCount = 0;
 		volatile String pendingFileLabel = null;
 		volatile String pendingCommandOrFile = null;
+		volatile String pendingCommand = null;
 		final Deque<NavEntry> navStack = new ConcurrentLinkedDeque<>();
 	}
 	
@@ -151,6 +172,16 @@ public final class AdminBoardManager
 	 */
 	public void beginAdminCommand(Player player)
 	{
+		beginAdminCommand(player, null);
+	}
+	
+	/**
+	 * Marks the start of an admin command execution with its full command string for breadcrumb tracking.
+	 * @param player the GM executing the command
+	 * @param fullCommand the full admin command string
+	 */
+	public void beginAdminCommand(Player player, String fullCommand)
+	{
 		if (!canUseAdminBoard(player))
 		{
 			return;
@@ -159,6 +190,10 @@ public final class AdminBoardManager
 		final AdminBoardSession session = getSession(player);
 		session.commandDepth++;
 		session.renderedCount = 0;
+		if ((fullCommand != null) && !fullCommand.isEmpty())
+		{
+			session.pendingCommand = fullCommand.trim();
+		}
 	}
 	
 	/**
@@ -174,9 +209,16 @@ public final class AdminBoardManager
 		if (player != null)
 		{
 			final AdminBoardSession s = _sessions.get(player.getObjectId());
-			if ((s != null) && (s.commandDepth > 0))
+			if (s != null)
 			{
-				s.commandDepth--;
+				if (s.commandDepth > 0)
+				{
+					s.commandDepth--;
+				}
+				if (s.commandDepth == 0)
+				{
+					s.pendingCommand = null;
+				}
 			}
 		}
 		
@@ -691,7 +733,7 @@ public final class AdminBoardManager
 	
 	/**
 	 * Scrubs unauthorized RBAC buttons/links from raw admin HTML, records the view in the per-GM
-	 * navigation stack, and sends it inside the wide-screen 940px Native GMWnd.HtmlViewer shell.
+	 * navigation stack, and sends it inside the wide-screen 948px Native GMWnd.HtmlViewer shell.
 	 * @param player the staff member
 	 * @param rawHtml raw HTML content
 	 */
@@ -703,12 +745,33 @@ public final class AdminBoardManager
 		}
 		
 		final AdminBoardSession session = getSession(player);
-		final String label = (session.pendingFileLabel != null) && !session.pendingFileLabel.isEmpty()
+		final String cmdOrFile;
+		if ((session.pendingCommandOrFile != null) && !session.pendingCommandOrFile.isEmpty())
+		{
+			cmdOrFile = session.pendingCommandOrFile;
+		}
+		else if ((session.pendingCommand != null) && !session.pendingCommand.isEmpty())
+		{
+			cmdOrFile = "CMD:" + session.pendingCommand;
+		}
+		else
+		{
+			cmdOrFile = "HTML:" + Integer.toHexString(rawHtml.hashCode());
+		}
+		
+		String label = (session.pendingFileLabel != null) && !session.pendingFileLabel.isEmpty()
 			? session.pendingFileLabel
 			: extractHtmlLabel(rawHtml);
-		final String cmdOrFile = (session.pendingCommandOrFile != null) && !session.pendingCommandOrFile.isEmpty()
-			? session.pendingCommandOrFile
-			: ("HTML:" + label);
+		
+		final NavEntry parent = session.navStack.peekLast();
+		if ((parent != null) && !parent.commandOrFile().equalsIgnoreCase(cmdOrFile) && parent.label().equalsIgnoreCase(label))
+		{
+			final String subHeading = extractDistinctSubHeading(rawHtml, label, session.pendingCommand);
+			if ((subHeading != null) && !subHeading.isEmpty())
+			{
+				label = subHeading;
+			}
+		}
 		
 		pushNavEntry(session, new NavEntry(session.activeTab, cmdOrFile, rawHtml, label));
 		
@@ -727,12 +790,12 @@ public final class AdminBoardManager
 			session.navStack.addLast(new NavEntry(session.activeTab, "TAB:" + session.activeTab, null, getTabDisplayName(session.activeTab)));
 		}
 		
-		// If this exact file/view is already in the stack, unwind to it and update in-place to avoid circular loops.
+		// If this exact command or file is already in the stack, unwind to it and update in-place to avoid circular loops.
 		int existingIndex = -1;
 		int idx = 0;
 		for (NavEntry item : session.navStack)
 		{
-			if (item.commandOrFile().equalsIgnoreCase(entry.commandOrFile()) || ((idx > 0) && item.label().equalsIgnoreCase(entry.label())))
+			if (item.commandOrFile().equalsIgnoreCase(entry.commandOrFile()))
 			{
 				existingIndex = idx;
 				break;
@@ -779,8 +842,33 @@ public final class AdminBoardManager
 		return "Sub-View";
 	}
 	
+	private static String extractDistinctSubHeading(String rawHtml, String parentLabel, String pendingCommand)
+	{
+		if (rawHtml != null)
+		{
+			final Matcher hm = HEADING_FONT_PATTERN.matcher(rawHtml);
+			while (hm.find())
+			{
+				final String text = hm.group(1).replaceAll("<[^>]+>", "").trim();
+				if (!text.isEmpty() && !text.equalsIgnoreCase(parentLabel) && !text.equalsIgnoreCase(parentLabel + " Menu") && (text.length() <= 28))
+				{
+					return text;
+				}
+			}
+		}
+		if ((pendingCommand != null) && pendingCommand.contains(" "))
+		{
+			final String suffix = pendingCommand.substring(pendingCommand.indexOf(' ') + 1).trim();
+			if (!suffix.isEmpty())
+			{
+				return suffix.length() > 24 ? suffix.substring(0, 24) : suffix;
+			}
+		}
+		return null;
+	}
+	
 	/**
-	 * Wraps workspace inner HTML with the 940px flat top Command Deck, Breadcrumb Navigation Bar,
+	 * Wraps workspace inner HTML with the 948px flat top Command Deck, Breadcrumb Navigation Bar,
 	 * and Live Target Inspector, populates the NPC_ITEM_HTML action cache exclusively, and transmits
 	 * directly to the Native C++ GMWnd.HtmlViewer (itemId=1 NpcHtmlMessage).
 	 */
@@ -796,7 +884,7 @@ public final class AdminBoardManager
 		final StringBuilder sb = new StringBuilder(6144);
 		sb.append("<html><body><center>");
 		appendTopHeaderBar(sb, player, session, activeTab);
-		appendTargetInspectorAndQuickBox(sb, player);
+		appendTargetInspectorAndQuickBox(sb, player, session);
 		sb.append("<img src=\"L2UI.SquareGray\" width=948 height=1><br1>");
 		sb.append(workspaceBody);
 		sb.append("<br></center></body></html>");
@@ -906,8 +994,10 @@ public final class AdminBoardManager
 	/**
 	 * Builds Top Bar 3 & 4 (948px): Live Target Inspector + Unified QuickBox with RBAC-filtered actions.
 	 * Uses strictly 1-level flat <table> rows for 2009 NWindow.dll compatibility.
+	 * The QuickBox <edit var="qbox"> row is rendered only at the Tab Root (navStack.size() <= 1) so
+	 * scrollable sub-pages never cause the native C++ <edit> caret to bleed out of bounds.
 	 */
-	private void appendTargetInspectorAndQuickBox(StringBuilder sb, Player gm)
+	private void appendTargetInspectorAndQuickBox(StringBuilder sb, Player gm, AdminBoardSession session)
 	{
 		final AccessLevel access = gm.getAccessLevel();
 		final WorldObject targetObj = gm.getTarget();
@@ -975,19 +1065,22 @@ public final class AdminBoardManager
 		}
 		sb.append("</tr></table>");
 		
-		// Unified QuickBox Row (948px, RBAC filtered, flat 1-level table)
-		sb.append("<table width=948 border=0 cellpadding=1 cellspacing=0 bgcolor=\"202020\"><tr>");
-		sb.append("<td width=72 align=left><font color=\"LEVEL\">QuickBox:</font></td>");
-		sb.append("<td width=206 align=left><edit var=\"qbox\" width=198 height=14></td>");
-		sb.append("<td width=92 align=center>").append(access.hasScope(AdminScope.PLAYER_SUPPORT) ? button("Find Char", "admin_find_character $qbox", 88, 20) : "").append("</td>");
-		sb.append("<td width=84 align=center>").append(access.hasScope(AdminScope.TELEPORT) ? button("MoveTo", "admin_move_to $qbox", 80, 20) : "").append("</td>");
-		sb.append("<td width=84 align=center>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("Spawn", "admin_spawn_monster $qbox", 80, 20) : "").append("</td>");
-		sb.append("<td width=74 align=center>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("Scan", "admin_scan $qbox", 70, 20) : "").append("</td>");
-		sb.append("<td width=98 align=center>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("Create Item", "admin_create_item $qbox", 94, 20) : "").append("</td>");
-		sb.append("<td width=78 align=center>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("Search", "admin_search $qbox", 74, 20) : "").append("</td>");
-		sb.append("<td width=80 align=center>").append(access.hasScope(AdminScope.ANNOUNCEMENTS) ? button("Announce", "admin_announce $qbox", 76, 20) : "").append("</td>");
-		sb.append("<td width=80 align=right>").append(access.hasScope(AdminScope.SERVER_ADMIN) ? button("Reload Scr", "admin_reload script $qbox", 76, 20) : "").append("</td>");
-		sb.append("</tr></table>");
+		// Unified QuickBox Row (948px, RBAC filtered, rendered only at Tab Root so <edit> never scrolls out of bounds)
+		if (session.navStack.size() <= 1)
+		{
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=0 bgcolor=\"202020\"><tr>");
+			sb.append("<td width=72 align=left><font color=\"LEVEL\">QuickBox:</font></td>");
+			sb.append("<td width=206 align=left><edit var=\"qbox\" width=198 height=14></td>");
+			sb.append("<td width=92 align=center>").append(access.hasScope(AdminScope.PLAYER_SUPPORT) ? button("Find Char", "admin_find_character $qbox", 88, 20) : "").append("</td>");
+			sb.append("<td width=84 align=center>").append(access.hasScope(AdminScope.TELEPORT) ? button("MoveTo", "admin_move_to $qbox", 80, 20) : "").append("</td>");
+			sb.append("<td width=84 align=center>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("Spawn", "admin_spawn_monster $qbox", 80, 20) : "").append("</td>");
+			sb.append("<td width=74 align=center>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("Scan", "admin_scan $qbox", 70, 20) : "").append("</td>");
+			sb.append("<td width=98 align=center>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("Create Item", "admin_create_item $qbox", 94, 20) : "").append("</td>");
+			sb.append("<td width=78 align=center>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("Search", "admin_search $qbox", 74, 20) : "").append("</td>");
+			sb.append("<td width=80 align=center>").append(access.hasScope(AdminScope.ANNOUNCEMENTS) ? button("Announce", "admin_announce $qbox", 76, 20) : "").append("</td>");
+			sb.append("<td width=80 align=right>").append(access.hasScope(AdminScope.SERVER_ADMIN) ? button("Reload Scr", "admin_reload script $qbox", 76, 20) : "").append("</td>");
+			sb.append("</tr></table>");
+		}
 	}
 	
 	/**
@@ -1151,7 +1244,7 @@ public final class AdminBoardManager
 				new String[]{"Force Petition", "admin_force_peti Thank you"},
 				new String[]{"Reset Petitions", "admin_reset_petitions"},
 				new String[]{"GM Chat Panel", "admin_gmchat_menu"},
-				new String[]{"Chat Ban ($qbox)", "admin_banchat $qbox"});
+				new String[]{"Chat Ban ($qbox)", "admin_ban_chat $qbox"});
 		}
 		
 		if (access.hasScope(AdminScope.PUNISHMENT))
@@ -1261,19 +1354,12 @@ public final class AdminBoardManager
 		if (access.hasScope(AdminScope.TELEPORT))
 		{
 			appendWorkspaceRow(sb, "Endgame Dungeons", "FF9900",
-				new String[]{"Crystal Caverns (10)", "admin_move_to 149361 172327 -945"},
+				new String[]{"Crystal Caverns (10)", "admin_move_to 143344 148787 -11972"},
 				new String[]{"Baylor Raid (10)", "admin_move_to 153569 142075 -12736"},
 				new String[]{"Hellbound / Tully", "admin_move_to -12700 273832 -15300"},
 				new String[]{"Tower of Naia", "admin_move_to -47271 246098 -9120"},
 				new String[]{"Seed of Infinity", "admin_move_to -213678 210670 4408"},
 				new String[]{"Seed of Destruction", "admin_move_to -246035 217337 -12208"});
-			
-			appendWorkspaceRow(sb, "Solo & Party Inst", "00CCFF",
-				new String[]{"Kamaloka (Giran)", "admin_move_to 81960 148606 -3468"},
-				new String[]{"Pailaka Lv36 (Gludio)", "admin_move_to -14228 123694 -3117"},
-				new String[]{"Pailaka Lv61 (Giran)", "admin_move_to 83395 147958 -3405"},
-				new String[]{"Pailaka Lv73 (Goddard)", "admin_move_to 147450 -55521 -2732"},
-				new String[]{"Nornil's Garden", "admin_move_to -111191 80322 -12936"});
 		}
 		
 		// Inline Active Runtime Instances Summary Table (948px, strictly 1-row <table> per row for NWindow.dll ListParser compatibility)
@@ -1456,17 +1542,17 @@ public final class AdminBoardManager
 		if (access.hasScope(AdminScope.MASTER_CONTROL))
 		{
 			appendWorkspaceRow(sb, "Master Security", "FF6666",
-				new String[]{"Set Access ($qbox)", "admin_changelvl $qbox"},
 				new String[]{"Packet Forge", "admin_forge"},
 				new String[]{"System Msg ($qbox)", "admin_msg $qbox"},
-				new String[]{"Debug Target", "admin_debug"});
+				new String[]{"Debug Target", "admin_debug"},
+				new String[]{"Zone Builder", "admin_zone_build"});
 		}
 		
 		return sb.toString();
 	}
 	
 	/**
-	 * Legacy NCSoft Graphical GM Inspectors & Classic L2J HTML Sub-Menus fallback view (920px).
+	 * Legacy NCSoft Graphical GM Inspectors & Classic L2J HTML Sub-Menus fallback view (948px).
 	 */
 	private String buildLegacyWorkspace(Player gm)
 	{
@@ -1497,7 +1583,7 @@ public final class AdminBoardManager
 	
 	/**
 	 * Dynamically scrubs unauthorized RBAC buttons/links from raw admin HTML and adapts it for
-	 * safe rendering inside the 2009 Gracia Epilogue Native C++ GMWnd.HtmlViewer (920px).
+	 * safe rendering inside the 2009 Gracia Epilogue Native C++ GMWnd.HtmlViewer (948px).
 	 * @param gm the staff member viewing the page
 	 * @param rawHtml the raw HTML from NpcHtmlMessage or data/html/admin/
 	 * @return sanitized, RBAC-filtered inner HTML fragment
@@ -1509,7 +1595,7 @@ public final class AdminBoardManager
 	
 	/**
 	 * Dynamically scrubs unauthorized RBAC buttons/links from raw admin HTML for a given AccessLevel
-	 * and adapts it for safe rendering inside the 2009 Gracia Epilogue Native C++ GMWnd.HtmlViewer (920px).
+	 * and adapts it for safe rendering inside the 2009 Gracia Epilogue Native C++ GMWnd.HtmlViewer (948px).
 	 * @param access the staff member's AccessLevel
 	 * @param rawHtml the raw HTML from NpcHtmlMessage or data/html/admin/
 	 * @return sanitized, RBAC-filtered inner HTML fragment
@@ -1577,13 +1663,137 @@ public final class AdminBoardManager
 		// 7. Strip duplicate <edit var="qbox"> inputs in adapted sub-pages so NWindow.dll never collides with Top Bar QuickBox.
 		body = DUPLICATE_QBOX_EDIT_PATTERN.matcher(body).replaceAll("<font color=\"LEVEL\">[Use Top QuickBox]</font>");
 		
-		// 8. Promote cramped 260/270/280/300px legacy tables to full 920px wide-screen layout.
-		body = body.replaceAll("(?i)<table\\s+width\\s*=\\s*\"?(?:260|270|280|290|300)\"?\\b", "<table width=920");
+		// 8. Normalize legacy C4/Interlude button textures to CT2.4 Button_DF.
+		body = body.replaceAll("(?i)back\\s*=\\s*\"(?:sek\\.cbui94|L2UI_ct1\\.button_df(?:_down)?)\"", "back=\"" + BTN_BACK + "\"");
+		body = body.replaceAll("(?i)fore\\s*=\\s*\"(?:sek\\.cbui92|L2UI_ct1\\.button_df)\"", "fore=\"" + BTN_FORE + "\"");
 		
-		// 9. Strip unsupported attributes (e.g. bgcolor) from <tr> tags so ListParser::CreateElementList never crashes.
+		// 9. Pack legacy button-only tables and vertical standalone <button> lists into 5-column 948px wide-screen grids.
+		body = packVerticalButtonsIntoWideGrid(body);
+		
+		// 10. Promote cramped 250..300px legacy tables to full 948px wide-screen layout.
+		body = body.replaceAll("(?i)<table\\s+width\\s*=\\s*\"?(?:250|256|260|270|280|290|300)\"?\\b", "<table width=948");
+		
+		// 11. Strip unsupported attributes (e.g. bgcolor) from <tr> tags so ListParser::CreateElementList never crashes.
 		body = body.replaceAll("(?i)<tr\\b[^>]*>", "<tr>");
 		
 		return body.trim();
+	}
+	
+	/**
+	 * Repacks legacy 1/2/3-column button-only tables (e.g., teleports.htm, TownAreas.htm, gmshops.htm)
+	 * and vertical runs of standalone <button> tags (e.g., grandboss.htm, raid.htm, raid_80.htm)
+	 * into flat 5-column 948px 1-row tables so sub-menus use the full wide-screen viewport without vertical scrolling.
+	 */
+	private static String packVerticalButtonsIntoWideGrid(String html)
+	{
+		if ((html == null) || html.isEmpty())
+		{
+			return "";
+		}
+		
+		// Pass 1: Repack legacy button-only tables (width != 948) where every cell contains only <button> tags.
+		final Matcher tableMatcher = ANY_TABLE_PATTERN.matcher(html);
+		final StringBuilder pass1 = new StringBuilder(html.length());
+		while (tableMatcher.find())
+		{
+			final String tableAttrs = tableMatcher.group(1);
+			final String inner = tableMatcher.group(2);
+			if ((tableAttrs != null) && tableAttrs.contains("948"))
+			{
+				tableMatcher.appendReplacement(pass1, Matcher.quoteReplacement(tableMatcher.group(0)));
+				continue;
+			}
+			
+			final String lowerInner = inner.toLowerCase(Locale.ROOT);
+			if (lowerInner.contains("<edit") || lowerInner.contains("<a ") || lowerInner.contains("<table") || lowerInner.contains("<combobox"))
+			{
+				tableMatcher.appendReplacement(pass1, Matcher.quoteReplacement(tableMatcher.group(0)));
+				continue;
+			}
+			
+			final String stripped = inner
+				.replaceAll("(?is)<button\\b[^>]*>(?:\\s*</button>)?", "")
+				.replaceAll("(?is)</?(?:tr|td|center|br1?|p|font)\\b[^>]*>", "")
+				.replace("&nbsp;", "")
+				.trim();
+			if (!stripped.isEmpty())
+			{
+				tableMatcher.appendReplacement(pass1, Matcher.quoteReplacement(tableMatcher.group(0)));
+				continue;
+			}
+			
+			final List<String> buttons = extractButtons(inner);
+			if (buttons.size() >= 2)
+			{
+				tableMatcher.appendReplacement(pass1, Matcher.quoteReplacement(buildFiveColumnButtonGrid(buttons)));
+			}
+			else
+			{
+				tableMatcher.appendReplacement(pass1, Matcher.quoteReplacement(tableMatcher.group(0)));
+			}
+		}
+		tableMatcher.appendTail(pass1);
+		
+		// Pass 2: Repack runs of >= 2 consecutive standalone <button> tags separated by <br>, <br1>, <p>, or stray </td>.
+		final String afterPass1 = pass1.toString();
+		final Matcher runMatcher = VERTICAL_BUTTON_RUN_PATTERN.matcher(afterPass1);
+		final StringBuilder pass2 = new StringBuilder(afterPass1.length());
+		while (runMatcher.find())
+		{
+			final List<String> buttons = extractButtons(runMatcher.group(0));
+			if (buttons.size() >= 2)
+			{
+				runMatcher.appendReplacement(pass2, Matcher.quoteReplacement(buildFiveColumnButtonGrid(buttons)));
+			}
+			else
+			{
+				runMatcher.appendReplacement(pass2, Matcher.quoteReplacement(runMatcher.group(0)));
+			}
+		}
+		runMatcher.appendTail(pass2);
+		return pass2.toString();
+	}
+	
+	private static List<String> extractButtons(String fragment)
+	{
+		final List<String> buttons = new ArrayList<>();
+		final Matcher m = SINGLE_BUTTON_TAG_PATTERN.matcher(fragment);
+		while (m.find())
+		{
+			String btn = m.group(0);
+			// Remove self-closing slash if present (e.g., "... />" -> "...>") for 2009 NWindow.dll compatibility.
+			btn = btn.replaceAll("\\s*/>$", ">");
+			// Normalize button width to 180 and height to 22 so 5 buttons fit cleanly in 948px (5 * 189px cells).
+			btn = btn.replaceAll("(?i)\\bwidth\\s*=\\s*\"?\\d+\"?", "width=180");
+			btn = btn.replaceAll("(?i)\\bheight\\s*=\\s*\"?\\d+\"?", "height=22");
+			buttons.add(btn);
+		}
+		return buttons;
+	}
+	
+	private static String buildFiveColumnButtonGrid(List<String> buttons)
+	{
+		final StringBuilder sb = new StringBuilder(buttons.size() * 140);
+		final int cols = 5;
+		final int totalRows = (buttons.size() + cols - 1) / cols;
+		for (int r = 0; r < totalRows; r++)
+		{
+			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1B1B1B\"><tr>");
+			for (int c = 0; c < cols; c++)
+			{
+				final int idx = (r * cols) + c;
+				if (idx < buttons.size())
+				{
+					sb.append("<td width=189 align=center>").append(buttons.get(idx)).append("</td>");
+				}
+				else
+				{
+					sb.append("<td width=189></td>");
+				}
+			}
+			sb.append("</tr></table>");
+		}
+		return sb.toString();
 	}
 	
 	private static String button(String label, String adminCommand, int width, int height)

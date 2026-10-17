@@ -72,6 +72,10 @@ public class AdminDelete implements IAdminCommandHandler
 		{
 			deleteNpc(player, obj.asNpc());
 		}
+		else if ((obj != null) && obj.isPlayer())
+		{
+			player.sendSysMessage("Security Policy: You cannot delete a player character (//delete only works on NPCs).");
+		}
 		else
 		{
 			player.sendSysMessage("Incorrect target.");
@@ -84,6 +88,10 @@ public class AdminDelete implements IAdminCommandHandler
 		if (obj instanceof Npc)
 		{
 			deleteGroup(player, obj.asNpc());
+		}
+		else if ((obj != null) && obj.isPlayer())
+		{
+			player.sendSysMessage("Security Policy: You cannot delete a player character (//delete_group only works on NPCs).");
 		}
 		else
 		{

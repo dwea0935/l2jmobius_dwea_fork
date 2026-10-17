@@ -88,6 +88,11 @@ public class AdminKick implements IAdminCommandHandler
 				final Player plyr = World.getPlayer(player);
 				if (plyr != null)
 				{
+					if (plyr == activeChar)
+					{
+						activeChar.sendSysMessage("Security Policy: You cannot kick your own GM character.");
+						return false;
+					}
 					Disconnection.of(plyr).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 					activeChar.sendSysMessage("You kicked " + plyr.getName() + " from the game.");
 				}
