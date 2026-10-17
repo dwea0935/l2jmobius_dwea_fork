@@ -86,11 +86,6 @@ public final class AdminBoardManager
 		"<title>(.*?)</title>",
 		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 	
-	/** Matches <font color="LEVEL">...</font> or <font color="aadd77">...</font> headings inside legacy HTML files. */
-	private static final Pattern HEADING_FONT_PATTERN = Pattern.compile(
-		"<font\\s+color\\s*=\\s*\"?(?:LEVEL|aadd77|FFD700)\"?\\s*>(.*?)</font>",
-		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-	
 	private static final Pattern DUPLICATE_QBOX_EDIT_PATTERN = Pattern.compile(
 		"<edit\\b[^>]*\\bvar\\s*=\\s*\"?qbox\"?[^>]*>",
 		Pattern.CASE_INSENSITIVE);
@@ -759,19 +754,9 @@ public final class AdminBoardManager
 			cmdOrFile = "HTML:" + Integer.toHexString(rawHtml.hashCode());
 		}
 		
-		String label = (session.pendingFileLabel != null) && !session.pendingFileLabel.isEmpty()
+		final String label = (session.pendingFileLabel != null) && !session.pendingFileLabel.isEmpty()
 			? session.pendingFileLabel
 			: extractHtmlLabel(rawHtml);
-		
-		final NavEntry parent = session.navStack.peekLast();
-		if ((parent != null) && !parent.commandOrFile().equalsIgnoreCase(cmdOrFile) && parent.label().equalsIgnoreCase(label))
-		{
-			final String subHeading = extractDistinctSubHeading(rawHtml, label, session.pendingCommand);
-			if ((subHeading != null) && !subHeading.isEmpty())
-			{
-				label = subHeading;
-			}
-		}
 		
 		pushNavEntry(session, new NavEntry(session.activeTab, cmdOrFile, rawHtml, label));
 		
@@ -790,12 +775,12 @@ public final class AdminBoardManager
 			session.navStack.addLast(new NavEntry(session.activeTab, "TAB:" + session.activeTab, null, getTabDisplayName(session.activeTab)));
 		}
 		
-		// If this exact command or file is already in the stack, unwind to it and update in-place to avoid circular loops.
+		// If this exact command/file OR page title label is already in the stack, unwind to it and update in-place.
 		int existingIndex = -1;
 		int idx = 0;
 		for (NavEntry item : session.navStack)
 		{
-			if (item.commandOrFile().equalsIgnoreCase(entry.commandOrFile()))
+			if (item.commandOrFile().equalsIgnoreCase(entry.commandOrFile()) || item.label().equalsIgnoreCase(entry.label()))
 			{
 				existingIndex = idx;
 				break;
@@ -840,31 +825,6 @@ public final class AdminBoardManager
 			}
 		}
 		return "Sub-View";
-	}
-	
-	private static String extractDistinctSubHeading(String rawHtml, String parentLabel, String pendingCommand)
-	{
-		if (rawHtml != null)
-		{
-			final Matcher hm = HEADING_FONT_PATTERN.matcher(rawHtml);
-			while (hm.find())
-			{
-				final String text = hm.group(1).replaceAll("<[^>]+>", "").trim();
-				if (!text.isEmpty() && !text.equalsIgnoreCase(parentLabel) && !text.equalsIgnoreCase(parentLabel + " Menu") && (text.length() <= 28))
-				{
-					return text;
-				}
-			}
-		}
-		if ((pendingCommand != null) && pendingCommand.contains(" "))
-		{
-			final String suffix = pendingCommand.substring(pendingCommand.indexOf(' ') + 1).trim();
-			if (!suffix.isEmpty())
-			{
-				return suffix.length() > 24 ? suffix.substring(0, 24) : suffix;
-			}
-		}
-		return null;
 	}
 	
 	/**

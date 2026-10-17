@@ -1850,7 +1850,6 @@
 		<abnormalLevel>1</abnormalLevel>
 		<abnormalTime>10</abnormalTime>
 		<abnormalType>PVP_WEAPON_BUFF</abnormalType>
-		<activateRate>0</activateRate>
 		<effectPoint>1</effectPoint>
 		<hitTime>100</hitTime>
 		<magicLevel>80</magicLevel>

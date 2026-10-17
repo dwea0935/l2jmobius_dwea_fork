@@ -1034,14 +1034,17 @@
 		<!-- Has a chance to recover CP when attacking. -->
 		<icon>icon.skill1306</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageDealt">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
 				<isCritical>false</isCritical>
-				<minDamage>50</minDamage>
+				<allowNormalAttack>true</allowNormalAttack>
+				<allowSkillAttack>true</allowSkillAttack>
+				<minDamage>1</minDamage>
 				<chance>20</chance>
 				<skillId>5681</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Weapon - CP Drain -->
@@ -1054,14 +1057,17 @@
 		<!-- Has a chance to cancel 1 or more of the opponent's enhanced conditions when attacking. -->
 		<icon>icon.skill1056</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageDealt">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
 				<isCritical>false</isCritical>
-				<minDamage>50</minDamage>
+				<allowNormalAttack>true</allowNormalAttack>
+				<allowSkillAttack>true</allowSkillAttack>
+				<minDamage>1</minDamage>
 				<chance>10</chance>
 				<skillId>5682</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Weapon - Cancel -->
@@ -1074,14 +1080,17 @@
 		<!-- Has a chance to decrease the opponent's shield defense when attacking. -->
 		<icon>icon.skill1304</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageDealt">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
 				<isCritical>false</isCritical>
-				<minDamage>50</minDamage>
+				<allowNormalAttack>true</allowNormalAttack>
+				<allowSkillAttack>true</allowSkillAttack>
+				<minDamage>1</minDamage>
 				<chance>20</chance>
 				<skillId>5683</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Weapon - Ignore Shield Defense -->
@@ -1094,14 +1103,17 @@
 		<!-- Has a chance to inflict additional damage when attacking. -->
 		<icon>icon.skill0005</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageDealt">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
 				<isCritical>false</isCritical>
-				<minDamage>50</minDamage>
+				<allowNormalAttack>true</allowNormalAttack>
+				<allowSkillAttack>true</allowSkillAttack>
+				<minDamage>1</minDamage>
 				<chance>10</chance>
 				<skillId>5684</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Weapon - Attack Chance -->
@@ -1114,14 +1126,15 @@
 		<!-- Increases Casting Spd. when being attacked. -->
 		<icon>icon.skill0228</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>50</minDamage>
-				<chance>5</chance>
+				<minDamage>1</minDamage>
+				<chance>10</chance>
 				<skillId>5685</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Weapon - Casting -->
 				<targetType>SELF</targetType>
@@ -1132,15 +1145,18 @@
 		<!-- Has a chance to increase bow/crossbow attack speed when attacking. -->
 		<icon>icon.skill0413</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageDealt">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
 				<isCritical>false</isCritical>
-				<minDamage>50</minDamage>
-				<chance>10</chance>
+				<allowNormalAttack>true</allowNormalAttack>
+				<allowSkillAttack>true</allowSkillAttack>
+				<minDamage>1</minDamage>
+				<chance>15</chance>
 				<skillId>5686</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Weapon - Rapid Fire -->
 				<targetType>SELF</targetType>
@@ -1152,15 +1168,18 @@
 		<!-- Has a chance to decrease bow/crossbow range when attacking. -->
 		<icon>icon.skill0486</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageDealt">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
 				<isCritical>false</isCritical>
-				<minDamage>50</minDamage>
-				<chance>10</chance>
+				<allowNormalAttack>true</allowNormalAttack>
+				<allowSkillAttack>true</allowSkillAttack>
+				<minDamage>1</minDamage>
+				<chance>15</chance>
 				<skillId>5687</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Weapon - Decrease Range -->
 				<targetType>ONE</targetType>
@@ -1172,15 +1191,18 @@
 		<!-- Has a chance to decrease attribute resistance when attacking. -->
 		<icon>icon.skill0756</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageDealt">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
 				<isCritical>false</isCritical>
-				<minDamage>50</minDamage>
-				<chance>10</chance>
+				<allowNormalAttack>true</allowNormalAttack>
+				<allowSkillAttack>true</allowSkillAttack>
+				<minDamage>1</minDamage>
+				<chance>15</chance>
 				<skillId>5688</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Weapon - Decrease Resist -->
 				<targetType>ONE</targetType>
@@ -1192,14 +1214,15 @@
 		<!-- Has a chance to reflect the enemy's attack when being attacked. -->
 		<icon>icon.skill0086</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>40</minDamage>
-				<chance>10</chance>
+				<minDamage>1</minDamage>
+				<chance>15</chance>
 				<skillId>5689</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Shield - Reflect Damage -->
 				<targetType>SELF</targetType>
@@ -1210,14 +1233,20 @@
 		<!-- Decreases damage incurred when being attacked. -->
 		<icon>icon.skill1040</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
+			<effect name="Buff">
+				<mul stat="pvpPhysDef">1.05</mul>
+				<mul stat="pvpMagicalDef">1.05</mul>
+				<mul stat="pvpPhysSkillsDef">1.05</mul>
+			</effect>
 			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>50</minDamage>
-				<chance>20</chance>
+				<minDamage>1</minDamage>
+				<chance>15</chance>
 				<skillId>5690</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Armor - Damage Down -->
 				<targetType>SELF</targetType>
@@ -1225,17 +1254,23 @@
 		</effects>
 	</skill>
 	<skill id="3660" levels="1" name="PvP Armor - Critical Down">
-		<!-- Decreases critical rate and critical damage when being attacked. -->
+		<!-- Decreases damage received during PvP, and decreases critical rate and critical damage when being attacked. -->
 		<icon>icon.skill1242</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
+			<effect name="Buff">
+				<mul stat="pvpPhysDef">1.05</mul>
+				<mul stat="pvpMagicalDef">1.05</mul>
+				<mul stat="pvpPhysSkillsDef">1.05</mul>
+			</effect>
 			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>50</minDamage>
-				<chance>20</chance>
+				<minDamage>1</minDamage>
+				<chance>15</chance>
 				<skillId>5691</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
 				<targetType>SELF</targetType>
@@ -1246,11 +1281,12 @@
 		<!-- Adds an effect when Major Heal is used upon a player. -->
 		<icon>icon.skill1011</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="TriggerSkillBySkill">
 				<castSkillId>1401</castSkillId> <!-- Major Heal -->
-				<chance>5</chance>
+				<chance>15</chance>
 				<skillId>5692</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Armor - Heal -->
 				<targetType>ONE</targetType>
@@ -1258,17 +1294,23 @@
 		</effects>
 	</skill>
 	<skill id="3662" levels="1" name="PvP Armor - Speed Down">
-		<!-- Decreases all of the target's speeds when being attacked. -->
+		<!-- Decreases damage received during PvP, and decreases all of the attacker's speeds when being attacked. -->
 		<icon>icon.skill1160</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
+			<effect name="Buff">
+				<mul stat="pvpPhysDef">1.05</mul>
+				<mul stat="pvpMagicalDef">1.05</mul>
+				<mul stat="pvpPhysSkillsDef">1.05</mul>
+			</effect>
 			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>50</minDamage>
-				<chance>10</chance>
+				<minDamage>1</minDamage>
+				<chance>15</chance>
 				<skillId>5693</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
 				<targetType>ONE</targetType>
@@ -1276,17 +1318,23 @@
 		</effects>
 	</skill>
 	<skill id="3663" levels="1" name="PvP Armor - Mirage">
-		<!-- Has a chance to blow away the opponent's target when being attacked. -->
+		<!-- Decreases damage received during PvP, and has a chance to cancel the opponent's target when being attacked. -->
 		<icon>icon.skill0445</icon>
 		<operateType>P</operateType>
+		<targetType>SELF</targetType>
 		<magicLevel>80</magicLevel>
 		<effects>
+			<effect name="Buff">
+				<mul stat="pvpPhysDef">1.05</mul>
+				<mul stat="pvpMagicalDef">1.05</mul>
+				<mul stat="pvpPhysSkillsDef">1.05</mul>
+			</effect>
 			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
+				<attackerType>Creature</attackerType>
 				<minAttackerLevel>1</minAttackerLevel>
 				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>50</minDamage>
-				<chance>25</chance>
+				<minDamage>1</minDamage>
+				<chance>15</chance>
 				<skillId>5694</skillId>
 				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
 				<targetType>ONE</targetType>

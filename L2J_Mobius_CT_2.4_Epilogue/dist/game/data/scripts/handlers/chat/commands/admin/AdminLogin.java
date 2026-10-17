@@ -41,7 +41,6 @@ public class AdminLogin implements IAdminCommandHandler
 	{
 		"admin_server_gm_only",
 		"admin_server_all",
-		"admin_server_max_player",
 		"admin_server_list_type",
 		"admin_server_list_age",
 		"admin_server_login"
@@ -61,29 +60,6 @@ public class AdminLogin implements IAdminCommandHandler
 			allowToAll();
 			activeChar.sendSysMessage("Server is not GM only anymore");
 			showMainPage(activeChar);
-		}
-		else if (command.startsWith("admin_server_max_player"))
-		{
-			final StringTokenizer st = new StringTokenizer(command);
-			if (st.countTokens() > 1)
-			{
-				st.nextToken();
-				final String number = st.nextToken();
-				try
-				{
-					LoginServerThread.getInstance().setMaxPlayer(Integer.parseInt(number));
-					activeChar.sendSysMessage("maxPlayer set to " + number);
-					showMainPage(activeChar);
-				}
-				catch (NumberFormatException e)
-				{
-					activeChar.sendSysMessage("Max players must be a number.");
-				}
-			}
-			else
-			{
-				activeChar.sendSysMessage("Format is server_max_player <max>");
-			}
 		}
 		else if (command.startsWith("admin_server_list_type"))
 		{

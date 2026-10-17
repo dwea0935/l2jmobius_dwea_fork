@@ -147,7 +147,7 @@ public class TriggerSkillByDamageDealt extends AbstractEffect
 			final Creature targetChar = triggerTarget.asCreature();
 			if (!targetChar.isInvul())
 			{
-				event.getAttacker().makeTriggerCast(triggerSkill, targetChar);
+				event.getAttacker().makeTriggerCast(triggerSkill, targetChar, true);
 			}
 		}
 	}

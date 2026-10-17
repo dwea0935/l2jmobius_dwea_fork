@@ -7112,10 +7112,10 @@ public abstract class Creature extends WorldObject
 					}
 				}
 				
-				if (PlayerConfig.ALT_VALIDATE_TRIGGER_SKILLS && isPlayable() && (skillTarget != null) && skillTarget.isPlayable())
+				if (!ignoreTargetType && PlayerConfig.ALT_VALIDATE_TRIGGER_SKILLS && isPlayable() && (skillTarget != null) && skillTarget.isPlayable())
 				{
 					final Player player = asPlayer();
-					if (!player.checkPvpSkill(skillTarget, skill))
+					if ((player != null) && (skillTarget.getTarget() != this) && (getTarget() != skillTarget) && !skillTarget.isFakePlayer() && !skillTarget.isAutoAttackable(this) && !player.checkPvpSkill(skillTarget, skill))
 					{
 						return;
 					}

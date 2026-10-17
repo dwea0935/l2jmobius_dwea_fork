@@ -1123,23 +1123,10 @@
 		<targetType>SELF</targetType>
 		<magicLevel>1</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<SLEEP>70</SLEEP>
 				<HOLD>70</HOLD>
 				<mul stat="pAtk">1.04</mul> <!-- P. Atk. +4% -->
-				<mul stat="pvpPhysDef">1.05</mul>
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -1150,23 +1137,10 @@
 		<targetType>SELF</targetType>
 		<magicLevel>1</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<SHOCK>50</SHOCK>
 				<mul stat="pAtk">1.04</mul> <!-- P. Atk. +4% -->
 				<add stat="accCombat">3.1</add> <!-- Accuracy +3 -->
-				<mul stat="pvpPhysDef">1.05</mul>
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -1177,24 +1151,11 @@
 		<targetType>SELF</targetType>
 		<magicLevel>1</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<SLEEP>70</SLEEP>
 				<HOLD>70</HOLD>
 				<mul stat="mDef">1.04</mul> <!-- M. Def. +4% -->
 				<add stat="absorbDam">3</add> <!-- absorb 3% HP from damage inflicted on enemies -->
-				<mul stat="pvpPhysDef">1.05</mul>
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -1205,16 +1166,6 @@
 		<targetType>SELF</targetType>
 		<magicLevel>1</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<SHOCK>50</SHOCK>
 				<mul stat="pAtk">
@@ -1223,9 +1174,6 @@
 				</mul>
 				<add stat="maxMp">240</add> <!-- MP +240 -->
 				<add stat="weightPenalty">5759</add> <!-- Point at which a weight penalty is applied +5759 -->
-				<mul stat="pvpPhysDef">1.05</mul>
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -1236,24 +1184,11 @@
 		<targetType>SELF</targetType>
 		<magicLevel>1</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<SLEEP>70</SLEEP>
 				<HOLD>70</HOLD>
 				<mul stat="regMp">1.04</mul> <!-- MP Regeneration +4% -->
 				<mul stat="mAtk">1.08</mul> <!-- M. Atk. +8% -->
-				<mul stat="pvpPhysDef">1.05</mul>
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -1264,24 +1199,11 @@
 		<targetType>SELF</targetType>
 		<magicLevel>1</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<SHOCK>50</SHOCK>
 				<add stat="maxMp">240</add> <!-- MP +240 -->
 				<mul stat="mAtkSpd">1.15</mul> <!-- Casting Spd. +15% -->
 				<mul stat="regMp">1.08</mul> <!-- MP Regeneration +8% -->
-				<mul stat="pvpPhysDef">1.05</mul>
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -1292,24 +1214,11 @@
 		<targetType>SELF</targetType>
 		<magicLevel>75</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<SLEEP>70</SLEEP>
 				<HOLD>70</HOLD>
 				<add stat="maxHp">445</add> <!-- Maximum HP +445 -->
 				<mul stat="pDef">1.08</mul> <!-- P Def. +8% -->
-				<mul stat="pvpPhysDef">1.05</mul>
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
 			</effect>
 		</effects>
 	</skill>

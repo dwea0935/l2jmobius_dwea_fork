@@ -516,4 +516,55 @@
 		<men val="-2" />
 		<wit val="1" />
 	</set>
+	<set id="155">
+		<chest id="10819" /> <!-- Dynasty Platinum Breastplate {PvP} -->
+		<legs id="9421" /> <!-- Dynasty Gaiters -->
+		<legs id="11512" /> <!-- Dynasty Gaiters -->
+		<head id="9422" /> <!-- Dynasty Helmet -->
+		<head id="11557" /> <!-- Dynasty Helmet -->
+		<gloves id="9423" /> <!-- Dynasty Gauntlet - Heavy -->
+		<gloves id="11513" /> <!-- Dynasty Gauntlet -->
+		<feet id="9424" /> <!-- Dynasty Boots - Heavy -->
+		<feet id="11526" /> <!-- Dynasty Boots -->
+		<shield id="9441" /> <!-- Dynasty Shield -->
+		<shield id="11532" /> <!-- Dynasty Shield -->
+		<skill id="3006" level="1" /> <!-- Equip Set Items -->
+		<skill id="8219" level="1" /> <!-- Dynasty Platinum Plate - PVP -->
+		<shield_skill id="3417" level="1" /> <!-- Equipped with Shield -->
+		<enchant6skill id="3623" level="1" /> <!-- Enchant Heavy Armor (S Grade) -->
+		<str val="1" />
+		<con val="-1" />
+	</set>
+	<set id="156">
+		<chest id="10824" /> <!-- Dynasty Jewel Leather Armor {PvP} -->
+		<legs id="9428" /> <!-- Dynasty Leather Leggings -->
+		<legs id="11516" /> <!-- Dynasty Leather Leggings -->
+		<head id="9429" /> <!-- Dynasty Leather Helmet -->
+		<head id="11525" /> <!-- Dynasty Leather Helmet -->
+		<gloves id="9430" /> <!-- Dynasty Leather Gloves - Light -->
+		<gloves id="11515" /> <!-- Dynasty Leather Gloves -->
+		<feet id="9431" /> <!-- Dynasty Leather Boots - Light -->
+		<feet id="11524" /> <!-- Dynasty Leather Boots -->
+		<skill id="3006" level="1" /> <!-- Equip Set Items -->
+		<skill id="8223" level="1" /> <!-- Dynasty Jewel Leather Armor - PVP -->
+		<enchant6skill id="3624" level="1" /> <!-- Enchant Light Armor (S Grade) -->
+		<con val="-1" />
+		<dex val="1" />
+	</set>
+	<set id="157">
+		<chest id="10827" /> <!-- Dynasty Silver Satin Tunic {PvP} -->
+		<legs id="9437" /> <!-- Dynasty Stockings -->
+		<legs id="11558" /> <!-- Dynasty Stockings -->
+		<head id="9438" /> <!-- Dynasty Circlet -->
+		<head id="11539" /> <!-- Dynasty Circlet -->
+		<gloves id="9439" /> <!-- Dynasty Gloves - Robe -->
+		<gloves id="11514" /> <!-- Dynasty Gloves -->
+		<feet id="9440" /> <!-- Dynasty Shoes - Robe -->
+		<feet id="11533" /> <!-- Dynasty Shoes -->
+		<skill id="3006" level="1" /> <!-- Equip Set Items -->
+		<skill id="8229" level="1" /> <!-- Dynasty Silver Satin Tunic - PVP -->
+		<enchant6skill id="3625" level="1" /> <!-- Enchant Robe (S Grade) -->
+		<int val="-1" />
+		<men val="1" />
+	</set>
 </list>

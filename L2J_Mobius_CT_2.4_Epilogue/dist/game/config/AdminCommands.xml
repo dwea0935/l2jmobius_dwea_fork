@@ -343,7 +343,6 @@
 	<!-- ADMIN LOGIN -->
 	<admin command="server_gm_only" description="Restrict access to the server for GM (Game Master) accounts only." accessLevel="30" />
 	<admin command="server_all" description="Allow access to the server for all players." accessLevel="30" />
-	<admin command="server_max_player" description="Set the maximum number of players allowed to log in to the server." accessLevel="30" />
 	<admin command="server_list_type" description="Set the type of the server." accessLevel="30" />
 	<admin command="server_list_age" description="Set the age of the server." accessLevel="30" />
 	<admin command="server_login" description="Opens server login menagment menu." accessLevel="30" />

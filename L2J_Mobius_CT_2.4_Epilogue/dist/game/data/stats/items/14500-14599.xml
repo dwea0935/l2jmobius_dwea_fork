@@ -746,6 +746,9 @@
 		<stats>
 			<stat type="pDef">250</stat>
 		</stats>
+		<skills>
+			<skill id="3662" level="1" />
+		</skills>
 	</item>
 	<item id="14521" type="Armor" name="Vesper Leather Breastplate {PvP}">
 		<set name="icon" val="icon.armor_t95_u_i00" />
@@ -765,6 +768,9 @@
 		<stats>
 			<stat type="pDef">187</stat>
 		</stats>
+		<skills>
+			<skill id="3663" level="1" />
+		</skills>
 	</item>
 	<item id="14522" type="Armor" name="Vesper Tunic {PvP}">
 		<set name="icon" val="icon.armor_t96_u_i00" />
@@ -788,6 +794,9 @@
 			<stat type="pDef">125</stat>
 			<stat type="maxMp">637</stat>
 		</stats>
+		<skills>
+			<skill id="3660" level="1" />
+		</skills>
 	</item>
 	<item id="14523" type="Armor" name="Vesper Noble Breastplate {PvP}">
 		<set name="icon" val="icon.armor_t94_u_i01" />
@@ -810,6 +819,9 @@
 		<stats>
 			<stat type="pDef">250</stat>
 		</stats>
+		<skills>
+			<skill id="3662" level="1" />
+		</skills>
 	</item>
 	<item id="14524" type="Armor" name="Vesper Noble Leather Breastplate {PvP}">
 		<set name="icon" val="icon.armor_t95_u_i01" />
@@ -829,6 +841,9 @@
 		<stats>
 			<stat type="pDef">187</stat>
 		</stats>
+		<skills>
+			<skill id="3663" level="1" />
+		</skills>
 	</item>
 	<item id="14525" type="Armor" name="Vesper Noble Tunic {PvP}">
 		<set name="icon" val="icon.armor_t96_u_i01" />
@@ -852,6 +867,9 @@
 			<stat type="pDef">125</stat>
 			<stat type="maxMp">637</stat>
 		</stats>
+		<skills>
+			<skill id="3660" level="1" />
+		</skills>
 	</item>
 	<item id="14526" type="Weapon" name="Dynasty Dual Daggers - Great Gale">
 		<!-- A rare item that increases attack speed. Dagger dualswords, the attack power increases more than regular one-handed swords when enchanted. When enchanted to 4 or more, Critical increases by 109. Can be equipped by Dagger Masters above level 81. -->

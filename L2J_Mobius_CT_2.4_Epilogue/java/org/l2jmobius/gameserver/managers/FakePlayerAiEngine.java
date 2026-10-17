@@ -28,10 +28,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.ai.neural.FakePlayerNeuralPolicy;
+import org.l2jmobius.gameserver.ai.neural.FakePlayerNeuralPolicy.CurriculumStage;
+import org.l2jmobius.gameserver.ai.neural.FakePlayerNeuralPolicy.TacticalAction;
 import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.FakePlayerData;
+import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.entity.Location;
 import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.WorldObject;
@@ -41,6 +44,7 @@ import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.entity.actor.holders.npc.FakePlayerHolder;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -49,12 +53,13 @@ import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
- * Java 27 Tactical Utility-AI & Squad Synergy Engine for FakePlayers.
+ * Java 27 Tactical Utility-AI, 5-Stage Neural Curriculum RL &amp; Squad Synergy Engine for FakePlayers.
  * Executes a 250ms high-frequency micro-decision loop supporting:
  * <ul>
  *   <li>Archetype classification ({@link Archetype}: ARCHER, MAGE, DAGGER, HEALER, TANK, WARRIOR)</li>
  *   <li>Dynamic tactical postures ({@link Posture}: AGGRESSIVE, KITE_DEFENSIVE, ASSIST_PLAYER, GUARD)</li>
- *   <li>Squad follow formation & real-time target assist for any Player/GM</li>
+ *   <li>In-JVM Java 27 SIMD-accelerated {@link FakePlayerNeuralPolicy} (`16 -> 32 -> 16 -> 8`) with 5-Stage Progressive Curriculum RL</li>
+ *   <li>Squad follow formation &amp; real-time target assist for any Player/GM</li>
  *   <li>Healer battle-heal triage, Tank hate-intercept, Archer/Mage GeoEngine standoff kiting, Dagger backstab flanking, and Second-Wind potion recovery</li>
  * </ul>
  */
@@ -89,12 +94,15 @@ public class FakePlayerAiEngine
 		private final Archetype _archetype;
 		private volatile Posture _posture;
 		private volatile int _assistPlayerObjectId;
+		private volatile int _rivalObjectId;
 		private volatile int _squadSlot;
 		private volatile long _lastHealSkillMs;
 		private volatile long _lastPotionMs;
 		private volatile long _lastKiteMs;
 		private volatile long _lastSpecialSkillMs;
 		private volatile String _lastTacticalAction = "Idle";
+		private final float[] _stateVec = new float[FakePlayerNeuralPolicy.INPUT_DIM];
+		private final float[] _actionProbs = new float[FakePlayerNeuralPolicy.ACTION_DIM];
 		
 		public BotState(Npc npc, Archetype archetype, Posture initialPosture)
 		{
@@ -143,6 +151,16 @@ public class FakePlayerAiEngine
 		public void setAssistPlayerObjectId(int assistPlayerObjectId)
 		{
 			_assistPlayerObjectId = assistPlayerObjectId;
+		}
+		
+		public int getRivalObjectId()
+		{
+			return _rivalObjectId;
+		}
+		
+		public void setRivalObjectId(int rivalObjectId)
+		{
+			_rivalObjectId = rivalObjectId;
 		}
 		
 		public int getSquadSlot()
@@ -204,16 +222,32 @@ public class FakePlayerAiEngine
 		{
 			_lastTacticalAction = action;
 		}
+		
+		public float[] getStateVec()
+		{
+			return _stateVec;
+		}
+		
+		public float[] getActionProbs()
+		{
+			return _actionProbs;
+		}
 	}
 	
 	private final Map<Integer, BotState> _botStates = new ConcurrentHashMap<>();
 	private final Map<Integer, Npc> _trackedNpcs = new ConcurrentHashMap<>();
 	private final AtomicInteger _squadSlotCounter = new AtomicInteger(0);
+	private final FakePlayerNeuralPolicy _neuralPolicy = new FakePlayerNeuralPolicy();
 	private ScheduledFuture<?> _tickTask;
 	
 	protected FakePlayerAiEngine()
 	{
 		start();
+	}
+	
+	public FakePlayerNeuralPolicy getNeuralPolicy()
+	{
+		return _neuralPolicy;
 	}
 	
 	public synchronized void start()
@@ -227,8 +261,132 @@ public class FakePlayerAiEngine
 		if (FakePlayersConfig.FAKE_PLAYERS_ENABLED)
 		{
 			_tickTask = ThreadPool.scheduleAtFixedRate(this::tick, 1000L, TICK_INTERVAL_MS);
-			LOGGER.info(getClass().getSimpleName() + ": Tactical Utility-AI loop active (250ms tick, LLM bridge=" + FakePlayersConfig.FAKE_PLAYER_LLM_ENABLED + ").");
+			LOGGER.info(getClass().getSimpleName() + ": Tactical Utility-AI & Neural Curriculum (" + _neuralPolicy.getStage().getTitle() + ") active (250ms tick, LLM bridge=" + FakePlayersConfig.FAKE_PLAYER_LLM_ENABLED + ").");
 		}
+	}
+	
+	/**
+	 * Spawns a single FakePlayer NPC at the given coordinates without prematurely zeroing the spawn count.
+	 * @param npcId template ID (e.g. 81002..81006)
+	 * @param x world X
+	 * @param y world Y
+	 * @param z world Z
+	 * @param heading heading
+	 * @param instanceId instance ID
+	 * @return spawned {@link Npc} or {@code null}
+	 */
+	public Npc spawnFakePlayer(int npcId, int x, int y, int z, int heading, int instanceId)
+	{
+		try
+		{
+			final NpcTemplate template = NpcData.getInstance().getTemplate(npcId);
+			if (template == null)
+			{
+				LOGGER.warning(getClass().getSimpleName() + ": NpcTemplate not found for FakePlayer ID " + npcId);
+				return null;
+			}
+			final Spawn spawn = new Spawn(template);
+			spawn.setXYZ(x, y, z);
+			spawn.setHeading(heading);
+			spawn.setInstanceId(instanceId);
+			spawn.setAmount(1);
+			final Npc npc = spawn.doSpawn(false);
+			spawn.stopRespawn();
+			SpawnTable.getInstance().addSpawn(spawn);
+			if (npc != null)
+			{
+				npc.setRunning();
+				registerBot(npc);
+			}
+			return npc;
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Failed to spawn FakePlayer " + npcId + ": " + e.getMessage(), e);
+			return null;
+		}
+	}
+	
+	/**
+	 * Spawns a 1v1 self-play curriculum duel (Dagger vs Archer) near the GM to train the neural policy online.
+	 * @param gm the invoking admin player
+	 * @return number of duelists spawned
+	 */
+	public int spawnTrainingDuel(Player gm)
+	{
+		if (gm == null)
+		{
+			return 0;
+		}
+		final Npc botA = spawnFakePlayer(81005, gm.getX() + 90, gm.getY() - 80, gm.getZ(), gm.getHeading(), gm.getInstanceId()); // Vex (Dagger)
+		final Npc botB = spawnFakePlayer(81002, gm.getX() + 260, gm.getY() + 80, gm.getZ(), gm.getHeading(), gm.getInstanceId()); // Lyra (Archer)
+		if ((botA != null) && (botB != null))
+		{
+			final BotState stateA = getOrCreateState(botA);
+			final BotState stateB = getOrCreateState(botB);
+			stateA.setPosture(Posture.AGGRESSIVE);
+			stateB.setPosture(Posture.KITE_DEFENSIVE);
+			stateA.setRivalObjectId(botB.getObjectId());
+			stateB.setRivalObjectId(botA.getObjectId());
+			engageTarget(botA, botB);
+			engageTarget(botB, botA);
+			return 2;
+		}
+		return (botA != null ? 1 : 0) + (botB != null ? 1 : 0);
+	}
+	
+	/**
+	 * Spawns a 3v3 tactical squad simulation near the GM (Tank + Healer + Archer vs Dagger + Mage + Tank)
+	 * to train Stage 4/5 Squad Synergy and PvP Arena policy weights.
+	 * @param gm the invoking admin player
+	 * @return number of bots spawned
+	 */
+	public int spawnSquadSim(Player gm)
+	{
+		if (gm == null)
+		{
+			return 0;
+		}
+		final int[] teamAlphaIds = { 81004, 81003, 81002 }; // Aegis, Seraphina, Lyra
+		final int[] teamBravoIds = { 81005, 81006, 81004 }; // Vex, Zephyr, Aegis
+		final List<Npc> teamAlpha = new ArrayList<>(3);
+		final List<Npc> teamBravo = new ArrayList<>(3);
+		
+		for (int i = 0; i < 3; i++)
+		{
+			final Npc a = spawnFakePlayer(teamAlphaIds[i], gm.getX() + 110, gm.getY() - 120 + (i * 95), gm.getZ(), gm.getHeading(), gm.getInstanceId());
+			if (a != null)
+			{
+				teamAlpha.add(a);
+			}
+			final Npc b = spawnFakePlayer(teamBravoIds[i], gm.getX() + 330, gm.getY() - 120 + (i * 95), gm.getZ(), gm.getHeading(), gm.getInstanceId());
+			if (b != null)
+			{
+				teamBravo.add(b);
+			}
+		}
+		
+		for (int i = 0; i < teamAlpha.size(); i++)
+		{
+			final Npc a = teamAlpha.get(i);
+			final Npc rival = teamBravo.isEmpty() ? null : teamBravo.get(i % teamBravo.size());
+			if (rival != null)
+			{
+				getOrCreateState(a).setRivalObjectId(rival.getObjectId());
+				engageTarget(a, rival);
+			}
+		}
+		for (int i = 0; i < teamBravo.size(); i++)
+		{
+			final Npc b = teamBravo.get(i);
+			final Npc rival = teamAlpha.isEmpty() ? null : teamAlpha.get(i % teamAlpha.size());
+			if (rival != null)
+			{
+				getOrCreateState(b).setRivalObjectId(rival.getObjectId());
+				engageTarget(b, rival);
+			}
+		}
+		return teamAlpha.size() + teamBravo.size();
 	}
 	
 	/**
@@ -408,133 +566,124 @@ public class FakePlayerAiEngine
 	
 	private void evaluateBotTactics(Npc npc, BotState state, Collection<Npc> allBots, long now)
 	{
-		// 1. Self-Preservation Second Wind (All Archetypes)
-		if (npc.isInCombat() && (npc.getCurrentHp() < (npc.getMaxHp() * 0.35)) && ((now - state.getLastPotionMs()) >= 15000L))
-		{
-			state.setLastPotionMs(now);
-			npc.broadcastPacket(new MagicSkillUse(npc, npc, 2037, 1, 100, 1000));
-			npc.setCurrentHp(Math.min(npc.getMaxHp(), npc.getCurrentHp() + (npc.getMaxHp() * 0.30)));
-			state.setLastTacticalAction("Second-Wind Potion (+30% HP)");
-		}
+		final int stageId = _neuralPolicy.getStage().getId();
+		final float[] s = state.getStateVec();
+		final float[] probs = state.getActionProbs();
 		
-		// 2. Healer Triage (HEALER archetype or ASSIST_PLAYER posture)
-		if (((state.getArchetype() == Archetype.HEALER) || (state.getPosture() == Posture.ASSIST_PLAYER)) && ((now - state.getLastHealSkillMs()) >= 4000L))
+		// Resolve leader & triage target
+		Player leader = null;
+		if (state.getAssistPlayerObjectId() > 0)
 		{
-			Creature triageTarget = null;
-			final int assistObjId = state.getAssistPlayerObjectId();
-			if (assistObjId > 0)
-			{
-				final Player leader = World.getPlayer(assistObjId);
-				if ((leader != null) && leader.isOnline() && !leader.isDead() && (npc.getInstanceId() == leader.getInstanceId()) && (npc.calculateDistance2D(leader) <= 750) && (leader.getCurrentHp() < (leader.getMaxHp() * 0.65)))
-				{
-					triageTarget = leader;
-				}
-			}
-			
-			if ((triageTarget == null) && (state.getArchetype() == Archetype.HEALER))
-			{
-				if (npc.getCurrentHp() < (npc.getMaxHp() * 0.65))
-				{
-					triageTarget = npc;
-				}
-				else
-				{
-					for (Npc ally : allBots)
-					{
-						if ((ally != null) && !ally.isDead() && (ally.getInstanceId() == npc.getInstanceId()) && (npc.calculateDistance2D(ally) <= 700) && (ally.getCurrentHp() < (ally.getMaxHp() * 0.65)))
-						{
-							triageTarget = ally;
-							break;
-						}
-					}
-				}
-			}
-			
-			if (triageTarget != null)
-			{
-				state.setLastHealSkillMs(now);
-				npc.broadcastPacket(new MagicSkillUse(npc, triageTarget, 1218, 1, 800, 1000));
-				triageTarget.setCurrentHp(Math.min(triageTarget.getMaxHp(), triageTarget.getCurrentHp() + (triageTarget.getMaxHp() * 0.22)));
-				state.setLastTacticalAction("Battle Heal -> " + triageTarget.getName());
-				return;
-			}
-		}
-		
-		// 3. Squad Follow & Assist (Posture.ASSIST_PLAYER)
-		if (state.getPosture() == Posture.ASSIST_PLAYER)
-		{
-			final Player leader = World.getPlayer(state.getAssistPlayerObjectId());
+			leader = World.getPlayer(state.getAssistPlayerObjectId());
 			if ((leader == null) || !leader.isOnline())
 			{
 				state.setPosture(Posture.AGGRESSIVE);
 				state.setAssistPlayerObjectId(0);
 				state.setLastTacticalAction("Leader offline -> AGGRESSIVE");
+				leader = null;
 			}
-			else if (!leader.isDead() && (npc.getInstanceId() == leader.getInstanceId()))
+		}
+		
+		Creature triageTarget = findTriageTarget(npc, state, leader, allBots);
+		Creature currentTarget = resolveCurrentCombatTarget(npc, state, leader);
+		
+		buildFeatureVector(npc, state, triageTarget, currentTarget, leader, now, s);
+		final TacticalAction chosen = _neuralPolicy.selectAction(s, state.getArchetype(), probs);
+		
+		// 1. Self-Preservation Second Wind (All Archetypes, unlocked Stage 1+)
+		if ((chosen == TacticalAction.SECOND_WIND_POTION) || (npc.isInCombat() && (npc.getCurrentHp() < (npc.getMaxHp() * 0.35)) && ((now - state.getLastPotionMs()) >= 15000L)))
+		{
+			state.setLastPotionMs(now);
+			npc.broadcastPacket(new MagicSkillUse(npc, npc, 2037, 1, 100, 1000));
+			npc.setCurrentHp(Math.min(npc.getMaxHp(), npc.getCurrentHp() + (npc.getMaxHp() * 0.30)));
+			state.setLastTacticalAction("NN[" + stageId + "] Second-Wind (+30% HP)");
+			_neuralPolicy.recordOutcome(s, TacticalAction.SECOND_WIND_POTION, probs, 1.35f);
+		}
+		
+		// 2. Healer Triage (unlocked Stage 3+)
+		if ((stageId >= 3) && (triageTarget != null) && ((chosen == TacticalAction.BATTLE_HEAL_TRIAGE) || (state.getArchetype() == Archetype.HEALER) || (state.getPosture() == Posture.ASSIST_PLAYER)) && ((now - state.getLastHealSkillMs()) >= 4000L))
+		{
+			state.setLastHealSkillMs(now);
+			npc.broadcastPacket(new MagicSkillUse(npc, triageTarget, 1218, 1, 800, 1000));
+			triageTarget.setCurrentHp(Math.min(triageTarget.getMaxHp(), triageTarget.getCurrentHp() + (triageTarget.getMaxHp() * 0.22)));
+			state.setLastTacticalAction("NN[" + stageId + "] Battle Heal -> " + triageTarget.getName());
+			_neuralPolicy.recordOutcome(s, TacticalAction.BATTLE_HEAL_TRIAGE, probs, 1.50f);
+			return;
+		}
+		
+		// 3. Squad Follow & Assist (Posture.ASSIST_PLAYER)
+		if ((state.getPosture() == Posture.ASSIST_PLAYER) && (leader != null) && !leader.isDead() && (npc.getInstanceId() == leader.getInstanceId()))
+		{
+			final Creature enemy = findLeaderCombatTarget(npc, leader);
+			if ((enemy != null) && !enemy.isDead() && npc.isAttackable())
 			{
-				final Creature enemy = findLeaderCombatTarget(npc, leader);
-				if ((enemy != null) && !enemy.isDead() && npc.isAttackable())
+				engageTarget(npc, enemy);
+				currentTarget = enemy;
+				state.setLastTacticalAction("NN[" + stageId + "] Assist vs " + enemy.getName());
+				
+				// Tank Intercept if enemy is focusing the assisted player (Stage 3+)
+				if ((stageId >= 3) && (state.getArchetype() == Archetype.TANK) && ((now - state.getLastSpecialSkillMs()) >= 5000L) && (enemy.getTarget() == leader) && (npc.calculateDistance2D(enemy) <= 500))
 				{
-					engageTarget(npc, enemy);
-					state.setLastTacticalAction("Assisting vs " + enemy.getName());
-					
-					// Tank Intercept if enemy is focusing the assisted player
-					if ((state.getArchetype() == Archetype.TANK) && ((now - state.getLastSpecialSkillMs()) >= 5000L) && (enemy.getTarget() == leader) && (npc.calculateDistance2D(enemy) <= 500))
+					state.setLastSpecialSkillMs(now);
+					npc.broadcastPacket(new MagicSkillUse(npc, enemy, 28, 1, 500, 2000));
+					if (enemy.isAttackable())
 					{
-						state.setLastSpecialSkillMs(now);
-						npc.broadcastPacket(new MagicSkillUse(npc, enemy, 28, 1, 500, 2000));
-						if (enemy.isAttackable())
-						{
-							enemy.asAttackable().addDamageHate(npc, 0, 5000);
-							enemy.setTarget(npc);
-						}
-						state.setLastTacticalAction("Aggro Intercept -> " + enemy.getName());
+						enemy.asAttackable().addDamageHate(npc, 0, 5000);
+						enemy.setTarget(npc);
 					}
+					state.setLastTacticalAction("NN[" + stageId + "] Aggro Intercept -> " + enemy.getName());
+					_neuralPolicy.recordOutcome(s, TacticalAction.TANK_HATE_INTERCEPT, probs, 1.45f);
 				}
-				else if (!npc.isInCombat())
+			}
+			else if (!npc.isInCombat())
+			{
+				final double dist = npc.calculateDistance2D(leader);
+				if (dist > 2200)
 				{
-					final double dist = npc.calculateDistance2D(leader);
-					if (dist > 2200)
+					npc.teleToLocation(leader.getX() + 60, leader.getY() + 60, leader.getZ(), leader.getHeading(), leader.getInstanceId());
+					state.setLastTacticalAction("Squad Warp -> " + leader.getName());
+					return;
+				}
+				else if (dist > 155)
+				{
+					final double angleRad = (state.getSquadSlot() * 2.0 * Math.PI) / 6.0;
+					final int formX = leader.getX() + (int) Math.round(Math.cos(angleRad) * 95.0);
+					final int formY = leader.getY() + (int) Math.round(Math.sin(angleRad) * 95.0);
+					final int formZ = leader.getZ();
+					if (GeoEngine.getInstance().canMoveToTarget(npc.getX(), npc.getY(), npc.getZ(), formX, formY, formZ, npc.getInstanceId()))
 					{
-						npc.teleToLocation(leader.getX() + 60, leader.getY() + 60, leader.getZ(), leader.getHeading(), leader.getInstanceId());
-						state.setLastTacticalAction("Squad Warp -> " + leader.getName());
-						return;
+						npc.setRunning();
+						npc.getAI().setIntentionMoveTo(new Location(formX, formY, formZ));
+						state.setLastTacticalAction("NN[" + stageId + "] Regroup -> " + leader.getName());
+						_neuralPolicy.recordOutcome(s, TacticalAction.SQUAD_REGROUP_FOLLOW, probs, 0.85f);
 					}
-					else if (dist > 155)
-					{
-						final double angleRad = (state.getSquadSlot() * 2.0 * Math.PI) / 6.0;
-						final int formX = leader.getX() + (int) Math.round(Math.cos(angleRad) * 95.0);
-						final int formY = leader.getY() + (int) Math.round(Math.sin(angleRad) * 95.0);
-						final int formZ = leader.getZ();
-						if (GeoEngine.getInstance().canMoveToTarget(npc.getX(), npc.getY(), npc.getZ(), formX, formY, formZ, npc.getInstanceId()))
-						{
-							npc.setRunning();
-							npc.getAI().setIntentionMoveTo(new Location(formX, formY, formZ));
-							state.setLastTacticalAction("Following " + leader.getName());
-						}
-						return;
-					}
+					return;
 				}
 			}
 		}
 		
 		// 4. GUARD Posture: hold position unless directly attacked
-		if ((state.getPosture() == Posture.GUARD) && !npc.isInCombat())
+		if ((state.getPosture() == Posture.GUARD) && !npc.isInCombat() && (state.getRivalObjectId() == 0))
 		{
 			return;
 		}
 		
-		// Resolve active combat target for micro-tactics
-		final Creature currentTarget = resolveCurrentCombatTarget(npc);
 		if ((currentTarget == null) || currentTarget.isDead())
 		{
+			if (state.getRivalObjectId() != 0)
+			{
+				state.setRivalObjectId(0);
+				_neuralPolicy.incrementDuelsCompleted();
+				_neuralPolicy.recordOutcome(s, chosen, probs, 2.0f);
+				state.setLastTacticalAction("NN[" + stageId + "] Duel Victory!");
+			}
 			return;
 		}
 		
 		final double targetDist = npc.calculateDistance2D(currentTarget);
 		
-		// 5. Tank Hate Intercept for low-HP allies in general combat
-		if ((state.getArchetype() == Archetype.TANK) && ((now - state.getLastSpecialSkillMs()) >= 6000L) && (targetDist <= 500))
+		// 5. Tank Hate Intercept for low-HP allies in general combat (Stage 3+)
+		if ((stageId >= 3) && (state.getArchetype() == Archetype.TANK) && ((now - state.getLastSpecialSkillMs()) >= 6000L) && (targetDist <= 500))
 		{
 			final WorldObject enemyTarget = currentTarget.getTarget();
 			if ((enemyTarget instanceof Creature ally) && (ally != npc) && (ally.getCurrentHp() < (ally.getMaxHp() * 0.65)))
@@ -546,13 +695,14 @@ public class FakePlayerAiEngine
 					currentTarget.asAttackable().addDamageHate(npc, 0, 4000);
 					currentTarget.setTarget(npc);
 				}
-				state.setLastTacticalAction("Tank Taunt -> " + currentTarget.getName());
+				state.setLastTacticalAction("NN[" + stageId + "] Tank Taunt -> " + currentTarget.getName());
+				_neuralPolicy.recordOutcome(s, TacticalAction.TANK_HATE_INTERCEPT, probs, 1.40f);
 				return;
 			}
 		}
 		
-		// 6. Archer / Mage / KITE_DEFENSIVE Standoff Kiting
-		if (((state.getArchetype() == Archetype.ARCHER) || (state.getArchetype() == Archetype.MAGE) || (state.getPosture() == Posture.KITE_DEFENSIVE))
+		// 6. Archer / Mage / KITE_DEFENSIVE Standoff Kiting (Stage 2+)
+		if ((stageId >= 2) && ((chosen == TacticalAction.STANDOFF_KITE) || (state.getArchetype() == Archetype.ARCHER) || (state.getArchetype() == Archetype.MAGE) || (state.getPosture() == Posture.KITE_DEFENSIVE))
 			&& (targetDist < 175) && ((now - state.getLastKiteMs()) >= 2500L))
 		{
 			double dx = npc.getX() - currentTarget.getX();
@@ -577,20 +727,22 @@ public class FakePlayerAiEngine
 				state.setLastKiteMs(now);
 				npc.setRunning();
 				npc.getAI().setIntentionMoveTo(new Location(kiteX, kiteY, kiteZ));
-				state.setLastTacticalAction("Kiting away from " + currentTarget.getName());
+				state.setLastTacticalAction("NN[" + stageId + "] Standoff Kite <- " + currentTarget.getName());
+				_neuralPolicy.recordOutcome(s, TacticalAction.STANDOFF_KITE, probs, 1.30f);
+				final Creature resumeTarget = currentTarget;
 				ThreadPool.schedule(() ->
 				{
-					if (!npc.isDead() && !currentTarget.isDead() && npc.isSpawned())
+					if (!npc.isDead() && !resumeTarget.isDead() && npc.isSpawned())
 					{
-						engageTarget(npc, currentTarget);
+						engageTarget(npc, resumeTarget);
 					}
 				}, 750L);
 				return;
 			}
 		}
 		
-		// 7. Dagger Backstab Flanking
-		if ((state.getArchetype() == Archetype.DAGGER) && (targetDist <= 140) && ((now - state.getLastSpecialSkillMs()) >= 4500L))
+		// 7. Dagger Backstab Flanking (Stage 2+)
+		if ((stageId >= 2) && (state.getArchetype() == Archetype.DAGGER) && (targetDist <= 140) && ((now - state.getLastSpecialSkillMs()) >= 4500L))
 		{
 			final double targetHeadingRad = Math.toRadians(LocationUtil.convertHeadingToDegree(currentTarget.getHeading()));
 			final int behindX = currentTarget.getX() - (int) Math.round(Math.cos(targetHeadingRad) * 55.0);
@@ -604,9 +756,67 @@ public class FakePlayerAiEngine
 				npc.broadcastPacket(new MagicSkillUse(npc, currentTarget, 263, 1, 700, 1500));
 				final double blowDmg = Math.max(150.0, npc.getPAtk(currentTarget) * 0.45);
 				currentTarget.reduceCurrentHp(blowDmg, npc, null);
-				state.setLastTacticalAction("Backstab Flank -> " + currentTarget.getName());
+				state.setLastTacticalAction("NN[" + stageId + "] Backstab Flank -> " + currentTarget.getName());
+				_neuralPolicy.recordOutcome(s, TacticalAction.BACKSTAB_FLANK, probs, 1.55f);
+				return;
 			}
 		}
+		
+		// 8. Primary Combat Engagement (Stage 1+)
+		if (!npc.isAttackingNow() && !npc.isCastingNow())
+		{
+			engageTarget(npc, currentTarget);
+		}
+		final float hpAdvantage = (float) ((npc.getCurrentHp() / Math.max(1.0, npc.getMaxHp())) - (currentTarget.getCurrentHp() / Math.max(1.0, currentTarget.getMaxHp())));
+		_neuralPolicy.recordOutcome(s, chosen, probs, 0.25f + (0.45f * hpAdvantage));
+	}
+	
+	private void buildFeatureVector(Npc npc, BotState state, Creature triageTarget, Creature enemy, Player leader, long now, float[] s)
+	{
+		s[0] = (float) (npc.getCurrentHp() / Math.max(1.0, npc.getMaxHp()));
+		s[1] = (float) (npc.getCurrentMp() / Math.max(1.0, npc.getMaxMp()));
+		s[2] = (enemy != null) ? (float) (enemy.getCurrentHp() / Math.max(1.0, enemy.getMaxHp())) : 1.0f;
+		s[3] = (enemy != null) ? (float) Math.min(1.0, npc.calculateDistance2D(enemy) / 1000.0) : 1.0f;
+		s[4] = ((now - state.getLastPotionMs()) >= 15000L) ? 1.0f : 0.0f;
+		s[5] = ((now - state.getLastHealSkillMs()) >= 4000L) ? 1.0f : 0.0f;
+		s[6] = ((now - state.getLastSpecialSkillMs()) >= 4500L) ? 1.0f : 0.0f;
+		s[7] = ((now - state.getLastKiteMs()) >= 2500L) ? 1.0f : 0.0f;
+		s[8] = (triageTarget != null) ? 1.0f : 0.0f;
+		s[9] = ((enemy != null) && (enemy.getTarget() != null) && (enemy.getTarget() != npc)) ? 1.0f : 0.0f;
+		final Archetype arch = state.getArchetype();
+		s[10] = ((arch == Archetype.ARCHER) || (arch == Archetype.MAGE)) ? 1.0f : 0.0f;
+		s[11] = (arch == Archetype.DAGGER) ? 1.0f : 0.0f;
+		s[12] = (arch == Archetype.HEALER) ? 1.0f : 0.0f;
+		s[13] = (arch == Archetype.TANK) ? 1.0f : 0.0f;
+		s[14] = (arch == Archetype.WARRIOR) ? 1.0f : 0.0f;
+		s[15] = ((leader != null) && !npc.isInCombat() && (npc.calculateDistance2D(leader) > 155.0)) ? 1.0f : 0.0f;
+	}
+	
+	private Creature findTriageTarget(Npc npc, BotState state, Player leader, Collection<Npc> allBots)
+	{
+		if ((state.getArchetype() != Archetype.HEALER) && (state.getPosture() != Posture.ASSIST_PLAYER))
+		{
+			return null;
+		}
+		if ((leader != null) && !leader.isDead() && (npc.getInstanceId() == leader.getInstanceId()) && (npc.calculateDistance2D(leader) <= 750) && (leader.getCurrentHp() < (leader.getMaxHp() * 0.65)))
+		{
+			return leader;
+		}
+		if (state.getArchetype() == Archetype.HEALER)
+		{
+			if (npc.getCurrentHp() < (npc.getMaxHp() * 0.65))
+			{
+				return npc;
+			}
+			for (Npc ally : allBots)
+			{
+				if ((ally != null) && !ally.isDead() && (ally.getInstanceId() == npc.getInstanceId()) && (npc.calculateDistance2D(ally) <= 700) && (ally.getCurrentHp() < (ally.getMaxHp() * 0.65)))
+				{
+					return ally;
+				}
+			}
+		}
+		return null;
 	}
 	
 	private Creature findLeaderCombatTarget(Npc npc, Player leader)
@@ -625,8 +835,16 @@ public class FakePlayerAiEngine
 			mob -> (mob != npc) && !mob.isDead() && !mob.isFakePlayer() && ((mob.getTarget() == leader) || (mob.getMostHated() == leader)));
 	}
 	
-	private Creature resolveCurrentCombatTarget(Npc npc)
+	private Creature resolveCurrentCombatTarget(Npc npc, BotState state, Player leader)
 	{
+		if (state.getRivalObjectId() != 0)
+		{
+			final Npc rival = _trackedNpcs.get(state.getRivalObjectId());
+			if ((rival != null) && rival.isSpawned() && !rival.isDead())
+			{
+				return rival;
+			}
+		}
 		if (npc.isAttackable())
 		{
 			final Creature mostHated = npc.asAttackable().getMostHated();
@@ -636,7 +854,15 @@ public class FakePlayerAiEngine
 			}
 		}
 		final WorldObject target = npc.getTarget();
-		return (target instanceof Creature c) ? c : null;
+		if ((target instanceof Creature c) && !c.isDead())
+		{
+			return c;
+		}
+		if (leader != null)
+		{
+			return findLeaderCombatTarget(npc, leader);
+		}
+		return null;
 	}
 	
 	public void engageTarget(Npc npc, Creature target)

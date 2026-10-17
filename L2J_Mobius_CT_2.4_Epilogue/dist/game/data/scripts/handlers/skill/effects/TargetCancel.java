@@ -21,6 +21,7 @@ import org.l2jmobius.gameserver.mechanics.conditions.Condition;
 import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.mechanics.stats.Formulas;
+import org.l2jmobius.gameserver.network.serverpackets.TargetUnselected;
 import org.l2jmobius.gameserver.util.StatSet;
 
 /**
@@ -41,7 +42,7 @@ public class TargetCancel extends AbstractEffect
 	@Override
 	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		return Formulas.calcProbability(_chance, effector, effected, skill);
+		return (_chance >= 100) || Formulas.calcProbability(_chance, effector, effected, skill);
 	}
 	
 	@Override
@@ -59,6 +60,10 @@ public class TargetCancel extends AbstractEffect
 		}
 		
 		effected.setTarget(null);
+		if (effected.isPlayer())
+		{
+			effected.sendPacket(new TargetUnselected(effected));
+		}
 		effected.abortAttack();
 		effected.abortCast();
 		effected.getAI().setIntentionIdle();

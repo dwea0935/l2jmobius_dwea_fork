@@ -551,6 +551,11 @@ public class Formulas
 		return 1.5; // If all is true, then modifier will be 50% more.
 	}
 	
+	public static boolean isPvP(Creature attacker, Creature target)
+	{
+		return (attacker != null) && (target != null) && (attacker.isPlayable() || attacker.isFakePlayer()) && (target.isPlayable() || target.isFakePlayer());
+	}
+	
 	public static double calcBlowDamage(Creature attacker, Creature target, Skill skill, byte shld, boolean ss)
 	{
 		double defence = target.getPDef(attacker);
@@ -568,8 +573,8 @@ public class Formulas
 			}
 		}
 		
-		final boolean isPvP = attacker.isPlayable() && target.isPlayable();
-		final boolean isPvE = attacker.isPlayable() && target.isAttackable();
+		final boolean isPvP = isPvP(attacker, target);
+		final boolean isPvE = (attacker.isPlayable() || attacker.isFakePlayer()) && target.isAttackable() && !target.isFakePlayer();
 		final double power = skill.getPower(isPvP, isPvE);
 		double damage = 0;
 		final double proximityBonus = attacker.isBehind(target) ? 1.2 : attacker.isInFrontOf(target) ? 1 : 1.1; // Behind: +20% - Side: +10% (TODO: values are unconfirmed, possibly custom, remove or update when confirmed);
@@ -580,19 +585,25 @@ public class Formulas
 		{
 			// Damage bonuses in PvP fight
 			pvpBonus = attacker.calcStat(Stat.PVP_PHYS_SKILL_DMG, 1, null, null);
-			pvpBonus *= ClassBalanceConfig.PVP_BLOW_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+			if (attacker.isPlayer())
+			{
+				pvpBonus *= ClassBalanceConfig.PVP_BLOW_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+			}
 			
 			// Defense bonuses in PvP fight
 			defence *= target.calcStat(Stat.PVP_PHYS_SKILL_DEF, 1, null, null);
-			defence *= ClassBalanceConfig.PVP_BLOW_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+			if (target.isPlayer())
+			{
+				defence *= ClassBalanceConfig.PVP_BLOW_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+			}
 		}
 		
-		if (isPvE)
+		if (isPvE && attacker.isPlayer())
 		{
 			pvpBonus *= ClassBalanceConfig.PVE_BLOW_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
 		}
 		
-		if (attacker.isAttackable() && target.isPlayable())
+		if (attacker.isAttackable() && !attacker.isFakePlayer() && target.isPlayer())
 		{
 			defence *= ClassBalanceConfig.PVE_BLOW_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
 		}
@@ -616,7 +627,7 @@ public class Formulas
 		final double weaponMod = PlayerConfig.RANDOMIZE_PHYSICAL_SKILL_DAMAGE ? attacker.getRandomDamageMultiplier() : 1.0;
 		
 		double penaltyMod = 1;
-		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= NpcConfig.MIN_NPC_LEVEL_DMG_PENALTY))
+		if (target.isAttackable() && !target.isFakePlayer() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= NpcConfig.MIN_NPC_LEVEL_DMG_PENALTY))
 		{
 			final Player attackerPlayer = attacker.asPlayer();
 			if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
@@ -634,6 +645,7 @@ public class Formulas
 		}
 		
 		damage = (baseMod * criticalMod * criticalModPos * criticalVulnMod * proximityBonus * pvpBonus) + criticalAddMod + criticalAddVuln;
+		damage = attacker.calcStat(Stat.PHYSICAL_SKILL_POWER, damage, null, null);
 		damage *= weaponTraitMod;
 		damage *= generalTraitMod;
 		damage *= attributeMod;
@@ -660,8 +672,8 @@ public class Formulas
 			}
 		}
 		
-		final boolean isPvP = attacker.isPlayable() && target.isPlayer();
-		final boolean isPvE = attacker.isPlayable() && target.isAttackable();
+		final boolean isPvP = isPvP(attacker, target);
+		final boolean isPvE = (attacker.isPlayable() || attacker.isFakePlayer()) && target.isAttackable() && !target.isFakePlayer();
 		double damage = 0;
 		final double proximityBonus = attacker.isBehind(target) ? 1.2 : attacker.isInFrontOf(target) ? 1 : 1.1; // Behind: +20% - Side: +10%
 		final double ssboost = ss ? 1.458 : 1;
@@ -671,11 +683,17 @@ public class Formulas
 		{
 			// Damage bonuses in PvP fight
 			pvpBonus = attacker.calcStat(Stat.PVP_PHYS_SKILL_DMG, 1, null, null);
-			pvpBonus *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+			if (attacker.isPlayer())
+			{
+				pvpBonus *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+			}
 			
 			// Defense bonuses in PvP fight
 			defence *= target.calcStat(Stat.PVP_PHYS_SKILL_DEF, 1, null, null);
-			defence *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+			if (target.isPlayer())
+			{
+				defence *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+			}
 		}
 		
 		// Initial damage
@@ -696,7 +714,7 @@ public class Formulas
 		final double weaponMod = PlayerConfig.RANDOMIZE_PHYSICAL_SKILL_DAMAGE ? attacker.getRandomDamageMultiplier() : 1.0;
 		
 		double penaltyMod = 1;
-		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= NpcConfig.MIN_NPC_LEVEL_DMG_PENALTY))
+		if (target.isAttackable() && !target.isFakePlayer() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= NpcConfig.MIN_NPC_LEVEL_DMG_PENALTY))
 		{
 			final Player attackerPlayer = attacker.asPlayer();
 			if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
@@ -714,6 +732,7 @@ public class Formulas
 		}
 		
 		damage = (baseMod * criticalMod * criticalModPos * criticalVulnMod * proximityBonus * pvpBonus) + criticalAddMod + criticalAddVuln;
+		damage = attacker.calcStat(Stat.PHYSICAL_SKILL_POWER, damage, null, null);
 		damage *= generalTraitMod;
 		damage *= attributeMod;
 		damage *= weaponMod;
@@ -734,8 +753,8 @@ public class Formulas
 	 */
 	public static double calcPhysDam(Creature attacker, Creature target, Skill skill, byte shld, boolean crit, boolean ss)
 	{
-		final boolean isPvP = attacker.isPlayable() && target.isPlayable();
-		final boolean isPvE = attacker.isPlayable() && target.isAttackable();
+		final boolean isPvP = isPvP(attacker, target);
+		final boolean isPvE = (attacker.isPlayable() || attacker.isFakePlayer()) && target.isAttackable() && !target.isFakePlayer();
 		final double proximityBonus = attacker.isBehind(target) ? 1.2 : attacker.isInFrontOf(target) ? 1 : 1.1; // Behind: +20% - Side: +10%
 		double damage = attacker.getPAtk(target);
 		double defence = target.getPDef(attacker);
@@ -743,8 +762,22 @@ public class Formulas
 		// Defense bonuses in PvP fight
 		if (isPvP)
 		{
-			defence *= (skill == null) ? target.calcStat(Stat.PVP_PHYSICAL_DEF, 1, null, null) : target.calcStat(Stat.PVP_PHYS_SKILL_DEF, 1, null, null);
-			defence *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+			if (skill == null)
+			{
+				defence *= target.calcStat(Stat.PVP_PHYSICAL_DEF, 1, null, null);
+				if (target.isPlayer())
+				{
+					defence *= ClassBalanceConfig.PVP_PHYSICAL_ATTACK_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+				}
+			}
+			else
+			{
+				defence *= target.calcStat(Stat.PVP_PHYS_SKILL_DEF, 1, null, null);
+				if (target.isPlayer())
+				{
+					defence *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+				}
+			}
 		}
 		
 		switch (shld)
@@ -773,26 +806,29 @@ public class Formulas
 			damage += ((attacker.calcStat(Stat.CRITICAL_DAMAGE_ADD, 0, target, skill) * 77) / defence);
 			damage += target.calcStat(Stat.DEFENCE_CRITICAL_DAMAGE_ADD, 0, target, skill);
 			
-			if (skill == null)
+			if (attacker.isPlayer())
 			{
-				if (isPvP)
+				if (skill == null)
 				{
-					damage *= ClassBalanceConfig.PVP_PHYSICAL_ATTACK_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+					if (isPvP)
+					{
+						damage *= ClassBalanceConfig.PVP_PHYSICAL_ATTACK_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+					}
+					else if (isPvE)
+					{
+						damage *= ClassBalanceConfig.PVE_PHYSICAL_ATTACK_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+					}
 				}
-				else if (isPvE)
+				else
 				{
-					damage *= ClassBalanceConfig.PVE_PHYSICAL_ATTACK_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
-				}
-			}
-			else
-			{
-				if (isPvP)
-				{
-					damage *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
-				}
-				else if (isPvE)
-				{
-					damage *= ClassBalanceConfig.PVE_PHYSICAL_SKILL_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+					if (isPvP)
+					{
+						damage *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+					}
+					else if (isPvE)
+					{
+						damage *= ClassBalanceConfig.PVE_PHYSICAL_SKILL_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+					}
 				}
 			}
 		}
@@ -834,12 +870,18 @@ public class Formulas
 			if (skill == null)
 			{
 				damage *= attacker.calcStat(Stat.PVP_PHYSICAL_DMG, 1, null, null);
-				damage *= ClassBalanceConfig.PVP_PHYSICAL_ATTACK_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				if (attacker.isPlayer())
+				{
+					damage *= ClassBalanceConfig.PVP_PHYSICAL_ATTACK_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				}
 			}
 			else
 			{
 				damage *= attacker.calcStat(Stat.PVP_PHYS_SKILL_DMG, 1, null, null);
-				damage *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				if (attacker.isPlayer())
+				{
+					damage *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				}
 			}
 		}
 		
@@ -850,7 +892,7 @@ public class Formulas
 		}
 		
 		damage *= calcAttributeBonus(attacker, target, skill);
-		if (target.isAttackable())
+		if (target.isAttackable() && !target.isFakePlayer())
 		{
 			final Weapon weapon = attacker.getActiveWeaponItem();
 			if ((weapon != null) && ((weapon.getItemType() == WeaponType.BOW) || (weapon.getItemType() == WeaponType.CROSSBOW)))
@@ -868,7 +910,7 @@ public class Formulas
 			{
 				damage *= attacker.calcStat(Stat.PVE_PHYSICAL_DMG, 1, null, null);
 				
-				if (attacker.isPlayable())
+				if (attacker.isPlayer())
 				{
 					if (skill == null)
 					{
@@ -944,8 +986,8 @@ public class Formulas
 		}
 		
 		double mAtk = attacker.getMAtk(target, skill);
-		final boolean isPvP = attacker.isPlayable() && target.isPlayable();
-		final boolean isPvE = attacker.isPlayable() && target.isAttackable();
+		final boolean isPvP = isPvP(attacker, target);
+		final boolean isPvE = (attacker.isPlayable() || attacker.isFakePlayer()) && target.isAttackable() && !target.isFakePlayer();
 		
 		// PvP bonuses for defense
 		if (isPvP)
@@ -953,12 +995,18 @@ public class Formulas
 			if (skill.isMagic())
 			{
 				mDef *= target.calcStat(Stat.PVP_MAGICAL_DEF, 1, null, null);
-				mDef *= ClassBalanceConfig.PVP_MAGICAL_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+				if (target.isPlayer())
+				{
+					mDef *= ClassBalanceConfig.PVP_MAGICAL_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+				}
 			}
 			else
 			{
 				mDef *= target.calcStat(Stat.PVP_PHYS_SKILL_DEF, 1, null, null);
-				mDef *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+				if (target.isPlayer())
+				{
+					mDef *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+				}
 			}
 		}
 		
@@ -1005,12 +1053,12 @@ public class Formulas
 		}
 		else if (mcrit)
 		{
-			damage *= attacker.isPlayer() && target.isPlayer() ? 2.5 : 3;
+			damage *= isPvP ? 2.5 : 3;
 			damage *= attacker.calcStat(Stat.MAGIC_CRIT_DMG, 1, null, null);
 			
-			if (attacker.isPlayable())
+			if (attacker.isPlayer())
 			{
-				damage *= target.isPlayable() ? ClassBalanceConfig.PVP_MAGICAL_SKILL_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()] : ClassBalanceConfig.PVE_MAGICAL_SKILL_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				damage *= isPvP ? ClassBalanceConfig.PVP_MAGICAL_SKILL_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()] : ClassBalanceConfig.PVE_MAGICAL_SKILL_CRITICAL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
 			}
 		}
 		
@@ -1027,19 +1075,25 @@ public class Formulas
 			if (skill.isMagic())
 			{
 				stat = Stat.PVP_MAGICAL_DMG;
-				damage *= ClassBalanceConfig.PVP_MAGICAL_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				if (attacker.isPlayer())
+				{
+					damage *= ClassBalanceConfig.PVP_MAGICAL_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				}
 			}
 			else
 			{
 				stat = Stat.PVP_PHYS_SKILL_DMG;
-				damage *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				if (attacker.isPlayer())
+				{
+					damage *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				}
 			}
 			damage *= attacker.calcStat(stat, 1, null, null);
 		}
 		
 		damage *= calcAttributeBonus(attacker, target, skill);
 		
-		if (target.isAttackable())
+		if (target.isAttackable() && !target.isFakePlayer())
 		{
 			damage *= attacker.calcStat(Stat.PVE_MAGICAL_DMG, 1, null, null);
 			
@@ -1083,8 +1137,8 @@ public class Formulas
 		}
 		
 		final int mAtk = attacker.getCubicPower();
-		final boolean isPvP = target.isPlayable();
-		final boolean isPvE = target.isAttackable();
+		final boolean isPvP = target.isPlayable() || target.isFakePlayer();
+		final boolean isPvE = target.isAttackable() && !target.isFakePlayer();
 		
 		// Cubics MDAM Formula (similar to PDAM formula, but using 91 instead of 70, also resisted by mDef).
 		double damage = 91 * ((mAtk + skill.getPower(isPvP, isPvE)) / mDef);
@@ -1138,7 +1192,7 @@ public class Formulas
 		
 		damage *= calcAttributeBonus(owner, target, skill);
 		
-		if (target.isAttackable())
+		if (target.isAttackable() && !target.isFakePlayer())
 		{
 			damage *= owner.calcStat(Stat.PVE_MAGICAL_DMG, 1, null, null);
 			damage *= ClassBalanceConfig.PVE_MAGICAL_SKILL_DAMAGE_MULTIPLIERS[owner.getPlayerClass().getId()];
@@ -1184,27 +1238,31 @@ public class Formulas
 			rate = attacker.getStat().calcStat(Stat.CRITICAL_RATE_POS, attacker.getStat().getCriticalHit(target, null), target, skill);
 		}
 		
-		final boolean isPvP = attacker.isPlayable() && target.isPlayable();
-		if (skill == null)
+		final boolean isPvP = isPvP(attacker, target);
+		final boolean isPvE = (attacker.isPlayable() || attacker.isFakePlayer()) && target.isAttackable() && !target.isFakePlayer();
+		if (attacker.isPlayer())
 		{
-			if (isPvP)
+			if (skill == null)
 			{
-				rate *= ClassBalanceConfig.PVP_PHYSICAL_ATTACK_CRITICAL_CHANCE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				if (isPvP)
+				{
+					rate *= ClassBalanceConfig.PVP_PHYSICAL_ATTACK_CRITICAL_CHANCE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				}
+				else if (isPvE)
+				{
+					rate *= ClassBalanceConfig.PVE_PHYSICAL_ATTACK_CRITICAL_CHANCE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				}
 			}
-			else if (attacker.isPlayable() && target.isAttackable()) // isPvE
+			else
 			{
-				rate *= ClassBalanceConfig.PVE_PHYSICAL_ATTACK_CRITICAL_CHANCE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
-			}
-		}
-		else
-		{
-			if (isPvP)
-			{
-				rate *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_CRITICAL_CHANCE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
-			}
-			else if (attacker.isPlayable() && target.isAttackable()) // isPvE
-			{
-				rate *= ClassBalanceConfig.PVE_PHYSICAL_SKILL_CRITICAL_CHANCE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				if (isPvP)
+				{
+					rate *= ClassBalanceConfig.PVP_PHYSICAL_SKILL_CRITICAL_CHANCE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				}
+				else if (isPvE)
+				{
+					rate *= ClassBalanceConfig.PVE_PHYSICAL_SKILL_CRITICAL_CHANCE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
+				}
 			}
 		}
 		

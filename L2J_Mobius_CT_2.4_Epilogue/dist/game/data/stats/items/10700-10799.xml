@@ -3303,6 +3303,9 @@
 		<stats>
 			<stat type="pDef">293</stat>
 		</stats>
+		<skills>
+			<skill id="3662" level="1" />
+		</skills>
 	</item>
 	<item id="10794" type="Armor" name="Majestic Plate Armor {PvP}">
 		<!-- Full body armor. -->
@@ -3326,6 +3329,9 @@
 		<stats>
 			<stat type="pDef">293</stat>
 		</stats>
+		<skills>
+			<skill id="3662" level="1" />
+		</skills>
 	</item>
 	<item id="10795" type="Armor" name="Leather Armor of Nightmare {PvP}">
 		<!-- Full body armor. -->
@@ -3346,6 +3352,9 @@
 		<stats>
 			<stat type="pDef">220</stat>
 		</stats>
+		<skills>
+			<skill id="3663" level="1" />
+		</skills>
 	</item>
 	<item id="10796" type="Armor" name="Majestic Leather Armor {PvP}">
 		<!-- Full body armor. -->
@@ -3366,6 +3375,9 @@
 		<stats>
 			<stat type="pDef">220</stat>
 		</stats>
+		<skills>
+			<skill id="3663" level="1" />
+		</skills>
 	</item>
 	<item id="10797" type="Armor" name="Robe of Nightmare {PvP}">
 		<!-- Full body armor. -->
@@ -3390,6 +3402,9 @@
 			<stat type="pDef">147</stat>
 			<stat type="maxMp">718</stat>
 		</stats>
+		<skills>
+			<skill id="3660" level="1" />
+		</skills>
 	</item>
 	<item id="10798" type="Armor" name="Majestic Robe {PvP}">
 		<!-- Full body armor. -->
@@ -3411,6 +3426,9 @@
 			<stat type="pDef">147</stat>
 			<stat type="maxMp">718</stat>
 		</stats>
+		<skills>
+			<skill id="3660" level="1" />
+		</skills>
 	</item>
 	<item id="10799" type="Armor" name="Imperial Crusader Breastplate {PvP}">
 		<set name="icon" val="icon.armor_t88_u_i00" />
@@ -3433,5 +3451,8 @@
 		<stats>
 			<stat type="pDef">205</stat>
 		</stats>
+		<skills>
+			<skill id="3662" level="1" />
+		</skills>
 	</item>
 </list>

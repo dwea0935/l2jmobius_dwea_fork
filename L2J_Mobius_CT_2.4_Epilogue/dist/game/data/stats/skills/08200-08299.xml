@@ -12,19 +12,6 @@
 				<mul stat="pAtk">1.04</mul> <!-- P. Atk +4% -->
 				<add stat="maxMp">289</add> <!-- Maximum MP +289 -->
 				<add stat="weightPenalty">5759</add> <!-- Point at which a weight penalty is applied +5759 -->
-				<mul stat="pvpPhysDef">1.05</mul>
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 		</effects>
 	</skill>
@@ -35,25 +22,12 @@
 		<targetType>SELF</targetType>
 		<magicLevel>75</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<SHOCK>50</SHOCK>
 				<sub stat="cancel">50</sub> <!-- Casting Cancel Probability -50% -->
 				<mul stat="mAtk">1.17</mul> <!-- M. Atk +17% -->
 				<add stat="runSpd">7</add> <!-- Movement Speed +7 -->
 				<add stat="weightPenalty">5759</add> <!-- Point at which a weight penalty is applied +5759 -->
-				<mul stat="pvpPhysDef">1.05</mul>
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -68,19 +42,6 @@
 				<mul stat="pDef">1.046</mul> <!-- P. Def +4.6% -->
 				<add stat="maxHp">418</add> <!-- MaxHP +418 -->
 				<add stat="darkRes">6</add> <!-- Darkness Resistance +6 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -92,25 +53,12 @@
 		<targetType>SELF</targetType>
 		<magicLevel>1</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<SHOCK>13</SHOCK>
 				<mul stat="pDef">1.054</mul> <!-- P. Def. +5.4% -->
 				<add stat="maxHp">492</add> <!-- Max HP +492 effect -->
 				<mul stat="healEffect">1.03</mul> <!-- Received Increased Heal +3% -->
 				<add stat="darkRes">8</add> <!-- Darkness resistance is increased +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -128,19 +76,6 @@
 				<add stat="critRate">24.6</add> <!-- Critical Damage Chance +24.6 -->
 				<add stat="critDmgAdd">234</add> <!-- Critical Damage +234 -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -157,19 +92,6 @@
 				<add stat="maxHp">492</add> <!-- HP +492 -->
 				<add stat="darkRes">8</add> <!-- Resistance to Darkness attacks +8 -->
 				<mul stat="physicalMpConsumeRate">0.95</mul> <!-- MP consumption of the active skill is decreased -5% -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -186,19 +108,6 @@
 				<add stat="maxHp">492</add> <!-- Max HP +492 effect -->
 				<mul stat="danceMpConsumeRate">0.95</mul> <!-- MP consumption is decreased when song and dance skills are used -5% -->
 				<add stat="darkRes">8</add> <!-- Dark resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -215,19 +124,6 @@
 				<add stat="accCombat">1.72</add> <!-- Accuracy +1.72 -->
 				<add stat="maxHp">418</add> <!-- MaxHP +418 -->
 				<add stat="darkRes">6</add> <!-- Darkness Resistance +6 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -239,25 +135,12 @@
 		<targetType>SELF</targetType>
 		<magicLevel>1</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<HOLD>13</HOLD>
 				<add stat="rEvas">4.3</add> <!-- Evasion +4.3 -->
 				<add stat="maxHp">492</add> <!-- Max HP +492 Effect -->
 				<mul stat="pAtkSpd">1.0266</mul> <!-- Atk. Spd. are increased +2.66% -->
 				<add stat="darkRes">8</add> <!-- Dark resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -275,19 +158,6 @@
 				<mul stat="pAtkSpd">1.0266</mul> <!-- Atk. Spd. are increased +2.66% -->
 				<add stat="regMp">1.72</add> <!-- MP recovery are increased +1.72 -->
 				<add stat="darkRes">8</add> <!-- Dark resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -303,19 +173,6 @@
 				<mul stat="mAtkSpd">1.12</mul> <!-- Casting Spd. +12% -->
 				<add stat="maxMp">257</add> <!-- Max MP +257 -->
 				<add stat="darkRes">6</add> <!-- Darkness Resistance +6 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -333,19 +190,6 @@
 				<add stat="healEffect">20</add> <!-- Increase amount of heal +20 -->
 				<sub stat="cancel">15</sub> <!-- Decrease magic cancel rate -15% -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -363,19 +207,6 @@
 				<sub stat="cancel">15</sub> <!-- Decrease magic cancel rate -15% -->
 				<mul stat="magicalMpConsumeRate">0.95</mul> <!-- Decrease MP consumption -5% -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -393,19 +224,6 @@
 				<mul stat="pDef">1.026</mul> <!-- P. Def. +2.6% -->
 				<mul stat="pAtk">1.026</mul> <!-- Increase P. Atk. +2.6% -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -422,19 +240,6 @@
 				<mul stat="mAtk">1.054</mul> <!-- Increase M. Atk +5.4% -->
 				<add stat="maxMp">321</add> <!-- Max MP +321 -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -451,19 +256,6 @@
 				<add stat="maxHp">492</add> <!-- Max HP +492 Effect -->
 				<add stat="darkRes">8</add> <!-- Dark resistance +8 -->
 				<mul stat="physicalMpConsumeRate">0.95</mul> <!-- MP consumption of the active skill is decreased -5% -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -481,19 +273,6 @@
 				<add stat="critRate">24.6</add> <!-- Critical Damage Chance +24.6 -->
 				<add stat="critDmgAdd">234</add> <!-- Critical Damage +234 -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -511,19 +290,6 @@
 				<sub stat="cancel">15</sub> <!-- Decrease magic cancel rate -15% -->
 				<mul stat="magicalMpConsumeRate">0.95</mul> <!-- decrease MP consumption -5% -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -541,19 +307,6 @@
 				<mul stat="pDef">1.0266</mul> <!-- Increase P. Def. +2.66% -->
 				<add stat="maxHp">492</add> <!-- MaxHP +492 -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -565,25 +318,12 @@
 		<targetType>SELF</targetType>
 		<magicLevel>1</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<SHOCK>15</SHOCK>
 				<mul stat="pDef">1.066</mul> <!-- P. Def. +6.6% -->
 				<add stat="maxHp">492</add> <!-- Max HP +492 -->
 				<mul stat="healEffect">1.04</mul> <!-- Heal Capacity +4% -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -601,19 +341,6 @@
 				<add stat="critRate">29.5</add> <!-- Critical Rate +29.5 Increase -->
 				<add stat="critDmgAdd">282</add> <!-- Critical Damage +282 -->
 				<add stat="darkRes">8</add> <!-- Darkness Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -630,19 +357,6 @@
 				<add stat="maxHp">492</add> <!-- Max HP +492 -->
 				<mul stat="danceMpConsumeRate">0.94</mul> <!-- MP Consumption -6% Decrease for Song and Dance Skills -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpPhysDef">1.05</mul>
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -659,19 +373,6 @@
 				<add stat="maxHp">492</add> <!-- Max. HP +492 -->
 				<add stat="darkRes">8</add> <!-- Resistance to Darkness attacks +8 -->
 				<mul stat="physicalMpConsumeRate">0.94</mul> <!-- Decreases MP consumption by 6% for active skills -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5693</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Speed Down -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -683,25 +384,12 @@
 		<targetType>SELF</targetType>
 		<magicLevel>1</magicLevel>
 		<effects>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
-			</effect>
 			<effect name="DefenceTrait">
 				<HOLD>15</HOLD>
 				<add stat="rEvas">5.3</add> <!-- Evasion +5.3 -->
 				<add stat="maxHp">492</add> <!-- Max HP +492 -->
 				<mul stat="pAtkSpd">1.0324</mul> <!-- Atk. Spd. +3.24% -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -719,19 +407,6 @@
 				<mul stat="pAtkSpd">1.0324</mul> <!-- Atk. Spd. +3.24% -->
 				<add stat="regMp">1.066</add> <!-- MP Recovery +6.6% -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -748,19 +423,6 @@
 				<add stat="maxHp">492</add> <!-- Max HP +492 -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
 				<mul stat="physicalMpConsumeRate">0.94</mul> <!-- MP Consumption -6% -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -778,19 +440,6 @@
 				<add stat="critRate">29.5</add> <!-- Critical Rate +29.5 Increase -->
 				<add stat="critDmgAdd">282</add> <!-- Critical Damage +282 -->
 				<add stat="darkRes">8</add> <!-- Darkness Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -808,19 +457,6 @@
 				<mul stat="pDef">1.0266</mul> <!-- P. Def. +2.66% -->
 				<add stat="maxHp">492</add> <!-- Max HP +492 -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -838,19 +474,6 @@
 				<sub stat="cancel">15</sub> <!-- Decrease magic cancel rate -15% -->
 				<mul stat="magicalMpConsumeRate">0.94</mul> <!-- Decrease MP consumption -6% -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5694</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Mirage -->
-				<targetType>ONE</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -868,19 +491,6 @@
 				<add stat="healEffect">22</add> <!-- Heal Capacity +22 -->
 				<sub stat="cancel">15</sub> <!-- Magic Cancel Rate -15 -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -898,19 +508,6 @@
 				<sub stat="cancel">15</sub> <!-- Magic Cancel Rate -15 -->
 				<mul stat="magicalMpConsumeRate">0.94</mul> <!-- MP Consumption -6% -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -928,19 +525,6 @@
 				<mul stat="pDef">1.033</mul> <!-- P. Def. +3.3% -->
 				<mul stat="pAtk">1.033</mul> <!-- P. Atk. +3.3% -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>
@@ -957,19 +541,6 @@
 				<mul stat="mAtk">1.066</mul> <!-- M. Atk. +6.6% -->
 				<add stat="maxMp">321</add> <!-- Max MP +321 -->
 				<add stat="darkRes">8</add> <!-- Dark Resistance +8 -->
-				<mul stat="pvpMagicalDef">1.05</mul>
-				<mul stat="pvpPhysSkillsDef">1.05</mul>
-				<mul stat="pvpPhysDef">1.05</mul>
-			</effect>
-			<effect name="TriggerSkillByDamageReceived">
-				<attackerType>Playable</attackerType>
-				<minAttackerLevel>1</minAttackerLevel>
-				<maxAttackerLevel>100</maxAttackerLevel>
-				<minDamage>1</minDamage>
-				<chance>2</chance>
-				<skillId>5691</skillId>
-				<skillLevel>1</skillLevel> <!-- PvP Armor - Critical Down -->
-				<targetType>SELF</targetType>
 			</effect>
 			<effect name="EnableCloak" />
 		</effects>

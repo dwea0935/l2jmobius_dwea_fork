@@ -23,7 +23,11 @@ package handlers.chat.commands.admin;
 import java.util.List;
 import java.util.Locale;
 import java.util.StringJoiner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import org.l2jmobius.gameserver.ai.neural.FakePlayerNeuralPolicy;
+import org.l2jmobius.gameserver.ai.neural.FakePlayerNeuralPolicy.CurriculumStage;
 import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.FakePlayerData;
@@ -41,11 +45,13 @@ import org.l2jmobius.gameserver.managers.FakePlayerChatManager;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**
- * Admin handler for the FakePlayer Tactical Utility-AI & Java 27 Virtual-Thread LLM Control Center.
+ * Admin handler for the FakePlayer Tactical Utility-AI, 5-Stage Neural Curriculum RL &amp; Java 27 Virtual-Thread LLM Control Center.
  * @author Mobius
  */
 public class AdminFakePlayers implements IAdminCommandHandler
 {
+	private static final Logger LOGGER = Logger.getLogger(AdminFakePlayers.class.getName());
+	
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_fakechat",
@@ -116,6 +122,36 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			{
 				FakePlayersConfig.FAKE_PLAYER_LLM_ENABLED = !FakePlayersConfig.FAKE_PLAYER_LLM_ENABLED;
 				activeChar.sendSysMessage("FakePlayer Virtual-Thread LLM Bridge: " + (FakePlayersConfig.FAKE_PLAYER_LLM_ENABLED ? "ENABLED" : "DISABLED") + " (" + FakePlayersConfig.FAKE_PLAYER_LLM_MODEL + ")");
+				showControlPanel(activeChar);
+				break;
+			}
+			case "stage":
+			{
+				final int stageNum = (tokens.length > 2) ? parseIntSafe(tokens[2], 5) : 5;
+				final CurriculumStage stage = CurriculumStage.fromId(stageNum);
+				FakePlayerAiEngine.getInstance().getNeuralPolicy().setStage(stage);
+				activeChar.sendSysMessage("Neural Curriculum switched to " + stage.getTitle() + " (" + stage.getDescription() + ").");
+				showControlPanel(activeChar);
+				break;
+			}
+			case "duel":
+			{
+				final int spawned = FakePlayerAiEngine.getInstance().spawnTrainingDuel(activeChar);
+				activeChar.sendSysMessage("Spawned 1v1 Neural Curriculum Duel (" + spawned + " bots: Vex [Dagger] vs Lyra [Archer]).");
+				showControlPanel(activeChar);
+				break;
+			}
+			case "squadsim":
+			{
+				final int spawned = FakePlayerAiEngine.getInstance().spawnSquadSim(activeChar);
+				activeChar.sendSysMessage("Spawned 3v3 Neural Squad Simulation (" + spawned + " bots engaged).");
+				showControlPanel(activeChar);
+				break;
+			}
+			case "save_weights":
+			{
+				final boolean ok = FakePlayerAiEngine.getInstance().getNeuralPolicy().saveWeights();
+				activeChar.sendSysMessage(ok ? "Saved neural policy checkpoint to data/neural_fakeplayer_weights.bin." : "Failed to save neural policy weights.");
 				showControlPanel(activeChar);
 				break;
 			}
@@ -275,6 +311,18 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		return true;
 	}
 	
+	private static int parseIntSafe(String s, int fallback)
+	{
+		try
+		{
+			return Integer.parseInt(s);
+		}
+		catch (NumberFormatException e)
+		{
+			return fallback;
+		}
+	}
+	
 	private Npc spawnFakePlayer(int npcId, int x, int y, int z, int heading, int instanceId)
 	{
 		try
@@ -289,9 +337,9 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			spawn.setHeading(heading);
 			spawn.setInstanceId(instanceId);
 			spawn.setAmount(1);
+			final Npc npc = spawn.doSpawn(false);
 			spawn.stopRespawn();
 			SpawnTable.getInstance().addSpawn(spawn);
-			final Npc npc = spawn.doSpawn();
 			if (npc != null)
 			{
 				npc.setRunning();
@@ -301,16 +349,20 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
+			LOGGER.log(Level.WARNING, "AdminFakePlayers: Failed to spawn FakePlayer " + npcId + ": " + e.getMessage(), e);
 			return null;
 		}
 	}
 	
 	private void showControlPanel(Player activeChar)
 	{
-		final List<Npc> bots = FakePlayerAiEngine.getInstance().getActiveFakePlayers();
-		final StringBuilder sb = new StringBuilder(6144);
+		final FakePlayerAiEngine engine = FakePlayerAiEngine.getInstance();
+		final FakePlayerNeuralPolicy policy = engine.getNeuralPolicy();
+		final CurriculumStage stage = policy.getStage();
+		final List<Npc> bots = engine.getActiveFakePlayers();
+		final StringBuilder sb = new StringBuilder(8192);
 		sb.append("<html><title>FakePlayer Tactical AI</title><body>");
-		sb.append("<font color=\"LEVEL\">FakePlayer Tactical Utility-AI (250ms) &amp; Java 27 Virtual-Thread LLM Control Center</font><br1>");
+		sb.append("<font color=\"LEVEL\">FakePlayer Tactical Utility-AI (250ms), SIMD Neural Curriculum &amp; Virtual-Thread LLM Control Center</font><br1>");
 		
 		// Status Banner (948px)
 		sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"1E1E26\"><tr>");
@@ -319,6 +371,25 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		sb.append("<td width=290><font color=\"AAAAAA\">Virtual-Thread LLM:</font> ").append(FakePlayersConfig.FAKE_PLAYER_LLM_ENABLED ? ("<font color=\"00FF00\">ON (" + FakePlayersConfig.FAKE_PLAYER_LLM_MODEL + ")</font>") : "<font color=\"FFCC00\">OFF (Heuristic/XML Mode)</font>").append("</td>");
 		sb.append("<td width=119 align=center><button value=\"Toggle AI\" action=\"bypass admin_fakeplayer toggle_ai\" width=110 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("<td width=119 align=center><button value=\"Toggle LLM\" action=\"bypass admin_fakeplayer toggle_llm\" width=110 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("</tr></table><br1>");
+		
+		// Neural Curriculum Trainer Telemetry & Stage Controls (948px)
+		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"16202A\"><tr>");
+		sb.append("<td width=310><font color=\"00FFCC\">").append(stage.getTitle()).append("</font></td>");
+		sb.append("<td width=240><font color=\"AAAAAA\">RL Steps:</font> <font color=\"00FF00\">").append(policy.getTrainingSteps()).append("</font> <font color=\"888888\">(Duels: ").append(policy.getDuelsCompleted()).append(")</font></td>");
+		sb.append("<td width=130><font color=\"AAAAAA\">Baseline:</font> <font color=\"LEVEL\">").append(String.format(Locale.US, "%.2f", policy.getRewardBaseline())).append("</font></td>");
+		sb.append("<td width=90 align=center><button value=\"1v1 Duel\" action=\"bypass admin_fakeplayer duel\" width=84 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=90 align=center><button value=\"3v3 Sim\" action=\"bypass admin_fakeplayer squadsim\" width=84 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=88 align=center><button value=\"Save NN\" action=\"bypass admin_fakeplayer save_weights\" width=82 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("</tr></table>");
+		
+		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"121820\"><tr>");
+		sb.append("<td width=148><font color=\"AAAAAA\">Curriculum Stage</font></td>");
+		sb.append("<td width=160 align=center><button value=\"S1: Discovery\" action=\"bypass admin_fakeplayer stage 1\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=160 align=center><button value=\"S2: Spacing/Kite\" action=\"bypass admin_fakeplayer stage 2\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=160 align=center><button value=\"S3: Archetypes\" action=\"bypass admin_fakeplayer stage 3\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=160 align=center><button value=\"S4: Squad Synergy\" action=\"bypass admin_fakeplayer stage 4\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=160 align=center><button value=\"S5: PvP Arena\" action=\"bypass admin_fakeplayer stage 5\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("</tr></table><br1>");
 		
 		// 1-Click Squad Spawner & Archetype Deployment Bar (948px)
@@ -349,7 +420,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		int shown = 0;
 		for (Npc npc : bots)
 		{
-			final BotState state = FakePlayerAiEngine.getInstance().getOrCreateState(npc);
+			final BotState state = engine.getOrCreateState(npc);
 			final int hpPct = (int) Math.round((npc.getCurrentHp() * 100.0) / Math.max(1.0, npc.getMaxHp()));
 			final int objId = npc.getObjectId();
 			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr>");
@@ -370,7 +441,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		}
 		if (shown == 0)
 		{
-			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"888888\">No active FakePlayers spawned. Click [Summon Squad (3)] above to deploy a Tank + Healer + Archer squad!</font></td></tr></table>");
+			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"888888\">No active FakePlayers spawned. Click [Summon Squad (3)], [1v1 Duel], or [3v3 Sim] above to deploy bots!</font></td></tr></table>");
 		}
 		sb.append("</body></html>");
 		
