@@ -447,7 +447,7 @@ python3 /home/dwea/Projects/L2/l2jmobius_dwea_fork/tools/auditor/l2_auditor.py -
 
 ---
 
-## 11. Wave 2 & 3 Autonomous Citizen Lifecycle (`Lv 1 -> 85`), Multi-Stage Profession/Subclass/Noblesse Quests, 4-Archetype Combat Doctrines + UCB1 Toolkit Exploration, `EconomyProgressionAuditor`, Unified `NG–B` Merchant & Mana Potion/Drug Fix (`7d59d9ba0e9`, `b23447f1917`)
+## 11. Wave 2 & 3 Autonomous Citizen Lifecycle (`Lv 1 -> 85`), Multi-Stage Profession/Subclass/Noblesse Quests, 4-Archetype Combat Doctrines + UCB1 Toolkit Exploration, `EconomyProgressionAuditor`, Unified `NG–B` Merchant & Mana Potion/Drug Fix (`7d59d9ba0e9`, `b23447f1917`, `babe943ad19`)
 
 1. **Mana Potion (`728`) & Mana Drug (`726`) Restoration Fix (`b23447f1917`):**
    - Updated `ManaHeal.java`, `ManaHealByLevel.java`, and `Heal.java` (`effected.isInvul() && !effected.isGM()`) so `GMStartupInvulnerable = True` never blocks potion/heal effects on GM accounts; configured Mana Potion (`728`, skill `10001`, `A1`) for instant `+400 MP` (`2000ms` reuse) and Mana Drug (`726`, skill `10000`, `A2`) for a 20-second `2.0x + 15` MP Regeneration buff + `ManaHealOverTime` (`15 MP/s`).

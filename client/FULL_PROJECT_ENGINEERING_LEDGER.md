@@ -307,7 +307,7 @@ flowchart TD
 ---
 
 ### Milestone 19: Zero-Shortcut Autonomous Citizen Lifecycle (`Lv 1 -> 85`), Multi-Stage Profession/Subclass/Noblesse Quest Chains, 4-Archetype Tactical Combat Doctrines + UCB1 Toolkit Exploration, `EconomyProgressionAuditor`, Unified `NG–B` Merchant & Mana Potion/Drug Fix
-* **Commits:** `7d59d9ba0e9`, `b23447f1917`
+* **Commits:** `7d59d9ba0e9`, `b23447f1917`, `babe943ad19`
 * **Key Accomplishments:**
   1. **Mana Potion (`728`) & Mana Drug (`726`) Restoration Fix (`ManaHeal.java`, `ManaHealByLevel.java`, `Heal.java`, `00700-00799.xml`, `10000-10099.xml`, `b23447f1917`):**
      * Fixed `ManaHeal.java`, `ManaHealByLevel.java`, and `Heal.java` where `effected.isInvul()` blocked potion/heal restoration on GM accounts with `GMStartupInvulnerable = True` (`EnterWorld.java:246` `player.setInvul(true)`), changing the guard to `(effected.isInvul() && !effected.isGM())`.
