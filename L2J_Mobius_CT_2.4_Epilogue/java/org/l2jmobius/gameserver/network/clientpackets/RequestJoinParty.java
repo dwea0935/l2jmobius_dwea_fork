@@ -20,6 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
+import org.l2jmobius.gameserver.ai.autonomous.AutonomousPlayerManager;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.actor.Player;
@@ -61,6 +62,15 @@ public class RequestJoinParty extends ClientPacket
 		{
 			requestor.sendPacket(SystemMessageId.YOU_MUST_FIRST_SELECT_A_USER_TO_INVITE_TO_YOUR_PARTY);
 			return;
+		}
+		
+		if (AutonomousPlayerManager.getInstance().isAutonomousCitizen(target))
+		{
+			if (!target.isInParty() && AutonomousPlayerManager.getInstance().onPartyInvite(requestor, target, _partyDistributionTypeId))
+			{
+				requestor.sendMessage(target.getName() + " (Autonomous Citizen) has joined your party in PARTY_COOP mode.");
+				return;
+			}
 		}
 		
 		if ((target.getClient() == null) || target.getClient().isDetached())

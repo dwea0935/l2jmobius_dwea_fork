@@ -24,10 +24,10 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>728</itemConsumeId>
 		<magicLevel>1</magicLevel>
-		<reuseDelay>500</reuseDelay>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="ManaHeal">
-				<power>100</power>
+				<power>400</power>
 			</effect>
 		</effects>
 	</skill>

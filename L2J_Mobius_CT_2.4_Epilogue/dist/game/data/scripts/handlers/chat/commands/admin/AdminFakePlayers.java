@@ -26,6 +26,10 @@ import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.l2jmobius.gameserver.ai.autonomous.AutonomousCitizen;
+import org.l2jmobius.gameserver.ai.autonomous.AutonomousPlayerManager;
+import org.l2jmobius.gameserver.ai.autonomous.GameplayAnomalyAuditor;
+import org.l2jmobius.gameserver.ai.autonomous.GameplayAnomalyAuditor.AnomalyRecord;
 import org.l2jmobius.gameserver.ai.neural.FakePlayerNeuralPolicy;
 import org.l2jmobius.gameserver.ai.neural.FakePlayerNeuralPolicy.CurriculumStage;
 import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
@@ -45,7 +49,7 @@ import org.l2jmobius.gameserver.managers.FakePlayerChatManager;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**
- * Admin handler for the FakePlayer Tactical Utility-AI, 5-Stage Neural Curriculum RL &amp; Java 27 Virtual-Thread LLM Control Center.
+ * Admin handler for the FakePlayer Tactical Utility-AI, 5-Stage Neural Curriculum RL, Autonomous Citizens (Lv 1 -> 85) &amp; QA Anomaly Engine.
  * @author Mobius
  */
 public class AdminFakePlayers implements IAdminCommandHandler
@@ -153,6 +157,60 @@ public class AdminFakePlayers implements IAdminCommandHandler
 				final boolean ok = FakePlayerAiEngine.getInstance().getNeuralPolicy().saveWeights();
 				activeChar.sendSysMessage(ok ? "Saved neural policy checkpoint to data/neural_fakeplayer_weights.bin." : "Failed to save neural policy weights.");
 				showControlPanel(activeChar);
+				break;
+			}
+			case "citizen_spawn":
+			{
+				final int count = (tokens.length > 2) ? Math.max(1, Math.min(20, parseIntSafe(tokens[2], 1))) : 1;
+				final int spawned = AutonomousPlayerManager.getInstance().spawnCitizens(count);
+				activeChar.sendSysMessage("Spawned " + spawned + " Real-Player Autonomous Citizen(s) at Lv 1 in racial starting villages.");
+				showControlPanel(activeChar);
+				break;
+			}
+			case "citizen_goto":
+			{
+				final int objId = (tokens.length > 2) ? parseIntSafe(tokens[2], 0) : 0;
+				final AutonomousCitizen citizen = AutonomousPlayerManager.getInstance().getCitizen(objId);
+				if ((citizen != null) && (citizen.getPlayer() != null))
+				{
+					final Player cp = citizen.getPlayer();
+					activeChar.teleToLocation(cp.getX() + 40, cp.getY() + 40, cp.getZ(), cp.getHeading(), cp.getInstanceId());
+					activeChar.sendSysMessage("Teleported to Autonomous Citizen " + cp.getName() + " (Lv " + cp.getLevel() + " " + cp.getPlayerClass() + ") in " + citizen.getCurrentZoneName() + ".");
+				}
+				else
+				{
+					activeChar.sendSysMessage("Autonomous Citizen not found: " + objId);
+				}
+				showControlPanel(activeChar);
+				break;
+			}
+			case "citizen_despawn":
+			{
+				final String targetArg = (tokens.length > 2) ? tokens[2] : "ALL";
+				if ("ALL".equalsIgnoreCase(targetArg))
+				{
+					final int removed = AutonomousPlayerManager.getInstance().despawnAll();
+					activeChar.sendSysMessage("Despawned " + removed + " Autonomous Citizen(s).");
+				}
+				else
+				{
+					final int objId = parseIntSafe(targetArg, 0);
+					final boolean ok = AutonomousPlayerManager.getInstance().despawnCitizen(objId);
+					activeChar.sendSysMessage(ok ? ("Despawned Autonomous Citizen " + objId + ".") : ("Autonomous Citizen not found: " + targetArg));
+				}
+				showControlPanel(activeChar);
+				break;
+			}
+			case "qa_log":
+			{
+				showQaAnomalyPanel(activeChar);
+				break;
+			}
+			case "qa_clear":
+			{
+				GameplayAnomalyAuditor.getInstance().clearAnomalies();
+				activeChar.sendSysMessage("Cleared in-memory QA Anomaly ring buffer.");
+				showQaAnomalyPanel(activeChar);
 				break;
 			}
 			case "summon":
@@ -360,9 +418,11 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		final FakePlayerNeuralPolicy policy = engine.getNeuralPolicy();
 		final CurriculumStage stage = policy.getStage();
 		final List<Npc> bots = engine.getActiveFakePlayers();
-		final StringBuilder sb = new StringBuilder(8192);
+		final List<AutonomousCitizen> citizens = AutonomousPlayerManager.getInstance().getActiveCitizens();
+		final long anomalyCount = GameplayAnomalyAuditor.getInstance().getTotalAnomaliesCount();
+		final StringBuilder sb = new StringBuilder(10240);
 		sb.append("<html><title>FakePlayer Tactical AI</title><body>");
-		sb.append("<font color=\"LEVEL\">FakePlayer Tactical Utility-AI (250ms), SIMD Neural Curriculum &amp; Virtual-Thread LLM Control Center</font><br1>");
+		sb.append("<font color=\"LEVEL\">FakePlayer Tactical Utility-AI (250ms), SIMD Neural Curriculum &amp; Autonomous Citizens (Lv 1-&gt;85)</font><br1>");
 		
 		// Status Banner (948px)
 		sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"1E1E26\"><tr>");
@@ -371,6 +431,15 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		sb.append("<td width=290><font color=\"AAAAAA\">Virtual-Thread LLM:</font> ").append(FakePlayersConfig.FAKE_PLAYER_LLM_ENABLED ? ("<font color=\"00FF00\">ON (" + FakePlayersConfig.FAKE_PLAYER_LLM_MODEL + ")</font>") : "<font color=\"FFCC00\">OFF (Heuristic/XML Mode)</font>").append("</td>");
 		sb.append("<td width=119 align=center><button value=\"Toggle AI\" action=\"bypass admin_fakeplayer toggle_ai\" width=110 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("<td width=119 align=center><button value=\"Toggle LLM\" action=\"bypass admin_fakeplayer toggle_llm\" width=110 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("</tr></table><br1>");
+		
+		// Wave 1: Autonomous Citizens (Lv 1 -> 85) & QA Anomaly Engine Bar (948px)
+		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1A241E\"><tr>");
+		sb.append("<td width=240><font color=\"00FF99\">Autonomous Citizens (Lv 1-&gt;85):</font> <font color=\"LEVEL\">").append(citizens.size()).append("</font></td>");
+		sb.append("<td width=175 align=center><button value=\"Spawn Lv1 Citizen\" action=\"bypass admin_fakeplayer citizen_spawn 1\" width=165 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=175 align=center><button value=\"Spawn 5x Citizens\" action=\"bypass admin_fakeplayer citizen_spawn 5\" width=165 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=175 align=center><button value=\"Despawn Citizens\" action=\"bypass admin_fakeplayer citizen_despawn ALL\" width=165 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=183 align=center><button value=\"QA Anomaly Log (").append(anomalyCount).append(")\" action=\"bypass admin_fakeplayer qa_log\" width=173 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("</tr></table><br1>");
 		
 		// Neural Curriculum Trainer Telemetry & Stage Controls (948px)
@@ -414,6 +483,35 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		sb.append("<td width=134 align=center><button value=\"Clear Squad\" action=\"bypass admin_fakeplayer despawn ALL_COMBAT\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("</tr></table><br1>");
 		
+		if (!citizens.isEmpty())
+		{
+			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1E2E24\"><tr><td width=125><font color=\"LEVEL\">Citizen Name</font></td><td width=135><font color=\"LEVEL\">Class &amp; Lv</font></td><td width=135><font color=\"LEVEL\">Macro State</font></td><td width=165><font color=\"LEVEL\">Zone</font></td><td width=238><font color=\"LEVEL\">Last Lifecycle Action</font></td><td width=75 align=center><font color=\"LEVEL\">Goto</font></td><td width=75 align=center><font color=\"LEVEL\">Despawn</font></td></tr></table>");
+			int citizenShown = 0;
+			for (AutonomousCitizen citizen : citizens)
+			{
+				final Player cp = citizen.getPlayer();
+				if (cp == null)
+				{
+					continue;
+				}
+				final int objId = cp.getObjectId();
+				sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101814\"><tr>");
+				sb.append("<td width=125><font color=\"00FF99\">").append(cp.getName()).append("</font></td>");
+				sb.append("<td width=135><font color=\"00CCFF\">Lv").append(cp.getLevel()).append(" ").append(cp.getPlayerClass()).append("</font></td>");
+				sb.append("<td width=135><font color=\"LEVEL\">").append(citizen.getMacroState()).append("</font></td>");
+				sb.append("<td width=165><font color=\"B09878\">").append(citizen.getCurrentZoneName()).append("</font></td>");
+				sb.append("<td width=238><font color=\"CCCCCC\">").append(citizen.getLastAction()).append("</font></td>");
+				sb.append("<td width=75 align=center><button value=\"Teleport\" action=\"bypass admin_fakeplayer citizen_goto ").append(objId).append("\" width=68 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("<td width=75 align=center><button value=\"Despawn\" action=\"bypass admin_fakeplayer citizen_despawn ").append(objId).append("\" width=68 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("</tr></table>");
+				if (++citizenShown >= 8)
+				{
+					break;
+				}
+			}
+			sb.append("<br1>");
+		}
+		
 		// Active Bots Telemetry Table (948px, strictly 1-row <table> per row for NWindow.dll ListParser compatibility)
 		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=130><font color=\"LEVEL\">Bot Name</font></td><td width=95><font color=\"LEVEL\">Archetype</font></td><td width=80><font color=\"LEVEL\">HP %</font></td><td width=125><font color=\"LEVEL\">Posture</font></td><td width=238><font color=\"LEVEL\">Last Tactical Action</font></td><td width=70 align=center><font color=\"LEVEL\">Assist</font></td><td width=70 align=center><font color=\"LEVEL\">Kite</font></td><td width=70 align=center><font color=\"LEVEL\">Aggro</font></td><td width=70 align=center><font color=\"LEVEL\">Recall</font></td></tr></table>");
 		
@@ -434,14 +532,52 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			sb.append("<td width=70 align=center><button value=\"Aggro\" action=\"bypass admin_fakeplayer mode ").append(objId).append(" AGGRESSIVE\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 			sb.append("<td width=70 align=center><button value=\"Recall\" action=\"bypass admin_fakeplayer recall ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 			sb.append("</tr></table>");
-			if (++shown >= 12)
+			if (++shown >= 10)
 			{
 				break;
 			}
 		}
 		if (shown == 0)
 		{
-			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"888888\">No active FakePlayers spawned. Click [Summon Squad (3)], [1v1 Duel], or [3v3 Sim] above to deploy bots!</font></td></tr></table>");
+			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"888888\">No active FakePlayers spawned. Click [Summon Squad (3)], [Spawn Lv1 Citizen], [1v1 Duel], or [3v3 Sim] above!</font></td></tr></table>");
+		}
+		sb.append("</body></html>");
+		
+		final NpcHtmlMessage html = new NpcHtmlMessage();
+		html.setHtml(sb.toString());
+		activeChar.sendPacket(html);
+	}
+	
+	private void showQaAnomalyPanel(Player activeChar)
+	{
+		final List<AnomalyRecord> records = GameplayAnomalyAuditor.getInstance().getRecentAnomalies(20);
+		final StringBuilder sb = new StringBuilder(8192);
+		sb.append("<html><title>FakePlayer Tactical AI</title><body>");
+		sb.append("<font color=\"LEVEL\">Autonomous Citizen Self-Reporting QA Anomaly Auditor (log/qa_autonomous_anomalies.jsonl)</font><br1>");
+		sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"1E1E26\"><tr>");
+		sb.append("<td width=450><font color=\"AAAAAA\">Total Logged Anomalies:</font> <font color=\"FFCC00\">").append(GameplayAnomalyAuditor.getInstance().getTotalAnomaliesCount()).append("</font></td>");
+		sb.append("<td width=166 align=center><button value=\"Refresh Log\" action=\"bypass admin_fakeplayer qa_log\" width=155 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=166 align=center><button value=\"Clear Buffer\" action=\"bypass admin_fakeplayer qa_clear\" width=155 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=166 align=center><button value=\"Back to AI Panel\" action=\"bypass admin_fakeplayer menu\" width=155 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("</tr></table><br1>");
+		
+		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=155><font color=\"LEVEL\">Anomaly Type</font></td><td width=135><font color=\"LEVEL\">Citizen</font></td><td width=155><font color=\"LEVEL\">Zone</font></td><td width=413><font color=\"LEVEL\">Diagnostic Details</font></td><td width=90 align=center><font color=\"LEVEL\">Teleport</font></td></tr></table>");
+		if (records.isEmpty())
+		{
+			sb.append("<table width=948 border=0 cellpadding=4 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"00FF99\">Zero gameplay anomalies recorded in current buffer.</font></td></tr></table>");
+		}
+		else
+		{
+			for (AnomalyRecord rec : records)
+			{
+				sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr>");
+				sb.append("<td width=155><font color=\"FF6666\">").append(rec.type()).append("</font></td>");
+				sb.append("<td width=135><font color=\"00FF99\">").append(rec.citizenName()).append(" (Lv").append(rec.citizenLevel()).append(")</font></td>");
+				sb.append("<td width=155><font color=\"B09878\">").append(rec.zoneName()).append("</font></td>");
+				sb.append("<td width=413><font color=\"CCCCCC\">").append(rec.details()).append("</font></td>");
+				sb.append("<td width=90 align=center><button value=\"Goto\" action=\"bypass admin_move_to ").append(rec.x()).append(" ").append(rec.y()).append(" ").append(rec.z()).append("\" width=80 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("</tr></table>");
+			}
 		}
 		sb.append("</body></html>");
 		
