@@ -934,7 +934,7 @@ public final class AdminBoardManager
 		final int maxMp = target.getMaxMp();
 		
 		sb.append("<table width=948 border=0 cellpadding=1 cellspacing=0 bgcolor=\"141E28\"><tr>");
-		sb.append("<td width=478 align=left><font color=\"00CCFF\">Target:</font> <font color=\"FFFFFF\">")
+		sb.append("<td width=524 align=left><font color=\"00CCFF\">Target:</font> <font color=\"FFFFFF\">")
 			.append(escapeHtml(target.getName()))
 			.append("</font> <font color=\"AAAAAA\">(").append(targetType).append(")</font> ")
 			.append("<font color=\"00FF00\">HP ").append(curHp).append("/").append(maxHp).append("</font> ")
@@ -943,18 +943,18 @@ public final class AdminBoardManager
 		
 		if (access.hasScope(AdminScope.PLAYER_SUPPORT))
 		{
-			sb.append("<td width=68 align=center>").append(button("Inspect", "admin_current_player", 64, 20)).append("</td>");
-			sb.append("<td width=58 align=center>").append(button("Heal", "admin_heal", 54, 20)).append("</td>");
-			sb.append("<td width=56 align=center>").append(button("Res", "admin_res", 52, 20)).append("</td>");
-			sb.append("<td width=58 align=center>").append(AdminData.getInstance().hasAccess("admin_kill", access) ? button("Kill", "admin_kill", 54, 20) : "").append("</td>");
+			sb.append("<td width=62 align=center>").append(button("Inspect", "admin_current_player", 58, 20)).append("</td>");
+			sb.append("<td width=50 align=center>").append(button("Heal", "admin_heal", 46, 20)).append("</td>");
+			sb.append("<td width=48 align=center>").append(button("Res", "admin_res", 44, 20)).append("</td>");
+			sb.append("<td width=50 align=center>").append(AdminData.getInstance().hasAccess("admin_kill", access) ? button("Kill", "admin_kill", 46, 20) : "").append("</td>");
 			if (access.hasScope(AdminScope.TELEPORT))
 			{
-				sb.append("<td width=68 align=center>").append(button("Goto", "admin_teleportto " + target.getName(), 64, 20)).append("</td>");
-				sb.append("<td width=72 align=center>").append(button("Recall", "admin_recall " + target.getName(), 68, 20)).append("</td>");
+				sb.append("<td width=60 align=center>").append(button("Goto", "admin_teleportto " + target.getName(), 56, 20)).append("</td>");
+				sb.append("<td width=64 align=center>").append(button("Recall", "admin_recall " + target.getName(), 60, 20)).append("</td>");
 			}
 			else
 			{
-				sb.append("<td width=68></td><td width=72></td>");
+				sb.append("<td width=60></td><td width=64></td>");
 			}
 			if (access.hasScope(AdminScope.WORLD_SPAWN) && target.isNpc())
 			{
@@ -971,7 +971,7 @@ public final class AdminBoardManager
 		}
 		else
 		{
-			sb.append("<td width=470 align=right><font color=\"AAAAAA\">Instance: ").append(target.getInstanceId()).append("</font></td>");
+			sb.append("<td width=424 align=right><font color=\"AAAAAA\">Instance: ").append(target.getInstanceId()).append("</font></td>");
 		}
 		sb.append("</tr></table>");
 		
@@ -1276,11 +1276,10 @@ public final class AdminBoardManager
 				new String[]{"Nornil's Garden", "admin_move_to -111191 80322 -12936"});
 		}
 		
-		// Inline Active Runtime Instances Summary Table (948px)
+		// Inline Active Runtime Instances Summary Table (948px, strictly 1-row <table> per row for NWindow.dll ListParser compatibility)
 		if (access.hasScope(AdminScope.WORLD_SPAWN))
 		{
-			sb.append("<br1><table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"15151E\">");
-			sb.append("<tr bgcolor=\"222230\"><td width=110><font color=\"LEVEL\">Instance ID</font></td><td width=110><font color=\"LEVEL\">Template ID</font></td><td width=388><font color=\"LEVEL\">Instance Name</font></td><td width=140><font color=\"LEVEL\">Players / NPCs</font></td><td width=100 align=center><font color=\"LEVEL\">Enter</font></td><td width=100 align=center><font color=\"LEVEL\">Destroy</font></td></tr>");
+			sb.append("<br1><table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=110><font color=\"LEVEL\">Instance ID</font></td><td width=110><font color=\"LEVEL\">Template ID</font></td><td width=388><font color=\"LEVEL\">Instance Name</font></td><td width=140><font color=\"LEVEL\">Players / NPCs</font></td><td width=100 align=center><font color=\"LEVEL\">Enter</font></td><td width=100 align=center><font color=\"LEVEL\">Destroy</font></td></tr></table>");
 			int shown = 0;
 			for (var inst : InstanceManager.getInstance().getInstances().values())
 			{
@@ -1291,7 +1290,7 @@ public final class AdminBoardManager
 				final var world = InstanceManager.getInstance().getWorld(inst.getId());
 				final int tplId = (world != null) ? world.getTemplateId() : inst.getTemplateId();
 				final String instName = (tplId > 0) ? InstanceManager.getInstance().getInstanceIdName(tplId) : "Dynamic Instance";
-				sb.append("<tr bgcolor=\"101016\"><td><font color=\"00FF00\">").append(inst.getId()).append("</font></td><td>").append(tplId).append("</td><td>").append(escapeHtml(instName != null ? instName : "Instance")).append("</td><td>").append(inst.getPlayers().size()).append(" / ").append(inst.getNpcs().size()).append("</td><td align=center>").append(button("Enter", "admin_setinstance " + inst.getId(), 90, 20)).append("</td><td align=center>").append(button("Destroy", "admin_destroyinstance " + inst.getId(), 90, 20)).append("</td></tr>");
+				sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr><td width=110><font color=\"00FF00\">").append(inst.getId()).append("</font></td><td width=110>").append(tplId).append("</td><td width=388>").append(escapeHtml(instName != null ? instName : "Instance")).append("</td><td width=140>").append(inst.getPlayers().size()).append(" / ").append(inst.getNpcs().size()).append("</td><td width=100 align=center>").append(button("Enter", "admin_setinstance " + inst.getId(), 90, 20)).append("</td><td width=100 align=center>").append(button("Destroy", "admin_destroyinstance " + inst.getId(), 90, 20)).append("</td></tr></table>");
 				if (++shown >= 6)
 				{
 					break;
@@ -1299,9 +1298,8 @@ public final class AdminBoardManager
 			}
 			if (shown == 0)
 			{
-				sb.append("<tr bgcolor=\"101016\"><td width=948 align=center><font color=\"888888\">No active dynamic instances currently running (Your Instance ID: ").append(gm.getInstanceId()).append(").</font></td><td></td><td></td><td></td><td></td><td></td></tr>");
+				sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"888888\">No active dynamic instances currently running (Your Instance ID: ").append(gm.getInstanceId()).append(").</font></td></tr></table>");
 			}
-			sb.append("</table>");
 		}
 		
 		return sb.toString();
@@ -1581,6 +1579,9 @@ public final class AdminBoardManager
 		
 		// 8. Promote cramped 260/270/280/300px legacy tables to full 920px wide-screen layout.
 		body = body.replaceAll("(?i)<table\\s+width\\s*=\\s*\"?(?:260|270|280|290|300)\"?\\b", "<table width=920");
+		
+		// 9. Strip unsupported attributes (e.g. bgcolor) from <tr> tags so ListParser::CreateElementList never crashes.
+		body = body.replaceAll("(?i)<tr\\b[^>]*>", "<tr>");
 		
 		return body.trim();
 	}

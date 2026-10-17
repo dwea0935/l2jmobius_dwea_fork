@@ -343,9 +343,8 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		sb.append("<td width=134 align=center><button value=\"Clear Squad\" action=\"bypass admin_fakeplayer despawn ALL_COMBAT\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("</tr></table><br1>");
 		
-		// Active Bots Telemetry Table (948px)
-		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"15151E\">");
-		sb.append("<tr bgcolor=\"222230\"><td width=130><font color=\"LEVEL\">Bot Name</font></td><td width=95><font color=\"LEVEL\">Archetype</font></td><td width=80><font color=\"LEVEL\">HP %</font></td><td width=125><font color=\"LEVEL\">Posture</font></td><td width=238><font color=\"LEVEL\">Last Tactical Action</font></td><td width=70 align=center><font color=\"LEVEL\">Assist</font></td><td width=70 align=center><font color=\"LEVEL\">Kite</font></td><td width=70 align=center><font color=\"LEVEL\">Aggro</font></td><td width=70 align=center><font color=\"LEVEL\">Recall</font></td></tr>");
+		// Active Bots Telemetry Table (948px, strictly 1-row <table> per row for NWindow.dll ListParser compatibility)
+		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=130><font color=\"LEVEL\">Bot Name</font></td><td width=95><font color=\"LEVEL\">Archetype</font></td><td width=80><font color=\"LEVEL\">HP %</font></td><td width=125><font color=\"LEVEL\">Posture</font></td><td width=238><font color=\"LEVEL\">Last Tactical Action</font></td><td width=70 align=center><font color=\"LEVEL\">Assist</font></td><td width=70 align=center><font color=\"LEVEL\">Kite</font></td><td width=70 align=center><font color=\"LEVEL\">Aggro</font></td><td width=70 align=center><font color=\"LEVEL\">Recall</font></td></tr></table>");
 		
 		int shown = 0;
 		for (Npc npc : bots)
@@ -353,17 +352,17 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			final BotState state = FakePlayerAiEngine.getInstance().getOrCreateState(npc);
 			final int hpPct = (int) Math.round((npc.getCurrentHp() * 100.0) / Math.max(1.0, npc.getMaxHp()));
 			final int objId = npc.getObjectId();
-			sb.append("<tr bgcolor=\"101016\">");
-			sb.append("<td><font color=\"00FF00\">").append(npc.getName()).append("</font> <font color=\"888888\">(").append(npc.getId()).append(")</font></td>");
-			sb.append("<td><font color=\"00CCFF\">").append(state.getArchetype()).append("</font></td>");
-			sb.append("<td>").append(hpPct).append("%</td>");
-			sb.append("<td><font color=\"LEVEL\">").append(state.getPosture()).append("</font></td>");
-			sb.append("<td><font color=\"CCCCCC\">").append(state.getLastTacticalAction()).append("</font></td>");
-			sb.append("<td align=center><button value=\"Assist\" action=\"bypass admin_fakeplayer assist ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td align=center><button value=\"Kite\" action=\"bypass admin_fakeplayer mode ").append(objId).append(" KITE_DEFENSIVE\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td align=center><button value=\"Aggro\" action=\"bypass admin_fakeplayer mode ").append(objId).append(" AGGRESSIVE\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td align=center><button value=\"Recall\" action=\"bypass admin_fakeplayer recall ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("</tr>");
+			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr>");
+			sb.append("<td width=130><font color=\"00FF00\">").append(npc.getName()).append("</font> <font color=\"888888\">(").append(npc.getId()).append(")</font></td>");
+			sb.append("<td width=95><font color=\"00CCFF\">").append(state.getArchetype()).append("</font></td>");
+			sb.append("<td width=80>").append(hpPct).append("%</td>");
+			sb.append("<td width=125><font color=\"LEVEL\">").append(state.getPosture()).append("</font></td>");
+			sb.append("<td width=238><font color=\"CCCCCC\">").append(state.getLastTacticalAction()).append("</font></td>");
+			sb.append("<td width=70 align=center><button value=\"Assist\" action=\"bypass admin_fakeplayer assist ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=70 align=center><button value=\"Kite\" action=\"bypass admin_fakeplayer mode ").append(objId).append(" KITE_DEFENSIVE\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=70 align=center><button value=\"Aggro\" action=\"bypass admin_fakeplayer mode ").append(objId).append(" AGGRESSIVE\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=70 align=center><button value=\"Recall\" action=\"bypass admin_fakeplayer recall ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("</tr></table>");
 			if (++shown >= 12)
 			{
 				break;
@@ -371,9 +370,8 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		}
 		if (shown == 0)
 		{
-			sb.append("<tr bgcolor=\"101016\"><td width=948 align=center><font color=\"888888\">No active FakePlayers spawned. Click [Summon Squad (3)] above to deploy a Tank + Healer + Archer squad!</font></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"888888\">No active FakePlayers spawned. Click [Summon Squad (3)] above to deploy a Tank + Healer + Archer squad!</font></td></tr></table>");
 		}
-		sb.append("</table>");
 		sb.append("</body></html>");
 		
 		final NpcHtmlMessage html = new NpcHtmlMessage();
