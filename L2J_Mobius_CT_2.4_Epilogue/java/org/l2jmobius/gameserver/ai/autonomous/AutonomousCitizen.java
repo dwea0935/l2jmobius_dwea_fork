@@ -16,7 +16,10 @@
  */
 package org.l2jmobius.gameserver.ai.autonomous;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
@@ -91,6 +94,7 @@ public final class AutonomousCitizen
 	private double _lastTrackedTargetHp = 0.0;
 	private long _lastPotionMs = 0L;
 	private long _lastManaPotionMs = 0L;
+	private int _lastSkillCheckLevel = 0;
 	private final Set<Integer> _blacklistedTargets = ConcurrentHashMap.newKeySet();
 	
 	public AutonomousCitizen(Player player)
@@ -251,12 +255,25 @@ public final class AutonomousCitizen
 			}
 		}
 		
-		// 2. Check Guild Master skill learning
+		// 2. Check Guild Master skill learning (only if at least one skill is affordable or citizen leveled up since last check)
 		final Collection<SkillLearn> learnable = SkillTreeData.getInstance().getAvailableSkills(_player, _player.getPlayerClass(), false, false);
 		if ((learnable != null) && !learnable.isEmpty())
 		{
-			_macroState = CitizenMacroState.GUILD_SKILL_LEARN;
-			return;
+			boolean hasAffordable = false;
+			final long currentSp = _player.getSp();
+			for (SkillLearn sl : learnable)
+			{
+				if (currentSp >= sl.getLevelUpSp())
+				{
+					hasAffordable = true;
+					break;
+				}
+			}
+			if (hasAffordable || (lvl > _lastSkillCheckLevel))
+			{
+				_macroState = CitizenMacroState.GUILD_SKILL_LEARN;
+				return;
+			}
 		}
 		
 		// 3. Upgrade gear up to B-Grade Luxury Shop ceiling & restock consumables
@@ -268,11 +285,15 @@ public final class AutonomousCitizen
 		// 5. Select level-appropriate hunting zone and travel
 		_currentZone = ProgressionKnowledgeGraph.selectHuntingZone(_player.getLevel(), _player.getRace());
 		_macroState = CitizenMacroState.TRAVEL_TO_HUNTING_ZONE;
-		_lastAction = "Town routine complete -> Heading to " + _currentZone.name();
+		if (!_lastAction.startsWith("Disappointed:"))
+		{
+			_lastAction = "Town routine complete -> Heading to " + _currentZone.name();
+		}
 	}
 	
 	private void tickGuildSkillLearn()
 	{
+		_lastSkillCheckLevel = _player.getLevel();
 		final Collection<SkillLearn> learnable = SkillTreeData.getInstance().getAvailableSkills(_player, _player.getPlayerClass(), false, false);
 		if ((learnable == null) || learnable.isEmpty())
 		{
@@ -280,8 +301,13 @@ public final class AutonomousCitizen
 			return;
 		}
 		
+		final List<SkillLearn> sortedSkills = new ArrayList<>(learnable);
+		sortedSkills.sort(Comparator.comparingInt(SkillLearn::getLevelUpSp));
+		
 		int learnedCount = 0;
-		for (SkillLearn sl : learnable)
+		String missingSkillName = null;
+		long missingSp = 0L;
+		for (SkillLearn sl : sortedSkills)
 		{
 			final Skill skill = SkillData.getInstance().getSkill(sl.getSkillId(), sl.getSkillLevel());
 			if (skill == null)
@@ -297,14 +323,27 @@ public final class AutonomousCitizen
 			if (_player.getSp() >= spCost)
 			{
 				_player.setSp(_player.getSp() - spCost);
+				_player.addSkill(skill, true);
+				learnedCount++;
 			}
-			_player.addSkill(skill, true);
-			learnedCount++;
+			else if (missingSkillName == null)
+			{
+				missingSkillName = skill.getName();
+				missingSp = spCost - _player.getSp();
+			}
 		}
 		
 		if (learnedCount > 0)
 		{
 			_player.sendSkillList();
+		}
+		
+		if (missingSkillName != null)
+		{
+			_lastAction = "Disappointed: Short " + missingSp + " SP for " + missingSkillName + " -> Farming SP";
+		}
+		else if (learnedCount > 0)
+		{
 			_lastAction = "Learned " + learnedCount + " Guild Master skill(s)";
 		}
 		_macroState = CitizenMacroState.TOWN_ROUTINE;

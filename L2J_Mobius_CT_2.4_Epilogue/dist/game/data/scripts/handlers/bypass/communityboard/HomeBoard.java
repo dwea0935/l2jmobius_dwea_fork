@@ -177,9 +177,19 @@ public class HomeBoard implements IParseBoardHandler
 			}
 			
 			final String fullBypass = command.replace("_bbsmultisell;", "");
-			final String[] buypassOptions = fullBypass.split(",");
-			final int multisellId = Integer.parseInt(buypassOptions[0]);
-			final String page = buypassOptions[1];
+			final String[] buypassOptions = fullBypass.contains(",") ? fullBypass.split(",") : fullBypass.split(";");
+			final int multisellId;
+			final String page;
+			if (Character.isDigit(buypassOptions[0].trim().charAt(0)))
+			{
+				multisellId = Integer.parseInt(buypassOptions[0].trim());
+				page = buypassOptions[1].trim();
+			}
+			else
+			{
+				page = buypassOptions[0].trim();
+				multisellId = Integer.parseInt(buypassOptions[1].trim());
+			}
 			returnHtml = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/Custom/" + page + ".html");
 			ThreadPool.schedule(() -> MultisellData.getInstance().separateAndSend(multisellId, player, null, false), 100);
 		}
@@ -192,9 +202,19 @@ public class HomeBoard implements IParseBoardHandler
 			}
 			
 			final String fullBypass = command.replace("_bbsexcmultisell;", "");
-			final String[] buypassOptions = fullBypass.split(",");
-			final int multisellId = Integer.parseInt(buypassOptions[0]);
-			final String page = buypassOptions[1];
+			final String[] buypassOptions = fullBypass.contains(",") ? fullBypass.split(",") : fullBypass.split(";");
+			final int multisellId;
+			final String page;
+			if (Character.isDigit(buypassOptions[0].trim().charAt(0)))
+			{
+				multisellId = Integer.parseInt(buypassOptions[0].trim());
+				page = buypassOptions[1].trim();
+			}
+			else
+			{
+				page = buypassOptions[0].trim();
+				multisellId = Integer.parseInt(buypassOptions[1].trim());
+			}
 			returnHtml = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/Custom/" + page + ".html");
 			ThreadPool.schedule(() -> MultisellData.getInstance().separateAndSend(multisellId, player, null, true), 100);
 		}
