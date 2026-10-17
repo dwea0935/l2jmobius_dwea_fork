@@ -41,6 +41,8 @@ import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.stats.Stat;
+import org.l2jmobius.gameserver.mechanics.stats.functions.FuncSet;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.enums.Movie;
@@ -64,6 +66,10 @@ public class HeartInfinityAttack extends Script
 		public int tumorCount = 0;
 		public boolean isBossAttacked = false;
 		public long startTime = 0;
+		public long tumorRespawnTime = 180 * 1000L;
+		public boolean conquestBegun = false;
+		public boolean conquestEnded = false;
+		public boolean houndBlocked = false;
 		protected ScheduledFuture<?> timerTask;
 		
 		public HIAWorld()
@@ -89,11 +95,6 @@ public class HeartInfinityAttack extends Script
 	private static final int EKIMUS = 29150;
 	private static final int HOUND = 29151;
 	private static final int COFFIN = 18710;
-	
-	private long tumorRespawnTime;
-	private boolean conquestBegun = false;
-	protected boolean conquestEnded = false;
-	private boolean houndBlocked = false;
 	
 	private static final int[] ENTER_TELEPORT =
 	{
@@ -237,8 +238,6 @@ public class HeartInfinityAttack extends Script
 		addKillId(ALIVETUMOR);
 		addKillId(EKIMUS);
 		addKillId(18711);
-		
-		tumorRespawnTime = 180 * 1000;
 	}
 	
 	private void teleportPlayer(Player player, int[] coords, int instanceId)
@@ -355,12 +354,12 @@ public class HeartInfinityAttack extends Script
 	
 	protected void notifyEchmusEntrance(HIAWorld world)
 	{
-		if (conquestBegun)
+		if (world.conquestBegun)
 		{
 			return;
 		}
 		
-		conquestBegun = true;
+		world.conquestBegun = true;
 		ThreadPool.schedule(() ->
 		{
 			playMovie(world, Movie.SC_ECHMUS_OPENING);
@@ -609,11 +608,11 @@ public class HeartInfinityAttack extends Script
 				npc.deleteMe();
 				world.deadTumor = addSpawn(DEADTUMOR, loc, world.getInstanceId());
 				world.deadTumors.add(world.deadTumor);
-				ThreadPool.schedule(new TumorRevival(world.deadTumor, world), tumorRespawnTime);
+				ThreadPool.schedule(new TumorRevival(world.deadTumor, world), world.tumorRespawnTime);
 				ThreadPool.schedule(new RegenerationCoffinSpawn(world.deadTumor, world), 20000);
 				if (world.tumorCount < 1)
 				{
-					houndBlocked = true;
+					world.houndBlocked = true;
 					for (Npc hound : world.hounds)
 					{
 						hound.setInvul(true);
@@ -638,7 +637,7 @@ public class HeartInfinityAttack extends Script
 			
 			if (npc.getId() == 18711)
 			{
-				tumorRespawnTime += 8 * 1000;
+				world.tumorRespawnTime += 8 * 1000;
 			}
 		}
 	}
@@ -650,14 +649,14 @@ public class HeartInfinityAttack extends Script
 		
 		public TumorRevival(Npc deadTumor, HIAWorld world)
 		{
-			_deadTumor = world.deadTumor;
+			_deadTumor = (deadTumor != null) ? deadTumor : world.deadTumor;
 			_world = world;
 		}
 		
 		@Override
 		public void run()
 		{
-			if (conquestEnded)
+			if (_world.conquestEnded || (_deadTumor == null))
 			{
 				return;
 			}
@@ -666,6 +665,7 @@ public class HeartInfinityAttack extends Script
 			alivetumor.setCurrentHp(alivetumor.getMaxHp() * .25);
 			notifyTumorRevival(_world);
 			_world.npcList.add(alivetumor);
+			_world.deadTumors.remove(_deadTumor);
 			_deadTumor.deleteMe();
 			final int tag = _world.getParameters().getInt("tag", -1);
 			_world.setParameter("tag", tag - 1);
@@ -690,7 +690,7 @@ public class HeartInfinityAttack extends Script
 				broadCastPacket(_world, new ExShowScreenMessage("You have failed... The instance will shortly expire.", 2, 8000));
 				if (_world != null)
 				{
-					conquestEnded = true;
+					_world.conquestEnded = true;
 					final Instance inst = InstanceManager.getInstance().getInstance(_world.getInstanceId());
 					if (inst != null)
 					{
@@ -722,9 +722,9 @@ public class HeartInfinityAttack extends Script
 	
 	protected void notifyTumorRevival(HIAWorld world)
 	{
-		if ((world.tumorCount == 1) && houndBlocked)
+		if ((world.tumorCount == 1) && world.houndBlocked)
 		{
-			houndBlocked = false;
+			world.houndBlocked = false;
 			for (Npc hound : world.hounds)
 			{
 				hound.setInvul(false);
@@ -747,14 +747,14 @@ public class HeartInfinityAttack extends Script
 		
 		public RegenerationCoffinSpawn(Npc deadTumor, HIAWorld world)
 		{
-			_deadTumor = world.deadTumor;
+			_deadTumor = (deadTumor != null) ? deadTumor : world.deadTumor;
 			_world = world;
 		}
 		
 		@Override
 		public void run()
 		{
-			if (conquestEnded)
+			if (_world.conquestEnded || (_deadTumor == null))
 			{
 				return;
 			}
@@ -769,17 +769,20 @@ public class HeartInfinityAttack extends Script
 	
 	private void handleEkimusStats(HIAWorld world)
 	{
-		// TODO FIXME
-		// double[] a = getStatMultiplier(world);
-		// world.ekimus.removeStatsOwner(this);
-		// world.ekimus.addStatFunc(new FuncGet(Stats.POWER_ATTACK, 0x30, this, world.ekimus.getTemplate().getBasePAtk() * 3));
-		// world.ekimus.addStatFunc(new FuncGet(Stats.MAGIC_ATTACK, 0x30, this, world.ekimus.getTemplate().getBaseMAtk() * 10));
-		// world.ekimus.addStatFunc(new FuncGet(Stats.POWER_DEFENCE, 0x30, this, world.ekimus.getTemplate().getBasePDef() * a[1]));
-		// world.ekimus.addStatFunc(new FuncGet(Stats.MAGIC_DEFENCE, 0x30, this, world.ekimus.getTemplate().getBaseMDef() * a[0]));
-		// world.ekimus.addStatFunc(new FuncGet(Stats.REGENERATE_HP_RATE, 0x30, this, world.ekimus.getTemplate().getBaseHpReg() * a[2]));
+		if (world.ekimus == null)
+		{
+			return;
+		}
+		
+		final double[] a = getStatMultiplier(world);
+		world.ekimus.removeStatsOwner(this);
+		world.ekimus.addStatFunc(new FuncSet(Stat.POWER_ATTACK, 0x30, this, world.ekimus.getTemplate().getBasePAtk() * 3, null));
+		world.ekimus.addStatFunc(new FuncSet(Stat.MAGIC_ATTACK, 0x30, this, world.ekimus.getTemplate().getBaseMAtk() * 10, null));
+		world.ekimus.addStatFunc(new FuncSet(Stat.POWER_DEFENCE, 0x30, this, world.ekimus.getTemplate().getBasePDef() * a[1], null));
+		world.ekimus.addStatFunc(new FuncSet(Stat.MAGIC_DEFENCE, 0x30, this, world.ekimus.getTemplate().getBaseMDef() * a[0], null));
+		world.ekimus.addStatFunc(new FuncSet(Stat.REGENERATE_HP_RATE, 0x30, this, world.ekimus.getTemplate().getBaseHpReg() * a[2], null));
 	}
 	
-	@SuppressWarnings("unused")
 	private double[] getStatMultiplier(HIAWorld world)
 	{
 		final double[] a = new double[3];
@@ -860,7 +863,7 @@ public class HeartInfinityAttack extends Script
 		}
 		
 		broadCastPacket(world, new ExShowScreenMessage("Congratulations! You have succeeded! The instance will shortly expire.", 2, 8000));
-		conquestEnded = true;
+		world.conquestEnded = true;
 		final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
 		if (inst != null)
 		{

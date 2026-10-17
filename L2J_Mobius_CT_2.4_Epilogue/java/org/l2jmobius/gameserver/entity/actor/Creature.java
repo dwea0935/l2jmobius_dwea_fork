@@ -5694,6 +5694,11 @@ public abstract class Creature extends WorldObject
 		
 		if ((weapon == null) || (weapon.getReuseDelay() == 0))
 		{
+			final int baseReuseDelay = _template.getBaseReuseDelay();
+			if (baseReuseDelay > 0)
+			{
+				return (int) ((baseReuseDelay * 333 * _stat.getWeaponReuseModifier(null)) / _stat.getPAtkSpd());
+			}
 			return 0;
 		}
 		

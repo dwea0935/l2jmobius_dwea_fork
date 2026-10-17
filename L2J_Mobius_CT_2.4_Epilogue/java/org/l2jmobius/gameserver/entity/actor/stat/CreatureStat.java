@@ -149,7 +149,7 @@ public class CreatureStat
 	 */
 	public int getAccuracy()
 	{
-		return (int) Math.round(calcStat(Stat.ACCURACY_COMBAT, 0, null, null));
+		return (int) Math.round(calcStat(Stat.ACCURACY_COMBAT, _creature.getTemplate().getBaseAccuracy(), null, null));
 	}
 	
 	public Creature getActiveChar()
@@ -207,7 +207,7 @@ public class CreatureStat
 	 */
 	public int getEvasionRate(Creature target)
 	{
-		int val = (int) Math.round(calcStat(Stat.EVASION_RATE, 0, target, null));
+		int val = (int) Math.round(calcStat(Stat.EVASION_RATE, _creature.getTemplate().getBaseEvasion(), target, null));
 		
 		// if (!_creature.isGM())
 		// {

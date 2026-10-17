@@ -58,6 +58,9 @@ public class CreatureTemplate extends ListenersContainer
 	private int _baseShldRate;
 	private int _baseCritRate;
 	private int _baseMCritRate;
+	private double _baseAccuracy;
+	private int _baseEvasion;
+	private int _baseReuseDelay;
 	
 	// SpecialStats
 	private int _baseBreath;
@@ -118,6 +121,9 @@ public class CreatureTemplate extends ListenersContainer
 		_baseShldRate = set.getInt("baseShldRate", 0);
 		_baseCritRate = set.getInt("baseCritRate", 4);
 		_baseMCritRate = set.getInt("baseMCritRate", 5);
+		_baseAccuracy = set.getDouble("accuracy", 0);
+		_baseEvasion = set.getInt("evasion", 0);
+		_baseReuseDelay = set.getInt("reuseDelay", 0);
 		
 		// SpecialStats
 		_baseBreath = set.getInt("baseBreath", 100);
@@ -644,5 +650,29 @@ public class CreatureTemplate extends ListenersContainer
 	public void setRace(Race race)
 	{
 		_race = race;
+	}
+	
+	/**
+	 * @return the base accuracy modifier from template
+	 */
+	public double getBaseAccuracy()
+	{
+		return _baseAccuracy;
+	}
+	
+	/**
+	 * @return the base evasion modifier from template
+	 */
+	public int getBaseEvasion()
+	{
+		return _baseEvasion;
+	}
+	
+	/**
+	 * @return the base attack reuse delay from template
+	 */
+	public int getBaseReuseDelay()
+	{
+		return _baseReuseDelay;
 	}
 }

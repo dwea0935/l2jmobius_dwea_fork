@@ -31,6 +31,7 @@ import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.entity.zone.ZoneType;
+import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.mechanics.script.InstanceScript;
 import org.l2jmobius.gameserver.mechanics.script.QuestSound;
@@ -266,14 +267,11 @@ public class PailakaInjuredDragon extends InstanceScript
 							addAttackDesire(npc, player, 1000);
 						}
 					}
-					else if (getRandom(100) < 50)
+					else if ((getRandom(100) < 50) && (npc.calculateDistance2D(player) <= 900) && GeoEngine.getInstance().canSeeTarget(npc, player))
 					{
-						// TODO: Implement check.
-						// if (npc.inMyTerritory(player)) {
 						final Npc latanSkillUse = addSpawn(LATANA_SKILL_USE, player, false, 0, false, player.getInstanceId());
 						latanSkillUse.getVariables().set("param1", npc);
 						latanSkillUse.getVariables().set("param2", player);
-						// }
 					}
 					else
 					{

@@ -344,8 +344,8 @@ public class TowerOfNaia extends Script
 	public TowerOfNaia()
 	{
 		addFirstTalkId(CONTROLLER);
-		addStartNpc(CONTROLLER, DWARVEN_GHOST);
-		addTalkId(CONTROLLER, DWARVEN_GHOST);
+		addStartNpc(CONTROLLER);
+		addTalkId(CONTROLLER);
 		addAttackId(LOCK);
 		addKillId(LOCK, MUTATED_ELPY, SPORE_BASIC);
 		addSpawnId(MUTATED_ELPY, SPORE_BASIC);

@@ -77,7 +77,19 @@ public class TerritoryWarSuperClass extends Quest
 	
 	public int getTerritoryIdForThisNPCId(int npcid)
 	{
-		return 0; // TODO: Implement this.
+		if ((npcid >= 36499) && (npcid <= 36507))
+		{
+			return npcid - 36418;
+		}
+		if ((npcid >= 36508) && (npcid <= 36561))
+		{
+			return 81 + ((npcid - 36508) / 6);
+		}
+		if ((npcid >= 36591) && (npcid <= 36599))
+		{
+			return npcid - 36510;
+		}
+		return 0;
 	}
 	
 	private void handleKillTheQuest(Player player)

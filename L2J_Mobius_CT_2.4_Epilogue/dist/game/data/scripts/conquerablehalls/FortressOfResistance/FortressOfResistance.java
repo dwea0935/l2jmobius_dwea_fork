@@ -49,7 +49,6 @@ public class FortressOfResistance extends ClanHallSiegeEngine
 	
 	private Spawn _nurka;
 	private final Map<Integer, Long> _damageToNurka = new HashMap<>();
-	private NpcHtmlMessage _messengerMsg;
 	
 	private FortressOfResistance()
 	{
@@ -57,7 +56,6 @@ public class FortressOfResistance extends ClanHallSiegeEngine
 		addFirstTalkId(MESSENGER);
 		addKillId(BLOODY_LORD_NURKA);
 		addAttackId(BLOODY_LORD_NURKA);
-		buildMessengerMessage();
 		
 		try
 		{
@@ -87,22 +85,17 @@ public class FortressOfResistance extends ClanHallSiegeEngine
 		}
 	}
 	
-	private void buildMessengerMessage()
-	{
-		final String html = HtmCache.getInstance().getHtm(null, "data/scripts/conquerablehalls/FortressOfResistance/partisan_ordery_brakel001.htm");
-		if (html != null)
-		{
-			// FIXME: We don't have an object id to put in here :(
-			_messengerMsg = new NpcHtmlMessage();
-			_messengerMsg.setHtml(html);
-			_messengerMsg.replace("%nextSiege%", TimeUtil.formatDate(_hall.getSiegeDate().getTime(), "yyyy-MM-dd HH:mm:ss"));
-		}
-	}
-	
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		player.sendPacket(_messengerMsg);
+		final String html = HtmCache.getInstance().getHtm(player, "data/scripts/conquerablehalls/FortressOfResistance/partisan_ordery_brakel001.htm");
+		if (html != null)
+		{
+			final NpcHtmlMessage msg = new NpcHtmlMessage(npc.getObjectId());
+			msg.setHtml(html);
+			msg.replace("%nextSiege%", TimeUtil.formatDate(_hall.getSiegeDate().getTime(), "yyyy-MM-dd HH:mm:ss"));
+			player.sendPacket(msg);
+		}
 		return null;
 	}
 	
@@ -169,7 +162,7 @@ public class FortressOfResistance extends ClanHallSiegeEngine
 	@Override
 	public void onSiegeEnds()
 	{
-		buildMessengerMessage();
+		_damageToNurka.clear();
 	}
 	
 	public static void main(String[] args)

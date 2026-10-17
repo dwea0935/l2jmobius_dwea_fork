@@ -1155,8 +1155,15 @@ public class TullyWorkshop extends Script
 				actor.clearAggroList();
 				actor.getAI().setIntentionActive();
 				actor.setTarget(victim);
-				actor.doCast(SkillData.getInstance().getSkill(4065, 11));
-				victim.setCurrentHp(victim.getCurrentHp() + (victim.getMaxHp() * 0.03)); // FIXME: not retail, it should be done after spell is finished, but it cannot be tracked now
+				final Skill healSkill = SkillData.getInstance().getSkill(4065, 11);
+				actor.doCast(healSkill);
+				ThreadPool.schedule(() ->
+				{
+					if (!actor.isDead() && !victim.isDead())
+					{
+						victim.setCurrentHp(victim.getCurrentHp() + (victim.getMaxHp() * 0.03));
+					}
+				}, healSkill.getHitTime());
 			}
 		}
 	}
