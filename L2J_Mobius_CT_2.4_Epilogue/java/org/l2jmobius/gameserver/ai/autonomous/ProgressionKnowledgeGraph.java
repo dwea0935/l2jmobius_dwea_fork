@@ -259,7 +259,8 @@ public final class ProgressionKnowledgeGraph
 		PlayerClass.DOOMBRINGER,
 		PlayerClass.MALE_SOUL_HOUND,
 		PlayerClass.FEMALE_SOUL_HOUND,
-		PlayerClass.TRICKSTER
+		PlayerClass.TRICKSTER,
+		PlayerClass.JUDICATOR
 	};
 	
 	public static PlayerClass selectRandomEndgameAspiration()
@@ -502,7 +503,7 @@ public final class ProgressionKnowledgeGraph
 		final int sagaId = switch (asp)
 		{
 			case "DOOMBRINGER" -> 67;
-			case "MALE_SOUL_HOUND" -> 68;
+			case "MALE_SOUL_HOUND", "JUDICATOR" -> 68;
 			case "FEMALE_SOUL_HOUND", "TRICKSTER" -> 69;
 			case "PHOENIX_KNIGHT" -> 70;
 			case "EVA_TEMPLAR" -> 71;

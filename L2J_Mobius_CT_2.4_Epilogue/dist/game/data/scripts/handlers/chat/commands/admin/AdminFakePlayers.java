@@ -628,26 +628,26 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		
 		// Top Sub-Tab Switcher Bar (948px)
 		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"161A22\"><tr>");
-		sb.append("<td width=316 align=center><button value=\"Citizens &amp; All 35 Classes (").append(citizens.size()).append(")\" action=\"bypass admin_fakeplayer tab citizens\" width=306 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=316 align=center><button value=\"Citizens &amp; All 36 Classes (").append(citizens.size()).append(")\" action=\"bypass admin_fakeplayer tab citizens\" width=306 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("<td width=316 align=center><button value=\"Tactical Squad &amp; Neural RL (").append(bots.size()).append(")\" action=\"bypass admin_fakeplayer tab squad\" width=306 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("<td width=316 align=center><button value=\"QA Anomaly Log (").append(anomalyCount).append(")\" action=\"bypass admin_fakeplayer qa_log\" width=306 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("</tr></table>");
 		
 		if (!isSquadTab)
 		{
-			// === SUB-VIEW 1: AUTONOMOUS CITIZENS (Lv 1 -> 85), ALL 35 ENDGAME ASPIRATIONS & ECONOMY ===
+			// === SUB-VIEW 1: AUTONOMOUS CITIZENS (Lv 1 -> 85), ALL 36 ENDGAME ASPIRATIONS & ECONOMY ===
 			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"1A241E\"><tr>");
-			sb.append("<td width=168><font color=\"00FF99\">Citizens (Lv1-&gt;85):</font> <font color=\"LEVEL\">").append(citizens.size()).append("</font></td>");
-			sb.append("<td width=156 align=center><button value=\"Spawn Lv1 Here\" action=\"bypass admin_fpc cs 1\" width=148 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=156 align=center><button value=\"Spawn 5x Here\" action=\"bypass admin_fpc cs 5\" width=148 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=156 align=center><button value=\"Recall Citizens\" action=\"bypass admin_fakeplayer citizen_recall\" width=148 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=156 align=center><button value=\"Raid Expedition\" action=\"bypass admin_fakeplayer citizen_raid\" width=148 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=156 align=center><button value=\"Despawn Citizens\" action=\"bypass admin_fpc cd ALL\" width=148 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=138><font color=\"00FF99\">Citizens:</font> <font color=\"LEVEL\">").append(citizens.size()).append("</font></td>");
+			sb.append("<td width=135><button value=\"+Random Class\" action=\"bypass admin_fpc cs RANDOM\" width=130 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=135><button value=\"Spawn Lv1 Here\" action=\"bypass admin_fpc cs 1\" width=130 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=135><button value=\"Spawn 5x Here\" action=\"bypass admin_fpc cs 5\" width=130 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=135><button value=\"Recall Citizens\" action=\"bypass admin_fakeplayer citizen_recall\" width=130 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=135><button value=\"Raid Expedition\" action=\"bypass admin_fakeplayer citizen_raid\" width=130 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=135><button value=\"Despawn Citizens\" action=\"bypass admin_fpc cd ALL\" width=130 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 			sb.append("</tr></table>");
 			
-			// Row 1 of 4: Random Aspiration + Human Fighter & Mystic (102px + 9 * 94px = 948px)
-			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr><td width=102><font color=\"00FFCC\">Rnd / Human</font></td>");
-			appendAspBtn(sb, "+Random (35)", "RANDOM");
+			// Row 1 of 4: Human Fighter & Mystic (102px + 9 * 94px = 948px)
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr><td width=102><font color=\"00FFCC\">Human (9)</font></td>");
 			appendAspBtn(sb, "+Duelist", "DUELIST");
 			appendAspBtn(sb, "+Dreadngt", "DREADNOUGHT");
 			appendAspBtn(sb, "+PhoenixKt", "PHOENIX_KNIGHT");
@@ -656,11 +656,11 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			appendAspBtn(sb, "+Adventurer", "ADVENTURER");
 			appendAspBtn(sb, "+Archmage", "ARCHMAGE");
 			appendAspBtn(sb, "+Soultaker", "SOULTAKER");
+			appendAspBtn(sb, "+ArcanaLd", "ARCANA_LORD");
 			sb.append("</tr></table>");
 			
-			// Row 2 of 4: Human Support/Summon + Elf Fighter & Mystic (102px + 9 * 94px = 948px)
+			// Row 2 of 4: Human Support + All 7 Elf Endgame Classes (102px + 9 * 94px = 948px)
 			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr><td width=102><font color=\"00FFCC\">Hum / Elf</font></td>");
-			appendAspBtn(sb, "+ArcanaLd", "ARCANA_LORD");
 			appendAspBtn(sb, "+Cardinal", "CARDINAL");
 			appendAspBtn(sb, "+Hierophnt", "HIEROPHANT");
 			appendAspBtn(sb, "+EvaTemplr", "EVA_TEMPLAR");
@@ -669,11 +669,11 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			appendAspBtn(sb, "+MoonSent", "MOONLIGHT_SENTINEL");
 			appendAspBtn(sb, "+MysticMs", "MYSTIC_MUSE");
 			appendAspBtn(sb, "+ElemMastr", "ELEMENTAL_MASTER");
+			appendAspBtn(sb, "+EvaSaint", "EVA_SAINT");
 			sb.append("</tr></table>");
 			
-			// Row 3 of 4: Elf Support + Dark Elf Fighter & Mystic + Orc Titan (102px + 9 * 94px = 948px)
-			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr><td width=102><font color=\"00FFCC\">Elf / DElf</font></td>");
-			appendAspBtn(sb, "+EvaSaint", "EVA_SAINT");
+			// Row 3 of 4: All 7 Dark Elf Endgame Classes + Orc Fighter (102px + 9 * 94px = 948px)
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr><td width=102><font color=\"00FFCC\">DElf / Orc</font></td>");
 			appendAspBtn(sb, "+ShilTempl", "SHILLIEN_TEMPLAR");
 			appendAspBtn(sb, "+SpecDancr", "SPECTRAL_DANCER");
 			appendAspBtn(sb, "+GhostHntr", "GHOST_HUNTER");
@@ -682,11 +682,11 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			appendAspBtn(sb, "+SpecMastr", "SPECTRAL_MASTER");
 			appendAspBtn(sb, "+ShilSaint", "SHILLIEN_SAINT");
 			appendAspBtn(sb, "+Titan", "TITAN");
+			appendAspBtn(sb, "+Khavatari", "GRAND_KHAVATARI");
 			sb.append("</tr></table>");
 			
-			// Row 4 of 4: Orc + Dwarf + Kamael (102px + 9 * 94px = 948px)
+			// Row 4 of 4: Orc Mystic + Dwarf + All 5 Kamael Endgame Classes (102px + 9 * 94px = 948px)
 			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr><td width=102><font color=\"00FFCC\">Orc/Dwf/Kam</font></td>");
-			appendAspBtn(sb, "+Khavatari", "GRAND_KHAVATARI");
 			appendAspBtn(sb, "+Dominator", "DOMINATOR");
 			appendAspBtn(sb, "+Doomcryer", "DOOMCRYER");
 			appendAspBtn(sb, "+Spoiler", "FORTUNE_SEEKER");
@@ -695,6 +695,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			appendAspBtn(sb, "+MSoulHnd", "MALE_SOUL_HOUND");
 			appendAspBtn(sb, "+FSoulHnd", "FEMALE_SOUL_HOUND");
 			appendAspBtn(sb, "+Trickster", "TRICKSTER");
+			appendAspBtn(sb, "+Judicator", "JUDICATOR");
 			sb.append("</tr></table>");
 			
 			// Citizen Economy & Wealth Progression Auditor Bar (948px)

@@ -292,6 +292,40 @@ public final class AutonomousCitizen
 			|| (pc == PlayerClass.DREADNOUGHT);
 	}
 	
+	public boolean isKamaelCitizen()
+	{
+		if ((_player.getRace() != null) && "KAMAEL".equals(_player.getRace().name()))
+		{
+			return true;
+		}
+		final PlayerClass pc = _player.getPlayerClass();
+		final String name = (pc != null) ? pc.name() : "";
+		final String asp = (_targetEndgameClass != null) ? _targetEndgameClass.name() : "";
+		return asp.equals("DOOMBRINGER") || asp.equals("TRICKSTER") || asp.equals("MALE_SOUL_HOUND") || asp.equals("FEMALE_SOUL_HOUND") || asp.equals("JUDICATOR")
+			|| name.contains("SOLDIER") || name.equals("TROOPER") || name.equals("WARDER")
+			|| name.equals("BERSERKER") || name.equals("DOOMBRINGER")
+			|| name.equals("ARBALESTER") || name.equals("TRICKSTER")
+			|| name.contains("SOUL_BREAKER") || name.contains("SOUL_HOUND")
+			|| name.equals("INSPECTOR") || name.equals("JUDICATOR");
+	}
+	
+	private boolean hasKamaelRangedOpenerReady(double dist)
+	{
+		if (!isKamaelCitizen() || (dist > 600.0))
+		{
+			return false;
+		}
+		// Rush Impact (793), Rush (493), Real Target (522), Steal Divinity (1440), Soul Vortex (1452), Oblivion (1476)
+		for (int openerId : new int[] { 793, 493, 522, 1440, 1452, 1476 })
+		{
+			if (getReadySkill(openerId) != null)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void addSpoilAndCraftPoints(int points)
 	{
 		_spoilAndCraftPoints += points;
@@ -1708,12 +1742,12 @@ public final class AutonomousCitizen
 			return;
 		}
 		
-		// 5. GeoEngine stuck detection while pursuing target (Archers use full 850-1100 bow range!)
+		// 5. GeoEngine stuck detection while pursuing target (Archers use full 850-1100 bow range; Kamael gap-closers/openers fire from <= 600u!)
 		final double dist = _player.calculateDistance2D(target);
 		final boolean isMage = (_player.getPlayerClass() != null) && _player.getPlayerClass().isMage();
 		final double engageRange = isArcherCitizen()
 			? Math.max(750.0, _player.getPhysicalAttackRange() - 40.0)
-			: (isMage ? 650.0 : 110.0);
+			: ((isMage || hasKamaelRangedOpenerReady(dist)) ? 650.0 : 110.0);
 		
 		if (dist > engageRange)
 		{
@@ -1973,6 +2007,13 @@ public final class AutonomousCitizen
 		if (isMage)
 		{
 			executeMageComboDoctrine(target);
+			return;
+		}
+		
+		// Doctrine 8: Kamael Hybrid & Soul-Harvesting Doctrines (Doombringer, Trickster, Soul Hound, Judicator)
+		if (isKamaelCitizen())
+		{
+			executeKamaelHybridDoctrine(target);
 			return;
 		}
 		
@@ -2984,6 +3025,286 @@ public final class AutonomousCitizen
 		_player.getAI().setIntentionAttack(target);
 		_lastDecisionReason = "Support Auto-Attack Weave";
 		_lastAction = "Support Attacking " + target.getName();
+	}
+	
+	/**
+	 * Doctrine 8 — Kamael Hybrid &amp; Soul-Harvesting Doctrines ({@code Doombringer}, {@code Trickster}, {@code Soul Hound}, {@code Judicator}):
+	 * <ul>
+	 *   <li><b>All Kamael — Soul Harvesting:</b> When {@code getChargedSouls() < 5} and HP &gt; 50%, casts {@code Life to Soul (502)} or {@code Soul Rage (939)} to charge up to 5+ Souls for {@code +20%..+30%} skill damage empowerment.</li>
+	 *   <li><b>Berserker -&gt; Doombringer ({@code DOOMBRINGER}):</b> Maintains {@code True Berserker (500)} / {@code Courage (492)} / {@code Furious Soul (494)} / {@code Hard March (498)}, opens from range with {@code Rush Impact (793)} / {@code Rush (493)} gap-closer stun, strips enemy weapon with {@code Disarm (485)} / {@code Mass Disarm (794)}, and releases Soul-empowered {@code Enuma Elish (526)}, {@code Blade Rush (495)}, {@code Crush of Pain (497)}, and {@code Slashing Blade (496)}.</li>
+	 *   <li><b>Arbalester -&gt; Trickster ({@code TRICKSTER}):</b> Opens with {@code Real Target (522)} ({@code -30% Bow / -40% Crossbow Res}), maintains {@code Sharpshooting (521)} / {@code Prahnah (524)}, kites melee threats via {@code Warp (628)} / {@code Decoy (525)} / {@code Flash Trap (517)} / {@code Binding Trap (515)}, and weaves Crossbow auto-attacks with {@code Deadly Roulette (510)} (low HP), {@code Wild Shot (790)}, and {@code Twin Shot (507)}.</li>
+	 *   <li><b>Soul Breaker -&gt; Soul Hound ({@code MALE_SOUL_HOUND} / {@code FEMALE_SOUL_HOUND}):</b> Maintains {@code Pride of Kamael (1444)}, prioritizes {@code Steal Divinity (1440)} to steal up to 7 buffs directly from target, controls close range with {@code Blink (1448)} / {@code Lightning Shock (791)} / {@code Shadow Bind (1445)} / {@code Voice Bind (1446)}, and combos {@code Soul Vortex (1452)} -&gt; {@code Soul Vortex Extinction (1455)} + {@code Checkmate (512)} / {@code Leopold (1469)}.</li>
+	 *   <li><b>Inspector -&gt; Judicator ({@code JUDICATOR}):</b> Party Force-Multiplier prioritizing {@code Appetite for Destruction (782)} / {@code Magic Impulse (1479)} / {@code Vampiric Impulse (783)} / {@code Protection Instinct (781)} / {@code Soul Harmony (1480)} and debuff marks {@code Oblivion (1476)} / {@code Weak Constitution (1477)} / {@code Thin Skin (1478)}.</li>
+	 * </ul>
+	 */
+	private void executeKamaelHybridDoctrine(Creature target)
+	{
+		final PlayerClass pc = _player.getPlayerClass();
+		final String name = (pc != null) ? pc.name() : "";
+		final String asp = (_targetEndgameClass != null) ? _targetEndgameClass.name() : "";
+		final double dist = _player.calculateDistance2D(target);
+		final double hpRatio = _player.getCurrentHp() / Math.max(1.0, _player.getMaxHp());
+		
+		// 0. Universal Kamael Soul Harvesting: Life to Soul (502) / Soul Rage (939) when ChargedSouls < 5 and HP > 50%
+		if ((_player.getChargedSouls() < 5) && (hpRatio > 0.50))
+		{
+			final Skill lifeToSoul = getReadySkill(502);
+			if (lifeToSoul != null)
+			{
+				_player.increaseSouls(5);
+				castTacticalSkill(lifeToSoul, _player, false, "Kamael Soul Harvest: Life to Soul (502) [Souls=" + _player.getChargedSouls() + "]");
+				return;
+			}
+			final Skill soulRage = getReadySkill(939);
+			if (soulRage != null)
+			{
+				_player.increaseSouls(3);
+				castTacticalSkill(soulRage, target, true, "Kamael Soul Harvest: Soul Rage (939) [Souls=" + _player.getChargedSouls() + "]");
+				return;
+			}
+		}
+		
+		// Branch 1: Arbalester -> Trickster (Crossbow Real Target + Trap/Warp Kiting + Burst)
+		if (asp.equals("TRICKSTER") || name.equals("ARBALESTER") || name.equals("TRICKSTER") || name.equals("WARDER"))
+		{
+			// Always open with Real Target (522) (-30% Bow / -40% Crossbow resistance!)
+			if (!target.isAffectedBySkill(522))
+			{
+				final Skill realTarget = getReadySkill(522);
+				if (realTarget != null)
+				{
+					castTacticalSkill(realTarget, target, true, "Trickster Opener: Real Target (522) (-40% Crossbow Res!)");
+					return;
+				}
+			}
+			
+			// Self buffs: Sharpshooting (521), Prahnah (524), Fast Shot (504), Soul Barrier (1514)
+			for (int buffId : new int[] { 521, 524, 504, 1514 })
+			{
+				if (!_player.isAffectedBySkill(buffId))
+				{
+					final Skill buff = getReadySkill(buffId);
+					if (buff != null)
+					{
+						castTacticalSkill(buff, _player, false, "Trickster Buff: " + buff.getName());
+						return;
+					}
+				}
+			}
+			
+			// Melee Escape & Trap Kiting when enemy closes within 160u: Warp (628), Decoy (525), Flash Trap (517), Binding Trap (515), Slow Trap (516)
+			if (dist < 160.0)
+			{
+				for (int kiteId : new int[] { 628, 525, 517, 515, 516 })
+				{
+					final Skill kiteSkill = getReadySkill(kiteId);
+					if (kiteSkill != null)
+					{
+						castTacticalSkill(kiteSkill, _player, false, "Trickster Trap/Warp Kite: " + kiteSkill.getName());
+						return;
+					}
+				}
+			}
+			
+			// Low-HP Lethal Finisher: Deadly Roulette (510) when HP < 35%
+			if (hpRatio < 0.35)
+			{
+				final Skill roulette = getReadySkill(510);
+				if (roulette != null)
+				{
+					castTacticalSkill(roulette, target, true, "Trickster Lethal Gamble: Deadly Roulette (510)!");
+					return;
+				}
+			}
+			
+			// Crossbow Burst Weave: Wild Shot (790), Twin Shot (507), Rising Shot (508), Bleeding Shot (509), Temptation (511)
+			for (int shotId : new int[] { 790, 507, 508, 509, 511 })
+			{
+				final Skill shot = getReadySkill(shotId);
+				if ((shot != null) && (ThreadLocalRandom.current().nextInt(100) < 55))
+				{
+					castTacticalSkill(shot, target, true, "Trickster Crossbow Burst: " + shot.getName());
+					return;
+				}
+			}
+			
+			_player.getAI().setIntentionAttack(target);
+			_lastDecisionReason = "Trickster Crossbow Auto-Attack Weave [RealTarget=" + target.isAffectedBySkill(522) + "]";
+			_lastAction = "Crossbow Firing -> " + target.getName();
+			return;
+		}
+		
+		// Branch 2: Soul Breaker -> Soul Hound (Steal Divinity + Blink/Lightning Shock Paralyze + Soul Vortex Extinction Combo)
+		if (asp.equals("MALE_SOUL_HOUND") || asp.equals("FEMALE_SOUL_HOUND") || name.contains("SOUL_BREAKER") || name.contains("SOUL_HOUND"))
+		{
+			// Maintain Pride of Kamael (1444), Soul To Empower (1432), Dark Armor (1433), Lightning Barrier (1515)
+			for (int buffId : new int[] { 1444, 1515, 1432, 1433 })
+			{
+				if (!_player.isAffectedBySkill(buffId))
+				{
+					final Skill buff = getReadySkill(buffId);
+					if (buff != null)
+					{
+						castTacticalSkill(buff, _player, false, "Soul Hound Buff: " + buff.getName());
+						return;
+					}
+				}
+			}
+			
+			// Priority 1: Steal Divinity (1440) — Steals up to 7 buffs directly from target!
+			final Skill stealDivinity = getReadySkill(1440);
+			if (stealDivinity != null)
+			{
+				castTacticalSkill(stealDivinity, target, true, "Soul Hound Buff Theft: Steal Divinity (1440)!");
+				return;
+			}
+			
+			// Priority 2: Detonate active Soul Vortex (1452) with Soul Vortex Extinction (1455)
+			if (target.isAffectedBySkill(1452))
+			{
+				final Skill extinction = getReadySkill(1455);
+				if (extinction != null)
+				{
+					castTacticalSkill(extinction, target, true, "Soul Hound Combo [2/2]: Soul Vortex Extinction (1455)!");
+					return;
+				}
+			}
+			else
+			{
+				final Skill soulVortex = getReadySkill(1452);
+				if (soulVortex != null)
+				{
+					castTacticalSkill(soulVortex, target, true, "Soul Hound Combo [1/2]: Soul Vortex (1452)");
+					return;
+				}
+			}
+			
+			// Priority 3: Close-Range Paralyze / Stun / Bind Control: Blink (1448), Lightning Shock (791), Shadow Bind (1445), Voice Bind (1446)
+			if (dist <= 220.0)
+			{
+				for (int ccId : new int[] { 791, 1448, 1445, 1446 })
+				{
+					if (!target.isAffectedBySkill(ccId))
+					{
+						final Skill cc = getReadySkill(ccId);
+						if (cc != null)
+						{
+							castTacticalSkill(cc, (ccId == 1448) ? _player : target, true, "Soul Hound Control: " + cc.getName());
+							return;
+						}
+					}
+				}
+			}
+			
+			// Priority 4: Checkmate (512), Leopold (1469), Curse of Divinity (1439), Shining Edge (1436), Annihilation Circle (1443), Soul Strike (1435), Dark Flame (1437)
+			for (int strikeId : new int[] { 512, 1469, 1439, 1436, 1443, 1435, 1437, 486 })
+			{
+				final Skill strike = getReadySkill(strikeId);
+				if (strike != null)
+				{
+					castTacticalSkill(strike, target, true, "Soul Hound Hybrid Strike: " + strike.getName());
+					return;
+				}
+			}
+			
+			_player.getAI().setIntentionAttack(target);
+			_lastDecisionReason = "Soul Hound Rapier Auto-Attack Weave";
+			_lastAction = "Rapier Attacking " + target.getName();
+			return;
+		}
+		
+		// Branch 3: Inspector -> Judicator (Party Impulse Force-Multiplier + Oblivion/Thin Skin Debuff Marks)
+		if (asp.equals("JUDICATOR") || name.equals("INSPECTOR") || name.equals("JUDICATOR"))
+		{
+			// Party / Self Force-Multiplier Impulses: Appetite for Destruction (782), Magic Impulse (1479), Vampiric Impulse (783), Protection Instinct (781), Soul Harmony (1480), Restoration Impact (1481), Restoration (1475)
+			for (int impulseId : new int[] { 782, 1479, 783, 781, 1475, 1481, 1480 })
+			{
+				if ((impulseId == 1480) && (hpRatio > 0.35))
+				{
+					continue;
+				}
+				if (!_player.isAffectedBySkill(impulseId))
+				{
+					final Skill impulse = getReadySkill(impulseId);
+					if (impulse != null)
+					{
+						castTacticalSkill(impulse, _player, false, "Judicator Party Impulse: " + impulse.getName());
+						return;
+					}
+				}
+			}
+			
+			// Target Debuff Marks: Oblivion (1476), Weak Constitution (1477), Thin Skin (1478), Enervation (1473), Spite (1474)
+			for (int markId : new int[] { 1476, 1477, 1478, 1473, 1474 })
+			{
+				if (!target.isAffectedBySkill(markId))
+				{
+					final Skill mark = getReadySkill(markId);
+					if (mark != null)
+					{
+						castTacticalSkill(mark, target, true, "Judicator Debuff Mark: " + mark.getName());
+						return;
+					}
+				}
+			}
+		}
+		
+		// Branch 4: Berserker -> Doombringer (Rush Impact Gap-Closer + Disarm + Soul-Empowered Enuma Elish / Blade Rush)
+		for (int zerkBuffId : new int[] { 500, 492, 494, 498, 499 }) // True Berserker, Courage, Furious Soul, Hard March, Fortitude
+		{
+			if (!_player.isAffectedBySkill(zerkBuffId))
+			{
+				final Skill zBuff = getReadySkill(zerkBuffId);
+				if (zBuff != null)
+				{
+					castTacticalSkill(zBuff, _player, false, "Doombringer Stance: " + zBuff.getName());
+					return;
+				}
+			}
+		}
+		
+		// Gap-Closer Stun when distance > 140: Rush Impact (793) or Rush (493)
+		if (dist > 140.0)
+		{
+			for (int rushId : new int[] { 793, 493 })
+			{
+				final Skill rush = getReadySkill(rushId);
+				if (rush != null)
+				{
+					castTacticalSkill(rush, target, true, "Doombringer Gap-Closer: " + rush.getName() + " (" + (int) dist + "u)!");
+					return;
+				}
+			}
+		}
+		
+		// Melee Weapon Strip: Disarm (485) / Mass Disarm (794)
+		for (int disarmId : new int[] { 485, 794 })
+		{
+			if (!target.isAffectedBySkill(disarmId))
+			{
+				final Skill disarm = getReadySkill(disarmId);
+				if (disarm != null)
+				{
+					castTacticalSkill(disarm, target, true, "Doombringer Weapon Strip: " + disarm.getName() + "!");
+					return;
+				}
+			}
+		}
+		
+		// Soul-Empowered Finisher Burst: Enuma Elish (526), Blade Rush (495), Crush of Pain (497), Slashing Blade (496), Contagion (501), Double Thrust (486)
+		for (int burstId : new int[] { 526, 495, 497, 496, 501, 486 })
+		{
+			final Skill burst = getReadySkill(burstId);
+			if (burst != null)
+			{
+				castTacticalSkill(burst, target, true, "Doombringer Soul Burst [Souls=" + _player.getChargedSouls() + "]: " + burst.getName());
+				return;
+			}
+		}
+		
+		_player.getAI().setIntentionAttack(target);
+		_lastDecisionReason = "Doombringer Ancient Sword Auto-Attack Weave [Souls=" + _player.getChargedSouls() + "]";
+		_lastAction = "Ancient Sword Attacking " + target.getName();
 	}
 	
 	private Skill getReadySkill(int skillId)
