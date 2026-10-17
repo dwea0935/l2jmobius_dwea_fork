@@ -72,10 +72,12 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 	
 	public void setHtml(String html)
 	{
-		if (html.length() > 17200)
+		// Engine.dll FSocket::packetBuf ([esi+0x850..esi+0x8850]) is 0x8000 (32,768) bytes (= 16,377 UTF-16 chars max).
+		// Cap at 16,200 UTF-16 chars (32,413 wire bytes) so NpcHtmlMessage can never overflow packetBuf or corrupt hSemaphore ([esi+0x8958]).
+		if (html.length() > 16200)
 		{
-			PacketLogger.warning(getClass().getSimpleName() + ": Html is too long (" + html.length() + " chars)! Truncating safely to prevent client crash.");
-			String prefix = html.substring(0, 17140);
+			PacketLogger.warning(getClass().getSimpleName() + ": Html is too long (" + html.length() + " chars > 16200 FSocket::packetBuf limit)! Truncating safely to prevent client crash.");
+			String prefix = html.substring(0, 16100);
 			final int lastTableClose = prefix.lastIndexOf("</table>");
 			if (lastTableClose > 0)
 			{
