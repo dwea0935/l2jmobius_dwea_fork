@@ -633,6 +633,39 @@ def patch_interface_u():
         95,
     )
 
+    # 15. Shortcut.HandleShortcutKeyEvent (#14343, off=3154149, sz=1079, code_len=1048, mem_size=1189):
+    #     When pressing Alt+G (Shortcut Name="GMWnd"), original code only checked if (!IsBuilderPC()) return;
+    #     in the first switch(WNDName) and had no case in the second switch(WNDName), falling through to
+    #     Default: WNDNameHandle.ShowWindow(); WNDNameHandle.SetFocus(); without firing EV_ShowGMWnd (2280).
+    #     We replace the first switch(WNDName) (d=120..294, m=0x009E..0x0150) with:
+    #       WNDName = WndName;
+    #       WNDNameHandle = GetWindowHandle(WndName);
+    #       switch(WNDName) {
+    #         case "GMWnd":
+    #           if (!IsBuilderPC()) return;
+    #           ExecuteEvent(EV_ShowGMWnd);
+    #           return;
+    #         default:
+    #           break;
+    #       }
+    orig_shortcut = bytes(data[3154149 + 24 : 3154149 + 1079 - 7])
+    assert len(orig_shortcut) == 1048, f"Unexpected Shortcut.HandleShortcutKeyEvent code_len={len(orig_shortcut)}"
+    sc_part1 = bytes.fromhex("0f004123004123") + (b"\x0b" * 13)  # 20d, 24m (m=0x0072..0x008A): WNDName = WndName;
+    sc_part2 = orig_shortcut[110:120]                              # 10d, 17m (m=0x008A..0x009B): WNDNameHandle = GetWindowHandle(WndName);
+    sc_part3 = (
+        bytes.fromhex("0500004e26")                                   # switch (WNDName) (5d, 7m -> 0x009b..0x00a2)
+        + b"\x0a" + struct.pack("<H", 0x00C6) + b"\x1fGMWnd\x00"      # case "GMWnd":    (10d, 10m -> 0x00a2..0x00ac)
+        + b"\x07" + struct.pack("<H", 0x00B9) + bytes.fromhex("811b77031616")  # if (!IsBuilderPC()) (9d, 11m -> 0x00ac..0x00b7)
+        + bytes.fromhex("040b")                                       #   return;        (2d, 2m -> 0x00b7..0x00b9)
+        + bytes.fromhex("1b221de808000016")                           # ExecuteEvent(EV_ShowGMWnd); (8d, 11m -> 0x00b9..0x00c4)
+        + bytes.fromhex("040b")                                       # return;          (2d, 2m -> 0x00c4..0x00c6)
+        + bytes.fromhex("0affff")                                     # default:         (3d, 3m -> 0x00c6..0x00c9)
+        + (b"\x0b" * 135)                                             # 135x EX_Nothing  (135d, 135m -> 0x00c9..0x0150)
+    )
+    patched_shortcut = orig_shortcut[:90] + sc_part1 + sc_part2 + sc_part3 + orig_shortcut[294:]
+    assert len(patched_shortcut) == 1048, f"Patched Shortcut.HandleShortcutKeyEvent len={len(patched_shortcut)} != 1048"
+    patch_func_in_place(data, 3154149, 1079, patched_shortcut, 1189)
+
     out_raw = hdr + bytes(b ^ 0xAC for b in data)
     assert len(out_raw) == len(raw) == 4061011, "interface.u file size changed!"
     with open(out_path, "wb") as f:
