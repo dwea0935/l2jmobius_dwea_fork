@@ -371,7 +371,10 @@
 	<admin command="msg" description="Displays a system message based on its ID." accessLevel="100" />
 
 	<!-- ADMIN FAKE PLAYERS -->
-	<admin command="fakechat" description="Send a fake chat message appearing to come from a fake player." accessLevel="100" />
+	<admin command="fakechat" description="Send a fake chat message appearing to come from a fake player." accessLevel="70" />
+	<admin command="fakeplayer" description="Open the FakePlayer Tactical Utility-AI &amp; Virtual-Thread LLM Control Center." accessLevel="70" />
+	<admin command="fakeplayers" description="Open the FakePlayer Tactical Utility-AI &amp; Virtual-Thread LLM Control Center." accessLevel="70" />
+	<admin command="fpc" description="Alias for FakePlayer Tactical Utility-AI &amp; Virtual-Thread LLM Control Center." accessLevel="70" />
 
 	<!-- ADMIN ONLINE -->
 	<admin command="online" description="Display a list of all currently online players." accessLevel="100" />

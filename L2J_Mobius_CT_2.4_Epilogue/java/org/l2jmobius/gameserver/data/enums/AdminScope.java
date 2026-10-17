@@ -310,7 +310,7 @@ public enum AdminScope
 				|| s.startsWith("geo")
 				|| s.equals("en") || s.equals("dn") || s.equals("es") || s.equals("ds")
 				|| s.equals("ee") || s.equals("de") || s.equals("ew") || s.equals("dw") || s.equals("ge")
-				|| s.contains("olymp") || s.startsWith("fakeplayer")
+				|| s.contains("olymp") || s.startsWith("fakeplayer") || s.equals("fpc")
 				|| s.equals("exceptions") -> SERVER_ADMIN;
 			
 			// 13. Master / Security Operations (changelvl, setaccess, forge*)

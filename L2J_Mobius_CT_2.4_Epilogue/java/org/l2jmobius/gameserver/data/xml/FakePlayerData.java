@@ -20,6 +20,7 @@
  */
 package org.l2jmobius.gameserver.data.xml;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -67,11 +68,38 @@ public class FakePlayerData
 	/**
 	 * Retrieves the NPC ID associated with the given fake player name.
 	 * @param name the name of the fake player
-	 * @return the NPC ID corresponding to the given name, or {@code null} if no match is found
+	 * @return the NPC ID corresponding to the given name, or {@code 0} if no match is found
 	 */
 	public int getNpcIdByName(String name)
 	{
-		return _fakePlayerIds.get(name);
+		if (name == null)
+		{
+			return 0;
+		}
+		final Integer direct = _fakePlayerIds.get(name);
+		if (direct != null)
+		{
+			return direct.intValue();
+		}
+		final String proper = getProperName(name);
+		if (proper != null)
+		{
+			final Integer mapped = _fakePlayerIds.get(proper);
+			if (mapped != null)
+			{
+				return mapped.intValue();
+			}
+		}
+		return 0;
+	}
+	
+	/**
+	 * Returns an unmodifiable view of all registered fake player name -> NPC ID mappings.
+	 * @return map of fake player names to NPC IDs
+	 */
+	public Map<String, Integer> getFakePlayerIds()
+	{
+		return Collections.unmodifiableMap(_fakePlayerIds);
 	}
 	
 	/**

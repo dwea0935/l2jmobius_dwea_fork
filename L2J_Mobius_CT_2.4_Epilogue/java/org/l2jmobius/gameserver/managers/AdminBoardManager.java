@@ -1329,6 +1329,7 @@ public final class AdminBoardManager
 		{
 			appendWorkspaceRow(sb, "Events & Arena", "00FF00",
 				new String[]{"Event Manager", "admin_event_menu"},
+				new String[]{"FakePlayer AI Control", "admin_fakeplayer menu"},
 				new String[]{"Fence Builder", "admin_listfence"},
 				new String[]{"Open Target Door", "admin_open"},
 				new String[]{"Close Target Door", "admin_close"});
@@ -1451,7 +1452,7 @@ public final class AdminBoardManager
 				new String[]{"Shutdown / Restart", "admin_server_shutdown"},
 				new String[]{"LoginServer Menu", "admin_server_login"},
 				new String[]{"Save Olympiad", "admin_saveolymp"},
-				new String[]{"Fake Players Menu", "admin_fakeplayers"});
+				new String[]{"FakePlayer AI Control", "admin_fakeplayer menu"});
 		}
 		
 		if (access.hasScope(AdminScope.MASTER_CONTROL))

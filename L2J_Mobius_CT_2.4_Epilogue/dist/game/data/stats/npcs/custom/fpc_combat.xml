@@ -41,4 +41,168 @@
 			<skill id="8" level="7" /> <!-- Sonic Focus -->
 		</skillList>
 	</npc>
+	<!-- Sagittarius (Archer Archetype) -->
+	<npc id="81002" level="85" type="Monster" name="Lyra" title="Sagittarius">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="88" int="39" dex="58" wit="39" con="82" men="38">
+			<vitals hp="19400" hpRegen="10.8" mp="3681" mpRegen="3.0" />
+			<attack physical="6250" magical="1284" random="10" critical="180" accuracy="215" attackSpeed="440" reuseDelay="1500" type="BOW" range="500" distance="80" width="120" />
+			<defence physical="3100" magical="2307" evasion="168" />
+			<attribute>
+				<defence fire="250" water="250" wind="250" earth="250" holy="250" dark="250" />
+				<attack type="WIND" value="330" />
+			</attribute>
+			<speed>
+				<walk ground="88" />
+				<run ground="148" />
+			</speed>
+		</stats>
+		<status talkable="false" attackable="true" />
+		<fakePlayer classId="92" hair="1" hairColor="1" face="1" equipRHand="7575" equipHead="6382" equipGloves="6380" equipChest="6379" equipFeet="6381" />
+		<ai type="ARCHER" clanHelpRange="1000" aggroRange="1000" isAggressive="true">
+			<clanList>
+				<clan>FAKE_PLAYER</clan>
+			</clanList>
+		</ai>
+		<collision>
+			<radius normal="8" />
+			<height normal="23.5" />
+		</collision>
+		<skillList>
+			<skill id="101" level="40" /> <!-- Stun Shot -->
+			<skill id="19" level="37" /> <!-- Double Shot -->
+		</skillList>
+	</npc>
+	<!-- Cardinal (Healer Archetype) -->
+	<npc id="81003" level="85" type="Monster" name="Seraphina" title="Cardinal">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="40" int="79" dex="36" wit="84" con="53" men="80">
+			<vitals hp="17800" hpRegen="12.0" mp="6400" mpRegen="8.5" />
+			<attack physical="1950" magical="4850" random="20" critical="44" accuracy="195" attackSpeed="390" type="BLUNT" range="40" distance="80" width="120" />
+			<defence physical="2980" magical="3150" evasion="148" shield="320" shieldRate="35" />
+			<attribute>
+				<defence fire="250" water="250" wind="250" earth="250" holy="300" dark="250" />
+				<attack type="HOLY" value="330" />
+			</attribute>
+			<speed>
+				<walk ground="82" />
+				<run ground="136" />
+			</speed>
+		</stats>
+		<status talkable="false" attackable="true" />
+		<fakePlayer classId="97" hair="2" hairColor="0" face="0" equipRHand="6579" equipLHand="6377" equipHead="2418" equipGloves="5776" equipChest="2407" equipFeet="5788" />
+		<ai type="HEALER" clanHelpRange="1000" aggroRange="1000" isAggressive="false">
+			<clanList>
+				<clan>FAKE_PLAYER</clan>
+			</clanList>
+		</ai>
+		<collision>
+			<radius normal="8" />
+			<height normal="22.5" />
+		</collision>
+		<skillList>
+			<skill id="1218" level="33" /> <!-- Greater Battle Heal -->
+			<skill id="1217" level="33" /> <!-- Greater Heal -->
+		</skillList>
+	</npc>
+	<!-- Phoenix Knight (Tank Archetype) -->
+	<npc id="81004" level="85" type="Monster" name="Aegis" title="Phoenix Knight">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="86" int="39" dex="54" wit="39" con="92" men="44">
+			<vitals hp="28500" hpRegen="15.5" mp="3850" mpRegen="3.5" />
+			<attack physical="3890" magical="1284" random="10" critical="88" accuracy="208" attackSpeed="485" type="SWORD" range="40" distance="80" width="120" />
+			<defence physical="4650" magical="2890" evasion="150" shield="480" shieldRate="60" />
+			<attribute>
+				<defence fire="280" water="280" wind="280" earth="280" holy="300" dark="280" />
+				<attack type="HOLY" value="330" />
+			</attribute>
+			<speed>
+				<walk ground="82" />
+				<run ground="134" />
+			</speed>
+		</stats>
+		<status talkable="false" attackable="true" />
+		<fakePlayer classId="90" hair="0" hairColor="2" face="1" equipRHand="6364" equipLHand="6377" equipHead="6378" equipGloves="6375" equipChest="6373" equipLegs="6374" equipFeet="6376" />
+		<ai type="FIGHTER" clanHelpRange="1000" aggroRange="1000" isAggressive="true">
+			<clanList>
+				<clan>FAKE_PLAYER</clan>
+			</clanList>
+		</ai>
+		<collision>
+			<radius normal="9" />
+			<height normal="23.5" />
+		</collision>
+		<skillList>
+			<skill id="28" level="49" /> <!-- Aggression -->
+			<skill id="92" level="52" /> <!-- Shield Stun -->
+		</skillList>
+	</npc>
+	<!-- Adventurer (Dagger Archetype) -->
+	<npc id="81005" level="85" type="Monster" name="Vex" title="Adventurer">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="88" int="39" dex="61" wit="39" con="82" men="38">
+			<vitals hp="19800" hpRegen="10.8" mp="3681" mpRegen="3.0" />
+			<attack physical="4120" magical="1284" random="5" critical="210" accuracy="212" attackSpeed="565" type="DAGGER" range="40" distance="80" width="120" />
+			<defence physical="3250" magical="2350" evasion="182" />
+			<attribute>
+				<defence fire="250" water="250" wind="250" earth="250" holy="250" dark="250" />
+				<attack type="DARK" value="330" />
+			</attribute>
+			<speed>
+				<walk ground="90" />
+				<run ground="154" />
+			</speed>
+		</stats>
+		<status talkable="false" attackable="true" />
+		<fakePlayer classId="93" hair="3" hairColor="0" face="2" equipRHand="6367" equipHead="6382" equipGloves="6380" equipChest="6379" equipFeet="6381" />
+		<ai type="FIGHTER" clanHelpRange="1000" aggroRange="1000" isAggressive="true">
+			<clanList>
+				<clan>FAKE_PLAYER</clan>
+			</clanList>
+		</ai>
+		<collision>
+			<radius normal="9" />
+			<height normal="23" />
+		</collision>
+		<skillList>
+			<skill id="263" level="37" /> <!-- Deadly Blow -->
+			<skill id="30" level="37" /> <!-- Backstab -->
+		</skillList>
+	</npc>
+	<!-- Archmage (Mage Archetype) -->
+	<npc id="81006" level="85" type="Monster" name="Zephyr" title="Archmage">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="38" int="88" dex="36" wit="84" con="53" men="78">
+			<vitals hp="16900" hpRegen="10.8" mp="6200" mpRegen="8.0" />
+			<attack physical="1850" magical="7250" random="20" critical="80" accuracy="198" attackSpeed="380" type="BLUNT" range="500" distance="80" width="120" />
+			<defence physical="2850" magical="3250" evasion="152" />
+			<attribute>
+				<defence fire="300" water="250" wind="250" earth="250" holy="250" dark="250" />
+				<attack type="FIRE" value="330" />
+			</attribute>
+			<speed>
+				<walk ground="82" />
+				<run ground="138" />
+			</speed>
+		</stats>
+		<status talkable="false" attackable="true" />
+		<fakePlayer classId="94" hair="1" hairColor="1" face="0" equipRHand="6579" equipLHand="6377" equipHead="2418" equipGloves="5776" equipChest="2407" equipFeet="5788" />
+		<ai type="MAGE" clanHelpRange="1000" aggroRange="1000" isAggressive="true">
+			<clanList>
+				<clan>FAKE_PLAYER</clan>
+			</clanList>
+		</ai>
+		<collision>
+			<radius normal="9" />
+			<height normal="23" />
+		</collision>
+		<skillList>
+			<skill id="1230" level="28" /> <!-- Prominence -->
+		</skillList>
+	</npc>
 </list>

@@ -43,6 +43,12 @@ public class FakePlayersConfig
 	public static boolean FAKE_PLAYER_AGGRO_FPC;
 	public static boolean FAKE_PLAYER_CAN_DROP_ITEMS;
 	public static boolean FAKE_PLAYER_CAN_PICKUP;
+	public static boolean FAKE_PLAYER_TACTICAL_AI;
+	public static boolean FAKE_PLAYER_LLM_ENABLED;
+	public static String FAKE_PLAYER_LLM_ENDPOINT;
+	public static String FAKE_PLAYER_LLM_MODEL;
+	public static String FAKE_PLAYER_LLM_API_KEY;
+	public static int FAKE_PLAYER_LLM_TIMEOUT_MS;
 	
 	public static void load()
 	{
@@ -58,5 +64,11 @@ public class FakePlayersConfig
 		FAKE_PLAYER_AGGRO_FPC = config.getBoolean("FakePlayerAggroFPC", false);
 		FAKE_PLAYER_CAN_DROP_ITEMS = config.getBoolean("FakePlayerCanDropItems", false);
 		FAKE_PLAYER_CAN_PICKUP = config.getBoolean("FakePlayerCanPickup", false);
+		FAKE_PLAYER_TACTICAL_AI = config.getBoolean("FakePlayerTacticalAI", true);
+		FAKE_PLAYER_LLM_ENABLED = config.getBoolean("FakePlayerLlmEnabled", false);
+		FAKE_PLAYER_LLM_ENDPOINT = config.getString("FakePlayerLlmEndpoint", "http://127.0.0.1:11434/v1/chat/completions");
+		FAKE_PLAYER_LLM_MODEL = config.getString("FakePlayerLlmModel", "llama3.2:3b");
+		FAKE_PLAYER_LLM_API_KEY = config.getString("FakePlayerLlmApiKey", "");
+		FAKE_PLAYER_LLM_TIMEOUT_MS = config.getInt("FakePlayerLlmTimeoutMs", 4000);
 	}
 }
