@@ -165,20 +165,13 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			case "citizen_spawn":
 			{
 				final String arg = (tokens.length > 2) ? tokens[2].trim() : "1";
-				PlayerClass targetClass = null;
-				try
-				{
-					targetClass = PlayerClass.valueOf(arg.toUpperCase(Locale.ROOT));
-				}
-				catch (IllegalArgumentException ignored)
-				{
-				}
+				final PlayerClass targetClass = resolveCitizenAspirationArg(arg);
 				if (targetClass != null)
 				{
 					final AutonomousCitizen spawned = AutonomousPlayerManager.getInstance().spawnCitizen(targetClass);
 					if ((spawned != null) && (spawned.getPlayer() != null))
 					{
-						activeChar.sendSysMessage("Spawned Lv 1 Citizen " + spawned.getPlayer().getName() + " [" + spawned.getPlayer().getPlayerClass() + " -> " + spawned.getTargetEndgameClass() + "].");
+						activeChar.sendSysMessage("Spawned Lv 1 Citizen " + spawned.getPlayer().getName() + " [" + spawned.getPlayer().getPlayerClass() + " -> " + spawned.getTargetEndgameClass() + "] in " + spawned.getCurrentZoneName() + ".");
 					}
 					else
 					{
@@ -395,12 +388,91 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			}
 			default:
 			{
+				if (!"menu".equals(action))
+				{
+					final String tail = command.trim().substring(tokens[0].length()).trim();
+					final PlayerClass directClass = resolveCitizenAspirationArg(tail);
+					if (directClass != null)
+					{
+						final AutonomousCitizen spawned = AutonomousPlayerManager.getInstance().spawnCitizen(directClass);
+						if ((spawned != null) && (spawned.getPlayer() != null))
+						{
+							activeChar.sendSysMessage("Spawned Lv 1 Citizen " + spawned.getPlayer().getName() + " [" + spawned.getPlayer().getPlayerClass() + " -> " + spawned.getTargetEndgameClass() + "] in " + spawned.getCurrentZoneName() + ".");
+						}
+						else
+						{
+							activeChar.sendSysMessage("Failed to spawn Citizen with aspiration: " + directClass);
+						}
+					}
+					else
+					{
+						final String numCandidate = tail.startsWith("+") ? tail.substring(1).trim() : tail;
+						final int count = parseIntSafe(numCandidate, -1);
+						if (count > 0)
+						{
+							final int clamped = Math.min(20, count);
+							final int spawnedCount = AutonomousPlayerManager.getInstance().spawnCitizens(clamped);
+							activeChar.sendSysMessage("Spawned " + spawnedCount + " Real-Player Autonomous Citizen(s) at Lv 1 in racial starting villages.");
+						}
+					}
+				}
 				showControlPanel(activeChar);
 				break;
 			}
 		}
 		
 		return true;
+	}
+	
+	private static PlayerClass resolveCitizenAspirationArg(String rawArg)
+	{
+		if ((rawArg == null) || rawArg.isEmpty())
+		{
+			return null;
+		}
+		String cleaned = rawArg.trim();
+		while (cleaned.startsWith("+"))
+		{
+			cleaned = cleaned.substring(1).trim();
+		}
+		if (cleaned.isEmpty())
+		{
+			return null;
+		}
+		final String upper = cleaned.toUpperCase(Locale.ROOT).replace(' ', '_').replace('-', '_');
+		return switch (upper)
+		{
+			case "SPOILER", "FORTUNESEEKER", "FORTUNE_SEEKER", "BOUNTYHUNTER", "BOUNTY_HUNTER", "SCAVENGER" -> PlayerClass.FORTUNE_SEEKER;
+			case "CRAFTER", "WARSMITH", "ARTISAN" -> PlayerClass.MAESTRO;
+			case "DREADNGT", "WARLORD" -> PlayerClass.DREADNOUGHT;
+			case "PHOENIXKT", "PHOENIXKNIGHT", "PHOENIX_KNIGHT", "PALADIN" -> PlayerClass.PHOENIX_KNIGHT;
+			case "HELLKT", "HELLKNIGHT", "HELL_KNIGHT", "DARKAVENGER", "DARK_AVENGER" -> PlayerClass.HELL_KNIGHT;
+			case "EVATEMPLAR", "EVA_TEMPLAR", "TEMPLEKNIGHT", "TEMPLE_KNIGHT" -> PlayerClass.EVA_TEMPLAR;
+			case "SHILLIENTEMPLAR", "SHILLIEN_TEMPLAR", "SHILLIENKNIGHT", "SHILLIEN_KNIGHT" -> PlayerClass.SHILLIEN_TEMPLAR;
+			case "SAGITTAR", "HAWKEYE" -> PlayerClass.SAGITTARIUS;
+			case "KHAVATAR", "GRANDKHAVATARI", "GRAND_KHAVATARI", "TYRANT" -> PlayerClass.GRAND_KHAVATARI;
+			case "TH", "TREASUREHUNTER", "TREASURE_HUNTER", "DAGGER" -> PlayerClass.ADVENTURER;
+			case "PW", "PLAINSWALKER", "PLAINS_WALKER", "WINDRIDER", "WIND_RIDER" -> PlayerClass.WIND_RIDER;
+			case "AW", "ABYSSWALKER", "ABYSS_WALKER", "GHOSTHUNTER", "GHOST_HUNTER" -> PlayerClass.GHOST_HUNTER;
+			case "OVERLORD", "OL" -> PlayerClass.DOMINATOR;
+			case "BISHOP", "HEALER" -> PlayerClass.CARDINAL;
+			case "GLADIATOR", "GLAD" -> PlayerClass.DUELIST;
+			case "SORCERER", "SORC" -> PlayerClass.ARCHMAGE;
+			case "SPELLSINGER", "SPS" -> PlayerClass.MYSTIC_MUSE;
+			case "SPELLHOWLER", "SPH" -> PlayerClass.STORM_SCREAMER;
+			case "SOULHOUND", "SOUL_HOUND" -> PlayerClass.MALE_SOUL_HOUND;
+			default ->
+			{
+				try
+				{
+					yield PlayerClass.valueOf(upper);
+				}
+				catch (IllegalArgumentException e)
+				{
+					yield null;
+				}
+			}
+		};
 	}
 	
 	private static int parseIntSafe(String s, int fallback)

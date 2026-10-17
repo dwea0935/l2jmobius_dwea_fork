@@ -188,13 +188,13 @@ public class World
 			}
 			
 			final Player existingPlayer = _allPlayers.putIfAbsent(object.getObjectId(), newPlayer);
-			if (existingPlayer != null)
+			if ((existingPlayer != null) && (existingPlayer != newPlayer))
 			{
 				Disconnection.of(existingPlayer).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 				Disconnection.of(newPlayer).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 				LOGGER.warning(World.class.getSimpleName() + ": Duplicate character!? Disconnected both characters (" + newPlayer.getName() + ")");
 			}
-			else if (FactionSystemConfig.FACTION_SYSTEM_ENABLED)
+			else if ((existingPlayer == null) && FactionSystemConfig.FACTION_SYSTEM_ENABLED)
 			{
 				addFactionPlayerToWorld(newPlayer);
 			}

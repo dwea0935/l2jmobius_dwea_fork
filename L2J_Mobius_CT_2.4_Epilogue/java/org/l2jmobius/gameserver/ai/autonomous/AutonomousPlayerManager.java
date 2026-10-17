@@ -211,7 +211,6 @@ public final class AutonomousPlayerManager
 			final int offsetX = ThreadLocalRandom.current().nextInt(-90, 91);
 			final int offsetY = ThreadLocalRandom.current().nextInt(-90, 91);
 			
-			World.addObject(player);
 			player.setXYZInvisible(spawnLoc.getX() + offsetX, spawnLoc.getY() + offsetY, spawnLoc.getZ());
 			player.setTitle("->" + aspiration.name());
 			player.setVitalityPoints(PlayerStat.MAX_VITALITY_POINTS, true);
