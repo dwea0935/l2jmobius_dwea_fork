@@ -56,7 +56,7 @@ public class ManaHealByLevel extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((effected == null) || effected.isDead() || effected.isDoor() || effected.isInvul())
+		if ((effected == null) || effected.isDead() || effected.isDoor() || (effected.isInvul() && !effected.isGM()))
 		{
 			return;
 		}

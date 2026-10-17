@@ -4,124 +4,229 @@
 		<npc>50010</npc>
 		<npc>-1</npc>
 	</npcs>
+	<!-- Great Sword (SWORD) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9391" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="78" count="1" />
 	</item>
+	<!-- Sword of Damascus (SWORD) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9392" count="1" />
+		<ingredient id="57" count="10091400" />
+		<production id="79" count="1" />
 	</item>
+	<!-- Heavy War Axe (BLUNT) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9393" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="91" count="1" />
 	</item>
+	<!-- Sprite's Staff (BLUNT) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9394" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="92" count="1" />
 	</item>
+	<!-- Lance (POLE) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9395" count="1" />
+		<ingredient id="57" count="10091400" />
+		<production id="97" count="1" />
 	</item>
+	<!-- Keshanberk (SWORD) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9396" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="142" count="1" />
 	</item>
+	<!-- Ghoulbane (SWORD) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9397" count="1" />
+		<ingredient id="57" count="8680000" />
+		<production id="146" count="1" />
 	</item>
+	<!-- Sword of Valhalla (SWORD) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9398" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="148" count="1" />
 	</item>
+	<!-- Art of Battle Axe (BLUNT) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9399" count="1" />
+		<ingredient id="57" count="10091400" />
+		<production id="175" count="1" />
 	</item>
+	<!-- Staff of Phantom (BLUNT) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9400" count="1" />
+		<ingredient id="57" count="8680000" />
+		<production id="207" count="1" />
 	</item>
+	<!-- Staff of Seal (BLUNT) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9401" count="1" />
+		<ingredient id="57" count="8680000" />
+		<production id="208" count="1" />
 	</item>
+	<!-- Divine Staff (BLUNT) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9402" count="1" />
+		<ingredient id="57" count="13100000" />
+		<production id="209" count="1" />
 	</item>
+	<!-- Staff of Evil Spirits (BLUNT) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9403" count="1" />
+		<ingredient id="57" count="10091400" />
+		<production id="210" count="1" />
 	</item>
+	<!-- Staff of Nobility (BLUNT) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9404" count="1" />
+		<ingredient id="57" count="13100000" />
+		<production id="211" count="1" />
 	</item>
+	<!-- Kris (DAGGER) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9405" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="229" count="1" />
 	</item>
+	<!-- Demon's Dagger (DAGGER) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9406" count="1" />
+		<ingredient id="57" count="10091400" />
+		<production id="234" count="1" />
 	</item>
+	<!-- Hell Knife (DAGGER) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9407" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="243" count="1" />
 	</item>
+	<!-- Pata (DUALFIST) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9408" count="1" />
+		<ingredient id="57" count="7830000" />
+		<production id="264" count="1" />
 	</item>
+	<!-- Arthro Nail (DUALFIST) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9410" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="267" count="1" />
 	</item>
+	<!-- Bellion Cestus (DUALFIST) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9411" count="1" />
+		<ingredient id="57" count="10091400" />
+		<production id="268" count="1" />
 	</item>
+	<!-- Dark Elven Long Bow (BOW) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9412" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="284" count="1" />
 	</item>
+	<!-- Bow of Peril (BOW) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9413" count="1" />
+		<ingredient id="57" count="10091400" />
+		<production id="287" count="1" />
 	</item>
+	<!-- Great Axe (POLE) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9414" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="300" count="1" />
 	</item>
+	<!-- Stormbringer*Caliburs (DUAL) -->
 	<item>
-		<ingredient id="57" count="56000000" />
-		<production id="9415" count="1" />
+		<ingredient id="57" count="5367500" />
+		<production id="2566" count="1" />
 	</item>
+	<!-- Stormbringer*Sword of Limit (DUAL) -->
 	<item>
-		<ingredient id="57" count="2000000" />
-		<production id="13507" count="1" />
+		<ingredient id="57" count="5367500" />
+		<production id="2567" count="1" />
 	</item>
+	<!-- Stormbringer*Sword of Delusion (DUAL) -->
 	<item>
-		<ingredient id="57" count="2000000" />
-		<production id="13508" count="1" />
+		<ingredient id="57" count="5367500" />
+		<production id="2568" count="1" />
 	</item>
+	<!-- Stormbringer*Sword of Nightmare (DUAL) -->
 	<item>
-		<ingredient id="57" count="2000000" />
-		<production id="13509" count="1" />
+		<ingredient id="57" count="5367500" />
+		<production id="2569" count="1" />
 	</item>
+	<!-- Stormbringer*Tsurugi (DUAL) -->
 	<item>
-		<ingredient id="57" count="2000000" />
-		<production id="13510" count="1" />
+		<ingredient id="57" count="5367500" />
+		<production id="2570" count="1" />
 	</item>
+	<!-- Stormbringer*Samurai Long sword (DUAL) -->
 	<item>
-		<ingredient id="57" count="2000000" />
-		<production id="13511" count="1" />
+		<ingredient id="57" count="6680500" />
+		<production id="2571" count="1" />
 	</item>
+	<!-- Shamshir*Caliburs (DUAL) -->
 	<item>
-		<ingredient id="57" count="2000000" />
-		<production id="13512" count="1" />
+		<ingredient id="57" count="6022600" />
+		<production id="2576" count="1" />
+	</item>
+	<!-- Shamshir*Sword of Limit (DUAL) -->
+	<item>
+		<ingredient id="57" count="6022600" />
+		<production id="2577" count="1" />
+	</item>
+	<!-- Shamshir*Sword of Delusion (DUAL) -->
+	<item>
+		<ingredient id="57" count="6022600" />
+		<production id="2578" count="1" />
+	</item>
+	<!-- Shamshir*Sword of Nightmare (DUAL) -->
+	<item>
+		<ingredient id="57" count="6022600" />
+		<production id="2579" count="1" />
+	</item>
+	<!-- Guardian Sword (SWORD) -->
+	<item>
+		<ingredient id="57" count="10091400" />
+		<production id="7883" count="1" />
+	</item>
+	<!-- Wizard's Tear (SWORD) -->
+	<item>
+		<ingredient id="57" count="10091400" />
+		<production id="7889" count="1" />
+	</item>
+	<!-- Spell Breaker (BLUNT) -->
+	<item>
+		<ingredient id="57" count="6680500" />
+		<production id="7892" count="1" />
+	</item>
+	<!-- Kaim Vanul's Bones (BLUNT) -->
+	<item>
+		<ingredient id="57" count="10091400" />
+		<production id="7893" count="1" />
+	</item>
+	<!-- Ice Storm Hammer (BLUNT) -->
+	<item>
+		<ingredient id="57" count="6680500" />
+		<production id="7900" count="1" />
+	</item>
+	<!-- Star Buster (BLUNT) -->
+	<item>
+		<ingredient id="57" count="10091400" />
+		<production id="7901" count="1" />
+	</item>
+	<!-- Military Fleuret (RAPIER) -->
+	<item>
+		<ingredient id="57" count="6680500" />
+		<production id="9304" count="1" />
+	</item>
+	<!-- Innominate Victory (ANCIENTSWORD) -->
+	<item>
+		<ingredient id="57" count="6680500" />
+		<production id="9308" count="1" />
+	</item>
+	<!-- Peacemaker (CROSSBOW) -->
+	<item>
+		<ingredient id="57" count="6680500" />
+		<production id="9312" count="1" />
+	</item>
+	<!-- Colichemarde (RAPIER) -->
+	<item>
+		<ingredient id="57" count="10091400" />
+		<production id="9316" count="1" />
+	</item>
+	<!-- Dismantler (ANCIENTSWORD) -->
+	<item>
+		<ingredient id="57" count="10091400" />
+		<production id="9320" count="1" />
+	</item>
+	<!-- Hell Hound (CROSSBOW) -->
+	<item>
+		<ingredient id="57" count="10091400" />
+		<production id="9324" count="1" />
 	</item>
 </list>

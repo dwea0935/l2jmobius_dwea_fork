@@ -132,6 +132,7 @@ public final class ProgressionKnowledgeGraph
 	private static final Location OREN_TOWN = new Location(82956, 53162, -1495);
 	private static final Location ADEN_TOWN = new Location(146783, 25808, -2008);
 	private static final Location GODDARD_TOWN = new Location(147928, -55273, -2734);
+	private static final Location RUNE_TOWN = new Location(43799, -47727, -798);
 	
 	private static final List<HuntingZone> HUNTING_ZONES = List.of(
 		// Lv 1 - 10 Racial Starting Outskirts
@@ -222,28 +223,187 @@ public final class ProgressionKnowledgeGraph
 		return best;
 	}
 	
+	public static final PlayerClass[] ENDGAME_ASPIRATIONS =
+	{
+		PlayerClass.FORTUNE_SEEKER,
+		PlayerClass.MAESTRO,
+		PlayerClass.DUELIST,
+		PlayerClass.DREADNOUGHT,
+		PlayerClass.PHOENIX_KNIGHT,
+		PlayerClass.HELL_KNIGHT,
+		PlayerClass.SAGITTARIUS,
+		PlayerClass.ADVENTURER,
+		PlayerClass.ARCHMAGE,
+		PlayerClass.SOULTAKER,
+		PlayerClass.ARCANA_LORD,
+		PlayerClass.CARDINAL,
+		PlayerClass.HIEROPHANT,
+		PlayerClass.EVA_TEMPLAR,
+		PlayerClass.SWORD_MUSE,
+		PlayerClass.WIND_RIDER,
+		PlayerClass.MOONLIGHT_SENTINEL,
+		PlayerClass.MYSTIC_MUSE,
+		PlayerClass.ELEMENTAL_MASTER,
+		PlayerClass.EVA_SAINT,
+		PlayerClass.SHILLIEN_TEMPLAR,
+		PlayerClass.SPECTRAL_DANCER,
+		PlayerClass.GHOST_HUNTER,
+		PlayerClass.GHOST_SENTINEL,
+		PlayerClass.STORM_SCREAMER,
+		PlayerClass.SPECTRAL_MASTER,
+		PlayerClass.SHILLIEN_SAINT,
+		PlayerClass.TITAN,
+		PlayerClass.GRAND_KHAVATARI,
+		PlayerClass.DOMINATOR,
+		PlayerClass.DOOMCRYER,
+		PlayerClass.DOOMBRINGER,
+		PlayerClass.MALE_SOUL_HOUND,
+		PlayerClass.FEMALE_SOUL_HOUND,
+		PlayerClass.TRICKSTER
+	};
+	
+	public static PlayerClass selectRandomEndgameAspiration()
+	{
+		return ENDGAME_ASPIRATIONS[ThreadLocalRandom.current().nextInt(ENDGAME_ASPIRATIONS.length)];
+	}
+	
+	public static PlayerClass getBaseStartingClassFor(PlayerClass aspiration)
+	{
+		if (aspiration == null)
+		{
+			return PlayerClass.FIGHTER;
+		}
+		PlayerClass cur = aspiration;
+		while (cur.getParent() != null)
+		{
+			cur = cur.getParent();
+		}
+		return cur;
+	}
+	
 	public static HuntingZone selectClassTransferQuestZone(int classTier)
 	{
-		return switch (classTier)
+		return selectClassTransferQuestZone(classTier, 1);
+	}
+	
+	public static HuntingZone selectClassTransferQuestZone(int classTier, int subStage)
+	{
+		if (classTier == 1)
 		{
-			case 1 -> new HuntingZone("Ruins of Despair (1st Class Trial)", 19, 25, null, new Location(-20100, 138800, -3890), "Gludio Castle Town", GLUDIO_TOWN);
-			case 2 -> new HuntingZone("Death Pass (2nd Class Testimony)", 39, 45, null, new Location(70500, 118200, -3680), "Giran Castle Town", GIRAN_TOWN);
-			default -> new HuntingZone("Wall of Argos (3rd Class Saga)", 75, 80, null, new Location(168200, -49600, -3530), "Goddard Castle Town", GODDARD_TOWN);
+			return switch (subStage)
+			{
+				case 1 -> new HuntingZone("Ruins of Agony (1st Class Path S1)", 19, 25, null, new Location(-42200, 123600, -3520), "Gludio Castle Town", GLUDIO_TOWN);
+				case 2 -> new HuntingZone("Ruins of Despair (1st Class Path S2)", 19, 25, null, new Location(-20100, 138800, -3890), "Gludio Castle Town", GLUDIO_TOWN);
+				default -> new HuntingZone("Gludio Outskirts (1st Class Path S3)", 19, 25, null, new Location(-14500, 128200, -3120), "Gludio Castle Town", GLUDIO_TOWN);
+			};
+		}
+		if (classTier == 2)
+		{
+			return switch (subStage)
+			{
+				case 1 -> new HuntingZone("Death Pass (2nd Class Trial Mark #1)", 39, 45, null, new Location(70500, 118200, -3680), "Giran Castle Town", GIRAN_TOWN);
+				case 2 -> new HuntingZone("Cruma Marshlands (2nd Class Testimony Mark #2)", 39, 45, null, new Location(17200, 114300, -3440), "Dion Castle Town", DION_TOWN);
+				default -> new HuntingZone("Breka's Stronghold (2nd Class Test Mark #3)", 39, 45, null, new Location(80200, 132600, -3610), "Giran Castle Town", GIRAN_TOWN);
+			};
+		}
+		return switch (subStage)
+		{
+			case 1 -> new HuntingZone("Hot Springs (Saga Tablet #1)", 75, 80, null, new Location(149500, -112500, -2065), "Goddard Castle Town", GODDARD_TOWN);
+			case 2 -> new HuntingZone("Valley of Saints (Saga Tablet #2)", 75, 80, null, new Location(68200, -72100, -3720), "Goddard Castle Town", GODDARD_TOWN);
+			case 3 -> new HuntingZone("Wall of Argos (Saga Tablet #3)", 75, 80, null, new Location(168200, -49600, -3530), "Goddard Castle Town", GODDARD_TOWN);
+			case 4 -> new HuntingZone("Ketra Orc Outpost (Saga Tablet #4 Divine Stone)", 75, 80, null, new Location(146800, -67200, -3640), "Goddard Castle Town", GODDARD_TOWN);
+			case 5 -> new HuntingZone("Shrine of the Loyal (Saga Tablet #5 Archon of Halisha)", 75, 80, null, new Location(184200, -75600, -2780), "Goddard Castle Town", GODDARD_TOWN);
+			default -> new HuntingZone("Forbidden Gateway (Saga Tablet #6 Final)", 75, 80, null, new Location(185800, 20600, -3260), "Aden Castle Town", ADEN_TOWN);
 		};
+	}
+	
+	public static HuntingZone selectSubclassQuestZone(int stage)
+	{
+		return switch (stage)
+		{
+			case 1 -> new HuntingZone("The Cemetery (Cabrio Coffer)", 75, 80, null, new Location(180112, 18480, -3160), "Aden Castle Town", ADEN_TOWN);
+			case 2 -> new HuntingZone("Tower of Insolence (Hallate/Kernon/Golkonda)", 75, 80, null, new Location(115200, 16600, -3660), "Aden Castle Town", ADEN_TOWN);
+			case 3 -> new HuntingZone("Tower of Insolence Upper (Pipette Trial)", 75, 80, null, new Location(114600, 16200, 950), "Aden Castle Town", ADEN_TOWN);
+			default -> new HuntingZone("Silent Valley (Mimir's Elixir)", 75, 80, null, new Location(179500, 41200, -4150), "Aden Castle Town", ADEN_TOWN);
+		};
+	}
+	
+	public static HuntingZone selectNoblesseQuestZone(int stage)
+	{
+		return switch (stage)
+		{
+			case 1 -> new HuntingZone("Dragon Valley & Forsaken Plains (Q241 Precious Soul 1)", 75, 82, null, new Location(73000, 118500, -3680), "Aden Castle Town", ADEN_TOWN);
+			case 2 -> new HuntingZone("Swamp of Screams (Q242 Precious Soul 2)", 76, 82, null, new Location(70000, -49800, -3280), "Goddard Castle Town", GODDARD_TOWN);
+			case 3 -> new HuntingZone("Valley of Saints & Barakiel Shrine (Q246 Precious Soul 3)", 76, 85, null, new Location(91008, -85904, -2736), "Goddard Castle Town", GODDARD_TOWN);
+			default -> new HuntingZone("Coliseum & Goddard Lake (Q247 Precious Soul 4)", 76, 85, null, new Location(147450, 27064, -2205), "Aden Castle Town", ADEN_TOWN);
+		};
+	}
+	
+	public static int[] getClassTransferStageItemIds(PlayerClass playerClass, PlayerClass targetEndgameClass, int classTier)
+	{
+		final boolean isMage = (playerClass != null) && playerClass.isMage();
+		final String asp = (targetEndgameClass != null) ? targetEndgameClass.name() : "";
+		if (classTier == 1)
+		{
+			if (asp.equals("FORTUNE_SEEKER"))
+			{
+				return new int[] { 1640, 1641, 1642 }; // Raven's Feather -> Bead Parcel -> Ring of Raven
+			}
+			if (asp.equals("MAESTRO"))
+			{
+				return new int[] { 1633, 1634, 1635 }; // Ratman Tooth -> Big Tooth -> Final Pass Certificate
+			}
+			if (isMage)
+			{
+				return new int[] { 1158, 1159, 1161 }; // Gem of Aiken -> Flame Eruptor -> Sword of Ritual
+			}
+			return new int[] { 1143, 1144, 1145 }; // Warrior Guild Mark -> Rusted Bronze Sword -> Medallion of Warrior
+		}
+		if (classTier == 2)
+		{
+			// 3 separate Occupation Marks (Trial Mark #1, Testimony Mark #2, Test Mark #3)
+			if (asp.equals("FORTUNE_SEEKER"))
+			{
+				return new int[] { 3119, 3238, 2809 }; // Mark of Guildsman + Mark of Prosperity + Mark of Searcher
+			}
+			if (asp.equals("MAESTRO"))
+			{
+				return new int[] { 3119, 3238, 2867 }; // Mark of Guildsman + Mark of Prosperity + Mark of Maestro
+			}
+			if (asp.equals("DUELIST") || asp.equals("GRAND_KHAVATARI") || asp.equals("SWORD_MUSE") || asp.equals("SPECTRAL_DANCER"))
+			{
+				return new int[] { 2627, 2734, 2762 }; // Mark of Challenger + Mark of Trust + Mark of Duelist
+			}
+			if (asp.equals("DREADNOUGHT") || asp.equals("TITAN"))
+			{
+				return new int[] { 2627, 2734, 2721 }; // Mark of Challenger + Mark of Trust + Mark of Champion
+			}
+			if (asp.contains("SAGITTARIUS") || asp.contains("SENTINEL") || asp.contains("TRICKSTER"))
+			{
+				return new int[] { 2809, 2734, 3293 }; // Mark of Searcher + Mark of Trust + Mark of Sagittarius
+			}
+			if (isMage)
+			{
+				return new int[] { 3140, 2734, 2840 }; // Mark of Scholar + Mark of Trust + Mark of Magus
+			}
+			return new int[] { 2627, 2734, 2809 }; // Mark of Challenger + Mark of Trust + Mark of Searcher
+		}
+		// Tier 3: All 6 Resonance Amulets (7284..7289) for the 6 Tablets of Vision
+		return new int[] { 7284, 7285, 7286, 7287, 7288, 7289 };
 	}
 	
 	public static int getClassTransferQuestMarkId(PlayerClass playerClass, int classTier)
 	{
-		final boolean isMage = (playerClass != null) && playerClass.isMage();
-		return switch (classTier)
-		{
-			case 1 -> isMage ? 1161 : 1145; // Sword of Ritual / Medallion of Warrior
-			case 2 -> isMage ? 2840 : 2627; // Mark of Magus / Mark of Challenger
-			default -> 7284; // Resonance Amulet - 1 (Saga of the Third Class)
-		};
+		final int[] stageItems = getClassTransferStageItemIds(playerClass, null, classTier);
+		return stageItems[stageItems.length - 1];
 	}
 	
 	public static PlayerClass selectNextClassTransfer(PlayerClass currentClass)
+	{
+		return selectNextClassTowards(currentClass, null);
+	}
+	
+	public static PlayerClass selectNextClassTowards(PlayerClass currentClass, PlayerClass targetEndgameClass)
 	{
 		if (currentClass == null)
 		{
@@ -253,6 +413,21 @@ public final class ProgressionKnowledgeGraph
 		if ((nextClasses == null) || nextClasses.isEmpty())
 		{
 			return null;
+		}
+		if (targetEndgameClass != null)
+		{
+			for (PlayerClass candidate : nextClasses)
+			{
+				PlayerClass ptr = targetEndgameClass;
+				while (ptr != null)
+				{
+					if (ptr == candidate)
+					{
+						return candidate;
+					}
+					ptr = ptr.getParent();
+				}
+			}
 		}
 		final List<PlayerClass> list = new ArrayList<>(nextClasses);
 		return list.get(ThreadLocalRandom.current().nextInt(list.size()));
@@ -294,6 +469,10 @@ public final class ProgressionKnowledgeGraph
 		final String className = (playerClass != null) ? playerClass.name() : "FIGHTER";
 		final boolean isArcher = className.contains("RANGER") || className.contains("HAWKEYE") || className.contains("SAGITTARIUS") || className.contains("SENTINEL") || className.contains("ARBALESTER") || className.contains("TRICKSTER");
 		final boolean isDagger = className.contains("ROGUE") || className.contains("ASSASSIN") || className.contains("SCOUT") || className.contains("HUNTER") || className.contains("WALKER") || className.contains("ADVENTURER") || className.contains("RIDER");
+		final boolean isPolearm = className.contains("WARLORD") || className.contains("DREADNOUGHT");
+		final boolean isDual = className.contains("GLADIATOR") || className.contains("DUELIST") || className.contains("DANCER") || className.contains("MUSE");
+		final boolean isFist = className.contains("MONK") || className.contains("TYRANT") || className.contains("KHAVATARI");
+		final boolean twoHandedMelee = isPolearm || isDual || isFist || isArcher;
 		
 		return switch (gradeTier)
 		{
@@ -303,11 +482,11 @@ public final class ProgressionKnowledgeGraph
 					"D-Grade",
 					20,
 					150_000L,
-					isMage ? 189 : (isArcher ? 275 : (isDagger ? 222 : 129)), // Staff of Life / Light Crossbow / Poniard Dagger / Sword of Revolution
-					isMage ? 0 : 627, // Aspis
+					isMage ? 189 : (isArcher ? 275 : (isDagger ? 222 : (isPolearm ? 292 : (isFist ? 262 : 129)))), // Staff of Life / Light Crossbow / Poniard Dagger / Pike / Scallop Jamadhar / Sword of Revolution
+					(isMage || twoHandedMelee) ? 0 : 627, // Aspis
 					47, // Helmet
-					isMage ? 437 : (isArcher || isDagger ? 395 : 352), // Tunic of Knowledge / Manticore Skin Shirt / Brigandine Tunic
-					isMage ? 469 : (isArcher || isDagger ? 417 : 379), // Hose of Knowledge / Manticore Skin Gaiters / Brigandine Gaiters
+					isMage ? 437 : (isArcher || isDagger || isFist ? 395 : 352), // Tunic of Knowledge / Manticore Skin Shirt / Brigandine Tunic
+					isMage ? 469 : (isArcher || isDagger || isFist ? 417 : 379), // Hose of Knowledge / Manticore Skin Gaiters / Brigandine Gaiters
 					605, // Leather Gloves
 					553, // Iron Boots
 					908, // Necklace of Wisdom
@@ -322,11 +501,11 @@ public final class ProgressionKnowledgeGraph
 					"C-Grade",
 					40,
 					850_000L,
-					isMage ? 206 : (isArcher ? 281 : (isDagger ? 231 : 135)), // Demon's Staff / Crystallized Ice Bow / Grace Dagger / Samurai Longsword
-					isMage ? 0 : 631, // Composite Shield
+					isMage ? 206 : (isArcher ? 281 : (isDagger ? 231 : (isPolearm ? 298 : (isDual ? 2560 : (isFist ? 265 : 135))))), // Demon's Staff / Crystallized Ice Bow / Grace Dagger / Orcish Glaive / Stormbringer*Stormbringer / Fisted Blade / Samurai Longsword
+					(isMage || twoHandedMelee) ? 0 : 631, // Composite Shield
 					517, // Composite Helmet
-					isMage ? 441 : (isArcher || isDagger ? 398 : 356), // Karmian Tunic / Plated Leather Mail / Full Plate Armor
-					isMage ? 473 : (isArcher || isDagger ? 420 : 0), // Karmian Stockings / Plated Leather Gaiters
+					isMage ? 441 : (isArcher || isDagger || isFist ? 398 : 356), // Karmian Tunic / Plated Leather Mail / Full Plate Armor
+					isMage ? 473 : (isArcher || isDagger || isFist ? 420 : 0), // Karmian Stockings / Plated Leather Gaiters
 					2454, // Karmian Gloves / Mithril Gauntlets
 					2431, // Plated Leather Boots
 					913, // Blessed Necklace
@@ -341,11 +520,11 @@ public final class ProgressionKnowledgeGraph
 					"B-Grade",
 					52,
 					3_500_000L,
-					isMage ? 7892 : (isArcher ? 287 : (isDagger ? 234 : 7883)), // Spell Breaker / Bow of Peril / Demon's Dagger / Guardian Sword
-					isMage ? 0 : 633, // Zubei's Shield
+					isMage ? 7892 : (isArcher ? 287 : (isDagger ? 234 : (isPolearm ? 300 : (isDual ? 2626 : (isFist ? 268 : 7883))))), // Spell Breaker / Bow of Peril / Demon's Dagger / Great Axe / Samurai*Samurai / Bellion Cestus / Guardian Sword
+					(isMage || twoHandedMelee) ? 0 : 633, // Zubei's Shield
 					503, // Zubei's Helmet
-					isMage ? 2400 : (isArcher || isDagger ? 2390 : 357), // Avadon Robe / Blue Wolf Leather Armor / Zubei's Breastplate
-					isMage ? 0 : (isArcher || isDagger ? 0 : 383), // Zubei's Gaiters
+					isMage ? 2400 : (isArcher || isDagger || isFist ? 2390 : 357), // Avadon Robe / Blue Wolf Leather Armor / Zubei's Breastplate
+					isMage ? 0 : (isArcher || isDagger || isFist ? 0 : 383), // Zubei's Gaiters
 					5718, // Avadon / Zubei Gloves
 					5734, // Avadon / Zubei Boots
 					916, // Necklace of Black Ore
@@ -360,13 +539,13 @@ public final class ProgressionKnowledgeGraph
 					"A-Craft",
 					61,
 					8_000_000L,
-					isMage ? 151 : (isArcher ? 288 : (isDagger ? 236 : 80)), // Sword of Miracles / Carnage Bow / Soul Separator / Tallum Blade
-					isMage ? 0 : 2498, // Dark Crystal Shield
+					isMage ? 151 : (isArcher ? 288 : (isDagger ? 236 : (isPolearm ? 305 : (isDual ? 5706 : (isFist ? 270 : 80))))), // Sword of Miracles / Carnage Bow / Soul Separator / Tallum Glaive / Keshanberk*Damascus / Dragon Grinder / Tallum Blade
+					(isMage || twoHandedMelee) ? 0 : 2498, // Dark Crystal Shield
 					547, // Tallum / Majestic Helmet
-					isMage ? 2409 : (isArcher || isDagger ? 2395 : 2382), // Majestic Robe / Majestic Leather / Tallum Plate Armor
+					isMage ? 2409 : (isArcher || isDagger || isFist ? 2395 : 2382), // Majestic Robe / Majestic Leather / Tallum Plate Armor
 					0,
-					isMage ? 5774 : (isArcher || isDagger ? 5772 : 5768), // Majestic / Tallum Gloves
-					isMage ? 5786 : (isArcher || isDagger ? 5784 : 5780), // Majestic / Tallum Boots
+					isMage ? 5774 : (isArcher || isDagger || isFist ? 5772 : 5768), // Majestic / Tallum Gloves
+					isMage ? 5786 : (isArcher || isDagger || isFist ? 5784 : 5780), // Majestic / Tallum Boots
 					924, // Majestic Necklace
 					862, // Majestic Earring
 					893, // Majestic Ring
@@ -379,13 +558,13 @@ public final class ProgressionKnowledgeGraph
 					"S-SA",
 					76,
 					25_000_000L,
-					isMage ? 6579 : (isArcher ? 7577 : (isDagger ? 6590 : 6583)), // Arcana Mace [Acumen] / Draconic Bow [Focus] / Angel Slayer [Haste] / Basalt Battlehammer [Health]
-					isMage ? 0 : 6377, // Imperial Crusader Shield
-					isMage ? 6386 : (isArcher || isDagger ? 6382 : 6378), // Major Arcana Circlet / Draconic Leather Helmet / Imperial Crusader Helmet
-					isMage ? 6383 : (isArcher || isDagger ? 6379 : 6373), // Major Arcana Robe / Draconic Leather Armor / Imperial Crusader Breastplate
-					isMage ? 0 : (isArcher || isDagger ? 0 : 6374), // Imperial Crusader Gaiters
-					isMage ? 6384 : (isArcher || isDagger ? 6380 : 6375), // Major Arcana / Draconic / Imperial Crusader Gloves
-					isMage ? 6385 : (isArcher || isDagger ? 6381 : 6376), // Major Arcana / Draconic / Imperial Crusader Boots
+					isMage ? 6579 : (isArcher ? 7577 : (isDagger ? 6590 : (isPolearm ? 6599 : (isDual ? 6580 : (isFist ? 6602 : 6583))))), // Arcana Mace [Acumen] / Draconic Bow [Focus] / Angel Slayer [Haste] / Saint Spear [Health] / Tallum*Dark Legion / Demon Splinter [Focus] / Basalt Battlehammer [Health]
+					(isMage || twoHandedMelee) ? 0 : 6377, // Imperial Crusader Shield
+					isMage ? 6386 : (isArcher || isDagger || isFist ? 6382 : 6378), // Major Arcana Circlet / Draconic Leather Helmet / Imperial Crusader Helmet
+					isMage ? 6383 : (isArcher || isDagger || isFist ? 6379 : 6373), // Major Arcana Robe / Draconic Leather Armor / Imperial Crusader Breastplate
+					isMage ? 0 : (isArcher || isDagger || isFist ? 0 : 6374), // Imperial Crusader Gaiters
+					isMage ? 6384 : (isArcher || isDagger || isFist ? 6380 : 6375), // Major Arcana / Draconic / Imperial Crusader Gloves
+					isMage ? 6385 : (isArcher || isDagger || isFist ? 6381 : 6376), // Major Arcana / Draconic / Imperial Crusader Boots
 					920, // Tateossian Necklace
 					858, // Tateossian Earring
 					889, // Tateossian Ring
@@ -398,7 +577,7 @@ public final class ProgressionKnowledgeGraph
 					"No-Grade",
 					1,
 					2_000L,
-					isMage ? 179 : (isArcher ? 272 : (isDagger ? 218 : 2)), // Mace of Prayer / Forest Bow / Throwing Knife / Long Sword
+					isMage ? 179 : (isArcher ? 272 : (isDagger ? 218 : (isPolearm ? 15 : (isFist ? 256 : 2)))), // Mace of Prayer / Forest Bow / Throwing Knife / Short Spear / Cestus / Long Sword
 					0,
 					45, // Bone Helmet
 					isMage ? 432 : 23, // Tunic of Devotion / Wooden Breastplate

@@ -4,236 +4,269 @@
 		<npc>50010</npc>
 		<npc>-1</npc>
 	</npcs>
+	<!-- Short Sword (SWORD) -->
 	<item>
-		<ingredient id="57" count="74000" />
-		<production id="6847" count="1" />
+		<ingredient id="57" count="1000" />
+		<production id="1" count="1" />
 	</item>
+	<!-- Long Sword (SWORD) -->
 	<item>
-		<ingredient id="57" count="74000" />
-		<production id="6848" count="1" />
+		<ingredient id="57" count="105000" />
+		<production id="2" count="1" />
 	</item>
+	<!-- Broadsword (SWORD) -->
 	<item>
-		<ingredient id="57" count="49400" />
-		<production id="6849" count="1" />
+		<ingredient id="57" count="9600" />
+		<production id="3" count="1" />
 	</item>
+	<!-- Club (BLUNT) -->
 	<item>
-		<ingredient id="57" count="49400" />
-		<production id="6850" count="1" />
+		<ingredient id="57" count="1000" />
+		<production id="4" count="1" />
 	</item>
+	<!-- Mace (BLUNT) -->
 	<item>
-		<ingredient id="57" count="98800" />
-		<production id="6851" count="1" />
+		<ingredient id="57" count="9600" />
+		<production id="5" count="1" />
 	</item>
+	<!-- Willow Staff (BLUNT) -->
 	<item>
-		<ingredient id="57" count="98800" />
-		<production id="6852" count="1" />
+		<ingredient id="57" count="9600" />
+		<production id="8" count="1" />
 	</item>
+	<!-- Cedar Staff (BLUNT) -->
 	<item>
-		<ingredient id="57" count="286000" />
-		<production id="6853" count="1" />
+		<ingredient id="57" count="41600" />
+		<production id="9" count="1" />
 	</item>
+	<!-- Bone Dagger (DAGGER) -->
 	<item>
-		<ingredient id="57" count="286000" />
-		<production id="6854" count="1" />
+		<ingredient id="57" count="1000" />
+		<production id="11" count="1" />
 	</item>
+	<!-- Knife (DAGGER) -->
 	<item>
-		<ingredient id="57" count="179200" />
-		<production id="6855" count="1" />
+		<ingredient id="57" count="9600" />
+		<production id="12" count="1" />
 	</item>
+	<!-- Short Bow (BOW) -->
 	<item>
-		<ingredient id="57" count="179200" />
-		<production id="6856" count="1" />
+		<ingredient id="57" count="1000" />
+		<production id="13" count="1" />
 	</item>
+	<!-- Bow (BOW) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6857" count="1" />
+		<ingredient id="57" count="9600" />
+		<production id="14" count="1" />
 	</item>
+	<!-- Short Spear (POLE) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6858" count="1" />
+		<ingredient id="57" count="105000" />
+		<production id="15" count="1" />
 	</item>
+	<!-- Great Spear (POLE) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6859" count="1" />
+		<ingredient id="57" count="188000" />
+		<production id="16" count="1" />
 	</item>
+	<!-- Gladius (SWORD) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6860" count="1" />
+		<ingredient id="57" count="41600" />
+		<production id="66" count="1" />
 	</item>
+	<!-- Orcish Sword (SWORD) -->
 	<item>
-		<ingredient id="57" count="75200" />
-		<production id="6861" count="1" />
+		<ingredient id="57" count="41600" />
+		<production id="67" count="1" />
 	</item>
+	<!-- Falchion (SWORD) -->
 	<item>
-		<ingredient id="57" count="75200" />
-		<production id="6862" count="1" />
+		<ingredient id="57" count="188000" />
+		<production id="68" count="1" />
 	</item>
+	<!-- Iron Hammer (BLUNT) -->
 	<item>
-		<ingredient id="57" count="107400" />
-		<production id="6863" count="1" />
+		<ingredient id="57" count="188000" />
+		<production id="87" count="1" />
 	</item>
+	<!-- Sword of Reflection (SWORD) -->
 	<item>
-		<ingredient id="57" count="107400" />
-		<production id="6864" count="1" />
+		<ingredient id="57" count="105000" />
+		<production id="120" count="1" />
 	</item>
+	<!-- Sword of Watershadow (SWORD) -->
 	<item>
-		<ingredient id="57" count="348000" />
-		<production id="6865" count="1" />
+		<ingredient id="57" count="105000" />
+		<production id="121" count="1" />
 	</item>
+	<!-- Handmade Sword (SWORD) -->
 	<item>
-		<ingredient id="57" count="348000" />
-		<production id="6866" count="1" />
+		<ingredient id="57" count="41600" />
+		<production id="122" count="1" />
 	</item>
+	<!-- Heavy Chisel (BLUNT) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6867" count="1" />
+		<ingredient id="57" count="6200" />
+		<production id="152" count="1" />
 	</item>
+	<!-- Sigil (BLUNT) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6868" count="1" />
+		<ingredient id="57" count="14200" />
+		<production id="153" count="1" />
 	</item>
+	<!-- Dwarven Mace (BLUNT) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6869" count="1" />
+		<ingredient id="57" count="41600" />
+		<production id="154" count="1" />
 	</item>
+	<!-- Flanged Mace (BLUNT) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6870" count="1" />
+		<ingredient id="57" count="188000" />
+		<production id="155" count="1" />
 	</item>
+	<!-- Mage Staff (BLUNT) -->
 	<item>
-		<ingredient id="57" count="107400" />
-		<production id="6871" count="1" />
+		<ingredient id="57" count="188000" />
+		<production id="177" count="1" />
 	</item>
+	<!-- Doom Dagger (DAGGER) -->
 	<item>
-		<ingredient id="57" count="107400" />
-		<production id="6872" count="1" />
+		<ingredient id="57" count="9600" />
+		<production id="215" count="1" />
 	</item>
+	<!-- Dirk (DAGGER) -->
 	<item>
-		<ingredient id="57" count="348000" />
-		<production id="6873" count="1" />
+		<ingredient id="57" count="41600" />
+		<production id="216" count="1" />
 	</item>
+	<!-- Shining Knife (DAGGER) -->
 	<item>
-		<ingredient id="57" count="348000" />
-		<production id="6874" count="1" />
+		<ingredient id="57" count="105000" />
+		<production id="217" count="1" />
 	</item>
+	<!-- Throwing Knife (DAGGER) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6875" count="1" />
+		<ingredient id="57" count="105000" />
+		<production id="218" count="1" />
 	</item>
+	<!-- Sword Breaker (DAGGER) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6876" count="1" />
+		<ingredient id="57" count="188000" />
+		<production id="219" count="1" />
 	</item>
+	<!-- Spiked Gloves (DUALFIST) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6877" count="1" />
+		<ingredient id="57" count="1000" />
+		<production id="253" count="1" />
 	</item>
+	<!-- Iron Gloves (DUALFIST) -->
 	<item>
-		<ingredient id="57" count="71600" />
-		<production id="6878" count="1" />
+		<ingredient id="57" count="9600" />
+		<production id="254" count="1" />
 	</item>
+	<!-- Fox Claw Gloves (DUALFIST) -->
 	<item>
-		<ingredient id="57" count="107400" />
-		<production id="6879" count="1" />
+		<ingredient id="57" count="41600" />
+		<production id="255" count="1" />
 	</item>
+	<!-- Cestus (DUALFIST) -->
 	<item>
-		<ingredient id="57" count="107400" />
-		<production id="6880" count="1" />
+		<ingredient id="57" count="105000" />
+		<production id="256" count="1" />
 	</item>
+	<!-- Viper Fang (DUALFIST) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6881" count="1" />
+		<ingredient id="57" count="188000" />
+		<production id="257" count="1" />
 	</item>
+	<!-- Hunting Bow (BOW) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6882" count="1" />
+		<ingredient id="57" count="41600" />
+		<production id="271" count="1" />
 	</item>
+	<!-- Forest Bow (BOW) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6883" count="1" />
+		<ingredient id="57" count="105000" />
+		<production id="272" count="1" />
 	</item>
+	<!-- Composite Bow (BOW) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6884" count="1" />
+		<ingredient id="57" count="188000" />
+		<production id="273" count="1" />
 	</item>
+	<!-- Sword of Solidarity (SWORD) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6885" count="1" />
+		<ingredient id="57" count="14200" />
+		<production id="738" count="1" />
 	</item>
+	<!-- Sword of Sentinel (SWORD) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6886" count="1" />
+		<ingredient id="57" count="25800" />
+		<production id="743" count="1" />
 	</item>
+	<!-- Staff of Sentinel (BLUNT) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6887" count="1" />
+		<ingredient id="57" count="25800" />
+		<production id="744" count="1" />
 	</item>
+	<!-- Wand of Adept (BLUNT) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6888" count="1" />
+		<ingredient id="57" count="19500" />
+		<production id="747" count="1" />
 	</item>
+	<!-- Red Sunset Staff (BLUNT) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6889" count="1" />
+		<ingredient id="57" count="19500" />
+		<production id="754" count="1" />
 	</item>
+	<!-- Skeleton Dagger (DAGGER) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6890" count="1" />
+		<ingredient id="57" count="66600" />
+		<production id="946" count="1" />
 	</item>
+	<!-- Blood Saber (SWORD) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6891" count="1" />
+		<ingredient id="57" count="25800" />
+		<production id="975" count="1" />
 	</item>
+	<!-- Red Sunset Sword (SWORD) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6892" count="1" />
+		<ingredient id="57" count="19500" />
+		<production id="981" count="1" />
 	</item>
+	<!-- Eldritch Dagger (DAGGER) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6893" count="1" />
+		<ingredient id="57" count="19500" />
+		<production id="989" count="1" />
 	</item>
+	<!-- Dagger of Adept (DAGGER) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6894" count="1" />
+		<ingredient id="57" count="19500" />
+		<production id="2372" count="1" />
 	</item>
+	<!-- Eldritch Staff (BLUNT) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6895" count="1" />
+		<ingredient id="57" count="19500" />
+		<production id="2373" count="1" />
 	</item>
+	<!-- Red Sunset Dagger (DAGGER) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6896" count="1" />
+		<ingredient id="57" count="19500" />
+		<production id="2374" count="1" />
 	</item>
+	<!-- Bone Club (BLUNT) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6897" count="1" />
+		<ingredient id="57" count="105000" />
+		<production id="2501" count="1" />
 	</item>
+	<!-- Zweihander (SWORD) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6898" count="1" />
+		<ingredient id="57" count="188000" />
+		<production id="5284" count="1" />
 	</item>
+	<!-- Warrior's Sword (RAPIER) -->
 	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6899" count="1" />
-	</item>
-	<item>
-		<ingredient id="57" count="976000" />
-		<production id="6900" count="1" />
-	</item>
-	<item>
-		<ingredient id="57" count="976000" />
-		<production id="7580" count="1" />
-	</item>
-	<item>
-		<ingredient id="57" count="976000" />
-		<production id="7581" count="1" />
-	</item>
-	<item>
-		<ingredient id="57" count="75200" />
-		<production id="13100" count="1" />
-	</item>
-	<item>
-		<ingredient id="57" count="75200" />
-		<production id="13101" count="1" />
+		<ingredient id="57" count="25500" />
+		<production id="9720" count="1" />
 	</item>
 </list>

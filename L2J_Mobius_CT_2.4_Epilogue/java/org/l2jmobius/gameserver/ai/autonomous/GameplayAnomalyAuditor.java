@@ -53,7 +53,8 @@ public final class GameplayAnomalyAuditor
 		ZERO_DAMAGE_SKILL,
 		DROP_OR_XP_STARVATION,
 		SKILL_TREE_GAP,
-		MULTISELL_MISSING_INGREDIENT
+		MULTISELL_MISSING_INGREDIENT,
+		ECONOMY_IMBALANCE
 	}
 	
 	public record AnomalyRecord(

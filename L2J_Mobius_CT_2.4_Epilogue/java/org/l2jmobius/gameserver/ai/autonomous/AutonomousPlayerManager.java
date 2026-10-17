@@ -54,7 +54,8 @@ import org.l2jmobius.gameserver.mechanics.skill.holders.SkillLearn;
 import org.l2jmobius.gameserver.network.serverpackets.JoinParty;
 
 /**
- * Singleton Manager for Real-Player Autonomous Citizens ({@code Lv 1 -> 85}) &amp; Self-Reporting QA Engine.
+ * Singleton Manager for Real-Player Autonomous Citizens ({@code Lv 1 -> 85}), Inter-Citizen Dwarven
+ * Spoil/Craft Commissioning &amp; Self-Reporting QA/Economy Engine.
  */
 public final class AutonomousPlayerManager
 {
@@ -62,19 +63,28 @@ public final class AutonomousPlayerManager
 	private static final String CITIZEN_ACCOUNT = "autonomous_qa";
 	private static final long TICK_INTERVAL_MS = 500L;
 	
-	private static final PlayerClass[] STARTING_CLASSES =
+	/**
+	 * Balanced Endgame Class Aspiration rotation — prioritizes Fortune Seeker (Spoiler) and Maestro (Crafter)
+	 * early so the server economy always has active Dwarven Artisans for inter-citizen A/S-Grade trade.
+	 */
+	private static final PlayerClass[] ASPIRATION_ROTATION =
 	{
-		PlayerClass.FIGHTER,
-		PlayerClass.MAGE,
-		PlayerClass.ELVEN_FIGHTER,
-		PlayerClass.ELVEN_MAGE,
-		PlayerClass.DARK_FIGHTER,
-		PlayerClass.DARK_MAGE,
-		PlayerClass.ORC_FIGHTER,
-		PlayerClass.ORC_MAGE,
-		PlayerClass.DWARVEN_FIGHTER,
-		PlayerClass.MALE_SOLDIER,
-		PlayerClass.FEMALE_SOLDIER
+		PlayerClass.FORTUNE_SEEKER, // Dwarf Spoiler (Scavenger -> Bounty Hunter -> Fortune Seeker)
+		PlayerClass.MAESTRO, // Dwarf Crafter (Artisan -> Warsmith -> Maestro)
+		PlayerClass.DUELIST,
+		PlayerClass.DREADNOUGHT,
+		PlayerClass.ARCHMAGE,
+		PlayerClass.SAGITTARIUS,
+		PlayerClass.CARDINAL,
+		PlayerClass.PHOENIX_KNIGHT,
+		PlayerClass.MYSTIC_MUSE,
+		PlayerClass.GHOST_HUNTER,
+		PlayerClass.STORM_SCREAMER,
+		PlayerClass.TITAN,
+		PlayerClass.GRAND_KHAVATARI,
+		PlayerClass.DOOMCRYER,
+		PlayerClass.DOOMBRINGER,
+		PlayerClass.TRICKSTER
 	};
 	
 	private static final String[] CITIZEN_NAME_POOL =
@@ -124,8 +134,8 @@ public final class AutonomousPlayerManager
 	public AutonomousCitizen spawnCitizen()
 	{
 		final int index = _spawnCounter.getAndIncrement();
-		final PlayerClass startClass = STARTING_CLASSES[index % STARTING_CLASSES.length];
-		return spawnCitizen(startClass);
+		final PlayerClass aspiration = ASPIRATION_ROTATION[index % ASPIRATION_ROTATION.length];
+		return spawnCitizen(aspiration);
 	}
 	
 	public int spawnCitizens(int count)
@@ -141,19 +151,45 @@ public final class AutonomousPlayerManager
 		return spawned;
 	}
 	
-	public AutonomousCitizen spawnCitizen(PlayerClass startClass)
+	public AutonomousCitizen spawnCitizen(PlayerClass requestedClassOrAspiration)
 	{
 		try
 		{
-			final PlayerClass chosenClass = (startClass != null) ? startClass : PlayerClass.FIGHTER;
-			final PlayerTemplate template = PlayerTemplateData.getInstance().getTemplate(chosenClass);
+			final PlayerClass aspiration;
+			final PlayerClass chosenStartClass;
+			if (requestedClassOrAspiration == null)
+			{
+				aspiration = ASPIRATION_ROTATION[_spawnCounter.getAndIncrement() % ASPIRATION_ROTATION.length];
+				chosenStartClass = ProgressionKnowledgeGraph.getBaseStartingClassFor(aspiration);
+			}
+			else if (requestedClassOrAspiration.level() == 3)
+			{
+				aspiration = requestedClassOrAspiration;
+				chosenStartClass = ProgressionKnowledgeGraph.getBaseStartingClassFor(aspiration);
+			}
+			else
+			{
+				chosenStartClass = ProgressionKnowledgeGraph.getBaseStartingClassFor(requestedClassOrAspiration);
+				PlayerClass resolvedAspiration = null;
+				for (PlayerClass cand : ProgressionKnowledgeGraph.ENDGAME_ASPIRATIONS)
+				{
+					if ((cand == requestedClassOrAspiration) || cand.childOf(requestedClassOrAspiration))
+					{
+						resolvedAspiration = cand;
+						break;
+					}
+				}
+				aspiration = (resolvedAspiration != null) ? resolvedAspiration : ProgressionKnowledgeGraph.selectRandomEndgameAspiration();
+			}
+			
+			final PlayerTemplate template = PlayerTemplateData.getInstance().getTemplate(chosenStartClass);
 			if (template == null)
 			{
 				return null;
 			}
 			
-			final boolean isFemale = (chosenClass == PlayerClass.FEMALE_SOLDIER)
-				|| ((chosenClass != PlayerClass.MALE_SOLDIER) && ThreadLocalRandom.current().nextBoolean());
+			final boolean isFemale = (chosenStartClass == PlayerClass.FEMALE_SOLDIER)
+				|| ((chosenStartClass != PlayerClass.MALE_SOLDIER) && ThreadLocalRandom.current().nextBoolean());
 			final byte face = (byte) ThreadLocalRandom.current().nextInt(0, 3);
 			final byte hairColor = (byte) ThreadLocalRandom.current().nextInt(0, 4);
 			final byte hairStyle = (byte) ThreadLocalRandom.current().nextInt(0, 4);
@@ -177,7 +213,7 @@ public final class AutonomousPlayerManager
 			
 			World.addObject(player);
 			player.setXYZInvisible(spawnLoc.getX() + offsetX, spawnLoc.getY() + offsetY, spawnLoc.getZ());
-			player.setTitle("Citizen [Lv1->85]");
+			player.setTitle("->" + aspiration.name());
 			player.setVitalityPoints(PlayerStat.MAX_VITALITY_POINTS, true);
 			player.addAdena(ItemProcessType.REWARD, 25_000L, null, false);
 			
@@ -212,16 +248,120 @@ public final class AutonomousPlayerManager
 			player.setRunning();
 			player.broadcastUserInfo();
 			
-			final AutonomousCitizen citizen = new AutonomousCitizen(player);
+			final AutonomousCitizen citizen = new AutonomousCitizen(player, aspiration);
 			_citizens.put(player.getObjectId(), citizen);
 			start();
-			LOGGER.info("AutonomousPlayerManager: Spawned Lv 1 Citizen " + player.getName() + " [" + chosenClass + "] at " + hub.villageName());
+			LOGGER.info("AutonomousPlayerManager: Spawned Lv 1 Citizen " + player.getName() + " [" + chosenStartClass + " -> " + aspiration + "] at " + hub.villageName());
 			return citizen;
 		}
 		catch (Exception e)
 		{
 			LOGGER.log(Level.WARNING, "AutonomousPlayerManager: Failed to spawn citizen: " + e.getMessage(), e);
 			return null;
+		}
+	}
+	
+	/**
+	 * Checks whether at least one Dwarven Crafter (Artisan/Warsmith/Maestro) or Spoiler (Scavenger/Bounty Hunter/Fortune Seeker)
+	 * citizen is active in the world to fulfill A-Grade / S-Grade crafting &amp; spoil commissions.
+	 */
+	public boolean hasActiveDwarvenArtisan()
+	{
+		for (AutonomousCitizen c : _citizens.values())
+		{
+			if ((c != null) && (c.isCrafterCitizen() || c.isSpoilerCitizen()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Executes an authentic inter-citizen Dwarven Craft &amp; Spoil trade commission:
+	 * transfers real Adena from {@code buyer}'s {@code PcInventory} to an active Dwarven Crafter/Spoiler citizen's
+	 * {@code PcInventory}, recording both sides in {@link EconomyProgressionAuditor}.
+	 */
+	public boolean commissionDwarvenCraft(AutonomousCitizen buyer, int targetTier, long commissionCost)
+	{
+		if ((buyer == null) || (buyer.getPlayer() == null))
+		{
+			return false;
+		}
+		
+		AutonomousCitizen bestDwarf = null;
+		for (AutonomousCitizen candidate : _citizens.values())
+		{
+			if ((candidate == null) || (candidate == buyer) || (candidate.getPlayer() == null))
+			{
+				continue;
+			}
+			if (candidate.isCrafterCitizen())
+			{
+				bestDwarf = candidate;
+				break;
+			}
+			if (candidate.isSpoilerCitizen() && (bestDwarf == null))
+			{
+				bestDwarf = candidate;
+			}
+		}
+		
+		if (bestDwarf == null)
+		{
+			// Auto-spawn a Dwarven Crafter (Maestro aspiration) if none is currently online so the server economy stays self-sustaining
+			bestDwarf = spawnCitizen(PlayerClass.MAESTRO);
+			if (bestDwarf == null)
+			{
+				return false;
+			}
+		}
+		
+		final Player buyerPlayer = buyer.getPlayer();
+		final Player dwarfPlayer = bestDwarf.getPlayer();
+		final String gradeName = (targetTier >= 5) ? "S-Grade + SA" : "A-Grade Crafted";
+		final long actualTransfer = Math.max(0L, Math.min(buyerPlayer.getAdena(), commissionCost));
+		if (actualTransfer > 0L)
+		{
+			buyerPlayer.reduceAdena(ItemProcessType.TRANSFER, actualTransfer, dwarfPlayer, false);
+			dwarfPlayer.addAdena(ItemProcessType.TRANSFER, actualTransfer, buyerPlayer, false);
+			EconomyProgressionAuditor.getInstance().recordDwarvenCraft(dwarfPlayer, buyerPlayer, gradeName, actualTransfer);
+		}
+		
+		bestDwarf.addSpoilAndCraftPoints(3);
+		bestDwarf.setLastAction("Crafted & sold " + gradeName + " set to " + buyerPlayer.getName() + " (+" + actualTransfer + " Adena)");
+		buyer.setLastAction("Commissioned " + gradeName + " craft from Dwarf " + dwarfPlayer.getName());
+		return true;
+	}
+	
+	/**
+	 * Groups {@code requestorCitizen} with other active citizens into a real {@link Party}
+	 * to contest Subclass Raid Bosses (Cabrio, Hallate, Kernon, Golkonda) or Noblesse Raid Boss (Barakiel).
+	 */
+	public void joinOrFormQuestRaidParty(AutonomousCitizen requestorCitizen)
+	{
+		if ((requestorCitizen == null) || (requestorCitizen.getPlayer() == null))
+		{
+			return;
+		}
+		final Player leader = requestorCitizen.getPlayer();
+		Party party = leader.getParty();
+		if (party == null)
+		{
+			party = new Party(leader, PartyDistributionType.FINDERS_KEEPERS);
+			leader.setParty(party);
+		}
+		for (AutonomousCitizen other : _citizens.values())
+		{
+			if ((other == null) || (other == requestorCitizen) || (party.getMemberCount() >= 9))
+			{
+				continue;
+			}
+			final Player op = other.getPlayer();
+			if ((op != null) && !op.isDead() && !op.isInParty() && (op.getLevel() >= 55))
+			{
+				op.joinParty(party);
+			}
 		}
 	}
 	
