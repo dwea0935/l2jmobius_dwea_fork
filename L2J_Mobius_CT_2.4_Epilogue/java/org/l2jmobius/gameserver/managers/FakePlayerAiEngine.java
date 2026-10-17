@@ -47,6 +47,7 @@ import org.l2jmobius.gameserver.entity.actor.holders.npc.FakePlayerHolder;
 import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
@@ -601,7 +602,7 @@ public class FakePlayerAiEngine
 		}
 		
 		// 2. Healer Triage (unlocked Stage 3+)
-		if ((stageId >= 3) && (triageTarget != null) && ((chosen == TacticalAction.BATTLE_HEAL_TRIAGE) || (state.getArchetype() == Archetype.HEALER) || (state.getPosture() == Posture.ASSIST_PLAYER)) && ((now - state.getLastHealSkillMs()) >= 4000L))
+		if ((stageId >= 3) && (triageTarget != null) && ((chosen == TacticalAction.BATTLE_HEAL_TRIAGE) || (state.getPosture() == Posture.ASSIST_PLAYER)) && ((now - state.getLastHealSkillMs()) >= 4000L))
 		{
 			state.setLastHealSkillMs(now);
 			npc.broadcastPacket(new MagicSkillUse(npc, triageTarget, 1218, 1, 800, 1000));
@@ -702,7 +703,7 @@ public class FakePlayerAiEngine
 		}
 		
 		// 6. Archer / Mage / KITE_DEFENSIVE Standoff Kiting (Stage 2+)
-		if ((stageId >= 2) && ((chosen == TacticalAction.STANDOFF_KITE) || (state.getArchetype() == Archetype.ARCHER) || (state.getArchetype() == Archetype.MAGE) || (state.getPosture() == Posture.KITE_DEFENSIVE))
+		if ((stageId >= 2) && ((chosen == TacticalAction.STANDOFF_KITE) || (state.getPosture() == Posture.KITE_DEFENSIVE))
 			&& (targetDist < 175) && ((now - state.getLastKiteMs()) >= 2500L))
 		{
 			double dx = npc.getX() - currentTarget.getX();
@@ -762,13 +763,50 @@ public class FakePlayerAiEngine
 			}
 		}
 		
-		// 8. Primary Combat Engagement (Stage 1+)
+		// 8. Primary Nuke / Skill Shot (Stage 1+)
+		if ((chosen == TacticalAction.PRIMARY_NUKE_SHOT) && ((now - state.getLastSpecialSkillMs()) >= 3500L))
+		{
+			final Skill offensiveSkill = selectOffensiveSkill(npc, targetDist);
+			if (offensiveSkill != null)
+			{
+				state.setLastSpecialSkillMs(now);
+				npc.setTarget(currentTarget);
+				npc.doCast(offensiveSkill);
+				state.setLastTacticalAction("NN[" + stageId + "] Skill: " + offensiveSkill.getName() + " -> " + currentTarget.getName());
+				_neuralPolicy.recordOutcome(s, TacticalAction.PRIMARY_NUKE_SHOT, probs, 1.25f);
+				return;
+			}
+		}
+		
+		// 9. Primary Combat Engagement (Stage 1+)
 		if (!npc.isAttackingNow() && !npc.isCastingNow())
 		{
 			engageTarget(npc, currentTarget);
 		}
 		final float hpAdvantage = (float) ((npc.getCurrentHp() / Math.max(1.0, npc.getMaxHp())) - (currentTarget.getCurrentHp() / Math.max(1.0, currentTarget.getMaxHp())));
 		_neuralPolicy.recordOutcome(s, chosen, probs, 0.25f + (0.45f * hpAdvantage));
+	}
+	
+	private Skill selectOffensiveSkill(Npc npc, double targetDist)
+	{
+		for (Skill skill : npc.getSkills().values())
+		{
+			if ((skill == null) || !skill.isActive())
+			{
+				continue;
+			}
+			final int id = skill.getId();
+			// Skip heals (1217, 1218), tank taunt (28), and self-charges (8)
+			if ((id == 1217) || (id == 1218) || (id == 28) || (id == 8))
+			{
+				continue;
+			}
+			if ((skill.getCastRange() <= 0) || (targetDist <= (skill.getCastRange() + 80)))
+			{
+				return skill;
+			}
+		}
+		return null;
 	}
 	
 	private void buildFeatureVector(Npc npc, BotState state, Creature triageTarget, Creature enemy, Player leader, long now, float[] s)
@@ -825,7 +863,7 @@ public class FakePlayerAiEngine
 		if ((leaderTarget instanceof Creature c) && (c != leader) && (c != npc) && !c.isDead()
 			&& (leader.isInCombat() || c.isMonster() || c.isAutoAttackable(leader)))
 		{
-			if (!c.isFakePlayer() || FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC)
+			if (!c.isFakePlayer() || FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC || isRivalOrArenaMatch(npc, c))
 			{
 				return c;
 			}
@@ -862,7 +900,39 @@ public class FakePlayerAiEngine
 		{
 			return findLeaderCombatTarget(npc, leader);
 		}
+		if (npc.isAttackable() && ((state.getPosture() == Posture.AGGRESSIVE) || (state.getPosture() == Posture.KITE_DEFENSIVE)))
+		{
+			final Attackable nearestMob = World.getNearestVisibleObjectInRange(npc, Attackable.class, 1000,
+				m -> (m != npc) && !m.isDead() && m.isMonster() && !m.isFakePlayer() && GeoEngine.getInstance().canSeeTarget(npc, m));
+			if (nearestMob != null)
+			{
+				engageTarget(npc, nearestMob);
+				return nearestMob;
+			}
+		}
 		return null;
+	}
+	
+	/**
+	 * Returns {@code true} if either creature is a FakePlayer engaged in a 1v1 Duel or 3v3 Squad Simulation (`_rivalObjectId != 0`),
+	 * allowing bot-vs-bot combat and aggro even when global {@code FakePlayerAggroFPC = False} (so town NPCs remain peaceful).
+	 * @param a first creature
+	 * @param b second creature
+	 * @return {@code true} if bot-vs-bot arena/duel combat is active
+	 */
+	public boolean isRivalOrArenaMatch(Creature a, Creature b)
+	{
+		if ((a == null) || (b == null))
+		{
+			return false;
+		}
+		final BotState stateA = _botStates.get(a.getObjectId());
+		if ((stateA != null) && (stateA.getRivalObjectId() != 0))
+		{
+			return true;
+		}
+		final BotState stateB = _botStates.get(b.getObjectId());
+		return (stateB != null) && (stateB.getRivalObjectId() != 0);
 	}
 	
 	public void engageTarget(Npc npc, Creature target)

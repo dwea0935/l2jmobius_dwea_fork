@@ -61,6 +61,7 @@ import org.l2jmobius.gameserver.entity.zone.type.NpcSpawnTerritory;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.interfaces.ILocational;
 import org.l2jmobius.gameserver.managers.DimensionalRiftManager;
+import org.l2jmobius.gameserver.managers.FakePlayerAiEngine;
 import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.mechanics.effects.EffectType;
@@ -520,7 +521,7 @@ public class AttackableAI extends CreatureAI
 					final List<Item> droppedItems = npc.getFakePlayerDrops();
 					if (droppedItems.isEmpty())
 					{
-						final Creature nearestTarget = World.getNearestVisibleObjectInRange(npc, Creature.class, npc.getAggroRange(), t -> (t != _actor) && !t.isDead() && ((FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC && t.isFakePlayer()) || (FakePlayersConfig.FAKE_PLAYER_AGGRO_MONSTERS && t.isMonster() && !t.isFakePlayer()) || (FakePlayersConfig.FAKE_PLAYER_AGGRO_PLAYERS && t.isPlayer())) && (npc.getHating(t) == 0));
+						final Creature nearestTarget = World.getNearestVisibleObjectInRange(npc, Creature.class, npc.getAggroRange(), t -> (t != _actor) && !t.isDead() && (((FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC || FakePlayerAiEngine.getInstance().isRivalOrArenaMatch(npc, t)) && t.isFakePlayer()) || (FakePlayersConfig.FAKE_PLAYER_AGGRO_MONSTERS && t.isMonster() && !t.isFakePlayer()) || (FakePlayersConfig.FAKE_PLAYER_AGGRO_PLAYERS && t.isPlayer())) && (npc.getHating(t) == 0));
 						if (nearestTarget != null)
 						{
 							npc.addDamageHate(nearestTarget, 0, 1);
@@ -583,7 +584,7 @@ public class AttackableAI extends CreatureAI
 				{
 					if (target.isFakePlayer())
 					{
-						if (!npc.isFakePlayer() || (npc.isFakePlayer() && FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC))
+						if (!npc.isFakePlayer() || FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC || FakePlayerAiEngine.getInstance().isRivalOrArenaMatch(npc, target))
 						{
 							final long hating = npc.getHating(target);
 							if (hating == 0)

@@ -258,19 +258,29 @@ public final class FakePlayerNeuralPolicy
 		}
 		
 		final float invSum = sumExp > 1e-6f ? (1f / sumExp) : 1f;
+		final float[] probs = (outProbs != null && outProbs.length >= ACTION_DIM) ? outProbs : new float[ACTION_DIM];
 		int bestIdx = 0;
 		float bestProb = -1f;
 		for (int i = 0; i < ACTION_DIM; i++)
 		{
 			final float p = logits[i] * invSum;
-			if (outProbs != null && i < outProbs.length)
-			{
-				outProbs[i] = p;
-			}
+			probs[i] = p;
 			if (p > bestProb)
 			{
 				bestProb = p;
 				bestIdx = i;
+			}
+		}
+		
+		// Boltzmann categorical sampling so policy explores & learns across all 5 curriculum stages
+		final float sample = ThreadLocalRandom.current().nextFloat();
+		float cumulative = 0f;
+		for (int i = 0; i < ACTION_DIM; i++)
+		{
+			cumulative += probs[i];
+			if (sample <= cumulative)
+			{
+				return TacticalAction.values()[i];
 			}
 		}
 		
@@ -353,8 +363,8 @@ public final class FakePlayerNeuralPolicy
 	}
 	
 	/**
-	 * Performs an online REINFORCE policy-gradient update step on the output projection layer
-	 * given the state vector, chosen action, action probabilities, and shaped tactical reward.
+	 * Performs a full 3-layer (`W3 -> W2 -> W1`) online REINFORCE policy-gradient backpropagation step
+	 * through LeakyReLU activations given the state vector, chosen action, action probabilities, and shaped tactical reward.
 	 * @param state 16-element state vector
 	 * @param action executed {@link TacticalAction}
 	 * @param probs 8-element softmax probabilities from {@link #selectAction}
@@ -370,7 +380,7 @@ public final class FakePlayerNeuralPolicy
 		final float advantage = Math.clamp(reward - _rewardBaseline, -2.5f, 2.5f);
 		_rewardBaseline = (0.985f * _rewardBaseline) + (0.015f * reward);
 		
-		// Recompute hidden representation h2 for gradient update
+		// Forward activations h1 and h2
 		final float[] h1 = new float[HIDDEN1_DIM];
 		final float[] h2 = new float[HIDDEN2_DIM];
 		for (int i = 0; i < HIDDEN1_DIM; i++)
@@ -386,15 +396,70 @@ public final class FakePlayerNeuralPolicy
 		
 		final int actIdx = action.ordinal();
 		final float lr = _learningRate;
+		final float[] dLogit = new float[ACTION_DIM];
 		for (int a = 0; a < ACTION_DIM; a++)
 		{
 			final float target = (a == actIdx) ? 1.0f : 0.0f;
-			final float grad = (target - probs[a]) * advantage * lr;
+			dLogit[a] = (target - probs[a]) * advantage * lr;
+		}
+		
+		// Backpropagate error from Layer 3 (logits) into Layer 2 (h2)
+		final float[] dH2 = new float[HIDDEN2_DIM];
+		for (int j = 0; j < HIDDEN2_DIM; j++)
+		{
+			float err = 0f;
+			for (int a = 0; a < ACTION_DIM; a++)
+			{
+				err += dLogit[a] * _w3[(a * HIDDEN2_DIM) + j];
+			}
+			dH2[j] = err * (h2[j] >= 0f ? 1.0f : 0.1f);
+		}
+		
+		// Backpropagate error from Layer 2 (h2) into Layer 1 (h1)
+		final float[] dH1 = new float[HIDDEN1_DIM];
+		for (int k = 0; k < HIDDEN1_DIM; k++)
+		{
+			float err = 0f;
+			for (int j = 0; j < HIDDEN2_DIM; j++)
+			{
+				err += dH2[j] * _w2[(j * HIDDEN1_DIM) + k];
+			}
+			dH1[k] = err * (h1[k] >= 0f ? 1.0f : 0.1f);
+		}
+		
+		// Update Layer 3 (_w3, _b3)
+		for (int a = 0; a < ACTION_DIM; a++)
+		{
+			final float grad = dLogit[a];
 			_b3[a] = Math.clamp(_b3[a] + grad, -6.0f, 6.0f);
 			final int rowOffset = a * HIDDEN2_DIM;
 			for (int j = 0; j < HIDDEN2_DIM; j++)
 			{
 				_w3[rowOffset + j] = Math.clamp(_w3[rowOffset + j] + (grad * h2[j]) - (0.0001f * _w3[rowOffset + j]), -6.0f, 6.0f);
+			}
+		}
+		
+		// Update Layer 2 (_w2, _b2)
+		for (int j = 0; j < HIDDEN2_DIM; j++)
+		{
+			final float grad = dH2[j];
+			_b2[j] = Math.clamp(_b2[j] + grad, -6.0f, 6.0f);
+			final int rowOffset = j * HIDDEN1_DIM;
+			for (int k = 0; k < HIDDEN1_DIM; k++)
+			{
+				_w2[rowOffset + k] = Math.clamp(_w2[rowOffset + k] + (grad * h1[k]) - (0.0001f * _w2[rowOffset + k]), -6.0f, 6.0f);
+			}
+		}
+		
+		// Update Layer 1 (_w1, _b1)
+		for (int k = 0; k < HIDDEN1_DIM; k++)
+		{
+			final float grad = dH1[k];
+			_b1[k] = Math.clamp(_b1[k] + grad, -6.0f, 6.0f);
+			final int rowOffset = k * INPUT_DIM;
+			for (int m = 0; m < INPUT_DIM; m++)
+			{
+				_w1[rowOffset + m] = Math.clamp(_w1[rowOffset + m] + (grad * state[m]) - (0.0001f * _w1[rowOffset + m]), -6.0f, 6.0f);
 			}
 		}
 		

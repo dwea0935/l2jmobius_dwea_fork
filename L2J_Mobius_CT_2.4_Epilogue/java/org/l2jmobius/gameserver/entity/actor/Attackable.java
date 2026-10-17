@@ -65,6 +65,7 @@ import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
 import org.l2jmobius.gameserver.managers.EventDropManager;
+import org.l2jmobius.gameserver.managers.FakePlayerAiEngine;
 import org.l2jmobius.gameserver.managers.PcCafePointsManager;
 import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
@@ -825,7 +826,7 @@ public class Attackable extends Npc
 		}
 		
 		// Check if fake players should aggro each other.
-		if (isFakePlayer() && !FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC && attacker.isFakePlayer())
+		if (isFakePlayer() && !FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC && attacker.isFakePlayer() && !FakePlayerAiEngine.getInstance().isRivalOrArenaMatch(this, attacker))
 		{
 			return;
 		}

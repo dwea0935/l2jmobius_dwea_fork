@@ -101,6 +101,7 @@ import org.l2jmobius.gameserver.geoengine.pathfinding.GeoLocation;
 import org.l2jmobius.gameserver.geoengine.pathfinding.PathFinding;
 import org.l2jmobius.gameserver.interfaces.ILocational;
 import org.l2jmobius.gameserver.managers.CaptchaManager;
+import org.l2jmobius.gameserver.managers.FakePlayerAiEngine;
 import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.managers.ScriptManager;
@@ -5285,7 +5286,7 @@ public abstract class Creature extends WorldObject
 		}
 		
 		// Check if fake players should aggro each other.
-		if (isFakePlayer() && !FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC && target.isFakePlayer())
+		if (isFakePlayer() && !FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC && target.isFakePlayer() && !FakePlayerAiEngine.getInstance().isRivalOrArenaMatch(this, target))
 		{
 			return;
 		}
