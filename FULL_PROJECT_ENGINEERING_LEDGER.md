@@ -270,11 +270,12 @@ flowchart TD
 ---
 
 ### Milestone 17: QA Pass Round 2 Fixes, First-Open `GMWnd` `EV_ShowGMWnd` Dispatch, Full `{PvP}` Weapon & Armor Passive Overhaul & In-JVM Java 27 SIMD Neural Curriculum Engine
-* **Commits:** `edf803d59e4`, `4a8261554bb`, `ce6cf0d5fa0`
+* **Commits:** `edf803d59e4`, `4a8261554bb`, `ce6cf0d5fa0`, `d48182717ae`
 * **Key Accomplishments:**
-  1. **First-Open `Alt+G` (`GMWnd`) Blank Dashboard Fix (`4a8261554bb`, `192599cbea7`):**
+  1. **First-Open `Alt+G` (`GMWnd`) Blank Dashboard Fix & Close/Reopen `TabCtrl` Sync (`4a8261554bb`, `192599cbea7`, `d48182717ae`):**
      * Disassembled `Shortcut.HandleShortcutKeyEvent` (`#14343`) in `interface.u` and `NCTabControl::AddTabControl` (`VA 0x100829d0`) in `NWindow.dll`. Found that `Alt+B` (`BoardWnd`) had an explicit `case "BoardWnd": ExecuteEvent(EV_ShowBBS);` in `Shortcut.HandleShortcutKeyEvent`, whereas `Alt+G` (`GMWnd`) had no `case "GMWnd":` in the second `switch (WNDName)` (only a legacy NCsoft typo `case "GMFind":`) and fell through to `Default: WNDNameHandle.ShowWindow();` without firing `EV_ShowGMWnd` (`2280`). Additionally, `NCTabControl::AddTabControl` sets `NW_HIDDEN` on the `target` child window of tabs `1..6` during `InitTabCtrl`.
      * Updated `patch_gmwnd_client.py` to point `TabCtrl`'s 7 `XMLTabButtonData` `target` fields at the off-canvas dummy `TextBox` and patched `Shortcut.HandleShortcutKeyEvent` (`0-byte` delta) so `case "GMWnd":` immediately fires `ExecuteEvent(EV_ShowGMWnd)`.
+     * Updated `AdminBoardManager.handleGmwSubCommand` (`d48182717ae`) so `//gmw` (empty `args` sent on `Alt+G` reopen) calls `refreshCurrentView(player)` rather than forcing `openTab(player, "dashboard")`, added `//gmw root` (`[Tab Root]`), and locked `session.activeTab` so legacy `main_menu.htm`/`gm_menu.htm` callbacks never desynchronize the HTML view from the active `GMWnd.TabCtrl` tab.
   2. **Breadcrumb Stack Deduplication, `AdminFakePlayers` Summon Fix & `LoginServer Menu` Cleanup (`edf803d59e4`):**
      * Removed `extractDistinctSubHeading` from `AdminBoardManager.java` and updated `pushNavEntry` to unwind/update in-place whenever either `commandOrFile` or `label` matches an existing stack entry, eliminating breadcrumb growth on `Reload Panel` pagination (`Page 1/4`..`Page 4/4`) and `FakePlayer Tactical AI` action buttons; added distinct `<title>GrandBoss: <Name></title>` tags across all `grandboss_*.htm` pages.
      * Fixed `AdminFakePlayers.spawnFakePlayer` (`spawn.doSpawn(false)` before `spawn.stopRespawn()`, since `stopRespawn()` sets `_doRespawn = false` and caused `doSpawn()` to return `null`).
