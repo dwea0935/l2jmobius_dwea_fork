@@ -250,7 +250,7 @@ flowchart TD
 ---
 
 ### Milestone 16: GM Console v3 (`948px` + CT1 Top Tabs + Breadcrumb Stack), Transactional Delta Script Hot-Reload (`//reload changed`), Pre-Public Tiers 1–3 Forensic Bug Fixes, Tactical Utility-AI + Virtual-Thread LLM FakePlayer Engine & Java 27 / UE2.5 Optimizations
-* **Commits:** `abcc9bec4b6`, `decaf386a5e`, `3917083adbc`
+* **Commits:** `abcc9bec4b6`, `decaf386a5e`, `3917083adbc`, `6baa530a970`
 * **Key Accomplishments:**
   1. **Phase 1 — `GMWnd` (`Alt+G`) v3 Community-Board-Style Top-Tab Console & Transactional Delta Script Hot-Reload (`abcc9bec4b6`):**
      * **Client (`patch_gmwnd_client.py`, `interface.xdat` `1,306,456` B, `interface.u` `4,061,011` B 0-byte delta):** Removed the 228px left button dock, styled 7 contiguous native C++ category tabs (`y=31.0, h=23, x=7..695`: `Dashboard`, `Players`, `World`, `Instances`, `Events & GM`, `Items & Char`, `Server & Reload`) with genuine CT1 `L2UI_CT1.tab.Tab_DF_Tab_Unselected`/`Selected` textures + `BoardWnd` `Tab_DF_bg_line` & `Tab_DF_bg` frame, kept 3 top-right `.dat` search tree buttons (`Item .dat`, `NPC .dat`, `Skill .dat`), and expanded `GMWnd.HtmlViewer` to **`968×472` px**.
