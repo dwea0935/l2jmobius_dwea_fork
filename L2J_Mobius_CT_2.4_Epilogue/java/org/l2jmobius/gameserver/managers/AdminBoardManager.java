@@ -285,29 +285,10 @@ public final class AdminBoardManager
 				handleGmwSubCommand(player, args);
 				yield true;
 			}
-			case "admin_admin", "admin_admin1" ->
+			case "admin_admin", "admin_admin1", "admin_admin2", "admin_admin3", "admin_admin4", "admin_admin5", "admin_admin6", "admin_admin7" ->
 			{
-				openTab(player, "dashboard");
-				yield true;
-			}
-			case "admin_admin6" ->
-			{
-				openTab(player, "support");
-				yield true;
-			}
-			case "admin_admin2" ->
-			{
-				openTab(player, "world");
-				yield true;
-			}
-			case "admin_admin3", "admin_admin5", "admin_admin7" ->
-			{
-				openTab(player, "events");
-				yield true;
-			}
-			case "admin_admin4" ->
-			{
-				openTab(player, "server");
+				final AdminBoardSession session = getSession(player);
+				openTab(player, session.activeTab);
 				yield true;
 			}
 			default -> false;
@@ -318,7 +299,9 @@ public final class AdminBoardManager
 	{
 		if (args.isEmpty())
 		{
-			openTab(player, "dashboard");
+			final AdminBoardSession session = getSession(player);
+			session.consoleOpen = true;
+			refreshCurrentView(player);
 			return;
 		}
 		
@@ -327,6 +310,11 @@ public final class AdminBoardManager
 		switch (sub)
 		{
 			case "home", "dashboard" -> openTab(player, "dashboard");
+			case "root" ->
+			{
+				final AdminBoardSession session = getSession(player);
+				openTab(player, session.activeTab);
+			}
 			case "back" -> navigateBack(player);
 			case "crumb" ->
 			{
@@ -374,7 +362,12 @@ public final class AdminBoardManager
 				final String targetName = tokens.length > 2 ? tokens[2] : null;
 				handleLegacyViewCommand(player, viewType, targetName);
 			}
-			default -> openTab(player, "dashboard");
+			default ->
+			{
+				final AdminBoardSession session = getSession(player);
+				session.consoleOpen = true;
+				refreshCurrentView(player);
+			}
 		}
 	}
 	
@@ -634,34 +627,17 @@ public final class AdminBoardManager
 			return;
 		}
 		
-		// Map legacy root menu files directly to native wide-screen RBAC tabs.
+		// Refresh current view when legacy handlers (e.g. //gmspeed, //announce) fall back to legacy root menu files,
+		// so session.activeTab never desynchronizes from the native C++ GMWnd.TabCtrl selection.
 		if (fileName != null)
 		{
 			switch (fileName.toLowerCase(Locale.ROOT))
 			{
-				case "main_menu.htm" ->
+				case "main_menu.htm", "char_menu.htm", "game_menu.htm", "gm_menu.htm", "effects_menu.htm", "mods_menu.htm", "server_menu.htm" ->
 				{
-					openTab(player, "dashboard");
-					return;
-				}
-				case "char_menu.htm" ->
-				{
-					openTab(player, "support");
-					return;
-				}
-				case "game_menu.htm" ->
-				{
-					openTab(player, "world");
-					return;
-				}
-				case "gm_menu.htm", "effects_menu.htm", "mods_menu.htm" ->
-				{
-					openTab(player, "events");
-					return;
-				}
-				case "server_menu.htm" ->
-				{
-					openTab(player, "server");
+					final AdminBoardSession session = getSession(player);
+					session.consoleOpen = true;
+					refreshCurrentView(player);
 					return;
 				}
 			}
@@ -898,7 +874,7 @@ public final class AdminBoardManager
 			sb.append("<td width=60></td><td width=60></td><td width=60></td>");
 		}
 		sb.append("<td width=132 align=center>").append(access.hasScope(AdminScope.SERVER_ADMIN) ? button(reloadChangedLabel, "admin_reload changed", 128, 20) : "").append("</td>");
-		sb.append("<td width=76 align=center>").append(button("Home", "admin_gmw home", 72, 20)).append("</td>");
+		sb.append("<td width=76 align=center>").append(button("Tab Root", "admin_gmw root", 72, 20)).append("</td>");
 		sb.append("<td width=76 align=right>").append(button("Refresh", "admin_gmw refresh", 72, 20)).append("</td>");
 		sb.append("</tr></table>");
 		
