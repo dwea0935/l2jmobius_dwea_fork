@@ -11587,6 +11587,10 @@ public class Player extends Playable
 		
 		// Send info to nearby players.
 		broadcastInfo();
+		if ((getClient() == null) || isOfflinePlay())
+		{
+			broadcastUserInfo();
+		}
 	}
 	
 	@Override

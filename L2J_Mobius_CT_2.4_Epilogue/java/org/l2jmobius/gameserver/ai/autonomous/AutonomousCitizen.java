@@ -509,10 +509,26 @@ public final class AutonomousCitizen
 		return true;
 	}
 	
+	private long _holdAtSpawnUntilMs = 0L;
+	
+	public void holdNearSponsor(String sponsorName, long durationMs)
+	{
+		_holdAtSpawnUntilMs = System.currentTimeMillis() + durationMs;
+		_macroState = CitizenMacroState.SPAWN_AND_ORIENT;
+		_lastAction = "Near " + sponsorName + " -> Orienting & gearing up";
+	}
+	
 	private void tickSpawnAndOrient()
 	{
 		ensureFairPlayGearAndConsumables(true);
 		applyTownSupportBuffs();
+		final long now = System.currentTimeMillis();
+		if (now < _holdAtSpawnUntilMs)
+		{
+			final long remSec = Math.max(1L, ((_holdAtSpawnUntilMs - now) + 999L) / 1000L);
+			_lastAction = "Oriented & buffed (-> " + _targetEndgameClass.name() + ", departing in " + remSec + "s)";
+			return;
+		}
 		_macroState = CitizenMacroState.TOWN_ROUTINE;
 		_lastAction = "Oriented & equipped starter kit (-> " + _targetEndgameClass.name() + ")";
 	}

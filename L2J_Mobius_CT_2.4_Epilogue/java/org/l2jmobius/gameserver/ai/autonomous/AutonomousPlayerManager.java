@@ -133,17 +133,25 @@ public final class AutonomousPlayerManager
 	
 	public AutonomousCitizen spawnCitizen()
 	{
-		final int index = _spawnCounter.getAndIncrement();
-		final PlayerClass aspiration = ASPIRATION_ROTATION[index % ASPIRATION_ROTATION.length];
-		return spawnCitizen(aspiration);
+		return spawnCitizen(null, null);
+	}
+	
+	public AutonomousCitizen spawnCitizen(Player sponsor)
+	{
+		return spawnCitizen(null, sponsor);
 	}
 	
 	public int spawnCitizens(int count)
 	{
+		return spawnCitizens(count, null);
+	}
+	
+	public int spawnCitizens(int count, Player sponsor)
+	{
 		int spawned = 0;
 		for (int i = 0; i < count; i++)
 		{
-			if (spawnCitizen() != null)
+			if (spawnCitizen(null, sponsor) != null)
 			{
 				spawned++;
 			}
@@ -152,6 +160,11 @@ public final class AutonomousPlayerManager
 	}
 	
 	public AutonomousCitizen spawnCitizen(PlayerClass requestedClassOrAspiration)
+	{
+		return spawnCitizen(requestedClassOrAspiration, null);
+	}
+	
+	public AutonomousCitizen spawnCitizen(PlayerClass requestedClassOrAspiration, Player sponsor)
 	{
 		try
 		{
@@ -207,11 +220,30 @@ public final class AutonomousPlayerManager
 			}
 			
 			final VillageHub hub = ProgressionKnowledgeGraph.getStartingVillage(template.getRace());
-			final Location spawnLoc = hub.spawnPoint();
-			final int offsetX = ThreadLocalRandom.current().nextInt(-90, 91);
-			final int offsetY = ThreadLocalRandom.current().nextInt(-90, 91);
+			final int spawnX;
+			final int spawnY;
+			final int spawnZ;
+			if (sponsor != null)
+			{
+				final int offsetX = ThreadLocalRandom.current().nextInt(-75, 76);
+				final int offsetY = ThreadLocalRandom.current().nextInt(-75, 76);
+				spawnX = sponsor.getX() + offsetX;
+				spawnY = sponsor.getY() + offsetY;
+				spawnZ = sponsor.getZ() + 5;
+				player.setInstanceId(sponsor.getInstanceId());
+				player.setHeading(sponsor.getHeading());
+			}
+			else
+			{
+				final Location spawnLoc = hub.spawnPoint();
+				final int offsetX = ThreadLocalRandom.current().nextInt(-90, 91);
+				final int offsetY = ThreadLocalRandom.current().nextInt(-90, 91);
+				spawnX = spawnLoc.getX() + offsetX;
+				spawnY = spawnLoc.getY() + offsetY;
+				spawnZ = spawnLoc.getZ();
+			}
 			
-			player.setXYZInvisible(spawnLoc.getX() + offsetX, spawnLoc.getY() + offsetY, spawnLoc.getZ());
+			player.setXYZInvisible(spawnX, spawnY, spawnZ);
 			player.setTitle("->" + aspiration.name());
 			player.setVitalityPoints(PlayerStat.MAX_VITALITY_POINTS, true);
 			player.addAdena(ItemProcessType.REWARD, 25_000L, null, false);
@@ -246,11 +278,19 @@ public final class AutonomousPlayerManager
 			player.spawnMe(player.getX(), player.getY(), player.getZ());
 			player.setRunning();
 			player.broadcastUserInfo();
+			if (sponsor != null)
+			{
+				player.sendInfo(sponsor);
+			}
 			
 			final AutonomousCitizen citizen = new AutonomousCitizen(player, aspiration);
+			if (sponsor != null)
+			{
+				citizen.holdNearSponsor(sponsor.getName(), 15_000L);
+			}
 			_citizens.put(player.getObjectId(), citizen);
 			start();
-			LOGGER.info("AutonomousPlayerManager: Spawned Lv 1 Citizen " + player.getName() + " [" + chosenStartClass + " -> " + aspiration + "] at " + hub.villageName());
+			LOGGER.info("AutonomousPlayerManager: Spawned Lv 1 Citizen " + player.getName() + " [" + chosenStartClass + " -> " + aspiration + "] at " + ((sponsor != null) ? ("GM " + sponsor.getName()) : hub.villageName()));
 			return citizen;
 		}
 		catch (Exception e)
@@ -258,6 +298,42 @@ public final class AutonomousPlayerManager
 			LOGGER.log(Level.WARNING, "AutonomousPlayerManager: Failed to spawn citizen: " + e.getMessage(), e);
 			return null;
 		}
+	}
+	
+	/**
+	 * Teleports all active citizens around the requesting GM, guarantees world spawn visibility,
+	 * and holds them in {@code SPAWN_AND_ORIENT} for 15 seconds so the GM can inspect or party them.
+	 */
+	public int recallAllToPlayer(Player sponsor)
+	{
+		if (sponsor == null)
+		{
+			return 0;
+		}
+		int recalled = 0;
+		final List<AutonomousCitizen> list = getActiveCitizens();
+		for (int i = 0; i < list.size(); i++)
+		{
+			final AutonomousCitizen citizen = list.get(i);
+			final Player cp = (citizen != null) ? citizen.getPlayer() : null;
+			if (cp == null)
+			{
+				continue;
+			}
+			final double angle = (2.0 * Math.PI * i) / Math.max(1, list.size());
+			final int ox = (int) Math.round(Math.cos(angle) * 75.0);
+			final int oy = (int) Math.round(Math.sin(angle) * 75.0);
+			citizen.holdNearSponsor(sponsor.getName(), 15_000L);
+			cp.teleToLocation(sponsor.getX() + ox, sponsor.getY() + oy, sponsor.getZ() + 5, sponsor.getHeading(), sponsor.getInstanceId());
+			if (!cp.isSpawned())
+			{
+				cp.onTeleported();
+			}
+			cp.sendInfo(sponsor);
+			cp.broadcastUserInfo();
+			recalled++;
+		}
+		return recalled;
 	}
 	
 	/**

@@ -22,7 +22,9 @@ package handlers.chat.commands.admin;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.StringJoiner;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,6 +60,8 @@ import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 public class AdminFakePlayers implements IAdminCommandHandler
 {
 	private static final Logger LOGGER = Logger.getLogger(AdminFakePlayers.class.getName());
+	private static final int CITIZENS_PER_PAGE = 5;
+	private static final int BOTS_PER_PAGE = 6;
 	
 	private static final String[] ADMIN_COMMANDS =
 	{
@@ -73,6 +77,9 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		81003, // Seraphina (Cardinal - Healer)
 		81002 // Lyra (Sagittarius - Archer)
 	};
+	
+	private final Map<Integer, String> _activeTab = new ConcurrentHashMap<>();
+	private final Map<Integer, Integer> _citizenPage = new ConcurrentHashMap<>();
 	
 	@Override
 	public boolean onCommand(String command, Player activeChar)
@@ -117,6 +124,22 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		
 		switch (action)
 		{
+			case "tab":
+			{
+				final String tabName = (tokens.length > 2) ? tokens[2].toLowerCase(Locale.ROOT) : "citizens";
+				_activeTab.put(activeChar.getObjectId(), "squad".equals(tabName) ? "squad" : "citizens");
+				showControlPanel(activeChar);
+				break;
+			}
+			case "cp":
+			case "citizen_page":
+			{
+				final int page = (tokens.length > 2) ? Math.max(1, parseIntSafe(tokens[2], 1)) : 1;
+				_citizenPage.put(activeChar.getObjectId(), page);
+				_activeTab.put(activeChar.getObjectId(), "citizens");
+				showControlPanel(activeChar);
+				break;
+			}
 			case "toggle_ai":
 			{
 				FakePlayersConfig.FAKE_PLAYER_TACTICAL_AI = !FakePlayersConfig.FAKE_PLAYER_TACTICAL_AI;
@@ -137,6 +160,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 				final int stageNum = (tokens.length > 2) ? parseIntSafe(tokens[2], 5) : 5;
 				final CurriculumStage stage = CurriculumStage.fromId(stageNum);
 				FakePlayerAiEngine.getInstance().getNeuralPolicy().setStage(stage);
+				_activeTab.put(activeChar.getObjectId(), "squad");
 				activeChar.sendSysMessage("Neural Curriculum switched to " + stage.getTitle() + " (" + stage.getDescription() + ").");
 				showControlPanel(activeChar);
 				break;
@@ -144,6 +168,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			case "duel":
 			{
 				final int spawned = FakePlayerAiEngine.getInstance().spawnTrainingDuel(activeChar);
+				_activeTab.put(activeChar.getObjectId(), "squad");
 				activeChar.sendSysMessage("Spawned 1v1 Neural Curriculum Duel (" + spawned + " bots: Vex [Dagger] vs Lyra [Archer]).");
 				showControlPanel(activeChar);
 				break;
@@ -151,6 +176,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			case "squadsim":
 			{
 				final int spawned = FakePlayerAiEngine.getInstance().spawnSquadSim(activeChar);
+				_activeTab.put(activeChar.getObjectId(), "squad");
 				activeChar.sendSysMessage("Spawned 3v3 Neural Squad Simulation (" + spawned + " bots engaged).");
 				showControlPanel(activeChar);
 				break;
@@ -158,20 +184,34 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			case "save_weights":
 			{
 				final boolean ok = FakePlayerAiEngine.getInstance().getNeuralPolicy().saveWeights();
+				_activeTab.put(activeChar.getObjectId(), "squad");
 				activeChar.sendSysMessage(ok ? "Saved neural policy checkpoint to data/neural_fakeplayer_weights.bin." : "Failed to save neural policy weights.");
 				showControlPanel(activeChar);
 				break;
 			}
+			case "cs":
 			case "citizen_spawn":
 			{
+				_activeTab.put(activeChar.getObjectId(), "citizens");
 				final String arg = (tokens.length > 2) ? tokens[2].trim() : "1";
+				if ("RANDOM".equalsIgnoreCase(arg) || "RND".equalsIgnoreCase(arg))
+				{
+					final PlayerClass randomClass = org.l2jmobius.gameserver.ai.autonomous.ProgressionKnowledgeGraph.selectRandomEndgameAspiration();
+					final AutonomousCitizen spawned = AutonomousPlayerManager.getInstance().spawnCitizen(randomClass, activeChar);
+					if ((spawned != null) && (spawned.getPlayer() != null))
+					{
+						activeChar.sendSysMessage("Spawned Lv 1 Citizen " + spawned.getPlayer().getName() + " [Random Aspiration: " + spawned.getPlayer().getPlayerClass() + " -> " + spawned.getTargetEndgameClass() + "] near your location (departing in 15s).");
+					}
+					showControlPanel(activeChar);
+					break;
+				}
 				final PlayerClass targetClass = resolveCitizenAspirationArg(arg);
 				if (targetClass != null)
 				{
-					final AutonomousCitizen spawned = AutonomousPlayerManager.getInstance().spawnCitizen(targetClass);
+					final AutonomousCitizen spawned = AutonomousPlayerManager.getInstance().spawnCitizen(targetClass, activeChar);
 					if ((spawned != null) && (spawned.getPlayer() != null))
 					{
-						activeChar.sendSysMessage("Spawned Lv 1 Citizen " + spawned.getPlayer().getName() + " [" + spawned.getPlayer().getPlayerClass() + " -> " + spawned.getTargetEndgameClass() + "] in " + spawned.getCurrentZoneName() + ".");
+						activeChar.sendSysMessage("Spawned Lv 1 Citizen " + spawned.getPlayer().getName() + " [" + spawned.getPlayer().getPlayerClass() + " -> " + spawned.getTargetEndgameClass() + "] near your location (departing in 15s).");
 					}
 					else
 					{
@@ -181,20 +221,36 @@ public class AdminFakePlayers implements IAdminCommandHandler
 				else
 				{
 					final int count = Math.max(1, Math.min(20, parseIntSafe(arg, 1)));
-					final int spawnedCount = AutonomousPlayerManager.getInstance().spawnCitizens(count);
-					activeChar.sendSysMessage("Spawned " + spawnedCount + " Real-Player Autonomous Citizen(s) at Lv 1 in racial starting villages.");
+					final int spawnedCount = AutonomousPlayerManager.getInstance().spawnCitizens(count, activeChar);
+					activeChar.sendSysMessage("Spawned " + spawnedCount + " Real-Player Autonomous Citizen(s) at Lv 1 near your location (departing in 15s).");
 				}
 				showControlPanel(activeChar);
 				break;
 			}
+			case "citizen_recall":
+			{
+				_activeTab.put(activeChar.getObjectId(), "citizens");
+				final int recalled = AutonomousPlayerManager.getInstance().recallAllToPlayer(activeChar);
+				activeChar.sendSysMessage("Recalled " + recalled + " Autonomous Citizen(s) to your location (holding for 15s).");
+				showControlPanel(activeChar);
+				break;
+			}
+			case "cg":
 			case "citizen_goto":
 			{
+				_activeTab.put(activeChar.getObjectId(), "citizens");
 				final int objId = (tokens.length > 2) ? parseIntSafe(tokens[2], 0) : 0;
 				final AutonomousCitizen citizen = AutonomousPlayerManager.getInstance().getCitizen(objId);
 				if ((citizen != null) && (citizen.getPlayer() != null))
 				{
 					final Player cp = citizen.getPlayer();
+					if (!cp.isSpawned())
+					{
+						cp.onTeleported();
+					}
 					activeChar.teleToLocation(cp.getX() + 40, cp.getY() + 40, cp.getZ(), cp.getHeading(), cp.getInstanceId());
+					cp.sendInfo(activeChar);
+					cp.broadcastUserInfo();
 					activeChar.sendSysMessage("Teleported to Autonomous Citizen " + cp.getName() + " (Lv " + cp.getLevel() + " " + cp.getPlayerClass() + ") in " + citizen.getCurrentZoneName() + ".");
 				}
 				else
@@ -204,12 +260,15 @@ public class AdminFakePlayers implements IAdminCommandHandler
 				showControlPanel(activeChar);
 				break;
 			}
+			case "cd":
 			case "citizen_despawn":
 			{
+				_activeTab.put(activeChar.getObjectId(), "citizens");
 				final String targetArg = (tokens.length > 2) ? tokens[2] : "ALL";
 				if ("ALL".equalsIgnoreCase(targetArg))
 				{
 					final int removed = AutonomousPlayerManager.getInstance().despawnAll();
+					_citizenPage.put(activeChar.getObjectId(), 1);
 					activeChar.sendSysMessage("Despawned " + removed + " Autonomous Citizen(s).");
 				}
 				else
@@ -223,6 +282,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			}
 			case "citizen_raid":
 			{
+				_activeTab.put(activeChar.getObjectId(), "citizens");
 				final String msg = AutonomousPlayerManager.getInstance().formRaidBossExpedition(activeChar);
 				activeChar.sendSysMessage(msg);
 				showControlPanel(activeChar);
@@ -242,6 +302,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			}
 			case "summon":
 			{
+				_activeTab.put(activeChar.getObjectId(), "squad");
 				final String targetArg = (tokens.length > 2) ? tokens[2] : "SQUAD";
 				if ("SQUAD".equalsIgnoreCase(targetArg))
 				{
@@ -292,6 +353,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			}
 			case "assist":
 			{
+				_activeTab.put(activeChar.getObjectId(), "squad");
 				final String botName = (tokens.length > 2) ? tokens[2] : "ALL";
 				int count = 0;
 				for (Npc npc : FakePlayerAiEngine.getInstance().getActiveFakePlayers())
@@ -308,6 +370,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			}
 			case "mode":
 			{
+				_activeTab.put(activeChar.getObjectId(), "squad");
 				if (tokens.length < 4)
 				{
 					activeChar.sendSysMessage("Usage: //fakeplayer mode <name|objectId|ALL> <AGGRESSIVE|KITE_DEFENSIVE|ASSIST_PLAYER|GUARD>");
@@ -349,6 +412,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			}
 			case "recall":
 			{
+				_activeTab.put(activeChar.getObjectId(), "squad");
 				final String botKey = (tokens.length > 2) ? tokens[2] : "ALL";
 				int recalled = 0;
 				for (Npc npc : FakePlayerAiEngine.getInstance().getActiveFakePlayers())
@@ -365,6 +429,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			}
 			case "despawn":
 			{
+				_activeTab.put(activeChar.getObjectId(), "squad");
 				final String botKey = (tokens.length > 2) ? tokens[2] : "";
 				int removed = 0;
 				for (Npc npc : FakePlayerAiEngine.getInstance().getActiveFakePlayers())
@@ -391,28 +456,43 @@ public class AdminFakePlayers implements IAdminCommandHandler
 				if (!"menu".equals(action))
 				{
 					final String tail = command.trim().substring(tokens[0].length()).trim();
-					final PlayerClass directClass = resolveCitizenAspirationArg(tail);
-					if (directClass != null)
+					if ("RANDOM".equalsIgnoreCase(tail) || "+RANDOM".equalsIgnoreCase(tail) || "RND".equalsIgnoreCase(tail))
 					{
-						final AutonomousCitizen spawned = AutonomousPlayerManager.getInstance().spawnCitizen(directClass);
+						_activeTab.put(activeChar.getObjectId(), "citizens");
+						final PlayerClass randomClass = org.l2jmobius.gameserver.ai.autonomous.ProgressionKnowledgeGraph.selectRandomEndgameAspiration();
+						final AutonomousCitizen spawned = AutonomousPlayerManager.getInstance().spawnCitizen(randomClass, activeChar);
 						if ((spawned != null) && (spawned.getPlayer() != null))
 						{
-							activeChar.sendSysMessage("Spawned Lv 1 Citizen " + spawned.getPlayer().getName() + " [" + spawned.getPlayer().getPlayerClass() + " -> " + spawned.getTargetEndgameClass() + "] in " + spawned.getCurrentZoneName() + ".");
-						}
-						else
-						{
-							activeChar.sendSysMessage("Failed to spawn Citizen with aspiration: " + directClass);
+							activeChar.sendSysMessage("Spawned Lv 1 Citizen " + spawned.getPlayer().getName() + " [Random Aspiration: " + spawned.getPlayer().getPlayerClass() + " -> " + spawned.getTargetEndgameClass() + "] near your location (departing in 15s).");
 						}
 					}
 					else
 					{
-						final String numCandidate = tail.startsWith("+") ? tail.substring(1).trim() : tail;
-						final int count = parseIntSafe(numCandidate, -1);
-						if (count > 0)
+						final PlayerClass directClass = resolveCitizenAspirationArg(tail);
+						if (directClass != null)
 						{
-							final int clamped = Math.min(20, count);
-							final int spawnedCount = AutonomousPlayerManager.getInstance().spawnCitizens(clamped);
-							activeChar.sendSysMessage("Spawned " + spawnedCount + " Real-Player Autonomous Citizen(s) at Lv 1 in racial starting villages.");
+							_activeTab.put(activeChar.getObjectId(), "citizens");
+							final AutonomousCitizen spawned = AutonomousPlayerManager.getInstance().spawnCitizen(directClass, activeChar);
+							if ((spawned != null) && (spawned.getPlayer() != null))
+							{
+								activeChar.sendSysMessage("Spawned Lv 1 Citizen " + spawned.getPlayer().getName() + " [" + spawned.getPlayer().getPlayerClass() + " -> " + spawned.getTargetEndgameClass() + "] near your location (departing in 15s).");
+							}
+							else
+							{
+								activeChar.sendSysMessage("Failed to spawn Citizen with aspiration: " + directClass);
+							}
+						}
+						else
+						{
+							final String numCandidate = tail.startsWith("+") ? tail.substring(1).trim() : tail;
+							final int count = parseIntSafe(numCandidate, -1);
+							if (count > 0)
+							{
+								_activeTab.put(activeChar.getObjectId(), "citizens");
+								final int clamped = Math.min(20, count);
+								final int spawnedCount = AutonomousPlayerManager.getInstance().spawnCitizens(clamped, activeChar);
+								activeChar.sendSysMessage("Spawned " + spawnedCount + " Real-Player Autonomous Citizen(s) at Lv 1 near your location (departing in 15s).");
+							}
 						}
 					}
 				}
@@ -442,6 +522,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		final String upper = cleaned.toUpperCase(Locale.ROOT).replace(' ', '_').replace('-', '_');
 		return switch (upper)
 		{
+			case "RANDOM", "RND" -> org.l2jmobius.gameserver.ai.autonomous.ProgressionKnowledgeGraph.selectRandomEndgameAspiration();
 			case "SPOILER", "FORTUNESEEKER", "FORTUNE_SEEKER", "BOUNTYHUNTER", "BOUNTY_HUNTER", "SCAVENGER" -> PlayerClass.FORTUNE_SEEKER;
 			case "CRAFTER", "WARSMITH", "ARTISAN" -> PlayerClass.MAESTRO;
 			case "DREADNGT", "WARLORD" -> PlayerClass.DREADNOUGHT;
@@ -450,7 +531,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			case "EVATEMPLAR", "EVA_TEMPLAR", "TEMPLEKNIGHT", "TEMPLE_KNIGHT" -> PlayerClass.EVA_TEMPLAR;
 			case "SHILLIENTEMPLAR", "SHILLIEN_TEMPLAR", "SHILLIENKNIGHT", "SHILLIEN_KNIGHT" -> PlayerClass.SHILLIEN_TEMPLAR;
 			case "SAGITTAR", "HAWKEYE" -> PlayerClass.SAGITTARIUS;
-			case "KHAVATAR", "GRANDKHAVATARI", "GRAND_KHAVATARI", "TYRANT" -> PlayerClass.GRAND_KHAVATARI;
+			case "KHAVATAR", "KHAVATARI", "GRANDKHAVATARI", "GRAND_KHAVATARI", "TYRANT" -> PlayerClass.GRAND_KHAVATARI;
 			case "TH", "TREASUREHUNTER", "TREASURE_HUNTER", "DAGGER" -> PlayerClass.ADVENTURER;
 			case "PW", "PLAINSWALKER", "PLAINS_WALKER", "WINDRIDER", "WIND_RIDER" -> PlayerClass.WIND_RIDER;
 			case "AW", "ABYSSWALKER", "ABYSS_WALKER", "GHOSTHUNTER", "GHOST_HUNTER" -> PlayerClass.GHOST_HUNTER;
@@ -460,7 +541,8 @@ public class AdminFakePlayers implements IAdminCommandHandler
 			case "SORCERER", "SORC" -> PlayerClass.ARCHMAGE;
 			case "SPELLSINGER", "SPS" -> PlayerClass.MYSTIC_MUSE;
 			case "SPELLHOWLER", "SPH" -> PlayerClass.STORM_SCREAMER;
-			case "SOULHOUND", "SOUL_HOUND" -> PlayerClass.MALE_SOUL_HOUND;
+			case "SOULHOUND", "SOUL_HOUND", "MSOULHND" -> PlayerClass.MALE_SOUL_HOUND;
+			case "FSOULHND", "FEMALESOULHOUND", "FEMALE_SOUL_HOUND" -> PlayerClass.FEMALE_SOUL_HOUND;
 			default ->
 			{
 				try
@@ -485,6 +567,20 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		{
 			return fallback;
 		}
+	}
+	
+	private static String truncateText(String s, int maxLen)
+	{
+		if (s == null)
+		{
+			return "";
+		}
+		return (s.length() <= maxLen) ? s : (s.substring(0, maxLen - 2) + "..");
+	}
+	
+	private static void appendAspBtn(StringBuilder sb, String label, String classArg)
+	{
+		sb.append("<td width=94><button value=\"").append(label).append("\" action=\"bypass admin_fpc cs ").append(classArg).append("\" width=90 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 	}
 	
 	private Npc spawnFakePlayer(int npcId, int x, int y, int z, int heading, int instanceId)
@@ -521,158 +617,232 @@ public class AdminFakePlayers implements IAdminCommandHandler
 	private void showControlPanel(Player activeChar)
 	{
 		final FakePlayerAiEngine engine = FakePlayerAiEngine.getInstance();
-		final FakePlayerNeuralPolicy policy = engine.getNeuralPolicy();
-		final CurriculumStage stage = policy.getStage();
 		final List<Npc> bots = engine.getActiveFakePlayers();
 		final List<AutonomousCitizen> citizens = AutonomousPlayerManager.getInstance().getActiveCitizens();
 		final long anomalyCount = GameplayAnomalyAuditor.getInstance().getTotalAnomaliesCount();
-		final StringBuilder sb = new StringBuilder(10240);
+		final String currentTab = _activeTab.getOrDefault(activeChar.getObjectId(), "citizens");
+		final boolean isSquadTab = "squad".equals(currentTab);
+		
+		final StringBuilder sb = new StringBuilder(12288);
 		sb.append("<html><title>FakePlayer Tactical AI</title><body>");
-		sb.append("<font color=\"LEVEL\">FakePlayer Tactical Utility-AI (250ms), SIMD Neural Curriculum &amp; Autonomous Citizens (Lv 1-&gt;85)</font><br1>");
 		
-		// Status Banner (948px)
-		sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"1E1E26\"><tr>");
-		sb.append("<td width=190><font color=\"AAAAAA\">Active Bots:</font> <font color=\"00FF00\">").append(bots.size()).append("</font></td>");
-		sb.append("<td width=230><font color=\"AAAAAA\">Tactical Utility-AI:</font> ").append(FakePlayersConfig.FAKE_PLAYER_TACTICAL_AI ? "<font color=\"00FF00\">ACTIVE (250ms)</font>" : "<font color=\"FF6666\">PAUSED</font>").append("</td>");
-		sb.append("<td width=290><font color=\"AAAAAA\">Virtual-Thread LLM:</font> ").append(FakePlayersConfig.FAKE_PLAYER_LLM_ENABLED ? ("<font color=\"00FF00\">ON (" + FakePlayersConfig.FAKE_PLAYER_LLM_MODEL + ")</font>") : "<font color=\"FFCC00\">OFF (Heuristic/XML Mode)</font>").append("</td>");
-		sb.append("<td width=119 align=center><button value=\"Toggle AI\" action=\"bypass admin_fakeplayer toggle_ai\" width=110 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=119 align=center><button value=\"Toggle LLM\" action=\"bypass admin_fakeplayer toggle_llm\" width=110 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("</tr></table><br1>");
-		
-		// Wave 1 & 2: Autonomous Citizens (Lv 1 -> 85) & QA Anomaly Engine Bar (948px)
-		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1A241E\"><tr>");
-		sb.append("<td width=188><font color=\"00FF99\">Citizens (Lv1-&gt;85):</font> <font color=\"LEVEL\">").append(citizens.size()).append("</font></td>");
-		sb.append("<td width=150 align=center><button value=\"Spawn Lv1 Citizen\" action=\"bypass admin_fakeplayer citizen_spawn 1\" width=142 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=150 align=center><button value=\"Spawn 5x Citizens\" action=\"bypass admin_fakeplayer citizen_spawn 5\" width=142 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=150 align=center><button value=\"Raid Expedition\" action=\"bypass admin_fakeplayer citizen_raid\" width=142 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=150 align=center><button value=\"Despawn Citizens\" action=\"bypass admin_fakeplayer citizen_despawn ALL\" width=142 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=160 align=center><button value=\"QA Log (").append(anomalyCount).append(")\" action=\"bypass admin_fakeplayer qa_log\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		// Top Sub-Tab Switcher Bar (948px)
+		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"161A22\"><tr>");
+		sb.append("<td width=316 align=center><button value=\"Citizens &amp; All 35 Classes (").append(citizens.size()).append(")\" action=\"bypass admin_fakeplayer tab citizens\" width=306 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=316 align=center><button value=\"Tactical Squad &amp; Neural RL (").append(bots.size()).append(")\" action=\"bypass admin_fakeplayer tab squad\" width=306 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=316 align=center><button value=\"QA Anomaly Log (").append(anomalyCount).append(")\" action=\"bypass admin_fakeplayer qa_log\" width=306 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("</tr></table>");
 		
-		// Endgame Class Aspiration Quick-Spawn Bar (948px)
-		sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr>");
-		sb.append("<td width=112><font color=\"00FFCC\">Aspiration</font></td>");
-		sb.append("<td width=76 align=center><button value=\"+Spoiler\" action=\"bypass admin_fakeplayer citizen_spawn FORTUNE_SEEKER\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=76 align=center><button value=\"+Crafter\" action=\"bypass admin_fakeplayer citizen_spawn MAESTRO\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=76 align=center><button value=\"+Duelist\" action=\"bypass admin_fakeplayer citizen_spawn DUELIST\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=76 align=center><button value=\"+Dreadngt\" action=\"bypass admin_fakeplayer citizen_spawn DREADNOUGHT\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=76 align=center><button value=\"+Adventurer\" action=\"bypass admin_fakeplayer citizen_spawn ADVENTURER\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=76 align=center><button value=\"+PhoenixKt\" action=\"bypass admin_fakeplayer citizen_spawn PHOENIX_KNIGHT\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=76 align=center><button value=\"+Archmage\" action=\"bypass admin_fakeplayer citizen_spawn ARCHMAGE\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=76 align=center><button value=\"+Sagittar\" action=\"bypass admin_fakeplayer citizen_spawn SAGITTARIUS\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=76 align=center><button value=\"+Cardinal\" action=\"bypass admin_fakeplayer citizen_spawn CARDINAL\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=76 align=center><button value=\"+Dominator\" action=\"bypass admin_fakeplayer citizen_spawn DOMINATOR\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=76 align=center><button value=\"+Khavatar\" action=\"bypass admin_fakeplayer citizen_spawn GRAND_KHAVATARI\" width=72 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("</tr></table>");
-		
-		// Citizen Economy & Wealth Progression Auditor Bar (948px)
-		final EconomyProgressionAuditor econ = EconomyProgressionAuditor.getInstance();
-		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1E1B14\"><tr>");
-		sb.append("<td width=237><font color=\"AAAAAA\">Economy Inflow:</font> <font color=\"00FF99\">").append(econ.getTotalAdenaGenerated()).append("</font></td>");
-		sb.append("<td width=237><font color=\"AAAAAA\">Adena Sinks:</font> <font color=\"FF9966\">").append(econ.getTotalAdenaFlushed()).append("</font></td>");
-		sb.append("<td width=237><font color=\"AAAAAA\">Dwarf Craft Trade:</font> <font color=\"LEVEL\">").append(econ.getSourceTotal(EconomySource.SPOIL_AND_CRAFT_TRADE_ADENA)).append("</font></td>");
-		sb.append("<td width=237><font color=\"AAAAAA\">7S Ancient Adena:</font> <font color=\"00CCFF\">").append(econ.getTotalAncientAdenaGenerated()).append("</font></td>");
-		sb.append("</tr></table><br1>");
-		
-		// Neural Curriculum Trainer Telemetry & Stage Controls (948px)
-		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"16202A\"><tr>");
-		sb.append("<td width=310><font color=\"00FFCC\">").append(stage.getTitle()).append("</font></td>");
-		sb.append("<td width=240><font color=\"AAAAAA\">RL Steps:</font> <font color=\"00FF00\">").append(policy.getTrainingSteps()).append("</font> <font color=\"888888\">(Duels: ").append(policy.getDuelsCompleted()).append(")</font></td>");
-		sb.append("<td width=130><font color=\"AAAAAA\">Baseline:</font> <font color=\"LEVEL\">").append(String.format(Locale.US, "%.2f", policy.getRewardBaseline())).append("</font></td>");
-		sb.append("<td width=90 align=center><button value=\"1v1 Duel\" action=\"bypass admin_fakeplayer duel\" width=84 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=90 align=center><button value=\"3v3 Sim\" action=\"bypass admin_fakeplayer squadsim\" width=84 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=88 align=center><button value=\"Save NN\" action=\"bypass admin_fakeplayer save_weights\" width=82 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("</tr></table>");
-		
-		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"121820\"><tr>");
-		sb.append("<td width=148><font color=\"AAAAAA\">Curriculum Stage</font></td>");
-		sb.append("<td width=160 align=center><button value=\"S1: Discovery\" action=\"bypass admin_fakeplayer stage 1\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=160 align=center><button value=\"S2: Spacing/Kite\" action=\"bypass admin_fakeplayer stage 2\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=160 align=center><button value=\"S3: Archetypes\" action=\"bypass admin_fakeplayer stage 3\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=160 align=center><button value=\"S4: Squad Synergy\" action=\"bypass admin_fakeplayer stage 4\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=160 align=center><button value=\"S5: PvP Arena\" action=\"bypass admin_fakeplayer stage 5\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("</tr></table><br1>");
-		
-		// 1-Click Squad Spawner & Archetype Deployment Bar (948px)
-		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1B1B1B\"><tr>");
-		sb.append("<td width=144><font color=\"00FF00\">Deploy Bots</font></td>");
-		sb.append("<td width=134 align=center><button value=\"Summon Squad (3)\" action=\"bypass admin_fakeplayer summon SQUAD\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=134 align=center><button value=\"+Tank (Aegis)\" action=\"bypass admin_fakeplayer summon 81004\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=134 align=center><button value=\"+Healer (Seraph)\" action=\"bypass admin_fakeplayer summon 81003\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=134 align=center><button value=\"+Archer (Lyra)\" action=\"bypass admin_fakeplayer summon 81002\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=134 align=center><button value=\"+Dagger (Vex)\" action=\"bypass admin_fakeplayer summon 81005\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=134 align=center><button value=\"+Mage (Zephyr)\" action=\"bypass admin_fakeplayer summon 81006\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("</tr></table>");
-		
-		// Bulk Squad Orders Bar (948px)
-		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1B1B1B\"><tr>");
-		sb.append("<td width=144><font color=\"00CCFF\">Squad Orders</font></td>");
-		sb.append("<td width=134 align=center><button value=\"All: ASSIST ME\" action=\"bypass admin_fakeplayer assist ALL\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=134 align=center><button value=\"All: AGGRESSIVE\" action=\"bypass admin_fakeplayer mode ALL AGGRESSIVE\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=134 align=center><button value=\"All: KITE MODE\" action=\"bypass admin_fakeplayer mode ALL KITE_DEFENSIVE\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=134 align=center><button value=\"All: GUARD\" action=\"bypass admin_fakeplayer mode ALL GUARD\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=134 align=center><button value=\"Recall All\" action=\"bypass admin_fakeplayer recall ALL\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=134 align=center><button value=\"Clear Squad\" action=\"bypass admin_fakeplayer despawn ALL_COMBAT\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("</tr></table><br1>");
-		
-		if (!citizens.isEmpty())
+		if (!isSquadTab)
 		{
-			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1E2E24\"><tr><td width=85><font color=\"LEVEL\">Citizen</font></td><td width=135><font color=\"LEVEL\">Class -&gt; Goal</font></td><td width=130><font color=\"LEVEL\">Gear &amp; Badges</font></td><td width=130><font color=\"LEVEL\">Macro State</font></td><td width=130><font color=\"LEVEL\">Zone</font></td><td width=198><font color=\"LEVEL\">Last Lifecycle Action</font></td><td width=70 align=center><font color=\"LEVEL\">Goto</font></td><td width=70 align=center><font color=\"LEVEL\">Despawn</font></td></tr></table>");
-			int citizenShown = 0;
-			for (AutonomousCitizen citizen : citizens)
+			// === SUB-VIEW 1: AUTONOMOUS CITIZENS (Lv 1 -> 85), ALL 35 ENDGAME ASPIRATIONS & ECONOMY ===
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"1A241E\"><tr>");
+			sb.append("<td width=168><font color=\"00FF99\">Citizens (Lv1-&gt;85):</font> <font color=\"LEVEL\">").append(citizens.size()).append("</font></td>");
+			sb.append("<td width=156 align=center><button value=\"Spawn Lv1 Here\" action=\"bypass admin_fpc cs 1\" width=148 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=156 align=center><button value=\"Spawn 5x Here\" action=\"bypass admin_fpc cs 5\" width=148 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=156 align=center><button value=\"Recall Citizens\" action=\"bypass admin_fakeplayer citizen_recall\" width=148 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=156 align=center><button value=\"Raid Expedition\" action=\"bypass admin_fakeplayer citizen_raid\" width=148 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=156 align=center><button value=\"Despawn Citizens\" action=\"bypass admin_fpc cd ALL\" width=148 height=19 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("</tr></table>");
+			
+			// Row 1 of 4: Random Aspiration + Human Fighter & Mystic (102px + 9 * 94px = 948px)
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr><td width=102><font color=\"00FFCC\">Rnd / Human</font></td>");
+			appendAspBtn(sb, "+Random (35)", "RANDOM");
+			appendAspBtn(sb, "+Duelist", "DUELIST");
+			appendAspBtn(sb, "+Dreadngt", "DREADNOUGHT");
+			appendAspBtn(sb, "+PhoenixKt", "PHOENIX_KNIGHT");
+			appendAspBtn(sb, "+HellKt", "HELL_KNIGHT");
+			appendAspBtn(sb, "+Sagittar", "SAGITTARIUS");
+			appendAspBtn(sb, "+Adventurer", "ADVENTURER");
+			appendAspBtn(sb, "+Archmage", "ARCHMAGE");
+			appendAspBtn(sb, "+Soultaker", "SOULTAKER");
+			sb.append("</tr></table>");
+			
+			// Row 2 of 4: Human Support/Summon + Elf Fighter & Mystic (102px + 9 * 94px = 948px)
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr><td width=102><font color=\"00FFCC\">Hum / Elf</font></td>");
+			appendAspBtn(sb, "+ArcanaLd", "ARCANA_LORD");
+			appendAspBtn(sb, "+Cardinal", "CARDINAL");
+			appendAspBtn(sb, "+Hierophnt", "HIEROPHANT");
+			appendAspBtn(sb, "+EvaTemplr", "EVA_TEMPLAR");
+			appendAspBtn(sb, "+SwordMuse", "SWORD_MUSE");
+			appendAspBtn(sb, "+WindRider", "WIND_RIDER");
+			appendAspBtn(sb, "+MoonSent", "MOONLIGHT_SENTINEL");
+			appendAspBtn(sb, "+MysticMs", "MYSTIC_MUSE");
+			appendAspBtn(sb, "+ElemMastr", "ELEMENTAL_MASTER");
+			sb.append("</tr></table>");
+			
+			// Row 3 of 4: Elf Support + Dark Elf Fighter & Mystic + Orc Titan (102px + 9 * 94px = 948px)
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr><td width=102><font color=\"00FFCC\">Elf / DElf</font></td>");
+			appendAspBtn(sb, "+EvaSaint", "EVA_SAINT");
+			appendAspBtn(sb, "+ShilTempl", "SHILLIEN_TEMPLAR");
+			appendAspBtn(sb, "+SpecDancr", "SPECTRAL_DANCER");
+			appendAspBtn(sb, "+GhostHntr", "GHOST_HUNTER");
+			appendAspBtn(sb, "+GhostSent", "GHOST_SENTINEL");
+			appendAspBtn(sb, "+StormScrm", "STORM_SCREAMER");
+			appendAspBtn(sb, "+SpecMastr", "SPECTRAL_MASTER");
+			appendAspBtn(sb, "+ShilSaint", "SHILLIEN_SAINT");
+			appendAspBtn(sb, "+Titan", "TITAN");
+			sb.append("</tr></table>");
+			
+			// Row 4 of 4: Orc + Dwarf + Kamael (102px + 9 * 94px = 948px)
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141C18\"><tr><td width=102><font color=\"00FFCC\">Orc/Dwf/Kam</font></td>");
+			appendAspBtn(sb, "+Khavatari", "GRAND_KHAVATARI");
+			appendAspBtn(sb, "+Dominator", "DOMINATOR");
+			appendAspBtn(sb, "+Doomcryer", "DOOMCRYER");
+			appendAspBtn(sb, "+Spoiler", "FORTUNE_SEEKER");
+			appendAspBtn(sb, "+Crafter", "MAESTRO");
+			appendAspBtn(sb, "+Doombrngr", "DOOMBRINGER");
+			appendAspBtn(sb, "+MSoulHnd", "MALE_SOUL_HOUND");
+			appendAspBtn(sb, "+FSoulHnd", "FEMALE_SOUL_HOUND");
+			appendAspBtn(sb, "+Trickster", "TRICKSTER");
+			sb.append("</tr></table>");
+			
+			// Citizen Economy & Wealth Progression Auditor Bar (948px)
+			final EconomyProgressionAuditor econ = EconomyProgressionAuditor.getInstance();
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"1E1B14\"><tr>");
+			sb.append("<td width=237><font color=\"AAAAAA\">Economy Inflow:</font> <font color=\"00FF99\">").append(econ.getTotalAdenaGenerated()).append("</font></td>");
+			sb.append("<td width=237><font color=\"AAAAAA\">Adena Sinks:</font> <font color=\"FF9966\">").append(econ.getTotalAdenaFlushed()).append("</font></td>");
+			sb.append("<td width=237><font color=\"AAAAAA\">Dwarf Craft Trade:</font> <font color=\"LEVEL\">").append(econ.getSourceTotal(EconomySource.SPOIL_AND_CRAFT_TRADE_ADENA)).append("</font></td>");
+			sb.append("<td width=237><font color=\"AAAAAA\">7S Ancient Adena:</font> <font color=\"00CCFF\">").append(econ.getTotalAncientAdenaGenerated()).append("</font></td>");
+			sb.append("</tr></table>");
+			
+			// Paginated Citizens Table (5 citizens per page)
+			sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"1E2E24\"><tr><td width=85><font color=\"LEVEL\">Citizen</font></td><td width=135><font color=\"LEVEL\">Class -&gt; Goal</font></td><td width=130><font color=\"LEVEL\">Gear &amp; Badges</font></td><td width=130><font color=\"LEVEL\">Macro State</font></td><td width=130><font color=\"LEVEL\">Zone</font></td><td width=198><font color=\"LEVEL\">Last Lifecycle Action</font></td><td width=70 align=center><font color=\"LEVEL\">Goto</font></td><td width=70 align=center><font color=\"LEVEL\">Despawn</font></td></tr></table>");
+			if (citizens.isEmpty())
 			{
-				final Player cp = citizen.getPlayer();
-				if (cp == null)
+				sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101814\"><tr><td width=948 align=center><font color=\"888888\">No Autonomous Citizens active. Click [+Random (35)] or any of the 35 [+Class] buttons above to spawn citizens in front of you!</font></td></tr></table>");
+			}
+			else
+			{
+				final int totalPages = Math.max(1, ((citizens.size() - 1) / CITIZENS_PER_PAGE) + 1);
+				final int currentPage = Math.max(1, Math.min(totalPages, _citizenPage.getOrDefault(activeChar.getObjectId(), 1)));
+				final int startIdx = (currentPage - 1) * CITIZENS_PER_PAGE;
+				final int endIdx = Math.min(citizens.size(), startIdx + CITIZENS_PER_PAGE);
+				
+				for (int i = startIdx; i < endIdx; i++)
 				{
-					continue;
+					final AutonomousCitizen citizen = citizens.get(i);
+					final Player cp = (citizen != null) ? citizen.getPlayer() : null;
+					if (cp == null)
+					{
+						continue;
+					}
+					final int objId = cp.getObjectId();
+					sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"101814\"><tr>");
+					sb.append("<td width=85><font color=\"00FF99\">").append(cp.getName()).append("</font></td>");
+					sb.append("<td width=135><font color=\"00CCFF\">Lv").append(cp.getLevel()).append(" ").append(cp.getPlayerClass()).append("-&gt;").append(citizen.getTargetEndgameClass()).append("</font></td>");
+					sb.append("<td width=130><font color=\"FFCC00\">").append(citizen.getGearTierBadge()).append(" ").append(citizen.getProgressionBadges()).append("</font></td>");
+					sb.append("<td width=130><font color=\"LEVEL\">").append(citizen.getMacroState()).append("</font></td>");
+					sb.append("<td width=130><font color=\"B09878\">").append(truncateText(citizen.getCurrentZoneName(), 22)).append("</font></td>");
+					sb.append("<td width=198><font color=\"CCCCCC\">").append(truncateText(citizen.getLastAction(), 34)).append("</font></td>");
+					sb.append("<td width=70><button value=\"Teleport\" action=\"bypass admin_fpc cg ").append(objId).append("\" width=64 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+					sb.append("<td width=70><button value=\"Despawn\" action=\"bypass admin_fpc cd ").append(objId).append("\" width=64 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+					sb.append("</tr></table>");
 				}
-				final int objId = cp.getObjectId();
-				sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101814\"><tr>");
-				sb.append("<td width=85><font color=\"00FF99\">").append(cp.getName()).append("</font></td>");
-				sb.append("<td width=135><font color=\"00CCFF\">Lv").append(cp.getLevel()).append(" ").append(cp.getPlayerClass()).append("-&gt;").append(citizen.getTargetEndgameClass()).append("</font></td>");
-				sb.append("<td width=130><font color=\"FFCC00\">").append(citizen.getGearTierBadge()).append(" ").append(citizen.getProgressionBadges()).append("</font></td>");
-				sb.append("<td width=130><font color=\"LEVEL\">").append(citizen.getMacroState()).append("</font></td>");
-				sb.append("<td width=130><font color=\"B09878\">").append(citizen.getCurrentZoneName()).append("</font></td>");
-				sb.append("<td width=198><font color=\"CCCCCC\">").append(citizen.getLastAction()).append("</font></td>");
-				sb.append("<td width=70 align=center><button value=\"Teleport\" action=\"bypass admin_fakeplayer citizen_goto ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-				sb.append("<td width=70 align=center><button value=\"Despawn\" action=\"bypass admin_fakeplayer citizen_despawn ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				
+				// Pagination & Refresh Footer Bar (948px)
+				sb.append("<table width=948 border=0 cellpadding=1 cellspacing=1 bgcolor=\"141E18\"><tr>");
+				sb.append("<td width=160 align=center>");
+				if (currentPage > 1)
+				{
+					sb.append("<button value=\"&lt; Prev Page\" action=\"bypass admin_fpc cp ").append(currentPage - 1).append("\" width=140 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">");
+				}
+				sb.append("</td>");
+				sb.append("<td width=468 align=center><font color=\"AAAAAA\">Page </font><font color=\"LEVEL\">").append(currentPage).append(" / ").append(totalPages).append("</font><font color=\"AAAAAA\"> (Showing ").append(startIdx + 1).append("-").append(endIdx).append(" of ").append(citizens.size()).append(" Citizens)</font></td>");
+				sb.append("<td width=160 align=center><button value=\"Refresh View\" action=\"bypass admin_fakeplayer tab citizens\" width=140 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("<td width=160 align=center>");
+				if (currentPage < totalPages)
+				{
+					sb.append("<button value=\"Next Page &gt;\" action=\"bypass admin_fpc cp ").append(currentPage + 1).append("\" width=140 height=18 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">");
+				}
+				sb.append("</td></tr></table>");
+			}
+		}
+		else
+		{
+			// === SUB-VIEW 2: TACTICAL SQUAD & NEURAL RL ===
+			final FakePlayerNeuralPolicy policy = engine.getNeuralPolicy();
+			final CurriculumStage stage = policy.getStage();
+			
+			// Status Banner (948px)
+			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"1E1E26\"><tr>");
+			sb.append("<td width=190><font color=\"AAAAAA\">Active Bots:</font> <font color=\"00FF00\">").append(bots.size()).append("</font></td>");
+			sb.append("<td width=230><font color=\"AAAAAA\">Tactical Utility-AI:</font> ").append(FakePlayersConfig.FAKE_PLAYER_TACTICAL_AI ? "<font color=\"00FF00\">ACTIVE (250ms)</font>" : "<font color=\"FF6666\">PAUSED</font>").append("</td>");
+			sb.append("<td width=290><font color=\"AAAAAA\">Virtual-Thread LLM:</font> ").append(FakePlayersConfig.FAKE_PLAYER_LLM_ENABLED ? ("<font color=\"00FF00\">ON (" + FakePlayersConfig.FAKE_PLAYER_LLM_MODEL + ")</font>") : "<font color=\"FFCC00\">OFF (Heuristic/XML Mode)</font>").append("</td>");
+			sb.append("<td width=119 align=center><button value=\"Toggle AI\" action=\"bypass admin_fakeplayer toggle_ai\" width=110 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=119 align=center><button value=\"Toggle LLM\" action=\"bypass admin_fakeplayer toggle_llm\" width=110 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("</tr></table><br1>");
+			
+			// Neural Curriculum Trainer Telemetry & Stage Controls (948px)
+			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"16202A\"><tr>");
+			sb.append("<td width=310><font color=\"00FFCC\">").append(stage.getTitle()).append("</font></td>");
+			sb.append("<td width=240><font color=\"AAAAAA\">RL Steps:</font> <font color=\"00FF00\">").append(policy.getTrainingSteps()).append("</font> <font color=\"888888\">(Duels: ").append(policy.getDuelsCompleted()).append(")</font></td>");
+			sb.append("<td width=130><font color=\"AAAAAA\">Baseline:</font> <font color=\"LEVEL\">").append(String.format(Locale.US, "%.2f", policy.getRewardBaseline())).append("</font></td>");
+			sb.append("<td width=90 align=center><button value=\"1v1 Duel\" action=\"bypass admin_fakeplayer duel\" width=84 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=90 align=center><button value=\"3v3 Sim\" action=\"bypass admin_fakeplayer squadsim\" width=84 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=88 align=center><button value=\"Save NN\" action=\"bypass admin_fakeplayer save_weights\" width=82 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("</tr></table>");
+			
+			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"121820\"><tr>");
+			sb.append("<td width=148><font color=\"AAAAAA\">Curriculum Stage</font></td>");
+			sb.append("<td width=160 align=center><button value=\"S1: Discovery\" action=\"bypass admin_fakeplayer stage 1\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=160 align=center><button value=\"S2: Spacing/Kite\" action=\"bypass admin_fakeplayer stage 2\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=160 align=center><button value=\"S3: Archetypes\" action=\"bypass admin_fakeplayer stage 3\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=160 align=center><button value=\"S4: Squad Synergy\" action=\"bypass admin_fakeplayer stage 4\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=160 align=center><button value=\"S5: PvP Arena\" action=\"bypass admin_fakeplayer stage 5\" width=152 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("</tr></table><br1>");
+			
+			// 1-Click Squad Spawner & Archetype Deployment Bar (948px)
+			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1B1B1B\"><tr>");
+			sb.append("<td width=144><font color=\"00FF00\">Deploy Bots</font></td>");
+			sb.append("<td width=134 align=center><button value=\"Summon Squad (3)\" action=\"bypass admin_fakeplayer summon SQUAD\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=134 align=center><button value=\"+Tank (Aegis)\" action=\"bypass admin_fakeplayer summon 81004\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=134 align=center><button value=\"+Healer (Seraph)\" action=\"bypass admin_fakeplayer summon 81003\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=134 align=center><button value=\"+Archer (Lyra)\" action=\"bypass admin_fakeplayer summon 81002\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=134 align=center><button value=\"+Dagger (Vex)\" action=\"bypass admin_fakeplayer summon 81005\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=134 align=center><button value=\"+Mage (Zephyr)\" action=\"bypass admin_fakeplayer summon 81006\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("</tr></table>");
+			
+			// Bulk Squad Orders Bar (948px)
+			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1B1B1B\"><tr>");
+			sb.append("<td width=144><font color=\"00CCFF\">Squad Orders</font></td>");
+			sb.append("<td width=134 align=center><button value=\"All: ASSIST ME\" action=\"bypass admin_fakeplayer assist ALL\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=134 align=center><button value=\"All: AGGRESSIVE\" action=\"bypass admin_fakeplayer mode ALL AGGRESSIVE\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=134 align=center><button value=\"All: KITE MODE\" action=\"bypass admin_fakeplayer mode ALL KITE_DEFENSIVE\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=134 align=center><button value=\"All: GUARD\" action=\"bypass admin_fakeplayer mode ALL GUARD\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=134 align=center><button value=\"Recall All\" action=\"bypass admin_fakeplayer recall ALL\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("<td width=134 align=center><button value=\"Clear Squad\" action=\"bypass admin_fakeplayer despawn ALL_COMBAT\" width=128 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			sb.append("</tr></table><br1>");
+			
+			// Active Bots Telemetry Table (948px)
+			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=130><font color=\"LEVEL\">Bot Name</font></td><td width=95><font color=\"LEVEL\">Archetype</font></td><td width=80><font color=\"LEVEL\">HP %</font></td><td width=125><font color=\"LEVEL\">Posture</font></td><td width=238><font color=\"LEVEL\">Last Tactical Action</font></td><td width=70 align=center><font color=\"LEVEL\">Assist</font></td><td width=70 align=center><font color=\"LEVEL\">Kite</font></td><td width=70 align=center><font color=\"LEVEL\">Aggro</font></td><td width=70 align=center><font color=\"LEVEL\">Recall</font></td></tr></table>");
+			
+			int shown = 0;
+			for (Npc npc : bots)
+			{
+				final BotState state = engine.getOrCreateState(npc);
+				final int hpPct = (int) Math.round((npc.getCurrentHp() * 100.0) / Math.max(1.0, npc.getMaxHp()));
+				final int objId = npc.getObjectId();
+				sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr>");
+				sb.append("<td width=130><font color=\"00FF00\">").append(npc.getName()).append("</font> <font color=\"888888\">(").append(npc.getId()).append(")</font></td>");
+				sb.append("<td width=95><font color=\"00CCFF\">").append(state.getArchetype()).append("</font></td>");
+				sb.append("<td width=80>").append(hpPct).append("%</td>");
+				sb.append("<td width=125><font color=\"LEVEL\">").append(state.getPosture()).append("</font></td>");
+				sb.append("<td width=238><font color=\"CCCCCC\">").append(truncateText(state.getLastTacticalAction(), 40)).append("</font></td>");
+				sb.append("<td width=70 align=center><button value=\"Assist\" action=\"bypass admin_fakeplayer assist ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("<td width=70 align=center><button value=\"Kite\" action=\"bypass admin_fakeplayer mode ").append(objId).append(" KITE_DEFENSIVE\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("<td width=70 align=center><button value=\"Aggro\" action=\"bypass admin_fakeplayer mode ").append(objId).append(" AGGRESSIVE\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("<td width=70 align=center><button value=\"Recall\" action=\"bypass admin_fakeplayer recall ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 				sb.append("</tr></table>");
-				if (++citizenShown >= 8)
+				if (++shown >= BOTS_PER_PAGE)
 				{
 					break;
 				}
 			}
-			sb.append("<br1>");
-		}
-		
-		// Active Bots Telemetry Table (948px, strictly 1-row <table> per row for NWindow.dll ListParser compatibility)
-		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=130><font color=\"LEVEL\">Bot Name</font></td><td width=95><font color=\"LEVEL\">Archetype</font></td><td width=80><font color=\"LEVEL\">HP %</font></td><td width=125><font color=\"LEVEL\">Posture</font></td><td width=238><font color=\"LEVEL\">Last Tactical Action</font></td><td width=70 align=center><font color=\"LEVEL\">Assist</font></td><td width=70 align=center><font color=\"LEVEL\">Kite</font></td><td width=70 align=center><font color=\"LEVEL\">Aggro</font></td><td width=70 align=center><font color=\"LEVEL\">Recall</font></td></tr></table>");
-		
-		int shown = 0;
-		for (Npc npc : bots)
-		{
-			final BotState state = engine.getOrCreateState(npc);
-			final int hpPct = (int) Math.round((npc.getCurrentHp() * 100.0) / Math.max(1.0, npc.getMaxHp()));
-			final int objId = npc.getObjectId();
-			sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr>");
-			sb.append("<td width=130><font color=\"00FF00\">").append(npc.getName()).append("</font> <font color=\"888888\">(").append(npc.getId()).append(")</font></td>");
-			sb.append("<td width=95><font color=\"00CCFF\">").append(state.getArchetype()).append("</font></td>");
-			sb.append("<td width=80>").append(hpPct).append("%</td>");
-			sb.append("<td width=125><font color=\"LEVEL\">").append(state.getPosture()).append("</font></td>");
-			sb.append("<td width=238><font color=\"CCCCCC\">").append(state.getLastTacticalAction()).append("</font></td>");
-			sb.append("<td width=70 align=center><button value=\"Assist\" action=\"bypass admin_fakeplayer assist ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=70 align=center><button value=\"Kite\" action=\"bypass admin_fakeplayer mode ").append(objId).append(" KITE_DEFENSIVE\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=70 align=center><button value=\"Aggro\" action=\"bypass admin_fakeplayer mode ").append(objId).append(" AGGRESSIVE\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("<td width=70 align=center><button value=\"Recall\" action=\"bypass admin_fakeplayer recall ").append(objId).append("\" width=64 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-			sb.append("</tr></table>");
-			if (++shown >= 10)
+			if (shown == 0)
 			{
-				break;
+				sb.append("<table width=948 border=0 cellpadding=4 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"888888\">No Tactical Squad bots spawned. Click [Summon Squad (3)], [1v1 Duel], or [3v3 Sim] above!</font></td></tr></table>");
 			}
-		}
-		if (shown == 0)
-		{
-			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"101016\"><tr><td width=948 align=center><font color=\"888888\">No active FakePlayers spawned. Click [Summon Squad (3)], [Spawn Lv1 Citizen], [1v1 Duel], or [3v3 Sim] above!</font></td></tr></table>");
 		}
 		sb.append("</body></html>");
 		
@@ -683,7 +853,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 	
 	private void showQaAnomalyPanel(Player activeChar)
 	{
-		final List<AnomalyRecord> records = GameplayAnomalyAuditor.getInstance().getRecentAnomalies(20);
+		final List<AnomalyRecord> records = GameplayAnomalyAuditor.getInstance().getRecentAnomalies(12);
 		final StringBuilder sb = new StringBuilder(8192);
 		sb.append("<html><title>FakePlayer Tactical AI</title><body>");
 		sb.append("<font color=\"LEVEL\">Autonomous Citizen Self-Reporting QA Anomaly Auditor (log/qa_autonomous_anomalies.jsonl)</font><br1>");
@@ -691,7 +861,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 		sb.append("<td width=450><font color=\"AAAAAA\">Total Logged Anomalies:</font> <font color=\"FFCC00\">").append(GameplayAnomalyAuditor.getInstance().getTotalAnomaliesCount()).append("</font></td>");
 		sb.append("<td width=166 align=center><button value=\"Refresh Log\" action=\"bypass admin_fakeplayer qa_log\" width=155 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("<td width=166 align=center><button value=\"Clear Buffer\" action=\"bypass admin_fakeplayer qa_clear\" width=155 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
-		sb.append("<td width=166 align=center><button value=\"Back to AI Panel\" action=\"bypass admin_fakeplayer menu\" width=155 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+		sb.append("<td width=166 align=center><button value=\"Back to Citizens\" action=\"bypass admin_fakeplayer tab citizens\" width=155 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 		sb.append("</tr></table><br1>");
 		
 		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"222230\"><tr><td width=155><font color=\"LEVEL\">Anomaly Type</font></td><td width=135><font color=\"LEVEL\">Citizen</font></td><td width=155><font color=\"LEVEL\">Zone</font></td><td width=413><font color=\"LEVEL\">Diagnostic Details</font></td><td width=90 align=center><font color=\"LEVEL\">Teleport</font></td></tr></table>");
@@ -706,8 +876,8 @@ public class AdminFakePlayers implements IAdminCommandHandler
 				sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"101016\"><tr>");
 				sb.append("<td width=155><font color=\"FF6666\">").append(rec.type()).append("</font></td>");
 				sb.append("<td width=135><font color=\"00FF99\">").append(rec.citizenName()).append(" (Lv").append(rec.citizenLevel()).append(")</font></td>");
-				sb.append("<td width=155><font color=\"B09878\">").append(rec.zoneName()).append("</font></td>");
-				sb.append("<td width=413><font color=\"CCCCCC\">").append(rec.details()).append("</font></td>");
+				sb.append("<td width=155><font color=\"B09878\">").append(truncateText(rec.zoneName(), 24)).append("</font></td>");
+				sb.append("<td width=413><font color=\"CCCCCC\">").append(truncateText(rec.details(), 65)).append("</font></td>");
 				sb.append("<td width=90 align=center><button value=\"Goto\" action=\"bypass admin_move_to ").append(rec.x()).append(" ").append(rec.y()).append(" ").append(rec.z()).append("\" width=80 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 				sb.append("</tr></table>");
 			}

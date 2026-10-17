@@ -867,12 +867,12 @@ public abstract class Creature extends WorldObject
 			setHeading(heading);
 		}
 		
-		// Allow recall of the detached characters.
+		// Allow recall of the detached characters and headless/offline autonomous citizens.
 		if (isPlayer())
 		{
 			final Player player = asPlayer();
 			final GameClient client = player.getClient();
-			if ((client != null) && client.isDetached())
+			if (((client != null) && client.isDetached()) || (client == null) || player.isOfflinePlay())
 			{
 				onTeleported();
 			}

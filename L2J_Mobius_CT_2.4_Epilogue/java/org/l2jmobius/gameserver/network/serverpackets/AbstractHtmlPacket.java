@@ -74,8 +74,22 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 	{
 		if (html.length() > 17200)
 		{
-			PacketLogger.warning(getClass().getSimpleName() + ": Html is too long! this will crash the client!");
-			_html = html.substring(0, 17200);
+			PacketLogger.warning(getClass().getSimpleName() + ": Html is too long (" + html.length() + " chars)! Truncating safely to prevent client crash.");
+			String prefix = html.substring(0, 17140);
+			final int lastTableClose = prefix.lastIndexOf("</table>");
+			if (lastTableClose > 0)
+			{
+				prefix = prefix.substring(0, lastTableClose + 8);
+			}
+			else
+			{
+				final int lastTagClose = prefix.lastIndexOf('>');
+				if (lastTagClose > 0)
+				{
+					prefix = prefix.substring(0, lastTagClose + 1);
+				}
+			}
+			_html = prefix + "</body></html>";
 		}
 		else
 		{
