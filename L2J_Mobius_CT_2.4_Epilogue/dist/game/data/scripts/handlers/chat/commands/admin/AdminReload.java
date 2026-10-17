@@ -492,6 +492,40 @@ public class AdminReload implements IAdminCommandHandler
 					}
 					break;
 				}
+				case "changed":
+				case "delta":
+				case "scripts_changed":
+				{
+					final long startNanos = System.nanoTime();
+					try
+					{
+						final List<java.nio.file.Path> reloadedPaths = ScriptEngine.getInstance().reloadModifiedScripts();
+						final long elapsedMs = (System.nanoTime() - startNanos) / 1_000_000L;
+						if (reloadedPaths.isEmpty())
+						{
+							activeChar.sendSysMessage("No modified scripts detected under data/scripts since last reload.");
+						}
+						else
+						{
+							final StringBuilder names = new StringBuilder();
+							for (int i = 0; i < reloadedPaths.size(); i++)
+							{
+								if (i > 0)
+								{
+									names.append(", ");
+								}
+								names.append(reloadedPaths.get(i).getFileName());
+							}
+							AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Hot-reloaded " + reloadedPaths.size() + " modified script(s) in " + elapsedMs + " ms: " + names);
+						}
+					}
+					catch (Exception e)
+					{
+						LOGGER.log(Level.WARNING, "Failed to hot-reload modified scripts!", e);
+						activeChar.sendSysMessage("Delta hot-reload failed! Check server log for compiler/execution diagnostics: " + e.getMessage());
+					}
+					break;
+				}
 				case "recipe":
 				{
 					RecipeData.getInstance().load();
@@ -571,8 +605,6 @@ public class AdminReload implements IAdminCommandHandler
 					return true;
 				}
 			}
-			
-			activeChar.sendSysMessage("WARNING: There are several known issues regarding this feature. Reloading server data during runtime is STRONGLY NOT RECOMMENDED for live servers, just for developing environments.");
 		}
 		
 		return true;
@@ -589,6 +621,7 @@ public class AdminReload implements IAdminCommandHandler
 		new String[]{"Armor Sets", "admin_reload sets"},
 		new String[]{"BuyList", "admin_reload buylist"},
 		new String[]{"Category", "admin_reload category"},
+		new String[]{"Changed Scripts", "admin_reload changed"},
 		new String[]{"Class List", "admin_reload classlist"},
 		new String[]{"Config", "admin_reload config"},
 		new String[]{"Crests", "admin_reload crest"},

@@ -221,6 +221,7 @@ public enum AdminScope
 				|| s.startsWith("instant_move") || s.equals("sendhome")
 				|| s.equals("invis") || s.equals("invis_menu") || s.equals("vis")
 				|| s.equals("invisible") || s.equals("visible") || s.equals("hide")
+				|| s.equals("ghoston") || s.equals("ghostoff")
 				|| s.equals("gmspeed") || s.startsWith("superhaste") || s.startsWith("speed") -> TELEPORT;
 			
 			// 5. Player Support & Inspection

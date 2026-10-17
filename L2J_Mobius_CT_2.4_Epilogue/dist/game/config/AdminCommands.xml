@@ -317,6 +317,8 @@
 	<admin command="createinstance" description="Create new instance from template." accessLevel="100" />
 	<admin command="destroyinstance" description="Destroy specified instance by ID." accessLevel="100" />
 	<admin command="listinstances" description="List all active instances with their IDs and names." accessLevel="100" />
+	<admin command="ghoston" description="Enable GM ghost/invisible mode inside instances." accessLevel="30" />
+	<admin command="ghostoff" description="Disable GM ghost/invisible mode inside instances." accessLevel="30" />
 
 	<!-- ADMIN INSTANCE ZONE -->
 	<admin command="instancezone" description="Check player instancezone." accessLevel="100" />

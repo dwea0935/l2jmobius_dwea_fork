@@ -29,12 +29,14 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
@@ -58,6 +60,10 @@ public class ScriptEngine implements IXmlReader
 	
 	private static final ScriptExecutor SCRIPT_EXECUTOR = new ScriptExecutor();
 	private static final Set<String> EXCLUSIONS = new HashSet<>();
+	private static final Set<String> DELTA_EXCLUSIONS = new HashSet<>();
+	
+	/** Normalized absolute script path -> last successfully compiled/loaded file modification timestamp (ms). */
+	private final ConcurrentHashMap<Path, Long> _scriptLastModified = new ConcurrentHashMap<>();
 	
 	protected ScriptEngine()
 	{
@@ -69,6 +75,7 @@ public class ScriptEngine implements IXmlReader
 	public void load()
 	{
 		EXCLUSIONS.clear();
+		DELTA_EXCLUSIONS.clear();
 		parseDatapackFile("config/Scripts.xml");
 		LOGGER.info("Loaded " + EXCLUSIONS.size() + " files to exclude.");
 	}
@@ -120,7 +127,12 @@ public class ScriptEngine implements IXmlReader
 							
 							if (excludeScript)
 							{
-								EXCLUSIONS.add(file.toUri().getPath());
+								final String uriPath = file.toUri().getPath();
+								EXCLUSIONS.add(uriPath);
+								if (!"handlers".equals(currentPart))
+								{
+									DELTA_EXCLUSIONS.add(uriPath);
+								}
 								break;
 							}
 						}
@@ -138,20 +150,52 @@ public class ScriptEngine implements IXmlReader
 	
 	private void processDirectory(File dir, List<Path> files)
 	{
-		for (File file : dir.listFiles())
+		collectScripts(dir, files, EXCLUSIONS);
+	}
+	
+	private void collectScripts(File dir, List<Path> files, Set<String> exclusions)
+	{
+		final File[] children = dir.listFiles();
+		if (children == null)
+		{
+			return;
+		}
+		
+		for (File file : children)
 		{
 			if (file.isFile())
 			{
 				final String filePath = file.toURI().getPath();
-				if (filePath.endsWith(".java") && !EXCLUSIONS.contains(filePath))
+				if (filePath.endsWith(".java") && !exclusions.contains(filePath))
 				{
-					files.add(file.toPath().toAbsolutePath());
+					files.add(file.toPath().toAbsolutePath().normalize());
 				}
 			}
 			else if (file.isDirectory())
 			{
-				processDirectory(file, files);
+				collectScripts(file, files, exclusions);
 			}
+		}
+	}
+	
+	private void recordScriptTimestamp(Path scriptPath)
+	{
+		if (scriptPath == null)
+		{
+			return;
+		}
+		
+		try
+		{
+			final Path norm = scriptPath.toAbsolutePath().normalize();
+			if (Files.isRegularFile(norm))
+			{
+				_scriptLastModified.put(norm, Files.getLastModifiedTime(norm).toMillis());
+			}
+		}
+		catch (IOException e)
+		{
+			// Ignore transient file attribute read errors.
 		}
 	}
 	
@@ -163,8 +207,7 @@ public class ScriptEngine implements IXmlReader
 			path = SCRIPT_FOLDER.resolve(path);
 		}
 		
-		path = path.toAbsolutePath();
-		// System.out.println("Executing script at path: " + path.toString());
+		path = path.toAbsolutePath().normalize();
 		
 		// Check if the path exists.
 		if (!Files.exists(path))
@@ -184,6 +227,17 @@ public class ScriptEngine implements IXmlReader
 			
 			throw new Exception("ScriptEngine: " + error.getKey() + " failed execution!", cause);
 		}
+		
+		recordScriptTimestamp(path);
+		if (path.equals(MASTER_HANDLER_FILE.toAbsolutePath().normalize()) || path.equals(EFFECT_MASTER_HANDLER_FILE.toAbsolutePath().normalize()))
+		{
+			final List<Path> handlerFiles = new ArrayList<>();
+			collectScripts(SCRIPT_FOLDER.resolve("handlers").toFile(), handlerFiles, DELTA_EXCLUSIONS);
+			for (Path handlerFile : handlerFiles)
+			{
+				recordScriptTimestamp(handlerFile);
+			}
+		}
 	}
 	
 	public void executeScriptList() throws Exception
@@ -197,10 +251,123 @@ public class ScriptEngine implements IXmlReader
 		processDirectory(SCRIPT_FOLDER.toFile(), files);
 		
 		final Map<Path, Throwable> invokationErrors = SCRIPT_EXECUTOR.executeScripts(files);
+		final Set<Path> failedNormalized = new HashSet<>();
 		for (Entry<Path, Throwable> entry : invokationErrors.entrySet())
 		{
+			if (entry.getKey() != null)
+			{
+				failedNormalized.add(entry.getKey().toAbsolutePath().normalize());
+			}
 			LOGGER.warning(getClass().getSimpleName() + ": " + entry.getKey() + " failed execution! " + entry.getValue().getMessage());
 		}
+		
+		final List<Path> allTrackable = new ArrayList<>();
+		collectScripts(SCRIPT_FOLDER.toFile(), allTrackable, DELTA_EXCLUSIONS);
+		for (Path scriptPath : allTrackable)
+		{
+			if (!failedNormalized.contains(scriptPath))
+			{
+				recordScriptTimestamp(scriptPath);
+			}
+			else
+			{
+				_scriptLastModified.remove(scriptPath);
+			}
+		}
+	}
+	
+	/**
+	 * Returns all trackable {@code .java} script files under {@code data/scripts} that are either new
+	 * or have a newer disk modification timestamp than their last successful compile/execution.
+	 * @return list of modified or new script paths
+	 */
+	public List<Path> getModifiedScripts()
+	{
+		final List<Path> allTrackable = new ArrayList<>();
+		collectScripts(SCRIPT_FOLDER.toFile(), allTrackable, DELTA_EXCLUSIONS);
+		final List<Path> modified = new ArrayList<>();
+		for (Path scriptPath : allTrackable)
+		{
+			try
+			{
+				final long diskMtime = Files.getLastModifiedTime(scriptPath).toMillis();
+				final Long recordedMtime = _scriptLastModified.get(scriptPath);
+				if ((recordedMtime == null) || (diskMtime > recordedMtime.longValue()))
+				{
+					modified.add(scriptPath);
+				}
+			}
+			catch (IOException e)
+			{
+				// Ignore transient read error.
+			}
+		}
+		return modified;
+	}
+	
+	/**
+	 * @return the number of new or modified {@code .java} scripts under {@code data/scripts} pending hot-reload
+	 */
+	public int getModifiedScriptCount()
+	{
+		return getModifiedScripts().size();
+	}
+	
+	/**
+	 * @return the total number of tracked loaded script files in {@code _scriptLastModified}
+	 */
+	public int getTrackedScriptCount()
+	{
+		return _scriptLastModified.size();
+	}
+	
+	/**
+	 * Detects all new or modified {@code .java} script files under {@code data/scripts}
+	 * since server startup or the last successful reload, and compiles + hot-swaps them
+	 * together in a single transactional batch.
+	 * @return the list of normalized {@link Path}s that were hot-reloaded (empty if no scripts changed)
+	 * @throws Exception if compilation or execution of any modified script fails
+	 */
+	public List<Path> reloadModifiedScripts() throws Exception
+	{
+		final List<Path> modifiedFiles = getModifiedScripts();
+		if (modifiedFiles.isEmpty())
+		{
+			return Collections.emptyList();
+		}
+		
+		final Map<Path, Throwable> invokationErrors = SCRIPT_EXECUTOR.executeScripts(modifiedFiles);
+		final Set<Path> failedNormalized = new HashSet<>();
+		for (Entry<Path, Throwable> entry : invokationErrors.entrySet())
+		{
+			if (entry.getKey() != null)
+			{
+				failedNormalized.add(entry.getKey().toAbsolutePath().normalize());
+			}
+			if (entry.getValue() != null)
+			{
+				LOGGER.warning(TraceUtil.getStackTrace(entry.getValue()));
+			}
+		}
+		
+		final List<Path> reloaded = new ArrayList<>(modifiedFiles.size());
+		for (Path modPath : modifiedFiles)
+		{
+			final Path norm = modPath.toAbsolutePath().normalize();
+			if (!failedNormalized.contains(norm))
+			{
+				recordScriptTimestamp(norm);
+				reloaded.add(norm);
+			}
+		}
+		
+		if (!invokationErrors.isEmpty())
+		{
+			final Entry<Path, Throwable> firstError = invokationErrors.entrySet().iterator().next();
+			throw new Exception("ScriptEngine: " + firstError.getKey().getFileName() + " failed execution during delta reload!", firstError.getValue());
+		}
+		
+		return reloaded;
 	}
 	
 	public Path findScriptPath(String nameOrPath)

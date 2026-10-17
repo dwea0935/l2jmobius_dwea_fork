@@ -18,10 +18,14 @@ package org.l2jmobius.gameserver.managers;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryUsage;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,16 +52,19 @@ import org.l2jmobius.gameserver.network.serverpackets.GMViewSkillInfo;
 import org.l2jmobius.gameserver.network.serverpackets.GMViewWarehouseWithdrawList;
 import org.l2jmobius.gameserver.network.serverpackets.GmViewQuestInfo;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
+import org.l2jmobius.gameserver.scripting.ScriptEngine;
 import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
- * Native C++ GMWnd (Alt+G) Wide-Screen Admin Control Center (GMWnd.HtmlViewer)
- * with Java 27 Role-Based Access Control (RBAC) and automatic NpcHtmlMessage adaptation/scrubbing.
+ * Native C++ GMWnd (Alt+G) Wide-Screen Admin Control Center v3 (940px / 920px GMWnd.HtmlViewer)
+ * with per-GM breadcrumb navigation stack, Java 27 Role-Based Access Control (RBAC),
+ * and automatic NpcHtmlMessage adaptation/scrubbing.
  */
 public final class AdminBoardManager
 {
 	private static final String BTN_BACK = "L2UI_CT1.Button_DF_Down";
 	private static final String BTN_FORE = "L2UI_CT1.Button_DF";
+	private static final int MAX_NAV_STACK_DEPTH = 14;
 	
 	/** Matches <button ... action="bypass (-h )?admin_..." ...> tags for dynamic RBAC scrubbing. */
 	private static final Pattern ADMIN_BUTTON_PATTERN = Pattern.compile(
@@ -76,12 +83,17 @@ public final class AdminBoardManager
 	
 	/** Matches <title>...</title> blocks inside legacy HTML files. */
 	private static final Pattern TITLE_TAG_PATTERN = Pattern.compile(
-		"<title>.*?</title>",
+		"<title>(.*?)</title>",
 		Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 	
 	private static final Pattern DUPLICATE_QBOX_EDIT_PATTERN = Pattern.compile(
 		"<edit\\b[^>]*\\bvar\\s*=\\s*\"?qbox\"?[^>]*>",
 		Pattern.CASE_INSENSITIVE);
+	
+	/** Single entry in the per-GM navigation history stack for 1-level [◄ Back] and clickable breadcrumbs. */
+	private record NavEntry(String tab, String commandOrFile, String rawHtml, String label)
+	{
+	}
 	
 	/** Per-GM Native C++ GMWnd.HtmlViewer Admin Console session state. */
 	private static final class AdminBoardSession
@@ -92,6 +104,9 @@ public final class AdminBoardManager
 		volatile boolean sendingNativeGmHtml = false;
 		volatile int commandDepth = 0;
 		volatile int renderedCount = 0;
+		volatile String pendingFileLabel = null;
+		volatile String pendingCommandOrFile = null;
+		final Deque<NavEntry> navStack = new ConcurrentLinkedDeque<>();
 	}
 	
 	private final Map<Integer, AdminBoardSession> _sessions = new ConcurrentHashMap<>();
@@ -179,7 +194,7 @@ public final class AdminBoardManager
 	
 	/**
 	 * Re-sends the active Admin Console view (either the current adapted sub-page or the active native tab)
-	 * so that the live header and Target Inspector update in GMWnd.HtmlViewer.
+	 * so that the live header and Target Inspector update in GMWnd.HtmlViewer without altering navigation history.
 	 * @param player the staff member
 	 */
 	public void refreshCurrentView(Player player)
@@ -275,13 +290,30 @@ public final class AdminBoardManager
 		switch (sub)
 		{
 			case "home", "dashboard" -> openTab(player, "dashboard");
+			case "back" -> navigateBack(player);
+			case "crumb" ->
+			{
+				int idx = 0;
+				if (tokens.length > 1)
+				{
+					try
+					{
+						idx = Integer.parseInt(tokens[1]);
+					}
+					catch (NumberFormatException ignored)
+					{
+						idx = 0;
+					}
+				}
+				navigateToCrumb(player, idx);
+			}
 			case "refresh" ->
 			{
 				final AdminBoardSession session = getSession(player);
 				session.consoleOpen = true;
 				refreshCurrentView(player);
 			}
-			case "player", "support" ->
+			case "player", "players", "support" ->
 			{
 				if (tokens.length > 1)
 				{
@@ -293,9 +325,10 @@ public final class AdminBoardManager
 				}
 				openTab(player, "support");
 			}
-			case "world", "spawn" -> openTab(player, "world");
-			case "events" -> openTab(player, "events");
-			case "economy", "items" -> openTab(player, "economy");
+			case "world", "spawn", "spawns" -> openTab(player, "world");
+			case "instances", "instance", "dungeons", "bosses" -> openTab(player, "instances");
+			case "events", "event" -> openTab(player, "events");
+			case "economy", "items", "char" -> openTab(player, "economy");
 			case "server", "reload" -> openTab(player, "server");
 			case "legacy" -> openTab(player, "legacy");
 			case "legacy_view" ->
@@ -306,6 +339,118 @@ public final class AdminBoardManager
 			}
 			default -> openTab(player, "dashboard");
 		}
+	}
+	
+	/**
+	 * Pops 1 level from the per-GM navigation history stack and renders the parent view.
+	 */
+	private void navigateBack(Player player)
+	{
+		if (!canUseAdminBoard(player))
+		{
+			return;
+		}
+		
+		final AdminBoardSession session = getSession(player);
+		if (session.navStack.size() > 1)
+		{
+			session.navStack.pollLast();
+			final NavEntry parent = session.navStack.peekLast();
+			if (parent != null)
+			{
+				renderNavEntry(player, parent);
+				return;
+			}
+		}
+		
+		openTab(player, session.activeTab);
+	}
+	
+	/**
+	 * Jumps directly to an ancestor crumb at {@code targetIndex} in the per-GM navigation stack.
+	 */
+	private void navigateToCrumb(Player player, int targetIndex)
+	{
+		if (!canUseAdminBoard(player))
+		{
+			return;
+		}
+		
+		final AdminBoardSession session = getSession(player);
+		if ((targetIndex <= 0) || session.navStack.isEmpty())
+		{
+			openTab(player, session.activeTab);
+			return;
+		}
+		
+		while ((session.navStack.size() > (targetIndex + 1)) && (session.navStack.size() > 1))
+		{
+			session.navStack.pollLast();
+		}
+		
+		final NavEntry target = session.navStack.peekLast();
+		if (target != null)
+		{
+			renderNavEntry(player, target);
+		}
+		else
+		{
+			openTab(player, session.activeTab);
+		}
+	}
+	
+	private void renderNavEntry(Player player, NavEntry entry)
+	{
+		final AdminBoardSession session = getSession(player);
+		if ((entry == null) || entry.commandOrFile().startsWith("TAB:"))
+		{
+			openTab(player, entry != null ? entry.tab() : session.activeTab);
+			return;
+		}
+		
+		session.activeTab = entry.tab();
+		session.consoleOpen = true;
+		session.renderedCount++;
+		
+		String raw = entry.rawHtml();
+		if (entry.commandOrFile().startsWith("FILE:"))
+		{
+			final String relFile = entry.commandOrFile().substring(5);
+			final String cached = HtmCache.getInstance().getHtm(player, "data/html/admin/" + relFile);
+			if (cached != null)
+			{
+				raw = cached;
+			}
+		}
+		
+		if ((raw == null) || raw.isEmpty())
+		{
+			openTab(player, session.activeTab);
+			return;
+		}
+		
+		final String adaptedBody = scrubAndAdaptHtml(player, raw);
+		session.lastAdaptedBody = adaptedBody;
+		sendWrappedConsoleHtml(player, adaptedBody, session.activeTab);
+	}
+	
+	private static String getTabDisplayName(String tab)
+	{
+		if (tab == null)
+		{
+			return "Dashboard";
+		}
+		return switch (tab.toLowerCase(Locale.ROOT))
+		{
+			case "support" -> "Players & Support";
+			case "world" -> "World & Spawns";
+			case "instances" -> "Instances & Bosses";
+			case "events" -> "Events & GM";
+			case "economy" -> "Items & Char";
+			case "server" -> "Server & Reload";
+			case "legacy" -> "Legacy Tools";
+			default -> "Dashboard";
+		};
 	}
 	
 	/**
@@ -388,7 +533,7 @@ public final class AdminBoardManager
 	}
 	
 	/**
-	 * Opens one of the native wide-screen RBAC tabs in GMWnd.HtmlViewer.
+	 * Opens one of the native wide-screen RBAC tabs in GMWnd.HtmlViewer and resets the breadcrumb stack to that tab root.
 	 * @param player the staff member
 	 * @param tab the tab identifier
 	 */
@@ -414,6 +559,9 @@ public final class AdminBoardManager
 			case "world" -> (access.hasScope(AdminScope.TELEPORT) || access.hasScope(AdminScope.WORLD_SPAWN) || access.hasScope(AdminScope.CLAN_MANAGEMENT))
 				? buildWorldWorkspace(player)
 				: buildDashboardWorkspace(player);
+			case "instances" -> (access.hasScope(AdminScope.WORLD_SPAWN) || access.hasScope(AdminScope.TELEPORT) || access.hasScope(AdminScope.PLAYER_SUPPORT))
+				? buildInstancesWorkspace(player)
+				: buildDashboardWorkspace(player);
 			case "events" -> (access.hasScope(AdminScope.EVENT_GM) || access.hasScope(AdminScope.ANNOUNCEMENTS) || access.hasScope(AdminScope.PANEL_ACCESS))
 				? buildEventsWorkspace(player)
 				: buildDashboardWorkspace(player);
@@ -431,11 +579,14 @@ public final class AdminBoardManager
 			}
 		};
 		
+		session.navStack.clear();
+		session.navStack.addLast(new NavEntry(session.activeTab, "TAB:" + session.activeTab, null, getTabDisplayName(session.activeTab)));
+		
 		sendWrappedConsoleHtml(player, workspaceHtml, session.activeTab);
 	}
 	
 	/**
-	 * Renders a legacy data/html/admin/ file inside the wide-screen RBAC Console shell.
+	 * Renders a legacy data/html/admin/ file inside the wide-screen RBAC Console shell and pushes it onto the breadcrumb stack.
 	 * @param player the staff member
 	 * @param fileName relative path under data/html/admin/
 	 */
@@ -479,14 +630,27 @@ public final class AdminBoardManager
 			}
 		}
 		
-		final String html = HtmCache.getInstance().getHtm(player, "data/html/admin/" + fileName);
+		final String normalizedFile = (fileName != null) ? fileName.trim().replace('\\', '/') : "";
+		final String html = HtmCache.getInstance().getHtm(player, "data/html/admin/" + normalizedFile);
 		if (html == null)
 		{
-			sendAdminHtml(player, "<html><body><center><br><font color=\"FF6666\">Admin HTML page not found: data/html/admin/" + fileName + "</font></center></body></html>");
+			sendAdminHtml(player, "<html><body><center><br><font color=\"FF6666\">Admin HTML page not found: data/html/admin/" + normalizedFile + "</font></center></body></html>");
 			return;
 		}
 		
-		sendAdminHtml(player, html);
+		final AdminBoardSession session = getSession(player);
+		final int slashIdx = normalizedFile.lastIndexOf('/');
+		session.pendingFileLabel = (slashIdx >= 0) ? normalizedFile.substring(slashIdx + 1) : normalizedFile;
+		session.pendingCommandOrFile = "FILE:" + normalizedFile;
+		try
+		{
+			sendAdminHtml(player, html);
+		}
+		finally
+		{
+			session.pendingFileLabel = null;
+			session.pendingCommandOrFile = null;
+		}
 	}
 	
 	/**
@@ -526,8 +690,8 @@ public final class AdminBoardManager
 	}
 	
 	/**
-	 * Scrubs unauthorized RBAC buttons/links from raw admin HTML, adapts it for the 2009 Epilogue
-	 * client, and sends it inside the wide-screen Native GMWnd.HtmlViewer shell.
+	 * Scrubs unauthorized RBAC buttons/links from raw admin HTML, records the view in the per-GM
+	 * navigation stack, and sends it inside the wide-screen 940px Native GMWnd.HtmlViewer shell.
 	 * @param player the staff member
 	 * @param rawHtml raw HTML content
 	 */
@@ -539,6 +703,15 @@ public final class AdminBoardManager
 		}
 		
 		final AdminBoardSession session = getSession(player);
+		final String label = (session.pendingFileLabel != null) && !session.pendingFileLabel.isEmpty()
+			? session.pendingFileLabel
+			: extractHtmlLabel(rawHtml);
+		final String cmdOrFile = (session.pendingCommandOrFile != null) && !session.pendingCommandOrFile.isEmpty()
+			? session.pendingCommandOrFile
+			: ("HTML:" + label);
+		
+		pushNavEntry(session, new NavEntry(session.activeTab, cmdOrFile, rawHtml, label));
+		
 		final String adaptedBody = scrubAndAdaptHtml(player, rawHtml);
 		session.lastAdaptedBody = adaptedBody;
 		session.consoleOpen = true;
@@ -547,8 +720,67 @@ public final class AdminBoardManager
 		sendWrappedConsoleHtml(player, adaptedBody, session.activeTab);
 	}
 	
+	private void pushNavEntry(AdminBoardSession session, NavEntry entry)
+	{
+		if (session.navStack.isEmpty())
+		{
+			session.navStack.addLast(new NavEntry(session.activeTab, "TAB:" + session.activeTab, null, getTabDisplayName(session.activeTab)));
+		}
+		
+		// If this exact file/view is already in the stack, unwind to it and update in-place to avoid circular loops.
+		int existingIndex = -1;
+		int idx = 0;
+		for (NavEntry item : session.navStack)
+		{
+			if (item.commandOrFile().equalsIgnoreCase(entry.commandOrFile()) || ((idx > 0) && item.label().equalsIgnoreCase(entry.label())))
+			{
+				existingIndex = idx;
+				break;
+			}
+			idx++;
+		}
+		
+		if (existingIndex >= 0)
+		{
+			while (session.navStack.size() > existingIndex)
+			{
+				session.navStack.pollLast();
+			}
+		}
+		else if (session.navStack.size() >= MAX_NAV_STACK_DEPTH)
+		{
+			// Preserve root tab entry at index 0, drop oldest intermediate entry.
+			final NavEntry root = session.navStack.pollFirst();
+			session.navStack.pollFirst();
+			if (root != null)
+			{
+				session.navStack.addFirst(root);
+			}
+		}
+		
+		session.navStack.addLast(entry);
+	}
+	
+	private static String extractHtmlLabel(String rawHtml)
+	{
+		if (rawHtml == null)
+		{
+			return "Sub-View";
+		}
+		final Matcher m = TITLE_TAG_PATTERN.matcher(rawHtml);
+		if (m.find())
+		{
+			final String title = m.group(1).replaceAll("<[^>]+>", "").trim();
+			if (!title.isEmpty())
+			{
+				return title.length() > 26 ? title.substring(0, 26) : title;
+			}
+		}
+		return "Sub-View";
+	}
+	
 	/**
-	 * Wraps workspace inner HTML with the 2009 Gracia Epilogue client-safe flat top Command Deck
+	 * Wraps workspace inner HTML with the 940px flat top Command Deck, Breadcrumb Navigation Bar,
 	 * and Live Target Inspector, populates the NPC_ITEM_HTML action cache exclusively, and transmits
 	 * directly to the Native C++ GMWnd.HtmlViewer (itemId=1 NpcHtmlMessage).
 	 */
@@ -561,11 +793,11 @@ public final class AdminBoardManager
 		}
 		
 		final AdminBoardSession session = getSession(player);
-		final StringBuilder sb = new StringBuilder(4096);
+		final StringBuilder sb = new StringBuilder(6144);
 		sb.append("<html><body><center>");
-		appendTopHeaderBar(sb, player, activeTab);
+		appendTopHeaderBar(sb, player, session, activeTab);
 		appendTargetInspectorAndQuickBox(sb, player);
-		sb.append("<img src=\"L2UI.SquareGray\" width=740 height=1><br1>");
+		sb.append("<img src=\"L2UI.SquareGray\" width=948 height=1><br1>");
 		sb.append(workspaceBody);
 		sb.append("<br></center></body></html>");
 		
@@ -587,71 +819,92 @@ public final class AdminBoardManager
 	}
 	
 	/**
-	 * Builds Top Bar 1 & 2: Role Badge, GM Self-Toggles, and RBAC-Filtered Category Tabs.
+	 * Builds Top Bar 1 & 2 (948px):
+	 * - Row 1: Role Identity + Self GM State Toggles + 1-Click [Reload Changed] + [Home] + [Refresh].
+	 * - Row 2: [ ^ Back 1 Level ] + Live Clickable Breadcrumb Trail + Dirty Script Status.
 	 * Strictly flat 2009 Epilogue <table> tags (zero nested tables).
 	 */
-	private void appendTopHeaderBar(StringBuilder sb, Player gm, String activeTab)
+	private void appendTopHeaderBar(StringBuilder sb, Player gm, AdminBoardSession session, String activeTab)
 	{
 		final AccessLevel access = gm.getAccessLevel();
 		final String invisLabel = gm.isInvisible() ? "Invis:ON" : "Invis:OFF";
 		final String invulLabel = gm.isInvul() ? "Invul:ON" : "Invul:OFF";
 		final String silenceLabel = gm.isSilenceMode() ? "MutePM:ON" : "MutePM:OFF";
+		final int modifiedScripts = access.hasScope(AdminScope.SERVER_ADMIN) ? ScriptEngine.getInstance().getModifiedScriptCount() : 0;
+		final String reloadChangedLabel = modifiedScripts > 0 ? ("Reload Changed (" + modifiedScripts + ")") : "Reload Changed";
 		
-		// Row 1: Role Identity + Self GM State Toggles (strictly RBAC filtered) + Home / Refresh controls
-		sb.append("<table width=740 border=0 cellpadding=1 cellspacing=0 bgcolor=\"1B1B1B\"><tr>");
-		sb.append("<td width=210 align=left><font color=\"LEVEL\">[RBAC: ").append(access.getName()).append(" Lv.").append(access.getLevel()).append("]</font></td>");
-		sb.append("<td width=72 align=center>").append(AdminData.getInstance().hasAccess("admin_invis", access) ? button(invisLabel, "admin_invis", 70, 20) : "").append("</td>");
-		sb.append("<td width=72 align=center>").append(AdminData.getInstance().hasAccess("admin_invul", access) ? button(invulLabel, "admin_invul", 70, 20) : "").append("</td>");
-		sb.append("<td width=76 align=center>").append(AdminData.getInstance().hasAccess("admin_silence", access) ? button(silenceLabel, "admin_silence", 74, 20) : "").append("</td>");
+		// Row 1 (948px): Role Identity + Self GM State Toggles + 1-Click Delta Reload + Home / Refresh controls
+		sb.append("<table width=948 border=0 cellpadding=1 cellspacing=0 bgcolor=\"1B1B1B\"><tr>");
+		sb.append("<td width=234 align=left><font color=\"LEVEL\">[RBAC: ").append(escapeHtml(access.getName())).append(" Lv.").append(access.getLevel()).append("]</font></td>");
+		sb.append("<td width=82 align=center>").append(AdminData.getInstance().hasAccess("admin_invis", access) ? button(invisLabel, "admin_invis", 78, 20) : "").append("</td>");
+		sb.append("<td width=82 align=center>").append(AdminData.getInstance().hasAccess("admin_invul", access) ? button(invulLabel, "admin_invul", 78, 20) : "").append("</td>");
+		sb.append("<td width=86 align=center>").append(AdminData.getInstance().hasAccess("admin_silence", access) ? button(silenceLabel, "admin_silence", 82, 20) : "").append("</td>");
 		if (AdminData.getInstance().hasAccess("admin_gmspeed", access))
 		{
-			sb.append("<td width=52 align=center>").append(button("Spd 1x", "admin_gmspeed 0", 50, 20)).append("</td>");
-			sb.append("<td width=52 align=center>").append(button("Spd 2x", "admin_gmspeed 2", 50, 20)).append("</td>");
-			sb.append("<td width=52 align=center>").append(button("Spd 4x", "admin_gmspeed 4", 50, 20)).append("</td>");
+			sb.append("<td width=60 align=center>").append(button("Spd 1x", "admin_gmspeed 0", 56, 20)).append("</td>");
+			sb.append("<td width=60 align=center>").append(button("Spd 2x", "admin_gmspeed 2", 56, 20)).append("</td>");
+			sb.append("<td width=60 align=center>").append(button("Spd 4x", "admin_gmspeed 4", 56, 20)).append("</td>");
 		}
 		else
 		{
-			sb.append("<td width=52></td><td width=52></td><td width=52></td>");
+			sb.append("<td width=60></td><td width=60></td><td width=60></td>");
 		}
-		sb.append("<td width=78 align=center>").append(button("Home", "admin_gmw home", 74, 20)).append("</td>");
+		sb.append("<td width=132 align=center>").append(access.hasScope(AdminScope.SERVER_ADMIN) ? button(reloadChangedLabel, "admin_reload changed", 128, 20) : "").append("</td>");
+		sb.append("<td width=76 align=center>").append(button("Home", "admin_gmw home", 72, 20)).append("</td>");
 		sb.append("<td width=76 align=right>").append(button("Refresh", "admin_gmw refresh", 72, 20)).append("</td>");
 		sb.append("</tr></table>");
 		
-		// Row 2: Dynamic RBAC Category Navigation Bar (only renders tabs permitted for this Role!)
-		sb.append("<table width=740 border=0 cellpadding=1 cellspacing=0 bgcolor=\"2B2B2B\"><tr>");
-		appendNavTab(sb, "Dashboard", "admin_gmw home", "dashboard".equals(activeTab), 100);
-		if (access.hasScope(AdminScope.PLAYER_SUPPORT) || access.hasScope(AdminScope.CHAT_MODERATION) || access.hasScope(AdminScope.PUNISHMENT))
+		// Row 2 (948px): [ ^ Back 1 Level ] + Clickable Breadcrumb Trail + Script Dirty Indicator
+		final List<NavEntry> crumbs = new ArrayList<>(session.navStack);
+		final boolean canGoBack = crumbs.size() > 1;
+		sb.append("<table width=948 border=0 cellpadding=1 cellspacing=0 bgcolor=\"252530\"><tr>");
+		sb.append("<td width=124 align=left>").append(button(canGoBack ? "^ Back 1 Level" : "^ Tab Root", "admin_gmw back", 118, 20)).append("</td>");
+		sb.append("<td width=664 align=left><font color=\"999999\">Path:</font> ");
+		if (crumbs.isEmpty())
 		{
-			appendNavTab(sb, "Support & Players", "admin_gmw support", "support".equals(activeTab), 112);
+			sb.append("<font color=\"LEVEL\">").append(escapeHtml(getTabDisplayName(activeTab))).append("</font>");
 		}
-		if (access.hasScope(AdminScope.TELEPORT) || access.hasScope(AdminScope.WORLD_SPAWN) || access.hasScope(AdminScope.CLAN_MANAGEMENT))
+		else
 		{
-			appendNavTab(sb, "World & Spawns", "admin_gmw world", "world".equals(activeTab), 104);
+			for (int i = 0; i < crumbs.size(); i++)
+			{
+				if (i > 0)
+				{
+					sb.append(" <font color=\"777777\">&gt;</font> ");
+				}
+				final NavEntry c = crumbs.get(i);
+				if (i < (crumbs.size() - 1))
+				{
+					sb.append("<a action=\"bypass admin_gmw crumb ").append(i).append("\">").append(escapeHtml(c.label())).append("</a>");
+				}
+				else
+				{
+					sb.append("<font color=\"LEVEL\">").append(escapeHtml(c.label())).append("</font>");
+				}
+			}
 		}
-		if (access.hasScope(AdminScope.EVENT_GM) || access.hasScope(AdminScope.ANNOUNCEMENTS) || access.hasScope(AdminScope.PANEL_ACCESS))
+		sb.append("</td>");
+		sb.append("<td width=160 align=right>");
+		if (access.hasScope(AdminScope.SERVER_ADMIN))
 		{
-			appendNavTab(sb, "Events & GM", "admin_gmw events", "events".equals(activeTab), 96);
+			if (modifiedScripts > 0)
+			{
+				sb.append("<font color=\"FFCC00\">Dirty Scripts: ").append(modifiedScripts).append("</font>");
+			}
+			else
+			{
+				sb.append("<font color=\"00FF00\">Scripts: Synced</font>");
+			}
 		}
-		if (access.hasScope(AdminScope.ECONOMY_ITEMS) || access.hasScope(AdminScope.CHAR_EDIT))
+		else
 		{
-			appendNavTab(sb, "Items & Chars", "admin_gmw economy", "economy".equals(activeTab), 100);
+			sb.append("<font color=\"888888\">Tab: ").append(escapeHtml(getTabDisplayName(activeTab))).append("</font>");
 		}
-		if (access.hasScope(AdminScope.SERVER_ADMIN) || access.hasScope(AdminScope.MASTER_CONTROL))
-		{
-			appendNavTab(sb, "Server & Reload", "admin_gmw server", "server".equals(activeTab), 106);
-		}
-		appendNavTab(sb, "Legacy", "admin_gmw legacy", "legacy".equals(activeTab), 80);
-		sb.append("</tr></table>");
-	}
-	
-	private void appendNavTab(StringBuilder sb, String label, String bypassCmd, boolean active, int width)
-	{
-		final String text = active ? ("[" + label + "]") : label;
-		sb.append("<td align=center>").append(button(text, bypassCmd, width, 22)).append("</td>");
+		sb.append("</td></tr></table>");
 	}
 	
 	/**
-	 * Builds Top Bar 3: Live Target Inspector + Unified QuickBox with RBAC-filtered actions.
+	 * Builds Top Bar 3 & 4 (948px): Live Target Inspector + Unified QuickBox with RBAC-filtered actions.
 	 * Uses strictly 1-level flat <table> rows for 2009 NWindow.dll compatibility.
 	 */
 	private void appendTargetInspectorAndQuickBox(StringBuilder sb, Player gm)
@@ -680,82 +933,98 @@ public final class AdminBoardManager
 		final int curMp = (int) target.getCurrentMp();
 		final int maxMp = target.getMaxMp();
 		
-		sb.append("<table width=740 border=0 cellpadding=1 cellspacing=0 bgcolor=\"141E28\"><tr>");
-		sb.append("<td width=350 align=left><font color=\"00CCFF\">Target:</font> <font color=\"FFFFFF\">")
+		sb.append("<table width=948 border=0 cellpadding=1 cellspacing=0 bgcolor=\"141E28\"><tr>");
+		sb.append("<td width=478 align=left><font color=\"00CCFF\">Target:</font> <font color=\"FFFFFF\">")
 			.append(escapeHtml(target.getName()))
 			.append("</font> <font color=\"AAAAAA\">(").append(targetType).append(")</font> ")
 			.append("<font color=\"00FF00\">HP ").append(curHp).append("/").append(maxHp).append("</font> ")
-			.append("<font color=\"66AAFF\">MP ").append(curMp).append("/").append(maxMp).append("</font></td>");
+			.append("<font color=\"66AAFF\">MP ").append(curMp).append("/").append(maxMp).append("</font> ")
+			.append("<font color=\"888888\">[").append(target.getX()).append(",").append(target.getY()).append(",").append(target.getZ()).append("]</font></td>");
 		
 		if (access.hasScope(AdminScope.PLAYER_SUPPORT))
 		{
-			sb.append("<td width=56 align=center>").append(button("Inspect", "admin_current_player", 54, 19)).append("</td>");
-			sb.append("<td width=46 align=center>").append(button("Heal", "admin_heal", 44, 19)).append("</td>");
-			sb.append("<td width=44 align=center>").append(button("Res", "admin_res", 42, 19)).append("</td>");
-			sb.append("<td width=46 align=center>").append(AdminData.getInstance().hasAccess("admin_kill", access) ? button("Kill", "admin_kill", 44, 19) : "").append("</td>");
+			sb.append("<td width=68 align=center>").append(button("Inspect", "admin_current_player", 64, 20)).append("</td>");
+			sb.append("<td width=58 align=center>").append(button("Heal", "admin_heal", 54, 20)).append("</td>");
+			sb.append("<td width=56 align=center>").append(button("Res", "admin_res", 52, 20)).append("</td>");
+			sb.append("<td width=58 align=center>").append(AdminData.getInstance().hasAccess("admin_kill", access) ? button("Kill", "admin_kill", 54, 20) : "").append("</td>");
 			if (access.hasScope(AdminScope.TELEPORT))
 			{
-				sb.append("<td width=48 align=center>").append(button("Goto", "admin_teleportto " + target.getName(), 46, 19)).append("</td>");
-				sb.append("<td width=52 align=center>").append(button("Recall", "admin_recall " + target.getName(), 50, 19)).append("</td>");
+				sb.append("<td width=68 align=center>").append(button("Goto", "admin_teleportto " + target.getName(), 64, 20)).append("</td>");
+				sb.append("<td width=72 align=center>").append(button("Recall", "admin_recall " + target.getName(), 68, 20)).append("</td>");
 			}
 			else
 			{
-				sb.append("<td width=48></td><td width=52></td>");
+				sb.append("<td width=68></td><td width=72></td>");
 			}
 			if (access.hasScope(AdminScope.WORLD_SPAWN) && target.isNpc())
 			{
-				sb.append("<td width=56 align=center>").append(button("DelNPC", "admin_delete", 54, 19)).append("</td>");
+				sb.append("<td width=90 align=right>").append(button("Delete NPC", "admin_delete", 86, 20)).append("</td>");
 			}
 			else if (access.hasScope(AdminScope.PUNISHMENT) && target.isPlayer())
 			{
-				sb.append("<td width=56 align=center>").append(button("Punish", "admin_punishment info " + target.getName() + " CHARACTER", 54, 19)).append("</td>");
+				sb.append("<td width=90 align=right>").append(button("Punish", "admin_punishment info " + target.getName() + " CHARACTER", 86, 20)).append("</td>");
 			}
 			else
 			{
-				sb.append("<td width=56></td>");
+				sb.append("<td width=90></td>");
 			}
 		}
 		else
 		{
-			sb.append("<td width=390 align=right><font color=\"AAAAAA\">Loc: ").append(target.getX()).append(", ").append(target.getY()).append(", ").append(target.getZ()).append("</font></td>");
+			sb.append("<td width=470 align=right><font color=\"AAAAAA\">Instance: ").append(target.getInstanceId()).append("</font></td>");
 		}
 		sb.append("</tr></table>");
 		
-		// Unified QuickBox Row (RBAC filtered, flat 1-level table)
-		sb.append("<table width=740 border=0 cellpadding=1 cellspacing=0 bgcolor=\"202020\"><tr>");
-		sb.append("<td width=65 align=left><font color=\"LEVEL\">QuickBox:</font></td>");
-		sb.append("<td width=155 align=left><edit var=\"qbox\" width=148 height=14></td>");
-		if (access.hasScope(AdminScope.PLAYER_SUPPORT))
-		{
-			sb.append("<td width=74 align=center>").append(button("Find Char", "admin_find_character $qbox", 72, 20)).append("</td>");
-		}
-		if (access.hasScope(AdminScope.TELEPORT))
-		{
-			sb.append("<td width=64 align=center>").append(button("MoveTo", "admin_move_to $qbox", 62, 20)).append("</td>");
-		}
-		if (access.hasScope(AdminScope.WORLD_SPAWN))
-		{
-			sb.append("<td width=60 align=center>").append(button("Spawn", "admin_spawn_monster $qbox", 58, 20)).append("</td>");
-			sb.append("<td width=54 align=center>").append(button("Scan", "admin_scan $qbox", 52, 20)).append("</td>");
-		}
-		if (access.hasScope(AdminScope.ECONOMY_ITEMS))
-		{
-			sb.append("<td width=80 align=center>").append(button("Create Item", "admin_create_item $qbox", 78, 20)).append("</td>");
-			sb.append("<td width=60 align=center>").append(button("Search", "admin_search $qbox", 58, 20)).append("</td>");
-		}
-		if (access.hasScope(AdminScope.ANNOUNCEMENTS))
-		{
-			sb.append("<td width=70 align=center>").append(button("Announce", "admin_announce $qbox", 68, 20)).append("</td>");
-		}
-		if (access.hasScope(AdminScope.SERVER_ADMIN))
-		{
-			sb.append("<td width=86 align=center>").append(button("Reload Script", "admin_reload script $qbox", 84, 20)).append("</td>");
-		}
-		sb.append("<td width=10></td></tr></table>");
+		// Unified QuickBox Row (948px, RBAC filtered, flat 1-level table)
+		sb.append("<table width=948 border=0 cellpadding=1 cellspacing=0 bgcolor=\"202020\"><tr>");
+		sb.append("<td width=72 align=left><font color=\"LEVEL\">QuickBox:</font></td>");
+		sb.append("<td width=206 align=left><edit var=\"qbox\" width=198 height=14></td>");
+		sb.append("<td width=92 align=center>").append(access.hasScope(AdminScope.PLAYER_SUPPORT) ? button("Find Char", "admin_find_character $qbox", 88, 20) : "").append("</td>");
+		sb.append("<td width=84 align=center>").append(access.hasScope(AdminScope.TELEPORT) ? button("MoveTo", "admin_move_to $qbox", 80, 20) : "").append("</td>");
+		sb.append("<td width=84 align=center>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("Spawn", "admin_spawn_monster $qbox", 80, 20) : "").append("</td>");
+		sb.append("<td width=74 align=center>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("Scan", "admin_scan $qbox", 70, 20) : "").append("</td>");
+		sb.append("<td width=98 align=center>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("Create Item", "admin_create_item $qbox", 94, 20) : "").append("</td>");
+		sb.append("<td width=78 align=center>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("Search", "admin_search $qbox", 74, 20) : "").append("</td>");
+		sb.append("<td width=80 align=center>").append(access.hasScope(AdminScope.ANNOUNCEMENTS) ? button("Announce", "admin_announce $qbox", 76, 20) : "").append("</td>");
+		sb.append("<td width=80 align=right>").append(access.hasScope(AdminScope.SERVER_ADMIN) ? button("Reload Scr", "admin_reload script $qbox", 76, 20) : "").append("</td>");
+		sb.append("</tr></table>");
 	}
 	
 	/**
-	 * Tab 1: Main RBAC Overview & Quick Launch Dashboard.
+	 * Appends a single flat 948px workspace row with either 4, 5, or 6 action columns.
+	 * Each row is its own 1-row <table> so NWindow.dll column widths align with mathematical precision:
+	 * - 4 columns: 148 (label) + 4 * 200 = 948px (buttons 192x22)
+	 * - 5 columns: 148 (label) + 5 * 160 = 948px (buttons 152x22)
+	 * - 6 columns: 144 (label) + 6 * 134 = 948px (buttons 128x22)
+	 */
+	private static void appendWorkspaceRow(StringBuilder sb, String categoryLabel, String color, String[]... labelAndCmdPairs)
+	{
+		final int count = labelAndCmdPairs.length;
+		final int cols = (count <= 4) ? 4 : (count == 5 ? 5 : 6);
+		final int labelWidth = (cols == 4) ? 148 : (cols == 5 ? 148 : 144);
+		final int cellWidth = (cols == 4) ? 200 : (cols == 5 ? 160 : 134);
+		final int btnWidth = (cols == 4) ? 192 : (cols == 5 ? 152 : 128);
+		
+		sb.append("<table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1B1B1B\"><tr>");
+		sb.append("<td width=").append(labelWidth).append("><font color=\"").append(color).append("\">").append(categoryLabel).append("</font></td>");
+		for (int i = 0; i < cols; i++)
+		{
+			sb.append("<td width=").append(cellWidth).append(" align=center>");
+			if (i < count)
+			{
+				final String[] pair = labelAndCmdPairs[i];
+				if ((pair != null) && (pair.length >= 2) && (pair[0] != null) && !pair[0].isEmpty() && (pair[1] != null) && !pair[1].isEmpty())
+				{
+					sb.append(button(pair[0], pair[1], btnWidth, 22));
+				}
+			}
+			sb.append("</td>");
+		}
+		sb.append("</tr></table>");
+	}
+	
+	/**
+	 * Tab 1: Main RBAC Overview, Telemetry & Pinned Quick Launch Dashboard (948px).
 	 */
 	private String buildDashboardWorkspace(Player gm)
 	{
@@ -767,20 +1036,23 @@ public final class AdminBoardManager
 		final int onlineCount = World.getPlayers().size();
 		final int gmCount = AdminData.getInstance().getAllGms(true).size();
 		final int loadedScripts = ScriptManager.getInstance().getQuests().size();
+		final int trackedScripts = ScriptEngine.getInstance().getTrackedScriptCount();
+		final int dirtyScripts = access.hasScope(AdminScope.SERVER_ADMIN) ? ScriptEngine.getInstance().getModifiedScriptCount() : 0;
+		final int activeInstances = Math.max(0, InstanceManager.getInstance().getInstances().size() - 1);
 		
-		final StringBuilder sb = new StringBuilder(2048);
-		sb.append("<font color=\"LEVEL\">Admin Control Center - Live Server & Role Overview</font><br1>");
-		sb.append("<table width=720 border=0 cellpadding=2 cellspacing=1 bgcolor=\"1E1E1E\">");
-		sb.append("<tr>");
-		sb.append("<td width=180><font color=\"AAAAAA\">Online Players:</font> <font color=\"00FF00\">").append(onlineCount).append(" / ").append(ServerConfig.MAXIMUM_ONLINE_USERS).append("</font></td>");
-		sb.append("<td width=180><font color=\"AAAAAA\">Online GMs:</font> <font color=\"00CCFF\">").append(gmCount).append("</font></td>");
-		sb.append("<td width=180><font color=\"AAAAAA\">JVM Heap:</font> <font color=\"LEVEL\">").append(usedMb).append(" / ").append(maxMb).append(" MB</font></td>");
-		sb.append("<td width=180><font color=\"AAAAAA\">Uptime / Scripts:</font> <font color=\"FFFFFF\">").append(uptimeMin).append("m / ").append(loadedScripts).append("</font></td>");
+		final StringBuilder sb = new StringBuilder(3072);
+		sb.append("<font color=\"LEVEL\">Admin Control Center v3 - Live Server Telemetry &amp; Role Overview</font><br1>");
+		sb.append("<table width=948 border=0 cellpadding=3 cellspacing=1 bgcolor=\"1E1E26\"><tr>");
+		sb.append("<td width=180><font color=\"AAAAAA\">Players:</font> <font color=\"00FF00\">").append(onlineCount).append(" / ").append(ServerConfig.MAXIMUM_ONLINE_USERS).append("</font></td>");
+		sb.append("<td width=140><font color=\"AAAAAA\">Online GMs:</font> <font color=\"00CCFF\">").append(gmCount).append("</font></td>");
+		sb.append("<td width=190><font color=\"AAAAAA\">JVM Heap:</font> <font color=\"LEVEL\">").append(usedMb).append(" / ").append(maxMb).append(" MB</font></td>");
+		sb.append("<td width=220><font color=\"AAAAAA\">Uptime / Scripts:</font> <font color=\"FFFFFF\">").append(uptimeMin).append("m / ").append(trackedScripts > 0 ? trackedScripts : loadedScripts).append("</font></td>");
+		sb.append("<td width=218><font color=\"AAAAAA\">Modified Scripts:</font> ").append(dirtyScripts > 0 ? ("<font color=\"FFCC00\">" + dirtyScripts + " Pending Reload</font>") : "<font color=\"00FF00\">0 (All Synced)</font>").append("</td>");
 		sb.append("</tr></table><br1>");
 		
 		// Role Capabilities Summary
-		sb.append("<table width=720 border=0 cellpadding=2 cellspacing=0 bgcolor=\"252525\"><tr>");
-		sb.append("<td width=140><font color=\"LEVEL\">Granted Scopes:</font></td><td width=580><font color=\"00FF00\">");
+		sb.append("<table width=948 border=0 cellpadding=3 cellspacing=0 bgcolor=\"25252E\"><tr>");
+		sb.append("<td width=148><font color=\"LEVEL\">Granted Scopes:</font></td><td width=620><font color=\"00FF00\">");
 		final Set<AdminScope> scopes = access.getScopes();
 		int idx = 0;
 		for (AdminScope scope : scopes)
@@ -791,379 +1063,442 @@ public final class AdminBoardManager
 			}
 			sb.append(scope.getDisplayName());
 		}
-		sb.append("</font></td></tr></table><br>");
+		sb.append("</font></td><td width=180 align=right><font color=\"00CCFF\">Active Instances: ").append(activeInstances).append("</font></td></tr></table><br>");
 		
-		// Dynamic RBAC Action Matrix (only displays cards the GM's Role is authorized to use)
-		sb.append("<font color=\"CDB67F\">Authorized Quick Operations (Filtered by Role)</font><br1>");
-		sb.append("<table width=720 border=0 cellpadding=2 cellspacing=2 bgcolor=\"181818\">");
+		sb.append("<font color=\"CDB67F\">Pinned Dev &amp; Admin Quick Actions (Filtered by Role)</font><br1>");
+		
+		if (access.hasScope(AdminScope.SERVER_ADMIN))
+		{
+			appendWorkspaceRow(sb, "Hot-Reload & Dev", "00FF00",
+				new String[]{"Reload Changed Scripts", "admin_reload changed"},
+				new String[]{"Reload Script ($qbox)", "admin_reload script $qbox"},
+				new String[]{"Script Inspector", "admin_show_quests"},
+				new String[]{"Reload HTML Cache", "admin_reload htm"},
+				new String[]{"Server Diagnostics", "admin_serverinfo"});
+		}
 		
 		if (access.hasScope(AdminScope.PLAYER_SUPPORT) || access.hasScope(AdminScope.CHAT_MODERATION))
 		{
-			sb.append("<tr><td width=140><font color=\"00CCFF\">Support & Chat</font></td>");
-			sb.append("<td width=145>").append(button("Online Players", "admin_show_characters 0", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Inspect Target", "admin_current_player", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("View Petitions", "admin_view_petitions", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.PUNISHMENT) ? button("Punishment Panel", "admin_punishment", 135, 22) : "").append("</td></tr>");
+			appendWorkspaceRow(sb, "Players & Support", "00CCFF",
+				new String[]{"Online Players List", "admin_show_characters 0"},
+				new String[]{"Inspect Target", "admin_current_player"},
+				new String[]{"View Petitions", "admin_view_petitions"},
+				new String[]{"Target Lockouts", "admin_instancezone"},
+				access.hasScope(AdminScope.PUNISHMENT) ? new String[]{"Punishment Center", "admin_punishment"} : new String[]{"", ""});
 		}
 		
 		if (access.hasScope(AdminScope.TELEPORT) || access.hasScope(AdminScope.WORLD_SPAWN))
 		{
-			sb.append("<tr><td width=140><font color=\"00FF00\">World & Navigation</font></td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.TELEPORT) ? button("Teleport Menu", "admin_show_moves", 135, 22) : "").append("</td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("Spawn Menu", "admin_spawn_index", 135, 22) : "").append("</td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("GrandBoss Info", "admin_grandboss", 135, 22) : "").append("</td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("Castles & Sieges", "admin_siege", 135, 22) : "").append("</td></tr>");
-		}
-		
-		if (access.hasScope(AdminScope.EVENT_GM) || access.hasScope(AdminScope.ANNOUNCEMENTS))
-		{
-			sb.append("<tr><td width=140><font color=\"LEVEL\">Events & Broadcast</font></td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.ANNOUNCEMENTS) ? button("Announcements", "admin_announces list", 135, 22) : "").append("</td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.EVENT_GM) ? button("Events Menu", "admin_event_menu", 135, 22) : "").append("</td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.EVENT_GM) ? button("Target Buffs", "admin_getbuffs", 135, 22) : "").append("</td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.EVENT_GM) ? button("Fence Builder", "admin_listfence", 135, 22) : "").append("</td></tr>");
+			appendWorkspaceRow(sb, "World & Dungeons", "LEVEL",
+				access.hasScope(AdminScope.TELEPORT) ? new String[]{"World Teleport Dir", "admin_show_moves"} : new String[]{"", ""},
+				access.hasScope(AdminScope.WORLD_SPAWN) ? new String[]{"Active Instances", "admin_listinstances"} : new String[]{"", ""},
+				access.hasScope(AdminScope.WORLD_SPAWN) ? new String[]{"GrandBoss Manager", "admin_grandboss"} : new String[]{"", ""},
+				access.hasScope(AdminScope.WORLD_SPAWN) ? new String[]{"Gracia Seeds Status", "admin_gracia_seeds"} : new String[]{"", ""},
+				access.hasScope(AdminScope.WORLD_SPAWN) ? new String[]{"Hellbound Status", "admin_hellbound"} : new String[]{"", ""});
 		}
 		
 		if (access.hasScope(AdminScope.ECONOMY_ITEMS) || access.hasScope(AdminScope.CHAR_EDIT))
 		{
-			sb.append("<tr><td width=140><font color=\"FF9900\">Items & Editor</font></td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("Create Item", "admin_itemcreate", 135, 22) : "").append("</td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("GM Shop", "admin_gmshop", 135, 22) : "").append("</td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("Enchant Armor/Wpn", "admin_enchant", 135, 22) : "").append("</td>");
-			sb.append("<td width=145>").append(access.hasScope(AdminScope.CHAR_EDIT) ? button("Edit Target Char", "admin_edit_character", 135, 22) : "").append("</td></tr>");
+			appendWorkspaceRow(sb, "Items & Char Edit", "FF9900",
+				access.hasScope(AdminScope.ECONOMY_ITEMS) ? new String[]{"GM Shop", "admin_gmshop"} : new String[]{"", ""},
+				access.hasScope(AdminScope.ECONOMY_ITEMS) ? new String[]{"Item Creator", "admin_itemcreate"} : new String[]{"", ""},
+				access.hasScope(AdminScope.ECONOMY_ITEMS) ? new String[]{"Enchant Gear", "admin_enchant"} : new String[]{"", ""},
+				access.hasScope(AdminScope.CHAR_EDIT) ? new String[]{"Edit Target Char", "admin_edit_character"} : new String[]{"", ""},
+				access.hasScope(AdminScope.CHAR_EDIT) ? new String[]{"Manage Target Skills", "admin_skill_list"} : new String[]{"", ""});
 		}
 		
-		if (access.hasScope(AdminScope.SERVER_ADMIN))
-		{
-			sb.append("<tr><td width=140><font color=\"FF6666\">Server & Engine</font></td>");
-			sb.append("<td width=145>").append(button("Server Diagnostics", "admin_serverinfo", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Hot-Reload Center", "admin_gmw server", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Script Inspector", "admin_show_quests", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Server Shutdown", "admin_server_shutdown", 135, 22)).append("</td></tr>");
-		}
-		
-		sb.append("</table>");
 		return sb.toString();
 	}
 	
 	/**
-	 * Tab 2: Player Support, Petitions & Punishments Workspace.
+	 * Tab 2: Player Support, Native C++ Client Inspector Popups, Petitions & Punishments Workspace (948px).
 	 */
 	private String buildSupportWorkspace(Player gm)
 	{
 		final AccessLevel access = gm.getAccessLevel();
-		final StringBuilder sb = new StringBuilder(2048);
-		sb.append("<font color=\"LEVEL\">Player Support, Moderation & Punishments</font><br1>");
-		sb.append("<table width=720 border=0 cellpadding=2 cellspacing=2 bgcolor=\"1B1B1B\">");
-		
-		if (access.hasScope(AdminScope.CHAT_MODERATION))
-		{
-			sb.append("<tr><td width=140><font color=\"00CCFF\">Petitions & Chat</font></td>");
-			sb.append("<td width=145>").append(button("View Petitions", "admin_view_petitions", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Force Petition", "admin_force_peti Thank you", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Reset Petitions", "admin_reset_petitions", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("GM Chat Panel", "admin_gmchat_menu", 135, 22)).append("</td></tr>");
-		}
+		final StringBuilder sb = new StringBuilder(3072);
+		sb.append("<font color=\"LEVEL\">Players, Native C++ Inspector Popups, Petitions &amp; Punishments</font><br1>");
 		
 		if (access.hasScope(AdminScope.PLAYER_SUPPORT))
 		{
-			sb.append("<tr><td width=140><font color=\"00FF00\">Character Lookup</font></td>");
-			sb.append("<td width=145>").append(button("Online List", "admin_show_characters 0", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Inspect Target", "admin_current_player", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Find Dualbox", "admin_find_dualbox 2", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Find by IP ($qbox)", "admin_find_ip $qbox", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Character Lookup", "00FF00",
+				new String[]{"Online Players List", "admin_show_characters 0"},
+				new String[]{"Inspect Target", "admin_current_player"},
+				new String[]{"Find Char ($qbox)", "admin_find_character $qbox"},
+				new String[]{"Find Dualbox", "admin_find_dualbox 2"},
+				new String[]{"Find by IP ($qbox)", "admin_find_ip $qbox"});
 			
-			sb.append("<tr><td width=140><font color=\"00FF00\">Target Assistance</font></td>");
-			sb.append("<td width=145>").append(button("Instance Lockouts", "admin_instancezone", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Active Buffs", "admin_getbuffs", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Clear Skill Reuse", "admin_removereuse", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Character Quests", "admin_charquestmenu", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Target Assistance", "00FF00",
+				new String[]{"Clear Skill Reuse", "admin_removereuse"},
+				new String[]{"Active Buffs", "admin_getbuffs"},
+				new String[]{"Character Quests", "admin_charquestmenu"},
+				new String[]{"Disconnect Target", "admin_character_disconnect"},
+				new String[]{"Repair Char ($qbox)", "admin_repair $qbox"});
 			
-			sb.append("<tr><td width=140><font color=\"00FF00\">Recovery Actions</font></td>");
-			sb.append("<td width=145>").append(button("Heal Target", "admin_heal", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Resurrect Target", "admin_res", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Disconnect Target", "admin_character_disconnect", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Repair Char ($qbox)", "admin_repair $qbox", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Native C++ Popups", "00CCFF",
+				new String[]{"Client Status Wnd", "admin_gmw legacy_view status"},
+				new String[]{"Client Inventory Wnd", "admin_gmw legacy_view items"},
+				new String[]{"Client Skills Wnd", "admin_gmw legacy_view skills"},
+				new String[]{"Client Quests Wnd", "admin_gmw legacy_view quests"},
+				new String[]{"Client Warehouse Wnd", "admin_gmw legacy_view warehouse"},
+				new String[]{"Client Clan Wnd", "admin_gmw legacy_view clan"});
+		}
+		
+		if (access.hasScope(AdminScope.CHAT_MODERATION))
+		{
+			appendWorkspaceRow(sb, "Petitions & Chat", "LEVEL",
+				new String[]{"View Petitions", "admin_view_petitions"},
+				new String[]{"Force Petition", "admin_force_peti Thank you"},
+				new String[]{"Reset Petitions", "admin_reset_petitions"},
+				new String[]{"GM Chat Panel", "admin_gmchat_menu"},
+				new String[]{"Chat Ban ($qbox)", "admin_banchat $qbox"});
 		}
 		
 		if (access.hasScope(AdminScope.PUNISHMENT))
 		{
-			sb.append("<tr><td width=140><font color=\"FF6666\">Punishments</font></td>");
-			sb.append("<td width=145>").append(button("Punishment Center", "admin_punishment", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Jail ($qbox)", "admin_jail $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Unjail ($qbox)", "admin_unjail $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Kick ($qbox)", "admin_kick $qbox", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Punishments", "FF6666",
+				new String[]{"Punishment Center", "admin_punishment"},
+				new String[]{"Jail ($qbox)", "admin_jail $qbox"},
+				new String[]{"Unjail ($qbox)", "admin_unjail $qbox"},
+				new String[]{"Kick ($qbox)", "admin_kick $qbox"});
 			
-			sb.append("<tr><td width=140><font color=\"FF6666\">Account / Char Ban</font></td>");
-			sb.append("<td width=145>").append(button("Ban Char ($qbox)", "admin_ban_char $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Unban Char ($qbox)", "admin_unban_char $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Ban Acc ($qbox)", "admin_ban_acc $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Unban Acc ($qbox)", "admin_unban_acc $qbox", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Account / Char Ban", "FF6666",
+				new String[]{"Ban Char ($qbox)", "admin_ban_char $qbox"},
+				new String[]{"Unban Char ($qbox)", "admin_unban_char $qbox"},
+				new String[]{"Ban Acc ($qbox)", "admin_ban_acc $qbox"},
+				new String[]{"Unban Acc ($qbox)", "admin_unban_acc $qbox"});
 		}
 		
-		sb.append("</table>");
 		return sb.toString();
 	}
 	
 	/**
-	 * Tab 3: World Navigation, Spawns, Bosses, Sieges & Clans Workspace.
+	 * Tab 3: World Navigation, Spawns, Sieges, Zones/Geodata & Clans Workspace (948px).
 	 */
 	private String buildWorldWorkspace(Player gm)
 	{
 		final AccessLevel access = gm.getAccessLevel();
-		final StringBuilder sb = new StringBuilder(2048);
-		sb.append("<font color=\"LEVEL\">World Navigation, Spawns, Bosses & Sieges</font><br1>");
-		sb.append("<table width=720 border=0 cellpadding=2 cellspacing=2 bgcolor=\"1B1B1B\">");
+		final StringBuilder sb = new StringBuilder(3072);
+		sb.append("<font color=\"LEVEL\">World Navigation, Spawns, Sieges, Geodata &amp; Clans</font><br1>");
 		
 		if (access.hasScope(AdminScope.TELEPORT))
 		{
-			sb.append("<tr><td width=140><font color=\"00CCFF\">Teleportation</font></td>");
-			sb.append("<td width=145>").append(button("Teleport Menu", "admin_show_moves", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Teleport Panel", "admin_tele", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Recall Party", "admin_recall_party", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Recall Clan", "admin_recall_clan", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Teleportation", "00CCFF",
+				new String[]{"World Teleport Dir", "admin_show_moves"},
+				new String[]{"XYZ Coordinate Pad", "admin_tele"},
+				new String[]{"GM Bookmarks", "admin_bk"},
+				new String[]{"Recall Party", "admin_recall_party"},
+				new String[]{"Recall Clan", "admin_recall_clan"});
 		}
 		
 		if (access.hasScope(AdminScope.WORLD_SPAWN))
 		{
-			sb.append("<tr><td width=140><font color=\"00FF00\">NPC & Spawns</font></td>");
-			sb.append("<td width=145>").append(button("Spawn By Level", "admin_spawn_index", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("NPC Index", "admin_npc_index", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Scan Nearby NPCs", "admin_scan", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Delete Target NPC", "admin_delete", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "NPC & Spawns", "00FF00",
+				new String[]{"Spawn by Level", "admin_spawn_index"},
+				new String[]{"Spawn by Name A-Z", "admin_npc_index"},
+				new String[]{"Scan Nearby (500)", "admin_scan 500"},
+				new String[]{"Delete Target NPC", "admin_delete"},
+				new String[]{"Reload Spawns", "admin_reload spawn"});
 			
-			sb.append("<tr><td width=140><font color=\"LEVEL\">Bosses & World</font></td>");
-			sb.append("<td width=145>").append(button("GrandBoss Manager", "admin_grandboss", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Gracia Seeds", "admin_gracia_seeds", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Cursed Weapons", "admin_cw_info_menu", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Find Mammon", "admin_mammon_find", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Sieges & Territory", "FF9900",
+				new String[]{"Castle Sieges", "admin_siege"},
+				new String[]{"Fortress Sieges", "admin_fortsiege"},
+				new String[]{"ClanHall Sieges", "admin_chsiege_siegablehall"},
+				new String[]{"Territory War", "admin_territory_war"});
 			
-			sb.append("<tr><td width=140><font color=\"FF9900\">Sieges & Territory</font></td>");
-			sb.append("<td width=145>").append(button("Castle Sieges", "admin_siege", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Fortress Sieges", "admin_fortsiege", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("ClanHall Sieges", "admin_chsiege_siegablehall", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Territory War", "admin_territory_war", 135, 22)).append("</td></tr>");
-			
-			sb.append("<tr><td width=140><font color=\"AAAAAA\">Zones & Manor</font></td>");
-			sb.append("<td width=145>").append(button("Zone Check", "admin_zone_check", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Zone Builder", "admin_zone_build", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Active Instances", "admin_listinstances", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Manor Status", "admin_manor", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Zones & Geodata", "LEVEL",
+				new String[]{"Zone Check", "admin_zone_check"},
+				new String[]{"Zone Builder", "admin_zone_build"},
+				new String[]{"Geodata Inspector", "admin_html geo_menu.htm"},
+				new String[]{"Manor Status", "admin_manor"},
+				new String[]{"Find Mammon", "admin_mammon_find"});
 		}
 		
 		if (access.hasScope(AdminScope.CLAN_MANAGEMENT))
 		{
-			sb.append("<tr><td width=140><font color=\"00CCFF\">Clan Management</font></td>");
-			sb.append("<td width=145>").append(button("Target Clan Info", "admin_clan_info", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Pending Leaders", "admin_clan_show_pending", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Pledge Panel", "admin_html pledge.htm", 135, 22)).append("</td>");
-			sb.append("<td width=145></td></tr>");
+			appendWorkspaceRow(sb, "Clan Management", "00CCFF",
+				new String[]{"Target Clan Info", "admin_clan_info"},
+				new String[]{"Pending Leaders", "admin_clan_show_pending"},
+				new String[]{"Pledge Panel", "admin_html pledge.htm"},
+				new String[]{"Cursed Weapons", "admin_cw_info_menu"});
 		}
 		
-		sb.append("</table>");
 		return sb.toString();
 	}
 	
 	/**
-	 * Tab 4: Events, Broadcasts, Doors/Fences & GM Utilities Workspace.
+	 * Tab 4: Dedicated Instances, Dungeons, GrandBosses & Endgame Progression Workspace (948px).
+	 */
+	private String buildInstancesWorkspace(Player gm)
+	{
+		final AccessLevel access = gm.getAccessLevel();
+		final StringBuilder sb = new StringBuilder(4096);
+		sb.append("<font color=\"LEVEL\">Instances, Endgame Progression, GrandBosses &amp; Dungeon Teleports</font><br1>");
+		
+		if (access.hasScope(AdminScope.WORLD_SPAWN) || access.hasScope(AdminScope.PLAYER_SUPPORT))
+		{
+			appendWorkspaceRow(sb, "Instance Control", "00FF00",
+				new String[]{"Active Instances", "admin_listinstances"},
+				new String[]{"Target Lockouts", "admin_instancezone"},
+				new String[]{"Create ($qbox)", "admin_createinstance $qbox"},
+				new String[]{"Destroy ($qbox)", "admin_destroyinstance $qbox"},
+				new String[]{"Reload Instances XML", "admin_reload instance"});
+			
+			appendWorkspaceRow(sb, "Instance Utilities", "00CCFF",
+				new String[]{"Set Instance ($qbox)", "admin_setinstance $qbox"},
+				new String[]{"Return to World (0)", "admin_setinstance 0"},
+				new String[]{"Ghost Mode ON", "admin_ghoston"},
+				new String[]{"Ghost Mode OFF", "admin_ghostoff"},
+				new String[]{"Template IDs", "admin_instancezones"});
+			
+			appendWorkspaceRow(sb, "Bosses & Endgame", "LEVEL",
+				new String[]{"GrandBoss Manager", "admin_grandboss"},
+				new String[]{"Gracia Seeds Status", "admin_gracia_seeds"},
+				new String[]{"Hellbound Status", "admin_hellbound"},
+				new String[]{"Olympiad Status", "admin_checkolympiad"});
+		}
+		
+		if (access.hasScope(AdminScope.TELEPORT))
+		{
+			appendWorkspaceRow(sb, "Endgame Dungeons", "FF9900",
+				new String[]{"Crystal Caverns (10)", "admin_move_to 149361 172327 -945"},
+				new String[]{"Baylor Raid (10)", "admin_move_to 153569 142075 -12736"},
+				new String[]{"Hellbound / Tully", "admin_move_to -12700 273832 -15300"},
+				new String[]{"Tower of Naia", "admin_move_to -47271 246098 -9120"},
+				new String[]{"Seed of Infinity", "admin_move_to -213678 210670 4408"},
+				new String[]{"Seed of Destruction", "admin_move_to -246035 217337 -12208"});
+			
+			appendWorkspaceRow(sb, "Solo & Party Inst", "00CCFF",
+				new String[]{"Kamaloka (Giran)", "admin_move_to 81960 148606 -3468"},
+				new String[]{"Pailaka Lv36 (Gludio)", "admin_move_to -14228 123694 -3117"},
+				new String[]{"Pailaka Lv61 (Giran)", "admin_move_to 83395 147958 -3405"},
+				new String[]{"Pailaka Lv73 (Goddard)", "admin_move_to 147450 -55521 -2732"},
+				new String[]{"Nornil's Garden", "admin_move_to -111191 80322 -12936"});
+		}
+		
+		// Inline Active Runtime Instances Summary Table (948px)
+		if (access.hasScope(AdminScope.WORLD_SPAWN))
+		{
+			sb.append("<br1><table width=948 border=0 cellpadding=2 cellspacing=1 bgcolor=\"15151E\">");
+			sb.append("<tr bgcolor=\"222230\"><td width=110><font color=\"LEVEL\">Instance ID</font></td><td width=110><font color=\"LEVEL\">Template ID</font></td><td width=388><font color=\"LEVEL\">Instance Name</font></td><td width=140><font color=\"LEVEL\">Players / NPCs</font></td><td width=100 align=center><font color=\"LEVEL\">Enter</font></td><td width=100 align=center><font color=\"LEVEL\">Destroy</font></td></tr>");
+			int shown = 0;
+			for (var inst : InstanceManager.getInstance().getInstances().values())
+			{
+				if ((inst == null) || (inst.getId() == 0))
+				{
+					continue;
+				}
+				final var world = InstanceManager.getInstance().getWorld(inst.getId());
+				final int tplId = (world != null) ? world.getTemplateId() : inst.getTemplateId();
+				final String instName = (tplId > 0) ? InstanceManager.getInstance().getInstanceIdName(tplId) : "Dynamic Instance";
+				sb.append("<tr bgcolor=\"101016\"><td><font color=\"00FF00\">").append(inst.getId()).append("</font></td><td>").append(tplId).append("</td><td>").append(escapeHtml(instName != null ? instName : "Instance")).append("</td><td>").append(inst.getPlayers().size()).append(" / ").append(inst.getNpcs().size()).append("</td><td align=center>").append(button("Enter", "admin_setinstance " + inst.getId(), 90, 20)).append("</td><td align=center>").append(button("Destroy", "admin_destroyinstance " + inst.getId(), 90, 20)).append("</td></tr>");
+				if (++shown >= 6)
+				{
+					break;
+				}
+			}
+			if (shown == 0)
+			{
+				sb.append("<tr bgcolor=\"101016\"><td width=948 align=center><font color=\"888888\">No active dynamic instances currently running (Your Instance ID: ").append(gm.getInstanceId()).append(").</font></td><td></td><td></td><td></td><td></td><td></td></tr>");
+			}
+			sb.append("</table>");
+		}
+		
+		return sb.toString();
+	}
+	
+	/**
+	 * Tab 5: Events, Broadcasts, Doors/Fences & GM Utilities Workspace (948px).
 	 */
 	private String buildEventsWorkspace(Player gm)
 	{
 		final AccessLevel access = gm.getAccessLevel();
-		final StringBuilder sb = new StringBuilder(2048);
-		sb.append("<font color=\"LEVEL\">Events, Announcements, World FX & GM Controls</font><br1>");
-		sb.append("<table width=720 border=0 cellpadding=2 cellspacing=2 bgcolor=\"1B1B1B\">");
+		final StringBuilder sb = new StringBuilder(3072);
+		sb.append("<font color=\"LEVEL\">Events, Announcements, World FX &amp; GM Self Controls</font><br1>");
 		
 		if (access.hasScope(AdminScope.ANNOUNCEMENTS))
 		{
-			sb.append("<tr><td width=140><font color=\"00CCFF\">Announcements</font></td>");
-			sb.append("<td width=145>").append(button("Manage Announces", "admin_announces list", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Announce ($qbox)", "admin_announce $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Critical ($qbox)", "admin_announce_crit $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Screen ($qbox)", "admin_announce_screen $qbox", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Announcements", "00CCFF",
+				new String[]{"Manage Announces", "admin_announces list"},
+				new String[]{"Announce ($qbox)", "admin_announce $qbox"},
+				new String[]{"Critical ($qbox)", "admin_announce_crit $qbox"},
+				new String[]{"Screen ($qbox)", "admin_announce_screen $qbox"});
 		}
 		
 		if (access.hasScope(AdminScope.EVENT_GM))
 		{
-			sb.append("<tr><td width=140><font color=\"00FF00\">Events & Arena</font></td>");
-			sb.append("<td width=145>").append(button("Event Manager", "admin_event_menu", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Fence Builder", "admin_listfence", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Open Target Door", "admin_open", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Close Target Door", "admin_close", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Events & Arena", "00FF00",
+				new String[]{"Event Manager", "admin_event_menu"},
+				new String[]{"Fence Builder", "admin_listfence"},
+				new String[]{"Open Target Door", "admin_open"},
+				new String[]{"Close Target Door", "admin_close"});
 			
-			sb.append("<tr><td width=140><font color=\"LEVEL\">Buffs & Effects</font></td>");
-			sb.append("<td width=145>").append(button("Target Buffs", "admin_getbuffs", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Stop All Buffs", "admin_stopallbuffs", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Area Cancel", "admin_areacancel 500", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Effects & Socials", "admin_html effects_menu.htm", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Buffs & Effects", "LEVEL",
+				new String[]{"Target Buffs", "admin_getbuffs"},
+				new String[]{"Stop All Buffs", "admin_stopallbuffs"},
+				new String[]{"Area Cancel (500)", "admin_areacancel 500"},
+				new String[]{"Effects & Socials", "admin_html effects_menu.htm"});
 			
-			sb.append("<tr><td width=140><font color=\"FF9900\">Mounts & Transform</font></td>");
-			sb.append("<td width=145>").append(button("Ride Wyvern", "admin_ride_wyvern", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Ride Strider", "admin_ride_strider", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Ride Jet Bike", "admin_ride_bike", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Untransform", "admin_untransform", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Mounts & Transform", "FF9900",
+				new String[]{"Ride Wyvern", "admin_ride_wyvern"},
+				new String[]{"Ride Strider", "admin_ride_strider"},
+				new String[]{"Ride Jet Bike", "admin_ride_bike"},
+				new String[]{"Untransform", "admin_untransform"});
 		}
 		
-		sb.append("<tr><td width=140><font color=\"AAAAAA\">GM Self Status</font></td>");
-		sb.append("<td width=145>").append(button("GM List ON", "admin_gmliston", 135, 22)).append("</td>");
-		sb.append("<td width=145>").append(button("GM List OFF", "admin_gmlistoff", 135, 22)).append("</td>");
-		sb.append("<td width=145>").append(button("Toggle Diet", "admin_diet", 135, 22)).append("</td>");
-		sb.append("<td width=145>").append(button("Toggle TradeOff", "admin_tradeoff", 135, 22)).append("</td></tr>");
+		appendWorkspaceRow(sb, "GM Self Status", "AAAAAA",
+			new String[]{"GM List ON", "admin_gmliston"},
+			new String[]{"GM List OFF", "admin_gmlistoff"},
+			new String[]{"Toggle Diet", "admin_diet"},
+			new String[]{"Toggle TradeOff", "admin_tradeoff"});
 		
-		sb.append("</table>");
 		return sb.toString();
 	}
 	
 	/**
-	 * Tab 5: Economy, Item Creation & Character Editor Workspace.
+	 * Tab 6: Economy, Item Creation & Character Editor Workspace (948px).
 	 */
 	private String buildEconomyWorkspace(Player gm)
 	{
 		final AccessLevel access = gm.getAccessLevel();
-		final StringBuilder sb = new StringBuilder(2048);
-		sb.append("<font color=\"LEVEL\">Items, Economy & Character Editor</font><br1>");
-		sb.append("<table width=720 border=0 cellpadding=2 cellspacing=2 bgcolor=\"1B1B1B\">");
+		final StringBuilder sb = new StringBuilder(3072);
+		sb.append("<font color=\"LEVEL\">Items, Economy &amp; Character Stat / Skill Editor</font><br1>");
 		
 		if (access.hasScope(AdminScope.ECONOMY_ITEMS))
 		{
-			sb.append("<tr><td width=140><font color=\"00FF00\">Item Creation</font></td>");
-			sb.append("<td width=145>").append(button("Item Creator", "admin_itemcreate", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("GM Shop", "admin_gmshop", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Search Item/NPC", "admin_search $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Destroy Target Inv", "admin_destroy_items", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Item Creation", "00FF00",
+				new String[]{"Item Creator", "admin_itemcreate"},
+				new String[]{"GM Shop", "admin_gmshop"},
+				new String[]{"Search Item/NPC", "admin_search $qbox"},
+				new String[]{"Destroy Target Inv", "admin_destroy_items"});
 			
-			sb.append("<tr><td width=140><font color=\"LEVEL\">Gear Enhancement</font></td>");
-			sb.append("<td width=145>").append(button("Enchant Panel", "admin_enchant", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Element Panel", "admin_html element.htm", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Augment Panel", "admin_html augment.htm", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Premium Menu", "admin_premium_menu", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Gear Enhancement", "LEVEL",
+				new String[]{"Enchant Panel", "admin_enchant"},
+				new String[]{"Element Panel", "admin_html element.htm"},
+				new String[]{"Augment Panel", "admin_html augment.htm"},
+				new String[]{"Premium Menu", "admin_premium_menu"});
 			
-			sb.append("<tr><td width=140><font color=\"00CCFF\">Points & Rewards</font></td>");
-			sb.append("<td width=145>").append(button("PC Bang Points", "admin_pccafepoints", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Game Points", "admin_gamepoints", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Give Adena (10M)", "admin_create_item 57 10000000", 135, 22)).append("</td>");
-			sb.append("<td width=145></td></tr>");
+			appendWorkspaceRow(sb, "Points & Rewards", "00CCFF",
+				new String[]{"PC Bang Points", "admin_pccafepoints"},
+				new String[]{"Game Points", "admin_gamepoints"},
+				new String[]{"Give Adena (10M)", "admin_create_item 57 10000000"},
+				new String[]{"Give AA (10M)", "admin_create_item 5575 10000000"});
 		}
 		
 		if (access.hasScope(AdminScope.CHAR_EDIT))
 		{
-			sb.append("<tr><td width=140><font color=\"FF9900\">Character Editor</font></td>");
-			sb.append("<td width=145>").append(button("Edit Target Char", "admin_edit_character", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Manage Skills", "admin_skill_list", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Add EXP / SP", "admin_exp_sp_to_character", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Set Level ($qbox)", "admin_set_level $qbox", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Character Editor", "FF9900",
+				new String[]{"Edit Target Char", "admin_edit_character"},
+				new String[]{"Manage Skills", "admin_skill_list"},
+				new String[]{"Give All Skills", "admin_give_all_skills"},
+				new String[]{"Add EXP / SP", "admin_exp_sp_to_character"},
+				new String[]{"Set Level ($qbox)", "admin_set_level $qbox"});
 			
-			sb.append("<tr><td width=140><font color=\"FF9900\">Status & Class</font></td>");
-			sb.append("<td width=145>").append(button("Give All Skills", "admin_give_all_skills", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Toggle Hero", "admin_sethero", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Class Selection", "admin_html charclasses.htm", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Target Quests", "admin_charquestmenu", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Class & Status", "FF9900",
+				new String[]{"Class Selection", "admin_html charclasses.htm"},
+				new String[]{"Toggle Hero", "admin_sethero"},
+				new String[]{"Toggle Noble", "admin_setnoble"},
+				new String[]{"Target Quests", "admin_charquestmenu"});
 		}
 		
-		sb.append("</table>");
 		return sb.toString();
 	}
 	
 	/**
-	 * Tab 6: Server Administration & Zero-Downtime Transactional Hot-Reload Console.
+	 * Tab 7: Server Administration & Zero-Downtime Transactional Hot-Reload Console (948px).
 	 */
 	private String buildServerWorkspace(Player gm)
 	{
 		final AccessLevel access = gm.getAccessLevel();
-		final StringBuilder sb = new StringBuilder(2048);
-		sb.append("<font color=\"LEVEL\">Server Administration & Zero-Downtime Hot-Reload Engine</font><br1>");
-		sb.append("<table width=720 border=0 cellpadding=2 cellspacing=2 bgcolor=\"1B1B1B\">");
+		final StringBuilder sb = new StringBuilder(3072);
+		sb.append("<font color=\"LEVEL\">Server Administration &amp; Zero-Downtime Delta Hot-Reload Engine</font><br1>");
 		
 		if (access.hasScope(AdminScope.SERVER_ADMIN))
 		{
-			sb.append("<tr><td width=140><font color=\"00FF00\">Script Hot-Reload</font></td>");
-			sb.append("<td width=145>").append(button("Reload Script ($qbox)", "admin_reload script $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Script Inspector", "admin_show_quests", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Reload HTML Cache", "admin_reload htm", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Reload Configs", "admin_reload config", 135, 22)).append("</td></tr>");
+			final int dirtyCount = ScriptEngine.getInstance().getModifiedScriptCount();
+			sb.append("<table width=948 border=0 cellpadding=3 cellspacing=0 bgcolor=\"18281E\"><tr>");
+			sb.append("<td width=588 align=left><font color=\"00FF00\">[Delta Hot-Reload Engine]</font> <font color=\"CCCCCC\">Tracked Scripts: ")
+				.append(ScriptEngine.getInstance().getTrackedScriptCount())
+				.append(" | Modified Since Last Reload: </font>")
+				.append(dirtyCount > 0 ? ("<font color=\"FFCC00\">" + dirtyCount + " dirty script(s)</font>") : "<font color=\"00FF00\">0 (Clean)</font>")
+				.append("</td>");
+			sb.append("<td width=360 align=right>").append(button("[ Reload Changed Scripts (Delta) ]", "admin_reload changed", 340, 24)).append("</td>");
+			sb.append("</tr></table><br1>");
 			
-			sb.append("<tr><td width=140><font color=\"00CCFF\">Data Reloaders</font></td>");
-			sb.append("<td width=145>").append(button("Reload Skills XML", "admin_reload skill", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Reload Items XML", "admin_reload item", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Reload NPCs XML", "admin_reload npc", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Reload Multisell", "admin_reload multisell", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Hot-Reload Engine", "00FF00",
+				new String[]{"Reload Changed (Delta)", "admin_reload changed"},
+				new String[]{"Reload Script ($qbox)", "admin_reload script $qbox"},
+				new String[]{"Reload All Handlers", "admin_reload handler"},
+				new String[]{"Reload Effect Hdlrs", "admin_reload effect"},
+				new String[]{"Script Inspector", "admin_show_quests"});
 			
-			sb.append("<tr><td width=140><font color=\"LEVEL\">RBAC & World Data</font></td>");
-			sb.append("<td width=145>").append(button("Reload Access/RBAC", "admin_reload access", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Reload Teleports", "admin_reload teleport", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Reload Buylists", "admin_reload buylist", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Reload Enchants", "admin_reload enchant", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "XML Data Reloaders", "00CCFF",
+				new String[]{"Reload Skills XML", "admin_reload skill"},
+				new String[]{"Reload Items XML", "admin_reload item"},
+				new String[]{"Reload NPCs XML", "admin_reload npc"},
+				new String[]{"Reload Multisell", "admin_reload multisell"},
+				new String[]{"Reload Teleports", "admin_reload teleport"});
 			
-			sb.append("<tr><td width=140><font color=\"FF9900\">Server Lifecycle</font></td>");
-			sb.append("<td width=145>").append(button("JVM & Server Info", "admin_serverinfo", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Shutdown / Restart", "admin_server_shutdown", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("LoginServer Menu", "admin_server_login", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Geodata Menu", "admin_html geo_menu.htm", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Config & RBAC", "LEVEL",
+				new String[]{"Reload HTML Cache", "admin_reload htm"},
+				new String[]{"Reload Configs (.ini)", "admin_reload config"},
+				new String[]{"Reload Access/RBAC", "admin_reload access"},
+				new String[]{"Reload Instances XML", "admin_reload instance"},
+				new String[]{"Full Reload Menu", "admin_reload_menu"});
 			
-			sb.append("<tr><td width=140><font color=\"AAAAAA\">Olympiad & Debug</font></td>");
-			sb.append("<td width=145>").append(button("Check Olympiad", "admin_checkolympiad", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Save Olympiad", "admin_saveolymp", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Debug Target", "admin_debug", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Fake Players", "admin_fakeplayers", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Server Lifecycle", "FF9900",
+				new String[]{"JVM & Server Info", "admin_serverinfo"},
+				new String[]{"Shutdown / Restart", "admin_server_shutdown"},
+				new String[]{"LoginServer Menu", "admin_server_login"},
+				new String[]{"Save Olympiad", "admin_saveolymp"},
+				new String[]{"Fake Players Menu", "admin_fakeplayers"});
 		}
 		
 		if (access.hasScope(AdminScope.MASTER_CONTROL))
 		{
-			sb.append("<tr><td width=140><font color=\"FF6666\">Master Security</font></td>");
-			sb.append("<td width=145>").append(button("Set Access ($qbox)", "admin_changelvl $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Packet Forge", "admin_forge", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("System Msg ($qbox)", "admin_msg $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145></td></tr>");
+			appendWorkspaceRow(sb, "Master Security", "FF6666",
+				new String[]{"Set Access ($qbox)", "admin_changelvl $qbox"},
+				new String[]{"Packet Forge", "admin_forge"},
+				new String[]{"System Msg ($qbox)", "admin_msg $qbox"},
+				new String[]{"Debug Target", "admin_debug"});
 		}
 		
-		sb.append("</table>");
 		return sb.toString();
 	}
 	
 	/**
-	 * Tab 7: Legacy NCSoft Graphical GM Inspectors & Classic L2J HTML Sub-Menus.
+	 * Legacy NCSoft Graphical GM Inspectors & Classic L2J HTML Sub-Menus fallback view (920px).
 	 */
 	private String buildLegacyWorkspace(Player gm)
 	{
 		final AccessLevel access = gm.getAccessLevel();
 		final StringBuilder sb = new StringBuilder(2048);
-		sb.append("<font color=\"LEVEL\">Legacy NCSoft GM Inspection Windows & Classic HTML Tools</font><br1>");
-		sb.append("<table width=720 border=0 cellpadding=2 cellspacing=2 bgcolor=\"1B1B1B\">");
+		sb.append("<font color=\"LEVEL\">Legacy NCSoft GM Inspection Windows &amp; Classic HTML Tools</font><br1>");
 		
 		if (access.hasScope(AdminScope.PLAYER_SUPPORT))
 		{
-			sb.append("<tr><td width=140><font color=\"00CCFF\">Native C++ Popups</font></td>");
-			sb.append("<td width=145>").append(button("View Target Status", "admin_gmw legacy_view status", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("View Target Items", "admin_gmw legacy_view items", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("View Target Skills", "admin_gmw legacy_view skills", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("View Target Quests", "admin_gmw legacy_view quests", 135, 22)).append("</td></tr>");
-			
-			sb.append("<tr><td width=140><font color=\"00CCFF\">Storage & Lookup</font></td>");
-			sb.append("<td width=145>").append(button("View Warehouse", "admin_gmw legacy_view warehouse", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("View Target Clan", "admin_gmw legacy_view clan", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Status ($qbox)", "admin_gmw legacy_view status $qbox", 135, 22)).append("</td>");
-			sb.append("<td width=145>").append(button("Items ($qbox)", "admin_gmw legacy_view items $qbox", 135, 22)).append("</td></tr>");
+			appendWorkspaceRow(sb, "Native C++ Popups", "00CCFF",
+				new String[]{"Client Status Wnd", "admin_gmw legacy_view status"},
+				new String[]{"Client Inventory Wnd", "admin_gmw legacy_view items"},
+				new String[]{"Client Skills Wnd", "admin_gmw legacy_view skills"},
+				new String[]{"Client Quests Wnd", "admin_gmw legacy_view quests"},
+				new String[]{"Client Warehouse Wnd", "admin_gmw legacy_view warehouse"},
+				new String[]{"Client Clan Wnd", "admin_gmw legacy_view clan"});
 		}
 		
-		sb.append("<tr><td width=140><font color=\"AAAAAA\">Classic HTML Menus</font></td>");
-		sb.append("<td width=145>").append(access.hasScope(AdminScope.PLAYER_SUPPORT) ? button("Char Manage HTM", "admin_html charmanage.htm", 135, 22) : "").append("</td>");
-		sb.append("<td width=145>").append(access.hasScope(AdminScope.TELEPORT) ? button("Teleports HTM", "admin_html teleports.htm", 135, 22) : "").append("</td>");
-		sb.append("<td width=145>").append(access.hasScope(AdminScope.ECONOMY_ITEMS) ? button("GM Shops HTM", "admin_html gmshops.htm", 135, 22) : "").append("</td>");
-		sb.append("<td width=145>").append(access.hasScope(AdminScope.CHAR_EDIT) ? button("Skills HTM", "admin_html skills.htm", 135, 22) : "").append("</td></tr>");
+		appendWorkspaceRow(sb, "Classic HTML Menus", "AAAAAA",
+			access.hasScope(AdminScope.PLAYER_SUPPORT) ? new String[]{"Char Manage HTM", "admin_html charmanage.htm"} : new String[]{"", ""},
+			access.hasScope(AdminScope.TELEPORT) ? new String[]{"Teleports HTM", "admin_html teleports.htm"} : new String[]{"", ""},
+			access.hasScope(AdminScope.ECONOMY_ITEMS) ? new String[]{"GM Shops HTM", "admin_html gmshops.htm"} : new String[]{"", ""},
+			access.hasScope(AdminScope.CHAR_EDIT) ? new String[]{"Skills HTM", "admin_html skills.htm"} : new String[]{"", ""},
+			access.hasScope(AdminScope.WORLD_SPAWN) ? new String[]{"Spawns HTM", "admin_html spawns.htm"} : new String[]{"", ""});
 		
-		sb.append("<tr><td width=140><font color=\"AAAAAA\">Classic Utilities</font></td>");
-		sb.append("<td width=145>").append(access.hasScope(AdminScope.WORLD_SPAWN) ? button("Spawns HTM", "admin_html spawns.htm", 135, 22) : "").append("</td>");
-		sb.append("<td width=145>").append(access.hasScope(AdminScope.TELEPORT) ? button("Bookmarks HTM", "admin_bk", 135, 22) : "").append("</td>");
-		sb.append("<td width=145>").append(access.hasScope(AdminScope.SERVER_ADMIN) ? button("Config Server HTM", "admin_config_server", 135, 22) : "").append("</td>");
-		sb.append("<td width=145>").append(access.hasScope(AdminScope.MASTER_CONTROL) ? button("Packet Forge HTM", "admin_forge", 135, 22) : "").append("</td></tr>");
-		
-		sb.append("</table>");
 		return sb.toString();
 	}
 	
 	/**
 	 * Dynamically scrubs unauthorized RBAC buttons/links from raw admin HTML and adapts it for
-	 * safe rendering inside the 2009 Gracia Epilogue Native C++ GMWnd.HtmlViewer.
+	 * safe rendering inside the 2009 Gracia Epilogue Native C++ GMWnd.HtmlViewer (920px).
 	 * @param gm the staff member viewing the page
 	 * @param rawHtml the raw HTML from NpcHtmlMessage or data/html/admin/
 	 * @return sanitized, RBAC-filtered inner HTML fragment
@@ -1175,7 +1510,7 @@ public final class AdminBoardManager
 	
 	/**
 	 * Dynamically scrubs unauthorized RBAC buttons/links from raw admin HTML for a given AccessLevel
-	 * and adapts it for safe rendering inside the 2009 Gracia Epilogue Native C++ GMWnd.HtmlViewer.
+	 * and adapts it for safe rendering inside the 2009 Gracia Epilogue Native C++ GMWnd.HtmlViewer (920px).
 	 * @param access the staff member's AccessLevel
 	 * @param rawHtml the raw HTML from NpcHtmlMessage or data/html/admin/
 	 * @return sanitized, RBAC-filtered inner HTML fragment
@@ -1243,8 +1578,8 @@ public final class AdminBoardManager
 		// 7. Strip duplicate <edit var="qbox"> inputs in adapted sub-pages so NWindow.dll never collides with Top Bar QuickBox.
 		body = DUPLICATE_QBOX_EDIT_PATTERN.matcher(body).replaceAll("<font color=\"LEVEL\">[Use Top QuickBox]</font>");
 		
-		// 8. Promote cramped 260/270px legacy tables to comfortable wide-screen widths.
-		body = body.replaceAll("(?i)<table\\s+width\\s*=\\s*\"?(?:260|270|280)\"?\\b", "<table width=640");
+		// 8. Promote cramped 260/270/280/300px legacy tables to full 920px wide-screen layout.
+		body = body.replaceAll("(?i)<table\\s+width\\s*=\\s*\"?(?:260|270|280|290|300)\"?\\b", "<table width=920");
 		
 		return body.trim();
 	}

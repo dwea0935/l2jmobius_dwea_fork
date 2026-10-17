@@ -43,13 +43,27 @@ public class AdminInstance implements IAdminCommandHandler
 		"admin_destroyinstance",
 		"admin_listinstances",
 		"admin_instancezone",
-		"admin_instancezone_clear"
+		"admin_instancezone_clear",
+		"admin_ghoston",
+		"admin_ghostoff"
 	};
 	
 	@Override
 	public boolean onCommand(String command, Player activeChar)
 	{
-		if (command.startsWith("admin_instancezone_clear"))
+		if (command.startsWith("admin_ghoston"))
+		{
+			activeChar.setHiding(true);
+			activeChar.sendSysMessage("Ghost mode enabled.");
+			return true;
+		}
+		else if (command.startsWith("admin_ghostoff"))
+		{
+			activeChar.setHiding(false);
+			activeChar.sendSysMessage("Ghost mode disabled.");
+			return true;
+		}
+		else if (command.startsWith("admin_instancezone_clear"))
 		{
 			try
 			{
@@ -110,7 +124,7 @@ public class AdminInstance implements IAdminCommandHandler
 			final String[] parts = command.split(" ");
 			if ((parts.length != 3) || !StringUtil.isNumeric(parts[2]))
 			{
-				activeChar.sendSysMessage("Example: //createinstance <id> <templateId> - ids => 300000 are reserved for dynamic instances");
+				AdminHtml.showAdminHtml(activeChar, "instancezone.htm");
 			}
 			else
 			{
@@ -138,20 +152,42 @@ public class AdminInstance implements IAdminCommandHandler
 		else if (command.startsWith("admin_listinstances"))
 		{
 			int counter = 0;
+			final StringBuilder sb = new StringBuilder(1024);
+			sb.append("<html><title>Active Instances</title><body><center>");
+			sb.append("<font color=\"LEVEL\">Active Runtime Instances</font> &nbsp; <font color=\"999999\">(Your Instance ID: ").append(activeChar.getInstanceId()).append(")</font><br1>");
+			sb.append("<button value=\"Return to World (Instance 0)\" action=\"bypass -h admin_setinstance 0\" width=200 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"><br>");
+			sb.append("<table width=900 border=0 cellpadding=3 cellspacing=1 bgcolor=15151E>");
+			sb.append("<tr bgcolor=222230><td width=110><font color=\"D4AF37\">Instance ID</font></td><td width=110><font color=\"D4AF37\">Template ID</font></td><td width=340><font color=\"D4AF37\">Instance Name</font></td><td width=120><font color=\"D4AF37\">Players / NPCs</font></td><td width=220 align=center><font color=\"D4AF37\">Actions</font></td></tr>");
 			for (Instance instance : InstanceManager.getInstance().getInstances().values())
 			{
-				final InstanceWorld world = InstanceManager.getInstance().getWorld(instance.getId());
-				if (world != null)
+				if (instance.getId() == 0)
 				{
-					counter++;
-					activeChar.sendSysMessage("Id: " + instance.getId() + " Name: " + InstanceManager.getInstance().getInstanceIdName(world.getTemplateId()));
+					continue;
 				}
+				final InstanceWorld world = InstanceManager.getInstance().getWorld(instance.getId());
+				final int templateId = (world != null) ? world.getTemplateId() : instance.getTemplateId();
+				final String instName = (templateId > 0) ? InstanceManager.getInstance().getInstanceIdName(templateId) : "Dynamic Instance";
+				counter++;
+				activeChar.sendSysMessage("Id: " + instance.getId() + " Name: " + instName);
+				sb.append("<tr bgcolor=101016>");
+				sb.append("<td><font color=\"LEVEL\">").append(instance.getId()).append("</font></td>");
+				sb.append("<td>").append(templateId).append("</td>");
+				sb.append("<td>").append((instName != null) && !instName.isEmpty() ? instName : "Dynamic Instance").append("</td>");
+				sb.append("<td>").append(instance.getPlayers().size()).append(" / ").append(instance.getNpcs().size()).append("</td>");
+				sb.append("<td align=center><table width=210 border=0 cellpadding=0 cellspacing=0><tr>");
+				sb.append("<td width=105 align=center><button value=\"Enter\" action=\"bypass -h admin_setinstance ").append(instance.getId()).append("\" width=98 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("<td width=105 align=center><button value=\"Destroy\" action=\"bypass -h admin_destroyinstance ").append(instance.getId()).append("\" width=98 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+				sb.append("</tr></table></td></tr>");
 			}
-			
 			if (counter == 0)
 			{
 				activeChar.sendSysMessage("No active instances.");
+				sb.append("<tr bgcolor=101016><td colspan=5 align=center><font color=\"999999\">No active dynamic or template instances running.</font></td></tr>");
 			}
+			sb.append("</table></center></body></html>");
+			final NpcHtmlMessage html = new NpcHtmlMessage();
+			html.setHtml(sb.toString());
+			activeChar.sendPacket(html);
 		}
 		else if (command.startsWith("admin_setinstance"))
 		{
@@ -164,8 +200,8 @@ public class AdminInstance implements IAdminCommandHandler
 					return false;
 				}
 				
-				final WorldObject target = activeChar.getTarget();
-				if ((target == null) || target.isSummon()) // Don't separate summons from masters
+				final WorldObject target = (activeChar.getTarget() != null) ? activeChar.getTarget() : activeChar;
+				if (target.isSummon()) // Don't separate summons from masters
 				{
 					activeChar.sendSysMessage("Incorrect target.");
 					return false;
