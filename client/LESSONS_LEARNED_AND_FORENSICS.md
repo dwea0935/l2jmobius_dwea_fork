@@ -246,3 +246,44 @@ Auditing all `dist/game/config/**/*.ini` files, `*Config.java` loaders, `IXmlRea
 4. **13 Dead Config Keys Purged:**
    - Removed 13 unreferenced `.ini` keys and `*Config.java` fields (`PathnodePath`, `GameserverHostname`, `PrecautionaryRestartChecks`, `GMShowCritAnnouncerName`, `AllowWarehouse`, `CustomTeleportTable`, `AllowWyvernUpgrader`, `DecayTimeTask`, `AltRequireClanCastle`, `ReinforceKnightUnitCost`, `MaxFlagsPerClan`, `ListOfPetItems`, and `PathFindBuffers` count suffixes superseded by striped CAS `NodeBuffer` pools).
 
+---
+
+## 11. Local Docker Test Stack Architecture, Java 27 Lilliput/ZGC Tuning & `ansible/`/`terraform/` Read-Only Governance
+
+1. **Strict Separation of Local Docker Stack vs. Remote Homelab IaC (`ansible/` & `terraform/`):**
+   - `/home/dwea/Projects/L2/ansible/` and `/home/dwea/Projects/L2/terraform/` belong to a separate live-development Proxmox homelab track (`peak`, `10.9.0.0/24`) and are **strictly read-only** during internal/local development and testing.
+   - All local compilation, testing, and verification run exclusively through `/home/dwea/Projects/L2/docker-compose.yml` and `/home/dwea/Projects/L2/docker/run-server.sh`.
+2. **Java 27 (`Temurin-27+35`) Generational ZGC + Lilliput Compact Object Headers (`docker/run-server.sh`):**
+   - Enabled `-XX:+UseCompactObjectHeaders` (JEP 519, shrinking 64-bit object headers from 96/128 bits to 64 bits), `-XX:+AlwaysPreTouch`, `-XX:+UseStringDeduplication`, `-XX:+ExplicitGCInvokesConcurrent`, `-XX:SoftMaxHeapSize=3g`, `-XX:ZUncommitDelay=300`, and rotating `-Xlog:gc*:file=log/gc.log:time,uptime,level,tags:filecount=5,filesize=10M`.
+   - Reduced `l2-game` startup heap by **`-152 MB` (`-7.5%`)** (`2,018 MB` $\rightarrow$ `1,866 MB`) with a `9s` boot time.
+3. **Zero-Packet Passive `/proc/net/tcp` Socket Healthchecks (`docker-compose.yml`):**
+   - Active TCP connect probes (`nc` / `/dev/tcp`) against `:2106` (`LoginServer`) or `:7777` (`GameServer`) trigger `LoginServer` `EnableFloodProtection = True` (`FastConnectionTime = 350ms`) and allocate phantom `LoginClient`/`GameClient` sessions.
+   - Inspecting `/proc/net/tcp` and `/proc/net/tcp6` for `st == 0A` (`TCP_LISTEN`) on `:083A` (`2106`), `:2336` (`9014`), and `:1E61` (`7777`) verifies readiness with zero network packets.
+4. **`GameServer.jar` Packaging Invariant (`org/l2jmobius/log`):**
+   - When manually repacking `build/dist/libs/GameServer.jar` via `jar cfm`, all four top-level packages in `build/bin` (`org/l2jmobius/commons`, `org/l2jmobius/gameserver`, `org/l2jmobius/log`, and `org/l2jmobius/tools`) MUST be included so `org.l2jmobius.log.ServerLogManager` is never omitted. Enforced automatically by `l2_auditor.py` (`has_log_pkg: True`).
+
+---
+
+## 12. `GMWnd` (`Alt+G`) v3 CT1 Top-Tab Overhaul (`abcc9bec4b6`), Client UE2.5/DXVK Tuning & Tiers 1–3 Forensic Bug Fixes (`decaf386a5e`)
+
+1. **Native C++ `GMWnd` v3 CT1 Top-Tab Layout (`patch_gmwnd_client.py`) & `AdminBoardManager` v3 (`abcc9bec4b6`):**
+   - Eliminated the 228px left-side button dock in `interface.xdat` (`1,306,456` B) and styled 7 contiguous top category tabs (`y=31.0, h=23, x=7..695`: `Dashboard`, `Players`, `World`, `Instances`, `Events & GM`, `Items & Char`, `Server & Reload`) with genuine CT1 `L2UI_CT1.tab.Tab_DF_Tab_Unselected`/`Selected` textures + `BoardWnd`'s `Tab_DF_bg_line` (`texDock1`) & `Tab_DF_bg` (`texBack`) frame, expanding `GMWnd.HtmlViewer` to **`968×472` px** (`x=12, y=58`) with a **0-byte delta** in `interface.u` (`4,061,011` B).
+   - Added transactional delta script hot-reload (`ScriptEngine.reloadModifiedScripts()` / `//reload changed`), `948px` tables, per-GM `Deque<NavEntry>` breadcrumb navigation with `[ ^ Back 1 Level ]` (`//gmw back`), and the `Instances` tab (`//gmw instances`).
+2. **Client UE2.5 Memory Cache & DXVK Frame-Pacing Optimizations (`l2.ini`, `Option.ini`, `launch-l2.sh`):**
+   - Increased `[Engine.GameEngine] CacheSizeMegs=512` (16× from `32`) and `[URL] L2MaxPawnResourceLoad=5.0` (5× from `1.0`), set `ReduceMouseLag=False` (eliminating D3D9 backbuffer `LockRect()` stalls under DXVK), `UseTripleBuffering=True`, `LevelOfAnisotropy=16`, and `[Video] GPUAnimation=True` (GPU vertex shader skeletal mesh skinning).
+3. **Pre-Public `CT2.4` Engine & Endgame Dungeon Forensic Fixes (`decaf386a5e`):**
+   - **Tier 1 (`CrystalCaverns.java` & Baylor Raid):** Fixed Emerald Square `world.cleanedRooms` soft-lock (`roomsStatus[i] == 1 -> 2`), replaced all 18 global `cancelQuestTimers(String)` calls with instance-scoped `cancelQuestTimer(...)` / `cancelSteamTimers(CCWorld, ...)`, implemented `"baylor_despawn"` timer and `"BaylorMinions"` case-insensitive matching, spawned Darnel's chamber traps (`18379..18389`), and fixed disconnect re-entry stranding via `activeBranch` + `world.getStatus()` routing.
+   - **Tier 2 (Gracia Seeds, Hellbound & Instances):** Fixed `HeartInfinityAttack.java` (`HIAWorld` per-instance fields, `_deadTumor` assignment in `TumorRevival`/`RegenerationCoffinSpawn`, and `handleEkimusStats(HIAWorld)` `FuncSet` stat modifiers), `TowerOfNaia.java` (removed duplicate `DWARVEN_GHOST` `32370` registration), `TullyWorkshop.java` (scheduled `3%` heal after `healSkill.getHitTime()`), `25700-25799.xml` + `Kamaloka.java` (restored Level 73/83 NPCs `25706..25712`), and `PailakaInjuredDragon.java` (`<= 900` distance + `GeoEngine.canSeeTarget` LOS check).
+   - **Tier 3 (Core Engine, Sieges & Territory War):** Wired `_baseAccuracy`, `_baseEvasion`, and `_baseReuseDelay` across `CreatureTemplate.java`, `CreatureStat.java`, and `Creature.java`; implemented `TerritoryWarSuperClass.getTerritoryIdForThisNPCId(int)` (`36499..36599` $\rightarrow$ `81..89`); wired `castle.getTaxPercent()` in `CastleChamberlain.java`; and fixed per-talk `NpcHtmlMessage(npc.getObjectId())` + `_damageToNurka.clear()` in `FortressOfResistance.java`.
+
+---
+
+## 13. Tactical Utility-AI (`250ms`) + Java 27 Virtual-Thread LLM FakePlayer Engine (`3917083adbc`)
+
+1. **`FakePlayerAiEngine.java` (`250ms` Non-Blocking Utility-AI Combat & Squad Brain):**
+   - Classifies FakePlayers via Java 27 `switch` expressions on `PlayerClass` into `ARCHER`, `MAGE`, `DAGGER`, `HEALER`, `TANK`, or `WARRIOR` and manages per-bot `BotState` (`Posture`: `AGGRESSIVE`, `KITE_DEFENSIVE`, `ASSIST_PLAYER`, `GUARD`, `assistPlayerObjectId`, `squadSlot`).
+   - Executes 6 real-time combat micro-tactics: 6-slot radial Squad Follow & Assist (`Posture.ASSIST_PLAYER`), Healer Triage (`1218` Greater Battle Heal `+22%` HP when ally `< 65%`), Tank Hate-Intercept (`28` Aggression `+4000..5000` hate), Archer/Mage `GeoEngine`-validated Standoff Kiting (`300` units away when melee `< 175` units), Dagger Backstab Flanking (`55` units behind target heading + `263` Deadly Blow), and `< 35%` HP Second Wind Potion (`2037` `+30%` HP).
+2. **Java 27 Virtual-Thread LLM Bridge (`FakePlayerChatManager.java`, `FakePlayersConfig.java`, `FakePlayers.ini`):**
+   - Replaced `ArrayList` with `CopyOnWriteArrayList<FakePlayerChatHolder>`, added instant whisper tactical directives (`"assist me"`, `"kite"`, `"aggressive"`, `"guard"`, `"heal me"`, `"status"`), and integrated a shared Java 27 `HttpClient` on `Executors.newVirtualThreadPerTaskExecutor()` connecting to any OpenAI-compatible endpoint (`FakePlayerLlmEndpoint = http://127.0.0.1:11434/v1/chat/completions`) with `[MODE:ASSIST|KITE|AGGRESSIVE|GUARD]` tag parsing and zero-latency XML fallback.
+3. **Level 85 Tactical Squad Templates (`fpc_combat.xml`) & `948px` Control Center (`AdminFakePlayers.java`):**
+   - Added 6 Level 85 archetype bots (`81001` `Gladus` Duelist, `81002` `Lyra` Sagittarius, `81003` `Seraphina` Cardinal, `81004` `Aegis` Phoenix Knight, `81005` `Vex` Adventurer, `81006` `Zephyr` Archmage) and built the `948px` `//fakeplayer` (`//fpc`) Control Center wired into `AdminBoardManager.java`.

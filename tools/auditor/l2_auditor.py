@@ -213,13 +213,16 @@ def subroutine_dist_sync(do_sync: bool = False) -> dict:
                     if os.path.getmtime(p) > gs_mtime:
                         newer_java.append(os.path.relpath(p, JAVA_SRC_DIR))
         with zipfile.ZipFile(gs_jar, "r") as zf:
+            names = set(zf.namelist())
             manifest = zf.read("META-INF/MANIFEST.MF").decode("utf-8", errors="ignore")
             has_main = "Main-Class:" in manifest
+            has_log_pkg = "org/l2jmobius/log/ServerLogManager.class" in names
         report["jars"]["GameServer.jar"] = {
             "has_main_manifest": has_main,
+            "has_log_pkg": has_log_pkg,
             "uncompiled_java_files": newer_java,
         }
-        if not has_main or newer_java:
+        if not has_main or not has_log_pkg or newer_java:
             report["status"] = "DRIFT_DETECTED"
 
     if os.path.exists(ls_jar):

@@ -1,27 +1,42 @@
 #!/usr/bin/env python3
 """
-Lineage 2 Gracia Epilogue (CT2.4) — Native C++ GMWnd (Alt+G) Master Console Binary Patcher & Verifier
+Lineage 2 Gracia Epilogue (CT2.4) — Native C++ GMWnd (Alt+G) v3 Top-Tab Master Console Patcher & Verifier
 
 Patches:
   1. system/interface.xdat:
      - Expands GMWnd from 350x355 to 992x544 px.
-     - Re-arranges the 19 native C++ controls (EditBox, 6 Graphical Player Inspector buttons,
-       3 client-side .dat Search Tree buttons, and Quick Action buttons) into a 2-column 105x26
-       left control dock (x=10..225), preserving full 105px button widths so no English text clips.
-     - Updates ChangeServerButton label to sysstring[415] ('Administrator').
-     - Appends GMWnd.texBack (GroupBox_DF, 752x500 @ x=232, y=34) and GMWnd.HtmlViewer
-       (HtmlCtrl / NCHtmlViewer, 744x492 @ x=236, y=38), incrementing GMWnd child count 19 -> 21.
+     - Arranges the top of GMWnd (y=34, h=24) into a Community-Board-style horizontal Native C++
+       Category Tab Bar on the left/center (7 category tabs: Dashboard, Players, World, Instances,
+       Events & GM, Items & Char, Server & Reload) + 3 Native Client .dat Search Tree buttons on the
+       right (Item .dat, NPC .dat, Skill .dat).
+     - Parks the remaining 9 unused legacy widgets (EditBox, TextBox, DetailStatusButton,
+       InventoryButton, MagicSkillButton, QuestButton, InfoButton, StoreButton, ClanButton) off-canvas
+       at (-2000.0, -2000.0, 1x1) so all 19 original child widget records remain valid while freeing
+       the entire left side of the window.
+     - Expands GMWnd.HtmlViewer (HtmlCtrl / NCHtmlViewer) to full window width: 968x463 @ (12.0, 67.0)
+       inside GroupBox_DF texBack (976x471 @ 8.0, 63.0) + top bar GroupBox_DF texDock1 (976x30 @ 8.0, 31.0),
+       setting GMWnd child count to 22.
 
   2. system/interface.u (100% zero-disk-length-delta in-place UnrealScript bytecode patches):
-     - GMFindTreeWnd.ShowSkillList (#13529): Enables bSummon = true (0x28 -> 0x27).
-     - GMFindTreeWnd.FindAllSkill  (#13526): Offsets skill IDs by +2,000,000 so //summon
+     - GMFindTreeWnd.ShowSkillList (#10184): Enables bSummon = true (0x28 -> 0x27).
+     - GMFindTreeWnd.FindAllSkill  (#10231): Offsets skill IDs by +2,000,000 so //summon
        distinguishes Items (<1,000,000), NPCs (1,000,000..1,999,999), and Skills (>=2,000,000).
-     - GMWnd.HandleTargetUpdate    (#12137): Returns on untarget (m_nowTargetID < 1) without
-       wiping text typed into GMWnd.EditBox.
-     - GMWnd.OnClickChangeServerButton (#12081): Executes ExecuteCommand("//admin").
-     - GMWnd.HandleShowGMWnd       (#12139): Executes ExecuteCommand("//gmw") when opening
+     - GMWnd.HandleShowGMWnd       (#12109): Executes ExecuteCommand("//gmw") when opening
        GMWnd (Alt+G) so GMWnd.HtmlViewer immediately loads the live RBAC Admin Console.
-     - ItemDescWnd.OnLoad (#12029) & ItemDescWnd.OnEvent (#12028): Binds m_hItemDescWnd =
+     - GMWnd.HandleTargetUpdate    (#12112): Returns on untarget (m_nowTargetID < 1) without
+       wiping text typed into GMWnd.EditBox.
+     - GMWnd.OnClickButton         (#12120): Routes MoveButton ("Instances") to OnClickInfoButton (#12163)
+       so it has 45 bytes of code space for ExecuteCommand("//gmw instances").
+     - 7 Top Category Tab Handlers:
+       * GMWnd.OnClickChangeServerButton  (#12192): ExecuteCommand("//gmw home")
+       * GMWnd.OnClickPetitionButton      (#12173): ExecuteCommand("//gmw support")
+       * GMWnd.OnClickTeleButton          (#12126): ExecuteCommand("//gmw world")
+       * GMWnd.OnClickInfoButton          (#12163): ExecuteCommand("//gmw instances") (invoked by MoveButton)
+       * GMWnd.OnClickMoveButton          (#12128): ExecuteCommand("//gmw instance")
+       * GMWnd.OnClickForcePetitionButton (#12191): ExecuteCommand("//gmw events")
+       * GMWnd.OnClickRecallButton        (#12129): ExecuteCommand("//gmw economy")
+       * GMWnd.OnClickSendHomeButton      (#12174): ExecuteCommand("//gmw server")
+     - ItemDescWnd.OnLoad (#12259) & ItemDescWnd.OnEvent (#12269): Binds m_hItemDescWnd =
        GetWindowHandle("GMWnd") and m_hHtmlViewer = GetHtmlHandle("GMWnd.HtmlViewer") gated by
        if (!IsBuilderPC()) return; so server NpcHtmlMessage(0, 1, html) renders directly inside
        GMWnd.HtmlViewer with zero PageLock and zero popup conflict.
@@ -29,7 +44,6 @@ Patches:
 
 import os
 import struct
-import sys
 
 CLIENT_SYS_DIR = "/home/dwea/Projects/L2/Client Lineage 2 Gracia Epilogue/system"
 BACKUP_DIR = os.path.join(CLIENT_SYS_DIR, "backup_encrypted")
@@ -166,8 +180,8 @@ def patch_interface_xdat():
     # 3. Locate GMWnd child count right before first child (\x08EditBox\x00)
     cc_off = xdat.find(b"\x13\x00\x00\x00\x08EditBox\x00", gm_off, gm_off + 1000)
     assert cc_off != -1, "Could not locate GMWnd child count before EditBox"
-    # 19 original widgets + 3 left-dock GroupBox_DF backgrounds + 2 extra section TextBoxes + texBack + HtmlViewer = 26
-    struct.pack_into("<i", xdat, cc_off, 26)
+    # 19 original widgets + texDock1 (top bar GroupBox_DF) + texBack (main HTML GroupBox_DF) + HtmlViewer = 22
+    struct.pack_into("<i", xdat, cc_off, 22)
 
     # 4. Collect all 19 widget parent-name offsets inside [gm_off..guide_off]
     widget_offsets = []
@@ -201,31 +215,42 @@ def patch_interface_xdat():
         "ChangeServerButton",
     ]
 
-    # 3-Section Left Native C++ Dock Layout (x=8..228) per AGENT_SYNC_AND_RECONCILIATION.md §4.4:
-    #   Section 1 (y=34..162): Target / Quick Console
-    #   Section 2 (y=166..240): Client .dat Search (Summon)
-    #   Section 3 (y=244..368): Legacy NCSoft GM Inspector & Recall
+    # GMWnd v3 Top-Tab Console Layout (BoardWnd Community-Board visual polish):
+    #   - 7 Native C++ Category Tabs on the left/center (y=31.0, h=23, contiguous x=7..695)
+    #     styled with L2UI_CT1.tab.Tab_DF_Tab_Unselected / L2UI_CT1.tab.Tab_DF_Tab_Selected
+    #   - 3 Native Client .dat Search Tree Buttons on the right (y=28.0, h=24, x=716..980)
+    #     styled with L2UI_CT1.Button.Button_DF / Button_DF_Click / Button_DF_Over
+    #   - 7 Unused Legacy GM Inspector Buttons parked off-canvas at (-2000.0, -2000.0, 1x1)
+    tab_btn_names = {
+        "ChangeServerButton",
+        "PetitionButton",
+        "TeleButton",
+        "MoveButton",
+        "ForcePetitionButton",
+        "RecallButton",
+        "SendHomeButton",
+    }
     btn_spec = {
-        # Section 1: Primary Console & Target Quick Actions (w=102, h=24)
-        "ChangeServerButton":  (13.0,  78.0, 102, 24, "Admin Home"),
-        "PetitionButton":      (119.0, 78.0, 102, 24, "Player Panel"),
-        "ForcePetitionButton": (13.0, 105.0, 102, 24, "Legacy Tools"),
-        "InfoButton":          (119.0, 105.0, 102, 24, "Target Debug"),
-        "TeleButton":          (13.0, 132.0, 102, 24, "Teleport To"),
-        "MoveButton":          (119.0, 132.0, 102, 24, "Instant Move"),
-        # Section 2: Client .dat Search Trees (w=102 / 208, h=23)
-        "ItemListButton":      (13.0, 187.0, 102, 23, "Search Item"),
-        "NPCListButton":       (119.0, 187.0, 102, 23, "Search NPC"),
-        "SkillListButton":     (13.0, 212.0, 208, 23, "Search Skill (.dat)"),
-        # Section 3: Compact Legacy NCSoft GM Inspector (w=102, h=22)
-        "DetailStatusButton":  (13.0, 265.0, 102, 22, "View Status"),
-        "InventoryButton":     (119.0, 265.0, 102, 22, "View Items"),
-        "MagicSkillButton":    (13.0, 289.0, 102, 22, "View Skills"),
-        "QuestButton":         (119.0, 289.0, 102, 22, "View Quests"),
-        "StoreButton":         (13.0, 313.0, 102, 22, "Warehouse"),
-        "ClanButton":          (119.0, 313.0, 102, 22, "View Clan"),
-        "RecallButton":        (13.0, 337.0, 102, 22, "Recall Chr"),
-        "SendHomeButton":      (119.0, 337.0, 102, 22, "Send Home"),
+        # 7 Native C++ Category Tabs (y=31.0, h=23, contiguous x=7.0..695.0)
+        "ChangeServerButton":  (  7.0, 31.0,  96, 23, "Dashboard"),
+        "PetitionButton":      (103.0, 31.0,  96, 23, "Players"),
+        "TeleButton":          (199.0, 31.0,  96, 23, "World"),
+        "MoveButton":          (295.0, 31.0,  98, 23, "Instances"),
+        "ForcePetitionButton": (393.0, 31.0,  98, 23, "Events & GM"),
+        "RecallButton":        (491.0, 31.0,  98, 23, "Items & Char"),
+        "SendHomeButton":      (589.0, 31.0, 106, 23, "Server & Reload"),
+        # 3 Native Client .dat Search Tree Popups (y=28.0, h=24, right-aligned above Tab_DF_bg_line)
+        "ItemListButton":      (716.0, 28.0,  86, 24, "Item .dat"),
+        "NPCListButton":       (804.0, 28.0,  86, 24, "NPC .dat"),
+        "SkillListButton":     (892.0, 28.0,  88, 24, "Skill .dat"),
+        # 7 Unused Legacy Inspector Buttons parked off-canvas
+        "DetailStatusButton":  (-2000.0, -2000.0, 1, 1, "View Status"),
+        "InventoryButton":     (-2000.0, -2000.0, 1, 1, "View Items"),
+        "MagicSkillButton":    (-2000.0, -2000.0, 1, 1, "View Skills"),
+        "QuestButton":         (-2000.0, -2000.0, 1, 1, "View Quests"),
+        "InfoButton":          (-2000.0, -2000.0, 1, 1, "Target Debug"),
+        "StoreButton":         (-2000.0, -2000.0, 1, 1, "Warehouse"),
+        "ClanButton":          (-2000.0, -2000.0, 1, 1, "View Clan"),
     }
 
     # Update coordinates and sizes while offsets are still at their original positions
@@ -239,12 +264,12 @@ def patch_interface_xdat():
             anch_wnd = ""
             fp = ap + 37
 
-        if idx == 0:  # EditBox (full-width inside Section 1)
-            struct.pack_into("<ii", xdat, ap + 16, 208, 20)
-            struct.pack_into("<ff", xdat, fp, 14.0, 54.0)
-        elif idx == 18:  # TextBox (Section 1 header)
-            struct.pack_into("<ii", xdat, ap + 16, 200, 14)
-            struct.pack_into("<ff", xdat, fp, 14.0, 38.0)
+        if idx == 0:  # EditBox parked off-canvas
+            struct.pack_into("<ii", xdat, ap + 16, 1, 1)
+            struct.pack_into("<ff", xdat, fp, -2000.0, -2000.0)
+        elif idx == 18:  # TextBox parked off-canvas
+            struct.pack_into("<ii", xdat, ap + 16, 1, 1)
+            struct.pack_into("<ff", xdat, fp, -2000.0, -2000.0)
         else:  # Button 1..17
             bname = btn_order_names[idx - 1]
             tx, ty, tw, th, _ = btn_spec[bname]
@@ -276,8 +301,8 @@ def patch_interface_xdat():
         e = starts[i + 1] if i + 1 < 19 else children_end
         widget_recs.append(bytearray(xdat[s:e]))
 
-    # Upgrade all 17 Button records with standard interactive Button_DF / Button_DF_Click / Button_DF_Over
-    # textures, NoHighlight = -1, and custom literal English labels (ButtonName = -9999)
+    # Upgrade the 7 Category Tabs with genuine CT1 Tab textures (Tab_DF_Tab_Unselected / Tab_DF_Tab_Selected)
+    # and the remaining buttons with Button_DF / Button_DF_Click / Button_DF_Over textures
     old_btn_tex = (
         b" L2UI_CT1.Button.Button_DF_Small\x00"
         b" L2UI_CT1.Button.Button_DF_Small\x00"
@@ -291,16 +316,26 @@ def patch_interface_xdat():
         tpos = rec.find(old_btn_tex)
         assert tpos != -1, f"Could not find Button_DF_Small texture block in {bname}"
         tail_pos = tpos + len(old_btn_tex)
-        # Verify original trailing bytes: <int sys_id> + \nundefined\x00 + \x01\x00\x00\x00 (NoHighlight=1)
         assert rec[tail_pos + 4 : tail_pos + 19] == b"\nundefined\x00\x01\x00\x00\x00", (
             f"Unexpected Button tail in {bname}"
         )
         lbl_bytes = label.encode("latin1") + b"\x00"
+        if bname in tab_btn_names:
+            tex_tuple = (
+                b"\x23L2UI_CT1.tab.Tab_DF_Tab_Unselected\x00"
+                b"\x21L2UI_CT1.tab.Tab_DF_Tab_Selected\x00"
+                b"\x21L2UI_CT1.tab.Tab_DF_Tab_Selected\x00"
+                b"\nundefined\x00"
+            )
+        else:
+            tex_tuple = (
+                b"\x1aL2UI_CT1.Button.Button_DF\x00"
+                b" L2UI_CT1.Button.Button_DF_Click\x00"
+                b"\x1fL2UI_CT1.Button.Button_DF_Over\x00"
+                b"\nundefined\x00"
+            )
         new_btn_block = (
-            b"\x1aL2UI_CT1.Button.Button_DF\x00"
-            b" L2UI_CT1.Button.Button_DF_Click\x00"
-            b"\x1fL2UI_CT1.Button.Button_DF_Over\x00"
-            b"\nundefined\x00"
+            tex_tuple
             + struct.pack("<i", -9999)
             + bytes([len(lbl_bytes)])
             + lbl_bytes
@@ -308,86 +343,54 @@ def patch_interface_xdat():
         )
         widget_recs[idx] = rec[:tpos] + new_btn_block + rec[tail_pos + 19 :]
 
-    # Helper to build a customized TextBox record cloned from Widget 18
-    tb_template = bytes(widget_recs[18])
+    # 5. Extract BoardWnd's Tab_DF_bg_line (TabTex3) & Tab_DF_bg (backgroundtex) + ItemDescWnd's HtmlViewer
+    board_off = xdat.find(b"\x09BoardWnd\x00")
+    tex3_off = xdat.find(b"\x08Texture\x00\x08TabTex3\x00", board_off, board_off + 3000)
+    bg_off = xdat.find(b"\x08Texture\x00\x0ebackgroundtex\x00", tex3_off, board_off + 3000)
+    br_off = xdat.find(b"\x0dBR_BuyingWnd\x00", bg_off, board_off + 3000)
+    assert board_off != -1 and tex3_off != -1 and bg_off != -1 and br_off != -1
 
-    def build_textbox(wname: str, text: str, x: float, y: float, w: int, h: int, rgba: bytes) -> bytearray:
-        rec = bytearray(tb_template)
-        # Replace second \x08TextBox\x00 (widget name) with wname
-        wname_b = wname.encode("latin1") + b"\x00"
-        rec = bytearray(b"\x08TextBox\x00" + bytes([len(wname_b)]) + wname_b + rec[18:])
-        t_p = rec.find(b"\x06GMWnd\x00") + 7 + 22
-        struct.pack_into("<ii", rec, t_p + 16, w, h)
-        struct.pack_into("<ff", rec, t_p + 37, x, y)
-        # Replace trailing \nundefined\x00 (Text) and sysstring ID (50 -> -9999) + RGBA color
-        marker = b"\xf1\xd8\xff\xff\xf1\xd8\xff\xff\xf1\xd8\xff\xff\xf1\xd8\xff\xff\nundefined\x00"
-        mpos = rec.find(marker)
-        assert mpos != -1, "Could not locate TextBox text marker"
-        txt_pos = mpos + 16
-        txt_b = text.encode("latin1") + b"\x00"
-        after_txt = bytearray(rec[txt_pos + 11 :])  # after \nundefined\x00
-        # sysstring ID is at offset 23 inside after_txt (12 bytes zeros/ff + 11 bytes \nundefined\x00)
-        struct.pack_into("<i", after_txt, 23, -9999)
-        after_txt[31:35] = rgba
-        return rec[:txt_pos] + bytes([len(txt_b)]) + txt_b + after_txt
-
-    widget_recs[18] = build_textbox(
-        "TextBox", "1. Target & Console", 14.0, 38.0, 200, 14, b"\xff\xd7\x66\xff"
-    )
-    txt_sec_search = build_textbox(
-        "txtSecSearch", "2. Client .dat Search", 14.0, 170.0, 200, 14, b"\xff\xd7\x66\xff"
-    )
-    txt_sec_legacy = build_textbox(
-        "txtSecLegacy", "3. Legacy GM Inspector", 14.0, 248.0, 200, 14, b"\xa8\xc4\xe0\xff"
-    )
-
-    # 5. Extract ItemDescWnd's 2 children (texBack and HtmlViewer) from clean 2009 orig_xdat [434475..434870]
     itemdesc_off = xdat.find(b"\x0cItemDescWnd\x00")
     tex_start = xdat.find(b"\x08Texture\x00\x08texBack\x00", itemdesc_off, itemdesc_off + 1000)
     html_start = xdat.find(b"\x09HtmlCtrl\x00\x0bHtmlViewer\x00", tex_start, tex_start + 500)
     npc_start = xdat.find(b"\x0dNPCDialogWnd\x00", html_start, html_start + 500)
     assert tex_start != -1 and html_start != -1 and npc_start != -1
 
-    tex_template = bytearray(xdat[tex_start:html_start]).replace(b"\x0cItemDescWnd\x00", b"\x06GMWnd\x00", 1)
-    html_rec = bytearray(xdat[html_start:npc_start]).replace(b"\x0cItemDescWnd\x00", b"\x06GMWnd\x00", 1)
-
-    def build_groupbox(wname: str, x: float, y: float, w: int, h: int) -> bytearray:
-        rec = bytearray(tex_template)
-        wname_b = wname.encode("latin1") + b"\x00"
-        rec = bytearray(b"\x08Texture\x00" + bytes([len(wname_b)]) + wname_b + rec[18:])
-        t_p = rec.find(b"\x06GMWnd\x00") + 7 + 22
-        struct.pack_into("<ii", rec, t_p + 16, w, h)
-        struct.pack_into("<ff", rec, t_p + 37, x, y)
-        return rec
-
-    tex_dock1 = build_groupbox("texDock1", 8.0, 34.0, 220, 128)
-    tex_dock2 = build_groupbox("texDock2", 8.0, 166.0, 220, 74)
-    tex_dock3 = build_groupbox("texDock3", 8.0, 244.0, 220, 124)
-    tex_back = build_groupbox("texBack", 232.0, 34.0, 752, 500)
-
-    # Set HtmlViewer size=(744, 492), pos=(236.0, 38.0)
-    h_p = html_rec.find(b"\x06GMWnd\x00") + 7 + 22
-    struct.pack_into("<ii", html_rec, h_p + 16, 744, 492)
-    struct.pack_into("<ff", html_rec, h_p + 37, 236.0, 38.0)
-
-    # Assemble all 26 children of GMWnd (backgrounds first so AlwaysOnBack GroupBoxes sit underneath controls)
-    all_children = (
-        tex_dock1
-        + tex_dock2
-        + tex_dock3
-        + tex_back
-        + b"".join(widget_recs)
-        + txt_sec_search
-        + txt_sec_legacy
-        + html_rec
+    # Top Tab Bar bottom line: L2UI_CT1.tab.Tab_DF_bg_line from x=695.0 to x=988.0 (w=293, y=31.0, h=23)
+    tex_dock1 = (
+        bytearray(xdat[tex3_off:bg_off])
+        .replace(b"\x08TabTex3\x00", b"\x09texDock1\x00", 1)
+        .replace(b"\x09BoardWnd\x00", b"\x06GMWnd\x00", 1)
     )
+    t1_p = tex_dock1.find(b"\x06GMWnd\x00") + 7 + 22
+    struct.pack_into("<ii", tex_dock1, t1_p + 16, 293, 23)
+    struct.pack_into("<ff", tex_dock1, t1_p + 37, 695.0, 31.0)
+
+    # Tabbed Content Frame: L2UI_CT1.tab.Tab_DF_bg at (0.0, 31.0), size=(992, 512)
+    tex_back = (
+        bytearray(xdat[bg_off:br_off])
+        .replace(b"\x0ebackgroundtex\x00", b"\x08texBack\x00", 1)
+        .replace(b"\x09BoardWnd\x00", b"\x06GMWnd\x00", 1)
+    )
+    t2_p = tex_back.find(b"\x06GMWnd\x00") + 7 + 22
+    struct.pack_into("<ii", tex_back, t2_p + 16, 992, 512)
+    struct.pack_into("<ff", tex_back, t2_p + 37, 0.0, 31.0)
+
+    # Set HtmlViewer size=(968, 472), pos=(12.0, 58.0) inside the Tab_DF_bg content frame
+    html_rec = bytearray(xdat[html_start:npc_start]).replace(b"\x0cItemDescWnd\x00", b"\x06GMWnd\x00", 1)
+    h_p = html_rec.find(b"\x06GMWnd\x00") + 7 + 22
+    struct.pack_into("<ii", html_rec, h_p + 16, 968, 472)
+    struct.pack_into("<ff", html_rec, h_p + 37, 12.0, 58.0)
+
+    # Assemble all 22 children of GMWnd (Tab_DF_bg and Tab_DF_bg_line + 19 original widgets + HtmlViewer)
+    all_children = tex_dock1 + tex_back + b"".join(widget_recs) + html_rec
     patched_xdat = xdat[:children_start] + all_children + xdat[guide_off:]
     with open(out_path, "wb") as f:
         f.write(patched_xdat)
 
     print(
         f"[+] Patched system/interface.xdat ({len(xdat)} -> {len(patched_xdat)} bytes): "
-        "Clean 2009-09-28 base + GMWnd v2 (992x544) with 3-section left dock, Button_DF feedback, Legacy group + HtmlViewer"
+        "Clean 2009-09-28 base + GMWnd v3 (992x544) with 7 CT1 Tab_DF Category Tabs + Tab_DF_bg_line + Tab_DF_bg + 3 .dat Search Buttons + Full-Width HtmlViewer (968x472)"
     )
 
 
@@ -414,6 +417,20 @@ def patch_func_in_place(data: bytearray, off: int, sz: int, new_code: bytes, new
 
     struct.pack_into("<i", data, off + pos + 8, new_mem_size)
     data[off + code_start : off + code_start + old_code_len] = new_code
+
+
+def make_exec_cmd_stub(cmd_str: str, target_disk_len: int) -> tuple[bytes, int]:
+    """
+    Builds `ExecuteCommand(cmd_str); return;` padded with `0x0B` (`EX_Nothing`) to `target_disk_len`.
+    Returns `(new_code_bytes, new_mem_size)`.
+    """
+    cmd_bytes = cmd_str.encode("latin1") + b"\x00"
+    stmt = b"\x1c\xfa\x02\x1f" + cmd_bytes + b"\x16\x04\x0b"
+    pad_len = target_disk_len - len(stmt)
+    assert pad_len >= 0, f"Command {cmd_str!r} ({len(stmt)} B) exceeds target_disk_len={target_disk_len}"
+    code = stmt + (b"\x0b" * pad_len)
+    # ExecuteCommand compact index \xfa\x02 is 2 bytes on disk and 4 bytes in memory (+2 delta)
+    return code, target_disk_len + 2
 
 
 def patch_interface_u():
@@ -444,8 +461,6 @@ def patch_interface_u():
         474923,
         287,
         bytes.fromhex(
-            "070e007a0078671f0016040b4101591425370159140f00668d01250f37369b005b1c2c021b4203160f005168ee0078671f20001f0028160f00542c1220d4020600081b550716075f011b450100542c160f007f481220d4020c00001b500300542c26160f004868ee007f481f20001f0028160747019b7e004868005168161dffffffff16142d36f9051025369b005b1c270f36a21025369b005b1c007f480f36e7031025369b005b1c0157140f36a21026369b005b1c39539236c10300542c1d80841e00160b0b0b0b0b0b0b1220df012000001b4c017001621d1f2e4c6973744696e64576e640016005b1c160f00542c1220d4020600081b5f0716065e00040b"
-            if False else
             "070e007a0078671f0016040b4101591425370159140f00668d01250f37369b005b1c2c021b4203160f005168ee0078671f20001f0028160f00542c1220d4020600081b550716075f011b450100542c160f007f481220d4020c00001b500300542c26160f004868ee007f481f20001f0028160747019b7e004868005168161dffffffff16142d36f9051025369b005b1c270f36a21025369b005b1c007f480f36e7031025369b005b1c0157140f36a21026369b005b1c39539236c10300542c1d80841e00160b0b0b0b0b0b0b1220df012000001b4c017001621d1f2e4c69737446696e64576e640016005b1c160f00542c1220d4020600081b5f0716065e00040b"
         ),
         353,
@@ -471,37 +486,61 @@ def patch_interface_u():
         154,
     )
 
-    # 5. GMWnd.OnClickChangeServerButton (#12192, off=792065, sz=94):
-    #    ExecuteCommand("//admin"); return; + 49x EX_Nothing (0x0B)
-    off, sz = 792065, 94
-    stmt_admin = bytes.fromhex("1cfa021f2f2f61646d696e0016040b")  # 15 disk bytes, 17 mem bytes
-    code_12192 = stmt_admin + (b"\x0b" * (64 - len(stmt_admin)))
-    patch_func_in_place(data, off, sz, code_12192, 66)
-
-    # 6. GMWnd.OnClickPetitionButton (#12173, off=791198, sz=83):
-    #    Repurpose obsolete Petition button into "Player Panel":
-    #    ExecuteCommand("//gmw player" @ m_hEditBox.GetString()); return; + 20x EX_Nothing (0x0B)
-    off, sz = 791198, 83
-    stmt_peti = (
-        bytes.fromhex("1cfa02a8")
-        + b"\x1f//gmw player\x00"
-        + bytes.fromhex("190165040600001cf901161616040b")
+    # 5. GMWnd.OnClickButton (#12120, off=782198, sz=476, code_len=445):
+    #    Route MoveButton ("Instances") to OnClickInfoButton (1b 4b 17 16 -> 1b 44 17 16)
+    #    so it has 45 disk bytes available for ExecuteCommand("//gmw instances").
+    orig_onclick_btn = bytes(data[782198 + 24 : 782198 + 476 - 7])
+    assert len(orig_onclick_btn) == 445
+    patched_onclick_btn = orig_onclick_btn.replace(
+        b"\x1fMoveButton\x00\x1b\x4b\x17\x16",
+        b"\x1fMoveButton\x00\x1b\x44\x17\x16",
+        1,
     )
-    pad_12173 = 53 - len(stmt_peti)
-    code_12173 = stmt_peti + (b"\x0b" * pad_12173)
-    patch_func_in_place(data, off, sz, code_12173, 59)
+    assert patched_onclick_btn != orig_onclick_btn
+    patch_func_in_place(data, 782198, 476, patched_onclick_btn, 480)
 
-    # 7. GMWnd.OnClickForcePetitionButton (#12191, off=791975, sz=90):
-    #    Repurpose obsolete ForcePetition button into "Legacy Tools":
-    #    ExecuteCommand("//gmw legacy"); return; + 40x EX_Nothing (0x0B)
-    off, sz = 791975, 90
-    stmt_fpeti = bytes.fromhex("1cfa02") + b"\x1f//gmw legacy\x00" + bytes.fromhex("16040b")
-    pad_12191 = 60 - len(stmt_fpeti)
-    code_12191 = stmt_fpeti + (b"\x0b" * pad_12191)
-    patch_func_in_place(data, off, sz, code_12191, 62)
+    # 6. Top Category Tab 1 — GMWnd.OnClickChangeServerButton (#12192, off=792065, sz=94, code_len=64):
+    #    ExecuteCommand("//gmw home"); return;
+    code, msz = make_exec_cmd_stub("//gmw home", 64)
+    patch_func_in_place(data, 792065, 94, code, msz)
 
-    # 8. ItemDescWnd.OnLoad (#12259, off=800138, sz=125):
-    #    OnRegisterEvent(); m_hItemDescWnd = GetWindowHandle("GMWnd"); m_hHtmlViewer = GetHtmlHandle("GMWnd.HtmlViewer"); return;
+    # 7. Top Category Tab 2 — GMWnd.OnClickPetitionButton (#12173, off=791198, sz=83, code_len=53):
+    #    ExecuteCommand("//gmw support"); return;
+    code, msz = make_exec_cmd_stub("//gmw support", 53)
+    patch_func_in_place(data, 791198, 83, code, msz)
+
+    # 8. Top Category Tab 3 — GMWnd.OnClickTeleButton (#12126, off=783104, sz=80, code_len=50):
+    #    ExecuteCommand("//gmw world"); return;
+    code, msz = make_exec_cmd_stub("//gmw world", 50)
+    patch_func_in_place(data, 783104, 80, code, msz)
+
+    # 9. Top Category Tab 4 — GMWnd.OnClickInfoButton (#12163, off=790206, sz=75, code_len=45, routed from MoveButton):
+    #    ExecuteCommand("//gmw instances"); return;
+    code, msz = make_exec_cmd_stub("//gmw instances", 45)
+    patch_func_in_place(data, 790206, 75, code, msz)
+
+    # 9b. GMWnd.OnClickMoveButton (#12128, off=783308, sz=51, code_len=22):
+    #     ExecuteCommand("//gmw instance"); return; (exact 22-byte fallback)
+    code, msz = make_exec_cmd_stub("//gmw instance", 22)
+    patch_func_in_place(data, 783308, 51, code, msz)
+
+    # 10. Top Category Tab 5 — GMWnd.OnClickForcePetitionButton (#12191, off=791975, sz=90, code_len=60):
+    #     ExecuteCommand("//gmw events"); return;
+    code, msz = make_exec_cmd_stub("//gmw events", 60)
+    patch_func_in_place(data, 791975, 90, code, msz)
+
+    # 11. Top Category Tab 6 — GMWnd.OnClickRecallButton (#12129, off=783359, sz=50, code_len=21):
+    #     ExecuteCommand("//gmw economy"); return;
+    code, msz = make_exec_cmd_stub("//gmw economy", 21)
+    patch_func_in_place(data, 783359, 50, code, msz)
+
+    # 12. Top Category Tab 7 — GMWnd.OnClickSendHomeButton (#12174, off=791281, sz=50, code_len=21):
+    #     ExecuteCommand("//gmw server"); return;
+    code, msz = make_exec_cmd_stub("//gmw server", 21)
+    patch_func_in_place(data, 791281, 50, code, msz)
+
+    # 13. ItemDescWnd.OnLoad (#12259, off=800138, sz=125):
+    #     OnRegisterEvent(); m_hItemDescWnd = GetWindowHandle("GMWnd"); m_hHtmlViewer = GetHtmlHandle("GMWnd.HtmlViewer"); return;
     patch_func_in_place(
         data,
         800138,
@@ -510,12 +549,12 @@ def patch_interface_u():
         108,
     )
 
-    # 9. ItemDescWnd.OnEvent (#12269, off=801345, sz=110):
-    #    if (!IsBuilderPC()) return;
-    #    switch(Event_ID) {
-    #      case EV_ItemDescWndShow: m_hItemDescWnd.ShowWindow(); m_hItemDescWnd.SetFocus(); break;
-    #      case EV_ItemDescWndLoadHtmlFromString: HandleLoadHtmlFromString(param); break;
-    #    }
+    # 14. ItemDescWnd.OnEvent (#12269, off=801345, sz=110):
+    #     if (!IsBuilderPC()) return;
+    #     switch(Event_ID) {
+    #       case EV_ItemDescWndShow: m_hItemDescWnd.ShowWindow(); m_hItemDescWnd.SetFocus(); break;
+    #       case EV_ItemDescWndLoadHtmlFromString: HandleLoadHtmlFromString(param); break;
+    #     }
     patch_func_in_place(
         data,
         801345,
@@ -531,11 +570,10 @@ def patch_interface_u():
 
     print(
         f"[+] Patched system/interface.u ({len(out_raw)} bytes, 0-byte size delta on clean 2009-09-28 base): "
-        "All 9 UnrealScript functions verified via SerializeExpr!"
+        "All 15 UnrealScript functions verified via SerializeExpr!"
     )
 
 
 if __name__ == "__main__":
     patch_interface_xdat()
     patch_interface_u()
-

@@ -473,6 +473,15 @@ def get_val(content, key):
     return m.group(1).strip() if m else "?"
 
 text = set_ini_key(text, "URL", "L2UseKeyCrypt", "false")
+text = set_ini_key(text, "URL", "L2MaxPawnResourceLoad", "5.0")
+text = set_ini_key(text, "Engine.GameEngine", "CacheSizeMegs", "512")
+text = set_ini_key(text, "Editor.EditorEngine", "CacheSizeMegs", "512")
+text = set_ini_key(text, "WinDrv.WindowsClient", "MinDesiredFrameRate", "60.000000")
+text = set_ini_key(text, "D3DDrv.D3DRenderDevice", "ReduceMouseLag", "False")
+text = set_ini_key(text, "D3DDrv.D3DRenderDevice", "UseTripleBuffering", "True")
+text = set_ini_key(text, "D3DDrv.D3DRenderDevice", "LevelOfAnisotropy", "16")
+if opt_text:
+    opt_text = set_ini_key(opt_text, "Video", "GPUAnimation", "True")
 text = re.sub(r"IsL2AutoLogOn\s*=\s*Ture", "IsL2AutoLogOn=False", text, flags=re.IGNORECASE)
 
 if server_addr:
@@ -1118,6 +1127,10 @@ fi
 
 export WINEDLLOVERRIDES="$DLL_OVERRIDES"
 export __GLX_VENDOR_LIBRARY_NAME="nvidia"
+export __GL_SHADER_DISK_CACHE=1
+export __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1
+export DXVK_STATE_CACHE=1
+export DXVK_STATE_CACHE_PATH="$SYSTEM_DIR"
 export WINEESYNC=1
 export WINEFSYNC=1
 export WINE_LARGE_ADDRESS_AWARE=1
