@@ -377,6 +377,19 @@ public class Shutdown extends Thread
 		
 		try
 		{
+			final int storedCitizens = org.l2jmobius.gameserver.ai.autonomous.AutonomousPlayerManager.getInstance().storeAllCitizens();
+			if (storedCitizens > 0)
+			{
+				LOGGER.info("AutonomousPlayerManager: Stored " + storedCitizens + " active citizen(s) to MariaDB for auto-restore (" + tc.getEstimatedTimeAndRestartCounter() + "ms).");
+			}
+		}
+		catch (Throwable t)
+		{
+			LOGGER.log(Level.WARNING, "Error saving autonomous citizens.", t);
+		}
+		
+		try
+		{
 			disconnectAllCharacters();
 			LOGGER.info("All players disconnected and saved(" + tc.getEstimatedTimeAndRestartCounter() + "ms).");
 		}

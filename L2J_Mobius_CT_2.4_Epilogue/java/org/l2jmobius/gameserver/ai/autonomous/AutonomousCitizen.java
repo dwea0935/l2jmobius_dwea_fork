@@ -61,17 +61,33 @@ import org.l2jmobius.gameserver.mechanics.script.Quest;
 import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.mechanics.skill.holders.SkillLearn;
+import org.l2jmobius.gameserver.mechanics.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Real-Player Autonomous Citizen ({@code Lv 1 -> 85}) with a Hierarchical Macro-Lifecycle State Machine,
  * Endgame Class Aspiration, Authentic Dwarven Spoil/Sweep/Craft Economy, Genuine Server-Side {@link Quest} &amp; {@link QuestState}
- * Validation, Deep 7-Archetype Combat Doctrines (+ Treasure Chest Unlock Gambling) + UCB1 Contextual Toolkit Exploration Memory,
+ * Validation, Deep 8-Archetype Combat Doctrines (+ Treasure Chest Unlock Gambling) + UCB1 Contextual Toolkit Exploration Memory,
+ * Game-Theoretic Social &amp; Territorial Decision Engine ({@link CitizenSocialStrategy}), MariaDB Cold Storage Persistence,
  * and Self-Reporting QA &amp; Economy Auditing.
  */
 public final class AutonomousCitizen
 {
+	public static final String VAR_ASPIRATION = "AUTONOMOUS_ASPIRATION";
+	public static final String VAR_IPD = "AUTONOMOUS_IPD";
+	public static final String VAR_EGT = "AUTONOMOUS_EGT";
+	public static final String VAR_LEVEL_K = "AUTONOMOUS_LEVEL_K";
+	public static final String VAR_PG_TYPE = "AUTONOMOUS_PG_TYPE";
+	public static final String VAR_SVO = "AUTONOMOUS_SVO";
+	public static final String VAR_SUB_STAGE = "AUTONOMOUS_SUB_STAGE";
+	public static final String VAR_SUB_LEVEL = "AUTONOMOUS_SUB_LEVEL";
+	public static final String VAR_SUB_CERT = "AUTONOMOUS_SUB_CERT";
+	public static final String VAR_NOBLE_STAGE = "AUTONOMOUS_NOBLE_STAGE";
+	public static final String VAR_PAILAKA_TIER = "AUTONOMOUS_PAILAKA_TIER";
+	public static final String VAR_SPOIL_PTS = "AUTONOMOUS_SPOIL_PTS";
+	public static final String VAR_ACTIVE = "AUTONOMOUS_ACTIVE";
+	
 	public enum CitizenMacroState
 	{
 		SPAWN_AND_ORIENT,
@@ -90,6 +106,311 @@ public final class AutonomousCitizen
 		PARTY_COOP
 	}
 	
+	/**
+	 * Dimension 1: Iterated Prisoner's Dilemma (IPD) Repeated Dyadic Interaction Strategy (T &gt; R &gt; P &gt; S).
+	 */
+	public enum IpdStrategy
+	{
+		TIT_FOR_TAT("TFT"),
+		TIT_FOR_TWO_TATS("TF2T"),
+		TWO_TITS_FOR_TAT("2TFT"),
+		GENEROUS_TIT_FOR_TAT("GTFT"),
+		CONTRITE_TIT_FOR_TAT("CTFT"),
+		PAVLOV("WSLS"),
+		GRIM_TRIGGER("Grim"),
+		TESTER("Tester"),
+		JOSS("Joss"),
+		ZD_EXTORTION("ZD2"),
+		ALWAYS_COOPERATE("ALLC"),
+		ALWAYS_DEFECT("ALLD");
+		
+		private final String _code;
+		
+		IpdStrategy(String code)
+		{
+			_code = code;
+		}
+		
+		public String getCode()
+		{
+			return _code;
+		}
+		
+		public static IpdStrategy selectWeightedRandom()
+		{
+			final int roll = ThreadLocalRandom.current().nextInt(100);
+			if (roll < 24)
+			{
+				return TIT_FOR_TAT;
+			}
+			if (roll < 34)
+			{
+				return TIT_FOR_TWO_TATS;
+			}
+			if (roll < 44)
+			{
+				return TWO_TITS_FOR_TAT;
+			}
+			if (roll < 56)
+			{
+				return GENEROUS_TIT_FOR_TAT;
+			}
+			if (roll < 66)
+			{
+				return CONTRITE_TIT_FOR_TAT;
+			}
+			if (roll < 76)
+			{
+				return PAVLOV;
+			}
+			if (roll < 81)
+			{
+				return GRIM_TRIGGER;
+			}
+			if (roll < 86)
+			{
+				return TESTER;
+			}
+			if (roll < 91)
+			{
+				return JOSS;
+			}
+			if (roll < 95)
+			{
+				return ZD_EXTORTION;
+			}
+			if (roll < 98)
+			{
+				return ALWAYS_COOPERATE;
+			}
+			return ALWAYS_DEFECT;
+		}
+	}
+	
+	/**
+	 * Dimension 2: Evolutionary Game Theory (EGT) Territorial &amp; Resource Contest Phenotype.
+	 */
+	public enum EgtPhenotype
+	{
+		BOURGEOIS("Bourg"),
+		ASSESSOR("Assess"),
+		HAWK("Hawk"),
+		DOVE("Dove"),
+		USURPER_ROCK("Rock"),
+		GUARDER_SCISSORS("Sciss"),
+		SNEAKER_PAPER("Paper");
+		
+		private final String _code;
+		
+		EgtPhenotype(String code)
+		{
+			_code = code;
+		}
+		
+		public String getCode()
+		{
+			return _code;
+		}
+		
+		public static EgtPhenotype selectWeightedRandom()
+		{
+			final int roll = ThreadLocalRandom.current().nextInt(100);
+			if (roll < 40)
+			{
+				return BOURGEOIS; // 40%
+			}
+			if (roll < 65)
+			{
+				return ASSESSOR; // 25%
+			}
+			if (roll < 75)
+			{
+				return HAWK; // 10%
+			}
+			if (roll < 85)
+			{
+				return DOVE; // 10%
+			}
+			if (roll < 90)
+			{
+				return USURPER_ROCK; // 5%
+			}
+			if (roll < 95)
+			{
+				return GUARDER_SCISSORS; // 5%
+			}
+			return SNEAKER_PAPER; // 5%
+		}
+	}
+	
+	/**
+	 * Dimension 3A: Cognitive Hierarchy Level-k Strategic Reasoning Depth.
+	 */
+	public enum CognitiveLevel
+	{
+		L0_HEURISTIC("L0", 0),
+		L1_BEST_RESPONDER("L1", 1),
+		L2_STRATEGIST("L2", 2),
+		L3_EQUILIBRIUM("L3", 3);
+		
+		private final String _code;
+		private final int _k;
+		
+		CognitiveLevel(String code, int k)
+		{
+			_code = code;
+			_k = k;
+		}
+		
+		public String getCode()
+		{
+			return _code;
+		}
+		
+		public int getK()
+		{
+			return _k;
+		}
+		
+		public static CognitiveLevel selectWeightedRandom()
+		{
+			final int roll = ThreadLocalRandom.current().nextInt(100);
+			if (roll < 25)
+			{
+				return L0_HEURISTIC;
+			}
+			if (roll < 65)
+			{
+				return L1_BEST_RESPONDER;
+			}
+			if (roll < 90)
+			{
+				return L2_STRATEGIST;
+			}
+			return L3_EQUILIBRIUM;
+		}
+	}
+	
+	/**
+	 * Dimension 3B: Public Goods Contribution &amp; Altruistic Punishment Archetype.
+	 */
+	public enum PublicGoodsType
+	{
+		CONDITIONAL_COOPERATOR("CC"),
+		FREE_RIDER("FR"),
+		ALTRUISTIC_PUNISHER("AP"),
+		HUMP_SHAPED("HS");
+		
+		private final String _code;
+		
+		PublicGoodsType(String code)
+		{
+			_code = code;
+		}
+		
+		public String getCode()
+		{
+			return _code;
+		}
+		
+		public static PublicGoodsType selectWeightedRandom()
+		{
+			final int roll = ThreadLocalRandom.current().nextInt(100);
+			if (roll < 50)
+			{
+				return CONDITIONAL_COOPERATOR;
+			}
+			if (roll < 70)
+			{
+				return FREE_RIDER;
+			}
+			if (roll < 90)
+			{
+				return ALTRUISTIC_PUNISHER;
+			}
+			return HUMP_SHAPED;
+		}
+	}
+	
+	/**
+	 * Dimension 4: Social Value Orientation (SVO) Ring Angle theta:
+	 * U(pi_self, pi_other) = pi_self * cos(theta) + pi_other * sin(theta).
+	 */
+	public enum SvoArchetype
+	{
+		ALTRUISTIC("Alt", 90.0),
+		PROSOCIAL("Pro", 45.0),
+		INDIVIDUALISTIC("Ind", 0.0),
+		COMPETITIVE("Comp", -45.0),
+		SPITEFUL("Spite", -90.0);
+		
+		private final String _code;
+		private final double _cosTheta;
+		private final double _sinTheta;
+		
+		SvoArchetype(String code, double angleDeg)
+		{
+			_code = code;
+			final double rad = Math.toRadians(angleDeg);
+			_cosTheta = Math.cos(rad);
+			_sinTheta = Math.sin(rad);
+		}
+		
+		public String getCode()
+		{
+			return _code;
+		}
+		
+		public double evaluateUtility(double piSelf, double piOther)
+		{
+			double u = (piSelf * _cosTheta) + (piOther * _sinTheta);
+			if (this == PROSOCIAL)
+			{
+				u -= 0.25 * Math.abs(piSelf - piOther); // Fehr-Schmidt inequity aversion
+			}
+			return u;
+		}
+		
+		public static SvoArchetype selectWeightedRandom()
+		{
+			final int roll = ThreadLocalRandom.current().nextInt(100);
+			if (roll < 12)
+			{
+				return ALTRUISTIC;
+			}
+			if (roll < 55)
+			{
+				return PROSOCIAL;
+			}
+			if (roll < 80)
+			{
+				return INDIVIDUALISTIC;
+			}
+			if (roll < 93)
+			{
+				return COMPETITIVE;
+			}
+			return SPITEFUL;
+		}
+	}
+	
+	/**
+	 * Per-opponent Dyadic Interaction State for IPD, Standing (Contrite TFT), Win-Stay Lose-Shift (Pavlov), and Tester.
+	 */
+	public static final class DyadicMemory
+	{
+		int interactions = 0;
+		int consecutiveDefections = 0;
+		int retaliationDebt = 0;
+		boolean contriteStanding = false;
+		boolean lastSelfCooperated = true;
+		boolean lastOtherCooperated = true;
+		boolean lastPayoffHigh = true;
+		boolean testerProbed = false;
+		boolean testerOpponentRetaliated = false;
+		int testerApologyTurns = 0;
+	}
+	
 	private static final int[] TOWN_BUFF_SKILL_IDS =
 	{
 		1204, // Wind Walk
@@ -105,7 +426,18 @@ public final class AutonomousCitizen
 	};
 	
 	private final Player _player;
-	private final PlayerClass _targetEndgameClass;
+	private volatile PlayerClass _targetEndgameClass;
+	private volatile IpdStrategy _ipdStrategy;
+	private volatile EgtPhenotype _egtPhenotype;
+	private volatile CognitiveLevel _cognitiveLevel;
+	private volatile PublicGoodsType _publicGoodsType;
+	private volatile SvoArchetype _svoArchetype;
+	private final Map<Integer, DyadicMemory> _interactionMemory = new ConcurrentHashMap<>();
+	private volatile int _taggedTargetObjId = 0;
+	private volatile long _zoneArrivalTimestampMs = System.currentTimeMillis();
+	private int _consecutiveZoneStucks = 0;
+	private int _persistenceTickCounter = 0;
+	private long _lastAltruisticAidMs = 0L;
 	private volatile CitizenMacroState _macroState = CitizenMacroState.SPAWN_AND_ORIENT;
 	private volatile HuntingZone _currentZone;
 	private volatile String _lastAction = "Spawned in Starting Village";
@@ -157,14 +489,141 @@ public final class AutonomousCitizen
 	{
 		_player = player;
 		_targetEndgameClass = (targetEndgameClass != null) ? targetEndgameClass : ProgressionKnowledgeGraph.selectRandomEndgameAspiration();
+		_ipdStrategy = IpdStrategy.selectWeightedRandom();
+		_egtPhenotype = EgtPhenotype.selectWeightedRandom();
+		_cognitiveLevel = CognitiveLevel.selectWeightedRandom();
+		_publicGoodsType = PublicGoodsType.selectWeightedRandom();
+		_svoArchetype = SvoArchetype.selectWeightedRandom();
+		loadStateFromVariables();
+		saveStateToVariables(true);
 		final VillageHub hub = ProgressionKnowledgeGraph.getStartingVillage(player.getRace());
 		_currentZone = ProgressionKnowledgeGraph.selectHuntingZone(player.getLevel(), player.getRace());
-		_lastAction = "Oriented at " + hub.villageName() + " (-> " + _targetEndgameClass.name() + ")";
+		_lastAction = "Oriented at " + hub.villageName() + " (-> " + _targetEndgameClass.name() + " " + getPhenotypeBadge() + ")";
 		_lastX = player.getX();
 		_lastY = player.getY();
 		_lastZ = player.getZ();
 		_lastExpSnapshot = player.getExp();
 		_lastAdenaSnapshot = player.getAdena();
+	}
+	
+	public String getPhenotypeBadge()
+	{
+		return "[" + _ipdStrategy.getCode() + "/" + _egtPhenotype.getCode() + "/" + _cognitiveLevel.getCode() + "/" + _svoArchetype.getCode() + "]";
+	}
+	
+	public void saveStateToVariables(boolean activeInWorld)
+	{
+		if (_player == null)
+		{
+			return;
+		}
+		try
+		{
+			final PlayerVariables vars = _player.getVariables();
+			vars.set(VAR_ASPIRATION, _targetEndgameClass.name());
+			vars.set(VAR_IPD, _ipdStrategy.name());
+			vars.set(VAR_EGT, _egtPhenotype.name());
+			vars.set(VAR_LEVEL_K, _cognitiveLevel.name());
+			vars.set(VAR_PG_TYPE, _publicGoodsType.name());
+			vars.set(VAR_SVO, _svoArchetype.name());
+			vars.set(VAR_SUB_STAGE, _subclassQuestStage);
+			vars.set(VAR_SUB_LEVEL, _subClassLevel);
+			vars.set(VAR_SUB_CERT, _subclassCertified);
+			vars.set(VAR_NOBLE_STAGE, _noblesseQuestStage);
+			vars.set(VAR_PAILAKA_TIER, _completedPailakaTier);
+			vars.set(VAR_SPOIL_PTS, _spoilAndCraftPoints);
+			vars.set(VAR_ACTIVE, activeInWorld);
+		}
+		catch (Exception ignored)
+		{
+		}
+	}
+	
+	public void loadStateFromVariables()
+	{
+		if (_player == null)
+		{
+			return;
+		}
+		try
+		{
+			final PlayerVariables vars = _player.getVariables();
+			final String savedAsp = vars.getString(VAR_ASPIRATION, null);
+			if ((savedAsp != null) && !savedAsp.isEmpty())
+			{
+				try
+				{
+					_targetEndgameClass = PlayerClass.valueOf(savedAsp);
+				}
+				catch (IllegalArgumentException ignored)
+				{
+				}
+			}
+			final String savedIpd = vars.getString(VAR_IPD, null);
+			if ((savedIpd != null) && !savedIpd.isEmpty())
+			{
+				try
+				{
+					_ipdStrategy = IpdStrategy.valueOf(savedIpd);
+				}
+				catch (IllegalArgumentException ignored)
+				{
+				}
+			}
+			final String savedEgt = vars.getString(VAR_EGT, null);
+			if ((savedEgt != null) && !savedEgt.isEmpty())
+			{
+				try
+				{
+					_egtPhenotype = EgtPhenotype.valueOf(savedEgt);
+				}
+				catch (IllegalArgumentException ignored)
+				{
+				}
+			}
+			final String savedK = vars.getString(VAR_LEVEL_K, null);
+			if ((savedK != null) && !savedK.isEmpty())
+			{
+				try
+				{
+					_cognitiveLevel = CognitiveLevel.valueOf(savedK);
+				}
+				catch (IllegalArgumentException ignored)
+				{
+				}
+			}
+			final String savedPg = vars.getString(VAR_PG_TYPE, null);
+			if ((savedPg != null) && !savedPg.isEmpty())
+			{
+				try
+				{
+					_publicGoodsType = PublicGoodsType.valueOf(savedPg);
+				}
+				catch (IllegalArgumentException ignored)
+				{
+				}
+			}
+			final String savedSvo = vars.getString(VAR_SVO, null);
+			if ((savedSvo != null) && !savedSvo.isEmpty())
+			{
+				try
+				{
+					_svoArchetype = SvoArchetype.valueOf(savedSvo);
+				}
+				catch (IllegalArgumentException ignored)
+				{
+				}
+			}
+			_subclassQuestStage = vars.getInt(VAR_SUB_STAGE, _subclassQuestStage);
+			_subClassLevel = vars.getInt(VAR_SUB_LEVEL, _subClassLevel);
+			_subclassCertified = vars.getBoolean(VAR_SUB_CERT, _subclassCertified);
+			_noblesseQuestStage = vars.getInt(VAR_NOBLE_STAGE, _noblesseQuestStage);
+			_completedPailakaTier = vars.getInt(VAR_PAILAKA_TIER, _completedPailakaTier);
+			_spoilAndCraftPoints = vars.getInt(VAR_SPOIL_PTS, _spoilAndCraftPoints);
+		}
+		catch (Exception ignored)
+		{
+		}
 	}
 	
 	public Player getPlayer()
@@ -175,6 +634,49 @@ public final class AutonomousCitizen
 	public PlayerClass getTargetEndgameClass()
 	{
 		return _targetEndgameClass;
+	}
+	
+	public IpdStrategy getIpdStrategy()
+	{
+		return _ipdStrategy;
+	}
+	
+	public EgtPhenotype getEgtPhenotype()
+	{
+		return _egtPhenotype;
+	}
+	
+	public CognitiveLevel getCognitiveLevel()
+	{
+		return _cognitiveLevel;
+	}
+	
+	public PublicGoodsType getPublicGoodsType()
+	{
+		return _publicGoodsType;
+	}
+	
+	public SvoArchetype getSvoArchetype()
+	{
+		return _svoArchetype;
+	}
+	
+	public long getZoneArrivalTimestampMs()
+	{
+		return _zoneArrivalTimestampMs;
+	}
+	
+	public int getTotalRetaliationDebt()
+	{
+		int sum = 0;
+		for (DyadicMemory mem : _interactionMemory.values())
+		{
+			if (mem.retaliationDebt > 0)
+			{
+				sum += Math.min(9, mem.retaliationDebt);
+			}
+		}
+		return sum;
 	}
 	
 	public String getLastDecisionReason()
@@ -381,7 +883,7 @@ public final class AutonomousCitizen
 	
 	public String getProgressionBadges()
 	{
-		final StringBuilder sb = new StringBuilder(48);
+		final StringBuilder sb = new StringBuilder(64);
 		final PlayerClass pc = _player.getPlayerClass();
 		final int classLvl = (pc != null) ? pc.level() : 0;
 		sb.append(switch (classLvl)
@@ -391,6 +893,12 @@ public final class AutonomousCitizen
 			case 3 -> "[3rd]";
 			default -> "[Base]";
 		});
+		sb.append(getPhenotypeBadge());
+		final int grudgeDebt = getTotalRetaliationDebt();
+		if (grudgeDebt > 0)
+		{
+			sb.append("[G:").append(grudgeDebt).append("]");
+		}
 		if (isSpoilerCitizen())
 		{
 			sb.append("[Spoil:").append(_spoilAndCraftPoints).append("]");
@@ -434,6 +942,11 @@ public final class AutonomousCitizen
 		if ((_player == null) || !_player.isOnline())
 		{
 			return;
+		}
+		
+		if ((++_persistenceTickCounter % 60) == 0)
+		{
+			saveStateToVariables(true);
 		}
 		
 		// 1. Death recovery -> revive to town and run TOWN_ROUTINE
@@ -1580,6 +2093,58 @@ public final class AutonomousCitizen
 		}
 	}
 	
+	/**
+	 * Finds a guaranteed open, walkable monster-spawn floor coordinate in the hunting zone so citizens
+	 * never teleport or roam into trees, rocks, cliffs, or interior wall meshes.
+	 */
+	private Location findSafeZoneLocation(Location fallbackCenter, int searchRadius)
+	{
+		if (fallbackCenter == null)
+		{
+			return _player.getLocation();
+		}
+		final int minLvl = Math.max(1, _player.getLevel() - 5);
+		final int maxLvl = _player.getLevel() + 6;
+		final List<Location> monsterSpawns = new ArrayList<>();
+		outer:
+		for (Set<Spawn> spawnSet : SpawnTable.getInstance().getSpawnTable().values())
+		{
+			for (Spawn spawn : spawnSet)
+			{
+				if ((spawn == null) || (spawn.getLastSpawn() == null))
+				{
+					continue;
+				}
+				final Npc npc = spawn.getLastSpawn();
+				if (!npc.isMonster() || npc.isRaid() || ((_player.getLevel() >= 3) && isGremlinNpc(npc)))
+				{
+					continue;
+				}
+				final double d = Math.hypot(spawn.getX() - fallbackCenter.getX(), spawn.getY() - fallbackCenter.getY());
+				if ((d <= searchRadius) && (npc.getLevel() >= minLvl) && (npc.getLevel() <= maxLvl))
+				{
+					monsterSpawns.add(new Location(spawn.getX(), spawn.getY(), spawn.getZ()));
+					if (monsterSpawns.size() >= 24)
+					{
+						break outer;
+					}
+				}
+			}
+		}
+		if (!monsterSpawns.isEmpty())
+		{
+			final Location chosen = monsterSpawns.get(ThreadLocalRandom.current().nextInt(monsterSpawns.size()));
+			final int ox = ThreadLocalRandom.current().nextInt(-75, 76);
+			final int oy = ThreadLocalRandom.current().nextInt(-75, 76);
+			final int gz = GeoEngine.getInstance().getHeight(chosen.getX() + ox, chosen.getY() + oy, chosen.getZ());
+			return GeoEngine.getInstance().getValidLocation(chosen.getX(), chosen.getY(), chosen.getZ(), chosen.getX() + ox, chosen.getY() + oy, gz, _player.getInstanceId());
+		}
+		final int ox = ThreadLocalRandom.current().nextInt(-180, 181);
+		final int oy = ThreadLocalRandom.current().nextInt(-180, 181);
+		final int gz = GeoEngine.getInstance().getHeight(fallbackCenter.getX() + ox, fallbackCenter.getY() + oy, fallbackCenter.getZ());
+		return GeoEngine.getInstance().getValidLocation(fallbackCenter.getX(), fallbackCenter.getY(), gz, fallbackCenter.getX() + ox, fallbackCenter.getY() + oy, gz, _player.getInstanceId());
+	}
+	
 	private void tickTravelToHuntingZone()
 	{
 		if (_currentZone == null)
@@ -1587,10 +2152,7 @@ public final class AutonomousCitizen
 			_currentZone = ProgressionKnowledgeGraph.selectHuntingZone(_player.getLevel(), _player.getRace());
 		}
 		
-		final Location center = _currentZone.huntingCenter();
-		final int scatterX = ThreadLocalRandom.current().nextInt(-220, 221);
-		final int scatterY = ThreadLocalRandom.current().nextInt(-220, 221);
-		final Location dest = new Location(center.getX() + scatterX, center.getY() + scatterY, center.getZ());
+		final Location dest = findSafeZoneLocation(_currentZone.huntingCenter(), 2400);
 		
 		// Gatekeeper teleport fee above Lv 40
 		if ((_player.getLevel() > 40) && (_player.getAdena() >= 5_000L))
@@ -1601,8 +2163,11 @@ public final class AutonomousCitizen
 		
 		_player.teleToLocation(dest, true);
 		_player.setRunning();
+		_zoneArrivalTimestampMs = System.currentTimeMillis();
 		_blacklistedTargets.clear();
 		_stuckTicks = 0;
+		_consecutiveZoneStucks = 0;
+		_taggedTargetObjId = 0;
 		_lastX = _player.getX();
 		_lastY = _player.getY();
 		_lastZ = _player.getZ();
@@ -1617,7 +2182,7 @@ public final class AutonomousCitizen
 		else
 		{
 			_macroState = CitizenMacroState.HUNT_AND_FARM;
-			_lastAction = "Arrived at " + _currentZone.name() + " (Lv " + _currentZone.minLevel() + "-" + _currentZone.maxLevel() + ")";
+			_lastAction = "Arrived at " + _currentZone.name() + " (Lv " + _currentZone.minLevel() + "-" + _currentZone.maxLevel() + ") " + getPhenotypeBadge();
 		}
 	}
 	
@@ -1645,18 +2210,463 @@ public final class AutonomousCitizen
 		return hasWealth && AutonomousPlayerManager.getInstance().hasActiveDwarvenArtisan();
 	}
 	
+	/**
+	 * Computes Resource Holding Potential (RHP) for Evolutionary Game Theory (ASSESSOR) contests:
+	 * RHP(p) = 10 * Level + PAtk + 50 * PartySize + 100 * HpRatio.
+	 */
+	private static double computeRhp(Player p)
+	{
+		if (p == null)
+		{
+			return 0.0;
+		}
+		final int partySize = p.isInParty() ? p.getParty().getMemberCount() : 1;
+		final double hpRatio = p.getCurrentHp() / Math.max(1.0, p.getMaxHp());
+		return (10.0 * p.getLevel()) + Math.min(2500.0, p.getPAtk(null) * 0.25) + (50.0 * partySize) + (100.0 * hpRatio);
+	}
+	
+	/**
+	 * Finds any non-party rival Player or Citizen currently claiming (targeting or top-aggroing) {@code monster}.
+	 */
+	private Player findRivalClaimingMonster(Creature monster)
+	{
+		if (monster == null)
+		{
+			return null;
+		}
+		if (monster instanceof Attackable attackable)
+		{
+			final Creature mostHated = attackable.getMostHated();
+			if ((mostHated != null) && mostHated.isPlayer())
+			{
+				final Player hatedPlayer = mostHated.asPlayer();
+				if ((hatedPlayer != null) && (hatedPlayer != _player) && !_player.isInPartyWith(hatedPlayer))
+				{
+					return hatedPlayer;
+				}
+			}
+		}
+		for (Player other : World.getVisibleObjectsInRange(monster, Player.class, 900))
+		{
+			if ((other == null) || (other == _player) || other.isDead() || _player.isInPartyWith(other))
+			{
+				continue;
+			}
+			if (other.getTarget() == monster)
+			{
+				return other;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Detects if a non-party rival player/citizen kill-stole or attacked the monster that this citizen tagged first
+	 * ({@code _taggedTargetObjId}), updating the IPD {@link DyadicMemory} state machine.
+	 */
+	private void detectAndRecordRivalDefection(Creature currentTarget)
+	{
+		if ((currentTarget == null) || (currentTarget.getObjectId() != _taggedTargetObjId))
+		{
+			return;
+		}
+		Player offender = null;
+		if (currentTarget instanceof Attackable attackable)
+		{
+			final Creature mostHated = attackable.getMostHated();
+			if ((mostHated != null) && mostHated.isPlayer())
+			{
+				final Player p = mostHated.asPlayer();
+				if ((p != null) && (p != _player) && !_player.isInPartyWith(p))
+				{
+					offender = p;
+				}
+			}
+		}
+		if (offender == null)
+		{
+			for (Player nearby : World.getVisibleObjectsInRange(currentTarget, Player.class, 260))
+			{
+				if ((nearby != null) && (nearby != _player) && !_player.isInPartyWith(nearby) && (nearby.getTarget() == currentTarget) && nearby.isInCombat())
+				{
+					offender = nearby;
+					break;
+				}
+			}
+		}
+		if (offender == null)
+		{
+			return;
+		}
+		
+		final DyadicMemory mem = _interactionMemory.computeIfAbsent(offender.getObjectId(), _ -> new DyadicMemory());
+		mem.interactions++;
+		mem.lastOtherCooperated = false;
+		mem.consecutiveDefections++;
+		mem.lastPayoffHigh = false; // Sucker payoff S (mob contested/stolen)
+		
+		if (_ipdStrategy == IpdStrategy.CONTRITE_TIT_FOR_TAT && mem.contriteStanding)
+		{
+			// Absorb the rival's retaliation without firing back to restore mutual cooperation!
+			mem.contriteStanding = false;
+			mem.retaliationDebt = 0;
+			_taggedTargetObjId = 0;
+			_lastDecisionReason = "Contrite TFT: Absorbed retaliation from " + offender.getName() + " -> Standing restored";
+			return;
+		}
+		
+		switch (_ipdStrategy)
+		{
+			case ALWAYS_COOPERATE -> mem.retaliationDebt = 0;
+			case TIT_FOR_TWO_TATS ->
+			{
+				if (mem.consecutiveDefections >= 2)
+				{
+					mem.retaliationDebt = Math.min(4, mem.retaliationDebt + 1);
+				}
+			}
+			case TWO_TITS_FOR_TAT -> mem.retaliationDebt = Math.min(6, mem.retaliationDebt + 2);
+			case GENEROUS_TIT_FOR_TAT ->
+			{
+				// Forgive with probability p = min(1 - (T-R)/(R-S), (R-P)/(T-P)) ~= 0.33
+				if (ThreadLocalRandom.current().nextInt(100) >= 33)
+				{
+					mem.retaliationDebt = Math.min(3, mem.retaliationDebt + 1);
+				}
+			}
+			case GRIM_TRIGGER -> mem.retaliationDebt = 999;
+			case TESTER ->
+			{
+				mem.testerOpponentRetaliated = true;
+				mem.testerApologyTurns = 2;
+				mem.retaliationDebt = 0;
+			}
+			default -> mem.retaliationDebt = Math.min(4, mem.retaliationDebt + 1);
+		}
+		_taggedTargetObjId = 0;
+		_lastDecisionReason = "IPD [" + _ipdStrategy.getCode() + "]: Recorded defection by " + offender.getName() + " (Debt=" + mem.retaliationDebt + ")";
+	}
+	
+	/**
+	 * Evaluates the 4-Dimensional Behavioral Phenotype (IPD + EGT + Public Goods + SVO) to decide
+	 * whether this citizen should contest a monster currently claimed by {@code rival}.
+	 */
+	private boolean shouldContestRivalTarget(Player rival, Creature monster)
+	{
+		if ((rival == null) || (monster == null))
+		{
+			return true;
+		}
+		final DyadicMemory mem = _interactionMemory.computeIfAbsent(rival.getObjectId(), _ -> new DyadicMemory());
+		final AutonomousCitizen rivalCitizen = AutonomousPlayerManager.getInstance().getCitizen(rival.getObjectId());
+		
+		// Dimension 3B: ALTRUISTIC_PUNISHER punishes known FREE_RIDER / ALWAYS_DEFECT / SPITEFUL rivals even on behalf of third parties!
+		if ((_publicGoodsType == PublicGoodsType.ALTRUISTIC_PUNISHER) && (rivalCitizen != null))
+		{
+			if ((rivalCitizen.getPublicGoodsType() == PublicGoodsType.FREE_RIDER)
+				|| (rivalCitizen.getIpdStrategy() == IpdStrategy.ALWAYS_DEFECT)
+				|| (rivalCitizen.getSvoArchetype() == SvoArchetype.SPITEFUL))
+			{
+				return true;
+			}
+		}
+		
+		// Dimension 1: IPD Dyadic Strategy evaluation
+		boolean ipdDefect = switch (_ipdStrategy)
+		{
+			case ALWAYS_COOPERATE -> false;
+			case ALWAYS_DEFECT -> true;
+			case TIT_FOR_TAT -> mem.retaliationDebt > 0;
+			case TIT_FOR_TWO_TATS -> (mem.consecutiveDefections >= 2) || (mem.retaliationDebt > 0);
+			case TWO_TITS_FOR_TAT -> mem.retaliationDebt > 0;
+			case GENEROUS_TIT_FOR_TAT -> (mem.retaliationDebt > 0) && (ThreadLocalRandom.current().nextInt(100) >= 33);
+			case CONTRITE_TIT_FOR_TAT -> !mem.contriteStanding && (mem.retaliationDebt > 0);
+			case PAVLOV -> mem.lastPayoffHigh ? !mem.lastSelfCooperated : mem.lastSelfCooperated;
+			case GRIM_TRIGGER -> mem.retaliationDebt > 0;
+			case TESTER ->
+			{
+				if (!mem.testerProbed)
+				{
+					mem.testerProbed = true;
+					yield true; // Initial probe defection on Move 1
+				}
+				if (mem.testerApologyTurns > 0)
+				{
+					mem.testerApologyTurns--;
+					yield false; // Apologize for 2 turns
+				}
+				yield mem.testerOpponentRetaliated ? (mem.retaliationDebt > 0) : ((mem.interactions % 2) == 0);
+			}
+			case JOSS -> (mem.retaliationDebt > 0) || (ThreadLocalRandom.current().nextInt(100) < 10);
+			case ZD_EXTORTION ->
+			{
+				// Press-Dyson Zero-Determinant Extortion (chi = 2.0): P(C|CC)=0.85, P(C|CD)=0.25, P(C|DC)=0.60, P(C|DD)=0.0
+				final int coopProb = (mem.lastSelfCooperated && mem.lastOtherCooperated) ? 85
+					: (mem.lastSelfCooperated ? 25 : (mem.lastOtherCooperated ? 60 : 0));
+				yield ThreadLocalRandom.current().nextInt(100) >= coopProb;
+			}
+		};
+		
+		// Dimension 2: Evolutionary Game Theory (EGT) Territorial & RHP Contest Override
+		final double hpRatio = _player.getCurrentHp() / Math.max(1.0, _player.getMaxHp());
+		final boolean egtEscalate = switch (_egtPhenotype)
+		{
+			case BOURGEOIS -> (rivalCitizen != null) && (_zoneArrivalTimestampMs < rivalCitizen.getZoneArrivalTimestampMs()) && (monster.getCurrentHp() >= (monster.getMaxHp() * 0.95));
+			case ASSESSOR -> (computeRhp(_player) > (1.15 * computeRhp(rival))) && (monster.getCurrentHp() >= (monster.getMaxHp() * 0.90));
+			case HAWK -> (hpRatio > 0.35) && (monster.getCurrentHp() >= (monster.getMaxHp() * 0.85)) && (ThreadLocalRandom.current().nextInt(100) < 35);
+			case DOVE -> false;
+			case USURPER_ROCK -> (rivalCitizen != null) && (rivalCitizen.getEgtPhenotype() == EgtPhenotype.GUARDER_SCISSORS || rivalCitizen.getEgtPhenotype() == EgtPhenotype.DOVE);
+			case GUARDER_SCISSORS -> (rivalCitizen != null) && (rivalCitizen.getEgtPhenotype() == EgtPhenotype.SNEAKER_PAPER);
+			case SNEAKER_PAPER -> false; // Never fights head-on; poaches unguarded outer mobs instead
+		};
+		
+		// Dimension 4: Social Value Orientation (SVO) Ring Angle Utility
+		final double svoContestUtility = _svoArchetype.evaluateUtility(65.0, -55.0);
+		final double svoYieldUtility = _svoArchetype.evaluateUtility(40.0, 80.0);
+		final boolean svoFavorsContest = svoContestUtility > svoYieldUtility;
+		
+		if (_egtPhenotype == EgtPhenotype.DOVE && (mem.retaliationDebt <= 0))
+		{
+			return false;
+		}
+		return ipdDefect || (egtEscalate && svoFavorsContest);
+	}
+	
+	/**
+	 * Dimension 4 (SVO Altruistic / Prosocial): Checks if any nearby non-party player or citizen is critically injured
+	 * ({@code HP < 50%}) or swarmed by {@code 2+} monsters, and casts a support heal/buff or peels a monster.
+	 */
+	private boolean tickAltruisticStrangerAid()
+	{
+		if ((_svoArchetype != SvoArchetype.ALTRUISTIC) && (_svoArchetype != SvoArchetype.PROSOCIAL))
+		{
+			return false;
+		}
+		final long now = System.currentTimeMillis();
+		if ((now - _lastAltruisticAidMs) < 6000L)
+		{
+			return false;
+		}
+		for (Player stranger : World.getVisibleObjectsInRange(_player, Player.class, 600))
+		{
+			if ((stranger == null) || (stranger == _player) || stranger.isDead() || _player.isInPartyWith(stranger))
+			{
+				continue;
+			}
+			final double strangerHp = stranger.getCurrentHp() / Math.max(1.0, stranger.getMaxHp());
+			if (strangerHp < 0.45)
+			{
+				for (int healId : new int[] { 1401, 1218, 1015, 1011 }) // Major Heal, Greater Battle Heal, Battle Heal, Heal
+				{
+					final Skill heal = getReadySkill(healId);
+					if (heal != null)
+					{
+						_lastAltruisticAidMs = now;
+						castTacticalSkill(heal, stranger, false, "SVO [" + _svoArchetype.getCode() + "] Stranger Aid: " + heal.getName() + " -> " + stranger.getName());
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Scored Multi-Candidate Target Selection incorporating all 4 Dimensions of the Behavioral Phenotype Engine:
+	 * <ol>
+	 *   <li><b>IPD Strategy &amp; Grudge Ledger:</b> Respects cooperative players' tagged targets while retaliating against defectors ({@code retaliationDebt > 0}).</li>
+	 *   <li><b>EGT Phenotype:</b> Bourgeois territory ownership, Assessor RHP comparison, and Rock-Paper-Scissors spatial radii (Rock 1800u, Scissors 600u, Paper outer-ring poaching).</li>
+	 *   <li><b>Cognitive Hierarchy Level-k:</b> L0 picks focal/nearest; L1 best-responds to L0 crowding by targeting the 2nd/3rd uncontested mob at 300-850u; L2/L3 adapt to local {@code k_bar}.</li>
+	 *   <li><b>SVO Utility &amp; Personal Space:</b> Evaluates {@code U(pi_self, pi_other)} and spreads citizens across open hunting ground.</li>
+	 * </ol>
+	 */
+	private Creature selectIndividualizedHuntTarget()
+	{
+		final int searchRadius = (_egtPhenotype == EgtPhenotype.GUARDER_SCISSORS) ? 950 : 2000;
+		final List<Creature> candidates = World.getVisibleObjectsInRange(_player, Creature.class, searchRadius, this::isValidHuntTarget);
+		if ((candidates == null) || candidates.isEmpty())
+		{
+			return null;
+		}
+		
+		// Estimate local hunting zone average cognitive level k_bar for Level-3 Equilibrium reasoning
+		int effectiveK = _cognitiveLevel.getK();
+		int nearbyHuntersCount = 0;
+		if (_cognitiveLevel == CognitiveLevel.L3_EQUILIBRIUM)
+		{
+			double kSum = 0.0;
+			for (Player p : World.getVisibleObjectsInRange(_player, Player.class, 1400))
+			{
+				if ((p == null) || (p == _player) || p.isDead())
+				{
+					continue;
+				}
+				nearbyHuntersCount++;
+				final AutonomousCitizen c = AutonomousPlayerManager.getInstance().getCitizen(p.getObjectId());
+				kSum += (c != null) ? c.getCognitiveLevel().getK() : 1.0;
+			}
+			effectiveK = (nearbyHuntersCount > 0) ? Math.min(3, (int) Math.floor(kSum / nearbyHuntersCount) + 1) : 2;
+		}
+		else
+		{
+			for (Player p : World.getVisibleObjectsInRange(_player, Player.class, 1200))
+			{
+				if ((p != null) && (p != _player) && !p.isDead() && !_player.isInPartyWith(p))
+				{
+					nearbyHuntersCount++;
+				}
+			}
+		}
+		
+		// Sort candidates by 2D distance to identify L0 focal (rank 0) vs L1/L2 dispersion ranks (rank 1..3)
+		candidates.sort(Comparator.comparingDouble(_player::calculateDistance2D));
+		
+		Creature bestTarget = null;
+		double bestScore = Double.NEGATIVE_INFINITY;
+		Player contestedRival = null;
+		final int playerLvl = _player.getLevel();
+		final Location zoneCenter = (_currentZone != null) ? _currentZone.huntingCenter() : _player.getLocation();
+		
+		for (int idx = 0; idx < candidates.size(); idx++)
+		{
+			final Creature cand = candidates.get(idx);
+			final double dist = _player.calculateDistance2D(cand);
+			double score = 1000.0 - (dist * 0.42);
+			
+			// 1. Optimal Level Match Bonus: strongly prefer monsters in [playerLvl - 1, playerLvl + 3]
+			final int mobLvl = cand.getLevel();
+			if ((mobLvl >= (playerLvl - 1)) && (mobLvl <= (playerLvl + 3)))
+			{
+				score += 240.0 + ((mobLvl - playerLvl) * 25.0);
+			}
+			else if (mobLvl < (playerLvl - 2))
+			{
+				score -= (playerLvl - mobLvl) * 95.0;
+			}
+			
+			// 2. Cognitive Hierarchy Level-k Focal vs Dispersion Preference
+			if ((nearbyHuntersCount > 0) && (effectiveK >= 1))
+			{
+				if (idx == 0)
+				{
+					// L1+ avoids crowding the #1 closest monster when other hunters are present
+					score -= 190.0;
+				}
+				else if ((idx >= 1) && (idx <= 3))
+				{
+					// L1/L2 best-responds by selecting the 2nd or 3rd uncontested monster
+					score += 210.0;
+				}
+			}
+			
+			// 3. EGT Rock-Paper-Scissors Spatial Geometry
+			if (_egtPhenotype == EgtPhenotype.GUARDER_SCISSORS)
+			{
+				final double distFromAnchor = Math.hypot(cand.getX() - zoneCenter.getX(), cand.getY() - zoneCenter.getY());
+				if (distFromAnchor <= 650.0)
+				{
+					score += 180.0;
+				}
+			}
+			else if (_egtPhenotype == EgtPhenotype.SNEAKER_PAPER)
+			{
+				// Paper skirts the outer ring (600..1800u) and loves Treasure Chests / unspoiled edge mobs
+				if ((dist >= 550.0) && (dist <= 1750.0))
+				{
+					score += 200.0;
+				}
+				if (cand instanceof Chest)
+				{
+					score += 320.0;
+				}
+			}
+			
+			// 4. Personal-Space Spreading: penalize monsters standing right next to another non-party hunter
+			for (Player nearby : World.getVisibleObjectsInRange(cand, Player.class, 160))
+			{
+				if ((nearby != null) && (nearby != _player) && !nearby.isDead() && !_player.isInPartyWith(nearby))
+				{
+					score -= 220.0;
+				}
+			}
+			
+			// 5. IPD + EGT + SVO Rival Claim & Retaliation Evaluation
+			final Player rival = findRivalClaimingMonster(cand);
+			if (rival != null)
+			{
+				if (!shouldContestRivalTarget(rival, cand))
+				{
+					// Cooperative yield: strongly avoid stealing another player's claimed monster
+					score -= 3000.0;
+				}
+				else
+				{
+					final DyadicMemory mem = _interactionMemory.get(rival.getObjectId());
+					if ((mem != null) && (mem.retaliationDebt > 0))
+					{
+						// Intentional IPD Retaliation against a kill-stealer!
+						score += 480.0;
+					}
+					else
+					{
+						score += 140.0;
+					}
+				}
+			}
+			
+			// 6. Per-citizen deterministic hash + stochastic jitter so two citizens never tie on the same mob
+			final int hashJitter = ((_player.getObjectId() * 31) ^ cand.getObjectId()) & 0x7F;
+			score += hashJitter + ThreadLocalRandom.current().nextInt(0, 65);
+			
+			if (score > bestScore)
+			{
+				bestScore = score;
+				bestTarget = cand;
+				contestedRival = rival;
+			}
+		}
+		
+		if (bestTarget != null)
+		{
+			if (contestedRival != null)
+			{
+				final DyadicMemory mem = _interactionMemory.computeIfAbsent(contestedRival.getObjectId(), _ -> new DyadicMemory());
+				mem.interactions++;
+				mem.lastSelfCooperated = false;
+				if ((mem.retaliationDebt > 0) && (mem.retaliationDebt < 900))
+				{
+					mem.retaliationDebt--;
+					_lastDecisionReason = "IPD [" + _ipdStrategy.getCode() + "] Retaliated vs " + contestedRival.getName() + " (RemDebt=" + mem.retaliationDebt + ")";
+				}
+				else if (_ipdStrategy == IpdStrategy.CONTRITE_TIT_FOR_TAT)
+				{
+					// Accidental contest under noise -> enter Contrite standing
+					mem.contriteStanding = true;
+				}
+				_taggedTargetObjId = 0;
+			}
+			else
+			{
+				_taggedTargetObjId = bestTarget.getObjectId();
+			}
+		}
+		return bestTarget;
+	}
+	
 	private void tickHuntAndFarm()
 	{
 		final int lvl = _player.getLevel();
 		final PlayerClass pc = _player.getPlayerClass();
 		final int classLvl = (pc != null) ? pc.level() : 0;
 		
-		// 1. Return to town if ready for class transfer, Pailaka, Subclass Campaign/Certification, 4-Part Noblesse Milestone, or gear tier upgrade
+		// 1. Return to town if ready for class transfer, Pailaka, Subclass Campaign/Certification, 4-Part Noblesse Milestone, zone bracket graduation, or gear tier upgrade
 		final boolean readyForSubCampaign = (lvl >= 76) && (classLvl >= 3) && !_subclassCertified && ((_subclassQuestStage < 5) || (_subClassLevel >= 75));
+		final boolean outgrewZone = (_currentZone != null) && (lvl < 85)
+			&& ((lvl <= 20) ? (lvl > _currentZone.maxLevel()) : (lvl > (_currentZone.maxLevel() + 2)));
 		if ((((lvl >= 20) && (classLvl == 0)) || ((lvl >= 40) && (classLvl == 1)) || ((lvl >= 76) && (classLvl == 2)))
 			|| readyForSubCampaign
 			|| isEligibleForNextNoblesseQuestPart()
-			|| ((_currentZone != null) && (lvl > (_currentZone.maxLevel() + 2)) && (lvl < 85))
+			|| outgrewZone
 			|| (ProgressionKnowledgeGraph.getTargetGradeTierForLevel(lvl, canAffordCraftedEndgame()) > _equippedGradeTier))
 		{
 			_macroState = CitizenMacroState.RETURN_TO_TOWN;
@@ -1669,7 +2679,13 @@ public final class AutonomousCitizen
 			return;
 		}
 		
-		// 2. Pick up nearby dropped items
+		// 2. SVO Altruistic / Prosocial Stranger Aid (Heal injured non-party strangers below 45% HP)
+		if (tickAltruisticStrangerAid())
+		{
+			return;
+		}
+		
+		// 3. Pick up nearby dropped items
 		final Item droppedItem = World.getFirstVisibleObjectInRange(_player, Item.class, 220, item ->
 			item.isSpawned()
 			&& (!item.isProtected() || (item.getOwnerId() == _player.getObjectId()))
@@ -1691,7 +2707,7 @@ public final class AutonomousCitizen
 			return;
 		}
 		
-		// 3. Check if current target died -> verify XP/Adena progression & starvation QA check
+		// 4. Check if current target died or was kill-stolen by a rival -> update IPD memory & verify XP/Adena progression
 		final WorldObject currentObj = _player.getTarget();
 		if ((currentObj != null) && currentObj.isCreature())
 		{
@@ -1701,23 +2717,37 @@ public final class AutonomousCitizen
 				evaluatePreviousSkillOutcome(currentTarget);
 				onTargetDefeated(currentTarget);
 				_player.setTarget(null);
+				_taggedTargetObjId = 0;
+			}
+			else
+			{
+				detectAndRecordRivalDefection(currentTarget);
 			}
 		}
 		
-		// 4. Acquire or validate live monster target
+		// 5. Acquire or validate individualized monster target via 4D Behavioral Phenotype Engine
 		Creature target = null;
 		if ((_player.getTarget() != null) && _player.getTarget().isCreature())
 		{
 			final Creature candidate = _player.getTarget().asCreature();
 			if (!candidate.isAlikeDead() && isValidHuntTarget(candidate))
 			{
-				target = candidate;
+				final Player rival = findRivalClaimingMonster(candidate);
+				if ((rival == null) || (candidate.getObjectId() == _taggedTargetObjId) || shouldContestRivalTarget(rival, candidate))
+				{
+					target = candidate;
+				}
+				else
+				{
+					// Yield contested monster before first blow if our strategy is cooperative
+					_player.setTarget(null);
+				}
 			}
 		}
 		
 		if (target == null)
 		{
-			target = World.getNearestVisibleObjectInRange(_player, Creature.class, 2000, this::isValidHuntTarget);
+			target = selectIndividualizedHuntTarget();
 			if (target != null)
 			{
 				_player.setTarget(target);
@@ -1729,20 +2759,24 @@ public final class AutonomousCitizen
 		
 		if (target == null)
 		{
-			// Roam around hunting zone center
-			if (!_player.isMoving() && (_currentZone != null))
+			// Environment-Aware Patrol around open monster-spawn coordinates (with stuck recovery if wedged while roaming)
+			if (_currentZone != null)
 			{
-				final Location c = _currentZone.huntingCenter();
-				final int rx = c.getX() + ThreadLocalRandom.current().nextInt(-450, 451);
-				final int ry = c.getY() + ThreadLocalRandom.current().nextInt(-450, 451);
-				final Location roamLoc = GeoEngine.getInstance().getValidLocation(_player.getX(), _player.getY(), _player.getZ(), rx, ry, c.getZ(), _player.getInstanceId());
-				_player.getAI().setIntentionMoveTo(roamLoc);
-				_lastAction = "Patrolling " + _currentZone.name();
+				if (!_player.isMoving())
+				{
+					final Location roamLoc = findSafeZoneLocation(_currentZone.huntingCenter(), 1400);
+					_player.getAI().setIntentionMoveTo(roamLoc);
+					_lastAction = "Patrolling " + _currentZone.name() + " " + getPhenotypeBadge();
+				}
+				else
+				{
+					checkAndRecoverFromTextureStuck(null);
+				}
 			}
 			return;
 		}
 		
-		// 5. GeoEngine stuck detection while pursuing target (Archers use full 850-1100 bow range; Kamael gap-closers/openers fire from <= 600u!)
+		// 6. 3-Tier Environment Unstuck Recovery while pursuing target
 		final double dist = _player.calculateDistance2D(target);
 		final boolean isMage = (_player.getPlayerClass() != null) && _player.getPlayerClass().isMage();
 		final double engageRange = isArcherCitizen()
@@ -1751,49 +2785,107 @@ public final class AutonomousCitizen
 		
 		if (dist > engageRange)
 		{
-			final int movedDistSq = ((_player.getX() - _lastX) * (_player.getX() - _lastX))
-				+ ((_player.getY() - _lastY) * (_player.getY() - _lastY));
-			_lastX = _player.getX();
-			_lastY = _player.getY();
-			_lastZ = _player.getZ();
-			
-			if (movedDistSq < 25)
+			if (checkAndRecoverFromTextureStuck(target))
 			{
-				_stuckTicks++;
-				if (_stuckTicks >= 4)
-				{
-					GameplayAnomalyAuditor.getInstance().report(
-						_player,
-						AnomalyType.GEO_STUCK_LOOP,
-						getCurrentZoneName(),
-						"Stuck for " + _stuckTicks + " ticks pursuing " + target.getName() + " at (" + target.getX() + "," + target.getY() + "," + target.getZ() + ")");
-					_blacklistedTargets.add(target.getObjectId());
-					_player.setTarget(null);
-					_stuckTicks = 0;
-					if (_currentZone != null)
-					{
-						final Location c = _currentZone.huntingCenter();
-						_player.getAI().setIntentionMoveTo(new Location(c.getX() + ThreadLocalRandom.current().nextInt(-300, 301), c.getY() + ThreadLocalRandom.current().nextInt(-300, 301), c.getZ()));
-					}
-					return;
-				}
+				return;
 			}
-			else
-			{
-				_stuckTicks = 0;
-			}
-			
 			if (!_player.isMoving())
 			{
 				_player.getAI().setIntentionMoveTo(target);
 			}
-			_lastAction = "Approaching " + target.getName() + " (" + (int) dist + "u)";
+			_lastAction = "Approaching " + target.getName() + " (Lv" + target.getLevel() + ", " + (int) dist + "u)";
 			return;
 		}
 		
-		// 6. Execute deep archetype combat doctrine + UCB1 contextual toolkit optimization
+		_stuckTicks = 0;
+		_consecutiveZoneStucks = 0;
+		
+		// 7. Execute deep archetype combat doctrine + UCB1 contextual toolkit optimization
 		evaluatePreviousSkillOutcome(target);
 		engageTarget(target, isMage);
+	}
+	
+	/**
+	 * 3-Tier Environment-Aware Texture Unstuck Recovery:
+	 * <ul>
+	 *   <li><b>Tier 1 ({@code _stuckTicks == 2}):</b> Blacklists obstructed target and probes 8 compass vectors ({@code 0..315 deg} at {@code 220u}) via {@link GeoEngine#canMoveToTarget} to steer around trees/rocks/fences.</li>
+	 *   <li><b>Tier 2 ({@code _stuckTicks >= 4}):</b> Reports {@code GEO_STUCK_LOOP} to {@link GameplayAnomalyAuditor} and teleports to a verified monster-spawn floor coordinate via {@link #findSafeZoneLocation}.</li>
+	 *   <li><b>Tier 3 ({@code _consecutiveZoneStucks >= 2}):</b> Switches {@code _currentZone} to an alternate hunting ground via {@link ProgressionKnowledgeGraph#selectAlternateHuntingZone}.</li>
+	 * </ul>
+	 */
+	private boolean checkAndRecoverFromTextureStuck(Creature pursuedTarget)
+	{
+		final int movedDistSq = ((_player.getX() - _lastX) * (_player.getX() - _lastX))
+			+ ((_player.getY() - _lastY) * (_player.getY() - _lastY));
+		_lastX = _player.getX();
+		_lastY = _player.getY();
+		_lastZ = _player.getZ();
+		
+		if (movedDistSq >= 25)
+		{
+			_stuckTicks = 0;
+			return false;
+		}
+		
+		_stuckTicks++;
+		if (_stuckTicks == 2)
+		{
+			// Tier 1: 8-Compass Vector Steer around obstacle
+			if (pursuedTarget != null)
+			{
+				_blacklistedTargets.add(pursuedTarget.getObjectId());
+				_player.setTarget(null);
+			}
+			final int startDir = ThreadLocalRandom.current().nextInt(8);
+			for (int i = 0; i < 8; i++)
+			{
+				final double angle = ((startDir + i) % 8) * (Math.PI / 4.0);
+				final int tx = _player.getX() + (int) Math.round(Math.cos(angle) * 220.0);
+				final int ty = _player.getY() + (int) Math.round(Math.sin(angle) * 220.0);
+				final int tz = GeoEngine.getInstance().getHeight(tx, ty, _player.getZ());
+				if (GeoEngine.getInstance().canMoveToTarget(_player.getX(), _player.getY(), _player.getZ(), tx, ty, tz, _player.getInstanceId()))
+				{
+					_player.getAI().setIntentionMoveTo(new Location(tx, ty, tz));
+					_lastAction = "Steering around obstacle in " + getCurrentZoneName();
+					return true;
+				}
+			}
+		}
+		else if (_stuckTicks >= 4)
+		{
+			// Tier 2 & Tier 3: Geometry trap pop-out to verified monster-spawn floor or alternate zone switch
+			GameplayAnomalyAuditor.getInstance().report(
+				_player,
+				AnomalyType.GEO_STUCK_LOOP,
+				getCurrentZoneName(),
+				"Stuck for " + _stuckTicks + " ticks" + ((pursuedTarget != null) ? (" pursuing " + pursuedTarget.getName()) : " patrolling") + " at (" + _player.getX() + "," + _player.getY() + "," + _player.getZ() + ")");
+			if (pursuedTarget != null)
+			{
+				_blacklistedTargets.add(pursuedTarget.getObjectId());
+			}
+			_player.setTarget(null);
+			_stuckTicks = 0;
+			_consecutiveZoneStucks++;
+			
+			if ((_consecutiveZoneStucks >= 2) && (_currentZone != null))
+			{
+				// Tier 3: Switch to an alternate hunting zone in the same level bracket
+				_consecutiveZoneStucks = 0;
+				_currentZone = ProgressionKnowledgeGraph.selectAlternateHuntingZone(_player.getLevel(), _player.getRace(), _currentZone.name());
+				final Location altDest = findSafeZoneLocation(_currentZone.huntingCenter(), 2200);
+				_player.teleToLocation(altDest, false);
+				_zoneArrivalTimestampMs = System.currentTimeMillis();
+				_lastAction = "Relocated to alternate zone: " + _currentZone.name();
+				return true;
+			}
+			
+			// Tier 2: Snap to a verified open monster-spawn floor coordinate in current zone
+			final Location safeLoc = findSafeZoneLocation((_currentZone != null) ? _currentZone.huntingCenter() : _player.getLocation(), 1800);
+			_player.teleToLocation(safeLoc, false);
+			_lastAction = "Unstuck recovery -> Open ground in " + getCurrentZoneName();
+			return true;
+		}
+		return false;
 	}
 	
 	private void tickPartyCoop()
@@ -3466,9 +4558,30 @@ public final class AutonomousCitizen
 		}
 	}
 	
+	private static boolean isGremlinNpc(Creature creature)
+	{
+		if (creature == null)
+		{
+			return false;
+		}
+		final int id = creature.getId();
+		if ((id == 18342) || (id == 20001))
+		{
+			return true;
+		}
+		final String name = creature.getName();
+		return (name != null) && name.toLowerCase(Locale.ROOT).contains("gremlin");
+	}
+	
 	private boolean isValidHuntTarget(Creature creature)
 	{
 		if ((creature == null) || creature.isAlikeDead() || !creature.isMonster() || creature.isRaid())
+		{
+			return false;
+		}
+		final int playerLvl = _player.getLevel();
+		// Strictly ban Gremlin grinding past Lv 2 so citizens immediately graduate to Keltirs, Wolves, Orcs, and Werewolves!
+		if ((playerLvl >= 3) && isGremlinNpc(creature))
 		{
 			return false;
 		}
@@ -3478,7 +4591,7 @@ public final class AutonomousCitizen
 			{
 				return false;
 			}
-			if (!chest.isInteracted() && (Math.abs(chest.getLevel() - _player.getLevel()) > 6))
+			if (!chest.isInteracted() && (Math.abs(chest.getLevel() - playerLvl) > 6))
 			{
 				return false;
 			}
@@ -3491,10 +4604,27 @@ public final class AutonomousCitizen
 		{
 			return false;
 		}
-		final int lvlDiff = Math.abs(creature.getLevel() - _player.getLevel());
-		if ((lvlDiff > 9) && (_player.getLevel() > 10))
+		final int mobLvl = creature.getLevel();
+		if (playerLvl <= 5)
 		{
-			return false;
+			if ((mobLvl < 1) || (mobLvl > (playerLvl + 3)))
+			{
+				return false;
+			}
+		}
+		else if (playerLvl < 20)
+		{
+			if ((mobLvl < (playerLvl - 3)) || (mobLvl > (playerLvl + 4)))
+			{
+				return false;
+			}
+		}
+		else
+		{
+			if ((mobLvl < (playerLvl - 5)) || (mobLvl > (playerLvl + 6)))
+			{
+				return false;
+			}
 		}
 		return (Math.abs(_player.getZ() - creature.getZ()) < 650)
 			&& GeoEngine.getInstance().canSeeTarget(_player, creature)

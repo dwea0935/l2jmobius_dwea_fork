@@ -447,6 +447,9 @@ public class GameServer
 			OfflinePlayTable.getInstance().restoreOfflinePlayers();
 		}
 		
+		// Initialize Autonomous Player Manager (schedules MariaDB auto-restore of active citizens 5s after boot)
+		org.l2jmobius.gameserver.ai.autonomous.AutonomousPlayerManager.getInstance();
+		
 		if (ServerConfig.SERVER_RESTART_SCHEDULE_ENABLED)
 		{
 			ServerRestartManager.getInstance();

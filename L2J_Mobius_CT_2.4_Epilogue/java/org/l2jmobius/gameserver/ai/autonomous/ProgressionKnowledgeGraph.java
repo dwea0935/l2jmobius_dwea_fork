@@ -135,16 +135,33 @@ public final class ProgressionKnowledgeGraph
 	private static final Location RUNE_TOWN = new Location(43799, -47727, -798);
 	
 	private static final List<HuntingZone> HUNTING_ZONES = List.of(
-		// Lv 1 - 10 Racial Starting Outskirts
-		new HuntingZone("Talking Island Outskirts", 1, 10, Race.HUMAN, new Location(-81200, 240150, -3560), "Talking Island Village", new Location(-84136, 244579, -3730)),
-		new HuntingZone("Elven Forest Glade", 1, 10, Race.ELF, new Location(46900, 41600, -3490), "Elven Village", new Location(45873, 49288, -3064)),
-		new HuntingZone("Dark Forest Altar", 1, 10, Race.DARK_ELF, new Location(25800, 10950, -3720), "Dark Elven Village", new Location(12428, 16551, -4588)),
-		new HuntingZone("Immortal Plateau North", 1, 10, Race.ORC, new Location(-50200, -113600, -670), "Orc Village", new Location(-44211, -113521, -241)),
-		new HuntingZone("Frozen Valley Strip Mine", 1, 10, Race.DWARF, new Location(108500, -174000, -400), "Dwarven Village", new Location(116551, -182493, -1525)),
-		new HuntingZone("Isle of Souls Outskirts", 1, 10, Race.KAMAEL, new Location(-122300, 52100, -1250), "Kamael Village", new Location(-116934, 46616, 368)),
-		// Lv 10 - 20 Early Hunting Grounds
-		new HuntingZone("Ruins of Agony", 10, 20, null, new Location(-42200, 118500, -3520), "Gludio Castle Town", GLUDIO_TOWN),
-		new HuntingZone("Elven Fortress Approaches", 10, 20, null, new Location(42000, 24500, -3600), "Gludio Castle Town", GLUDIO_TOWN),
+		// Lv 1 - 4 Starter Keltir & Wolf Outskirts (Rapid transition away from Lv 1 Gremlins by Lv 3-4)
+		new HuntingZone("Talking Island Keltir Fields", 1, 4, Race.HUMAN, new Location(-81200, 240150, -3560), "Talking Island Village", new Location(-84136, 244579, -3730)),
+		new HuntingZone("Elven Keltir Glade", 1, 4, Race.ELF, new Location(46900, 41600, -3490), "Elven Village", new Location(45873, 49288, -3064)),
+		new HuntingZone("Dark Forest Keltir Hollow", 1, 4, Race.DARK_ELF, new Location(25800, 10950, -3720), "Dark Elven Village", new Location(12428, 16551, -4588)),
+		new HuntingZone("Immortal Plateau Keltir Ridge", 1, 4, Race.ORC, new Location(-50200, -113600, -670), "Orc Village", new Location(-44211, -113521, -241)),
+		new HuntingZone("Frozen Valley Keltir Slope", 1, 4, Race.DWARF, new Location(108500, -174000, -400), "Dwarven Village", new Location(116551, -182493, -1525)),
+		new HuntingZone("Isle of Souls Keltir Yard", 1, 4, Race.KAMAEL, new Location(-122300, 52100, -1250), "Kamael Village", new Location(-116934, 46616, 368)),
+		// Lv 4 - 10 Racial Mid-Outskirts (Orcs, Werewolves, Goblins, Imps, Kaboo/Utuku Orcs, Muertos)
+		new HuntingZone("Talking Island Obelisk & Orc Camp", 4, 10, Race.HUMAN, new Location(-90800, 248200, -3560), "Talking Island Village", new Location(-84136, 244579, -3730)),
+		new HuntingZone("Elven Shadow Woods", 4, 10, Race.ELF, new Location(51400, 35200, -3380), "Elven Village", new Location(45873, 49288, -3064)),
+		new HuntingZone("Swampland & Dark Woods", 4, 10, Race.DARK_ELF, new Location(-3800, 17800, -3640), "Dark Elven Village", new Location(12428, 16551, -4588)),
+		new HuntingZone("Valley of Heroes Approach", 4, 10, Race.ORC, new Location(-36800, -116500, -1820), "Orc Village", new Location(-44211, -113521, -241)),
+		new HuntingZone("Western Mining Zone", 4, 10, Race.DWARF, new Location(114800, -165200, -1120), "Dwarven Village", new Location(116551, -182493, -1525)),
+		new HuntingZone("Mimir's Forest Approach", 4, 10, Race.KAMAEL, new Location(-124600, 62400, -2960), "Kamael Village", new Location(-116934, 46616, 368)),
+		// Lv 10 - 15 Outer Racial Frontiers & Early Gludio
+		new HuntingZone("Talking Island Elven Ruins Outer", 10, 15, Race.HUMAN, new Location(-106200, 236800, -3480), "Talking Island Village", new Location(-84136, 244579, -3730)),
+		new HuntingZone("Elven Fortress Outer Perimeter", 10, 15, Race.ELF, new Location(36800, 62800, -3620), "Elven Village", new Location(45873, 49288, -3064)),
+		new HuntingZone("Spider Nest & Neutral Zone", 10, 15, Race.DARK_ELF, new Location(-21600, 41200, -3620), "Dark Elven Village", new Location(12428, 16551, -4588)),
+		new HuntingZone("Immortal Plateau South", 10, 15, Race.ORC, new Location(-21200, -114800, -2420), "Orc Village", new Location(-44211, -113521, -241)),
+		new HuntingZone("Eastern Mining Zone", 10, 15, Race.DWARF, new Location(135400, -175600, -1620), "Dwarven Village", new Location(116551, -182493, -1525)),
+		new HuntingZone("Stronghold II & Hills of Gold", 10, 15, Race.KAMAEL, new Location(-119200, 76400, -3260), "Kamael Village", new Location(-116934, 46616, 368)),
+		new HuntingZone("Gludio Outskirts", 10, 15, null, new Location(-19400, 128600, -3160), "Gludio Castle Town", GLUDIO_TOWN),
+		// Lv 15 - 20 Pre-Transfer Hunting Grounds
+		new HuntingZone("Ruins of Agony", 15, 20, null, new Location(-42200, 118500, -3520), "Gludio Castle Town", GLUDIO_TOWN),
+		new HuntingZone("Windmill Hill & Langk Dwellings", 15, 20, null, new Location(-52800, 139600, -2910), "Gludio Castle Town", GLUDIO_TOWN),
+		new HuntingZone("Maille Lizardman Barracks Outer", 15, 20, null, new Location(-30800, 112400, -3540), "Gludio Castle Town", GLUDIO_TOWN),
+		new HuntingZone("Neutral Zone Bridge", 15, 20, null, new Location(-10400, 75600, -3580), "Gludio Castle Town", GLUDIO_TOWN),
 		// Lv 20 - 30 First Class Hunting Grounds + Seven Signs Necropolis
 		new HuntingZone("Ruins of Despair", 20, 30, null, new Location(-20100, 138800, -3890), "Gludio Castle Town", GLUDIO_TOWN),
 		new HuntingZone("Execution Grounds", 20, 32, null, new Location(45500, 147800, -3690), "Dion Castle Town", DION_TOWN),
@@ -192,9 +209,18 @@ public final class ProgressionKnowledgeGraph
 	
 	public static HuntingZone selectHuntingZone(int level, Race race)
 	{
+		return selectAlternateHuntingZone(level, race, null);
+	}
+	
+	public static HuntingZone selectAlternateHuntingZone(int level, Race race, String excludeZoneName)
+	{
 		final List<HuntingZone> candidates = new ArrayList<>();
 		for (HuntingZone zone : HUNTING_ZONES)
 		{
+			if ((excludeZoneName != null) && excludeZoneName.equalsIgnoreCase(zone.name()))
+			{
+				continue;
+			}
 			if ((level >= zone.minLevel()) && (level <= zone.maxLevel()))
 			{
 				if ((zone.preferredRace() == null) || (zone.preferredRace() == race))
@@ -207,11 +233,31 @@ public final class ProgressionKnowledgeGraph
 		{
 			return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
 		}
+		// Second pass: allow cross-race zones in the same level bracket if current racial zone was excluded
+		for (HuntingZone zone : HUNTING_ZONES)
+		{
+			if ((excludeZoneName != null) && excludeZoneName.equalsIgnoreCase(zone.name()))
+			{
+				continue;
+			}
+			if ((level >= zone.minLevel()) && (level <= zone.maxLevel()))
+			{
+				candidates.add(zone);
+			}
+		}
+		if (!candidates.isEmpty())
+		{
+			return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
+		}
 		// Fallback to closest level bracket
 		HuntingZone best = HUNTING_ZONES.get(0);
 		int bestDiff = Integer.MAX_VALUE;
 		for (HuntingZone zone : HUNTING_ZONES)
 		{
+			if ((excludeZoneName != null) && excludeZoneName.equalsIgnoreCase(zone.name()))
+			{
+				continue;
+			}
 			final int mid = (zone.minLevel() + zone.maxLevel()) / 2;
 			final int diff = Math.abs(level - mid);
 			if (diff < bestDiff)
@@ -274,12 +320,21 @@ public final class ProgressionKnowledgeGraph
 		{
 			return PlayerClass.FIGHTER;
 		}
-		PlayerClass cur = aspiration;
-		while (cur.getParent() != null)
+		return switch (aspiration)
 		{
-			cur = cur.getParent();
-		}
-		return cur;
+			case DOOMBRINGER, MALE_SOUL_HOUND, BERSERKER, MALE_SOULBREAKER, TROOPER, MALE_SOLDIER -> PlayerClass.MALE_SOLDIER;
+			case TRICKSTER, FEMALE_SOUL_HOUND, ARBALESTER, FEMALE_SOULBREAKER, WARDER, FEMALE_SOLDIER -> PlayerClass.FEMALE_SOLDIER;
+			case JUDICATOR, INSPECTOR -> ThreadLocalRandom.current().nextBoolean() ? PlayerClass.MALE_SOLDIER : PlayerClass.FEMALE_SOLDIER;
+			default ->
+			{
+				PlayerClass cur = aspiration;
+				while (cur.getParent() != null)
+				{
+					cur = cur.getParent();
+				}
+				yield cur;
+			}
+		};
 	}
 	
 	public static HuntingZone selectClassTransferQuestZone(int classTier)
@@ -571,6 +626,32 @@ public final class ProgressionKnowledgeGraph
 		if (currentClass == null)
 		{
 			return null;
+		}
+		if ((targetEndgameClass == PlayerClass.JUDICATOR) || (targetEndgameClass == PlayerClass.INSPECTOR))
+		{
+			switch (currentClass)
+			{
+				case MALE_SOLDIER:
+				{
+					return PlayerClass.TROOPER;
+				}
+				case FEMALE_SOLDIER:
+				{
+					return PlayerClass.WARDER;
+				}
+				case TROOPER, WARDER:
+				{
+					return PlayerClass.INSPECTOR;
+				}
+				case INSPECTOR:
+				{
+					return PlayerClass.JUDICATOR;
+				}
+				default:
+				{
+					break;
+				}
+			}
 		}
 		final Set<PlayerClass> nextClasses = currentClass.getNextClasses();
 		if ((nextClasses == null) || nextClasses.isEmpty())
