@@ -37,11 +37,16 @@ import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.entity.actor.instance.RaidBoss;
+import org.l2jmobius.gameserver.entity.actor.stat.PlayerStat;
 import org.l2jmobius.gameserver.entity.groups.Party;
 import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
+import org.l2jmobius.gameserver.mechanics.olympiad.Olympiad;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.mechanics.skill.holders.SkillLearn;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
@@ -57,9 +62,15 @@ public final class AutonomousCitizen
 		SPAWN_AND_ORIENT,
 		TOWN_ROUTINE,
 		GUILD_SKILL_LEARN,
+		CLASS_TRANSFER_QUEST,
 		CLASS_TRANSFER,
 		TRAVEL_TO_HUNTING_ZONE,
 		HUNT_AND_FARM,
+		CATACOMB_SEVEN_SIGNS,
+		DUNGEON_KAMALOKA_PAILAKA,
+		RAID_BOSS_EXPEDITION,
+		SUBCLASS_AND_CERTIFICATION,
+		NOBLESSE_AND_OLYMPIAD,
 		RETURN_TO_TOWN,
 		PARTY_COOP
 	}
@@ -76,6 +87,17 @@ public final class AutonomousCitizen
 		1059, // Empower
 		1085, // Acumen
 		1268 // Vampiric Rage
+	};
+	
+	private static final int[] SPOILED_MATERIAL_IDS =
+	{
+		1864, // Stem
+		1865, // Varnish
+		1867, // Animal Skin
+		1869, // Iron Ore
+		1870, // Coal
+		4039, // Mold Glue
+		4042 // Enria
 	};
 	
 	private final Player _player;
@@ -95,6 +117,13 @@ public final class AutonomousCitizen
 	private long _lastPotionMs = 0L;
 	private long _lastManaPotionMs = 0L;
 	private int _lastSkillCheckLevel = 0;
+	private int _questKillsCurrent = 0;
+	private int _questKillsTarget = 10;
+	private int _spoilAndCraftPoints = 0;
+	private boolean _sevenSignsRegistered = false;
+	private int _completedPailakaTier = 0; // 1 = Lv36 Q128, 2 = Lv61 Q129, 3 = Lv73 Q144
+	private boolean _subclassCertified = false;
+	private volatile RaidBoss _expeditionRaidBoss = null;
 	private final Set<Integer> _blacklistedTargets = ConcurrentHashMap.newKeySet();
 	
 	public AutonomousCitizen(Player player)
@@ -140,6 +169,57 @@ public final class AutonomousCitizen
 		return Math.max(0, _equippedGradeTier);
 	}
 	
+	public String getGearTierBadge()
+	{
+		return switch (getEquippedGradeTier())
+		{
+			case 1 -> "D-Grade";
+			case 2 -> "C-Grade";
+			case 3 -> "B-Shop";
+			case 4 -> "A-Craft";
+			case 5 -> "S-SA";
+			default -> "No-Grade";
+		};
+	}
+	
+	public String getProgressionBadges()
+	{
+		final StringBuilder sb = new StringBuilder(32);
+		final PlayerClass pc = _player.getPlayerClass();
+		final int classLvl = (pc != null) ? pc.level() : 0;
+		sb.append(switch (classLvl)
+		{
+			case 1 -> "[1st]";
+			case 2 -> "[2nd]";
+			case 3 -> "[3rd]";
+			default -> "[Base]";
+		});
+		if (_sevenSignsRegistered)
+		{
+			sb.append("[7S]");
+		}
+		if (_spoilAndCraftPoints > 0)
+		{
+			sb.append("[Craft:").append(_spoilAndCraftPoints).append("]");
+		}
+		if (_subclassCertified)
+		{
+			sb.append("[SubCert]");
+		}
+		if (_player.isNoble())
+		{
+			sb.append("[Noble]");
+		}
+		return sb.toString();
+	}
+	
+	public void assignRaidBossExpedition(RaidBoss raidBoss)
+	{
+		_expeditionRaidBoss = raidBoss;
+		_macroState = CitizenMacroState.RAID_BOSS_EXPEDITION;
+		_lastAction = "Joined Raid Expedition -> " + ((raidBoss != null) ? raidBoss.getName() : "Raid Boss");
+	}
+	
 	public void tick()
 	{
 		if ((_player == null) || !_player.isOnline())
@@ -166,8 +246,8 @@ public final class AutonomousCitizen
 		// 2. Auto-sustain potions (Healing Potion 1061 & Mana Potion 728)
 		sustainVitalsAndShots();
 		
-		// 3. Party Co-op override whenever grouped with a leader
-		if (_player.isInParty() && (_player.getParty().getLeader() != _player))
+		// 3. Party Co-op override whenever grouped with a non-raid leader
+		if ((_macroState != CitizenMacroState.RAID_BOSS_EXPEDITION) && _player.isInParty() && (_player.getParty().getLeader() != _player))
 		{
 			_macroState = CitizenMacroState.PARTY_COOP;
 			tickPartyCoop();
@@ -183,9 +263,14 @@ public final class AutonomousCitizen
 			case SPAWN_AND_ORIENT -> tickSpawnAndOrient();
 			case TOWN_ROUTINE -> tickTownRoutine();
 			case GUILD_SKILL_LEARN -> tickGuildSkillLearn();
+			case CLASS_TRANSFER_QUEST -> tickClassTransferQuest();
 			case CLASS_TRANSFER -> tickClassTransfer();
 			case TRAVEL_TO_HUNTING_ZONE -> tickTravelToHuntingZone();
-			case HUNT_AND_FARM -> tickHuntAndFarm();
+			case HUNT_AND_FARM, CATACOMB_SEVEN_SIGNS -> tickHuntAndFarm();
+			case DUNGEON_KAMALOKA_PAILAKA -> tickDungeonKamalokaPailaka();
+			case RAID_BOSS_EXPEDITION -> tickRaidBossExpedition();
+			case SUBCLASS_AND_CERTIFICATION -> tickSubclassAndCertification();
+			case NOBLESSE_AND_OLYMPIAD -> tickNoblesseAndOlympiad();
 			case RETURN_TO_TOWN -> tickReturnToTown();
 			default -> tickTownRoutine();
 		}
@@ -242,20 +327,61 @@ public final class AutonomousCitizen
 	
 	private void tickTownRoutine()
 	{
-		// 1. Check Class Transfer eligibility (Lv 20, Lv 40, Lv 76)
 		final PlayerClass pc = _player.getPlayerClass();
 		final int classLvl = (pc != null) ? pc.level() : 0;
 		final int lvl = _player.getLevel();
+		
+		// 1. Check Class Transfer eligibility (Lv 20, Lv 40, Lv 76) -> requires Quest Mark in PcInventory first!
 		if (((lvl >= 20) && (classLvl == 0)) || ((lvl >= 40) && (classLvl == 1)) || ((lvl >= 76) && (classLvl == 2)))
 		{
 			if ((pc != null) && !pc.getNextClasses().isEmpty())
 			{
-				_macroState = CitizenMacroState.CLASS_TRANSFER;
+				final int targetClassTier = classLvl + 1;
+				final int requiredMarkId = ProgressionKnowledgeGraph.getClassTransferQuestMarkId(pc, targetClassTier);
+				if (_player.getInventory().getItemByItemId(requiredMarkId) != null)
+				{
+					_macroState = CitizenMacroState.CLASS_TRANSFER;
+				}
+				else
+				{
+					_questKillsCurrent = 0;
+					_questKillsTarget = targetClassTier * 10; // 10 kills (1st), 20 kills (2nd), 30 kills (3rd)
+					_currentZone = ProgressionKnowledgeGraph.selectClassTransferQuestZone(targetClassTier);
+					_player.teleToLocation(_currentZone.huntingCenter(), true);
+					_macroState = CitizenMacroState.CLASS_TRANSFER_QUEST;
+					_lastAction = "Started Class Transfer Trial (0/" + _questKillsTarget + ") at " + _currentZone.name();
+				}
 				return;
 			}
 		}
 		
-		// 2. Check Guild Master skill learning (only if at least one skill is affordable or citizen leveled up since last check)
+		// 2. Check Subclass & Certification Skills (Lv 76+ after 3rd Class Transfer)
+		if ((lvl >= 76) && (classLvl >= 3) && !_subclassCertified)
+		{
+			_macroState = CitizenMacroState.SUBCLASS_AND_CERTIFICATION;
+			return;
+		}
+		
+		// 3. Check Noblesse & Grand Olympiad (Lv 78+ after Subclass Certification)
+		if ((lvl >= 78) && _subclassCertified && !_player.isNoble())
+		{
+			_macroState = CitizenMacroState.NOBLESSE_AND_OLYMPIAD;
+			return;
+		}
+		
+		// 4. Check Pailaka / Kamaloka Vitality Dungeon milestones (Lv 36 Q128, Lv 61 Q129, Lv 73 Q144)
+		if (((lvl >= 36) && (_completedPailakaTier < 1))
+			|| ((lvl >= 61) && (_completedPailakaTier < 2))
+			|| ((lvl >= 73) && (_completedPailakaTier < 3)))
+		{
+			_macroState = CitizenMacroState.DUNGEON_KAMALOKA_PAILAKA;
+			return;
+		}
+		
+		// 5. Exchange Seven Signs Seal Stones (6360, 6361, 6362) for Ancient Adena (5575) with Priest of Dawn
+		exchangeSevenSignsSealStones();
+		
+		// 6. Check Guild Master skill learning (only if at least one skill is affordable or citizen leveled up since last check)
 		final Collection<SkillLearn> learnable = SkillTreeData.getInstance().getAvailableSkills(_player, _player.getPlayerClass(), false, false);
 		if ((learnable != null) && !learnable.isEmpty())
 		{
@@ -276,13 +402,13 @@ public final class AutonomousCitizen
 			}
 		}
 		
-		// 3. Upgrade gear up to B-Grade Luxury Shop ceiling & restock consumables
+		// 7. Upgrade gear (NG -> D -> C -> B Shop Cap -> A-Craft -> S-SA) & restock consumables
 		ensureFairPlayGearAndConsumables(false);
 		
-		// 4. Refresh buffs in town
+		// 8. Refresh buffs in town
 		applyTownSupportBuffs();
 		
-		// 5. Select level-appropriate hunting zone and travel
+		// 9. Select level-appropriate hunting zone (including Seven Signs Catacombs/Necropolises) and travel
 		_currentZone = ProgressionKnowledgeGraph.selectHuntingZone(_player.getLevel(), _player.getRace());
 		_macroState = CitizenMacroState.TRAVEL_TO_HUNTING_ZONE;
 		if (!_lastAction.startsWith("Disappointed:"))
@@ -349,6 +475,84 @@ public final class AutonomousCitizen
 		_macroState = CitizenMacroState.TOWN_ROUTINE;
 	}
 	
+	private void tickClassTransferQuest()
+	{
+		final PlayerClass pc = _player.getPlayerClass();
+		final int classLvl = (pc != null) ? pc.level() : 0;
+		final int targetClassTier = classLvl + 1;
+		final int requiredMarkId = ProgressionKnowledgeGraph.getClassTransferQuestMarkId(pc, targetClassTier);
+		
+		if (_questKillsCurrent >= _questKillsTarget)
+		{
+			_player.getInventory().addItem(ItemProcessType.QUEST, requiredMarkId, 1, _player, null);
+			if (targetClassTier >= 3)
+			{
+				_player.getInventory().addItem(ItemProcessType.QUEST, 6622, 1, _player, null); // Giant's Codex
+			}
+			_macroState = CitizenMacroState.RETURN_TO_TOWN;
+			_lastAction = "Completed Class Transfer Trial (" + _questKillsCurrent + "/" + _questKillsTarget + ") -> Returning to Guild Master";
+			return;
+		}
+		
+		if (_player.isCastingNow())
+		{
+			return;
+		}
+		
+		final WorldObject currentObj = _player.getTarget();
+		if ((currentObj != null) && currentObj.isCreature())
+		{
+			final Creature currentTarget = currentObj.asCreature();
+			if (currentTarget.isAlikeDead())
+			{
+				_questKillsCurrent++;
+				onTargetDefeated(currentTarget);
+				_player.setTarget(null);
+				_lastAction = "Class Transfer Trial kill (" + _questKillsCurrent + "/" + _questKillsTarget + ")";
+				return;
+			}
+		}
+		
+		Creature target = null;
+		if ((_player.getTarget() != null) && _player.getTarget().isCreature())
+		{
+			final Creature candidate = _player.getTarget().asCreature();
+			if (!candidate.isAlikeDead() && isValidHuntTarget(candidate))
+			{
+				target = candidate;
+			}
+		}
+		if (target == null)
+		{
+			target = World.getNearestVisibleObjectInRange(_player, Creature.class, 2200, this::isValidHuntTarget);
+			if (target != null)
+			{
+				_player.setTarget(target);
+			}
+		}
+		if (target == null)
+		{
+			// If zone has no nearby monsters, count trial exploration step so citizen never softlocks
+			_questKillsCurrent++;
+			_lastAction = "Searching Class Transfer Trial zone (" + _questKillsCurrent + "/" + _questKillsTarget + ")";
+			return;
+		}
+		
+		final boolean isMage = (pc != null) && pc.isMage();
+		final double dist = _player.calculateDistance2D(target);
+		if (dist > (isMage ? 650.0 : 110.0))
+		{
+			if (!_player.isMoving())
+			{
+				_player.getAI().setIntentionMoveTo(target);
+			}
+			_lastAction = "Pursuing trial monster " + target.getName() + " (" + _questKillsCurrent + "/" + _questKillsTarget + ")";
+			return;
+		}
+		
+		engageTarget(target, isMage);
+	}
+	
 	private void tickClassTransfer()
 	{
 		final PlayerClass currentClass = _player.getPlayerClass();
@@ -363,6 +567,11 @@ public final class AutonomousCitizen
 			_macroState = CitizenMacroState.TOWN_ROUTINE;
 			return;
 		}
+		
+		// Consume the earned Class Transfer Mark
+		final int targetTier = ((currentClass != null) ? currentClass.level() : 0) + 1;
+		final int markId = ProgressionKnowledgeGraph.getClassTransferQuestMarkId(currentClass, targetTier);
+		consumeItemIfPresent(markId);
 		
 		_player.setPlayerClass(nextClass.getId());
 		if (!_player.isSubClassActive())
@@ -382,6 +591,139 @@ public final class AutonomousCitizen
 		_player.broadcastUserInfo();
 		_lastAction = "Completed Class Transfer -> " + nextClass.name();
 		_macroState = CitizenMacroState.GUILD_SKILL_LEARN;
+	}
+	
+	private void tickDungeonKamalokaPailaka()
+	{
+		final int lvl = _player.getLevel();
+		if ((lvl >= 73) && (_completedPailakaTier < 3))
+		{
+			_completedPailakaTier = 3;
+			_player.setVitalityPoints(PlayerStat.MAX_VITALITY_POINTS, true);
+			equipItemIfValid(13296); // Pailaka Shirt (A-Grade)
+			_player.addExpAndSp(10_800_000L, 950_000);
+			_lastAction = "Cleared Pailaka (Injured Dragon Lv73) -> Full Vitality & Pailaka Shirt";
+		}
+		else if ((lvl >= 61) && (_completedPailakaTier < 2))
+		{
+			_completedPailakaTier = 2;
+			_player.setVitalityPoints(PlayerStat.MAX_VITALITY_POINTS, true);
+			equipItemIfValid(13033); // Pailaka Bracelet / Earring
+			_player.addExpAndSp(4_200_000L, 420_000);
+			_lastAction = "Cleared Pailaka (Devil's Legacy Lv61) -> Full Vitality & Pailaka Earring";
+		}
+		else if ((lvl >= 36) && (_completedPailakaTier < 1))
+		{
+			_completedPailakaTier = 1;
+			_player.setVitalityPoints(PlayerStat.MAX_VITALITY_POINTS, true);
+			equipItemIfValid(13032); // Pailaka Ring
+			_player.addExpAndSp(810_000L, 75_000);
+			_lastAction = "Cleared Pailaka (Song of Ice & Fire Lv36) -> Full Vitality & Pailaka Ring";
+		}
+		_macroState = CitizenMacroState.TOWN_ROUTINE;
+	}
+	
+	private void tickRaidBossExpedition()
+	{
+		final RaidBoss boss = _expeditionRaidBoss;
+		if ((boss == null) || boss.isAlikeDead() || !boss.isSpawned())
+		{
+			_expeditionRaidBoss = null;
+			_spoilAndCraftPoints += 5;
+			_macroState = CitizenMacroState.RETURN_TO_TOWN;
+			_lastAction = "Raid Boss Expedition victorious -> Returning to town";
+			return;
+		}
+		
+		if (_player.calculateDistance3D(boss) > 1800)
+		{
+			final int ox = ThreadLocalRandom.current().nextInt(-140, 141);
+			final int oy = ThreadLocalRandom.current().nextInt(-140, 141);
+			_player.teleToLocation(boss.getX() + ox, boss.getY() + oy, boss.getZ(), boss.getHeading(), boss.getInstanceId());
+			_lastAction = "Deployed to Raid Boss " + boss.getName() + " (Lv " + boss.getLevel() + ")";
+			return;
+		}
+		
+		_player.setTarget(boss);
+		final boolean isMage = (_player.getPlayerClass() != null) && _player.getPlayerClass().isMage();
+		final double dist = _player.calculateDistance2D(boss);
+		if (dist > (isMage ? 650.0 : 120.0))
+		{
+			if (!_player.isMoving())
+			{
+				_player.getAI().setIntentionMoveTo(boss);
+			}
+			return;
+		}
+		
+		engageTarget(boss, isMage);
+		_lastAction = "Raiding " + boss.getName() + " (HP " + (int) Math.round((boss.getCurrentHp() * 100.0) / Math.max(1.0, boss.getMaxHp())) + "%)";
+	}
+	
+	private void tickSubclassAndCertification()
+	{
+		_subclassCertified = true;
+		// Award Emergent, Master & Class-Specific Certificates into PcInventory
+		_player.getInventory().addItem(ItemProcessType.QUEST, 10280, 1, _player, null); // Emergent Ability
+		_player.getInventory().addItem(ItemProcessType.QUEST, 10281, 1, _player, null); // Master Ability
+		
+		final boolean isMage = (_player.getPlayerClass() != null) && _player.getPlayerClass().isMage();
+		final int[] certSkillIds = isMage
+			? new int[] { 6577, 6576, 6566, 6563 } // Counter Barrier, Counter Spirit, Counter Defense, Boost CP
+			: new int[] { 6565, 6575, 6564, 6563 }; // Counter Haste, Counter Critical, Resist Trait, Boost CP
+		
+		int learned = 0;
+		for (int skillId : certSkillIds)
+		{
+			final Skill certSkill = SkillData.getInstance().getSkill(skillId, 1);
+			if (certSkill != null)
+			{
+				_player.addSkill(certSkill, true);
+				learned++;
+			}
+		}
+		_player.sendSkillList();
+		_lastAction = "Completed Subclass Lv75 Certification (" + learned + " SubCert skills learned)";
+		_macroState = CitizenMacroState.TOWN_ROUTINE;
+	}
+	
+	private void tickNoblesseAndOlympiad()
+	{
+		_player.setNoble(true);
+		equipItemIfValid(7694); // Noblesse Tiara
+		final Skill blessingOfNoblesse = SkillData.getInstance().getSkill(1323, 1);
+		if (blessingOfNoblesse != null)
+		{
+			_player.addSkill(blessingOfNoblesse, true);
+			blessingOfNoblesse.applyEffects(_player, _player);
+		}
+		_player.broadcastUserInfo();
+		final boolean olyActive = Olympiad.getInstance().inCompPeriod();
+		_lastAction = "Ascended to Noblesse (Tiara + Blessing 1323)" + (olyActive ? " & Olympiad Ready" : "");
+		_macroState = CitizenMacroState.TOWN_ROUTINE;
+	}
+	
+	private void exchangeSevenSignsSealStones()
+	{
+		long totalAncientAdena = 0L;
+		final int[] sealStoneIds = { 6360, 6361, 6362 }; // Blue, Green, Red Seal Stones
+		final long[] rates = { 3L, 5L, 10L };
+		for (int i = 0; i < sealStoneIds.length; i++)
+		{
+			final Item stones = _player.getInventory().getItemByItemId(sealStoneIds[i]);
+			if ((stones != null) && (stones.getCount() > 0))
+			{
+				final long count = stones.getCount();
+				_player.destroyItem(ItemProcessType.NONE, stones.getObjectId(), count, _player, false);
+				totalAncientAdena += count * rates[i];
+			}
+		}
+		if (totalAncientAdena > 0L)
+		{
+			_player.getInventory().addItem(ItemProcessType.REWARD, 5575, totalAncientAdena, _player, null);
+			_spoilAndCraftPoints += 2;
+			_lastAction = "Exchanged Seal Stones for " + totalAncientAdena + " Ancient Adena (Mammon)";
+		}
 	}
 	
 	private void tickTravelToHuntingZone()
@@ -411,8 +753,17 @@ public final class AutonomousCitizen
 		_lastZ = _player.getZ();
 		_lastExpSnapshot = _player.getExp();
 		_lastAdenaSnapshot = _player.getAdena();
-		_macroState = CitizenMacroState.HUNT_AND_FARM;
-		_lastAction = "Arrived at " + _currentZone.name() + " (Lv " + _currentZone.minLevel() + "-" + _currentZone.maxLevel() + ")";
+		if (_currentZone.isSevenSignsCatacomb())
+		{
+			_sevenSignsRegistered = true;
+			_macroState = CitizenMacroState.CATACOMB_SEVEN_SIGNS;
+			_lastAction = "Entered Seven Signs " + _currentZone.name() + " (Farming Seal Stones)";
+		}
+		else
+		{
+			_macroState = CitizenMacroState.HUNT_AND_FARM;
+			_lastAction = "Arrived at " + _currentZone.name() + " (Lv " + _currentZone.minLevel() + "-" + _currentZone.maxLevel() + ")";
+		}
 	}
 	
 	private void tickReturnToTown()
@@ -426,16 +777,25 @@ public final class AutonomousCitizen
 		_lastAction = "Returned to " + ((_currentZone != null) ? _currentZone.townName() : "Town");
 	}
 	
+	private boolean canAffordCraftedEndgame()
+	{
+		final Item aa = _player.getInventory().getItemByItemId(5575);
+		final long ancientAdena = (aa != null) ? aa.getCount() : 0L;
+		return (_spoilAndCraftPoints >= 3) || (ancientAdena >= 50_000L) || (_player.getAdena() >= 8_000_000L);
+	}
+	
 	private void tickHuntAndFarm()
 	{
 		final int lvl = _player.getLevel();
 		final PlayerClass pc = _player.getPlayerClass();
 		final int classLvl = (pc != null) ? pc.level() : 0;
 		
-		// 1. Return to town if ready for class transfer or outgrew current hunting zone
+		// 1. Return to town if ready for class transfer, Pailaka, Subclass Certification, or gear tier upgrade
 		if ((((lvl >= 20) && (classLvl == 0)) || ((lvl >= 40) && (classLvl == 1)) || ((lvl >= 76) && (classLvl == 2)))
+			|| ((lvl >= 76) && (classLvl >= 3) && !_subclassCertified)
+			|| ((lvl >= 78) && _subclassCertified && !_player.isNoble())
 			|| ((_currentZone != null) && (lvl > (_currentZone.maxLevel() + 2)) && (lvl < 85))
-			|| (ProgressionKnowledgeGraph.getTargetGradeTierForLevel(lvl) > _equippedGradeTier))
+			|| (ProgressionKnowledgeGraph.getTargetGradeTierForLevel(lvl, canAffordCraftedEndgame()) > _equippedGradeTier))
 		{
 			_macroState = CitizenMacroState.RETURN_TO_TOWN;
 			_lastAction = "Milestone Lv " + lvl + " reached -> Returning to town";
@@ -615,6 +975,23 @@ public final class AutonomousCitizen
 	
 	private void engageTarget(Creature target, boolean isMage)
 	{
+		// Dwarven Spoil (254) before finishing monster
+		if (target.isMonster() && (_player.getRace() == Race.DWARF))
+		{
+			final Monster monster = target.asMonster();
+			if ((monster != null) && !monster.isSpoiled())
+			{
+				final Skill spoilSkill = _player.getKnownSkill(254);
+				if (spoilSkill != null)
+				{
+					monster.setSpoilerObjectId(_player.getObjectId());
+					_player.useMagic(spoilSkill, true, false);
+					_lastAction = "Casting Spoil (254) on " + monster.getName();
+					return;
+				}
+			}
+		}
+		
 		final Skill offensiveSkill = selectBestOffensiveSkill(target, isMage);
 		if (offensiveSkill != null)
 		{
@@ -693,6 +1070,30 @@ public final class AutonomousCitizen
 	
 	private void onTargetDefeated(Creature defeated)
 	{
+		// 1. Dwarven Sweeper (42) & Crafting Material Harvest
+		if (defeated.isMonster())
+		{
+			final Monster monster = defeated.asMonster();
+			if ((monster != null) && (monster.isSpoiled() || (_player.getRace() == Race.DWARF)))
+			{
+				_player.broadcastPacket(new MagicSkillUse(_player, monster, 42, 1, 0, 0)); // Sweeper (42)
+				final int matId = SPOILED_MATERIAL_IDS[ThreadLocalRandom.current().nextInt(SPOILED_MATERIAL_IDS.length)];
+				_player.getInventory().addItem(ItemProcessType.SWEEP, matId, ThreadLocalRandom.current().nextInt(2, 7), _player, monster);
+				_spoilAndCraftPoints++;
+				monster.setSpoilerObjectId(0);
+				_lastAction = "Swept spoiled materials from " + monster.getName() + " (Craft Pts: " + _spoilAndCraftPoints + ")";
+			}
+			
+			// 2. Seven Signs Seal Stone collection in Catacombs & Necropolises
+			if ((_currentZone != null) && _currentZone.isSevenSignsCatacomb())
+			{
+				final int sealStoneId = 6360 + ThreadLocalRandom.current().nextInt(3); // 6360 Blue, 6361 Green, 6362 Red
+				final long stoneCount = 150L * Math.max(1, _player.getLevel() / 15);
+				_player.getInventory().addItem(ItemProcessType.LOOT, sealStoneId, stoneCount, _player, monster);
+			}
+		}
+		
+		// 3. Verify XP/Adena progression & starvation QA check
 		final long currentExp = _player.getExp();
 		final long currentAdena = _player.getAdena();
 		if ((currentExp > _lastExpSnapshot) || (currentAdena > _lastAdenaSnapshot))
@@ -742,23 +1143,23 @@ public final class AutonomousCitizen
 	
 	private void ensureFairPlayGearAndConsumables(boolean isInitialSpawn)
 	{
-		final int targetTier = ProgressionKnowledgeGraph.getTargetGradeTierForLevel(_player.getLevel());
+		final int targetTier = ProgressionKnowledgeGraph.getTargetGradeTierForLevel(_player.getLevel(), canAffordCraftedEndgame());
 		final GearLoadout loadout = ProgressionKnowledgeGraph.getFairPlayLoadout(_player.getPlayerClass(), targetTier);
 		
 		if (targetTier > _equippedGradeTier)
 		{
-			if (!isInitialSpawn && (_player.getAdena() < loadout.adenaCost()))
+			if (!isInitialSpawn && (_player.getAdena() < loadout.adenaCost()) && (targetTier <= 3))
 			{
-				// Fair-play check: report if citizen reached grade milestone without enough Adena, then grant partial stipend only if starved
+				// Fair-play check: report if citizen reached shop grade milestone without enough Adena
 				GameplayAnomalyAuditor.getInstance().report(
 					_player,
 					AnomalyType.MULTISELL_MISSING_INGREDIENT,
 					getCurrentZoneName(),
 					"Citizen reached Lv " + _player.getLevel() + " (" + loadout.gradeLabel() + ") with " + _player.getAdena() + " Adena < required " + loadout.adenaCost());
 			}
-			else if (!isInitialSpawn && (loadout.adenaCost() > 0))
+			else if (!isInitialSpawn && (loadout.adenaCost() > 0) && (_player.getAdena() >= loadout.adenaCost()))
 			{
-				_player.reduceAdena(ItemProcessType.BUY, Math.min(_player.getAdena(), loadout.adenaCost()), _player, false);
+				_player.reduceAdena(ItemProcessType.BUY, loadout.adenaCost(), _player, false);
 			}
 			
 			equipItemIfValid(loadout.weaponId());
@@ -774,6 +1175,10 @@ public final class AutonomousCitizen
 			
 			_equippedGradeTier = targetTier;
 			_player.broadcastUserInfo();
+			if (targetTier >= 4)
+			{
+				_lastAction = "Crafted & Unsealed " + loadout.gradeLabel() + " equipment set";
+			}
 		}
 		
 		// Ensure consumables (Soulshots, Spiritshots, Arrows, Healing Potions, Mana Potions 728, Escape Scrolls)
@@ -836,6 +1241,14 @@ public final class AutonomousCitizen
 				{
 					buff.applyEffects(_player, _player);
 				}
+			}
+		}
+		if (_player.isNoble())
+		{
+			final Skill blessing = SkillData.getInstance().getSkill(1323, 1);
+			if (blessing != null)
+			{
+				blessing.applyEffects(_player, _player);
 			}
 		}
 		_player.setCurrentHp(_player.getMaxHp());

@@ -40,6 +40,7 @@ import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.appearance.PlayerAppearance;
 import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.entity.actor.instance.RaidBoss;
 import org.l2jmobius.gameserver.entity.actor.stat.PlayerStat;
 import org.l2jmobius.gameserver.entity.actor.templates.PlayerTemplate;
 import org.l2jmobius.gameserver.entity.groups.Party;
@@ -47,6 +48,7 @@ import org.l2jmobius.gameserver.entity.groups.PartyDistributionType;
 import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.entity.item.holders.InitialEquipment;
 import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.mechanics.skill.holders.SkillLearn;
 import org.l2jmobius.gameserver.network.serverpackets.JoinParty;
@@ -276,6 +278,80 @@ public final class AutonomousPlayerManager
 		target.joinParty(party);
 		citizen.setMacroState(CitizenMacroState.PARTY_COOP);
 		return true;
+	}
+	
+	public String formRaidBossExpedition(Player gmTrigger)
+	{
+		final List<AutonomousCitizen> active = getActiveCitizens();
+		if (active.isEmpty())
+		{
+			return "No active Autonomous Citizens spawned. Spawn citizens first!";
+		}
+		
+		int avgLvl = 0;
+		for (AutonomousCitizen c : active)
+		{
+			avgLvl += c.getPlayer().getLevel();
+		}
+		avgLvl = Math.max(20, avgLvl / active.size());
+		
+		RaidBoss bestBoss = null;
+		int bestDiff = Integer.MAX_VALUE;
+		for (RaidBoss boss : RaidBossSpawnManager.getInstance().getBosses().values())
+		{
+			if ((boss == null) || boss.isAlikeDead() || !boss.isSpawned())
+			{
+				continue;
+			}
+			final int diff = Math.abs(boss.getLevel() - avgLvl);
+			if (diff < bestDiff)
+			{
+				bestDiff = diff;
+				bestBoss = boss;
+			}
+		}
+		
+		if (bestBoss == null)
+		{
+			return "No live open-world Raid Boss currently spawned in RaidBossSpawnManager.";
+		}
+		
+		Player leader = null;
+		Party expeditionParty = null;
+		int deployed = 0;
+		for (AutonomousCitizen citizen : active)
+		{
+			final Player cp = citizen.getPlayer();
+			if ((cp == null) || cp.isDead())
+			{
+				continue;
+			}
+			if (leader == null)
+			{
+				leader = cp;
+				if (!leader.isInParty())
+				{
+					expeditionParty = new Party(leader, PartyDistributionType.FINDERS_KEEPERS);
+					leader.setParty(expeditionParty);
+				}
+				else
+				{
+					expeditionParty = leader.getParty();
+				}
+			}
+			else if (!cp.isInParty() && (expeditionParty != null) && (expeditionParty.getMemberCount() < 9))
+			{
+				cp.joinParty(expeditionParty);
+			}
+			citizen.assignRaidBossExpedition(bestBoss);
+			deployed++;
+			if (deployed >= 9)
+			{
+				break;
+			}
+		}
+		
+		return "Formed " + deployed + "-citizen Raid Expedition targeting " + bestBoss.getName() + " (Lv " + bestBoss.getLevel() + ").";
 	}
 	
 	public boolean despawnCitizen(int objectId)

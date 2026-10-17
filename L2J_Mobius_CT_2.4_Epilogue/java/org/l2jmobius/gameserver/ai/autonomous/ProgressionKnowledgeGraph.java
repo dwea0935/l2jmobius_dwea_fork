@@ -51,12 +51,24 @@ public final class ProgressionKnowledgeGraph
 		Race preferredRace,
 		Location huntingCenter,
 		String townName,
-		Location townCenter)
+		Location townCenter,
+		boolean isSevenSignsCatacomb)
 	{
+		public HuntingZone(
+			String name,
+			int minLevel,
+			int maxLevel,
+			Race preferredRace,
+			Location huntingCenter,
+			String townName,
+			Location townCenter)
+		{
+			this(name, minLevel, maxLevel, preferredRace, huntingCenter, townName, townCenter, false);
+		}
 	}
 	
 	public record GearLoadout(
-		int gradeTier, // 0 = NG, 1 = D, 2 = C, 3 = B
+		int gradeTier, // 0 = NG, 1 = D, 2 = C, 3 = B (Shop Cap), 4 = A-Craft, 5 = S-SA
 		String gradeLabel,
 		int minLevel,
 		long adenaCost,
@@ -132,24 +144,31 @@ public final class ProgressionKnowledgeGraph
 		// Lv 10 - 20 Early Hunting Grounds
 		new HuntingZone("Ruins of Agony", 10, 20, null, new Location(-42200, 118500, -3520), "Gludio Castle Town", GLUDIO_TOWN),
 		new HuntingZone("Elven Fortress Approaches", 10, 20, null, new Location(42000, 24500, -3600), "Gludio Castle Town", GLUDIO_TOWN),
-		// Lv 20 - 30 First Class Hunting Grounds
+		// Lv 20 - 30 First Class Hunting Grounds + Seven Signs Necropolis
 		new HuntingZone("Ruins of Despair", 20, 30, null, new Location(-20100, 138800, -3890), "Gludio Castle Town", GLUDIO_TOWN),
 		new HuntingZone("Execution Grounds", 20, 32, null, new Location(45500, 147800, -3690), "Dion Castle Town", DION_TOWN),
-		// Lv 30 - 40 Mid-Dion / Early-Giran
+		new HuntingZone("Necropolis of Sacrifice", 20, 30, null, new Location(-41560, 209800, -5085), "Gludio Castle Town", GLUDIO_TOWN, true),
+		// Lv 30 - 40 Mid-Dion / Early-Giran + Seven Signs Necropolis
 		new HuntingZone("Death Pass", 30, 40, null, new Location(70500, 118200, -3680), "Giran Castle Town", GIRAN_TOWN),
 		new HuntingZone("Plains of Dion", 30, 40, null, new Location(18500, 162500, -3520), "Dion Castle Town", DION_TOWN),
-		// Lv 40 - 52 Second Class Hunting Grounds
+		new HuntingZone("Pilgrim's Necropolis", 30, 40, null, new Location(45250, 123900, -5410), "Giran Castle Town", GIRAN_TOWN, true),
+		// Lv 40 - 52 Second Class Hunting Grounds + Seven Signs Catacomb
 		new HuntingZone("Sea of Spores", 40, 52, null, new Location(64200, 26800, -3760), "Oren Castle Town", OREN_TOWN),
 		new HuntingZone("Outlaw Forest", 40, 52, null, new Location(91400, 12200, -3660), "Oren Castle Town", OREN_TOWN),
-		// Lv 52 - 61 B-Grade Progression Grounds
+		new HuntingZone("Catacomb of the Branded", 40, 52, null, new Location(46500, 170300, -4980), "Giran Castle Town", GIRAN_TOWN, true),
+		// Lv 52 - 61 B-Grade Progression Grounds + Seven Signs Catacomb
 		new HuntingZone("The Cemetery", 52, 61, null, new Location(172100, 20300, -3320), "Aden Castle Town", ADEN_TOWN),
 		new HuntingZone("Forsaken Plains", 52, 61, null, new Location(179500, 41200, -4150), "Aden Castle Town", ADEN_TOWN),
-		// Lv 61 - 75 Late Progression Grounds
+		new HuntingZone("Catacomb of the Apostate", 52, 61, null, new Location(77300, 78400, -5125), "Oren Castle Town", OREN_TOWN, true),
+		// Lv 61 - 75 Late Progression Grounds + Seven Signs Catacomb
 		new HuntingZone("Wall of Argos", 61, 75, null, new Location(168200, -49600, -3530), "Goddard Castle Town", GODDARD_TOWN),
 		new HuntingZone("Hot Springs", 61, 75, null, new Location(144800, -112500, -2100), "Goddard Castle Town", GODDARD_TOWN),
-		// Lv 75 - 85 Endgame Third-Class Grounds
+		new HuntingZone("Catacomb of the Witch", 61, 75, null, new Location(140400, 79600, -5425), "Aden Castle Town", ADEN_TOWN, true),
+		// Lv 75 - 85 Endgame Third-Class Grounds + Seven Signs Necropolis/Catacomb
 		new HuntingZone("Varka Silenos Outpost", 75, 85, null, new Location(125500, -40900, -3720), "Goddard Castle Town", GODDARD_TOWN),
-		new HuntingZone("Ketra Orc Outpost", 75, 85, null, new Location(146900, -67200, -3660), "Goddard Castle Town", GODDARD_TOWN));
+		new HuntingZone("Ketra Orc Outpost", 75, 85, null, new Location(146900, -67200, -3660), "Goddard Castle Town", GODDARD_TOWN),
+		new HuntingZone("Catacomb of Dark Omens", 72, 80, null, new Location(-19500, 13500, -4900), "Oren Castle Town", OREN_TOWN, true),
+		new HuntingZone("Disciples Necropolis", 78, 85, null, new Location(172200, -17600, -4900), "Aden Castle Town", ADEN_TOWN, true));
 	
 	private ProgressionKnowledgeGraph()
 	{
@@ -203,6 +222,27 @@ public final class ProgressionKnowledgeGraph
 		return best;
 	}
 	
+	public static HuntingZone selectClassTransferQuestZone(int classTier)
+	{
+		return switch (classTier)
+		{
+			case 1 -> new HuntingZone("Ruins of Despair (1st Class Trial)", 19, 25, null, new Location(-20100, 138800, -3890), "Gludio Castle Town", GLUDIO_TOWN);
+			case 2 -> new HuntingZone("Death Pass (2nd Class Testimony)", 39, 45, null, new Location(70500, 118200, -3680), "Giran Castle Town", GIRAN_TOWN);
+			default -> new HuntingZone("Wall of Argos (3rd Class Saga)", 75, 80, null, new Location(168200, -49600, -3530), "Goddard Castle Town", GODDARD_TOWN);
+		};
+	}
+	
+	public static int getClassTransferQuestMarkId(PlayerClass playerClass, int classTier)
+	{
+		final boolean isMage = (playerClass != null) && playerClass.isMage();
+		return switch (classTier)
+		{
+			case 1 -> isMage ? 1161 : 1145; // Sword of Ritual / Medallion of Warrior
+			case 2 -> isMage ? 2840 : 2627; // Mark of Magus / Mark of Challenger
+			default -> 7284; // Resonance Amulet - 1 (Saga of the Third Class)
+		};
+	}
+	
 	public static PlayerClass selectNextClassTransfer(PlayerClass currentClass)
 	{
 		if (currentClass == null)
@@ -220,6 +260,19 @@ public final class ProgressionKnowledgeGraph
 	
 	public static int getTargetGradeTierForLevel(int level)
 	{
+		return getTargetGradeTierForLevel(level, false);
+	}
+	
+	public static int getTargetGradeTierForLevel(int level, boolean canAffordCraftedEndgame)
+	{
+		if (canAffordCraftedEndgame && (level >= 76))
+		{
+			return 5; // S-Grade Crafted + SA
+		}
+		if (canAffordCraftedEndgame && (level >= 61))
+		{
+			return 4; // A-Grade Crafted / Mammon Unsealed
+		}
 		if (level >= 52)
 		{
 			return 3; // B-Grade Luxury Shop ceiling
@@ -301,6 +354,44 @@ public final class ProgressionKnowledgeGraph
 					1465, // Soulshot: B-grade
 					3950, // Blessed Spiritshot: B-grade
 					1343); // Silver Arrow
+			case 4 -> // A-Grade Crafted & Mammon Unsealed (Lv 61+)
+				new GearLoadout(
+					4,
+					"A-Craft",
+					61,
+					8_000_000L,
+					isMage ? 151 : (isArcher ? 288 : (isDagger ? 236 : 80)), // Sword of Miracles / Carnage Bow / Soul Separator / Tallum Blade
+					isMage ? 0 : 2498, // Dark Crystal Shield
+					547, // Tallum / Majestic Helmet
+					isMage ? 2409 : (isArcher || isDagger ? 2395 : 2382), // Majestic Robe / Majestic Leather / Tallum Plate Armor
+					0,
+					isMage ? 5774 : (isArcher || isDagger ? 5772 : 5768), // Majestic / Tallum Gloves
+					isMage ? 5786 : (isArcher || isDagger ? 5784 : 5780), // Majestic / Tallum Boots
+					924, // Majestic Necklace
+					862, // Majestic Earring
+					893, // Majestic Ring
+					1466, // Soulshot: A-grade
+					3951, // Blessed Spiritshot: A-grade
+					1344); // Mithril Arrow
+			case 5 -> // S-Grade Crafted + Mammon SA (Lv 76+)
+				new GearLoadout(
+					5,
+					"S-SA",
+					76,
+					25_000_000L,
+					isMage ? 6579 : (isArcher ? 7577 : (isDagger ? 6590 : 6583)), // Arcana Mace [Acumen] / Draconic Bow [Focus] / Angel Slayer [Haste] / Basalt Battlehammer [Health]
+					isMage ? 0 : 6377, // Imperial Crusader Shield
+					isMage ? 6386 : (isArcher || isDagger ? 6382 : 6378), // Major Arcana Circlet / Draconic Leather Helmet / Imperial Crusader Helmet
+					isMage ? 6383 : (isArcher || isDagger ? 6379 : 6373), // Major Arcana Robe / Draconic Leather Armor / Imperial Crusader Breastplate
+					isMage ? 0 : (isArcher || isDagger ? 0 : 6374), // Imperial Crusader Gaiters
+					isMage ? 6384 : (isArcher || isDagger ? 6380 : 6375), // Major Arcana / Draconic / Imperial Crusader Gloves
+					isMage ? 6385 : (isArcher || isDagger ? 6381 : 6376), // Major Arcana / Draconic / Imperial Crusader Boots
+					920, // Tateossian Necklace
+					858, // Tateossian Earring
+					889, // Tateossian Ring
+					1467, // Soulshot: S-grade
+					3952, // Blessed Spiritshot: S-grade
+					1345); // Shining Arrow
 			default -> // No-Grade (Lv 1+)
 				new GearLoadout(
 					0,
